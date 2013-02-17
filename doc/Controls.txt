@@ -1,0 +1,43 @@
+- Tables
+	- Tags
+		Company Contact
+		Components Buyer
+		Consultancy Services
+		Distributor
+		Employee
+		Manufacturer
+		Office Supplies
+	- Countries
+	- States
+	- Fiscal Positions
+		Normal Taxes
+		Tax Exempt
+	- Payment References
+		Free Reference
+	- Taxes
+		8%
+		15%
+	- Payment Terms
+		NR
+		Immediate Payment
+		15 Days
+		30 Days
+		45 Days
+		60 Days
+	- Positions
+		CEO
+		Manager
+		Sales
+		Part Time
+	- Departments
+		- name
+		- manager
+		- parent-id
+	- Manager
+	- Nationality
+	- Bank Accounts
+	- Product Types
+		Stockable
+		Consumable
+		Service
+	

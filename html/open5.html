@@ -1,0 +1,2999 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <title>Quotations - OpenERP</title>
+
+        <link href="/css/erp4.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="openerp openerp_webclient_container">
+    <table class="oe_webclient">
+        <tbody>
+			<tr style="display: table-row;">
+            <td colspan="2" class="oe_topbar">
+                <ul class="oe_menu" style="height: auto;">
+        <li style="display: block;">
+            
+    <a href="#menu_id=104&amp;action=" data-menu="104" data-action-model="" data-action-id="" class="oe_menu_toggler">
+        <span class="oe_menu_text">
+            Messaging
+        </span>
+    </a>
+
+        </li><li style="display: block;">
+            
+    <a href="#menu_id=75&amp;action=" data-menu="75" data-action-model="" data-action-id="" class="oe_menu_toggler">
+        <span class="oe_menu_text">
+            Sales
+        </span>
+    </a>
+
+        </li><li style="display: block;">
+            
+    <a href="#menu_id=379&amp;action=" data-menu="379" data-action-model="" data-action-id="" class="oe_menu_toggler">
+        <span class="oe_menu_text">
+            Point of Sale
+        </span>
+    </a>
+
+        </li><li style="display: block;">
+            
+    <a href="#menu_id=403&amp;action=" data-menu="403" data-action-model="" data-action-id="" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Project
+        </span>
+    </a>
+
+        </li><li style="display: block;">
+            
+    <a href="#menu_id=136&amp;action=" data-menu="136" data-action-model="" data-action-id="" class="oe_menu_toggler">
+        <span class="oe_menu_text">
+            Invoicing
+        </span>
+    </a>
+
+        </li><li style="display: block;">
+            
+    <a href="#menu_id=311&amp;action=" data-menu="311" data-action-model="" data-action-id="" class="oe_menu_toggler oe_active">
+        <span class="oe_menu_text">
+            Purchases
+        </span>
+    </a>
+
+        </li><li style="display: block;">
+            
+    <a href="#menu_id=270&amp;action=" data-menu="270" data-action-model="" data-action-id="" class="oe_menu_toggler">
+        <span class="oe_menu_text">
+            Warehouse
+        </span>
+    </a>
+
+        </li><li style="display: block;">
+            
+    <a href="#menu_id=346&amp;action=" data-menu="346" data-action-model="" data-action-id="" class="oe_menu_toggler">
+        <span class="oe_menu_text">
+            Manufacturing
+        </span>
+    </a>
+
+        </li>
+        <li style="display: block;">
+            
+    <a href="#menu_id=369&amp;action=" data-menu="369" data-action-model="" data-action-id="" class="oe_menu_toggler">
+        <span class="oe_menu_text">
+            Human Resources
+        </span>
+    </a>
+
+        </li><li style="display: block;" class="oe_menu_more_container">
+            <span class="oe_topbar_item oe_menu_more_link oe_dropdown_toggle oe_dropdown_arrow">
+                More
+                <ul class="oe_menu_more oe_dropdown_menu"><li style="display: block;">
+            
+    <a href="#menu_id=653&amp;action=" data-menu="653" data-action-model="" data-action-id="" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Events
+        </span>
+    </a>
+
+        </li><li style="display: block;">
+            
+    <a href="#menu_id=552&amp;action=" data-menu="552" data-action-model="" data-action-id="" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Tools
+        </span>
+    </a>
+
+        </li><li style="display: block;">
+            
+    <a href="#menu_id=4&amp;action=" data-menu="4" data-action-model="" data-action-id="" class="oe_menu_toggler">
+        <span class="oe_menu_text">
+            Reporting
+        </span>
+    </a>
+
+        </li><li style="display: block;">
+            
+    <a href="#menu_id=3&amp;action=" data-menu="3" data-action-model="" data-action-id="" class="oe_menu_toggler">
+        <span class="oe_menu_text">
+            Settings
+        </span>
+    </a>
+
+        </li></ul>
+            </span>
+        </li>
+    </ul>
+                <span class="oe_user_menu oe_topbar_item oe_dropdown_toggle oe_dropdown_arrow">
+        <img data-default-src="http://localhost:8069/web/static/src/img/user_menu_avatar.png" class="oe_topbar_avatar" src="http://localhost:8069/web/binary/image?model=res.users&amp;field=image_small&amp;id=1&amp;session_id=652e807c1341458e96361a393978a3bf">
+        <span class="oe_topbar_name">Administrator</span>
+        <ul class="oe_dropdown_menu">
+            <li><a href="#" data-menu="about">About OpenERP</a></li>
+            <li><a href="#" data-menu="settings">Preferences</a></li>
+            <li><a href="#" data-menu="logout">Log out</a></li>
+        </ul>
+    </span>
+                <div class="oe_systray"><div data-tipsy="true" class="oe_attendance_status oe_attendance_nosigned" original-title="" style="display: none;">
+             <div class="oe_attendance_signin"></div>
+             <div class="oe_attendance_signout"></div>
+        </div><div class="oe_topbar_item oe_topbar_compose_full_email" data-tipsy="true" original-title="Compose new Message">
+            <button class="oe_e">%</button>
+        </div></div>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top" class="oe_leftbar" style="display: table-cell;">
+                
+                <a href="/?ts=1360120840934" class="oe_logo">
+                    <span class="oe_logo_edit oe_logo_edit_admin">Edit Company data</span>
+                    <img src="http://localhost:8069/web/binary/company_logo?session_id=652e807c1341458e96361a393978a3bf">
+                </a>
+                <div class="oe_secondary_menus_container">
+    <div data-menu-parent="104" style="display: none" class="oe_secondary_menu">
+        
+            <div class="oe_secondary_menu_section">
+                Messaging
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=107&amp;action=97" data-menu="107" data-action-model="ir.actions.client" data-action-id="97" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Inbox
+        </span>
+    
+    <div class="oe_tag oe_tag_dark oe_menu_counter">
+        
+         9 
+    </div>
+</a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=108&amp;action=98" data-menu="108" data-action-model="ir.actions.client" data-action-id="98" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            To: me
+        </span>
+    
+    <div class="oe_tag oe_tag_dark oe_menu_counter">
+        
+         8 
+    </div>
+</a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=109&amp;action=99" data-menu="109" data-action-model="ir.actions.client" data-action-id="99" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            To-do
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=110&amp;action=100" data-menu="110" data-action-model="ir.actions.client" data-action-id="100" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Archives
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Organizer
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=393&amp;action=506" data-menu="393" data-action-model="ir.actions.act_window" data-action-id="506" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Notes
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                My Groups
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=113&amp;action=103" data-menu="113" data-action-model="ir.actions.client" data-action-id="103" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Whole Company
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=118&amp;action=108" data-menu="118" data-action-model="ir.actions.client" data-action-id="108" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            HR Policies
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=119&amp;action=109" data-menu="119" data-action-model="ir.actions.client" data-action-id="109" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Support
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=240&amp;action=277" data-menu="240" data-action-model="ir.actions.client" data-action-id="277" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Company News
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=241&amp;action=279" data-menu="241" data-action-model="ir.actions.client" data-action-id="279" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Company Jobs
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=112&amp;action=102" data-menu="112" data-action-model="ir.actions.act_window" data-action-id="102" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Join a group
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+    </div><div data-menu-parent="75" style="display: none" class="oe_secondary_menu">
+        
+            <div class="oe_secondary_menu_section">
+                Sales
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=79&amp;action=62" data-menu="79" data-action-model="ir.actions.act_window" data-action-id="62" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Customers
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=258&amp;action=305" data-menu="258" data-action-model="ir.actions.act_window" data-action-id="305" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Quotations
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=257&amp;action=302" data-menu="257" data-action-model="ir.actions.act_window" data-action-id="302" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Sales Orders
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Products
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=124&amp;action=118" data-menu="124" data-action-model="ir.actions.act_window" data-action-id="118" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Products
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+    </div><div data-menu-parent="379" style="display: none" class="oe_secondary_menu">
+        
+            <div class="oe_secondary_menu_section">
+                Daily Operations
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=391&amp;action=468" data-menu="391" data-action-model="ir.actions.act_window" data-action-id="468" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Your Session
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=390&amp;action=497" data-menu="390" data-action-model="ir.actions.act_window" data-action-id="497" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            All Sessions
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=381&amp;action=477" data-menu="381" data-action-model="ir.actions.act_window" data-action-id="477" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Orders
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Products
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=384&amp;action=489" data-menu="384" data-action-model="ir.actions.act_window" data-action-id="489" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Product Categories
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=383&amp;action=478" data-menu="383" data-action-model="ir.actions.act_window" data-action-id="478" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Products
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Configuration
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=389&amp;action=495" data-menu="389" data-action-model="ir.actions.act_window" data-action-id="495" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Point of Sales
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=386&amp;action=490" data-menu="386" data-action-model="ir.actions.act_window" data-action-id="490" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Payment Methods
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+    </div><div data-menu-parent="403" style="display: none" class="oe_secondary_menu">
+        
+    </div><div data-menu-parent="136" style="display: none" class="oe_secondary_menu">
+        
+            <div class="oe_secondary_menu_section">
+                Customers
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=225&amp;action=244" data-menu="225" data-action-model="ir.actions.act_window" data-action-id="244" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Customer Invoices
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=227&amp;action=246" data-menu="227" data-action-model="ir.actions.act_window" data-action-id="246" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Customer Refunds
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=254&amp;action=292" data-menu="254" data-action-model="ir.actions.act_window" data-action-id="292" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Sales Receipts
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=253&amp;action=290" data-menu="253" data-action-model="ir.actions.act_window" data-action-id="290" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Customer Payments
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=198&amp;action=63" data-menu="198" data-action-model="ir.actions.act_window" data-action-id="63" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Customers
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Suppliers
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=226&amp;action=245" data-menu="226" data-action-model="ir.actions.act_window" data-action-id="245" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Supplier Invoices
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=228&amp;action=247" data-menu="228" data-action-model="ir.actions.act_window" data-action-id="247" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Supplier Refunds
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=255&amp;action=294" data-menu="255" data-action-model="ir.actions.act_window" data-action-id="294" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Purchase Receipts
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=252&amp;action=289" data-menu="252" data-action-model="ir.actions.act_window" data-action-id="289" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Supplier Payments
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=199&amp;action=64" data-menu="199" data-action-model="ir.actions.act_window" data-action-id="64" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Suppliers
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+    </div><div data-menu-parent="311" style="" class="oe_secondary_menu">
+        
+            <div class="oe_secondary_menu_section">
+                Purchase
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li class="oe_active">
+            
+    <a href="#menu_id=334&amp;action=398" data-menu="334" data-action-model="ir.actions.act_window" data-action-id="398" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Quotations
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=335&amp;action=399" data-menu="335" data-action-model="ir.actions.act_window" data-action-id="399" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Purchase Orders
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=325&amp;action=64" data-menu="325" data-action-model="ir.actions.act_window" data-action-id="64" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Suppliers
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Incoming Products
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=327&amp;action=359" data-menu="327" data-action-model="ir.actions.act_window" data-action-id="359" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Incoming Shipments
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=328&amp;action=361" data-menu="328" data-action-model="ir.actions.act_window" data-action-id="361" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Incoming  Products
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Invoice Control
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=330&amp;action=397" data-menu="330" data-action-model="ir.actions.act_window" data-action-id="397" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            On Draft Invoices
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=336&amp;action=401" data-menu="336" data-action-model="ir.actions.act_window" data-action-id="401" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            On Purchase Order Lines
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=337&amp;action=402" data-menu="337" data-action-model="ir.actions.act_window" data-action-id="402" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            On Incoming Shipments
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Products
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=332&amp;action=120" data-menu="332" data-action-model="ir.actions.act_window" data-action-id="120" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Products by Category
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=333&amp;action=119" data-menu="333" data-action-model="ir.actions.act_window" data-action-id="119" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Products
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+    </div><div data-menu-parent="270" style="display: none" class="oe_secondary_menu">
+        
+            <div class="oe_secondary_menu_section">
+                Receive/Deliver By Orders
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=293&amp;action=359" data-menu="293" data-action-model="ir.actions.act_window" data-action-id="359" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Incoming Shipments
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=292&amp;action=358" data-menu="292" data-action-model="ir.actions.act_window" data-action-id="358" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Delivery Orders
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Receive/Deliver Products
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=297&amp;action=361" data-menu="297" data-action-model="ir.actions.act_window" data-action-id="361" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Incoming  Products
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=298&amp;action=367" data-menu="298" data-action-model="ir.actions.act_window" data-action-id="367" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Deliver Products
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Inventory Control
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=285&amp;action=348" data-menu="285" data-action-model="ir.actions.act_window" data-action-id="348" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Physical Inventories
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Schedulers
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=307&amp;action=383" data-menu="307" data-action-model="ir.actions.act_window" data-action-id="383" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Run Schedulers
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=308&amp;action=385" data-menu="308" data-action-model="ir.actions.act_window" data-action-id="385" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Procurement Exceptions
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Products
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=274&amp;action=120" data-menu="274" data-action-model="ir.actions.act_window" data-action-id="120" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Products by Category
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=275&amp;action=117" data-menu="275" data-action-model="ir.actions.act_window" data-action-id="117" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Products
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Configuration
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=310&amp;action=387" data-menu="310" data-action-model="ir.actions.act_window" data-action-id="387" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Reordering Rules
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+    </div><div data-menu-parent="346" style="display: none" class="oe_secondary_menu">
+        
+            <div class="oe_secondary_menu_section">
+                Manufacturing
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=357&amp;action=427" data-menu="357" data-action-model="ir.actions.act_window" data-action-id="427" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Manufacturing Orders
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Planning
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=363&amp;action=428" data-menu="363" data-action-model="ir.actions.act_window" data-action-id="428" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Order Planning
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Products
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=354&amp;action=423" data-menu="354" data-action-model="ir.actions.act_window" data-action-id="423" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Bill of Materials
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=355&amp;action=425" data-menu="355" data-action-model="ir.actions.act_window" data-action-id="425" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Products
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+    </div><div data-menu-parent="369" style="display: none" class="oe_secondary_menu">
+        
+            <div class="oe_secondary_menu_section">
+                Human Resources
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=373&amp;action=446" data-menu="373" data-action-model="ir.actions.act_window" data-action-id="446" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Employees
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Configuration
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=377&amp;action=451" data-menu="377" data-action-model="ir.actions.act_window" data-action-id="451" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Departments
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=376&amp;action=450" data-menu="376" data-action-model="ir.actions.act_window" data-action-id="450" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Job Positions
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+    </div><div data-menu-parent="653" style="display: none" class="oe_secondary_menu">
+        
+    </div><div data-menu-parent="552" style="display: none" class="oe_secondary_menu">
+        
+    </div><div data-menu-parent="4" style="display: none" class="oe_secondary_menu">
+        
+            <div class="oe_secondary_menu_section">
+                Dashboards
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=96&amp;action=85" data-menu="96" data-action-model="ir.actions.act_window" data-action-id="85" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            My Dashboard
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=263&amp;action=314" data-menu="263" data-action-model="ir.actions.act_window" data-action-id="314" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Sales
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=341&amp;action=411" data-menu="341" data-action-model="ir.actions.act_window" data-action-id="411" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Purchases
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=304&amp;action=378" data-menu="304" data-action-model="ir.actions.act_window" data-action-id="378" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Warehouse
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=365&amp;action=440" data-menu="365" data-action-model="ir.actions.act_window" data-action-id="440" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Manufacturing
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=367&amp;action=443" data-menu="367" data-action-model="ir.actions.act_window" data-action-id="443" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Human Resources
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Sales
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=262&amp;action=311" data-menu="262" data-action-model="ir.actions.act_window" data-action-id="311" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Sales Analysis
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Purchase
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=339&amp;action=405" data-menu="339" data-action-model="ir.actions.act_window" data-action-id="405" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Purchase Analysis
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Warehouse
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=340&amp;action=408" data-menu="340" data-action-model="ir.actions.act_window" data-action-id="408" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Receptions Analysis
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=303&amp;action=375" data-menu="303" data-action-model="ir.actions.act_window" data-action-id="375" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Last Product Inventories
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=301&amp;action=371" data-menu="301" data-action-model="ir.actions.act_window" data-action-id="371" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Moves Analysis
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=302&amp;action=372" data-menu="302" data-action-model="ir.actions.act_window" data-action-id="372" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Inventory Analysis
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Accounting
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=167&amp;action=133" data-menu="167" data-action-model="ir.actions.act_window" data-action-id="133" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Invoices Analysis
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=256&amp;action=295" data-menu="256" data-action-model="ir.actions.act_window" data-action-id="295" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Sales Receipts Analysis
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Point of Sale
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=392&amp;action=499" data-menu="392" data-action-model="ir.actions.act_window" data-action-id="499" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Orders Analysis
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=388&amp;action=456" data-menu="388" data-action-model="ir.actions.act_window" data-action-id="456" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Sale Details
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+    </div><div data-menu-parent="3" style="display: none" class="oe_secondary_menu">
+        
+            <div class="oe_secondary_menu_section">
+                Modules
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=60&amp;action=39" data-menu="60" data-action-model="ir.actions.client" data-action-id="39" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Apps
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=61&amp;action=40" data-menu="61" data-action-model="ir.actions.client" data-action-id="40" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Updates
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=59&amp;action=38" data-menu="59" data-action-model="ir.actions.act_window" data-action-id="38" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Installed Modules
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Configuration
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=264&amp;action=89" data-menu="264" data-action-model="ir.actions.act_window" data-action-id="89" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Sales
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=342&amp;action=414" data-menu="342" data-action-model="ir.actions.act_window" data-action-id="414" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Purchases
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=305&amp;action=380" data-menu="305" data-action-model="ir.actions.act_window" data-action-id="380" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Warehouse
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=366&amp;action=442" data-menu="366" data-action-model="ir.actions.act_window" data-action-id="442" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Manufacturing
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=239&amp;action=276" data-menu="239" data-action-model="ir.actions.act_window" data-action-id="276" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Invoicing
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=378&amp;action=455" data-menu="378" data-action-model="ir.actions.act_window" data-action-id="455" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Human Resources
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li><li>
+            
+    <a href="#menu_id=98&amp;action=88" data-menu="98" data-action-model="ir.actions.act_window" data-action-id="88" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            General Settings
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Companies
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=70&amp;action=54" data-menu="70" data-action-model="ir.actions.act_window" data-action-id="54" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Companies
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Users
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=89&amp;action=78" data-menu="89" data-action-model="ir.actions.act_window" data-action-id="78" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Users
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+            <div class="oe_secondary_menu_section">
+                Translations
+                
+            </div>
+            
+    <ul class="oe_secondary_submenu">
+        <li>
+            
+    <a href="#menu_id=63&amp;action=44" data-menu="63" data-action-model="ir.actions.act_window" data-action-id="44" class="oe_menu_leaf">
+        <span class="oe_menu_text">
+            Load a Translation
+        </span>
+    </a>
+
+            
+            
+    
+
+        </li>
+    </ul>
+
+        
+    </div>
+</div>
+                <div class="oe_footer">
+                    Powered by <a target="_blank" href="http://www.openerp.com"><span>OpenERP</span></a>
+                </div>
+            </td>
+            <td class="oe_application">
+            <div><div class="oe_view_manager oe_view_manager_current">
+        <table class="oe_view_manager_header">
+            <colgroup><col width="20%">
+            <col width="35%">
+            <col width="15%">
+            <col width="30%">
+            </colgroup><tbody><tr class="oe_header_row oe_header_row_top">
+                <td colspan="2">
+                        
+        
+    <h2 class="oe_view_title">
+                            <span class="oe_view_title_text oe_breadcrumb_title"><span class="oe_breadcrumb_item">Quotations</span></span>
+                        </h2>
+        
+    
+                </td>
+                <td colspan="2">
+                        <div class="oe_view_manager_view_search"><div class="oe_searchview ui-autocomplete-input" autocomplete="off">
+    <div class="oe_searchview_facets"><div contenteditable="true" tabindex="0" class="oe_searchview_input"></div><div tabindex="0" class="oe_tag oe_tag_dark oe_searchview_facet"><span class="oe_facet_remove">x</span><span class="oe_facet_category oe_i">
+        q
+    </span><span class="oe_facet_values"><span class="oe_facet_value">
+    Quotations
+</span></span></div><div contenteditable="true" tabindex="0" class="oe_searchview_input"></div></div>
+    <div class="oe_searchview_clear"></div>
+    <div title="Advanced Search..." class="oe_searchview_unfold_drawer"></div>
+    <div class="oe_searchview_drawer"><div class="oe_searchview_filters oe_searchview_section">
+
+<div><h3><span class="oe_i">q</span> Filters</h3><ul>
+    <li>
+        Unread Messages
+    </li>
+</ul><ul>
+    <li title="Purchase orders which are in draft state" class="oe_selected">
+        Quotations
+    </li><li title="Approved purchase orders">
+        Purchase Orders
+    </li><li title="Purchase orders which are in exception state">
+        Exception
+    </li>
+</ul><ul>
+    <li title="Purchase orders that include lines not invoiced.">
+        Not Invoiced
+    </li>
+</ul></div><div><h3><span class="oe_i">w</span> Group By...</h3><ul>
+    <li>
+        Supplier
+    </li><li>
+        Source
+    </li><li>
+        Status
+    </li><li>
+        Order Date
+    </li><li>
+        Expected Date
+    </li>
+</ul></div></div><div class="oe_searchview_custom oe_searchview_section">
+    <div>
+        <h3><span class="oe_i">M</span> Custom Filters</h3>
+        <ul class="oe_searchview_custom_list"></ul>
+        <div class="oe_searchview_custom">
+            <h4>Save current filter</h4>
+            <form>
+                <p><input placeholder="Filter name" id="oe_searchview_custom_input"></p>
+                <p>
+                    <input type="checkbox" id="oe_searchview_custom_public">
+                    <label for="oe_searchview_custom_public">Share with all users</label>
+                    <input type="checkbox" id="oe_searchview_custom_default">
+                    <label for="oe_searchview_custom_default">Use by default</label>
+                </p>
+                <button>Save</button>
+            </form>
+        </div>
+    </div>
+</div><div class="oe_searchview_advanced">
+    <h4>Advanced Search</h4>
+    <form>
+        <ul>
+
+        <li>
+        <span class="searchview_extended_prop_or">or</span>
+        <select class="searchview_extended_prop_field">
+            
+                <option value="company_id">
+                    Company
+                </option>
+            
+                <option value="currency_id">
+                    Currency
+                </option>
+            
+                <option value="dest_address_id">
+                    Customer Address (Direct Delivery)
+                </option>
+            
+                <option value="date_approve">
+                    Date Approved
+                </option>
+            
+                <option value="location_id">
+                    Destination
+                </option>
+            
+                <option value="warehouse_id">
+                    Destination Warehouse
+                </option>
+            
+                <option value="minimum_planned_date">
+                    Expected Date
+                </option>
+            
+                <option value="fiscal_position">
+                    Fiscal Position
+                </option>
+            
+                <option value="message_follower_ids">
+                    Followers
+                </option>
+            
+                <option value="id">
+                    ID
+                </option>
+            
+                <option value="invoiced">
+                    Invoice Received
+                </option>
+            
+                <option value="invoiced_rate">
+                    Invoiced
+                </option>
+            
+                <option value="invoice_ids">
+                    Invoices
+                </option>
+            
+                <option value="invoice_method">
+                    Invoicing Control
+                </option>
+            
+                <option value="message_is_follower">
+                    Is a Follower
+                </option>
+            
+                <option value="journal_id">
+                    Journal
+                </option>
+            
+                <option value="message_ids">
+                    Messages
+                </option>
+            
+                <option value="date_order">
+                    Order Date
+                </option>
+            
+                <option value="order_line">
+                    Order Lines
+                </option>
+            
+                <option value="name">
+                    Order Reference
+                </option>
+            
+                <option value="payment_term_id">
+                    Payment Term
+                </option>
+            
+                <option value="picking_ids">
+                    Picking List
+                </option>
+            
+                <option value="pricelist_id">
+                    Pricelist
+                </option>
+            
+                <option value="product_id">
+                    Product
+                </option>
+            
+                <option value="shipped">
+                    Received
+                </option>
+            
+                <option value="shipped_rate">
+                    Received Ratio
+                </option>
+            
+                <option value="create_uid">
+                    Responsible
+                </option>
+            
+                <option value="origin">
+                    Source Document
+                </option>
+            
+                <option value="state">
+                    Status
+                </option>
+            
+                <option value="message_summary">
+                    Summary
+                </option>
+            
+                <option value="partner_id">
+                    Supplier
+                </option>
+            
+                <option value="partner_ref">
+                    Supplier Reference
+                </option>
+            
+                <option value="amount_tax">
+                    Taxes
+                </option>
+            
+                <option value="notes">
+                    Terms and Conditions
+                </option>
+            
+                <option value="amount_total">
+                    Total
+                </option>
+            
+                <option value="message_unread">
+                    Unread Messages
+                </option>
+            
+                <option value="amount_untaxed">
+                    Untaxed Amount
+                </option>
+            
+                <option value="validator">
+                    Validated by
+                </option>
+            
+        </select>
+        <select class="searchview_extended_prop_op"><option value="ilike">contains</option><option value="not ilike">doesn't contain</option><option value="=">is equal to</option><option value="!=">is not equal to</option></select>
+        <span class="searchview_extended_prop_value"><input class="field_char"></span>
+        <a class="searchview_extended_delete_prop button">x</a>
+    </li></ul>
+        <button type="button" class="oe_add_condition button">Add a condition</button><br>
+        <button type="submit" class="oe_apply">Apply</button>
+    </form>
+</div><div class="oe_searchview_dashboard">
+    <h4>Add to Dashboard</h4>
+    <form>
+        <p>
+    <select>
+        <option value="96">
+            Reporting/Dashboards/My Dashboard</option><option value="236">
+            Reporting/Dashboards/Accounting</option><option value="263">
+            Reporting/Dashboards/Sales</option><option value="304">
+            Reporting/Dashboards/Warehouse</option><option value="341">
+            Reporting/Dashboards/Purchases</option><option value="365">
+            Reporting/Dashboards/Manufacturing</option><option value="367">
+            Reporting/Dashboards/Human Resources</option><option value="413">
+            Reporting/Dashboards/Project</option><option value="662">
+            Reporting/Dashboards/Events</option>
+    </select>
+<input placeholder="Title of new dashboard item"></p>
+        <button type="submit" class="oe_apply">Add</button>
+    </form>
+</div></div>
+    <button type="button" title="Search Again" class="oe_searchview_search">Search</button>
+</div><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span></div>
+                </td>
+            </tr>
+            <tr class="oe_header_row">
+                <td>
+                        <div class="oe_view_manager_buttons"><div class="oe_list_buttons">
+    
+        <button type="button" class="oe_button oe_list_add oe_highlight">
+            Create
+        </button>
+        <button type="button" class="oe_button oe_list_save oe_highlight">Save</button>
+        <span class="oe_alternative">
+            <span class="oe_fade">or</span>
+            <a href="#" class="oe_bold oe_list_discard">Discard</a>
+        </span>
+    
+    
+    </div></div>
+                </td>
+                <td colspan="2">
+                        <div class="oe_view_manager_sidebar"><div style="display: none;">
+    <div class="oe_sidebar">
+        
+            <div class="oe_form_dropdown_section">
+                <button class="oe_dropdown_toggle oe_dropdown_arrow">
+                    
+                    Print
+                </button>
+                <ul class="oe_dropdown_menu">
+                    <li class="oe_sidebar_print">
+                        
+                        <a data-section="print" data-index="0" target="_blank" class="oe_sidebar_action_a" original-title="">
+                            Request for Quotation
+                        </a>
+                         
+                    </li><li class="oe_sidebar_print">
+                        
+                        <a data-section="print" data-index="1" target="_blank" class="oe_sidebar_action_a" original-title="">
+                            Purchase Order
+                        </a>
+                         
+                    </li>
+                    
+                </ul>
+            </div>
+        
+            <div class="oe_form_dropdown_section">
+                <button class="oe_dropdown_toggle oe_dropdown_arrow">
+                    
+                    More
+                </button>
+                <ul class="oe_dropdown_menu">
+                    <li class="oe_share">
+                        
+                        <a data-section="other" data-index="0" target="_blank" class="oe_sidebar_action_a" original-title="">
+                            Share
+                        </a>
+                         
+                    </li><li class="oe_share">
+                        
+                        <a data-section="other" data-index="1" target="_blank" class="oe_sidebar_action_a" original-title="">
+                            Embed
+                        </a>
+                         
+                    </li><li>
+                        
+                        <a data-section="other" data-index="2" target="_blank" class="oe_sidebar_action_a" original-title="">
+                            Export
+                        </a>
+                         
+                    </li><li>
+                        
+                        <a data-section="other" data-index="3" target="_blank" class="oe_sidebar_action_a" original-title="">
+                            Delete
+                        </a>
+                         
+                    </li><li class="oe_sidebar_action">
+                        
+                        <a data-section="other" data-index="4" target="_blank" class="oe_sidebar_action_a" original-title="">
+                            Merge Purchase orders
+                        </a>
+                         
+                    </li>
+                    
+                </ul>
+            </div>
+        
+    </div>
+</div></div>
+                </td>
+                <td>
+                    <ul class="oe_view_manager_switch oe_button_group oe_right">
+                        
+                          <li class="oe_e active">
+                            <a class="oe_vm_switch_list" data-view-type="list" original-title="List view"></a>
+                          </li>
+                        
+                          <li class="oe_e">
+                            <a class="oe_vm_switch_form" data-view-type="form" original-title="Form view"></a>
+                          </li>
+                        
+                          <li class="oe_e">
+                            <a class="oe_vm_switch_graph" data-view-type="graph" original-title="Graph view"></a>
+                          </li>
+                        
+                          <li class="oe_e">
+                            <a class="oe_vm_switch_calendar" data-view-type="calendar" original-title="Calendar view"></a>
+                          </li>
+                        
+                    </ul>
+                    <div class="oe_view_manager_pager oe_right"><div colspan="9" class="oe_list_pager oe_list_pager_single_page">
+        
+    <div class="oe_pager_value">
+        
+            <span class="oe_list_pager_state">1-12 of 12</span>
+        
+    </div>
+    <ul class="oe_pager_group">
+        
+        <li>
+            <a type="button" data-pager-action="previous" class="oe_i">(</a>
+        </li>
+        <li>
+            <a type="button" data-pager-action="next" class="oe_i">)</a>
+        </li>
+        
+    </ul>
+
+    </div></div>
+                </td>
+            </tr>
+        </tbody></table>
+
+        <div class="oe_view_manager_body">
+            
+                <div class="oe_view_manager_view_list"><div class="oe_list oe_view"><table class="oe_list_content">
+    
+    <thead>
+        
+        <tr class="oe_list_header_columns">
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+            <th width="1">
+                <input type="checkbox" class="oe_list_record_selector">
+            </th>
+            
+                
+            
+                <th class="oe_list_header_char oe_sortable" data-id="name"><div>
+                    Reference
+                </div></th>
+            
+                <th class="oe_list_header_date oe_sortable" data-id="date_order"><div>
+                    Order Date
+                </div></th>
+            
+                <th class="oe_list_header_many2one oe_sortable" data-id="partner_id"><div>
+                    Supplier
+                </div></th>
+            
+                
+            
+                <th class="oe_list_header_date oe_sortable" data-id="minimum_planned_date"><div>
+                    Expected Date
+                </div></th>
+            
+                <th class="oe_list_header_char oe_sortable" data-id="origin"><div>
+                    Source Document
+                </div></th>
+            
+                <th class="oe_list_header_float oe_sortable" data-id="amount_untaxed"><div>
+                    Untaxed
+                </div></th>
+            
+                <th class="oe_list_header_float oe_sortable" data-id="amount_total"><div>
+                    Total
+                </div></th>
+            
+                <th class="oe_list_header_selection oe_sortable" data-id="state"><div>
+                    Status
+                </div></th>
+            
+            
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td class="oe_list_footer oe_number">
+            </td><td class="oe_list_footer oe_number">
+            </td><td class="oe_list_footer oe_number">
+            </td><td class="oe_list_footer oe_number">
+            </td><td class="oe_list_footer oe_number">
+            </td><td title="Total Untaxed amount" data-field="amount_untaxed" class="oe_list_footer oe_number">108805.10</td><td title="Total amount" data-field="amount_total" class="oe_list_footer oe_number">108805.10</td><td class="oe_list_footer oe_number">
+            </td>
+            
+        </tr>
+    </tfoot>
+<tbody>
+    <tr style="" data-id="14">
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    <th width="1" class="oe_list_record_selector">
+        
+        
+        <input type="checkbox" name="radiogroup">
+    </th>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00014</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">01/29/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Spark Systems</td>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/01/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">:MO/00006</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">180.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">180.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+    
+    
+        
+    
+</tr>
+
+    <tr style="" data-id="13">
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    <th width="1" class="oe_list_record_selector">
+        
+        
+        <input type="checkbox" name="radiogroup">
+    </th>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Mediapole</td>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/08/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00006</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">65.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">65.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+    
+    
+        
+    
+</tr>
+
+    <tr style="" data-id="12">
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    <th width="1" class="oe_list_record_selector">
+        
+        
+        <input type="checkbox" name="radiogroup">
+    </th>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00012</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Seagate</td>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/04/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00005</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">28650.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">28650.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+    
+    
+        
+    
+</tr>
+
+    <tr style="" data-id="11">
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    <th width="1" class="oe_list_record_selector">
+        
+        
+        <input type="checkbox" name="radiogroup">
+    </th>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00011</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Vicking Direct</td>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/06/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00004</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">1750.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">1750.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+    
+    
+        
+    
+</tr>
+
+    <tr style="" data-id="10">
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    <th width="1" class="oe_list_record_selector">
+        
+        
+        <input type="checkbox" name="radiogroup">
+    </th>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00010</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Delta PC</td>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/04/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00003</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">20400.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">20400.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+    
+    
+        
+    
+</tr>
+
+    <tr style="" data-id="9">
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    <th width="1" class="oe_list_record_selector">
+        
+        
+        <input type="checkbox" name="radiogroup">
+    </th>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00009</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Seagate</td>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/05/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00002</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">4290.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">4290.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+    
+    
+        
+    
+</tr>
+
+    <tr style="" data-id="8">
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    <th width="1" class="oe_list_record_selector">
+        
+        
+        <input type="checkbox" name="radiogroup">
+    </th>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00008</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Mediapole</td>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/03/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00001</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">604.80</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">604.80</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+    
+    
+        
+    
+</tr>
+
+    <tr style="" data-id="7">
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    <th width="1" class="oe_list_record_selector">
+        
+        
+        <input type="checkbox" name="radiogroup">
+    </th>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00007</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/02/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Delta PC</td>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/02/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin"></td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">660.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">660.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+    
+    
+        
+    
+</tr>
+
+    <tr style="" data-id="5">
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    <th width="1" class="oe_list_record_selector">
+        
+        
+        <input type="checkbox" name="radiogroup">
+    </th>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00005</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/02/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Seagate</td>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/05/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin"></td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">8658.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">8658.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+    
+    
+        
+    
+</tr>
+
+    <tr style="" data-id="4">
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    <th width="1" class="oe_list_record_selector">
+        
+        
+        <input type="checkbox" name="radiogroup">
+    </th>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00004</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/02/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Delta PC</td>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/05/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin"></td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">14563.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">14563.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+    
+    
+        
+    
+</tr>
+
+    <tr style="" data-id="3">
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    <th width="1" class="oe_list_record_selector">
+        
+        
+        <input type="checkbox" name="radiogroup">
+    </th>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00003</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/02/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Camptocamp</td>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/02/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin"></td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">255.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">255.00</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+    
+    
+        
+    
+</tr>
+
+    <tr style="" data-id="1">
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+    <th width="1" class="oe_list_record_selector">
+        
+        
+        <input type="checkbox" name="radiogroup">
+    </th>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00001</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/02/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">ASUSTeK</td>
+    
+        
+        
+        
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/03/2013</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin"></td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">28729.30</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">28729.30</td>
+    
+        
+        
+        <td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+    
+    
+        
+    
+</tr>
+</tbody></table></div></div>
+            
+                <div class="oe_view_manager_view_form"></div>
+            
+                <div class="oe_view_manager_view_graph"></div>
+            
+                <div class="oe_view_manager_view_calendar"></div>
+            
+        </div>
+    </div></div></td>
+        </tr>
+    </tbody></table>
+    <div class="oe_notification ui-notify"></div>
+	<div class="oe_loading" style="display: none;">Loading</div>
+	
+</div
+</body>
+</html>

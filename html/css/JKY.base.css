@@ -1,0 +1,139 @@
+/* required for sticky-footer, html and body elements cannot have any padding or margin */
+*		{margin:0; padding:0; border:0; font-family:'Lucida Grande',Helvetica,Verdana,Arial,sans-serif;}
+html	{height:100%}
+body	{height:100%; margin:0; padding:0; font-size:13px;}
+input	{height:22px; margin:0 5px 4px 0; padding:1px 4px; border:1px solid #cccccc; border-radius:3px;}
+select	{height:26px; margin-bottom:4px; border-radius:2px; padding:2px;}
+option	{padding:2px 6px;}
+input.span2 {width:80px; padding:2px 4px;}
+
+.btn			{padding:2px 10px;}
+.nav			{margin-bottom:5px;}
+.nav-tabs > li	{margin-left:10px;}
+.input-append .add-on			{margin-left:-6px; padding:2px;}
+
+.jky-left		{float:left ;}
+.jky-right		{float:right;}
+.jky-clear		{clear:both;}
+.jky-side-set	{margin:10px 0 0 10px; font-weight:bold; color:#7C7BAD;}
+.jky-side-item	{padding-left:20px;}
+.jky-side-item.active	{
+	background:#323232;
+	color:white;
+}
+
+.jky-form-line			{clear:both; padding-top:2px;}
+.jky-form-label			{float:left; width:100px; margin:3px 7px; text-align:right; font-weight:bold;}
+.jky-form-label2		{float:left; width:200px; margin:3px 7px; text-align:right; font-weight:bold;}
+.jky-form-value			{float:left; width:270px;}
+.jky-form-value2		{float:left; width:180px;}
+
+.jky-tab-label			{text-align:right; padding-right:10px; font-weight:bold;}
+.jky-tab-label:after	{content:':';}
+.jky-tab-value			{text-align:right;}
+
+.jky-option-search		{padding-left:20px; margin-top:10px;}
+.jky-option-add-new		{padding-left:20px;}
+
+#jky-wrapper			{height:100%; background:none repeat scroll 0 0 white; color:#4C4C4C;}
+#jky-wrapper table		{height:100%; width:100%;}
+
+#jky-header				{color:#eeeeee; background-image:linear-gradient(to bottom, #646060, #262626);}
+#jky-header				{color:#eeeeee; background-color:#323232;}
+
+#jky-menus				{float:left ; height:20px; margin:0; padding:6px 0;}
+#jky-menus li			{height:32px; display:inline; padding:8px 10px; line-height:20px;}
+#jky-menus .active		{background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3); box-shadow:0 1px 2px rgba(0, 0, 0, 0.4) inset; text-shadow:0 0 3px black;}
+
+#jky-user-info			{float:right; margin:6px 10px 4px;}
+
+#jky-body				{width:100%; height:100%;}
+
+#jky-side-bar			{width:220px; border-right:1px solid #AFAFB6; background:none repeat scroll 0 0 #F0EEEE; vertical-align:top;}
+
+#jky-side-header		{width:220px; padding:18px 0; text-align:center;}
+#jky-company-logo		{}
+
+#jky-side-crm			{height:auto; display:none;}
+#jky-side-sales			{height:auto; display:none;}
+#jky-side-purchases		{height:auto; display:none;}
+#jky-side-maintenance	{height:auto; display:none;}
+#jky-side-production	{height:auto; display:none;}
+#jky-side-outsource		{height:auto; display:none;}
+#jky-side-inventory		{height:auto; display:none;}
+#jky-side-invoicing		{height:auto; display:none;}
+#jky-side-receivable	{height:auto; display:none;}
+
+#jky-side-footer		{width:220px; bottom:0; position:fixed; text-align:center;}
+#jky-contact-us			{color:#C81010; font-weight:bold;}
+
+#jky-application		{height:100%; vertical-align:top;}
+#jky-application div	{}
+#jky-application table	{width:100%;
+	border-collapse:separate;
+    table-layout:fixed;
+    width:100%;
+    background-color:#EDEDED;
+    background-image:linear-gradient(to bottom, #FCFCFC, #DEDEDE);
+    border-bottom:1px solid #CACACA;
+    box-shadow:0 1px 0 rgba(255, 255, 255, 0.4), 0 0 9px rgba(0, 0, 0, 0.1);
+    border-collapse:collapse;
+    padding:0;
+}
+
+#jky-application tr		{height:17px;}
+#jky-application td		{line-height:18px; padding:4px 8px;}
+#jky-application input[type='checkbox']	{width:20px; margin:0 0 3px 0;}
+#jky-app-header			{
+    background-color: #EDEDED;
+    background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
+    border-bottom: 1px solid #CACACA;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 9px rgba(0, 0, 0, 0.1);
+}
+#jky-app-breadcrumb		{float:left ; margin:10px; font-size:18px; font-weight:bold; vertical-align:middle;}
+#jky-app-filter			{float:right; margin:10px; width:400px; height:14px;}
+#jky-app-actions		{float:left ; margin: 6px 10px;}
+#jky-app-more			{float:left ; margin: 6px 10px 6px 80px;}
+#jky-app-counters		{float:right; margin: 9px 10px;}
+#jky-app-navs			{float:right; margin: 6px 10px;}
+#jky-app-displays		{float:right; margin: 6px 10px;}
+#jky-app-table thead	{
+	background: none repeat scroll 0 0 #EEEEEE;
+    border-bottom: 2px solid #CACACA;
+    vertical-align: top;
+	font-weight: bold;
+}
+#jky-table tbody		{max-height:300px; overflow-y:visible;}
+
+.oe_list_record_selector	{width:24px;}
+
+/* -------------------------------------------------------------------------- */
+#jky-form-control		{
+	background-color: #EDEDED;
+    background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
+    border-bottom: 1px solid #CACACA;
+    height:34px;
+}
+#jky-form-actions		{float:left; margin:4px 5px;}
+#jky-form-status		{float:right; margin:7px;}
+#jky-form-status li		{border-radius:5px;}
+.jky-status		{
+	display: inline;
+	border:1px solid #999999;
+	margin:2px;
+	padding:4px;
+}
+
+#jky-form-tabs			{margin:20px 0 10px;}
+#jky-form-title	{padding:10px;}
+#jky-form-action{font-size:20px; font-weight:bold;}
+#jky-form-id	{font-size:20px; font-weight:bold; padding-top:10px;}
+#jky-form-data	{padding:10px;}
+
+/* -------------------------------------------------------------------------- */
+
+#jky-loading			{display:none; position:fixed; top:50%;	left:50%; margin:-50px 0 0 -50px; overflow:auto; z-index:9999;}
+#jky-message			{display:none; position:absolute; top:auto; bottom:0; left:auto ; right:0;							 width:340px;				z-index:2000;}
+#jky-trace				{display:none; position:absolute; top:auto; bottom:0; left:280px; right:0;							 width:340px;				z-index:2000;}
+
+

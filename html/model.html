@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <title>Manufacturing Orders - OpenERP</title>
+		<link href='css/bootstrap.css' 				rel='stylesheet'>
+		<link href='css/bootstrap-responsive.css'	rel='stylesheet'>
+		<link href='css/JKY.base.css'				rel='stylesheet'>
+		<script src='js/jquery-1.7.2.min.js'		></script>
+		<script src='js/bootstrap.min.js'			></script>
+		<script src='js/JKY.Utils.js'				></script>
+		<script src='js/JKY.Model.js'				></script>
+	</head>
+
+    <body>
+		<div id='jky-wrapper'>
+			<table>
+				<tbody>
+
+<tr id='jky-header'>
+	<td colspan='2'>
+		<ul id='jky-menus'>
+			<li id='jky-menu-sales'						>Vendas			</li>	<!--	Tecno	-->
+			<li id='jky-menu-purchases'	  class='active'>Compras		</li>	<!-- DL			-->
+			<li id='jky-menu-maintenance'				>Manutencao		</li>	<!-- DL	Tecno	-->
+			<li id='jky-menu-production'				>Producao		</li>	<!-- DL			-->
+			<li id='jky-menu-outsource'					>Beneficiamento	</li>	<!-- DL			-->
+			<li id='jky-menu-inventory'					>Estoque		</li>	<!-- DL	Tecno	-->
+			<li id='jky-menu-invoicing'					>NFe			</li>	<!--	Tecno	-->
+			<li id='jky-menu-receivable'				>Receivable		</li>	<!--	Tecno	-->
+			<li id='jky-menu-admin'						>Admin			</li>	<!--	Tecno	-->
+			<li id='jky-menu-tickets'					>Tickets		</li>	<!--	Tecno	-->
+		</ul><!-- id='jky-menus'-->
+
+	   <div id='jky-user-info'>
+		  User Name
+	   </div><!-- id='jky-user-info'-->
+	</td>
+	<td></td>
+</tr><!-- id='jky-header'-->
+
+<tr id='jky-body'>
+	<td id='jky-side-bar'>
+		<div id='jky-side-header'><a id='jky-company-logo'><img src='/img/company_logo.png' /></a></div>
+
+		<div id='jky-side-sales'>
+			<div class='jky-side-set'>Sales			</div>
+			<div class='jky-side-item active'>Customers				</div>
+			<div class='jky-side-item'>Quotations				</div>
+			<div class='jky-side-item'>Sales Orders				</div>
+
+			<div class='jky-side-set'>Products		</div>
+			<div class='jky-side-item'>Products					</div>
+
+		</div><!-- id='jky-side-sales'-->
+
+		<div id='jky-side-purchases'>
+			<div class='jky-side-set'>Purchase			</div>
+			<div class='jky-side-item'>Quotations				</div>
+			<div class='jky-side-item'>Purchase Orders			</div>
+			<div class='jky-side-item'>Supplies					</div>
+
+			<div class='jky-side-set'>Incoming Products	</div>
+			<div class='jky-side-item'>Incoming Shipments		</div>
+			<div class='jky-side-item'>Incoming Products		</div>
+
+			<div class='jky-side-set'>Invoice Control	</div>
+			<div class='jky-side-item'>On Draft Invoices		</div>
+			<div class='jky-side-item'>On Purchase Order Lines	</div>
+			<div class='jky-side-item'>On Incoming Shipments	</div>
+
+			<div class='jky-side-set'>Products			</div>
+			<div class='jky-side-item'>Products by Category		</div>
+			<div class='jky-side-item'>Products					</div>
+		</div><!-- id=jky-side-purchases'-->
+
+		<div id='jky-side-maintenance'>	</div>
+		<div id='jky-side-production'>
+			<div class='jky-side-set'>Production		</div>
+			<div class='jky-side-item'>Production Orders		</div>
+
+			<div class='jky-side-set'>Planning			</div>
+			<div class='jky-side-item'>Order Planning			</div>
+
+			<div class='jky-side-set'>Products			</div>
+			<div class='jky-side-item'>Bill of Materials		</div>
+			<div class='jky-side-item'>Products					</div>
+		</div><!-- id=jky-side-production'-->
+
+		<div id='jky-side-outsource'>	</div>
+		<div id='jky-side-inventory'>	</div>
+		<div id='jky-side-invoicing'>	</div>
+		<div id='jky-side-receivable'>	</div>
+		<div id='jky-side-admin'>		</div>
+		<div id='jky-side-tickets'>		</div>
+
+		<div id='jky-side-footer'>
+			Created by
+			<a id='jky-contact-us' href='http://www.jkysoftware.com'>JKY Software</a>
+		</div>
+	</td><!-- id='jky-side-bar'-->
+
+	<td id='jky-application'>
+		<div>
+
+<div id='jky-app-header'>
+	<div>
+		<div id='jky-app-breadcrumb'>
+			Quotations / PO000014
+		</div>
+		<input id='jky-app-filter' class="search-query" type="text" placeholder="Search" />
+		<div class='jky-clear'></div>
+	</div>
+
+	<div>
+		<div id='jky-app-actions'>
+			<button class="btn btn-success" type="button">Add New	</button>
+		</div>
+		<div id='jky-app-more'>
+			<button class="btn btn-success" type="button">Export	</button>
+			<button class="btn btn-success" type="button">Publish	</button>
+		</div>
+		<div id='jky-app-displays' class="btn-group">
+			<button id='jky-display-list' class='btn' title='List View'><i class='icon-align-justify'	></i></button>
+			<button id='jky-display-form' class='btn' title='Form View'><i class='icon-list-alt'		></i></button>
+<!--
+			<button class="btn"><i class='icon-signal'			></i></button>
+			<button class="btn"><i class='icon-calendar'		></i></button>
+-->
+		</div>
+		<div id='jky-app-navs' class="btn-group">
+			<button class='btn' title='Previous'><i class='icon-backward'		></i></button>
+			<button class='btn' title='Next'	><i class='icon-forward'		></i></button>
+		</div>
+		<div id='jky-app-counters'>1-12 of 12</div>
+		<div class='jky-clear'></div>
+	</div>
+</div><!-- id='jky-app-header'-->
+
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr class="oe_list_header_columns">
+            <th class="oe_list_record_selector"><input type="checkbox" class="oe_list_record_selector"></th>
+			<th class="oe_list_header_char oe_sortable"			data-id="name"					><div>Reference			</div></th>
+			<th class="oe_list_header_date oe_sortable"			data-id="date_order"			><div>Order Date		</div></th>
+			<th class="oe_list_header_many2one oe_sortable"		data-id="partner_id"			><div>Supplier			</div></th>
+			<th class="oe_list_header_date oe_sortable"			data-id="minimum_planned_date"	><div>Expected Date		</div></th>
+			<th class="oe_list_header_char oe_sortable"			data-id="origin"				><div>Source Document	</div></th>
+			<th class="oe_list_header_float oe_sortable"		data-id="amount_untaxed"		><div>Untaxed			</div></th>
+			<th class="oe_list_header_float oe_sortable"		data-id="amount_total"			><div>Total				</div></th>
+			<th class="oe_list_header_selection oe_sortable"	data-id="state"					><div>Status			</div></th>
+        </tr>
+	</thead>
+
+	<tbody>
+		<tr style="" data-id="14">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00014</td>
+			<td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">01/29/2013</td>
+			<td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Spark Systems</td>
+			<td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/01/2013</td>
+			<td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">:MO/00006</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">180.00</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">180.00</td>
+			<td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+		</tr>
+		<tr style="" data-id="13">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00013</td>
+			<td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+			<td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Mediapole</td>
+			<td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/08/2013</td>
+			<td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00006</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+		</tr>
+		<tr style="" data-id="12">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00013</td>
+			<td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+			<td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Mediapole</td>
+			<td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/08/2013</td>
+			<td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00006</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+		</tr>
+		<tr style="" data-id="12">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00013</td>
+			<td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+			<td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Mediapole</td>
+			<td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/08/2013</td>
+			<td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00006</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+		</tr>
+		<tr style="" data-id="12">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00013</td>
+			<td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+			<td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Mediapole</td>
+			<td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/08/2013</td>
+			<td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00006</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+		</tr>
+		<tr style="" data-id="12">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00013</td>
+			<td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+			<td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Mediapole</td>
+			<td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/08/2013</td>
+			<td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00006</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+		</tr>
+		<tr style="" data-id="12">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00013</td>
+			<td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+			<td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Mediapole</td>
+			<td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/08/2013</td>
+			<td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00006</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+		</tr>
+		<tr style="" data-id="12">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00013</td>
+			<td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+			<td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Mediapole</td>
+			<td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/08/2013</td>
+			<td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00006</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+		</tr>
+		<tr style="" data-id="12">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00013</td>
+			<td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+			<td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Mediapole</td>
+			<td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/08/2013</td>
+			<td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00006</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+		</tr>
+		<tr style="" data-id="12">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00013</td>
+			<td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+			<td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Mediapole</td>
+			<td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/08/2013</td>
+			<td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00006</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+		</tr>
+		<tr style="" data-id="12">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00013</td>
+			<td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+			<td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Mediapole</td>
+			<td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/08/2013</td>
+			<td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00006</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+		</tr>
+		<tr style="" data-id="12">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00013</td>
+			<td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+			<td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Mediapole</td>
+			<td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/08/2013</td>
+			<td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00006</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+		</tr>
+		<tr style="" data-id="12">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">PO00013</td>
+			<td class="oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">02/01/2013</td>
+			<td class="oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Mediapole</td>
+			<td class="oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">02/08/2013</td>
+			<td class="oe_list_field_cell oe_list_field_char    " title="Reference of the document that generated this purchase order request; a sales order or an internal procurement request." data-field="origin">OP/00006</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The amount without tax" data-field="amount_untaxed">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_float oe_number  oe_readonly " title="The total amount" data-field="amount_total">65.00</td>
+			<td class="oe_list_field_cell oe_list_field_selection   oe_readonly " title="The status of the purchase order or the quotation request. A quotation is a purchase order in a 'Draft' status. Then the order has to be confirmed by the user, the status switch to 'Confirmed'. Then the supplier must confirm the order to change the status to 'Approved'. When the purchase order is paid and received, the status becomes 'Done'. If a cancel action occurs in the invoice or in the reception of goods, the status becomes in exception." data-field="state">Draft PO</td>
+		</tr>
+	</tbody>
+
+	<tfoot>
+        <tr>
+            <td></td>
+            <td class="oe_list_footer oe_number"></td>
+			<td class="oe_list_footer oe_number"></td>
+			<td class="oe_list_footer oe_number"></td>
+			<td class="oe_list_footer oe_number"></td>
+			<td class="oe_list_footer oe_number"></td>
+			<td title="Total Untaxed amount" data-field="amount_untaxed" class="oe_list_footer oe_number">108805.10</td><td title="Total amount" data-field="amount_total" class="oe_list_footer oe_number">108805.10</td>
+			<td class="oe_list_footer oe_number"></td>
+        </tr>
+	</tfoot>
+</table><!-- id='jky-app-table'-->
+
+<div id='jky-app-form'>
+	<div id='jky-form-title'>
+		<span id='jky-form-action'	>Request for Quotation<span>
+		<span id='jky-form-id'		>PO00014</span>
+	</div>
+
+	<div class='jky-left'>
+		<div class='jky-form-line'><div class='jky-form-label'>			 Supplier</div><div id='jky-form-supplier'		class='jky-form-value'>Spark System	</div></div>
+		<div class='jky-form-line'><div class='jky-form-label'>Supplier Reference</div><div id='jky-form-reference'		class='jky-form-value'>				</div></div>
+	</div>
+	<div class='jky-right'>
+		<div class='jky-form-line'><div class='jky-form-label'>		   Order Date</div><div id='jky-form-order-date'	class='jky-form-value'>01/29/2013	</div></div>
+		<div class='jky-form-line'><div class='jky-form-label'>	  Source Document</div><div id='jky-form-document'		class='jky-form-value'>MO/00006		</div></div>
+	</div>
+	<div class='jky-clear'></div>
+
+	<div id='jky-form-tabs' class='tabbable'>
+		<ul class='nav nav-tabs' id='cd-ul-tabs'>
+			<li id='jky-tab-purchase' class='active'><a href='#jky-purchase' data-toggle='tab'>Purchase Order		</a></li>
+			<li	id='jky-tab-incoming'				><a href='#jky-incoming' data-toggle='tab'>Incoming Shipments	</a></li>
+		</ul>
+
+		<div class='tab-content'>
+
+			<div id='jky-purchase' class='tab-pane active'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<td class='cd-category'		>Product			</td>
+							<td class='cd-text'			>Description		</td>
+							<td class='cd-requested-by'	>Scheduled<br>Date	</td>
+							<td class='cd-requested-on' >Quantity			</td>
+							<td class='cd-approved-by'	>Unit<br>Price		</td>
+							<td class='cd-approved-on' 	>Taxes				</td>
+							<td class='cd-satisfied-by'	>Subtotal			</td>
+						</tr>
+					</thead>
+					<tbody id='cd-satisfieds-box'>
+						<tr>
+							<td class='cd-category'		>[M-Wir] Mouse, Wireless</td>
+							<td class='cd-text'			>[M-Wir] Mouse, Wireless</td>
+							<td class='cd-requested-by'	>02/01/21013	</td>
+							<td class='cd-requested-on' >10.000	</td>
+							<td class='cd-approved-by'	>18.00	</td>
+							<td class='cd-approved-on' 	>		</td>
+							<td class='cd-satisfied-by'	>180.00	</td>
+						</tr>
+						<tr>
+							<td class='cd-category'		>[M-Wir] Mouse, Wireless</td>
+							<td class='cd-text'			>[M-Wir] Mouse, Wireless</td>
+							<td class='cd-requested-by'	>02/01/21013	</td>
+							<td class='cd-requested-on' >10.000	</td>
+							<td class='cd-approved-by'	>18.00	</td>
+							<td class='cd-approved-on' 	>		</td>
+							<td class='cd-satisfied-by'	>180.00	</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr><td colspan='3'></td><td colspan='3' class='jky-tab-label'>Untaxed Amount	</td><td class='jky-tab-value'>180.00</td></tr>
+						<tr><td colspan='3'></td><td colspan='3' class='jky-tab-label'>Taxes			</td><td class='jky-tab-value'>  0.00</td></tr>
+						<tr><td colspan='3'></td><td colspan='3' class='jky-tab-label'>Total			</td><td class='jky-tab-value'>180.00</td></tr>
+					</tfoot>
+				</table>
+			</div>
+
+			<div id='jky-incoming' class='tab-pane'>
+				<div class='jky-left'>
+					<div class='jky-form-line'><div class='jky-form-label'>		Expected Date</div><div id='jky-expected-date'		class='jky-form-value'>02/01/2013	</div></div>
+				</div>
+				<div class='jky-right'>
+					<div class='jky-form-line'><div class='jky-form-label'>	Invoicing Control</div><div id='jky-invoicing-control'	class='jky-form-value'>Based on generated draft invoice</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'>	 Invoice Received</div><div id='jky-invoice-received'	class='jky-form-value'>No		</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'>		 Payment Term</div><div id='jky-payment-term'		class='jky-form-value'>			</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'>	  Fiscal Position</div><div id='jky-fiscal-position'	class='jky-form-value'>			</div></div>
+				</div>
+				<div class='jky-clear'></div>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="jky-form-footer">
+
+	</div>
+</div><!-- id='jky-app-form'-->
+
+
+		</div>
+	</td><!-- id='jky-application'-->
+</tr><!-- id='jky-body'-->
+
+				</tbody>
+			</table>
+		</div><!-- id='jky-wrapper'-->
+
+		<div id='jky-loaded'></div>
+
+	</body>
+</html>
