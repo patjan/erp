@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <title>Manufacturing Orders - OpenERP</title>
+		<link href='css/bootstrap.css' 				rel='stylesheet'>
+		<link href='css/bootstrap-responsive.css'	rel='stylesheet'>
+		<link href='css/JKY.base.css'				rel='stylesheet'>
+		<script src='js/jquery-1.7.2.min.js'		></script>
+		<script src='js/bootstrap.min.js'			></script>
+		<script src='js/JKY.Utils.js'				></script>
+		<script src='js/JKY.Controls.js'			></script>
+	</head>
+
+    <body>
+		<div id='jky-wrapper'>
+			<table>
+				<tbody>
+
+<tr id='jky-header'>
+	<td colspan='2'>
+		<ul id='jky-menus'>
+			<li id='jky-menu-sales'		class='active'	>Vendas			</li>	<!--	Tecno	-->
+			<li id='jky-menu-purchases'					>Compras		</li>	<!-- DL			-->
+			<li id='jky-menu-maintenance'				>Manutencao		</li>	<!-- DL	Tecno	-->
+			<li id='jky-menu-production'				>Producao		</li>	<!-- DL			-->
+			<li id='jky-menu-outsource'					>Beneficiamento	</li>	<!-- DL			-->
+			<li id='jky-menu-inventory'					>Estoque		</li>	<!-- DL	Tecno	-->
+			<li id='jky-menu-invoicing'					>NFe			</li>	<!--	Tecno	-->
+			<li id='jky-menu-receivable'				>Receivable		</li>	<!--	Tecno	-->
+			<li id='jky-menu-admin'						>Admin			</li>	<!--	Tecno	-->
+			<li id='jky-menu-tickets'					>Tickets		</li>	<!--	Tecno	-->
+		</ul><!-- id='jky-menus'-->
+
+	   <div id='jky-user-info'>
+		  User Name
+	   </div><!-- id='jky-user-info'-->
+	</td>
+	<td></td>
+</tr><!-- id='jky-header'-->
+
+<tr id='jky-body'>
+	<td id='jky-side-bar'>
+		<div id='jky-side-header'><a id='jky-company-logo'><img src='/img/company_logo.png' /></a></div>
+
+		<div id='jky-side-sales'>
+			<div class='jky-side-set'>Sales			</div>
+			<div class='jky-side-item active'>Customers				</div>
+			<div class='jky-side-item'>Quotations				</div>
+			<div class='jky-side-item'>Sales Orders				</div>
+
+			<div class='jky-side-set'>Products		</div>
+			<div class='jky-side-item'>Products					</div>
+
+		</div><!-- id='jky-side-sales'-->
+
+		<div id='jky-side-purchases'>
+			<div class='jky-side-set'>Purchase			</div>
+			<div class='jky-side-item'>Quotations				</div>
+			<div class='jky-side-item'>Purchase Orders			</div>
+			<div class='jky-side-item'>Supplies					</div>
+
+			<div class='jky-side-set'>Incoming Products	</div>
+			<div class='jky-side-item'>Incoming Shipments		</div>
+			<div class='jky-side-item'>Incoming Products		</div>
+
+			<div class='jky-side-set'>Invoice Control	</div>
+			<div class='jky-side-item'>On Draft Invoices		</div>
+			<div class='jky-side-item'>On Purchase Order Lines	</div>
+			<div class='jky-side-item'>On Incoming Shipments	</div>
+
+			<div class='jky-side-set'>Products			</div>
+			<div class='jky-side-item'>Products by Category		</div>
+			<div class='jky-side-item'>Products					</div>
+		</div><!-- id=jky-side-purchases'-->
+
+		<div id='jky-side-maintenance'>	</div>
+		<div id='jky-side-production'>
+			<div class='jky-side-set'>Production		</div>
+			<div class='jky-side-item'>Production Orders		</div>
+
+			<div class='jky-side-set'>Planning			</div>
+			<div class='jky-side-item'>Order Planning			</div>
+
+			<div class='jky-side-set'>Products			</div>
+			<div class='jky-side-item'>Bill of Materials		</div>
+			<div class='jky-side-item'>Products					</div>
+		</div><!-- id=jky-side-production'-->
+
+		<div id='jky-side-outsource'>	</div>
+		<div id='jky-side-inventory'>	</div>
+		<div id='jky-side-invoicing'>	</div>
+		<div id='jky-side-receivable'>	</div>
+		<div id='jky-side-admin'>		</div>
+		<div id='jky-side-tickets'>		</div>
+
+		<div id='jky-side-footer'>
+			Created by
+			<a id='jky-contact-us' href='http://www.jkysoftware.com'>JKY Software</a>
+		</div>
+	</td><!-- id='jky-side-bar'-->
+
+	<td id='jky-application'>
+		<div>
+
+<div id='jky-app-header'>
+	<div>
+		<div id='jky-app-breadcrumb'>
+			Controls
+		</div>
+		<input id='jky-app-filter' class="search-query" type="text" placeholder="Search" />
+		<div class='jky-clear'></div>
+	</div>
+
+	<div>
+		<div id='jky-app-actions'>
+			<button class="btn btn-success" type="button">Add New	</button>
+		</div>
+		<div id='jky-app-more'>
+			<button class="btn btn-success" type="button">Export	</button>
+			<button class="btn btn-success" type="button">Publish	</button>
+		</div>
+		<div id='jky-app-displays' class="btn-group">
+			<button id='jky-display-list' class='btn' title='List View'><i class='icon-align-justify'	></i></button>
+			<button id='jky-display-form' class='btn' title='Form View'><i class='icon-list-alt'		></i></button>
+<!--
+			<button class="btn"><i class='icon-signal'			></i></button>
+			<button class="btn"><i class='icon-calendar'		></i></button>
+-->
+		</div>
+		<div id='jky-app-navs' class="btn-group">
+			<button class='btn' title='Previous'><i class='icon-backward'		></i></button>
+			<button class='btn' title='Next'	><i class='icon-forward'		></i></button>
+		</div>
+		<div id='jky-app-counters'>1-12 of 12</div>
+		<div class='jky-clear'></div>
+	</div>
+</div><!-- id='jky-app-header'-->
+
+<style>
+.jky-sequence	{text-align:center;}
+.jky-control-name {text-align:left;}
+.jky-control-value {text-align:left;}
+.jky-control-status {text-align:center;}
+</style>
+
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr class="oe_list_header_columns">
+            <th class="oe_list_record_selector"><input type="checkbox" class="oe_list_record_selector"></th>
+			<th class="jky-sequence oe_list_header_char oe_sortable"					data-id="name"					><div>Seq			</div></th>
+			<th class="jky-control-name oe_list_header_date oe_sortable"				data-id="date_order"			><div>Control Name		</div></th>
+			<th class="jky-control-value oe_list_header_many2one oe_sortable"			data-id="partner_id"			><div>Control Value			</div></th>
+			<th class="jky-control-status oe_list_header_selection oe_sortable"					data-id="state"					><div>Status			</div></th>
+        </tr>
+	</thead>
+	<tbody>
+		<tr style="" data-id="14">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="jky-sequence oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">0</td>
+			<td class="jky-control-name oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">Company Types</td>
+			<td class="jky-control-value oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id">Display Value</td>
+			<td class="jky-control-status oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">active</td>
+		</tr>
+		<tr style="" data-id="13">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="jky-sequence oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">0</td>
+			<td class="jky-control-name oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">Display Rows</td>
+			<td class="jky-control-value oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id"> Display Value</td>
+			<td class="jky-control-status oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">active</td>
+		</tr>
+		<tr style="" data-id="1">
+			<td class="oe_list_record_selector"><input type="checkbox" name="radiogroup"></td>
+			<td class="jky-sequence oe_list_field_cell oe_list_field_char    oe_required" title="Unique number of the purchase order, computed automatically when the purchase order is created." data-field="name">0</td>
+			<td class="jky-control-name oe_list_field_cell oe_list_field_date    oe_required" title="Date on which this document has been created." data-field="date_order">Display Rows</td>
+			<td class="jky-control-value oe_list_field_cell oe_list_field_many2one    oe_required" data-field="partner_id"> Display Value</td>
+			<td class="jky-control-status oe_list_field_cell oe_list_field_date    " title="This is computed as the minimum scheduled date of all purchase order lines' products." data-field="minimum_planned_date">active</td>
+		</tr>
+	</tbody>
+
+	<tfoot>
+        <tr>
+            <td></td>
+        </tr>
+	</tfoot>
+</table><!-- id='jky-app-table'-->
+
+<style>
+#jky-customer-name		{width:250px; font-size:12px; font-weight:bold;}
+#jky-company-name		{width:385px;}
+#jky-customer-tags		{width:385px;}
+
+#jky-street1			{width:250px;}
+#jky-street2			{width:250px;}
+#jky-city				{width:130px;}
+#jky-state				{width: 50px;}
+#jky-zip				{width: 50px;}
+#jky-country			{width:260px;}
+#jky-website			{width:250px;}
+#jky-phone				{width:200px;}
+#jky-mobile				{width:200px;}
+#jky-fax				{width:200px;}
+#jky-email				{width:200px;}
+</style>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'>
+			<button class='btn' title='Previous'>Send By Email	</button>
+			<button class='btn' title='Next'	>Print			</button>
+			<button class='btn' title='Next'	>Confirm Sale	</button>
+			<button class='btn' title='Next'	>Cancel			</button>
+		</div><!-- id='jky-form-actions'-->
+		<ul id='jky-form-status'>
+			<li class='jky-status'>Draft Quotation	</li>
+			<li class='jky-status'>Quotation Sent	</li>
+			<li class='jky-status'>Sales Order		</li>
+			<li class='jky-status'>Done				</li>
+		</ul><!-- id='jky-form-status'-->
+	</div>
+	<div class='jky-clear'></div>
+
+	<div id='jky-form-title'>
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'>Control Set</div>
+				<div class='jky-form-value'>
+					<input id='jky-customer-name' class='jky-form-value' placeholder='System Defaults' />
+				</div>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'>Status</div>
+					<select id='jky-country'>
+						<option class='jky-option-search'>active</option>
+						<option class='jky-option-add-new'>inactive</option>
+					</select>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'>Sequence</div>
+				<div class='jky-form-value'>
+					<input id='jky-customer-name' class='jky-form-value' placeholder='50' />
+				</div>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'>Control Name</div>
+				<div class='jky-form-value'>
+					<input id='jky-customer-name' class='jky-form-value' placeholder='Company Name' />
+				</div>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'>Control Value</div>
+				<div class='jky-form-value'>
+					<input id='jky-customer-name' class='jky-form-value' placeholder='US' />
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class='jky-clear'></div>
+</div>
+
+	<div id='jky-form-tabs' class='tabbable'>
+		<ul class='nav nav-tabs' id='cd-ul-tabs'>
+			<li id='jky-tab-contacts' class='active'><a href='#jky-contacts' data-toggle='tab'>Contacts	</a></li>
+			<li	id='jky-tab-notes'					><a href='#jky-notes'	 data-toggle='tab'>Notes	</a></li>
+			<li	id='jky-tab-sales'					><a href='#jky-sales'	 data-toggle='tab'>Sales	</a></li>
+			<li	id='jky-tab-account'				><a href='#jky-account'	 data-toggle='tab'>Account	</a></li>
+			<li	id='jky-tab-history'				><a href='#jky-history'	 data-toggle='tab'>History	</a></li>
+		</ul>
+
+		<div class='tab-content'>
+
+			<div id='jky-contacts' class='tab-pane active'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<td class='cd-category'		>Product			</td>
+							<td class='cd-text'			>Description		</td>
+							<td class='cd-requested-by'	>Scheduled<br>Date	</td>
+							<td class='cd-requested-on' >Quantity			</td>
+							<td class='cd-approved-by'	>Unit<br>Price		</td>
+							<td class='cd-approved-on' 	>Taxes				</td>
+							<td class='cd-satisfied-by'	>Subtotal			</td>
+						</tr>
+					</thead>
+					<tbody id='cd-satisfieds-box'>
+						<tr>
+							<td class='cd-category'		>[M-Wir] Mouse, Wireless</td>
+							<td class='cd-text'			>[M-Wir] Mouse, Wireless</td>
+							<td class='cd-requested-by'	>02/01/21013	</td>
+							<td class='cd-requested-on' >10.000	</td>
+							<td class='cd-approved-by'	>18.00	</td>
+							<td class='cd-approved-on' 	>		</td>
+							<td class='cd-satisfied-by'	>180.00	</td>
+						</tr>
+						<tr>
+							<td class='cd-category'		>[M-Wir] Mouse, Wireless</td>
+							<td class='cd-text'			>[M-Wir] Mouse, Wireless</td>
+							<td class='cd-requested-by'	>02/01/21013	</td>
+							<td class='cd-requested-on' >10.000	</td>
+							<td class='cd-approved-by'	>18.00	</td>
+							<td class='cd-approved-on' 	>		</td>
+							<td class='cd-satisfied-by'	>180.00	</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr><td colspan='3'></td><td colspan='3' class='jky-tab-label'>Untaxed Amount	</td><td class='jky-tab-value'>180.00</td></tr>
+						<tr><td colspan='3'></td><td colspan='3' class='jky-tab-label'>Taxes			</td><td class='jky-tab-value'>  0.00</td></tr>
+						<tr><td colspan='3'></td><td colspan='3' class='jky-tab-label'>Total			</td><td class='jky-tab-value'>180.00</td></tr>
+					</tfoot>
+				</table>
+			</div>
+
+			<div id='jky-incoming' class='tab-pane'>
+				<div class='jky-left'>
+					<div class='jky-form-line'><div class='jky-form-label'>		Expected Date</div><div id='jky-expected-date'		class='jky-form-value'>02/01/2013	</div></div>
+				</div>
+				<div class='jky-right'>
+					<div class='jky-form-line'><div class='jky-form-label'>	Invoicing Control</div><div id='jky-invoicing-control'	class='jky-form-value'>Based on generated draft invoice</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'>	 Invoice Received</div><div id='jky-invoice-received'	class='jky-form-value'>No		</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'>		 Payment Term</div><div id='jky-payment-term'		class='jky-form-value'>			</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'>	  Fiscal Position</div><div id='jky-fiscal-position'	class='jky-form-value'>			</div></div>
+				</div>
+				<div class='jky-clear'></div>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="jky-form-footer">
+
+	</div>
+</div><!-- id='jky-app-form'-->
+
+
+		</div>
+	</td><!-- id='jky-application'-->
+</tr><!-- id='jky-body'-->
+
+				</tbody>
+			</table>
+		</div><!-- id='jky-wrapper'-->
+
+		<div id='jky-loaded'></div>
+
+	</body>
+</html>
