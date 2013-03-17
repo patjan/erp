@@ -35,8 +35,11 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values');
 	if ($('#jky-loaded').length > 0) {
+		JKY.set_active('jky-menu-sales');
+		JKY.set_active('jky-sales-customers');
 		JKY.show('jky-side-sales');
 		JKY.display_form();
+		JKY.set_html('jky-app-breadcrumb', 'Customers / CT000014');
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
@@ -52,6 +55,7 @@ JKY.display_is_company = function(id) {
 }
 
 JKY.display_list = function() {
+	JKY.show('jky-app-filter');
 	JKY.show('jky-app-table');
 	JKY.hide('jky-app-more');
 	JKY.hide('jky-app-navs');
@@ -59,6 +63,7 @@ JKY.display_list = function() {
 }
 
 JKY.display_form = function() {
+	JKY.hide('jky-app-filter');
 	JKY.hide('jky-app-table');
 	JKY.show('jky-app-more');
 	JKY.show('jky-app-navs');

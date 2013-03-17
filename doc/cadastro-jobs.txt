@@ -1,9 +1,0 @@
-- Cadstro de jobs
-	- status
-	- name
-	- department
-	- employee-forecast
-	- employee-active
-	- recruitment-expected
-	- description
-	- requirements

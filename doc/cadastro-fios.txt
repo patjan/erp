@@ -1,6 +1,0 @@
-- Cadatro de fios	
-	- fio-id
-	- fio-nome
-	- fio-tipo
-	- fio-descricao
-	

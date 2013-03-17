@@ -336,6 +336,14 @@ JKY.set_val = function(id_name, value){
 }
 
 /**
+ * set 'active' class on specific id
+ * @param	id_name
+ */
+JKY.set_active = function(id_name){
+	$('#' + id_name).addClass('active');
+}
+
+/**
  * show specific id name
  * @param	id_name
  */
