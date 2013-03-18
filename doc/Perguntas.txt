@@ -1,0 +1,11 @@
+Perguntas:
+
+- Um PC pode receber dados de mais de uma leitora de Barra ?
+	Nao
+
+- Cada especifico codigo de Fio tem um especifico cor ?
+	Sim
+
+- Tem fornecedores que nao usa numero de lote ?
+- Se nao, devem criar numero sequencial de lote por fornecedor ?
+- Se nao, devem criar numero sequencial de lote ?

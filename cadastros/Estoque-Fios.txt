@@ -1,0 +1,95 @@
+1. Estoque de Fios
+	- Quotacoes
+	- Compras
+	- Fornecedores
+
+	- Entradas
+	- Devolucoes
+	- Saidas
+	- Retornos
+	- Inventario
+	- Relatorios
+
+- Cadatro de fios	
+	- fio-id
+	- fio-nome
+	- fio-tipo
+	- fio-descricao
+
+- Fio-Fornecedores
+	- fio-id
+	- fornecedor-id
+	- medio-peso
+	- medio-preco
+
+- Compras
+	- status
+	- compra-id
+	- compra-numero
+	- compra-documento
+	- data-compra
+	- fornecedor-id
+	- fornecedor 
+	- total-quantidade
+	- total-peso
+	- total-custo
+	- total-taxa
+
+- Compra Items
+	- compra-item-id
+	- compra-id
+	- fio-id
+	- fio-nome
+	- fio-descricao
+	- cor-id
+	- hora-programada
+	- preco-unitario
+	- quantidade
+	- medio-peso
+	- sub-total
+	- sub-taxa
+	
+- Entrada Lotes
+	- entrada-id
+	- entrada-numero
+	- compra-id
+	- invoice-control
+	- hora-programada
+	- hora-entrada
+	
+- Entrada Items
+	- entrada-id
+	- compra-item-id
+	- fio-id
+	- fio-nome
+	- fio-descricao
+	- cor-id
+	- hora-programada
+	- quantidade
+	- peso
+	- sub-total
+	- sub-taxa
+	
+	
+	- PO #
+	
+	- Status:
+		- Draft PO
+		- RFQ Sent
+		- Purchase Order
+		- Done
+
+		- Draft
+		- Ready to Receive
+		- Received
+		
+		- New
+		- Waiting Availability
+		- Available
+		- Done
+		
+		- Draft
+		- Open
+		- Paid
+		
+		

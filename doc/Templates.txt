@@ -1,0 +1,32 @@
+Function needed from Templates
+
+
+Accordions		Links: http://jqueryui.com/demos/accordion/ 
+Buttons
+Calendar		Links: http://arshaw.com/fullcalendar/ 
+Charts			Links: http://code.google.com/p/flot/
+Code			Links: http://alexgorbatchev.com/SyntaxHighlighter/
+Contacts		Links: http://devgrow.com/slidernav/ 
+Dialog			Code: http://jqueryui.com/demos/dialog/ 
+Editor			Code: http://www.scriptiny.com/2010/02/javascript-wysiwyg-editor/ 
+Files
+Form_fields		JS: adminica_forms.js
+Gallery			Links: http://isotope.metafizzy.co/, http://fancyapps.com/fancybox/  
+Graphs			Code: http://omnipotent.net/jquery.sparkline/ 
+Isolated		JS: adminica_charts.js
+Layout			JS: adminica_ui.js
+Login			JS: adminica_ui.js, adminica_forms.js
+Tables_static	JS: adminic_ui.js
+Tables			Links: http://datatables.net/  
+Tabs			Links: http://jqueryui.com/demos/tabs/ 
+Wizard			JS: adminica_wizard.js
+
+progress bars
+tooltip
+breadcrumd
+plupload
+localization
+validate
+bootstrap
+
+Mooncake

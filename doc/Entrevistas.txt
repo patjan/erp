@@ -1,0 +1,49 @@
+Entrevistas
+
+- Conclusoes:
+	- falta de organizacao 
+	- quebra de hierarquia, gerentes nao tem autoridade de cobranca
+		dos funcionarios
+		
+
+
+- Chico:
+	- falta de mao de obra, 1 ano sozinho no Estoque de Pecas
+	- corte da Peca, Punho e Golas:
+		- re-pesa o corte A e remeti novo Etiqueta com peso A
+		- re-pesa o corte B e remeti novo Etiqueta com peso B
+		- registra a Etiqueta Mae com as 2 Etiqueta Filhas 
+
+- Bruno:
+	- 
+	
+- Christina:
+	- alterar cliente
+	- consertar [Select]
+	- punho - gola ( - / resto)
+	- recebimento cheques regular
+	- # checks pre-date $1.000
+	- dar baixo por romaneio
+	
+- Marcos
+	- revisao - pesagem
+	- inf lote
+	- fio na secao
+	- estoque 24 hr
+	
+	- chegada de fio
+	- 1 semana de 
+	- error de peso (15 - 20) 17 medio
+	
+	- partida
+		fornecedor
+		lote
+		fio titulo
+		fio composicao
+		
+	- 
+
+
+- Tingimento de Fios
+	- perda de 3%
+	- no retorno, recebe novo nome de fio

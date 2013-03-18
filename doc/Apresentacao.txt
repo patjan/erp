@@ -1,0 +1,99 @@
+03/01/2013	Sistema Enterprise Resources Planing (ERP) para DL e Tecno
+
+Agenda:
+
+- Objetivo do sistema ERP:
+- Processos na DL:
+- Processos na Tecno:
+- Tecnologia usados
+- Codigo de barras e mapeamento
+- Necessidade de Hardware na DL
+- Necessidade de Hardware na Tecno
+
+
+Objetivo do sistema ERP:
+
+1. Agilizar fluxo de informacao
+2. Reduzir erro de entrada de dados
+3. Aumentar produtividade dos funcionarios
+4. Diminuir o tempo de espera dos clientes
+5. Otimizar quantidade de estoque dos Fios, Crus e Pecas
+
+
+Processos na DL:
+
+ 1. Digitalizar Fichas Tecnicas de Producao (FTP).
+ 2. Implementar Codigo de Barra para cada caixa de fio.
+ 3. Implementar Controle de Estoque de Fios.
+ 4. Automatizar Ordem de Retirada de Fios.
+ 5. Automatizar Ordem de Producao de Pecas.
+ 6. Automatizar Ordem de Tingimento de Fios.
+ 7. Implementar Codigo de Barra para cada Cru produzida.
+ 8. Implementar Controle de Estoque de Crus.
+ 9. Automatizar Ordem de Producao de Punhos e Golas.
+10. Automatizar Ordem de Tingimento de Crus.
+
+
+Processos na Tecno:
+
+ 1. Digitalizar Fichas Tecnicas de Venda (FTV).
+ 2. Otimizar pesquisa de Estoque de Crus e Fios.
+ 3. Automatizar Ordem de Servicos (OSA) da Tecno para DL.
+ 4. Implementar Codigo de Barra para cada Peca Tingida.
+ 5. Implementar Controle de Estoque de Pecas, Punhos e Golas.
+ 6. Implementar venda parcial de Punhos, Golas e Pecas. 
+ 7. Automatizar Ordem de Entregas (Pedidos).
+ 8. Automatizar Pedidos de Pronta Entrega (criacao de Ficha de Vendas).
+ 9. Automatizar Impressao de Ficha de Venda.
+10. Automatizar Impressao de Nota Fiscal Eletronica.
+11. Automatizar Recebimento de Pagamento dos Clientes.
+
+
+Tecnologia usados:
+
+1. sincronizacao de dados da Tecno para DL.
+2. sincronizacao de dados da DL para Tecno.
+3. leitura automatica do XML (NFe)
+4. codigo de barras
+
+
+Codigo de Barra e mapeamento:
+
+1.  caixa de fio: F 999 999 999
+     localizacao: 9A99
+
+2. cru produzida: C XXX 999 999
+     localizacao: 9A99 
+
+3.  peca tingida: P 999 999 999 
+     localizacao: 9A99
+
+
+Necessidade de Hardware na DL:
+
+2 Servidores (ativo + backup)
+6 PC (workstation)
+4 BarCode rwireless eaders
+2 BarCode printers
+1 IP fixo
+1 Nobreak + bateries
+
+
+Necessidade de Hardware na Tecno:
+
+3 Servidores (ativo + backup + NFe)
+5 PC (workstation)
+4 BarCode wireless readers
+2 BarCode printers
+1 IP fixo
+1 IP dinamico
+1 Nobreak + bateries
+ 
+ 
+- Falta de controle estoque: fio, cru e pecas
+	use-se os mais novos
+	os mais velhos ficam escondidos
+- Excesso de punho e gulas
+- Muito uso de mao de obra para transferecia de cru e pecas (palhetes)
+- Otimizar o tempo de pesagem.
+

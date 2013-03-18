@@ -1,0 +1,91 @@
+DL
+
+- Controle de Estoque de Fios
+- Controle de Producoes
+- Controle de Estoque de Crus
+- Controle de Estoque de Crus (Tinturarias)
+
+- Ficha Tecnoca de Producao
+- Otimizacao dos Funcionarios
+- Otimizacao das Maquinas
+
+- PC na parede, opera de pe, leitora wireless
+
+
+
+- Procurar 2 mais fornecedor de Etiquetas
+- Procurar firewall
+- Cadastro de Maquinas
+- Cadastro Ficha Tecnica de Producao
+- Cadastro de Fornecedores
+- Cadastro de Tinturarias
+- Cadastro de Fios
+- Mapeamento da Area de Fios
+- Mapeamento da Area de Crus
+- Mapeamento das Maquinas
+- Mapeamento da Area de Vendas
+
+
+
+- Etiqueta das Caixas de Fios
+- Etiqueta das Pecas Cru
+- Etiqueta das Pecas Tingidas
+
+
+- Entrada de Fios:
+	- Registrar entrada de Fios Cru		, com localizacao	(impressa de  etiquetas)
+	- Registrar entrada de Fios tingidas, com localizacao	(impressa de  etiquetas)
+
+- Entrada de Pecas:
+	- Registrar saida da Peca (leitora de barra)
+	- Registrar saida de Fios (leitora de barra)
+
+
+- PCP
+	- Ordem de Saida de Fios (alocacao) dias
+	- Ordem de Calibragem da Maquina
+	- Ordem de Producao por Maquina
+	- Pre-impresso das Etiquetas por Maquina
+	- Ordem de Tingimento de Fios
+	- Ordem de Producao Externo (Punhos e Golas)
+	- Re-impressao de Ordem de Producao
+	- Re-impressao das Etiqueta de Cru
+	
+- Maquina
+	- produz pecas
+	- colar etiqueta
+	
+- Revisao:
+	- Escrever numero da Peca na Peca
+	- Pesagem da Pesa (leitora de barra)
+ 	- Controle de Qualidade, registrar falhas (leitora de barra)
+	- Registrar localizacao (map) (bom ou falha)
+	- Dar baixa final de Fios (por lote)
+	- Entrada de Punhos e Golas (impressao de Etiqueta de Cru)
+	- Ordem de Tingimento de Pecas (impressao dos Romaneios para Tinturaris)
+	
+- Estoque de Fios:
+	- Retorno de Fios da Producao, pesagem (impressao de Etiqueta)
+	- Registrar saida de Fios para tingimento, pesagem (leitora de barra)
+	- Entrada de Fios tingidos, pesagem (impressao de Etiqueta)
+	
+- Saida de Pecas:
+	- Registrar saida da Peca (leitora de barra)
+	- Registrar saida de Fios (leitora de barra)
+	
+	
+	
+- Saldo de Fios
+- Saldo de Pro-D 
+- Saldo de Punhos e Golas
+- Saldo de Pecas
+
+
+Caixa de Fios
+	- peso total do Lote
+	- numero de cones por caixa
+	- calcular peso medio da caixa
+	- extrair recebimento de Fios do XML
+	- imprimir Etiquetas das Caixa com localizacao
+	
+

@@ -1,0 +1,58 @@
+03/14/2013	Sistema Enterprise Resources Planing (ERP) para DL
+
+Objetivo do sistema ERP:
+1. Agilizar fluxo de informacao
+2. Reduzir erro de entrada de dados
+3. Aumentar produtividade dos Funcionarios
+3. Aumentar produtividade das Maquinas
+5. Otimizar quantidade de estoque dos Fios, Crus e Pecas
+
+Processos na DL:
+1. Digitalizar Fichas Tecnicas de Producao (FTP).
+2. Controle de Estoque de Fios
+3. Controle de Producao de Crus, Punhos e Golas
+4. Controle de Partidas para Tingimento
+5. Sincronizar com Servidor da Tecno
+ 
+Implementacao:
+1. Implementar Codigo de Barra para cada caixa de fio.
+2. Automatizar Ordem de Saida de caixas de Fios.
+3. Automatizar Ordem de Producao de Pecas.
+4. Implementar Codigo de Barra para cada Cru, Punho e Gola produzida.
+5. Automatizar Ordem de Tingimento de Fios.
+6. Automatizar Ordem de Producao de Punhos e Golas.
+
+Tecnologia usados:
+1. sincronizacao de dados da Tecno para DL.
+2. sincronizacao de dados da DL para Tecno.
+3. leitura automatica do XML (NFe)
+4. impressao codigo de barras
+5. leitura de codigo de barras 
+
+Mapeamento:
+1.  caixa de fio: F 999 999 999
+     localizacao: 9A99
+2. cru produzida: C XXX 999 999
+     localizacao: 9A99 
+
+Necessidade de Hardware na DL:
+2 Servidores (ativo + backup)
+6 PC (workstation)
+4 BarCode wireless readers
+2 BarCode printers
+1 IP fixo
+1 Nobreak + bateria
+
+
+Software:
+12 Tabelas simples
+17 Tabelas intermediarios
+10 Tabelas complexos
+ 8 Relatorios complexos
+10 Relatorios simples
+   Impressao de Codigo de Barras
+   Leitura de Codigo de Barras
+   Sincronizacao de Servidores
+   
+
+

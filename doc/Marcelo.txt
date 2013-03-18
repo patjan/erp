@@ -1,0 +1,30 @@
+Marcelo:
+
+- Procurar 2 mais fornecedor de Etiquetas
+- Procurar firewall
+- Cadastro de Maquinas
+- Cadastro Ficha Tecnica de Producao
+- Cadastro de Fornecedores
+- Cadastro de Tinturarias
+- Cadastro de Fios
+- Mapeamento da Area de Fios
+- Mapeamento da Area de Crus
+- Mapeamento das Maquinas
+- Mapeamento da Area de Vendas
+
+- Favor de pedir para Alex me mandar
+  algumas copias (exemplos) das previsoes de chegadas de fios.
+
+- Favor de pedir para Marcos (fios) me mandar
+  algumas copias (exemplos) dos romaneios ou NFe para saida de fios para tinturarias.
+  algumas copias (exemplos) das chegadas de fios tingidos.
+  
+- Como caixa(s) de fio sao pesados (bruto/liquido/cones) para devolucao ao Fornecedores?
+
+- Como fios sao pesados (bruto/liquido/cones) para retorno da Producao para Estoque?
+
+- PCP:
+	- para uma OSA somente usa fios de um unico lote?
+	- o que se faz com a sobra de fios de um especifico lote?
+
+	

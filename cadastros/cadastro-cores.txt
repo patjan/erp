@@ -1,0 +1,6 @@
+- Cadatro de cores
+	- cor-id
+	- cor-nome
+	- cor-tipo
+	- cor-descricao
+	

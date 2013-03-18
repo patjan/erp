@@ -1,0 +1,89 @@
+Todo
+
+
+
+
+- IP fixo (telefonica) 30/5 mb R$270
+- Roteador (tecno)
+- DOS
+- 3. turno
+
+
+- Mapeamento:
+	- andar 	( 0 1 2 )
+	- coluna	( A B C ... )
+	- quadrantes	( 01 02 03 )
+
+
+- Codigo da Pecas
+	- XXX		( abrev da maquina )
+	- NNNNNN	( numero sequencial de 000001 ) 
+
+- Cores
+	CC cor claro
+	CE cor escura
+
+- titulagem de fios:
+	- contaminado
+	- fibra morta
+	- normal
+
+- Caminhao
+	- 10 Ton
+	- 372 caixas
+	- 30 kg / caixa (max 50 kg)
+	- 24 cones / caixa
+	- 2 hr para descarregar
+
+	- 4 carrinhos	
+	- 16 caixas/carrinho
+
+
+- Turnos
+	 6 am -  2 pm
+	 2 pm - 10 pm
+	10 pm -  6 am
+
+
+- Partida
+	- mesmo fornecedor
+	- mesmo lote
+	- mesmo fio
+	- mesmo composicao
+
+
+- Revisao:
+	- defeito ( DEF000001 )	origem ( XXX000001 )
+	- adicionar [Peso] 
+	
+
+- User-role = admin
+	- update most of data
+	- update Peca
+	- update Cliente
+
+- Nome (limpar)
+	Especial
+
+- Lista de:
+	Produtos (Tecidos)
+	Cor
+	Cliente Tecno
+	Cliente DL
+- Foto (w X h) .jpg
+
+- Minimum Lote 
+
+
+1. Criar Ficha Tecnica de Producao FTPs
+	- Cadastro de Maquinas
+	- Cadastro de Familias
+	- Cadastro de Fios
+	- Dicionario de FioFornedecores XML
+	- 
+
+2. Amostras status:
+	- reprocessar
+	- revisao
+	- rejeitar
+	- confirmar

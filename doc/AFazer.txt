@@ -1,0 +1,22 @@
+A Fazer
+
+0. As Contas: add full check list
+
+X. Installar Unidanfe
+X. imprimir NFe do Alex
+
+1. Mapeamento de:
+	- Fios
+	- Pecas Cru
+	- Pecas Tingidos
+	
+2. Instalar rede de network:
+	- DL
+	- Tecno
+	
+3. Instalar impressora de barras:
+
+4. Instalar leitora de barras:
+
+5. 
+	
