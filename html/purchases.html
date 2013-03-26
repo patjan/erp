@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-		<meta content="text/html; charset=utf-8" http-equiv="content-type">
-		<title>Manufacturing Orders - OpenERP</title>
+		<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+		<meta content='text/html; charset=utf-8' http-equiv='content-type'>
+		<title>ERP</title>
 		<link href='css/bootstrap.css' 				rel='stylesheet'>
 		<link href='css/bootstrap-responsive.css'	rel='stylesheet'>
 		<link href='css/JKY.base.css'				rel='stylesheet'>
@@ -96,6 +96,7 @@
 		<div id='jky-side-inventory'>	</div>
 		<div id='jky-side-invoicing'>	</div>
 		<div id='jky-side-receivable'>	</div>
+
 		<div id='jky-side-admin'>
 			<div									class='jky-side-set'>Admin				</div>
 			<div id='jky-admin-configs'			class='jky-side-item'>Configs				</div>
@@ -115,29 +116,29 @@
 <div id='jky-app-header'>
 	<div>
 		<div id='jky-app-breadcrumb'></div>
-		<input id='jky-app-filter' class="search-query" type="text" placeholder="Search" />
+		<input id='jky-app-filter' class='search-query' type='text' placeholder='Search' />
 		<div class='jky-clear'></div>
 	</div>
 
 	<div>
 		<div id='jky-app-actions'>
-			<button class="btn btn-success" type="button">Add New	</button>
-			<button class="btn btn-success" type="button">Save		</button>
+			<button class='btn btn-success' type='button'>Add New	</button>
+			<button class='btn btn-success' type='button'>Save		</button>
 			or <a href='#'>Discard</a>
 		</div>
 		<div id='jky-app-more'>
-			<button class="btn btn-success" type="button">Export	</button>
-			<button class="btn btn-success" type="button">Publish	</button>
+			<button class='btn btn-success' type='button'>Export	</button>
+			<button class='btn btn-success' type='button'>Publish	</button>
 		</div>
-		<div id='jky-app-displays' class="btn-group">
+		<div id='jky-app-displays' class='btn-group'>
 			<button id='jky-display-list' class='btn' title='List View'><i class='icon-align-justify'	></i></button>
 			<button id='jky-display-form' class='btn' title='Form View'><i class='icon-list-alt'		></i></button>
 <!--
-			<button class="btn"><i class='icon-signal'			></i></button>
-			<button class="btn"><i class='icon-calendar'		></i></button>
+			<button class='btn'><i class='icon-signal'			></i></button>
+			<button class='btn'><i class='icon-calendar'		></i></button>
 -->
 		</div>
-		<div id='jky-app-navs' class="btn-group">
+		<div id='jky-app-navs' class='btn-group'>
 			<button class='btn' title='Previous'><i class='icon-backward'		></i></button>
 			<button class='btn' title='Next'	><i class='icon-forward'		></i></button>
 		</div>
@@ -148,9 +149,9 @@
 
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
-		<tr class="oe_list_header_columns">
-			<th class="oe_list_record_selector"><input type="checkbox" class="oe_list_record_selector"></th>
-			<th class="oe_list_header_char oe_sortable"			data-id="name"					><div>Reference			</div></th>
+		<tr>
+			<th    id='jky-checkbox-all'	><input type='checkbox'	 ></th>
+			<th class='jky-reference'		><div>Reference			</div></th>
 			<th class="oe_list_header_date oe_sortable"			data-id="date_order"			><div>Order Date		</div></th>
 			<th class="oe_list_header_many2one oe_sortable"		data-id="partner_id"			><div>Supplier			</div></th>
 			<th class="oe_list_header_date oe_sortable"			data-id="minimum_planned_date"	><div>Expected Date		</div></th>
@@ -426,7 +427,7 @@
 		</div>
 	</div>
 
-	<div id="jky-form-footer">
+	<div id='jky-form-footer'>
 
 	</div>
 </div><!-- id='jky-app-form'-->

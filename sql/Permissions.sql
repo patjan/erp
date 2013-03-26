@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Permissions
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
-INSERT INTO 'Permissions' 
-( 'id', 'created_by', 'created_at', 'updated_by', 'updated_at', 'status', 'user_role', 'user_resource', 'user_action') VALUES
-( 1, NULL, NULL, NULL, NULL, 'Active', 'Support', 'All', 'All')
+INSERT INTO Permissions
+( `id`, `created_by`, `created_at`, `updated_by`, `updated_at`, `status`, `user_role`, `user_resource`, `user_action`) VALUES
+( 1, NULL, NULL, NULL, NULL, 'active', 'support', 'All', 'All')
 ;

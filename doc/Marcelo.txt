@@ -27,4 +27,9 @@ Marcelo:
 	- para uma OSA somente usa fios de um unico lote?
 	- o que se faz com a sobra de fios de um especifico lote?
 
-	
+- Barcode:
+	- tem ser numeric:
+		precisao de leitura 0 - 9
+		mais facil para digitar qdo precisar (volta da tinturaria)
+	- imprime nome da Maquina na Etiqueta
+

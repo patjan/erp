@@ -1,15 +1,15 @@
-/*
- * start after jquery loaded
- */
-$(function() {
-	JKY.start_admin();
-});
+"use strict";
 
-/*
- * start point for admin
+/**
+ * controls.html
  */
-JKY.start_admin = function() {
-	JKY.display_trace('start_admin');
+
+
+/**
+ * start program
+ */
+JKY.start_program = function() {
+	JKY.display_trace('controls start_program');
 	JKY.set_all_events();
 	JKY.set_initial_values();
 }
@@ -34,15 +34,15 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values');
 	if ($('#jky-loaded').length > 0) {
-		JKY.load_html('jky-header'		, 'JKY-Header.html'			);
-		JKY.load_html('jky-side-bar'	, 'JKY-Side-Bar.html'		);
-		JKY.load_html('jky-table-body'	, 'JKY-Controls-TBody.html'	);
+//		JKY.load_html('jky-header'		, 'JKY-Header.html'			);
+//		JKY.load_html('jky-side-bar'	, 'JKY-Side-Bar.html'		);
+//		JKY.load_html('jky-table-body'	, 'JKY-Controls-TBody.html'	);
 		JKY.set_active('jky-menu-admin');
 		JKY.set_active('jky-admin-controls');
 		JKY.show('jky-side-admin');
-		
+
 		JKY.load_table();
-		
+
 		JKY.display_form();
 		JKY.set_html('jky-app-breadcrumb', 'Controls - CT000001');
 	}else{

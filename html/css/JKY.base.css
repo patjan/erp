@@ -1,3 +1,10 @@
+@import url('bootstrap.css');
+@import url('bootstrap-responsive.css');
+
+@font-face				{ font-family:'arial rounded extraBold'; src:url('../fonts/arial-rounded-extrabold') format('woff'); font-style:normal; font-weight:bold;    }
+@font-face				{ font-family:'arial rounded bold'     ; src:url('../fonts/arial-rounded-bold'     ) format('woff'); font-style:normal; font-weight:bold;    }
+@font-face				{ font-family:'arial rounded light'    ; src:url('../fonts/arial-rounded-light'    ) format('woff'); font-style:normal; font-weight:normal;  }
+@font-face				{ font-family:'arial rounded'          ; src:url('../fonts/arial-rounded-normal'   ) format('woff'); font-style:normal; font-weight:normal;  }
 /* required for sticky-footer, html and body elements cannot have any padding or margin */
 *		{margin:0; padding:0; border:0; font-family:'Lucida Grande',Helvetica,Verdana,Arial,sans-serif;}
 html	{height:100%}
@@ -10,7 +17,10 @@ input.span2 {width:80px; padding:2px 4px;}
 .btn			{padding:2px 10px;}
 .nav			{margin-bottom:5px;}
 .nav-tabs > li	{margin-left:10px;}
-.input-append .add-on			{margin-left:-6px; padding:2px;}
+.input-append .add-on	{margin-left:-6px; padding:2px;}
+.modal-header			{background:#223870; color:white; border-bottom:1px solid #DDDDDD; border-radius:3px 3px 0 0; font-size:120%; font-weight:bold;}
+.modal-body				{background:white;}
+
 
 .jky-left		{float:left ;}
 .jky-right		{float:right;}
@@ -38,14 +48,16 @@ input.span2 {width:80px; padding:2px 4px;}
 #jky-wrapper			{height:100%; background:none repeat scroll 0 0 white; color:#4C4C4C;}
 #jky-wrapper table		{height:100%; width:100%;}
 
-#jky-header				{color:#eeeeee; background-image:linear-gradient(to bottom, #646060, #262626);}
-#jky-header				{color:#eeeeee; background-color:#323232;}
+#jky-header				{color:#EEEEEE; background-image:linear-gradient(to bottom, #646060, #262626);}
+#jky-header				{color:#EEEEEE; background-color:#323232;}
+#jky-header a			{color:#FFFFFF;}
+#jky-header a:hover		{color:#1E9CD9;}
 
 #jky-menus				{float:left ; height:20px; margin:0; padding:6px 0;}
 #jky-menus li			{height:32px; display:inline; padding:8px 10px; line-height:20px;}
 #jky-menus .active		{background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3); box-shadow:0 1px 2px rgba(0, 0, 0, 0.4) inset; text-shadow:0 0 3px black;}
 
-#jky-user-info			{float:right; margin:6px 10px 4px;}
+#jky-full-name			{float:right; margin:6px 10px 4px;}
 
 #jky-body				{width:100%; height:100%;}
 
@@ -134,7 +146,7 @@ input.span2 {width:80px; padding:2px 4px;}
 /* -------------------------------------------------------------------------- */
 
 #jky-loading			{display:none; position:fixed; top:50%;	left:50%; margin:-50px 0 0 -50px; overflow:auto; z-index:9999;}
-#jky-message			{display:none; position:absolute; top:auto; bottom:0; left:auto ; right:0;							 width:340px;				z-index:2000;}
-#jky-trace				{display:none; position:absolute; top:auto; bottom:0; left:280px; right:0;							 width:340px;				z-index:2000;}
+#jky-message			{display:none; position:absolute; top:auto; bottom:0; left:auto ; right:0; width:340px; z-index:2000;}
+#jky-trace				{display:none; position:absolute; top:auto; bottom:0; left:280px; right:0; width:340px; z-index:2000;}
 
 

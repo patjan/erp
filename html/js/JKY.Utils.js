@@ -96,7 +96,8 @@ JKY.load_html = function(id_name, file_name) {
  * @param	action
  */
 JKY.process_action = function(action) {
-	JKY.load_html('jky-body-content', action + '.html');
+//	JKY.load_html('jky-body-content', action + '.html');
+	JKY.load_html('jky-application', action + '.html');
 	$.getScript(JKY.AJAX_APP + 'js/' + action + '.js', function() {
 		JKY.start_program();
 	});
@@ -445,8 +446,9 @@ JKY.set_focus = function(name) {
      }
 }
 
-JKY.disabled_id	= function(id_name)	{$('#' + id_name).addClass	 ('disabled');}
-JKY.enabled_id 	= function(id_name)	{$('#' + id_name).removeClass('disabled');}
+JKY.disabled_id	= function(id_name)	{		$('#' + id_name).addClass	('disabled');}
+JKY.enabled_id 	= function(id_name)	{		$('#' + id_name).removeClass('disabled');}
+JKY.is_disabled = function(id_name) {return $('#' + id_name).hasClass	('disabled');}
 
 //        JKY.set_...
 //        ----------------------------------------------------------------------
@@ -602,7 +604,8 @@ JKY.set_user_info = function(full_name) {
 		JKY.hide('jky-user-logged');
 		JKY.show('jky-user-unkown');
 	}else{
-		JKY.set_html('jky-full-name', full_name);
+		var my_log_off = ':&nbsp; <a href="#" onclick="JKY.process_log_off()">Log Off</a>';
+		JKY.set_html('jky-full-name', full_name + my_log_off);
 		JKY.hide('jky-user-unkown')
 		JKY.show('jky-user-logged');
 	}
@@ -612,7 +615,7 @@ JKY.set_user_info = function(full_name) {
  * set company logo
  */
 JKY.set_company_logo = function(company_logo) {
-	JKY.set_html('jky-company-logo', '<img src="../img/' + company_logo + '.png" />');
+	JKY.set_html('jky-company-logo', '<img src="/img/' + company_logo + '" />');
 }
 
 /**
@@ -629,9 +632,11 @@ JKY.set_buttons_menus = function(menus) {
 	var my_html = '';
 	for(var i=0; i<menus.length; i++) {
 		var my_menu = menus[i];
-		my_html += '<a id="' + my_menu.id + '" class="btn btn-large">'
-				+  '<i class="icon-' + my_menu.icon + ' icon-white"></i>' + my_menu.label
-				+  '</a>'
+		my_html += '<li id="' + my_menu.id + '">' +  my_menu.label
+//				+  '<a  class="btn btn-large">'
+//				+  '<i class="icon-' + my_menu.icon + ' icon-white"></i>' + my_menu.label
+//				+  '</a>'
+				+  '</li>'
 				;
 	}
 	JKY.set_html('jky-menus', my_html);
@@ -734,7 +739,7 @@ JKY.set_control_set = function(selected, control_set) {
 				if (typeof function_error != 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
-					JKY.hideLoading();
+					JKY.hide('jky-loading');
 					JKY.display_message('Error from backend server, please re-try later.');
 				}
 			}
@@ -771,10 +776,27 @@ JKY.ajax = function(async, data, function_success, function_error) {
 				if (typeof function_error != 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
-					JKY.hideLoading();
+					JKY.hide('jky-loading');
 					JKY.display_message('Error from backend server, please re-try later.');
 				}
 			}
 		}
 	);
+}
+
+/**
+ * process log off
+ */
+JKY.process_log_off = function() {
+	JKY.display_trace('process_log_in');
+	JKY.set_user_info('');
+	var my_data = { method : 'log_out'};
+	JKY.ajax(false, my_data, JKY.process_log_off_success);
+}
+
+/**
+ * process log off
+ */
+JKY.process_log_off_success = function() {
+	JKY.process_action('login');
 }

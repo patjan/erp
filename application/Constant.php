@@ -25,12 +25,12 @@ define( 'POS_LOGIN_EXTERNAL'  , 'home'                      );
 define( 'MODEL'               , 'Model_'                    );        //   ZF 1.10 must be Model_
 define( 'INDEX'               , '/'                         );        //   windows must be '/'
 define( 'APP_PATH'            ,  dirname( __FILE__ )        );
-define( 'COMPANY_ID'          , '1000000001'                );
+define( 'COMPANY_ID'          , '3'							);		//	DL malhas
 define( 'WEB_SITE'            , 'http://im4/'               );
 define( 'DOMAIN_NAME'         , 'pat'                       );
-define( 'SERVER_NAME'         , 'http://relations/'         );
-define( 'SERVER_BASE'         , '../'         );
-define( 'APPLICATION'         , '../application/');
+define( 'SERVER_NAME'         , 'http://erp/'				);
+define( 'SERVER_BASE'         , '../'						);
+define( 'APPLICATION'         , '../application/'			);
 define( 'LIBRARY'             , '/../library/'              );
 define( 'DELIVERY_BASE'       , 'C:/htdocs/relations/'      );
 define( 'START_ASSET'         , 'start/'     );
