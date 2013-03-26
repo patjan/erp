@@ -789,7 +789,8 @@ JKY.ajax = function(async, data, function_success, function_error) {
  */
 JKY.process_log_off = function() {
 	JKY.display_trace('process_log_in');
-	JKY.set_user_info('');
+	JKY.set_buttons_menus([]);
+	JKY.set_user_info(null);
 	var my_data = { method : 'log_out'};
 	JKY.ajax(false, my_data, JKY.process_log_off_success);
 }

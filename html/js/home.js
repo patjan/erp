@@ -5,36 +5,23 @@
  */
 $(function() {
 	JKY.display_trace('start_program');
-//	JKY.load_html('jky-header'		, 'JKY-Header.html'			);
-//	JKY.load_html('jky-side-bar'	, 'JKY-Side-Bar.html'		);
-	JKY.set_company_name(JKY.Session.get_value('company_name'	));
-	JKY.set_user_info	(JKY.Session.get_value('full_name'		));
-	JKY.set_company_logo(JKY.Session.get_value('company_logo'	));
-//	JKY.set_event_name	(JKY.Session.get_value('event_name'		));
-	JKY.set_copyright	(JKY.Session.get_value('copyright'		));
-	JKY.set_contact_us	(JKY.Session.get_value('contact_us'		));
-	var my_menus =
-		[{id:'jky-menu-sales'		, icon:'plus', label:'Sales'		}
-		,{id:'jky-menu-invoicing'	, icon:'plus', label:'Invoicing'	}
-		,{id:'jky-menu-delivers'	, icon:'plus', label:'Delivers'		}
-		,{id:'jky-menu-purchases'	, icon:'plus', label:'Purchases'	}
-		,{id:'jky-menu-incomings'	, icon:'plus', label:'Incomings'	}
-		,{id:'jky-menu-storage'		, icon:'plus', label:'Storage'		}
-		,{id:'jky-menu-production'	, icon:'plus', label:'Production'	}
-		,{id:'jky-menu-revision'	, icon:'plus', label:'Revision'		}
-		,{id:'jky-menu-inventory'	, icon:'plus', label:'Inventory'	}
-		,{id:'jky-menu-payable'		, icon:'plus', label:'Payable'		}
-		,{id:'jky-menu-receivable'	, icon:'plus', label:'Receivable'	}
-		,{id:'jky-menu-admin'		, icon:'plus', label:'Admin'		}
-		];
-//	JKY.set_buttons_menus(my_menus);
-//	JKY.set_buttons_control([], JKY.Session.get_value('language'), JKY.Session.get_value('languages'));
-//	JKY.set_events();
 	if (JKY.Session.has('full_name')) {
 		JKY.process_action('controls');
 	}else{
 		JKY.process_action('login');
 	}
+
+//	JKY.load_html('jky-header'		, 'JKY-Header.html'			);
+//	JKY.load_html('jky-side-bar'	, 'JKY-Side-Bar.html'		);
+	JKY.set_company_name(JKY.Session.get_value('company_name'	));
+//	JKY.set_user_info	(JKY.Session.get_value('full_name'		));
+	JKY.set_company_logo(JKY.Session.get_value('company_logo'	));
+//	JKY.set_event_name	(JKY.Session.get_value('event_name'		));
+	JKY.set_copyright	(JKY.Session.get_value('copyright'		));
+	JKY.set_contact_us	(JKY.Session.get_value('contact_us'		));
+//	JKY.set_buttons_menus(my_menus);
+//	JKY.set_buttons_control([], JKY.Session.get_value('language'), JKY.Session.get_value('languages'));
+//	JKY.set_events();
 });
 
 /**
