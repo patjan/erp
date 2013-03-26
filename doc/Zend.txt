@@ -1,0 +1,4 @@
+Zend Server Version: 5
+Order number: TRIAL-6100-92
+License key: DGN86G1VUK1850EB5038F1989408A9BA
+Valid until: 23 Apr 2013 

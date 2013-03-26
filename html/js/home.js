@@ -1,0 +1,136 @@
+"use strict";
+
+/**
+ * main function
+ */
+$(function() {
+	JKY.display_trace('start_program');
+//	JKY.load_html('jky-header'		, 'JKY-Header.html'			);
+//	JKY.load_html('jky-side-bar'	, 'JKY-Side-Bar.html'		);
+	JKY.set_company_name(JKY.Session.get_value('company_name'	));
+	JKY.set_user_info	(JKY.Session.get_value('full_name'		));
+	JKY.set_company_logo(JKY.Session.get_value('company_logo'	));
+//	JKY.set_event_name	(JKY.Session.get_value('event_name'		));
+	JKY.set_copyright	(JKY.Session.get_value('copyright'		));
+	JKY.set_contact_us	(JKY.Session.get_value('contact_us'		));
+	var my_menus =
+		[{id:'jky-menu-sales'		, icon:'plus', label:'Sales'		}
+		,{id:'jky-menu-invoicing'	, icon:'plus', label:'Invoicing'	}
+		,{id:'jky-menu-delivers'	, icon:'plus', label:'Delivers'		}
+		,{id:'jky-menu-purchases'	, icon:'plus', label:'Purchases'	}
+		,{id:'jky-menu-incomings'	, icon:'plus', label:'Incomings'	}
+		,{id:'jky-menu-storage'		, icon:'plus', label:'Storage'		}
+		,{id:'jky-menu-production'	, icon:'plus', label:'Production'	}
+		,{id:'jky-menu-revision'	, icon:'plus', label:'Revision'		}
+		,{id:'jky-menu-inventory'	, icon:'plus', label:'Inventory'	}
+		,{id:'jky-menu-payable'		, icon:'plus', label:'Payable'		}
+		,{id:'jky-menu-receivable'	, icon:'plus', label:'Receivable'	}
+		,{id:'jky-menu-admin'		, icon:'plus', label:'Admin'		}
+		];
+//	JKY.set_buttons_menus(my_menus);
+//	JKY.set_buttons_control([], JKY.Session.get_value('language'), JKY.Session.get_value('languages'));
+//	JKY.set_events();
+	if (JKY.Session.has('full_name')) {
+		JKY.process_action('controls');
+	}else{
+		JKY.process_action('login');
+	}
+});
+
+/**
+ *	set events (run only once per load)
+ */
+JKY.set_events = function() {
+	JKY.display_trace('home set_events');
+	if ($('#jky-loaded').length > 0) {
+		$('#jky-sign-up'				).click (function() {JKY.display_sign_up		()		;});
+		$('#jky-log-in'					).click (function() {JKY.display_log_in			()		;});
+		$('#jky-profile'				).click (function() {JKY.display_profile		()		;});
+		$('#jky-log-out'				).click (function() {JKY.display_log_out		()		;});
+
+		$('#jky-company-logo'			).click (function() {JKY.display_wordpress		()		;});
+		$('#jky-company-name'			).click (function() {JKY.display_company		(this)	;});
+		$('#jky-event-name'				).click (function() {JKY.display_event			(this)	;});
+
+		$('#jky-copyright'				).click (function() {JKY.display_copyright		()		;});
+		$('#jky-contact-us'				).click (function() {JKY.display_contact_us		()		;});
+
+	} else {
+		setTimeout(function() {JKY.set_events();}, 100);
+	}
+}
+
+/**
+ *	set buttons event
+ */
+JKY.set_buttons_event = function() {
+	JKY.display_trace('home set_buttons_event');
+	if ($('#jky-loaded').length > 0) {
+		$('#jky-home'					).click (function() {JKY.process_home			()		;});
+		$('#jky-help'					).click (function() {JKY.process_help			()		;});
+		$('#jky-my-info'				).click (function() {JKY.process_my_info		()		;});
+		$('#jky-control-language'		).change(function() {JKY.change_language		(this)	;});
+	} else {
+		setTimeout(function() {JKY.set_events();}, 100);
+	}
+}
+
+/** ------------------------------------------------------------------------ **/
+
+JKY.display_sign_up = function() {
+	JKY.display_trace('display_sign_up');
+}
+
+JKY.display_log_in = function() {
+	JKY.display_trace('display_log_in');
+}
+
+JKY.display_profile = function() {
+	JKY.display_trace('display_profile');
+}
+
+JKY.display_log_out = function() {
+	JKY.display_trace('display_log_out');
+}
+
+JKY.display_wordpress = function() {
+	JKY.display_trace('display_wordpress');
+}
+
+JKY.display_company = function(company_name) {
+	var my_company_name = $(company_name).text();
+	JKY.display_trace('display_company: ' + my_company_name);
+}
+
+JKY.display_event = function(event_name) {
+	var my_event_name = $(event_name).text();
+	JKY.display_trace('display_event: ' + my_event_name);
+}
+
+JKY.display_copyright = function() {
+	JKY.display_trace('display_copyright');
+}
+
+JKY.display_contact_us = function() {
+	JKY.display_trace('display_contact_us');
+}
+
+JKY.change_language = function(language) {
+	var my_language = language.options[language.selectedIndex].value;
+	JKY.display_trace('language: ' + my_language);
+}
+
+/** ------------------------------------------------------------------------ **/
+
+JKY.process_home = function() {
+	JKY.display_trace('process_home');
+	JKY.process_action('welcome');
+}
+
+JKY.process_help = function() {
+	JKY.display_trace('process_help');
+}
+
+JKY.process_my_info = function() {
+	JKY.display_trace('process_my_info');
+}

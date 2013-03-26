@@ -1,0 +1,1 @@
+UPDATE Controls SET status = 'Active' WHERE status = 'active';
