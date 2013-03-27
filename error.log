@@ -99,3 +99,5 @@
 [Tue Mar 26 06:23:58 2013] [error] [client 127.0.0.1] File does not exist: C:/htdocs/erp/html/favicon.ico
 [Tue Mar 26 16:51:05 2013] [error] [client 127.0.0.1] File does not exist: C:/htdocs/erp/html/favicon.ico
 [Tue Mar 26 16:51:06 2013] [error] [client 127.0.0.1] File does not exist: C:/htdocs/erp/html/favicon.ico
+[Tue Mar 26 22:39:21 2013] [error] [client 127.0.0.1] File does not exist: C:/htdocs/erp/html/img/company_logo.png, referer: http://erp/customers.html
+[Tue Mar 26 22:39:21 2013] [error] [client 127.0.0.1] File does not exist: C:/htdocs/erp/html/img/company_logo.png, referer: http://erp/customers.html
