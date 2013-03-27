@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <title>Datepicker for Bootstrap</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/datepicker.css">
+    <style>
+      #alert {
+        display: none;
+      }
+      body {
+        padding-top: 50px;
+      }
+    </style>
+    <link rel="stylesheet" href="css/prettify.css">
+    <link rel="stylesheet" href="css/docs.css">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
+    <script src="js/prettify.min.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap-affix.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.bg.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.ca.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.cs.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.da.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.de.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.el.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.es.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.fi.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.fr.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.he.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.hr.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.hu.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.id.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.is.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.it.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.ja.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.kr.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.lt.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.lv.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.ms.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.nb.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.nl.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.pl.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.pt-BR.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.pt.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.ro.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.rs.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.rs-latin.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.ru.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.sk.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.sl.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.sv.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.sw.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.th.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.tr.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.uk.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.zh-CN.js"></script>
+    <script charset="UTF-8" src="js/locales/bootstrap-datepicker.zh-TW.js"></script>
+
+  </head>
+
+  <body data-spy="scroll">
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a href="https://github.com/eternicode/bootstrap-datepicker" class="brand">Datepicker for Bootstrap</a>
+          <ul class="nav">
+            <li class=""><a href="#">Docs and examples</a></li>
+            <li><a taget="_blank" href="https://github.com/eternicode/bootstrap-datepicker">Watch on GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <section id="typeahead">
+        <div class="page-header">
+          <h1>Datepicker for Bootstrap <small>bootstrap-datepicker.js</small></h1>
+        </div>
+
+        <div class="row">
+          <div class="span3">
+            <h3>About</h3>
+            <p>Add datepicker picker to field or to any other element.</p>
+            <ul>
+              <li>can be used as a component</li>
+              <li>formats: dd, d, mm, m, yyyy, yy</li>
+              <li>separators: -, /, .</li>
+            </ul>
+            <p><a class="btn" href="https://github.com/eternicode/bootstrap-datepicker/zipball/v1.0.1" id="download-release">Download v1.0.1</a></p>
+            <p><a class="btn" href="https://github.com/eternicode/bootstrap-datepicker/zipball/master" id="download-master">Download Development</a></p>
+            <script>
+            // Track downloads
+            $(function(){
+              $('#download-release').click(function(){
+                _gaq.push(['_trackEvent', 'Downloads', 'release', 'v1.0.1']);
+              });
+              $('#download-master').click(function(){
+                _gaq.push(['_trackEvent', 'Downloads', 'master']);
+              });
+            });
+            </script>
+
+            <ul class="nav nav-list sidenav affix-top">
+              <li class="active"><a href="#examples"><i class="icon-chevron-right"></i> Examples</a></li>
+              <li><a href="#using"><i class="icon-chevron-right"></i> Using bootstrap-datepicker.js</a></li>
+              <li><a href="#options"><i class="icon-chevron-right"></i> Options</a></li>
+              <li><a href="#markup"><i class="icon-chevron-right"></i> Markup</a></li>
+              <li><a href="#methods"><i class="icon-chevron-right"></i> Methods</a></li>
+              <li><a href="#events"><i class="icon-chevron-right"></i> Events</a></li>
+              <li class=""><a href="#keyboard"><i class="icon-chevron-right"></i> Keyboard support</a></li>
+              <li class=""><a href="#i18n"><i class="icon-chevron-right"></i> I18N</a></li>
+              <li class=""><a href="#sandbox"><i class="icon-chevron-right"></i> Sandbox</a></li>
+            </ul>
+          </div>
+          <div class="span9">
+            <h2 id="examples">Examples</h2>
+
+            <p>Attached to a field with the format specified via options.</p>
+            <div class="row">
+              <div id="dp1-container" class="span3"><input type="text" id="dp1"></div>
+              <div class="span6">
+                <pre id="dp1-html" class="well prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="tag"><input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"dp1"</span><span class="tag">></span></li></ol></pre>
+                <pre id="dp1-js" class="well prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">$</span><span class="pun">(</span><span class="str">'#dp1'</span><span class="pun">).</span><span class="pln">datepicker</span><span class="pun">({</span></li><li class="L1"><span class="pln">  format</span><span class="pun">:</span><span class="pln"> </span><span class="str">'mm-dd-yyyy'</span></li><li class="L2"><span class="pun">});</span></li></ol></pre>
+              </div>
+            </div>
+
+            <p>Attached to a field with the format specified via data tag.</p>
+            <div class="row">
+              <div id="dp2-container" class="span3"><input type="text" id="dp2" data-date-format="mm/dd/yy" value="02/16/13"></div>
+              <div class="span6">
+                <pre id="dp2-html" class="well prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="tag"><input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"02/16/13"</span><span class="pln"> </span><span class="atn">data-date-format</span><span class="pun">=</span><span class="atv">"mm/dd/yy"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"dp2"</span><span class="tag">></span></li></ol></pre>
+                <pre id="dp2-js" class="well prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">$</span><span class="pun">(</span><span class="str">'#dp2'</span><span class="pun">).</span><span class="pln">datepicker</span><span class="pun">();</span></li></ol></pre>
+              </div>
+            </div>
+
+            <p>As component.</p>
+            <div class="row">
+              <div id="dp3-container" class="span3"><div data-date-format="dd-mm-yyyy" id="dp3" class="input-append date">    <input type="text" readonly="" value="12-02-2013" size="16" class="span2"><span class="add-on"><i class="icon-th"></i></span></div></div>
+              <div class="span6">
+                <pre id="dp3-html" class="well prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="tag"><div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"input-append date"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"dp3"</span><span class="pln"> </span><span class="atn">data-date-format</span><span class="pun">=</span><span class="atv">"dd-mm-yyyy"</span><span class="tag">></span></li><li class="L1"><span class="pln">    </span><span class="tag"><input</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"span2"</span><span class="pln"> </span><span class="atn">size</span><span class="pun">=</span><span class="atv">"16"</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"12-02-2013"</span><span class="pln"> </span><span class="atn">readonly</span><span class="tag">><span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"add-on"</span><span class="tag">><i</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"icon-th"</span><span class="tag">></i></span></span></li><li class="L2"><span class="tag"></div></span></li></ol></pre>
+                <pre id="dp3-js" class="well prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">$</span><span class="pun">(</span><span class="str">'#dp3'</span><span class="pun">).</span><span class="pln">datepicker</span><span class="pun">();</span></li></ol></pre>
+              </div>
+            </div>
+
+            <p>Attached to non-field element, using events to work with the date values.</p>
+            <div class="row">
+              <div id="dp4-container" class="span3"><a data-date="2013-02-20" data-date-format="yyyy-mm-dd" id="dp4" class="btn small" href="#">Change</a></div>
+              <div class="span6">
+                <pre id="dp4-html" class="well prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="tag"><a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"btn small"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"dp4"</span><span class="pln"> </span><span class="atn">data-date-format</span><span class="pun">=</span><span class="atv">"yyyy-mm-dd"</span><span class="pln"> </span><span class="atn">data-date</span><span class="pun">=</span><span class="atv">"2013-02-20"</span><span class="tag">></span><span class="pln">Change</span><span class="tag"></a></span></li></ol></pre>
+                <pre id="dp4-js" class="well prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">$</span><span class="pun">(</span><span class="str">'#dp4'</span><span class="pun">).</span><span class="pln">datepicker</span><span class="pun">()</span></li><li class="L1"><span class="pln">    </span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'changeDate'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">){</span></li><li class="L2"><span class="pln">        </span><span class="kwd">var</span><span class="pln"> y </span><span class="pun">=</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">date</span><span class="pun">.</span><span class="pln">getFullYear</span><span class="pun">(),</span></li><li class="L3"><span class="pln">            _m </span><span class="pun">=</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">date</span><span class="pun">.</span><span class="pln">getMonth</span><span class="pun">()</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span></li><li class="L4"><span class="pln">            m </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">_m </span><span class="pun">></span><span class="pln"> </span><span class="lit">9</span><span class="pln"> </span><span class="pun">?</span><span class="pln"> _m </span><span class="pun">:</span><span class="pln"> </span><span class="str">'0'</span><span class="pun">+</span><span class="pln">_m</span><span class="pun">),</span></li><li class="L5"><span class="pln">            _d </span><span class="pun">=</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">date</span><span class="pun">.</span><span class="pln">getDate</span><span class="pun">(),</span></li><li class="L6"><span class="pln">            d </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">_d </span><span class="pun">></span><span class="pln"> </span><span class="lit">9</span><span class="pln"> </span><span class="pun">?</span><span class="pln"> _d </span><span class="pun">:</span><span class="pln"> </span><span class="str">'0'</span><span class="pun">+</span><span class="pln">_d</span><span class="pun">);</span></li><li class="L7"><span class="pln">        $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">text</span><span class="pun">(</span><span class="pln">y </span><span class="pun">+</span><span class="pln"> </span><span class="str">'-'</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> m </span><span class="pun">+</span><span class="pln"> </span><span class="str">'-'</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> d</span><span class="pun">);</span></li><li class="L8"><span class="pln">    </span><span class="pun">});</span></li></ol></pre>
+              </div>
+            </div>
+
+            <p>Inline/embedded picker</p>
+            <div class="row">
+              <div id="dp5-container" class="span3"><div data-date-format="dd-mm-yyyy" data-date="12-02-2013" id="dp5"><div class="datepicker datepicker-inline"><div class="datepicker-days" style="display: block;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">February 2013</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">27</td><td class="day old">28</td><td class="day old">29</td><td class="day old">30</td><td class="day old">31</td><td class="day">1</td><td class="day">2</td></tr><tr><td class="day">3</td><td class="day">4</td><td class="day">5</td><td class="day">6</td><td class="day">7</td><td class="day">8</td><td class="day">9</td></tr><tr><td class="day">10</td><td class="day">11</td><td class="day active">12</td><td class="day">13</td><td class="day">14</td><td class="day">15</td><td class="day">16</td></tr><tr><td class="day">17</td><td class="day">18</td><td class="day">19</td><td class="day">20</td><td class="day">21</td><td class="day">22</td><td class="day">23</td></tr><tr><td class="day">24</td><td class="day">25</td><td class="day">26</td><td class="day">27</td><td class="day">28</td><td class="day new">1</td><td class="day new">2</td></tr><tr><td class="day new">3</td><td class="day new">4</td><td class="day new">5</td><td class="day new">6</td><td class="day new">7</td><td class="day new">8</td><td class="day new">9</td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">2013</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month active">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">2010-2019</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year active">2013</span><span class="year">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div></div></div></div>
+              <div class="span6">
+                <pre id="dp5-html" class="well prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="tag"><div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"dp5"</span><span class="pln"> </span><span class="atn">data-date</span><span class="pun">=</span><span class="atv">"12-02-2013"</span><span class="pln"> </span><span class="atn">data-date-format</span><span class="pun">=</span><span class="atv">"dd-mm-yyyy"</span><span class="tag">></div></span></li></ol></pre>
+                <pre id="dp5-js" class="well prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">$</span><span class="pun">(</span><span class="str">'#dp5'</span><span class="pun">).</span><span class="pln">datepicker</span><span class="pun">();</span></li></ol></pre>
+              </div>
+            </div>
+
+            <hr>
+
+            <h2 id="using">Using bootstrap-datepicker.js</h2>
+            <p>Call the datepicker via javascript:</p>
+            <pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">$</span><span class="pun">(</span><span class="str">'.datepicker'</span><span class="pun">).</span><span class="pln">datepicker</span><span class="pun">()</span></li></ol></pre>
+
+            <h2 id="options">Options</h2>
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Default</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td id="option-format">format</td>
+                  <td>string</td>
+                  <td>'mm/dd/yyyy'</td>
+                  <td>The date format, combination of d, dd, D, DD, m, mm, M, MM, yy, yyyy.</td>
+                </tr>
+                <tr>
+                  <td id="option-week-start">weekStart</td>
+                  <td>number</td>
+                  <td>0</td>
+                  <td>Day of the week start. 0 (Sunday) to 6 (Saturday)</td>
+                </tr>
+                <tr>
+                  <td id="option-calendar-weeks">calendarWeeks</td>
+                  <td>boolean</td>
+                  <td>false</td>
+                  <td>Whether or not to show week numbers to the left of week rows.</td>
+                </tr>
+                <tr>
+                  <td id="option-start-date">startDate</td>
+                  <td>date</td>
+                  <td>-Infinity</td>
+                  <td>The earliest date that may be selected; all earlier dates will be disabled.</td>
+                </tr>
+                <tr>
+                  <td id="option-end-date">endDate</td>
+                  <td>date</td>
+                  <td>Infinity</td>
+                  <td>The latest date that may be selected; all later dates will be disabled.</td>
+                </tr>
+                <tr>
+                  <td id="option-days-of-week-disabled">daysOfWeekDisabled</td>
+                  <td>string, array</td>
+                  <td>[]</td>
+                  <td>Days of the week that should be disabled. Values are 0 (Sunday) to 6 (Saturday). Multiple values should be comma-separated. Example: disable weekends: <code>'0,6'</code> or <code>[0,6]</code>.</td>
+                </tr>
+                <tr>
+                  <td id="option-autoclose">autoclose</td>
+                  <td>boolean</td>
+                  <td>false</td>
+                  <td>Whether or not to close the datepicker immediately when a date is selected.</td>
+                </tr>
+                <tr>
+                  <td id="option-start-view">startView</td>
+                  <td>number, string</td>
+                  <td>0, 'month'</td>
+                  <td>The view that the datepicker should show when it is opened.  Accepts values of 0 or 'month' for month view (the default), 1 or 'year' for the 12-month overview, and 2 or 'decade' for the 10-year overview.  Useful for date-of-birth datepickers.</td>
+                </tr>
+                <tr>
+                  <td id="option-min-view-mode">minViewMode</td>
+                  <td>number, string</td>
+                  <td>0, 'days'</td>
+                  <td>Set a limit for the view mode.  Accepts: 'days' or 0, 'months' or 1, and 'years' or 2.  Gives the ability to pick only a month or an year.  The day is set to the 1st for 'months', and the month is set to January for 'years'.</td>
+                </tr>
+                <tr>
+                  <td id="option-today-btn">todayBtn</td>
+                  <td>boolean, <code>"linked"</code></td>
+                  <td>false</td>
+                  <td>If true or "linked", displays a "Today" button at the bottom of the datepicker to select the current date.  If true, the "Today" button will only move the current date into view; if "linked", the current date will also be selected.</td>
+                </tr>
+                <tr>
+                  <td id="option-today-highlight">todayHighlight</td>
+                  <td>boolean</td>
+                  <td>false</td>
+                  <td>If true, highlights the current date.</td>
+                </tr>
+                <tr>
+                  <td id="option-keyboard-navigation">keyboardNavigation</td>
+                  <td>boolean</td>
+                  <td>true</td>
+                  <td>Whether or not to allow date navigation by arrow keys.</td>
+                </tr>
+                <tr>
+                  <td id="option-language">language</td>
+                  <td>string</td>
+                  <td><code>"en"</code></td>
+                  <td>The IETF code (eg  "en" for English, "pt-BR" for Brazilian Portuguese) of the language to use for month and day names.  These will also be used as the input's value (and subsequently sent to the server in the case of form submissions).  If a full code (eg "de-DE") is supplied the picker will first check for an "de-DE" language and if not found will fallback and check for a "de" language.  If an unknown language code is given, English will be used.  See I18N below.</td>
+                </tr>
+                <tr>
+                  <td id="option-force-parse">forceParse</td>
+                  <td>boolean</td>
+                  <td>true</td>
+                  <td>Whether or not to force parsing of the input value when the picker is closed.  That is, when an invalid date is left in the input field by the user, the picker will forcibly parse that value, and set the input's value to the new, valid date, conforming to the given <code>format</code>.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2 id="markup">Markup <small>data-attributes</small></h2>
+            <p>Any option can be specified as a data-attribute by taking the option name, replacing each uppercase letter with a corresponding lowercase letter prepended by a dash, and prepending the whole name with <code>data-date-</code>.  For example, <code>autoclose</code> would become <code>data-date-autoclose</code> and <code>daysOfWeekDisabled</code> would become <code>data-date-days-of-week-disabled</code>.</p>
+            <p>Format a component.</p>
+            <pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="tag"><div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"input-append date"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"datepicker"</span><span class="pln"> </span><span class="atn">data-date-format</span><span class="pun">=</span><span class="atv">"dd-mm-yyyy"</span><span class="tag">></span></li><li class="L1"><span class="pln">  </span><span class="tag"><input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"12-02-2013"</span><span class="tag">><span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"add-on"</span><span class="tag">><i</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"icon-th"</span><span class="tag">></i></span></span></li><li class="L2"><span class="tag"></div></span></li></ol></pre>
+
+            <p>Format inline.</p>
+            <pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="tag"><div</span><span class="pln"> </span><span class="atn">data-date</span><span class="pun">=</span><span class="atv">"12-02-2012"</span><span class="pln"> </span><span class="atn">data-date-format</span><span class="pun">=</span><span class="atv">"dd-mm-yyyy"</span><span class="tag">></div></span></li></ol></pre>
+
+            <h2 id="methods">Methods</h2>
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Args</th>
+                  <th>Type</th>
+                  <th title="Argument optional">?</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td id="method-main">.datepicker(options)</td>
+                  <td colspan="3"></td>
+                  <td>Initializes an datepicker.</td>
+                </tr>
+                <tr>
+                  <td id="method-remove">remove</td>
+                  <td colspan="3"></td>
+                  <td>Remove the datepicker.  Removes attached events, internal attached objects, and added HTML elements.</td>
+                </tr>
+                <tr>
+                  <td id="method-show">show</td>
+                  <td colspan="3"></td>
+                  <td>Show the datepicker.</td>
+                </tr>
+                <tr>
+                  <td id="method-hide">hide</td>
+                  <td colspan="3"></td>
+                  <td>Hide the datepicker.</td>
+                </tr>
+                <tr>
+                  <td id="method-update">update</td>
+                  <td>date</td>
+                  <td>string</td>
+                  <td><i class="icon-remove">✖</i></td>
+                  <td>Update the datepicker with the current input value or given date as argument. In second case input will be updated as well.</td>
+                </tr>
+                <tr>
+                  <td id="method-setstartdate">setStartDate</td>
+                  <td>date</td>
+                  <td>string</td>
+                  <td><i class="icon-remove">✖</i></td>
+                  <td>Sets a new lower date limit on the datepicker.  Omit date (or provide an otherwise falsey value) to unset the limit.</td>
+                </tr>
+                <tr>
+                  <td id="method-setenddate">setEndDate</td>
+                  <td>date</td>
+                  <td>string</td>
+                  <td><i class="icon-remove">✖</i></td>
+                  <td>Sets a new upper date limit on the datepicker.  Omit date (or provide an otherwise falsey value) to unset the limit.</td>
+                </tr>
+                <tr>
+                  <td id="method-setdaysofweekdisabled">setDaysOfWeekDisabled</td>
+                  <td>dates</td>
+                  <td>string, array</td>
+                  <td><i class="icon-remove">✖</i></td>
+                  <td>Sets the days of week that should be disabled.  Omit dates (or provide an otherwise falsey value) to unset the disabled days.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2 id="events">Events</h2>
+            <p>Datepicker class exposes a few events for manipulating the dates.</p>
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td id="event-show">show</td>
+                  <td>Fired immediately when the date picker is displayed.</td>
+                </tr>
+                <tr>
+                  <td id="event-hide">hide</td>
+                  <td>Fired immediately when the date picker is hidden.</td>
+                </tr>
+                <tr>
+                  <td id="event-changedate">changeDate</td>
+                  <td>
+                    Fired when the date is changed.
+                    <pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">$</span><span class="pun">(</span><span class="str">'.datepicker'</span><span class="pun">).</span><span class="pln">datepicker</span><span class="pun">()</span></li><li class="L1"><span class="pln">    </span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'changeDate'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">){</span></li><li class="L2"><span class="pln">        alert</span><span class="pun">(</span><span class="pln">e</span><span class="pun">.</span><span class="pln">date</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">());</span></li><li class="L3"><span class="pln">    </span><span class="pun">});</span></li></ol></pre>
+                  </td>
+                </tr>
+                <tr>
+                  <td id="event-changeyear">changeYear</td>
+                  <td>Fired when the view year is changed from decade view.</td>
+                </tr>
+                <tr>
+                  <td id="event-changemonth">changeMonth</td>
+                  <td>Fired when the view month is changed from year view.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2 id="keyboard">Keyboard support</h2>
+            <p>The datepicker includes some keyboard navigation:</p>
+            <h4>up, down, left, right arrow keys</h4>
+            <p>By themselves, left/right will move backward/forward one day, up/down will move back/forward one week. </p>
+            <p>With the shift key, up/left will move backward one month, down/right will move forward one month.</p>
+            <p>With the ctrl key, up/left will move backward one year, down/right will move forward oone year.      </p>
+            <p>Shift+ctrl behaves the same as ctrl -- that is, it does not change both month and year simultaneously, only the year.</p>
+            <h4>escape</h4>
+            <p>The escape key can be used to hide and re-show the datepicker; this is necessary if the user wants to manually edit the value.</p>
+            <h4>enter</h4>
+            <p>When the picker is visible, enter will simply hide it. When the picker is not visible, enter will have normal effects -- submitting the current form, etc.</p>
+
+            <h2 id="i18n">I18N</h2>
+            <p>The plugin supports i18n for the month and weekday names and the
+                <code>weekStart</code>
+                option. The default is English ('en'); other available translations are avilable in the
+                <code>js/locales/</code>
+                directory, simply include your desired locale after the plugin. To add more languages, simply add a key to
+                <code>$.fn.datepicker.dates</code>
+                , before calling
+                <code>.datepicker()</code>
+                . Example:
+            </p>
+
+
+            <pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">$</span><span class="pun">.</span><span class="pln">fn</span><span class="pun">.</span><span class="pln">datepicker</span><span class="pun">.</span><span class="pln">dates</span><span class="pun">[</span><span class="str">'en'</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">    days</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">"Sunday"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Monday"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Tuesday"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Wednesday"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Thursday"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Friday"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Saturday"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Sunday"</span><span class="pun">],</span></li><li class="L2"><span class="pln">    daysShort</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">"Sun"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Mon"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Tue"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Wed"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Thu"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Fri"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Sat"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Sun"</span><span class="pun">],</span></li><li class="L3"><span class="pln">    daysMin</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">"Su"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Mo"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Tu"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"We"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Th"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Fr"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Sa"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Su"</span><span class="pun">],</span></li><li class="L4"><span class="pln">    months</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">"January"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"February"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"March"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"April"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"May"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"June"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"July"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"August"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"September"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"October"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"November"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"December"</span><span class="pun">],</span></li><li class="L5"><span class="pln">    monthsShort</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">"Jan"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Feb"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Mar"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Apr"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"May"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Jun"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Jul"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Aug"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Sep"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Oct"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Nov"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Dec"</span><span class="pun">]</span></li><li class="L6"><span class="pun">};</span></li></ol></pre>
+
+            <p>If your browser (or those of your users) is displaying characters wrong, chances are the browser is loading the javascript file with a non-unicode encoding.  Simply add <code>charset="UTF-8"</code> to your <code>script</code> tag:</p>
+            <pre class="prettyprint prettyprinted" style=""><span class="tag"><script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"bootstrap-datepicker.XX.js"</span><span class="pln"> </span><span class="atn">charset</span><span class="pun">=</span><span class="atv">"UTF-8"</span><span class="tag">></script></span></pre>
+            <pre class="prettyprint prettyprinted" style=""><span class="pln">$</span><span class="pun">(</span><span class="str">'.datepicker'</span><span class="pun">).</span><span class="pln">datepicker</span><span class="pun">({</span><span class="pln">
+    language</span><span class="pun">:</span><span class="pln"> </span><span class="str">'XX'</span><span class="pln"> </span><span class="com">// as defined in bootstrap-datepicker.XX.js</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+
+            <h2 id="sandbox">Sandbox <small>αlphα</small></h2>
+            <p>Use the form below to tweak the options; results and code appear in realtime below.</p>
+            <p>As you change options, your address bar will update to reflect the current configuration (requires a browser with <code>history.replaceState</code> support).  This url can be used to link to the sandbox with the given configuration pre-loaded.</p>
+            <style>
+              .sandbox-form label, .sandbox-form span {
+                display: inline-block;
+                margin: .5em .5em;
+                vertical-align: middle;
+              }
+              .sandbox-form span label {
+                vertical-align: baseline !important;
+              }
+            </style>
+            <form class="form-inline sandbox-form">
+              <div class="well">
+                Type:<br>
+
+                <label class="inline radio" for="markup">
+                  <input type="radio" checked="" value="input" name="markup">
+                  Text input
+                  <script class="html" type="text/html">
+                    <input type="text">
+                  </script>
+                  <script class="selector" type="text/plain">
+                    input
+                  </script>
+                </label>
+                <label class="inline radio" for="markup">
+                  <input type="radio" value="component" name="markup">
+                  Component
+                  <script class="html" type="text/html">
+                    <div class="input-append date">
+                      <input type="text" class="span2"><span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+                  </script>
+                  <script class="selector" type="text/plain">
+                    .input-append.date
+                  </script>
+                </label>
+                <label class="inline radio" for="markup">
+                  <input type="radio" value="embedded" name="markup">
+                  Embedded / inline
+                  <script class="html" type="text/html">
+                    <div></div>
+                  </script>
+                  <script class="selector" type="text/plain">
+                    div
+                  </script>
+                </label>
+
+                <br><br>
+
+                Options:<br>
+
+                <label for="format">Format
+                  <input type="text" placeholder="mm/dd/yyyy" name="format" id="format" class="span2"></label>
+                <label for="weekStart">Week start
+                  <input type="text" placeholder="0" name="weekStart" id="weekStart" class="span1"></label>
+                <label for="startDate">Start date
+                  <input type="text" placeholder="-Infinity" name="startDate" id="startDate" class="span2"></label>
+                <label for="endDate">End date
+                  <input type="text" placeholder="+Infinity" name="endDate" id="endDate" class="span2"></label>
+                <label for="startView">Start view
+                  <select name="startView" id="startView" class="span2">
+                    <option value="0">0 / month</option>
+                    <option value="1">1 / year</option>
+                    <option value="2">2 / decade</option>
+                  </select>
+                </label>
+                <label for="minViewMode">Min view mode
+                  <select name="minViewMode" id="minViewMode" class="span2">
+                    <option value="0">0 / days</option>
+                    <option value="1">1 / months</option>
+                    <option value="2">2 / years</option>
+                  </select>
+                </label>
+                <label class="inline checkbox" for="todayBtn">Today button
+                  <select name="todayBtn" id="todayBtn" class="span2">
+                    <option value="false">disabled</option>
+                    <option value="true">enabled (unlinked)</option>
+                    <option value="linked">linked</option>
+                  </select>
+                </label>
+                <label for="language">Language
+                  <select name="language" id="language" class="span1">
+                    <option value="en">en</option>
+                  <option value="bg">bg</option><option value="ca">ca</option><option value="cs">cs</option><option value="da">da</option><option value="de">de</option><option value="el">el</option><option value="es">es</option><option value="fi">fi</option><option value="fr">fr</option><option value="he">he</option><option value="hr">hr</option><option value="hu">hu</option><option value="id">id</option><option value="is">is</option><option value="it">it</option><option value="ja">ja</option><option value="kr">kr</option><option value="lt">lt</option><option value="lv">lv</option><option value="ms">ms</option><option value="nb">nb</option><option value="nl">nl</option><option value="pl">pl</option><option value="pt-BR">pt-BR</option><option value="pt">pt</option><option value="ro">ro</option><option value="rs">rs</option><option value="ru">ru</option><option value="sk">sk</option><option value="sl">sl</option><option value="sv">sv</option><option value="sw">sw</option><option value="th">th</option><option value="tr">tr</option><option value="uk">uk</option><option value="zh-CN">zh-CN</option><option value="zh-TW">zh-TW</option></select>
+                  <script>
+                    $(function(){
+                      for (var lang in $.fn.datepicker.dates) {
+                        if (!$('#language option[value='+lang+']').length)
+                          $('<option value="'+lang+'">'+lang+'</option>').appendTo('#language')
+                      }
+                    });
+                  </script>
+                </label>
+
+                <br>
+
+                <span>Days of week disabled:
+                  <label class="checkbox"><input type="checkbox" value="0" name="daysOfWeekDisabled"> 0</label>
+                  <label class="checkbox"><input type="checkbox" value="1" name="daysOfWeekDisabled"> 1</label>
+                  <label class="checkbox"><input type="checkbox" value="2" name="daysOfWeekDisabled"> 2</label>
+                  <label class="checkbox"><input type="checkbox" value="3" name="daysOfWeekDisabled"> 3</label>
+                  <label class="checkbox"><input type="checkbox" value="4" name="daysOfWeekDisabled"> 4</label>
+                  <label class="checkbox"><input type="checkbox" value="5" name="daysOfWeekDisabled"> 5</label>
+                  <label class="checkbox"><input type="checkbox" value="6" name="daysOfWeekDisabled"> 6</label>
+                </span>
+
+                <br>
+
+                <label class="inline checkbox" for="calendarWeeks">
+                  <input type="checkbox" name="calendarWeeks" id="calendarWeeks">
+                  Calendar weeks
+                </label>
+                <label class="inline checkbox" for="autoclose">
+                  <input type="checkbox" name="autoclose" id="autoclose">
+                  Autoclose
+                </label>
+                <label class="inline checkbox" for="todayHighlight">
+                  <input type="checkbox" name="todayHighlight" id="todayHighlight">
+                  Today highlight
+                </label>
+                <label class="inline checkbox" for="keyboardNavigation">
+                  <input type="checkbox" checked="" name="keyboardNavigation" id="keyboardNavigation">
+                  Keyboard navigation
+                </label>
+                <label class="inline checkbox" for="forceParse">
+                  <input type="checkbox" checked="" name="forceParse" id="forceParse">
+                  Force parse
+                </label>
+
+                <br><br>
+
+                <button type="reset" class="btn btn-danger">Reset to defaults</button>
+              </div>
+            </form>
+            <script>
+              $(function(){
+                var defaults = {},
+                    defaults_form = $('<form>', {html: $('.sandbox-form').html()})
+                $.each(defaults_form.serializeArray(), function(i,e){
+                  if (e.name in defaults)
+                    defaults[e.name] += ',' + e.value;
+                  else
+                    defaults[e.name] = e.value;
+                });
+                delete defaults.markup;
+
+                function fix_indent(s){
+                  var lines = s.split(/\r?\n/g);
+                  while (/^\s*$/.test(lines[0])) lines.shift();
+                  while (/^\s*$/.test(lines[lines.length-1])) lines.pop();
+                  var indent = /^\s*/.exec(lines[0])[0],
+                      deindent = new RegExp('^' + indent);
+                  for (var i=0; i<lines.length; i++)
+                    lines[i] = lines[i].replace(deindent, '');
+                  return lines.join('\n');
+                }
+
+                function build_code(){
+                  var form = $('.sandbox-form'),
+                      values = {};
+                  $.each(form.serializeArray(), function(i,e){
+                    if (e.name in values)
+                      values[e.name] += ',' + e.value;
+                    else
+                      values[e.name] = e.value;
+                  });
+
+                  var html = fix_indent($('[name=markup][value='+values.markup+']').siblings('script.html').html());
+                  var selector = $('[name=markup][value='+values.markup+']').siblings('script.selector').html().replace(/^\s+|\s+$/g, '');
+                  delete values.markup;
+
+                  var js = "$('#sandbox-container "+selector+"').datepicker({\n",
+                      val;
+                  for (var opt in $.extend({}, defaults, values)){
+                    if (values[opt] != defaults[opt]){
+                      val = values[opt];
+                      if (opt == 'daysOfWeekDisabled') val = '"'+val+'"'
+                      else if (val == 'on' || val == 'true') val = 'true';
+                      else if (val === void 0 || val == 'false') val = 'false';
+                      else if (parseInt(val) == val) val = val;
+                      else val = '"'+val+'"'
+                      js += "    " + opt + ": " + val + ",\n"
+                    }
+                  }
+                  if (js.slice(-2) == ",\n")
+                    js = js.slice(0,-2) + "\n";
+                  js += "});";
+
+                  return [html, js];
+                }
+                function update_code(){
+                  var code = build_code(),
+                      html = code[0],
+                      js = code[1];
+
+                  var print_html = html.replace(/</g, '&amp;lt;').replace(/>/g, '&amp;gt;')
+                  $('#sandbox-html').html(prettyPrintOne(print_html, 'html', true));
+                  $('#sandbox-js').html(prettyPrintOne(js, 'js', true));
+                }
+                function update_sandbox(){
+                  var code = build_code(),
+                      html = code[0],
+                      js = code[1];
+
+                  $('#sandbox-container > :first-child').datepicker('remove');
+                  $('#sandbox-container').html(html);
+                  eval(js);
+                }
+                function update_url(){
+                  if (history.replaceState){
+                    var query = '?' + $('.sandbox-form').serialize();
+                    history.replaceState(null, null, query + '#sandbox');
+                  }
+                }
+                function update_all(){
+                  update_code();
+                  update_sandbox();
+                  update_url();
+                }
+
+                $('.sandbox-form')
+                  .submit(function(){ return false; })
+                  .keydown(update_all)
+                  .keyup(update_all)
+                  .click(function(e){
+                    update_code();
+                    update_sandbox();
+                    if (!$(e.target).is('button[type=reset]'))
+                      update_url();
+                  });
+
+                $('.sandbox-form button[type=reset]').click(function(){
+                  $('.sandbox-form')[0].reset();
+                  update_code();
+                  update_sandbox();
+                  history.replaceState && history.replaceState(null, null, '?#sandbox');
+                });
+
+                setTimeout(function(){
+                  // Load form state from url if possible
+                  var search = document.location.search.replace(/^\?/, '');
+                  if (search){
+                    search = search.split('&amp;');
+                    var values = {};
+                    for (var i=0, opt, val; i<search.length; i++){
+                      opt = search[i].split('=')[0];
+                      val = search[i].split('=')[1];
+                      if (opt in values)
+                        values[opt] += ',' + val;
+                      else
+                        values[opt] = val;
+                    }
+
+                    for (var opt in $.extend({}, defaults, values)){
+                      var el = $('[name='+opt+']'),
+                          val = unescape(values[opt]);
+                      if (el.is(':checkbox')){
+                        if (el.length > 1){
+                          var vals = val.split(',');
+                          $('[name='+opt+']').prop('checked', false);
+                          for (var i=0; i<vals.length; i++)
+                            $('[name='+opt+'][value='+vals[i]+']').prop('checked', true);
+                        }
+                        else if (val === 'undefined')
+                          el.prop('checked', false);
+                        else
+                          el.prop('checked', true);
+                      }
+                      else if (el.is(':radio')){
+                        el.filter('[value='+val+']').prop('checked', true);
+                      }
+                      else
+                        el.val(val);
+                    }
+                  }
+
+                  // Don't replaceState the url on pageload
+                  update_code();
+                  update_sandbox();
+                }, 300);
+
+                // Analytics event tracking
+                // What options are people interested in?
+                $('.sandbox-form input, .sandbox-form select').change(function(e){
+                  var $this = $(this),
+                      val, opt;
+                  opt = $this.attr('name');
+                  val = $this.val();
+                  if ($this.is(':checkbox') && val == 'on')
+                    val = $this.is(':checked') ? "on" : "off";
+                  _gaq.push(['_trackEvent', 'Sandbox', 'Option: ' + opt, val]);
+                });
+                // Do they even use the reset button?
+                $('.sandbox-form button[type=reset]').click(function(){
+                  _gaq.push(['_trackEvent', 'Sandbox', 'Reset']);
+                });
+
+                var flag=0, mousedown=false, delta=0, x=0, y=0, dx, dy;
+                // How do they interact with the HTML display?  Do they select
+                // the code, do they try to edit it (I'd want to!)?
+                $("#sandbox-html").mousedown(function(e){
+                  mousedown = true;
+                  delta = 0; x=e.clientX; y=e.clientY;
+                });
+                $("#sandbox-html").mousemove(function(e){
+                  if (mousedown){
+                    dx = Math.abs(e.clientX-x);
+                    dy = Math.abs(e.clientY-y);
+                    delta = Math.max(dx, dy);
+                  }
+                });
+                $("#sandbox-html").mouseup(function(){
+                  if(delta <= 10)
+                    _gaq.push(['_trackEvent', 'Sandbox', 'HTML Clicked']);
+                  else
+                    _gaq.push(['_trackEvent', 'Sandbox', 'HTML Selected']);
+                  delta = 0;
+                  mousedown = false;
+                });
+
+                // How do they interact with the JS display?  Do they select
+                // the code, do they try to edit it (I'd want to!)?
+                $("#sandbox-js").mousedown(function(e){
+                  mousedown = true;
+                  delta = 0; x=e.clientX; y=e.clientY;
+                });
+                $("#sandbox-js").mousemove(function(e){
+                  if (mousedown){
+                    dx = Math.abs(e.clientX-x);
+                    dy = Math.abs(e.clientY-y);
+                    delta = Math.max(dx, dy);
+                  }
+                });
+                $("#sandbox-js").mouseup(function(){
+                  if(delta <= 10)
+                    _gaq.push(['_trackEvent', 'Sandbox', 'JS Clicked']);
+                  else
+                    _gaq.push(['_trackEvent', 'Sandbox', 'JS Selected']);
+                  delta = 0;
+                  mousedown = false;
+                });
+              });
+            </script>
+            <div class="row">
+              <div id="sandbox-container" class="span3"><div class="input-append date">
+  <input type="text" class="span2"><span class="add-on"><i class="icon-th"></i></span>
+</div></div>
+              <div class="span6">
+                <pre id="sandbox-html" class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="tag"><div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"input-append date"</span><span class="tag">></span></li><li class="L1"><span class="pln">  </span><span class="tag"><input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"span2"</span><span class="tag">><span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"add-on"</span><span class="tag">><i</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"icon-th"</span><span class="tag">></i></span></span></li><li class="L2"><span class="tag"></div></span></li></ol></pre>
+                <pre id="sandbox-js" class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><span class="pln">$</span><span class="pun">(</span><span class="str">'#sandbox-container .input-append.date'</span><span class="pun">).</span><span class="pln">datepicker</span><span class="pun">({</span></li><li class="L1"><span class="pln">    format</span><span class="pun">:</span><span class="pln"> </span><span class="str">"dd/mm/yyyy"</span><span class="pun">,</span></li><li class="L2"><span class="pln">    autoclose</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span></li><li class="L3"><span class="pln">    todayHighlight</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span></li><li class="L4"><span class="pun">});</span></li></ol></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr>
+      <p>bootstrap-datepicker was started by <a target="_blank" href="http://www.eyecon.ro/bootstrap-datepicker">Stefan Petre</a>; improvements by <a target="_blank" href="https://github.com/eternicode">@eternicode</a> and various contributors.</p>
+      <p>Andrew Rowls 2012-2013</p>
+
+    </div>
+    <script>
+      $(function(){
+        window.prettyPrint && prettyPrint();
+
+        $('[id$=-container]').each(function(){
+          // Use js to extract and run examples html &amp; js from code blocks.
+          // Kids, don't try this at home!
+          // And certainly don't use in production...
+          var prefix = $(this).attr('id').split('-')[0];
+          $('#' + prefix + '-container').html($('#' + prefix + '-html').text());
+          eval($('#' + prefix + '-js').text());
+        });
+
+        $('.sidenav').affix({
+          offset: {
+            top: 270
+          }
+        })
+      });
+
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1453188-13']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  
+
+<div class="datepicker datepicker-dropdown dropdown-menu"><div class="datepicker-days" style="display: block;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">March 2013</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">24</td><td class="day old">25</td><td class="day old">26</td><td class="day old">27</td><td class="day old">28</td><td class="day">1</td><td class="day">2</td></tr><tr><td class="day">3</td><td class="day">4</td><td class="day">5</td><td class="day">6</td><td class="day">7</td><td class="day">8</td><td class="day">9</td></tr><tr><td class="day">10</td><td class="day">11</td><td class="day">12</td><td class="day">13</td><td class="day">14</td><td class="day">15</td><td class="day">16</td></tr><tr><td class="day">17</td><td class="day">18</td><td class="day">19</td><td class="day">20</td><td class="day">21</td><td class="day">22</td><td class="day">23</td></tr><tr><td class="day">24</td><td class="day">25</td><td class="day active">26</td><td class="day">27</td><td class="day">28</td><td class="day">29</td><td class="day">30</td></tr><tr><td class="day">31</td><td class="day new">1</td><td class="day new">2</td><td class="day new">3</td><td class="day new">4</td><td class="day new">5</td><td class="day new">6</td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">2013</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month active">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">2010-2019</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year active">2013</span><span class="year">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div></div><div class="datepicker datepicker-dropdown dropdown-menu" style="display: none; top: 407.5px; left: 283.5px;"><div class="datepicker-days" style="display: block;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">February 2013</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">27</td><td class="day old">28</td><td class="day old">29</td><td class="day old">30</td><td class="day old">31</td><td class="day">1</td><td class="day">2</td></tr><tr><td class="day">3</td><td class="day">4</td><td class="day">5</td><td class="day">6</td><td class="day">7</td><td class="day">8</td><td class="day">9</td></tr><tr><td class="day">10</td><td class="day">11</td><td class="day">12</td><td class="day">13</td><td class="day">14</td><td class="day">15</td><td class="day active">16</td></tr><tr><td class="day">17</td><td class="day">18</td><td class="day">19</td><td class="day">20</td><td class="day">21</td><td class="day">22</td><td class="day">23</td></tr><tr><td class="day">24</td><td class="day">25</td><td class="day">26</td><td class="day">27</td><td class="day">28</td><td class="day new">1</td><td class="day new">2</td></tr><tr><td class="day new">3</td><td class="day new">4</td><td class="day new">5</td><td class="day new">6</td><td class="day new">7</td><td class="day new">8</td><td class="day new">9</td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">2013</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month active">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">2010-2019</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year active">2013</span><span class="year">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div></div><div class="datepicker datepicker-dropdown dropdown-menu" style="display: none; top: 553.5px; left: 283.5px;"><div class="datepicker-days" style="display: block;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">February 2013</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">27</td><td class="day old">28</td><td class="day old">29</td><td class="day old">30</td><td class="day old">31</td><td class="day">1</td><td class="day">2</td></tr><tr><td class="day">3</td><td class="day">4</td><td class="day">5</td><td class="day active">6</td><td class="day">7</td><td class="day">8</td><td class="day">9</td></tr><tr><td class="day">10</td><td class="day">11</td><td class="day">12</td><td class="day">13</td><td class="day">14</td><td class="day">15</td><td class="day">16</td></tr><tr><td class="day">17</td><td class="day">18</td><td class="day">19</td><td class="day">20</td><td class="day">21</td><td class="day">22</td><td class="day">23</td></tr><tr><td class="day">24</td><td class="day">25</td><td class="day">26</td><td class="day">27</td><td class="day">28</td><td class="day new">1</td><td class="day new">2</td></tr><tr><td class="day new">3</td><td class="day new">4</td><td class="day new">5</td><td class="day new">6</td><td class="day new">7</td><td class="day new">8</td><td class="day new">9</td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">2013</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month active">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">2010-2019</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year active">2013</span><span class="year">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div></div><div class="datepicker datepicker-dropdown dropdown-menu"><div class="datepicker-days" style="display: block;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">February 2013</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">27</td><td class="day old">28</td><td class="day old">29</td><td class="day old">30</td><td class="day old">31</td><td class="day">1</td><td class="day">2</td></tr><tr><td class="day">3</td><td class="day">4</td><td class="day">5</td><td class="day">6</td><td class="day">7</td><td class="day">8</td><td class="day">9</td></tr><tr><td class="day">10</td><td class="day">11</td><td class="day">12</td><td class="day">13</td><td class="day">14</td><td class="day">15</td><td class="day">16</td></tr><tr><td class="day">17</td><td class="day">18</td><td class="day">19</td><td class="day active">20</td><td class="day">21</td><td class="day">22</td><td class="day">23</td></tr><tr><td class="day">24</td><td class="day">25</td><td class="day">26</td><td class="day">27</td><td class="day">28</td><td class="day new">1</td><td class="day new">2</td></tr><tr><td class="day new">3</td><td class="day new">4</td><td class="day new">5</td><td class="day new">6</td><td class="day new">7</td><td class="day new">8</td><td class="day new">9</td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">2013</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month active">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">2010-2019</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year active">2013</span><span class="year">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div></div><div class="datepicker datepicker-dropdown dropdown-menu"><div class="datepicker-days" style="display: block;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">March 2013</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">24</td><td class="day old">25</td><td class="day old">26</td><td class="day old">27</td><td class="day old">28</td><td class="day">1</td><td class="day">2</td></tr><tr><td class="day">3</td><td class="day">4</td><td class="day">5</td><td class="day">6</td><td class="day">7</td><td class="day">8</td><td class="day">9</td></tr><tr><td class="day">10</td><td class="day">11</td><td class="day">12</td><td class="day">13</td><td class="day">14</td><td class="day">15</td><td class="day">16</td></tr><tr><td class="day">17</td><td class="day">18</td><td class="day">19</td><td class="day">20</td><td class="day">21</td><td class="day">22</td><td class="day">23</td></tr><tr><td class="day">24</td><td class="day">25</td><td class="day today active">26</td><td class="day">27</td><td class="day">28</td><td class="day">29</td><td class="day">30</td></tr><tr><td class="day">31</td><td class="day new">1</td><td class="day new">2</td><td class="day new">3</td><td class="day new">4</td><td class="day new">5</td><td class="day new">6</td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">2013</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month active">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th class="switch" colspan="5">2010-2019</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year active">2013</span><span class="year">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Today</th></tr></tfoot></table></div></div></body></html>
