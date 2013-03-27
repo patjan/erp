@@ -272,7 +272,10 @@ get_unique_number
 log_sql
 log_history
 
+<<<<<<< HEAD
+=======
 http://erp/index.php/ajax?data={"method":"log_out"}
+>>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 http://erp/index.php/ajax?data={"method":"get_session"}
 {"status":"ok"
 ,"data":
