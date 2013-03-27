@@ -34,21 +34,15 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values');
 	if ($('#jky-loaded').length > 0) {
-<<<<<<< HEAD
-		JKY.set_active('jky-menu-admin');
-		JKY.set_active('jky-admin-controls');
-		JKY.show('jky-side-admin');
-=======
 		JKY.load_html('jky-header'		, 'JKY-Header.html'			);
 		JKY.load_html('jky-side-bar'	, 'JKY-Side-Bar.html'		);
 		JKY.load_html('jky-table-body'	, 'JKY-Controls-TBody.html'	);
 		JKY.set_active('jky-menu-admin');
 		JKY.set_active('jky-admin-controls');
 		JKY.show('jky-side-admin');
-		
+
 		JKY.load_table();
-		
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
+
 		JKY.display_form();
 		JKY.set_html('jky-app-breadcrumb', 'Controls - CT000001');
 	}else{

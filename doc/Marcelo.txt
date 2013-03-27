@@ -18,7 +18,7 @@ Marcelo:
 - Favor de pedir para Marcos (fios) me mandar
   algumas copias (exemplos) dos romaneios ou NFe para saida de fios para tinturarias.
   algumas copias (exemplos) das chegadas de fios tingidos.
-  
+
 - Como caixa(s) de fio sao pesados (bruto/liquido/cones) para devolucao ao Fornecedores?
 
 - Como fios sao pesados (bruto/liquido/cones) para retorno da Producao para Estoque?
@@ -27,9 +27,6 @@ Marcelo:
 	- para uma OSA somente usa fios de um unico lote?
 	- o que se faz com a sobra de fios de um especifico lote?
 
-<<<<<<< HEAD
-	
-=======
 - Barcode:
 	- tem ser numeric:
 		precisao de leitura 0 - 9
@@ -37,9 +34,8 @@ Marcelo:
 	- imprime nome da Maquina na Etiqueta
 
 
-- Estimativa	
+- Estimativa
   maio: Ficha Tecnica
  junho: Controle de Fios
  julho: Controle de Producao
 agosto: Controle de Crus
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b

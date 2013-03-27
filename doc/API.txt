@@ -15,36 +15,36 @@ Status		200	OK
 			404 Not Found
 			405	Method Not Allowed
 			500 Internal Server Error
-			
+
 Request		GET
 			POST
 			PUT
 			DELETE
-			
+
 Reserver 	>	&gt;
 			<	&lt;
 			&	&amp;
 			%	&#37;
-			
+
 response	{ 'status'			: 'ok' | 'error'
 			, 'message'			: 'x...x'
 			}
 
 check_session	{}
 				'Session is gone'
-				
+
 confirm_email	{ 'user_key'	: 'x...x'
 				}
 				'User Account already expired'
 				'Email Address already confirmed'
-				
+
 reset_password	{ 'new_password': 'x...x'
 				}
 
 sign_up			{ 'user_name'		: 'x...x'
 				, 'email_address'	: 'x...x'
 				}
-			
+
 				'User Name is required'
 				'User Name already taken'
 				'Email Address is required'
@@ -54,7 +54,7 @@ log_in			{ "method"		:"log_in"
 				, 'user_name'	:'x...x'
 				, 'encrypted'	:'x...x'
 				}
-			
+
 				'User Name is required'
 				'User Name is invalid'
 				'Password is required'
@@ -76,7 +76,7 @@ log_in			{ "method"		:"log_in"
 
 log_help		{ 'help_name'		:'x...x'
 				}
-			
+
 				'User Name or Email Address is required'
 				'User Name or Email not found'
 
@@ -106,13 +106,13 @@ update_password	{ 'current_password'	: 'x...x'
 
 log_out			{}
 
-set_language	{}		
+set_language	{}
 get_language	{}
-			
+
 set_session		{}
 get_session		{}
 				'language'			: 'x...x'
-				'control_company_id': '9...9'	
+				'control_company_id': '9...9'
 				'company_id'		: '9...9'
 				'company_name'		: 'x...x'
 				'event_id'			: '9...9'
@@ -122,53 +122,53 @@ get_session		{}
 				'user_key'			: 'x...x'
 				'full_name'			: 'x...x'
 				'permissions'		: {...}
-			
-set_user_id			
+
+set_user_id
 get_user_id		{ 'user_name'		: 'x...x'
 				, 'full_name'		: 'x...x'
 				}
 
 				'User Name not found'
-			
+
 				{ 'user_id'			: '9...9'
 				}
-				
+
 set_contact_id
 get_contact_id	{ 'contact_name'	: 'x...x'
 				}
-			
+
 				'Contact Name not found'
-			
+
 				{ 'contact_id'		: '9...9'
 				}
-				
+
 set_company_id
 get_company_id	{ 'company_name'	: 'x...x'
 				}
-			
+
 				'Company Name not found'
-			
+
 				{ 'company_id'		: '9...9'
 				}
 
-set_event_id				
+set_event_id
 get_event_id	{ 'event_name'		: 'x...x'
 				}
-			
+
 				'Event Name not found'
-			
+
 				{ 'event_id'		: '9...9'
 				}
 
 set_group_id
 get_group_id	{ 'group_name'		: 'x...x'
 				}
-			
+
 				'Group Name not found'
-			
+
 				{ 'group_id'		: '9...9'
 				}
-				
+
 get_profile		{}
 				{ 'user_name'		: 'x...x'
 				, 'first_name'		: 'x...x'
@@ -177,7 +177,7 @@ get_profile		{}
 				, 'phone'			: 'x...x'
 				, 'mobile'			: 'x...x'
 				}
-				
+
 get_contact		{}
 				{ 'company_logo'	: 'x...x'
 				, 'street'			: 'x...x'
@@ -195,24 +195,24 @@ get_controls	{ 'control_set'	: 'x...x'
 				, control_name
 				, control_value
 				}
-				
+
 get_settings	{ 'setting_set'	: 'x...x'
 				}
 				{ setting_id
 				, setting_name
 				, setting_value
 				}
-				
+
 get_persons		{}
 				{ person_id
 				, person_name
 				}
-				
+
 get_groups		{}
 				{ group_id
 				, group_name
 				}
-				
+
 get_categories	{ 'parent_id'	: '9...9'
 				}
 				{ category.id
@@ -221,7 +221,7 @@ get_categories	{ 'parent_id'	: '9...9'
 
 send_email		{ 'template_name'	: 'Sign up confirmation'
 				, 'send_by'			: 'Email sent System'
-				, 'user_id'			: '9...9' 
+				, 'user_id'			: '9...9'
 				}
 
 send_receipt	{}
@@ -272,10 +272,7 @@ get_unique_number
 log_sql
 log_history
 
-<<<<<<< HEAD
-=======
 http://erp/index.php/ajax?data={"method":"log_out"}
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 http://erp/index.php/ajax?data={"method":"get_session"}
 {"status":"ok"
 ,"data":

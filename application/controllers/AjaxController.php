@@ -22,27 +22,16 @@ public function init() {
     $this->_helper->viewRenderer->setNoRender();
 
 //	set_session('user_level', MINIMUM_TO_BROWSE  );
-<<<<<<< HEAD
-	set_session('user_level', MINIMUM_TO_SUPPORT );
-	set_session('user_role' , 'support'  );
-	set_session('full_name' , 'Pat Jan'  );
-	set_session('user_id'	, 1000000001 );
-=======
 //	set_session('user_level', MINIMUM_TO_SUPPORT );
 //	set_session('user_role' , 'support'  );
 //	set_session('full_name' , 'Pat Jan'  );
 //	set_session('user_id'	, 4 );
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 
 	if (!is_session('control_company'	))		set_session('control_company'	, COMPANY_ID);
 	if (!is_session('user_time'			))		set_session('user_time'			, date( 'Y-m-d H:i:s'));
 	if (!is_session('user_role'			))		set_session('user_role'			, 'visitor');
 	if (!is_session('event_id'			)) {
-<<<<<<< HEAD
-//		set_session('event_id'	, $this->get_last_id('Events', 'status="active"'));
-=======
 //		set_session('event_id'	, $this->get_last_id('Events', 'status="Active"'));
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 //		set_session('event_name', get_table_value('Events', 'event_name', get_session('event_id')));
 	}
 	if (!is_session('permissions'		))		set_permissions(get_session('user_role'));
@@ -63,11 +52,7 @@ public function indexAction() {
 			case 'set_language'		: $this->set_language	(); return;
 			case 'get_language'		: $this->get_language	(); return;
 			case 'set_session'		: $this->set_session	(); return;
-<<<<<<< HEAD
 			case 'get_session'		: $this->get_session	(); return;
-=======
-			case 'get_session'		: $this->Xget_session	(); return;
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 			case 'get_groups'		: $this->get_groups		(); return;
 			case 'get_users'		: $this->get_users		(); return;
 			case 'get_options'		: $this->get_options	(); return;
@@ -254,11 +239,7 @@ private function get_user_screen() {
 
      $sql = 'SELECT value'
 	  . '  FROM Controls'
-<<<<<<< HEAD
-	  . ' WHERE control_set  = "User Screens"'
-=======
 	  . ' WHERE group_set  = "User Screens"'
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 	  . '   AND control_name = "' . $name . '"'
 	  ;
 //$this->log_sql( null, 'get_user_screen', $sql );
@@ -514,11 +495,7 @@ private function set_select( $table, $select ) {
 
      $return = '';
      if(  $table == 'Categories'   )    $return = ' AND         Parent.category      = "' . $select . '"';
-<<<<<<< HEAD
-     if(  $table == 'Controls'     )    $return = ' AND       Controls.control_set   = "' . $select . '"';
-=======
      if(  $table == 'Controls'     )    $return = ' AND       Controls.group_set     = "' . $select . '"';
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
      if(  $table == 'Companies'    )    $return = ' AND      Companies.status        = "' . $select . '"';
      if(  $table == 'Events'       )    $return = ' AND         Events.status        = "' . $select . '"';
      if(  $table == 'Groups'       )    $return = ' AND         Groups.status        = "' . $select . '"';
@@ -626,11 +603,7 @@ private function set_where( $table, $filter ) {
 	  }
 
 	  if(  $table == 'Controls' ) {
-<<<<<<< HEAD
-	       if(  $name == 'control_set'
-=======
 	       if(  $name == 'group_set'
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 	       or   $name == 'sequence'
 	       or   $name == 'control_name'
 	       or   $name == 'control_value' )
@@ -1431,11 +1404,7 @@ private function delete_user_jky( $id ) {
      }
 
 /*
-<<<<<<< HEAD
- *   $.ajax({ method: publish, table: x...x [, control_set: x...x] });
-=======
  *   $.ajax({ method: publish, table: x...x [, group_set: x...x] });
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
  *
  *   status: ok
  *     rows: [{ x...x: y...y, ... } (false)
@@ -1451,11 +1420,7 @@ private function delete_user_jky( $id ) {
 
 	       $sql = 'SELECT *'
 		    . '  FROM Categories'
-<<<<<<< HEAD
-		    . ' WHERE status = "active"'
-=======
 		    . ' WHERE status = "Active"'
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 		    . '   AND parent_id = ' . $parent_id
 		    . ' ORDER BY sequence'
 	       ;
@@ -1481,13 +1446,8 @@ private function delete_user_jky( $id ) {
 	  function write_currencies( $db, $out_file, $default ) {
 	       $sql = 'SELECT *'
 		    . '  FROM Controls'
-<<<<<<< HEAD
-		    . ' WHERE status = "active"'
-		    . '   AND control_set = "Currencies"'
-=======
 		    . ' WHERE status = "Active"'
 		    . '   AND group_set = "Currencies"'
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 		    . '   AND control_name != "' .  $default . '"'
 		    . ' ORDER BY sequence'
 	       ;
@@ -1513,11 +1473,7 @@ private function delete_user_jky( $id ) {
 		  . '  LEFT JOIN Translations AS Targets'
 		  . '    ON Targets.parent_id = Translations.id'
 		  . '   AND Targets.locale = "' . $locale . '"'
-<<<<<<< HEAD
-		  . ' WHERE Translations.status = "active"'
-=======
 		  . ' WHERE Translations.status = "Active"'
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 		  . '   AND Translations.locale = "en_us"'
 		  . ' ORDER BY source'
 		  ;
@@ -1543,11 +1499,7 @@ private function delete_user_jky( $id ) {
 		    . '  LEFT JOIN Translations AS Targets'
 		    . '    ON Targets.parent_id = Translations.id'
 		    . '   AND Targets.locale = "' . $locale . '"'
-<<<<<<< HEAD
-		    . ' WHERE Translations.status = "active"'
-=======
 		    . ' WHERE Translations.status = "Active"'
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 		    . '   AND Translations.locale = "en_us"'
 		    . ' ORDER BY source'
 	       ;
@@ -1570,11 +1522,7 @@ private function delete_user_jky( $id ) {
 		    . '  LEFT JOIN Translations AS Targets'
 		    . '    ON Targets.parent_id = Translations.id'
 		    . '   AND Targets.locale = "' . $locale . '"'
-<<<<<<< HEAD
-		    . ' WHERE Translations.status = "active"'
-=======
 		    . ' WHERE Translations.status = "Active"'
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 		    . '   AND Translations.locale = "en_us"'
 		    . ' ORDER BY source'
 	       ;
@@ -1601,11 +1549,7 @@ private function delete_user_jky( $id ) {
 	 }
 
 	  $table         = get_request( 'table' );
-<<<<<<< HEAD
-	  $control_set   = get_request( 'control_set' );
-=======
 	  $group_set   = get_request( 'group_set' );
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 	  $db            = Zend_Registry::get( 'db' );
 	  $counter       = 0;
 
@@ -1617,11 +1561,7 @@ private function delete_user_jky( $id ) {
 	  }
 
 	  if(  $table == 'Controls' ) {
-<<<<<<< HEAD
-	       if(  $control_set = 'Currencies' ) {
-=======
 	       if(  $group_set = 'Currencies' ) {
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 		    $out_name = 'jky_currencies.html';
 		    $out_file = fopen( $out_name, 'w' ) or die( 'cannot open ' . $out_name );
 		    $counter  = write_currencies( $db, $out_file, 'USD' );
@@ -1632,11 +1572,7 @@ private function delete_user_jky( $id ) {
 	 if( $table == 'Translations' ) {
 	     $sql = 'SELECT setting_name'
 		  . '  FROM Settings'
-<<<<<<< HEAD
-		  . ' WHERE status = "active"'
-=======
 		  . ' WHERE status = "Active"'
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 		  . '   AND setting_set = "Languages"'
 		  . ' ORDER BY sequence'
 		  ;
@@ -1735,11 +1671,7 @@ private function set_language() {
  *       status: ok
  *   today_date: yyyy-mm-dd
  */
-<<<<<<< HEAD
 private function get_session() {
-=======
-private function Xget_session() {
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 	$data = array();
 	$data['today_date'] = date('Y-m-d');
 
@@ -1758,15 +1690,9 @@ private function Xget_session() {
 	if (is_session('full_name'		))   $data['full_name'		] =   get_session('full_name'	);
 	if (is_session('permissions'	))   $data['permissions'	] =   get_session('permissions'	);
 
-<<<<<<< HEAD
-	$data['company_name'] = 'JKY Software Corp.';
-	$data['company_logo'] = 'relations';
-	$data['event_name'	] = 'Event 2013';
-=======
 	$data['company_name'] = 'DL Malhas';
 	$data['company_logo'] = 'dl-malhas.png';
 //	$data['event_name'	] = 'Event 2013';
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 	$data['copyright'	] = '© 2013 JKY Software Corp';
 	$data['contact_us'	] = 'Contact Us';
 	$data['language'	] = 'Taiwanese';
@@ -2058,32 +1984,20 @@ $this->log_sql( null, 'get_users', $sql );
 }
 
 /*
-<<<<<<< HEAD
- *   $.ajax({ method: get_options, control_set: x...x, select: x...x, initial: x...x });
-=======
  *   $.ajax({ method: get_options, group_set: x...x, select: x...x, initial: x...x });
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
  *
  *   return: <options value="x...x" selected="selected">x...x</options>
  *           ...
  */
 private function get_options() {
-<<<<<<< HEAD
-     $control_set   = get_request( 'control_set'  );
-=======
      $group_set   = get_request( 'group_set'  );
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
      $select        = get_request( 'select' );
      $initial       = get_request( 'initial');
 
      $sql = '';
      $sql = 'SELECT * '
 	  . '  FROM Controls'
-<<<<<<< HEAD
-	  . ' WHERE control_set = "' . $control_set . '"'
-=======
 	  . ' WHERE group_set = "' . $group_set . '"'
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 	  . ' ORDER BY sequence, control_name'
 	  ;
      if(  $initial == '' )
@@ -2096,11 +2010,7 @@ private function get_options() {
 	  $rows = $db->fetchAll( $sql );
 
 	  foreach( $rows as $row ) {
-<<<<<<< HEAD
-	       if(  $row[ 'control_value' ] == '' || $control_set == 'User Roles' )
-=======
 	       if(  $row[ 'control_value' ] == '' || $group_set == 'User Roles' )
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 		    $row[ 'control_value' ] = $row[ 'control_name' ];
 	       $selected = $row[ 'control_name' ] == $select ? ' selected="selected"' : '';
 	       $return .= '<option value="' . $row[ 'control_name' ] . '"' . $selected . '>' . $row[ 'control_value' ] . '</options>';
@@ -2266,31 +2176,18 @@ private function get_tab_class( $tab ) {
 
 private function set_user_session( $user_id ) {
 	$user = db_get_row('JKY_Users', 'id = ' . $user_id);
-<<<<<<< HEAD
-	set_session('user_id'           , $user['id'                    ]);
-	set_session('user_name'         , $user['user_name'             ]);
-	set_session('user_type'         , $user['user_type'             ]);
-	set_session('user_role'         , $user['user_role'             ]);
-
-	$person = db_get_row('Persons', 'id = ' . $user_id);
-=======
 	set_session('user_id'           , $user['id'			]);
 	set_session('user_name'         , $user['user_name'		]);
 	set_session('user_type'         , $user['user_type'		]);
 	set_session('user_role'         , $user['user_role'		]);
 
 	$person = db_get_row('Contacts', 'id = ' . $user['contact_id']);
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 	set_session('first_name'        , $person['first_name'  ]);
 	set_session('last_name'         , $person['last_name'   ]);
 	set_session('full_name'         , $person['full_name'   ]);
 	set_session('start_page'        , 'home');
 /*
-<<<<<<< HEAD
-	$organ = db_get_row('Organizations', 'status = "active" AND id = ' . $person['organ_id']);
-=======
 	$organ = db_get_row('Organizations', 'status = "Active" AND id = ' . $person['organ_id']);
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 	set_session('organ_id'          , $organ['id'                   ]);
 	set_session('organ_name'        , $organ['organ_name'   ]);
 	set_session('organ_parent'      , $organ['parent_id'    ]);
@@ -2299,21 +2196,13 @@ private function set_user_session( $user_id ) {
 }
 
 private function get_user_data() {
-<<<<<<< HEAD
-	$control = db_get_row('Controls', 'status = "active" AND control_set ="User Roles" AND control_name= "' . get_session('user_role') . '"') ;
-=======
 	$control = db_get_row('Controls', 'status = "Active" AND group_set ="User Roles" AND name= "' . get_session('user_role') . '"') ;
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 	$data = array();
 	$data['first_name'	] = get_session('first_name');
 	$data['last_name'	] = get_session('last_name' );
 	$data['full_name'	] = get_session('full_name'	);
 	$data['user_role'	] = get_session('user_role' );
-<<<<<<< HEAD
-	$data['start_page'	] = $control['control_value'];
-=======
 	$data['start_page'	] = $control['value'];
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 	return $data;
 }
 
@@ -2399,11 +2288,7 @@ private function reset($data) {
 	$return['status' ] = 'ok';
 	$return['message'] = 'New Password reseted';
 
-<<<<<<< HEAD
-	$control = db_get_row( 'Controls', 'status = "active" AND control_set ="User Role" AND control_name= "' . get_session( 'user_role' ) . '"' );
-=======
 	$control = db_get_row( 'Controls', 'status = "Active" AND group_set ="User Role" AND control_name= "' . get_session( 'user_role' ) . '"' );
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 	$return['re_direct'] = $control['control_value'];
 	$this->echo_json($return);
 }
@@ -2423,11 +2308,7 @@ private function log_in($data) {
 	$encrypted  = $data['encrypted'];
 
 	$error = '';
-<<<<<<< HEAD
-	$user_id = db_get_id('JKY_Users', 'status = "active" AND user_name = "' . $user_name . '"');
-=======
 	$user_id = db_get_id('JKY_Users', 'status = "Active" AND user_name = "' . $user_name . '"');
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
 	if (!$user_id) {
 		$error .= set_is_invalid('User Name');
 	}
@@ -2498,11 +2379,7 @@ private function log_help() {
      $help_name  = get_request( 'help_name'  );
 
      $error = '';
-<<<<<<< HEAD
-     $users = db_get_rows( 'Persons', 'status = "active" AND( user_name = "' . $help_name . '" OR user_email = "' . $help_name . '" )' );
-=======
      $users = db_get_rows( 'Persons', 'status = "Active" AND( user_name = "' . $help_name . '" OR user_email = "' . $help_name . '" )' );
->>>>>>> ff19bcf52c785230d63541adbfa877c58ae0ec3b
      if(  count( $users ) == 0 )        $error .= set_not_found( 'User Name or Email Address' );
 
      $return = array();
