@@ -4,7 +4,7 @@
  * main function
  */
 $(function() {
-	JKY.display_trace('start_program');
+	JKY.display_trace('start_program - home');
 	if (JKY.Session.has('full_name')) {
 		JKY.process_action('controls');
 	}else{
@@ -18,7 +18,7 @@ $(function() {
 	JKY.set_company_logo(JKY.Session.get_value('company_logo'	));
 //	JKY.set_event_name	(JKY.Session.get_value('event_name'		));
 	JKY.set_copyright	(JKY.Session.get_value('copyright'		));
-	JKY.set_contact_us	(JKY.Session.get_value('contact_us'		));
+//	JKY.set_contact_us	(JKY.Session.get_value('contact_us'		));
 //	JKY.set_buttons_menus(my_menus);
 //	JKY.set_buttons_control([], JKY.Session.get_value('language'), JKY.Session.get_value('languages'));
 //	JKY.set_events();
@@ -28,7 +28,7 @@ $(function() {
  *	set events (run only once per load)
  */
 JKY.set_events = function() {
-	JKY.display_trace('home set_events');
+	JKY.display_trace('set_events');
 	if ($('#jky-loaded').length > 0) {
 		$('#jky-sign-up'				).click (function() {JKY.display_sign_up		()		;});
 		$('#jky-log-in'					).click (function() {JKY.display_log_in			()		;});
@@ -40,7 +40,7 @@ JKY.set_events = function() {
 		$('#jky-event-name'				).click (function() {JKY.display_event			(this)	;});
 
 		$('#jky-copyright'				).click (function() {JKY.display_copyright		()		;});
-		$('#jky-contact-us'				).click (function() {JKY.display_contact_us		()		;});
+//		$('#jky-contact-us'				).click (function() {JKY.display_contact_us		()		;});
 
 	} else {
 		setTimeout(function() {JKY.set_events();}, 100);
@@ -51,7 +51,7 @@ JKY.set_events = function() {
  *	set buttons event
  */
 JKY.set_buttons_event = function() {
-	JKY.display_trace('home set_buttons_event');
+	JKY.display_trace('set_buttons_event');
 	if ($('#jky-loaded').length > 0) {
 		$('#jky-home'					).click (function() {JKY.process_home			()		;});
 		$('#jky-help'					).click (function() {JKY.process_help			()		;});

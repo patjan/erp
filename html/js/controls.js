@@ -9,7 +9,7 @@
  * start program
  */
 JKY.start_program = function() {
-	JKY.display_trace('controls start_program');
+	JKY.display_trace('start_program - controls');
 	JKY.set_all_events();
 	JKY.set_initial_values();
 }

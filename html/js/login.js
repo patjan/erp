@@ -8,8 +8,8 @@
  * start program
  */
 JKY.start_program = function() {
-	JKY.display_trace('login start_program');
 	JKY.hide('jky-side-bar');
+	JKY.display_trace('start_program - login');
 	JKY.set_body_content();
 	JKY.set_body_events();
 	JKY.set_buttons_event();
@@ -84,18 +84,22 @@ JKY.process_log_in = function() {
 		, encrypted		: $.md5(my_password)
 		};
 	JKY.ajax(false, my_data, JKY.process_log_in_success);
+	JKY.set_focus('jky-log-in-user-name');
 	JKY.display_trace('process_log_in end');
 }
 
 JKY.process_log_in_success = function(response) {
 	JKY.display_trace('process_log_in_success');
+	JKY.Session.load_values();
 	JKY.show('jky-side-bar');
 	var my_data = response.data;
+/*
 	JKY.display_message( 'Full Name: ' + my_data. full_name);
 	JKY.display_message('First Name: ' + my_data.first_name);
 	JKY.display_message( 'Last Name: ' + my_data. last_name);
 	JKY.display_message( 'User Role: ' + my_data. user_role);
 	JKY.display_message('Start Page: ' + my_data.start_page);
+*/
 	JKY.set_user_info (my_data.full_name );
 	JKY.process_action(my_data.start_page);
 }

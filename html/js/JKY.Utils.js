@@ -13,7 +13,7 @@ var JKY = JKY || {};
 /**
  * define all constants
  */
-JKY.TRACE		= true;						//	on production, should be set to false, help developement to trace sequence flow
+JKY.TRACE		= false;					//	on production, should be set to false, help developement to trace sequence flow
 JKY.AJAX_APP	= '../';					//  relative to application directory
 //JKY.AJAX_URL	= '../jky_proxy.php?';		//  relative to remote directory
 JKY.AJAX_URL	= '../index.php/ajax?';		//  relative to remote directory
@@ -39,6 +39,11 @@ $(function() {
 		$('body').append('<div id="jky-utils"></div>');
 		JKY.load_html('jky-utils', 'JKY.utils.html'	);
 	}
+
+	if (JKY.is_browser('msie')) {
+		JKY.TRACE = false;		//	IE, TRACE must be false
+	}
+
 });
 
 /**
@@ -304,18 +309,18 @@ JKY.display_message = function(message, id_name) {
  * @param	message
  */
 JKY.display_trace = function(message){
-	if(!JKY.TRACE) {		//	this control is set on [setup definition of constants] of [index.js]
+	if (!JKY.TRACE) {		//	this control is set on [setup definition of constants] of [index.js]
 		return
 	}
 	var my_date = new Date();
 	var my_msec = (my_date.getMilliseconds() + 1000).toString().substr(1);
 	var my_time = my_date.getMinutes() + ':' + my_date.getSeconds() + '.' + my_msec;
 	console.log(my_time + ' ' + message);
-/*
+
     var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
     $('#jky-trace-body').html(my_html);
     $('#jky-trace').css('display', 'block');
-*/
+
 }
 
 /**
@@ -600,7 +605,8 @@ JKY.set_company_name = function(company_name) {
  * set user info
  */
 JKY.set_user_info = function(full_name) {
-	if (typeof full_name === undefined) {
+	if (full_name === null) {
+		JKY.set_html('jky-full-name', '');
 		JKY.hide('jky-user-logged');
 		JKY.show('jky-user-unkown');
 	}else{
@@ -697,7 +703,7 @@ JKY.set_copyright = function(copyright) {
  * set copyright
  */
 JKY.set_contact_us = function(contact_us) {
-	JKY.set_html('jky-contact-us', contact_us);
+//	JKY.set_html('jky-contact-us', contact_us);
 }
 
 /**
@@ -788,7 +794,7 @@ JKY.ajax = function(async, data, function_success, function_error) {
  * process log off
  */
 JKY.process_log_off = function() {
-	JKY.display_trace('process_log_in');
+	JKY.display_trace('process_log_off');
 	JKY.set_buttons_menus([]);
 	JKY.set_user_info(null);
 	var my_data = { method : 'log_out'};
@@ -796,7 +802,7 @@ JKY.process_log_off = function() {
 }
 
 /**
- * process log off
+ * process log off success
  */
 JKY.process_log_off_success = function() {
 	JKY.process_action('login');

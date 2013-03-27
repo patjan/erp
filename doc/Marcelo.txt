@@ -33,3 +33,9 @@ Marcelo:
 		mais facil para digitar qdo precisar (volta da tinturaria)
 	- imprime nome da Maquina na Etiqueta
 
+
+- Estimativa	
+  maio: Ficha Tecnica
+ junho: Controle de Fios
+ julho: Controle de Producao
+agosto: Controle de Crus

@@ -52,7 +52,7 @@ public function indexAction() {
 			case 'set_language'		: $this->set_language	(); return;
 			case 'get_language'		: $this->get_language	(); return;
 			case 'set_session'		: $this->set_session	(); return;
-			case 'get_session'		: $this->get_session	(); return;
+			case 'get_session'		: $this->Xget_session	(); return;
 			case 'get_groups'		: $this->get_groups		(); return;
 			case 'get_users'		: $this->get_users		(); return;
 			case 'get_options'		: $this->get_options	(); return;
@@ -1671,7 +1671,7 @@ private function set_language() {
  *       status: ok
  *   today_date: yyyy-mm-dd
  */
-private function get_session() {
+private function Xget_session() {
 	$data = array();
 	$data['today_date'] = date('Y-m-d');
 
