@@ -1689,6 +1689,7 @@ private function get_session() {
 	if (is_session('user_id'		))   $data['user_id'		] =   get_session('user_id'		);
 	if (is_session('full_name'		))   $data['full_name'		] =   get_session('full_name'	);
 	if (is_session('permissions'	))   $data['permissions'	] =   get_session('permissions'	);
+	if (is_session('start_page'		))   $data['start_page'		] =   get_session('start_page'	);
 
 	$data['company_name'] = 'DL Malhas';
 	$data['company_logo'] = 'dl-malhas.png';
@@ -2185,24 +2186,19 @@ private function set_user_session( $user_id ) {
 	set_session('first_name'        , $person['first_name'  ]);
 	set_session('last_name'         , $person['last_name'   ]);
 	set_session('full_name'         , $person['full_name'   ]);
-	set_session('start_page'        , 'home');
-/*
-	$organ = db_get_row('Organizations', 'status = "Active" AND id = ' . $person['organ_id']);
-	set_session('organ_id'          , $organ['id'                   ]);
-	set_session('organ_name'        , $organ['organ_name'   ]);
-	set_session('organ_parent'      , $organ['parent_id'    ]);
-*/
+
 	set_permissions($user['user_role']);
 }
 
 private function get_user_data() {
 	$control = db_get_row('Controls', 'status = "Active" AND group_set ="User Roles" AND name= "' . get_session('user_role') . '"') ;
+	set_session('start_page', $control['value']);
 	$data = array();
 	$data['first_name'	] = get_session('first_name');
 	$data['last_name'	] = get_session('last_name' );
 	$data['full_name'	] = get_session('full_name'	);
 	$data['user_role'	] = get_session('user_role' );
-	$data['start_page'	] = $control['value'];
+	$data['start_page'	] = get_session('start_page');
 	return $data;
 }
 
@@ -2314,10 +2310,9 @@ private function log_in($data) {
 	}
 
 	if (is_empty($error)) {
-//		$password = MD5(get_session('user_time') . $this->get_password($user_id));
-//		$password = $this->get_password($user_id);
-		$user = db_get_row('JKY_Users', 'id = ' . $user_id);
-		if ($user['password'] != $encrypted) {
+		$password = $this->get_password($user_id);
+		$password = MD5(get_session('user_time') . $password);
+		if ($password !== $encrypted) {
 			$error .= set_is_invalid('Password');
 		}
 	}

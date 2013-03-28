@@ -102,9 +102,11 @@ JKY.load_html = function(id_name, file_name) {
  */
 JKY.process_action = function(action) {
 //	JKY.load_html('jky-body-content', action + '.html');
+	JKY.hide('jky-application');
 	JKY.load_html('jky-application', action + '.html');
 	$.getScript(JKY.AJAX_APP + 'js/' + action + '.js', function() {
 		JKY.start_program();
+		JKY.show('jky-application');
 	});
 }
 
@@ -795,6 +797,7 @@ JKY.ajax = function(async, data, function_success, function_error) {
  */
 JKY.process_log_off = function() {
 	JKY.display_trace('process_log_off');
+	JKY.hide('jky-side-bar');
 	JKY.set_buttons_menus([]);
 	JKY.set_user_info(null);
 	var my_data = { method : 'log_out'};
