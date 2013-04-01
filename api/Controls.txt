@@ -1,0 +1,41 @@
+http://erp/index.php/ajax?data={"method":"get_index","table":"Controls","select":"Root"}
+
+{"status":"ok"
+,"rows":
+[{"id":"1000000002","created_at":null					,"created_by":null			,"updated_at":"2011-05-09 20:17:27"	,"updated_by":"1000000001"	,"status":"Active","company_id":"1000000001","sequence":"0","group_set":"Root","name":"Status Codes"	,"value":""}
+,{"id":"1000000003","created_at":null					,"created_by":null			,"updated_at":"2011-05-09 20:06:10"	,"updated_by":"1000000001"	,"status":"Active","company_id":"1000000001","sequence":"0","group_set":"Root","name":"System Defaults"	,"value":""}
+,{"id":"1000000004","created_at":null					,"created_by":null			,"updated_at":"2011-05-09 20:17:29"	,"updated_by":"1000000001"	,"status":"Active","company_id":"1000000001","sequence":"0","group_set":"Root","name":"System Keys"		,"value":""}
+,{"id":"1000000010","created_at":"2011-05-09 20:05:41"	,"created_by":"1000000001"	,"updated_at":"2011-05-09 20:17:24"	,"updated_by":"1000000001"	,"status":"Active","company_id":"1000000001","sequence":"0","group_set":"Root","name":"Root"			,"value":""}
+,{"id":"1000000027","created_at":"2011-05-12 18:41:49"	,"created_by":"1000000001"	,"updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"0","group_set":"Root","name":"User Roles"		,"value":""}
+,{"id":"1000000037","created_at":"2011-05-15 06:22:43"	,"created_by":"1000000001"	,"updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"0","group_set":"Root","name":"User Resources"	,"value":""}
+,{"id":"1000000044","created_at":"2011-05-15 06:30:40"	,"created_by":"1000000001"	,"updated_at":"2011-05-15 06:37:37","updated_by":"1000000001"	,"status":"Active","company_id":"1000000001","sequence":"0","group_set":"Root","name":"User Actions"	,"value":""}
+,{"id":"1000000064","created_at":"2011-05-25 16:53:58"	,"created_by":"1000000001"	,"updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"0","group_set":"Root","name":"Company Types"	,"value":""}
+,{"id":"1000000076","created_at":null					,"created_by":null			,"updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"0","group_set":"Root","name":"Template Types"	,"value":""}
+,{"id":"1000000195","created_at":"2011-09-17 07:38:33"	,"created_by":"1000000001"	,"updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"0","group_set":"Root","name":"Group Types"		,"value":""}
+,{"id":"1000000201","created_at":"2012-04-25 08:28:07"	,"created_by":"1000000001"	,"updated_at":"2012-07-20 16:47:41"	,"updated_by":"1000000001"	,"status":"Active","company_id":"1000000001","sequence":"0","group_set":"Root","name":"Display Rows"	,"value":""}
+,{"id":"1000000231","created_at":"2012-08-06 08:13:29"	,"created_by":"1000000001"	,"updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"0","group_set":"Root","name":"Priorities"		,"value":""}
+,{"id":"1000000236","created_at":"2012-08-15 13:45:03"	,"created_by":"1000000001"	,"updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"0","group_set":"Root","name":"Summary"			,"value":""}
+]}
+
+http://erp/index.php/ajax?data={"method":"get_index","table":"Controls","select":"User Resources"}
+
+{"status":"ok"
+,"rows":
+[{"id":"1000000060","created_at":"2011-05-16 19:41:20","created_by":"1000000001","updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"10","group_set":"User Resources","name":"Home"			,"value":""}
+,{"id":"1000000073","created_at":"2011-05-29 09:56:52","created_by":"1000000001","updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"20","group_set":"User Resources","name":"Admin"		,"value":""}
+,{"id":"1000000038","created_at":"2011-05-15 06:24:21","created_by":"1000000001","updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Comments"		,"value":""}
+,{"id":"1000000039","created_at":"2011-05-15 06:24:28","created_by":"1000000001","updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Controls"		,"value":""}
+,{"id":"1000000040","created_at":"2011-05-15 06:24:45","created_by":"1000000001","updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Companies"	,"value":""}
+,{"id":"1000000042","created_at":"2011-05-15 06:25:10","created_by":"1000000001","updated_at":"2011-05-18 16:44:58"	,"updated_by":"1000000001"	,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Tickets"		,"value":""}
+,{"id":"1000000043","created_at":"2011-05-15 06:25:16","created_by":"1000000001","updated_at":"2011-05-18 16:45:28"	,"updated_by":"1000000001"	,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Permissions"	,"value":""}
+,{"id":"1000000055","created_at":"2011-05-15 07:18:25","created_by":"1000000001","updated_at":"2011-05-18 16:45:34"	,"updated_by":"1000000001"	,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Users"		,"value":""}
+,{"id":"1000000080","created_at":"2011-06-09 17:42:29","created_by":"1000000001","updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Categories"	,"value":""}
+,{"id":"1000000081","created_at":"2011-06-09 17:42:42","created_by":"1000000001","updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Templates"	,"value":""}
+,{"id":"1000000082","created_at":"2011-06-26 21:29:49","created_by":"1000000001","updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Models"		,"value":""}
+,{"id":"1000000083","created_at":"2011-06-26 21:31:02","created_by":"1000000001","updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Products"		,"value":""}
+,{"id":"1000000107","created_at":"2011-09-13 17:52:11","created_by":"1000000001","updated_at":"2011-09-27 06:44:32"	,"updated_by":"1000000001"	,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Services"		,"value":""}
+,{"id":"1000000200","created_at":"2011-11-18 06:03:48","created_by":"1000000001","updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"My Info"		,"value":""}
+,{"id":"1000000226","created_at":"2012-05-06 11:56:30","created_by":"1000000001","updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Settings"		,"value":""}
+,{"id":"1000000230","created_at":"2012-07-10 07:23:19","created_by":"1000000001","updated_at":"2012-07-10 07:23:27"	,"updated_by":"1000000001"	,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Translations"	,"value":""}
+,{"id":"1000000246","created_at":"2012-08-15 13:51:00","created_by":"1000000001","updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Summary"		,"value":""}
+]}

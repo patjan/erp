@@ -709,16 +709,16 @@ JKY.set_contact_us = function(contact_us) {
 }
 
 /**
- * set control set
+ * set group set
  */
-JKY.set_control_set = function(selected, control_set) {
-	JKY.display_trace('set_control_set: ' + control_set);
+JKY.set_group_set = function(selected, group_set) {
+	JKY.display_trace('set_control_set: ' + group_set);
 	var my_html = '';
 	var my_data =
 		{ method	: 'get_index'
 		, table		: 'Controls'
-		, order_by	: 'sequence,control_name'
-		, select	: control_set
+		, order_by	: 'sequence,name'
+		, select	:  group_set
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);
@@ -735,9 +735,9 @@ JKY.set_control_set = function(selected, control_set) {
 						my_html += '<option value="All" selected="selected">All</option>';
 					}
 					for(var i=0; i<response.rows.length; i+=1) {
-						var my_control_name = response.rows[i]['control_name'];
-						var my_selected = (my_control_name === selected) ? ' selected="selected"' : '';
-						my_html += '<option value="' + my_control_name + '"' + my_selected + '>' + my_control_name + '</option>';
+						var my_name = response.rows[i]['name'];
+						var my_selected = (my_name === selected) ? ' selected="selected"' : '';
+						my_html += '<option value="' + my_name + '"' + my_selected + '>' + my_name + '</option>';
 					}
 				}else{
 					JKY.display_message(response.message);

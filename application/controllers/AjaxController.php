@@ -55,7 +55,7 @@ public function indexAction() {
 			case 'get_session'		: $this->get_session	(); return;
 			case 'get_groups'		: $this->get_groups		(); return;
 			case 'get_users'		: $this->get_users		(); return;
-			case 'get_options'		: $this->get_options	(); return;
+			case 'get_controls' 	: $this->get_controls	(); return;
 			case 'get_soptions'		: $this->get_soptions	(); return;
 			case 'get_categories'	: $this->get_categories	(); return;
 			case 'get_profile'		: $this->get_profile	(); return;
@@ -1684,6 +1684,7 @@ private function get_session() {
 	if (is_session('company_logo'	))   $data['company_logo'	] =   get_session('company_logo');
 	if (is_session('event_id'		))   $data['event_id'		] =   get_session('event_id'	);
 	if (is_session('event_name'		))   $data['event_name'		] =   get_session('event_name'	);
+	if (is_session('full_name'		))   $data['full_name'		] =   get_session('full_name'	);
 	if (is_session('user_name'		))   $data['user_name'		] =   get_session('user_name'	);
 	if (is_session('user_time'		))   $data['user_time'		] =   get_session('user_time'	);
 	if (is_session('user_id'		))   $data['user_id'		] =   get_session('user_id'		);
@@ -1985,39 +1986,41 @@ $this->log_sql( null, 'get_users', $sql );
 }
 
 /*
- *   $.ajax({ method: get_options, group_set: x...x, select: x...x, initial: x...x });
+ *   $.ajax({ method: get_controls, group_set: x...x, select: x...x, initial: x...x });
  *
  *   return: <options value="x...x" selected="selected">x...x</options>
  *           ...
  */
-private function get_options() {
-     $group_set   = get_request( 'group_set'  );
-     $select        = get_request( 'select' );
-     $initial       = get_request( 'initial');
+private function get_controls() {
+	$group_set	= get_request('group_set'	);
+	$selected	= get_request('selected'	);
+	$initial	= get_request('initial'		);
 
-     $sql = '';
-     $sql = 'SELECT * '
-	  . '  FROM Controls'
-	  . ' WHERE group_set = "' . $group_set . '"'
-	  . ' ORDER BY sequence, control_name'
-	  ;
-     if(  $initial == '' )
-	  $return = '';
-//   else $return = '<option value="*">' . $initial . '</option>';
-     else $return = '<option value="All">' . $initial . '</option>';
+	$sql = 'SELECT * '
+		 . '  FROM Controls'
+		 . ' WHERE group_set = "' . $group_set . '"'
+		 . ' ORDER BY sequence, name'
+		 ;
+    if ($initial == '') {
+        $return = '';
+	}else{
+//		$return = '<option value="*">' . $initial . '</option>';
+		$return = '<option value="All">' . $initial . '</option>';
+	}
 
-     if(  $sql != '' ) {
-	  $db  = Zend_Registry::get( 'db' );
-	  $rows = $db->fetchAll( $sql );
+	if ($sql != '') {
+		$db  = Zend_Registry::get( 'db' );
+		$rows = $db->fetchAll( $sql );
 
-	  foreach( $rows as $row ) {
-	       if(  $row[ 'control_value' ] == '' || $group_set == 'User Roles' )
-		    $row[ 'control_value' ] = $row[ 'control_name' ];
-	       $selected = $row[ 'control_name' ] == $select ? ' selected="selected"' : '';
-	       $return .= '<option value="' . $row[ 'control_name' ] . '"' . $selected . '>' . $row[ 'control_value' ] . '</options>';
-	  }
-     }
-     echo $return;
+		foreach ($rows as $row) {
+			if ($row['value'] == ''){
+				$row['value'] = $row['name'];
+			}
+		$selected = $row['name'] == $select ? ' selected="selected"' : '';
+		$return .= '<option value="' . $row['name'] . '"' . $selected . '>' . $row['value'] . '</options>';
+		}
+	}
+	echo $return;
 }
 
 /*
@@ -2028,7 +2031,7 @@ private function get_options() {
  */
      private function get_soptions() {
 	  $setting_set   = get_request( 'setting_set'  );
-	  $select        = get_request( 'select' );
+	  $selected		= get_request( 'selected' );
 	  $initial       = get_request( 'initial');
 
 	  $sql = '';

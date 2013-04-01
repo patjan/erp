@@ -5,6 +5,7 @@
 @font-face				{ font-family:'arial rounded bold'     ; src:url('../fonts/arial-rounded-bold'     ) format('woff'); font-style:normal; font-weight:bold;    }
 @font-face				{ font-family:'arial rounded light'    ; src:url('../fonts/arial-rounded-light'    ) format('woff'); font-style:normal; font-weight:normal;  }
 @font-face				{ font-family:'arial rounded'          ; src:url('../fonts/arial-rounded-normal'   ) format('woff'); font-style:normal; font-weight:normal;  }
+
 /* required for sticky-footer, html and body elements cannot have any padding or margin */
 *		{margin:0; padding:0; border:0; font-family:'Lucida Grande',Helvetica,Verdana,Arial,sans-serif;}
 html	{height:100%}
@@ -21,6 +22,8 @@ input.span2 {width:80px; padding:2px 4px;}
 .modal-header			{background:#223870; color:white; border-bottom:1px solid #DDDDDD; border-radius:3px 3px 0 0; font-size:120%; font-weight:bold;}
 .modal-body				{background:white;}
 
+.table thead th {vertical-align: middle;}
+.table tbody td {line-height:12px; padding:0; margin:0;}
 
 .jky-left		{float:left ;}
 .jky-right		{float:right;}
@@ -46,9 +49,9 @@ input.span2 {width:80px; padding:2px 4px;}
 .jky-option-add-new		{padding-left:20px;}
 
 #jky-wrapper			{height:100%; background:none repeat scroll 0 0 white; color:#4C4C4C;}
-#jky-wrapper table		{height:100%; width:100%;}
+#jky-wrapper table		{width:100%;}
 
-#jky-header				{color:#EEEEEE; background-image:linear-gradient(to bottom, #646060, #262626);}
+#jky-header				{height:24px; color:#EEEEEE; background-image:linear-gradient(to bottom, #646060, #262626);}
 #jky-header				{color:#EEEEEE; background-color:#323232;}
 #jky-header a			{color:#FFFFFF;}
 #jky-header a:hover		{color:#1E9CD9;}
@@ -59,7 +62,7 @@ input.span2 {width:80px; padding:2px 4px;}
 
 #jky-full-name			{float:right; margin:6px 10px 4px;}
 
-#jky-body				{width:100%; height:100%;}
+#jky-body				{width:100%;}
 
 #jky-side-bar			{width:220px; border-right:1px solid #AFAFB6; background:none repeat scroll 0 0 #F0EEEE; vertical-align:top;}
 
@@ -80,7 +83,7 @@ input.span2 {width:80px; padding:2px 4px;}
 #jky-side-footer		{width:220px; bottom:0; position:fixed; text-align:center;}
 #jky-contact-us			{color:#C81010; font-weight:bold;}
 
-#jky-application		{height:100%; vertical-align:top;}
+#jky-application		{vertical-align:top;}
 #jky-application div	{}
 #jky-application table	{width:100%;
 	border-collapse:separate;
@@ -95,7 +98,7 @@ input.span2 {width:80px; padding:2px 4px;}
 }
 
 #jky-application tr		{height:17px;}
-#jky-application td		{line-height:18px; padding:4px 8px;}
+#jky-application td		{line-height:12px; padding:0; margin:0;}
 #jky-application input[type='checkbox']	{width:20px; margin:0 0 3px 0;}
 #jky-app-header			{
     background-color: #EDEDED;
@@ -104,7 +107,8 @@ input.span2 {width:80px; padding:2px 4px;}
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 9px rgba(0, 0, 0, 0.1);
 }
 #jky-app-breadcrumb		{float:left ; margin:10px; height:24px; font-size:18px; font-weight:bold; vertical-align:middle;}
-#jky-app-filter			{float:right; margin:10px; width:400px; height:14px;}
+#jky-app-select			{float:left ; margin:10px; width:200px; height:24px;}
+#jky-app-filter			{float:right; margin:10px; width:300px; height:14px;}
 #jky-app-actions		{float:left ; margin: 6px 10px;}
 #jky-app-more			{float:left ; margin: 6px 10px 6px 80px;}
 #jky-app-counters		{float:right; margin: 9px 10px;}
@@ -118,9 +122,13 @@ input.span2 {width:80px; padding:2px 4px;}
 }
 #jky-table tbody		{max-height:300px; overflow-y:visible;}
 
-.oe_list_record_selector	{width:24px;}
+#jky-action-add-new     {display:none;}
+#jky-action-save        {display:none;}
+#jky-action-discard     {display:none;}
+
 
 /* -------------------------------------------------------------------------- */
+
 #jky-form-control		{
 	background-color: #EDEDED;
     background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
