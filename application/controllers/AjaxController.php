@@ -85,7 +85,8 @@ public function indexAction() {
 			case 'send_receipt'		: $this->send_receipt	(); return;
 		}
 
-		$table = get_request('table');
+//		$table = get_request('table');
+		$table = $data['table'];
 		$user_action = get_user_action($table);
 		if ($user_action == '') {
 			$user_action = get_user_action('All');
@@ -155,9 +156,9 @@ public function indexAction() {
 	    case 'get_comments' : $this->get_comments   (); break;
 	    case 'add_comment'  : $this->add_comment    (); break;
 	    case 'get_columns'  : $this->get_columns    (); break;
-	    case 'insert'       : $this->insert         (); break;
-	    case 'update'       : $this->update         (); break;
-	    case 'delete'       : $this->delete         (); break;
+	    case 'insert'       : $this->insert         ($data); break;
+	    case 'update'       : $this->update         ($data); break;
+	    case 'delete'       : $this->delete         ($data); break;
 	    case 'combine'      : $this->combine        (); break;
 	    case 'publish'      : $this->publish        (); break;
 	    case 'export'       : $this->get_index      (); break;
@@ -602,15 +603,18 @@ private function set_where( $table, $filter ) {
 		    else return ' AND   Contact.full_name   LIKE ' . $value;
 	  }
 
-	  if(  $table == 'Controls' ) {
-	       if(  $name == 'group_set'
-	       or   $name == 'sequence'
-	       or   $name == 'control_name'
-	       or   $name == 'control_value' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Controls.' . $name . ' IS NULL ';
-		    else return ' AND Controls.' . $name . ' LIKE ' . $value;
-	  }
+	if ($table == 'Controls') {
+		if ($name == 'group_set'
+		or  $name == 'sequence'
+		or  $name == 'name'
+		or  $name == 'value' ) {
+			if ($value == '"%null%"') {
+				return ' AND Controls.' . $name . ' IS NULL ';
+			}else{
+				return ' AND Controls.' . $name . ' LIKE ' . $value;
+			}
+		}
+	}
 
 	  if(  $table == 'Events' ) {
 	       if(  $name == 'event_name'
@@ -848,12 +852,12 @@ private function set_where( $table, $filter ) {
 	       ;
      }
 
-     if(  $table == 'Controls' ) {
-	  $return = '    Controls.sequence             LIKE ' . $filter
-	      . ' OR     Controls.control_name         LIKE ' . $filter
-	      . ' OR     Controls.control_value        LIKE ' . $filter
-	      ;
-     }
+	if ($table == 'Controls') {
+		$return = '    Controls.sequence	LIKE ' . $filter
+				. ' OR Controls.name		LIKE ' . $filter
+				. ' OR Controls.value		LIKE ' . $filter
+				;
+	}
 
      if(  $table == 'Events' ) {
 	  $return = '    Events.event_name             LIKE ' . $filter
@@ -1084,81 +1088,55 @@ private function get_columns() {
  *   status: ok
  * inserted: 9...9
  */
-private function insert() {
-     $table    = get_request( 'table'   );
-     $set      = get_request( 'set'     );
-     $db       = Zend_Registry::get( 'db' );
+private function insert($data) {
+	$table	= get_data($data, 'table'	);
+	$set	= get_data($data, 'set'		);
+	$db		= Zend_Registry::get('db');
 
-     if(  $set == '' ) {
-	  $this->echo_error( 'missing [set] statement' );
-	  return;
-     }
+	if ($set == '') {
+		$this->echo_error( 'missing [set] statement' );
+		return;
+	}
 
-     $set .= ', created_by='  . get_session( 'user_id' );
-     $set .= ', created_at="' . get_time() . '"';
+	$set .= ', created_by='  . get_session( 'user_id' );
+	$set .= ', created_at="' . get_time() . '"';
 
-     if(  $table == 'Categories' ) {
-	  $set .= ',     company_id= ' . get_session( 'company_id' );
-     }
-
-     if(  $table == 'Companies' ) {
-	  $set .= ',      parent_id= ' . get_session( 'control_company', COMPANY_ID );
-	  $set .= ', company_number= ' . $this->getUniqueNumber( $table, 'company_number' );
-     }
-
-     if(  $table == 'Services' ) {
-	  $sets  = explode( ',', $set );
-	  $names = explode( '=', $sets[ 0 ]); $user_id  = $names[ 1 ];
-	  $names = explode( '=', $sets[ 1 ]); $event_id = $names[ 1 ];
-
-	  $sql = 'SELECT next_number FROM Events WHERE id = ' . $event_id;
-	  $helper_number = $db->fetchOne( $sql );
-	  $sql = 'UPDATE Events SET next_number = next_number + 1 WHERE id = ' . $event_id;
-	  $db->query( $sql );
-	  $set .= ', helper_number= ' . $helper_number;
-
-	  $sql = 'SELECT birth_date FROM Persons  WHERE id = ' .  $user_id;
-	  $birth_date = $db->fetchOne( $sql );
-	  $sql = 'SELECT start_date FROM Events WHERE id = ' . $event_id;
-	  $start_date = $db->fetchOne( $sql );
-	  if(  $birth_date ) {
-	       $diff = abs( strtotime( $start_date ) - strtotime( $birth_date ));
-	       $set .= ', helper_age= ' . floor( $diff / ( 365.25*60*60*24 ));
-	  }
-     }
+	if ($table == 'Categories') {
+		$set .= ',     company_id= ' . get_session( 'company_id' );
+	}
 
 //     if(  $table == 'Templates' ) {
 //          $set .= ',     company_id= ' . get_session( 'control_company', COMPANY_ID );
 //     }
 
-     if(  $table == 'Tickets' ) {
-	  $set .= ',     company_id= ' . get_session( 'control_company', COMPANY_ID );
-	  $set .= ',      opened_by= ' . get_session( 'user_id' );
-	  $set .= ',      opened_at="' . get_time() . '"';
-     }
+	if ($table == 'Tickets') {
+		$set .= ',     company_id= ' . get_session( 'control_company', COMPANY_ID );
+		$set .= ',      opened_by= ' . get_session( 'user_id' );
+		$set .= ',      opened_at="' . get_time() . '"';
+	}
 
-     if(  $table == 'Persons' ) {
-	  $set .= ',     company_id= ' . get_session( 'company_id', COMPANY_ID );
-	  $set .= ',             id= ' . $this->insert_user_jky();
-	  $set .= ',    user_number= ' . $this->getUniqueNumber( $table, 'user_number' );
-     }
+	if ($table == 'Persons') {
+		$set .= ',     company_id= ' . get_session( 'company_id', COMPANY_ID );
+		$set .= ',             id= ' . $this->insert_user_jky();
+		$set .= ',    user_number= ' . $this->getUniqueNumber( $table, 'user_number' );
+	}
 
-     $sql = 'INSERT ' . $table
-	  . '   SET ' . str_replace("*#", "&", $set)
-	  ;
+	$sql= 'INSERT ' . $table
+		. '   SET ' . str_replace("*#", "&", $set)
+		;
 //$this->log_sql( $table, 'insert', $sql );
-     $db->query( $sql );
-     $id = $db->lastInsertId();
-     $this->log_sql( $table, $id, $sql );
+	$db->query( $sql );
+	$id = $db->lastInsertId();
+	$this->log_sql( $table, $id, $sql );
 
-    $new = db_get_row($table, 'id = ' . $id);
-    $this->history_log('insert', $table, $id, $new, null);
+	$new = db_get_row($table, 'id = ' . $id);
+	$this->history_log('insert', $table, $id, $new, null);
 
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'message'  ] = 'new record added';
-     $return[ 'id'       ] = $id;
-     echo json_encode( $return );
+	$return = array();
+	$return[ 'status'   ] = 'ok';
+	$return[ 'message'  ] = 'new record added';
+	$return[ 'id'       ] = $id;
+	echo json_encode( $return );
 }
 
 private function insert_user_jky() {
@@ -1177,25 +1155,25 @@ private function insert_user_jky() {
  *   status: ok
  *  updated: 9...9
  */
-private function update() {
-    $table = get_request('table');
-    $set   = get_request('set'  );
-    $where = $this->get_security($table, get_request('where'));
+private function update($data) {
+	$table	= get_data($data, 'table'	);
+	$set	= get_data($data, 'set'		);
+	$where	= $this->get_security($table, get_data($data, 'where'));
 
     if ($set == '') {
-	$this->echo_error('missing [set] statement');
-	return;
+		$this->echo_error('missing [set] statement');
+		return;
     }
 
     if ($where == '') {
-	$this->echo_error('missing [where] statement');
-	return;
+		$this->echo_error('missing [where] statement');
+		return;
     }
 
-    $id = $this->get_only_id();
+    $id = $this->get_only_id($table, $where);
     if (!$id) {
-	$this->echo_error('record not found');
-	return;
+		$this->echo_error('record not found');
+		return;
     }
 
     $old = db_get_row($table, 'id = ' . $id);
@@ -1235,48 +1213,48 @@ private function update_user_jky( $id, $set ) {
  *   status: ok
  *  deleted: 9...9
  */
-private function delete() {
-    $table = get_request('table');
-    $where = $this->get_security($table, get_request('where'));
+private function delete($data) {
+	$table = get_data($data, 'table');
+	$where = $this->get_security($table, get_data($data, 'where'));
 
-    if ($where == '') {
-	$this->echo_error('missing [where] statement');
-	return;
+	if ($where == '') {
+		$this->echo_error('missing [where] statement');
+		return;
     }
 
-    $return = array();
-    $return['status'] = 'ok';
+	$return = array();
+	$return['status'] = 'ok';
 
-    $id = $this->get_only_id();
-    if ($id) {
-	if ($table == 'Persons') {
-	    $this->delete_user_jky($id);
+	$id = $this->get_only_id($table, $where);
+	if ($id) {
+		if ($table == 'Contacts') {
+			$this->delete_jky_user($id);
+		}
+
+		$new = db_get_row($table, 'id = ' . $id);
+		$this->history_log('delete', $table, $id, $new, null);
+
+		$sql= 'DELETE'
+			. '  FROM ' . $table
+			. ' WHERE id = ' . $id
+			;
+		$this->log_sql($table, $id, $sql);
+		$db = Zend_Registry::get('db');
+		$db->query($sql);
+		$return['message'] = 'record deleted';
+	}else{
+		$return['message'] = 'record already deleted';
 	}
-
-	$new = db_get_row($table, 'id = ' . $id);
-	$this->history_log('delete', $table, $id, $new, null);
-
-	$sql= 'DELETE'
-	    . '  FROM ' . $table
-	    . ' WHERE id = ' . $id
-	    ;
-	$this->log_sql($table, $id, $sql);
-	$db  = Zend_Registry::get('db');
-	$db->query($sql);
-	$return['message'] = 'record deleted';
-    } else {
-	$return['message'] = 'record already deleted';
-    }
-    echo json_encode($return);
+		echo json_encode($return);
 }
 
-private function delete_user_jky( $id ) {
-     $sql = 'DELETE'
-	  . '  FROM JKY_Users'
-	  . ' WHERE id = ' . $id
-	  ;
-     $db  = Zend_Registry::get( 'db' );
-     $db->query( $sql );
+private function delete_jky_user($id) {
+	$sql= 'DELETE'
+		. '  FROM JKY_Users'
+		. ' WHERE id = ' . $id
+		;
+	$db = Zend_Registry::get( 'db' );
+	$db->query( $sql );
 }
 
 /*
@@ -1448,7 +1426,7 @@ private function delete_user_jky( $id ) {
 		    . '  FROM Controls'
 		    . ' WHERE status = "Active"'
 		    . '   AND group_set = "Currencies"'
-		    . '   AND control_name != "' .  $default . '"'
+		    . '   AND name != "' .  $default . '"'
 		    . ' ORDER BY sequence'
 	       ;
 	       $rows     = $db->fetchAll( $sql );
@@ -2653,11 +2631,12 @@ private function get_last_id( $table, $where='1' ) {
      return $db->fetchOne( $sql );
 }
 
-private function get_only_id() {
+private function get_only_id($table, $where) {
      $sql = 'SELECT id'
-	  . '  FROM ' . get_request( 'table' )
-	  . ' WHERE ' . get_request( 'where' )
+	  . '  FROM ' . $table
+	  . ' WHERE ' . $where
 	  ;
+//$this->log_sql( 'get_only_id', null, $sql );
      $db  = Zend_Registry::get( 'db' );
      return $db->fetchOne( $sql );
 }
@@ -2697,7 +2676,7 @@ private function log_sql( $table, $id, $sql ) {
 	    . '     , method       = "' . $method . '"'
 	    . '     , history       = "' . $history . '"'
 	;
-//        $this->log_sql('History', null, $sql);
+//$this->log_sql('History', null, $sql);
 	$db  = Zend_Registry::get( 'db' );
 	$db->query( $sql );
     }

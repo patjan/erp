@@ -44,7 +44,67 @@ $(function() {
 		JKY.TRACE = false;		//	IE, TRACE must be false
 	}
 
+	$(window).bind('resize', function() {
+		JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
+	});
 });
+
+/**
+ * binding on resize
+ * not to bind on IE < 9, it will cause infinite loops
+ * wait until any order is loaded, to binding on scroll
+ *
+ * !!! important !!!
+ * window resize can be bond only once per load
+ */
+JKY.binding_on_resize = function() {
+	if (JKY.is_browser('msie') && $.browser.version < 9) {
+		return;
+	}
+	if (JKY.orders.length > 0) {
+		$(window).bind('resize', function() {
+			CX.setTableWidthHeight('jky-app-table', 690, 390, 150);
+		});
+	} else {
+		setTimeout(function() {CX.binding_on_resize();}, 100);
+	}
+}
+
+
+/**
+ * set table width and height
+ * adjust height minus offset height, but not less than minimum height
+ * @param	tableId
+ * @param	width
+ * @param	minHeight
+ * @param	offHeight
+ */
+JKY.setTableWidthHeight = function(tableId, width, off_width, minHeight, offHeight) {
+	/*
+	 * jquery 1.7.x the function .height() was working for all 4 browsers (IE,FF,CH,SF)
+	 * but on 1.8.x it was working only on IE
+	 */
+	var my_width  = $(window).width ();
+	var my_height = $(window).height();
+	if (!JKY.is_browser('msie')) {
+		my_width  = document.body[ "clientWidth"  ];
+		my_height = document.body[ "clientHeight" ];
+	}
+	my_width  -= off_width;
+	my_height -= offHeight;
+
+	if (my_height < minHeight) {
+		my_height = minHeight;
+	}
+	$('#jky-app-table').css('width' , my_width );
+	$('#jky-app-table').css('height', my_height);
+	$('#jky-app-form' ).css('width' , my_width );
+	$('#jky-app-form' ).css('height', my_height);
+	$('#jky-app-table').css('width' , my_width );
+	$('#jky-app-table').css('height', my_height);
+	$('#jky-app-form' ).css('width' , my_width );
+	$('#jky-app-form' ).css('height', my_height);
+}
 
 /**
  * re direct
@@ -104,10 +164,10 @@ JKY.process_action = function(action) {
 //	JKY.load_html('jky-body-content', action + '.html');
 	JKY.hide('jky-application');
 	JKY.load_html('jky-application', action + '.html');
-	$.getScript(JKY.AJAX_APP + 'js/' + action + '.js', function() {
+//	$.getScript(JKY.AJAX_APP + 'js/' + action + '.js', function() {
 		JKY.start_program();
 		JKY.show('jky-application');
-	});
+//	});
 }
 
 /**
@@ -339,8 +399,63 @@ JKY.set_html = function(id_name, html){
  * @param	id_name
  * @param	value
  */
-JKY.set_val = function(id_name, value){
+JKY.set_value = function(id_name, value){
 	$('#' + id_name).val(value);
+}
+
+/**
+ * set selected specific id with value
+ * @param	id_name
+ * @param	value
+ */
+JKY.set_option = function(id_name, value){
+     $('#' + id_name + ' option:selected').removeAttr('selected');
+     if(  value ) {
+          var my_command = "$('#" + id_name + " option[ value=\"" + value + "\" ]').attr('selected', 'selected');";
+          setTimeout(my_command, 100);
+     }
+}
+
+//        JKY.set_options(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
+//        ----------------------------------------------------------------------
+JKY.set_options = function() {
+     options   = '';
+     set_value = arguments[0];
+
+     for( var i=1; i<arguments.length; i++ ) {
+          value = arguments[i];
+          selected = (value === set_value) ? ' selected="selected"' : '';
+          options += '<option value="' + value + '"' + selected + '>' + value + '</option>';
+     }
+     return options;
+}
+
+//        JKY.set_radios(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
+//        ----------------------------------------------------------------------
+JKY.set_radios = function() {
+     radios    = '';
+     set_id    = arguments[0];
+     set_value = arguments[1];
+
+     for( var i=2; i<arguments.length; i++ ) {
+          value = arguments[i];
+          checked = (value === set_value) ? ' checked="checked"' : '';
+          radios += '<input type="radio" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + checked + '/>&nbsp;' + value + ' &nbsp; ';
+     }
+     return radios;
+}
+
+//        JKY.set_checks('...', ..., '...')
+//        ----------------------------------------------------------------------
+JKY.set_checks = function() {
+     checks    = '';
+     set_id    = arguments[0];
+
+     for( var i=1; i<arguments.length; i++ ) {
+          value = arguments[i];
+          checks += '<input type="checkbox" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + '/>&nbsp;' + value + ' <br>';
+     }
+     return checks;
 }
 
 /**
@@ -349,6 +464,15 @@ JKY.set_val = function(id_name, value){
  */
 JKY.set_active = function(id_name){
 	$('#' + id_name).addClass('active');
+}
+
+/**
+ * get value of specific id
+ * @param	id_name
+ * @return	value
+ */
+JKY.get_value = function(id_name){
+	return $('#' + id_name).val();
 }
 
 /**
@@ -542,58 +666,6 @@ JKY.str_replace = function(search, replace, subject, count) {
           }
      }
      return sa ? s : s[0];
-}
-
-//        JKY.set_option('title', 'Mr')
-//        ----------------------------------------------------------------------
-JKY.set_option = function(name, value) {
-     $('#' + name + ' option:selected').removeAttr('selected');
-     if(  value ) {
-          command = "$('#" + name + " option[ value=\"" + value + "\" ]').attr('selected', 'selected');";
-          setTimeout(command, 100);
-     }
-}
-
-//        JKY.set_options(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
-//        ----------------------------------------------------------------------
-JKY.set_options = function() {
-     options   = '';
-     set_value = arguments[0];
-
-     for( var i=1; i<arguments.length; i++ ) {
-          value = arguments[i];
-          selected = (value === set_value) ? ' selected="selected"' : '';
-          options += '<option value="' + value + '"' + selected + '>' + value + '</option>';
-     }
-     return options;
-}
-
-//        JKY.set_radios(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
-//        ----------------------------------------------------------------------
-JKY.set_radios = function() {
-     radios    = '';
-     set_id    = arguments[0];
-     set_value = arguments[1];
-
-     for( var i=2; i<arguments.length; i++ ) {
-          value = arguments[i];
-          checked = (value === set_value) ? ' checked="checked"' : '';
-          radios += '<input type="radio" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + checked + '/>&nbsp;' + value + ' &nbsp; ';
-     }
-     return radios;
-}
-
-//        JKY.set_checks('...', ..., '...')
-//        ----------------------------------------------------------------------
-JKY.set_checks = function() {
-     checks    = '';
-     set_id    = arguments[0];
-
-     for( var i=1; i<arguments.length; i++ ) {
-          value = arguments[i];
-          checks += '<input type="checkbox" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + '/>&nbsp;' + value + ' <br>';
-     }
-     return checks;
 }
 
 /**

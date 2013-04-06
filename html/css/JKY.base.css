@@ -23,7 +23,7 @@ input.span2 {width:80px; padding:2px 4px;}
 .modal-body				{background:white;}
 
 .table thead th {vertical-align: middle;}
-.table tbody td {line-height:12px; padding:0; margin:0;}
+.table tbody td {line-height:12px;}
 
 .jky-left		{float:left ;}
 .jky-right		{float:right;}
@@ -38,7 +38,7 @@ input.span2 {width:80px; padding:2px 4px;}
 .jky-form-line			{clear:both; padding-top:2px;}
 .jky-form-label			{float:left; width:100px; margin:3px 7px; text-align:right; font-weight:bold;}
 .jky-form-label2		{float:left; width:200px; margin:3px 7px; text-align:right; font-weight:bold;}
-.jky-form-value			{float:left; width:270px;}
+.jky-form-value			{float:left; width:300px;}
 .jky-form-value2		{float:left; width:180px;}
 
 .jky-tab-label			{text-align:right; padding-right:10px; font-weight:bold;}
@@ -62,7 +62,7 @@ input.span2 {width:80px; padding:2px 4px;}
 
 #jky-full-name			{float:right; margin:6px 10px 4px;}
 
-#jky-body				{width:100%;}
+#jky-body				{width:100%; height:100%;}
 
 #jky-side-bar			{width:220px; border-right:1px solid #AFAFB6; background:none repeat scroll 0 0 #F0EEEE; vertical-align:top;}
 
@@ -97,9 +97,11 @@ input.span2 {width:80px; padding:2px 4px;}
     padding:0;
 }
 
-#jky-application tr		{height:17px;}
-#jky-application td		{line-height:12px; padding:0; margin:0;}
-#jky-application input[type='checkbox']	{width:20px; margin:0 0 3px 0;}
+#jky-application thead tr		{height:40px;}
+#jky-application tbody tr		{height:20px;}
+#jky-application thead th		{border:1px solid #999999;}
+#jky-application tbody td		{margin:2px; padding:4px 8px;}
+#jky-application input[type='checkbox']	{width:20px; margin:0 0 2px 0;}
 #jky-app-header			{
     background-color: #EDEDED;
     background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
@@ -110,10 +112,13 @@ input.span2 {width:80px; padding:2px 4px;}
 #jky-app-select			{float:left ; margin:10px; width:200px; height:24px;}
 #jky-app-filter			{float:right; margin:10px; width:300px; height:14px;}
 #jky-app-actions		{float:left ; margin: 6px 10px;}
+#jky-app-actions a		{vertical-align:bottom;}
 #jky-app-more			{float:left ; margin: 6px 10px 6px 80px;}
+#jky-app-add-new		{float:right; margin: 9px 10px;}
 #jky-app-counters		{float:right; margin: 9px 10px;}
 #jky-app-navs			{float:right; margin: 6px 10px;}
 #jky-app-displays		{float:right; margin: 6px 10px;}
+
 #jky-app-table thead	{
 	background: none repeat scroll 0 0 #EEEEEE;
     border-bottom: 2px solid #CACACA;
@@ -133,17 +138,12 @@ input.span2 {width:80px; padding:2px 4px;}
 	background-color: #EDEDED;
     background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
     border-bottom: 1px solid #CACACA;
-    height:34px;
+    height:41px;
 }
 #jky-form-actions		{float:left; margin:4px 5px;}
 #jky-form-status		{float:right; margin:7px;}
 #jky-form-status li		{border-radius:5px;}
-.jky-status		{
-	display: inline;
-	border:1px solid #999999;
-	margin:2px;
-	padding:4px;
-}
+.jky-each-status		{display: inline; border:1px solid #999999; margin:2px; padding:4px; }
 
 #jky-form-tabs			{margin:20px 0 10px;}
 #jky-form-title	{padding:10px;}
