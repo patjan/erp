@@ -1,0 +1,34 @@
+06:39:17 args: &table=Controls&filter=&select=Root&display=1000&order_by=sequence&specific=
+06:42:28 args: &table=Controls&filter=&select=Root&display=1000&order_by=sequence&specific=
+06:44:41 args: &table=Controls&filter=&select=Root&display=1000&order_by=sequence&specific=
+06:46:33 args: &table=Controls&filter=&select=Root&display=1000&order_by=sequence&specific=
+06:51:33 args: &table=Controls&filter=&select=Root&display=1000&order_by=sequence&specific=
+06:53:51 args: &table=Controls&filter=&select=Root&display=1000&order_by=sequence&specific=
+07:46:02 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+07:51:16 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+07:59:04 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:01:25 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:01:45 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:04:17 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:06:27 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:08:07 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:15:42 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:20:00 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:22:07 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:22:16 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:22:44 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:23:13 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:30:33 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:30:40 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:30:51 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:31:35 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:31:56 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+08:36:09 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+09:00:51 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+09:01:08 args: ,"table":"Controls","filter":"","select":"User Actions","display":"1000","order_by":"sequence","specific":""
+09:02:34 args: ,"table":"Controls","filter":"","select":"User Roles","display":"1000","order_by":"sequence","specific":""
+12:16:52 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+12:19:31 args: ,"table":"Controls","filter":"","select":"User Roles","display":"1000","order_by":"sequence","specific":""
+12:33:47 args: ,"table":"Controls","filter":"","select":"Root","display":"1000","order_by":"sequence","specific":""
+12:34:06 args: ,"table":"Controls","filter":"","select":"User Roles","display":"1000","order_by":"sequence","specific":""
+15:26:07 args: ,"table":"Controls","filter":"","select":"User Roles","display":"1000","order_by":"sequence","specific":""

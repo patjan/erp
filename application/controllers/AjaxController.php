@@ -23,9 +23,10 @@ public function init() {
 
 //	set_session('user_level', MINIMUM_TO_BROWSE  );
 //	set_session('user_level', MINIMUM_TO_SUPPORT );
-//	set_session('user_role' , 'support'  );
+	set_session('user_role' , 'Support'  );
 //	set_session('full_name' , 'Pat Jan'  );
-//	set_session('user_id'	, 4 );
+	set_session('user_id'	, 4 );
+	set_permissions('Support');
 
 	if (!is_session('control_company'	))		set_session('control_company'	, COMPANY_ID);
 	if (!is_session('user_time'			))		set_session('user_time'			, date( 'Y-m-d H:i:s'));
@@ -150,18 +151,18 @@ public function indexAction() {
 	    case 'get_id'       : $this->get_id         (); break;
 	    case 'get_count'    : $this->get_count      (); break;
 	    case 'get_value'    : $this->get_value      (); break;
-	    case 'get_row'      : $this->get_row        (); break;
+	    case 'get_row'      : $this->get_row        ($data); break;
 	    case 'get_rows'     : $this->get_rows       (); break;
 	    case 'get_index'    : $this->get_index      ($data); break;
 	    case 'get_comments' : $this->get_comments   (); break;
 	    case 'add_comment'  : $this->add_comment    (); break;
-	    case 'get_columns'  : $this->get_columns    (); break;
+	    case 'get_columns'  : $this->get_columns    ($data); break;
 	    case 'insert'       : $this->insert         ($data); break;
 	    case 'update'       : $this->update         ($data); break;
 	    case 'delete'       : $this->delete         ($data); break;
 	    case 'combine'      : $this->combine        (); break;
 	    case 'publish'      : $this->publish        (); break;
-	    case 'export'       : $this->get_index      (); break;
+	    case 'export'       : $this->get_index      ($data); break;
 	    case 'refresh'      : $this->refresh        (); break;
 
 	    case 'set_amount'   : $this->set_amount     (); break;
@@ -342,32 +343,32 @@ private function get_value() {
  *   status: ok
  *      row: { x...x: y...y, ... } (false)
  */
-private function get_row() {
-     $table = get_request('table');
-     $where = $this->get_security($table, get_request('where'));
+private function get_row($data) {
+	$table = get_data($data, 'table'		);
+	$where = $this->get_security($table, get_data($data, 'where'));
 
-     if(  $where == '' ) {
-	  $this->echo_error( 'missing [where] statement' );
-	  return;
-     }
+	if ($where == '') {
+		$this->echo_error('missing [where] statement');
+		return;
+	}
 
-     $sql = 'SELECT ' . $table . '.*' . $this->set_new_fields( $table )
-	  . '  FROM ' . $table        . $this->set_left_joins( $table )
-	  . ' WHERE ' . $where
-	  ;
+	$sql= 'SELECT ' . $table . '.*' . $this->set_new_fields($table)
+		. '  FROM ' . $table        . $this->set_left_joins($table)
+		. ' WHERE ' . $where
+		;
 //$this->log_sql( $table, 'get_row', $sql );
-     $db  = Zend_Registry::get( 'db' );
-     $row = $db->fetchRow( $sql );
+	$db  = Zend_Registry::get('db');
+	$row = $db->fetchRow($sql);
 
 if(  $table == 'Categories' ) {
      $sql = 'SELECT COUNT(*) FROM Categories WHERE parent_id = ' . $row[ 'id' ];
      $row[ 'children' ] = $db->fetchOne( $sql );
 }
 
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'row'      ] = $row;
-     echo json_encode( $return );
+	$return = array();
+	$return['status'] = 'ok';
+	$return['row'	] = $row;
+	echo json_encode($return);
 }
 
 /*
@@ -1040,14 +1041,14 @@ private function add_comment() {
  *   $.ajax({ method: get_columns, table: x...x });
  *
  */
-private function get_columns() {
-     if (get_session('user_action') != 'All') {
-	 return;
-     }
+private function get_columns($data) {
+	if (get_session('user_action') != 'All') {
+		return;
+	}
 
-     $table = get_request( 'table' );
-     $extra = array();
-     $col   = array();
+	$table	= get_data($data, 'table'	);
+	$extra = array();
+	$col   = array();
 
      if(  $table == 'Categories'   )    { $col[ 'Field'  ] =   'parent_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col;
 					  $col[ 'Field'  ] =      'children' ; $col[ 'Type' ] = 'int(11)'       ; $extra[] = $col; }
@@ -1063,6 +1064,7 @@ private function get_columns() {
 //                                        $col[ 'Field'  ] =  'company_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col; }
 
      $sql  = 'SHOW COLUMNS FROM ' . $table;
+//$this->log_sql( $table, 'get_columns', $sql );
      $db   = Zend_Registry::get( 'db' );
      $cols = $db->fetchAll( $sql );
 

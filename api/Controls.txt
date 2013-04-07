@@ -39,3 +39,20 @@ http://erp/index.php/ajax?data={"method":"get_index","table":"Controls","select"
 ,{"id":"1000000230","created_at":"2012-07-10 07:23:19","created_by":"1000000001","updated_at":"2012-07-10 07:23:27"	,"updated_by":"1000000001"	,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Translations"	,"value":""}
 ,{"id":"1000000246","created_at":"2012-08-15 13:51:00","created_by":"1000000001","updated_at":null					,"updated_by":null			,"status":"Active","company_id":"1000000001","sequence":"50","group_set":"User Resources","name":"Summary"		,"value":""}
 ]}
+
+http://erp/index.php/ajax?data={"method":"get_columns","table":"Controls"}
+
+{"status":"ok"
+,"columns":
+[{"Field":"id"			,"Type":"bigint(20)"	,"Null":"NO"	,"Key":"PRI","Default":null		,"Extra":"auto_increment"}
+,{"Field":"created_at"	,"Type":"datetime"		,"Null":"YES"	,"Key":""	,"Default":null		,"Extra":""}
+,{"Field":"created_by"	,"Type":"bigint(20)"	,"Null":"YES"	,"Key":""	,"Default":null		,"Extra":""}
+,{"Field":"updated_at"	,"Type":"datetime"		,"Null":"YES"	,"Key":""	,"Default":null		,"Extra":""}
+,{"Field":"updated_by"	,"Type":"bigint(20)"	,"Null":"YES"	,"Key":""	,"Default":null		,"Extra":""}
+,{"Field":"status"		,"Type":"varchar(32)"	,"Null":"YES"	,"Key":""	,"Default":"Active"	,"Extra":""}
+,{"Field":"company_id"	,"Type":"bigint(20)"	,"Null":"YES"	,"Key":"MUL","Default":"1"		,"Extra":""}
+,{"Field":"sequence"	,"Type":"int(11)"		,"Null":"YES"	,"Key":""	,"Default":"0"		,"Extra":""}
+,{"Field":"group_set"	,"Type":"varchar(32)"	,"Null":"YES"	,"Key":"MUL","Default":"Root"	,"Extra":""}
+,{"Field":"name"		,"Type":"varchar(255)"	,"Null":"YES"	,"Key":"MUL","Default":null		,"Extra":""}
+,{"Field":"value"		,"Type":"text"			,"Null":"YES"	,"Key":""	,"Default":null		,"Extra":""}
+]}

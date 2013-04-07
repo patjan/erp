@@ -610,6 +610,20 @@ JKY.set_languages = function() {
      }
 }
 
+/**
+ * check if specific id  is loaded
+ *
+ * @param	id_name
+ * @return  true | false
+ */
+JKY.is_loaded = function(id_name) {
+	if ($('#' + id_name + '-loaded').length > 0) {
+		return true;
+	}else{
+		return false;
+	}
+}
+
 //        email format xxx@xxx.xxx
 JKY.is_email = function(email) {
      var  pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
@@ -846,7 +860,7 @@ JKY.ajax = function(async, data, function_success, function_error) {
 		, dataType	: 'json'
 		, async		: async
 		, success	: function(response) {
-				if (response.status === 'ok') {
+				if (response.status == 'ok') {
 					function_success(response);
 				}else{
 					JKY.display_message(response.message);
@@ -862,6 +876,43 @@ JKY.ajax = function(async, data, function_success, function_error) {
 			}
 		}
 	);
+}
+
+JKY.get_row = function(table_name, id) {
+	var my_row = null;
+	var my_where = 'id = ' + id;
+	var my_data =
+		{ method: 'get_row'
+		, table	: table_name
+		, where : my_where
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_row = response.row;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.hide('jky-loading');
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_row;
 }
 
 /**
@@ -882,3 +933,25 @@ JKY.process_log_off = function() {
 JKY.process_log_off_success = function() {
 	JKY.process_action('login');
 }
+
+/**
+ * process export
+ */
+JKY.run_export = function(table, select, filter, specific, sort_by) {
+	if ($('#jky-export-html').length == 0)	{
+		$('body').append('<div id="jky-export-html"></div>');
+	}
+	var my_html = ''
+		+ '<form id="jky-export-form" action="jky_export.php" method="post">'
+		+ '<input type="hidden" name="table"    value="' + table	+ '" />'
+		+ '<input type="hidden" name="select"   value="' + select	+ '" />'
+		+ '<input type="hidden" name="filter"   value="' + filter	+ '" />'
+		+ '<input type="hidden" name="display"  value="' + 1000		+ '" />'
+		+ '<input type="hidden" name="specific" value="' + specific	+ '" />'
+		+ '<input type="hidden" name="order_by" value="' + sort_by	+ '" />'
+		+ '</form>'
+		;
+     $('#jky-export-html').html(my_html);
+     $('#jky-export-form').submit();
+};
+
