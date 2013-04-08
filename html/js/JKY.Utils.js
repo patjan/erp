@@ -810,12 +810,12 @@ JKY.set_contact_us = function(contact_us) {
 /**
  * set group set
  */
-JKY.set_group_set = function(selected, group_set) {
+JKY.set_group_set = function(table, selected, group_set) {
 	JKY.display_trace('set_control_set: ' + group_set);
 	var my_html = '';
 	var my_data =
 		{ method	: 'get_index'
-		, table		: 'Controls'
+		, table		:  table
 		, order_by	: 'sequence,name'
 		, select	:  group_set
 		};

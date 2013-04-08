@@ -57,7 +57,7 @@ public function indexAction() {
 			case 'get_groups'		: $this->get_groups		(); return;
 			case 'get_users'		: $this->get_users		(); return;
 			case 'get_controls' 	: $this->get_controls	(); return;
-			case 'get_soptions'		: $this->get_soptions	(); return;
+			case 'get_configs'		: $this->get_configs	(); return;
 			case 'get_categories'	: $this->get_categories	(); return;
 			case 'get_profile'		: $this->get_profile	(); return;
 			case 'get_contact'		: $this->get_contact	(); return;
@@ -498,6 +498,7 @@ private function set_select( $table, $select ) {
      $return = '';
      if(  $table == 'Categories'   )    $return = ' AND         Parent.category      = "' . $select . '"';
      if(  $table == 'Controls'     )    $return = ' AND       Controls.group_set     = "' . $select . '"';
+     if(  $table == 'Configs'      )    $return = ' AND        Configs.group_set     = "' . $select . '"';
      if(  $table == 'Companies'    )    $return = ' AND      Companies.status        = "' . $select . '"';
      if(  $table == 'Events'       )    $return = ' AND         Events.status        = "' . $select . '"';
      if(  $table == 'Groups'       )    $return = ' AND         Groups.status        = "' . $select . '"';
@@ -613,6 +614,19 @@ private function set_where( $table, $filter ) {
 				return ' AND Controls.' . $name . ' IS NULL ';
 			}else{
 				return ' AND Controls.' . $name . ' LIKE ' . $value;
+			}
+		}
+	}
+
+	if ($table == 'Configs') {
+		if ($name == 'group_set'
+		or  $name == 'sequence'
+		or  $name == 'name'
+		or  $name == 'value' ) {
+			if ($value == '"%null%"') {
+				return ' AND Configs.' . $name . ' IS NULL ';
+			}else{
+				return ' AND Configs.' . $name . ' LIKE ' . $value;
 			}
 		}
 	}
@@ -857,6 +871,13 @@ private function set_where( $table, $filter ) {
 		$return = '    Controls.sequence	LIKE ' . $filter
 				. ' OR Controls.name		LIKE ' . $filter
 				. ' OR Controls.value		LIKE ' . $filter
+				;
+	}
+
+	if ($table == 'Configs') {
+		$return = '    Configs.sequence		LIKE ' . $filter
+				. ' OR Configs.name			LIKE ' . $filter
+				. ' OR Configs.value		LIKE ' . $filter
 				;
 	}
 
@@ -1364,6 +1385,9 @@ private function delete_jky_user($id) {
 
 	  $db->query( 'UPDATE Controls       SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Controls       SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
+
+	  $db->query( 'UPDATE Configs        SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
+	  $db->query( 'UPDATE Configs        SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
 
 	  $db->query( 'UPDATE Events         SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Events         SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
@@ -2030,40 +2054,42 @@ private function get_controls() {
 }
 
 /*
- *   $.ajax({ method: get_soptions, setting_set: x...x, select: x...x, initial: x...x });
+ *   $.ajax({ method: get_configs, group_set: x...x, select: x...x, initial: x...x });
  *
  *   return: <options value="x...x" selected="selected">x...x</options>
  *           ...
  */
-     private function get_soptions() {
-	  $setting_set   = get_request( 'setting_set'  );
-	  $selected		= get_request( 'selected' );
-	  $initial       = get_request( 'initial');
+private function get_configs() {
+	$group_set	= get_request('group_set'	);
+	$selected	= get_request('selected'	);
+	$initial	= get_request('initial'		);
 
-	  $sql = '';
-	  $sql = 'SELECT * '
-	       . '  FROM Settings'
-	       . ' WHERE setting_set = "' . $setting_set . '"'
-	       . ' ORDER BY sequence, setting_name'
-	  ;
-	  if(  $initial == '' )
-	       $return = '';
-//   else $return = '<option value="*">' . $initial . '</option>';
-	  else $return = '<option value="All">' . $initial . '</option>';
+	$sql = 'SELECT * '
+		 . '  FROM Configs'
+		 . ' WHERE group_set = "' . $group_set . '"'
+		 . ' ORDER BY sequence, name'
+		 ;
+    if ($initial == '') {
+        $return = '';
+	}else{
+//		$return = '<option value="*">' . $initial . '</option>';
+		$return = '<option value="All">' . $initial . '</option>';
+	}
 
-	  if(  $sql != '' ) {
-	       $db  = Zend_Registry::get( 'db' );
-	       $rows = $db->fetchAll( $sql );
+	if ($sql != '') {
+		$db  = Zend_Registry::get( 'db' );
+		$rows = $db->fetchAll( $sql );
 
-	       foreach( $rows as $row ) {
-		    if(  $row[ 'setting_value' ] == '' || $setting_set == 'User Roles' )
-			 $row[ 'setting_value' ] = $row[ 'setting_name' ];
-		    $selected = $row[ 'setting_name' ] == $select ? ' selected="selected"' : '';
-		    $return .= '<option value="' . $row[ 'setting_name' ] . '"' . $selected . '>' . $row[ 'setting_value' ] . '</options>';
-	       }
-	  }
-	  echo $return;
-     }
+		foreach ($rows as $row) {
+			if ($row['value'] == ''){
+				$row['value'] = $row['name'];
+			}
+		$selected = $row['name'] == $select ? ' selected="selected"' : '';
+		$return .= '<option value="' . $row['name'] . '"' . $selected . '>' . $row['value'] . '</options>';
+		}
+	}
+	echo $return;
+}
 
 /*
  *   $.ajax({ method: get_categories, parent_id: 9...9, select: x...x, initial: x...x });

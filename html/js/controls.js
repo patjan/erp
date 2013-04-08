@@ -58,7 +58,7 @@ JKY.set_initial_values = function() {
 		JKY.set_active('jky-menu-admin');
 		JKY.set_active('jky-admin-controls');
 		JKY.set_html('jky-app-breadcrumb', jky_program);
-		JKY.set_html('jky-app-select', JKY.set_group_set(jky_select, 'Root'));
+		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table, jky_select, 'Root'));
 		JKY.display_list();
 		JKY.show('jky-side-admin');
 		JKY.show('jky-action-add-new');
