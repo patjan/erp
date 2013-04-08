@@ -37,9 +37,7 @@ input.span2 {width:80px; padding:2px 4px;}
 
 .jky-form-line			{clear:both; padding-top:2px;}
 .jky-form-label			{float:left; width:100px; margin:3px 7px; text-align:right; font-weight:bold;}
-.jky-form-label2		{float:left; width:200px; margin:3px 7px; text-align:right; font-weight:bold;}
 .jky-form-value			{float:left; width:300px;}
-.jky-form-value2		{float:left; width:180px;}
 
 .jky-tab-label			{text-align:right; padding-right:10px; font-weight:bold;}
 .jky-tab-label:after	{content:':';}

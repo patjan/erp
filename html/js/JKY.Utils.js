@@ -404,6 +404,19 @@ JKY.set_value = function(id_name, value){
 }
 
 /**
+ * set check specific value = [yes]
+ * @param	id_name
+ * @param	value
+ */
+JKY.set_check = function(id_name, value){
+     $('#' + id_name).removeAttr('checked');
+     if(  value == 'yes' ) {
+          var my_command = "$('#" + id_name + "').attr('checked', 'checked');";
+          setTimeout(my_command, 100);
+     }
+}
+
+/**
  * set selected specific id with value
  * @param	id_name
  * @param	value
