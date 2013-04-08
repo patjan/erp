@@ -1107,6 +1107,32 @@ private function insert($data) {
 		$set .= ',     company_id= ' . get_session( 'company_id' );
 	}
 
+     if(  $table == 'Companies' ) {
+	  $set .= ',      parent_id= ' . get_session( 'control_company', COMPANY_ID );
+	  $set .= ', company_number= ' . $this->getUniqueNumber( $table, 'company_number' );
+     }
+
+     if(  $table == 'Services' ) {
+	  $sets  = explode( ',', $set );
+	  $names = explode( '=', $sets[ 0 ]); $user_id  = $names[ 1 ];
+	  $names = explode( '=', $sets[ 1 ]); $event_id = $names[ 1 ];
+
+	  $sql = 'SELECT next_number FROM Events WHERE id = ' . $event_id;
+	  $helper_number = $db->fetchOne( $sql );
+	  $sql = 'UPDATE Events SET next_number = next_number + 1 WHERE id = ' . $event_id;
+	  $db->query( $sql );
+	  $set .= ', helper_number= ' . $helper_number;
+
+	  $sql = 'SELECT birth_date FROM Persons  WHERE id = ' .  $user_id;
+	  $birth_date = $db->fetchOne( $sql );
+	  $sql = 'SELECT start_date FROM Events WHERE id = ' . $event_id;
+	  $start_date = $db->fetchOne( $sql );
+	  if(  $birth_date ) {
+	       $diff = abs( strtotime( $start_date ) - strtotime( $birth_date ));
+	       $set .= ', helper_age= ' . floor( $diff / ( 365.25*60*60*24 ));
+	  }
+     }
+
 //     if(  $table == 'Templates' ) {
 //          $set .= ',     company_id= ' . get_session( 'control_company', COMPANY_ID );
 //     }
@@ -1222,7 +1248,7 @@ private function delete($data) {
 	if ($where == '') {
 		$this->echo_error('missing [where] statement');
 		return;
-    }
+	}
 
 	$return = array();
 	$return['status'] = 'ok';

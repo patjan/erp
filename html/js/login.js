@@ -36,7 +36,7 @@ JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values');
 	if ($('#jky-body-loaded').length > 0) {
 		JKY.set_html('jky-log-in-logo', '<img src="/img/' + JKY.Session.get_value('company_logo') + '" />');
-		$('#jky-log-in-user-name').val('patjan');
+		$('#jky-log-in-user-name').val('joeljan');
 		$('#jky-log-in-password' ).val('brazil');
 		JKY.set_button_log_in();
 		JKY.set_focus('jky-log-in-user-name');

@@ -694,12 +694,12 @@ JKY.set_company_name = function(company_name) {
  */
 JKY.set_user_info = function(full_name) {
 	if (full_name === null) {
-		JKY.set_html('jky-full-name', '');
+		JKY.set_html('jky-user-full-name', '');
 		JKY.hide('jky-user-logged');
 		JKY.show('jky-user-unkown');
 	}else{
 		var my_log_off = ':&nbsp; <a href="#" onclick="JKY.process_log_off()">Log Off</a>';
-		JKY.set_html('jky-full-name', full_name + my_log_off);
+		JKY.set_html('jky-user-full-name', full_name + my_log_off);
 		JKY.hide('jky-user-unkown')
 		JKY.show('jky-user-logged');
 	}
@@ -951,7 +951,7 @@ JKY.run_export = function(table, select, filter, specific, sort_by) {
 		+ '<input type="hidden" name="order_by" value="' + sort_by	+ '" />'
 		+ '</form>'
 		;
-     $('#jky-export-html').html(my_html);
-     $('#jky-export-form').submit();
+	$('#jky-export-html').html(my_html);
+	$('#jky-export-form').submit();
 };
 

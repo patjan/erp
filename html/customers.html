@@ -1,8 +1,8 @@
 <div id='jky-app-header'>
 	<div>
 		<div id='jky-app-breadcrumb'></div>
-<!--<select id='jky-app-select'></select>-->
-		<input id='jky-app-filter' class='search-query' type='text' placeholder='Search' />
+<!--	<select id='jky-app-select'></select>-->
+		<input  id='jky-app-filter' class='search-query' type='text' placeholder='Search' />
 		<div class='jky-clear'></div>
 	</div>
 
@@ -15,7 +15,7 @@
 		</div>
 		<div id='jky-app-more'>
 			<button id='jky-action-export'	class='btn btn-success' type='button'>Export	</button>
-<!--<button id='jky-action-publish'	class='btn btn-success' type='button'>Publish	</button>-->
+<!--		<button id='jky-action-publish'	class='btn btn-success' type='button'>Publish	</button>	-->
 		</div>
 		<div id='jky-app-displays' class='btn-group'>
 			<button id='jky-action-list'	class='btn' title='List View'><i class='icon-align-justify'	></i></button>
@@ -49,7 +49,8 @@
 #jky-sequence		{width: 30px;}
 #jky-name			{}
 #jky-value			{width:295px; height:100px;}
-#jky-customer-name		{width:375px; font-size:20px; font-weight:bold;}
+
+#jky-full-name			{width:375px; font-size:20px; font-weight:bold;}
 #jky-company-name		{width:385px;}
 #jky-customer-tags		{width:385px;}
 
@@ -70,7 +71,7 @@
 	<thead>
 		<tr>
 			<th    id='jky-check-all'	><input type='checkbox' /></th>
-			<th class='jky-name'		>Name		</th>
+			<th class='jky-full-name'	>Name		</th>
 			<th class='jky-phone'		>Phone		</th>
 			<th class='jky-email'		>Email		</th>
 		</tr>
@@ -102,26 +103,26 @@
 	</div>
 
 	<div id='jky-form-data'>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'>Name:</div>
-				<div class='jky-form-value'>
-					<input id='jky-customer-name' class='jky-form-value' placeholder='Name' />
-					<input type='checkbox' id='jky-is-company' value='yes' /> (Is a Company ?)
-					<select id='jky-company-name' placeholder='Company'>
-						<option>ABC Company</option>
-						<option class='jky-option-search'>Search More...</option>
-						<option class='jky-option-add-new'>Add New...</option>
-					</select>
-					<select id='jky-customer-tags' placeholder='Tags...'>
-						<option>Company Contact</option>
-						<option>Employee</option>
-						<option class='jky-option-search'>Search More...</option>
-						<option class='jky-option-add-new'>Add New...</option>
-					</select>
-				</div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'>Name:</div>
+			<div class='jky-form-value'>
+				<input id='jky-full-name' class='jky-form-value' placeholder='Name' />
+				<input type='checkbox' id='jky-is-company' value='yes' /> (Is a Company ?)
+				<select id='jky-company-name' placeholder='Company'>
+					<option>ABC Company</option>
+					<option class='jky-option-search'>Search More...</option>
+					<option class='jky-option-add-new'>Add New...</option>
+				</select>
+				<select id='jky-customer-tags' placeholder='Tags...'>
+					<option>Company Contact</option>
+					<option>Employee</option>
+					<option class='jky-option-search'>Search More...</option>
+					<option class='jky-option-add-new'>Add New...</option>
+				</select>
 			</div>
-                 <div class="jky-clear"></div>       
-                 <div class="jky-left">
+		</div>
+		<div class='jky-clear'></div>
+		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'>Address:</div>
 				<div class='jky-form-value'>
@@ -142,9 +143,9 @@
 				</div>
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'>		Website:</div><div class='jky-form-value'><input id='jky-website'	class='jky-form-value' placeholder='Website'			/></div></div>
-                </div>
+		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'>	   Position:</div><div class='jky-form-value'><input id='jky-phone'		class='jky-form-value' placeholder='e.g. 123 456 7890'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>	   Position:</div><div class='jky-form-value'><input id='jky-position'	class='jky-form-value' placeholder='e.g. Sales Staff'	/></div></div>
 			<div class='jky-form-line'><div class='jky-form-label'>		  Phone:</div><div class='jky-form-value'><input id='jky-phone'		class='jky-form-value' placeholder='Phone'				/></div></div>
 			<div class='jky-form-line'><div class='jky-form-label'>		 Mobile:</div><div class='jky-form-value'><input id='jky-mobile'	class='jky-form-value' placeholder='Mobile'				/></div></div>
 			<div class='jky-form-line'><div class='jky-form-label'>		    Fax:</div><div class='jky-form-value'><input id='jky-fax'		class='jky-form-value' placeholder='Fax'				/></div></div>
@@ -225,5 +226,4 @@
 </div>
 
 <div id='jky-body-loaded'></div>
-
 <script src='js/customers.js'></script>
