@@ -1,1 +1,3 @@
 UPDATE Controls SET status = 'Active' WHERE status = 'active';
+
+UPDATE Controls SET company_id='3';
