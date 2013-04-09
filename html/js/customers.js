@@ -59,8 +59,8 @@ JKY.set_initial_values = function() {
 		JKY.set_active('jky-menu-sales');
 		JKY.set_active('jky-sales-customers');
 		JKY.set_html('jky-app-breadcrumb', jky_program);
+        JKY.set_html('jky-state'  , JKY.set_group_set('Configs', '', 'States'	));
         JKY.set_html('jky-country', JKY.set_group_set('Configs', '', 'Countries'));
-        JKY.set_html('jky-state', JKY.set_group_set('Configs', '', 'States'));	
 		JKY.display_list();
 		JKY.show('jky-side-sales');
 		JKY.show('jky-action-add-new');

@@ -2060,6 +2060,44 @@ private function get_controls() {
  *           ...
  */
 private function get_configs() {
+	$table		= get_request('table'	);
+	$selected	= get_request('selected'	);
+	$initial	= get_request('initial'		);
+
+	$sql = 'SELECT * '
+		 . '  FROM ' . $table
+		 . ' WHERE group_set = "' . $group_set . '"'
+		 . ' ORDER BY sequence, name'
+		 ;
+    if ($initial == '') {
+        $return = '';
+	}else{
+//		$return = '<option value="*">' . $initial . '</option>';
+		$return = '<option value="All">' . $initial . '</option>';
+	}
+
+	if ($sql != '') {
+		$db  = Zend_Registry::get( 'db' );
+		$rows = $db->fetchAll( $sql );
+
+		foreach ($rows as $row) {
+			if ($row['value'] == ''){
+				$row['value'] = $row['name'];
+			}
+		$selected = $row['name'] == $select ? ' selected="selected"' : '';
+		$return .= '<option value="' . $row['name'] . '"' . $selected . '>' . $row['value'] . '</options>';
+		}
+	}
+	echo $return;
+}
+
+/*
+ *   $.ajax({ method: get_configs, group_set: x...x, select: x...x, initial: x...x });
+ *
+ *   return: <options value="x...x" selected="selected">x...x</options>
+ *           ...
+ */
+private function get_optionss() {
 	$group_set	= get_request('group_set'	);
 	$selected	= get_request('selected'	);
 	$initial	= get_request('initial'		);

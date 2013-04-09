@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `configs` (
 --
 
 INSERT INTO `configs` (`id`, `created_at`, `created_by`, `updated_at`, `updated_by`, `status`, `company_id`, `sequence`, `group_set`, `name`, `value`) VALUES
-(1, NULL, NULL, NULL, NULL, 'Active', 3, 0, 'Root', 'Root', NULL),
+(1, NULL, NULL, NULL, NULL, 'Active', 3, 0, 'Root', 'Root', ''),
 (2, '2013-04-08 14:53:58', 4, NULL, NULL, 'Active', 1, 50, 'Root', 'Countries', ''),
 (3, '2013-04-08 15:11:48', 4, NULL, NULL, 'Active', 1, 50, 'Root', 'States', ''),
 (4, '2013-04-08 15:13:00', 4, '2013-04-08 15:13:23', 4, 'Active', 1, 50, 'Countries', 'US', 'United States'),

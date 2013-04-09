@@ -48,3 +48,7 @@ CREATE TABLE IF NOT EXISTS Contacts
 , KEY email		(email		)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
+
+
+ALTER TABLE Contacts      ADD COLUMN is_customer    CHAR(3)   DEFAULT 'no'  AFTER is_company;
+ALTER TABLE Contacts      ADD COLUMN is_customer    CHAR(3)   DEFAULT 'no'  AFTER is_company;

@@ -834,10 +834,16 @@ JKY.set_group_set = function(table, selected, group_set) {
 						my_html += '<option value="All" selected="selected">All</option>';
 					}
 					for(var i=0; i<response.rows.length; i+=1) {
-						var my_name = response.rows[i]['name'];
+						var my_name  = response.rows[i]['name' ];
+						var my_value = response.rows[i]['value'];
+						if (my_value == '') {
+							my_value = my_name;
+						}
 						var my_selected = (my_name === selected) ? ' selected="selected"' : '';
-						my_html += '<option value="' + my_name + '"' + my_selected + '>' + my_name + '</option>';
+						my_html += '<option value="' + my_name + '"' + my_selected + '>' + my_value + '</option>';
 					}
+					my_html += '<option onclick="JKY.process_option_search(this)"	class="jky-option-search"	>Search More...</option>';
+					my_html += '<option onclick="JKY.process_option_add_new(this)"	class="jky-option-add-new"	>Add New...</option>';
 				}else{
 					JKY.display_message(response.message);
 				}
