@@ -1,3 +1,5 @@
 UPDATE Controls SET status = 'Active' WHERE status = 'active';
 
 UPDATE Controls SET company_id='3';
+
+UPDATE Configs SET value='' WHERE group_set='States' 
