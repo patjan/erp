@@ -2405,7 +2405,7 @@ body 	{
 .openerp .oe_list_buttons .oe_alternative {
     visibility: hidden;
 }
-.openerp .oe_list_buttons .oe_list_save, .openerp .oe_list_buttons .oe_list_cancel {
+.openerp .oe_list_buttons .oe_list_save, .openerp .oe_list_buttons .oe_list_discard {
     display: none;
 }
 .openerp .oe_list_buttons.oe_editing .oe_list_add {
@@ -2414,7 +2414,7 @@ body 	{
 .openerp .oe_list_buttons.oe_editing .oe_list_save {
     display: inline-block;
 }
-.openerp .oe_list_buttons.oe_editing .oe_list_cancel {
+.openerp .oe_list_buttons.oe_editing .oe_list_discard {
     display: inline;
 }
 .openerp .oe_list_buttons.oe_editing .oe_alternative {

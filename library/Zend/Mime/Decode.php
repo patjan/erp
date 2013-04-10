@@ -51,7 +51,7 @@ class Zend_Mime_Decode
         $res = array();
         // find every mime part limiter and cut out the
         // string before it.
-        // the part before the first boundary string is canceled:
+        // the part before the first boundary string is discarded:
         $p = strpos($body, '--' . $boundary . "\n", $start);
         if ($p === false) {
             // no parts found!

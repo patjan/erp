@@ -123,7 +123,7 @@ abstract class Zend_Pdf_FileParser
     /**
      * Object destructor.
      *
-     * Cancels the data source object.
+     * Discards the data source object.
      */
     public function __destruct()
     {

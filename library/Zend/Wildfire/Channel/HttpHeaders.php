@@ -251,7 +251,7 @@ class Zend_Wildfire_Channel_HttpHeaders extends Zend_Controller_Plugin_Abstract 
      * logged, the client will be able to receive them. As soon as the request/response
      * objects are availoable and a message is logged this assumption is challenged.
      * If the client cannot accept the messages any further messages are dropped
-     * and messages sent prior are kept but canceled when the channel is finally
+     * and messages sent prior are kept but discarded when the channel is finally
      * flushed at the end of the request.
      *
      * When the channel is flushed the $forceCheckRequest option is used to force
