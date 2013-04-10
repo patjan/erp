@@ -3,6 +3,9 @@
 /**
  * main function
  */
+var jky_program		= 'Home';
+
+
 $(function() {
 	JKY.display_trace('start_program - home');
 
@@ -18,6 +21,7 @@ $(function() {
 	if (JKY.Session.has('full_name')) {
 //		JKY.process_start_page();
 		JKY.set_all_events();
+		JKY.set_initial_values();
 	}else{
 		JKY.process_action('login');
 	}
@@ -28,20 +32,22 @@ $(function() {
  */
 JKY.set_all_events = function() {
 	JKY.display_trace('set_all_events');
-	if ($('#jky-loaded').length > 0) {
-		$('#jky-sign-up'				).click (function() {JKY.display_sign_up		()		;});
-		$('#jky-log-in'					).click (function() {JKY.display_log_in			()		;});
-		$('#jky-profile'				).click (function() {JKY.display_profile		()		;});
-		$('#jky-log-out'				).click (function() {JKY.display_log_out		()		;});
+	if (JKY.is_loaded('jky-body')) {
+		$('#jky-sign-up'			).click (function() {JKY.display_sign_up		()		;});
+		$('#jky-log-in'				).click (function() {JKY.display_log_in			()		;});
+		$('#jky-profile'			).click (function() {JKY.display_profile		()		;});
+		$('#jky-log-out'			).click (function() {JKY.display_log_out		()		;});
 
-		$('#jky-company-logo'			).click (function() {JKY.display_wordpress		()		;});
-		$('#jky-company-name'			).click (function() {JKY.display_company		(this)	;});
+		$('#jky-company-logo'		).click (function() {JKY.display_wordpress		()		;});
+		$('#jky-company-name'		).click (function() {JKY.display_company		(this)	;});
 
-		$('#jky-copyright'				).click (function() {JKY.display_copyright		()		;});
-//		$('#jky-contact-us'				).click (function() {JKY.display_contact_us		()		;});
+		$('#jky-copyright'			).click (function() {JKY.display_copyright		()		;});
+//		$('#jky-contact-us'			).click (function() {JKY.display_contact_us		()		;});
 
-		$('#jky-admin-configs'			).click (function() {JKY.process_action('configs')		;});
-		$('#jky-admin-controls'			).click (function() {JKY.process_action('controls')		;});
+		$('#jky-sales-customers'	).click (function() {JKY.process_action('customers')	;});
+		$('#jky-products-machines'	).click (function() {JKY.process_action('machines')		;});
+		$('#jky-admin-configs'		).click (function() {JKY.process_action('configs')		;});
+		$('#jky-admin-controls'		).click (function() {JKY.process_action('controls')		;});
 
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
@@ -49,17 +55,20 @@ JKY.set_all_events = function() {
 }
 
 /**
- *	set buttons event
+ *	set initial values (run only once per load)
  */
-JKY.set_buttons_event = function() {
-	JKY.display_trace('set_buttons_event');
-	if ($('#jky-loaded').length > 0) {
+JKY.set_initial_values = function() {
+	JKY.display_trace('set_initial_values');
+	if (JKY.is_loaded('jky-body')) {
 		$('#jky-home'					).click (function() {JKY.process_home			()		;});
 		$('#jky-help'					).click (function() {JKY.process_help			()		;});
 		$('#jky-my-info'				).click (function() {JKY.process_my_info		()		;});
 		$('#jky-control-language'		).change(function() {JKY.change_language		(this)	;});
+		JKY.set_html('jky-app-breadcrumb', jky_program);
+		JKY.show('jky-side-sales');
+		JKY.show('jky-side-admin');
 	}else{
-		setTimeout(function() {JKY.set_buttons_events();}, 100);
+		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
 }
 
