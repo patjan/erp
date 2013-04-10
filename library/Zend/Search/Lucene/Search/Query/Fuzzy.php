@@ -236,7 +236,7 @@ class Zend_Search_Lucene_Search_Query_Fuzzy extends Zend_Search_Lucene_Search_Qu
                         //for example "pre" length is 3 and "prefixes" length is 8.  We can see that
                         //given this optimal circumstance, the edit distance cannot be less than 5.
                         //which is 8-3 or more precisesly abs(3-8).
-                        //if our maximum edit distance is 4, then we can discard this word
+                        //if our maximum edit distance is 4, then we can cancel this word
                         //without looking at it.
                         $similarity = 0;
                     } else {
@@ -272,7 +272,7 @@ class Zend_Search_Lucene_Search_Query_Fuzzy extends Zend_Search_Lucene_Search_Qu
                         //for example "pre" length is 3 and "prefixes" length is 8.  We can see that
                         //given this optimal circumstance, the edit distance cannot be less than 5.
                         //which is 8-3 or more precisesly abs(3-8).
-                        //if our maximum edit distance is 4, then we can discard this word
+                        //if our maximum edit distance is 4, then we can cancel this word
                         //without looking at it.
                         $similarity = 0;
                     } else {
@@ -460,7 +460,7 @@ class Zend_Search_Lucene_Search_Query_Fuzzy extends Zend_Search_Lucene_Search_Qu
                     //for example "pre" length is 3 and "prefixes" length is 8.  We can see that
                     //given this optimal circumstance, the edit distance cannot be less than 5.
                     //which is 8-3 or more precisesly abs(3-8).
-                    //if our maximum edit distance is 4, then we can discard this word
+                    //if our maximum edit distance is 4, then we can cancel this word
                     //without looking at it.
                     $similarity = 0;
                 } else {

@@ -35,7 +35,7 @@ JKY.set_all_events = function() {
 		$('#jky-action-add-new'	).click (function() {JKY.process_add_new	();});
 		$('#jky-action-save'	).click (function() {JKY.process_save		();});
 		$('#jky-action-delete'	).click (function() {JKY.process_delete		();});
-		$('#jky-action-discard'	).click (function() {JKY.process_discard	();});
+		$('#jky-action-cancel'	).click (function() {JKY.process_cancel	();});
 		$('#jky-action-export'	).click (function() {JKY.process_export		();});
 		$('#jky-action-publish'	).click (function() {JKY.process_publish	();});	// not needed on version 0
 		$('#jky-action-prev'	).click (function() {JKY.display_prev		();});
@@ -98,7 +98,7 @@ JKY.display_list = function() {
 	JKY.show('jky-action-add-new'	);
 	JKY.hide('jky-action-save'		);
 	JKY.hide('jky-action-delete'	);
-	JKY.hide('jky-action-discard'	);
+	JKY.hide('jky-action-cancel'	);
 	JKY.show('jky-app-table'		);
 	JKY.hide('jky-app-form'			);
 }
@@ -113,7 +113,7 @@ JKY.display_form = function(index) {
 	JKY.hide('jky-action-add-new'	);
 	JKY.show('jky-action-save'		);
 	JKY.show('jky-action-delete'	);
-	JKY.show('jky-action-discard'	);
+	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
 }
@@ -204,7 +204,7 @@ JKY.process_add_new = function() {
 	JKY.hide('jky-action-add-new'	);
 	JKY.show('jky-action-save'		);
 	JKY.hide('jky-action-delete'	);
-	JKY.show('jky-action-discard'	);
+	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
 }
@@ -310,7 +310,7 @@ JKY.process_delete_success = function(response) {
 	JKY.display_list();
 }
 
-JKY.process_discard = function() {
+JKY.process_cancel = function() {
 	JKY.show('jky-action-delete'	);
 	JKY.show('jky-app-navs'			);
 	JKY.hide('jky-app-add-new'		);

@@ -41,8 +41,8 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
        pickletools groups them by purpose. */
     const OP_MARK            = '(';     // push special markobject on stack
     const OP_STOP            = '.';     // every pickle ends with STOP
-    const OP_POP             = '0';     // discard topmost stack item
-    const OP_POP_MARK        = '1';     // discard stack top through topmost markobject
+    const OP_POP             = '0';     // cancel topmost stack item
+    const OP_POP_MARK        = '1';     // cancel stack top through topmost markobject
     const OP_DUP             = '2';     // duplicate top stack item
     const OP_FLOAT           = 'F';     // push float object; decimal string argument
     const OP_INT             = 'I';     // push integer or bool; decimal string argument
