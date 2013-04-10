@@ -882,7 +882,13 @@ JKY.ajax = function(async, data, function_success, function_error) {
 				if (response.status == 'ok') {
 					function_success(response);
 				}else{
-					JKY.display_message(response.message);
+					var my_messages = response.message.split(':');
+					var my_words = my_messages[2].trim().split(' ');
+					if (my_words[0] == '1062') {
+						JKY.display_message('Error, the key of this record is already taken.');
+					}else{
+						JKY.display_message(response.message);
+					}
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
