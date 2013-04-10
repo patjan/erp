@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 08, 2013 at 04:37 PM
+-- Generation Time: Apr 09, 2013 at 07:27 PM
 -- Server version: 5.1.50
 -- PHP Version: 5.3.14
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `configs` (
   KEY `sequence` (`company_id`,`sequence`),
   KEY `group_set` (`group_set`,`sequence`),
   KEY `name` (`name`,`sequence`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=31 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=39 ;
 
 --
 -- Dumping data for table `configs`
@@ -53,28 +53,35 @@ INSERT INTO `configs` (`id`, `created_at`, `created_by`, `updated_at`, `updated_
 (3, '2013-04-08 15:11:48', 4, NULL, NULL, 'Active', 1, 50, 'Root', 'States', ''),
 (4, '2013-04-08 15:13:00', 4, '2013-04-08 15:13:23', 4, 'Active', 1, 50, 'Countries', 'US', 'United States'),
 (5, '2013-04-08 15:13:45', 4, NULL, NULL, 'Active', 1, 50, 'Countries', 'BR', 'Brasil'),
-(6, '2013-04-08 15:14:32', 4, NULL, NULL, 'Active', 1, 50, 'States', 'AC', 'Acre'),
-(7, '2013-04-08 15:14:39', 4, NULL, NULL, 'Active', 1, 50, 'States', 'CA', 'California'),
-(8, '2013-04-08 15:14:49', 4, NULL, NULL, 'Active', 1, 50, 'States', 'AL', 'Alagoas'),
-(9, '2013-04-08 15:14:59', 4, NULL, NULL, 'Active', 1, 50, 'States', 'AP', 'Amapa'),
-(10, '2013-04-08 15:15:51', 4, NULL, NULL, 'Active', 1, 50, 'States', 'AM', 'Amazonas'),
-(11, '2013-04-08 15:15:59', 4, NULL, NULL, 'Active', 1, 50, 'States', 'BA', 'Bahia'),
-(12, '2013-04-08 15:16:05', 4, NULL, NULL, 'Active', 1, 50, 'States', 'CE', 'Ceara'),
-(13, '2013-04-08 15:16:16', 4, NULL, NULL, 'Active', 1, 50, 'States', 'DF', 'Distrito Federal'),
-(14, '2013-04-08 15:16:27', 4, NULL, NULL, 'Active', 1, 50, 'States', 'ES', 'Espirito Santo'),
-(15, '2013-04-08 15:16:36', 4, NULL, NULL, 'Active', 1, 50, 'States', 'GO', 'Goias'),
-(16, '2013-04-08 15:16:48', 4, NULL, NULL, 'Active', 1, 50, 'States', 'MA', 'Maranhao'),
-(17, '2013-04-08 15:16:59', 4, NULL, NULL, 'Active', 1, 50, 'States', 'MT', 'Mato Grosso'),
-(18, '2013-04-08 15:17:09', 4, NULL, NULL, 'Active', 1, 50, 'States', 'MS', 'Mato Grosso do Sul'),
-(19, '2013-04-08 15:17:15', 4, NULL, NULL, 'Active', 1, 50, 'States', 'MG', 'Minas Gerais'),
-(20, '2013-04-08 15:17:28', 4, NULL, NULL, 'Active', 1, 50, 'States', 'PA', 'Para'),
-(21, '2013-04-08 15:17:35', 4, NULL, NULL, 'Active', 1, 50, 'States', 'PB', 'Paraiba'),
-(22, '2013-04-08 15:17:43', 4, NULL, NULL, 'Active', 1, 50, 'States', 'PE', 'Pernambuco'),
-(23, '2013-04-08 15:17:50', 4, NULL, NULL, 'Active', 1, 50, 'States', 'PI', 'Piaui'),
-(24, '2013-04-08 15:18:00', 4, NULL, NULL, 'Active', 1, 50, 'States', 'RJ', 'Rio de Janeiro'),
-(25, '2013-04-08 15:18:14', 4, NULL, NULL, 'Active', 1, 50, 'States', 'RS', 'Rio Grande de Sul'),
-(26, '2013-04-08 15:18:29', 4, NULL, NULL, 'Active', 1, 50, 'States', 'RO', 'Rondonia'),
-(27, '2013-04-08 15:18:36', 4, NULL, NULL, 'Active', 1, 50, 'States', 'RR', 'Roraima'),
-(28, '2013-04-08 15:18:43', 4, NULL, NULL, 'Active', 1, 50, 'States', 'SP', 'Sao Paulo'),
-(29, '2013-04-08 15:18:49', 4, NULL, NULL, 'Active', 1, 50, 'States', 'SE', 'Sergipe'),
-(30, '2013-04-08 15:18:59', 4, NULL, NULL, 'Active', 1, 50, 'States', 'TO', 'Tocantins');
+(31, '2013-04-08 16:41:06', 4, NULL, NULL, 'Active', 1, 50, 'States', 'AC', ''),
+(7, '2013-04-08 15:14:39', 4, NULL, NULL, 'Active', 1, 50, 'States', 'CA', ''),
+(8, '2013-04-08 15:14:49', 4, NULL, NULL, 'Active', 1, 50, 'States', 'AL', ''),
+(9, '2013-04-08 15:14:59', 4, NULL, NULL, 'Active', 1, 50, 'States', 'AP', ''),
+(10, '2013-04-08 15:15:51', 4, NULL, NULL, 'Active', 1, 50, 'States', 'AM', ''),
+(11, '2013-04-08 15:15:59', 4, NULL, NULL, 'Active', 1, 50, 'States', 'BA', ''),
+(12, '2013-04-08 15:16:05', 4, NULL, NULL, 'Active', 1, 50, 'States', 'CE', ''),
+(13, '2013-04-08 15:16:16', 4, NULL, NULL, 'Active', 1, 50, 'States', 'DF', ''),
+(14, '2013-04-08 15:16:27', 4, NULL, NULL, 'Active', 1, 50, 'States', 'ES', ''),
+(15, '2013-04-08 15:16:36', 4, NULL, NULL, 'Active', 1, 50, 'States', 'GO', ''),
+(16, '2013-04-08 15:16:48', 4, NULL, NULL, 'Active', 1, 50, 'States', 'MA', ''),
+(17, '2013-04-08 15:16:59', 4, NULL, NULL, 'Active', 1, 50, 'States', 'MT', ''),
+(18, '2013-04-08 15:17:09', 4, NULL, NULL, 'Active', 1, 50, 'States', 'MS', ''),
+(19, '2013-04-08 15:17:15', 4, NULL, NULL, 'Active', 1, 50, 'States', 'MG', ''),
+(20, '2013-04-08 15:17:28', 4, NULL, NULL, 'Active', 1, 50, 'States', 'PA', ''),
+(21, '2013-04-08 15:17:35', 4, NULL, NULL, 'Active', 1, 50, 'States', 'PB', ''),
+(22, '2013-04-08 15:17:43', 4, NULL, NULL, 'Active', 1, 50, 'States', 'PE', ''),
+(23, '2013-04-08 15:17:50', 4, NULL, NULL, 'Active', 1, 50, 'States', 'PI', ''),
+(24, '2013-04-08 15:18:00', 4, NULL, NULL, 'Active', 1, 50, 'States', 'RJ', ''),
+(25, '2013-04-08 15:18:14', 4, NULL, NULL, 'Active', 1, 50, 'States', 'RS', ''),
+(26, '2013-04-08 15:18:29', 4, NULL, NULL, 'Active', 1, 50, 'States', 'RO', ''),
+(27, '2013-04-08 15:18:36', 4, NULL, NULL, 'Active', 1, 50, 'States', 'RR', ''),
+(28, '2013-04-08 15:18:43', 4, NULL, NULL, 'Active', 1, 50, 'States', 'SP', ''),
+(29, '2013-04-08 15:18:49', 4, NULL, NULL, 'Active', 1, 50, 'States', 'SE', ''),
+(30, '2013-04-08 15:18:59', 4, NULL, NULL, 'Active', 1, 50, 'States', 'TO', ''),
+(32, '2013-04-09 18:02:00', 4, NULL, NULL, 'Active', 1, 50, 'Root', 'Machine Types', ''),
+(33, '2013-04-09 18:02:08', 4, NULL, NULL, 'Active', 1, 50, 'Root', 'Machine Brands', ''),
+(34, '2013-04-09 18:04:00', 4, NULL, NULL, 'Active', 1, 50, 'Machine Types', 'CIRCULAR', ''),
+(35, '2013-04-09 18:08:42', 4, NULL, NULL, 'Active', 1, 50, 'Machine Types', 'RETILINEA', ''),
+(36, '2013-04-09 18:08:48', 4, '2013-04-09 18:09:04', 4, 'Active', 1, 50, 'Machine Brands', 'BRAND1', ''),
+(37, '2013-04-09 18:08:50', 4, '2013-04-09 18:09:08', 4, 'Active', 1, 50, 'Machine Brands', 'BRAND2', ''),
+(38, '2013-04-09 18:08:51', 4, '2013-04-09 18:09:12', 4, 'Active', 1, 50, 'Machine Brands', 'BRAND3', '');
