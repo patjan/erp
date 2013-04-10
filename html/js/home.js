@@ -16,7 +16,8 @@ $(function() {
 	JKY.set_all_events();
 
 	if (JKY.Session.has('full_name')) {
-		JKY.process_start_page();
+//		JKY.process_start_page();
+		JKY.set_all_events();
 	}else{
 		JKY.process_action('login');
 	}
@@ -38,6 +39,9 @@ JKY.set_all_events = function() {
 
 		$('#jky-copyright'				).click (function() {JKY.display_copyright		()		;});
 //		$('#jky-contact-us'				).click (function() {JKY.display_contact_us		()		;});
+
+		$('#jky-admin-configs'			).click (function() {JKY.process_action('configs')		;});
+		$('#jky-admin-controls'			).click (function() {JKY.process_action('controls')		;});
 
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);

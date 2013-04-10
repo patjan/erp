@@ -10,13 +10,14 @@ CREATE TABLE IF NOT EXISTS JKY_Users
 , contact_id		BIGINT				DEFAULT NULL
 , start_date		DATE				DEFAULT NULL
 , end_date			DATE				DEFAULT NULL
-, user_name			VARCHAR(255)		DEFAULT NULL
+, user_name			VARCHAR(255)		DEFAULT NULL		// unique
 , user_type 		VARCHAR(32)			DEFAULT 'User'
 , user_role 		VARCHAR(32)			DEFAULT 'Guest'
 , user_key 			VARCHAR(255)		DEFAULT NULL
 , password			VARCHAR(255)		DEFAULT NULL
 
 , PRIMARY KEY(id)
+, UNIQUE(user_name)
 , KEY contact		(contact_id	)
 , KEY user_name		(user_name	)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1

@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS Purchases
 , payment_term      VARCHAR(255)		DEFAULT NULL
 
 , PRIMARY KEY(id)
+, UNIQUE(code)
 , KEY supplier(supplier_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;

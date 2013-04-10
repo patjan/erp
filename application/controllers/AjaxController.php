@@ -148,7 +148,7 @@ public function indexAction() {
 
 	switch( $method ) {
 	    case 'get_names'    : $this->get_names      (); break;
-	    case 'get_id'       : $this->get_id         (); break;
+	    case 'get_id'       : $this->get_id         ($data); break;
 	    case 'get_count'    : $this->get_count      (); break;
 	    case 'get_value'    : $this->get_value      (); break;
 	    case 'get_row'      : $this->get_row        ($data); break;
@@ -258,25 +258,25 @@ private function get_user_screen() {
  *   status: ok
  *       id: 9...9 (false)
  */
-private function get_id() {
-     $table = get_request('table');
-     $where = $this->get_security($table, get_request('where'));
+private function get_id($data) {
+	$table = get_data($data, 'table');
+	$where = $this->get_security($table, get_data($data, 'where'));
 
-     if(  $where == '' ) {
-	  $this->echo_error( 'missing [where] statement' );
-	  return;
-     }
+	if ($where == '') {
+		$this->echo_error('missing [where] statement');
+		return;
+	}
 
-     $sql = 'SELECT id'
-	  . '  FROM ' . $table
-	  . ' WHERE ' . $where
-	  ;
+	$sql= 'SELECT id'
+		. '  FROM ' . $table
+		. ' WHERE ' . $where
+		;
 //$this->log_sql( $table, 'get_id', $sql );
-     $db  = Zend_Registry::get( 'db' );
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'id'       ] = $db->fetchOne( $sql );
-     echo json_encode( $return );
+	$db = Zend_Registry::get('db');
+	$return = array();
+	$return['status'] = 'ok';
+	$return['id'	] = $db->fetchOne($sql);
+	echo json_encode($return);
 }
 
 /*
@@ -285,24 +285,24 @@ private function get_id() {
  *   status: ok
  *    count: 9...9
  */
-private function get_count() {
-     $table = get_request('table');
-     $where = $this->get_security($table, get_request('where'));
+private function get_count($data) {
+	$table = get_data($data, 'table');
+	$where = $this->get_security($table, get_data($data, 'where'));
 
-     if(  $where != '' ) {
-	  $where = ' WHERE ' . $where;
-     }
+	if ($where != '') {
+		$where = ' WHERE ' . $where;
+	}
 
-     $sql = 'SELECT COUNT(*) AS count'
-	  . '  FROM ' . $table
-	  . $where
-	  ;
+	$sql= 'SELECT COUNT(*) AS count'
+		. '  FROM ' . $table
+		. $where
+		;
 
-     $db  = Zend_Registry::get( 'db' );
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'count'    ] = $db->fetchOne( $sql );
-     echo json_encode( $return );
+	$db = Zend_Registry::get('db');
+	$return = array();
+	$return['status'] = 'ok';
+	$return['count'	] = $db->fetchOne($sql);
+	echo json_encode($return);
 }
 
 /*
@@ -311,30 +311,30 @@ private function get_count() {
  *   status: ok
  *    value: x...x (false)
  */
-private function get_value() {
-     $table = get_request( 'table' );
-     $field = get_request( 'field' );
-     $where = $this->get_security($table, get_request('where'));
+private function get_value($data) {
+	$table = get_data($data, 'table');
+	$field = get_data($data, 'field');
+	$where = $this->get_security($table, get_data($data, 'where'));
 
-     if(  $field == '' ) {
-	  $this->echo_error( 'missing [field] statement' );
-	  return;
-     }
+	if ($field == '') {
+		$this->echo_error('missing [field] statement');
+		return;
+	}
 
-     if(  $where == '' ) {
-	  $this->echo_error( 'missing [where] statement' );
-	  return;
-     }
+	if ($where == '') {
+		$this->echo_error('missing [where] statement');
+		return;
+	}
 
-     $sql = 'SELECT ' . $field
-	  . '  FROM ' . $table
-	  . ' WHERE ' . $where
-	  ;
-     $db  = Zend_Registry::get( 'db' );
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'value'    ] = $db->fetchOne( $sql );
-     echo json_encode( $return );
+	$sql= 'SELECT ' . $field
+		. '  FROM ' . $table
+		. ' WHERE ' . $where
+		;
+	$db = Zend_Registry::get('db');
+	$return = array();
+	$return['status'] = 'ok';
+	$return['value'	] = $db->fetchOne($sql);
+	echo json_encode($return);
 }
 
 /*
@@ -344,7 +344,7 @@ private function get_value() {
  *      row: { x...x: y...y, ... } (false)
  */
 private function get_row($data) {
-	$table = get_data($data, 'table'		);
+	$table = get_data($data, 'table');
 	$where = $this->get_security($table, get_data($data, 'where'));
 
 	if ($where == '') {
@@ -360,10 +360,10 @@ private function get_row($data) {
 	$db  = Zend_Registry::get('db');
 	$row = $db->fetchRow($sql);
 
-if(  $table == 'Categories' ) {
-     $sql = 'SELECT COUNT(*) FROM Categories WHERE parent_id = ' . $row[ 'id' ];
-     $row[ 'children' ] = $db->fetchOne( $sql );
-}
+	if ($table == 'Categories') {
+		$sql = 'SELECT COUNT(*) FROM Categories WHERE parent_id = ' . $row['id'];
+		$row['children'] = $db->fetchOne($sql);
+	}
 
 	$return = array();
 	$return['status'] = 'ok';
@@ -380,36 +380,36 @@ if(  $table == 'Categories' ) {
  *           ,{ x...x: y...y, ... }
  *           ]
  */
-private function get_rows() {
-     $table = get_request('table');
-     $where = $this->get_security($table, get_request('where'));
-     $order_by = get_request('order_by');
+private function get_rows($data) {
+	$table = get_data($data, 'table');
+	$where = $this->get_security($table, get_data($data, 'where'));
+	$order_by = get_data($data, 'order_by');
 
-     if(  $where    != '' )        $where    = ' WHERE '    . $where   ;
-     if(  $order_by != '' )        $order_by = ' ORDER BY ' . $order_by;
+	if ($where		!= '')		$where		= ' WHERE '		. $where	;
+	if ($order_by	!= '')		$order_by	= ' ORDER BY '	. $order_by	;
 
-     $sql = 'SELECT ' . $table . '.*' . $this->set_new_fields( $table )
-	  . '  FROM ' . $table        . $this->set_left_joins( $table )
-	  . $where
-	  . $order_by
-	  ;
-$this->log_sql( $table, 'get_rows', $sql );
-     $db  = Zend_Registry::get( 'db' );
-     $rows = $db->fetchAll( $sql );
+	$sql= 'SELECT ' . $table . '.*' . $this->set_new_fields($table)
+		. '  FROM ' . $table        . $this->set_left_joins($table)
+		. $where
+		. $order_by
+		;
+//$this->log_sql($table, 'get_rows', $sql);
+	$db   = Zend_Registry::get('db');
+	$rows = $db->fetchAll($sql);
 
-if(  $table == 'Categories' ) {
-     $n = 0;
-     foreach( $rows as $row ) {
-	  $sql = 'SELECT COUNT(*) FROM Categories WHERE parent_id = ' . $row[ 'id' ];
-	  $rows[ $n ][ 'children' ] = $db->fetchOne( $sql );
-	  $n++;
-     }
-}
+	if ($table == 'Categories') {
+		$n = 0;
+		foreach($rows as $row) {
+			$sql = 'SELECT COUNT(*) FROM Categories WHERE parent_id = ' . $row['id'];
+			$rows[$n]['children'] = $db->fetchOne($sql);
+			$n++;
+		}
+	}
 
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'rows'     ] = $rows;
-     echo json_encode( $return );
+	$return = array();
+	$return['status'] = 'ok';
+	$return['rows'	] = $rows;
+	echo json_encode($return);
 }
 
 /*
@@ -422,9 +422,9 @@ if(  $table == 'Categories' ) {
  *           ]
  */
 private function get_index($data) {
-//     if(  get_session('user_action') != 'All' ) {
-//          return;
-//     }
+	if (get_session('user_action') != 'All') {
+		return;
+	}
 
 	$table    = get_data($data, 'table'		);
 	$filter   = get_data($data, 'filter'	);
@@ -435,86 +435,90 @@ private function get_index($data) {
 
 	$where = '';
 
-	if ($specific != '' )
-		$where .= $this->set_specific( $table, $specific );
-
-	if ($select != 'All' )
-		$where .= $this->set_select( $table, $select );
-
-	if ($filter != '' ) {
-		$filters = explode( ' and ', $filter );
-		foreach( $filters as $filter )
-			$where .= $this->set_where( $table, $filter );
+	if ($specific != '') {
+		$where .= $this->set_specific($table, $specific);
 	}
 
-	if (is_numeric( $display ))
+	if ($select != 'All') {
+		$where .= $this->set_select($table, $select);
+	}
+
+	if ($filter != '') {
+		$filters = explode(' and ', $filter);
+		foreach($filters as $filter)
+			$where .= $this->set_where($table, $filter);
+	}
+
+	if (is_numeric( $display)) {
 		$limit = ' LIMIT ' . $display;
-	else $limit = '';
+	}else{
+		$limit = '';
+	}
 
-	if ($where    != '' )        $where    = ' WHERE 1 '  . $where   ;
-	if ($order_by != '' )        $order_by = ' ORDER BY ' . $order_by;
+	if ($where    != '')	{$where		= ' WHERE 1 '  . $where   ;}
+	if ($order_by != '')	{$order_by	= ' ORDER BY ' . $order_by;}
 
-	$sql = 'SELECT ' . $table . '.*' . $this->set_new_fields( $table )
-		 . '  FROM ' . $table        . $this->set_left_joins( $table )
-		 . $where
-		 . $order_by
-		 . $limit
-		 ;
-$this->log_sql( $table, 'get_index', $sql );
-     $db   = Zend_Registry::get( 'db' );
-     $rows = $db->fetchAll( $sql );
+	$sql= 'SELECT ' . $table . '.*' . $this->set_new_fields($table)
+		. '  FROM ' . $table        . $this->set_left_joins($table)
+		. $where
+		. $order_by
+		. $limit
+		;
+$this->log_sql($table, 'get_index', $sql);
+     $db   = Zend_Registry::get('db');
+     $rows = $db->fetchAll($sql);
 
-if(  $table == 'Categories' ) {
-     $n = 0;
-     foreach( $rows as $row ) {
-	  $sql = 'SELECT COUNT(*) FROM Categories WHERE parent_id = ' . $row[ 'id' ];
-	  $rows[ $n ][ 'children' ] = $db->fetchOne( $sql );
-	  $n++;
-     }
+	if ($table == 'Categories') {
+		$n = 0;
+		foreach($rows as $row) {
+			$sql = 'SELECT COUNT(*) FROM Categories WHERE parent_id = ' . $row['id'];
+			$rows[$n]['children'] = $db->fetchOne($sql);
+			$n++;
+		}
+	}
+
+	$return = array();
+	$return['status'] = 'ok';
+	$return['rows'	] = $rows;
+	$this->echo_json($return);
 }
 
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'rows'     ] = $rows;
-     $this->echo_json( $return );
+private function set_specific($table, $specific) {
+	$return = '';
+	if ($table == 'Groups'			&& $specific == 'event_id'	)		$return .= ' AND   Groups.event_id   = ' . get_session('event_id');
+	if ($table == 'Services'		&& $specific == 'event_id'	)		$return .= ' AND Services.event_id   = ' . get_session('event_id');
+	if ($table == 'Services'		&& $specific == 'fee_amount')       $return .= ' AND Services.fee_amount > 0';
+	if ($table == 'Translations'	&& $specific == 'locale'	)		$return .= ' AND Translations.locale = "en_us"';
+	if ($table == 'Persons'			&& $specific == 'organ_id'	)		$return .= ' AND    Persons.organ_id = ' . get_session('organ_id');
+//	if ($specific == 'parent_id')	$return .= ' AND Categories.parent_id = ' . get_session('parent_id');
+
+	return $return;
 }
 
-private function set_specific( $table, $specific ) {
-    $return = '';
-    if ($table == 'Groups'          && $specific == 'event_id'      )       $return .= ' AND   Groups.event_id   = ' . get_session(   'event_id' );
-    if ($table == 'Services'        && $specific == 'event_id'      )       $return .= ' AND Services.event_id   = ' . get_session(   'event_id' );
-    if ($table == 'Services'        && $specific == 'fee_amount'    )       $return .= ' AND Services.fee_amount > 0';
-    if ($table == 'Translations'    && $specific == 'locale'        )       $return .= ' AND Translations.locale = "en_us"';
-    if ($table == 'Persons'         && $specific == 'organ_id'      )       $return .= ' AND    Persons.organ_id = ' . get_session( 'organ_id' );
-//    if(  $specific ==  'parent_id' )  $return .= ' AND Categories.parent_id = ' . get_session(  'parent_id' );
+private function set_select($table, $select) {
+//	if ($select == '*' or $select == 'All')		return '';
+	if ($select == 'All')		return '';
 
-     return $return;
+	$return = '';
+	if ($table == 'Categories'	)	$return = ' AND         Parent.category      = "' . $select . '"';
+	if ($table == 'Controls'	)	$return = ' AND       Controls.group_set     = "' . $select . '"';
+	if ($table == 'Configs'		)	$return = ' AND        Configs.group_set     = "' . $select . '"';
+	if ($table == 'Companies'	)	$return = ' AND      Companies.status        = "' . $select . '"';
+	if ($table == 'Events'		)	$return = ' AND         Events.status        = "' . $select . '"';
+	if ($table == 'Groups'		)	$return = ' AND         Groups.status        = "' . $select . '"';
+	if ($table == 'Permissions'	)	$return = ' AND    Permissions.user_resource = "' . $select . '"';
+	if ($table == 'Services'	)	$return = ' AND         Groups.id            = "' . $select . '"';
+	if ($table == 'Settings'	)	$return = ' AND       Settings.setting_set   = "' . $select . '"';
+	if ($table == 'Summary'		)	$return = ' AND        Summary.group_by      = "' . $select . '"';
+	if ($table == 'Templates'	)	$return = ' AND      Templates.template_type = "' . $select . '"';
+	if ($table == 'Tickets'		)	$return = ' AND        Tickets.status        = "' . $select . '"';
+	if ($table == 'Translations')	$return = ' AND   Translations.status        = "' . $select . '"';
+	if ($table == 'Persons'		)	$return = ' AND        Persons.user_role     = "' . $select . '"';
+
+	return $return;
 }
 
-private function set_select( $table, $select ) {
-//     if(  $select == '*' or $select == 'All' )         return '';
-     if(  $select == 'All' )         return '';
-
-     $return = '';
-     if(  $table == 'Categories'   )    $return = ' AND         Parent.category      = "' . $select . '"';
-     if(  $table == 'Controls'     )    $return = ' AND       Controls.group_set     = "' . $select . '"';
-     if(  $table == 'Configs'      )    $return = ' AND        Configs.group_set     = "' . $select . '"';
-     if(  $table == 'Companies'    )    $return = ' AND      Companies.status        = "' . $select . '"';
-     if(  $table == 'Events'       )    $return = ' AND         Events.status        = "' . $select . '"';
-     if(  $table == 'Groups'       )    $return = ' AND         Groups.status        = "' . $select . '"';
-     if(  $table == 'Permissions'  )    $return = ' AND    Permissions.user_resource = "' . $select . '"';
-     if(  $table == 'Services'     )    $return = ' AND         Groups.id            = "' . $select . '"';
-     if(  $table == 'Settings'     )    $return = ' AND       Settings.setting_set   = "' . $select . '"';
-     if(  $table == 'Summary'      )    $return = ' AND        Summary.group_by      = "' . $select . '"';
-     if(  $table == 'Templates'    )    $return = ' AND      Templates.template_type = "' . $select . '"';
-     if(  $table == 'Tickets'      )    $return = ' AND        Tickets.status        = "' . $select . '"';
-     if(  $table == 'Translations' )    $return = ' AND   Translations.status        = "' . $select . '"';
-     if(  $table == 'Persons'      )    $return = ' AND        Persons.user_role     = "' . $select . '"';
-
-     return $return;
-}
-
-private function set_new_fields( $table ) {
+private function set_new_fields($table) {
      $return = '';
      if(  $table == 'Categories'   )    $return = ',    Parent.category         AS   parent_name';
      if(  $table == 'Companies'    )    $return = ',   Contact.full_name        AS  contact_name';

@@ -10,13 +10,14 @@ CREATE TABLE IF NOT EXISTS Contacts
 , company_id		BIGINT				DEFAULT NULL
 , support_id		BIGINT				DEFAULT NULL
 , is_company		CHAR(3)				DEFAULT 'no'
+, is_customer		CHAR(3)				DEFAULT 'no'
 , is_taxable		CHAR(3)				DEFAULT 'yes'
 , photo				VARCHAR(255)		DEFAULT NULL
 , first_name		VARCHAR(255)		DEFAULT NULL
 , last_name			VARCHAR(255)		DEFAULT NULL
 , full_name			VARCHAR(255)		DEFAULT NULL
 , tags				VARCHAR(255)		DEFAULT NULL
-, job_position		VARCHAR(255)		DEFAULT NULL
+, position			VARCHAR(255)		DEFAULT NULL
 , phone				VARCHAR(255)		DEFAULT NULL
 , mobile			VARCHAR(255)		DEFAULT NULL
 , fax				VARCHAR(255)		DEFAULT NULL
@@ -50,5 +51,6 @@ CREATE TABLE IF NOT EXISTS Contacts
 ;
 
 
-ALTER TABLE Contacts      ADD COLUMN is_customer    CHAR(3)   DEFAULT 'no'  AFTER is_company;
-ALTER TABLE Contacts      ADD COLUMN is_customer    CHAR(3)   DEFAULT 'no'  AFTER is_company;
+ALTER TABLE Contacts      ADD COLUMN is_customer    		CHAR(3)   		DEFAULT 'no'  AFTER is_company;
+
+ALTER TABLE Contacts      CHANGE job_position	position	VARCHAR(255)	DEFAULT NULL;

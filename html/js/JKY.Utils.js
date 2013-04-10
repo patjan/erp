@@ -842,7 +842,7 @@ JKY.set_group_set = function(table, selected, group_set) {
 						var my_selected = (my_name === selected) ? ' selected="selected"' : '';
 						my_html += '<option value="' + my_name + '"' + my_selected + '>' + my_value + '</option>';
 					}
-					my_html += '<option onclick="JKY.process_option_search(this)"	class="jky-option-search"	>Search More...</option>';
+//					my_html += '<option onclick="JKY.process_option_search(this)"	class="jky-option-search"	>Search More...</option>';
 					my_html += '<option onclick="JKY.process_option_add_new(this)"	class="jky-option-add-new"	>Add New...</option>';
 				}else{
 					JKY.display_message(response.message);
@@ -974,3 +974,37 @@ JKY.run_export = function(table, select, filter, specific, sort_by) {
 	$('#jky-export-form').submit();
 };
 
+JKY.get_id = function(table, where) {
+	var my_id = null;
+	var my_data =
+		{ method: 'get_id'
+		, table	: table
+		, where : where
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_id = response.row;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_id;
+}

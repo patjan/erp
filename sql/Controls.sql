@@ -10,10 +10,11 @@ CREATE TABLE IF NOT EXISTS Controls
 , company_id		BIGINT				DEFAULT 1
 , sequence			INTEGER				DEFAULT 0
 , group_set			VARCHAR(32)			DEFAULT 'Root'
-, name				VARCHAR(255)		DEFAULT NULL
+, name				VARCHAR(255)		DEFAULT NULL		// unique by group_set
 , value				TEXT				DEFAULT NULL
 
 , PRIMARY KEY(id)
+, UNIQUE(group_set, name)
 , KEY sequence	(company_id	, sequence)
 , KEY group_set	(group_set	, sequence)
 , KEY name		(name		, sequence)

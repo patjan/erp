@@ -7,11 +7,12 @@ CREATE TABLE IF NOT EXISTS Permissions
 , updated_at        DATETIME			DEFAULT NULL
 , status            VARCHAR(32)         DEFAULT 'Active'
 
-, user_role			VARCHAR(32)			DEFAULT NULL
+, user_role			VARCHAR(32)			DEFAULT NULL		// unique
 , user_resource		VARCHAR(32)			DEFAULT NULL
 , user_action		VARCHAR(32)			DEFAULT NULL
 
 , PRIMARY KEY(id)
+, UNIQUE(user_role)
 , KEY user_role		(user_role		)
 , KEY user_resource	(user_resource	)
 , KEY user_action	(user_action	)
