@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS Configs
 , PRIMARY KEY(id)
 , UNIQUE(group_set, name)
 , KEY sequence	(company_id	, sequence)
-, KEY group_set	(group_set	, sequence)
 , KEY name		(name		, sequence)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;

@@ -1,0 +1,5 @@
+ALTER TABLE Configs		DROP INDEX  group_set;
+ALTER TABLE Configs		ADD UNIQUE (group_set, name);
+
+ALTER TABLE Controls	DROP INDEX  group_set;
+ALTER TABLE Controls	ADD UNIQUE (group_set, name);

@@ -1,0 +1,20 @@
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Root-Countries' for key 'group_set'
+
+exception 'PDOException' with message 'SQLSTATE[23000]: 
+Integrity constraint violation: 
+1062 Duplicate entry 'Root-Countries' for key 'group_set'' 
+in C:\htdocs\erp\library\Zend\Db\Statement\Pdo.php:228 Stack trace: 
+#0 C:\htdocs\erp\library\Zend\Db\Statement\Pdo.php(228): PDOStatement->execute(Array) 
+#1 C:\htdocs\erp\library\Zend\Db\Statement.php(300): Zend_Db_Statement_Pdo->_execute(Array) 
+#2 C:\htdocs\erp\library\Zend\Db\Adapter\Abstract.php(468): Zend_Db_Statement->execute(Array) 
+#3 C:\htdocs\erp\library\Zend\Db\Adapter\Pdo\Abstract.php(238): Zend_Db_Adapter_Abstract->query('INSERT Configs ...', Array) 
+#4 C:\htdocs\erp\application\controllers\AjaxController.php(1184): Zend_Db_Adapter_Pdo_Abstract->query('INSERT Configs ...') 
+#5 C:\htdocs\erp\application\controllers\AjaxController.php(160): AjaxController->insert(Array) 
+#6 C:\htdocs\erp\library\Zend\Controller\Action.php(513): AjaxController->indexAction() 
+#7 C:\htdocs\erp\library\Zend\Controller\Dispatcher\Standard.php(289): Zend_Controller_Action->dispatch('indexAction') 
+#8 C:\htdocs\erp\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http)) 
+#9 C:\htdocs\erp\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch() 
+#10 C:\htdocs\erp\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run() 
+#11 C:\htdocs\erp\application\Application.php(27): Zend_Application->run() 
+#12 C:\htdocs\erp\html\index.php(2): require('C:\htdocs\erp\a...') 
+#13 {main} 
