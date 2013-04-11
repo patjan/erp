@@ -49,16 +49,15 @@ input.span2 {width:80px; padding:2px 4px;}
 #jky-wrapper			{height:100%; background:none repeat scroll 0 0 white; color:#4C4C4C;}
 #jky-wrapper table		{width:100%;}
 
-#jky-header				{height:24px; color:#EEEEEE; background-image:linear-gradient(to bottom, #646060, #262626);}
-#jky-header				{color:#EEEEEE; background-color:#323232;}
+#jky-header				{height:20px; background-color:#323232; color:#EEEEEE; background-image:linear-gradient(to bottom, #646060, #262626);}
 #jky-header a			{color:#FFFFFF;}
 #jky-header a:hover		{color:#1E9CD9;}
 
 #jky-menus				{float:left ; height:20px; margin:0; padding:6px 0;}
-#jky-menus li			{height:32px; display:inline; padding:8px 10px; line-height:20px;}
+#jky-menus li			{display:inline; padding:8px 10px; line-height:20px;}
 #jky-menus .active		{background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3); box-shadow:0 1px 2px rgba(0, 0, 0, 0.4) inset; text-shadow:0 0 3px black;}
 
-#jky-user-full-name		{float:right; margin:6px 10px 4px;}
+#jky-user-full-name		{float:right; height:20px; margin:6px 10px 4px;}
 
 #jky-body				{width:100%; height:100%;}
 

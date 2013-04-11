@@ -9,11 +9,11 @@ var jky_select		= 'Root';
 var jky_filter		= '';
 var jky_specific	= '';
 var jky_sort_by		= 'name';
-var jky_sort_seq	=  0;
+var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_rows		= [];
 var jky_count		=  0;
-var jky_index		=  0;				//	0 = Add New
+var jky_index		=  0;				//	0=Add New
 
 /**
  * start program
@@ -55,11 +55,11 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values');
 	if (JKY.is_loaded('jky-body')) {
-		JKY.set_active('jky-menu-admin');
-		JKY.set_active('jky-admin-controls');
+		JKY.set_menu_active('jky-menu-admin');
+		JKY.set_side_active('jky-admin-controls');
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table, jky_select, 'Root'));
-		JKY.set_html('jky-status', JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
+		JKY.set_html('jky-status'    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
 		JKY.display_list();
 		JKY.show('jky-side-admin');
 		JKY.show('jky-action-add-new');
@@ -190,7 +190,8 @@ JKY.display_new = function() {
 
 JKY.get_form_set = function() {
 	var my_set = ''
-		+     'status=\'' + JKY.get_value('jky-status'	) + '\''
+		+  'group_set=\'' + jky_select + '\''
+		+   ', status=\'' + JKY.get_value('jky-status'	) + '\''
 		+ ', sequence=  ' + JKY.get_value('jky-sequence')
 		+     ', name=\'' + JKY.get_value('jky-name'	) + '\''
 		+    ', value=\'' + JKY.get_value('jky-value'	) + '\''
@@ -202,7 +203,7 @@ JKY.process_insert = function() {
 	var my_data =
 		{ method: 'insert'
 		, table : jky_table
-		, set	: JKY.get_form_set() + ', group_set=\'' + jky_select + '\''
+		, set	: JKY.get_form_set()
 		};
 	JKY.ajax(false, my_data, JKY.process_insert_success);
 }

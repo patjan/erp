@@ -35,8 +35,8 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values');
 	if ($('#jky-loaded').length > 0) {
-		JKY.set_active('jky-menu-sales');
-		JKY.set_active('jky-sales-customers');
+		JKY.set_menu_active('jky-menu-sales');
+		JKY.set_side_active('jky-sales-customers');
 		JKY.show('jky-side-sales');
 		JKY.display_form();
 		JKY.set_html('jky-app-breadcrumb', 'Model / MD000014');

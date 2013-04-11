@@ -60,7 +60,7 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values');
 	if (JKY.is_loaded('jky-body')) {
-		JKY.set_active('jky-menu-admin');
+		JKY.set_menu_active('jky-menu-admin');
 		$('#jky-home'					).click (function() {JKY.process_home			()		;});
 		$('#jky-help'					).click (function() {JKY.process_help			()		;});
 		$('#jky-my-info'				).click (function() {JKY.process_my_info		()		;});

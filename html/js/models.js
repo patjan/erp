@@ -1,14 +1,14 @@
 "use strict";
 
 /**
- * customers.html
+ * models.html
  */
-var jky_program		= 'Customers';
-var jky_table		= 'Contacts';
+var jky_program		= 'Models';
+var jky_table		= 'Models';
 var jky_select		= '';
 var jky_filter		= '';
 var jky_specific	= '';
-var jky_sort_by		= 'full_name';
+var jky_sort_by		= 'name';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_rows		= [];
@@ -157,7 +157,7 @@ JKY.display_row = function(index) {
 	}else{
 		JKY.show('jky-company-name');
 	}
-	JKY.set_focus('jky-full-name');
+	JKY.set_focus('jky-name');
 }
 
 JKY.load_table = function() {

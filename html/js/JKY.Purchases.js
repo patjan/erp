@@ -34,8 +34,8 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values');
 	if ($('#jky-loaded').length > 0) {
-		JKY.set_active('jky-menu-purchases');
-		JKY.set_active('jky-purchases-orders');
+		JKY.set_menu_active('jky-menu-purchases');
+		JKY.set_side_active('jky-purchases-orders');
 		JKY.show('jky-side-purchases');
 		JKY.display_form();
 		JKY.set_html('jky-app-breadcrumb', 'Purchase Orders / PC000014');
@@ -43,7 +43,7 @@ JKY.set_initial_values = function() {
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
 }
-	
+
 
 JKY.display_list = function() {
 	JKY.show('jky-app-filter');

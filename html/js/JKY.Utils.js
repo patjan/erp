@@ -404,27 +404,37 @@ JKY.set_value = function(id_name, value){
 }
 
 /**
- * set check specific value = [yes]
+ * set yes on specific value
+ * @param	id_name
+ * @param	value
+ */
+JKY.set_yes = function(id_name, value){
+	$('#' + id_name).removeAttr('checked');
+	if (value == 'yes') {
+		var my_command = "$('#" + id_name + "').attr('checked', 'checked');";
+		setTimeout(my_command, 100);
+	}
+}
+
+/**
+ * set check on specific value
  * @param	id_name
  * @param	value
  */
 JKY.set_check = function(id_name, value){
-     $('#' + id_name).removeAttr('checked');
-     if(  value == 'yes' ) {
-          var my_command = "$('#" + id_name + "').attr('checked', 'checked');";
-          setTimeout(my_command, 100);
-     }
+	$('#' + id_name).removeAttr('checked');
+	var my_command = "$('#" + id_name + ":checkbox[value=" + value + "]').attr('checked', 'checked');";
+	setTimeout(my_command, 100);
 }
 
 /**
- * set radio specific value = [yes]
+ * set radio on specific value
  * @param	id_name
  * @param	value
  */
 JKY.set_radio = function(id_name, value){
 	$('#' + id_name).removeAttr('checked');
 	var my_command = "$('#" + id_name + ":radio[value=" + value + "]').attr('checked', 'checked');";
-alert(my_command);
 	setTimeout(my_command, 100);
 }
 
@@ -484,10 +494,20 @@ JKY.set_checks = function() {
 }
 
 /**
- * set 'active' class on specific id
+ * set 'active' class on specific id of menu
  * @param	id_name
  */
-JKY.set_active = function(id_name){
+JKY.set_menu_active = function(id_name){
+	$('#jky-menus li').removeClass('active');
+	$('#' + id_name).addClass('active');
+}
+
+/**
+ * set 'active' class on specific id of side bar
+ * @param	id_name
+ */
+JKY.set_side_active = function(id_name){
+	$('#jky-side-bar div').removeClass('active');
 	$('#' + id_name).addClass('active');
 }
 
@@ -501,12 +521,12 @@ JKY.get_value = function(id_name){
 }
 
 /**
- * get value of specific id
+ * get value of checkbox or radio checked
  * @param	id_name
  * @return	value
  */
 JKY.get_checked = function(id_name){
-	return $('#' + id_name + ':checked').val();
+	return $('input[name=' + id_name + ']:checked').val();
 }
 
 /**

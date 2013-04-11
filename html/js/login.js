@@ -3,24 +3,25 @@
 /**
  * login.html
  */
+var jky_program		= 'Login';
 
 /**
  * start program
  */
 JKY.start_program = function() {
-	JKY.display_trace('start_program - login');
+	JKY.display_trace('start_program - ' + jky_program);
 	JKY.hide('jky-side-bar');
 	JKY.Session.load_values();
 	JKY.set_all_events();
 	JKY.set_initial_values();
 }
 
-/*
+/**
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
 	JKY.display_trace('set_all_events');
-	if ($('#jky-body-loaded').length > 0) {
+	if (JKY.is_loaded('jky-body')) {
 		$('#jky-log-in-user-name'	).change(function() {JKY.change_log_in_name	(this)	;});
 		$('#jky-log-in-password'	).change(function() {JKY.change_password	(this)	;});
 		$('#jky-button-log-in'		).click (function() {JKY.process_log_in		()		;});
@@ -29,12 +30,12 @@ JKY.set_all_events = function() {
 	}
 }
 
-/*
+/**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values');
-	if ($('#jky-body-loaded').length > 0) {
+	if (JKY.is_loaded('jky-body')) {
 		JKY.set_html('jky-log-in-logo', '<img src="/img/' + JKY.Session.get_value('company_logo') + '" />');
 		$('#jky-log-in-user-name').val('joeljan');
 		$('#jky-log-in-password' ).val('brazil');
