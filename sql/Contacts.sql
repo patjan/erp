@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS Contacts
 , created_by        BIGINT				DEFAULT NULL
 , updated_at        DATETIME			DEFAULT NULL
 , updated_by        BIGINT				DEFAULT NULL
-, status            VARCHAR(32)         DEFAULT 'Active'
+, status            VARCHAR(32)			DEFAULT 'Active'
 
 , company_id		BIGINT				DEFAULT NULL
 , support_id		BIGINT				DEFAULT NULL

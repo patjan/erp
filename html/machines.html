@@ -41,35 +41,27 @@
 .jky-checkbox		{text-align:center; width:30px;}
 #jky-check-all		{width:30px;}
 
-.jky-status			{text-align:center; width:100px;}
-.jky-sequence		{text-align:center; width: 80px;}
 .jky-name			{text-align:left;	}
-.jky-value			{text-align:left;	}
-
-#jky-status			{width:100px;}
-#jky-sequence		{width: 30px;}
-#jky-name			{}
-#jky-value			{width:295px; height:100px;}
 
 #jky-name			{width:100px; font-size:16px; font-weight:bold;}
-#jky-machine-type		{width:230px;}
-#jky-machine-brand		{width:385px;}
+#jky-machine-type	{width:230px;}
+#jky-machine-brand	{width:385px;}
 
-#jky-diameter			{width:40px;}
-#jky-width				{width:40px;}
-#jky-density			{width:40px;}
-#jky-inputs				{width:40px;}
-#jky-lanes				{width:40px;}
+#jky-diameter		{width:40px;}
+#jky-width			{width:40px;}
+#jky-density		{width:40px;}
+#jky-inputs			{width:40px;}
+#jky-lanes			{width:40px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
 			<th    id='jky-check-all'	><input type='checkbox' /></th>
-			<th class='jky-name'	>Name		</th>
-			<th class='jky-width'		>Phone		</th>
-			<th class='jky-density'		>Mobile		</th>
-			<th class='jky-lanes'		>Email		</th>
+			<th class='jky-name'		>Name		</th>
+			<th class='jky-width'		>Width		</th>
+			<th class='jky-density'		>Density	</th>
+			<th class='jky-lanes'		>Lanes		</th>
 		</tr>
 	</thead>
 
@@ -103,11 +95,9 @@
 			<div class='jky-form-label'>Machine:</div>
 			<div class='jky-form-value'>
 				<input id='jky-name' class='jky-form-value' placeholder='Name' />
-                <br>
-                <input type='radio' id='jky-is-company' value='yes' /> CIRCULAR
-                <br>
-                <input type='radio' id='jky-is-company' value='yes' /> RETILINEA
-				<select id='jky-machine-type' placeholder='Company'>
+				<br><input type='radio' id='jky-machine-type' value='CIRCULAR'  /> CIRCULAR
+				<br><input type='radio' id='jky-machine-type' value='RETILINEA' /> RETILINEA
+				<select id='jky-machine-brand' placeholder='Machine Brand'>
 					<option>Brand1</option>
 					<option>Brand2</option>
 					<option>Brand3</option>
@@ -121,11 +111,11 @@
 		<br>
 
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'>	   Diameter (Circular):</div><div class='jky-form-value'><input id='jky-diameter'	class='jky-form-value' placeholder='e.g. Sales Director'		/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>		  Width (Retilnea):</div><div class='jky-form-value'><input id='jky-width'		class='jky-form-value' placeholder='e.g. 123-456-7890'			/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>		 Density:</div><div class='jky-form-value'><input id='jky-density'	class='jky-form-value' placeholder=''							/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>		    Inputs:</div><div class='jky-form-value'><input id='jky-inputs'		class='jky-form-value' placeholder=''							/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>		  Lanes:</div><div class='jky-form-value'><input id='jky-lanes'		class='jky-form-value' placeholder=''							/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>Diameter (Circular):</div><div class='jky-form-value'><input id='jky-diameter'	class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>	  Width (Retilnea):</div><div class='jky-form-value'><input id='jky-width'		class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>			   Density:</div><div class='jky-form-value'><input id='jky-density'	class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>			    Inputs:</div><div class='jky-form-value'><input id='jky-inputs'		class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>			     Lanes:</div><div class='jky-form-value'><input id='jky-lanes'		class='jky-form-value' placeholder='0'	/></div></div>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -190,7 +180,7 @@
 					<div class='jky-form-line'><div class='jky-form-label'>	Invoicing Control</div><div id='jky-invoicing-control'	class='jky-form-value'>Based on generated draft invoice</div></div>
 					<div class='jky-form-line'><div class='jky-form-label'>	 Invoice Received</div><div id='jky-invoice-received'	class='jky-form-value'>No		</div></div>
 					<div class='jky-form-line'><div class='jky-form-label'>		 Payment Term</div><div id='jky-payment-term'		class='jky-form-value'>			</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'>	  Fiscal Position</div><div id='jky-fiscal-diameter'	class='jky-form-value'>			</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'>	  Fiscal Position</div><div id='jky-fiscal-position'	class='jky-form-value'>			</div></div>
 				</div>
 				<div class='jky-clear'></div>
 			</div>

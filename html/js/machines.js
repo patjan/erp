@@ -44,7 +44,6 @@ JKY.set_all_events = function() {
 		$('#jky-action-form'	).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'	).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'		).click (function() {JKY.process_check_all	();});	// not needed on version 0
-		$('#jky-machine-type'		).click	(function() {JKY.display_company(this);});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -125,30 +124,14 @@ JKY.display_row = function(index) {
 	var my_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
 	jky_rows[index-1] = my_row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_value	('jky-name'	, my_row['name'	]);
+	JKY.set_value	('jky-name'			, my_row['name'			]);
 	JKY.set_check	('jky-machine-type'	, my_row['machine_type'	]);
-	JKY.set_option	('jky-machine-brand'	, my_row['machine_brand'	]);
-	JKY.set_option	('jky-company-tag'	, my_row['company_tag'	]);
-
-	JKY.set_value	('jky-street1'		, my_row['street1'		]);
-	JKY.set_value	('jky-street2'		, my_row['street2'		]);
-	JKY.set_value	('jky-city'			, my_row['city'			]);
-	JKY.set_value	('jky-zip'			, my_row['zip'			]);
-	JKY.set_option	('jky-state'		, my_row['state'		]);
-	JKY.set_option	('jky-country'		, my_row['country'		]);
-	JKY.set_value	('jky-website'		, my_row['website'		]);
-
+	JKY.set_option	('jky-machine-brand', my_row['machine_brand']);
 	JKY.set_value	('jky-diameter'		, my_row['diameter'		]);
 	JKY.set_value	('jky-width'		, my_row['width'		]);
 	JKY.set_value	('jky-density'		, my_row['density'		]);
 	JKY.set_value	('jky-inputs'			, my_row['inputs'			]);
 	JKY.set_value	('jky-lanes'		, my_row['lanes'		]);
-
-	if (my_row['machine_type'] == 'yes') {
-		JKY.hide('jky-machine-brand');
-	}else{
-		JKY.show('jky-machine-brand');
-	}
 	JKY.set_focus('jky-name');
 }
 
@@ -172,7 +155,7 @@ JKY.process_load_success = function(response) {
 		var my_row = jky_rows[i];
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"	><input type="checkbox"	 /></td>'
-				+  '<td class="jky-name"	>' + my_row['name'	] + '</td>'
+				+  '<td class="jky-name"		>' + my_row['name'		] + '</td>'
 				+  '<td class="jky-width"		>' + my_row['width'		] + '</td>'
 				+  '<td class="jky-density"		>' + my_row['density'	] + '</td>'
 				+  '<td class="jky-lanes"		>' + my_row['lanes'		] + '</td>'
@@ -202,23 +185,13 @@ JKY.process_add_new = function() {
 }
 
 JKY.display_new = function() {
-	JKY.set_value	('jky-name'	, '');
-	JKY.set_check	('jky-machine-type'	, 'no');
-	JKY.set_option	('jky-machine-brand'	, '');
-	JKY.set_option	('jky-company-tag'	, '');
-
-	JKY.set_value	('jky-street1'		, '');
-	JKY.set_value	('jky-street2'		, '');
-	JKY.set_value	('jky-city'			, '');
-	JKY.set_value	('jky-zip'			, '');
-	JKY.set_option	('jky-state'		, '');
-	JKY.set_option	('jky-country'		, '');
-	JKY.set_value	('jky-website'		, '');
-
+	JKY.set_value	('jky-name'			, '');
+	JKY.set_check	('jky-machine-type'	, '');
+	JKY.set_option	('jky-machine-brand', '');
 	JKY.set_value	('jky-diameter'		, '');
 	JKY.set_value	('jky-width'		, '');
 	JKY.set_value	('jky-density'		, '');
-	JKY.set_value	('jky-inputs'			, '');
+	JKY.set_value	('jky-inputs'		, '');
 	JKY.set_value	('jky-lanes'		, '');
 
 	JKY.set_focus('jky-name');
@@ -226,15 +199,14 @@ JKY.display_new = function() {
 
 JKY.get_form_set = function() {
 	var my_set = ''
-		+     'name=\'' + JKY.get_value('jky-name'	) + '\''
-		+   ', machine_type=\'' + JKY.get_value('jky-machine-type'	) + '\''
-		+ ', machine_brand=\'' + JKY.get_value('jky-machine-brand') + '\''
-
-		+     ', diameter=\'' + JKY.get_value('jky-diameter'	) + '\''
-		+        ', width=\'' + JKY.get_value('jky-width'		) + '\''
+		+			 'name=\'' + JKY.get_value('jky-name'			) + '\''
+		+  ', machine_type=\'' + JKY.get_value('jky-machine-type'	) + '\''
+		+ ', machine_brand=\'' + JKY.get_value('jky-machine-brand'	) + '\''
+		+      ', diameter=\'' + JKY.get_value('jky-diameter'		) + '\''
+		+         ', width=\'' + JKY.get_value('jky-width'			) + '\''
 		+       ', density=\'' + JKY.get_value('jky-density'		) + '\''
-		+          ', inputs=\'' + JKY.get_value('jky-inputs'			) + '\''
-		+	     ', lanes=\'' + JKY.get_value('jky-lanes'		) + '\''
+		+        ', inputs=\'' + JKY.get_value('jky-inputs'			) + '\''
+		+	      ', lanes=\'' + JKY.get_value('jky-lanes'			) + '\''
 		;
 	return my_set;
 }
