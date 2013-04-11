@@ -19,5 +19,3 @@ CREATE TABLE IF NOT EXISTS Configs
 , KEY name		(name		, sequence)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
-
-ALTER TABLE Configs		ADD UNIQUE (group_set, name);

@@ -125,9 +125,9 @@ input.span2 {width:80px; padding:2px 4px;}
 }
 #jky-table tbody		{max-height:300px; overflow-y:visible;}
 
-#jky-action-add-new     {display:none;}
-#jky-action-save        {display:none;}
-#jky-action-cancel     {display:none;}
+#jky-action-add-new		{display:none;}
+#jky-action-save		{display:none;}
+#jky-action-cancel		{display:none;}
 
 
 /* -------------------------------------------------------------------------- */

@@ -35,7 +35,7 @@ JKY.set_all_events = function() {
 		$('#jky-action-add-new'	).click (function() {JKY.process_add_new	();});
 		$('#jky-action-save'	).click (function() {JKY.process_save		();});
 		$('#jky-action-delete'	).click (function() {JKY.process_delete		();});
-		$('#jky-action-cancel'	).click (function() {JKY.process_cancel	();});
+		$('#jky-action-cancel'	).click (function() {JKY.process_cancel		();});
 		$('#jky-action-export'	).click (function() {JKY.process_export		();});
 		$('#jky-action-publish'	).click (function() {JKY.process_publish	();});	// not needed on version 0
 		$('#jky-action-prev'	).click (function() {JKY.display_prev		();});

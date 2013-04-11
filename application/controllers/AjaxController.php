@@ -1196,7 +1196,6 @@ private function insert($data) {
 		$return['status' ] = 'error';
 		$return['message'] = $exp->getMessage();
 	}
-
 	echo json_encode($return);
 }
 
