@@ -8,7 +8,7 @@ var jky_table		= 'Machines';
 var jky_select		= '';
 var jky_filter		= '';
 var jky_specific	= '';
-var jky_sort_by		= 'full_name';
+var jky_sort_by		= 'name';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_rows		= [];
@@ -44,7 +44,7 @@ JKY.set_all_events = function() {
 		$('#jky-action-form'	).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'	).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'		).click (function() {JKY.process_check_all	();});	// not needed on version 0
-		$('#jky-is-company'		).click	(function() {JKY.display_company(this);});
+		$('#jky-machine-type'		).click	(function() {JKY.display_company(this);});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -66,14 +66,6 @@ JKY.set_initial_values = function() {
 		JKY.show('jky-action-add-new');
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
-	}
-}
-
-JKY.display_company = function(id) {
-	if ($(id).is(':checked')) {
-		JKY.hide('jky-company-name');
-	}else{
-		JKY.show('jky-company-name');
 	}
 }
 
@@ -133,9 +125,9 @@ JKY.display_row = function(index) {
 	var my_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
 	jky_rows[index-1] = my_row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_value	('jky-full-name'	, my_row['full_name'	]);
-	JKY.set_check	('jky-is-company'	, my_row['is_company'	]);
-	JKY.set_option	('jky-company-name'	, my_row['company_name'	]);
+	JKY.set_value	('jky-name'	, my_row['name'	]);
+	JKY.set_check	('jky-machine-type'	, my_row['machine_type'	]);
+	JKY.set_option	('jky-machine-brand'	, my_row['machine_brand'	]);
 	JKY.set_option	('jky-company-tag'	, my_row['company_tag'	]);
 
 	JKY.set_value	('jky-street1'		, my_row['street1'		]);
@@ -146,18 +138,18 @@ JKY.display_row = function(index) {
 	JKY.set_option	('jky-country'		, my_row['country'		]);
 	JKY.set_value	('jky-website'		, my_row['website'		]);
 
-	JKY.set_value	('jky-position'		, my_row['position'		]);
-	JKY.set_value	('jky-phone'		, my_row['phone'		]);
-	JKY.set_value	('jky-mobile'		, my_row['mobile'		]);
-	JKY.set_value	('jky-fax'			, my_row['fax'			]);
-	JKY.set_value	('jky-email'		, my_row['email'		]);
+	JKY.set_value	('jky-diameter'		, my_row['diameter'		]);
+	JKY.set_value	('jky-width'		, my_row['width'		]);
+	JKY.set_value	('jky-density'		, my_row['density'		]);
+	JKY.set_value	('jky-inputs'			, my_row['inputs'			]);
+	JKY.set_value	('jky-lanes'		, my_row['lanes'		]);
 
-	if (my_row['is_company'] == 'yes') {
-		JKY.hide('jky-company-name');
+	if (my_row['machine_type'] == 'yes') {
+		JKY.hide('jky-machine-brand');
 	}else{
-		JKY.show('jky-company-name');
+		JKY.show('jky-machine-brand');
 	}
-	JKY.set_focus('jky-full-name');
+	JKY.set_focus('jky-name');
 }
 
 JKY.load_table = function() {
@@ -180,10 +172,10 @@ JKY.process_load_success = function(response) {
 		var my_row = jky_rows[i];
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"	><input type="checkbox"	 /></td>'
-				+  '<td class="jky-full-name"	>' + my_row['full_name'	] + '</td>'
-				+  '<td class="jky-phone"		>' + my_row['phone'		] + '</td>'
-				+  '<td class="jky-mobile"		>' + my_row['mobile'	] + '</td>'
-				+  '<td class="jky-email"		>' + my_row['email'		] + '</td>'
+				+  '<td class="jky-name"	>' + my_row['name'	] + '</td>'
+				+  '<td class="jky-width"		>' + my_row['width'		] + '</td>'
+				+  '<td class="jky-density"		>' + my_row['density'	] + '</td>'
+				+  '<td class="jky-lanes"		>' + my_row['lanes'		] + '</td>'
 				+  '</tr>'
 				;
 	}
@@ -210,9 +202,9 @@ JKY.process_add_new = function() {
 }
 
 JKY.display_new = function() {
-	JKY.set_value	('jky-full-name'	, '');
-	JKY.set_check	('jky-is-company'	, 'no');
-	JKY.set_option	('jky-company-name'	, '');
+	JKY.set_value	('jky-name'	, '');
+	JKY.set_check	('jky-machine-type'	, 'no');
+	JKY.set_option	('jky-machine-brand'	, '');
 	JKY.set_option	('jky-company-tag'	, '');
 
 	JKY.set_value	('jky-street1'		, '');
@@ -223,35 +215,26 @@ JKY.display_new = function() {
 	JKY.set_option	('jky-country'		, '');
 	JKY.set_value	('jky-website'		, '');
 
-	JKY.set_value	('jky-position'		, '');
-	JKY.set_value	('jky-phone'		, '');
-	JKY.set_value	('jky-mobile'		, '');
-	JKY.set_value	('jky-fax'			, '');
-	JKY.set_value	('jky-email'		, '');
+	JKY.set_value	('jky-diameter'		, '');
+	JKY.set_value	('jky-width'		, '');
+	JKY.set_value	('jky-density'		, '');
+	JKY.set_value	('jky-inputs'			, '');
+	JKY.set_value	('jky-lanes'		, '');
 
-	JKY.set_focus('jky-full-name');
+	JKY.set_focus('jky-name');
 }
 
 JKY.get_form_set = function() {
 	var my_set = ''
-		+     ' full_name=\'' + JKY.get_value('jky-full-name'	) + '\''
-		+   ', is_company=\'' + JKY.get_value('jky-is-company'	) + '\''
-//		+ ', company_name=\'' + JKY.get_value('jky-company-name') + '\''
-//		+  ', company_tag=\'' + JKY.get_value('jky-company-tag'	) + '\''
+		+     'name=\'' + JKY.get_value('jky-name'	) + '\''
+		+   ', machine_type=\'' + JKY.get_value('jky-machine-type'	) + '\''
+		+ ', machine_brand=\'' + JKY.get_value('jky-machine-brand') + '\''
 
-		+      ', street1=\'' + JKY.get_value('jky-street1'		) + '\''
-		+      ', street2=\'' + JKY.get_value('jky-street2'		) + '\''
-		+         ', city=\'' + JKY.get_value('jky-city'		) + '\''
-		+          ', zip=\'' + JKY.get_value('jky-zip'			) + '\''
-		+        ', state=\'' + JKY.get_value('jky-state'		) + '\''
-		+      ', country=\'' + JKY.get_value('jky-country'		) + '\''
-		+      ', website=\'' + JKY.get_value('jky-website'		) + '\''
-
-//		+     ', position=\'' + JKY.get_value('jky-position'	) + '\''
-		+        ', phone=\'' + JKY.get_value('jky-phone'		) + '\''
-		+       ', mobile=\'' + JKY.get_value('jky-mobile'		) + '\''
-		+          ', fax=\'' + JKY.get_value('jky-fax'			) + '\''
-		+	     ', email=\'' + JKY.get_value('jky-email'		) + '\''
+		+     ', diameter=\'' + JKY.get_value('jky-diameter'	) + '\''
+		+        ', width=\'' + JKY.get_value('jky-width'		) + '\''
+		+       ', density=\'' + JKY.get_value('jky-density'		) + '\''
+		+          ', inputs=\'' + JKY.get_value('jky-inputs'			) + '\''
+		+	     ', lanes=\'' + JKY.get_value('jky-lanes'		) + '\''
 		;
 	return my_set;
 }
@@ -260,7 +243,7 @@ JKY.process_insert = function() {
 	var my_data =
 		{ method: 'insert'
 		, table : jky_table
-		, set	: JKY.get_form_set() + ', group_set=\'' + jky_select + '\''
+		, set	: JKY.get_form_set()
 		};
 	JKY.ajax(false, my_data, JKY.process_insert_success);
 }
