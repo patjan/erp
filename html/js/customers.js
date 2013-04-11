@@ -260,7 +260,7 @@ JKY.process_insert = function() {
 	var my_data =
 		{ method: 'insert'
 		, table : jky_table
-		, set	: JKY.get_form_set() + ', group_set=\'' + jky_select + '\''
+		, set	: JKY.get_form_set()
 		};
 	JKY.ajax(false, my_data, JKY.process_insert_success);
 }

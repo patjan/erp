@@ -8,9 +8,10 @@ CREATE TABLE IF NOT EXISTS Machines
 , status            VARCHAR(32)         DEFAULT 'Active'
 
 , name				VARCHAR(32)			UNIQUE
-, type				VARCHAR(32)			DEFAULT NULL
-, brand				VARCHAR(32)			DEFAULT NULL
+, machine_type		VARCHAR(32)			DEFAULT NULL
+, machine_brand		VARCHAR(32)			DEFAULT NULL
 , diameter			INT(11)				DEFAULT 0
+, width		   		INT(11)				DEFAULT 0
 , density			INT(11)				DEFAULT 0
 , inputs			INT(11)				DEFAULT 0
 , lanes				INT(11)				DEFAULT 0

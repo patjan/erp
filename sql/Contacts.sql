@@ -42,10 +42,10 @@ CREATE TABLE IF NOT EXISTS Contacts
 , total_paid		DECIMAL(10,2)		DEFAULT 0
 
 , PRIMARY KEY(id)
+, UNIQUE(full_name)
 , KEY company	(company_id	)
 , KEY first_name(first_name	)
 , KEY last_name	(last_name	)
-, KEY full_name	(full_name	)
 , KEY email		(email		)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
