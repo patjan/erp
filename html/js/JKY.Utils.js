@@ -417,6 +417,18 @@ JKY.set_check = function(id_name, value){
 }
 
 /**
+ * set radio specific value = [yes]
+ * @param	id_name
+ * @param	value
+ */
+JKY.set_radio = function(id_name, value){
+	$('#' + id_name).removeAttr('checked');
+	var my_command = "$('#" + id_name + ":radio[value=" + value + "]').attr('checked', 'checked');";
+alert(my_command);
+	setTimeout(my_command, 100);
+}
+
+/**
  * set selected specific id with value
  * @param	id_name
  * @param	value
@@ -486,6 +498,15 @@ JKY.set_active = function(id_name){
  */
 JKY.get_value = function(id_name){
 	return $('#' + id_name).val();
+}
+
+/**
+ * get value of specific id
+ * @param	id_name
+ * @return	value
+ */
+JKY.get_checked = function(id_name){
+	return $('#' + id_name + ':checked').val();
 }
 
 /**
