@@ -162,7 +162,7 @@ JKY.load_html = function(id_name, file_name) {
  */
 JKY.process_action = function(action) {
 //	JKY.load_html('jky-body-content', action + '.html');
-	JKY.hide('jky-application');
+//	JKY.hide('jky-application');
 	JKY.load_html('jky-application', action + '.html');
 //	$.getScript(JKY.AJAX_APP + 'js/' + action + '.js', function() {
 		JKY.start_program();
