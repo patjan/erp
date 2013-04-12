@@ -18,10 +18,10 @@ var jky_index		=  0;				//	0=Add New
 /**
  * start program
  */
-JKY.start_program = function() {
+JKY.start_program = function(jky_program) {
 	JKY.display_trace('start_program - ' + jky_program);
-	JKY.set_all_events();
-	JKY.set_initial_values();
+	JKY.set_all_events(jky_program);
+	JKY.set_initial_values(jky_program);
 }
 
 /**
@@ -44,7 +44,8 @@ JKY.set_all_events = function() {
 		$('#jky-action-form'	).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'	).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'		).click (function() {JKY.process_check_all	();});	// not needed on version 0
-		$('#jky-is-company'		).click	(function() {JKY.display_company(this);});
+
+		if (jky_program == 'Contacts')	{$('#jky-is-company').click	(function() {JKY.display_company(this);});		}
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -53,15 +54,26 @@ JKY.set_all_events = function() {
 /**
  *	set initial values (run only once per load)
  */
-JKY.set_initial_values = function() {
+JKY.set_initial_values = function(jky_program) {
 	JKY.display_trace('set_initial_values');
 	if (JKY.is_loaded('jky-body')) {
-		JKY.set_menu_active('jky-menu-sales');
-		JKY.set_side_active('jky-sales-customers');
+		switch(jky_program) {
+			case 'Contacts'	:
+				JKY.set_menu_active('jky-menu-sales');
+				JKY.set_side_active('jky-sales-customers');
+				JKY.set_html('jky-state'  , JKY.set_group_set('Configs', '', 'States'	));
+				JKY.set_html('jky-country', JKY.set_group_set('Configs', '', 'Countries'));
+				break;
+			case 'Machines' :	
+				JKY.set_menu_active('jky-menu-sales');
+				JKY.set_side_active('jky-products-machines');
+//				JKY.set_html('jky-machine-type' , JKY.set_radio('Configs', '', 'Machine Types' ));
+				JKY.set_html('jky-machine-brand', JKY.set_group_set('Configs', '', 'Machine Brands'));
+				break;
+		}
 		JKY.set_html('jky-app-breadcrumb', jky_program);
-		JKY.set_html('jky-state'  , JKY.set_group_set('Configs', '', 'States'	));
-		JKY.set_html('jky-country', JKY.set_group_set('Configs', '', 'Countries'));
 		JKY.display_list();
+
 		JKY.show('jky-side-sales');
 		JKY.show('jky-action-add-new');
 	}else{
@@ -75,18 +87,6 @@ JKY.display_company = function(id) {
 	}else{
 		JKY.show('jky-company-name');
 	}
-}
-
-JKY.change_select = function(event){
-	jky_select = event.value;
-	JKY.display_trace('change_select: ' + jky_select);
-	JKY.display_list();
-}
-
-JKY.change_filter = function(event){
-	jky_filter = event.value;
-	JKY.display_trace('change_filter: ' + jky_filter);
-	JKY.display_list();
 }
 
 JKY.display_list = function() {
@@ -116,6 +116,18 @@ JKY.display_form = function(index) {
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+}
+
+JKY.change_select = function(event){
+	jky_select = event.value;
+	JKY.display_trace('change_select: ' + jky_select);
+	JKY.display_list();
+}
+
+JKY.change_filter = function(event){
+	jky_filter = event.value;
+	JKY.display_trace('change_filter: ' + jky_filter);
+	JKY.display_list();
 }
 
 JKY.display_prev = function() {
