@@ -38,7 +38,7 @@ JKY.set_initial_values = function() {
 		JKY.load_html('jky-side-bar'	, 'JKY-Side-Bar.html'		);
 		JKY.load_html('jky-table-body'	, 'JKY-Controls-TBody.html'	);
 		JKY.set_menu_active('jky-menu-admin');
-		JKY.set_side_active('jky-admin-controls');
+		JKY.set_side_active('jky-support-controls');
 		JKY.show('jky-side-admin');
 
 		JKY.load_table();

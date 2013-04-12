@@ -56,7 +56,7 @@ JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values');
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-admin');
-		JKY.set_side_active('jky-admin-controls');
+		JKY.set_side_active('jky-support-controls');
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table, jky_select, 'Root'));
 		JKY.set_html('jky-status'    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
@@ -149,7 +149,11 @@ JKY.process_load_success = function(response) {
 	var my_html = '';
 	for(var i=0; i<jky_count; i++) {
 		var my_row = jky_rows[i];
-		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
+		var my_onclick = '';
+		if (my_row['name'] != 'Root') {
+			my_onclick = ' onclick="JKY.display_form(' + (i+1) + ')"';
+		}
+		my_html += '<tr' + my_onclick + '>'
 				+  '<td class="jky-checkbox"	><input type="checkbox"	 /></td>'
 				+  '<td class="jky-sequence"	>' + my_row['sequence'	] + '</td>'
 				+  '<td class="jky-name"		>' + my_row['name'		] + '</td>'

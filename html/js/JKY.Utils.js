@@ -162,11 +162,11 @@ JKY.load_html = function(id_name, file_name) {
  */
 JKY.process_action = function(action) {
 //	JKY.load_html('jky-body-content', action + '.html');
-//	JKY.hide('jky-application');
+	JKY.invisible('jky-application');
 	JKY.load_html('jky-application', action + '.html');
 //	$.getScript(JKY.AJAX_APP + 'js/' + action + '.js', function() {
 		JKY.start_program(action);
-		JKY.show('jky-application');
+		JKY.visible('jky-application');
 //	});
 }
 
@@ -545,6 +545,22 @@ JKY.show = function(id_name){
 JKY.hide = function(id_name){
 //	$('#' + id_name).css('display', 'none');
 	$('#' + id_name).hide();
+}
+
+/**
+ * hide specific id name
+ * @param	id_name
+ */
+JKY.invisible = function(id_name){
+	$('#' + id_name).css('visibility', 'hidden');
+}
+
+/**
+ * hide specific id name
+ * @param	id_name
+ */
+JKY.visible = function(id_name){
+	$('#' + id_name).css('visibility', 'visible');
 }
 
 /**
@@ -1109,7 +1125,7 @@ JKY.set_initial_values = function(jky_program) {
 				break;
 			case 'Machines' :
 				JKY.set_menu_active('jky-menu-sales');
-				JKY.set_side_active('jky-products-machines');
+				JKY.set_side_active('jky-production-machines');
 //				JKY.set_html('jky-machine-type' , JKY.set_radio('Configs', '', 'Machine Types' ));
 				JKY.set_html('jky-machine-brand', JKY.set_group_set('Configs', '', 'Machine Brands'));
 				break;

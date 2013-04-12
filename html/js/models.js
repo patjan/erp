@@ -64,9 +64,9 @@ JKY.set_initial_values = function(jky_program) {
 				JKY.set_html('jky-state'  , JKY.set_group_set('Configs', '', 'States'	));
 				JKY.set_html('jky-country', JKY.set_group_set('Configs', '', 'Countries'));
 				break;
-			case 'Machines' :	
+			case 'Machines' :
 				JKY.set_menu_active('jky-menu-sales');
-				JKY.set_side_active('jky-products-machines');
+				JKY.set_side_active('jky-production-machines');
 //				JKY.set_html('jky-machine-type' , JKY.set_radio('Configs', '', 'Machine Types' ));
 				JKY.set_html('jky-machine-brand', JKY.set_group_set('Configs', '', 'Machine Brands'));
 				break;
