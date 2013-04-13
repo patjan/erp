@@ -60,15 +60,15 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values');
 	if (JKY.is_loaded('jky-body')) {
-		JKY.set_menu_active('jky-menu-admin');
+//		JKY.set_menu_active('jky-menu-admin');
 		$('#jky-home'					).click (function() {JKY.process_home			()		;});
 		$('#jky-help'					).click (function() {JKY.process_help			()		;});
 		$('#jky-my-info'				).click (function() {JKY.process_my_info		()		;});
 		$('#jky-control-language'		).change(function() {JKY.change_language		(this)	;});
 		JKY.set_html('jky-app-breadcrumb', jky_program);
-		JKY.show('jky-side-sales');
-		JKY.show('jky-side-production');
-		JKY.show('jky-side-admin');
+//		JKY.show('jky-side-sales');
+//		JKY.show('jky-side-production');
+//		JKY.show('jky-side-admin');
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
@@ -137,20 +137,34 @@ JKY.process_my_info = function() {
 JKY.process_start_page = function() {
 	var my_menus =
 		[{id:'jky-menu-sales'		, icon:'plus', label:'Sales'		}
-		,{id:'jky-menu-invoicing'	, icon:'plus', label:'Invoicing'	}
-		,{id:'jky-menu-delivers'	, icon:'plus', label:'Delivers'		}
-		,{id:'jky-menu-purchases'	, icon:'plus', label:'Purchases'	}
-		,{id:'jky-menu-incomings'	, icon:'plus', label:'Incomings'	}
-		,{id:'jky-menu-storage'		, icon:'plus', label:'Storage'		}
+//		,{id:'jky-menu-invoicing'	, icon:'plus', label:'Invoicing'	}
+//		,{id:'jky-menu-delivers'	, icon:'plus', label:'Delivers'		}
+//		,{id:'jky-menu-purchases'	, icon:'plus', label:'Purchases'	}
+//		,{id:'jky-menu-incomings'	, icon:'plus', label:'Incomings'	}
+//		,{id:'jky-menu-storage'		, icon:'plus', label:'Storage'		}
 		,{id:'jky-menu-production'	, icon:'plus', label:'Production'	}
-		,{id:'jky-menu-revision'	, icon:'plus', label:'Revision'		}
-		,{id:'jky-menu-inventory'	, icon:'plus', label:'Inventory'	}
-		,{id:'jky-menu-payable'		, icon:'plus', label:'Payable'		}
-		,{id:'jky-menu-receivable'	, icon:'plus', label:'Receivable'	}
+//		,{id:'jky-menu-revision'	, icon:'plus', label:'Revision'		}
+//		,{id:'jky-menu-inventory'	, icon:'plus', label:'Inventory'	}
+//		,{id:'jky-menu-payable'		, icon:'plus', label:'Payable'		}
+//		,{id:'jky-menu-receivable'	, icon:'plus', label:'Receivable'	}
 		,{id:'jky-menu-admin'		, icon:'plus', label:'Admin'		}
+		,{id:'jky-menu-support'		, icon:'plus', label:'Support'		}
 		];
 	JKY.set_buttons_menus(my_menus);
 	JKY.set_user_info(JKY.Session.get_value('full_name'));
 	JKY.show('jky-side-bar');
 	JKY.process_action(JKY.Session.get_value('start_page'));
+}
+
+/** ------------------------------------------------------------------------ **/
+JKY.process_menu = function(menu) {
+//alert('process_menu: ' + menu);
+	JKY.display_trace('process_menu: ' + menu);
+	JKY.set_menu_active(menu);
+	switch(menu) {
+		case 'jky-menu-sales'		: JKY.process_action('customers'	); break;
+		case 'jky-menu-production'	: JKY.process_action('machines'		); break;
+		case 'jky-menu-admin'		: JKY.process_action('configs'		); break;
+		case 'jky-menu-support'		: JKY.process_action('controls'		); break;
+	}
 }

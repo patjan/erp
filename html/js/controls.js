@@ -55,13 +55,13 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values');
 	if (JKY.is_loaded('jky-body')) {
-		JKY.set_menu_active('jky-menu-admin');
+		JKY.set_menu_active('jky-menu-support');
 		JKY.set_side_active('jky-support-controls');
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table, jky_select, 'Root'));
 		JKY.set_html('jky-status'    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
 		JKY.display_list();
-		JKY.show('jky-side-admin');
+		JKY.show('jky-side-support');
 		JKY.show('jky-action-add-new');
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
