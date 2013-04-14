@@ -44,10 +44,11 @@ JKY.set_all_events = function() {
 		$('#jky-copyright'			).click (function() {JKY.display_copyright		()		;});
 //		$('#jky-contact-us'			).click (function() {JKY.display_contact_us		()		;});
 
-		$('#jky-sales-customers'	).click (function() {JKY.process_action('customers')	;});
-		$('#jky-production-machines').click (function() {JKY.process_action('machines')		;});
-		$('#jky-admin-configs'		).click (function() {JKY.process_action('configs')		;});
-		$('#jky-support-controls'	).click (function() {JKY.process_action('controls')		;});
+		$('#jky-sales-customers'	).click (function() {JKY.process_action('customers'	);});
+		$('#jky-production-ftps'	).click (function() {JKY.process_action('ftps'		);});
+		$('#jky-production-machines').click (function() {JKY.process_action('machines'	);});
+		$('#jky-admin-configs'		).click (function() {JKY.process_action('configs'	);});
+		$('#jky-support-controls'	).click (function() {JKY.process_action('controls'	);});
 
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);

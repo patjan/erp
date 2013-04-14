@@ -54,7 +54,7 @@ public function indexAction() {
 			case 'get_language'		: $this->get_language	(); return;
 			case 'set_session'		: $this->set_session	(); return;
 			case 'get_session'		: $this->get_session	(); return;
-			case 'get_groups'		: $this->get_groups		(); return;
+			case 'get_options'		: $this->get_options	($data); return;
 			case 'get_users'		: $this->get_users		(); return;
 			case 'get_controls' 	: $this->get_controls	(); return;
 			case 'get_configs'		: $this->get_configs	(); return;
@@ -150,7 +150,7 @@ public function indexAction() {
 		case 'get_names'	: $this->get_names		($data); break;
 		case 'get_id'		: $this->get_id			($data); break;
 		case 'get_count'	: $this->get_count		(); break;
-		case 'get_value'	: $this->get_value		(); break;
+		case 'get_value'	: $this->get_value		($data); break;
 		case 'get_row'		: $this->get_row		($data); break;
 		case 'get_rows'		: $this->get_rows		(); break;
 		case 'get_index'	: $this->get_index		($data); break;
@@ -536,6 +536,8 @@ private function set_new_fields($table) {
 											. ',  Assigned.full_name	AS assigned_name';
 	if ($table == 'Persons'		)	$return = ',   Support.full_name	AS  support_name'
 											. ', Companies.company_name	AS  company_name';
+	if ($table == 'FTPs'		)	$return = ',   Products.name		AS  product'
+											. ',   Machines.name		AS  machine';
 
 //	special code to append fields from Persons to Services table
 	if (get_request('method') == 'export') {
@@ -564,6 +566,8 @@ private function set_left_joins($table) {
 											. '  LEFT JOIN     Persons AS Assigned	ON  Assigned.id =    Tickets.assigned_to';
 	if ($table == 'Persons'		)	$return = '  LEFT JOIN     Persons AS Support	ON   Support.id =    Persons.support_id'
 											. '  LEFT JOIN   Companies				ON Companies.id =    Persons.company_id';
+	if ($table == 'FTPs'		)	$return = '  LEFT JOIN     Products				ON  Products.id =		FTPS.product_id'
+											. '  LEFT JOIN     Machines				ON  Machines.id =		FTPS.machine_id';
 	return $return;
 }
 
@@ -1189,7 +1193,7 @@ private function insert($data) {
 		$new = db_get_row($table, 'id = ' . $id);
 		$this->history_log('insert', $table, $id, $new, null);
 		$return['status' ] = 'ok';
-		$return['message'] = 'new record added';
+		$return['message'] = 'new record (' . $id . ') added';
 		$return['id'     ] = $id;
 	} catch(Exception $exp) {
 		$this->log_sql($table, null, $exp->getMessage());
@@ -1252,7 +1256,7 @@ private function update($data) {
 		$new = db_get_row($table, 'id = ' . $id);
 		$this->history_log('update', $table, $id, $new, $old);
 		$return['status' ] = 'ok';
-		$return['message'] = 'record updated';
+		$return['message'] = 'record (' . $id . ') updated';
 		$return['id'     ] = $id;
 	} catch(Exception $exp) {
 		$this->log_sql($table, null, $exp->getMessage());
@@ -1305,7 +1309,7 @@ private function delete($data) {
 		$this->log_sql($table, $id, $sql);
 		$db = Zend_Registry::get('db');
 		$db->query($sql);
-		$return['message'] = 'record deleted';
+		$return['message'] = 'record (' . $id . ') deleted';
 	}else{
 		$return['message'] = 'record already deleted';
 	}
@@ -1744,8 +1748,8 @@ private function get_session() {
 //	$data['event_name'	] = 'Event 2013';
 	$data['copyright'	] = '© 2013 JKY Software Corp';
 	$data['contact_us'	] = 'Contact Us';
-	$data['language'	] = 'Taiwanese';
-	$data['languages'	] = array('English', 'Chinese', 'Taiwanese', 'Portugues');
+	$data['language'	] = 'Portugues';
+	$data['languages'	] = array('English', 'Portugues', 'Chinese', 'Taiwanese');
 
 	$obj = array();
 	$obj['status'] = 'ok';
@@ -1955,43 +1959,31 @@ private function set_group_id() {
 }
 
 /*
- *   $.ajax({ method: get_groups, where:..x, select: x...x, initial: x...x });
+ *   $.ajax({ method: get_options, table:x..x, field=x...x, selected: x...x, initial:x...x });
  *
  *   return: <options value="x...x" selected="selected">x...x</options>
  *           ...
  */
-     private function get_groups() {
-	  $where         = get_request( 'where'  );
-	  $select        = get_request( 'select' );
-	  $initial       = get_request( 'initial');
+private function get_options($data) {
+	$table		= get_data($data, 'table'	);
+	$field		= get_data($data, 'field'	);
+	$selected	= get_data($data, 'selected');
+	$initial	= get_data($data, 'initial'	);
 
-	  $sql = 'SELECT Groups.id, Groups.group_name'
-//          . '  FROM Persons, Services, Groups'
-//          . ' WHERE Persons.id = Services.user_id'
-//          . '   AND Services.group_id = Groups.id'
-//          . '   AND ' . $where
-	       . '  FROM Groups'
-	       . ' WHERE ' . $where
-	       . ' ORDER BY Groups.group_name'
-	  ;
-	  if(  $initial == '' )
-//        $return = '';
-	       $return = '<option value="">' . $initial . '</option>';
-//   else $return = '<option value="*">' . $initial . '</option>';
-	  else $return = '<option value="All">' . $initial . '</option>';
+	$sql= 'SELECT id, ' . $field
+		. '  FROM ' . $table
+		. ' WHERE status = "Active"'
+		. ' ORDER BY ' . $field
+		;
+    $this->log_sql( null, 'get_options', $sql );
+	$db = Zend_Registry::get( 'db' );
+	$rows = $db->fetchAll( $sql );
 
-	  if(  $sql != '' ) {
-	       $this->log_sql( null, 'get_groups', $sql );
-	       $db  = Zend_Registry::get( 'db' );
-	       $rows = $db->fetchAll( $sql );
-
-	       foreach( $rows as $row ) {
-		    $selected = $row[ 'id' ] == $select ? ' selected="selected"' : '';
-		    $return .= '<option value="' . $row[ 'id' ] . '"' . $selected . '>' . $row[ 'group_name' ] . '</options>';
-	       }
-	  }
-	  echo $return;
-     }
+	$return = array();
+	$return['status'] = 'ok';
+	$return['rows'	] = $rows;
+	$this->echo_json($return);
+}
 
 /*
  *   $.ajax({ method: get_users, where:..x, select: x...x, initial: x...x });

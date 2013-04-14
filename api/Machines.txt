@@ -1,0 +1,6 @@
+http://erp/index.php/ajax?data={"method":"get_options","table":"Machines","field":"name","selected":"Altesa","initial":""}
+
+<option value=""   ></option>
+<option value="1">Altesa</options>
+<option value="2">Ana</options>
+<option value="3">Angelica</options>

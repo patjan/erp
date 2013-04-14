@@ -1,11 +1,11 @@
 DROP   TABLE IF     EXISTS Machines;
 CREATE TABLE IF NOT EXISTS Machines
-( id                BIGINT				NOT NULL AUTO_INCREMENT
-, created_at        DATETIME			DEFAULT NULL
-, created_by        BIGINT				DEFAULT NULL
-, updated_at        DATETIME			DEFAULT NULL
-, updated_by        BIGINT				DEFAULT NULL
-, status            VARCHAR(32)         DEFAULT 'Active'
+( id				BIGINT				NOT NULL AUTO_INCREMENT
+, created_by		BIGINT				DEFAULT NULL
+, created_at		DATETIME			DEFAULT NULL
+, updated_by		BIGINT				DEFAULT NULL
+, updated_at		DATETIME			DEFAULT NULL
+, status			VARCHAR(32)			DEFAULT 'Active'
 
 , name				VARCHAR(32)			UNIQUE
 , machine_type		VARCHAR(32)			DEFAULT NULL
@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS Machines
 , density			INT(11)				DEFAULT 0
 , inputs			INT(11)				DEFAULT 0
 , lanes				INT(11)				DEFAULT 0
+, serial			VARCHAR(32)			DEFAULT 0
 , repair_dt			DATE				DEFAULT null
 , return_dt			DATE				DEFAULT null
 

@@ -1,11 +1,11 @@
 DROP   TABLE IF     EXISTS Configs;
 CREATE TABLE IF NOT EXISTS Configs
-( id                BIGINT				NOT NULL AUTO_INCREMENT
-, created_at        DATETIME			DEFAULT NULL
-, created_by        BIGINT				DEFAULT NULL
-, updated_at        DATETIME			DEFAULT NULL
-, updated_by        BIGINT				DEFAULT NULL
-, status            VARCHAR(32)         DEFAULT 'Active'
+( id				BIGINT				NOT NULL AUTO_INCREMENT
+, created_by		BIGINT				DEFAULT NULL
+, created_at		DATETIME			DEFAULT NULL
+, updated_by		BIGINT				DEFAULT NULL
+, updated_at		DATETIME			DEFAULT NULL
+, status			VARCHAR(32)			DEFAULT 'Active'
 
 , company_id		BIGINT				DEFAULT 1
 , sequence			INTEGER				DEFAULT 0

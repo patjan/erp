@@ -1,5 +1,5 @@
-DROP   TABLE IF     EXISTS Threads;
-CREATE TABLE IF NOT EXISTS Threads
+DROP   TABLE IF     EXISTS Products;
+CREATE TABLE IF NOT EXISTS Products
 ( id				BIGINT				NOT NULL AUTO_INCREMENT
 , created_by		BIGINT				DEFAULT NULL
 , created_at		DATETIME			DEFAULT NULL
@@ -7,14 +7,11 @@ CREATE TABLE IF NOT EXISTS Threads
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'
 
-, code				VARCHAR(32)			UNIQUE
+, code				VARCHAR(32)			DEFAULT NULL
 , name				VARCHAR(255)		DEFAULT NULL
-, thread_group		VARCHAR(255)		DEFAULT NULL
-, thread_color		VARCHAR(255)		DEFAULT NULL
-, composition		VARCHAR(255)		DEFAULT NULL
+, product_type		VARCHAR(32)			DEFAULT NULL
 
 , PRIMARY KEY(id)
-, UNIQUE(code)
-, KEY name(name)
+, UNIQUE(name)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;

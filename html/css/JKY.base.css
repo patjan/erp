@@ -105,9 +105,9 @@ input.span2 {width:80px; padding:2px 4px;}
     border-bottom: 1px solid #CACACA;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 9px rgba(0, 0, 0, 0.1);
 }
-#jky-app-breadcrumb		{float:left ; margin:10px; height:24px; font-size:18px; font-weight:bold; vertical-align:middle;}
-#jky-app-select			{float:left ; margin:10px; width:200px; height:24px;}
-#jky-app-filter			{float:right; margin:10px; width:300px; height:14px;}
+#jky-app-breadcrumb		{float:left ; margin:12px 10px 8px 10px; height:24px; font-size:18px; font-weight:bold; vertical-align:middle;}
+#jky-app-select			{float:left ; margin:10px; width:200px;  height:24px;}
+#jky-app-filter			{float:right; margin:10px; width:300px;  height:14px;}
 #jky-app-actions		{float:left ; margin: 6px 10px;}
 #jky-app-actions a		{vertical-align:bottom;}
 #jky-app-more			{float:left ; margin: 6px 10px 6px 80px;}

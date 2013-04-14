@@ -1,0 +1,204 @@
+<div id='jky-app-header'>
+	<div>
+		<div id='jky-app-breadcrumb'></div>
+<!--	<select id='jky-app-select'></select>-->
+		<input  id='jky-app-filter' class='search-query' type='text' placeholder='Search' />
+		<div class='jky-clear'></div>
+	</div>
+
+	<div>
+		<div id='jky-app-actions'>
+			<button id='jky-action-add-new'	class='btn btn-success' type='button'>Add New	</button>
+			<button id='jky-action-save'	class='btn btn-success' type='button'>Save		</button>
+		&nbsp;<a	id='jky-action-delete'	href='#'>Delete</a>
+		&nbsp;<a	id='jky-action-cancel'	href='#'>Cancel</a>
+		</div>
+		<div id='jky-app-more'>
+			<button id='jky-action-export'	class='btn btn-success' type='button'>Export	</button>
+<!--		<button id='jky-action-publish'	class='btn btn-success' type='button'>Publish	</button>	-->
+		</div>
+		<div id='jky-app-displays' class='btn-group'>
+			<button id='jky-action-list'	class='btn' title='List View'><i class='icon-align-justify'	></i></button>
+			<button id='jky-action-form'	class='btn' title='Form View'><i class='icon-list-alt'		></i></button>
+<!--
+			<button class='btn'><i class='icon-signal'		></i></button>
+			<button class='btn'><i class='icon-calendar'	></i></button>
+-->
+		</div>
+		<div id='jky-app-counters'><span id='jky-app-index'>1</span> of <span id='jky-app-count'>12</span></div>
+		<div id='jky-app-add-new' >New</div>
+		<div id='jky-app-navs' class='btn-group'>
+			<button id='jky-action-prev'	class='btn' title='Previous'><i class='icon-backward'		></i></button>
+			<button id='jky-action-next'	class='btn' title='Next'	><i class='icon-forward'		></i></button>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+</div>
+
+<style>
+.jky-form-label		{width:200px;}
+.jky-form-value		{width:270px;}
+.jky-checkbox		{text-align:center; width:30px;}
+#jky-check-all		{width:30px;}
+
+.jky-code			{width: 50px; text-align:left;	}
+.jky-product		{width:200px;}
+.jky-machine		{width:100px;}
+.jky-composition	{width:100px;}
+
+#jky-code			{width:60px; font-size:16px; font-weight:bold;}
+#jky-product		{width:230px;}
+#jky-product span	{padding:4px 20px 0 4px; vertical-align:bottom;}
+#jky-machine		{width:385px;}
+#jky-diameter		{width:40px;}
+#jky-density		{width:40px;}
+#jky-inputs			{width:40px;}
+#jky-lanes			{width:40px;}
+#jky-speed			{width:40px;}
+#jky-turns			{width:40px;}
+#jky-weight			{width:40px;}
+#jky-width			{width:40px;}
+#jky-lanes			{width:40px;}
+#jky-yield			{width:40px;}
+#jky-needling		{width:40px;}
+#jky-has-break		{width:40px;}
+</style>
+
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th    id='jky-check-all'	><input type='checkbox' /></th>
+			<th class='jky-code'		>Code		</th>
+			<th class='jky-product'		>Product	</th>
+			<th class='jky-machine'		>Machine	</th>
+			<th class='jky-composition'	>Composition</th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+
+	<tfoot>
+		<tr>
+			<td></td>
+		</tr>
+	</tfoot>
+</table>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'	></div>
+		<ul id='jky-form-status'	></ul>
+	</div>
+	<div class='jky-clear'></div>
+
+	<div id='jky-form-title'>
+		<span id='jky-form-action'	></span>
+		<span id='jky-form-id'		></span>
+		<div class='jky-right'>
+			<button id='jky-action-comment'	class='btn btn-success' type='button'>Comment</button>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-data'>
+		<div class='jky-form-line'><div class='jky-form-label'>		Code:</div><div class='jky-form-value'><input id='jky-code'		class='jky-form-value' placeholder='Code'		/></div></div>
+		<div class='jky-form-line'><div class='jky-form-label'>	 Product:</div><div class='jky-form-value'><input id='jky-product'	class='jky-form-value' placeholder='Product'	/></div></div>
+		<div class='jky-form-line'><div class='jky-form-label'>	 Machine:</div>
+			<select id='jky-machine' placeholder='Machine Name'>
+				<option>100001</option>
+				<option>100002</option>
+				<option>100003</option>
+			</select>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'>	 Diameter:</div><div class='jky-form-value'><input id='jky-diameter'	class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>	  Density:</div><div class='jky-form-value'><input id='jky-density'		class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>	   Inputs:</div><div class='jky-form-value'><input id='jky-inputs'		class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>		Speed:</div><div class='jky-form-value'><input id='jky-speed'		class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>		Turns:</div><div class='jky-form-value'><input id='jky-turns'		class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>	   Weight:</div><div class='jky-form-value'><input id='jky-weight'		class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>		Width:</div><div class='jky-form-value'><input id='jky-width'		class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>		Lanes:</div><div class='jky-form-value'><input id='jky-lanes'		class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>		Yield:</div><div class='jky-form-value'><input id='jky-yield'		class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>	 Needling:</div><div class='jky-form-value'><input id='jky-needling'	class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'> Has Break:</div><div class='jky-form-value'><input id='jky-has-break'	class='jky-form-value' placeholder='0'	/></div></div>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-tabs' class='tabbable'>
+		<ul class='nav nav-tabs' id='cd-ul-tabs'>
+			<li id='jky-tab-contacts' class='active'><a href='#jky-contacts' data-toggle='tab'>Contacts	</a></li>
+			<li	id='jky-tab-notes'					><a href='#jky-notes'	 data-toggle='tab'>Notes	</a></li>
+			<li	id='jky-tab-sales'					><a href='#jky-sales'	 data-toggle='tab'>Sales	</a></li>
+			<li	id='jky-tab-account'				><a href='#jky-account'	 data-toggle='tab'>Account	</a></li>
+			<li	id='jky-tab-history'				><a href='#jky-history'	 data-toggle='tab'>History	</a></li>
+		</ul>
+
+		<div class='tab-content'>
+
+			<div id='jky-contacts' class='tab-pane active'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<td class='cd-category'		>Product			</td>
+							<td class='cd-text'			>Description		</td>
+							<td class='cd-requested-by'	>Scheduled<br>Date	</td>
+							<td class='cd-requested-on' >Quantity			</td>
+							<td class='cd-approved-by'	>Unit<br>Price		</td>
+							<td class='cd-approved-on' 	>Taxes				</td>
+							<td class='cd-satisfied-by'	>Subtotal			</td>
+						</tr>
+					</thead>
+					<tbody id='cd-satisfieds-box'>
+						<tr>
+							<td class='cd-category'		>[M-Wir] Mouse, Wireless</td>
+							<td class='cd-text'			>[M-Wir] Mouse, Wireless</td>
+							<td class='cd-requested-by'	>02/01/21013	</td>
+							<td class='cd-requested-on' >10.000	</td>
+							<td class='cd-approved-by'	>18.00	</td>
+							<td class='cd-approved-on' 	>		</td>
+							<td class='cd-satisfied-by'	>180.00	</td>
+						</tr>
+						<tr>
+							<td class='cd-category'		>[M-Wir] Mouse, Wireless</td>
+							<td class='cd-text'			>[M-Wir] Mouse, Wireless</td>
+							<td class='cd-requested-by'	>02/01/21013	</td>
+							<td class='cd-requested-on' >10.000	</td>
+							<td class='cd-approved-by'	>18.00	</td>
+							<td class='cd-approved-on' 	>		</td>
+							<td class='cd-satisfied-by'	>180.00	</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr><td colspan='3'></td><td colspan='3' class='jky-tab-label'>Untaxed Amount	</td><td class='jky-tab-value'>180.00</td></tr>
+						<tr><td colspan='3'></td><td colspan='3' class='jky-tab-label'>Taxes			</td><td class='jky-tab-value'>  0.00</td></tr>
+						<tr><td colspan='3'></td><td colspan='3' class='jky-tab-label'>Total			</td><td class='jky-tab-value'>180.00</td></tr>
+					</tfoot>
+				</table>
+			</div>
+
+			<div id='jky-incoming' class='tab-pane'>
+				<div class='jky-left'>
+					<div class='jky-form-line'><div class='jky-form-label'>		Expected Date</div><div id='jky-expected-date'		class='jky-form-value'>02/01/2013	</div></div>
+				</div>
+				<div class='jky-right'>
+					<div class='jky-form-line'><div class='jky-form-label'>	Invoicing Control</div><div id='jky-invoicing-control'	class='jky-form-value'>Based on generated draft invoice</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'>	 Invoice Received</div><div id='jky-invoice-received'	class='jky-form-value'>No		</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'>		 Payment Term</div><div id='jky-payment-term'		class='jky-form-value'>			</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'>	  Fiscal Position</div><div id='jky-fiscal-position'	class='jky-form-value'>			</div></div>
+				</div>
+				<div class='jky-clear'></div>
+			</div>
+
+		</div>
+	</div>
+
+	<div id='jky-form-footer'></div>
+</div>
+
+<div id='jky-body-loaded'></div>
+<script src='js/ftps.js'></script>

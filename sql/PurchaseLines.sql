@@ -1,11 +1,11 @@
 DROP   TABLE IF     EXISTS PurchaseLines;
 CREATE TABLE IF NOT EXISTS PurchaseLines
-( id                BIGINT				NOT NULL AUTO_INCREMENT
-, created_at        DATETIME			DEFAULT NULL
-, created_by        BIGINT				DEFAULT NULL
-, updated_at        DATETIME			DEFAULT NULL
-, updated_by        BIGINT				DEFAULT NULL
-, status            VARCHAR(32)         DEFAULT 'Draft'
+( id				BIGINT				NOT NULL AUTO_INCREMENT
+, created_by		BIGINT				DEFAULT NULL
+, created_at		DATETIME			DEFAULT NULL
+, updated_by		BIGINT				DEFAULT NULL
+, updated_at		DATETIME			DEFAULT NULL
+, status			VARCHAR(32)			DEFAULT 'Draft'
 
 , purchase_id		BIGINT
 , thread_id			BIGINT

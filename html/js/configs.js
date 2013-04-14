@@ -6,6 +6,7 @@
 var jky_program		= 'Configs';
 var jky_table		= 'Configs';
 var jky_select		= 'Root';
+var jky_focus		= 'jky-name';
 var jky_filter		= '';
 var jky_specific	= '';
 var jky_sort_by		= 'name';
@@ -58,7 +59,7 @@ JKY.set_initial_values = function() {
 		JKY.set_menu_active('jky-menu-admin');
 		JKY.set_side_active('jky-admin-configs');
 		JKY.set_html('jky-app-breadcrumb', jky_program);
-		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table, jky_select, 'Root'));
+		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table , jky_select, 'Root'));
 		JKY.set_html('jky-status'    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
 		JKY.display_list();
 		JKY.show('jky-side-admin');
@@ -102,9 +103,9 @@ JKY.display_form = function(index) {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.hide('jky-action-add-new'	);
-	JKY.show('jky-action-save'		);
-	JKY.show('jky-action-delete'	);
-	JKY.show('jky-action-cancel'	);
+//	JKY.show('jky-action-save'		);
+//	JKY.show('jky-action-delete'	);
+//	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
 }
@@ -122,13 +123,22 @@ JKY.display_next = function() {
 JKY.display_row = function(index) {
 	jky_index = index;
 	var my_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
+	if (my_row['name'] == 'Root') {
+		JKY.hide('jky-action-save'		);
+		JKY.hide('jky-action-delete'	);
+		JKY.hide('jky-action-cancel'	);
+	}else{
+		JKY.show('jky-action-save'		);
+		JKY.show('jky-action-delete'	);
+		JKY.show('jky-action-cancel'	);
+	}
 	jky_rows[index-1] = my_row;
 	JKY.set_html('jky-app-index', index);
 	JKY.set_option	('jky-status'	, my_row['status'	]);
 	JKY.set_value	('jky-sequence'	, my_row['sequence'	]);
 	JKY.set_value	('jky-name'		, my_row['name'		]);
 	JKY.set_value	('jky-value'	, my_row['value'	]);
-	JKY.set_focus('jky-sequence');
+	JKY.set_focus(jky_focus);
 }
 
 JKY.load_table = function() {
@@ -185,7 +195,7 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-sequence'	, 50);
 	JKY.set_value	('jky-name'		, '');
 	JKY.set_value	('jky-value'	, '');
-	JKY.set_focus('jky-name');
+	JKY.set_focus(jky_focus);
 }
 
 JKY.get_form_set = function() {
@@ -210,6 +220,7 @@ JKY.process_insert = function() {
 
 JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
+	JKY.display_message(response.message);
 	JKY.display_list();
 }
 
@@ -226,6 +237,7 @@ JKY.process_update = function() {
 
 JKY.process_update_success = function(response) {
 	JKY.display_trace('process_update_success');
+	JKY.display_message(response.message);
 	jky_rows[jky_index-1] = JKY.get_row(jky_table, jky_rows[jky_index-1]['id']);
 	JKY.display_next();
 }
@@ -250,6 +262,7 @@ JKY.process_delete = function() {
 
 JKY.process_delete_success = function(response) {
 	JKY.display_trace('process_delete_success');
+	JKY.display_message(response.message);
 	JKY.display_list();
 }
 
