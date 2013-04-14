@@ -36,8 +36,11 @@
 </div>
 
 <style>
-.jky-form-label		{width:200px;}
-.jky-form-value		{width:270px;}
+.jky-form-label		{width:150px;}
+.jky-form-label-1	{width:100px;}
+.jky-form-label-2	{width:100px;}
+.jky-form-label-3	{width:100px;}
+.jky-form-value		{width: 50px;}
 .jky-checkbox		{text-align:center; width:30px;}
 #jky-check-all		{width:30px;}
 
@@ -46,22 +49,22 @@
 .jky-machine		{width:100px;}
 .jky-composition	{width:100px;}
 
-#jky-code			{width:60px; font-size:16px; font-weight:bold;}
-#jky-product		{width:230px;}
+#jky-code			{width: 60px; font-size:16px; font-weight:bold;}
+#jky-product		{width:340px;}
 #jky-product span	{padding:4px 20px 0 4px; vertical-align:bottom;}
-#jky-machine		{width:385px;}
-#jky-diameter		{width:40px;}
-#jky-density		{width:40px;}
-#jky-inputs			{width:40px;}
-#jky-lanes			{width:40px;}
-#jky-speed			{width:40px;}
-#jky-turns			{width:40px;}
-#jky-weight			{width:40px;}
-#jky-width			{width:40px;}
-#jky-lanes			{width:40px;}
-#jky-yield			{width:40px;}
-#jky-needling		{width:40px;}
-#jky-has-break		{width:40px;}
+#jky-machine		{width:350px;}
+#jky-diameter		{width: 40px;}
+#jky-density		{width: 40px;}
+#jky-inputs			{width: 40px;}
+#jky-lanes			{width: 40px;}
+#jky-speed			{width: 40px;}
+#jky-turns			{width: 40px;}
+#jky-weight			{width: 40px;}
+#jky-width			{width: 40px;}
+#jky-lanes			{width: 40px;}
+#jky-yield			{width: 40px;}
+#jky-needling		{width: 40px;}
+#jky-has-break		{width: 40px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -101,8 +104,8 @@
 	</div>
 
 	<div id='jky-form-data'>
-		<div class='jky-form-line'><div class='jky-form-label'>		Code:</div><div class='jky-form-value'><input id='jky-code'		class='jky-form-value' placeholder='Code'		/></div></div>
-		<div class='jky-form-line'><div class='jky-form-label'>	 Product:</div><div class='jky-form-value'><input id='jky-product'	class='jky-form-value' placeholder='Product'	/></div></div>
+		<div class='jky-form-line'><div class='jky-form-label'>		Code:</div><div class='jky-form-value'><input id='jky-code'		class='jky-form-value' placeholder='Code'		readonly='readonly'/></div></div>
+		<div class='jky-form-line'><div class='jky-form-label'>	 Product:</div><div class='jky-form-value'><input id='jky-product'	class='jky-form-value' placeholder='Product'	readonly='readonly'/></div></div>
 		<div class='jky-form-line'><div class='jky-form-label'>	 Machine:</div>
 			<select id='jky-machine' placeholder='Machine Name'>
 				<option>100001</option>
@@ -114,17 +117,21 @@
 		<br>
 
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'>	 Diameter:</div><div class='jky-form-value'><input id='jky-diameter'	class='jky-form-value' placeholder='0'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>	  Density:</div><div class='jky-form-value'><input id='jky-density'		class='jky-form-value' placeholder='0'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>	   Inputs:</div><div class='jky-form-value'><input id='jky-inputs'		class='jky-form-value' placeholder='0'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>		Speed:</div><div class='jky-form-value'><input id='jky-speed'		class='jky-form-value' placeholder='0'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>		Turns:</div><div class='jky-form-value'><input id='jky-turns'		class='jky-form-value' placeholder='0'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>	   Weight:</div><div class='jky-form-value'><input id='jky-weight'		class='jky-form-value' placeholder='0'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>		Width:</div><div class='jky-form-value'><input id='jky-width'		class='jky-form-value' placeholder='0'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>		Lanes:</div><div class='jky-form-value'><input id='jky-lanes'		class='jky-form-value' placeholder='0'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>		Yield:</div><div class='jky-form-value'><input id='jky-yield'		class='jky-form-value' placeholder='0'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>	 Needling:</div><div class='jky-form-value'><input id='jky-needling'	class='jky-form-value' placeholder='0'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'> Has Break:</div><div class='jky-form-value'><input id='jky-has-break'	class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label-1'>	 Diameter:</div><div class='jky-form-value'><input id='jky-diameter'	class='jky-form-value' placeholder='0'	/></div>(cm)	</div>
+			<div class='jky-form-line'><div class='jky-form-label-1'>	  Density:</div><div class='jky-form-value'><input id='jky-density'		class='jky-form-value' placeholder='0'	/></div>		</div>
+			<div class='jky-form-line'><div class='jky-form-label-1'>	   Inputs:</div><div class='jky-form-value'><input id='jky-inputs'		class='jky-form-value' placeholder='0'	/></div>(cones)	</div>
+			<div class='jky-form-line'><div class='jky-form-label-1'>		Speed:</div><div class='jky-form-value'><input id='jky-speed'		class='jky-form-value' placeholder='0'	/></div>(rpm)	</div>
+		</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label-2'>		Turns:</div><div class='jky-form-value'><input id='jky-turns'		class='jky-form-value' placeholder='0'	/></div>		</div>
+			<div class='jky-form-line'><div class='jky-form-label-2'>	   Weight:</div><div class='jky-form-value'><input id='jky-weight'		class='jky-form-value' placeholder='0'	/></div>(gr)	</div>
+			<div class='jky-form-line'><div class='jky-form-label-2'>		Width:</div><div class='jky-form-value'><input id='jky-width'		class='jky-form-value' placeholder='0'	/></div>(cm)	</div>
+			<div class='jky-form-line'><div class='jky-form-label-2'>		Lanes:</div><div class='jky-form-value'><input id='jky-lanes'		class='jky-form-value' placeholder='0'	/></div>		</div>
+		</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label-3'>		Yield:</div><div class='jky-form-value'><input id='jky-yield'		class='jky-form-value' placeholder='0'	/></div>(%)		</div>
+			<div class='jky-form-line'><div class='jky-form-label-3'>	 Needling:</div><div class='jky-form-value'><input id='jky-needling'	class='jky-form-value' placeholder='0'	/></div>		</div>
+			<div class='jky-form-line'><div class='jky-form-label-3'>   Has Break?</div><div class='jky-form-value'><input id='jky-has-break'	class='jky-form-value' placeholder='0'	/></div>		</div>
 		</div>
 		<div class='jky-clear'></div>
 	</div>

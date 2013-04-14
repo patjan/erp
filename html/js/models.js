@@ -6,6 +6,7 @@
 var jky_program		= 'Models';
 var jky_table		= 'Models';
 var jky_select		= '';
+var jky_focus		= 'jky-name';
 var jky_filter		= '';
 var jky_specific	= '';
 var jky_sort_by		= 'name';
@@ -18,7 +19,7 @@ var jky_index		=  0;				//	0=Add New
 /**
  * start program
  */
-JKY.start_program = function(jky_program) {
+JKY.start_program = function(action) {
 	JKY.display_trace('start_program - ' + jky_program);
 	JKY.set_all_events(jky_program);
 	JKY.set_initial_values(jky_program);
@@ -27,7 +28,7 @@ JKY.start_program = function(jky_program) {
 /**
  *	set all events (run only once per load)
  */
-JKY.set_all_events = function() {
+JKY.set_all_events = function(jky_program) {
 	JKY.display_trace('set_all_events');
 	if (JKY.is_loaded('jky-body')) {
 		$('#jky-app-select'		).change(function() {JKY.change_select  (this);});
@@ -45,7 +46,7 @@ JKY.set_all_events = function() {
 		$('#jky-action-comment'	).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'		).click (function() {JKY.process_check_all	();});	// not needed on version 0
 
-		if (jky_program == 'Contacts')	{$('#jky-is-company').click	(function() {JKY.display_company(this);});		}
+		if (jky_program == 'Customer')	{$('#jky-is-company').click	(function() {JKY.display_company(this);});		}
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -73,7 +74,6 @@ JKY.set_initial_values = function(jky_program) {
 		}
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
-
 		JKY.show('jky-side-sales');
 		JKY.show('jky-action-add-new');
 	}else{
@@ -164,12 +164,22 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-fax'			, my_row['fax'			]);
 	JKY.set_value	('jky-email'		, my_row['email'		]);
 
+	if (my_row['name'] == 'Root') {
+		JKY.hide('jky-action-save'		);
+		JKY.hide('jky-action-delete'	);
+		JKY.hide('jky-action-cancel'	);
+	}else{
+		JKY.show('jky-action-save'		);
+		JKY.show('jky-action-delete'	);
+		JKY.show('jky-action-cancel'	);
+	}
+
 	if (my_row['is_company'] == 'yes') {
 		JKY.hide('jky-company-name');
 	}else{
 		JKY.show('jky-company-name');
 	}
-	JKY.set_focus('jky-name');
+	JKY.set_focus(jky_focus);
 }
 
 JKY.load_table = function() {
@@ -240,8 +250,7 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-mobile'		, '');
 	JKY.set_value	('jky-fax'			, '');
 	JKY.set_value	('jky-email'		, '');
-
-	JKY.set_focus('jky-full-name');
+	JKY.set_focus(jky_focus);
 }
 
 JKY.get_form_set = function() {
@@ -279,6 +288,7 @@ JKY.process_insert = function() {
 
 JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
+	JKY.display_message(response.message);
 	JKY.display_list();
 }
 
@@ -295,6 +305,7 @@ JKY.process_update = function() {
 
 JKY.process_update_success = function(response) {
 	JKY.display_trace('process_update_success');
+	JKY.display_message(response.message);
 	jky_rows[jky_index-1] = JKY.get_row(jky_table, jky_rows[jky_index-1]['id']);
 	JKY.display_next();
 }
@@ -319,6 +330,7 @@ JKY.process_delete = function() {
 
 JKY.process_delete_success = function(response) {
 	JKY.display_trace('process_delete_success');
+	JKY.display_message(response.message);
 	JKY.display_list();
 }
 

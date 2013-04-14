@@ -19,16 +19,16 @@ var jky_index		=  0;				//	0=Add New
 /**
  * start program
  */
-JKY.start_program = function() {
+JKY.start_program = function(action) {
 	JKY.display_trace('start_program - ' + jky_program);
-	JKY.set_all_events();
-	JKY.set_initial_values();
+	JKY.set_all_events(jky_program);
+	JKY.set_initial_values(jky_program);
 }
 
 /**
  *	set all events (run only once per load)
  */
-JKY.set_all_events = function() {
+JKY.set_all_events = function(jky_program) {
 	JKY.display_trace('set_all_events');
 	if (JKY.is_loaded('jky-body')) {
 		$('#jky-app-select'		).change(function() {JKY.change_select  (this);});
@@ -53,32 +53,20 @@ JKY.set_all_events = function() {
 /**
  *	set initial values (run only once per load)
  */
-JKY.set_initial_values = function() {
+JKY.set_initial_values = function(jky_program) {
 	JKY.display_trace('set_initial_values');
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-support');
 		JKY.set_side_active('jky-support-controls');
-		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table , jky_select, 'Root'));
 		JKY.set_html('jky-status'    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
+		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
 		JKY.show('jky-side-support');
 		JKY.show('jky-action-add-new');
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
-}
-
-JKY.change_select = function(event){
-	jky_select = event.value;
-	JKY.display_trace('change_select: ' + jky_select);
-	JKY.display_list();
-}
-
-JKY.change_filter = function(event){
-	jky_filter = event.value;
-	JKY.display_trace('change_filter: ' + jky_filter);
-	JKY.display_list();
 }
 
 JKY.display_list = function() {
@@ -110,6 +98,18 @@ JKY.display_form = function(index) {
 	JKY.show('jky-app-form'			);
 }
 
+JKY.change_select = function(event){
+	jky_select = event.value;
+	JKY.display_trace('change_select: ' + jky_select);
+	JKY.display_list();
+}
+
+JKY.change_filter = function(event){
+	jky_filter = event.value;
+	JKY.display_trace('change_filter: ' + jky_filter);
+	JKY.display_list();
+}
+
 JKY.display_prev = function() {
 	jky_index = (jky_index == 1) ? jky_count : (jky_index-1);
 	JKY.display_row(jky_index);
@@ -123,7 +123,14 @@ JKY.display_next = function() {
 JKY.display_row = function(index) {
 	jky_index = index;
 	var my_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
-	if (my_row['name'] == 'Root') {
+	jky_rows[index-1] = my_row;
+	JKY.set_html('jky-app-index', index);
+	JKY.set_option	('jky-status'	, my_row['status'	]);
+	JKY.set_value	('jky-sequence'	, my_row['sequence'	]);
+	JKY.set_value	('jky-name'		, my_row['name'		]);
+	JKY.set_value	('jky-value'	, my_row['value'	]);
+
+	if (jky_select == 'Root' && my_row['name'] == 'Root') {
 		JKY.hide('jky-action-save'		);
 		JKY.hide('jky-action-delete'	);
 		JKY.hide('jky-action-cancel'	);
@@ -132,12 +139,6 @@ JKY.display_row = function(index) {
 		JKY.show('jky-action-delete'	);
 		JKY.show('jky-action-cancel'	);
 	}
-	jky_rows[index-1] = my_row;
-	JKY.set_html('jky-app-index', index);
-	JKY.set_option	('jky-status'	, my_row['status'	]);
-	JKY.set_value	('jky-sequence'	, my_row['sequence'	]);
-	JKY.set_value	('jky-name'		, my_row['name'		]);
-	JKY.set_value	('jky-value'	, my_row['value'	]);
 	JKY.set_focus(jky_focus);
 }
 
@@ -221,6 +222,7 @@ JKY.process_insert = function() {
 JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
 	JKY.display_message(response.message);
+	JKY.refresh_select(jky_select);
 	JKY.display_list();
 }
 
@@ -238,6 +240,7 @@ JKY.process_update = function() {
 JKY.process_update_success = function(response) {
 	JKY.display_trace('process_update_success');
 	JKY.display_message(response.message);
+	JKY.refresh_select(jky_select);
 	jky_rows[jky_index-1] = JKY.get_row(jky_table, jky_rows[jky_index-1]['id']);
 	JKY.display_next();
 }
@@ -263,6 +266,7 @@ JKY.process_delete = function() {
 JKY.process_delete_success = function(response) {
 	JKY.display_trace('process_delete_success');
 	JKY.display_message(response.message);
+	JKY.refresh_select(jky_select);
 	JKY.display_list();
 }
 
@@ -285,3 +289,9 @@ JKY.process_export = function() {
 
 	JKY.run_export(jky_table, jky_select, jky_filter, jky_specific, my_sort_by);
 };
+
+JKY.refresh_select = function(selected) {
+	if (selected == 'Root') {
+		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table , jky_select, 'Root'));
+	}
+}
