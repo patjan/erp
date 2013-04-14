@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS Products
 , product_type		VARCHAR(32)			DEFAULT NULL
 
 , PRIMARY KEY(id)
-, UNIQUE(name)
+, UNIQUE(code)
+, KEY name		(name)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
