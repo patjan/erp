@@ -147,7 +147,8 @@ input.span2 {width:80px; padding:2px 4px;}
 }
 .jky-form-status		{display: inline; border:0px solid #999999; margin:2px; padding:4px; }
 
-li.active 				{background-image: linear-gradient(to bottom, #729FCF, #3465A4);}
+/*li.active 				{background-image: linear-gradient(to bottom, #729FCF, #3465A4);}*/
+
 li.active .xlabel		{color:white; font-weight:bold;}
 li.active .arrow span	{background:-moz-linear-gradient(135deg, #3465A4, #729FCF) repeat scroll 0 0 transparent;
 }
