@@ -8,6 +8,15 @@ CREATE TABLE IF NOT EXISTS FTP_Sets
 , status			VARCHAR(32)			DEFAULT 'Active'
 
 , ftp_id			BIGINT				DEFAULT NULL
+, setting_id		BIGINT				DEFAULT NULL
+, value				VARCHAR(32)			DEFAULT NULL
+
+, PRIMARY KEY(id)
+, UNIQUE(ftp_id, setting_id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
+;
+
+/*
 , ponto_malha		CHAR(2)				DEFAULT NULL
 , fita_malha		INT(11)				DEFAULT 0
 , lfa_malha			INT(11)				DEFAULT 0
@@ -20,7 +29,4 @@ CREATE TABLE IF NOT EXISTS FTP_Sets
 , chave_disco		INT(11)				DEFAULT 0
 , frontura			INT(11)				DEFAULT 0
 , puxador			INT(11)				DEFAULT 0
-
-, PRIMARY KEY(id)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
-;
+*/

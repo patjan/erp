@@ -9,7 +9,7 @@ var jky_select		= 'Root';
 var jky_focus		= 'jky-name';
 var jky_filter		= '';
 var jky_specific	= '';
-var jky_sort_by		= 'name';
+var jky_sort_by		= 'sequence';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_rows		= [];
@@ -143,11 +143,13 @@ JKY.display_row = function(index) {
 }
 
 JKY.load_table = function() {
+	var my_order_by = jky_sort_by + ' ' + (jky_sort_seq == 0 ? 'ASC' : 'DESC');
 	var my_data =
-		{ method: 'get_index'
-		, table	: jky_table
-		, select: jky_select
-		, filter: jky_filter
+		{ method	: 'get_index'
+		, table		: jky_table
+		, select	: jky_select
+		, filter	: jky_filter
+		, order_by	: my_order_by
 		};
 	JKY.ajax(false, my_data, JKY.process_load_success);
 }

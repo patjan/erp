@@ -34,6 +34,9 @@ input.span2 {width:80px; padding:2px 4px;}
 	background:#323232;
 	color:white;
 }
+.jky-side-item.dev	{
+	color:green;
+}
 
 .jky-form-line			{clear:both; padding-top:2px;}
 .jky-form-label			{float:left; width:100px; margin:3px 7px; text-align:right; font-weight:bold;}

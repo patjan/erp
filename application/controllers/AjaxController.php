@@ -57,7 +57,7 @@ public function indexAction() {
 			case 'get_options'		: $this->get_options	($data); return;
 			case 'get_users'		: $this->get_users		(); return;
 			case 'get_controls' 	: $this->get_controls	(); return;
-			case 'get_configs'		: $this->get_configs	(); return;
+			case 'get_configs'		: $this->get_configs	($data); return;
 			case 'get_categories'	: $this->get_categories	(); return;
 			case 'get_profile'		: $this->get_profile	(); return;
 			case 'get_contact'		: $this->get_contact	(); return;
@@ -538,6 +538,8 @@ private function set_new_fields($table) {
 											. ', Companies.company_name	AS  company_name';
 	if ($table == 'FTPs'		)	$return = ',   Products.name		AS  product'
 											. ',   Machines.name		AS  machine';
+	if ($table == 'FTP_Sets'	)	$return = ',    Configs.sequence	AS  sequence'
+											. ',    Configs.name		AS  name';
 
 //	special code to append fields from Persons to Services table
 	if (get_request('method') == 'export') {
@@ -568,6 +570,7 @@ private function set_left_joins($table) {
 											. '  LEFT JOIN   Companies				ON Companies.id =    Persons.company_id';
 	if ($table == 'FTPs'		)	$return = '  LEFT JOIN     Products				ON  Products.id =		FTPS.product_id'
 											. '  LEFT JOIN     Machines				ON  Machines.id =		FTPS.machine_id';
+	if ($table == 'FTP_Sets'	)	$return = '  LEFT JOIN     Configs  			ON   Configs.id =	FTP_Sets.setting_id';
 	return $return;
 }
 
@@ -1179,6 +1182,12 @@ private function insert($data) {
 		$set .= ',     company_id= ' . get_session('company_id', COMPANY_ID);
 		$set .= ',             id= ' . $this->insert_user_jky();
 		$set .= ',    user_number= ' . $this->getUniqueNumber($table, 'user_number');
+	}
+
+	if ($table == 'FTPs') {
+		$my_number = $this->get_next_number('Controls', 'Next FTP Number');
+		$set .= ',   id= ' . $my_number;
+		$set .= ', code= ' . $my_number;
 	}
 
 	$sql= 'INSERT ' . $table
@@ -2063,41 +2072,29 @@ private function get_controls() {
 }
 
 /*
- *   $.ajax({ method: get_configs, group_set: x...x, select: x...x, initial: x...x });
+ *   $.ajax({ method: get_configs, group_set: x...x);
  *
- *   return: <options value="x...x" selected="selected">x...x</options>
- *           ...
+ *	status: ok
+ *	  rows: [{ x...x: y...y, ... } (false)
+ *			,{ x...x: y...y, ... }
+ *			,{ x...x: y...y, ... }
+ *			]
+
  */
-private function get_configs() {
-	$table		= get_request('table'	);
-	$selected	= get_request('selected'	);
-	$initial	= get_request('initial'		);
+private function get_configs($data) {
+	$group_set = get_data($data, 'group_set');
 
 	$sql = 'SELECT * '
-		 . '  FROM ' . $table
+		 . '  FROM Configs'
 		 . ' WHERE group_set = "' . $group_set . '"'
 		 . ' ORDER BY sequence, name'
 		 ;
-    if ($initial == '') {
-        $return = '';
-	}else{
-//		$return = '<option value="*">' . $initial . '</option>';
-		$return = '<option value="All">' . $initial . '</option>';
-	}
-
-	if ($sql != '') {
-		$db  = Zend_Registry::get( 'db' );
-		$rows = $db->fetchAll( $sql );
-
-		foreach ($rows as $row) {
-			if ($row['value'] == ''){
-				$row['value'] = $row['name'];
-			}
-		$selected = $row['name'] == $select ? ' selected="selected"' : '';
-		$return .= '<option value="' . $row['name'] . '"' . $selected . '>' . $row['value'] . '</options>';
-		}
-	}
-	echo $return;
+	$db  = Zend_Registry::get( 'db' );
+	$rows = $db->fetchAll( $sql );
+	$return = array();
+	$return['status'] = 'ok';
+	$return['rows'	] = $rows;
+	$this->echo_json($return);
 }
 
 /*
@@ -2720,6 +2717,22 @@ private function send_email() {
     }
 
 //   ---------------------------------------------------------------------------
+
+private function get_next_number($table, $name ) {
+	$db = Zend_Registry::get( 'db' );
+	$sql= 'SELECT value'
+		. '  FROM ' . $table
+		. ' WHERE name = "' . $name . '"'
+		;
+	$my_number = $db->fetchOne($sql);
+	$my_next   = (int)$my_number + 1;
+	$sql= 'UPDATE ' . $table
+		. '   SET value = "' . $my_next . '"'
+		. ' WHERE name  = "' . $name . '"'
+		;
+	$db->query($sql);
+	return $my_number;
+}
 
 private function get_last_id( $table, $where='1' ) {
      $sql = 'SELECT id'

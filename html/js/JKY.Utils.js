@@ -872,6 +872,44 @@ JKY.set_contact_us = function(contact_us) {
 }
 
 /**
+ * get configs
+ */
+JKY.get_configs = function(group_set) {
+	JKY.display_trace('get_configs: ' + group_set);
+	var my_rows = [];
+	var my_data =
+		{ method	: 'get_configs'
+		, group_set	:  group_set
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_rows = response.data;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.hide('jky-loading');
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	)
+	return my_rows;
+}
+
+/**
  * set group set
  */
 JKY.set_group_set = function(table, selected, group_set) {

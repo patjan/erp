@@ -15,7 +15,7 @@ var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 var jky_rows		= [];
 var jky_count		=  0;
 var jky_index		=  0;				//	0=Add New
-
+var jky_settings	= [];
 /**
  * start program
  */
@@ -64,6 +64,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.display_list();
 		JKY.show('jky-side-production');
 		JKY.show('jky-action-add-new');
+//		jky_settings = JKY.get_configs('Settings');
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
