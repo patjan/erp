@@ -453,7 +453,7 @@ JKY.set_yes = function(id_name, value){
  */
 JKY.set_check = function(id_name, value){
 	$('#' + id_name).removeAttr('checked');
-	var my_command = "$('#" + id_name + ":checkbox[value=" + value + "]').attr('checked', 'checked');";
+	var my_command = "$('#" + id_name + " :checkbox[value=" + value + "]').attr('checked', 'checked');";
 	setTimeout(my_command, 100);
 }
 
@@ -464,7 +464,7 @@ JKY.set_check = function(id_name, value){
  */
 JKY.set_radio = function(id_name, value){
 	$('#' + id_name).removeAttr('checked');
-	var my_command = "$('#" + id_name + ":radio[value=" + value + "]').attr('checked', 'checked');";
+	var my_command = "$('#" + id_name + " :radio[value=" + value + "]').attr('checked', 'checked');";
 	setTimeout(my_command, 100);
 }
 

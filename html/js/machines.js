@@ -193,15 +193,15 @@ JKY.process_add_new = function() {
 
 JKY.display_new = function() {
 	JKY.set_value	('jky-name'			, '' );
-	JKY.set_radio	('jky-machine-type'	, '' );
+	JKY.set_radio	('jky-machine-type'	, 'Circular' );
 	JKY.set_option	('jky-machine-brand', '' );
 	JKY.set_value	('jky-diameter'		, '0');
 	JKY.set_value	('jky-width'		, '0');
 	JKY.set_value	('jky-density'		, '0');
 	JKY.set_value	('jky-inputs'		, '0');
 	JKY.set_value	('jky-lanes'		, '0');
-	JKY.set_value	('jky-repair-value'	, '');
-	JKY.set_value	('jky-return-value'	, '');
+	JKY.set_value	('jky-repair-value'	, '' );
+	JKY.set_value	('jky-return-value'	, '' );
 	JKY.set_focus(jky_focus);
 }
 
