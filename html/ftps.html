@@ -73,6 +73,9 @@
 .jky-load-second-number	{width: 40px; text-align:center;}
 .jky-load-second-thread	{width:300px;}
 
+.jky-set-name			{width:200px; text-align:left ;}
+.jky-set-value			{width:100px; text-align:right;}
+#jky-set-body tr		{margin: 0 auto;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -151,24 +154,14 @@
 			<div id='jky-pane-composition' class='tab-pane active'>
 				<table class='table table-striped' >
 					<thead>
-						<tr>
-							<td class='jky-comp-percent'	>Percent	</td>
-							<td class='jky-comp-material'	>Material	</td>
-						</tr>
+						<tr><td class='jky-comp-percent'	>Percent	</td><td class='jky-comp-material'	>Material	</td></tr>
 					</thead>
 					<tbody id='jky-comp-body'>
-						<tr>
-							<td class='jky-comp-percent'	>40.5		</td>
-							<td class='jky-comp-material'	>Algodao	</td>
-						</tr>
-						<tr>
-							<td class='jky-comp-percent'	>49.5		</td>
-							<td class='jky-comp-material'	>Polyester	</td>
-						</tr>
+						<tr><td class='jky-comp-percent'	>40.5		</td><td class='jky-comp-material'	>Algodao	</td></tr>
+						<tr><td class='jky-comp-percent'	>49.5		</td><td class='jky-comp-material'	>Polyester	</td></tr>
 					</tbody>
 					<tfoot>
-							<td	   id='jky-comp-total'		>100		</td>
-							<td class='jky-comp-material'	>Total		</td>
+						<tr><td	   id='jky-comp-total'		>100		</td><td class='jky-comp-material'	>Total		</td></tr>
 					</tfoot>
 				</table>
 			</div>
@@ -176,20 +169,22 @@
 			<div id='jky-pane-settings' class='tab-pane'>
 				<table class='table table-striped' >
 					<thead>
-						<tr>
-							<td class='jky-set-name'	>Name	</td>
-							<td class='jky-set-value'	>Value	</td>
-						</tr>
+						<tr><td class='jky-set-name'	>Name	</td><td class='jky-set-value'	>Value	</td></tr>
 					</thead>
 					<tbody id='jky-set-body'>
-						<tr>
-							<td class='jky-set-name'	>Ponto da Malha	</td>
-							<td class='jky-set-value'	>6 up	</td>
-						</tr>
-						<tr>
-							<td class='jky-set-name'	>Fita da Malha	</td>
-							<td class='jky-set-value'	>140	</td>
-						</tr>
+						<tr><td class='jky-set-name'	> Ponto da Malha</td><td class='jky-set-value'	>6 Up	</td></tr>
+						<tr><td class='jky-set-name'	>  Fita da Malha</td><td class='jky-set-value'	>140	</td></tr>
+						<tr><td class='jky-set-name'	>   LFA da Malha</td><td class='jky-set-value'	>120	</td></tr>
+						<tr><td class='jky-set-name'	> Ponto da Fang	</td><td class='jky-set-value'	>4 Up	</td></tr>
+						<tr><td class='jky-set-name'	>  Fita da Fang	</td><td class='jky-set-value'	>160	</td></tr>
+						<tr><td class='jky-set-name'	>   LFA da Fang	</td><td class='jky-set-value'	>140	</td></tr>
+						<tr><td class='jky-set-name'	>  Fita da Lycra</td><td class='jky-set-value'	>120	</td></tr>
+						<tr><td class='jky-set-name'	> Ponto Central	</td><td class='jky-set-value'	>2.45	</td></tr>
+						<tr><td class='jky-set-name'	> Ponto do Disco</td><td class='jky-set-value'	>3.55	</td></tr>
+						<tr><td class='jky-set-name'	>Altura do Disco</td><td class='jky-set-value'	>110	</td></tr>
+						<tr><td class='jky-set-name'	> Chave do Disco</td><td class='jky-set-value'	> 40	</td></tr>
+						<tr><td class='jky-set-name'	>		Frontura</td><td class='jky-set-value'	> 25	</td></tr>
+						<tr><td class='jky-set-name'	>		 Puxador</td><td class='jky-set-value'	> 20	</td></tr>
 					</tbody>
 					<tfoot>
 					</tfoot>
@@ -199,20 +194,24 @@
 			<div id='jky-pane-threads' class='tab-pane'>
 				<table class='table table-striped' >
 					<thead>
-						<tr>
-							<td class='jky-set-name'	>Name	</td>
-							<td class='jky-set-value'	>Value	</td>
-						</tr>
+						<tr><td class='jky-set-name'	>Name	</td><td class='jky-set-value'	>Value	</td></tr>
 					</thead>
 					<tbody id='jky-set-body'>
-						<tr>
-							<td class='jky-set-name'	>Ponto da Malha	</td>
-							<td class='jky-set-value'	>6 up	</td>
-						</tr>
-						<tr>
-							<td class='jky-set-name'	>Fita da Malha	</td>
-							<td class='jky-set-value'	>140	</td>
-						</tr>
+						<table>
+							<tr><td class='jky-set-name'	> Ponto da Malha</td><td class='jky-set-value'	>6 Up	</td></tr>
+							<tr><td class='jky-set-name'	>  Fita da Malha</td><td class='jky-set-value'	>140	</td></tr>
+							<tr><td class='jky-set-name'	>   LFA da Malha</td><td class='jky-set-value'	>120	</td></tr>
+							<tr><td class='jky-set-name'	> Ponto da Fang	</td><td class='jky-set-value'	>4 Up	</td></tr>
+							<tr><td class='jky-set-name'	>  Fita da Fang	</td><td class='jky-set-value'	>160	</td></tr>
+							<tr><td class='jky-set-name'	>   LFA da Fang	</td><td class='jky-set-value'	>140	</td></tr>
+							<tr><td class='jky-set-name'	>  Fita da Lycra</td><td class='jky-set-value'	>120	</td></tr>
+							<tr><td class='jky-set-name'	> Ponto Central	</td><td class='jky-set-value'	>2.45	</td></tr>
+							<tr><td class='jky-set-name'	> Ponto do Disco</td><td class='jky-set-value'	>3.55	</td></tr>
+							<tr><td class='jky-set-name'	>Altura do Disco</td><td class='jky-set-value'	>110	</td></tr>
+							<tr><td class='jky-set-name'	> Chave do Disco</td><td class='jky-set-value'	> 40	</td></tr>
+							<tr><td class='jky-set-name'	>		Frontura</td><td class='jky-set-value'	> 25	</td></tr>
+							<tr><td class='jky-set-name'	>		 Puxador</td><td class='jky-set-value'	> 20	</td></tr>
+						</table>
 					</tbody>
 					<tfoot>
 					</tfoot>

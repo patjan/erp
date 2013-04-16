@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS Machines
 , inputs			INT(11)				DEFAULT 0
 , lanes				INT(11)				DEFAULT 0
 , serial			VARCHAR(32)			DEFAULT 0
-, repair_dt			DATE				DEFAULT null
-, return_dt			DATE				DEFAULT null
+, repair_date		DATE				DEFAULT null
+, return_date		DATE				DEFAULT null
 
 , PRIMARY KEY(id)
 , UNIQUE(name)

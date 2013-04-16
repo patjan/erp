@@ -295,6 +295,33 @@ JKY.fix_null = function(string_value){
 }
 
 /**
+ * fix ymd to dmy
+ * @param	yyyy-mm-dd
+ * @return	dd-mm-yyyy
+ */
+JKY.fix_ymd2dmy = function(date){
+	if (date == null) {
+		return '';
+	}
+	var my_dates = date.split('-');
+	return my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];
+}
+
+/**
+ * fix dmy to ymd
+ * @param	dd-mm-yyyy
+ * @return	yyyy-mm-dd
+ */
+JKY.fix_dmy2ymd = function(date){
+	var my_date = date.trim();
+	if (my_date == '') {
+		return 'null';
+	}
+	var my_dates = my_date.split('-');
+	return '\'' + my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0] + '\'';
+}
+
+/**
  * set table width and height
  * adjust height minus offset height, but not less than minimum height
  * @param	tableId

@@ -135,6 +135,8 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-density'		, my_row['density'		]);
 	JKY.set_value	('jky-inputs'		, my_row['inputs'		]);
 	JKY.set_value	('jky-lanes'		, my_row['lanes'		]);
+	JKY.set_value	('jky-repair-value'	, JKY.fix_ymd2dmy(my_row['repair_date']));
+	JKY.set_value	('jky-return-value'	, JKY.fix_ymd2dmy(my_row['return_date']));
 	JKY.set_focus(jky_focus);
 }
 
@@ -159,8 +161,10 @@ JKY.process_load_success = function(response) {
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"	><input type="checkbox"	 /></td>'
 				+  '<td class="jky-name"		>' + my_row['name'		] + '</td>'
+				+  '<td class="jky-diameter"	>' + my_row['diameter'	] + '</td>'
 				+  '<td class="jky-width"		>' + my_row['width'		] + '</td>'
 				+  '<td class="jky-density"		>' + my_row['density'	] + '</td>'
+				+  '<td class="jky-inputs"		>' + my_row['inputs'	] + '</td>'
 				+  '<td class="jky-lanes"		>' + my_row['lanes'		] + '</td>'
 				+  '</tr>'
 				;
@@ -196,14 +200,13 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-density'		, '0');
 	JKY.set_value	('jky-inputs'		, '0');
 	JKY.set_value	('jky-lanes'		, '0');
-
+	JKY.set_value	('jky-repair-value'	, '');
+	JKY.set_value	('jky-return-value'	, '');
 	JKY.set_focus(jky_focus);
 }
 
 JKY.get_form_set = function() {
-var my_date= $('#jky-repair-date').datepicker({ dateFormat: 'yy/mm/dd' });
-alert('date: ' + $('#jky-repair-date_value').val(dateText));
-var my_set = ''
+	var my_set = ''
 		+			 'name=\'' + JKY.get_value	('jky-name'			) + '\''
 		+  ', machine_type=\'' + JKY.get_checked('jky-machine-type'	) + '\''
 		+ ', machine_brand=\'' + JKY.get_value	('jky-machine-brand') + '\''
@@ -213,6 +216,12 @@ var my_set = ''
 		+        ', inputs=\'' + JKY.get_value	('jky-inputs'		) + '\''
 		+	      ', lanes=\'' + JKY.get_value	('jky-lanes'		) + '\''
 		;
+	var my_date= JKY.get_value('jky-repair-value');
+	my_set += ', repair_date = ' + JKY.fix_dmy2ymd(my_date);
+
+	var my_date= JKY.get_value('jky-return-value');
+	my_set += ', return_date = ' + JKY.fix_dmy2ymd(my_date);
+
 	return my_set;
 }
 
