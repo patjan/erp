@@ -45,8 +45,8 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-form'	).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'	).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'		).click (function() {JKY.process_check_all	();});	// not needed on version 0
-        $('#jky-repair-date').datepicker();
-        $('#jky-return-date').datepicker();
+		$('#jky-repair-date').datepicker();
+		$('#jky-return-date').datepicker();
 }else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
