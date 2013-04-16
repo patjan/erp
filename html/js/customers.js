@@ -6,6 +6,7 @@
 var jky_program		= 'Customers';
 var jky_table		= 'Contacts';
 var jky_select		= '';
+var jky_focus		= 'jky-full-name';
 var jky_filter		= '';
 var jky_specific	= '';
 var jky_sort_by		= 'full_name';
@@ -18,16 +19,16 @@ var jky_index		=  0;				//	0=Add New
 /**
  * start program
  */
-JKY.start_program = function() {
+JKY.start_program = function(action) {
 	JKY.display_trace('start_program - ' + jky_program);
-	JKY.set_all_events();
-	JKY.set_initial_values();
+	JKY.set_all_events(jky_program);
+	JKY.set_initial_values(jky_program);
 }
 
 /**
  *	set all events (run only once per load)
  */
-JKY.set_all_events = function() {
+JKY.set_all_events = function(jky_program) {
 	JKY.display_trace('set_all_events');
 	if (JKY.is_loaded('jky-body')) {
 		$('#jky-app-select'		).change(function() {JKY.change_select  (this);});
@@ -53,14 +54,14 @@ JKY.set_all_events = function() {
 /**
  *	set initial values (run only once per load)
  */
-JKY.set_initial_values = function() {
+JKY.set_initial_values = function(jky_program) {
 	JKY.display_trace('set_initial_values');
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-sales');
 		JKY.set_side_active('jky-sales-customers');
-		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.set_html('jky-state'  , JKY.set_group_set('Configs', '', 'States'	));
 		JKY.set_html('jky-country', JKY.set_group_set('Configs', '', 'Countries'));
+		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
 		JKY.show('jky-side-sales');
 		JKY.show('jky-action-add-new');
@@ -75,18 +76,6 @@ JKY.display_company = function(id) {
 	}else{
 		JKY.show('jky-company-name');
 	}
-}
-
-JKY.change_select = function(event){
-	jky_select = event.value;
-	JKY.display_trace('change_select: ' + jky_select);
-	JKY.display_list();
-}
-
-JKY.change_filter = function(event){
-	jky_filter = event.value;
-	JKY.display_trace('change_filter: ' + jky_filter);
-	JKY.display_list();
 }
 
 JKY.display_list = function() {
@@ -116,6 +105,18 @@ JKY.display_form = function(index) {
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+}
+
+JKY.change_select = function(event){
+	jky_select = event.value;
+	JKY.display_trace('change_select: ' + jky_select);
+	JKY.display_list();
+}
+
+JKY.change_filter = function(event){
+	jky_filter = event.value;
+	JKY.display_trace('change_filter: ' + jky_filter);
+	JKY.display_list();
 }
 
 JKY.display_prev = function() {
@@ -157,7 +158,7 @@ JKY.display_row = function(index) {
 	}else{
 		JKY.show('jky-company-name');
 	}
-	JKY.set_focus('jky-full-name');
+	JKY.set_focus(jky_focus);
 }
 
 JKY.load_table = function() {
@@ -228,8 +229,7 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-mobile'		, '');
 	JKY.set_value	('jky-fax'			, '');
 	JKY.set_value	('jky-email'		, '');
-
-	JKY.set_focus('jky-full-name');
+	JKY.set_focus(jky_focus);
 }
 
 JKY.get_form_set = function() {
@@ -267,6 +267,7 @@ JKY.process_insert = function() {
 
 JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
+	JKY.display_message(response.message);
 	JKY.display_list();
 }
 
@@ -283,6 +284,7 @@ JKY.process_update = function() {
 
 JKY.process_update_success = function(response) {
 	JKY.display_trace('process_update_success');
+	JKY.display_message(response.message);
 	jky_rows[jky_index-1] = JKY.get_row(jky_table, jky_rows[jky_index-1]['id']);
 	JKY.display_next();
 }
@@ -307,6 +309,7 @@ JKY.process_delete = function() {
 
 JKY.process_delete_success = function(response) {
 	JKY.display_trace('process_delete_success');
+	JKY.display_message(response.message);
 	JKY.display_list();
 }
 

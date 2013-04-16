@@ -35,7 +35,7 @@ $(function() {
 			JKY.display_message('Error from backend server, please re-try later.');
 		}
 	});
-	if ($('#jky-utils').length === 0)	{
+	if ($('#jky-utils').length == 0)	{
 		$('body').append('<div id="jky-utils"></div>');
 		JKY.load_html('jky-utils', 'JKY.utils.html'	);
 	}
@@ -216,7 +216,7 @@ JKY.replace_in = function(template_name, id_name, view_object) {
  */
 JKY.fix_flag = function(flag_value, true_value, false_value){
 	if (flag_value) {
-		if (flag_value === 't') {
+		if (flag_value == 't') {
 			return true_value;
 		}else{
 			return false_value;
@@ -235,7 +235,7 @@ JKY.fix_flag = function(flag_value, true_value, false_value){
  */
 JKY.fix_br = function(string_value){
 	if (string_value) {
-		if (typeof string_value === 'string') {
+		if (typeof string_value == 'string') {
 			return string_value.replace(' ', '<br />');
 		}else{
 			return string_value;
@@ -338,28 +338,31 @@ $('#scroll-bar').css('width', '4px');
  *
  */
 JKY.display_message = function(message, id_name) {
-	if (message === '') {
+	if (message == '') {
 		return;
 	}
-	if (message.substr(0, 4) === '<br>') {
+	if (message.substr(0, 4) == '<br>') {
 		message = message.substr(4);
 	}
-	var my_message = $('#jky-message-body').html() + '<br>' + message;
+	var the_body = $('#jky-message-body');
+	if (the_body.html() == '') {
+		the_body.append(message);
+	}else{
+		the_body.append('<br />' + message);
+	}
+	JKY.show('jky-message');
 
-	$('#jky-message-body').html(my_message);
-	$('#jky-message').css('display', 'block');
-
-    var my_time = my_message.length / 10;
+	var my_time = the_body.html().length / 10;
 		 if (my_time <  2)		{my_time =  2;}
-    else if (my_time > 30)		{my_time = 30;}
+	else if (my_time > 30)		{my_time = 30;}
 
 	if (JKY.last_time_out){
 		clearTimeout(JKY.last_time_out);
 	}
 	JKY.last_time_out = setTimeout(function(){
-		$('#jky-message').css('display', 'none');
-		$('#jky-message-body').html('');
-		if (typeof(id_name) !== 'undefined') {
+		JKY.hide('jky-message');
+		the_body.html('');
+		if (typeof(id_name) != 'undefined') {
 			JKY.set_focus(id_name);
 		}
 	}, my_time * 1000);
@@ -381,7 +384,7 @@ JKY.display_trace = function(message){
 
     var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
     $('#jky-trace-body').html(my_html);
-    $('#jky-trace').css('display', 'block');
+    JKY.show('jky-trace');
 
 }
 
@@ -459,7 +462,7 @@ JKY.set_options = function() {
 
      for( var i=1; i<arguments.length; i++ ) {
           value = arguments[i];
-          selected = (value === set_value) ? ' selected="selected"' : '';
+          selected = (value == set_value) ? ' selected="selected"' : '';
           options += '<option value="' + value + '"' + selected + '>' + value + '</option>';
      }
      return options;
@@ -474,7 +477,7 @@ JKY.set_radios = function() {
 
      for( var i=2; i<arguments.length; i++ ) {
           value = arguments[i];
-          checked = (value === set_value) ? ' checked="checked"' : '';
+          checked = (value == set_value) ? ' checked="checked"' : '';
           radios += '<input type="radio" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + checked + '/>&nbsp;' + value + ' &nbsp; ';
      }
      return radios;
@@ -670,7 +673,7 @@ JKY.set_value_is_above   = function(name, value)       {return '<br>' + JKY.t( n
 //   Set Languages -------------------------------------------------------------
 JKY.set_languages = function() {
      var  options = $('#en-speaking').html();
-     if(  options === '' ) {
+     if(  options == '' ) {
           setTimeout('JKY.set_languages()', 100);
      } else {
           $('#en-reading' ).html(options);
@@ -712,7 +715,7 @@ JKY.is_date = function(date) {
      var  dd   = parseInt(dates[1], 10);
      var  yyyy = parseInt(dates[2], 10);
      var  new_date = new Date(yyyy, mm-1, dd);
-     if(( new_date.getFullYear() === yyyy ) && ( new_date.getMonth() === mm-1 ) && ( new_date.getDate() === dd ))
+     if(( new_date.getFullYear() == yyyy ) && ( new_date.getMonth() == mm-1 ) && ( new_date.getDate() == dd ))
           return true;
      else return false;
 }
@@ -732,8 +735,8 @@ JKY.str_replace = function(search, replace, subject, count) {
        ,  f     = [].concat(search )
        ,  r     = [].concat(replace)
        ,  s     = subject
-       ,  ra    = Object.prototype.toString.call(r) === '[object Array]'
-       ,  sa    = Object.prototype.toString.call(s) === '[object Array]'
+       ,  ra    = Object.prototype.toString.call(r) == '[object Array]'
+       ,  sa    = Object.prototype.toString.call(s) == '[object Array]'
        ;
      s = [].concat(s);
      if(  count ) {
@@ -741,14 +744,14 @@ JKY.str_replace = function(search, replace, subject, count) {
      }
 
      for( i=0, sl=s.length; i<sl; i++ ) {
-          if(  s[i] === '' ) {
+          if(  s[i] == '' ) {
                continue;
           }
           for( j=0, fl=f.length; j<fl; j++ ) {
                temp = s[i] + '';
-               repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
+               repl = ra ? (r[j] != undefined ? r[j] : '') : r[0];
                s[i] = (temp).split(f[j]).join(repl);
-               if(  count && s[i] !== temp ) {
+               if(  count && s[i] != temp ) {
                     this.window[count] += (temp.length - s[i].length) / f[j].length;
                }
           }
@@ -767,7 +770,7 @@ JKY.set_company_name = function(company_name) {
  * set user info
  */
 JKY.set_user_info = function(full_name) {
-	if (full_name === null) {
+	if (full_name == null) {
 		JKY.set_html('jky-user-full-name', '');
 		JKY.hide('jky-user-logged');
 		JKY.show('jky-user-unkown');
@@ -820,7 +823,7 @@ JKY.set_buttons_control = function(admins, language, languages) {
 		my_html += '<select id="jky-control-language">';
 		for(var i=0; i<languages.length; i++) {
 			var my_language = languages[i];
-			var my_selected = (my_language === language) ? ' selected="selected"' : '';
+			var my_selected = (my_language == language) ? ' selected="selected"' : '';
 			my_html += '<option value="' + my_language + '"' + my_selected + '>' + my_language + '</option>';
 		}
 		my_html += '</select>';
@@ -869,6 +872,44 @@ JKY.set_contact_us = function(contact_us) {
 }
 
 /**
+ * get configs
+ */
+JKY.get_configs = function(group_set) {
+	JKY.display_trace('get_configs: ' + group_set);
+	var my_rows = [];
+	var my_data =
+		{ method	: 'get_configs'
+		, group_set	:  group_set
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_rows = response.data;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.hide('jky-loading');
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	)
+	return my_rows;
+}
+
+/**
  * set group set
  */
 JKY.set_group_set = function(table, selected, group_set) {
@@ -889,9 +930,9 @@ JKY.set_group_set = function(table, selected, group_set) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status === 'ok') {
+				if (response.status == 'ok') {
 					my_html = '';
-					if (selected === 'All') {
+					if (selected == 'All') {
 						my_html += '<option value="All" selected="selected">All</option>';
 					}
 					for(var i=0; i<response.rows.length; i+=1) {
@@ -900,11 +941,64 @@ JKY.set_group_set = function(table, selected, group_set) {
 						if (my_value == '') {
 							my_value = my_name;
 						}
-						var my_selected = (my_name === selected) ? ' selected="selected"' : '';
+						var my_selected = (my_name == selected) ? ' selected="selected"' : '';
 						my_html += '<option value="' + my_name + '"' + my_selected + '>' + my_value + '</option>';
 					}
 //					my_html += '<option onclick="JKY.process_option_search(this)"	class="jky-option-search"	>Search More...</option>';
-					my_html += '<option onclick="JKY.process_option_add_new(this)"	class="jky-option-add-new"	>Add New...</option>';
+//					my_html += '<option onclick="JKY.process_option_add_new(this)"	class="jky-option-add-new"	>Add New...</option>';
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.hide('jky-loading');
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	)
+	return my_html;
+}
+
+/**
+ * set table options
+ */
+JKY.set_table_options = function(table, field, selected, initial) {
+	JKY.display_trace('set_table_options: ' + table);
+	var my_html = '';
+	var my_data =
+		{ method	: 'get_options'
+		, table		:  table
+		, field		:  field
+		, selected	:  selected
+		, initial	:  initial
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_html = '';
+					if (initial == '' ) {
+						my_html += '<option value=""   >' + initial + '</option>';
+					}else{
+						my_html += '<option value="All">' + initial + '</option>';
+					}
+
+					for(var i=0; i<response.rows.length; i+=1) {
+						var my_id  	 = response.rows[i]['id' ];
+						var my_value = response.rows[i][field];
+						var my_selected = (my_id == selected) ? ' selected="selected"' : '';
+						my_html += '<option value="' + my_id + '"' + my_selected + '>' + my_value + '</option>';
+					}
 				}else{
 					JKY.display_message(response.message);
 				}
@@ -966,7 +1060,7 @@ JKY.ajax = function(async, data, function_success, function_error) {
 
 JKY.get_row = function(table_name, id) {
 	var my_row = null;
-	var my_where = 'id = ' + id;
+	var my_where = table_name + '.id = ' + id;
 	var my_data =
 		{ method: 'get_row'
 		, table	: table_name
@@ -1074,6 +1168,42 @@ JKY.get_id = function(table, where) {
 		}
 	);
 	return my_id;
+}
+
+JKY.get_value_by_id = function(table, field, id) {
+	var my_value = '';
+	var my_data =
+		{ method: 'get_value'
+		, table	: table
+		, field	: field
+		, where : 'id = ' + id
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_value = response.value;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_value;
 }
 
 /* -------------------------------------------------------------------------- */

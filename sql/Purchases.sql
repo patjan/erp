@@ -1,11 +1,11 @@
 DROP   TABLE IF     EXISTS Purchases;
 CREATE TABLE IF NOT EXISTS Purchases
-( id                BIGINT				NOT NULL AUTO_INCREMENT
-, created_at        DATETIME			DEFAULT NULL
-, created_by        BIGINT				DEFAULT NULL
-, updated_at        DATETIME			DEFAULT NULL
-, updated_by        BIGINT				DEFAULT NULL
-, status            VARCHAR(32)         DEFAULT 'Draft'
+( id				BIGINT				NOT NULL AUTO_INCREMENT
+, created_by		BIGINT				DEFAULT NULL
+, created_at		DATETIME			DEFAULT NULL
+, updated_by		BIGINT				DEFAULT NULL
+, updated_at		DATETIME			DEFAULT NULL
+, status			VARCHAR(32)			DEFAULT 'Draft'
 
 , code				VARCHAR(32)			UNIQUE
 , source_doc		VARCHAR(32)			DEFAULT NULL
