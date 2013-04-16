@@ -44,7 +44,9 @@ JKY.set_all_events = function() {
 		$('#jky-action-form'	).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'	).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'		).click (function() {JKY.process_check_all	();});	// not needed on version 0
-	}else{
+        $('#jky-repair-date').datepicker();
+        $('#jky-return-date').datepicker();
+}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
 }
@@ -198,7 +200,9 @@ JKY.display_new = function() {
 }
 
 JKY.get_form_set = function() {
-	var my_set = ''
+var my_date= $('#jky-repair-date').datepicker({ dateFormat: 'yy/mm/dd' });
+alert('date: ' + $('#jky-repair-date_value').val(dateText));
+var my_set = ''
 		+			 'name=\'' + JKY.get_value	('jky-name'			) + '\''
 		+  ', machine_type=\'' + JKY.get_checked('jky-machine-type'	) + '\''
 		+ ', machine_brand=\'' + JKY.get_value	('jky-machine-brand') + '\''
