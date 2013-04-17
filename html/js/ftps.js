@@ -9,7 +9,7 @@ var jky_select		= '';
 var jky_focus		= 'jky-diameter';
 var jky_filter		= '';
 var jky_specific	= '';
-var jky_sort_by		= 'code;
+var jky_sort_by		= 'code';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_rows		= [];
@@ -139,7 +139,7 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-lanes'		, my_row['lanes'		]);
 	JKY.set_value	('jky-yield'		, my_row['yield'		]);
 	JKY.set_value	('jky-needling'		, my_row['needling'		]);
-	JKY.set_value	('jky-has-break'	, my_row['has_break'	]);
+	JKY.set_radio	('jky-has-break'	, my_row['has_break'	]);
 	JKY.set_focus(jky_focus);
 }
 
@@ -208,7 +208,7 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-lanes'		, '0');
 	JKY.set_value	('jky-yield'		, '0');
 	JKY.set_value	('jky-needling'		, '0');
-	JKY.set_value	('jky-has-break'	, '0');
+	JKY.set_radio	('jky-has-break'	, 'No');
 	JKY.set_focus(jky_focus);
 }
 
@@ -227,7 +227,7 @@ JKY.get_form_set = function() {
 		+         ', lanes=\'' + JKY.get_value	('jky-lanes'		) + '\''
 		+         ', yield=\'' + JKY.get_value	('jky-yield'		) + '\''
 		+      ', needling=\'' + JKY.get_value	('jky-needling'		) + '\''
-		+     ', has_break=\'' + JKY.get_value	('jky-has-break'	) + '\''
+		+     ', has_break=\'' + JKY.get_checked('jky-has-break'	) + '\''
 		;
 	return my_set;
 }
