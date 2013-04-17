@@ -20,7 +20,7 @@ input.span2 {width:80px; padding:2px 4px;}
 .nav-tabs > li	{margin-left:10px;}
 .nav-tabs > li > a				{background-color:#999999; color:black; margin-right:0; line-height:10px;}
 .nav-tabs > .active > a,
-.nav-tabs > .active > a:hover {background-color:#FFFFFF;}
+.nav-tabs > .active > a:hover	{background-color:#FFFFFF;}
 .input-append .add-on	{margin-left:-6px; padding:2px;}
 .modal-header			{background:#223870; color:white; border-bottom:1px solid #DDDDDD; border-radius:3px 3px 0 0; font-size:120%; font-weight:bold;}
 .modal-body				{background:white;}

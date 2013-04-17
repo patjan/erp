@@ -47,7 +47,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-check-all'		).click (function() {JKY.process_check_all	();});	// not needed on version 0
 		$('#jky-repair-date').datepicker();
 		$('#jky-return-date').datepicker();
-}else{
+	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
 }
@@ -141,11 +141,13 @@ JKY.display_row = function(index) {
 }
 
 JKY.load_table = function() {
+	var my_order_by = jky_sort_by + ' ' + (jky_sort_seq == 0 ? 'ASC' : 'DESC');
 	var my_data =
-		{ method: 'get_index'
-		, table	: jky_table
-		, select: jky_select
-		, filter: jky_filter
+		{ method	: 'get_index'
+		, table		: jky_table
+		, select	: jky_select
+		, filter	: jky_filter
+		, order_by	: my_order_by
 		};
 	JKY.ajax(false, my_data, JKY.process_load_success);
 }
@@ -160,12 +162,12 @@ JKY.process_load_success = function(response) {
 		var my_row = jky_rows[i];
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"	><input type="checkbox"	 /></td>'
-				+  '<td class="jky-name"		>' + my_row['name'		] + '</td>'
-				+  '<td class="jky-diameter"	>' + my_row['diameter'	] + '</td>'
-				+  '<td class="jky-width"		>' + my_row['width'		] + '</td>'
-				+  '<td class="jky-density"		>' + my_row['density'	] + '</td>'
-				+  '<td class="jky-inputs"		>' + my_row['inputs'	] + '</td>'
-				+  '<td class="jky-lanes"		>' + my_row['lanes'		] + '</td>'
+				+  '<td class="jky-name"		>' + my_row['name'			] + '</td>'
+				+  '<td class="jky-diameter"	>' + my_row['diameter'		] + '</td>'
+				+  '<td class="jky-width"		>' + my_row['width'			] + '</td>'
+				+  '<td class="jky-density"		>' + my_row['density'		] + '</td>'
+				+  '<td class="jky-inputs"		>' + my_row['inputs'		] + '</td>'
+				+  '<td class="jky-lanes"		>' + my_row['lanes'			] + '</td>'
 				+  '</tr>'
 				;
 	}
@@ -193,7 +195,7 @@ JKY.process_add_new = function() {
 
 JKY.display_new = function() {
 	JKY.set_value	('jky-name'			, '' );
-	JKY.set_radio	('jky-machine-type'	, 'Circular' );
+	JKY.set_radio	('jky-machine-type'	, 'Circular');
 	JKY.set_option	('jky-machine-brand', '' );
 	JKY.set_value	('jky-diameter'		, '0');
 	JKY.set_value	('jky-width'		, '0');
@@ -207,7 +209,7 @@ JKY.display_new = function() {
 
 JKY.get_form_set = function() {
 	var my_set = ''
-		+			 'name=\'' + JKY.get_value	('jky-name'			) + '\''
+		+            'name=\'' + JKY.get_value	('jky-name'			) + '\''
 		+  ', machine_type=\'' + JKY.get_checked('jky-machine-type'	) + '\''
 		+ ', machine_brand=\'' + JKY.get_value	('jky-machine-brand') + '\''
 		+      ', diameter=\'' + JKY.get_value	('jky-diameter'		) + '\''
@@ -221,7 +223,6 @@ JKY.get_form_set = function() {
 
 	var my_date= JKY.get_value('jky-return-value');
 	my_set += ', return_date = ' + JKY.fix_dmy2ymd(my_date);
-
 	return my_set;
 }
 

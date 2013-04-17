@@ -409,9 +409,9 @@ JKY.display_trace = function(message){
 	var my_time = my_date.getMinutes() + ':' + my_date.getSeconds() + '.' + my_msec;
 	console.log(my_time + ' ' + message);
 
-    var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
-    $('#jky-trace-body').html(my_html);
-    JKY.show('jky-trace');
+	var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
+	$('#jky-trace-body').html(my_html);
+	JKY.show('jky-trace');
 
 }
 

@@ -9,7 +9,7 @@ var jky_select		= '';
 var jky_focus		= 'jky-diameter';
 var jky_filter		= '';
 var jky_specific	= '';
-var jky_sort_by		= 'machine';
+var jky_sort_by		= 'code;
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_rows		= [];
@@ -144,11 +144,13 @@ JKY.display_row = function(index) {
 }
 
 JKY.load_table = function() {
+	var my_order_by = jky_sort_by + ' ' + (jky_sort_seq == 0 ? 'ASC' : 'DESC');
 	var my_data =
-		{ method: 'get_index'
-		, table	: jky_table
-		, select: jky_select
-		, filter: jky_filter
+		{ method	: 'get_index'
+		, table		: jky_table
+		, select	: jky_select
+		, filter	: jky_filter
+		, order_by	: my_order_by
 		};
 	JKY.ajax(false, my_data, JKY.process_load_success);
 }
@@ -161,9 +163,6 @@ JKY.process_load_success = function(response) {
 	var my_html = '';
 	for(var i=0; i<jky_count; i++) {
 		var my_row = jky_rows[i];
-//		var my_product = JKY.get_value_by_id('Products', 'name', my_row['product_id']);
-//		var my_machine = JKY.get_value_by_id('Machines', 'name', my_row['machine_id']);
-
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"	><input type="checkbox"	 /></td>'
 				+  '<td class="jky-code"		>' + my_row['code'			] + '</td>'
@@ -196,7 +195,7 @@ JKY.process_add_new = function() {
 }
 
 JKY.display_new = function() {
-	JKY.set_value	('jky-code'			, 'New' );
+	JKY.set_value	('jky-code'			, 'New');
 	JKY.set_radio	('jky-product'		,  null);
 	JKY.set_option	('jky-machine'		,  null);
 	JKY.set_value	('jky-diameter'		, '0');
@@ -210,25 +209,25 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-yield'		, '0');
 	JKY.set_value	('jky-needling'		, '0');
 	JKY.set_value	('jky-has-break'	, '0');
-	JKY.set_focus('jky-code');
+	JKY.set_focus(jky_focus);
 }
 
 JKY.get_form_set = function() {
 	var my_set = ''
-//		+			 'code=\'' + JKY.get_value	('jky-code'			) + '\''
+//		+            'code=\'' + JKY.get_value	('jky-code'			) + '\''
 //		+    ', product_id=\'' + JKY.get_value	('jky-product'		) + '\''
 		+    '  machine_id=\'' + JKY.get_value	('jky-machine'		) + '\''
 		+      ', diameter=\'' + JKY.get_value	('jky-diameter'		) + '\''
 		+       ', density=\'' + JKY.get_value	('jky-density'		) + '\''
 		+        ', inputs=\'' + JKY.get_value	('jky-inputs'		) + '\''
-		+	      ', speed=\'' + JKY.get_value	('jky-speed'		) + '\''
-		+	      ', turns=\'' + JKY.get_value	('jky-turns'		) + '\''
-		+	     ', weight=\'' + JKY.get_value	('jky-weight'		) + '\''
-		+	      ', width=\'' + JKY.get_value	('jky-width'		) + '\''
-		+	      ', lanes=\'' + JKY.get_value	('jky-lanes'		) + '\''
-		+	      ', yield=\'' + JKY.get_value	('jky-yield'		) + '\''
-		+	   ', needling=\'' + JKY.get_value	('jky-needling'		) + '\''
-		+	  ', has_break=\'' + JKY.get_value	('jky-has-break'	) + '\''
+		+         ', speed=\'' + JKY.get_value	('jky-speed'		) + '\''
+		+         ', turns=\'' + JKY.get_value	('jky-turns'		) + '\''
+		+        ', weight=\'' + JKY.get_value	('jky-weight'		) + '\''
+		+         ', width=\'' + JKY.get_value	('jky-width'		) + '\''
+		+         ', lanes=\'' + JKY.get_value	('jky-lanes'		) + '\''
+		+         ', yield=\'' + JKY.get_value	('jky-yield'		) + '\''
+		+      ', needling=\'' + JKY.get_value	('jky-needling'		) + '\''
+		+     ', has_break=\'' + JKY.get_value	('jky-has-break'	) + '\''
 		;
 	return my_set;
 }

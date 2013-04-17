@@ -125,10 +125,10 @@ JKY.display_row = function(index) {
 	var my_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
 	jky_rows[index-1] = my_row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_option	('jky-status'	, my_row['status'	]);
-	JKY.set_value	('jky-sequence'	, my_row['sequence'	]);
-	JKY.set_value	('jky-name'		, my_row['name'		]);
-	JKY.set_value	('jky-value'	, my_row['value'	]);
+	JKY.set_option	('jky-status'		, my_row['status'		]);
+	JKY.set_value	('jky-sequence'		, my_row['sequence'		]);
+	JKY.set_value	('jky-name'			, my_row['name'			]);
+	JKY.set_value	('jky-value'		, my_row['value'		]);
 
 	if (jky_select == 'Root' && my_row['name'] == 'Root') {
 		JKY.hide('jky-action-save'		);
@@ -164,10 +164,10 @@ JKY.process_load_success = function(response) {
 		var my_row = jky_rows[i];
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"	><input type="checkbox"	 /></td>'
-				+  '<td class="jky-sequence"	>' + my_row['sequence'	] + '</td>'
-				+  '<td class="jky-name"		>' + my_row['name'		] + '</td>'
-				+  '<td class="jky-value"		>' + my_row['value'		] + '</td>'
-				+  '<td class="jky-status"		>' + my_row['status'	] + '</td>'
+				+  '<td class="jky-sequence"	>' + my_row['sequence'		] + '</td>'
+				+  '<td class="jky-name"		>' + my_row['name'			] + '</td>'
+				+  '<td class="jky-value"		>' + my_row['value'			] + '</td>'
+				+  '<td class="jky-status"		>' + my_row['status'		] + '</td>'
 				+  '</tr>'
 				;
 	}
@@ -194,20 +194,20 @@ JKY.process_add_new = function() {
 }
 
 JKY.display_new = function() {
-	JKY.set_option	('jky-status'	, 'Active');
-	JKY.set_value	('jky-sequence'	, 50);
-	JKY.set_value	('jky-name'		, '');
-	JKY.set_value	('jky-value'	, '');
+	JKY.set_option	('jky-status'		, 'Active');
+	JKY.set_value	('jky-sequence'		, 50);
+	JKY.set_value	('jky-name'			, '');
+	JKY.set_value	('jky-value'		, '');
 	JKY.set_focus(jky_focus);
 }
 
 JKY.get_form_set = function() {
 	var my_set = ''
-		+  'group_set=\'' + jky_select + '\''
-		+   ', status=\'' + JKY.get_value('jky-status'	) + '\''
-		+ ', sequence=  ' + JKY.get_value('jky-sequence')
-		+     ', name=\'' + JKY.get_value('jky-name'	) + '\''
-		+    ', value=\'' + JKY.get_value('jky-value'	) + '\''
+		+       'group_set=\'' + jky_select + '\''
+		+        ', status=\'' + JKY.get_value	('jky-status'		) + '\''
+		+      ', sequence=  ' + JKY.get_value	('jky-sequence'		)
+		+          ', name=\'' + JKY.get_value	('jky-name'			) + '\''
+		+         ', value=\'' + JKY.get_value	('jky-value'		) + '\''
 		;
 	return my_set;
 }
