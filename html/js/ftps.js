@@ -13,6 +13,7 @@ var jky_sort_by		= 'code';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_rows		= [];
+var jky_row 		= null;
 var jky_count		=  0;
 var jky_index		=  0;				//	0=Add New
 var jky_settings	= [];
@@ -122,25 +123,29 @@ JKY.display_next = function() {
 }
 
 JKY.display_row = function(index) {
+	JKY.show('jky-form-tabs');
 	jky_index = index;
-	var my_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
-	jky_rows[index-1] = my_row;
+	jky_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
+	jky_rows[index-1] = jky_row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_value	('jky-code'			, my_row['code'			]);
-	JKY.set_value	('jky-product'		, my_row['product'		]);
-	JKY.set_option	('jky-machine'		, my_row['machine_id'	]);
-	JKY.set_value	('jky-diameter'		, my_row['diameter'		]);
-	JKY.set_value	('jky-density'		, my_row['density'		]);
-	JKY.set_value	('jky-inputs'		, my_row['inputs'		]);
-	JKY.set_value	('jky-speed'		, my_row['speed'		]);
-	JKY.set_value	('jky-turns'		, my_row['turns'		]);
-	JKY.set_value	('jky-weight'		, my_row['weight'		]);
-	JKY.set_value	('jky-width'		, my_row['width'		]);
-	JKY.set_value	('jky-lanes'		, my_row['lanes'		]);
-	JKY.set_value	('jky-yield'		, my_row['yield'		]);
-	JKY.set_value	('jky-needling'		, my_row['needling'		]);
-	JKY.set_radio	('jky-has-break'	, my_row['has_break'	]);
+	JKY.set_value	('jky-code'			, jky_row['code'		]);
+	JKY.set_value	('jky-product'		, jky_row['product'		]);
+	JKY.set_value	('jky-composition'	, jky_row['composition'	]);
+	JKY.set_option	('jky-machine'		, jky_row['machine_id'	]);
+	JKY.set_value	('jky-diameter'		, jky_row['diameter'	]);
+	JKY.set_value	('jky-density'		, jky_row['density'		]);
+	JKY.set_value	('jky-inputs'		, jky_row['inputs'		]);
+	JKY.set_value	('jky-speed'		, jky_row['speed'		]);
+	JKY.set_value	('jky-turns'		, jky_row['turns'		]);
+	JKY.set_value	('jky-weight'		, jky_row['weight'		]);
+	JKY.set_value	('jky-width'		, jky_row['width'		]);
+	JKY.set_value	('jky-lanes'		, jky_row['lanes'		]);
+	JKY.set_value	('jky-yield'		, jky_row['yield'		]);
+	JKY.set_value	('jky-needling'		, jky_row['needling'	]);
+	JKY.set_radio	('jky-has-break'	, jky_row['has_break'	]);
 	JKY.set_focus(jky_focus);
+
+	JKY.display_composition();
 }
 
 JKY.load_table = function() {
@@ -179,6 +184,7 @@ JKY.process_load_success = function(response) {
 }
 
 JKY.process_add_new = function() {
+	JKY.hide('jky-form-tabs');
 	jky_index = 0;
 	JKY.display_new();
 	JKY.hide('jky-app-filter'		);
@@ -308,3 +314,59 @@ JKY.process_export = function() {
 
 	JKY.run_export(jky_table, jky_select, jky_filter, jky_specific, my_sort_by);
 };
+
+/*
+ * display Composition
+ */
+JKY.display_composition = function() {
+	var my_html = '';
+	var my_total = 0;
+	var my_composition = jky_row.composition;
+	if (my_composition != '') {
+		var my_comps = jky_row.composition.split(', ');
+		for( var i in my_comps) {
+			var my_comp = my_comps[i];
+			var my_strings  = my_comp.split(' ');
+			var my_percent  = parseInt(my_strings[0]);
+			var my_material = my_strings[1];
+			my_total += my_percent;
+			my_html += ''
+				+ '<tr>'
+				+ '<td class="right"><input class="jky-comp-percent"  text="text" onchange="JKY.update_composition()" value="' + my_percent  + '" /></td>'
+				+ '<td class="left" ><input class="jky-comp-material" text="text" onchange="JKY.update_composition()" value="' + my_material + '" /></td>'
+				+ '</tr>'
+				;
+		}
+	}
+	JKY.set_html('jky-comp-total', my_total);
+	JKY.set_html('jky-comp-body' , my_html );
+}
+
+JKY.update_composition = function() {
+	var my_total = 0;
+	var my_composition = '';
+	$('#jky-comp-body tr').each(function() {
+		var my_percent  = parseInt($(this).find('.jky-comp-percent' ).val());
+		var my_material = $(this).find('.jky-comp-material').val();
+		my_composition += my_percent + ' ' + my_material + ', ';
+		my_total += my_percent
+	})
+	JKY.set_html('jky-comp-total', my_total);
+	if (my_total == 100) {
+		my_composition = my_composition.substr(0, my_composition.length-2);
+		JKY.set_value('jky-composition', my_composition);
+		var my_data =
+			{ method	: 'update'
+			, table		: jky_table
+			, set		: 'composition = \'' + my_composition + '\''
+			, where		: 'id = ' + jky_row.id
+			};
+		JKY.ajax(true, my_data, JKY.update_composition_success);
+	}else{
+		JKY.display_message('Composition is incompleted.')
+	}
+}
+
+JKY.update_composition_success = function(response) {
+	JKY.display_message(response.message)
+}

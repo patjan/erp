@@ -28,6 +28,11 @@ input.span2 {width:80px; padding:2px 4px;}
 .table thead th {vertical-align: middle;}
 .table tbody td {line-height:12px;}
 
+
+.left			{text-align:left  ;}
+.center			{text-align:center;}
+.right			{text-align:right ;}
+
 .jky-left		{float:left ;}
 .jky-right		{float:right;}
 .jky-clear		{clear:both;}
