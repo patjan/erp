@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS FTPs
 , yield				INT(11)				DEFAULT 0		# Rendimento
 , needling			INT(11)				DEFAULT 0		# Agulhamento
 , has_break			CHAR(3)				DEFAULT 'no'	# Tem falha
-, composition		VARCHAR(255)		DEFAULT ''		# Composicao: 96 PO|4 EL
+, composition		VARCHAR(255)		DEFAULT ''		# Composicao: 96 Polyester, 4 Elastano
 , draw				VARCHAR(255)		DEFAULT NULL	# Desenho
 , photo				VARCHAR(255)		DEFAULT NULL	# Foto
 
