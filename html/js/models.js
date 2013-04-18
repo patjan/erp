@@ -493,7 +493,7 @@ JKY.process_export = function() {
 /**
  * only used on [Configs and Controls]
  */
- JKY.refresh_select = function(selected) {
+JKY.refresh_select = function(selected) {
 	if (selected == 'Root') {
 		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table , jky_select, 'Root'));
 	}

@@ -483,7 +483,7 @@ JKY.set_option = function(id_name, value){
 
 //        JKY.set_options(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
 //        ----------------------------------------------------------------------
-JKY.set_options = function() {
+JKY.set_options = function( ) {
      options   = '';
      set_value = arguments[0];
 
@@ -493,6 +493,18 @@ JKY.set_options = function() {
           options += '<option value="' + value + '"' + selected + '>' + value + '</option>';
      }
      return options;
+}
+
+//	JKY.set_options_array(20, array)
+//	----------------------------------------------------------------------------
+JKY.set_options_array = function(selected, the_array) {
+     var my_options = '';
+     for (var i=1; i<the_array.length; i++) {
+          var my_value = the_array[i].name;
+          var my_selected = (my_value == selected) ? ' selected="selected"' : '';
+          my_options += '<option value="' + my_value + '"' + my_selected + '>' + my_value + '</option>';
+     }
+     return my_options;
 }
 
 //        JKY.set_radios(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
@@ -918,7 +930,7 @@ JKY.get_configs = function(group_set) {
 		, async		: false
 		, success	: function(response) {
 				if (response.status == 'ok') {
-					my_rows = response.data;
+					my_rows = response.rows;
 				}else{
 					JKY.display_message(response.message);
 				}

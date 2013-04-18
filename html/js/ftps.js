@@ -17,6 +17,7 @@ var jky_row 		= null;
 var jky_count		=  0;
 var jky_index		=  0;				//	0=Add New
 var jky_settings	= [];
+var jky_materials	= [];
 /**
  * start program
  */
@@ -65,7 +66,8 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.display_list();
 		JKY.show('jky-side-production');
 		JKY.show('jky-action-add-new');
-		jky_settings = JKY.get_configs('Settings');
+		jky_settings  = JKY.get_configs('Settings' );
+		jky_materials = JKY.get_configs('Materials');
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
@@ -145,7 +147,7 @@ JKY.display_row = function(index) {
 	JKY.set_radio	('jky-has-break'	, jky_row['has_break'	]);
 	JKY.set_focus(jky_focus);
 
-	JKY.display_composition();
+	JKY.display_composition(jky_materials);
 }
 
 JKY.load_table = function() {
@@ -318,7 +320,7 @@ JKY.process_export = function() {
 /*
  * display Composition
  */
-JKY.display_composition = function() {
+JKY.display_composition = function(jky_materials) {
 	var my_html = '';
 	var my_total = 0;
 	var my_composition = jky_row.composition;
@@ -327,13 +329,14 @@ JKY.display_composition = function() {
 		for( var i in my_comps) {
 			var my_comp = my_comps[i];
 			var my_strings  = my_comp.split(' ');
-			var my_percent  = parseInt(my_strings[0]);
+			var my_percent  = parseFloat(my_strings[0]);
 			var my_material = my_strings[1];
+			var my_options  = JKY.set_options_array(my_material, jky_materials);
 			my_total += my_percent;
 			my_html += ''
 				+ '<tr>'
-				+ '<td class="right"><input class="jky-comp-percent"  text="text" onchange="JKY.update_composition()" value="' + my_percent  + '" /></td>'
-				+ '<td class="left" ><input class="jky-comp-material" text="text" onchange="JKY.update_composition()" value="' + my_material + '" /></td>'
+				+ '<td class="right"><input  class="jky-comp-percent"  text="text"	onchange="JKY.update_composition()" value="' + my_percent  + '" /></td>'
+				+ '<td class="left" ><select class="jky-comp-material"				onchange="JKY.update_composition()">' + my_options + '</select></td>'
 				+ '</tr>'
 				;
 		}
@@ -346,7 +349,7 @@ JKY.update_composition = function() {
 	var my_total = 0;
 	var my_composition = '';
 	$('#jky-comp-body tr').each(function() {
-		var my_percent  = parseInt($(this).find('.jky-comp-percent' ).val());
+		var my_percent  = parseFloat($(this).find('.jky-comp-percent' ).val());
 		var my_material = $(this).find('.jky-comp-material').val();
 		my_composition += my_percent + ' ' + my_material + ', ';
 		my_total += my_percent
