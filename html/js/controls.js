@@ -13,6 +13,7 @@ var jky_sort_by		= 'sequence';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_rows		= [];
+var jky_row 		= null;
 var jky_count		=  0;
 var jky_index		=  0;				//	0=Add New
 
@@ -121,16 +122,17 @@ JKY.display_next = function() {
 }
 
 JKY.display_row = function(index) {
+	JKY.show('jky-form-tabs');
 	jky_index = index;
-	var my_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
-	jky_rows[index-1] = my_row;
+	jky_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
+	jky_rows[index-1] = jky_row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_option	('jky-status'		, my_row['status'		]);
-	JKY.set_value	('jky-sequence'		, my_row['sequence'		]);
-	JKY.set_value	('jky-name'			, my_row['name'			]);
-	JKY.set_value	('jky-value'		, my_row['value'		]);
+	JKY.set_option	('jky-status'		, jky_row['status'			]);
+	JKY.set_value	('jky-sequence'		, jky_row['sequence'		]);
+	JKY.set_value	('jky-name'			, jky_row['name'			]);
+	JKY.set_value	('jky-value'		, jky_row['value'			]);
 
-	if (jky_select == 'Root' && my_row['name'] == 'Root') {
+	if (jky_select == 'Root' && jky_row['name'] == 'Root') {
 		JKY.hide('jky-action-save'		);
 		JKY.hide('jky-action-delete'	);
 		JKY.hide('jky-action-cancel'	);
@@ -178,6 +180,7 @@ JKY.process_load_success = function(response) {
 }
 
 JKY.process_add_new = function() {
+	JKY.hide('jky-form-tabs');
 	jky_index = 0;
 	JKY.display_new();
 	JKY.hide('jky-app-filter'		);
@@ -224,7 +227,7 @@ JKY.process_insert = function() {
 JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
 	JKY.display_message(response.message);
-	JKY.refresh_select(jky_select);
+	JKY.refresh_select(jky_select);			//	only used on [Configs and Controls]
 	JKY.display_list();
 }
 
@@ -242,7 +245,7 @@ JKY.process_update = function() {
 JKY.process_update_success = function(response) {
 	JKY.display_trace('process_update_success');
 	JKY.display_message(response.message);
-	JKY.refresh_select(jky_select);
+	JKY.refresh_select(jky_select);			//	only used on [Configs and Controls]
 	jky_rows[jky_index-1] = JKY.get_row(jky_table, jky_rows[jky_index-1]['id']);
 	JKY.display_next();
 }
@@ -256,6 +259,10 @@ JKY.process_save = function() {
 }
 
 JKY.process_delete = function() {
+	JKY.display_confirm(JKY.delete_confirmed, null, 'Delete', 'You requested to <b>delete</b> this record. <br>Are you sure?', 'Yes', 'No');
+}
+
+JKY.delete_confirmed = function() {
 	var my_where = 'id = ' + jky_rows[jky_index-1]['id'];
 	var my_data =
 		{ method: 'delete'
@@ -268,7 +275,7 @@ JKY.process_delete = function() {
 JKY.process_delete_success = function(response) {
 	JKY.display_trace('process_delete_success');
 	JKY.display_message(response.message);
-	JKY.refresh_select(jky_select);
+	JKY.refresh_select(jky_select);			//	only used on [Configs and Controls]
 	JKY.display_list();
 }
 
@@ -292,6 +299,9 @@ JKY.process_export = function() {
 	JKY.run_export(jky_table, jky_select, jky_filter, jky_specific, my_sort_by);
 };
 
+/**
+ * only used on [Configs and Controls]
+ */
 JKY.refresh_select = function(selected) {
 	if (selected == 'Root') {
 		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table , jky_select, 'Root'));

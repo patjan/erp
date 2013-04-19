@@ -13,9 +13,15 @@ var jky_sort_by		= 'name';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_rows		= [];
+var jky_row 		= null;
 var jky_count		=  0;
 var jky_index		=  0;				//	0=Add New
+
+var jky_materials	= [];
 var jky_settings	= [];
+var jky_set_index	= null;				//	only for insert set
+var jky_set_setting	= null;				//	only for insert set
+
 /**
  * start program
  */
@@ -91,7 +97,8 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.show('jky-side-admin');
 		JKY.show('jky-side-support');
 		JKY.show('jky-action-add-new');
-		jky_settings = JKY.get_configs('Settings');
+		jky_materials = JKY.get_configs('Materials');
+		jky_settings  = JKY.get_configs('Settings' );
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
@@ -157,61 +164,63 @@ JKY.display_next = function() {
 }
 
 JKY.display_row = function(index) {
+	JKY.show('jky-form-tabs');
 	jky_index = index;
-	var my_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
-	jky_rows[index-1] = my_row;
+	jky_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
+	jky_rows[index-1] = jky_row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_option	('jky-status'		, my_row['status'		]);
-	JKY.set_value	('jky-sequence'		, my_row['sequence'		]);
-	JKY.set_value	('jky-name'			, my_row['name'			]);
-	JKY.set_value	('jky-value'		, my_row['value'		]);
+	JKY.set_option	('jky-status'		, jky_row['status'			]);
+	JKY.set_value	('jky-sequence'		, jky_row['sequence'		]);
+	JKY.set_value	('jky-name'			, jky_row['name'			]);
+	JKY.set_value	('jky-value'		, jky_row['value'			]);
 
-	JKY.set_value	('jky-full-name'	, my_row['full_name'	]);
-	JKY.set_check	('jky-is-company'	, my_row['is_company'	]);
-	JKY.set_option	('jky-company-name'	, my_row['company_name'	]);
-	JKY.set_option	('jky-company-tag'	, my_row['company_tag'	]);
+	JKY.set_value	('jky-full-name'	, jky_row['full_name'		]);
+	JKY.set_check	('jky-is-company'	, jky_row['is_company'		]);
+	JKY.set_option	('jky-company-name'	, jky_row['company_name'	]);
+	JKY.set_option	('jky-company-tag'	, jky_row['company_tag'		]);
 
-	JKY.set_value	('jky-street1'		, my_row['street1'		]);
-	JKY.set_value	('jky-street2'		, my_row['street2'		]);
-	JKY.set_value	('jky-city'			, my_row['city'			]);
-	JKY.set_value	('jky-zip'			, my_row['zip'			]);
-	JKY.set_option	('jky-state'		, my_row['state'		]);
-	JKY.set_option	('jky-country'		, my_row['country'		]);
-	JKY.set_value	('jky-website'		, my_row['website'		]);
+	JKY.set_value	('jky-street1'		, jky_row['street1'			]);
+	JKY.set_value	('jky-street2'		, jky_row['street2'			]);
+	JKY.set_value	('jky-city'			, jky_row['city'			]);
+	JKY.set_value	('jky-zip'			, jky_row['zip'				]);
+	JKY.set_option	('jky-state'		, jky_row['state'			]);
+	JKY.set_option	('jky-country'		, jky_row['country'			]);
+	JKY.set_value	('jky-website'		, jky_row['website'			]);
 
-	JKY.set_value	('jky-position'		, my_row['position'		]);
-	JKY.set_value	('jky-phone'		, my_row['phone'		]);
-	JKY.set_value	('jky-mobile'		, my_row['mobile'		]);
-	JKY.set_value	('jky-fax'			, my_row['fax'			]);
-	JKY.set_value	('jky-email'		, my_row['email'		]);
+	JKY.set_value	('jky-position'		, jky_row['position'		]);
+	JKY.set_value	('jky-phone'		, jky_row['phone'			]);
+	JKY.set_value	('jky-mobile'		, jky_row['mobile'			]);
+	JKY.set_value	('jky-fax'			, jky_row['fax'				]);
+	JKY.set_value	('jky-email'		, jky_row['email'			]);
 
-	JKY.set_value	('jky-code'			, my_row['code'			]);
-	JKY.set_value	('jky-product'		, my_row['product'		]);
-	JKY.set_option	('jky-machine'		, my_row['machine_id'	]);
-	JKY.set_value	('jky-diameter'		, my_row['diameter'		]);
-	JKY.set_value	('jky-density'		, my_row['density'		]);
-	JKY.set_value	('jky-inputs'		, my_row['inputs'		]);
-	JKY.set_value	('jky-speed'		, my_row['speed'		]);
-	JKY.set_value	('jky-turns'		, my_row['turns'		]);
-	JKY.set_value	('jky-weight'		, my_row['weight'		]);
-	JKY.set_value	('jky-width'		, my_row['width'		]);
-	JKY.set_value	('jky-lanes'		, my_row['lanes'		]);
-	JKY.set_value	('jky-yield'		, my_row['yield'		]);
-	JKY.set_value	('jky-needling'		, my_row['needling'		]);
-	JKY.set_value	('jky-has-break'	, my_row['has_break'	]);
+	JKY.set_value	('jky-code'			, jky_row['code'			]);
+	JKY.set_value	('jky-product'		, jky_row['product'			]);
+	JKY.set_value	('jky-composition'	, jky_row['composition' 	]);
+	JKY.set_option	('jky-machine'		, jky_row['machine_id'		]);
+	JKY.set_value	('jky-diameter'		, jky_row['diameter'		]);
+	JKY.set_value	('jky-density'		, jky_row['density'			]);
+	JKY.set_value	('jky-inputs'		, jky_row['inputs'			]);
+	JKY.set_value	('jky-speed'		, jky_row['speed'			]);
+	JKY.set_value	('jky-turns'		, jky_row['turns'			]);
+	JKY.set_value	('jky-weight'		, jky_row['weight'			]);
+	JKY.set_value	('jky-width'		, jky_row['width'			]);
+	JKY.set_value	('jky-lanes'		, jky_row['lanes'			]);
+	JKY.set_value	('jky-yield'		, jky_row['yield'			]);
+	JKY.set_value	('jky-needling'		, jky_row['needling'		]);
+	JKY.set_radio	('jky-has-break'	, jky_row['has_break'		]);
 
-	JKY.set_value	('jky-name'			, my_row['name'			]);
-	JKY.set_radio	('jky-machine-type'	, my_row['machine_type'	]);
-	JKY.set_option	('jky-machine-brand', my_row['machine_brand']);
-	JKY.set_value	('jky-diameter'		, my_row['diameter'		]);
-	JKY.set_value	('jky-width'		, my_row['width'		]);
-	JKY.set_value	('jky-density'		, my_row['density'		]);
-	JKY.set_value	('jky-inputs'		, my_row['inputs'		]);
-	JKY.set_value	('jky-lanes'		, my_row['lanes'		]);
-	JKY.set_value	('jky-repair-value'	, JKY.fix_ymd2dmy(my_row['repair_date']));
-	JKY.set_value	('jky-return-value'	, JKY.fix_ymd2dmy(my_row['return_date']));
+	JKY.set_value	('jky-name'			, jky_row['name'			]);
+	JKY.set_radio	('jky-machine-type'	, jky_row['machine_type'	]);
+	JKY.set_option	('jky-machine-brand', jky_row['machine_brand'	]);
+	JKY.set_value	('jky-diameter'		, jky_row['diameter'		]);
+	JKY.set_value	('jky-width'		, jky_row['width'			]);
+	JKY.set_value	('jky-density'		, jky_row['density'			]);
+	JKY.set_value	('jky-inputs'		, jky_row['inputs'			]);
+	JKY.set_value	('jky-lanes'		, jky_row['lanes'			]);
+	JKY.set_value	('jky-repair-value'	, JKY.fix_ymd2dmy(jky_row['repair_date']));
+	JKY.set_value	('jky-return-value'	, JKY.fix_ymd2dmy(jky_row['return_date']));
 
-	if (jky_select == 'Root' && my_row['name'] == 'Root') {
+	if (jky_select == 'Root' && jky_row['name'] == 'Root') {
 		JKY.hide('jky-action-save'		);
 		JKY.hide('jky-action-delete'	);
 		JKY.hide('jky-action-cancel'	);
@@ -221,12 +230,15 @@ JKY.display_row = function(index) {
 		JKY.show('jky-action-cancel'	);
 	}
 
-	if (my_row['is_company'] == 'yes') {
+	if (jky_row['is_company'] == 'yes') {
 		JKY.hide('jky-company-name');
 	}else{
 		JKY.show('jky-company-name');
 	}
 	JKY.set_focus(jky_focus);
+
+	JKY.display_composition(jky_materials);
+	JKY.display_settings   (jky_row.id   );
 }
 
 JKY.load_table = function() {
@@ -283,6 +295,7 @@ JKY.process_load_success = function(response) {
 }
 
 JKY.process_add_new = function() {
+	JKY.hide('jky-form-tabs');
 	jky_index = 0;
 	JKY.display_new();
 	JKY.hide('jky-app-filter'		);
@@ -336,7 +349,7 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-lanes'		, '0');
 	JKY.set_value	('jky-yield'		, '0');
 	JKY.set_value	('jky-needling'		, '0');
-	JKY.set_value	('jky-has-break'	, '0');
+	JKY.set_radio	('jky-has-break'	, 'No');
 
 	JKY.set_value	('jky-name'			, '' );
 	JKY.set_radio	('jky-machine-type'	, 'Circular');
@@ -391,7 +404,7 @@ JKY.get_form_set = function() {
 		+         ', lanes=\'' + JKY.get_value	('jky-lanes'		) + '\''
 		+         ', yield=\'' + JKY.get_value	('jky-yield'		) + '\''
 		+      ', needling=\'' + JKY.get_value	('jky-needling'		) + '\''
-		+     ', has_break=\'' + JKY.get_value	('jky-has-break'	) + '\''
+		+     ', has_break=\'' + JKY.get_checked('jky-has-break'	) + '\''
 
 		+            'name=\'' + JKY.get_value	('jky-name'			) + '\''
 		+  ', machine_type=\'' + JKY.get_checked('jky-machine-type'	) + '\''
@@ -454,6 +467,10 @@ JKY.process_save = function() {
 }
 
 JKY.process_delete = function() {
+	JKY.display_confirm(JKY.delete_confirmed, null, 'Delete', 'You requested to <b>delete</b> this record. <br>Are you sure?', 'Yes', 'No');
+}
+
+JKY.delete_confirmed = function() {
 	var my_where = 'id = ' + jky_rows[jky_index-1]['id'];
 	var my_data =
 		{ method: 'delete'

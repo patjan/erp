@@ -130,6 +130,7 @@ public function indexAction() {
 
 			case 'insert'		: $required = 'Insert'	; break;
 			case 'update'		: $required = 'Update'	; break;
+			case 'replace'		: $required = 'Update'	; break;
 			case 'delete'		: $required = 'Delete'	; break;
 			case 'combine'		: $required = 'Combine'	; break;
 			case 'publish'		: $required = 'Publish'	; break;
@@ -159,6 +160,7 @@ public function indexAction() {
 		case 'get_columns'	: $this->get_columns	($data); break;
 		case 'insert'		: $this->insert			($data); break;
 		case 'update'		: $this->update			($data); break;
+		case 'replace'		: $this->replace		($data); break;
 		case 'delete'		: $this->delete			($data); break;
 		case 'combine'		: $this->combine		(); break;
 		case 'publish'		: $this->publish		(); break;
@@ -457,15 +459,25 @@ private function get_index($data) {
 		$limit = '';
 	}
 
-	if ($where    != '')	{$where		= ' WHERE 1 '  . $where   ;}
-	if ($order_by != '')	{$order_by	= ' ORDER BY ' . $order_by;}
+	if ($table == 'FTP_Sets') {
+		$sql= 'SELECT Configs.id as setting, Configs.name, FTP_Sets.id, FTP_Sets.value'
+			. '  FROM Configs'
+			. '  LEFT JOIN FTP_Sets'
+			. '    ON FTP_Sets.setting_id = Configs.id' . $where
+			. ' WHERE Configs.group_set = "Settings"'
+			. ' ORDER BY Configs.sequence'
+			;
+	}else{
+		if ($where    != '')	{$where		= ' WHERE 1 '  . $where   ;}
+		if ($order_by != '')	{$order_by	= ' ORDER BY ' . $order_by;}
 
-	$sql= 'SELECT ' . $table . '.*' . $this->set_new_fields($table)
-		. '  FROM ' . $table		. $this->set_left_joins($table)
-		. $where
-		. $order_by
-		. $limit
-		;
+		$sql= 'SELECT ' . $table . '.*' . $this->set_new_fields($table)
+			. '  FROM ' . $table		. $this->set_left_joins($table)
+			. $where
+			. $order_by
+			. $limit
+			;
+	}
 $this->log_sql($table, 'get_index', $sql);
      $db   = Zend_Registry::get('db');
      $rows = $db->fetchAll($sql);
@@ -516,6 +528,7 @@ private function set_select($table, $select) {
 	if ($table == 'Tickets'		)	$return = ' AND        Tickets.status        = "' . $select . '"';
 	if ($table == 'Translations')	$return = ' AND   Translations.status        = "' . $select . '"';
 	if ($table == 'Persons'		)	$return = ' AND        Persons.user_role     = "' . $select . '"';
+	if ($table == 'FTP_Sets'	)	$return = ' AND       FTP_Sets.ftp_id		 =  ' . $select;
 
 	return $return;
 }
@@ -540,6 +553,7 @@ private function set_new_fields($table) {
 											. ',   Machines.name		AS  machine';
 	if ($table == 'FTP_Sets'	)	$return = ',    Configs.sequence	AS  sequence'
 											. ',    Configs.name		AS  name';
+	if ($table == 'FTP_Threads'	)	$return = ',    Threads.name		AS  name';
 
 //	special code to append fields from Persons to Services table
 	if (get_request('method') == 'export') {
@@ -571,6 +585,7 @@ private function set_left_joins($table) {
 	if ($table == 'FTPs'		)	$return = '  LEFT JOIN     Products				ON  Products.id =		FTPS.product_id'
 											. '  LEFT JOIN     Machines				ON  Machines.id =		FTPS.machine_id';
 	if ($table == 'FTP_Sets'	)	$return = '  LEFT JOIN     Configs  			ON   Configs.id =	FTP_Sets.setting_id';
+	if ($table == 'FTP_Threads'	)	$return = '  LEFT JOIN     Threads  			ON   Threads.id =FTP_Threads.thread_id';
 	return $return;
 }
 
@@ -1282,6 +1297,59 @@ private function update_user_jky($id, $set) {
 		;
 	$db = Zend_Registry::get('db');
 	$db->query($sql);
+}
+
+/*
+ *	$.ajax({ method: replace, table: x...x, set: x...x, where: x...x });
+ *
+ *	 status: ok
+ *	updated: 9...9
+ */
+private function replace($data) {
+	$table	= get_data($data, 'table');
+	$set	= get_data($data, 'set'  );
+	$where	= $this->get_security($table, get_data($data, 'where'));
+
+	if ($set == '') {
+		$this->echo_error('missing [set] statement');
+		return;
+	}
+
+	if ($where == '') {
+		$this->echo_error('missing [where] statement');
+		return;
+	}
+
+	$id = $this->get_only_id($table, $where);
+
+	if (!$id) {
+		$old = null;
+	}else{
+		$old = db_get_row($table, 'id = ' . $id);
+	}
+
+	$set .= ', updated_by='  . get_session('user_id');
+	$set .= ', updated_at="' . get_time() . '"';
+	$sql= 'REPLACE ' . $table
+		. '   SET ' . str_replace("*#", "&", $set)
+		. ' WHERE ' . $where
+		;
+	$this->log_sql($table, $id, $sql);
+	$return = array();
+	try {
+		$db = Zend_Registry::get('db');
+		$db->query($sql);
+		$new = db_get_row($table, 'id = ' . $id);
+		$this->history_log('replace', $table, $id, $new, $old);
+		$return['status' ] = 'ok';
+		$return['message'] = 'record (' . $id . ') replaced';
+		$return['id'     ] = $id;
+	} catch(Exception $exp) {
+		$this->log_sql($table, null, $exp->getMessage());
+		$return['status' ] = 'error';
+		$return['message'] = $exp->getMessage();
+	}
+	echo json_encode($return);
 }
 
 /*

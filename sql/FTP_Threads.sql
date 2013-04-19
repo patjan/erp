@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS FTP_Threads
 , thread_id			BIGINT
 
 , sequence			INT(11)				DEFAULT 0
-, percentage		DECIMAL(6,2)		DEFAULT 0
+, percent   		DECIMAL(6,2)		DEFAULT 0
 
 , PRIMARY KEY(id)
 , UNIQUE(ftp_id,thread_id)

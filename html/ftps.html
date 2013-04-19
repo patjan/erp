@@ -49,7 +49,7 @@
 .jky-composition	{width:150px; text-align:center;}
 
 #jky-code			{width: 60px; font-size:16px; font-weight:bold;}
-#jky-product		{width:340px;}
+#jky-product		{width:340px; text-transform:capitalize;}
 #jky-product span	{padding:4px 20px 0 4px; vertical-align:bottom;}
 #jky-composition	{width:340px;}
 #jky-machine		{width:350px;}
@@ -81,9 +81,18 @@
 .jky-comp-material		{width:100px; text-align:left ;}
 #jky-comp-total			{width: 50px; text-align:right;}
 
-.jky-set-name			{width:100px; text-align:right;}
-.jky-set-value			{width: 50px; text-align:left ;}
+.jky-set-label			{width:100px; text-align:right;}
+.jky-set-value			{width:200px; text-align:left ;}
 #jky-set-body tr		{margin: 0 auto;}
+#jky-set-body tr td		{padding:0 8px;}
+#jky-set-body input		{margin:0 5px 0 0; height:18px;}
+
+.jky-thread-sequence	{width: 60px; text-align:center;}
+.jky-thread-name		{width:200px; text-align:right ;}
+.jky-thread-percent		{width: 40px; text-align:left  ;}
+#jky-thread-body tr		{margin: 0 auto;}
+#jky-thread-body tr td	{padding:0 8px;}
+#jky-thread-body input	{margin:0 5px 0 0; height:18px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -160,7 +169,7 @@
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
 			<li id='jky-tab-composition'	class='active'	><a href='#jky-pane-composition'	data-toggle='tab'>Composition	</a></li>
 			<li	id='jky-tab-settins'						><a href='#jky-pane-settings'		data-toggle='tab'>Settings		</a></li>
-			<li	id='jky-tab-threads'						><a href='#jky-pane-threds'			data-toggle='tab'>Threads		</a></li>
+			<li	id='jky-tab-threads'						><a href='#jky-pane-threads'		data-toggle='tab'>Threads		</a></li>
 			<li	id='jky-tab-loads'							><a href='#jky-pane-loads'			data-toggle='tab'>Loads			</a></li>
 		</ul>
 
@@ -176,49 +185,16 @@
 			<div id='jky-pane-settings' class='tab-pane'>
 				<table class='table table-striped' >
 					<thead><tr><td class='right'>Name</td><td class='left'>Value</td></tr></thead>
-					<tbody id='jky-set-body'>
-						<tr><td class='right'	> Ponto da Malha</td><td class='jky-set-value'	>6 Up	</td></tr>
-						<tr><td class='right'	>  Fita da Malha</td><td class='jky-set-value'	>140	</td></tr>
-						<tr><td class='right'	>   LFA da Malha</td><td class='jky-set-value'	>120	</td></tr>
-						<tr><td class='right'	> Ponto da Fang	</td><td class='jky-set-value'	>4 Up	</td></tr>
-						<tr><td class='right'	>  Fita da Fang	</td><td class='jky-set-value'	>160	</td></tr>
-						<tr><td class='right'	>   LFA da Fang	</td><td class='jky-set-value'	>140	</td></tr>
-						<tr><td class='right'	>  Fita da Lycra</td><td class='jky-set-value'	>120	</td></tr>
-						<tr><td class='right'	> Ponto Central	</td><td class='jky-set-value'	>2.45	</td></tr>
-						<tr><td class='right'	> Ponto do Disco</td><td class='jky-set-value'	>3.55	</td></tr>
-						<tr><td class='right'	>Altura do Disco</td><td class='jky-set-value'	>110	</td></tr>
-						<tr><td class='right'	> Chave do Disco</td><td class='jky-set-value'	> 40	</td></tr>
-						<tr><td class='right'	>		Frontura</td><td class='jky-set-value'	> 25	</td></tr>
-						<tr><td class='right'	>		 Puxador</td><td class='jky-set-value'	> 20	</td></tr>
-					</tbody>
+					<tbody id='jky-set-body'></tbody>
 					<tfoot></tfoot>
 				</table>
 			</div>
 
 			<div id='jky-pane-threads' class='tab-pane'>
 				<table class='table table-striped' >
-					<thead>
-						<tr><td class='jky-set-name'	>Name	</td><td class='jky-set-value'	>Value	</td></tr>
-					</thead>
-					<tbody id='jky-set-body'>
-						<table>
-							<tr><td class='jky-set-name'	> Ponto da Malha</td><td class='jky-set-value'	>6 Up	</td></tr>
-							<tr><td class='jky-set-name'	>  Fita da Malha</td><td class='jky-set-value'	>140	</td></tr>
-							<tr><td class='jky-set-name'	>   LFA da Malha</td><td class='jky-set-value'	>120	</td></tr>
-							<tr><td class='jky-set-name'	> Ponto da Fang	</td><td class='jky-set-value'	>4 Up	</td></tr>
-							<tr><td class='jky-set-name'	>  Fita da Fang	</td><td class='jky-set-value'	>160	</td></tr>
-							<tr><td class='jky-set-name'	>   LFA da Fang	</td><td class='jky-set-value'	>140	</td></tr>
-							<tr><td class='jky-set-name'	>  Fita da Lycra</td><td class='jky-set-value'	>120	</td></tr>
-							<tr><td class='jky-set-name'	> Ponto Central	</td><td class='jky-set-value'	>2.45	</td></tr>
-							<tr><td class='jky-set-name'	> Ponto do Disco</td><td class='jky-set-value'	>3.55	</td></tr>
-							<tr><td class='jky-set-name'	>Altura do Disco</td><td class='jky-set-value'	>110	</td></tr>
-							<tr><td class='jky-set-name'	> Chave do Disco</td><td class='jky-set-value'	> 40	</td></tr>
-							<tr><td class='jky-set-name'	>		Frontura</td><td class='jky-set-value'	> 25	</td></tr>
-							<tr><td class='jky-set-name'	>		 Puxador</td><td class='jky-set-value'	> 20	</td></tr>
-						</table>
-					</tbody>
-					<tfoot>
-					</tfoot>
+					<thead><tr><td class='jky-thread-sequence'>Sequence</td><td class='jky-thread-name'	>Name</td><td class='jky-thread-percent'>Percent</td></tr></thead>
+					<tbody id='jky-thread-body'></tbody>
+					<tfoot></tfoot>
 				</table>
 			</div>
 

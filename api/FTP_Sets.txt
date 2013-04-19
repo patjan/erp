@@ -1,0 +1,13 @@
+SELECT Configs.id as setting_id, Configs.name, FTP_Sets.value  
+  FROM Configs
+  LEFT JOIN FTP_Sets
+    ON FTP_Sets.setting_id = Configs.id
+   AND FTP_Sets.ftp_id = 10001
+ WHERE Configs.group_set = 'Settings'
+ ORDER BY Configs.sequence
+
+ 
+ SELECT Configs.id as setting_id, Configs.name
+  FROM Configs
+ WHERE Configs.group_set = 'Settings'
+ ORDER BY Configs.sequence

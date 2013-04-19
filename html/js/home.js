@@ -45,6 +45,7 @@ JKY.set_all_events = function(jky_program) {
 
 		$('#jky-sales-customers'	).click (function() {JKY.process_action('customers'	);});
 		$('#jky-production-ftps'	).click (function() {JKY.process_action('ftps'		);});
+		$('#jky-production-threads'	).click (function() {JKY.process_action('threads'	);});
 		$('#jky-production-machines').click (function() {JKY.process_action('machines'	);});
 		$('#jky-admin-configs'		).click (function() {JKY.process_action('configs'	);});
 		$('#jky-support-controls'	).click (function() {JKY.process_action('controls'	);});

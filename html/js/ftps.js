@@ -16,8 +16,12 @@ var jky_rows		= [];
 var jky_row 		= null;
 var jky_count		=  0;
 var jky_index		=  0;				//	0=Add New
-var jky_settings	= [];
+
 var jky_materials	= [];
+var jky_settings	= [];
+var jky_set_index	= null;				//	only for insert set
+var jky_set_setting	= null;				//	only for insert set
+
 /**
  * start program
  */
@@ -66,8 +70,8 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.display_list();
 		JKY.show('jky-side-production');
 		JKY.show('jky-action-add-new');
-		jky_settings  = JKY.get_configs('Settings' );
 		jky_materials = JKY.get_configs('Materials');
+		jky_settings  = JKY.get_configs('Settings' );
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
@@ -130,24 +134,26 @@ JKY.display_row = function(index) {
 	jky_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
 	jky_rows[index-1] = jky_row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_value	('jky-code'			, jky_row['code'		]);
-	JKY.set_value	('jky-product'		, jky_row['product'		]);
-	JKY.set_value	('jky-composition'	, jky_row['composition'	]);
-	JKY.set_option	('jky-machine'		, jky_row['machine_id'	]);
-	JKY.set_value	('jky-diameter'		, jky_row['diameter'	]);
-	JKY.set_value	('jky-density'		, jky_row['density'		]);
-	JKY.set_value	('jky-inputs'		, jky_row['inputs'		]);
-	JKY.set_value	('jky-speed'		, jky_row['speed'		]);
-	JKY.set_value	('jky-turns'		, jky_row['turns'		]);
-	JKY.set_value	('jky-weight'		, jky_row['weight'		]);
-	JKY.set_value	('jky-width'		, jky_row['width'		]);
-	JKY.set_value	('jky-lanes'		, jky_row['lanes'		]);
-	JKY.set_value	('jky-yield'		, jky_row['yield'		]);
-	JKY.set_value	('jky-needling'		, jky_row['needling'	]);
-	JKY.set_radio	('jky-has-break'	, jky_row['has_break'	]);
+	JKY.set_value	('jky-code'			, jky_row['code'			]);
+	JKY.set_value	('jky-product'		, jky_row['product'			]);
+	JKY.set_value	('jky-composition'	, jky_row['composition' 	]);
+	JKY.set_option	('jky-machine'		, jky_row['machine_id'		]);
+	JKY.set_value	('jky-diameter'		, jky_row['diameter'		]);
+	JKY.set_value	('jky-density'		, jky_row['density'			]);
+	JKY.set_value	('jky-inputs'		, jky_row['inputs'			]);
+	JKY.set_value	('jky-speed'		, jky_row['speed'			]);
+	JKY.set_value	('jky-turns'		, jky_row['turns'			]);
+	JKY.set_value	('jky-weight'		, jky_row['weight'			]);
+	JKY.set_value	('jky-width'		, jky_row['width'			]);
+	JKY.set_value	('jky-lanes'		, jky_row['lanes'			]);
+	JKY.set_value	('jky-yield'		, jky_row['yield'			]);
+	JKY.set_value	('jky-needling'		, jky_row['needling'		]);
+	JKY.set_radio	('jky-has-break'	, jky_row['has_break'		]);
 	JKY.set_focus(jky_focus);
 
 	JKY.display_composition(jky_materials);
+//	JKY.display_settings   (jky_row.id   );
+	JKY.display_threads    (jky_row.id   );
 }
 
 JKY.load_table = function() {
@@ -282,6 +288,10 @@ JKY.process_save = function() {
 }
 
 JKY.process_delete = function() {
+	JKY.display_confirm(JKY.delete_confirmed, null, 'Delete', 'You requested to <b>delete</b> this record. <br>Are you sure?', 'Yes', 'No');
+}
+
+JKY.delete_confirmed = function() {
 	var my_where = 'id = ' + jky_rows[jky_index-1]['id'];
 	var my_data =
 		{ method: 'delete'
@@ -318,7 +328,7 @@ JKY.process_export = function() {
 };
 
 /*
- * display Composition
+ * display Composition ---------------------------------------------------------
  */
 JKY.display_composition = function(jky_materials) {
 	var my_html = '';
@@ -373,3 +383,148 @@ JKY.update_composition = function() {
 JKY.update_composition_success = function(response) {
 	JKY.display_message(response.message)
 }
+
+/*
+ * display Settings ------------------------------------------------------------
+ */
+JKY.display_settings = function(id) {
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'FTP_Sets'
+		, select	:  id
+		};
+	JKY.ajax(false, my_data, JKY.generate_settings);
+}
+
+JKY.generate_settings = function(response) {
+	var my_html = '';
+	var my_rows = response.rows;
+	if (my_rows != '') {
+		for(var i in my_rows) {
+			var my_row	 	= my_rows[i];
+			var my_setting	= my_row.setting;
+			var my_name		= my_row.name;
+			var my_id		= my_row.id;
+			var my_value	= (my_row.value == null) ? 0 : my_row.value;
+
+			var my_onchange = '';
+			if (my_row.value == null) {
+				my_onchange = 'JKY.insert_setting(this, ' + my_setting + ')';
+			}else{
+				my_onchange = 'JKY.update_setting(this, ' + my_setting + ', ' + my_id + ')';
+			}
+
+			my_html += ''
+				+ '<tr>'
+				+ '<td class="jky-set-label">' + my_name  + '</td>'
+				+ '<td class="left" ><input class="jky-set-value" text="text" onchange="' + my_onchange + '" value="' + my_value + '" /></td>'
+				+ '</tr>'
+				;
+		}
+	}
+	JKY.set_html('jky-set-body', my_html );
+}
+
+JKY.insert_setting = function(index, setting) {
+	var my_set  = 'ftp_id = ' + jky_row.id + ', setting_id = ' + setting + ',value = \'' + $(index).val() + '\'';
+	var my_data =
+		{ method	: 'insert'
+		, table		: 'FTP_Sets'
+		, set		:  my_set
+		};
+	JKY.ajax(true, my_data, JKY.insert_settings_success);
+	jky_set_index	= index;
+	jky_set_setting	= setting;
+}
+
+JKY.insert_settings_success = function(response) {
+	JKY.display_message(response.message)
+	$(jky_set_index).attr('onchange', 'JKY.update_setting(this, ' + jky_set_setting + ', ' + response.id + ')');
+}
+
+JKY.update_setting = function(index, setting, id) {
+	var my_set  = 'ftp_id = ' + jky_row.id + ', setting_id = ' + setting + ',value = \'' + $(index).val() + '\'';
+	var my_data =
+		{ method	: 'update'
+		, table		: 'FTP_Sets'
+		, set		:  my_set
+		, where		: 'id = ' + id
+		};
+	JKY.ajax(true, my_data, JKY.update_settings_success);
+}
+
+JKY.update_settings_success = function(response) {
+	JKY.display_message(response.message)
+}
+
+/*
+ * display Threads -------------------------------------------------------------
+ */
+JKY.display_threads = function(id) {
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'FTP_Threads'
+		, select	:  id
+		};
+	JKY.ajax(false, my_data, JKY.generate_threads);
+}
+
+JKY.generate_threads = function(response) {
+	var my_html = '';
+	var my_rows = response.rows;
+	if (my_rows != '') {
+		for(var i in my_rows) {
+			var my_row	 	= my_rows[i];
+			var my_sequence	= my_row.sequence;
+			var my_name		= my_row.name;
+			var my_id		= my_row.id;
+			var my_percent	= my_row.percent;
+
+			var my_onchange = '';
+			if (my_row.value == null) {
+				my_onchange = 'JKY.insert_thread(this, ' + my_id + ')';
+			}else{
+				my_onchange = 'JKY.update_thread(this, ' + my_id + ')';
+			}
+
+			my_html += ''
+				+ '<tr>'
+				+ '<td class="jky-thread-sequence"	>' + my_sequence	+ '</td>'
+				+ '<td class="jky-thread-name"		>' + my_name		+ '</td>'
+				+ '<td class="left" ><input class="jky-set-value" text="text" onchange="' + my_onchange + '" value="' + my_percent + '" /></td>'
+				+ '</tr>'
+				;
+		}
+	}
+	JKY.set_html('jky-thread-body', my_html );
+}
+
+JKY.update_composition = function() {
+	var my_total = 0;
+	var my_composition = '';
+	$('#jky-comp-body tr').each(function() {
+		var my_percent  = parseFloat($(this).find('.jky-comp-percent' ).val());
+		var my_material = $(this).find('.jky-comp-material').val();
+		my_composition += my_percent + ' ' + my_material + ', ';
+		my_total += my_percent
+	})
+	JKY.set_html('jky-comp-total', my_total);
+	if (my_total == 100) {
+		my_composition = my_composition.substr(0, my_composition.length-2);
+		JKY.set_value('jky-composition', my_composition);
+		var my_data =
+			{ method	: 'update'
+			, table		: jky_table
+			, set		: 'composition = \'' + my_composition + '\''
+			, where		: 'id = ' + jky_row.id
+			};
+		JKY.ajax(true, my_data, JKY.update_composition_success);
+	}else{
+		JKY.display_message('Composition is incompleted.')
+	}
+}
+
+JKY.update_composition_success = function(response) {
+	JKY.display_message(response.message)
+}
+

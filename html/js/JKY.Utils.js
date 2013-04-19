@@ -70,7 +70,6 @@ JKY.binding_on_resize = function() {
 	}
 }
 
-
 /**
  * set table width and height
  * adjust height minus offset height, but not less than minimum height
@@ -111,7 +110,12 @@ JKY.setTableWidthHeight = function(tableId, width, off_width, minHeight, offHeig
  * @param	program_name
  */
 JKY.re_direct = function(program_name) {
-	alert('re direct to ' + program_name);
+alert('re direct to ' + program_name);
+	if (typeof program_name == 'undefined') {
+		location = '/home';
+	}else{
+		location = '/' + program_name;
+	}
 }
 
 /**
@@ -650,6 +654,34 @@ JKY.is_scroll_at_end = function(class_name){
 	}else{
 		return false;
 	}
+}
+
+/**
+ * show confirm layer with message
+ * @param	function_yes	(null | callback function if reply = Yes)
+ * @param	function_no		(null | callback function if reply = No )
+ * @param	message
+ *
+ * @example JKY.display_confirm
+ *				(  JKY.restore_data
+ *				,  null
+ *				, 'Leaving'
+ *				, 'You have <b>unsaved</b> change(s). <br>Do you want to <b>restore</b> this screen without save it?'
+ *				, 'Leave Page'
+ *				, 'Stay on Page'
+ *				);
+ */
+JKY.display_confirm = function(function_yes, function_no, header, body, label_yes, label_no) {
+	JKY.click_confirm = function(reply) {
+		$('#jky-confirm').modal('hide');
+		if (reply == 'Yes' && typeof(function_yes) == 'function')	{function_yes();}
+		if (reply == 'No'  && typeof(function_no ) == 'function')	{function_no ();}
+	}
+	$('#jky-confirm-header'	).html(header	);
+	$('#jky-confirm-body'	).html(body		);
+	$('#jky-confirm-yes'	).html(label_yes);
+	$('#jky-confirm-no'		).html(label_no	);
+	$('#jky-confirm').modal('show');
 }
 
 //        JKY.show_layer('login', 'user_name', 200)

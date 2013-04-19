@@ -13,6 +13,7 @@ var jky_sort_by		= 'name';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_rows		= [];
+var jky_row 		= null;
 var jky_count		=  0;
 var jky_index		=  0;				//	0=Add New
 
@@ -123,20 +124,21 @@ JKY.display_next = function() {
 }
 
 JKY.display_row = function(index) {
+	JKY.show('jky-form-tabs');
 	jky_index = index;
-	var my_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
-	jky_rows[index-1] = my_row;
+	jky_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
+	jky_rows[index-1] = jky_row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_value	('jky-name'			, my_row['name'			]);
-	JKY.set_radio	('jky-machine-type'	, my_row['machine_type'	]);
-	JKY.set_option	('jky-machine-brand', my_row['machine_brand']);
-	JKY.set_value	('jky-diameter'		, my_row['diameter'		]);
-	JKY.set_value	('jky-width'		, my_row['width'		]);
-	JKY.set_value	('jky-density'		, my_row['density'		]);
-	JKY.set_value	('jky-inputs'		, my_row['inputs'		]);
-	JKY.set_value	('jky-lanes'		, my_row['lanes'		]);
-	JKY.set_value	('jky-repair-value'	, JKY.fix_ymd2dmy(my_row['repair_date']));
-	JKY.set_value	('jky-return-value'	, JKY.fix_ymd2dmy(my_row['return_date']));
+	JKY.set_value	('jky-name'			, jky_row['name'			]);
+	JKY.set_radio	('jky-machine-type'	, jky_row['machine_type'	]);
+	JKY.set_option	('jky-machine-brand', jky_row['machine_brand'	]);
+	JKY.set_value	('jky-diameter'		, jky_row['diameter'		]);
+	JKY.set_value	('jky-width'		, jky_row['width'			]);
+	JKY.set_value	('jky-density'		, jky_row['density'			]);
+	JKY.set_value	('jky-inputs'		, jky_row['inputs'			]);
+	JKY.set_value	('jky-lanes'		, jky_row['lanes'			]);
+	JKY.set_value	('jky-repair-value'	, JKY.fix_ymd2dmy(jky_row['repair_date']));
+	JKY.set_value	('jky-return-value'	, JKY.fix_ymd2dmy(jky_row['return_date']));
 	JKY.set_focus(jky_focus);
 }
 
@@ -178,6 +180,7 @@ JKY.process_load_success = function(response) {
 }
 
 JKY.process_add_new = function() {
+	JKY.hide('jky-form-tabs');
 	jky_index = 0;
 	JKY.display_new();
 	JKY.hide('jky-app-filter'		);
@@ -268,6 +271,10 @@ JKY.process_save = function() {
 }
 
 JKY.process_delete = function() {
+	JKY.display_confirm(JKY.delete_confirmed, null, 'Delete', 'You requested to <b>delete</b> this record. <br>Are you sure?', 'Yes', 'No');
+}
+
+JKY.delete_confirmed = function() {
 	var my_where = 'id = ' + jky_rows[jky_index-1]['id'];
 	var my_data =
 		{ method: 'delete'
