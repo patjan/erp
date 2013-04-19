@@ -10,7 +10,7 @@
 			<button id='jky-action-add-new'	class='btn btn-success' type='button'>Add New	</button>
 			<button id='jky-action-save'	class='btn btn-success' type='button'>Save		</button>
 		&nbsp;<a	id='jky-action-delete'	class='btn' type='button' href='#'>Delete</a>
-		&nbsp;<a	id='jky-action-cancel'	class='btn' type='button'	href='#'>Cancel</a>
+		&nbsp;<a	id='jky-action-cancel'	class='btn' type='button' href='#'>Cancel</a>
 		</div>
 		<div id='jky-app-more'>
 			<button id='jky-action-export'	class='btn btn-success' type='button'>Export	</button>
@@ -93,9 +93,9 @@
 #jky-set-body tr td		{padding:0 8px;}
 #jky-set-body input		{margin:0 5px 0 0; height:18px;}
 
-.jky-thread-sequence	{width: 60px; text-align:center;}
-.jky-thread-name		{width:200px; text-align:right ;}
-.jky-thread-percent		{width: 40px; text-align:left  ;}
+.jky-thread-sequence	{width:20%; text-align:center;}
+.jky-thread-name		{width:40%; text-align:right ;}
+.jky-thread-percent		{width:30%; text-align:left  ;}
 #jky-thread-body tr		{margin: 0 auto;}
 #jky-thread-body tr td	{padding:0 8px;}
 #jky-thread-body input	{margin:0 5px 0 0; height:18px;}
@@ -138,25 +138,16 @@
 	</div>
 
 	<div id='jky-form-data'>
-		<div class="jky-left">
+		<div class='jky-left'>
 		<div class='jky-form-line'><div class='jky-form-label'>		  Code:</div><div class='jky-form-value'><input id='jky-code'			class='jky-form-value' placeholder='Code'			readonly='readonly'	/></div></div>
 		<div class='jky-form-line'><div class='jky-form-label'>	   Product:</div><div class='jky-form-value'><input id='jky-product'		class='jky-form-value' placeholder='Product'		readonly='readonly'	/></div></div>
 		<div class='jky-form-line'><div class='jky-form-label'>Composition:</div><div class='jky-form-value'><input id='jky-composition'	class='jky-form-value' placeholder='Composition'	readonly='readonly'	/></div></div>
 		<div class='jky-form-line'><div class='jky-form-label'>    Machine:</div><select id='jky-machine' placeholder='Machine Name'></select></div>
+		</div>
+		<div id='jky-drawing'><img id='jky-drawing-img' src='/img/placeholder.png'><br><a id='jky-upload_drawing'>Upload Drawing</a></div>
+		<div id='jky-photo'  ><img id='jky-photo-img'   src='/img/placeholder.png'><br><a id='jky-upload_photo'  >Upload Photo  </a></div>
 		<div class='jky-clear'></div>
 		<br>
-		</div>
-		<div id="jky-drawing">
-		<img id="jky-drawing-img" src="/img/placeholder.png">
-			<br>
-			<a id='jky-upload_drawing'>Upload Drawing</a>
-		</div>
-		<div id="jky-photo">
-		<img id="jky-photo-img" src="/img/placeholder.png">
-			<br>
-			<a id='jky-upload_photo'>Upload Photo</a>
-		</div>
-		<div class="jky-clear"></div>
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label-1'>	 Diameter:</div><div class='jky-form-value'><input id='jky-diameter'	class='jky-form-value' placeholder='0'	/></div>(cm)	</div>
 			<div class='jky-form-line'><div class='jky-form-label-1'>	  Density:</div><div class='jky-form-value'><input id='jky-density'		class='jky-form-value' placeholder='0'	/></div>		</div>
@@ -180,7 +171,7 @@
 				</div>
 			</div>
 		</div>
-	<div class='jky-clear'></div>
+		<div class='jky-clear'></div>
 	</div>
 
 	<div id='jky-form-tabs' class='tabbable'>

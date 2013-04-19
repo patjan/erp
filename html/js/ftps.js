@@ -152,7 +152,7 @@ JKY.display_row = function(index) {
 	JKY.set_focus(jky_focus);
 
 	JKY.display_composition(jky_materials);
-//	JKY.display_settings   (jky_row.id   );
+	JKY.display_settings   (jky_row.id   );
 	JKY.display_threads    (jky_row.id   );
 }
 

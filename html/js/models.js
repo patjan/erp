@@ -239,6 +239,8 @@ JKY.display_row = function(index) {
 
 	JKY.display_composition(jky_materials);
 	JKY.display_settings   (jky_row.id   );
+	JKY.display_threads    (jky_row.id   );
+
 }
 
 JKY.load_table = function() {
