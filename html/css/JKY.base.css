@@ -198,6 +198,7 @@ li .arrow span {
 #jky-form-id	{font-size:20px; font-weight:bold; padding-top:10px;}
 #jky-form-data	{padding:10px;}
 
+#jky-form-tabs	{background-color:#FFFFFF; padding-top:10px;}
 /* -------------------------------------------------------------------------- */
 
 #jky-loading			{display:none; position:fixed; top:50%;	left:50%; margin:-50px 0 0 -50px; overflow:auto; z-index:9999;}

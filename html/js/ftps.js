@@ -17,10 +17,11 @@ var jky_row 		= null;
 var jky_count		=  0;
 var jky_index		=  0;				//	0=Add New
 
-var jky_materials		= [];
-var jky_settings		= [];
-var jky_thread_options	= '';
+var jky_materials	= [];
+var jky_settings	= [];
+var jky_threads		= [];
 
+var jky_thread_options	= '';
 var jky_set_index		= null;			//	only for insert set
 var jky_set_setting		= null;			//	only for insert set
 
@@ -73,9 +74,10 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.show('jky-side-production'	);
 		JKY.show('jky-app-header'		);
 		JKY.show('jky-action-add-new'	);
-		jky_materials		= JKY.get_configs('Materials');
-		jky_settings		= JKY.get_configs('Settings' );
-		jky_thread_options	= JKY.set_table_options('Threads', 'name', null, null);
+		jky_materials	= JKY.get_configs('Materials');
+		jky_settings	= JKY.get_configs('Settings' );
+		jky_threads		= JKY.get_ids('Threads');
+//		jky_thread_options	= JKY.set_table_options('Threads', 'name', null, null);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
@@ -569,9 +571,9 @@ JKY.generate_loads = function(response) {
 				+ '<tr>'
 				+ '<td class="jky-load-sequence"		>' + my_sequence		+ '</td>'
 				+ '<td class="jky-load-first-value"		><input  class="jky-load-first-number" text="text"	onchange="' + my_onchange + '" value="' + my_first_number  + '" /></td>'
-				+ '<td class="jky-load-first-select"	><select class="jky-load-first-name"				onchange="' + my_onchange + '">' + jky_thread_options + '</select></td>'
+				+ '<td class="jky-load-first-select"	><select class="jky-load-first-name"				onchange="' + my_onchange + '">' + JKY.set_options_array(my_first_name , jky_threads) + '</select></td>'
 				+ '<td class="jky-load-second-value"	><input  class="jky-load-second-number" text="text"	onchange="' + my_onchange + '" value="' + my_second_number + '" /></td>'
-				+ '<td class="jky-load-second-select"	><select class="jky-load-first-name"				onchange="' + my_onchange + '">' + jky_thread_options + '</select></td>'
+				+ '<td class="jky-load-second-select"	><select class="jky-load-first-name"				onchange="' + my_onchange + '">' + JKY.set_options_array(my_second_name, jky_threads) + '</select></td>'
 				+ '</tr>'
 				;
 		}

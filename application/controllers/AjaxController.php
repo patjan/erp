@@ -117,6 +117,7 @@ public function indexAction() {
 */
 			case 'get_names'	: $required = 'View'	; break;
 			case 'get_id'		: $required = 'View'	; break;
+			case 'get_ids'		: $required = 'View'	; break;
 			case 'get_count'	: $required = 'View'	; break;
 			case 'get_value'	: $required = 'View'	; break;
 			case 'get_row'		: $required = 'View'	; break;
@@ -150,6 +151,7 @@ public function indexAction() {
 	switch( $method ) {
 		case 'get_names'	: $this->get_names		($data); break;
 		case 'get_id'		: $this->get_id			($data); break;
+		case 'get_ids'		: $this->get_ids		($data); break;
 		case 'get_count'	: $this->get_count		(); break;
 		case 'get_value'	: $this->get_value		($data); break;
 		case 'get_row'		: $this->get_row		($data); break;
@@ -280,6 +282,25 @@ private function get_id($data) {
 	$return = array();
 	$return['status'] = 'ok';
 	$return['id'	] = $db->fetchOne($sql);
+	echo json_encode($return);
+}
+
+/*
+ *	$.ajax({ method: get_ids, table: x...x });
+ *
+ *	return: [ x...x, ..., x...x ]
+ */
+private function get_ids($data) {
+	$table = get_data($data, 'table');
+	$sql= 'SELECT id, name'
+		. '  FROM ' . $table
+		. ' WHERE status = "Active"'
+		. ' ORDER BY name'
+		;
+	$db = Zend_Registry::get('db');
+	$return = array();
+	$return['status'] = 'ok';
+	$return['rows'	] = $db->fetchAll($sql);
 	echo json_encode($return);
 }
 
@@ -528,6 +549,8 @@ private function set_select($table, $select) {
 	if ($table == 'Tickets'		)	$return = ' AND        Tickets.status        = "' . $select . '"';
 	if ($table == 'Translations')	$return = ' AND   Translations.status        = "' . $select . '"';
 	if ($table == 'Persons'		)	$return = ' AND        Persons.user_role     = "' . $select . '"';
+	if ($table == 'FTP_Loads'	)	$return = ' AND      FTP_Loads.ftp_id		 =  ' . $select;
+	if ($table == 'FTP_Threads'	)	$return = ' AND    FTP_Threads.ftp_id		 =  ' . $select;
 	if ($table == 'FTP_Sets'	)	$return = ' AND       FTP_Sets.ftp_id		 =  ' . $select;
 
 	return $return;

@@ -502,11 +502,15 @@ JKY.set_options = function( ) {
 //	JKY.set_options_array(20, array)
 //	----------------------------------------------------------------------------
 JKY.set_options_array = function(selected, the_array) {
-     var my_options = '';
-     for (var i=1; i<the_array.length; i++) {
-          var my_value = the_array[i].name;
-          var my_selected = (my_value == selected) ? ' selected="selected"' : '';
-          my_options += '<option value="' + my_value + '"' + my_selected + '>' + my_value + '</option>';
+	var my_options = '';
+	for(var i=0; i<the_array.length; i++) {
+		var my_value = the_array[i].name;
+        var my_id    = the_array[i].id;
+		if (typeof my_id == 'undefined') {
+			my_id = my_value;
+		}
+		var my_selected = (my_value == selected) ? ' selected="selected"' : '';
+		my_options += '<option value="' + my_id + '"' + my_selected + '>' + my_value + '</option>';
      }
      return my_options;
 }
@@ -943,6 +947,44 @@ JKY.set_contact_us = function(contact_us) {
 }
 
 /**
+ * get ids
+ */
+JKY.get_ids = function(table) {
+	JKY.display_trace('get_ids: ' + table);
+	var my_rows = [];
+	var my_data =
+		{ method	: 'get_ids'
+		, table		:  table
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_rows = response.rows;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.hide('jky-loading');
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	)
+	return my_rows;
+}
+
+/**
  * get configs
  */
 JKY.get_configs = function(group_set) {
@@ -979,7 +1021,6 @@ JKY.get_configs = function(group_set) {
 	)
 	return my_rows;
 }
-
 /**
  * set group set
  */
