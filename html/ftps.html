@@ -83,22 +83,36 @@
 #jky-form-tabs thead	{font-weight:bold;}
 #jky-form-tabs tfoot	{font-weight:bold;}
 
-.jky-comp-percent		{width: 50px; text-align:right; }
-.jky-comp-material		{width:100px; text-align:left ;}
-#jky-comp-total			{width: 50px; text-align:right;}
+.jky-comp-percent		{width:30%; text-align:right; margin-right:0;}
+.jky-comp-material		{width:70%; text-align:left ;}
+#jky-comp-total			{			text-align:right;}
 
-.jky-set-label			{width:100px; text-align:right;}
-.jky-set-value			{width:200px; text-align:left ;}
+.jky-set-label			{width:30%; text-align:right;}
+.jky-set-value			{width:70%; text-align:left ;}
 #jky-set-body tr		{margin: 0 auto;}
 #jky-set-body tr td		{padding:0 8px;}
 #jky-set-body input		{margin:0 5px 0 0; height:18px;}
 
-.jky-thread-sequence	{width:20%; text-align:center;}
+.jky-thread-sequence	{width:10%; text-align:center;}
 .jky-thread-name		{width:40%; text-align:right ;}
-.jky-thread-percent		{width:30%; text-align:left  ;}
+.jky-thread-value		{width:60%; text-align:left  ;}
+.jky-thread-percent		{width:40px;}
 #jky-thread-body tr		{margin: 0 auto;}
 #jky-thread-body tr td	{padding:0 8px;}
 #jky-thread-body input	{margin:0 5px 0 0; height:18px;}
+
+.jky-load-sequence		{width:10%; text-align:center;}
+.jky-load-first-value	{width: 7%; text-align:right ;}
+.jky-load-first-select	{width:38%; text-align:left  ;}
+.jky-load-second-value	{width: 7%; text-align:right ;}
+.jky-load-second-select	{width:38%; text-align:left  ;}
+.jky-load-first-number	{width: 30px;}
+.jky-load-first-name	{width:280px;}
+.jky-load-second-number	{width: 30px;}
+.jky-load-second-name	{width:280px;}
+#jky-load-body tr		{margin: 0 auto;}
+#jky-load-body tr td	{padding:0 8px;}
+#jky-load-body input	{margin:0 5px 0 0; height:18px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -187,13 +201,13 @@
 				<table class='table table-striped' >
 					<thead><tr><td class='jky-comp-percent'>Percent</td><td class='jky-comp-material'>Material</td></tr></thead>
 					<tbody id='jky-comp-body'></tbody>
-					<tfoot><tr><td	id='jky-comp-total'></td><td class='jky-comp-material'	>Total</td></tr></tfoot>
+					<tfoot><tr><td	id='jky-comp-total'></td><td class='jky-comp-material'>Total</td></tr></tfoot>
 				</table>
 			</div>
 
 			<div id='jky-pane-settings' class='tab-pane'>
 				<table class='table table-striped' >
-					<thead><tr><td class='right'>Name</td><td class='left'>Value</td></tr></thead>
+					<thead><tr><td class='jky-set-label'>Name</td><td class='jky-set-value'>Value</td></tr></thead>
 					<tbody id='jky-set-body'></tbody>
 					<tfoot></tfoot>
 				</table>
@@ -201,7 +215,13 @@
 
 			<div id='jky-pane-threads' class='tab-pane'>
 				<table class='table table-striped' >
-					<thead><tr><td class='jky-thread-sequence'>Sequence</td><td class='jky-thread-name'	>Name</td><td class='jky-thread-percent'>Percent</td></tr></thead>
+					<thead>
+						<tr>
+<!--						<td class='jky-thread-sequence'	>Sequence	</td>	-->
+							<td class='jky-thread-name'		>Name		</td>
+							<td class='jky-thread-percent'	>Percent	</td>
+						</tr>
+					</thead>
 					<tbody id='jky-thread-body'></tbody>
 					<tfoot></tfoot>
 				</table>
@@ -212,42 +232,13 @@
 					<thead>
 						<tr>
 							<td class='jky-load-sequence'		>Sequence		</td>
-							<td class='jky-load-first-number'	>First Number	</td>
-							<td class='jky-load-first-thread'	>First Thread	</td>
-							<td class='jky-load-second-number'	>Second Number	</td>
-							<td class='jky-load-second-thread'	>Second Thread	</td>
+							<td class='jky-load-first-value'	>First Number	</td>
+							<td class='jky-load-first-select'	>First Thread	</td>
+							<td class='jky-load-second-value'	>Second Number	</td>
+							<td class='jky-load-second-select'	>Second Thread	</td>
 						</tr>
 					</thead>
-					<tbody id='jky-set-body'>
-						<tr>
-							<td class='jky-load-sequence'		>1	</td>
-							<td class='jky-load-first-number'	>1	</td>
-							<td class='jky-load-first-thread'	>30/1 Pac  Flame Nuvuola Cotan 50% PES 50% CO</td>
-							<td class='jky-load-second-number'	>1	</td>
-							<td class='jky-load-second-thread'	>20/1 PA Acqua SJ</td>
-						</tr>
-						<tr>
-							<td class='jky-load-sequence'		>2	</td>
-							<td class='jky-load-first-number'	>1	</td>
-							<td class='jky-load-first-thread'	>30/1 Pac  Flame Nuvuola Cotan 50% PES 50% CO</td>
-							<td class='jky-load-second-number'	>1	</td>
-							<td class='jky-load-second-thread'	>20/1 PA Marinho Fitex</td>
-						</tr>
-						<tr>
-							<td class='jky-load-sequence'		>3	</td>
-							<td class='jky-load-first-number'	>1	</td>
-							<td class='jky-load-first-thread'	>30/1 Pac  Flame Nuvuola Cotan 50% PES 50% CO</td>
-							<td class='jky-load-second-number'	>1	</td>
-							<td class='jky-load-second-thread'	>20/1 PAC Cru Cotan</td>
-						</tr>
-						<tr>
-							<td class='jky-load-sequence'		>4	</td>
-							<td class='jky-load-first-number'	>1	</td>
-							<td class='jky-load-first-thread'	>30/1 Pac  Flame Nuvuola Cotan 50% PES 50% CO</td>
-							<td class='jky-load-second-number'	>1	</td>
-							<td class='jky-load-second-thread'	>20/1 PA Orange LJ</td>
-						</tr>
-					</tbody>
+					<tbody id='jky-load-body'></tbody>
 					<tfoot>
 					</tfoot>
 				</table>
