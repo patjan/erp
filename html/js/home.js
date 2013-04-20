@@ -49,6 +49,8 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-production-machines').click (function() {JKY.process_action('machines'	);});
 		$('#jky-admin-configs'		).click (function() {JKY.process_action('configs'	);});
 		$('#jky-support-controls'	).click (function() {JKY.process_action('controls'	);});
+		$('#jky-admin-users'	).click (function() {JKY.process_action('users'	);});
+
 
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
