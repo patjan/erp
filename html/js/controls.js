@@ -63,8 +63,9 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-status'    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
-		JKY.show('jky-side-support');
-		JKY.show('jky-action-add-new');
+		JKY.show('jky-side-support'		);
+		JKY.show('jky-app-header'		);
+		JKY.show('jky-action-add-new'	);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}

@@ -551,9 +551,11 @@ private function set_new_fields($table) {
 											. ', Companies.company_name	AS  company_name';
 	if ($table == 'FTPs'		)	$return = ',   Products.name		AS  product'
 											. ',   Machines.name		AS  machine';
+	if ($table == 'FTP_Loads'	)	$return = ',    Thread1.name		AS  first_name'
+											. ',    Thread2.name		AS second_name';
+	if ($table == 'FTP_Threads'	)	$return = ',    Threads.name		AS  name';
 	if ($table == 'FTP_Sets'	)	$return = ',    Configs.sequence	AS  sequence'
 											. ',    Configs.name		AS  name';
-	if ($table == 'FTP_Threads'	)	$return = ',    Threads.name		AS  name';
 
 //	special code to append fields from Persons to Services table
 	if (get_request('method') == 'export') {
@@ -584,8 +586,10 @@ private function set_left_joins($table) {
 											. '  LEFT JOIN   Companies				ON Companies.id =    Persons.company_id';
 	if ($table == 'FTPs'		)	$return = '  LEFT JOIN     Products				ON  Products.id =		FTPS.product_id'
 											. '  LEFT JOIN     Machines				ON  Machines.id =		FTPS.machine_id';
-	if ($table == 'FTP_Sets'	)	$return = '  LEFT JOIN     Configs  			ON   Configs.id =	FTP_Sets.setting_id';
+	if ($table == 'FTP_Loads'	)	$return = '  LEFT JOIN     Threads AS Thread1	ON   Thread1.id =  FTP_Loads.first_thread_id'
+											. '  LEFT JOIN     Threads AS Thread2	ON   Thread2.id =  FTP_Loads.second_thread_id';
 	if ($table == 'FTP_Threads'	)	$return = '  LEFT JOIN     Threads  			ON   Threads.id =FTP_Threads.thread_id';
+	if ($table == 'FTP_Sets'	)	$return = '  LEFT JOIN     Configs  			ON   Configs.id =	FTP_Sets.setting_id';
 	return $return;
 }
 

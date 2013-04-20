@@ -64,8 +64,9 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-country', JKY.set_group_set('Configs', '', 'Countries'));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
-		JKY.show('jky-side-sales');
-		JKY.show('jky-action-add-new');
+		JKY.show('jky-side-sales'		);
+		JKY.show('jky-app-header'		);
+		JKY.show('jky-action-add-new'	);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}

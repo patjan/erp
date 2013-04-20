@@ -65,8 +65,9 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-machine-brand', JKY.set_group_set('Configs', '', 'Machine Brands'));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
-		JKY.show('jky-side-production');
-		JKY.show('jky-action-add-new');
+		JKY.show('jky-side-production'	);
+		JKY.show('jky-app-header'		);
+		JKY.show('jky-action-add-new'	);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}

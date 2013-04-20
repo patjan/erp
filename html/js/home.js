@@ -70,6 +70,7 @@ JKY.set_initial_values = function(jky_program) {
 //		JKY.show('jky-side-sales');
 //		JKY.show('jky-side-production');
 //		JKY.show('jky-side-admin');
+		JKY.show('jky-side-bar'  );
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}

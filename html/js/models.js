@@ -92,11 +92,12 @@ JKY.set_initial_values = function(jky_program) {
 
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
-		JKY.show('jky-side-sales');
-		JKY.show('jky-side-production');
-		JKY.show('jky-side-admin');
-		JKY.show('jky-side-support');
-		JKY.show('jky-action-add-new');
+		JKY.show('jky-side-sales'		);
+		JKY.show('jky-side-production'	);
+		JKY.show('jky-side-admin'		);
+		JKY.show('jky-side-support'		);
+		JKY.show('jky-app-header'		);
+		JKY.show('jky-action-add-new'	);
 		jky_materials = JKY.get_configs('Materials');
 		jky_settings  = JKY.get_configs('Settings' );
 	}else{

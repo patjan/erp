@@ -1058,10 +1058,14 @@ JKY.set_table_options = function(table, field, selected, initial) {
 		, success	: function(response) {
 				if (response.status == 'ok') {
 					my_html = '';
-					if (initial == '' ) {
-						my_html += '<option value=""   >' + initial + '</option>';
+					if (initial == null ) {
+//						no initial option
 					}else{
-						my_html += '<option value="All">' + initial + '</option>';
+						if (initial == '' ) {
+							my_html += '<option value=""   >' + initial + '</option>';
+						}else{
+							my_html += '<option value="All">' + initial + '</option>';
+						}
 					}
 
 					for(var i=0; i<response.rows.length; i+=1) {
