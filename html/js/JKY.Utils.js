@@ -505,7 +505,7 @@ JKY.set_options_array = function(selected, the_array) {
 	var my_options = '';
 	for(var i=0; i<the_array.length; i++) {
 		var my_value = the_array[i].name;
-        var my_id    = the_array[i].id;
+		var my_id    = the_array[i].id;
 		if (typeof my_id == 'undefined') {
 			my_id = my_value;
 		}
@@ -513,6 +513,17 @@ JKY.set_options_array = function(selected, the_array) {
 		my_options += '<option value="' + my_id + '"' + my_selected + '>' + my_value + '</option>';
      }
      return my_options;
+}
+
+//	get name by id from array
+//	----------------------------------------------------------------------------
+JKY.get_name_by_id = function(the_id, the_array) {
+	for(var i=0; i<the_array.length; i++) {
+		if (the_array[i].id == the_id) {
+			return the_array[i].name;
+		}
+	}
+	return null;
 }
 
 //        JKY.set_radios(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
@@ -1021,6 +1032,7 @@ JKY.get_configs = function(group_set) {
 	)
 	return my_rows;
 }
+
 /**
  * set group set
  */

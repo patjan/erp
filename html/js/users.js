@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * customers.html
+ * user s.html
  */
 var jky_program		= 'Users';
 var jky_table		= 'Contacts';
@@ -64,8 +64,9 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-country', JKY.set_group_set('Configs', '', 'Countries'));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
-		JKY.show('jky-side-admin');
-		JKY.show('jky-action-add-new');
+		JKY.show('jky-side-admin'		);
+		JKY.show('jky-app-header'		);
+		JKY.show('jky-action-add-new'	);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
@@ -261,6 +262,14 @@ JKY.get_form_set = function() {
 	return my_set;
 }
 
+JKY.process_save = function() {
+	if (jky_index == 0) {
+		JKY.process_insert();
+	}else{
+		JKY.process_update();
+	}
+}
+
 JKY.process_insert = function() {
 	var my_data =
 		{ method: 'insert'
@@ -292,14 +301,6 @@ JKY.process_update_success = function(response) {
 	JKY.display_message(response.message);
 	jky_rows[jky_index-1] = JKY.get_row(jky_table, jky_rows[jky_index-1]['id']);
 	JKY.display_next();
-}
-
-JKY.process_save = function() {
-	if (jky_index == 0) {
-		JKY.process_insert();
-	}else{
-		JKY.process_update();
-	}
 }
 
 JKY.process_delete = function() {

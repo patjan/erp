@@ -10,8 +10,9 @@
 		<div id='jky-app-actions'>
 			<button id='jky-action-add-new'	class='btn btn-success' type='button'>Add New	</button>
 			<button id='jky-action-save'	class='btn btn-success' type='button'>Save		</button>
-		&nbsp;<a	id='jky-action-delete'	href='#'>Delete</a>
-		&nbsp;<a	id='jky-action-cancel'	href='#'>Cancel</a>
+			<button id='jky-action-copy'	class='btn btn-success' type='button'>Copy		</button>
+		&nbsp;<a	id='jky-action-delete'	class='btn' type='button' href='#'>Delete</a>
+		&nbsp;<a	id='jky-action-cancel'	class='btn' type='button' href='#'>Cancel</a>
 		</div>
 		<div id='jky-app-more'>
 			<button id='jky-action-export'	class='btn btn-success' type='button'>Export	</button>
@@ -36,10 +37,10 @@
 </div>
 
 <style>
-.jky-form-label		{width:150px;}
+.jky-form-label		{width:100px;}
 .jky-form-label-1	{width:100px;}
-.jky-form-label-2	{width:100px;}
-.jky-form-label-3	{width:100px;}
+.jky-form-label-2	{width:140px;}
+.jky-form-label-3	{width:140px;}
 .jky-form-value		{width: 50px;}
 .jky-checkbox		{text-align:center; width:30px;}
 #jky-check-all		{width:30px;}
@@ -74,13 +75,19 @@
 .jky-code			{width: 30px; text-align:center;}
 .jky-product		{width:200px; text-transform:capitalize;}
 .jky-machine		{width:100px; text-align:center;}
-.jky-composition	{width:100px;}
+.jky-composition	{width:150px; text-align:center;}
 
 #jky-code			{width: 60px; font-size:16px; font-weight:bold;}
-#jky-product		{width:340px;}
+#jky-product		{width:340px; text-transform:capitalize;}
 #jky-product span	{padding:4px 20px 0 4px; vertical-align:bottom;}
 #jky-composition	{width:340px;}
 #jky-machine		{width:350px;}
+
+#jky-drawing		{float: left; margin-left: 10px;}
+#jky-drawing-img	{border:4px ridge darkblue; width:110px; height:110px;}
+#jky-photo			{float: left; margin-left: 10px;}
+#jky-photo-img		{border:4px ridge black; width:110px; height:110px;}
+
 #jky-diameter		{width: 40px;}
 #jky-density		{width: 40px;}
 #jky-inputs			{width: 40px;}
@@ -92,13 +99,49 @@
 #jky-lanes			{width: 40px;}
 #jky-yield			{width: 40px;}
 #jky-needling		{width: 40px;}
-#jky-has-break		{width: 40px;}
+#jky-has-break		{width: 100px;}
+#jky-has-break span	{padding:0 10px 0 4px; vertical-align:bottom;}
 
 .jky-load-sequence		{width: 50px; text-align:center;}
 .jky-load-first-number	{width: 40px; text-align:center;}
 .jky-load-first-thread	{width:300px;}
 .jky-load-second-number	{width: 40px; text-align:center;}
 .jky-load-second-thread	{width:300px;}
+
+#jky-form-tabs thead	{font-weight:bold;}
+#jky-form-tabs tfoot	{font-weight:bold;}
+
+.jky-comp-value			{width:20%;		text-align:right ;}
+.jky-comp-label			{width:80%;		text-align:left  ;}
+.jky-comp-percent		{width: 40px;	text-align:right ; margin-right:0;}
+.jky-comp-material		{width:200px;}
+#jky-comp-total			{				text-align:right ;}
+
+.jky-thread-sequence	{width:10%;		text-align:center;}
+.jky-thread-value		{width:20%;		text-align:right ;}
+.jky-thread-label		{width:80%;		text-align:left  ;}
+.jky-thread-percent		{width: 40px;	text-align:right ; margin-right:0;}
+.jky-thread-name		{width:400px;}
+#jky-thread-total		{				text-align:right;}
+
+.jky-load-sequence		{width:10%; text-align:center;}
+.jky-load-first-value	{width: 7%; text-align:center;}
+.jky-load-first-select	{width:38%; text-align:left  ;}
+.jky-load-second-value	{width: 7%; text-align:center;}
+.jky-load-second-select	{width:38%; text-align:left  ;}
+.jky-load-first-number	{width: 30px;}
+.jky-load-first-name	{width:260px;}
+.jky-load-second-number	{width: 30px;}
+.jky-load-second-name	{width:260px;}
+#jky-load-body tr		{margin: 0 auto;}
+#jky-load-body tr td	{padding:0 8px;}
+#jky-load-body input	{margin:0 5px 0 0; height:18px;}
+
+.jky-set-label			{width:30%; text-align:right;}
+.jky-set-value			{width:70%; text-align:left ;}
+#jky-set-body tr		{margin: 0 auto;}
+#jky-set-body tr td		{padding:0 8px;}
+#jky-set-body input		{margin:0 5px 0 0; height:18px;}
 
 .jky-set-name			{width:200px; text-align:left ;}
 .jky-set-value			{width:100px; text-align:right;}
@@ -177,15 +220,19 @@
 	</div>
 
 	<div id='jky-form-data'>
-		<div class='jky-form-line'><div class='jky-form-label'>Status:</div><select id='jky-status'></select></div>
-		<div class='jky-form-line'><div class='jky-form-label'>Sequence:</div><div class='jky-form-value'><input id='jky-sequence' class='jky-form-value' placeholder='0' /></div></div>
-		<div class='jky-form-line'><div class='jky-form-label'>Name</div><div class='jky-form-value'><input id='jky-name' class='jky-form-value' placeholder='Name' /></div></div>
-		<div class='jky-form-line'><div class='jky-form-label'>Value:</div><div class='jky-form-value'><textarea id='jky-value' class='jky-form-value' placeholder='Value'></textarea></div></div>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'>Status:</div><select id='jky-status'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'>Sequence:</div><div class='jky-form-value'><input id='jky-sequence' class='jky-form-value' placeholder='0' /></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>Name</div><div class='jky-form-value'><input id='jky-name' class='jky-form-value' placeholder='Name' /></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>Value:</div><div class='jky-form-value'><textarea id='jky-value' class='jky-form-value' placeholder='Value'></textarea></div></div>
 
-		<div class='jky-form-line'><div class='jky-form-label'>		  Code:</div><div class='jky-form-value'><input id='jky-code'			class='jky-form-value' placeholder='Code'			readonly='readonly'	/></div></div>
-		<div class='jky-form-line'><div class='jky-form-label'>	   Product:</div><div class='jky-form-value'><input id='jky-product'		class='jky-form-value' placeholder='Product'		readonly='readonly'	/></div></div>
-		<div class='jky-form-line'><div class='jky-form-label'>Composition:</div><div class='jky-form-value'><input id='jky-composition'	class='jky-form-value' placeholder='Composition'	readonly='readonly'	/></div></div>
-		<div class='jky-form-line'><div class='jky-form-label'>    Machine:</div><select id='jky-machine' placeholder='Machine Name'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'>		  Code:</div><div class='jky-form-value'><input id='jky-code'			class='jky-form-value'								readonly='readonly'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>	   Product:</div><div class='jky-form-value'><input id='jky-product'		class='jky-form-value' placeholder='Product Name'	readonly='readonly'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>Composition:</div><div class='jky-form-value'><input id='jky-composition'	class='jky-form-value'								readonly='readonly'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>    Machine:</div><select id='jky-machine' placeholder='Machine Name'></select></div>
+		</div>
+		<div id='jky-drawing'><img id='jky-drawing-img' src='/img/placeholder.png'><br><a id='jky-upload_drawing'>Upload Drawing</a></div>
+		<div id='jky-photo'  ><img id='jky-photo-img'   src='/img/placeholder.png'><br><a id='jky-upload_photo'  >Upload Photo  </a></div>
 		<div class='jky-clear'></div>
 		<br>
 
@@ -239,7 +286,13 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label-3'>		Yield:</div><div class='jky-form-value'><input id='jky-yield'		class='jky-form-value' placeholder='0'	/></div>(%)		</div>
 			<div class='jky-form-line'><div class='jky-form-label-3'>	 Needling:</div><div class='jky-form-value'><input id='jky-needling'	class='jky-form-value' placeholder='0'	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label-3'>   Has Break?</div><div class='jky-form-value'><input id='jky-has-break'	class='jky-form-value' placeholder='0'	/></div>		</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label-3'>Has Break?</div>
+				<div id='jky-has-break' class='jky-form-value'>
+					<input type='radio' name='jky-has-break' value='No'  /><span>No </span>
+					<input type='radio' name='jky-has-break' value='Yes' /><span>Yes</span>
+				</div>
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -254,48 +307,26 @@
 			<li	id='jky-tab-history'				><a href='#jky-history'	 data-toggle='tab'>History	</a></li>
 
 			<li id='jky-tab-composition'	class='active'	><a href='#jky-pane-composition'	data-toggle='tab'>Composition	</a></li>
-			<li	id='jky-tab-settins'						><a href='#jky-pane-settings'		data-toggle='tab'>Settings		</a></li>
-			<li	id='jky-tab-threads'						><a href='#jky-pane-threds'			data-toggle='tab'>Threads		</a></li>
+			<li	id='jky-tab-threads'						><a href='#jky-pane-threads'		data-toggle='tab'>Threads		</a></li>
 			<li	id='jky-tab-loads'							><a href='#jky-pane-loads'			data-toggle='tab'>Loads			</a></li>
+			<li	id='jky-tab-settings'						><a href='#jky-pane-settings'		data-toggle='tab'>Settings		</a></li>
 		</ul>
 
 		<div class='tab-content'>
 			<div id='jky-pane-composition' class='tab-pane active'>
 				<table class='table table-striped' >
 					<thead>
-						<tr><td class='jky-comp-percent'	>Percent	</td><td class='jky-comp-material'	>Material	</td></tr>
+						<tr>
+							<td class='jky-comp-value'>Percent</td>
+							<td class='jky-comp-label'>Material</td>
+						</tr>
 					</thead>
-					<tbody id='jky-comp-body'>
-						<tr><td class='jky-comp-percent'	>40.5		</td><td class='jky-comp-material'	>Algodao	</td></tr>
-						<tr><td class='jky-comp-percent'	>49.5		</td><td class='jky-comp-material'	>Polyester	</td></tr>
-					</tbody>
+					<tbody id='jky-comp-body'></tbody>
 					<tfoot>
-						<tr><td	   id='jky-comp-total'		>100		</td><td class='jky-comp-material'	>Total		</td></tr>
-					</tfoot>
-				</table>
-			</div>
-
-			<div id='jky-pane-settings' class='tab-pane'>
-				<table class='table table-striped' >
-					<thead>
-						<tr><td class='jky-set-name'	>Name	</td><td class='jky-set-value'	>Value	</td></tr>
-					</thead>
-					<tbody id='jky-set-body'>
-						<tr><td class='jky-set-name'	> Ponto da Malha</td><td class='jky-set-value'	>6 Up	</td></tr>
-						<tr><td class='jky-set-name'	>  Fita da Malha</td><td class='jky-set-value'	>140	</td></tr>
-						<tr><td class='jky-set-name'	>   LFA da Malha</td><td class='jky-set-value'	>120	</td></tr>
-						<tr><td class='jky-set-name'	> Ponto da Fang	</td><td class='jky-set-value'	>4 Up	</td></tr>
-						<tr><td class='jky-set-name'	>  Fita da Fang	</td><td class='jky-set-value'	>160	</td></tr>
-						<tr><td class='jky-set-name'	>   LFA da Fang	</td><td class='jky-set-value'	>140	</td></tr>
-						<tr><td class='jky-set-name'	>  Fita da Lycra</td><td class='jky-set-value'	>120	</td></tr>
-						<tr><td class='jky-set-name'	> Ponto Central	</td><td class='jky-set-value'	>2.45	</td></tr>
-						<tr><td class='jky-set-name'	> Ponto do Disco</td><td class='jky-set-value'	>3.55	</td></tr>
-						<tr><td class='jky-set-name'	>Altura do Disco</td><td class='jky-set-value'	>110	</td></tr>
-						<tr><td class='jky-set-name'	> Chave do Disco</td><td class='jky-set-value'	> 40	</td></tr>
-						<tr><td class='jky-set-name'	>		Frontura</td><td class='jky-set-value'	> 25	</td></tr>
-						<tr><td class='jky-set-name'	>		 Puxador</td><td class='jky-set-value'	> 20	</td></tr>
-					</tbody>
-					<tfoot>
+						<tr>
+							<td    id='jky-comp-total'></td>
+							<td class='jky-comp-label'>Total</td>
+						</tr>
 					</tfoot>
 				</table>
 			</div>
@@ -303,26 +334,18 @@
 			<div id='jky-pane-threads' class='tab-pane'>
 				<table class='table table-striped' >
 					<thead>
-						<tr><td class='jky-set-name'	>Name	</td><td class='jky-set-value'	>Value	</td></tr>
+						<tr>
+<!--						<td class='jky-thread-sequence'	>Sequence	</td>	-->
+							<td class='jky-thread-value'>Percent</td>
+							<td class='jky-thread-label'>Thread</td>
+						</tr>
 					</thead>
-					<tbody id='jky-set-body'>
-						<table>
-							<tr><td class='jky-set-name'	> Ponto da Malha</td><td class='jky-set-value'	>6 Up	</td></tr>
-							<tr><td class='jky-set-name'	>  Fita da Malha</td><td class='jky-set-value'	>140	</td></tr>
-							<tr><td class='jky-set-name'	>   LFA da Malha</td><td class='jky-set-value'	>120	</td></tr>
-							<tr><td class='jky-set-name'	> Ponto da Fang	</td><td class='jky-set-value'	>4 Up	</td></tr>
-							<tr><td class='jky-set-name'	>  Fita da Fang	</td><td class='jky-set-value'	>160	</td></tr>
-							<tr><td class='jky-set-name'	>   LFA da Fang	</td><td class='jky-set-value'	>140	</td></tr>
-							<tr><td class='jky-set-name'	>  Fita da Lycra</td><td class='jky-set-value'	>120	</td></tr>
-							<tr><td class='jky-set-name'	> Ponto Central	</td><td class='jky-set-value'	>2.45	</td></tr>
-							<tr><td class='jky-set-name'	> Ponto do Disco</td><td class='jky-set-value'	>3.55	</td></tr>
-							<tr><td class='jky-set-name'	>Altura do Disco</td><td class='jky-set-value'	>110	</td></tr>
-							<tr><td class='jky-set-name'	> Chave do Disco</td><td class='jky-set-value'	> 40	</td></tr>
-							<tr><td class='jky-set-name'	>		Frontura</td><td class='jky-set-value'	> 25	</td></tr>
-							<tr><td class='jky-set-name'	>		 Puxador</td><td class='jky-set-value'	> 20	</td></tr>
-						</table>
-					</tbody>
+					<tbody id='jky-thread-body'></tbody>
 					<tfoot>
+						<tr>
+							<td	   id='jky-thread-total'></td>
+							<td class='jky-thread-label'>Total</td>
+						</tr>
 					</tfoot>
 				</table>
 			</div>
@@ -332,44 +355,28 @@
 					<thead>
 						<tr>
 							<td class='jky-load-sequence'		>Sequence		</td>
-							<td class='jky-load-first-number'	>First Number	</td>
-							<td class='jky-load-first-thread'	>First Thread	</td>
-							<td class='jky-load-second-number'	>Second Number	</td>
-							<td class='jky-load-second-thread'	>Second Thread	</td>
+							<td class='jky-load-first-value'	>First Number	</td>
+							<td class='jky-load-first-select'	>First Thread	</td>
+							<td class='jky-load-second-value'	>Second Number	</td>
+							<td class='jky-load-second-select'	>Second Thread	</td>
 						</tr>
 					</thead>
-					<tbody id='jky-set-body'>
-						<tr>
-							<td class='jky-load-sequence'		>1	</td>
-							<td class='jky-load-first-number'	>1	</td>
-							<td class='jky-load-first-thread'	>30/1 Pac  Flame Nuvuola Cotan 50% PES 50% CO</td>
-							<td class='jky-load-second-number'	>1	</td>
-							<td class='jky-load-second-thread'	>20/1 PA Acqua SJ</td>
-						</tr>
-						<tr>
-							<td class='jky-load-sequence'		>2	</td>
-							<td class='jky-load-first-number'	>1	</td>
-							<td class='jky-load-first-thread'	>30/1 Pac  Flame Nuvuola Cotan 50% PES 50% CO</td>
-							<td class='jky-load-second-number'	>1	</td>
-							<td class='jky-load-second-thread'	>20/1 PA Marinho Fitex</td>
-						</tr>
-						<tr>
-							<td class='jky-load-sequence'		>3	</td>
-							<td class='jky-load-first-number'	>1	</td>
-							<td class='jky-load-first-thread'	>30/1 Pac  Flame Nuvuola Cotan 50% PES 50% CO</td>
-							<td class='jky-load-second-number'	>1	</td>
-							<td class='jky-load-second-thread'	>20/1 PAC Cru Cotan</td>
-						</tr>
-						<tr>
-							<td class='jky-load-sequence'		>4	</td>
-							<td class='jky-load-first-number'	>1	</td>
-							<td class='jky-load-first-thread'	>30/1 Pac  Flame Nuvuola Cotan 50% PES 50% CO</td>
-							<td class='jky-load-second-number'	>1	</td>
-							<td class='jky-load-second-thread'	>20/1 PA Orange LJ</td>
-						</tr>
-					</tbody>
+					<tbody id='jky-load-body'></tbody>
 					<tfoot>
 					</tfoot>
+				</table>
+			</div>
+
+			<div id='jky-pane-settings' class='tab-pane'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<td class='jky-set-label'>Name</td>
+							<td class='jky-set-value'>Value</td>
+						</tr>
+					</thead>
+					<tbody id='jky-set-body'></tbody>
+					<tfoot></tfoot>
 				</table>
 			</div>
 		</div>
@@ -384,3 +391,5 @@
 <script src='js/customers.js'></script>
 <script src='js/ftps.js'></script>
 <script src='js/machines.js'></script>
+<script src='js/threads.js'></script>
+<script src='js/users.js'></script>
