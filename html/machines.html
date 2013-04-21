@@ -52,6 +52,7 @@
 #jky-name			{width:100px; font-size:16px; font-weight:bold;}
 #jky-machine-type	{width:230px;}
 #jky-machine-type span	{padding:4px 20px 0 4px; vertical-align:bottom;}
+#jky-machine-family	{width:385px;}
 #jky-machine-brand	{width:385px;}
 
 #jky-diameter		{width:40px;}
@@ -100,7 +101,9 @@
 	</div>
 
 	<div id='jky-form-data'>
-		<div class='jky-form-line'><div class='jky-form-label'>Name:</div><div class='jky-form-value'><input id='jky-name' class='jky-form-value' placeholder='Name' /></div></div>
+		<div class='jky-form-line'><div class='jky-form-label'>Name:</div>
+			<div class='jky-form-value'><input id='jky-name' class='jky-form-value' placeholder='Name' /></div>
+		</div>
 		<div class='jky-form-line'>
 			<div class='jky-form-label'>Machine Type:</div>
 			<div id='jky-machine-type' class='jky-form-value'>
@@ -109,8 +112,15 @@
 			</div>
 		</div>
 		<div class='jky-form-line'>
+			<div class='jky-form-label'> Machine Family:</div>
+			<select id='jky-machine-family' placeholder='Machine Family'></select>
+		</div>
+		<div class='jky-form-line'>
 			<div class='jky-form-label'> Machine Brand:</div>
 			<select id='jky-machine-brand' placeholder='Machine Brand'></select>
+		</div>
+		<div class='jky-form-line'><div class='jky-form-label'>Serial Number:</div>
+			<div class='jky-form-value'><input id='jky-serial-number' class='jky-form-value' placeholder='Serial Number' /></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -135,11 +145,30 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-notes'	class='active'	><a href='#jky-notes'	 data-toggle='tab'>Notes	</a></li>
-			<li	id='jky-tab-history'				><a href='#jky-history'	 data-toggle='tab'>History	</a></li>
+			<li	id='jky-tab-cylinders'	class='active'	><a href='#jky-pane-cylinders'	 data-toggle='tab'>Cylinders</a></li>
+			<li	id='jky-tab-notes'><a href='#jky-pane-notes'	 data-toggle='tab'>Notes	</a></li>
+			<li	id='jky-tab-history'				><a href='#jky-pane-history'	 data-toggle='tab'>History	</a></li>
 		</ul>
 
 		<div class='tab-content'>
+			
+			<div id='jky-pane-cylinders' class='tab-pane'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<td class='jky-action'></td>
+							<td class='jky-cylinder-value'>Current</td>
+							<td class='jky-cylinder-label'>Name</td>
+						</tr>
+					</thead>
+					<tbody id='jky-cylinder-body'></tbody>
+					<tfoot>
+						<tr>
+							<td    id='jky-cylinder-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'>Add New</a></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
 
 			<div id='jky-notes' class='tab-pane'>
 				<div class='jky-left'>
