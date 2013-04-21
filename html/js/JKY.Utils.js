@@ -420,6 +420,15 @@ JKY.display_trace = function(message){
 }
 
 /**
+ * append specific id with html content
+ * @param	id_name
+ * @param	html
+ */
+JKY.append_html = function(id_name, html){
+	$('#' + id_name).append(html);
+}
+
+/**
  * set specific id with html content
  * @param	id_name
  * @param	html
@@ -499,17 +508,20 @@ JKY.set_options = function( ) {
      return options;
 }
 
-//	JKY.set_options_array(20, array)
+//	JKY.set_options_array(20, array, true)
 //	----------------------------------------------------------------------------
-JKY.set_options_array = function(selected, the_array) {
+JKY.set_options_array = function(the_selected, the_array, the_null) {
 	var my_options = '';
+	if (the_null) {
+		my_options += '<option value=null></option>';
+	}
 	for(var i=0; i<the_array.length; i++) {
 		var my_value = the_array[i].name;
 		var my_id    = the_array[i].id;
 		if (typeof my_id == 'undefined') {
 			my_id = my_value;
 		}
-		var my_selected = (my_value == selected) ? ' selected="selected"' : '';
+		var my_selected = (my_value == the_selected) ? ' selected="selected"' : '';
 		my_options += '<option value="' + my_id + '"' + my_selected + '>' + my_value + '</option>';
      }
      return my_options;

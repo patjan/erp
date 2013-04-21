@@ -53,6 +53,10 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-form'	).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'	).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'		).click (function() {JKY.process_check_all	();});	// not needed on version 0
+
+		$('#jky-comp-add-new'	).click (function() {JKY.insert_composition	();});
+		$('#jky-thread-add-new'	).click (function() {JKY.insert_thread		();});
+		$('#jky-load-add-new'	).click (function() {JKY.insert_load		();});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -152,6 +156,7 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-lanes'		, jky_row['lanes'			]);
 	JKY.set_value	('jky-yield'		, jky_row['yield'			]);
 	JKY.set_value	('jky-needling'		, jky_row['needling'		]);
+	JKY.set_value	('jky-peso'			, jky_row['peso'			]);
 	JKY.set_radio	('jky-has-break'	, jky_row['has_break'		]);
 	JKY.set_focus(jky_focus);
 
@@ -228,6 +233,7 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-lanes'		, '0');
 	JKY.set_value	('jky-yield'		, '0');
 	JKY.set_value	('jky-needling'		, '0');
+	JKY.set_value	('jky-peso'			, '12.5');
 	JKY.set_radio	('jky-has-break'	, 'No');
 	JKY.set_focus(jky_focus);
 }
@@ -247,6 +253,7 @@ JKY.get_form_set = function() {
 		+         ', lanes=\'' + JKY.get_value	('jky-lanes'		) + '\''
 		+         ', yield=\'' + JKY.get_value	('jky-yield'		) + '\''
 		+      ', needling=\'' + JKY.get_value	('jky-needling'		) + '\''
+		+		   ', peso=\'' + JKY.get_value	('jky-peso'			) + '\''
 		+     ', has_break=\'' + JKY.get_checked('jky-has-break'	) + '\''
 		;
 	return my_set;
@@ -347,11 +354,12 @@ JKY.display_composition = function(jky_materials) {
 			var my_strings  = my_comp.split(' ');
 			var my_percent  = parseFloat(my_strings[0]);
 			var my_material = my_strings[1];
-			var my_options  = JKY.set_options_array(my_material, jky_materials);
+			var my_options  = JKY.set_options_array(my_material, jky_materials, false);
 			my_total += my_percent;
 			my_html  += ''
 				+ '<tr>'
-				+ '<td class="jky-comp-value"><input  class="jky-comp-percent"  text="text"	onchange="JKY.update_composition()" value="' + my_percent  + '" /></td>'
+				+ '<td class="jky-action"><a onclick="JKY.delete_composition(this)"><i class="icon-trash"></i></a></td>'
+				+ '<td class="jky-comp-value"><input  class="jky-comp-percent"  text="text"	onchange="JKY.update_composition()" value="' + my_percent + '" /></td>'
 				+ '<td class="jky-comp-label"><select class="jky-comp-material"				onchange="JKY.update_composition()">' + my_options + '</select></td>'
 				+ '</tr>'
 				;
@@ -393,6 +401,24 @@ JKY.update_composition_success = function(response) {
 	JKY.display_message(response.message)
 }
 
+JKY.insert_composition = function() {
+	var my_percent = 0;
+	var my_options = JKY.set_options_array(null, jky_materials, false);
+	var	my_html = ''
+		+ '<tr>'
+		+ '<td class="jky-action"><a onclick="JKY.delete_composition(this)"><i class="icon-trash"></i></a></td>'
+		+ '<td class="jky-comp-value"><input  class="jky-comp-percent"  text="text"	onchange="JKY.update_composition()" value="' + my_percent + '" /></td>'
+		+ '<td class="jky-comp-label"><select class="jky-comp-material"				onchange="JKY.update_composition()">' + my_options + '</select></td>'
+		+ '</tr>'
+		;
+	JKY.append_html('jky-comp-body', my_html);
+}
+
+JKY.delete_composition = function(id_name) {
+	$(id_name).parent().parent().remove();
+	JKY.update_composition();
+}
+
 /*
  * display Threads -------------------------------------------------------------
  */
@@ -401,6 +427,7 @@ JKY.display_threads = function(id) {
 		{ method	: 'get_index'
 		, table		: 'FTP_Threads'
 		, select	:  id
+		, order_by  : 'FTP_Threads.id'
 		};
 	JKY.ajax(false, my_data, JKY.generate_threads);
 }
@@ -412,25 +439,17 @@ JKY.generate_threads = function(response) {
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row	 	= my_rows[i];
-//			var my_sequence	= my_row.sequence;
 			var my_id		= my_row.id;
 			var my_name		= my_row.name;
 			var my_percent	= parseFloat(my_row.percent);
-
-			var my_onchange = '';
-			if (my_row.value == null) {
-				my_onchange = 'JKY.insert_thread(this, ' + my_id + ')';
-			}else{
-				my_onchange = 'JKY.update_thread(this, ' + my_id + ')';
-			}
-			var my_options  = JKY.set_options_array(my_name, jky_threads);
+			var my_options	= JKY.set_options_array(my_name, jky_threads, true);
 
 			my_total += my_percent;
 			my_html  += ''
-				+ '<tr>'
-//				+ '<td class="jky-thread-sequence"	>' + my_sequence	+ '</td>'
-				+ '<td class="jky-thread-value"		><input  class="jky-thread-percent" text="text" onchange="' + my_onchange + '" value="' + my_percent + '" /></td>'
-				+ '<td class="jky-thread-label"		><select class="jky-thread-name"				onchange="' + my_onchange + '">' + my_options + '</select></td>'
+				+ '<tr ftp_thread_id=' + my_id + '>'
+				+ '<td class="jky-action"><a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
+				+ '<td class="jky-thread-value"		><input  class="jky-thread-percent" text="text" onchange="JKY.update_thread(this, ' + my_id + ')" value="' + my_percent + '" /></td>'
+				+ '<td class="jky-thread-label"		><select class="jky-thread-name"				onchange="JKY.update_thread(this, ' + my_id + ')">' + my_options + '</select></td>'
 				+ '</tr>'
 				;
 		}
@@ -439,33 +458,77 @@ JKY.generate_threads = function(response) {
 	JKY.set_html('jky-thread-body' , my_html );
 }
 
-JKY.update_thread = function() {
+JKY.verify_total_percent = function() {
 	var my_total = 0;
-	var my_composition = '';
 	$('#jky-thread-body tr').each(function() {
-		var my_percent  = parseFloat($(this).find('.jky-comp-percent' ).val());
-		var my_material = $(this).find('.jky-comp-material').val();
-		my_composition += my_percent + ' ' + my_material + ', ';
+		var my_percent  = parseFloat($(this).find('.jky-thread-percent' ).val());
 		my_total += my_percent
 	})
-	JKY.set_html('jky-comp-total', my_total);
+	JKY.set_html('jky-thread-total', my_total);
 	if (my_total == 100) {
-		my_composition = my_composition.substr(0, my_composition.length-2);
-		JKY.set_value('jky-composition', my_composition);
-		var my_data =
-			{ method	: 'update'
-			, table		: jky_table
-			, set		: 'composition = \'' + my_composition + '\''
-			, where		: 'id = ' + jky_row.id
-			};
-		JKY.ajax(true, my_data, JKY.update_thread_success);
+		$('#jky-thread-total').css('color', 'black');
 	}else{
+		$('#jky-thread-total').css('color', 'red');
 		JKY.display_message('Total percent is not 100.')
 	}
 }
 
+JKY.update_thread = function(id_name, the_id ) {
+	var my_percent = parseFloat($(id_name).parent().parent().find('.jky-thread-percent').val());
+	var my_thread_id = $(id_name).parent().parent().find('.jky-thread-name').val();
+	var my_set = ''
+		+ 'thread_id = ' + my_thread_id
+		+ ', percent = ' + my_percent
+		;
+	var my_data =
+		{ method	: 'update'
+		, table		: 'FTP_Threads'
+		, set		: my_set
+		, where		: 'FTP_Threads.id = ' + the_id
+		};
+	JKY.ajax(true, my_data, JKY.update_thread_success);
+}
+
 JKY.update_thread_success = function(response) {
-	JKY.display_message(response.message);
+	JKY.display_message(response.message)
+	JKY.verify_total_percent();
+}
+
+JKY.insert_thread = function() {
+	var my_data =
+		{ method	: 'insert'
+		, table		: 'FTP_Threads'
+		, set		: 'FTP_Threads.ftp_id = ' + jky_row.id
+		};
+	JKY.ajax(true, my_data, JKY.insert_thread_success);
+}
+
+JKY.insert_thread_success = function(response) {
+	var my_percent	= 0;
+	var my_options	= JKY.set_options_array(null, jky_threads, true);
+	var	my_html = ''
+		+ '<tr ftp_thread_id=' + response.id + '>'
+		+ '<td class="jky-action"><a onclick="JKY.delete_thread(this, ' + response.id + ')"><i class="icon-trash"></i></a></td>'
+		+ '<td class="jky-thread-value"><input  class="jky-thread-percent"  text="text"	onchange="JKY.update_thread(this, ' + response.id + ')" value="' + my_percent + '" /></td>'
+		+ '<td class="jky-thread-label"><select class="jky-thread-name"					onchange="JKY.update_thread(this, ' + response.id + ')">' + my_options + '</select></td>'
+		+ '</tr>'
+		;
+	JKY.append_html('jky-thread-body', my_html);
+}
+
+JKY.delete_thread = function(id_name, ftp_thread_id) {
+	$(id_name).parent().parent().remove();
+	var my_data =
+		{ method	: 'delete'
+		, table		: 'FTP_Threads'
+		, where		: 'FTP_Threads.id = ' + ftp_thread_id
+		};
+	JKY.ajax(true, my_data, JKY.delete_thread_success);
+}
+
+JKY.delete_thread_success = function(response) {
+	JKY.display_message(response.message)
+	JKY.verify_total_percent();
 }
 
 /*

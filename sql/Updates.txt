@@ -18,3 +18,6 @@ ALTER TABLE Machines	ADD UNIQUE (name);
 ALTER TABLE Permissions	DROP INDEX  user_role;
 ALTER TABLE Permissions	DROP INDEX  user_resource;
 ALTER TABLE Permissions	ADD UNIQUE (user_role, user_resource);
+
+ALTER TABLE FTPs		ADD COLUMN peso    				DECIMAL(5,2)	DEFAULT 0		AFTER needling;
+UPDATE		FTPs		SET peso = 12.5;

@@ -71,6 +71,7 @@
 #jky-lanes			{width: 40px;}
 #jky-yield			{width: 40px;}
 #jky-needling		{width: 40px;}
+#jky-peso			{width: 40px;}
 #jky-has-break		{width:110px;}
 #jky-has-break span	{padding:0 10px 0 4px; vertical-align:bottom;}
 
@@ -83,14 +84,13 @@
 #jky-form-tabs thead	{font-weight:bold;}
 #jky-form-tabs tfoot	{font-weight:bold;}
 
-.jky-comp-value			{width:20%;		text-align:right ;}
+.jky-comp-value			{width:10%;		text-align:right ;}
 .jky-comp-label			{width:80%;		text-align:left  ;}
 .jky-comp-percent		{width: 40px;	text-align:right ; margin-right:0;}
 .jky-comp-material		{width:200px;}
 #jky-comp-total			{				text-align:right ;}
 
-.jky-thread-sequence	{width:10%;		text-align:center;}
-.jky-thread-value		{width:20%;		text-align:right ;}
+.jky-thread-value		{width:10%;		text-align:right ;}
 .jky-thread-label		{width:80%;		text-align:left  ;}
 .jky-thread-percent		{width: 40px;	text-align:right ; margin-right:0;}
 .jky-thread-name		{width:400px;}
@@ -178,6 +178,7 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label-3'>		Yield:</div><div class='jky-form-value'><input id='jky-yield'		class='jky-form-value' placeholder='0'	/></div>(%)		</div>
 			<div class='jky-form-line'><div class='jky-form-label-3'>	 Needling:</div><div class='jky-form-value'><input id='jky-needling'	class='jky-form-value' placeholder='0'	/></div>		</div>
+			<div class='jky-form-line'><div class='jky-form-label-3'>		 Peso:</div><div class='jky-form-value'><input id='jky-peso'		class='jky-form-value' placeholder='0'	/></div>(Kg)	</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label-3'>Has Break?</div>
 				<div id='jky-has-break' class='jky-form-value'>
@@ -202,6 +203,7 @@
 				<table class='table table-striped' >
 					<thead>
 						<tr>
+							<td class='jky-action'></td>
 							<td class='jky-comp-value'>Percent</td>
 							<td class='jky-comp-label'>Material</td>
 						</tr>
@@ -209,6 +211,7 @@
 					<tbody id='jky-comp-body'></tbody>
 					<tfoot>
 						<tr>
+							<td    id='jky-comp-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'>Add New</a></td>
 							<td    id='jky-comp-total'></td>
 							<td class='jky-comp-label'>Total</td>
 						</tr>
@@ -220,7 +223,7 @@
 				<table class='table table-striped' >
 					<thead>
 						<tr>
-<!--						<td class='jky-thread-sequence'	>Sequence	</td>	-->
+							<td class='jky-action'></td>
 							<td class='jky-thread-value'>Percent</td>
 							<td class='jky-thread-label'>Thread</td>
 						</tr>
@@ -228,6 +231,7 @@
 					<tbody id='jky-thread-body'></tbody>
 					<tfoot>
 						<tr>
+							<td    id='jky-thread-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'>Add New</a></td>
 							<td	   id='jky-thread-total'></td>
 							<td class='jky-thread-label'>Total</td>
 						</tr>
