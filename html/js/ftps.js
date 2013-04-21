@@ -19,6 +19,7 @@ var jky_index		=  0;				//	0=Add New
 
 var jky_materials	= [];
 var jky_threads		= [];
+var jky_loads		= [];
 var jky_settings	= [];
 
 var jky_set_index	= null;				//	only for insert set
@@ -516,12 +517,12 @@ JKY.insert_thread_success = function(response) {
 	JKY.append_html('jky-thread-body', my_html);
 }
 
-JKY.delete_thread = function(id_name, ftp_thread_id) {
+JKY.delete_thread = function(id_name, the_id) {
 	$(id_name).parent().parent().remove();
 	var my_data =
 		{ method	: 'delete'
 		, table		: 'FTP_Threads'
-		, where		: 'FTP_Threads.id = ' + ftp_thread_id
+		, where		: 'FTP_Threads.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, JKY.delete_thread_success);
 }
@@ -535,12 +536,42 @@ JKY.delete_thread_success = function(response) {
  * display Loads -------------------------------------------------------------
  */
 JKY.display_loads = function(id) {
+	jky_loads = JKY.load_ids(jky_row.id);
 	var my_data =
 		{ method	: 'get_index'
 		, table		: 'FTP_Loads'
 		, select	:  id
+		, order_by  : 'FTP_Loads.id'
 		};
 	JKY.ajax(false, my_data, JKY.generate_loads);
+}
+
+JKY.load_ids = function(the_id) {
+	var my_rows = [];
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'FTP_Threads'
+		, select	:  the_id
+		, order_by  : 'FTP_Threads.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_rows = response.rows;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		}
+	)
+	return my_rows;
 }
 
 JKY.generate_loads = function(response) {
@@ -550,26 +581,18 @@ JKY.generate_loads = function(response) {
 		for(var i in my_rows) {
 			var my_row		 	= my_rows[i];
 			var my_id			= my_row.id;
-			var my_sequence		= my_row.sequence;
 			var my_first_number	= my_row.first_number;
 			var my_first_name	= my_row.first_name;
 			var my_second_number= my_row.second_number;
 			var my_second_name	= my_row.second_name;
 
-			var my_onchange = '';
-			if (my_row.value == null) {
-				my_onchange = 'JKY.insert_load(this, ' + my_id + ')';
-			}else{
-				my_onchange = 'JKY.update_load(this, ' + my_id + ')';
-			}
-
 			my_html += ''
-				+ '<tr>'
-				+ '<td class="jky-load-sequence"		>' + my_sequence		+ '</td>'
-				+ '<td class="jky-load-first-value"		><input  class="jky-load-first-number" text="text"	onchange="' + my_onchange + '" value="' + my_first_number  + '" /></td>'
-				+ '<td class="jky-load-first-select"	><select class="jky-load-first-name"				onchange="' + my_onchange + '">' + JKY.set_options_array(my_first_name , jky_threads) + '</select></td>'
-				+ '<td class="jky-load-second-value"	><input  class="jky-load-second-number" text="text"	onchange="' + my_onchange + '" value="' + my_second_number + '" /></td>'
-				+ '<td class="jky-load-second-select"	><select class="jky-load-first-name"				onchange="' + my_onchange + '">' + JKY.set_options_array(my_second_name, jky_threads) + '</select></td>'
+				+ '<tr ftp_load_id=' + my_id + '>'
+				+ '<td class="jky-action"><a onclick="JKY.delete_load(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
+				+ '<td class="jky-load-first-value"		><input  class="jky-load-first-number" text="text"	onchange="JKY.update_load(this, ' + my_id + ')" value="' + my_first_number  + '" /></td>'
+				+ '<td class="jky-load-first-select"	><select class="jky-load-first-name"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_first_name , jky_loads, true) + '</select></td>'
+				+ '<td class="jky-load-second-value"	><input  class="jky-load-second-number" text="text"	onchange="JKY.update_load(this, ' + my_id + ')" value="' + my_second_number + '" /></td>'
+				+ '<td class="jky-load-second-select"	><select class="jky-load-second-name"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_second_name, jky_loads, true) + '</select></td>'
 				+ '</tr>'
 				;
 		}
@@ -577,33 +600,71 @@ JKY.generate_loads = function(response) {
 	JKY.set_html('jky-load-body', my_html);
 }
 
-JKY.update_load = function() {
-	var my_total = 0;
-	var my_composition = '';
-	$('#jky-load-body tr').each(function() {
-		var my_percent  = parseFloat($(this).find('.jky-comp-percent' ).val());
-		var my_material = $(this).find('.jky-comp-material').val();
-		my_composition += my_percent + ' ' + my_material + ', ';
-		my_total += my_percent
-	})
-	JKY.set_html('jky-comp-total', my_total);
-	if (my_total == 100) {
-		my_composition = my_composition.substr(0, my_composition.length-2);
-		JKY.set_value('jky-composition', my_composition);
-		var my_data =
-			{ method	: 'update'
-			, table		: jky_table
-			, set		: 'composition = \'' + my_composition + '\''
-			, where		: 'id = ' + jky_row.id
-			};
-		JKY.ajax(true, my_data, JKY.update_load_success);
-	}else{
-		JKY.display_message('Load is incompleted.')
-	}
+JKY.update_load = function(id_name, the_id) {
+	var my_tr = $(id_name).parent().parent();
+	var my_first_number		= parseFloat(my_tr.find('.jky-load-first-number' ).val());
+	var my_first_thread_id	= my_tr.find('.jky-load-first-name' ).val();
+	var my_second_number	= parseFloat(my_tr.find('.jky-load-second-number').val());
+	var my_second_thread_id	= my_tr.find('.jky-load-second-name').val();
+	var my_set = ''
+		+       'first_number = ' + my_first_number
+		+  ', first_thread_id = ' + my_first_thread_id
+		+    ', second_number = ' + my_second_number
+		+ ', second_thread_id = ' + my_second_thread_id
+		;
+	var my_data =
+		{ method	: 'update'
+		, table		: 'FTP_Loads'
+		, set		:  my_set
+		, where		: 'FTP_Loads.id = ' + the_id
+		};
+	JKY.ajax(true, my_data, JKY.update_load_success);
 }
 
 JKY.update_load_success = function(response) {
 	JKY.display_message(response.message)
+}
+
+JKY.insert_load = function() {
+	var my_data =
+		{ method	: 'insert'
+		, table		: 'FTP_Loads'
+		, set		: 'FTP_Loads.ftp_id = ' + jky_row.id
+		};
+	JKY.ajax(true, my_data, JKY.insert_load_success);
+}
+
+JKY.insert_load_success = function(response) {
+	var my_id = response.id;
+	var my_first_number	=  0;
+	var my_first_name	= '';
+	var my_second_number=  0;
+	var my_second_name	= '';
+	var	my_html = ''
+		+ '<tr ftp_load_id=' + my_id + '>'
+		+ '<td class="jky-action"><a onclick="JKY.delete_load(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
+		+ '<td class="jky-load-first-value"		><input  class="jky-load-first-number" text="text"	onchange="JKY.update_load(this, ' + my_id + ')" value="' + my_first_number  + '" /></td>'
+		+ '<td class="jky-load-first-select"	><select class="jky-load-first-name"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_first_name , jky_loads, true) + '</select></td>'
+		+ '<td class="jky-load-second-value"	><input  class="jky-load-second-number" text="text"	onchange="JKY.update_load(this, ' + my_id + ')" value="' + my_second_number + '" /></td>'
+		+ '<td class="jky-load-second-select"	><select class="jky-load-second-name"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_second_name, jky_loads, true) + '</select></td>'
+		+ '</tr>'
+		;
+	JKY.append_html('jky-load-body', my_html);
+}
+
+JKY.delete_load = function(id_name, the_id) {
+	$(id_name).parent().parent().remove();
+	var my_data =
+		{ method	: 'delete'
+		, table		: 'FTP_Loads'
+		, where		: 'FTP_Loads.id = ' + the_id
+		};
+	JKY.ajax(true, my_data, JKY.delete_load_success);
+}
+
+JKY.delete_load_success = function(response) {
+	JKY.display_message(response.message)
+	JKY.verify_total_percent();
 }
 
 /*
