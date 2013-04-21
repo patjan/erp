@@ -48,6 +48,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-check-all'		).click (function() {JKY.process_check_all	();});	// not needed on version 0
 		$('#jky-repair-date').datepicker();
 		$('#jky-return-date').datepicker();
+		$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder();});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -62,6 +63,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_menu_active('jky-menu-production');
 		JKY.set_side_active('jky-production-machines');
 //		JKY.set_html('jky-machine-type' , JKY.set_radio('Configs', '', 'Machine Types' ));
+		JKY.set_html('jky-machine-family', JKY.set_group_set('Configs', '', 'Machine Family'));
 		JKY.set_html('jky-machine-brand', JKY.set_group_set('Configs', '', 'Machine Brands'));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
@@ -132,6 +134,7 @@ JKY.display_row = function(index) {
 	JKY.set_html('jky-app-index', index);
 	JKY.set_value	('jky-name'			, jky_row['name'			]);
 	JKY.set_radio	('jky-machine-type'	, jky_row['machine_type'	]);
+	JKY.set_option	('jky-machine-family', jky_row['machine_family'	]);
 	JKY.set_option	('jky-machine-brand', jky_row['machine_brand'	]);
 	JKY.set_value	('jky-diameter'		, jky_row['diameter'		]);
 	JKY.set_value	('jky-width'		, jky_row['width'			]);
@@ -200,6 +203,7 @@ JKY.process_add_new = function() {
 JKY.display_new = function() {
 	JKY.set_value	('jky-name'			, '' );
 	JKY.set_radio	('jky-machine-type'	, 'Circular');
+	JKY.set_option	('jky-machine-family', '' );
 	JKY.set_option	('jky-machine-brand', '' );
 	JKY.set_value	('jky-diameter'		, '0');
 	JKY.set_value	('jky-width'		, '0');
@@ -215,6 +219,7 @@ JKY.get_form_set = function() {
 	var my_set = ''
 		+            'name=\'' + JKY.get_value	('jky-name'			) + '\''
 		+  ', machine_type=\'' + JKY.get_checked('jky-machine-type'	) + '\''
+		+ ', machine_family=\'' + JKY.get_value	('jky-machine-family') + '\''
 		+ ', machine_brand=\'' + JKY.get_value	('jky-machine-brand') + '\''
 		+      ', diameter=\'' + JKY.get_value	('jky-diameter'		) + '\''
 		+         ', width=\'' + JKY.get_value	('jky-width'		) + '\''
@@ -310,3 +315,115 @@ JKY.process_export = function() {
 
 	JKY.run_export(jky_table, jky_select, jky_filter, jky_specific, my_sort_by);
 };
+
+/*
+ * display Cylinders -------------------------------------------------------------
+ */
+JKY.display_cylinders = function(id) {
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'Cylinders'
+		, select	:  id
+		, order_by  : 'Cylinders.id'
+		};
+	JKY.ajax(false, my_data, JKY.generate_cylinders);
+}
+
+JKY.generate_cylinders = function(response) {
+	var my_html  = '';
+	var my_total =  0;
+	var my_rows  = response.rows;
+	if (my_rows != '') {
+		for(var i in my_rows) {
+			var my_row	 	= my_rows[i];
+			var my_id		= my_row.id;
+			var my_name		= my_row.name;
+			var my_percent	= parseFloat(my_row.percent);
+			var my_options	= JKY.set_options_array(my_name, jky_cylinders, true);
+
+			my_total += my_percent;
+			my_html  += ''
+				+ '<tr cylinder_id=' + my_id + '>'
+				+ '<td class="jky-action"><a onclick="JKY.delete_cylinder(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
+				+ '<td class="jky-cylinder-value"		><input  class="jky-cylinder-percent" text="text" onchange="JKY.update_cylinder(this, ' + my_id + ')" value="' + my_percent + '" /></td>'
+				+ '<td class="jky-cylinder-label"		><select class="jky-cylinder-name"				onchange="JKY.update_cylinder(this, ' + my_id + ')">' + my_options + '</select></td>'
+				+ '</tr>'
+				;
+		}
+	}
+	JKY.set_html('jky-cylinder-total', my_total);
+	JKY.set_html('jky-cylinder-body' , my_html );
+}
+
+JKY.verify_total_percent = function() {
+	var my_total = 0;
+	$('#jky-cylinder-body tr').each(function() {
+		var my_percent  = parseFloat($(this).find('.jky-cylinder-percent' ).val());
+		my_total += my_percent
+	})
+	JKY.set_html('jky-cylinder-total', my_total);
+	if (my_total == 100) {
+		$('#jky-cylinder-total').css('color', 'black');
+	}else{
+		$('#jky-cylinder-total').css('color', 'red');
+		JKY.display_message('Total percent is not 100.')
+	}
+}
+
+JKY.update_cylinder = function(id_name, the_id ) {
+	var my_percent = parseFloat($(id_name).parent().parent().find('.jky-cylinder-percent').val());
+	var my_cylinder_id = $(id_name).parent().parent().find('.jky-cylinder-name').val();
+	var my_set = ''
+		+ 'cylinder_id = ' + my_cylinder_id
+		+ ', percent = ' + my_percent
+		;
+	var my_data =
+		{ method	: 'update'
+		, table		: 'Cylinders'
+		, set		: my_set
+		, where		: 'Cylinders.id = ' + the_id
+		};
+	JKY.ajax(true, my_data, JKY.update_cylinder_success);
+}
+
+JKY.update_cylinder_success = function(response) {
+	JKY.display_message(response.message)
+	JKY.verify_total_percent();
+}
+
+JKY.insert_cylinder = function() {
+	var my_data =
+		{ method	: 'insert'
+		, table		: 'Cylinders'
+		, set		: 'Cylinders.id = ' + jky_row.id
+		};
+	JKY.ajax(true, my_data, JKY.insert_cylinder_success);
+}
+
+JKY.insert_cylinder_success = function(response) {
+	var my_percent	= 0;
+	var my_options	= JKY.set_options_array(null, jky_cylinders, true);
+	var	my_html = ''
+		+ '<tr cylinder_id=' + response.id + '>'
+		+ '<td class="jky-action"><a onclick="JKY.delete_cylinder(this, ' + response.id + ')"><i class="icon-trash"></i></a></td>'
+		+ '<td class="jky-cylinder-value"><input  class="jky-cylinder-percent"  text="text"	onchange="JKY.update_cylinder(this, ' + response.id + ')" value="' + my_percent + '" /></td>'
+		+ '<td class="jky-cylinder-label"><select class="jky-cylinder-name"					onchange="JKY.update_cylinder(this, ' + response.id + ')">' + my_options + '</select></td>'
+		+ '</tr>'
+		;
+	JKY.append_html('jky-cylinder-body', my_html);
+}
+
+JKY.delete_cylinder = function(id_name, cylinder_id) {
+	$(id_name).parent().parent().remove();
+	var my_data =
+		{ method	: 'delete'
+		, table		: 'Cylinders'
+		, where		: 'Cylinders.id = ' + cylinder_id
+		};
+	JKY.ajax(true, my_data, JKY.delete_cylinder_success);
+}
+
+JKY.delete_cylinder_success = function(response) {
+	JKY.display_message(response.message)
+	JKY.verify_total_percent();
+}

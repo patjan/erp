@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS Machines
 
 , name				VARCHAR(32)			UNIQUE
 , machine_type		VARCHAR(32)			DEFAULT NULL
+, machine_family	VARCHAR(32)			DEFAULT NULL
 , machine_brand		VARCHAR(32)			DEFAULT NULL
 , diameter			INT(11)				DEFAULT 0
 , width		   		INT(11)				DEFAULT 0
