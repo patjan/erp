@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS FTP_Loads
 
 , ftp_id			BIGINT				DEFAULT NULL
 
-, sequence			INT(11)				DEFAULT 0
 , first_number		INT(11)				DEFAULT 0
 , first_thread_id	BIGINT				DEFAULT NULL
 , second_number		INT(11)				DEFAULT 0
