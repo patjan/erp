@@ -63,8 +63,8 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_menu_active('jky-menu-production');
 		JKY.set_side_active('jky-production-machines');
 //		JKY.set_html('jky-machine-type' , JKY.set_radio('Configs', '', 'Machine Types' ));
-		JKY.set_html('jky-machine-family', JKY.set_group_set('Configs', '', 'Machine Family'));
-		JKY.set_html('jky-machine-brand', JKY.set_group_set('Configs', '', 'Machine Brands'));
+		JKY.set_html('jky-machine-family', JKY.set_group_set('Configs', '', 'Machine Families'));
+		JKY.set_html('jky-machine-brand' , JKY.set_group_set('Configs', '', 'Machine Brands'));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
 		JKY.show('jky-side-production'	);

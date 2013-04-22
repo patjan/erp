@@ -538,6 +538,17 @@ JKY.get_name_by_id = function(the_id, the_array) {
 	return null;
 }
 
+//	get name by id from array
+//	----------------------------------------------------------------------------
+JKY.get_index_by_id = function(the_id, the_array) {
+	for(var i=0; i<the_array.length; i++) {
+		if (the_array[i].id == the_id) {
+			return i;
+		}
+	}
+	return null;
+}
+
 //        JKY.set_radios(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
 //        ----------------------------------------------------------------------
 JKY.set_radios = function() {
@@ -1175,7 +1186,9 @@ JKY.ajax = function(async, data, function_success, function_error) {
 		, async		: async
 		, success	: function(response) {
 				if (response.status == 'ok') {
-					function_success(response);
+					if (typeof function_success != 'undefined') {
+						function_success(response);
+					}
 				}else{
 					var my_messages = response.message.split(':');
 					var my_words = my_messages[2].trim().split(' ');

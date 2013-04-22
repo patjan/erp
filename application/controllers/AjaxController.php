@@ -133,6 +133,7 @@ public function indexAction() {
 			case 'update'		: $required = 'Update'	; break;
 			case 'replace'		: $required = 'Update'	; break;
 			case 'delete'		: $required = 'Delete'	; break;
+			case 'delete_many'	: $required = 'Delete'	; break;
 			case 'combine'		: $required = 'Combine'	; break;
 			case 'publish'		: $required = 'Publish'	; break;
 			case 'export'		: $required = 'Export'	; break;
@@ -164,6 +165,7 @@ public function indexAction() {
 		case 'update'		: $this->update			($data); break;
 		case 'replace'		: $this->replace		($data); break;
 		case 'delete'		: $this->delete			($data); break;
+		case 'delete_many'	: $this->delete_many	($data); break;
 		case 'combine'		: $this->combine		(); break;
 		case 'publish'		: $this->publish		(); break;
 		case 'export'		: $this->get_index		($data); break;
@@ -1427,6 +1429,36 @@ private function delete_jky_user($id) {
 		;
 	$db = Zend_Registry::get('db');
 	$db->query($sql);
+}
+
+/*
+ *	$.ajax({ method: delete_many, table: x...x, set: x...x });
+ *
+ *	 status: ok
+ *	deleted: 9...9
+ */
+private function delete_many($data) {
+	$table = get_data($data, 'table');
+	$where = $this->get_security($table, get_data($data, 'where'));
+
+	if ($where == '') {
+		$this->echo_error('missing [where] statement');
+		return;
+	}
+
+	$return = array();
+	$return['status'] = 'ok';
+
+	$sql= 'DELETE'
+		. '  FROM ' . $table
+		. ' WHERE ' . $where
+		;
+	$this->log_sql($table, 'delete_many', $sql);
+	$db = Zend_Registry::get('db');
+	$result = $db->query($sql);
+
+	$return['message'] = 'record (' . $result->rowCount() . ') deleted';
+	echo json_encode($return);
 }
 
 /*
