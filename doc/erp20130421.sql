@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 21, 2013 at 08:57 PM
+-- Generation Time: Apr 21, 2013 at 08:59 PM
 -- Server version: 5.1.50
 -- PHP Version: 5.3.14
 
@@ -334,6 +334,31 @@ INSERT INTO `controls` (`id`, `created_at`, `created_by`, `updated_at`, `updated
 (1000000268, '2013-04-16 17:37:32', 4, NULL, NULL, 'Active', 1, 50, 'User Resources', 'FTP_Threads', ''),
 (1000000269, '2013-04-16 17:37:42', 4, NULL, NULL, 'Active', 1, 50, 'User Resources', 'History', ''),
 (1000000270, '2013-04-16 17:38:31', 4, NULL, NULL, 'Active', 1, 50, 'User Resources', 'Threads', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cylinders`
+--
+
+CREATE TABLE IF NOT EXISTS `cylinders` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` bigint(20) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_by` bigint(20) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `status` varchar(32) COLLATE utf8_unicode_ci DEFAULT 'Active',
+  `machine_id` bigint(20) DEFAULT NULL,
+  `is_current` char(3) COLLATE utf8_unicode_ci DEFAULT 'No',
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `machine_id` (`machine_id`,`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `cylinders`
+--
+
 
 -- --------------------------------------------------------
 
