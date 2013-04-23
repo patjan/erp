@@ -14,8 +14,6 @@ var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_count		=  0;
 var jky_index		=  0;				//	0=Add New
-var jky_set_index	= null;				//	only for insert set
-var jky_set_setting	= null;				//	only for insert set
 
 JKY.rows		= [];
 JKY.row 		= null;

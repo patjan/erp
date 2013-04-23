@@ -161,7 +161,6 @@ JKY.process_start_page = function() {
 
 /** ------------------------------------------------------------------------ **/
 JKY.process_menu = function(menu) {
-//alert('process_menu: ' + menu);
 	JKY.display_trace('process_menu: ' + menu);
 	JKY.set_menu_active(menu);
 	switch(menu) {

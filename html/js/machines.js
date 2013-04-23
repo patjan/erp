@@ -65,7 +65,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_menu_active('jky-menu-production');
 		JKY.set_side_active('jky-production-machines');
 		JKY.set_html('jky-machine-family', JKY.set_group_set('Configs', '', 'Machine Families'));
-		JKY.set_html('jky-machine-brand' , JKY.set_group_set('Configs', '', 'Machine Brands'));
+		JKY.set_html('jky-machine-brand' , JKY.set_group_set('Configs', '', 'Machine Brands'  ));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
 		JKY.display_form(1);
