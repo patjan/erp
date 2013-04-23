@@ -43,6 +43,7 @@
 #jky-full-name		{width:375px; font-size:16px; font-weight:bold;}
 #jky-company-name	{width:385px;}
 #jky-customer-tags	{width:385px;}
+#jky-photo-img		{border:4px ridge black; width:200px; height:200px;}
 
 #jky-street1		{width:250px;}
 #jky-street2		{width:250px;}
@@ -95,14 +96,16 @@
 	</div>
 
 	<div id='jky-form-data'>
-		<div class="left">
+		<div class="jky-left">
 			<div class='jky-form-line'><div class='jky-form-label'> User Name:</div><div class="jky-form-value"><input id='jky-user-name'	placeholder='User Name'			/></div></div>
 			<div class='jky-form-line'><div class='jky-form-label'> User Role:</div><div class="jky-form-value"><select id='jky-user-role'></select>						  </div></div>
-			<div id='jky-photo'  ><img id='jky-photo-img'   src='/img/placeholder.png'><br><a id='jky-upload_photo'>Upload Photo  </a></div>
 			<div class="jky-form-line"><div class='jky-form-label'>First Name:</div><div class='jky-form-value'><input id='jky-first-name'	placeholder='First Name'		/></div></div>
 			<div class='jky-form-line'><div class='jky-form-label'> Last Name:</div><div class='jky-form-value'><input id='jky-last-name'	placeholder='Last Name'			/></div></div>
 			<div class='jky-form-line'><div class='jky-form-label'>     Email:</div><div class='jky-form-value'><input id='jky-email'		placeholder='Email'				/></div></div>
 			<div class='jky-form-line'><div class='jky-form-label'>     Phone:</div><div class='jky-form-value'><input id='jky-phone'		placeholder='e.g. 123-456-7890'	/></div></div>
+		</div>
+		<div class="jky-left">
+			<div id='jky-photo'  ><img id='jky-photo-img'   src='/img/placeholder.png'><br><a id='jky-upload_photo'>Upload Photo  </a></div>
 		</div>
 		<div class="left">
 			<div class='jky-form-line'>
