@@ -38,9 +38,9 @@
 .jky-form-label		{width:200px;}
 .jky-form-value		{width:270px;}
 .jky-checkbox		{text-align:center; width:30px;}
+#jky-check-all		{width:30px;}
 .datepicker-dropdown:after	{left:432px;}
 
-#jky-check-all		{width:30px;}
 
 .jky-name			{width: 80px; text-align:left ;}
 .jky-diameter		{width: 40px; text-align:right;}
@@ -60,6 +60,13 @@
 #jky-density		{width:40px;}
 #jky-inputs			{width:40px;}
 #jky-lanes			{width:40px;}
+
+.jky-cylinder-value	{width:10%;		text-align:right ;}
+.jky-cylinder-label	{width:80%;		text-align:left  ;}
+.jky-cylinder-current{width: 40px;	text-align:right ; margin-right:0;}
+.jky-cylinder-name	{width:400px;}
+#jky-cylinder-total	{				text-align:right;}
+
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -101,9 +108,7 @@
 	</div>
 
 	<div id='jky-form-data'>
-		<div class='jky-form-line'><div class='jky-form-label'>Name:</div>
-			<div class='jky-form-value'><input id='jky-name' class='jky-form-value' placeholder='Name' /></div>
-		</div>
+		<div class='jky-form-line'><div class='jky-form-label'>Name:</div><div class='jky-form-value'><input id='jky-name' class='jky-form-value' placeholder='Name' /></div></div>
 		<div class='jky-form-line'>
 			<div class='jky-form-label'>Machine Type:</div>
 			<div id='jky-machine-type' class='jky-form-value'>
@@ -111,17 +116,9 @@
 				<input type='radio' name='jky-machine-type' value='Retilinea' /><span>Retilinea</span>
 			</div>
 		</div>
-		<div class='jky-form-line'>
-			<div class='jky-form-label'> Machine Family:</div>
-			<select id='jky-machine-family' placeholder='Machine Family'></select>
-		</div>
-		<div class='jky-form-line'>
-			<div class='jky-form-label'> Machine Brand:</div>
-			<select id='jky-machine-brand' placeholder='Machine Brand'></select>
-		</div>
-		<div class='jky-form-line'><div class='jky-form-label'>Serial Number:</div>
-			<div class='jky-form-value'><input id='jky-serial-number' class='jky-form-value' placeholder='Serial Number' /></div>
-		</div>
+		<div class='jky-form-line'><div class='jky-form-label'> Machine Family:</div><select id='jky-machine-family' placeholder='Machine Family'></select></div>
+		<div class='jky-form-line'><div class='jky-form-label'> Machine Brand:</div><select id='jky-machine-brand' placeholder='Machine Brand'></select></div>
+		<div class='jky-form-line'><div class='jky-form-label'>Serial Number:</div><div class='jky-form-value'><input id='jky-serial-number' class='jky-form-value' placeholder='Serial Number' /></div></div>
 		<div class='jky-clear'></div>
 		<br>
 
@@ -145,14 +142,13 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-cylinders'	class='active'	><a href='#jky-pane-cylinders'	 data-toggle='tab'>Cylinders</a></li>
-			<li	id='jky-tab-notes'><a href='#jky-pane-notes'	 data-toggle='tab'>Notes	</a></li>
-			<li	id='jky-tab-history'				><a href='#jky-pane-history'	 data-toggle='tab'>History	</a></li>
+			<li	id='jky-tab-cylinders'	class='active'	><a href='#jky-pane-cylinders'	data-toggle='tab'>Cylinders	</a></li>
+			<li	id='jky-tab-notes'						><a href='#jky-pane-notes'		data-toggle='tab'>Notes		</a></li>
+			<li	id='jky-tab-history'					><a href='#jky-pane-history'	data-toggle='tab'>History	</a></li>
 		</ul>
 
 		<div class='tab-content'>
-			
-			<div id='jky-pane-cylinders' class='tab-pane'>
+			<div id='jky-pane-cylinders' class='tab-pane active'>
 				<table class='table table-striped' >
 					<thead>
 						<tr>
@@ -178,9 +174,7 @@
 					<div class='jky-form-line'><div class='jky-form-label'>		 Payment Term</div><div id='jky-payment-term'		class='jky-form-value'>			</div></div>
 					<div class='jky-form-line'><div class='jky-form-label'>	  Fiscal Position</div><div id='jky-fiscal-position'	class='jky-form-value'>			</div></div>
 				</div>
-				<div class='jky-clear'></div>
 			</div>
-
 		</div>
 	</div>
 
@@ -188,4 +182,5 @@
 </div>
 
 <div id='jky-body-loaded'></div>
-<script src='js/machines.js'></script>
+<script src='js/machines.js'	></script>
+<script src='js/cylinders.js'	></script>

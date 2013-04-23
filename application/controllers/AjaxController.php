@@ -551,9 +551,11 @@ private function set_select($table, $select) {
 	if ($table == 'Tickets'		)	$return = ' AND        Tickets.status        = "' . $select . '"';
 	if ($table == 'Translations')	$return = ' AND   Translations.status        = "' . $select . '"';
 	if ($table == 'Persons'		)	$return = ' AND        Persons.user_role     = "' . $select . '"';
+
 	if ($table == 'FTP_Loads'	)	$return = ' AND      FTP_Loads.ftp_id		 =  ' . $select;
 	if ($table == 'FTP_Threads'	)	$return = ' AND    FTP_Threads.ftp_id		 =  ' . $select;
 	if ($table == 'FTP_Sets'	)	$return = ' AND       FTP_Sets.ftp_id		 =  ' . $select;
+	if ($table == 'Cylinders'	)	$return = ' AND      Cylinders.machine_id	 =  ' . $select;
 
 	return $return;
 }
@@ -574,6 +576,7 @@ private function set_new_fields($table) {
 											. ',  Assigned.full_name	AS assigned_name';
 	if ($table == 'Persons'		)	$return = ',   Support.full_name	AS  support_name'
 											. ', Companies.company_name	AS  company_name';
+
 	if ($table == 'FTPs'		)	$return = ',   Products.name		AS  product'
 											. ',   Machines.name		AS  machine';
 	if ($table == 'FTP_Loads'	)	$return = ',    Thread1.name		AS  first_name'
@@ -609,6 +612,7 @@ private function set_left_joins($table) {
 											. '  LEFT JOIN     Persons AS Assigned	ON  Assigned.id =    Tickets.assigned_to';
 	if ($table == 'Persons'		)	$return = '  LEFT JOIN     Persons AS Support	ON   Support.id =    Persons.support_id'
 											. '  LEFT JOIN   Companies				ON Companies.id =    Persons.company_id';
+
 	if ($table == 'FTPs'		)	$return = '  LEFT JOIN     Products				ON  Products.id =		FTPS.product_id'
 											. '  LEFT JOIN     Machines				ON  Machines.id =		FTPS.machine_id';
 	if ($table == 'FTP_Loads'	)	$return = '  LEFT JOIN     Threads AS Thread1	ON   Thread1.id =  FTP_Loads.first_thread_id'

@@ -51,7 +51,6 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-support-controls'	).click (function() {JKY.process_action('controls'	);});
 		$('#jky-admin-users'		).click (function() {JKY.process_action('users'		);});
 
-
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -162,7 +161,6 @@ JKY.process_start_page = function() {
 
 /** ------------------------------------------------------------------------ **/
 JKY.process_menu = function(menu) {
-//alert('process_menu: ' + menu);
 	JKY.display_trace('process_menu: ' + menu);
 	JKY.set_menu_active(menu);
 	switch(menu) {

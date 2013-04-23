@@ -12,10 +12,11 @@ var jky_specific	= '';
 var jky_sort_by		= 'name';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
-var jky_rows		= [];
-var jky_row 		= null;
 var jky_count		=  0;
 var jky_index		=  0;				//	0=Add New
+
+JKY.rows		= [];
+JKY.row 		= null;
 
 /**
  * start program
@@ -46,9 +47,10 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-form'	).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'	).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'		).click (function() {JKY.process_check_all	();});	// not needed on version 0
+
 		$('#jky-repair-date').datepicker();
 		$('#jky-return-date').datepicker();
-		$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder();});
+		$('#jky-cylinder-add-new').click (function() {JKY.insert_cylinder();});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -62,11 +64,11 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-production');
 		JKY.set_side_active('jky-production-machines');
-//		JKY.set_html('jky-machine-type' , JKY.set_radio('Configs', '', 'Machine Types' ));
 		JKY.set_html('jky-machine-family', JKY.set_group_set('Configs', '', 'Machine Families'));
-		JKY.set_html('jky-machine-brand' , JKY.set_group_set('Configs', '', 'Machine Brands'));
+		JKY.set_html('jky-machine-brand' , JKY.set_group_set('Configs', '', 'Machine Brands'  ));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
+		JKY.display_form(1);
 		JKY.show('jky-side-production'	);
 		JKY.show('jky-app-header'		);
 		JKY.show('jky-action-add-new'	);
@@ -129,21 +131,22 @@ JKY.display_next = function() {
 JKY.display_row = function(index) {
 	JKY.show('jky-form-tabs');
 	jky_index = index;
-	jky_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
-	jky_rows[index-1] = jky_row;
+	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
+	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_value	('jky-name'			, jky_row['name'			]);
-	JKY.set_radio	('jky-machine-type'	, jky_row['machine_type'	]);
-	JKY.set_option	('jky-machine-family', jky_row['machine_family'	]);
-	JKY.set_option	('jky-machine-brand', jky_row['machine_brand'	]);
-	JKY.set_value	('jky-diameter'		, jky_row['diameter'		]);
-	JKY.set_value	('jky-width'		, jky_row['width'			]);
-	JKY.set_value	('jky-density'		, jky_row['density'			]);
-	JKY.set_value	('jky-inputs'		, jky_row['inputs'			]);
-	JKY.set_value	('jky-lanes'		, jky_row['lanes'			]);
-	JKY.set_value	('jky-repair-value'	, JKY.fix_ymd2dmy(jky_row['repair_date']));
-	JKY.set_value	('jky-return-value'	, JKY.fix_ymd2dmy(jky_row['return_date']));
+	JKY.set_value	('jky-name'			, JKY.row['name'			]);
+	JKY.set_radio	('jky-machine-type'	, JKY.row['machine_type'	]);
+	JKY.set_option	('jky-machine-family', JKY.row['machine_family'	]);
+	JKY.set_option	('jky-machine-brand', JKY.row['machine_brand'	]);
+	JKY.set_value	('jky-diameter'		, JKY.row['diameter'		]);
+	JKY.set_value	('jky-width'		, JKY.row['width'			]);
+	JKY.set_value	('jky-density'		, JKY.row['density'			]);
+	JKY.set_value	('jky-inputs'		, JKY.row['inputs'			]);
+	JKY.set_value	('jky-lanes'		, JKY.row['lanes'			]);
+	JKY.set_value	('jky-repair-value'	, JKY.fix_ymd2dmy(JKY.row['repair_date']));
+	JKY.set_value	('jky-return-value'	, JKY.fix_ymd2dmy(JKY.row['return_date']));
 	JKY.set_focus(jky_focus);
+	JKY.display_cylinders()
 }
 
 JKY.load_table = function() {
@@ -160,12 +163,12 @@ JKY.load_table = function() {
 
 JKY.process_load_success = function(response) {
 	JKY.display_trace('process_load_success');
-	jky_rows	= response.rows;
-	jky_count	= jky_rows.length;
+	JKY.rows	= response.rows;
+	jky_count	= JKY.rows.length;
 	jky_index	= 1;
 	var my_html = '';
 	for(var i=0; i<jky_count; i++) {
-		var my_row = jky_rows[i];
+		var my_row = JKY.rows[i];
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"	><input type="checkbox"	 /></td>'
 				+  '<td class="jky-name"		>' + my_row['name'			] + '</td>'
@@ -255,11 +258,12 @@ JKY.process_insert = function() {
 JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
 	JKY.display_message(response.message);
-	JKY.display_list();
+	JKY.load_table();
+	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
 }
 
 JKY.process_update = function() {
-	var my_where = 'id = ' + jky_rows[jky_index-1]['id'];
+	var my_where = 'id = ' + JKY.rows[jky_index-1]['id'];
 	var my_data =
 		{ method: 'update'
 		, table : jky_table
@@ -272,7 +276,7 @@ JKY.process_update = function() {
 JKY.process_update_success = function(response) {
 	JKY.display_trace('process_update_success');
 	JKY.display_message(response.message);
-	jky_rows[jky_index-1] = JKY.get_row(jky_table, jky_rows[jky_index-1]['id']);
+	JKY.rows[jky_index-1] = JKY.get_row(jky_table, JKY.rows[jky_index-1]['id']);
 	JKY.display_next();
 }
 
@@ -281,11 +285,20 @@ JKY.process_delete = function() {
 }
 
 JKY.delete_confirmed = function() {
-	var my_where = 'id = ' + jky_rows[jky_index-1]['id'];
+	var my_id = JKY.row.id;
+
+	var my_data =
+		{ method: 'delete_many'
+		, table : 'Cylinders'
+		, where : 'machine_id = ' + my_id
+		};
+	JKY.ajax(true, my_data);
+
+
 	var my_data =
 		{ method: 'delete'
 		, table : jky_table
-		, where : my_where
+		, where : 'id = ' + my_id
 		};
 	JKY.ajax(false, my_data, JKY.process_delete_success);
 }
@@ -312,118 +325,5 @@ JKY.process_export = function() {
 	if (jky_sort_seq < 0 ) {
 		my_sort_by += ' DESC';
 	}
-
 	JKY.run_export(jky_table, jky_select, jky_filter, jky_specific, my_sort_by);
 };
-
-/*
- * display Cylinders -------------------------------------------------------------
- */
-JKY.display_cylinders = function(id) {
-	var my_data =
-		{ method	: 'get_index'
-		, table		: 'Cylinders'
-		, select	:  id
-		, order_by  : 'Cylinders.id'
-		};
-	JKY.ajax(false, my_data, JKY.generate_cylinders);
-}
-
-JKY.generate_cylinders = function(response) {
-	var my_html  = '';
-	var my_total =  0;
-	var my_rows  = response.rows;
-	if (my_rows != '') {
-		for(var i in my_rows) {
-			var my_row	 	= my_rows[i];
-			var my_id		= my_row.id;
-			var my_name		= my_row.name;
-			var my_percent	= parseFloat(my_row.percent);
-			var my_options	= JKY.set_options_array(my_name, jky_cylinders, true);
-
-			my_total += my_percent;
-			my_html  += ''
-				+ '<tr cylinder_id=' + my_id + '>'
-				+ '<td class="jky-action"><a onclick="JKY.delete_cylinder(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-				+ '<td class="jky-cylinder-value"		><input  class="jky-cylinder-percent" text="text" onchange="JKY.update_cylinder(this, ' + my_id + ')" value="' + my_percent + '" /></td>'
-				+ '<td class="jky-cylinder-label"		><select class="jky-cylinder-name"				onchange="JKY.update_cylinder(this, ' + my_id + ')">' + my_options + '</select></td>'
-				+ '</tr>'
-				;
-		}
-	}
-	JKY.set_html('jky-cylinder-total', my_total);
-	JKY.set_html('jky-cylinder-body' , my_html );
-}
-
-JKY.verify_total_percent = function() {
-	var my_total = 0;
-	$('#jky-cylinder-body tr').each(function() {
-		var my_percent  = parseFloat($(this).find('.jky-cylinder-percent' ).val());
-		my_total += my_percent
-	})
-	JKY.set_html('jky-cylinder-total', my_total);
-	if (my_total == 100) {
-		$('#jky-cylinder-total').css('color', 'black');
-	}else{
-		$('#jky-cylinder-total').css('color', 'red');
-		JKY.display_message('Total percent is not 100.')
-	}
-}
-
-JKY.update_cylinder = function(id_name, the_id ) {
-	var my_percent = parseFloat($(id_name).parent().parent().find('.jky-cylinder-percent').val());
-	var my_cylinder_id = $(id_name).parent().parent().find('.jky-cylinder-name').val();
-	var my_set = ''
-		+ 'cylinder_id = ' + my_cylinder_id
-		+ ', percent = ' + my_percent
-		;
-	var my_data =
-		{ method	: 'update'
-		, table		: 'Cylinders'
-		, set		: my_set
-		, where		: 'Cylinders.id = ' + the_id
-		};
-	JKY.ajax(true, my_data, JKY.update_cylinder_success);
-}
-
-JKY.update_cylinder_success = function(response) {
-	JKY.display_message(response.message)
-	JKY.verify_total_percent();
-}
-
-JKY.insert_cylinder = function() {
-	var my_data =
-		{ method	: 'insert'
-		, table		: 'Cylinders'
-		, set		: 'Cylinders.id = ' + jky_row.id
-		};
-	JKY.ajax(true, my_data, JKY.insert_cylinder_success);
-}
-
-JKY.insert_cylinder_success = function(response) {
-	var my_percent	= 0;
-	var my_options	= JKY.set_options_array(null, jky_cylinders, true);
-	var	my_html = ''
-		+ '<tr cylinder_id=' + response.id + '>'
-		+ '<td class="jky-action"><a onclick="JKY.delete_cylinder(this, ' + response.id + ')"><i class="icon-trash"></i></a></td>'
-		+ '<td class="jky-cylinder-value"><input  class="jky-cylinder-percent"  text="text"	onchange="JKY.update_cylinder(this, ' + response.id + ')" value="' + my_percent + '" /></td>'
-		+ '<td class="jky-cylinder-label"><select class="jky-cylinder-name"					onchange="JKY.update_cylinder(this, ' + response.id + ')">' + my_options + '</select></td>'
-		+ '</tr>'
-		;
-	JKY.append_html('jky-cylinder-body', my_html);
-}
-
-JKY.delete_cylinder = function(id_name, cylinder_id) {
-	$(id_name).parent().parent().remove();
-	var my_data =
-		{ method	: 'delete'
-		, table		: 'Cylinders'
-		, where		: 'Cylinders.id = ' + cylinder_id
-		};
-	JKY.ajax(true, my_data, JKY.delete_cylinder_success);
-}
-
-JKY.delete_cylinder_success = function(response) {
-	JKY.display_message(response.message)
-	JKY.verify_total_percent();
-}

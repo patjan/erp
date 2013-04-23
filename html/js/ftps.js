@@ -22,9 +22,6 @@ JKY.threads		= [];
 JKY.loads		= [];
 JKY.settings	= [];
 
-var jky_set_index	= null;				//	only for insert set
-var jky_set_setting	= null;				//	only for insert set
-
 /**
  * start program
  */

@@ -12,10 +12,11 @@ var jky_specific	= '';
 var jky_sort_by		= 'sequence';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
-var jky_rows		= [];
-var jky_row 		= null;
 var jky_count		=  0;
 var jky_index		=  0;				//	0=Add New
+
+JKY.rows		= [];
+JKY.row 		= null;
 
 /**
  * start program
@@ -125,15 +126,15 @@ JKY.display_next = function() {
 JKY.display_row = function(index) {
 	JKY.show('jky-form-tabs');
 	jky_index = index;
-	jky_row = JKY.get_row(jky_table, jky_rows[index-1]['id']);
-	jky_rows[index-1] = jky_row;
+	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
+	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_option	('jky-status'		, jky_row['status'			]);
-	JKY.set_value	('jky-sequence'		, jky_row['sequence'		]);
-	JKY.set_value	('jky-name'			, jky_row['name'			]);
-	JKY.set_value	('jky-value'		, jky_row['value'			]);
+	JKY.set_option	('jky-status'		, JKY.row['status'			]);
+	JKY.set_value	('jky-sequence'		, JKY.row['sequence'		]);
+	JKY.set_value	('jky-name'			, JKY.row['name'			]);
+	JKY.set_value	('jky-value'		, JKY.row['value'			]);
 
-	if (jky_select == 'Root' && jky_row['name'] == 'Root') {
+	if (jky_select == 'Root' && JKY.row['name'] == 'Root') {
 		JKY.hide('jky-action-save'		);
 		JKY.hide('jky-action-delete'	);
 		JKY.hide('jky-action-cancel'	);
@@ -159,12 +160,12 @@ JKY.load_table = function() {
 
 JKY.process_load_success = function(response) {
 	JKY.display_trace('process_load_success');
-	jky_rows	= response.rows;
-	jky_count	= jky_rows.length;
+	JKY.rows	= response.rows;
+	jky_count	= JKY.rows.length;
 	jky_index	= 1;
 	var my_html = '';
 	for(var i=0; i<jky_count; i++) {
-		var my_row = jky_rows[i];
+		var my_row = JKY.rows[i];
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"	><input type="checkbox"	 /></td>'
 				+  '<td class="jky-sequence"	>' + my_row['sequence'		] + '</td>'
@@ -241,7 +242,7 @@ JKY.process_insert_success = function(response) {
 }
 
 JKY.process_update = function() {
-	var my_where = 'id = ' + jky_rows[jky_index-1]['id'];
+	var my_where = 'id = ' + JKY.rows[jky_index-1]['id'];
 	var my_data =
 		{ method: 'update'
 		, table : jky_table
@@ -255,7 +256,7 @@ JKY.process_update_success = function(response) {
 	JKY.display_trace('process_update_success');
 	JKY.display_message(response.message);
 	JKY.refresh_select(jky_select);			//	only used on [Configs and Controls]
-	jky_rows[jky_index-1] = JKY.get_row(jky_table, jky_rows[jky_index-1]['id']);
+	JKY.rows[jky_index-1] = JKY.get_row(jky_table, JKY.rows[jky_index-1]['id']);
 	JKY.display_next();
 }
 
@@ -264,11 +265,12 @@ JKY.process_delete = function() {
 }
 
 JKY.delete_confirmed = function() {
-	var my_where = 'id = ' + jky_rows[jky_index-1]['id'];
+	var my_id = JKY.row.id;
+
 	var my_data =
 		{ method: 'delete'
 		, table : jky_table
-		, where : my_where
+		, where : 'id = ' + my_id
 		};
 	JKY.ajax(false, my_data, JKY.process_delete_success);
 }
@@ -296,7 +298,6 @@ JKY.process_export = function() {
 	if (jky_sort_seq < 0 ) {
 		my_sort_by += ' DESC';
 	}
-
 	JKY.run_export(jky_table, jky_select, jky_filter, jky_specific, my_sort_by);
 };
 

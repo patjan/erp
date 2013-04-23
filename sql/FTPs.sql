@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS FTPs
 , lanes				INT(11)				DEFAULT 0		# Trilhos
 , yield				INT(11)				DEFAULT 0		# Rendimento
 , needling			INT(11)				DEFAULT 0		# Agulhamento
-, peso				DECIMAL(5,2)		DEFAULT 0		# Peso Peca (12.5) (Kg)
+, peso				DECIMAL(5,2)		DEFAULT 0		# Peso da Peca (12.5) (Kg)
 , has_break			CHAR(3)				DEFAULT 'no'	# Tem falha
 , composition		VARCHAR(255)		DEFAULT ''		# Composicao: 96 Polyester, 4 Elastano
 , draw				VARCHAR(255)		DEFAULT NULL	# Desenho
