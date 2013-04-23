@@ -66,19 +66,12 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-country', JKY.set_group_set('Configs', '', 'Countries'));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
+		JKY.display_form(1);
 		JKY.show('jky-side-admin'		);
 		JKY.show('jky-app-header'		);
 		JKY.show('jky-action-add-new'	);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
-	}
-}
-
-JKY.display_company = function(id) {
-	if ($(id).is(':checked')) {
-		JKY.hide('jky-company-name');
-	}else{
-		JKY.show('jky-company-name');
 	}
 }
 
