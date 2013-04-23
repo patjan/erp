@@ -64,19 +64,12 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-country', JKY.set_group_set('Configs', '', 'Countries'));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
+		JKY.display_form(1);
 		JKY.show('jky-side-admin'		);
 		JKY.show('jky-app-header'		);
 		JKY.show('jky-action-add-new'	);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
-	}
-}
-
-JKY.display_company = function(id) {
-	if ($(id).is(':checked')) {
-		JKY.hide('jky-company-name');
-	}else{
-		JKY.show('jky-company-name');
 	}
 }
 
@@ -156,11 +149,6 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-fax'			, jky_row['fax'				]);
 	JKY.set_value	('jky-email'		, jky_row['email'			]);
 
-	if (jky_row['is_company'] == 'yes') {
-		JKY.hide('jky-company-name');
-	}else{
-		JKY.show('jky-company-name');
-	}
 	JKY.set_focus(jky_focus);
 }
 

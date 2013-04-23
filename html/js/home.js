@@ -168,7 +168,7 @@ JKY.process_menu = function(menu) {
 	switch(menu) {
 		case 'jky-menu-sales'		: JKY.process_action('customers'	); break;
 		case 'jky-menu-production'	: JKY.process_action('ftps'			); break;
-		case 'jky-menu-admin'		: JKY.process_action('configs'		); break;
+		case 'jky-menu-admin'		: JKY.process_action('users'		); break;
 		case 'jky-menu-support'		: JKY.process_action('controls'		); break;
 	}
 }
