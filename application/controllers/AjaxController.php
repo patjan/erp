@@ -1444,6 +1444,7 @@ private function delete_jky_user($id) {
 private function delete_many($data) {
 	$table = get_data($data, 'table');
 	$where = $this->get_security($table, get_data($data, 'where'));
+$this->log_sql($table, 'delete_many', $where);
 
 	if ($where == '') {
 		$this->echo_error('missing [where] statement');

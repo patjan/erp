@@ -68,7 +68,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-machine-brand' , JKY.set_group_set('Configs', '', 'Machine Brands'  ));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
-		JKY.display_form(1);
+//		JKY.display_form(1);
 		JKY.show('jky-side-production'	);
 		JKY.show('jky-app-header'		);
 		JKY.show('jky-action-add-new'	);
