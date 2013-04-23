@@ -94,9 +94,6 @@ JKY.display_form = function(index) {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.hide('jky-action-add-new'	);
-//	JKY.show('jky-action-save'		);
-//	JKY.show('jky-action-delete'	);
-//	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
 }
@@ -266,6 +263,15 @@ JKY.process_delete = function() {
 
 JKY.delete_confirmed = function() {
 	var my_id = JKY.row.id;
+
+	if (JKY.row.group_set == 'Root') {
+		var my_data =
+			{ method: 'delete_many'
+			, table :  jky_table
+			, where : 'group_set = "' + JKY.row.name + '"'
+			};
+		JKY.ajax(true, my_data);
+	}
 
 	var my_data =
 		{ method: 'delete'
