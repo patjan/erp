@@ -1462,7 +1462,7 @@ $this->log_sql($table, 'delete_many', $where);
 	$db = Zend_Registry::get('db');
 	$result = $db->query($sql);
 
-	$return['message'] = 'record (' . $result->rowCount() . ') deleted';
+	$return['message'] = 'record count (' . $result->rowCount() . ') deleted';
 	echo json_encode($return);
 }
 

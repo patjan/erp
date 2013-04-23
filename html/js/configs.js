@@ -33,20 +33,20 @@ JKY.start_program = function(action) {
 JKY.set_all_events = function(jky_program) {
 	JKY.display_trace('set_all_events');
 	if (JKY.is_loaded('jky-body')) {
-		$('#jky-app-select'		).change(function() {JKY.change_select  (this);});
-		$('#jky-app-filter'		).change(function() {JKY.change_filter  (this);});
-		$('#jky-action-add-new'	).click (function() {JKY.process_add_new	();});
-		$('#jky-action-save'	).click (function() {JKY.process_save		();});
-		$('#jky-action-delete'	).click (function() {JKY.process_delete		();});
-		$('#jky-action-cancel'	).click (function() {JKY.process_cancel		();});
-		$('#jky-action-export'	).click (function() {JKY.process_export		();});
-		$('#jky-action-publish'	).click (function() {JKY.process_publish	();});	// not needed on version 0
-		$('#jky-action-prev'	).click (function() {JKY.display_prev		();});
-		$('#jky-action-next'	).click (function() {JKY.display_next		();});
-		$('#jky-action-list'	).click (function() {JKY.display_list		();});
-		$('#jky-action-form'	).click (function() {JKY.display_form	   (1);});
-		$('#jky-action-comment'	).click (function() {JKY.process_comment	();});	// not done
-		$('#jky-check-all'		).click (function() {JKY.process_check_all	();});	// not needed on version 0
+		$('#jky-app-select'			).change(function() {JKY.change_select  (this);});
+		$('#jky-app-filter'			).change(function() {JKY.change_filter  (this);});
+		$('#jky-action-add-new'		).click (function() {JKY.process_add_new	();});
+		$('#jky-action-save'		).click (function() {JKY.process_save		();});
+		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
+		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
+		$('#jky-action-export'		).click (function() {JKY.process_export		();});
+		$('#jky-action-publish'		).click (function() {JKY.process_publish	();});	// not needed on version 0
+		$('#jky-action-prev'		).click (function() {JKY.display_prev		();});
+		$('#jky-action-next'		).click (function() {JKY.display_next		();});
+		$('#jky-action-list'		).click (function() {JKY.display_list		();});
+		$('#jky-action-form'		).click (function() {JKY.display_form	   (1);});
+		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
+		$('#jky-check-all'			).click (function() {JKY.process_check_all	();});	// not needed on version 0
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -126,10 +126,10 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_option	('jky-status'		, JKY.row['status'			]);
-	JKY.set_value	('jky-sequence'		, JKY.row['sequence'		]);
-	JKY.set_value	('jky-name'			, JKY.row['name'			]);
-	JKY.set_value	('jky-value'		, JKY.row['value'			]);
+	JKY.set_option	('jky-status'			, JKY.row['status'			]);
+	JKY.set_value	('jky-sequence'			, JKY.row['sequence'		]);
+	JKY.set_value	('jky-name'				, JKY.row['name'			]);
+	JKY.set_value	('jky-value'			, JKY.row['value'			]);
 
 	if (jky_select == 'Root' && JKY.row['name'] == 'Root') {
 		JKY.hide('jky-action-save'		);
@@ -196,20 +196,20 @@ JKY.process_add_new = function() {
 }
 
 JKY.display_new = function() {
-	JKY.set_option	('jky-status'		, 'Active');
-	JKY.set_value	('jky-sequence'		, 50);
-	JKY.set_value	('jky-name'			, '');
-	JKY.set_value	('jky-value'		, '');
+	JKY.set_option	('jky-status'			, 'Active');
+	JKY.set_value	('jky-sequence'			, 50);
+	JKY.set_value	('jky-name'				, '');
+	JKY.set_value	('jky-value'			, '');
 	JKY.set_focus(jky_focus);
 }
 
 JKY.get_form_set = function() {
 	var my_set = ''
 		+       'group_set=\'' + jky_select + '\''
-		+        ', status=\'' + JKY.get_value	('jky-status'		) + '\''
-		+      ', sequence=  ' + JKY.get_value	('jky-sequence'		)
-		+          ', name=\'' + JKY.get_value	('jky-name'			) + '\''
-		+         ', value=\'' + JKY.get_value	('jky-value'		) + '\''
+		+        ', status=\'' + JKY.get_value	('jky-status'			) + '\''
+		+      ', sequence=  ' + JKY.get_value	('jky-sequence'			)
+		+          ', name=\'' + JKY.get_value	('jky-name'				) + '\''
+		+         ', value=\'' + JKY.get_value	('jky-value'			) + '\''
 		;
 	return my_set;
 }
@@ -235,7 +235,8 @@ JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
 	JKY.display_message(response.message);
 	JKY.refresh_select(jky_select);			//	only used on [Configs and Controls]
-	JKY.display_list();
+	JKY.load_table();
+	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
 }
 
 JKY.process_update = function() {
@@ -275,7 +276,7 @@ JKY.delete_confirmed = function() {
 
 	var my_data =
 		{ method: 'delete'
-		, table : jky_table
+		, table :  jky_table
 		, where : 'id = ' + my_id
 		};
 	JKY.ajax(false, my_data, JKY.process_delete_success);

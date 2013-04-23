@@ -36,44 +36,44 @@
 </div>
 
 <style>
-.jky-form-label		{width:100px;}
-.jky-form-label-1	{width:100px;}
-.jky-form-label-2	{width:140px;}
-.jky-form-label-3	{width:140px;}
-.jky-form-value		{width: 50px;}
-.jky-checkbox		{width: 30px; text-align:center;}
-#jky-check-all		{width: 30px;}
+.jky-form-label			{width:100px;}
+.jky-form-label-1		{width:100px;}
+.jky-form-label-2		{width:140px;}
+.jky-form-label-3		{width:140px;}
+.jky-form-value			{width: 50px;}
+.jky-checkbox			{width: 30px; text-align:center;}
+#jky-check-all			{width: 30px;}
 
-.jky-code			{width: 40px; text-align:center;}
-.jky-product		{width:200px; text-transform:capitalize;}
-.jky-machine		{width:100px; text-align:center;}
-.jky-composition	{width:150px; text-align:center;}
+.jky-code				{width: 40px; text-align:center;}
+.jky-product			{width:200px; text-transform:capitalize;}
+.jky-machine			{width:100px; text-align:center;}
+.jky-composition		{width:150px; text-align:center;}
 
-#jky-code			{width: 60px; font-size:16px; font-weight:bold;}
-#jky-product		{width:340px; text-transform:capitalize;}
-#jky-product span	{padding:4px 20px 0 4px; vertical-align:bottom;}
-#jky-composition	{width:340px;}
-#jky-machine		{width:350px;}
+#jky-code				{width: 60px; font-size:16px; font-weight:bold;}
+#jky-product			{width:340px; text-transform:capitalize;}
+#jky-product span		{padding:4px 20px 0 4px; vertical-align:bottom;}
+#jky-composition		{width:340px;}
+#jky-machine			{width:350px;}
 
-#jky-drawing		{float: left; margin-left: 10px;}
-#jky-drawing-img	{border:4px ridge darkblue; width:110px; height:110px;}
-#jky-photo			{float: left; margin-left: 10px;}
-#jky-photo-img		{border:4px ridge black; width:110px; height:110px;}
+#jky-drawing			{float: left; margin-left: 10px;}
+#jky-drawing-img		{width:110px; height:110px; border:4px ridge darkblue;}
+#jky-photo				{float: left; margin-left: 10px;}
+#jky-photo-img			{width:110px; height:110px; border:4px ridge black;}
 
-#jky-diameter		{width: 40px;}
-#jky-density		{width: 40px;}
-#jky-inputs			{width: 40px;}
-#jky-lanes			{width: 40px;}
-#jky-speed			{width: 40px;}
-#jky-turns			{width: 40px;}
-#jky-weight			{width: 40px;}
-#jky-width			{width: 40px;}
-#jky-lanes			{width: 40px;}
-#jky-yield			{width: 40px;}
-#jky-needling		{width: 40px;}
-#jky-peso			{width: 40px;}
-#jky-has-break		{width:110px;}
-#jky-has-break span	{padding:0 10px 0 4px; vertical-align:bottom;}
+#jky-diameter			{width: 40px;}
+#jky-density			{width: 40px;}
+#jky-inputs				{width: 40px;}
+#jky-lanes				{width: 40px;}
+#jky-speed				{width: 40px;}
+#jky-turns				{width: 40px;}
+#jky-weight				{width: 40px;}
+#jky-width				{width: 40px;}
+#jky-lanes				{width: 40px;}
+#jky-yield				{width: 40px;}
+#jky-needling			{width: 40px;}
+#jky-peso				{width: 40px;}
+#jky-has-break			{width:110px;}
+#jky-has-break span		{padding:0 10px 0 4px; vertical-align:bottom;}
 
 .jky-load-sequence		{width: 50px; text-align:center;}
 .jky-load-first-number	{width: 40px; text-align:center;}
@@ -120,10 +120,10 @@
 	<thead>
 		<tr>
 			<th    id='jky-check-all'	><input type='checkbox' /></th>
-			<th class='jky-code'		>Code		</th>
-			<th class='jky-product'		>Product	</th>
-			<th class='jky-machine'		>Machine	</th>
-			<th class='jky-composition'	>Composition</th>
+			<th class='jky-code'		>Code			</th>
+			<th class='jky-product'		>Product		</th>
+			<th class='jky-machine'		>Machine		</th>
+			<th class='jky-composition'	>Composition	</th>
 		</tr>
 	</thead>
 
@@ -154,31 +154,32 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'>		  Code:</div><div class='jky-form-value'><input id='jky-code'			class='jky-form-value'								readonly='readonly'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>	   Product:</div><div class='jky-form-value'><input id='jky-product'		class='jky-form-value' placeholder='Product Name'	readonly='readonly'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>Composition:</div><div class='jky-form-value'><input id='jky-composition'	class='jky-form-value'								readonly='readonly'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>    Machine:</div><select id='jky-machine' placeholder='Machine Name'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'>         Code:</div><div class='jky-form-value'><input	 id='jky-code'			class='jky-form-value'								readonly='readonly'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>      Product:</div><div class='jky-form-value'><input	 id='jky-product'		class='jky-form-value' placeholder='Product Name'	readonly='readonly'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>  Composition:</div><div class='jky-form-value'><input	 id='jky-composition'	class='jky-form-value'								readonly='readonly'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>      Machine:</div><select id='jky-machine'></select></div>
 		</div>
-		<div id='jky-drawing'><img id='jky-drawing-img' src='/img/placeholder.png'><br><a id='jky-upload_drawing'>Upload Drawing</a></div>
-		<div id='jky-photo'  ><img id='jky-photo-img'   src='/img/placeholder.png'><br><a id='jky-upload_photo'  >Upload Photo  </a></div>
+			<div id='jky-drawing'><img id='jky-drawing-img' src='/img/placeholder.png'><br><a id='jky-upload_drawing'>Upload Drawing</a></div>
+			<div id='jky-photo'  ><img id='jky-photo-img'   src='/img/placeholder.png'><br><a id='jky-upload_photo'  >Upload Photo  </a></div>
 		<div class='jky-clear'></div>
 		<br>
+
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label-1'>	 Diameter:</div><div class='jky-form-value'><input id='jky-diameter'	class='jky-form-value' placeholder='0'	/></div>(cm)	</div>
-			<div class='jky-form-line'><div class='jky-form-label-1'>	  Density:</div><div class='jky-form-value'><input id='jky-density'		class='jky-form-value' placeholder='0'	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label-1'>	   Inputs:</div><div class='jky-form-value'><input id='jky-inputs'		class='jky-form-value' placeholder='0'	/></div>(cones)	</div>
-			<div class='jky-form-line'><div class='jky-form-label-1'>		Speed:</div><div class='jky-form-value'><input id='jky-speed'		class='jky-form-value' placeholder='0'	/></div>(rpm)	</div>
+			<div class='jky-form-line'><div class='jky-form-label-1'>       Diameter:</div><div class='jky-form-value'><input id='jky-diameter'			class='jky-form-value' placeholder='0'	/></div>(cm)	</div>
+			<div class='jky-form-line'><div class='jky-form-label-1'>        Density:</div><div class='jky-form-value'><input id='jky-density'			class='jky-form-value' placeholder='0'	/></div>		</div>
+			<div class='jky-form-line'><div class='jky-form-label-1'>         Inputs:</div><div class='jky-form-value'><input id='jky-inputs'			class='jky-form-value' placeholder='0'	/></div>(cones)	</div>
+			<div class='jky-form-line'><div class='jky-form-label-1'>          Speed:</div><div class='jky-form-value'><input id='jky-speed'			class='jky-form-value' placeholder='0'	/></div>(rpm)	</div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label-2'>		Turns:</div><div class='jky-form-value'><input id='jky-turns'		class='jky-form-value' placeholder='0'	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label-2'>	   Weight:</div><div class='jky-form-value'><input id='jky-weight'		class='jky-form-value' placeholder='0'	/></div>(gr)	</div>
-			<div class='jky-form-line'><div class='jky-form-label-2'>		Width:</div><div class='jky-form-value'><input id='jky-width'		class='jky-form-value' placeholder='0'	/></div>(cm)	</div>
-			<div class='jky-form-line'><div class='jky-form-label-2'>		Lanes:</div><div class='jky-form-value'><input id='jky-lanes'		class='jky-form-value' placeholder='0'	/></div>		</div>
+			<div class='jky-form-line'><div class='jky-form-label-2'>          Turns:</div><div class='jky-form-value'><input id='jky-turns'			class='jky-form-value' placeholder='0'	/></div>		</div>
+			<div class='jky-form-line'><div class='jky-form-label-2'>         Weight:</div><div class='jky-form-value'><input id='jky-weight'			class='jky-form-value' placeholder='0'	/></div>(gr)	</div>
+			<div class='jky-form-line'><div class='jky-form-label-2'>          Width:</div><div class='jky-form-value'><input id='jky-width'			class='jky-form-value' placeholder='0'	/></div>(cm)	</div>
+			<div class='jky-form-line'><div class='jky-form-label-2'>          Lanes:</div><div class='jky-form-value'><input id='jky-lanes'			class='jky-form-value' placeholder='0'	/></div>		</div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label-3'>		Yield:</div><div class='jky-form-value'><input id='jky-yield'		class='jky-form-value' placeholder='0'	/></div>(%)		</div>
-			<div class='jky-form-line'><div class='jky-form-label-3'>	 Needling:</div><div class='jky-form-value'><input id='jky-needling'	class='jky-form-value' placeholder='0'	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label-3'>		 Peso:</div><div class='jky-form-value'><input id='jky-peso'		class='jky-form-value' placeholder='0'	/></div>(Kg)	</div>
+			<div class='jky-form-line'><div class='jky-form-label-3'>          Yield:</div><div class='jky-form-value'><input id='jky-yield'		class='jky-form-value' placeholder='0'	/></div>(%)		</div>
+			<div class='jky-form-line'><div class='jky-form-label-3'>       Needling:</div><div class='jky-form-value'><input id='jky-needling'		class='jky-form-value' placeholder='0'	/></div>		</div>
+			<div class='jky-form-line'><div class='jky-form-label-3'>           Peso:</div><div class='jky-form-value'><input id='jky-peso'			class='jky-form-value' placeholder='0'	/></div>(Kg)	</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label-3'>Has Break?</div>
 				<div id='jky-has-break' class='jky-form-value'>
@@ -273,13 +274,12 @@
 			</div>
 		</div>
 	</div>
-
 	<div id='jky-form-footer'></div>
 </div>
 
 <div id='jky-body-loaded'></div>
-<script src='js/ftps.js'			></script>
-<script src='js/ftp_composition.js'	></script>
-<script src='js/ftp_threads.js'		></script>
-<script src='js/ftp_loads.js'		></script>
-<script src='js/ftp_settings.js'	></script>
+<script src='js/ftps.js'></script>
+<script src='js/ftp_composition.js'</script>
+<script src='js/ftp_threads.js'></script>
+<script src='js/ftp_loads.js'></script>
+<script src='js/ftp_settings.js'></script>
