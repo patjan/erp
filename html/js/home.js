@@ -51,7 +51,6 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-support-controls'	).click (function() {JKY.process_action('controls'	);});
 		$('#jky-admin-users'		).click (function() {JKY.process_action('users'		);});
 
-
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -167,8 +166,8 @@ JKY.process_menu = function(menu) {
 	JKY.set_menu_active(menu);
 	switch(menu) {
 		case 'jky-menu-sales'		: JKY.process_action('customers'	); break;
-		case 'jky-menu-production'	: JKY.process_action('ftps'			); break;
-		case 'jky-menu-admin'		: JKY.process_action('configs'		); break;
+		case 'jky-menu-production'	: JKY.process_action('machines'		); break;
+		case 'jky-menu-admin'		: JKY.process_action('users'		); break;
 		case 'jky-menu-support'		: JKY.process_action('controls'		); break;
 	}
 }

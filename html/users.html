@@ -37,8 +37,8 @@
 <style>
 .jky-form-label		{width:100px;}
 .jky-form-value		{width:270px;}
-.jky-checkbox		{text-align:center; width:30px;}
-#jky-check-all		{width:30px;}
+.jky-checkbox		{width: 30px; text-align:center;}
+#jky-check-all		{width: 30px;}
 
 #jky-full-name		{width:375px; font-size:16px; font-weight:bold;}
 #jky-company-name	{width:385px;}
@@ -95,22 +95,11 @@
 	</div>
 
 	<div id='jky-form-data'>
-		<div class='jky-form-line'>
-			<div class='jky-userrole'>
-				User Role:
-			</div>
-			<select id='jky-user-role'></select>
-			<div class='jky-form-label'>First Name:</div>
-					<input id='jky-first-name' class='jky-form-value' placeholder='First Name' />
-			<div class='jky-form-label'>Last Name:</div>
-					<input id='jky-last-name' class='jky-form-value' placeholder='Last Name' />
-			<div class='jky-form-line'>
-				<div class='jky-form-label'> Email:
-				</div>
-				<div class='jky-form-value'>
-					<input id='jky-email'class='jky-form-value' placeholder=''/>
-				</div>
-			</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'>User Role:</div><select id='jky-user-role'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'>First Name:</div><div class='jky-form-value'><input id='jky-first-name' class='jky-form-value' placeholder='First Name' /></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>Last Name:</div><div class='jky-form-value'><input id='jky-last-name' class='jky-form-value' placeholder='Last Name' /></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'> Email:</div><div class='jky-form-value'><input id='jky-email'class='jky-form-value' placeholder=''/></div></div>
 			<div class='jky-form-value'>
 				<select id='jky-company-name' placeholder='Company'>
 					<option>JKY Software Corp</option>
@@ -149,7 +138,7 @@
 			<div class='jky-form-line'><div class='jky-form-label'>		  Phone:</div><div class='jky-form-value'><input id='jky-phone'		class='jky-form-value' placeholder='e.g. 123-456-7890'			/></div></div>
 			<div class='jky-form-line'><div class='jky-form-label'>		 Mobile:</div><div class='jky-form-value'><input id='jky-mobile'	class='jky-form-value' placeholder=''							/></div></div>
 			<div class='jky-form-line'><div class='jky-form-label'>		    Fax:</div><div class='jky-form-value'><input id='jky-fax'		class='jky-form-value' placeholder=''							/></div></div>
-			
+
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -216,9 +205,7 @@
 					<div class='jky-form-line'><div class='jky-form-label'>		 Payment Term</div><div id='jky-payment-term'		class='jky-form-value'>			</div></div>
 					<div class='jky-form-line'><div class='jky-form-label'>	  Fiscal Position</div><div id='jky-fiscal-position'	class='jky-form-value'>			</div></div>
 				</div>
-				<div class='jky-clear'></div>
 			</div>
-
 		</div>
 	</div>
 
