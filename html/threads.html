@@ -35,26 +35,26 @@
 </div>
 
 <style>
-.jky-form-label		{width:150px;}
-.jky-form-value		{width:270px;}
-.jky-checkbox		{width: 30px; text-align:center;}
-#jky-check-all		{width: 30px;}
+.jky-form-label			{width:150px;}
+.jky-form-value			{width:270px;}
+.jky-checkbox			{width: 30px; text-align:center;}
+#jky-check-all			{width: 30px;}
 
-.jky-code			{width: 40px; text-align:center;}
-.jky-name			{width: 80px; text-align:left  ;}
-.jky-thread_group	{width: 80px; text-align:center;}
-.jky-thread_color	{width: 80px; text-align:center;}
-.jky-composition	{width: 80px; text-align:center;}
+.jky-code				{width: 40px; text-align:center;}
+.jky-name				{width: 80px; text-align:left  ;}
+.jky-thread_group		{width: 80px; text-align:center;}
+.jky-thread_color		{width: 80px; text-align:center;}
+.jky-composition		{width: 80px; text-align:center;}
 
-#jky-code			{width: 40px; font-size:16px; font-weight:bold;}
-#jky-machine-type	{width:230px;}
+#jky-code				{width: 40px; font-size:16px; font-weight:bold;}
+#jky-machine-type		{width:230px;}
 #jky-machine-type span	{padding:4px 20px 0 4px; vertical-align:bottom;}
-#jky-machine-brand	{width:385px;}
+#jky-machine-brand		{width:385px;}
 
-#jky-name			{width:300px;}
-#jky-thread_group	{width:300px;}
-#jky-thread_color	{width:300px;}
-#jky-composition	{width:300px;}
+#jky-name				{width:300px;}
+#jky-thread_group		{width:300px;}
+#jky-thread_color		{width:300px;}
+#jky-composition		{width:300px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -96,24 +96,24 @@
 
 	<div id='jky-form-data'>
 		<div>
-			<div class='jky-form-line'><div class='jky-form-label'>Code:</div><div class='jky-form-value'><input id='jky-code' class='jky-form-value' placeholder='Code' /></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>Name:</div><div class='jky-form-value'><input id='jky-name' class='jky-form-value' placeholder='Name' /></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>             Code:</div><div class='jky-form-value'><input id='jky-code'				class='jky-form-value' placeholder='Code' 			/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>             Name:</div><div class='jky-form-value'><input id='jky-name'				class='jky-form-value' placeholder='Name' 			/></div></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
 
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'> Thread Group:</div><div class='jky-form-value'><input id='jky-thread_group'	class='jky-form-value' placeholder='0'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'> Thread Color:</div><div class='jky-form-value'><input id='jky-thread_color'	class='jky-form-value' placeholder='0'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>  Composition:</div><div class='jky-form-value'><input id='jky-composition'	class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>     Thread Group:</div><div class='jky-form-value'><input id='jky-thread_group'	class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>     Thread Color:</div><div class='jky-form-value'><input id='jky-thread_color'	class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>      Composition:</div><div class='jky-form-value'><input id='jky-composition'	class='jky-form-value' placeholder='0'	/></div></div>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-notes'	class='active'	><a href='#jky-notes'	 data-toggle='tab'>Notes	</a></li>
-			<li	id='jky-tab-history'				><a href='#jky-history'	 data-toggle='tab'>History	</a></li>
+			<li	id='jky-tab-notes'			class='active'	><a href='#jky-notes'				data-toggle='tab'>Notes			</a></li>
+			<li	id='jky-tab-history'						><a href='#jky-history'				data-toggle='tab'>History		</a></li>
 		</ul>
 
 		<div class='tab-content'>
@@ -121,15 +121,14 @@
 			<div id='jky-notes' class='tab-pane'>
 				<div class='jky-left'>
 					<div class='jky-form-line'><div class='jky-form-label'>		Expected Date</div><div id='jky-expected-date'		class='jky-form-value'>02/01/2013	</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'>	Invoicing Control</div><div id='jky-invoicing-control'	class='jky-form-value'>Based on generated draft invoice</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'>	 Invoice Received</div><div id='jky-invoice-received'	class='jky-form-value'>No		</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'>		 Payment Term</div><div id='jky-payment-term'		class='jky-form-value'>			</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'>	  Fiscal Position</div><div id='jky-fiscal-position'	class='jky-form-value'>			</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'>	Invoicing Control</div><div id='jky-invoicing-control'	class='jky-form-value'>Based on 	</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'>	 Invoice Received</div><div id='jky-invoice-received'	class='jky-form-value'>No			</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'>		 Payment Term</div><div id='jky-payment-term'		class='jky-form-value'>				</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'>	  Fiscal Position</div><div id='jky-fiscal-position'	class='jky-form-value'>				</div></div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<div id='jky-form-footer'></div>
 </div>
 

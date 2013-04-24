@@ -35,37 +35,37 @@
 </div>
 
 <style>
-.jky-form-label		{width:100px;}
-.jky-form-value		{width:270px;}
-.jky-checkbox		{width: 30px; text-align:center;}
-#jky-check-all		{width: 30px;}
+.jky-form-label			{width:100px;}
+.jky-form-value			{width:270px;}
+.jky-checkbox			{width: 30px; text-align:center;}
+#jky-check-all			{width: 30px;}
 
-#jky-full-name		{width:375px; font-size:16px; font-weight:bold;}
-#jky-company-name	{width:385px;}
-#jky-customer-tags	{width:385px;}
+#jky-full-name			{width:375px; font-size:16px; font-weight:bold;}
+#jky-company-name		{width:385px;}
+#jky-customer-tags		{width:385px;}
 
-#jky-street1		{width:250px;}
-#jky-street2		{width:250px;}
-#jky-city			{width:130px;}
-#jky-state			{width: 50px;}
-#jky-zip			{width: 50px;}
-#jky-country		{width:260px;}
-#jky-website		{width:250px;}
-#jky-position		{width:200px;}
-#jky-phone			{width:200px;}
-#jky-mobile			{width:200px;}
-#jky-fax			{width:200px;}
-#jky-email			{width:200px;}
+#jky-street1			{width:250px;}
+#jky-street2			{width:250px;}
+#jky-city				{width:130px;}
+#jky-state				{width: 50px;}
+#jky-zip				{width: 50px;}
+#jky-country			{width:260px;}
+#jky-website			{width:250px;}
+#jky-position			{width:200px;}
+#jky-phone				{width:200px;}
+#jky-mobile				{width:200px;}
+#jky-fax				{width:200px;}
+#jky-email				{width:200px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
 			<th    id='jky-check-all'	><input type='checkbox' /></th>
-			<th class='jky-full-name'	>Name		</th>
-			<th class='jky-phone'		>Phone		</th>
-			<th class='jky-mobile'		>Mobile		</th>
-			<th class='jky-email'		>Email		</th>
+			<th class='jky-full-name'	>Name			</th>
+			<th class='jky-phone'		>Phone			</th>
+			<th class='jky-mobile'		>Mobile			</th>
+			<th class='jky-email'		>Email			</th>
 		</tr>
 	</thead>
 
@@ -95,25 +95,27 @@
 	</div>
 
 	<div id='jky-form-data'>
-		<div class='jky-form-line'>
-			<div class='jky-form-label'>Name:</div>
-			<div class='jky-form-value'>
-				<input id='jky-full-name' class='jky-form-value' placeholder='Name' />
-				<input type='checkbox' id='jky-is-company' value='yes' /> (Is a Company ?)
-				<select id='jky-company-name' placeholder='Company'>
-					<option>JKY Software Corp</option>
-					<option>Tecno Malhas</option>
-					<option>DL Malhas</option>
-					<option class='jky-option-search'>Search More...</option>
-					<option class='jky-option-add-new'>Add New...</option>
-				</select>
-				<select id='jky-customer-tags' placeholder='Tags...'>
-					<option>Company Contact</option>
-					<option>Distributor</option>
-					<option>Employee</option>
-					<option class='jky-option-search'>Search More...</option>
-					<option class='jky-option-add-new'>Add New...</option>
-				</select>
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'>Name:</div>
+				<div class='jky-form-value'>
+					<input id='jky-full-name' class='jky-form-value' placeholder='Name' />
+					<input type='checkbox' id='jky-is-company' value='yes' /> (Is a Company ?)
+					<select id='jky-company-name' placeholder='Company'>
+						<option>JKY Software Corp</option>
+						<option>Tecno Malhas</option>
+						<option>DL Malhas</option>
+						<option class='jky-option-search'>Search More...</option>
+						<option class='jky-option-add-new'>Add New...</option>
+					</select>
+					<select id='jky-customer-tags' placeholder='Tags...'>
+						<option>Company Contact</option>
+						<option>Distributor</option>
+						<option>Employee</option>
+						<option class='jky-option-search'>Search More...</option>
+						<option class='jky-option-add-new'>Add New...</option>
+					</select>
+				</div>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -131,25 +133,25 @@
 					<select id='jky-country'></select>
 				</div>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'>		Website:</div><div class='jky-form-value'><input id='jky-website'	class='jky-form-value' placeholder='e.g. www.jkysoftware.com'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>          Website:</div><div class='jky-form-value'><input id='jky-website'			class='jky-form-value' placeholder='e.g. www.jkysoftware.com'	/></div></div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'>	   Position:</div><div class='jky-form-value'><input id='jky-position'	class='jky-form-value' placeholder='e.g. Sales Director'		/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>		  Phone:</div><div class='jky-form-value'><input id='jky-phone'		class='jky-form-value' placeholder='e.g. 123-456-7890'			/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>		 Mobile:</div><div class='jky-form-value'><input id='jky-mobile'	class='jky-form-value' placeholder=''							/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>		    Fax:</div><div class='jky-form-value'><input id='jky-fax'		class='jky-form-value' placeholder=''							/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>		  Email:</div><div class='jky-form-value'><input id='jky-email'		class='jky-form-value' placeholder=''							/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>         Position:</div><div class='jky-form-value'><input id='jky-position'			class='jky-form-value' placeholder='e.g. Sales Director'		/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>            Phone:</div><div class='jky-form-value'><input id='jky-phone'			class='jky-form-value' placeholder='e.g. 123-456-7890'			/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>           Mobile:</div><div class='jky-form-value'><input id='jky-mobile'			class='jky-form-value' placeholder=''	/></div>		</div>
+			<div class='jky-form-line'><div class='jky-form-label'>              Fax:</div><div class='jky-form-value'><input id='jky-fax'				class='jky-form-value' placeholder=''	/></div>		</div>
+			<div class='jky-form-line'><div class='jky-form-label'>            Email:</div><div class='jky-form-value'><input id='jky-email'			class='jky-form-value' placeholder=''	/></div>		</div>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li id='jky-tab-contacts' class='active'><a href='#jky-contacts' data-toggle='tab'>Contacts	</a></li>
-			<li	id='jky-tab-notes'					><a href='#jky-notes'	 data-toggle='tab'>Notes	</a></li>
-			<li	id='jky-tab-sales'					><a href='#jky-sales'	 data-toggle='tab'>Sales	</a></li>
-			<li	id='jky-tab-account'				><a href='#jky-account'	 data-toggle='tab'>Account	</a></li>
-			<li	id='jky-tab-history'				><a href='#jky-history'	 data-toggle='tab'>History	</a></li>
+			<li id='jky-tab-contacts'		class='active'	><a href='#jky-contacts'			data-toggle='tab'>Contacts		</a></li>
+			<li	id='jky-tab-notes'							><a href='#jky-notes'				data-toggle='tab'>Notes			</a></li>
+			<li	id='jky-tab-sales'							><a href='#jky-sales'				data-toggle='tab'>Sales			</a></li>
+			<li	id='jky-tab-account'						><a href='#jky-account'				data-toggle='tab'>Account		</a></li>
+			<li	id='jky-tab-history'						><a href='#jky-history'				data-toggle='tab'>History		</a></li>
 		</ul>
 
 		<div class='tab-content'>

@@ -33,24 +33,24 @@ JKY.start_program = function(action) {
 JKY.set_all_events = function(jky_program) {
 	JKY.display_trace('set_all_events');
 	if (JKY.is_loaded('jky-body')) {
-		$('#jky-app-select'		).change(function() {JKY.change_select  (this);});
-		$('#jky-app-filter'		).change(function() {JKY.change_filter  (this);});
-		$('#jky-action-add-new'	).click (function() {JKY.process_add_new	();});
-		$('#jky-action-save'	).click (function() {JKY.process_save		();});
-		$('#jky-action-delete'	).click (function() {JKY.process_delete		();});
-		$('#jky-action-cancel'	).click (function() {JKY.process_cancel		();});
-		$('#jky-action-export'	).click (function() {JKY.process_export		();});
-		$('#jky-action-publish'	).click (function() {JKY.process_publish	();});	// not needed on version 0
-		$('#jky-action-prev'	).click (function() {JKY.display_prev		();});
-		$('#jky-action-next'	).click (function() {JKY.display_next		();});
-		$('#jky-action-list'	).click (function() {JKY.display_list		();});
-		$('#jky-action-form'	).click (function() {JKY.display_form	   (1);});
-		$('#jky-action-comment'	).click (function() {JKY.process_comment	();});	// not done
-		$('#jky-check-all'		).click (function() {JKY.process_check_all	();});	// not needed on version 0
+		$('#jky-app-select'			).change(function() {JKY.change_select  (this);});
+		$('#jky-app-filter'			).change(function() {JKY.change_filter  (this);});
+		$('#jky-action-add-new'		).click (function() {JKY.process_add_new	();});
+		$('#jky-action-save'		).click (function() {JKY.process_save		();});
+		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
+		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
+		$('#jky-action-export'		).click (function() {JKY.process_export		();});
+		$('#jky-action-publish'		).click (function() {JKY.process_publish	();});	// not needed on version 0
+		$('#jky-action-prev'		).click (function() {JKY.display_prev		();});
+		$('#jky-action-next'		).click (function() {JKY.display_next		();});
+		$('#jky-action-list'		).click (function() {JKY.display_list		();});
+		$('#jky-action-form'		).click (function() {JKY.display_form	   (1);});
+		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
+		$('#jky-check-all'			).click (function() {JKY.process_check_all	();});	// not needed on version 0
 
 		$('#jky-repair-date').datepicker();
 		$('#jky-return-date').datepicker();
-		$('#jky-cylinder-add-new').click (function() {JKY.insert_cylinder();});
+		$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -134,17 +134,17 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_value	('jky-name'			, JKY.row['name'			]);
-	JKY.set_radio	('jky-machine-type'	, JKY.row['machine_type'	]);
-	JKY.set_option	('jky-machine-family', JKY.row['machine_family'	]);
-	JKY.set_option	('jky-machine-brand', JKY.row['machine_brand'	]);
-	JKY.set_value	('jky-diameter'		, JKY.row['diameter'		]);
-	JKY.set_value	('jky-width'		, JKY.row['width'			]);
-	JKY.set_value	('jky-density'		, JKY.row['density'			]);
-	JKY.set_value	('jky-inputs'		, JKY.row['inputs'			]);
-	JKY.set_value	('jky-lanes'		, JKY.row['lanes'			]);
-	JKY.set_value	('jky-repair-value'	, JKY.fix_ymd2dmy(JKY.row['repair_date']));
-	JKY.set_value	('jky-return-value'	, JKY.fix_ymd2dmy(JKY.row['return_date']));
+	JKY.set_value	('jky-name'				, JKY.row['name'			]);
+	JKY.set_radio	('jky-machine-type'		, JKY.row['machine_type'	]);
+	JKY.set_option	('jky-machine-family'	, JKY.row['machine_family'	]);
+	JKY.set_option	('jky-machine-brand'	, JKY.row['machine_brand'	]);
+	JKY.set_value	('jky-diameter'			, JKY.row['diameter'		]);
+	JKY.set_value	('jky-width'			, JKY.row['width'			]);
+	JKY.set_value	('jky-density'			, JKY.row['density'			]);
+	JKY.set_value	('jky-inputs'			, JKY.row['inputs'			]);
+	JKY.set_value	('jky-lanes'			, JKY.row['lanes'			]);
+	JKY.set_value	('jky-repair-value'		, JKY.fix_ymd2dmy(JKY.row['repair_date']));
+	JKY.set_value	('jky-return-value'		, JKY.fix_ymd2dmy(JKY.row['return_date']));
 	JKY.set_focus(jky_focus);
 	JKY.display_cylinders()
 }
@@ -204,31 +204,31 @@ JKY.process_add_new = function() {
 }
 
 JKY.display_new = function() {
-	JKY.set_value	('jky-name'			, '' );
-	JKY.set_radio	('jky-machine-type'	, 'Circular');
-	JKY.set_option	('jky-machine-family', '' );
-	JKY.set_option	('jky-machine-brand', '' );
-	JKY.set_value	('jky-diameter'		, '0');
-	JKY.set_value	('jky-width'		, '0');
-	JKY.set_value	('jky-density'		, '0');
-	JKY.set_value	('jky-inputs'		, '0');
-	JKY.set_value	('jky-lanes'		, '0');
-	JKY.set_value	('jky-repair-value'	, '' );
-	JKY.set_value	('jky-return-value'	, '' );
+	JKY.set_value	('jky-name'				, '' );
+	JKY.set_radio	('jky-machine-type'		, 'Circular');
+	JKY.set_option	('jky-machine-family'	, '' );
+	JKY.set_option	('jky-machine-brand'	, '' );
+	JKY.set_value	('jky-diameter'			, '0');
+	JKY.set_value	('jky-width'			, '0');
+	JKY.set_value	('jky-density'			, '0');
+	JKY.set_value	('jky-inputs'			, '0');
+	JKY.set_value	('jky-lanes'			, '0');
+	JKY.set_value	('jky-repair-value'		, '' );
+	JKY.set_value	('jky-return-value'		, '' );
 	JKY.set_focus(jky_focus);
 }
 
 JKY.get_form_set = function() {
 	var my_set = ''
-		+            'name=\'' + JKY.get_value	('jky-name'			) + '\''
-		+  ', machine_type=\'' + JKY.get_checked('jky-machine-type'	) + '\''
-		+ ', machine_family=\'' + JKY.get_value	('jky-machine-family') + '\''
-		+ ', machine_brand=\'' + JKY.get_value	('jky-machine-brand') + '\''
-		+      ', diameter=\'' + JKY.get_value	('jky-diameter'		) + '\''
-		+         ', width=\'' + JKY.get_value	('jky-width'		) + '\''
-		+       ', density=\'' + JKY.get_value	('jky-density'		) + '\''
-		+        ', inputs=\'' + JKY.get_value	('jky-inputs'		) + '\''
-		+	      ', lanes=\'' + JKY.get_value	('jky-lanes'		) + '\''
+		+            'name=\'' + JKY.get_value	('jky-name'				) + '\''
+		+  ', machine_type=\'' + JKY.get_checked('jky-machine-type'		) + '\''
+		+ ', machine_family=\'' + JKY.get_value	('jky-machine-family'	) + '\''
+		+ ', machine_brand=\'' + JKY.get_value	('jky-machine-brand'	) + '\''
+		+      ', diameter=\'' + JKY.get_value	('jky-diameter'			) + '\''
+		+         ', width=\'' + JKY.get_value	('jky-width'			) + '\''
+		+       ', density=\'' + JKY.get_value	('jky-density'			) + '\''
+		+        ', inputs=\'' + JKY.get_value	('jky-inputs'			) + '\''
+		+	      ', lanes=\'' + JKY.get_value	('jky-lanes'			) + '\''
 		;
 	var my_date= JKY.get_value('jky-repair-value');
 	my_set += ', repair_date = ' + JKY.fix_dmy2ymd(my_date);
@@ -294,10 +294,9 @@ JKY.delete_confirmed = function() {
 		};
 	JKY.ajax(true, my_data);
 
-
 	var my_data =
 		{ method: 'delete'
-		, table : jky_table
+		, table :  jky_table
 		, where : 'id = ' + my_id
 		};
 	JKY.ajax(false, my_data, JKY.process_delete_success);
