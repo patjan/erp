@@ -8,29 +8,27 @@
 
 	<div>
 		<div id='jky-app-actions'>
-			<button id='jky-action-add-new'	class='btn btn-success' type='button'>Add New	</button>
-			<button id='jky-action-save'	class='btn btn-success' type='button'>Save		</button>
-			<button id='jky-action-copy'	class='btn btn-success' type='button'>Copy		</button>
-		&nbsp;<a	id='jky-action-delete'	class='btn' type='button' href='#'>Delete</a>
-		&nbsp;<a	id='jky-action-cancel'	class='btn' type='button' href='#'>Cancel</a>
+			<button id='jky-action-add-new'		class='btn btn-success' type='button'>Add New	</button>
+			<button id='jky-action-save'		class='btn btn-success' type='button'>Save		</button>
+			<button id='jky-action-copy'		class='btn btn-success' type='button'>Copy		</button>
+		&nbsp;<a	id='jky-action-delete'		class='btn'				type='button'>Delete	</a>
+		&nbsp;<a	id='jky-action-cancel'		class='btn'				type='button'>Cancel	</a>
 		</div>
 		<div id='jky-app-more'>
-			<button id='jky-action-export'	class='btn btn-success' type='button'>Export	</button>
-<!--		<button id='jky-action-publish'	class='btn btn-success' type='button'>Publish	</button>	-->
+			<button id='jky-action-export'		class='btn btn-success' type='button'>Export	</button>
+			<button id='jky-action-publish'		class='btn btn-success' type='button'>Publish	</button>
 		</div>
 		<div id='jky-app-displays' class='btn-group'>
-			<button id='jky-action-list'	class='btn' title='List View'><i class='icon-align-justify'	></i></button>
-			<button id='jky-action-form'	class='btn' title='Form View'><i class='icon-list-alt'		></i></button>
-<!--
-			<button class='btn'><i class='icon-signal'		></i></button>
-			<button class='btn'><i class='icon-calendar'	></i></button>
--->
+			<button id='jky-action-list'		class='btn' title=    'List View'><i class='icon-align-justify'	></i></button>
+			<button id='jky-action-form'		class='btn' title=    'Form View'><i class='icon-list-alt'		></i></button>
+			<button id='jky-action-graph'		class='btn' title= 'Graphic View'><i class='icon-signal'		></i></button>
+			<button id='jky-action-calendar'	class='btn' title='Calendar View'><i class='icon-calendar'		></i></button>
 		</div>
 		<div id='jky-app-counters'><span id='jky-app-index'>1</span> of <span id='jky-app-count'>12</span></div>
 		<div id='jky-app-add-new' >New</div>
 		<div id='jky-app-navs' class='btn-group'>
-			<button id='jky-action-prev'	class='btn' title='Previous'><i class='icon-backward'		></i></button>
-			<button id='jky-action-next'	class='btn' title='Next'	><i class='icon-forward'		></i></button>
+			<button id='jky-action-prev'		class='btn' title='Previous'	 ><i class='icon-backward'		></i></button>
+			<button id='jky-action-next'		class='btn' title='Next'		 ><i class='icon-forward'		></i></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -63,9 +61,18 @@
 #jky-company-name		{width:385px;}
 #jky-customer-tags		{width:385px;}
 
+#jky-user-name			{width:250px;}
+#jky-user-role			{width:260px;}
+#jky-first-name			{width:250px;}
+#jky-last-name			{width:250px;}
+#jky-email				{width:250px;}
+#jky-phone				{width:250px;}
+#jky-company-name		{width:260px;}
+#jky-photo-img			{border:4px ridge black; width:120px; height:120px;}
+
 #jky-street1			{width:250px;}
 #jky-street2			{width:250px;}
-#jky-city				{width:130px;}
+#jky-city				{width:120px;}
 #jky-state				{width: 50px;}
 #jky-zip				{width: 50px;}
 #jky-country			{width:260px;}
@@ -311,6 +318,9 @@
 			<div class='jky-form-line'><div class='jky-form-label'>             Email:</div><div class='jky-form-value'><input  id='jky-email'			placeholder='Email'				/></div></div>
 			<div class='jky-form-line'><div class='jky-form-label'>            Phone:</div><div class='jky-form-value'><input  id='jky-phone'			placeholder='e.g. 123-456-7890'	/></div></div>
 		</div>
+		<div class="jky-left">
+			<div id='jky-photo'><img id='jky-photo-img' src='/img/placeholder.png'><br><a id='jky-upload_photo'>Upload Photo</a></div>
+		</div>
 		<div class='jky-clear'></div>
 		<br>
 
@@ -494,6 +504,22 @@
 						</tr>
 					</tfoot>
 				</table>
+			</div>
+
+			<div id='jky-contacts' class='tab-pane active'>
+				<div class='jky-left'>
+					<div class='jky-form-line'>
+						<div class='jky-form-label'></div>
+						<div class='jky-form-value'>
+							<input	id='jky-street1'	class='jky-form-value' placeholder='Street ...'	/>
+							<input	id='jky-street2'	class='jky-form-value' placeholder=''			/>
+							<input	id='jky-city'		class='jky-form-value' placeholder='City'		/>
+							<input	id='jky-zip'		class='jky-form-value' placeholder='Zip'		/>
+							<select id='jky-state'	></select>
+							<select id='jky-country'></select>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<div id='jky-notes' class='tab-pane'>

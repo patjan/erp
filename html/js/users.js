@@ -5,7 +5,7 @@
  */
 var jky_program		= 'Users';
 var jky_table		= 'Contacts';
-var jky_select		= '';
+var jky_select		= 'Contacts.is_company = false';
 var jky_focus		= 'jky-full-name';
 var jky_filter		= '';
 var jky_specific	= '';
@@ -47,8 +47,8 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-form'		).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'			).click (function() {JKY.process_check_all	();});	// not needed on version 0
-
-		$('#jky-is-company'			).click	(function() {JKY.display_company(this);});
+		$('#jky-user-name'			).change(function() {JKY.process_user-name	();});
+		$('#jky-upload-photo'		).change(function() {JKY.upload-user-photo	();});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -66,7 +66,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-country', JKY.set_group_set('Configs', '', 'Countries'));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
-		JKY.display_form(1);
+//		JKY.display_form(1);
 		JKY.show('jky-side-admin'		);
 		JKY.show('jky-app-header'		);
 		JKY.show('jky-action-add-new'	);
@@ -83,6 +83,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-action-add-new'	);
 	JKY.hide('jky-action-save'		);
+	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
 	JKY.show('jky-app-table'		);
@@ -98,6 +99,7 @@ JKY.display_form = function(index) {
 	JKY.show('jky-app-counters'		);
 	JKY.hide('jky-action-add-new'	);
 	JKY.show('jky-action-save'		);
+	JKY.show('jky-action-copy'		);
 	JKY.show('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
@@ -132,30 +134,23 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_value	('jky-full-name'		, JKY.row['full_name'		]);
-	JKY.set_check	('jky-is-company'		, JKY.row['is_company'		]);
-	JKY.set_option	('jky-company-name'		, JKY.row['company_name'	]);
-	JKY.set_option	('jky-company-tag'		, JKY.row['company_tag'		]);
+	JKY.set_value	('jky-user-name'		, JKY.row.user_name		);
+	JKY.set_value	('jky-user-role'		, JKY.row.user-role		);
+	JKY.set_value	('jky-first-name'		, JKY.row.first-name	);
+	JKY.set_value	('jky-last-name'		, JKY.row.last-name		);
+	JKY.set_value	('jky-email'			, JKY.row.email			);
+	JKY.set_value	('jky-phone'			, JKY.row.phone			);
+	JKY.set_option	('jky-company-name'		, JKY.row.company_name	);
+	JKY.set_photo	('jky-photo-src'		, JKY.row.photo			);
 
-	JKY.set_value	('jky-street1'			, JKY.row['street1'			]);
-	JKY.set_value	('jky-street2'			, JKY.row['street2'			]);
-	JKY.set_value	('jky-city'				, JKY.row['city'			]);
-	JKY.set_value	('jky-zip'				, JKY.row['zip'				]);
-	JKY.set_option	('jky-state'			, JKY.row['state'			]);
-	JKY.set_option	('jky-country'			, JKY.row['country'			]);
-	JKY.set_value	('jky-website'			, JKY.row['website'			]);
+	JKY.set_value	('jky-street1'			, JKY.row.street1		);
+	JKY.set_value	('jky-street2'			, JKY.row.street2		);
+	JKY.set_value	('jky-city'				, JKY.row.city			);
+	JKY.set_value	('jky-zip'				, JKY.row.zip			);
+	JKY.set_option	('jky-state'			, JKY.row.state			);
+	JKY.set_option	('jky-country'			, JKY.row.country		);
+	JKY.set_value	('jky-website'			, JKY.row.website		);
 
-	JKY.set_value	('jky-position'			, JKY.row['position'		]);
-	JKY.set_value	('jky-phone'			, JKY.row['phone'			]);
-	JKY.set_value	('jky-mobile'			, JKY.row['mobile'			]);
-	JKY.set_value	('jky-fax'				, JKY.row['fax'				]);
-	JKY.set_value	('jky-email'			, JKY.row['email'			]);
-
-	if (JKY.row['is_company'] == 'yes') {
-		JKY.hide('jky-company-name');
-	}else{
-		JKY.show('jky-company-name');
-	}
 	JKY.set_focus(jky_focus);
 }
 
@@ -205,6 +200,7 @@ JKY.process_add_new = function() {
 	JKY.hide('jky-app-counters'		);
 	JKY.hide('jky-action-add-new'	);
 	JKY.show('jky-action-save'		);
+	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
@@ -212,10 +208,14 @@ JKY.process_add_new = function() {
 }
 
 JKY.display_new = function() {
-	JKY.set_value	('jky-full-name'		, '');
-	JKY.set_check	('jky-is-company'		, 'no');
+	JKY.set_value	('jky-user-name'		, '');
+	JKY.set_value	('jky-user-role'		, '');
+	JKY.set_value	('jky-first-name'		, '');
+	JKY.set_value	('jky-last-name'		, '');
+	JKY.set_value	('jky-email'			, '');
+	JKY.set_value	('jky-phone'			, '');
 	JKY.set_option	('jky-company-name'		, '');
-	JKY.set_option	('jky-company-tag'		, '');
+	JKY.set_photo	('jky-photo-src'		, 'placeholder.png');
 
 	JKY.set_value	('jky-street1'			, '');
 	JKY.set_value	('jky-street2'			, '');
@@ -225,20 +225,18 @@ JKY.display_new = function() {
 	JKY.set_option	('jky-country'			, '');
 	JKY.set_value	('jky-website'			, '');
 
-	JKY.set_value	('jky-position'			, '');
-	JKY.set_value	('jky-phone'			, '');
-	JKY.set_value	('jky-mobile'			, '');
-	JKY.set_value	('jky-fax'				, '');
-	JKY.set_value	('jky-email'			, '');
 	JKY.set_focus(jky_focus);
 }
 
 JKY.get_form_set = function() {
 	var my_set = ''
-		+       'full_name=\'' + JKY.get_value	('jky-full-name'		) + '\''
-		+    ', is_company=\'' + JKY.get_value	('jky-is-company'		) + '\''
+		+       'user_name=\'' + JKY.get_value	('jky-user-name'		) + '\''
+		+     ', user_role=\'' + JKY.get_value	('jky-user-role'		) + '\''
+		+    ', first_name=\'' + JKY.get_value	('jky-first-name'		) + '\''
+		+     ', last_name=\'' + JKY.get_value	('jky-last-name'		) + '\''
+		+         ', email=\'' + JKY.get_value	('jky-email'			) + '\''
+		+         ', phone=\'' + JKY.get_value	('jky-phone'			) + '\''
 //		+  ', company_name=\'' + JKY.get_value	('jky-company-name'		) + '\''
-//		+   ', company_tag=\'' + JKY.get_value	('jky-company-tag'		) + '\''
 
 		+       ', street1=\'' + JKY.get_value	('jky-street1'			) + '\''
 		+       ', street2=\'' + JKY.get_value	('jky-street2'			) + '\''
@@ -248,11 +246,6 @@ JKY.get_form_set = function() {
 		+       ', country=\'' + JKY.get_value	('jky-country'			) + '\''
 		+       ', website=\'' + JKY.get_value	('jky-website'			) + '\''
 
-		+      ', position=\'' + JKY.get_value	('jky-position'			) + '\''
-		+         ', phone=\'' + JKY.get_value	('jky-phone'			) + '\''
-		+        ', mobile=\'' + JKY.get_value	('jky-mobile'			) + '\''
-		+           ', fax=\'' + JKY.get_value	('jky-fax'				) + '\''
-		+         ', email=\'' + JKY.get_value	('jky-email'			) + '\''
 		;
 	return my_set;
 }
