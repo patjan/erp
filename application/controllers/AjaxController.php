@@ -1,25 +1,25 @@
 <?
 /**
- *   Process all [Ajax] functions
- *   This controller will be used to interface client to mysql using Ajax
- *   @author: Pat Jan
+ *	Process all [Ajax] functions
+ *	This controller will be used to interface client to mysql using Ajax
+ *	@author: Pat Jan
  *
- *   status = 'ok'
- *   status = 'error'
+ *	status = 'ok'
+ *	status = 'error'
  *
- *   message = 'table name [X...x] is undefined'
- *   message = 'method name [ X...x ] is undefined'
- *   message = 'error on server'             (only for no support)
- *   message = 'error on mysql: x...x'       (only for support)
- *   message = 'duplicate id'
+ *	message = 'table name [X...x] is undefined'
+ *	message = 'method name [ X...x ] is undefined'
+ *	message = 'error on server'				(only for no support)
+ *	message = 'error on mysql: x...x'		(only for support)
+ *	message = 'duplicate id'
  *
  */
-class     AjaxController
-extends   JKY_Controller {
+class	AjaxController
+extends	JKY_Controller {
 
 public function init() {
-    $this->_helper->layout()->disableLayout();
-    $this->_helper->viewRenderer->setNoRender();
+	$this->_helper->layout()->disableLayout();
+	$this->_helper->viewRenderer->setNoRender();
 
 //	set_session('user_level', MINIMUM_TO_BROWSE  );
 //	set_session('user_level', MINIMUM_TO_SUPPORT );
@@ -75,7 +75,7 @@ public function indexAction() {
 
 			case 'check_session'	: $this->check_session	(); return;
 			case 'log_in'			: $this->log_in			($data); return;
-			case 'log_out'			: $this->log_out		(); return;
+			case 'log_out'			: $this->log_out		($data); return;
 			case 'log_help'			: $this->log_help		(); return;
 			case 'profile'			: $this->profile		(); return;
 			case 'sign_up'			: $this->sign_up		(); return;
@@ -191,7 +191,7 @@ public function indexAction() {
 	}
 }
 
-/*
+/**
  *	get security
  *	if
  *
@@ -203,13 +203,13 @@ private function get_security($table, $where) {
 	}
 
 	switch($table) {
-		case 'Persons'		: return       'Persons.id=' . get_session('user_id');
+		case 'Contacts'		: return      'Contacts.id=' . get_session('user_id');
 		case 'Services'		: return 'Services.user_id=' . get_session('user_id') . ' AND Services.event_id=' . get_session('event_id');
 		default				: return $where;
 	}
 }
 
-/*
+/**
  *	$.ajax({ method: get_names, table: x...x, field: x...x, key: x...x });
  *
  *	return: [ x...x, ..., x...x ]
@@ -217,7 +217,7 @@ private function get_security($table, $where) {
 private function get_names($data) {
 	$table = get_data($data, 'table');
 	$field = get_data($data, 'field');
-	$key   = get_data($data, 'key'  );
+	$key   = get_data($data, 'key'	);
 	$data  = '';
 
 	if ($key != '') {
@@ -232,35 +232,35 @@ private function get_names($data) {
 
 		$prepen = '';
 		foreach($rows as $row) {
-			$data  .= $prepen . '"' . $row[ 'value' ] . '"';
+			$data  .= $prepen . '"' . $row['value'] . '"';
 			$prepen = ', ';
 		}
 	}
 	echo '[' . $data . ']';
 }
 
-/*
+/**
  *   $.ajax({ method: get_user_screen, name: x...x });
  *
  *   return: [ x...x, ..., x...x ]
  */
 private function get_user_screen() {
-     $name  = get_request( 'name'  );
+	$name = get_request('name');
 
-     $sql = 'SELECT value'
-	  . '  FROM Controls'
-	  . ' WHERE group_set  = "User Screens"'
-	  . '   AND control_name = "' . $name . '"'
-	  ;
+	$sql= 'SELECT value'
+		. '  FROM Controls'
+		. ' WHERE group_set  = "User Screens"'
+		. '   AND control_name = "' . $name . '"'
+		;
 //$this->log_sql( null, 'get_user_screen', $sql );
-     $db  = Zend_Registry::get( 'db' );
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'page'     ] = $db->fetchOne( $sql );
-     echo json_encode( $return );
+	$db = Zend_Registry::get('db');
+	$return = array();
+	$return['status'] = 'ok';
+	$return['page'	] = $db->fetchOne($sql);
+	echo json_encode($return);
 }
 
-/*
+/**
  *	$.ajax({ method: get_id, table: x...x, where: x...x });
  *
  *	status: ok
@@ -287,7 +287,7 @@ private function get_id($data) {
 	echo json_encode($return);
 }
 
-/*
+/**
  *	$.ajax({ method: get_ids, table: x...x });
  *
  *	return: [ x...x, ..., x...x ]
@@ -306,7 +306,7 @@ private function get_ids($data) {
 	echo json_encode($return);
 }
 
-/*
+/**
  *	$.ajax({ method: get_count, table: x...x [, where: x...x] });
  *
  *	status: ok
@@ -332,7 +332,7 @@ private function get_count($data) {
 	echo json_encode($return);
 }
 
-/*
+/**
  *	$.ajax({ method: get_value, table: x...x, field:x...x, where: x...x });
  *
  *	status: ok
@@ -364,7 +364,7 @@ private function get_value($data) {
 	echo json_encode($return);
 }
 
-/*
+/**
  *	$.ajax({ method: get_row, table: x...x, where: x...x });
  *
  *	status: ok
@@ -398,7 +398,7 @@ private function get_row($data) {
 	echo json_encode($return);
 }
 
-/*
+/**
  *	$.ajax({ method: get_rows, table: x...x [, where: x...x] [, order_by: x...x] });
  *
  *	status: ok
@@ -439,7 +439,7 @@ private function get_rows($data) {
 	echo json_encode($return);
 }
 
-/*
+/**
  *	$.ajax({ method: get_index, table: x...x, filter: x...x, select: x...x, display: x...x, order_by: x...x, specific: x...x });
  *
  *	status: ok
@@ -526,7 +526,6 @@ private function set_specific($table, $specific) {
 	if ($table == 'Services'		&& $specific == 'event_id'	)		$return .= ' AND Services.event_id   = ' . get_session('event_id');
 	if ($table == 'Services'		&& $specific == 'fee_amount')       $return .= ' AND Services.fee_amount > 0';
 	if ($table == 'Translations'	&& $specific == 'locale'	)		$return .= ' AND Translations.locale = "en_us"';
-	if ($table == 'Persons'			&& $specific == 'organ_id'	)		$return .= ' AND    Persons.organ_id = ' . get_session('organ_id');
 //	if ($specific == 'parent_id')	$return .= ' AND Categories.parent_id = ' . get_session('parent_id');
 	if ($table == 'Contacts'		&& $specific == 'is_user'	)		$return .= ' AND Contacts.is_company = "no"';
 
@@ -551,12 +550,12 @@ private function set_select($table, $select) {
 	if ($table == 'Templates'	)	$return = ' AND      Templates.template_type = "' . $select . '"';
 	if ($table == 'Tickets'		)	$return = ' AND        Tickets.status        = "' . $select . '"';
 	if ($table == 'Translations')	$return = ' AND   Translations.status        = "' . $select . '"';
-	if ($table == 'Persons'		)	$return = ' AND        Persons.user_role     = "' . $select . '"';
 
-	if ($table == 'FTP_Loads'	)	$return = ' AND      FTP_Loads.ftp_id		 =  ' . $select;
-	if ($table == 'FTP_Threads'	)	$return = ' AND    FTP_Threads.ftp_id		 =  ' . $select;
-	if ($table == 'FTP_Sets'	)	$return = ' AND       FTP_Sets.ftp_id		 =  ' . $select;
-	if ($table == 'Cylinders'	)	$return = ' AND      Cylinders.machine_id	 =  ' . $select;
+//	if ($table == 'Contacts'	)	$return = ' AND       Contacts.user_role		= "' . $select . '"';
+	if ($table == 'Cylinders'	)	$return = ' AND      Cylinders.machine_id		=  ' . $select;
+	if ($table == 'FTP_Loads'	)	$return = ' AND      FTP_Loads.ftp_id			=  ' . $select;
+	if ($table == 'FTP_Threads'	)	$return = ' AND    FTP_Threads.ftp_id			=  ' . $select;
+	if ($table == 'FTP_Sets'	)	$return = ' AND       FTP_Sets.ftp_id			=  ' . $select;
 
 	return $return;
 }
@@ -565,39 +564,31 @@ private function set_new_fields($table) {
 	$return = '';
 	if ($table == 'Categories'	)	$return = ',    Parent.category		AS   parent_name';
 	if ($table == 'Companies'	)	$return = ',   Contact.full_name	AS  contact_name';
-	if ($table == 'Services'	)	$return = ',   Persons.full_name	AS     full_name'
-											. ',   Persons.first_name	AS    first_name'
-											. ',   Persons.last_name	AS     last_name'
-											. ',   Persons.user_email	AS    user_email'
-											. ',   Persons.avatar		AS        avatar'
-											. ',    Groups.group_name	AS    group_name';
 	if ($table == 'Templates'	)	$return = ',   Created.full_name	AS  created_name';
 	if ($table == 'Tickets'		)	$return = ',    Opened.full_name	AS   opened_name'
 											. ',    Closed.full_name	AS   closed_name'
 											. ',  Assigned.full_name	AS assigned_name';
-	if ($table == 'Persons'		)	$return = ',   Support.full_name	AS  support_name'
-											. ', Companies.company_name	AS  company_name';
 
-	if ($table == 'Contacts'	)	$return = ', JKY_Users.id			AS  user_id'
-											. ', JKY_Users.user_name	AS  user_name'
-											. ', JKY_Users.user_role	AS  user_role'
+	if ($table == 'Contacts'	)	$return = ', JKY_Users.id			AS     user_id'
+											. ', JKY_Users.user_name	AS     user_name'
+											. ', JKY_Users.user_role	AS     user_role'
 											. ', Companies.full_name	AS  company_name';
-	if ($table == 'FTPs'		)	$return = ',  Products.name			AS  product'
-											. ',  Machines.name			AS  machine';
-	if ($table == 'FTP_Loads'	)	$return = ',   Thread1.name			AS  first_name'
-											. ',   Thread2.name			AS second_name';
-	if ($table == 'FTP_Threads'	)	$return = ',   Threads.name			AS  name';
-	if ($table == 'FTP_Sets'	)	$return = ',   Configs.sequence		AS  sequence'
-											. ',   Configs.name			AS  name';
+	if ($table == 'FTPs'		)	$return = ',  Products.name			AS			product'
+											. ',  Machines.name			AS			machine';
+	if ($table == 'FTP_Loads'	)	$return = ',   Thread1.name			AS    first_name'
+											. ',   Thread2.name			AS   second_name';
+	if ($table == 'FTP_Threads'	)	$return = ',   Threads.name			AS			name';
+	if ($table == 'FTP_Sets'	)	$return = ',   Configs.sequence		AS			sequence'
+											. ',   Configs.name			AS			name';
 
-//	special code to append fields from Persons to Services table
+//	special code to append fields from Contacts to Services table
 	if (get_request('method') == 'export') {
 		if ($table   == 'Services') {
-			$sql  = 'SHOW COLUMNS FROM Persons WHERE Field != "id" AND Field != "created_by" AND Field != "created_at" AND Field != "updated_by" AND Field != "updated_at" AND Field != "status" AND Field != "completed"';
+			$sql  = 'SHOW COLUMNS FROM Contacts WHERE Field != "id" AND Field != "created_by" AND Field != "created_at" AND Field != "updated_by" AND Field != "updated_at" AND Field != "status" AND Field != "completed"';
 			$db   = Zend_Registry::get( 'db' );
 			$cols = $db->fetchAll( $sql );
 			foreach($cols as $col) {
-				$return .= ', Persons.' . $col['Field'] . ' AS ' . $col['Field'];
+				$return .= ', Contacts.' . $col['Field'] . ' AS ' . $col['Field'];
 			}
 		}
 	}
@@ -608,15 +599,11 @@ private function set_new_fields($table) {
 private function set_left_joins($table) {
 	$return = '';
 	if ($table == 'Categories'	)	$return = '  LEFT JOIN  Categories AS Parent	ON    Parent.id = Categories.parent_id';
-	if ($table == 'Companies'	)	$return = '  LEFT JOIN     Persons AS Contact	ON   Contact.id =  Companies.contact_id';
-	if ($table == 'Services'	)	$return = '  LEFT JOIN     Persons				ON   Persons.id =   Services.user_id'
-											. '  LEFT JOIN      Groups				ON    Groups.id =   Services.group_id';
-	if ($table == 'Templates'	)	$return = '  LEFT JOIN     Persons AS Created	ON   Created.id =  Templates.created_by';
-	if ($table == 'Tickets'		)	$return = '  LEFT JOIN     Persons AS Opened	ON    Opened.id =    Tickets.opened_by'
-											. '  LEFT JOIN     Persons AS Closed	ON    Closed.id =    Tickets.closed_by'
-											. '  LEFT JOIN     Persons AS Assigned	ON  Assigned.id =    Tickets.assigned_to';
-	if ($table == 'Persons'		)	$return = '  LEFT JOIN     Persons AS Support	ON   Support.id =    Persons.support_id'
-											. '  LEFT JOIN   Companies				ON Companies.id =    Persons.company_id';
+	if ($table == 'Companies'	)	$return = '  LEFT JOIN     Contacts AS Contact	ON   Contact.id =  Companies.contact_id';
+	if ($table == 'Templates'	)	$return = '  LEFT JOIN     Contacts AS Created	ON   Created.id =  Templates.created_by';
+	if ($table == 'Tickets'		)	$return = '  LEFT JOIN     Contacts AS Opened	ON    Opened.id =    Tickets.opened_by'
+											. '  LEFT JOIN     Contacts AS Closed	ON    Closed.id =    Tickets.closed_by'
+											. '  LEFT JOIN     Contacts AS Assigned	ON  Assigned.id =    Tickets.assigned_to';
 
 	if ($table == 'Contacts'	)	$return = '  LEFT JOIN   JKY_Users AS JKY_Users	ON  Contacts.id =  JKY_Users.contact_id'
 											. '  LEFT JOIN    Contacts AS Companies	ON Companies.id =   Contacts.company_id AND Companies.is_company = "yes"';
@@ -641,44 +628,56 @@ private function set_where($table, $filter) {
 		$name  =        trim( $names[ 0 ]);
 		$value = '"%' . trim( $names[ 1 ]) . '%"';
 
-	  if(  $table == 'Categories' ) {
-	       if(  $name == 'sequence'
-	       or   $name == 'category' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Categories.' . $name . ' IS NULL ';
-		    else return ' AND Categories.' . $name . ' LIKE ' . $value;
-	       else
-	       if(  $name == 'parent_name' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Categories.parent_id  IS NULL';
-		    else return ' AND     Parent.category   LIKE ' . $value;
-	  }
+	if ($table == 'Categories') {
+		if ($name == 'sequence'
+		or	$name == 'category') {
+			if ($value == '"%null%"') {
+				return ' AND Categories.' . $name . ' IS NULL ';
+			}else{
+				return ' AND Categories.' . $name . ' LIKE ' . $value;
+			}
+		}else{
+			if ($name == 'parent_name') {
+				if ($value == '"%null%"') {
+					return ' AND Categories.parent_id  IS NULL';
+				}else{
+					return ' AND     Parent.category   LIKE ' . $value;
+				}
+			}
+		}
+	}
 
-	  if(  $table == 'Companies' ) {
-	       if(  $name == 'company_name'
-	       or   $name == 'company_number'
-	       or   $name == 'phone'
-	       or   $name == 'fax'
-	       or   $name == 'street'
-	       or   $name == 'city'
-	       or   $name == 'state'
-	       or   $name == 'zip'
-	       or   $name == 'country' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Companies.' . $name . ' IS NULL ';
-		    else return ' AND Companies.' . $name . ' LIKE ' . $value;
-	       else
-	       if(  $name == 'contact_name' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Companies.contact_id  IS NULL';
-		    else return ' AND   Contact.full_name   LIKE ' . $value;
-	  }
+	if ($table == 'Companies') {
+		if ($name == 'company_name'
+		or	$name == 'company_number'
+		or	$name == 'phone'
+		or	$name == 'fax'
+		or	$name == 'street'
+		or	$name == 'city'
+		or	$name == 'state'
+		or	$name == 'zip'
+		or	$name == 'country') {
+			if ($value == '"%null%"') {
+				return ' AND Companies.' . $name . ' IS NULL ';
+			}else{
+				return ' AND Companies.' . $name . ' LIKE ' . $value;
+			}
+		}else{
+			if ($name == 'contact_name') {
+				if ($value == '"%null%"') {
+					return ' AND Companies.contact_id  IS NULL';
+				}else{
+					return ' AND   Contact.full_name   LIKE ' . $value;
+				}
+			}
+		}
+	}
 
 	if ($table == 'Controls') {
 		if ($name == 'group_set'
-		or  $name == 'sequence'
-		or  $name == 'name'
-		or  $name == 'value' ) {
+		or	$name == 'sequence'
+		or	$name == 'name'
+		or	$name == 'value') {
 			if ($value == '"%null%"') {
 				return ' AND Controls.' . $name . ' IS NULL ';
 			}else{
@@ -689,9 +688,9 @@ private function set_where($table, $filter) {
 
 	if ($table == 'Configs') {
 		if ($name == 'group_set'
-		or  $name == 'sequence'
-		or  $name == 'name'
-		or  $name == 'value' ) {
+		or	$name == 'sequence'
+		or	$name == 'name'
+		or	$name == 'value') {
 			if ($value == '"%null%"') {
 				return ' AND Configs.' . $name . ' IS NULL ';
 			}else{
@@ -700,218 +699,96 @@ private function set_where($table, $filter) {
 		}
 	}
 
-	  if(  $table == 'Events' ) {
-	       if(  $name == 'event_name'
-	       or   $name == 'location'
-	       or   $name == 'cut_off_date'
-	       or   $name == 'start_date'
-	       or   $name == 'end_date'
-	       or   $name == 'last_number'
-	       or   $name == 'us_fee_week1'
-	       or   $name == 'us_fee_week2'
-	       or   $name == 'us_fee_week3'
-	       or   $name == 'tw_fee_week1'
-	       or   $name == 'tw_fee_week2'
-	       or   $name == 'tw_fee_week3'
-	       or   $name == 'status' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Events.' . $name . ' IS NULL ';
-		    else return ' AND Events.' . $name . ' LIKE ' . $value;
-	  }
+	if ($table == 'Permissions') {
+		if ($name == 'user_role'
+		or	$name == 'user_resource'
+		or	$name == 'user_action'
+		or	$name == 'status') {
+			if ($value == '"%null%"') {
+				return ' AND Permissions.' . $name . ' IS NULL ';
+			}else{
+				return ' AND Permissions.' . $name . ' LIKE ' . $value;
+			}
+		}
+	}
 
-	  if(  $table == 'Groups' ) {
-	       if(  $name == 'group_name'
-	       or   $name == 'group_type'
-	       or   $name == 'total_targeted'
-	       or   $name == 'total_applied'
-	       or   $name == 'total_approved'
-	       or   $name == 'total_arrived'
-	       or   $name == 'total_departed'
-	       or   $name == 'status' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Groups.' . $name . ' IS NULL ';
-		    else return ' AND Groups.' . $name . ' LIKE ' . $value;
-	  }
+	if ($table == 'Receives') {
+		if ($name == 'receive_on'
+		or	$name == 'receive_amount'
+		or	$name == 'set_amount'
+		or	$name == 'document'
+		or	$name == 'full_name'
+		or	$name == 'email'
+		or	$name == 'street'
+		or	$name == 'zip'
+		or	$name == 'city'
+		or	$name == 'state'
+		or	$name == 'country')
+			if ($value == '"%null%"') {
+				return ' AND Receives.' . $name . ' IS NULL ';
+			}else{
+				return ' AND Receives.' . $name . ' LIKE ' . $value;
+			}
+		}
+	}
 
-	  if(  $table == 'Permissions' ) {
-	       if(  $name == 'user_role'
-	       or   $name == 'user_resource'
-	       or   $name == 'user_action'
-	       or   $name == 'status' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Permissions.' . $name . ' IS NULL ';
-		    else return ' AND Permissions.' . $name . ' LIKE ' . $value;
-	  }
+	if ($table == 'Templates') {
+		if ($name == 'created_at'
+		or	$name == 'template_name'
+		or	$name == 'template_type'
+		or	$name == 'template_subject'
+		or	$name == 'template_body'
+		or	$name == 'template_sql'
+		or	$name == 'description'
+		or	$name == 'status') {
+			if ($value == '"%null%"') {
+				return ' AND Templates.' . $name . ' IS NULL ';
+			}else{
+				return ' AND Templates.' . $name . ' LIKE ' . $value;
+			}
+		}else{
+			if ($name == 'created_by') {
+				if ($value == '"%null%"') {
+					return ' AND Templates.created_by  IS NULL';
+				}else{
+					return ' AND   Created.full_name   LIKE ' . $value;
+				}
+			}
+		}
+	}
 
-	 if(  $table == 'Receives' ) {
-	     if(  $name == 'receive_on'
-		 or   $name == 'receive_amount'
-		 or   $name == 'set_amount'
-		 or   $name == 'document'
-		 or   $name == 'full_name'
-		 or   $name == 'email'
-		 or   $name == 'street'
-		 or   $name == 'zip'
-		 or   $name == 'city'
-		 or   $name == 'state'
-		 or   $name == 'country' )
-		 if(  $value == '"%null%"' )
-		      return ' AND Receives.' . $name . ' IS NULL ';
-		 else return ' AND Receives.' . $name . ' LIKE ' . $value;
-	 }
+	if ($table == 'Tickets') {
+		if ($name == 'opened_at'
+		or	$name == 'priority'
+		or	$name == 'description'
+		or	$name == 'resolution'
+		or	$name == 'status') {
+			if ($value == '"%null%"') {
+				return ' AND Tickets.' . $name . ' IS NULL ';
+			}else{
+				return ' AND Tickets.' . $name . ' LIKE ' . $value;
+			}
+		}else{
+			if ($name == 'opened_by') {
+				if ($value == '"%null%"') {
+					return ' AND  Tickets.opened_by    IS NULL';
+				}else{
+					return ' AND   Opened.full_name    LIKE ' . $value;
+				}
+			}
+		}
+	}
 
-	  if(  $table == 'Services' ) {
-	       if(  $name == 'helper_number'
-	       or   $name == 'helper_age'
-	       or   $name == 'tshirt_size'
-/*
-	       or   $name == 'school_year'
-	       or   $name == 'school_name'
-*/
-	       or   $name == 'boot_camp'
-	       or   $name == 'week_1'
-	       or   $name == 'week_2'
-	       or   $name == 'week_3'
-	       or   $name == 'debriefing'
-/*
-	       or   $name == 'schedule1'
-	       or   $name == 'schedule2'
-	       or   $name == 'schedule3'
-	       or   $name == 'm_speaking'
-	       or   $name == 'm_reading'
-	       or   $name == 'm_writing'
-	       or   $name == 't_speaking'
-	       or   $name == 't_reading'
-	       or   $name == 't_writing'
-	       or   $name == 'all_gifts'
-	       or   $name == 'other_gifts'
-	       or   $name == 'medications'
-	       or   $name == 'arrival_flight'
-	       or   $name == 'arrival_time'
-	       or   $name == 'arrival_pickup'
-	       or   $name == 'depart_flight'
-	       or   $name == 'depart_time'
-	       or   $name == 'depart_pickup'
-*/
-	       or   $name == 'receive_id'
-	       or   $name == 'fee_amount'
-	       or   $name == 'status' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Services.' . $name . ' IS NULL ';
-		    else return ' AND Services.' . $name . ' LIKE ' . $value;
-	       else
-	       if(  $name == 'first_name' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Services.user_id     IS NULL';
-		    else return ' AND  Persons.first_name  LIKE ' . $value;
-	       else
-	       if(  $name == 'last_name' )
-		   if(  $value == '"%null%"' )
-			return ' AND Services.user_id     IS NULL';
-		   else return ' AND  Persons.last_name   LIKE ' . $value;
-	       else
-	       if(  $name == 'group_name' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Services.group_id    IS NULL';
-		    else return ' AND   Groups.group_name  LIKE ' . $value;
-	  }
-
-	  if(  $table == 'Settings' ) {
-	       if(  $name == 'setting_set'
-		    or   $name == 'sequence'
-		    or   $name == 'setting_name'
-		    or   $name == 'setting_value' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Settings.' . $name . ' IS NULL ';
-		    else return ' AND Settings.' . $name . ' LIKE ' . $value;
-	  }
-
-	 if(  $table == 'Summary' ) {
-	     if(  $name == 'group_key'
-		 or   $name == 'week_1'
-		 or   $name == 'week_2'
-		 or   $name == 'week_3' )
-		 if(  $value == '"%null%"' )
-		     return ' AND Summary.' . $name . ' IS NULL ';
-		 else return ' AND Summary.' . $name . ' LIKE ' . $value;
-	 }
-
-	  if(  $table == 'Templates' ) {
-	       if(  $name == 'created_at'
-	       or   $name == 'template_name'
-	       or   $name == 'template_type'
-	       or   $name == 'template_subject'
-	       or   $name == 'template_body'
-	       or   $name == 'template_sql'
-	       or   $name == 'description'
-	       or   $name == 'status' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Templates.' . $name . ' IS NULL ';
-		    else return ' AND Templates.' . $name . ' LIKE ' . $value;
-	       else
-	       if(  $name == 'created_by' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Templates.created_by  IS NULL';
-		    else return ' AND   Created.full_name   LIKE ' . $value;
-	  }
-
-	  if(  $table == 'Tickets' ) {
-	       if(  $name == 'opened_at'
-	       or   $name == 'priority'
-	       or   $name == 'description'
-	       or   $name == 'resolution'
-	       or   $name == 'status' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Tickets.' . $name . ' IS NULL ';
-		    else return ' AND Tickets.' . $name . ' LIKE ' . $value;
-	       else
-	       if(  $name == 'opened_by' )
-		    if(  $value == '"%null%"' )
-			 return ' AND  Tickets.opened_by    IS NULL';
-		    else return ' AND   Opened.full_name    LIKE ' . $value;
-	  }
-
-	  if( $table == 'Translations' ) {
-	       if( $name == 'sentence'
-	       or  $name == 'status' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Translations.' . $name . ' IS NULL ';
-		    else return ' AND Translations.' . $name . ' LIKE ' . $value;
-	  }
-
-	  if(  $table == 'Persons' ) {
-	       if(  $name == 'user_title'
-	       or   $name == 'full_name'
-	       or   $name == 'official_name'
-	       or   $name == 'special_name'
-	       or   $name == 'user_email'
-	       or   $name == 'gender'
-	       or   $name == 'birth_date'
-	       or   $name == 'mobile'
-	       or   $name == 'phone'
-	       or   $name == 'street'
-	       or   $name == 'city'
-	       or   $name == 'state'
-	       or   $name == 'zip'
-	       or   $name == 'country'
-	       or   $name == 'contact_name'
-	       or   $name == 'church_name'
-	       or   $name == 'pastor_name' )
-		    if(  $value == '"%null%"' )
-			 return ' AND Persons.' . $name . ' IS NULL ';
-		    else return ' AND Persons.' . $name . ' LIKE ' . $value;
-	       else
-	       if(  $name == 'company_name' )
-		    if(  $value == '"%null%"' )
-			 return ' AND   Persons.company_id   IS NULL';
-		    else return ' AND Companies.company_name LIKE ' . $value;
-	       else
-	       if(  $name == 'support_name' )
-		    if(  $value == '"%null%"' )
-			 return ' AND   Persons.support_id  IS NULL';
-		    else return ' AND   Support.full_name   LIKE ' . $value;
-	  }
-     }
+	if ($table == 'Translations') {
+		if( $name == 'sentence'
+		or	$name == 'status') {
+			if ($value == '"%null%"') {
+				return ' AND Translations.' . $name . ' IS NULL ';
+			}else{
+				return ' AND Translations.' . $name . ' LIKE ' . $value;
+			}
+		}
+	}
 
 	if ($table == 'Contacts') {
 		if ($name == 'first_name'
@@ -925,192 +802,107 @@ private function set_where($table, $filter) {
 		or	$name == 'state'
 		or	$name == 'zip'
 		or	$name == 'country') {
-			if	($value == '"%null%"') {
-				return ' AND Persons.' . $name . ' IS NULL ';
+			if ($value == '"%null%"') {
+				return ' AND Contacts.' . $name . ' IS NULL ';
 			}else{
-				return ' AND Persons.' . $name . ' LIKE ' . $value;
+				return ' AND Contacts.' . $name . ' LIKE ' . $value;
 			}
 		}else{
 			if ($name == 'company_name') {
 				if ($value == '"%null%"') {
-					return ' AND   Persons.company_id   IS NULL';
+					return ' AND Contacts.company_id IS NULL';
 				}else{
-					return ' AND Companies.company_name LIKE ' . $value;
+					return ' AND Companies.full_name LIKE ' . $value;
 				}
 			}
 		}
 	}
 
-     $filter = '"%' . $filter . '%"';
+	$filter = '"%' . $filter . '%"';
 
-     if(  $table == 'Categories' ) {
-	  $return = '   Categories.sequence            LIKE ' . $filter
-	       . ' OR   Categories.category            LIKE ' . $filter
-	       . ' OR       Parent.category            LIKE ' . $filter
-	       ;
-     }
-
-     if(  $table == 'Companies' ) {
-	  $return = '   Companies.company_name         LIKE ' . $filter
-	       . ' OR   Companies.company_number       LIKE ' . $filter
-	       . ' OR   Companies.phone                LIKE ' . $filter
-	       . ' OR   Companies.fax                  LIKE ' . $filter
-	       . ' OR   Companies.street               LIKE ' . $filter
-	       . ' OR   Companies.city                 LIKE ' . $filter
-	       . ' OR   Companies.state                LIKE ' . $filter
-	       . ' OR   Companies.zip                  LIKE ' . $filter
-	       . ' OR   Companies.country              LIKE ' . $filter
-	       . ' OR     Contact.full_name            LIKE ' . $filter
-	       ;
-     }
+	if ($table == 'Categories') {
+		$return = '       Categories.sequence			LIKE ' . $filter
+				. ' OR    Categories.category			LIKE ' . $filter
+				. ' OR        Parent.category			LIKE ' . $filter
+				;
+	}
 
 	if ($table == 'Controls') {
-		$return = '    Controls.sequence	LIKE ' . $filter
-				. ' OR Controls.name		LIKE ' . $filter
-				. ' OR Controls.value		LIKE ' . $filter
+		$return = '         Controls.sequence			LIKE ' . $filter
+				. ' OR      Controls.name				LIKE ' . $filter
+				. ' OR      Controls.value				LIKE ' . $filter
 				;
 	}
 
 	if ($table == 'Configs') {
-		$return = '    Configs.sequence		LIKE ' . $filter
-				. ' OR Configs.name			LIKE ' . $filter
-				. ' OR Configs.value		LIKE ' . $filter
+		$return = '          Configs.sequence			LIKE ' . $filter
+				. ' OR       Configs.name				LIKE ' . $filter
+				. ' OR       Configs.value				LIKE ' . $filter
 				;
 	}
 
-     if(  $table == 'Events' ) {
-	  $return = '    Events.event_name             LIKE ' . $filter
-	      . ' OR     Events.location               LIKE ' . $filter
-	      ;
-     }
+	if ($table == 'Permissions') {
+		$return = '      Permissions.user_role			LIKE ' . $filter
+				. ' OR   Permissions.user_resource		LIKE ' . $filter
+				. ' OR    Permissions.user_action		LIKE ' . $filter
+				;
+	}
 
-     if(  $table == 'Groups' ) {
-	  $return = '    Groups.group_name             LIKE ' . $filter
-	      . ' OR     Groups.group_type             LIKE ' . $filter
-	      ;
-     }
+	if ($table == 'Receives') {
+		$return = '         Receives.receive_on			LIKE ' . $filter
+				. ' OR      Receives.receive_amount		LIKE ' . $filter
+				. ' OR      Receives.full_name			LIKE ' . $filter
+				;
+	}
 
-     if(  $table == 'Permissions' ) {
-	  $return = ' Permissions.user_role            LIKE ' . $filter
-	       . ' OR Permissions.user_resource        LIKE ' . $filter
-	       . ' OR Permissions.user_action          LIKE ' . $filter
-	       ;
-     }
+	if ($table == 'Templates') {
+		$return = '        Templates.created_at			LIKE ' . $filter
+				. ' or     Templates.template_name		LIKE ' . $filter
+				. ' or     Templates.template_type		LIKE ' . $filter
+				. ' or     Templates.template_subject	LIKE ' . $filter
+				. ' or     Templates.template_body		LIKE ' . $filter
+				. ' or     Templates.template_sql		LIKE ' . $filter
+				. ' or     Templates.description		LIKE ' . $filter
+				;
+	}
 
-    if(  $table == 'Receives' ) {
-	$return = ' Receives.receive_on            LIKE ' . $filter
-	    . ' OR Receives.receive_amount        LIKE ' . $filter
-	    . ' OR Receives.full_name          LIKE ' . $filter
-	;
-    }
+	if ($table == 'Tickets') {
+		$return = '           Tickets.opened_at			LIKE ' . $filter
+				. ' OR        Tickets.priority			LIKE ' . $filter
+				. ' OR        Tickets.description		LIKE ' . $filter
+				. ' OR        Tickets.resolution		LIKE ' . $filter
+				. ' OR         Opened.full_name			LIKE ' . $filter
+				;
+	}
 
-     if(  $table == 'Services' ) {
-	  $return = '  Persons.full_name               LIKE ' . $filter
-	       . ' OR Services.helper_number           LIKE ' . $filter
-	       . ' OR Services.helper_age              LIKE ' . $filter
-	       . ' OR Services.tshirt_size             LIKE ' . $filter
-	       . ' OR Services.boot_camp               LIKE ' . $filter
-	       . ' OR Services.week_1                  LIKE ' . $filter
-	       . ' OR Services.week_2                  LIKE ' . $filter
-	       . ' OR Services.week_3                  LIKE ' . $filter
-	       . ' OR Services.debriefing              LIKE ' . $filter
-	       . ' OR Services.receive_id              LIKE ' . $filter
-	       . ' OR Services.fee_amount              LIKE ' . $filter
-	       ;
-     }
-
-     if(  $table == 'Settings' ) {
-	  $return = '    Settings.sequence             LIKE ' . $filter
-	       . ' OR    Settings.setting_name         LIKE ' . $filter
-	       . ' OR    Settings.setting_value        LIKE ' . $filter
-	  ;
-     }
-
-    if(  $table == 'Summary' ) {
-	$return = '    Summary.group_key            LIKE ' . $filter
-	    . ' OR     Summary.week_1               LIKE ' . $filter
-	    . ' OR     Summary.week_2               LIKE ' . $filter
-	    . ' OR     Summary.week_3               LIKE ' . $filter
-	;
-    }
-
-     if(  $table == 'Templates' ) {
-	  $return = '   Templates.created_at           LIKE ' . $filter
-	       . ' or   Templates.template_name        LIKE ' . $filter
-	       . ' or   Templates.template_type        LIKE ' . $filter
-	       . ' or   Templates.template_subject     LIKE ' . $filter
-	       . ' or   Templates.template_body        LIKE ' . $filter
-	       . ' or   Templates.template_sql         LIKE ' . $filter
-	       . ' or   Templates.description          LIKE ' . $filter
-	       ;
-     }
-
-     if(  $table == 'Tickets' ) {
-	  $return = '     Tickets.opened_at            LIKE ' . $filter
-	       . ' OR     Tickets.priority             LIKE ' . $filter
-	       . ' OR     Tickets.description          LIKE ' . $filter
-	       . ' OR     Tickets.resolution           LIKE ' . $filter
-	       . ' OR      Opened.full_name            LIKE ' . $filter
-	       ;
-     }
-
-     if(  $table == 'Translations' ) {
-	  $return = '     Translations.created_at      LIKE ' . $filter
-	       . ' OR     Translations.updated_at      LIKE ' . $filter
-	       . ' OR     Translations.sentence        LIKE ' . $filter
-	  ;
-     }
-
-     if(  $table == 'Persons' ) {
-	  $return = '     Persons.user_title           LIKE ' . $filter
-	       . ' OR     Persons.full_name            LIKE ' . $filter
-	       . ' OR     Persons.official_name        LIKE ' . $filter
-	       . ' OR     Persons.special_name         LIKE ' . $filter
-	       . ' OR     Persons.user_email           LIKE ' . $filter
-	       . ' OR     Persons.gender               LIKE ' . $filter
-	       . ' OR     Persons.birth_date           LIKE ' . $filter
-	       . ' OR     Persons.mobile               LIKE ' . $filter
-	       . ' OR     Persons.phone                LIKE ' . $filter
-	       . ' OR     Persons.street               LIKE ' . $filter
-	       . ' OR     Persons.city                 LIKE ' . $filter
-	       . ' OR     Persons.state                LIKE ' . $filter
-	       . ' OR     Persons.zip                  LIKE ' . $filter
-	       . ' OR     Persons.country              LIKE ' . $filter
-	       . ' OR     Persons.contact_name         LIKE ' . $filter
-	       . ' OR     Persons.church_name          LIKE ' . $filter
-	       . ' OR     Persons.pastor_name          LIKE ' . $filter
-	       . ' OR   Companies.company_name         LIKE ' . $filter
-	       . ' OR     Support.full_name            LIKE ' . $filter
-	       ;
-     }
-
-	if ($table == 'Contacts') {
-		$return = ' Persons.user_title           LIKE ' . $filter
-			. ' OR	Persons.full_name            LIKE ' . $filter
-			. ' OR	Persons.official_name        LIKE ' . $filter
-			. ' OR	Persons.special_name         LIKE ' . $filter
-			. ' OR     Persons.user_email           LIKE ' . $filter
-	       . ' OR     Persons.gender               LIKE ' . $filter
-	       . ' OR     Persons.birth_date           LIKE ' . $filter
-	       . ' OR     Persons.mobile               LIKE ' . $filter
-	       . ' OR     Persons.phone                LIKE ' . $filter
-	       . ' OR     Persons.street               LIKE ' . $filter
-	       . ' OR     Persons.city                 LIKE ' . $filter
-	       . ' OR     Persons.state                LIKE ' . $filter
-	       . ' OR     Persons.zip                  LIKE ' . $filter
-	       . ' OR     Persons.country              LIKE ' . $filter
-	       . ' OR     Persons.contact_name         LIKE ' . $filter
-	       . ' OR     Persons.church_name          LIKE ' . $filter
-	       . ' OR     Persons.pastor_name          LIKE ' . $filter
-	       . ' OR   Companies.company_name         LIKE ' . $filter
-	       . ' OR     Support.full_name            LIKE ' . $filter
-	       ;
-     }
-
-	 return ' AND (' . $return . ')';
+	if ($table == 'Translations') {
+		$return = '     Translations.created_at			LIKE ' . $filter
+				. ' OR  Translations.updated_at			LIKE ' . $filter
+				. ' OR  Translations.sentence			LIKE ' . $filter
+				;
 }
 
-/*
+	if ($table == 'Contacts') {
+		$return = ' Contacts.first_name				LIKE ' . $filter
+			. ' OR	Contacts.last_name				LIKE ' . $filter
+			. ' OR	Contacts.full_name				LIKE ' . $filter
+			. ' OR	Contacts.mobile					LIKE ' . $filter
+			. ' OR	Contacts.email					LIKE ' . $filter
+			. ' OR	Contacts.phone					LIKE ' . $filter
+			. ' OR	Contacts.street1				LIKE ' . $filter
+			. ' OR	Contacts.street2				LIKE ' . $filter
+			. ' OR	Contacts.city					LIKE ' . $filter
+			. ' OR	Contacts.state					LIKE ' . $filter
+			. ' OR	Contacts.zip					LIKE ' . $filter
+			. ' OR	Contacts.country				LIKE ' . $filter
+			. ' OR	Companies.full_name				LIKE ' . $filter
+			;
+		}
+
+	return ' AND (' . $return . ')';
+}
+
+/**
  *	$.ajax({ method: get_comments, table: x...x, id: 9...9 });
  *
  *	status: ok
@@ -1120,35 +912,37 @@ private function set_where($table, $filter) {
  *			]
  */
 private function get_comments() {
-     $table    = get_request( 'table'        );
-     $id       = get_request( 'id'           );
+	$table	= get_request('table'	);
+	$id		= get_request('id'		);
 
-     $user_id    = get_session( 'user_id'    );
-     $user_role  = get_session( 'user_role'  );
-     if(  strpos( $user_role, 'staff'  )
-     or   strpos( $user_role, 'admin'  )
-     or   strpos( $user_role, 'support'))
-	  $staff = 'true' ;
-     else $staff = 'false';
+	$user_id	= get_session('user_id'  );
+	$user_role	= get_session('user_role');
+	if (strpos($user_role, 'staff'	)
+	or	strpos($user_role, 'admin'	)
+	or	strpos($user_role, 'support')) {
+		$staff = 'true' ;
+	}else{
+		$staff = 'false';
+	}
 
-     $sql = 'SELECT *'
-	  . '  FROM Comments'
-	  . ' WHERE parent_name = "' . $table . '"'
-	  . '   AND parent_id   =  ' . $id
-	  . '   AND ( status IS NULL'
-	  . '    OR ( status = "private" AND created_by = ' . $user_id . ' )'
-	  . '    OR ( status = "staff"   AND ' . $staff . ' ) )'
-	  . ' ORDER BY created_at'
-	  ;
-//$this->log_sql( $table, 'get_comments', $sql );
-     $db  = Zend_Registry::get( 'db' );
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'rows'     ] = $db->fetchAll( $sql );
-     echo json_encode( $return );
+	$sql= 'SELECT *'
+		. '  FROM Comments'
+		. ' WHERE parent_name = "' . $table . '"'
+		. '   AND parent_id   =  ' . $id
+		. '   AND ( status IS NULL'
+		. '    OR ( status = "private" AND created_by = ' . $user_id . ' )'
+		. '    OR ( status = "staff"   AND ' . $staff . ' ) )'
+		. ' ORDER BY created_at'
+		;
+//$this->log_sql($table, 'get_comments', $sql);
+	$db = Zend_Registry::get('db');
+	$return = array();
+	$return['status'] = 'ok';
+	$return['rows'	] = $db->fetchAll($sql);
+	echo json_encode($return);
 }
 
-/*
+/**
  *	$.ajax({ method: add_comment, table: x...x, id: 9...9, comment: x...x });
  *
  *	status: ok
@@ -1158,27 +952,27 @@ private function get_comments() {
  *			]
  */
 private function add_comment() {
-     $table    = get_request( 'table'        );
-     $id       = get_request( 'id'           );
-     $comment  = get_request( 'comment'      );
+	$table	= get_request('table'	);
+	$id		= get_request('id'		);
+	$comment= get_request('comment'	);
 
-     $sql = 'INSERT INTO Comments'
-	  . '   SET created_by  =  ' . get_session( 'user_id' )
-	  . '     , created_at  =  NOW()'
-	  . '     , created_name= "' . get_session( 'full_name' ) . '"'
-	  . '     , parent_name = "' . $table . '"'
-	  . '     , parent_id   =  ' . $id
-	  . '     , comment     = "' . $comment . '"'
-	  ;
-//$this->log_sql( $table, 'add_comment', $sql );
-     $db  = Zend_Registry::get( 'db' );
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'id'       ] = $db->query( $sql );
-     echo json_encode( $return );
+	$sql = 'INSERT INTO Comments'
+		. '   SET created_by  =  ' . get_session('user_id')
+		. '     , created_at  =  NOW()'
+		. '     , created_name= "' . get_session('full_name') . '"'
+		. '     , parent_name = "' . $table . '"'
+		. '     , parent_id   =  ' . $id
+		. '     , comment     = "' . $comment . '"'
+		;
+//$this->log_sql($table, 'add_comment', $sql);
+	$db = Zend_Registry::get('db');
+	$return = array();
+	$return['status'] = 'ok';
+	$return['id'	] = $db->query($sql);
+	echo json_encode($return);
 }
 
-/*
+/**
  *	$.ajax({ method: get_columns, table: x...x });
  *
  */
@@ -1187,22 +981,22 @@ private function get_columns($data) {
 		return;
 	}
 
-	$table = get_data($data, 'table');
-	$extra = array();
-	$col   = array();
+	$table	= get_data($data, 'table');
+	$extra	= array();
+	$col	= array();
 
-	if ($table == 'Categories')		{	$col[ 'Field'  ] =   'parent_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col;
-										$col[ 'Field'  ] =      'children' ; $col[ 'Type' ] = 'int(11)'       ; $extra[] = $col; }
-	if ($table == 'Companies'	)	{	$col[ 'Field'  ] =  'contact_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col; }
-	if ($table == 'Services'	)	{	$col[ 'Field'  ] =     'full_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col;
-										$col[ 'Field'  ] =        'avatar' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col;
-										$col[ 'Field'  ] =    'group_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col; }
-	if ($table == 'Templates'	)	{	$col[ 'Field'  ] =  'created_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col; }
-	if ($table == 'Tickets'		)	{	$col[ 'Field'  ] =   'opened_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col;
-										$col[ 'Field'  ] =   'closed_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col;
-										$col[ 'Field'  ] = 'assigned_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col; }
-//	if ($table == 'Persons'		)	{	$col[ 'Field'  ] =  'support_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col;
-//										$col[ 'Field'  ] =  'company_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col; }
+	if ($table == 'Categories'	)	{	$col['Field'] =   'parent_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col;
+										$col['Field'] =      'children' ; $col['Type'] = 'int(11)'       ; $extra[] = $col; }
+	if ($table == 'Companies'	)	{	$col['Field'] =  'contact_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col; }
+	if ($table == 'Services'	)	{	$col['Field'] =     'full_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col;
+										$col['Field'] =        'avatar' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col;
+										$col['Field'] =    'group_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col; }
+	if ($table == 'Templates'	)	{	$col['Field'] =  'created_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col; }
+	if ($table == 'Tickets'		)	{	$col['Field'] =   'opened_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col;
+										$col['Field'] =   'closed_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col;
+										$col['Field'] = 'assigned_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col; }
+	if ($table == 'Contacts'	)	{	$col['Field'] =  'support_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col;
+										$col['Field'] =  'company_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col; }
 
 	$sql = 'SHOW COLUMNS FROM ' . $table;
 //$this->log_sql($table, 'get_columns', $sql);
@@ -1212,9 +1006,9 @@ private function get_columns($data) {
 	$return = array();
 	$return['status'] = 'ok';
 
-//	special code to append fields from Persons to Services table
+//	special code to append fields from Contacts to Services table
 	if ($table == 'Services') {
-		$sql  = 'SHOW COLUMNS FROM Persons WHERE Field != "id" AND Field != "created_by" AND Field != "created_at" AND Field != "updated_by" AND Field != "updated_at" AND Field != "status" AND Field != "completed"';
+		$sql  = 'SHOW COLUMNS FROM Contacts WHERE Field != "id" AND Field != "created_by" AND Field != "created_at" AND Field != "updated_by" AND Field != "updated_at" AND Field != "status" AND Field != "completed"';
 		$db   = Zend_Registry::get('db');
 		$users= $db->fetchAll($sql);
 		$return['columns'] = array_merge($extra, $cols, $users);
@@ -1225,7 +1019,7 @@ private function get_columns($data) {
 	echo json_encode($return);
 }
 
-/*
+/**
  *	$.ajax({ method: insert, table: x...x, set: x...x });
  *
  *	  status: ok
@@ -1249,8 +1043,8 @@ private function insert($data) {
 	}
 
 	if ($table == 'Companies') {
-	  $set .= ',      parent_id= ' . get_session('control_company', COMPANY_ID);
-	  $set .= ', company_number= ' . $this->getUniqueNumber($table, 'company_number');
+		$set .= ',      parent_id= ' . get_session('control_company', COMPANY_ID);
+		$set .= ', company_number= ' . $this->getUniqueNumber($table, 'company_number');
 	}
 
 	if ($table == 'Services') {
@@ -1264,7 +1058,7 @@ private function insert($data) {
 		$db->query($sql);
 		$set .= ', helper_number= ' . $helper_number;
 
-		$sql = 'SELECT birth_date FROM Persons  WHERE id = ' .  $user_id;
+		$sql = 'SELECT birth_date FROM Contacts  WHERE id = ' .  $user_id;
 		$birth_date = $db->fetchOne($sql);
 		$sql = 'SELECT start_date FROM Events WHERE id = ' . $event_id;
 		$start_date = $db->fetchOne($sql);
@@ -1284,10 +1078,10 @@ private function insert($data) {
 		$set .= ',      opened_at="' . get_time() . '"';
 	}
 
-	if ($table == 'Persons') {
+	if ($table == 'Contacts') {
 		$set .= ',     company_id= ' . get_session('company_id', COMPANY_ID);
 		$set .= ',             id= ' . $this->insert_user_jky();
-		$set .= ',    user_number= ' . $this->getUniqueNumber($table, 'user_number');
+//		$set .= ',    user_number= ' . $this->getUniqueNumber($table, 'user_number');
 	}
 
 	if ($table == 'FTPs') {
@@ -1328,7 +1122,7 @@ private function insert_user_jky() {
 	return $db->lastInsertId();
 }
 
-/*
+/**
  *	$.ajax({ method: update, table: x...x, set: x...x, where: x...x });
  *
  *	 status: ok
@@ -1549,8 +1343,8 @@ private function combine() {
 	$target   = get_request( 'target' );
 
 	$db = Zend_Registry::get( 'db' );
-	$s = $db->fetchRow( 'SELECT * FROM Persons WHERE id = ' . $source );
-	$t = $db->fetchRow( 'SELECT * FROM Persons WHERE id = ' . $target );
+	$s = $db->fetchRow( 'SELECT * FROM Contacts WHERE id = ' . $source );
+	$t = $db->fetchRow( 'SELECT * FROM Contacts WHERE id = ' . $target );
 
 	$error = '';
 	if( !$s )      { $error = '<br>source record ' . $source . ' not found'; }
@@ -1581,7 +1375,7 @@ private function combine() {
 	$set .= replace( $s, $t, 'other_gifts'  , '' );
 
 	  if(  $set != '' ) {
-	       $sql = 'UPDATE Persons'
+	       $sql = 'UPDATE Contacts'
 		    . '   SET ' . substr( $set, 2 )
 		    . ' WHERE id = ' . $target
 		    ;
@@ -1594,7 +1388,7 @@ private function combine() {
 
 	  $db->query( 'UPDATE Comments       SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Comments       SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
-	  $db->query( 'UPDATE Comments       SET    parent_id = ' . $target . ' WHERE   parent_id = ' . $source . ' AND parent_name = "Persons"' );
+	  $db->query( 'UPDATE Comments       SET    parent_id = ' . $target . ' WHERE   parent_id = ' . $source . ' AND parent_name = "Contacts"' );
 
 	  $db->query( 'UPDATE Companies      SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Companies      SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
@@ -1636,13 +1430,13 @@ private function combine() {
 	  $db->query( 'UPDATE Tickets        SET  assigned_to = ' . $target . ' WHERE assigned_to = ' . $source );
 	  $db->query( 'UPDATE Tickets        SET    closed_by = ' . $target . ' WHERE   closed_by = ' . $source );
 
-	  $db->query( 'UPDATE Persons          SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
-	  $db->query( 'UPDATE Persons          SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
-	  $db->query( 'UPDATE Persons          SET   support_id = ' . $target . ' WHERE  support_id = ' . $source );
+	  $db->query( 'UPDATE Contacts          SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
+	  $db->query( 'UPDATE Contacts          SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
+	  $db->query( 'UPDATE Contacts          SET   support_id = ' . $target . ' WHERE  support_id = ' . $source );
 
 	  $db->query( 'UPDATE User_metas     SET    parent_id = ' . $target . ' WHERE   parent_id = ' . $source );
 
-	  $db->query( 'DELETE FROM Persons                                        WHERE          id = ' . $source );
+	  $db->query( 'DELETE FROM Contacts                                        WHERE          id = ' . $source );
 	  $db->query( 'DELETE FROM JKY_Users                                    WHERE          id = ' . $source );
 
 	  $return = array();
@@ -1956,212 +1750,197 @@ private function get_session() {
 	$this->echo_json($obj);
 }
 
-/*
- *   $.ajax({ method: get_profile );
+/**
+ *	$.ajax({ method: get_profile );
  *
- *   status: ok
- *      row: Persons
+ *	status: ok
+ *	   row: Contacts
  */
 private function get_profile() {
-     if( !is_session( 'user_id' )) {
-	  $this->echo_error( 'user_id is undefined' );
-	  return;
-     }
+	if (!is_session('user_id')) {
+		$this->echo_error('user_id is undefined');
+		return;
+	}
 
-     $sql = 'SELECT *'
-	  . '  FROM Persons'
-	  . ' WHERE id = ' . get_session( 'user_id' )
-	  ;
-     $db  = Zend_Registry::get( 'db' );
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'row'      ] = $db->fetchRow( $sql );
-     echo json_encode( $return );
+	$sql= 'SELECT *'
+		. '  FROM Contacts'
+		. ' WHERE id = ' . get_session('user_id')
+		;
+	$db = Zend_Registry::get('db');
+	$return = array();
+	$return['status'] = 'ok';
+	$return['row'	] = $db->fetchRow($sql);
+	echo json_encode($return);
 }
 
-/*
+/**
  *   $.ajax({ method: get_contact );
  *
  *   status: ok
- *      row: Persons
+ *      row: Contacts
  */
 private function get_contact() {
-     if( !is_session( 'control_company' )) {
-	  $this->echo_error( 'control_company is undefined' );
-	  return;
-     }
+	if (!is_session('control_company')) {
+		$this->echo_error('control_company is undefined');
+		return;
+	}
 
-     $sql = 'SELECT Companies.*'
-	  . '     , Contact.user_email AS business_email'
-	  . '     , Support.user_email AS  support_email'
-	  . '  FROM Companies'
-	  . '  LEFT JOIN Persons AS Contact On Contact.id = Companies.contact_id'
-	  . '  LEFT JOIN Persons AS Support On Support.id = Companies.support_id'
-	  . ' WHERE Companies.id = ' . get_session( 'control_company', COMPANY_ID )
-	  ;
-     $db  = Zend_Registry::get( 'db' );
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'row'      ] = $db->fetchRow( $sql );
-     echo json_encode( $return );
+	$sql= 'SELECT Companies.*'
+		. '     , Contact.user_email AS business_email'
+		. '     , Support.user_email AS  support_email'
+		. '  FROM Companies'
+		. '  LEFT JOIN Contacts AS Contact On Contact.id = Companies.contact_id'
+		. '  LEFT JOIN Contacts AS Support On Support.id = Companies.support_id'
+		. ' WHERE Companies.id = ' . get_session( 'control_company', COMPANY_ID )
+		;
+	$db = Zend_Registry::get('db');
+	$return = array();
+	$return['status'] = 'ok';
+	$return['row'	] = $db->fetchRow($sql);
+	echo json_encode($return);
 }
 
-/*
- *   $.ajax({ method: get_contact_id, contact_name: x...x );
+/**
+ *	$.ajax({ method: get_contact_id, contact_name: x...x );
  *
- *   status: ok
- *       id: 9...9
+ *	status: ok
+ *		id: 9...9
  */
 private function get_contact_id() {
-     $contact_name = get_request( 'contact_name' );
+	$contact_name = get_request('contact_name');
 
-     $sql = 'SELECT id'
-	  . '  FROM Persons'
-	  . ' WHERE full_name = "' . $contact_name . '"'
-	  ;
-     $db  = Zend_Registry::get( 'db' );
-     $id  = $db->fetchOne( $sql );
+	$sql= 'SELECT id'
+		. '  FROM Contacts'
+		. ' WHERE full_name = "' . $contact_name . '"'
+		;
+	$db = Zend_Registry::get('db');
+	$id = $db->fetchOne($sql);
 
-     if( !$id ) {
-	  $sql = 'INSERT INTO Persons'
-	       . '   SET          id= ' . $this->insert_user_jky()
-	       . '     , user_number= ' . $this->getUniqueNumber( 'Persons', 'user_number' )
-	       . '     ,   full_name="' . $contact_name . '"'
-	       . '     ,   user_name="' . $contact_name . '"'
-	       ;
-	  $db  = Zend_Registry::get( 'db' );
-	  $db->query( $sql );
-	  $id = $db->lastInsertId();
-     }
+	if (!$id) {
+		$sql= 'INSERT INTO Contacts'
+			. '   SET          id= ' . $this->insert_user_jky()
+//			. '     , user_number= ' . $this->getUniqueNumber( 'Contacts', 'user_number' )
+			. '     ,   full_name="' . $contact_name . '"'
+			. '     ,   user_name="' . $contact_name . '"'
+			;
+		$db = Zend_Registry::get('db');
+		$db->query($sql);
+		$id = $db->lastInsertId();
+	}
 
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'id'       ] = $id;
-     echo json_encode( $return );
+	$return = array();
+	$return['status'] = 'ok';
+	$return['id'	] = $id;
+	echo json_encode($return);
 }
 
-/*
- *   $.ajax({ method: get_user_id, full_name: x...x | user_name: x...x );
+/**
+ *	$.ajax({ method: get_user_id, full_name: x...x | user_name: x...x );
  *
- *   status: ok     | error
- *       id: 9...9  | null
+ *	status: ok     | error
+ *		id: 9...9  | null
  */
 private function get_user_id() {
-     $where = '';
-     if(  is_request( 'full_name' ))        $where = 'full_name = "' . get_request( 'full_name' ) . '"';
-     if(  is_request( 'user_name' ))        $where = 'user_name = "' . get_request( 'user_name' ) . '"';
+	$where = '';
+	if (is_request('full_name'))	$where = 'full_name = "' . get_request('full_name') . '"';
+	if (is_request('user_name'))	$where = 'user_name = "' . get_request('user_name') . '"';
 
-     $return = array();
-     if(  $where != '' ) {
-	  $sql = 'SELECT id'
-	       . '  FROM Persons'
-	       . ' WHERE ' . $where
-	       ;
-	  $db  = Zend_Registry::get( 'db' );
-	  $return[ 'status'   ] = 'ok';
-	  $return[ 'id'       ] = $db->fetchOne( $sql );
-     } else {
-	  $return[ 'status'   ] = 'error';
-	  $return[ 'id'       ] = null;
-     }
-     echo json_encode( $return );
+	$return = array();
+	if ($where != '') {
+		$sql= 'SELECT id'
+			. '  FROM Contacts'
+			. ' WHERE ' . $where
+			;
+		$db = Zend_Registry::get('db');
+		$return['status'] = 'ok';
+		$return['id'	] = $db->fetchOne($sql);
+	}else{
+		$return['status'] = 'error';
+		$return['id'	] = null;
+	}
+	echo json_encode($return);
 }
 
-/*
- *   $.ajax({ method: set_user_id, user_key: x...x });
+/**
+ *	$.ajax({ method: set_user_id, user_key: x...x });
  *
- *     status: ok / error
- *    message: x...x
+ *	status: ok / error
+ * message: x...x
  */
 
-     private function set_user_id() {
-	  $error = '';
-	  $user_id = db_get_id( 'JKY_Users', 'user_key = "' . get_request( 'user_key' ) . '"' );
+private function set_user_id() {
+	$error = '';
+	$user_id = db_get_id('JKY_Users', 'user_key = "' . get_request('user_key') . '"');
 
-	  if(  $user_id )
-	       $this->set_user_session( $user_id );
-	  else $error .= BR . 'User Account already expired'  ;
+	if ($user_id) {
+		$this->set_user_session($user_id);
+	}else{
+		$error .= BR . 'User Account already expired';
+	}
 
-	  $return[ 'status'   ] = $error == '' ? 'ok' : 'error';
-	  $return[ 'message'  ] = $error;
-	  $this->echo_json( $return );
-     }
+	$return['status'	] = $error == '' ? 'ok' : 'error';
+	$return['message'	] = $error;
+	$this->echo_json($return);
+}
 
-/*
- *   $.ajax({ method: get_company_id, company_name: x...x );
+/**
+ *	$.ajax({ method: get_company_id, company_name: x...x );
  *
- *   status: ok
- *       id: 9...9
+ *	status: ok
+ *		id: 9...9
  */
 private function get_company_id() {
-     $sql = 'SELECT id'
-	  . '  FROM Companies'
-	  . ' WHERE company_name = "' . get_request( 'company_name' ) . '"'
-	  ;
-//$this->log_sql( null, 'get_company_id', $sql );
-     $db  = Zend_Registry::get( 'db' );
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'id'       ] = $db->fetchOne( $sql );
-     echo json_encode( $return );
+	$sql= 'SELECT id'
+		. '  FROM Companies'
+		. ' WHERE company_name = "' . get_request('company_name') . '"'
+		;
+//$this->log_sql(null, 'get_company_id', $sql);
+	$db = Zend_Registry::get('db');
+	$return = array();
+	$return['status'] = 'ok';
+	$return['id'	] = $db->fetchOne($sql);
+	echo json_encode($return);
 }
 
-/*
- *   $.ajax({ method: set_company_id, company_id: 9...9 );
+/**
+ *	$.ajax({ method: set_company_id, company_id: 9...9 );
  *
- *   status: ok
- *       id: 9...9
+ *	status: ok
+ *		id: 9...9
  */
 private function set_company_id() {
-     $company = db_get_row( 'Companies', 'id = ' . get_request( 'company_id' ));
-     set_session( 'company_id'     , $company[ 'id'              ]);
-     set_session( 'company_name'   , $company[ 'company_name'    ]);
-//     set_session( 'control_company', $company[ 'parent_id'       ]);
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'name'     ] = $company[ 'company_name' ];
-     echo json_encode( $return );
+	$company = db_get_row('Companies', 'id = ' . get_request('company_id'));
+	set_session('company_id'     , $company['id'			]);
+	set_session('company_name'   , $company['company_name'	]);
+//	set_session('control_company', $company['parent_id'		]);
+	$return = array();
+	$return['status'] = 'ok';
+	$return['name'	] = $company['company_name'];
+	echo json_encode($return);
 }
 
-/*
- *   $.ajax({ method: set_event_id, event_id: 9...9 );
+/**
+ *	$.ajax({ method: set_group_id, group_id: 9...9 );
  *
- *   status: ok
- *       id: 9...9
- */
-private function set_event_id() {
-     $event = db_get_row( 'Events', 'id = ' . get_request( 'event_id' ));
-     set_session( 'event_id'       , $event[ 'id'           ]);
-     set_session( 'event_name'     , $event[ 'event_name'   ]);
-//     set_session( 'company_id'     , $event[ 'company_id'   ]);
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'name'     ] = $event[ 'event_name' ];
-     echo json_encode( $return );
-}
-
-/*
- *   $.ajax({ method: set_group_id, group_id: 9...9 );
- *
- *   status: ok
- *       id: 9...9
+ *	status: ok
+ *		id: 9...9
  */
 private function set_group_id() {
-     $group = db_get_row( 'Groups', 'id = ' . get_request( 'group_id' ));
-     set_session( 'group_id'       , $group[ 'id'           ]);
-     set_session( 'group_name'     , $group[ 'group_name'   ]);
-//     set_session( 'event_id'       , $group[ 'event_id'     ]);
-     $return = array();
-     $return[ 'status'   ] = 'ok';
-     $return[ 'name'     ] = $group[ 'group_name' ];
-     echo json_encode( $return );
+	$group = db_get_row('Groups', 'id = ' . get_request('group_id'));
+	set_session('group_id'		, $group['id'			]);
+	set_session('group_name'	, $group['group_name'	]);
+//	set_session('event_id'		, $group['event_id'		]);
+	$return = array();
+	$return['status'] = 'ok';
+	$return['name'	] = $group['group_name'];
+	echo json_encode($return);
 }
 
-/*
- *   $.ajax({ method: get_options, table:x..x, field=x...x, selected: x...x, initial:x...x });
+/**
+ *	$.ajax({ method: get_options, table:x..x, field=x...x, selected: x...x, initial:x...x });
  *
- *   return: <options value="x...x" selected="selected">x...x</options>
- *           ...
+ *	return: <options value="x...x" selected="selected">x...x</options>
+ *			...
  */
 private function get_options($data) {
 	$table		= get_data($data, 'table'	);
@@ -2174,9 +1953,9 @@ private function get_options($data) {
 		. ' WHERE status = "Active"'
 		. ' ORDER BY ' . $field
 		;
-    $this->log_sql( null, 'get_options', $sql );
-	$db = Zend_Registry::get( 'db' );
-	$rows = $db->fetchAll( $sql );
+	$this->log_sql(null, 'get_options', $sql);
+	$db = Zend_Registry::get('db');
+	$rows = $db->fetchAll($sql);
 
 	$return = array();
 	$return['status'] = 'ok';
@@ -2184,71 +1963,73 @@ private function get_options($data) {
 	$this->echo_json($return);
 }
 
-/*
- *   $.ajax({ method: get_users, where:..x, select: x...x, initial: x...x });
+/**
+ *	$.ajax({ method: get_users, where:..x, select: x...x, initial: x...x });
  *
- *   return: <options value="x...x" selected="selected">x...x</options>
- *           ...
+ *	return: <options value="x...x" selected="selected">x...x</options>
+ *			...
  */
 private function get_users() {
-     $where         = get_request( 'where'  );
-     $select        = get_request( 'select' );
-     $initial       = get_request( 'initial');
+	$where		= get_request('where'	);
+	$select		= get_request('select'	);
+	$initial	= get_request('initial'	);
 
-     $sql = 'SELECT Persons.id, Persons.full_name'
-//          . '  FROM Persons, Services, Groups'
-//          . ' WHERE Persons.id = Services.user_id'
-//          . '   AND Services.group_id = Groups.id'
-//          . '   AND ' . $where
-	  . '  FROM Persons'
-	  . ' WHERE ' . $where
-	  . ' ORDER BY Persons.full_name'
-	  ;
-     if(  $initial == '' )
-//        $return = '';
-	  $return = '<option value="">' . $initial . '</option>';
-//   else $return = '<option value="*">' . $initial . '</option>';
-     else $return = '<option value="All">' . $initial . '</option>';
+	$sql= 'SELECT Contacts.id, Contacts.full_name'
+//		. '  FROM Contacts, Services, Groups'
+//		. ' WHERE Contacts.id = Services.user_id'
+//		. '   AND Services.group_id = Groups.id'
+//		. '   AND ' . $where
+		. '  FROM Contacts'
+		. ' WHERE ' . $where
+		. ' ORDER BY Contacts.full_name'
+		;
+	if ($initial == '') {
+//		$return = '';
+		$return = '<option value="">' . $initial . '</option>';
+	}else{
+//		else $return = '<option value="*">' . $initial . '</option>';
+		$return = '<option value="All">' . $initial . '</option>';
+	}
 
-     if(  $sql != '' ) {
-$this->log_sql( null, 'get_users', $sql );
-	  $db  = Zend_Registry::get( 'db' );
-	  $rows = $db->fetchAll( $sql );
+	if ($sql != '') {
+$this->log_sql(null, 'get_users', $sql);
+		$db = Zend_Registry::get('db');
+		$rows = $db->fetchAll($sql);
 
-	  foreach( $rows as $row ) {
-	       $selected = $row[ 'id' ] == $select ? ' selected="selected"' : '';
-	       $return .= '<option value="' . $row[ 'id' ] . '"' . $selected . '>' . $row[ 'full_name' ] . '</options>';
-	  }
-     }
-     echo $return;
+		foreach($rows as $row) {
+			$selected = $row['id'] == $select ? ' selected="selected"' : '';
+			$return .= '<option value="' . $row['id'] . '"' . $selected . '>' . $row['full_name'] . '</options>';
+		}
+	}
+	echo $return;
 }
 
-/*
- *   $.ajax({ method: get_controls, group_set: x...x, select: x...x, initial: x...x });
+/**
+ *	$.ajax({ method: get_controls, group_set: x...x, select: x...x, initial: x...x });
  *
- *   return: <options value="x...x" selected="selected">x...x</options>
- *           ...
+ *	return: <options value="x...x" selected="selected">x...x</options>
+ *			...
  */
 private function get_controls() {
 	$group_set	= get_request('group_set'	);
 	$selected	= get_request('selected'	);
 	$initial	= get_request('initial'		);
 
-	$sql = 'SELECT * '
-		 . '  FROM Controls'
-		 . ' WHERE group_set = "' . $group_set . '"'
-		 . ' ORDER BY sequence, name'
-		 ;
-    if ($initial == '') {
-        $return = '';
+	$sql= 'SELECT * '
+		. '  FROM Controls'
+		. ' WHERE group_set = "' . $group_set . '"'
+		. ' ORDER BY sequence, name'
+		;
+	if ($initial == '') {
+		$return = '';
 	}else{
 //		$return = '<option value="*">' . $initial . '</option>';
 		$return = '<option value="All">' . $initial . '</option>';
 	}
 
 	if ($sql != '') {
-		$db  = Zend_Registry::get( 'db' );
-		$rows = $db->fetchAll( $sql );
+		$db = Zend_Registry::get('db');
+		$rows = $db->fetchAll($sql);
 
 		foreach ($rows as $row) {
 			if ($row['value'] == ''){
@@ -2261,7 +2042,7 @@ private function get_controls() {
 	echo $return;
 }
 
-/*
+/**
  *   $.ajax({ method: get_configs, group_set: x...x);
  *
  *	status: ok
@@ -2274,45 +2055,45 @@ private function get_controls() {
 private function get_configs($data) {
 	$group_set = get_data($data, 'group_set');
 
-	$sql = 'SELECT * '
-		 . '  FROM Configs'
-		 . ' WHERE group_set = "' . $group_set . '"'
-		 . ' ORDER BY sequence, name'
-		 ;
-	$db  = Zend_Registry::get( 'db' );
-	$rows = $db->fetchAll( $sql );
+	$sql= 'SELECT * '
+		. '  FROM Configs'
+		. ' WHERE group_set = "' . $group_set . '"'
+		. ' ORDER BY sequence, name'
+		;
+	$db = Zend_Registry::get('db');
+	$rows = $db->fetchAll($sql);
 	$return = array();
 	$return['status'] = 'ok';
 	$return['rows'	] = $rows;
 	$this->echo_json($return);
 }
 
-/*
- *   $.ajax({ method: get_configs, group_set: x...x, select: x...x, initial: x...x });
+/**
+ *	$.ajax({ method: get_options, group_set: x...x, select: x...x, initial: x...x });
  *
- *   return: <options value="x...x" selected="selected">x...x</options>
- *           ...
+ *	return: <options value="x...x" selected="selected">x...x</options>
+ *			...
  */
 private function get_optionss() {
 	$group_set	= get_request('group_set'	);
 	$selected	= get_request('selected'	);
 	$initial	= get_request('initial'		);
 
-	$sql = 'SELECT * '
-		 . '  FROM Configs'
-		 . ' WHERE group_set = "' . $group_set . '"'
-		 . ' ORDER BY sequence, name'
-		 ;
-    if ($initial == '') {
-        $return = '';
+	$sql= 'SELECT * '
+		. '  FROM Configs'
+		. ' WHERE group_set = "' . $group_set . '"'
+		. ' ORDER BY sequence, name'
+		;
+	if ($initial == '') {
+		$return = '';
 	}else{
 //		$return = '<option value="*">' . $initial . '</option>';
 		$return = '<option value="All">' . $initial . '</option>';
 	}
 
 	if ($sql != '') {
-		$db  = Zend_Registry::get( 'db' );
-		$rows = $db->fetchAll( $sql );
+		$db = Zend_Registry::get('db');
+		$rows = $db->fetchAll($sql);
 
 		foreach ($rows as $row) {
 			if ($row['value'] == ''){
@@ -2325,69 +2106,73 @@ private function get_optionss() {
 	echo $return;
 }
 
-/*
+/**
  *   $.ajax({ method: get_categories, parent_id: 9...9, select: x...x, initial: x...x });
  *
  *   return: <options value="x...x" selected="selected">x...x</options>
  *           ...
  */
-     private function get_categories() {
-	  $parent_id     = get_request( 'parent_id' );
-	  $select        = get_request( 'select' );
-	  $initial       = get_request( 'initial');
+private function get_categories() {
+	$parent_id	= get_request('parent_id'	);
+	$select		= get_request('select'		);
+	$initial	= get_request('initial'		);
 
-	  $sql = 'SELECT Categories.*'
-	       . '  FROM Categories'
-	       . '  LEFT JOIN Categories AS Parent ON Parent.id = Categories.parent_id'
-	       . ' WHERE Categories.parent_id = ' . $parent_id
-	       . ' ORDER BY sequence, category'
-	  ;
-	  //$this->log_sql( null, 'get_categories', $sql );
-	  if(  $initial == '' )
-	       $return = '';
-	  else $return = '<option value="All">' . $initial . '</option>';
+	$sql= 'SELECT Categories.*'
+		. '  FROM Categories'
+		. '  LEFT JOIN Categories AS Parent ON Parent.id = Categories.parent_id'
+		. ' WHERE Categories.parent_id = ' . $parent_id
+		. ' ORDER BY sequence, category'
+		;
+//$this->log_sql(null, 'get_categories', $sql);
+	if ($initial == '') {
+		$return = '';
+	}else{
+		$return = '<option value="All">' . $initial . '</option>';
+	}
 
-	  if(  $sql != '' ) {
-	       $db  = Zend_Registry::get( 'db' );
-	       $rows = $db->fetchAll( $sql );
+	if ($sql != '') {
+		$db = Zend_Registry::get('db');
+		$rows = $db->fetchAll($sql);
 
-	       foreach( $rows as $row ) {
-		    $selected = $row[ 'category' ] == $select ? ' selected="selected"' : '';
-		    $return .= '<option value="' . $row[ 'id' ] . '"' . $selected . '>' . $row[ 'category' ] . '</options>';
-	       }
-	  }
-	  echo $return;
-     }
-
-/*
- *   $.ajax({ method: get_header });
- *
- *   return: <options value="x...x" selected="selected">x...x</options>
- *           ...
- */
-private function get_header() {
-     $full_name = get_session( 'full_name' );
-     if(  $full_name == '' )
-	  $header_id = 'Welcome, please &nbsp;<a onclick="display_signup();">Sign Up</a>&nbsp; or &nbsp;<a onclick="display_login();">Log In</a>';
-     else $header_id = 'Hello ' . $full_name . ', want to view &nbsp;<a onclick="display_profile();">Your Profile</a>&nbsp; or &nbsp;<a onclick="request_logout();">Log Out</a>';
-
-     $return = ''
-	   . '<div class="margin">'
-	   . '<span id="header_company">' . get_session( 'company_name' ) . '</span>'
-	   . '<span id="header_id">' . $header_id .'</span>'
-	   . '</div>'
-	   ;
-     echo $return;
+		foreach($rows as $row) {
+			$selected = $row['category'] == $select ? ' selected="selected"' : '';
+			$return .= '<option value="' . $row['id'] . '"' . $selected . '>' . $row['category'] . '</options>';
+		}
+	}
+	echo $return;
 }
 
-/*
- *   $.ajax({ method: get_menus });
+/**
+ *	$.ajax({ method: get_header });
  *
- *   return: <options value="x...x" selected="selected">x...x</options>
- *           ...
+ *	return: <options value="x...x" selected="selected">x...x</options>
+ *			...
+ */
+private function get_header() {
+	$full_name = get_session('full_name');
+	if ($full_name == '') {
+		$header_id = 'Welcome, please &nbsp;<a onclick="display_signup();">Sign Up</a>&nbsp; or &nbsp;<a onclick="display_login();">Log In</a>';
+	}else{
+		$header_id = 'Hello ' . $full_name . ', want to view &nbsp;<a onclick="display_profile();">Your Profile</a>&nbsp; or &nbsp;<a onclick="request_logout();">Log Out</a>';
+	}
+
+	$return = ''
+			. '<div class="margin">'
+			. '<span id="header_company">' . get_session('company_name') . '</span>'
+			. '<span id="header_id">' . $header_id .'</span>'
+			. '</div>'
+			;
+	echo $return;
+}
+
+/**
+ *	$.ajax({ method: get_menus });
+ *
+ *	return: <options value="x...x" selected="selected">x...x</options>
+ *			...
  */
 private function get_menus() {
-     $html = ''
+	$html = ''
 	   . '   <div class="margin">'
 	   . '       <a href="/bridge/return"><img id="header_logo" src="/images/logo.png" /></a>'
 	   . '       <div class="clear"></div>'
@@ -2413,7 +2198,7 @@ private function get_menus() {
 	   . '                           <li><a href="/invoices"            ><span>Invoices     </span></a></li>'
 	   . '                           <li><a href="/production"          ><span>Production   </span></a></li>'
 	   . '                           <li><a href="/repository"          ><span>Repository   </span></a></li>'
-	   . '                           <li><a href="/persons.html"        ><span>Persons        </span></a></li>'
+	   . '                           <li><a href="/Contacts.html"        ><span>Contacts        </span></a></li>'
 	   . '                           <li><a href="/tcounters"           ><span>Talents      </span></a></li>'
 	   . '                           <li><a href="/counters"            ><span>Summary      </span></a></li>'
 	   . '                           <li><a href="/templates"           ><span>Templates    </span></a></li>'
@@ -2430,31 +2215,31 @@ private function get_menus() {
      echo $html;
 }
 
-private function get_tab_class( $tab ) {
-    $user_action = get_user_action( $tab );
-    if ($user_action == '') {
-	$user_action = get_user_action( 'All' );
-    }
+private function get_tab_class($tab) {
+	$user_action = get_user_action($tab);
+	if ($user_action == '') {
+		$user_action = get_user_action('All');
+	}
 
-    //   for undefined resource or denied user_action
-    if ($user_action == '' or $user_action == 'Denied') {
-	return 'tab_denied'  ;
-    } else {
-	return 'tab_inactive';
-    }
+//	for undefined resource or denied user_action
+	if ($user_action == '' or $user_action == 'Denied') {
+		return 'tab_denied'  ;
+	}else{
+		return 'tab_inactive';
+	}
 }
 
-private function set_user_session( $user_id ) {
+private function set_user_session($user_id) {
 	$user = db_get_row('JKY_Users', 'id = ' . $user_id);
-	set_session('user_id'           , $user['id'			]);
-	set_session('user_name'         , $user['user_name'		]);
-	set_session('user_type'         , $user['user_type'		]);
-	set_session('user_role'         , $user['user_role'		]);
+	set_session('user_id'		, $user['id'			]);
+	set_session('user_name'		, $user['user_name'		]);
+	set_session('user_type'		, $user['user_type'		]);
+	set_session('user_role'		, $user['user_role'		]);
 
-	$person = db_get_row('Contacts', 'id = ' . $user['contact_id']);
-	set_session('first_name'        , $person['first_name'  ]);
-	set_session('last_name'         , $person['last_name'   ]);
-	set_session('full_name'         , $person['full_name'   ]);
+	$contact = db_get_row('Contacts', 'id = ' . $user['contact_id']);
+	set_session('first_name'	, $contact['first_name'	]);
+	set_session('last_name'		, $contact['last_name'	]);
+	set_session('full_name'		, $contact['full_name'	]);
 
 	set_permissions($user['user_role']);
 }
@@ -2464,7 +2249,7 @@ private function get_user_data() {
 	set_session('start_page', $control['value']);
 	$data = array();
 	$data['first_name'	] = get_session('first_name');
-	$data['last_name'	] = get_session('last_name' );
+	$data['last_name'	] = get_session('last_name'	);
 	$data['full_name'	] = get_session('full_name'	);
 	$data['user_role'	] = get_session('user_role' );
 	$data['start_page'	] = get_session('start_page');
@@ -2473,12 +2258,12 @@ private function get_user_data() {
 
 //   ---------------------------------------------------------------------------
 
-/*
- *   $.ajax({ method: check_session });
+/**
+ *	$.ajax({ method: check_session });
  *
- *   status: ok
- *  message: x...x
- *     data: x...x
+ *	status: ok
+ * message: x...x
+ *	  data: x...x
  */
 private function check_session($data) {
 	$error = '';
@@ -2497,11 +2282,11 @@ private function check_session($data) {
 	$this->echo_json($return);
 }
 
-/*
- *   $.ajax({ method: confirm, user_key: x...x });
+/**
+ *	$.ajax({ method: confirm, user_key: x...x });
  *
- *     status: ok / error
- *    message: x...x
+ *	status: ok / error
+ * message: x...x
  */
 
 private function confirm($data) {
@@ -2529,22 +2314,22 @@ private function confirm($data) {
 	$this->echo_json($return);
 }
 
-/*
- *   $.ajax({ method: reset, encrypted: x...x });
+/**
+ *	$.ajax({ method: reset, encrypted: x...x });
  *
- *   status: ok
- *  message: password reseted
+ *	status: ok
+ * message: password reseted
  */
 private function reset($data) {
 	$user_id   = get_session('user_id');
 	$encrypted = $data['encrypted'];
 
 	if ($encrypted != '') {
-		$sql = 'UPDATE JKY_Users'
-			 . '   SET password = "' . $encrypted . '"'
-			 . ' WHERE id = ' . $user_id
-			 ;
-		$db  = Zend_Registry::get( 'db' );
+		$sql= 'UPDATE JKY_Users'
+			. '   SET password = "' . $encrypted . '"'
+			. ' WHERE id = ' . $user_id
+			;
+		$db = Zend_Registry::get('db');
 		$db->query($sql);
 		$this->log_sql('reset', $user_id, $sql);
 	}
@@ -2553,24 +2338,24 @@ private function reset($data) {
 	$return['status' ] = 'ok';
 	$return['message'] = 'New Password reseted';
 
-	$control = db_get_row( 'Controls', 'status = "Active" AND group_set ="User Role" AND control_name= "' . get_session( 'user_role' ) . '"' );
+	$control = db_get_row('Controls', 'status = "Active" AND group_set ="User Role" AND control_name= "' . get_session( 'user_role' ) . '"');
 	$return['re_direct'] = $control['control_value'];
 	$this->echo_json($return);
 }
 
-/*
- *   $.ajax({ method: log_in, user_name: x...x, encrypted: x...x, remember_me: Y/N });
+/**
+ *	$.ajax({ method: log_in, user_name: x...x, encrypted: x...x, remember_me: Y/N });
  *
- *  status: ok
+ *	status: ok
  * message: x...x
- *    data: first_name	: x...x
+ *	  data: first_name	: x...x
  *			last_name	: x...x
  *			user_role	: x...x
  *			start_page	: x...x
  */
 private function log_in($data) {
-	$user_name  = $data['user_name'];
-	$encrypted  = $data['encrypted'];
+	$user_name	= $data['user_name'];
+	$encrypted	= $data['encrypted'];
 
 	$error = '';
 	$user_id = db_get_id('JKY_Users', 'status = "Active" AND user_name = "' . $user_name . '"');
@@ -2608,134 +2393,138 @@ private function get_password($id) {
 	return $db->fetchOne($sql);
 }
 
-/*
- *   $.ajax({ method: log_out });
+/**
+ *	$.ajax({ method: log_out });
  *
- *   status: ok
- *  message: x...x
+ *	status: ok
+ * message: x...x
  */
 private function log_out() {
-//   setcookie( 'remember_me'  , '', time() - 86400, '/' );
-//   setcookie( 'authorization', '', time() - 86400, '/' );
+//	setcookie('remember_me'  , '', time() - 86400, '/');
+//	setcookie('authorization', '', time() - 86400, '/');
 
-     $error = '';
-     $session = new Zend_Session_Namespace();
-     foreach( $session as $name => $value ) {
-//          if(  $name != 'control_company' )
-	       unset_session( $name );
-     }
-#    $this->_redirect( INDEX . 'index' );                   //   in linux, it generates = http://xxx/jky_index.php/jky_index.php/index
-//   $this->_redirect( INDEX . 'jky_index.php/index' );
+	$error = '';
+	$session = new Zend_Session_Namespace();
+	foreach($session as $name => $value) {
+//		if ($name != 'control_company') {
+			unset_session($name);
+//		}
+	}
+//	$this->_redirect( INDEX . 'index' );                   //   in linux, it generates = http://xxx/jky_index.php/jky_index.php/index
+//	$this->_redirect( INDEX . 'jky_index.php/index' );
 
-     $return = array();
-     $return[ 'status'   ] = $error == '' ? 'ok' : 'error';
-     $return[ 'message'  ] = $error;
-     echo json_encode( $return );
+	$return = array();
+	$return[ 'status' ] = $error == '' ? 'ok' : 'error';
+	$return[ 'message'] = $error;
+	echo json_encode($return);
 }
 
-/*
- *   $.ajax({ method: log_help, help_name: x...x });
+/**
+ *	$.ajax({ method: log_help, help_name: x...x });
  *
- *       status: ok
- *   user_email: x...x
+ *		status: ok
+ *  user_email: x...x
  */
 private function log_help() {
-     $help_name  = get_request( 'help_name'  );
+	$help_name  = get_request('help_name');
 
-     $error = '';
-     $users = db_get_rows( 'Persons', 'status = "Active" AND( user_name = "' . $help_name . '" OR user_email = "' . $help_name . '" )' );
-     if(  count( $users ) == 0 )        $error .= set_not_found( 'User Name or Email Address' );
+	$error = '';
+	$users = db_get_rows('Contacts', 'status = "Active" AND( user_name = "' . $help_name . '" OR user_email = "' . $help_name . '" )');
+	if (count($users) == 0) {
+		$error .= set_not_found('User Name or Email Address');
+	}
 
-     $return = array();
-     if(  is_empty( $error )) {
-//        email for all users
-	  foreach( $users as $user ) {
-	       $return = email_by_event( $user[ 'id' ], 'Remind Me', 'Email From System' );
-	       if( !isset( $return[ 'user_email' ]))
-		    $return[ 'user_email' ] = $user[ 'user_email' ];
-	  }
-     }
+	$return = array();
+	if (is_empty($error)) {
+//		email for all users
+		foreach($users as $user) {
+			$return = email_by_event($user['id'], 'Remind Me', 'Email From System');
+			if (!isset($return['user_email'])) {
+				$return['user_email'] = $user['user_email'];
+			}
+		}
+	}
 
-     $return[ 'status'   ] = $error == '' ? 'ok' : 'error';
-     $return[ 'message'  ] = $error;
-     echo json_encode( $return );
+	$return['status' ] = $error == '' ? 'ok' : 'error';
+	$return['message'] = $error;
+	echo json_encode($return);
 }
 
-/*
- *   $.ajax({ method: profile, user_name: x...x, first_name: x...x, last_name: x...x, email_address: x...x, phone: x...x, mobile: x...x, cur_password: x...x, new_password: x...x });
+/**
+ *	$.ajax({ method: profile, user_name: x...x, first_name: x...x, last_name: x...x, email_address: x...x, phone: x...x, mobile: x...x, cur_password: x...x, new_password: x...x });
  *
- *   status: ok
- *  message: x...x
+ *	status: ok
+ * message: x...x
  */
 private function profile() {
-     $id  = get_session( 'user_id' );
-     $user_name      = get_request( 'user_name'    );
-     $first_name     = get_request( 'first_name'   );
-     $last_name      = get_request( 'last_name'    );
-     $email_address  = get_request( 'email_address');
-     $phone          = get_request( 'phone'        );
-     $mobile         = get_request( 'mobile'       );
-     $cur_password   = get_request( 'cur_password' );
-     $new_password   = get_request( 'new_password' );
-     $full_name      = $first_name . ' ' . $last_name;
+	$id = get_session('user_id');
+	$user_name		= get_request('user_name'		);
+	$first_name		= get_request('first_name'		);
+	$last_name		= get_request('last_name'		);
+	$email_address	= get_request('email_address'	);
+	$phone			= get_request('phone'			);
+	$mobile			= get_request('mobile'			);
+	$cur_password	= get_request('cur_password'	);
+	$new_password	= get_request('new_password'	);
+	$full_name		= $first_name . ' ' . $last_name;
 
-     $set = '  user_name      = "' . $user_name        . '"'
-	  . ', first_name     = "' . $first_name       . '"'
-	  . ', last_name      = "' . $last_name        . '"'
-	  . ', full_name      = "' . $full_name        . '"'
-	  . ', user_email     = "' . $email_address    . '"'
-	  . ', phone          = "' . $phone            . '"'
-	  . ', mobile         = "' . $mobile           . '"'
-	  ;
-     $sql = 'UPDATE Persons'
-	  . '   SET ' . $set
-	  . ' WHERE id = ' . $id
-	  ;
-     $db  = Zend_Registry::get( 'db' );
-     $db->query( $sql );
-     $this->log_sql( 'profile', $id, $sql );
+	$set= '  user_name		= "' . $user_name		. '"'
+		. ', first_name		= "' . $first_name		. '"'
+		. ', last_name		= "' . $last_name		. '"'
+		. ', full_name		= "' . $full_name		. '"'
+		. ', user_email		= "' . $email_address	. '"'
+		. ', phone			= "' . $phone			. '"'
+		. ', mobile			= "' . $mobile			. '"'
+		;
+	$sql= 'UPDATE Contacts'
+		. '   SET ' . $set
+		. ' WHERE id = ' . $id
+		;
+	$db = Zend_Registry::get('db');
+	$db->query($sql);
+	$this->log_sql('profile', $id, $sql);
 
-     set_session( 'full_name', $full_name );
+	set_session('full_name', $full_name);
 
-     $error = '';
-     if(  $new_password != MD5( '' )) {
-	  $sql = 'SELECT password'
-	       . '  FROM JKY_Users'
-	       . ' WHERE id = ' . $id
-	       ;
-	  $password = $db->fetchOne( $sql );
+	$error = '';
+	if ($new_password != MD5('')) {
+		$sql= 'SELECT password'
+			. '  FROM JKY_Users'
+			. ' WHERE id = ' . $id
+			;
+		$password = $db->fetchOne($sql);
 
-	  if(  $password != $cur_password ) {
-	       $error .= 'Current Password is invalid';
-	  } else {
-	       $sql = 'UPDATE JKY_Users'
-		    . '   SET password = "' . $new_password . '"'
-		    . ' WHERE id = ' . $id
-		    ;
-	       $db->query( $sql );
-	       $this->log_sql( 'profile', $id, $sql );
-	  }
-     }
+		if ($password != $cur_password) {
+			$error .= 'Current Password is invalid';
+		}else{
+			$sql= 'UPDATE JKY_Users'
+				. '   SET password = "' . $new_password . '"'
+				. ' WHERE id = ' . $id
+				;
+			$db->query($sql);
+			$this->log_sql('profile', $id, $sql);
+		}
+	}
 
-     $return = array();
-     if(  $error == '' ) {
-	  $return[ 'status'   ] = 'ok';
-	  $return[ 'message'  ] = 'profile updated';
-     } else {
-	  $return[ 'status'   ] = 'error';
-	  $return[ 'message'  ] = $error;
-     }
-     $this->echo_json( $return );
+	$return = array();
+	if ($error == '') {
+		$return['status' ] = 'ok';
+		$return['message'] = 'profile updated';
+	}else{
+		$return['status' ] = 'error';
+		$return['message'] = $error;
+	}
+	$this->echo_json($return);
 }
 
-/*
- *   $.ajax({ method: sign_up, user_name: x...x, email_address: x...x[, company_name: x...x][, phone_number: x...x][, newsletter: [yes/no]] });
+/**
+ *	$.ajax({ method: sign_up, user_name: x...x, email_address: x...x[, company_name: x...x][, phone_number: x...x][, newsletter: [yes/no]] });
  *
- *   status: ok
- *  message: x...x
+ *	status: ok
+ * message: x...x
  */
 private function sign_up() {
-     $db  = Zend_Registry::get( 'db' );
+	$db = Zend_Registry::get('db');
 
      $user_name     = get_request( 'user_name'         );
      $email_address = get_request( 'email_address'     );
@@ -2767,7 +2556,7 @@ private function sign_up() {
 	  . ', created_at     = "' . date( 'Y-m-d H:i:s' ) . '"'
 	  . ', company_id     =  ' . $company_id
 	  . ', newsletter     = "' . $newsletter       . '"'
-	  . ', user_number    =  ' . $this->getUniqueNumber( 'Persons', 'user_number' )
+	  . ', user_number    =  ' . $this->getUniqueNumber( 'Contacts', 'user_number' )
 	  . ', user_role      = "' . 'member'          . '"'
 	  . ', full_name      = "' . $user_name        . '"'
 	  . ', first_name     = "' . $user_name        . '"'
@@ -2775,7 +2564,7 @@ private function sign_up() {
 	  . ', user_name      = "' . $user_name        . '"'
 	  . ', phone          = "' . $phone            . '"'
 	  ;
-     $sql = 'INSERT Persons'
+     $sql = 'INSERT Contacts'
 	  . '   SET ' . $set
 	  ;
 //$this->log_sql( null, 'sign_up', $sql );
@@ -2813,7 +2602,7 @@ private function send_email() {
      $template_name = get_request( 'template_name'     );
      $email_from    = 'Email From System';
 
-     $user     = db_get_row( 'Persons'  , 'id = ' . $user_id );
+     $user     = db_get_row( 'Contacts'  , 'id = ' . $user_id );
      $user_jky = db_get_row( 'JKY_Users', 'id = ' . $user_id );
      $to_name  = $user[ 'full_name'     ];
      $to_email = $user[ 'user_email'    ];
@@ -2864,7 +2653,7 @@ private function send_email() {
 
 	$helper_names = '';
 	foreach ($services as $service) {
-	    $user = db_get_row('Persons', 'id = ' . $service['user_id']);
+	    $user = db_get_row('Contacts', 'id = ' . $service['user_id']);
 	    $helper_names .= '<br>' . $user['full_name'];
 	}
 
@@ -3134,9 +2923,9 @@ private function echo_error( $message ) {
 	$this->init_counters();
 
 	$sql = 'SELECT Services.*'
-	     . '     , Persons.gender, Persons.all_gifts, Persons.church_name'
+	     . '     , Contacts.gender, Contacts.all_gifts, Contacts.church_name'
 	     . '  FROM Services'
-	     . '  LEFT JOIN Persons ON Persons.id = Services.user_id'
+	     . '  LEFT JOIN Contacts ON Contacts.id = Services.user_id'
 	     . ' WHERE Services.event_id = ' . get_session('event_id')
 	     ;
 	$db   = Zend_Registry::get( 'db' );

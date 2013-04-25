@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Permissions
 , user_action		VARCHAR(32)			DEFAULT NULL
 
 , PRIMARY KEY(id)
-, UNIQUE(user_role, user_resource)
+, UNIQUE(user_role, user_resource, user_action)
 , KEY user_role		(user_role		)
 , KEY user_action	(user_action	)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
