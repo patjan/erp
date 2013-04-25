@@ -5,7 +5,7 @@
  */
 var jky_program		= 'Permissions';
 var jky_table		= 'Permissions';
-var jky_select		= '';
+var jky_select		= 'All';
 var jky_focus		= 'jky-user-role';
 var jky_filter		= '';
 var jky_specific	= '';
@@ -60,8 +60,10 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-support');
 		JKY.set_side_active('jky-support-permissions');
-//		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table , jky_select, 'Root'));
 		JKY.set_html('jky-status'    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
+		JKY.set_html('jky-user-role'    , JKY.set_group_set('Controls', '', 'User Role' ));
+		JKY.set_html('jky-user-resource'    , JKY.set_group_set('Controls', '', 'User Resource' ));
+		JKY.set_html('jky-user-action'    , JKY.set_group_set('Controls', '', 'User Action' ));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
 		JKY.show('jky-side-support'		);
