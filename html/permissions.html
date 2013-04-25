@@ -1,0 +1,105 @@
+<div id='jky-app-header'>
+	<div>
+		<div id='jky-app-breadcrumb'></div>
+		<select id='jky-app-select'></select>
+		<input  id='jky-app-filter' class='search-query' type='text' placeholder='Search' />
+		<div class='jky-clear'></div>
+	</div>
+
+	<div>
+		<div id='jky-app-actions'>
+			<button id='jky-action-add-new'	class='btn btn-success' type='button'>Add New	</button>
+			<button id='jky-action-save'	class='btn btn-success' type='button'>Save		</button>
+		&nbsp;<a	id='jky-action-delete'	class='btn' type='button' href='#'>Delete</a>
+		&nbsp;<a	id='jky-action-cancel'	class='btn' type='button' href='#'>Cancel</a>
+		</div>
+		<div id='jky-app-more'>
+			<button id='jky-action-export'	class='btn btn-success' type='button'>Export	</button>
+<!--		<button id='jky-action-publish'	class='btn btn-success' type='button'>Publish	</button>	-->
+		</div>
+		<div id='jky-app-displays' class='btn-group'>
+			<button id='jky-action-list'	class='btn' title='List View'><i class='icon-align-justify'	></i></button>
+			<button id='jky-action-form'	class='btn' title='Form View'><i class='icon-list-alt'		></i></button>
+<!--
+			<button class='btn'><i class='icon-signal'		></i></button>
+			<button class='btn'><i class='icon-calendar'	></i></button>
+-->
+		</div>
+		<div id='jky-app-counters'><span id='jky-app-index'>1</span> of <span id='jky-app-count'>12</span></div>
+		<div id='jky-app-add-new' >New</div>
+		<div id='jky-app-navs' class='btn-group'>
+			<button id='jky-action-prev'	class='btn' title='Previous'><i class='icon-backward'		></i></button>
+			<button id='jky-action-next'	class='btn' title='Next'	><i class='icon-forward'		></i></button>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+</div>
+
+<style>
+.jky-form-label			{width:150px;}
+.jky-form-value			{width:300px;}
+.jky-checkbox			{width: 30px; text-align:center;}
+#jky-check-all			{width: 30px;}
+
+.jky-status				{text-align:center; width:100px;}
+.jky-user-role			{text-align:center; width: 80px;}
+.jky-name				{text-align:left;	}
+.jky-user-action				{text-align:left;	}
+
+#jky-status				{width:100px;}
+#jky-user-role			{width: 30px;}
+#jky-user-resource				{}
+#jky-user-action				{width:295px; height:100px;}
+</style>
+
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th    id='jky-check-all'	><input type='checkbox' /></th>
+			<th class='jky-user-role'	>User Role		</th>
+			<th class='jky-user-resource'		>User Resource		</th>
+			<th class='jky-user-action'		>User Action			</th>
+			<th class='jky-status'		>Status			</th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+
+	<tfoot>
+		<tr>
+			<td></td>
+		</tr>
+	</tfoot>
+</table>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'	></div>
+		<ul  id='jky-form-status'	></ul>
+	</div>
+	<div class='jky-clear'></div>
+
+	<div id='jky-form-title'>
+		<span id='jky-form-action'	></span>
+		<span id='jky-form-id'		></span>
+		<div class='jky-right'>
+			<button id='jky-action-comment'	class='btn btn-success' type='button'>Comment</button>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-data'>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'>       Status:</div><select id='jky-status'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'>         Name:</div><div class='jky-form-user-action'><input	 id='jky-user-resource'			class='jky-form-user-action' placeholder='Name'			/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>        Value:</div><div class='jky-form-user-action'><textarea id='jky-user-action'			class='jky-form-user-action' placeholder='Value'></textarea></div></div>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+	</div>
+
+	<div id='jky-form-footer'></div>
+</div>
+
+<div id='jky-body-loaded'></div>
+<script src='js/permissions.js'></script>

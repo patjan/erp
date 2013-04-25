@@ -50,6 +50,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-admin-configs'		).click (function() {JKY.process_action('configs'	);});
 		$('#jky-support-controls'	).click (function() {JKY.process_action('controls'	);});
 		$('#jky-admin-users'		).click (function() {JKY.process_action('users'		);});
+		$('#jky-support-permissions'	).click (function() {JKY.process_action('permissions'	);});
 
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
