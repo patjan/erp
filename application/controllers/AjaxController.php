@@ -528,6 +528,7 @@ private function set_specific($table, $specific) {
 	if ($table == 'Translations'	&& $specific == 'locale'	)		$return .= ' AND Translations.locale = "en_us"';
 	if ($table == 'Persons'			&& $specific == 'organ_id'	)		$return .= ' AND    Persons.organ_id = ' . get_session('organ_id');
 //	if ($specific == 'parent_id')	$return .= ' AND Categories.parent_id = ' . get_session('parent_id');
+	if ($table == 'Contacts'		&& $specific == 'is_user'	)		$return .= ' AND Contacts.is_company = "no"';
 
 	return $return;
 }
@@ -577,13 +578,17 @@ private function set_new_fields($table) {
 	if ($table == 'Persons'		)	$return = ',   Support.full_name	AS  support_name'
 											. ', Companies.company_name	AS  company_name';
 
-	if ($table == 'FTPs'		)	$return = ',   Products.name		AS  product'
-											. ',   Machines.name		AS  machine';
-	if ($table == 'FTP_Loads'	)	$return = ',    Thread1.name		AS  first_name'
-											. ',    Thread2.name		AS second_name';
-	if ($table == 'FTP_Threads'	)	$return = ',    Threads.name		AS  name';
-	if ($table == 'FTP_Sets'	)	$return = ',    Configs.sequence	AS  sequence'
-											. ',    Configs.name		AS  name';
+	if ($table == 'Contacts'	)	$return = ', JKY_Users.id			AS  user_id'
+											. ', JKY_Users.user_name	AS  user_name'
+											. ', JKY_Users.user_role	AS  user_role'
+											. ', Companies.full_name	AS  company_name';
+	if ($table == 'FTPs'		)	$return = ',  Products.name			AS  product'
+											. ',  Machines.name			AS  machine';
+	if ($table == 'FTP_Loads'	)	$return = ',   Thread1.name			AS  first_name'
+											. ',   Thread2.name			AS second_name';
+	if ($table == 'FTP_Threads'	)	$return = ',   Threads.name			AS  name';
+	if ($table == 'FTP_Sets'	)	$return = ',   Configs.sequence		AS  sequence'
+											. ',   Configs.name			AS  name';
 
 //	special code to append fields from Persons to Services table
 	if (get_request('method') == 'export') {
@@ -613,8 +618,10 @@ private function set_left_joins($table) {
 	if ($table == 'Persons'		)	$return = '  LEFT JOIN     Persons AS Support	ON   Support.id =    Persons.support_id'
 											. '  LEFT JOIN   Companies				ON Companies.id =    Persons.company_id';
 
-	if ($table == 'FTPs'		)	$return = '  LEFT JOIN     Products				ON  Products.id =		FTPS.product_id'
-											. '  LEFT JOIN     Machines				ON  Machines.id =		FTPS.machine_id';
+	if ($table == 'Contacts'	)	$return = '  LEFT JOIN   JKY_Users AS JKY_Users	ON  Contacts.id =  JKY_Users.contact_id'
+											. '  LEFT JOIN    Contacts AS Companies	ON Companies.id =   Contacts.company_id AND Companies.is_company = "yes"';
+	if ($table == 'FTPs'		)	$return = '  LEFT JOIN    Products				ON  Products.id =		FTPS.product_id'
+											. '  LEFT JOIN    Machines				ON  Machines.id =		FTPS.machine_id';
 	if ($table == 'FTP_Loads'	)	$return = '  LEFT JOIN     Threads AS Thread1	ON   Thread1.id =  FTP_Loads.first_thread_id'
 											. '  LEFT JOIN     Threads AS Thread2	ON   Thread2.id =  FTP_Loads.second_thread_id';
 	if ($table == 'FTP_Threads'	)	$return = '  LEFT JOIN     Threads  			ON   Threads.id =FTP_Threads.thread_id';
@@ -906,6 +913,34 @@ private function set_where($table, $filter) {
 	  }
      }
 
+	if ($table == 'Contacts') {
+		if ($name == 'first_name'
+		or	$name == 'last_name'
+		or	$name == 'full_name'
+		or	$name == 'email'
+		or	$name == 'mobile'
+		or	$name == 'phone'
+		or	$name == 'street'
+		or	$name == 'city'
+		or	$name == 'state'
+		or	$name == 'zip'
+		or	$name == 'country') {
+			if	($value == '"%null%"') {
+				return ' AND Persons.' . $name . ' IS NULL ';
+			}else{
+				return ' AND Persons.' . $name . ' LIKE ' . $value;
+			}
+		}else{
+			if ($name == 'company_name') {
+				if ($value == '"%null%"') {
+					return ' AND   Persons.company_id   IS NULL';
+				}else{
+					return ' AND Companies.company_name LIKE ' . $value;
+				}
+			}
+		}
+	}
+
      $filter = '"%' . $filter . '%"';
 
      if(  $table == 'Categories' ) {
@@ -1049,7 +1084,30 @@ private function set_where($table, $filter) {
 	       ;
      }
 
-     return ' AND (' . $return . ')';
+	if ($table == 'Contacts') {
+		$return = ' Persons.user_title           LIKE ' . $filter
+			. ' OR	Persons.full_name            LIKE ' . $filter
+			. ' OR	Persons.official_name        LIKE ' . $filter
+			. ' OR	Persons.special_name         LIKE ' . $filter
+			. ' OR     Persons.user_email           LIKE ' . $filter
+	       . ' OR     Persons.gender               LIKE ' . $filter
+	       . ' OR     Persons.birth_date           LIKE ' . $filter
+	       . ' OR     Persons.mobile               LIKE ' . $filter
+	       . ' OR     Persons.phone                LIKE ' . $filter
+	       . ' OR     Persons.street               LIKE ' . $filter
+	       . ' OR     Persons.city                 LIKE ' . $filter
+	       . ' OR     Persons.state                LIKE ' . $filter
+	       . ' OR     Persons.zip                  LIKE ' . $filter
+	       . ' OR     Persons.country              LIKE ' . $filter
+	       . ' OR     Persons.contact_name         LIKE ' . $filter
+	       . ' OR     Persons.church_name          LIKE ' . $filter
+	       . ' OR     Persons.pastor_name          LIKE ' . $filter
+	       . ' OR   Companies.company_name         LIKE ' . $filter
+	       . ' OR     Support.full_name            LIKE ' . $filter
+	       ;
+     }
+
+	 return ' AND (' . $return . ')';
 }
 
 /*

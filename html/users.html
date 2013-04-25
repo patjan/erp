@@ -20,9 +20,9 @@
 		</div>
 		<div id='jky-app-displays' class='btn-group'>
 			<button id='jky-action-list'		class='btn' title=    'List View'><i class='icon-align-justify'	></i></button>
-			<button id='jky-action-form'		class='btn' title=    'Form View'><i class='icon-list-alt'		></i></button>
 			<button id='jky-action-graph'		class='btn' title= 'Graphic View'><i class='icon-signal'		></i></button>
 			<button id='jky-action-calendar'	class='btn' title='Calendar View'><i class='icon-calendar'		></i></button>
+			<button id='jky-action-form'		class='btn' title=    'Form View'><i class='icon-list-alt'		></i></button>
 		</div>
 		<div id='jky-app-counters'><span id='jky-app-index'>1</span> of <span id='jky-app-count'>12</span></div>
 		<div id='jky-app-add-new' >New</div>
@@ -40,12 +40,18 @@
 .jky-checkbox			{width: 30px; text-align:center;}
 #jky-check-all			{width: 30px;}
 
+.jky-user-name			{width: 80px;}
+.jky-user-role			{width: 80px;}
+.jky-full-name			{width:100px;}
+.jky-mobile				{width: 80px;}
+.jky-email				{width:100px;}
+
 #jky-user-name			{width:250px;}
 #jky-user-role			{width:260px;}
 #jky-first-name			{width:250px;}
 #jky-last-name			{width:250px;}
 #jky-email				{width:250px;}
-#jky-phone				{width:250px;}
+#jky-mobile				{width:250px;}
 #jky-company-name		{width:260px;}
 #jky-photo-img			{border:4px ridge black; width:120px; height:120px;}
 
@@ -61,8 +67,9 @@
 	<thead>
 		<tr>
 			<th    id='jky-check-all'	><input type='checkbox' /></th>
-			<th class='jky-full-name'	>Name			</th>
-			<th class='jky-phone'		>Phone			</th>
+			<th class='jky-user-name'	>User Name		</th>
+			<th class='jky-user-role'	>User Role		</th>
+			<th class='jky-full-name'	>Full Name		</th>
 			<th class='jky-mobile'		>Mobile			</th>
 			<th class='jky-email'		>Email			</th>
 		</tr>
@@ -99,8 +106,8 @@
 			<div class='jky-form-line'><div class='jky-form-label'>        User Role:</div><div class="jky-form-value"><select id='jky-user-role'></select>						  		  </div></div>
 			<div class='jky-form-line'><div class='jky-form-label'>       First Name:</div><div class='jky-form-value'><input  id='jky-first-name'		placeholder='First Name'		/></div></div>
 			<div class='jky-form-line'><div class='jky-form-label'>        Last Name:</div><div class='jky-form-value'><input  id='jky-last-name'   	placeholder='Last Name'			/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>             Email:</div><div class='jky-form-value'><input  id='jky-email'			placeholder='Email'				/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>            Phone:</div><div class='jky-form-value'><input  id='jky-phone'			placeholder='e.g. 123-456-7890'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>            Email:</div><div class='jky-form-value'><input  id='jky-email'			placeholder='Email'				/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>           Mobile:</div><div class='jky-form-value'><input  id='jky-mobile'			placeholder='e.g. 123-456-7890'	/></div></div>
 		</div>
 		<div class="jky-left">
 			<div id='jky-photo'>

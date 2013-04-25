@@ -1085,7 +1085,7 @@ JKY.set_group_set = function(table, selected, group_set) {
 					for(var i=0; i<response.rows.length; i+=1) {
 						var my_name  = response.rows[i]['name' ];
 						var my_value = response.rows[i]['value'];
-						if (my_value == '') {
+						if (my_value == '' || group_set == 'User Roles') {
 							my_value = my_name;
 						}
 						var my_selected = (my_name == selected) ? ' selected="selected"' : '';

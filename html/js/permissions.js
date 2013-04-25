@@ -60,10 +60,10 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-support');
 		JKY.set_side_active('jky-support-permissions');
-		JKY.set_html('jky-status'    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
-		JKY.set_html('jky-user-role'    , JKY.set_group_set('Controls', '', 'User Role' ));
-		JKY.set_html('jky-user-resource'    , JKY.set_group_set('Controls', '', 'User Resource' ));
-		JKY.set_html('jky-user-action'    , JKY.set_group_set('Controls', '', 'User Action' ));
+		JKY.set_html('jky-status'		, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
+		JKY.set_html('jky-user-role'    , JKY.set_group_set('Controls', '', 'User Roles'	));
+		JKY.set_html('jky-user-resource', JKY.set_group_set('Controls', '', 'User Resources'));
+		JKY.set_html('jky-user-action'  , JKY.set_group_set('Controls', '', 'User Actions'	));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
 		JKY.show('jky-side-support'		);
@@ -82,6 +82,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-action-add-new'	);
 	JKY.hide('jky-action-save'		);
+	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
 	JKY.show('jky-app-table'		);
@@ -96,6 +97,10 @@ JKY.display_form = function(index) {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.hide('jky-action-add-new'	);
+	JKY.show('jky-action-save'		);
+	JKY.show('jky-action-copy'		);
+	JKY.show('jky-action-delete'	);
+	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
 }
@@ -128,20 +133,10 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_option	('jky-status'			, JKY.row['status'			]);
-	JKY.set_value	('jky-user-role'			, JKY.row['user_role'		]);
-	JKY.set_value	('jky-user-resource'				, JKY.row['user_resource'			]);
-	JKY.set_value	('jky-user-action'			, JKY.row['user_action'			]);
-
-	if (jky_select == 'Root' && JKY.row['user_resource'] == 'Root') {
-		JKY.hide('jky-action-save'		);
-		JKY.hide('jky-action-delete'	);
-		JKY.hide('jky-action-cancel'	);
-	}else{
-		JKY.show('jky-action-save'		);
-		JKY.show('jky-action-delete'	);
-		JKY.show('jky-action-cancel'	);
-	}
+	JKY.set_option	('jky-status'			, JKY.row.status		);
+	JKY.set_value	('jky-user-role'		, JKY.row.user_role		);
+	JKY.set_value	('jky-user-resource'	, JKY.row.user_resource	);
+	JKY.set_value	('jky-user-action'		, JKY.row.user_action	);
 	JKY.set_focus(jky_focus);
 }
 
@@ -166,11 +161,11 @@ JKY.process_load_success = function(response) {
 	for(var i=0; i<jky_count; i++) {
 		var my_row = JKY.rows[i];
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
-				+  '<td class="jky-checkbox"	><input type="checkbox"	 /></td>'
-				+  '<td class="jky-user-role"	>' + my_row['user_role'		] + '</td>'
-				+  '<td class="jky-user-resource"		>' + my_row['user_resource'			] + '</td>'
-				+  '<td class="jky-user-action"		>' + my_row['user_action'			] + '</td>'
-				+  '<td class="jky-status"		>' + my_row['status'		] + '</td>'
+				+  '<td class="jky-checkbox"		><input type="checkbox"	 /></td>'
+				+  '<td class="jky-user-role"		>' + my_row['user_role'		] + '</td>'
+				+  '<td class="jky-user-resource"	>' + my_row['user_resource'	] + '</td>'
+				+  '<td class="jky-user-action"		>' + my_row['user_action'	] + '</td>'
+				+  '<td class="jky-status"			>' + my_row['status'		] + '</td>'
 				+  '</tr>'
 				;
 	}
@@ -191,6 +186,7 @@ JKY.process_add_new = function() {
 	JKY.hide('jky-app-counters'		);
 	JKY.hide('jky-action-add-new'	);
 	JKY.show('jky-action-save'		);
+	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
@@ -199,19 +195,18 @@ JKY.process_add_new = function() {
 
 JKY.display_new = function() {
 	JKY.set_option	('jky-status'			, 'Active');
-	JKY.set_value	('jky-user-role'			, 50);
-	JKY.set_value	('jky-user-resource'				, '');
-	JKY.set_value	('jky-user-action'			, '');
+	JKY.set_value	('jky-user-role'		, '');
+	JKY.set_value	('jky-user-resource'	, '');
+	JKY.set_value	('jky-user-action'		, '');
 	JKY.set_focus(jky_focus);
 }
 
 JKY.get_form_set = function() {
 	var my_set = ''
-		+       'group_set=\'' + jky_select + '\''
-		+        ', status=\'' + JKY.get_value	('jky-status'			) + '\''
-		+      ', user_role=  ' + JKY.get_value	('jky-user-role'			)
-		+          ', user_resource=\'' + JKY.get_value	('jky-user-resource'				) + '\''
-		+         ', user_action=\'' + JKY.get_value	('jky-user-action'			) + '\''
+		+          'status=\'' + JKY.get_value	('jky-status'			) + '\''
+		+     ', user_role=\'' + JKY.get_value	('jky-user-role'		) + '\''
+		+ ', user_resource=\'' + JKY.get_value	('jky-user-resource'	) + '\''
+		+   ', user_action=\'' + JKY.get_value	('jky-user-action'		) + '\''
 		;
 	return my_set;
 }
@@ -236,7 +231,6 @@ JKY.process_insert = function() {
 JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
 	JKY.display_message(response.message);
-	JKY.refresh_select(jky_select);			//	only used on [Configs and Controls]
 	JKY.load_table();
 	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
 }
@@ -255,7 +249,6 @@ JKY.process_update = function() {
 JKY.process_update_success = function(response) {
 	JKY.display_trace('process_update_success');
 	JKY.display_message(response.message);
-	JKY.refresh_select(jky_select);			//	only used on [Configs and Controls]
 	JKY.rows[jky_index-1] = JKY.get_row(jky_table, JKY.rows[jky_index-1]['id']);
 	JKY.display_next();
 }
@@ -266,15 +259,6 @@ JKY.process_delete = function() {
 
 JKY.delete_confirmed = function() {
 	var my_id = JKY.row.id;
-
-	if (JKY.row.group_set == 'Root') {
-		var my_data =
-			{ method: 'delete_many'
-			, table :  jky_table
-			, where : 'group_set = "' + JKY.row.user_resource + '"'
-			};
-		JKY.ajax(true, my_data);
-	}
 
 	var my_data =
 		{ method: 'delete'
@@ -309,12 +293,3 @@ JKY.process_export = function() {
 	}
 	JKY.run_export(jky_table, jky_select, jky_filter, jky_specific, my_sort_by);
 };
-
-/**
- * only used on [Configs and Controls]
- */
-JKY.refresh_select = function(selected) {
-	if (selected == 'Root') {
-		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table , jky_select, 'Root'));
-	}
-}

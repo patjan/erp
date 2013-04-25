@@ -91,6 +91,7 @@ JKY.set_initial_values = function(jky_program) {
 
 		JKY.set_menu_active('jky-menu-support');
 		JKY.set_side_active('jky-support-controls');
+		JKY.set_side_active('jky-support-permissions');
 		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table , jky_select, 'Root'));
 		JKY.set_html('jky-status'    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
 
@@ -112,6 +113,11 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_side_active('jky-admin-users');
 		JKY.set_html('jky-state'  , JKY.set_group_set('Configs', '', 'States'	));
 		JKY.set_html('jky-country', JKY.set_group_set('Configs', '', 'Countries'));
+		
+		JKY.set_html('jky-status'		, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
+		JKY.set_html('jky-user-role'    , JKY.set_group_set('Controls', '', 'User Role'		));
+		JKY.set_html('jky-user-resource', JKY.set_group_set('Controls', '', 'User Resource' ));
+		JKY.set_html('jky-user-action'  , JKY.set_group_set('Controls', '', 'User Action'	));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
 //		JKY.display_form(1);
@@ -202,9 +208,9 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-value'			, JKY.row.value			);
 
 	JKY.set_value	('jky-user-name'		, JKY.row.user_name		);
-	JKY.set_value	('jky-user-role'		, JKY.row.user-role		);
-	JKY.set_value	('jky-first-name'		, JKY.row.first-name	);
-	JKY.set_value	('jky-last-name'		, JKY.row.last-name		);
+	JKY.set_value	('jky-user-role'		, JKY.row.user_role		);
+	JKY.set_value	('jky-first-name'		, JKY.row.first_name	);
+	JKY.set_value	('jky-last-name'		, JKY.row.last_name		);
 	JKY.set_value	('jky-email'			, JKY.row.email			);
 	JKY.set_value	('jky-phone'			, JKY.row.phone			);
 
@@ -264,6 +270,11 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-thread_group'		, JKY.row.thread_group		]);
 	JKY.set_value	('jky-thread_color'		, JKY.row.thread_color		]);
 	JKY.set_value	('jky-composition'		, JKY.row.composition		]);
+	
+	JKY.set_option	('jky-status'			, JKY.row.status		);
+	JKY.set_value	('jky-user-role'		, JKY.row.user_role		);
+	JKY.set_value	('jky-user-resource'	, JKY.row.user_resource	);
+	JKY.set_value	('jky-user-action'		, JKY.row.user_action	);
 
 	if (jky_select == 'Root' && JKY.row.name'] == 'Root') {
 		JKY.hide('jky-action-save'		);
@@ -335,6 +346,11 @@ JKY.process_load_success = function(response) {
 				+  '<td class="jky-thread_group">' + my_row['thread_group'	] + '</td>'
 				+  '<td class="jky-thread_color">' + my_row['thread_color'	] + '</td>'
 				+  '<td class="jky-composition"	>' + my_row['composition'	] + '</td>'
+				
+				+  '<td class="jky-user-role"		>' + my_row['user_role'		] + '</td>'
+				+  '<td class="jky-user-resource"	>' + my_row['user_resource'	] + '</td>'
+				+  '<td class="jky-user-action"		>' + my_row['user_action'	] + '</td>'
+				+  '<td class="jky-status"			>' + my_row['status'		] + '</td>'
 				+  '</tr>'
 				;
 	}
@@ -500,6 +516,12 @@ JKY.get_form_set = function() {
 		+  ', thread_group=\'' + JKY.get_value	('jky-thread_group'		) + '\''
 		+  ', thread_color=\'' + JKY.get_value	('jky-thread_color'		) + '\''
 		+   ', composition=\'' + JKY.get_value	('jky-composition'		) + '\''
+	
+		+          'status=\'' + JKY.get_value	('jky-status'			) + '\''
+		+     ', user_role=\'' + JKY.get_value	('jky-user-role'		) + '\''
+		+ ', user_resource=\'' + JKY.get_value	('jky-user-resource'	) + '\''
+		+   ', user_action=\'' + JKY.get_value	('jky-user-action'		) + '\''
+
 		;
 	var my_date= JKY.get_value('jky-repair-value');
 	my_set += ', repair_date = ' + JKY.fix_dmy2ymd(my_date);

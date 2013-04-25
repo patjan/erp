@@ -5,10 +5,10 @@
  */
 var jky_program		= 'Users';
 var jky_table		= 'Contacts';
-var jky_select		= 'Contacts.is_company = false';
+var jky_select		= '';
 var jky_focus		= 'jky-full-name';
 var jky_filter		= '';
-var jky_specific	= '';
+var jky_specific	= 'is_user';
 var jky_sort_by		= 'full_name';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
@@ -47,7 +47,8 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-form'		).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'			).click (function() {JKY.process_check_all	();});	// not needed on version 0
-		$('#jky-user-name'			).change(function() {JKY.process_user-name	();});
+
+		$('#jky-user-name'			).change(function() {JKY.process_user_name	();});
 		$('#jky-upload-photo'		).change(function() {JKY.upload-user-photo	();});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
@@ -62,11 +63,12 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-admin');
 		JKY.set_side_active('jky-admin-users');
-		JKY.set_html('jky-state'  , JKY.set_group_set('Configs', '', 'States'	));
-		JKY.set_html('jky-country', JKY.set_group_set('Configs', '', 'Countries'));
+		JKY.set_html('jky-user-role', JKY.set_group_set('Controls', '', 'User Roles'));
+		JKY.set_html('jky-state'    , JKY.set_group_set('Configs' , '', 'States'	));
+		JKY.set_html('jky-country'  , JKY.set_group_set('Configs' , '', 'Countries'	));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
-//		JKY.display_form(1);
+		JKY.display_form(1);
 		JKY.show('jky-side-admin'		);
 		JKY.show('jky-app-header'		);
 		JKY.show('jky-action-add-new'	);
@@ -86,6 +88,9 @@ JKY.display_list = function() {
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
+	JKY.hide('jky-action-publish'	);
+	JKY.hide('jky-action-graph'		);
+	JKY.hide('jky-action-calendar'	);
 	JKY.show('jky-app-table'		);
 	JKY.hide('jky-app-form'			);
 }
@@ -135,13 +140,13 @@ JKY.display_row = function(index) {
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
 	JKY.set_value	('jky-user-name'		, JKY.row.user_name		);
-	JKY.set_value	('jky-user-role'		, JKY.row.user-role		);
-	JKY.set_value	('jky-first-name'		, JKY.row.first-name	);
-	JKY.set_value	('jky-last-name'		, JKY.row.last-name		);
+	JKY.set_value	('jky-user-role'		, JKY.row.user_role		);
+	JKY.set_value	('jky-first-name'		, JKY.row.first_name	);
+	JKY.set_value	('jky-last-name'		, JKY.row.last_name		);
+	JKY.set_value	('jky-mobile'			, JKY.row.mobile		);
 	JKY.set_value	('jky-email'			, JKY.row.email			);
-	JKY.set_value	('jky-phone'			, JKY.row.phone			);
 	JKY.set_option	('jky-company-name'		, JKY.row.company_name	);
-	JKY.set_photo	('jky-photo-src'		, JKY.row.photo			);
+//	JKY.set_photo	('jky-photo-src'		, JKY.row.photo			);
 
 	JKY.set_value	('jky-street1'			, JKY.row.street1		);
 	JKY.set_value	('jky-street2'			, JKY.row.street2		);
@@ -161,6 +166,7 @@ JKY.load_table = function() {
 		, table		: jky_table
 		, select	: jky_select
 		, filter	: jky_filter
+		, specific	: jky_specific
 		, order_by	: my_order_by
 		};
 	JKY.ajax(false, my_data, JKY.process_load_success);
@@ -176,10 +182,11 @@ JKY.process_load_success = function(response) {
 		var my_row = JKY.rows[i];
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"	><input type="checkbox"	 /></td>'
-				+  '<td class="jky-full-name"	>' + my_row['full_name'		] + '</td>'
-				+  '<td class="jky-phone"		>' + my_row['phone'			] + '</td>'
-				+  '<td class="jky-mobile"		>' + my_row['mobile'		] + '</td>'
-				+  '<td class="jky-email"		>' + my_row['email'			] + '</td>'
+				+  '<td class="jky-user-name"	>' + my_row.user_name	+ '</td>'
+				+  '<td class="jky-user-role"	>' + my_row.user_role	+ '</td>'
+				+  '<td class="jky-full-name"	>' + my_row.full_name	+ '</td>'
+				+  '<td class="jky-mobile"		>' + my_row.mobile		+ '</td>'
+				+  '<td class="jky-email"		>' + my_row.email		+ '</td>'
 				+  '</tr>'
 				;
 	}
@@ -212,10 +219,10 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-user-role'		, '');
 	JKY.set_value	('jky-first-name'		, '');
 	JKY.set_value	('jky-last-name'		, '');
+	JKY.set_value	('jky-mobile'			, '');
 	JKY.set_value	('jky-email'			, '');
-	JKY.set_value	('jky-phone'			, '');
 	JKY.set_option	('jky-company-name'		, '');
-	JKY.set_photo	('jky-photo-src'		, 'placeholder.png');
+//	JKY.set_photo	('jky-photo-src'		, 'placeholder.png');
 
 	JKY.set_value	('jky-street1'			, '');
 	JKY.set_value	('jky-street2'			, '');
@@ -230,26 +237,22 @@ JKY.display_new = function() {
 
 JKY.get_form_set = function() {
 	var my_set = ''
-		+       'user_name=\'' + JKY.get_value	('jky-user-name'		) + '\''
-		+     ', user_role=\'' + JKY.get_value	('jky-user-role'		) + '\''
-		+    ', first_name=\'' + JKY.get_value	('jky-first-name'		) + '\''
+		+      'first_name=\'' + JKY.get_value	('jky-first-name'		) + '\''
 		+     ', last_name=\'' + JKY.get_value	('jky-last-name'		) + '\''
+		+        ', mobile=\'' + JKY.get_value	('jky-mobile'			) + '\''
 		+         ', email=\'' + JKY.get_value	('jky-email'			) + '\''
-		+         ', phone=\'' + JKY.get_value	('jky-phone'			) + '\''
-//		+  ', company_name=\'' + JKY.get_value	('jky-company-name'		) + '\''
-
+		+     ', full_name=\'' + JKY.get_value	('jky-first-name') + ' ' + JKY.get_value('jky-last-name') +'\''
+		;
+	return my_set;
+}
+/*
 		+       ', street1=\'' + JKY.get_value	('jky-street1'			) + '\''
 		+       ', street2=\'' + JKY.get_value	('jky-street2'			) + '\''
 		+          ', city=\'' + JKY.get_value	('jky-city'				) + '\''
 		+           ', zip=\'' + JKY.get_value	('jky-zip'				) + '\''
 		+         ', state=\'' + JKY.get_value	('jky-state'			) + '\''
 		+       ', country=\'' + JKY.get_value	('jky-country'			) + '\''
-		+       ', website=\'' + JKY.get_value	('jky-website'			) + '\''
-
-		;
-	return my_set;
-}
-
+*/
 JKY.process_save = function() {
 	if (jky_index == 0) {
 		JKY.process_insert();
