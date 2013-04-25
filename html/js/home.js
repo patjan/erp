@@ -151,6 +151,7 @@ JKY.process_start_page = function() {
 //		,{id:'jky-menu-inventory'	, icon:'plus', label:'Inventory'	}
 //		,{id:'jky-menu-payable'		, icon:'plus', label:'Payable'		}
 //		,{id:'jky-menu-receivable'	, icon:'plus', label:'Receivable'	}
+		,{id:'jky-menu-help'		, icon:'plus', label:'Help'			}
 		,{id:'jky-menu-admin'		, icon:'plus', label:'Admin'		}
 		,{id:'jky-menu-support'		, icon:'plus', label:'Support'		}
 		];
@@ -167,6 +168,7 @@ JKY.process_menu = function(menu) {
 	switch(menu) {
 		case 'jky-menu-sales'		: JKY.process_action('customers'	); break;
 		case 'jky-menu-production'	: JKY.process_action('ftps'			); break;
+		case 'jky-menu-help'		: JKY.process_action('tickets'		); break;
 		case 'jky-menu-admin'		: JKY.process_action('users'		); break;
 		case 'jky-menu-support'		: JKY.process_action('controls'		); break;
 	}
