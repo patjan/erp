@@ -65,15 +65,12 @@ JKY.set_initial_values = function(jky_program) {
 	JKY.display_trace('set_initial_values');
 	if (JKY.is_loaded('jky-body')) {
 //		JKY.set_menu_active('jky-menu-admin');
-		$('#jky-home'					).click (function() {JKY.process_home			()		;});
-		$('#jky-help'					).click (function() {JKY.process_help			()		;});
-		$('#jky-my-info'				).click (function() {JKY.process_my_info		()		;});
-		$('#jky-control-language'		).change(function() {JKY.change_language		(this)	;});
+		$('#jky-home'				).click (function() {JKY.process_home		()		;});
+		$('#jky-help'				).click (function() {JKY.process_help		()		;});
+		$('#jky-my-info'			).click (function() {JKY.process_my_info	()		;});
+		$('#jky-control-language'	).change(function() {JKY.change_language	(this)	;});
 		JKY.set_html('jky-app-breadcrumb', jky_program);
-//		JKY.show('jky-side-sales');
-//		JKY.show('jky-side-production');
-//		JKY.show('jky-side-admin');
-		JKY.show('jky-side-bar'  );
+		JKY.show('jky-side-bar');
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
@@ -159,7 +156,8 @@ JKY.process_start_page = function() {
 	JKY.set_buttons_menus(my_menus);
 	JKY.set_user_info(JKY.Session.get_value('full_name'));
 	JKY.show('jky-side-bar');
-	JKY.process_action(JKY.Session.get_value('start_page'));
+//	JKY.process_action(JKY.Session.get_value('start_page'));
+	JKY.process_action('users');
 }
 
 /** ------------------------------------------------------------------------ **/

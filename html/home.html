@@ -26,12 +26,12 @@
 </tr>
 
 <style>
-	#jky-wrapper table			{height:100%; width:100%;}
-	#jky-application			{background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAKUlEQVQIHWO8e/fufwYsgAUkJigoiCIF5DMyoYggcUiXgNnBiGQKmAkARpcEQeriln4AAAAASUVORK5CYII=");}
-	#jky-side-bar	{display:none;}
-	#jky-app-header {display:none;}
-	#jky-app-table	{display:none;}
-	#jky-app-form	{display:none;}
+#jky-wrapper table	{height:100%; width:100%;}
+#jky-application	{background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAKUlEQVQIHWO8e/fufwYsgAUkJigoiCIF5DMyoYggcUiXgNnBiGQKmAkARpcEQeriln4AAAAASUVORK5CYII=");}
+#jky-side-bar		{display:none;}
+#jky-app-header		{display:none;}
+#jky-app-table		{display:none;}
+#jky-app-form		{display:none;}
 </style>
 
 <tr id='jky-body'>
@@ -39,76 +39,75 @@
 		<div id='jky-side-header'><a id='jky-company-logo'></a></div>
 
 		<div id='jky-side-sales'>
-			<div									class='jky-side-set'>Sales					</div>
-			<div id='jky-sales-customers'			class='jky-side-item dev'>Customers				</div>
-			<div id='jky-sales-quotations'			class='jky-side-item'>Quotations			</div>
-			<div id='jky-sales-orders'				class='jky-side-item'>Sales Orders			</div>
+			<div									class='jky-side-set'>Sales</div>
+			<div id='jky-sales-customers'			class='jky-side-item dev'	>Customers			</div>
+			<div id='jky-sales-quotations'			class='jky-side-item'		>Quotations			</div>
+			<div id='jky-sales-orders'				class='jky-side-item'		>Sales Orders		</div>
 
-			<div									class='jky-side-set'>Products				</div>
-			<div id='jky-sales-products'			class='jky-side-item'>Products				</div>
+			<div									class='jky-side-set'>Products</div>
+			<div id='jky-sales-products'			class='jky-side-item'		>Products			</div>
 		</div>
 
 		<div id='jky-side-purchases'>
-			<div									class='jky-side-set'>Purchases				</div>
-			<div id='jky-purchases-quotations'		class='jky-side-item'>Quotations			</div>
-			<div id='jky-purchases-orders'			class='jky-side-item'>Purchase Orders		</div>
-			<div id='jky-purchases-suppliers'		class='jky-side-item'>Suppliers				</div>
+			<div									class='jky-side-set'>Purchases</div>
+			<div id='jky-purchases-quotations'		class='jky-side-item'		>Quotations			</div>
+			<div id='jky-purchases-orders'			class='jky-side-item'		>Purchase Orders	</div>
+			<div id='jky-purchases-suppliers'		class='jky-side-item'		>Suppliers			</div>
 
-			<div									class='jky-side-set'>Incoming Products		</div>
-			<div id='jky-purchases-in-shipments'	class='jky-side-item'>Incoming Shipments	</div>
-			<div id='jky-purchases-in-products'		class='jky-side-item'>Incoming Products		</div>
+			<div									class='jky-side-set'>Incoming Products</div>
+			<div id='jky-purchases-in-shipments'	class='jky-side-item'		>Incoming Shipments	</div>
+			<div id='jky-purchases-in-products'		class='jky-side-item'		>Incoming Products	</div>
 
-			<div									class='jky-side-set'>Invoice Control		</div>
-			<div id='jky-purchases-on-drafts'		class='jky-side-item'>On Draft Invoices		</div>
-			<div id='jky-purchases-on-order-lines'	class='jky-side-item'>On Order Lines		</div>
-			<div id='jky-purchases-on-incomings'	class='jky-side-item'>On Incomings			</div>
+			<div									class='jky-side-set'>Invoice Control</div>
+			<div id='jky-purchases-on-drafts'		class='jky-side-item'		>On Draft Invoices	</div>
+			<div id='jky-purchases-on-order-lines'	class='jky-side-item'		>On Order Lines		</div>
+			<div id='jky-purchases-on-incomings'	class='jky-side-item'		>On Incomings		</div>
 
-			<div									class='jky-side-set'>Products				</div>
-			<div id='jky-purchases-by-category'		class='jky-side-item'>Products by Category	</div>
-			<div id='jky-purchases-products'		class='jky-side-item'>Products				</div>
+			<div									class='jky-side-set'>Products</div>
+			<div id='jky-purchases-by-category'		class='jky-side-item'		>By Category		</div>
+			<div id='jky-purchases-products'		class='jky-side-item'		>Products			</div>
 		</div>
 
-		<div id='jky-side-maintenance'>	</div>
+		<div id='jky-side-maintenance'	></div>
 
 		<div id='jky-side-production'>
-			<div									class='jky-side-set'>Production				</div>
-			<div									class='jky-side-item'>Production Orders		</div>
-			<div id='jky-production-ftps'			class='jky-side-item dev'>FTPs					</div>
+			<div									class='jky-side-set'>Production</div>
+			<div id='jky-production-orders'			class='jky-side-item'		>Production Orders	</div>
+			<div id='jky-production-ftps'			class='jky-side-item dev'	>FTPs				</div>
 
-			<div									class='jky-side-set'>Planning				</div>
-			<div id='jky-production-threads'		class='jky-side-item dev'>Threads				</div>
-			<div id='jky-production-machines'		class='jky-side-item dev'>Machines				</div>
-			<div id='jky-production-products'		class='jky-side-item'>Products				</div>
+			<div									class='jky-side-set'>Planning</div>
+			<div id='jky-production-threads'		class='jky-side-item dev'	>Threads			</div>
+			<div id='jky-production-machines'		class='jky-side-item dev'	>Machines			</div>
+			<div id='jky-production-products'		class='jky-side-item'		>Products			</div>
 		</div>
 
-		<div id='jky-side-outsource'>	</div>
-		<div id='jky-side-inventory'>	</div>
-		<div id='jky-side-invoicing'>	</div>
-		<div id='jky-side-receivable'>	</div>
+		<div id='jky-side-outsource'	></div>
+		<div id='jky-side-inventory'	></div>
+		<div id='jky-side-invoicing'	></div>
+		<div id='jky-side-receivable'	></div>
 
 		<div id='jky-side-help'>
-			<div									class='jky-side-set'>Help				</div>
-			<div id='jky-help-tickets'				class='jky-side-item dev'>Tickets		</div>
+			<div									class='jky-side-set'>Help</div>
+			<div id='jky-help-tickets'				class='jky-side-item dev'	>Tickets			</div>
 		</div>
 
 		<div id='jky-side-admin'>
-			<div									class='jky-side-set'>Admin				</div>
-			<div id='jky-admin-configs'				class='jky-side-item dev'>Configs		</div>
-			<div id='jky-admin-users'				class='jky-side-item dev'>Users			</div>
-			<div id='jky-admin-templates'			class='jky-side-item'>Templates			</div>
-			<div id='jky-admin-history'				class='jky-side-item'>History			</div>
+			<div									class='jky-side-set'>Admin</div>
+			<div id='jky-admin-configs'				class='jky-side-item dev'	>Configs			</div>
+			<div id='jky-admin-users'				class='jky-side-item dev'	>Users				</div>
+			<div id='jky-admin-templates'			class='jky-side-item'		>Templates			</div>
+			<div id='jky-admin-history'				class='jky-side-item'		>History			</div>
 		</div>
 
 		<div id='jky-side-support'>
-			<div									class='jky-side-set'>Support			</div>
-			<div id='jky-support-controls'			class='jky-side-item dev'>Controls			</div>
-			<div id='jky-support-permissions'		class='jky-side-item dev'>Permissions		</div>
-			<div id='jky-support-translations'		class='jky-side-item'>Translations		</div>
+			<div									class='jky-side-set'>Support</div>
+			<div id='jky-support-controls'			class='jky-side-item dev'	>Controls			</div>
+			<div id='jky-support-permissions'		class='jky-side-item dev'	>Permissions		</div>
+			<div id='jky-support-translations'		class='jky-side-item'		>Translations		</div>
 		</div>
 
 		<div id='jky-side-footer'>
-			Created by
-			<a id='jky-contact-us' href='http://www.jkysoftware.com'>JKY Software</a>
+			Created by <a id='jky-contact-us' href='http://www.jkysoftware.com'>JKY Software</a>
 		</div>
 	</td>
 

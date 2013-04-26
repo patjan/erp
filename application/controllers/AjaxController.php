@@ -1080,7 +1080,7 @@ private function insert($data) {
 
 	if ($table == 'Contacts') {
 		$set .= ',     company_id= ' . get_session('company_id', COMPANY_ID);
-		$set .= ',             id= ' . $this->insert_user_jky();
+		$set .= ',        user_id= ' . $this->insert_user_jky();
 //		$set .= ',    user_number= ' . $this->getUniqueNumber($table, 'user_number');
 	}
 
