@@ -3,8 +3,8 @@
 /**
  * permissions.html
  */
-var jky_program		= 'Permissions';
-var jky_table		= 'Permissions';
+var jky_program		= 'Tickets';
+var jky_table		= 'Tickets';
 var jky_select		= 'All';
 var jky_focus		= 'jky-user-role';
 var jky_filter		= '';
