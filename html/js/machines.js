@@ -72,28 +72,28 @@ JKY.set_initial_values = function(jky_program) {
 //		JKY.display_form(1);
 		JKY.show('jky-side-production'	);
 		JKY.show('jky-app-header'		);
-		JKY.show('jky-action-add-new'	);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
 }
 
 JKY.display_list = function() {
-	JKY.load_table();
 	JKY.show('jky-app-filter'		);
 	JKY.show('jky-app-more'			);
 	JKY.hide('jky-app-navs'			);
 	JKY.hide('jky-app-add-new'		);
+	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
 	JKY.hide('jky-action-save'		);
+	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
 	JKY.show('jky-app-table'		);
 	JKY.hide('jky-app-form'			);
+	JKY.load_table();
 }
 
 JKY.display_form = function(index) {
-	JKY.display_row(index);
 	JKY.hide('jky-app-filter'		);
 	JKY.hide('jky-app-more'			);
 	JKY.show('jky-app-navs'			);
@@ -101,10 +101,12 @@ JKY.display_form = function(index) {
 	JKY.show('jky-app-counters'		);
 	JKY.hide('jky-action-add-new'	);
 	JKY.show('jky-action-save'		);
+	JKY.show('jky-action-copy'		);
 	JKY.show('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.display_row(index);
 }
 
 JKY.change_select = function(event){
@@ -174,13 +176,13 @@ JKY.process_load_success = function(response) {
 	for(var i=0; i<jky_count; i++) {
 		var my_row = JKY.rows[i];
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
-				+  '<td class="jky-checkbox"	><input type="checkbox"	 /></td>'
-				+  '<td class="jky-name"		>' + my_row['name'			] + '</td>'
-				+  '<td class="jky-diameter"	>' + my_row['diameter'		] + '</td>'
-				+  '<td class="jky-width"		>' + my_row['width'			] + '</td>'
-				+  '<td class="jky-density"		>' + my_row['density'		] + '</td>'
-				+  '<td class="jky-inputs"		>' + my_row['inputs'		] + '</td>'
-				+  '<td class="jky-lanes"		>' + my_row['lanes'			] + '</td>'
+				+  '<td class="jky-checkbox"		><input type="checkbox"		 /></td>'
+				+  '<td class="jky-name"			>' + my_row.name			+ '</td>'
+				+  '<td class="jky-diameter"		>' + my_row.diameter		+ '</td>'
+				+  '<td class="jky-width"			>' + my_row.width			+ '</td>'
+				+  '<td class="jky-density"			>' + my_row.density			+ '</td>'
+				+  '<td class="jky-inputs"			>' + my_row.inputs			+ '</td>'
+				+  '<td class="jky-lanes"			>' + my_row.lanes			+ '</td>'
 				+  '</tr>'
 				;
 	}
@@ -201,6 +203,7 @@ JKY.process_add_new = function() {
 	JKY.hide('jky-app-counters'		);
 	JKY.hide('jky-action-add-new'	);
 	JKY.show('jky-action-save'		);
+	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
@@ -320,10 +323,6 @@ JKY.process_delete_success = function(response) {
 }
 
 JKY.process_cancel = function() {
-	JKY.show('jky-action-delete'	);
-	JKY.show('jky-app-navs'			);
-	JKY.hide('jky-app-add-new'		);
-	JKY.show('jky-app-counters'		);
 	JKY.display_list();
 }
 

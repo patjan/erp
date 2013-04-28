@@ -455,7 +455,7 @@ JKY.set_value = function(id_name, value){
  */
 JKY.set_yes = function(id_name, value){
 	$('#' + id_name).removeAttr('checked');
-	if (value == 'yes') {
+	if (value == 'Yes') {
 		var my_command = "$('#" + id_name + "').attr('checked', 'checked');";
 		setTimeout(my_command, 100);
 	}
@@ -1291,8 +1291,8 @@ JKY.process_log_off_success = function() {
  * process export
  */
 JKY.run_export = function(table, select, filter, specific, sort_by) {
-	if ($('#jky-export-html').length == 0)	{
-		$('body').append('<div id="jky-export-html"></div>');
+	if ($('#jky-export').length == 0)	{
+		$('body').append('<div id="jky-export"></div>');
 	}
 	var my_html = ''
 		+ '<form id="jky-export-form" action="jky_export.php" method="post">'
@@ -1304,7 +1304,7 @@ JKY.run_export = function(table, select, filter, specific, sort_by) {
 		+ '<input type="hidden" name="order_by" value="' + sort_by	+ '" />'
 		+ '</form>'
 		;
-	$('#jky-export-html').html(my_html);
+	$('#jky-export').html(my_html);
 	$('#jky-export-form').submit();
 };
 

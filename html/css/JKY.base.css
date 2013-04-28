@@ -128,7 +128,7 @@ input.span2 {width:80px; padding:2px 4px;}
 #jky-app-actions		{float:left ; margin: 6px 10px;}
 #jky-app-actions a		{vertical-align:bottom;}
 #jky-app-more			{float:left ; margin: 6px 10px 6px 80px;}
-#jky-app-add-new		{float:right; margin: 9px 10px;}
+#jky-app-add-new		{float:right; margin: 9px 10px; font-weight:bold; color:#0F4D93;}
 #jky-app-counters		{float:right; margin: 9px 10px;}
 #jky-app-navs			{float:right; margin: 6px 10px;}
 #jky-app-displays		{float:right; margin: 6px 10px;}
@@ -143,8 +143,15 @@ input.span2 {width:80px; padding:2px 4px;}
 
 #jky-action-add-new		{display:none;}
 #jky-action-save		{display:none;}
+#jky-action-copy		{display:none;}
 #jky-action-delete		{display:none;}
 #jky-action-cancel		{display:none;}
+#jky-action-export		{display:inline-block;}
+#jky-action-publish		{display:none;}
+#jky-action-list		{display:inline-table;}
+#jky-action-graph		{display:none;}
+#jky-action-calendar	{display:none;}
+#jky-action-form		{display:inline-table;}
 .jky-action				{width:12%; text-align:center;}
 
 /* -------------------------------------------------------------------------- */
@@ -205,5 +212,5 @@ li .arrow span {
 #jky-message			{display:none; position:absolute; top:auto; bottom:0; left:auto ; right:0; width:340px; z-index:2000;}
 #jky-trace				{display:none; position:absolute; top:auto; bottom:0; left:280px; right:0; width:340px; z-index:2000;}
 #jky-confirm			{display:none; position:absolite; top:auto; bottom:0; left:auto ; right:0; width:340px; z-index:2000;}
-
+#jky-export				{display:none;}
 

@@ -69,7 +69,6 @@ JKY.set_initial_values = function(jky_program) {
 //		JKY.display_form(1);
 		JKY.show('jky-side-sales'		);
 		JKY.show('jky-app-header'		);
-		JKY.show('jky-action-add-new'	);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
@@ -84,21 +83,22 @@ JKY.display_company = function(id) {
 }
 
 JKY.display_list = function() {
-	JKY.load_table();
 	JKY.show('jky-app-filter'		);
 	JKY.show('jky-app-more'			);
 	JKY.hide('jky-app-navs'			);
 	JKY.hide('jky-app-add-new'		);
+	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
 	JKY.hide('jky-action-save'		);
-	JKY.hide('jky-action-delete'	);
+//	JKY.hide('jky-action-copy'		);
+//	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
 	JKY.show('jky-app-table'		);
 	JKY.hide('jky-app-form'			);
+	JKY.load_table();
 }
 
 JKY.display_form = function(index) {
-	JKY.display_row(index);
 	JKY.hide('jky-app-filter'		);
 	JKY.hide('jky-app-more'			);
 	JKY.show('jky-app-navs'			);
@@ -106,10 +106,12 @@ JKY.display_form = function(index) {
 	JKY.show('jky-app-counters'		);
 	JKY.hide('jky-action-add-new'	);
 	JKY.show('jky-action-save'		);
-	JKY.show('jky-action-delete'	);
+//	JKY.show('jky-action-copy'		);
+//	JKY.show('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.display_row(index);
 }
 
 JKY.change_select = function(event){
@@ -141,7 +143,7 @@ JKY.display_row = function(index) {
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
 	JKY.set_value	('jky-full-name'		, JKY.row.full_name		);
-	JKY.set_check	('jky-is-company'		, JKY.row.is_company	);
+	JKY.set_yes		('jky-is-company'		, JKY.row.is_company	);
 	JKY.set_option	('jky-company-name'		, JKY.row.company_name	);
 	JKY.set_option	('jky-company-tag'		, JKY.row.company_tag	);
 
@@ -189,11 +191,11 @@ JKY.process_load_success = function(response) {
 	for(var i=0; i<jky_count; i++) {
 		var my_row = JKY.rows[i];
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
-				+  '<td class="jky-checkbox"	><input type="checkbox"	 /></td>'
-				+  '<td class="jky-full-name"	>' + my_row['full_name'		] + '</td>'
-				+  '<td class="jky-phone"		>' + my_row['phone'			] + '</td>'
-				+  '<td class="jky-mobile"		>' + my_row['mobile'		] + '</td>'
-				+  '<td class="jky-email"		>' + my_row['email'			] + '</td>'
+				+  '<td class="jky-checkbox"		><input type="checkbox"		 /></td>'
+				+  '<td class="jky-full-name"		>' + my_row.full_name		+ '</td>'
+				+  '<td class="jky-phone"			>' + my_row.phone			+ '</td>'
+				+  '<td class="jky-mobile"			>' + my_row.mobile			+ '</td>'
+				+  '<td class="jky-email"			>' + my_row.email			+ '</td>'
 				+  '</tr>'
 				;
 	}
@@ -214,7 +216,8 @@ JKY.process_add_new = function() {
 	JKY.hide('jky-app-counters'		);
 	JKY.hide('jky-action-add-new'	);
 	JKY.show('jky-action-save'		);
-	JKY.hide('jky-action-delete'	);
+//	JKY.hide('jky-action-copy'		);
+//	JKY.hide('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
@@ -331,10 +334,6 @@ JKY.process_delete_success = function(response) {
 }
 
 JKY.process_cancel = function() {
-	JKY.show('jky-action-delete'	);
-	JKY.show('jky-app-navs'			);
-	JKY.hide('jky-app-add-new'		);
-	JKY.show('jky-app-counters'		);
 	JKY.display_list();
 }
 
