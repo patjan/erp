@@ -279,7 +279,7 @@ private function get_id($data) {
 		. '  FROM ' . $table
 		. ' WHERE ' . $where
 		;
-//$this->log_sql( $table, 'get_id', $sql );
+$this->log_sql( $table, 'get_id', $sql );
 	$db = Zend_Registry::get('db');
 	$return = array();
 	$return['status'] = 'ok';
@@ -628,194 +628,196 @@ private function set_where($table, $filter) {
 		$name  =        trim( $names[ 0 ]);
 		$value = '"%' . trim( $names[ 1 ]) . '%"';
 
-	if ($table == 'Categories') {
-		if ($name == 'sequence'
-		or	$name == 'category') {
-			if ($value == '"%null%"') {
-				return ' AND Categories.' . $name . ' IS NULL ';
-			}else{
-				return ' AND Categories.' . $name . ' LIKE ' . $value;
-			}
-		}else{
-			if ($name == 'parent_name') {
+		if ($table == 'Categories') {
+			if ($name == 'sequence'
+			or	$name == 'category') {
 				if ($value == '"%null%"') {
-					return ' AND Categories.parent_id  IS NULL';
+					return ' AND Categories.' . $name . ' IS NULL ';
 				}else{
-					return ' AND     Parent.category   LIKE ' . $value;
+					return ' AND Categories.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'parent_name') {
+					if ($value == '"%null%"') {
+						return ' AND Categories.parent_id  IS NULL';
+					}else{
+						return ' AND     Parent.category   LIKE ' . $value;
+					}
 				}
 			}
 		}
-	}
 
-	if ($table == 'Companies') {
-		if ($name == 'company_name'
-		or	$name == 'company_number'
-		or	$name == 'phone'
-		or	$name == 'fax'
-		or	$name == 'street'
-		or	$name == 'city'
-		or	$name == 'state'
-		or	$name == 'zip'
-		or	$name == 'country') {
-			if ($value == '"%null%"') {
-				return ' AND Companies.' . $name . ' IS NULL ';
-			}else{
-				return ' AND Companies.' . $name . ' LIKE ' . $value;
-			}
-		}else{
-			if ($name == 'contact_name') {
+		if ($table == 'Companies') {
+			if ($name == 'company_name'
+			or	$name == 'company_number'
+			or	$name == 'phone'
+			or	$name == 'fax'
+			or	$name == 'street'
+			or	$name == 'city'
+			or	$name == 'state'
+			or	$name == 'zip'
+			or	$name == 'country') {
 				if ($value == '"%null%"') {
-					return ' AND Companies.contact_id  IS NULL';
+					return ' AND Companies.' . $name . ' IS NULL ';
 				}else{
-					return ' AND   Contact.full_name   LIKE ' . $value;
+					return ' AND Companies.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'contact_name') {
+					if ($value == '"%null%"') {
+						return ' AND Companies.contact_id  IS NULL';
+					}else{
+						return ' AND   Contact.full_name   LIKE ' . $value;
+					}
 				}
 			}
 		}
-	}
 
-	if ($table == 'Controls') {
-		if ($name == 'group_set'
-		or	$name == 'sequence'
-		or	$name == 'name'
-		or	$name == 'value') {
-			if ($value == '"%null%"') {
-				return ' AND Controls.' . $name . ' IS NULL ';
-			}else{
-				return ' AND Controls.' . $name . ' LIKE ' . $value;
-			}
-		}
-	}
-
-	if ($table == 'Configs') {
-		if ($name == 'group_set'
-		or	$name == 'sequence'
-		or	$name == 'name'
-		or	$name == 'value') {
-			if ($value == '"%null%"') {
-				return ' AND Configs.' . $name . ' IS NULL ';
-			}else{
-				return ' AND Configs.' . $name . ' LIKE ' . $value;
-			}
-		}
-	}
-
-	if ($table == 'Permissions') {
-		if ($name == 'user_role'
-		or	$name == 'user_resource'
-		or	$name == 'user_action'
-		or	$name == 'status') {
-			if ($value == '"%null%"') {
-				return ' AND Permissions.' . $name . ' IS NULL ';
-			}else{
-				return ' AND Permissions.' . $name . ' LIKE ' . $value;
-			}
-		}
-	}
-
-	if ($table == 'Receives') {
-		if ($name == 'receive_on'
-		or	$name == 'receive_amount'
-		or	$name == 'set_amount'
-		or	$name == 'document'
-		or	$name == 'full_name'
-		or	$name == 'email'
-		or	$name == 'street'
-		or	$name == 'zip'
-		or	$name == 'city'
-		or	$name == 'state'
-		or	$name == 'country')
-			if ($value == '"%null%"') {
-				return ' AND Receives.' . $name . ' IS NULL ';
-			}else{
-				return ' AND Receives.' . $name . ' LIKE ' . $value;
-			}
-		}
-	}
-
-	if ($table == 'Templates') {
-		if ($name == 'created_at'
-		or	$name == 'template_name'
-		or	$name == 'template_type'
-		or	$name == 'template_subject'
-		or	$name == 'template_body'
-		or	$name == 'template_sql'
-		or	$name == 'description'
-		or	$name == 'status') {
-			if ($value == '"%null%"') {
-				return ' AND Templates.' . $name . ' IS NULL ';
-			}else{
-				return ' AND Templates.' . $name . ' LIKE ' . $value;
-			}
-		}else{
-			if ($name == 'created_by') {
+		if ($table == 'Controls') {
+			if ($name == 'group_set'
+			or	$name == 'sequence'
+			or	$name == 'name'
+			or	$name == 'value') {
 				if ($value == '"%null%"') {
-					return ' AND Templates.created_by  IS NULL';
+					return ' AND Controls.' . $name . ' IS NULL ';
 				}else{
-					return ' AND   Created.full_name   LIKE ' . $value;
+					return ' AND Controls.' . $name . ' LIKE ' . $value;
 				}
 			}
 		}
-	}
 
-	if ($table == 'Tickets') {
-		if ($name == 'opened_at'
-		or	$name == 'priority'
-		or	$name == 'description'
-		or	$name == 'resolution'
-		or	$name == 'status') {
-			if ($value == '"%null%"') {
-				return ' AND Tickets.' . $name . ' IS NULL ';
-			}else{
-				return ' AND Tickets.' . $name . ' LIKE ' . $value;
-			}
-		}else{
-			if ($name == 'opened_by') {
+		if ($table == 'Configs') {
+			if ($name == 'group_set'
+			or	$name == 'sequence'
+			or	$name == 'name'
+			or	$name == 'value') {
 				if ($value == '"%null%"') {
-					return ' AND  Tickets.opened_by    IS NULL';
+					return ' AND Configs.' . $name . ' IS NULL ';
 				}else{
-					return ' AND   Opened.full_name    LIKE ' . $value;
+					return ' AND Configs.' . $name . ' LIKE ' . $value;
 				}
 			}
 		}
-	}
 
-	if ($table == 'Translations') {
-		if( $name == 'sentence'
-		or	$name == 'status') {
-			if ($value == '"%null%"') {
-				return ' AND Translations.' . $name . ' IS NULL ';
-			}else{
-				return ' AND Translations.' . $name . ' LIKE ' . $value;
-			}
-		}
-	}
-
-	if ($table == 'Contacts') {
-		if ($name == 'first_name'
-		or	$name == 'last_name'
-		or	$name == 'full_name'
-		or	$name == 'email'
-		or	$name == 'mobile'
-		or	$name == 'phone'
-		or	$name == 'street'
-		or	$name == 'city'
-		or	$name == 'state'
-		or	$name == 'zip'
-		or	$name == 'country') {
-			if ($value == '"%null%"') {
-				return ' AND Contacts.' . $name . ' IS NULL ';
-			}else{
-				return ' AND Contacts.' . $name . ' LIKE ' . $value;
-			}
-		}else{
-			if ($name == 'company_name') {
+		if ($table == 'Permissions') {
+			if ($name == 'user_role'
+			or	$name == 'user_resource'
+			or	$name == 'user_action'
+			or	$name == 'status') {
 				if ($value == '"%null%"') {
-					return ' AND Contacts.company_id IS NULL';
+					return ' AND Permissions.' . $name . ' IS NULL ';
 				}else{
-					return ' AND Companies.full_name LIKE ' . $value;
+					return ' AND Permissions.' . $name . ' LIKE ' . $value;
 				}
 			}
 		}
+
+		if ($table == 'Receives') {
+			if ($name == 'receive_on'
+			or	$name == 'receive_amount'
+			or	$name == 'set_amount'
+			or	$name == 'document'
+			or	$name == 'full_name'
+			or	$name == 'email'
+			or	$name == 'street'
+			or	$name == 'zip'
+			or	$name == 'city'
+			or	$name == 'state'
+			or	$name == 'country') {
+				if ($value == '"%null%"') {
+					return ' AND Receives.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Receives.' . $name . ' LIKE ' . $value;
+				}
+			}
+		}
+
+		if ($table == 'Templates') {
+			if ($name == 'created_at'
+			or	$name == 'template_name'
+			or	$name == 'template_type'
+			or	$name == 'template_subject'
+			or	$name == 'template_body'
+			or	$name == 'template_sql'
+			or	$name == 'description'
+			or	$name == 'status') {
+				if ($value == '"%null%"') {
+					return ' AND Templates.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Templates.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'created_by') {
+					if ($value == '"%null%"') {
+						return ' AND Templates.created_by  IS NULL';
+					}else{
+						return ' AND   Created.full_name   LIKE ' . $value;
+					}
+				}
+			}
+		}
+
+		if ($table == 'Tickets') {
+			if ($name == 'opened_at'
+			or	$name == 'priority'
+			or	$name == 'description'
+			or	$name == 'resolution'
+			or	$name == 'status') {
+				if ($value == '"%null%"') {
+					return ' AND Tickets.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Tickets.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'opened_by') {
+					if ($value == '"%null%"') {
+						return ' AND  Tickets.opened_by    IS NULL';
+					}else{
+						return ' AND   Opened.full_name    LIKE ' . $value;
+					}
+				}
+			}
+		}
+
+		if ($table == 'Translations') {
+			if( $name == 'sentence'
+			or	$name == 'status') {
+				if ($value == '"%null%"') {
+					return ' AND Translations.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Translations.' . $name . ' LIKE ' . $value;
+				}
+			}
+		}
+
+		if ($table == 'Contacts') {
+			if ($name == 'first_name'
+			or	$name == 'last_name'
+			or	$name == 'full_name'
+			or	$name == 'email'
+			or	$name == 'mobile'
+			or	$name == 'phone'
+			or	$name == 'street'
+			or	$name == 'city'
+			or	$name == 'state'
+			or	$name == 'zip'
+			or	$name == 'country') {
+				if ($value == '"%null%"') {
+					return ' AND Contacts.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Contacts.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'company_name') {
+					if ($value == '"%null%"') {
+						return ' AND Contacts.company_id IS NULL';
+					}else{
+						return ' AND Companies.full_name LIKE ' . $value;
+					}
+				}
+			}
+		}
+
 	}
 
 	$filter = '"%' . $filter . '%"';
@@ -896,6 +898,15 @@ private function set_where($table, $filter) {
 			. ' OR	Contacts.zip					LIKE ' . $filter
 			. ' OR	Contacts.country				LIKE ' . $filter
 			. ' OR	Companies.full_name				LIKE ' . $filter
+			;
+		}
+
+	if ($table == 'Threads') {
+		$return = ' Threads.code					LIKE ' . $filter
+			. ' OR	Threads.name					LIKE ' . $filter
+			. ' OR	Threads.thread_group			LIKE ' . $filter
+			. ' OR	Threads.thread_color			LIKE ' . $filter
+			. ' OR	Threads.composition				LIKE ' . $filter
 			;
 		}
 
@@ -1080,7 +1091,7 @@ private function insert($data) {
 
 	if ($table == 'Contacts') {
 		$set .= ',     company_id= ' . get_session('company_id', COMPANY_ID);
-		$set .= ',        user_id= ' . $this->insert_user_jky();
+//		$set .= ',        user_id= ' . $this->insert_user_jky();
 //		$set .= ',    user_number= ' . $this->getUniqueNumber($table, 'user_number');
 	}
 

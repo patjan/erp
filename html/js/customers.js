@@ -66,6 +66,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-country', JKY.set_group_set('Configs', '', 'Countries'));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
+//		JKY.display_form(1);
 		JKY.show('jky-side-sales'		);
 		JKY.show('jky-app-header'		);
 		JKY.show('jky-action-add-new'	);
@@ -139,26 +140,26 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_value	('jky-full-name'		, JKY.row['full_name'		]);
-	JKY.set_check	('jky-is-company'		, JKY.row['is_company'		]);
-	JKY.set_option	('jky-company-name'		, JKY.row['company_name'	]);
-	JKY.set_option	('jky-company-tag'		, JKY.row['company_tag'		]);
+	JKY.set_value	('jky-full-name'		, JKY.row.full_name		);
+	JKY.set_check	('jky-is-company'		, JKY.row.is_company	);
+	JKY.set_option	('jky-company-name'		, JKY.row.company_name	);
+	JKY.set_option	('jky-company-tag'		, JKY.row.company_tag	);
 
-	JKY.set_value	('jky-street1'			, JKY.row['street1'			]);
-	JKY.set_value	('jky-street2'			, JKY.row['street2'			]);
-	JKY.set_value	('jky-city'				, JKY.row['city'			]);
-	JKY.set_value	('jky-zip'				, JKY.row['zip'				]);
-	JKY.set_option	('jky-state'			, JKY.row['state'			]);
-	JKY.set_option	('jky-country'			, JKY.row['country'			]);
-	JKY.set_value	('jky-website'			, JKY.row['website'			]);
+	JKY.set_value	('jky-street1'			, JKY.row.street1		);
+	JKY.set_value	('jky-street2'			, JKY.row.street2		);
+	JKY.set_value	('jky-city'				, JKY.row.city			);
+	JKY.set_value	('jky-zip'				, JKY.row.zip			);
+	JKY.set_option	('jky-state'			, JKY.row.state			);
+	JKY.set_option	('jky-country'			, JKY.row.country		);
+	JKY.set_value	('jky-website'			, JKY.row.website		);
 
-	JKY.set_value	('jky-position'			, JKY.row['position'		]);
-	JKY.set_value	('jky-phone'			, JKY.row['phone'			]);
-	JKY.set_value	('jky-mobile'			, JKY.row['mobile'			]);
-	JKY.set_value	('jky-fax'				, JKY.row['fax'				]);
-	JKY.set_value	('jky-email'			, JKY.row['email'			]);
+	JKY.set_value	('jky-position'			, JKY.row.position		);
+	JKY.set_value	('jky-phone'			, JKY.row.phone			);
+	JKY.set_value	('jky-mobile'			, JKY.row.mobile		);
+	JKY.set_value	('jky-fax'				, JKY.row.fax			);
+	JKY.set_value	('jky-email'			, JKY.row.email			);
 
-	if (JKY.row['is_company'] == 'yes') {
+	if (JKY.row.is_company == 'Yes') {
 		JKY.hide('jky-company-name');
 	}else{
 		JKY.show('jky-company-name');
@@ -173,6 +174,7 @@ JKY.load_table = function() {
 		, table		: jky_table
 		, select	: jky_select
 		, filter	: jky_filter
+		, specific	: jky_specific
 		, order_by	: my_order_by
 		};
 	JKY.ajax(false, my_data, JKY.process_load_success);
@@ -220,7 +222,7 @@ JKY.process_add_new = function() {
 
 JKY.display_new = function() {
 	JKY.set_value	('jky-full-name'		, '');
-	JKY.set_check	('jky-is-company'		, 'no');
+	JKY.set_check	('jky-is-company'		, 'No');
 	JKY.set_option	('jky-company-name'		, '');
 	JKY.set_option	('jky-company-tag'		, '');
 
@@ -285,7 +287,8 @@ JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
 	JKY.display_message(response.message);
 	JKY.load_table();
-	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
+//	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
+	JKY.process_add_new();
 }
 
 JKY.process_update = function() {

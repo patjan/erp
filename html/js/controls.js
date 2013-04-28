@@ -126,12 +126,12 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_option	('jky-status'			, JKY.row['status'			]);
-	JKY.set_value	('jky-sequence'			, JKY.row['sequence'		]);
-	JKY.set_value	('jky-name'				, JKY.row['name'			]);
-	JKY.set_value	('jky-value'			, JKY.row['value'			]);
+	JKY.set_option	('jky-status'			, JKY.row.status		);
+	JKY.set_value	('jky-sequence'			, JKY.row.sequence		);
+	JKY.set_value	('jky-name'				, JKY.row.name			);
+	JKY.set_value	('jky-value'			, JKY.row.value			);
 
-	if (jky_select == 'Root' && JKY.row['name'] == 'Root') {
+	if (jky_select == 'Root' && JKY.row.name == 'Root') {
 		JKY.hide('jky-action-save'		);
 		JKY.hide('jky-action-delete'	);
 		JKY.hide('jky-action-cancel'	);
@@ -150,6 +150,7 @@ JKY.load_table = function() {
 		, table		: jky_table
 		, select	: jky_select
 		, filter	: jky_filter
+		, specific	: jky_specific
 		, order_by	: my_order_by
 		};
 	JKY.ajax(false, my_data, JKY.process_load_success);
@@ -234,9 +235,10 @@ JKY.process_insert = function() {
 JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
 	JKY.display_message(response.message);
-	JKY.refresh_select(jky_select);			//	only used on [Configs and Controls]
+	JKY.refresh_select(jky_select);					//	only used on [Configs and Controls]
 	JKY.load_table();
-	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
+//	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
+	JKY.process_add_new();
 }
 
 JKY.process_update = function() {
@@ -253,7 +255,7 @@ JKY.process_update = function() {
 JKY.process_update_success = function(response) {
 	JKY.display_trace('process_update_success');
 	JKY.display_message(response.message);
-	JKY.refresh_select(jky_select);			//	only used on [Configs and Controls]
+	JKY.refresh_select(jky_select);					//	only used on [Configs and Controls]
 	JKY.rows[jky_index-1] = JKY.get_row(jky_table, JKY.rows[jky_index-1]['id']);
 	JKY.display_next();
 }
@@ -285,7 +287,7 @@ JKY.delete_confirmed = function() {
 JKY.process_delete_success = function(response) {
 	JKY.display_trace('process_delete_success');
 	JKY.display_message(response.message);
-	JKY.refresh_select(jky_select);			//	only used on [Configs and Controls]
+	JKY.refresh_select(jky_select);					//	only used on [Configs and Controls]
 	JKY.display_list();
 }
 

@@ -11,12 +11,13 @@ CREATE TABLE IF NOT EXISTS Machines
 , machine_type		VARCHAR(32)			DEFAULT NULL
 , machine_family	VARCHAR(32)			DEFAULT NULL
 , machine_brand		VARCHAR(32)			DEFAULT NULL
+, serial_number		VARCHAR(32)			DEFAULT NULL
 , diameter			INT(11)				DEFAULT 0
 , width		   		INT(11)				DEFAULT 0
 , density			INT(11)				DEFAULT 0
 , inputs			INT(11)				DEFAULT 0
 , lanes				INT(11)				DEFAULT 0
-, serial			VARCHAR(32)			DEFAULT 0
+, purchase_date		DATE				DEFAULT null
 , repair_date		DATE				DEFAULT null
 , return_date		DATE				DEFAULT null
 

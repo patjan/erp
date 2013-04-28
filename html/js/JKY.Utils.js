@@ -13,7 +13,6 @@ var JKY = JKY || {};
 /**
  * define all constants
  */
-JKY.TRACE		= false;					//	on production, should be set to false, help developement to trace sequence flow
 JKY.AJAX_APP	= '../';					//  relative to application directory
 //JKY.AJAX_URL	= '../jky_proxy.php?';		//  relative to remote directory
 JKY.AJAX_URL	= '../index.php/ajax?';		//  relative to remote directory
@@ -42,6 +41,8 @@ $(function() {
 
 	if (JKY.is_browser('msie')) {
 		JKY.TRACE = false;		//	IE, TRACE must be false
+	}else{
+		JKY.TRACE = false;		//	on production, should be set to false, help developement to trace sequence flow
 	}
 
 	$(window).bind('resize', function() {
@@ -141,7 +142,8 @@ JKY.run_when_is_ready = function(template_name, function_name) {
  * @example JKY.t('Home')
  */
 JKY.t = function(text) {
-	return JKY.Translation.translate(text);
+//	return JKY.Translation.translate(text);
+	return text;
 }
 
 /**
@@ -385,7 +387,7 @@ JKY.display_message = function(message, id_name) {
 
 	var my_time = the_body.html().length / 10;
 		 if (my_time <  2)		{my_time =  2;}
-	else if (my_time > 30)		{my_time = 30;}
+	else if (my_time > 20)		{my_time = 20;}
 
 	if (JKY.last_time_out){
 		clearTimeout(JKY.last_time_out);
@@ -584,6 +586,7 @@ JKY.set_checks = function() {
 JKY.set_menu_active = function(id_name){
 	JKY.hide('jky-side-sales'		);
 	JKY.hide('jky-side-production'	);
+	JKY.hide('jky-side-help'		);
 	JKY.hide('jky-side-admin'		);
 	JKY.hide('jky-side-support'		);
 	$('#jky-menus li').removeClass('active');
@@ -751,16 +754,21 @@ JKY.hide_layer = function(layer) {
      $('#' + shadow_name).hide();
 }
 
-//        JKY.set_focus('user_name')
+//        JKY.set_focus('user_name', 100)
 //        ----------------------------------------------------------------------
-JKY.set_focus = function(name) {
-     var  id = $('#' + name);
-     if( !id || !id.is(':visible') ) {
-          setTimeout("JKY.set_focus('" + name + "')", 100);
-     } else {
-          id.focus();
-          id.select();
-     }
+JKY.set_focus = function(the_name, the_delay) {
+	var my_id = $('#' + the_name);
+	if (my_id && my_id.is(':visible')) {
+		var my_delay = (typeof the_delay == 'undefined') ? 0 : the_delay;
+		setTimeout( function() {
+			my_id.focus();
+			my_id.select();
+		}, my_delay);
+	}else{
+		setTimeout( function() {
+			JKY.set_focus(the_name, the_delay);
+		}, 100);
+	}
 }
 
 JKY.disabled_id	= function(id_name)	{		$('#' + id_name).addClass	('disabled');}
@@ -804,6 +812,18 @@ JKY.set_languages = function() {
  */
 JKY.is_loaded = function(id_name) {
 	if ($('#' + id_name + '-loaded').length > 0) {
+		return true;
+	}else{
+		return false;
+	}
+}
+
+//	check if the_string is empty
+JKY.is_empty = function(the_string) {
+	if (typeof the_string == 'undefined'
+	||  the_string == null
+	||  the_string == false
+	||  $.trim(the_string) == '') {
 		return true;
 	}else{
 		return false;
@@ -1306,7 +1326,7 @@ JKY.get_id = function(table, where) {
 		, async		: false
 		, success	: function(response) {
 				if (response.status == 'ok') {
-					my_id = response.row;
+					my_id = response.id;
 				}else{
 					JKY.display_message(response.message);
 				}

@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * permissions.html
+ * tickets.html
  */
 var jky_program		= 'Tickets';
 var jky_table		= 'Tickets';
@@ -66,6 +66,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-user-action'  , JKY.set_group_set('Controls', '', 'User Actions'	));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
+//		JKY.display_form(1);
 		JKY.show('jky-side-help'		);
 		JKY.show('jky-app-header'		);
 		JKY.show('jky-action-add-new'	);
@@ -147,6 +148,7 @@ JKY.load_table = function() {
 		, table		: jky_table
 		, select	: jky_select
 		, filter	: jky_filter
+		, specific	: jky_specific
 		, order_by	: my_order_by
 		};
 	JKY.ajax(false, my_data, JKY.process_load_success);
@@ -232,7 +234,8 @@ JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
 	JKY.display_message(response.message);
 	JKY.load_table();
-	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
+//	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
+	JKY.process_add_new();
 }
 
 JKY.process_update = function() {
@@ -271,7 +274,6 @@ JKY.delete_confirmed = function() {
 JKY.process_delete_success = function(response) {
 	JKY.display_trace('process_delete_success');
 	JKY.display_message(response.message);
-	JKY.refresh_select(jky_select);			//	only used on [Configs and Controls]
 	JKY.display_list();
 }
 

@@ -48,8 +48,9 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'			).click (function() {JKY.process_check_all	();});	// not needed on version 0
 
-		$('#jky-repair-date').datepicker();
-		$('#jky-return-date').datepicker();
+		$('#jky-purchase-date'		).datepicker();
+		$('#jky-repair-date'		).datepicker();
+		$('#jky-return-date'		).datepicker();
 		$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
@@ -134,17 +135,19 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_value	('jky-name'				, JKY.row['name'			]);
-	JKY.set_radio	('jky-machine-type'		, JKY.row['machine_type'	]);
-	JKY.set_option	('jky-machine-family'	, JKY.row['machine_family'	]);
-	JKY.set_option	('jky-machine-brand'	, JKY.row['machine_brand'	]);
-	JKY.set_value	('jky-diameter'			, JKY.row['diameter'		]);
-	JKY.set_value	('jky-width'			, JKY.row['width'			]);
-	JKY.set_value	('jky-density'			, JKY.row['density'			]);
-	JKY.set_value	('jky-inputs'			, JKY.row['inputs'			]);
-	JKY.set_value	('jky-lanes'			, JKY.row['lanes'			]);
-	JKY.set_value	('jky-repair-value'		, JKY.fix_ymd2dmy(JKY.row['repair_date']));
-	JKY.set_value	('jky-return-value'		, JKY.fix_ymd2dmy(JKY.row['return_date']));
+	JKY.set_value	('jky-name'				, JKY.row.name			);
+	JKY.set_radio	('jky-machine-type'		, JKY.row.machine_type	);
+	JKY.set_option	('jky-machine-family'	, JKY.row.machine_family);
+	JKY.set_option	('jky-machine-brand'	, JKY.row.machine_brand	);
+	JKY.set_value	('jky-serial-number'	, JKY.row.serial_number	);
+	JKY.set_value	('jky-diameter'			, JKY.row.diameter		);
+	JKY.set_value	('jky-width'			, JKY.row.width			);
+	JKY.set_value	('jky-density'			, JKY.row.density		);
+	JKY.set_value	('jky-inputs'			, JKY.row.inputs		);
+	JKY.set_value	('jky-lanes'			, JKY.row.lanes			);
+	JKY.set_value	('jky-purchase-value'	, JKY.fix_ymd2dmy(JKY.row.purchase_date));
+	JKY.set_value	('jky-repair-value'		, JKY.fix_ymd2dmy(JKY.row.repair_date));
+	JKY.set_value	('jky-return-value'		, JKY.fix_ymd2dmy(JKY.row.return_date));
 	JKY.set_focus(jky_focus);
 	JKY.display_cylinders()
 }
@@ -156,6 +159,7 @@ JKY.load_table = function() {
 		, table		: jky_table
 		, select	: jky_select
 		, filter	: jky_filter
+		, specific	: jky_specific
 		, order_by	: my_order_by
 		};
 	JKY.ajax(false, my_data, JKY.process_load_success);
@@ -208,11 +212,13 @@ JKY.display_new = function() {
 	JKY.set_radio	('jky-machine-type'		, 'Circular');
 	JKY.set_option	('jky-machine-family'	, '' );
 	JKY.set_option	('jky-machine-brand'	, '' );
+	JKY.set_value	('jky-serial-number'	, '' );
 	JKY.set_value	('jky-diameter'			, '0');
 	JKY.set_value	('jky-width'			, '0');
 	JKY.set_value	('jky-density'			, '0');
 	JKY.set_value	('jky-inputs'			, '0');
 	JKY.set_value	('jky-lanes'			, '0');
+	JKY.set_value	('jky-purchase-value'	, '' );
 	JKY.set_value	('jky-repair-value'		, '' );
 	JKY.set_value	('jky-return-value'		, '' );
 	JKY.set_focus(jky_focus);
@@ -224,12 +230,16 @@ JKY.get_form_set = function() {
 		+  ', machine_type=\'' + JKY.get_checked('jky-machine-type'		) + '\''
 		+ ', machine_family=\'' + JKY.get_value	('jky-machine-family'	) + '\''
 		+ ', machine_brand=\'' + JKY.get_value	('jky-machine-brand'	) + '\''
+		+ ', serial_number=\'' + JKY.get_value	('jky-serial-number'	) + '\''
 		+      ', diameter=\'' + JKY.get_value	('jky-diameter'			) + '\''
 		+         ', width=\'' + JKY.get_value	('jky-width'			) + '\''
 		+       ', density=\'' + JKY.get_value	('jky-density'			) + '\''
 		+        ', inputs=\'' + JKY.get_value	('jky-inputs'			) + '\''
 		+	      ', lanes=\'' + JKY.get_value	('jky-lanes'			) + '\''
 		;
+	var my_date= JKY.get_value('jky-purchase-value');
+	my_set += ', purchase_date = ' + JKY.fix_dmy2ymd(my_date);
+
 	var my_date= JKY.get_value('jky-repair-value');
 	my_set += ', repair_date = ' + JKY.fix_dmy2ymd(my_date);
 
@@ -259,7 +269,8 @@ JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
 	JKY.display_message(response.message);
 	JKY.load_table();
-	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
+//	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
+	JKY.process_add_new();
 }
 
 JKY.process_update = function() {

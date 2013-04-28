@@ -1,12 +1,12 @@
 "use strict";
 
 /**
- * user s.html
+ * contacts.html
  */
-var jky_program		= 'Users';
+var jky_program		= 'Contacts';
 var jky_table		= 'Contacts';
-var jky_select		= '';
-var jky_focus		= 'jky-user-name';
+var jky_select		= 'All';
+var jky_focus		= 'jky-first-name';
 var jky_filter		= '';
 var jky_specific	= 'is_user';
 var jky_sort_by		= 'full_name';
@@ -63,7 +63,7 @@ JKY.set_initial_values = function(jky_program) {
 	JKY.display_trace('set_initial_values');
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-admin');
-		JKY.set_side_active('jky-admin-users');
+		JKY.set_side_active('jky-admin-contacts');
 		JKY.set_html('jky-user-role', JKY.set_group_set('Controls', '', 'User Roles'));
 		JKY.set_html('jky-state'    , JKY.set_group_set('Configs' , '', 'States'	));
 		JKY.set_html('jky-country'  , JKY.set_group_set('Configs' , '', 'Countries'	));
@@ -143,7 +143,7 @@ JKY.display_row = function(index) {
 	JKY.set_option	('jky-company-name'		, JKY.row.company_name	);
 	JKY.set_value	('jky-user-name'		, JKY.row.user_name		);
 	JKY.set_value	('jky-user-role'		, JKY.row.user_role		);
-	JKY.set_photo	('jky-photo-src'		, JKY.row.photo			);
+//	JKY.set_photo	('jky-photo-src'		, JKY.row.photo			);
 
 	JKY.set_value	('jky-street1'			, JKY.row.street1		);
 	JKY.set_value	('jky-street2'			, JKY.row.street2		);
@@ -219,7 +219,7 @@ JKY.display_new = function() {
 	JKY.set_option	('jky-company-name'		, '');
 	JKY.set_value	('jky-user-name'		, '');
 	JKY.set_value	('jky-user-role'		, '');
-	JKY.set_photo	('jky-photo-src'		, 'placeholder.png');
+//	JKY.set_photo	('jky-photo-src'		, 'placeholder.png');
 
 	JKY.set_value	('jky-street1'			, '');
 	JKY.set_value	('jky-street2'			, '');

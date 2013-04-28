@@ -63,6 +63,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-machine-brand', JKY.set_group_set('Configs', '', 'Machine Brands'));
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.display_list();
+//		JKY.display_form(1);
 		JKY.show('jky-side-production'	);
 		JKY.show('jky-app-header'		);
 		JKY.show('jky-action-add-new'	);
@@ -128,13 +129,11 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
-	JKY.set_value	('jky-code'				, JKY.row['code'			]);
-	JKY.set_radio	('jky-machine-type'		, JKY.row['machine_type'	]);
-	JKY.set_option	('jky-machine-brand'	, JKY.row['machine_brand'	]);
-	JKY.set_value	('jky-name'				, JKY.row['name'			]);
-	JKY.set_value	('jky-thread_group'		, JKY.row['thread_group'	]);
-	JKY.set_value	('jky-thread_color'		, JKY.row['thread_color'	]);
-	JKY.set_value	('jky-composition'		, JKY.row['composition'		]);
+	JKY.set_value	('jky-code'				, JKY.row.code			);
+	JKY.set_value	('jky-name'				, JKY.row.name			);
+	JKY.set_value	('jky-thread_group'		, JKY.row.thread_group	);
+	JKY.set_value	('jky-thread_color'		, JKY.row.thread_color	);
+	JKY.set_value	('jky-composition'		, JKY.row.composition	);
 	JKY.set_focus(jky_focus);
 }
 
@@ -145,6 +144,7 @@ JKY.load_table = function() {
 		, table		: jky_table
 		, select	: jky_select
 		, filter	: jky_filter
+		, specific	: jky_specific
 		, order_by	: my_order_by
 		};
 	JKY.ajax(false, my_data, JKY.process_load_success);
@@ -193,8 +193,6 @@ JKY.process_add_new = function() {
 
 JKY.display_new = function() {
 	JKY.set_value	('jky-code'				, '' );
-//	JKY.set_radio	('jky-machine-type'		, 'Circular');
-//	JKY.set_option	('jky-machine-brand'	, '' );
 	JKY.set_value	('jky-name'				, '0');
 	JKY.set_value	('jky-thread_group'		, '0');
 	JKY.set_value	('jky-thread_color'		, '0');
@@ -205,8 +203,6 @@ JKY.display_new = function() {
 JKY.get_form_set = function() {
 	var my_set = ''
 		+            'code=\'' + JKY.get_value	('jky-code'				) + '\''
-//		+  ', machine_type=\'' + JKY.get_checked('jky-machine-type'		) + '\''
-//		+ ', machine_brand=\'' + JKY.get_value	('jky-machine-brand'	) + '\''
 		+          ', name=\'' + JKY.get_value	('jky-name'				) + '\''
 		+  ', thread_group=\'' + JKY.get_value	('jky-thread_group'		) + '\''
 		+  ', thread_color=\'' + JKY.get_value	('jky-thread_color'		) + '\''
@@ -236,7 +232,8 @@ JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
 	JKY.display_message(response.message);
 	JKY.load_table();
-	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
+//	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
+	JKY.process_add_new();
 }
 
 JKY.process_update = function() {

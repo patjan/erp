@@ -1,35 +1,34 @@
 <div id='jky-app-header'>
 	<div>
 		<div id='jky-app-breadcrumb'></div>
+		<select id='jky-app-select'></select>
 		<input  id='jky-app-filter' class='search-query' type='text' placeholder='Search' />
 		<div class='jky-clear'></div>
 	</div>
 
 	<div>
 		<div id='jky-app-actions'>
-			<button id='jky-action-add-new'	class='btn btn-success' type='button'>Add New	</button>
-			<button id='jky-action-save'	class='btn btn-success' type='button'>Save		</button>
-			<button id='jky-action-copy'	class='btn btn-success' type='button'>Copy		</button>
-		&nbsp;<a	id='jky-action-delete'	class='btn' type='button' href='#'>Delete</a>
-		&nbsp;<a	id='jky-action-cancel'	class='btn' type='button' href='#'>Cancel</a>
+			<button id='jky-action-add-new'		class='btn btn-success' type='button'>Add New	</button>
+			<button id='jky-action-save'		class='btn btn-success' type='button'>Save		</button>
+			<button id='jky-action-copy'		class='btn btn-success' type='button'>Copy		</button>
+		&nbsp;<a	id='jky-action-delete'		class='btn'				type='button'>Delete	</a>
+		&nbsp;<a	id='jky-action-cancel'		class='btn'				type='button'>Cancel	</a>
 		</div>
 		<div id='jky-app-more'>
-			<button id='jky-action-export'	class='btn btn-success' type='button'>Export	</button>
-<!--		<button id='jky-action-publish'	class='btn btn-success' type='button'>Publish	</button>	-->
-		</div>
+			<button id='jky-action-export'		class='btn btn-success' type='button'>Export	</button>
+<!--		<button id='jky-action-publish'		class='btn btn-success' type='button'>Publish	</button>
+-->		</div>
 		<div id='jky-app-displays' class='btn-group'>
-			<button id='jky-action-list'	class='btn' title='List View'><i class='icon-align-justify'	></i></button>
-			<button id='jky-action-form'	class='btn' title='Form View'><i class='icon-list-alt'		></i></button>
-<!--
-			<button class='btn'><i class='icon-signal'		></i></button>
-			<button class='btn'><i class='icon-calendar'	></i></button>
--->
+			<button id='jky-action-list'		class='btn' title=    'List View'><i class='icon-align-justify'	></i></button>
+<!--		<button id='jky-action-graph'		class='btn' title= 'Graphic View'><i class='icon-signal'		></i></button>
+			<button id='jky-action-calendar'	class='btn' title='Calendar View'><i class='icon-calendar'		></i></button>
+-->			<button id='jky-action-form'		class='btn' title=    'Form View'><i class='icon-list-alt'		></i></button>
 		</div>
 		<div id='jky-app-counters'><span id='jky-app-index'>1</span> of <span id='jky-app-count'>12</span></div>
 		<div id='jky-app-add-new' >New</div>
 		<div id='jky-app-navs' class='btn-group'>
-			<button id='jky-action-prev'	class='btn' title='Previous'><i class='icon-backward'		></i></button>
-			<button id='jky-action-next'	class='btn' title='Next'	><i class='icon-forward'		></i></button>
+			<button id='jky-action-prev'		class='btn' title='Previous'	 ><i class='icon-backward'		></i></button>
+			<button id='jky-action-next'		class='btn' title='Next'		 ><i class='icon-forward'		></i></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -119,11 +118,11 @@
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th    id='jky-check-all'	><input type='checkbox' /></th>
-			<th class='jky-code'		>Code			</th>
-			<th class='jky-product'		>Product		</th>
-			<th class='jky-machine'		>Machine		</th>
-			<th class='jky-composition'	>Composition	</th>
+			<th    id='jky-check-all'		><input type='checkbox' /></th>
+			<th class='jky-code'			>Code			</th>
+			<th class='jky-product'			>Product		</th>
+			<th class='jky-machine'			>Machine		</th>
+			<th class='jky-composition'		>Composition	</th>
 		</tr>
 	</thead>
 
@@ -142,7 +141,7 @@
 		<ul  id='jky-form-status'	></ul>
 	</div>
 	<div class='jky-clear'></div>
-
+<!--
 	<div id='jky-form-title'>
 		<span id='jky-form-action'	></span>
 		<span id='jky-form-id'		></span>
@@ -151,16 +150,18 @@
 		</div>
 		<div class='jky-clear'></div>
 	</div>
-
+-->
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'>         Code:</div><div class='jky-form-value'><input	 id='jky-code'			class='jky-form-value'								readonly='readonly'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>      Product:</div><div class='jky-form-value'><input	 id='jky-product'		class='jky-form-value' placeholder='Product Name'	readonly='readonly'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>  Composition:</div><div class='jky-form-value'><input	 id='jky-composition'	class='jky-form-value'								readonly='readonly'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>      Machine:</div><select id='jky-machine'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'>             Code:</div><div class='jky-form-value'><input  id='jky-code'										readonly='readonly'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>          Product:</div><div class='jky-form-value'><input  id='jky-product'			placeholder='Product Name'	readonly='readonly'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>      Composition:</div><div class='jky-form-value'><input  id='jky-composition'									readonly='readonly'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'>          Machine:</div><div class='jky-form-value'><select id='jky-machine'></select></div></div>
 		</div>
+		<div class='jky-right'>
 			<div id='jky-drawing'><img id='jky-drawing-img' src='/img/placeholder.png'><br><a id='jky-upload_drawing'>Upload Drawing</a></div>
 			<div id='jky-photo'  ><img id='jky-photo-img'   src='/img/placeholder.png'><br><a id='jky-upload_photo'  >Upload Photo  </a></div>
+		</div>
 		<div class='jky-clear'></div>
 		<br>
 
