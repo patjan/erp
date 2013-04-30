@@ -21,12 +21,13 @@ JKY.generate_cylinders = function(response) {
 			var my_id			= my_row.id;
 			var my_name			= my_row.name;
 			var my_current		= my_row.is_current;
+			var my_checked	= my_current == 'Yes' ? ' checked="checked"' : '';
 
 			my_html  += ''
 				+ '<tr cylinder_id=' + my_id + '>'
 				+ '<td class="jky-action"><a onclick="JKY.delete_cylinder(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-				+ '<td class="jky-cylinder-value"		><input  class="jky-cylinder-current"	text="text"	onchange="JKY.update_cylinder(this, ' + my_id + ')" value="' + my_current	+ '" /></td>'
-				+ '<td class="jky-cylinder-label"		><input  class="jky-cylinder-name"		text="text"	onchange="JKY.update_cylinder(this, ' + my_id + ')" value="' + my_name		+ '" /></td>'
+				+ '<td class="jky-cylinder-value"><input name="jky-cylinder-current" type="radio" onchange="JKY.set_current(this, ' + my_id + ')"'		 + my_checked + ' /></td>'
+				+ '<td class="jky-cylinder-label"><input class="jky-cylinder-name"   text="text"  onchange="JKY.update_name(this, ' + my_id + ')" value="'	+ my_name + '" /></td>'
 				+ '</tr>'
 				;
 		}
@@ -37,24 +38,55 @@ JKY.generate_cylinders = function(response) {
 	}
 }
 
-JKY.update_cylinder = function(id_name, the_id ) {
-	var my_tr = $(id_name).parent().parent();
-	var my_current	= my_tr.find('.jky-cylinder-current').val();
-	var my_name		= my_tr.find('.jky-cylinder-name'	).val();
-	var my_set = ''
-		+ 'is_current = \'' + my_current + '\''
-		+     ', name = \'' + my_name	 + '\''
+JKY.set_current = function(id_name, the_id ) {
+	JKY.unset_current();
+
+	var my_data =
+		{ method	: 'update'
+		, table		: 'Cylinders'
+		, set		: 'is_current = \'Yes\''
+		, where		: 'Cylinders.id = ' + the_id
+		};
+	JKY.ajax(true, my_data, JKY.set_current_success);
+}
+
+JKY.set_current_success = function(response) {
+	JKY.display_message(response.message)
+}
+
+JKY.unset_current = function(id_name, the_id ) {
+	var my_where = ''
+		+ 'Cylinders.machine_id = ' + JKY.row.id
+		+ ' AND Cylinders.is_current = \'Yes\''
 		;
 	var my_data =
 		{ method	: 'update'
 		, table		: 'Cylinders'
-		, set		:  my_set
-		, where		: 'Cylinders.id = ' + the_id
+		, set		: 'is_current = \'No\''
+		, where		:  my_where
 		};
-	JKY.ajax(true, my_data, JKY.update_cylinder_success);
+	JKY.ajax(true, my_data, JKY.unset_current_success);
 }
 
-JKY.update_cylinder_success = function(response) {
+JKY.unset_current_success = function(response) {
+	JKY.display_message(response.message)
+}
+
+JKY.update_name = function(id_name, the_id ) {
+//	var my_tr = $(id_name).parent().parent();
+//	var my_name	= my_tr.find('.jky-cylinder-name').val();
+	var my_name	= $(id_name).val();
+	var my_data =
+		{ method	: 'update'
+		, table		: 'Cylinders'
+		, set		: 'name = \'' + my_name	 + '\''
+		, where		: 'Cylinders.id = ' + the_id
+		};
+	JKY.ajax(true, my_data, JKY.update_name_success);
+
+}
+
+JKY.update_name_success = function(response) {
 	JKY.display_message(response.message)
 }
 
@@ -69,13 +101,13 @@ JKY.insert_cylinder = function() {
 
 JKY.insert_cylinder_success = function(response) {
 	var my_id = response.id;
-	var my_current	= 0;
 	var my_name		= '';
+	var my_checked	= '';
 	var	my_html = ''
 		+ '<tr cylinder_id=' + my_id + '>'
 		+ '<td class="jky-action"><a onclick="JKY.delete_cylinder(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-		+ '<td class="jky-cylinder-value"><input  class="jky-cylinder-current"  text="text"	onchange="JKY.update_cylinder(this, ' + my_id + ')" value="' + my_current	+ '" /></td>'
-		+ '<td class="jky-cylinder-label"><input  class="jky-cylinder-name"		text="text"	onchange="JKY.update_cylinder(this, ' + my_id + ')" value="' + my_name		+ '" /></td>'
+		+ '<td class="jky-cylinder-value"><input name="jky-cylinder-current" type="radio" onchange="JKY.set_current(this, ' + my_id + ')"'		 + my_checked + ' /></td>'
+		+ '<td class="jky-cylinder-label"><input class="jky-cylinder-name"   text="text"  onchange="JKY.update_name(this, ' + my_id + ')" value="'	+ my_name + '" /></td>'
 		+ '</tr>'
 		;
 	JKY.append_html('jky-cylinder-body', my_html);

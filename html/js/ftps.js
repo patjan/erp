@@ -205,8 +205,6 @@ JKY.process_load_success = function(response) {
 
 JKY.process_add_new = function() {
 	JKY.hide('jky-form-tabs');
-	jky_index = 0;
-	JKY.display_new();
 	JKY.hide('jky-app-filter'		);
 	JKY.hide('jky-app-more'			);
 	JKY.hide('jky-app-navs'			);
@@ -219,9 +217,11 @@ JKY.process_add_new = function() {
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.display_new();
 }
 
 JKY.display_new = function() {
+	jky_index = 0;
 	JKY.set_value	('jky-code'				, 'New');
 	JKY.set_radio	('jky-product'			,  null);
 	JKY.set_value	('jky-composition'		, '');

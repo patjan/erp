@@ -194,8 +194,6 @@ JKY.process_load_success = function(response) {
 
 JKY.process_add_new = function() {
 	JKY.hide('jky-form-tabs');
-	jky_index = 0;
-	JKY.display_new();
 	JKY.hide('jky-app-filter'		);
 	JKY.hide('jky-app-more'			);
 	JKY.hide('jky-app-navs'			);
@@ -208,9 +206,11 @@ JKY.process_add_new = function() {
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.display_new();
 }
 
 JKY.display_new = function() {
+	jky_index = 0;
 	JKY.set_value	('jky-name'				, '' );
 	JKY.set_radio	('jky-machine-type'		, 'Circular');
 	JKY.set_option	('jky-machine-family'	, '' );
@@ -240,14 +240,13 @@ JKY.get_form_set = function() {
 		+        ', inputs=\'' + JKY.get_value	('jky-inputs'			) + '\''
 		+	      ', lanes=\'' + JKY.get_value	('jky-lanes'			) + '\''
 		;
-	var my_date= JKY.get_value('jky-purchase-value');
+	var my_date = '';
+	my_date = JKY.get_value('jky-purchase-value');
 	my_set += ', purchase_date = ' + JKY.fix_dmy2ymd(my_date);
-
-	var my_date= JKY.get_value('jky-repair-value');
-	my_set += ', repair_date = ' + JKY.fix_dmy2ymd(my_date);
-
-	var my_date= JKY.get_value('jky-return-value');
-	my_set += ', return_date = ' + JKY.fix_dmy2ymd(my_date);
+	my_date = JKY.get_value('jky-repair-value');
+	my_set +=   ', repair_date = ' + JKY.fix_dmy2ymd(my_date);
+	my_date = JKY.get_value('jky-return-value');
+	my_set +=   ', return_date = ' + JKY.fix_dmy2ymd(my_date);
 	return my_set;
 }
 

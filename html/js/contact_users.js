@@ -1,5 +1,5 @@
 JKY.verify_user_name = function() {
-//	JKY.display_message('JKY.verify_user_name');
+	JKY.display_message('JKY.verify_user_name');
 	var my_error = '';
 	var my_user_name = JKY.get_value('jky-user-name');
 	var my_user_role = JKY.get_value('jky-user-role');
@@ -11,8 +11,11 @@ JKY.verify_user_name = function() {
 		var my_where = 'user_name = \'' + my_user_name + '\'';
 		var my_user_id = JKY.get_id('JKY_Users', my_where);
 //	JKY.display_message('my_user_id: ' + my_user_id + ', JKY.row.user_id: ' + JKY.row.user_id);
+//		if (!JKY.is_empty(my_user_id)			//	found user_name
+//		&&  my_user_id != JKY.row.user_id) {	//	but not the same record
 		if (!JKY.is_empty(my_user_id)			//	found user_name
-		&&  my_user_id != JKY.row.user_id) {	//	but not the same record
+		&& (JKY.row == null
+		||  my_user_id != JKY.row.user_id)) {	//	but not the same record
 			my_error += JKY.set_already_taken('User Name [' + my_user_name + ']');
 		}
 	}

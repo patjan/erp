@@ -227,7 +227,7 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-email'			, JKY.row.email			);
 
 	JKY.set_value	('jky-full-name'		, JKY.row.full_name		);
-	JKY.set_check	('jky-is-company'		, JKY.row.is_company	);
+	JKY.set_yes		('jky-is-company'		, JKY.row.is_company	);
 	JKY.set_option	('jky-company-name'		, JKY.row.company_name	);
 	JKY.set_option	('jky-company-tag'		, JKY.row.company_tag	);
 	JKY.set_value	('jky-user-name'		, JKY.row.user_name		);
@@ -384,8 +384,6 @@ JKY.process_load_success = function(response) {
 
 JKY.process_add_new = function() {
 	JKY.hide('jky-form-tabs');
-	jky_index = 0;
-	JKY.display_new();
 	JKY.hide('jky-app-filter'		);
 	JKY.hide('jky-app-more'			);
 	JKY.hide('jky-app-navs'			);
@@ -398,9 +396,11 @@ JKY.process_add_new = function() {
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.display_new();
 }
 
 JKY.display_new = function() {
+	jky_index = 0;
 	JKY.set_option	('jky-status'			, 'Active');
 	JKY.set_value	('jky-sequence'			, 50);
 	JKY.set_value	('jky-name'				, '');
@@ -473,6 +473,8 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-user-role'		, '');
 	JKY.set_value	('jky-user-resource'	, '');
 	JKY.set_value	('jky-user-action'		, '');
+	
+	JKY.show('jky-company-name');
 	JKY.set_focus(jky_focus);
 }
 
@@ -548,14 +550,13 @@ JKY.get_form_set = function() {
 		+ ', user_resource=\'' + JKY.get_value	('jky-user-resource'	) + '\''
 		+   ', user_action=\'' + JKY.get_value	('jky-user-action'		) + '\''
 		;
-	var my_date= JKY.get_value('jky-purchase-value');
+	var my_date = '';
+	my_date = JKY.get_value('jky-purchase-value');
 	my_set += ', purchase_date = ' + JKY.fix_dmy2ymd(my_date);
-
-	var my_date= JKY.get_value('jky-repair-value');
-	my_set += ', repair_date = ' + JKY.fix_dmy2ymd(my_date);
-
-	var my_date= JKY.get_value('jky-return-value');
-	my_set += ', return_date = ' + JKY.fix_dmy2ymd(my_date);
+	my_date = JKY.get_value('jky-repair-value');
+	my_set +=   ', repair_date = ' + JKY.fix_dmy2ymd(my_date);
+	my_date = JKY.get_value('jky-return-value');
+	my_set +=   ', return_date = ' + JKY.fix_dmy2ymd(my_date);
 	return my_set;
 }
 
