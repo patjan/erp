@@ -31,28 +31,28 @@ $(function() {
 JKY.set_all_events = function(jky_program) {
 	JKY.display_trace('set_all_events');
 	if (JKY.is_loaded('jky-body')) {
-		$('#jky-sign-up'			).click (function() {JKY.display_sign_up		()		;});
-		$('#jky-log-in'				).click (function() {JKY.display_log_in			()		;});
-		$('#jky-profile'			).click (function() {JKY.display_profile		()		;});
-		$('#jky-log-out'			).click (function() {JKY.display_log_out		()		;});
+		$('#jky-sign-up'		).click (function() {JKY.display_sign_up	()		;});
+		$('#jky-log-in'			).click (function() {JKY.display_log_in		()		;});
+		$('#jky-profile'		).click (function() {JKY.display_profile	()		;});
+		$('#jky-log-out'		).click (function() {JKY.display_log_out	()		;});
 
-		$('#jky-company-logo'		).click (function() {JKY.display_wordpress		()		;});
-		$('#jky-company-name'		).click (function() {JKY.display_company		(this)	;});
+		$('#jky-company-logo'	).click (function() {JKY.display_wordpress	()		;});
+		$('#jky-company-name'	).click (function() {JKY.display_company	(this)	;});
 
-		$('#jky-copyright'			).click (function() {JKY.display_copyright		()		;});
-//		$('#jky-contact-us'			).click (function() {JKY.display_contact_us		()		;});
+		$('#jky-copyright'		).click (function() {JKY.display_copyright	()		;});
+//		$('#jky-contact-us'		).click (function() {JKY.display_contact_us	()		;});
 
-		$('#jky-sales-customers'	).click (function() {JKY.process_action('customers'		);});
-		$('#jky-production-ftps'	).click (function() {JKY.process_action('ftps'			);});
-		$('#jky-production-threads'	).click (function() {JKY.process_action('threads'		);});
-		$('#jky-production-machines').click (function() {JKY.process_action('machines'		);});
-		$('#jky-help-tickets'		).click (function() {JKY.process_action('tickets'		);});
-		$('#jky-admin-configs'		).click (function() {JKY.process_action('configs'		);});
-		$('#jky-support-controls'	).click (function() {JKY.process_action('controls'		);});
-		$('#jky-admin-users'		).click (function() {JKY.process_action('users'			);});
-		$('#jky-admin-contacts'		).click (function() {JKY.process_action('contacts'		);});
-		$('#jky-support-permissions').click (function() {JKY.process_action('permissions'	);});
-
+		$('#jky-sales-customers'		).click (function() {JKY.process_action('customers'		);});
+		$('#jky-production-ftps'		).click (function() {JKY.process_action('ftps'			);});
+		$('#jky-production-threads'		).click (function() {JKY.process_action('threads'		);});
+		$('#jky-production-machines'	).click (function() {JKY.process_action('machines'		);});
+		$('#jky-help-tickets'			).click (function() {JKY.process_action('tickets'		);});
+		$('#jky-admin-configs'			).click (function() {JKY.process_action('configs'		);});
+		$('#jky-support-controls'		).click (function() {JKY.process_action('controls'		);});
+		$('#jky-admin-users'			).click (function() {JKY.process_action('users'			);});
+		$('#jky-admin-contacts'			).click (function() {JKY.process_action('contacts'		);});
+		$('#jky-support-permissions'	).click (function() {JKY.process_action('permissions'	);});
+		$('#jky-support-translations'	).click (function() {JKY.process_action('translations'	);});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -157,7 +157,7 @@ JKY.process_start_page = function() {
 	JKY.set_user_info(JKY.Session.get_value('full_name'));
 	JKY.show('jky-side-bar');
 //	JKY.process_action(JKY.Session.get_value('start_page'));
-	JKY.process_action('contacts');
+	JKY.process_action('translations');
 }
 
 /** ------------------------------------------------------------------------ **/
@@ -169,6 +169,6 @@ JKY.process_menu = function(menu) {
 		case 'jky-menu-production'	: JKY.process_action('ftps'			); break;
 		case 'jky-menu-help'		: JKY.process_action('tickets'		); break;
 		case 'jky-menu-admin'		: JKY.process_action('contacts'		); break;
-		case 'jky-menu-support'		: JKY.process_action('controls'		); break;
+		case 'jky-menu-support'		: JKY.process_action('translations'	); break;
 	}
 }

@@ -56,7 +56,7 @@ public function indexAction() {
 			case 'get_session'		: $this->get_session	(); return;
 			case 'get_options'		: $this->get_options	($data); return;
 			case 'get_users'		: $this->get_users		(); return;
-			case 'get_controls' 	: $this->get_controls	(); return;
+			case 'get_controls' 	: $this->get_controls	($data); return;
 			case 'get_configs'		: $this->get_configs	($data); return;
 			case 'get_categories'	: $this->get_categories	(); return;
 			case 'get_profile'		: $this->get_profile	(); return;
@@ -156,7 +156,7 @@ public function indexAction() {
 		case 'get_count'	: $this->get_count		(); break;
 		case 'get_value'	: $this->get_value		($data); break;
 		case 'get_row'		: $this->get_row		($data); break;
-		case 'get_rows'		: $this->get_rows		(); break;
+		case 'get_rows'		: $this->get_rows		($data); break;
 		case 'get_index'	: $this->get_index		($data); break;
 		case 'get_comments'	: $this->get_comments	(); break;
 		case 'add_comment'	: $this->add_comment	(); break;
@@ -167,7 +167,7 @@ public function indexAction() {
 		case 'delete'		: $this->delete			($data); break;
 		case 'delete_many'	: $this->delete_many	($data); break;
 		case 'combine'		: $this->combine		(); break;
-		case 'publish'		: $this->publish		(); break;
+		case 'publish'		: $this->publish		($data); break;
 		case 'export'		: $this->get_index		($data); break;
 		case 'refresh'		: $this->refresh		(); break;
 
@@ -1314,6 +1314,18 @@ $this->log_sql($table, 'delete_many', $where);
 		return;
 	}
 
+	$db = Zend_Registry::get('db');
+
+	$sql= 'SELECT ' . $table . '.*'
+		. '  FROM ' . $table
+		. ' WHERE ' . $where
+		;
+$this->log_sql($table, 'delete_many', $sql);
+	$rows = $db->fetchAll($sql);
+	foreach($rows as $row) {
+		$this->history_log('delete', $table, $row['id'], $row, null);
+	}
+
 	$return = array();
 	$return['status'] = 'ok';
 
@@ -1322,7 +1334,6 @@ $this->log_sql($table, 'delete_many', $where);
 		. ' WHERE ' . $where
 		;
 	$this->log_sql($table, 'delete_many', $sql);
-	$db = Zend_Registry::get('db');
 	$result = $db->query($sql);
 
 	$return['message'] = 'record count (' . $result->rowCount() . ') deleted';
@@ -1467,7 +1478,7 @@ private function combine() {
  *			,{ x...x: y...y, ... }
  *			]
  */
-private function publish() {
+private function publish($data) {
 	function write_categories($db, $out_file, $level, $parent_id) {
 		$newline = NL;
 		for($i=0; $i<$level; $i++)
@@ -1521,31 +1532,31 @@ private function publish() {
 	       return $counter;
 	  }
 
-	 function write_translations_js($db, $out_file, $locale) {
-	     $sql = 'SELECT Translations.sentence AS source'
-		  . '     ,      Targets.sentence AS target'
-		  . '  FROM Translations'
-		  . '  LEFT JOIN Translations AS Targets'
-		  . '    ON Targets.parent_id = Translations.id'
-		  . '   AND Targets.locale = "' . $locale . '"'
-		  . ' WHERE Translations.status = "Active"'
-		  . '   AND Translations.locale = "en_us"'
-		  . ' ORDER BY source'
-		  ;
-	     $rows    = $db->fetchAll($sql);
-	     $counter = count($rows);
+	function write_translations_js($db, $out_file, $locale) {
+		$sql= 'SELECT Translations.sentence AS source'
+			. '     ,      Targets.sentence AS target'
+			. '  FROM Translations'
+			. '  LEFT JOIN Translations AS Targets'
+			. '    ON Targets.parent_id = Translations.id'
+			. '   AND Targets.locale = "' . $locale . '"'
+			. ' WHERE Translations.status = "Active"'
+			. '   AND Translations.locale = "en_us"'
+			. ' ORDER BY source'
+			;
+		$rows = $db->fetchAll($sql);
+		$counter = count($rows);
 
-	     if( $counter > 0 ) {
-		 fwrite( $out_file, 'var translations = ' );
-		 $first = '{';
-		 foreach( $rows as $row ) {
-		     fwrite($out_file, NL . $first . ' "' . $row['source'] . '":"' . $row['target'] . '"');
-		     $first = ',';
-		 }
-		 fwrite( $out_file, NL . '};' );
-	     }
-	     return $counter;
-	 }
+		if ($counter > 0) {
+			fwrite($out_file, 'var translations = ');
+			$first = '{';
+			foreach ($rows as $row) {
+				fwrite($out_file, NL . $first . ' "' . $row['source'] . '":"' . $row['target'] . '"');
+				$first = ',';
+			}
+			fwrite($out_file, NL . '};');
+		}
+		return $counter;
+	}
 /*
 	  function write_translations_csv($db, $out_file, $locale) {
 	       $sql = 'SELECT Translations.sentence AS source'
@@ -1570,43 +1581,43 @@ private function publish() {
 	       return $counter;
 	  }
 */
-	  function write_translations_php($db, $out_file, $locale) {
-	       $sql = 'SELECT Translations.sentence AS source'
-		    . '     ,      Targets.sentence AS target'
-		    . '  FROM Translations'
-		    . '  LEFT JOIN Translations AS Targets'
-		    . '    ON Targets.parent_id = Translations.id'
-		    . '   AND Targets.locale = "' . $locale . '"'
-		    . ' WHERE Translations.status = "Active"'
-		    . '   AND Translations.locale = "en_us"'
-		    . ' ORDER BY source'
-	       ;
-	       $rows    = $db->fetchAll($sql);
-	       $counter = count($rows);
+	function write_translations_php($db, $out_file, $locale) {
+		$sql= 'SELECT Translations.sentence AS source'
+			. '     ,      Targets.sentence AS target'
+			. '  FROM Translations'
+			. '  LEFT JOIN Translations AS Targets'
+			. '    ON Targets.parent_id = Translations.id'
+			. '   AND Targets.locale = "' . $locale . '"'
+			. ' WHERE Translations.status = "Active"'
+			. '   AND Translations.locale = "en_us"'
+			. ' ORDER BY source'
+			;
+		$rows = $db->fetchAll($sql);
+		$counter = count($rows);
 
-	       if( $counter > 0 ) {
-		    fwrite( $out_file, '<?' );
-		    fwrite( $out_file, NL . '//   language ' . $locale );
-		    fwrite( $out_file, NL . '$translations = array');
-		    $first = '(';
-		    foreach( $rows as $row ) {
-			 fwrite($out_file, NL . $first . ' "' . $row['source'] . '"=>"' . $row['target'] . '"');
-			 $first = ',';
-		    }
-		    fwrite( $out_file, NL . ');' );
-		    fwrite( $out_file, NL . '?>' );
-	       }
-	       return $counter;
-	  }
+		if ($counter > 0) {
+			fwrite($out_file, '<?');
+			fwrite($out_file, NL . '//   language ' . $locale);
+			fwrite($out_file, NL . '$translations = array');
+			$first = '(';
+			foreach ($rows as $row) {
+				fwrite($out_file, NL . $first . ' "' . $row['source'] . '"=>"' . $row['target'] . '"');
+				$first = ',';
+			}
+			fwrite($out_file, NL . ');');
+			fwrite($out_file, NL . '?>');
+		}
+		return $counter;
+	}
 
-	 if (get_session('user_action') != 'All') {
-	    return;
-	 }
+	if (get_session('user_action') != 'All') {
+		return;
+	}
 
-	  $table         = get_request( 'table' );
-	  $group_set   = get_request( 'group_set' );
-	  $db            = Zend_Registry::get( 'db' );
-	  $counter       = 0;
+	$table		= get_data($data, 'table');
+	$group_set	= get_data($data, 'group_set');
+	$db			= Zend_Registry::get('db');
+	$counter	= 0;
 
 	  if(  $table == 'Categories' ) {
 	       $out_name = 'jky_all_categories.html';
@@ -1624,22 +1635,22 @@ private function publish() {
 	       }
 	  }
 
-	 if( $table == 'Translations' ) {
-	     $sql = 'SELECT setting_name'
-		  . '  FROM Settings'
-		  . ' WHERE status = "Active"'
-		  . '   AND setting_set = "Languages"'
-		  . ' ORDER BY sequence'
-		  ;
-	     $rows = $db->fetchAll($sql);
+	if ($table == 'Translations') {
+		$sql= 'SELECT name'
+			. '  FROM Controls'
+			. ' WHERE status = "Active"'
+			. '   AND group_set = "Languages"'
+			. ' ORDER BY sequence'
+			;
+		$rows = $db->fetchAll($sql);
 
-	     foreach( $rows as $row ) {
-		 $locale = $row['setting_name'];
-		 $out_name = 'js/translations/' . $locale . '.js';
-		 $out_file = fopen($out_name, 'w') or die('cannot open ' . $out_name);
-		 $counter  = write_translations_js($db, $out_file, $locale);
-		 fclose($out_file);
-	     }
+		foreach ($rows as $row) {
+			$locale		= $row['name'];
+			$out_name	= '../html/js/translations/' . $locale . '.js';
+			$out_file	= fopen($out_name, 'w') or die('cannot open ' . $out_name);
+			$counter	= write_translations_js($db, $out_file, $locale);
+			fclose($out_file);
+		}
 /*
 	      foreach( $rows as $row ) {
 		   $locale = $row['setting_name'];
@@ -1649,23 +1660,23 @@ private function publish() {
 		   fclose($out_file);
 	      }
 */
-	      foreach( $rows as $row ) {
-		   $locale = $row['setting_name'];
-		   $out_name = '../application/' . $locale . '.php';
-		   $out_file = fopen($out_name, 'w') or die('cannot open ' . $out_name);
-		   $counter  = write_translations_php($db, $out_file, $locale);
-		   fclose($out_file);
-	      }
+		foreach ($rows as $row) {
+			$locale = $row['name'];
+			$out_name = '../application/' . $locale . '.php';
+			$out_file = fopen($out_name, 'w') or die('cannot open ' . $out_name);
+			$counter  = write_translations_php($db, $out_file, $locale);
+			fclose($out_file);
+		}
 	 }
 
 //          system( '( php ' . APPLICATION . 'GenerateHtml.php & ) > /dev/null' );
 //          exec( 'php ' . APPLICATION . 'GenerateHtml.php' );
 
-	  $return = array();
-	  $return[ 'status'   ] = 'ok';
-	  $return[ 'message'  ] = $counter . ' records published';
-	  echo json_encode( $return );
-     }
+	$return = array();
+	$return['status' ] = 'ok';
+	$return['message'] = $counter . ' records published';
+	echo json_encode($return);
+}
 
 //   ---------------------------------------------------------------------------
 private function echo_json($return) {
@@ -2016,41 +2027,25 @@ $this->log_sql(null, 'get_users', $sql);
 }
 
 /**
- *	$.ajax({ method: get_controls, group_set: x...x, select: x...x, initial: x...x });
+ *	$.ajax({ method: get_controls, group_set: x...x);
  *
  *	return: <options value="x...x" selected="selected">x...x</options>
  *			...
  */
-private function get_controls() {
-	$group_set	= get_request('group_set'	);
-	$selected	= get_request('selected'	);
-	$initial	= get_request('initial'		);
+private function get_controls($data) {
+	$group_set = get_data($data, 'group_set');
 
 	$sql= 'SELECT * '
 		. '  FROM Controls'
 		. ' WHERE group_set = "' . $group_set . '"'
 		. ' ORDER BY sequence, name'
 		;
-	if ($initial == '') {
-		$return = '';
-	}else{
-//		$return = '<option value="*">' . $initial . '</option>';
-		$return = '<option value="All">' . $initial . '</option>';
-	}
-
-	if ($sql != '') {
-		$db = Zend_Registry::get('db');
-		$rows = $db->fetchAll($sql);
-
-		foreach ($rows as $row) {
-			if ($row['value'] == ''){
-				$row['value'] = $row['name'];
-			}
-		$selected = $row['name'] == $select ? ' selected="selected"' : '';
-		$return .= '<option value="' . $row['name'] . '"' . $selected . '>' . $row['value'] . '</options>';
-		}
-	}
-	echo $return;
+	$db = Zend_Registry::get('db');
+	$rows = $db->fetchAll($sql);
+	$return = array();
+	$return['status'] = 'ok';
+	$return['rows'	] = $rows;
+	$this->echo_json($return);
 }
 
 /**

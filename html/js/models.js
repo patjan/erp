@@ -607,7 +607,8 @@ JKY.process_update_success = function(response) {
 	JKY.refresh_select(jky_select);					//	only used on [Configs and Controls]
 	JKY.update_user(response.id, JKY.row.user_id);	//	only used on [Contacts]
 	JKY.rows[jky_index-1] = JKY.get_row(jky_table, JKY.rows[jky_index-1]['id']);
-	JKY.display_next();
+//	JKY.display_next();
+	JKY.display_row(jky_index);
 }
 
 JKY.process_delete = function() {

@@ -1039,6 +1039,44 @@ JKY.get_ids = function(table) {
 }
 
 /**
+ * get controls
+ */
+JKY.get_controls = function(group_set) {
+	JKY.display_trace('get_controls: ' + group_set);
+	var my_rows = [];
+	var my_data =
+		{ method	: 'get_controls'
+		, group_set	:  group_set
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_rows = response.rows;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.hide('jky-loading');
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	)
+	return my_rows;
+}
+
+/**
  * get configs
  */
 JKY.get_configs = function(group_set) {
@@ -1266,6 +1304,43 @@ JKY.get_row = function(table_name, id) {
 		}
 	);
 	return my_row;
+}
+
+JKY.get_rows = function(table_name, id) {
+	var my_rows = null;
+	var my_where = table_name + '.parent_id = ' + id;
+	var my_data =
+		{ method: 'get_rows'
+		, table	:  table_name
+		, where :  my_where
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_rows = response.rows;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.hide('jky-loading');
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_rows;
 }
 
 /**
