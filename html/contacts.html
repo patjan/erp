@@ -8,15 +8,11 @@
 
 	<div>
 		<div id='jky-app-actions'>
-			<button id='jky-action-add-new'		class='btn btn-success' type='button'>Add New	</button>
-			<button id='jky-action-save'		class='btn btn-success' type='button'>Save		</button>
-			<button id='jky-action-copy'		class='btn btn-success' type='button'>Copy		</button>
-		&nbsp;<a	id='jky-action-delete'		class='btn'				type='button'>Delete	</a>
-		&nbsp;<a	id='jky-action-cancel'		class='btn'				type='button'>Cancel	</a>
+			<button id='jky-action-add-new'		class='btn btn-success' type='button'><span>Add New	</span></button>
 		</div>
 		<div id='jky-app-more'>
-			<button id='jky-action-export'		class='btn btn-success' type='button'>Export	</button>
-			<button id='jky-action-publish'		class='btn btn-success' type='button'>Publish	</button>
+			<button id='jky-action-export'		class='btn btn-success' type='button'><span>Export	</span></button>
+			<button id='jky-action-publish'		class='btn btn-success' type='button'><span>Publish	</span></button>
 		</div>
 		<div id='jky-app-displays' class='btn-group'>
 			<button id='jky-action-list'		class='btn' title=    'List View'><i class='icon-align-justify'	></i></button>
@@ -24,8 +20,8 @@
 			<button id='jky-action-calendar'	class='btn' title='Calendar View'><i class='icon-calendar'		></i></button>
 			<button id='jky-action-form'		class='btn' title=    'Form View'><i class='icon-list-alt'		></i></button>
 		</div>
-		<div id='jky-app-counters'><span id='jky-app-index'>1</span> of <span id='jky-app-count'>12</span></div>
-		<div id='jky-app-add-new' >New</div>
+		<div id='jky-app-counters'><span id='jky-app-index'></span> of <span id='jky-app-count'></span></div>
+		<div id='jky-app-add-new' ><span>New</span></div>
 		<div id='jky-app-navs' class='btn-group'>
 			<button id='jky-action-prev'		class='btn' title='Previous'	 ><i class='icon-backward'		></i></button>
 			<button id='jky-action-next'		class='btn' title='Next'		 ><i class='icon-forward'		></i></button>
@@ -35,7 +31,7 @@
 </div>
 
 <style>
-.jky-form-label			{width:150px;}
+.jky-form-label			{width:160px;}
 .jky-form-value			{width:270px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 #jky-check-all			{width: 30px;}
@@ -67,11 +63,11 @@
 	<thead>
 		<tr>
 			<th    id='jky-check-all'		><input type='checkbox' /></th>
-			<th class='jky-full-name'		>Full Name		</th>
-			<th class='jky-mobile'			>Mobile			</th>
-			<th class='jky-email'			>Email			</th>
-			<th class='jky-user-name'		>User Name		</th>
-			<th class='jky-user-role'		>User Role		</th>
+			<th class='jky-full-name'		><span>Full Name		</span></th>
+			<th class='jky-mobile'			><span>Mobile			</span></th>
+			<th class='jky-email'			><span>Email			</span></th>
+			<th class='jky-user-name'		><span>User Name		</span></th>
+			<th class='jky-user-role'		><span>User Role		</span></th>
 		</tr>
 	</thead>
 
@@ -95,34 +91,45 @@
 		<span id='jky-form-action'	></span>
 		<span id='jky-form-id'		></span>
 		<div class='jky-right'>
-			<button id='jky-action-comment'	class='btn btn-success' type='button'>Comment</button>
+			<button id='jky-action-comment'	class='btn btn-success' type='button'><span>Comment</span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
 -->
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'>       First Name:</div><div class='jky-form-value'><input  id='jky-first-name'		placeholder='First Name'		/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>        Last Name:</div><div class='jky-form-value'><input  id='jky-last-name'   	placeholder='Last Name'			/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>           Mobile:</div><div class='jky-form-value'><input  id='jky-mobile'			placeholder='e.g. 123-456-7890'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>            Email:</div><div class='jky-form-value'><input  id='jky-email'			placeholder='Email'				/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>        First Name</span>:</div><input  id='jky-first-name'	class='jky-form-value'		placeholder='First Name'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         Last Name</span>:</div><input  id='jky-last-name'   	class='jky-form-value'		placeholder='Last Name'			/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>            Mobile</span>:</div><input  id='jky-mobile'		class='jky-form-value'		placeholder='123-456-7890'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>             Email</span>:</div><input  id='jky-email'			class='jky-form-value'		placeholder='Email'				/></div>
 			<br><br>
-			<div class='jky-form-line'><div class='jky-form-label'>        User Name:</div><div class="jky-form-value"><input  id='jky-user-name'		placeholder='User Name'			/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>        User Role:</div><div class="jky-form-value"><select id='jky-user-role'></select>						  		  </div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         User Name</span>:</div><input  id='jky-user-name'		placeholder='User Name'			/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         User Role</span>:</div><select id='jky-user-role'></select>						  	  </div>
 		</div>
 		<div class="jky-left">
-			<div id='jky-photo'><img id='jky-photo-src' src='/img/placeholder.png'><br><a id='jky-upload-photo'>Upload Photo</a></div>
+			<div id='jky-photo'><img id='jky-photo-src' src='/img/placeholder.png'><br><a id='jky-upload-photo'><span>Upload Photo</span></a></div>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+		<div>
+			<div class='jky-form-label'></div>
+			<div class='jky-form-buttons'>
+				<button id='jky-action-save'	class='btn btn-success' type='button'><span>Save	</span></button>
+				<button id='jky-action-copy'	class='btn btn-success' type='button'><span>Copy	</span></button>
+			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button'><span>Delete	</span></a>
+			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button'><span>Cancel	</span></a>
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li id='jky-tab-address'		class='active'	><a href='#jky-address'				data-toggle='tab'>Address		</a></li>
-			<li	id='jky-tab-notes'							><a href='#jky-notes'				data-toggle='tab'>Notes			</a></li>
-			<li	id='jky-tab-sales'							><a href='#jky-sales'				data-toggle='tab'>Sales			</a></li>
-			<li	id='jky-tab-account'						><a href='#jky-account'				data-toggle='tab'>Account		</a></li>
-			<li	id='jky-tab-history'						><a href='#jky-history'				data-toggle='tab'>History		</a></li>
+			<li id='jky-tab-address'		class='active'	><a href='#jky-address'				data-toggle='tab'><span>Address			</span></a></li>
+			<li	id='jky-tab-notes'							><a href='#jky-notes'				data-toggle='tab'><span>Notes			</span></a></li>
+			<li	id='jky-tab-sales'							><a href='#jky-sales'				data-toggle='tab'><span>Sales			</span></a></li>
+			<li	id='jky-tab-account'						><a href='#jky-account'				data-toggle='tab'><span>Account			</span></a></li>
+			<li	id='jky-tab-history'						><a href='#jky-history'				data-toggle='tab'><span>History			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
@@ -132,13 +139,13 @@
 					<div class='jky-form-line'>
 						<div class='jky-form-label'></div>
 						<div class='jky-form-value'>
-							<input	id='jky-street1'	class='jky-form-value' placeholder='Street ...'	/>
+							<input	id='jky-street1'	class='jky-form-value' placeholder='Street'		/>
 							<input	id='jky-street2'	class='jky-form-value' placeholder=''			/>
 							<input	id='jky-city'		class='jky-form-value' placeholder='City'		/>
 							<input	id='jky-zip'		class='jky-form-value' placeholder='Zip'		/>
 							<select id='jky-state'	></select>
 							<select id='jky-country'></select>
-							<button id='jky-save-address' class='btn btn-success' type='button'>Save Address</button>
+							<button id='jky-save-address' class='btn btn-success' type='button'><span>Save Address</span></button>
 						</div>
 					</div>
 				</div>
@@ -146,11 +153,11 @@
 
 			<div id='jky-notes' class='tab-pane'>
 				<div class='jky-left'>
-					<div class='jky-form-line'><div class='jky-form-label'>		Expected Date</div><div id='jky-expected-date'		class='jky-form-value'>02/01/2013	</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'>	Invoicing Control</div><div id='jky-invoicing-control'	class='jky-form-value'>Based on 	</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'>	 Invoice Received</div><div id='jky-invoice-received'	class='jky-form-value'>No			</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'>		 Payment Term</div><div id='jky-payment-term'		class='jky-form-value'>				</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'>	  Fiscal Position</div><div id='jky-fiscal-position'	class='jky-form-value'>				</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>		Expected Date</span></div><div id='jky-expected-date'		class='jky-form-value'>02/01/2013	</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>	Invoicing Control</span></div><div id='jky-invoicing-control'	class='jky-form-value'>Based on 	</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>	 Invoice Received</span></div><div id='jky-invoice-received'	class='jky-form-value'>No			</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>		 Payment Term</span></div><div id='jky-payment-term'		class='jky-form-value'>				</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>	  Fiscal Position</span></div><div id='jky-fiscal-position'		class='jky-form-value'>				</div></div>
 				</div>
 			</div>
 		</div>

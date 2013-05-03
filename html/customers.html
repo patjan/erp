@@ -8,15 +8,11 @@
 
 	<div>
 		<div id='jky-app-actions'>
-			<button id='jky-action-add-new'		class='btn btn-success' type='button'>Add New	</button>
-			<button id='jky-action-save'		class='btn btn-success' type='button'>Save		</button>
-			<button id='jky-action-copy'		class='btn btn-success' type='button'>Copy		</button>
-		&nbsp;<a	id='jky-action-delete'		class='btn'				type='button'>Delete	</a>
-		&nbsp;<a	id='jky-action-cancel'		class='btn'				type='button'>Cancel	</a>
+			<button id='jky-action-add-new'		class='btn btn-success' type='button'><span>Add New	</span></button>
 		</div>
 		<div id='jky-app-more'>
-			<button id='jky-action-export'		class='btn btn-success' type='button'>Export	</button>
-			<button id='jky-action-publish'		class='btn btn-success' type='button'>Publish	</button>
+			<button id='jky-action-export'		class='btn btn-success' type='button'><span>Export	</span></button>
+			<button id='jky-action-publish'		class='btn btn-success' type='button'><span>Publish	</span></button>
 		</div>
 		<div id='jky-app-displays' class='btn-group'>
 			<button id='jky-action-list'		class='btn' title=    'List View'><i class='icon-align-justify'	></i></button>
@@ -24,8 +20,8 @@
 			<button id='jky-action-calendar'	class='btn' title='Calendar View'><i class='icon-calendar'		></i></button>
 			<button id='jky-action-form'		class='btn' title=    'Form View'><i class='icon-list-alt'		></i></button>
 		</div>
-		<div id='jky-app-counters'><span id='jky-app-index'>1</span> of <span id='jky-app-count'>12</span></div>
-		<div id='jky-app-add-new' >New</div>
+		<div id='jky-app-counters'><span id='jky-app-index'></span> of <span id='jky-app-count'></span></div>
+		<div id='jky-app-add-new' ><span>New</span></div>
 		<div id='jky-app-navs' class='btn-group'>
 			<button id='jky-action-prev'		class='btn' title='Previous'	 ><i class='icon-backward'		></i></button>
 			<button id='jky-action-next'		class='btn' title='Next'		 ><i class='icon-forward'		></i></button>
@@ -62,10 +58,10 @@
 	<thead>
 		<tr>
 			<th    id='jky-check-all'		><input type='checkbox' /></th>
-			<th class='jky-full-name'		>Full Name		</th>
-			<th class='jky-phone'			>Phone			</th>
-			<th class='jky-mobile'			>Mobile			</th>
-			<th class='jky-email'			>Email			</th>
+			<th class='jky-full-name'		><span>Full Name		</span></th>
+			<th class='jky-phone'			><span>Phone			</span></th>
+			<th class='jky-mobile'			><span>Mobile			</span></th>
+			<th class='jky-email'			><span>Email			</span></th>
 		</tr>
 	</thead>
 
@@ -89,7 +85,7 @@
 		<span id='jky-form-action'	></span>
 		<span id='jky-form-id'		></span>
 		<div class='jky-right'>
-			<button id='jky-action-comment'	class='btn btn-success' type='button'>Comment</button>
+			<button id='jky-action-comment'	class='btn btn-success' type='button'><span>Comment</span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -97,10 +93,10 @@
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'>Name:</div>
+				<div class='jky-form-label'><span>Name</span>:</div>
 				<div class='jky-form-value'>
 					<input id='jky-full-name' class='jky-form-value' placeholder='Name' />
-					<input id='jky-is-company' type='checkbox' value='Yes' /> (Is a Company ?)
+					<input id='jky-is-company' type='checkbox' value='Yes' /> (<span>Is a Company</span> ?)
 					<select id='jky-company-name'>
 						<option>JKY Software Corp</option>
 						<option>Tecno Malhas</option>
@@ -123,9 +119,9 @@
 
 		<div class='jky-left'>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'>Address:</div>
+				<div class='jky-form-label'><span>Address</span>:</div>
 				<div class='jky-form-value'>
-					<input	id='jky-street1'	class='jky-form-value' placeholder='Street ...'	/>
+					<input	id='jky-street1'	class='jky-form-value' placeholder='Street'		/>
 					<input	id='jky-street2'	class='jky-form-value' placeholder=''			/>
 					<input	id='jky-city'		class='jky-form-value' placeholder='City'		/>
 					<input	id='jky-zip'		class='jky-form-value' placeholder='Zip'		/>
@@ -133,25 +129,35 @@
 					<select id='jky-country'></select>
 				</div>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'>          Website:</div><div class='jky-form-value'><input id='jky-website'			class='jky-form-value' placeholder='e.g. www.jkysoftware.com'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>          Website</span>:</div><div class='jky-form-value'><input id='jky-website'			placeholder='www.jkysoftware.com'	/></div></div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'>         Position:</div><div class='jky-form-value'><input id='jky-position'			class='jky-form-value' placeholder='e.g. Sales Director'		/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>            Phone:</div><div class='jky-form-value'><input id='jky-phone'			class='jky-form-value' placeholder='e.g. 123-456-7890'			/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>           Mobile:</div><div class='jky-form-value'><input id='jky-mobile'			class='jky-form-value' placeholder=''	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label'>              Fax:</div><div class='jky-form-value'><input id='jky-fax'				class='jky-form-value' placeholder=''	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label'>            Email:</div><div class='jky-form-value'><input id='jky-email'			class='jky-form-value' placeholder=''	/></div>		</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         Position</span>:</div><div class='jky-form-value'><input id='jky-position'		placeholder='Sales Director'		/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>            Phone</span>:</div><div class='jky-form-value'><input id='jky-phone'			placeholder='123-456-7890'			/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>           Mobile</span>:</div><div class='jky-form-value'><input id='jky-mobile'			placeholder=''	/></div>		</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>              Fax</span>:</div><div class='jky-form-value'><input id='jky-fax'				placeholder=''	/></div>		</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>            Email</span>:</div><div class='jky-form-value'><input id='jky-email'			placeholder=''	/></div>		</div>
 		</div>
 		<div class='jky-clear'></div>
+		<br>
+		<div>
+			<div class='jky-form-label'></div>
+			<div class='jky-form-value'>
+				<button id='jky-action-save'	class='btn btn-success' type='button'><span>Save	</span></button>
+				<button id='jky-action-copy'	class='btn btn-success' type='button'><span>Copy	</span></button>
+			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button'><span>Delete	</span></a>
+			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button'><span>Cancel	</span></a>
+		</div>
 	</div>
+	<div class='jky-clear'></div>
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li id='jky-tab-contacts'		class='active'	><a href='#jky-contacts'			data-toggle='tab'>Contacts		</a></li>
-			<li	id='jky-tab-notes'							><a href='#jky-notes'				data-toggle='tab'>Notes			</a></li>
-			<li	id='jky-tab-sales'							><a href='#jky-sales'				data-toggle='tab'>Sales			</a></li>
-			<li	id='jky-tab-account'						><a href='#jky-account'				data-toggle='tab'>Account		</a></li>
-			<li	id='jky-tab-history'						><a href='#jky-history'				data-toggle='tab'>History		</a></li>
+			<li id='jky-tab-contacts'		class='active'	><a href='#jky-contacts'			data-toggle='tab'><span>Contacts		</span></a></li>
+			<li	id='jky-tab-notes'							><a href='#jky-notes'				data-toggle='tab'><span>Notes			</span></a></li>
+			<li	id='jky-tab-sales'							><a href='#jky-sales'				data-toggle='tab'><span>Sales			</span></a></li>
+			<li	id='jky-tab-account'						><a href='#jky-account'				data-toggle='tab'><span>Account			</span></a></li>
+			<li	id='jky-tab-history'						><a href='#jky-history'				data-toggle='tab'><span>History			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>

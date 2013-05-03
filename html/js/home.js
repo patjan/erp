@@ -15,10 +15,10 @@ $(function() {
 //	JKY.set_contact_us	(JKY.Session.get_value('contact_us'		));
 //	JKY.set_buttons_menus(my_menus);
 //	JKY.set_buttons_control([], JKY.Session.get_value('language'), JKY.Session.get_value('languages'));
-	JKY.set_all_events(jky_program);
+	JKY.set_all_events_home(jky_program);
 
 	if (JKY.Session.has('full_name')) {
-		JKY.set_initial_values(jky_program);
+//		JKY.set_initial_values_home(jky_program);
 		JKY.process_start_page();
 	}else{
 		JKY.process_action('login');
@@ -28,9 +28,9 @@ $(function() {
 /**
  *	set all events (run only once per load)
  */
-JKY.set_all_events = function(jky_program) {
-	JKY.display_trace('set_all_events');
-	if (JKY.is_loaded('jky-body')) {
+JKY.set_all_events_home = function(jky_program) {
+	if (JKY.is_loaded('jky')) {
+JKY.display_trace('set_all_events_home');
 		$('#jky-sign-up'		).click (function() {JKY.display_sign_up	()		;});
 		$('#jky-log-in'			).click (function() {JKY.display_log_in		()		;});
 		$('#jky-profile'		).click (function() {JKY.display_profile	()		;});
@@ -48,22 +48,23 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-production-machines'	).click (function() {JKY.process_action('machines'		);});
 		$('#jky-help-tickets'			).click (function() {JKY.process_action('tickets'		);});
 		$('#jky-admin-configs'			).click (function() {JKY.process_action('configs'		);});
-		$('#jky-support-controls'		).click (function() {JKY.process_action('controls'		);});
-		$('#jky-admin-users'			).click (function() {JKY.process_action('users'			);});
 		$('#jky-admin-contacts'			).click (function() {JKY.process_action('contacts'		);});
+		$('#jky-admin-companies'		).click (function() {JKY.process_action('companies'		);});
+		$('#jky-admin-history'			).click (function() {JKY.process_action('history'		);});
+		$('#jky-support-controls'		).click (function() {JKY.process_action('controls'		);});
 		$('#jky-support-permissions'	).click (function() {JKY.process_action('permissions'	);});
 		$('#jky-support-translations'	).click (function() {JKY.process_action('translations'	);});
 	}else{
-		setTimeout(function() {JKY.set_all_events();}, 100);
+		setTimeout(function() {JKY.set_all_events_home();}, 100);
 	}
 }
 
 /**
  *	set initial values (run only once per load)
  */
-JKY.set_initial_values = function(jky_program) {
-	JKY.display_trace('set_initial_values');
-	if (JKY.is_loaded('jky-body')) {
+JKY.set_initial_values_home = function(jky_program) {
+	if (JKY.is_loaded('jky')) {
+JKY.display_trace('set_initial_values_home');
 //		JKY.set_menu_active('jky-menu-admin');
 		$('#jky-home'				).click (function() {JKY.process_home		()		;});
 		$('#jky-help'				).click (function() {JKY.process_help		()		;});
@@ -72,7 +73,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-app-breadcrumb', jky_program);
 		JKY.show('jky-side-bar');
 	}else{
-		setTimeout(function() {JKY.set_initial_values();}, 100);
+		setTimeout(function() {JKY.set_initial_values_home();}, 100);
 	}
 }
 

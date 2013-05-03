@@ -11,7 +11,7 @@
  *			JKY.Translation.set_value('language', 'taiwanese');
  *			JKY.Translation.get_value('language');		//	taiwanese
  *
- * require:	JKY.Utils.js	(JKY.AJAX_URL)
+ * require:	JKY.Utils.js(JKY.AJAX_URL)
  */
 JKY.Translation = function() {
 	var my_translation = [];
@@ -23,31 +23,32 @@ JKY.Translation = function() {
 	 * @return	translated text
 	 * @example JKY.t('Home')
 	 */
-	function translate(text) {
-		if (text === '') {
+	function translate(the_text) {
+		if (typeof the_text == 'undefined' || the_text == '') {
 			return '';
 		}
 
-		var result = my_translation[text];
-		if (typeof result === undefined) {
-			result = '';
-			var names = text.split('<br>');
-			for(var i=0; i<names.length; i++ ) {
-				var name = names[i];
-				var translation = my_translation[name];
-				result += ( i === 0 ) ? '' : '<br>';
-				if (typeof translation === undefined) {
-					result += name;
+		var my_result = my_translation[the_text];
+		if (typeof my_result == undefined) {
+alert('the_text: ' + the_text);
+			my_result = '';
+			var my_names = the_text.split('<br>');
+			for(var i=0; i<my_names.length; i++ ) {
+				var my_name = my_names[i];
+				var my_word = my_translation[name];
+				my_result += ( i == 0 ) ? '' : '<br>';
+				if (typeof my_word == undefined) {
+					my_result += my_name;
 				}else{
-					result += translation;
+					my_result += my_word;
 				}
 			}
 		}
-		return result;
+		return my_result;
 	}
 
 	return {
-			set_translation	: function(array)		{		my_translation = array	;}
-		,	translate		: function(text)		{return my_translate(text)		;}
+			set_translation	: function(the_array)	{		my_translation = the_array	;}
+		,	translate		: function(the_text)	{return my_translate(the_text)		;}
 	};
 }();

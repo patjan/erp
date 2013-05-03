@@ -1547,7 +1547,8 @@ private function publish($data) {
 		$counter = count($rows);
 
 		if ($counter > 0) {
-			fwrite($out_file, 'var translations = ');
+			fwrite($out_file, NL . 'var JKY = JKY || {};');
+			fwrite($out_file, NL . 'JKY.translations = ');
 			$first = '{';
 			foreach ($rows as $row) {
 				fwrite($out_file, NL . $first . ' "' . $row['source'] . '":"' . $row['target'] . '"');

@@ -88,7 +88,7 @@ JKY.set_initial_values = function(jky_program) {
 }
 
 JKY.display_list = function() {
-	JKY.show('jky-app-filter'		);
+//	JKY.show('jky-app-filter'		);
 	JKY.show('jky-app-more'			);
 	JKY.hide('jky-app-navs'			);
 	JKY.hide('jky-app-add-new'		);
@@ -104,12 +104,12 @@ JKY.display_list = function() {
 }
 
 JKY.display_form = function(index) {
-	JKY.hide('jky-app-filter'		);
+//	JKY.show('jky-app-filter'		);
 	JKY.hide('jky-app-more'			);
 	JKY.show('jky-app-navs'			);
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
-	JKY.hide('jky-action-add-new'	);
+	JKY.show('jky-action-add-new'	);
 	JKY.show('jky-action-save'		);
 	JKY.show('jky-action-copy'		);
 	JKY.show('jky-action-delete'	);
@@ -205,7 +205,7 @@ JKY.process_load_success = function(response) {
 
 JKY.process_add_new = function() {
 	JKY.hide('jky-form-tabs');
-	JKY.hide('jky-app-filter'		);
+//	JKY.hide('jky-app-filter'		);
 	JKY.hide('jky-app-more'			);
 	JKY.hide('jky-app-navs'			);
 	JKY.show('jky-app-add-new'		);
@@ -222,8 +222,8 @@ JKY.process_add_new = function() {
 
 JKY.display_new = function() {
 	jky_index = 0;
-	JKY.set_value	('jky-code'				, 'New');
-	JKY.set_radio	('jky-product'			,  null);
+	JKY.set_value	('jky-code'				,  JKY.t('New'));
+	JKY.set_value	('jky-product'			, '');
 	JKY.set_value	('jky-composition'		, '');
 	JKY.set_option	('jky-machine'			,  null);
 	JKY.set_value	('jky-diameter'			, '0');

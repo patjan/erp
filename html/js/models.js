@@ -21,6 +21,8 @@ JKY.materials	= [];
 JKY.threads		= [];
 JKY.loads		= [];
 JKY.settings	= [];
+JKY.languages	= [];
+JKY.today		= JKY.get_now();
 
 /**
  * start program
@@ -44,7 +46,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
 		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
 		$('#jky-action-export'		).click (function() {JKY.process_export		();});
-		$('#jky-action-publish'		).click (function() {JKY.process_publish	();});	// not needed on version 0
+		$('#jky-action-publish'		).click (function() {JKY.process_publish	();});
 		$('#jky-action-prev'		).click (function() {JKY.display_prev		();});
 		$('#jky-action-next'		).click (function() {JKY.display_next		();});
 		$('#jky-action-list'		).click (function() {JKY.display_list		();});
@@ -114,20 +116,18 @@ JKY.set_initial_values = function(jky_program) {
 
 		JKY.set_menu_active('jky-menu-admin');
 		JKY.set_side_active('jky-admin-contacts');
-		JKY.set_html('jky-user-role', JKY.set_group_set('Controls', '', 'User Roles'));
-		JKY.set_html('jky-state'    , JKY.set_group_set('Configs' , '', 'States'	));
-		JKY.set_html('jky-country'  , JKY.set_group_set('Configs' , '', 'Countries'	));
-		JKY.set_html('jky-user-role'    , JKY.set_group_set('Controls', '', 'User Roles'	));
+		JKY.set_html('jky-user-role'	, JKY.set_group_set('Controls', '', 'User Roles'));
+		JKY.set_html('jky-state'		, JKY.set_group_set('Configs' , '', 'States'	));
+		JKY.set_html('jky-country'		, JKY.set_group_set('Configs' , '', 'Countries'	));
+		JKY.set_html('jky-user-role'	, JKY.set_group_set('Controls', '', 'User Roles'	));
 
 		JKY.set_menu_active('jky-menu-support');
 		JKY.set_side_active('jky-support-controls');
 		JKY.set_side_active('jky-support-permissions');
-		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table , jky_select, 'Root'));
-		JKY.set_html('jky-status'    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
+		JKY.set_side_active('jky-support-translations');
+		JKY.set_html('jky-app-select'   , JKY.set_group_set(jky_table , jky_select, 'Root'));
+		JKY.set_html('jky-status'	    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
 
-		JKY.set_menu_active('jky-menu-support');
-		JKY.set_side_active('jky-support-permissions');
-		JKY.set_html('jky-status'    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
 		JKY.set_html('jky-user-role'    , JKY.set_group_set('Controls', '', 'User Roles'	));
 		JKY.set_html('jky-user-resource', JKY.set_group_set('Controls', '', 'User Resources'));
 		JKY.set_html('jky-user-action'  , JKY.set_group_set('Controls', '', 'User Actions'	));
@@ -143,6 +143,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.materials	= JKY.get_configs('Materials');
 		JKY.threads		= JKY.get_ids	 ('Threads'  );
 		JKY.settings	= JKY.get_configs('Settings' );
+		JKY.languages	= JKY.get_controls('Languages');
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
@@ -167,6 +168,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
+	JKY.show('jky-action-publish'	);
 	JKY.show('jky-app-table'		);
 	JKY.hide('jky-app-form'			);
 	JKY.load_table();
@@ -307,6 +309,29 @@ JKY.display_row = function(index) {
 	}else{
 		JKY.show('jky-company-name');
 	}
+	var my_rows = JKY.get_rows(jky_table, JKY.rows[index-1]['id']);
+	var my_html = '';
+	for(var l=0; l<JKY.languages.length; l++) {
+		var my_locale   = JKY.languages[l].name ;
+		var my_language = JKY.languages[l].value;
+		var my_sentence = '';
+		for(var n=0; n<my_rows.length; n++) {
+			var my_row = my_rows[n];
+			if (my_row.locale == 'en_us') {
+				JKY.row_id = my_row.id;
+				JKY.set_option('jky_status', my_row.status);
+			}
+			if (my_row.locale == my_locale) {
+				my_sentence = my_row.sentence;
+			}
+		}
+		my_html += '<div class="jky-form-line">'
+				+  '<div class="jky-form-label">' + my_language + ':</div>'
+				+  '<div class="jky-form-value"><input id="' + my_locale + '" value="' + my_sentence + '" /></div>'
+				+  '</div>'
+				;
+	}
+	JKY.set_html('jky-locales', my_html);
 	JKY.set_focus(jky_focus);
 	JKY.display_composition()
 	JKY.display_cylinders()
@@ -333,6 +358,8 @@ JKY.process_load_success = function(response) {
 	var my_html = '';
 	for(var i=0; i<jky_count; i++) {
 		var my_row = JKY.rows[i];
+		var my_created_date = JKY.short_date(my_row.created_at);
+		var my_updated_date = JKY.short_date(my_row.updated_at);
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"		><input type="checkbox"		 /></td>'
 				+  '<td class="jky-sequence"		>' + my_row.sequence		+ '</td>'
@@ -373,6 +400,11 @@ JKY.process_load_success = function(response) {
 				+  '<td class="jky-email"			>' + my_row.email			+ '</td>'
 				+  '<td class="jky-user-name"		>' + my_row.user_name		+ '</td>'
 				+  '<td class="jky-user-role"		>' + my_row.user_role		+ '</td>'
+
+				+  '<td class="jky-sentence"		>' + my_row.sentence		+ '</td>'
+				+  '<td class="jky-created-at"		>' + my_created_date		+ '</td>'
+				+  '<td class="jky-updated-at"		>' + my_updated_date		+ '</td>'
+				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
 				+  '</tr>'
 				;
 	}
@@ -433,7 +465,7 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-fax'				, '');
 	JKY.set_value	('jky-email'			, '');
 
-	JKY.set_value	('jky-code'				, 'New');
+	JKY.set_value	('jky-code'				,  JKY.t('New'));
 	JKY.set_radio	('jky-product'			,  null);
 	JKY.set_value	('jky-composition'		, '');
 	JKY.set_option	('jky-machine'			,  null);
@@ -451,7 +483,7 @@ JKY.display_new = function() {
 	JKY.set_radio	('jky-has-break'		, 'No');
 
 	JKY.set_value	('jky-name'				, '' );
-	JKY.set_radio	('jky-machine-type'		, 'Circular');
+	JKY.set_radio	('jky-machine-type'		,  JKY.t('Circular'));
 	JKY.set_option	('jky-machine-family'	, '' );
 	JKY.set_option	('jky-machine-brand'	, '' );
 	JKY.set_value	('jky-serial-number'	, '' );
@@ -473,7 +505,20 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-user-role'		, '');
 	JKY.set_value	('jky-user-resource'	, '');
 	JKY.set_value	('jky-user-action'		, '');
-	
+
+	var my_html = '';
+	for(var l=0; l<JKY.languages.length; l++) {
+		var my_locale   = JKY.languages[l].name ;
+		var my_language = JKY.languages[l].value;
+		var my_sentence = '';
+		my_html += '<div class="jky-form-line">'
+				+  '<div class="jky-form-label">' + my_language + ':</div>'
+				+  '<div class="jky-form-value"><input id="' + my_locale + '" value="' + my_sentence + '" /></div>'
+				+  '</div>'
+				;
+	}
+	JKY.set_html('jky-locales', my_html);
+
 	JKY.show('jky-company-name');
 	JKY.set_focus(jky_focus);
 }
@@ -549,6 +594,14 @@ JKY.get_form_set = function() {
 		+     ', user_role=\'' + JKY.get_value	('jky-user-role'		) + '\''
 		+ ', user_resource=\'' + JKY.get_value	('jky-user-resource'	) + '\''
 		+   ', user_action=\'' + JKY.get_value	('jky-user-action'		) + '\''
+
+		+          'status=\'' + JKY.get_value	('jky-status'			) + '\''
+		+        ', locale=\'' +				 'en_us'				  + '\''
+		+      ', sentence=\'' + JKY.get_value	('en_us'				) + '\''
+
+		+          'status=\'' + JKY.get_value	('jky-status'				) + '\''
+		+        ', locale=\'' +				 'en_us'					  + '\''
+		+      ', sentence=\'' + JKY.get_value	('en_us'					) + '\''
 		;
 	var my_date = '';
 	my_date = JKY.get_value('jky-purchase-value');
@@ -574,8 +627,8 @@ JKY.process_save = function() {
 JKY.process_insert = function() {
 	var my_data =
 		{ method: 'insert'
-		, table : jky_table
-		, set	: JKY.get_form_set()
+		, table :  jky_table
+		, set	:  JKY.get_form_set()
 		};
 	JKY.ajax(false, my_data, JKY.process_insert_success);
 }
@@ -583,8 +636,19 @@ JKY.process_insert = function() {
 JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
 	JKY.display_message(response.message);
+
+	var my_data =
+		{ method: 'update'
+		, table :  jky_table
+		, set	: 'parent_id = ' + response.id
+		, where :        'id = ' + response.id
+		};
+	JKY.ajax(true, my_data);
+	JKY.process_update_more(response.id);			//	only used on [Translations]
+
 	JKY.refresh_select(jky_select);					//	only used on [Configs and Controls]
 	JKY.insert_user(response.id, JKY.row.user_id);	//	only used on [Contacts]
+	JKY.process_update_more(response.id);			//	only used on [Translations]
 	JKY.load_table();
 //	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
 	JKY.process_add_new();
@@ -594,9 +658,9 @@ JKY.process_update = function() {
 	var my_where = 'id = ' + JKY.rows[jky_index-1]['id'];
 	var my_data =
 		{ method: 'update'
-		, table : jky_table
-		, set	: JKY.get_form_set()
-		, where : my_where
+		, table :  jky_table
+		, set	:  JKY.get_form_set()
+		, where :  my_where
 		};
 	JKY.ajax(false, my_data, JKY.process_update_success);
 }
@@ -606,10 +670,35 @@ JKY.process_update_success = function(response) {
 	JKY.display_message(response.message);
 	JKY.refresh_select(jky_select);					//	only used on [Configs and Controls]
 	JKY.update_user(response.id, JKY.row.user_id);	//	only used on [Contacts]
+	JKY.process_update_more(response.id);			//	only used on [Translations]
 	JKY.rows[jky_index-1] = JKY.get_row(jky_table, JKY.rows[jky_index-1]['id']);
 //	JKY.display_next();
 	JKY.display_row(jky_index);
 }
+
+JKY.process_update_more = function(row_id) {
+	for(var l=0; l<JKY.languages.length; l++) {
+		var my_locale = JKY.languages[l].name ;
+		if (my_locale != 'en_us') {
+			var my_where = '  parent_id='   + row_id
+						 + ' AND locale=\'' + my_locale + '\''
+						;
+			var my_id = JKY.get_id(jky_table, my_where);
+			if (my_id) {
+				var my_set  = '  sentence=\'' + JKY.get_value(my_locale) + '\'';
+				var my_data = {method:'update', table:jky_table, set:my_set, where:'id=' + my_id};
+				JKY.ajax(true, my_data);
+			}else{
+				var my_set  = ' parent_id='   + row_id
+							+ ',   locale=\'' + my_locale + '\''
+							+ ', sentence=\'' + JKY.get_value(my_locale) +'\''
+							;
+				var my_data = {method:'insert', table:jky_table, set:my_set};
+				JKY.ajax(true, my_data);
+			}
+		}
+	}
+};
 
 JKY.process_delete = function() {
 	JKY.display_confirm(JKY.delete_confirmed, null, 'Delete', 'You requested to <b>delete</b> this record. <br>Are you sure?', 'Yes', 'No');
@@ -617,6 +706,7 @@ JKY.process_delete = function() {
 
 JKY.delete_confirmed = function() {
 	var my_id = JKY.row.id;
+	var my_id = JKY.rows[jky_index-1]['id'];
 
 	if (JKY.row.group_set == 'Root') {
 		var my_data =
@@ -659,6 +749,7 @@ JKY.delete_confirmed = function() {
 		{ method: 'delete'
 		, table :  jky_table
 		, where : 'id = ' + my_id
+		, where : 'parent_id = ' + my_id
 		};
 	JKY.ajax(false, my_data, JKY.process_delete_success);
 }
@@ -693,4 +784,21 @@ JKY.refresh_select = function(selected) {
 	if (selected == 'Root') {
 		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table , jky_select, 'Root'));
 	}
+}
+
+/**
+ * process publish
+ */
+JKY.process_publish = function() {
+	var my_data =
+		{ method: 'publish'
+		, table :  jky_table
+		};
+	JKY.ajax(false, my_data, JKY.process_publish_success);
+};
+
+JKY.process_publish_success = function(response) {
+	JKY.display_trace('process_publish_success');
+	JKY.display_message(response.message);
+//	JKY.display_list();
 }

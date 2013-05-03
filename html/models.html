@@ -8,15 +8,11 @@
 
 	<div>
 		<div id='jky-app-actions'>
-			<button id='jky-action-add-new'		class='btn btn-success' type='button'>Add New	</button>
-			<button id='jky-action-save'		class='btn btn-success' type='button'>Save		</button>
-			<button id='jky-action-copy'		class='btn btn-success' type='button'>Copy		</button>
-		&nbsp;<a	id='jky-action-delete'		class='btn'				type='button'>Delete	</a>
-		&nbsp;<a	id='jky-action-cancel'		class='btn'				type='button'>Cancel	</a>
+			<button id='jky-action-add-new'		class='btn btn-success' type='button'><span>Add New	</span></button>
 		</div>
 		<div id='jky-app-more'>
-			<button id='jky-action-export'		class='btn btn-success' type='button'>Export	</button>
-			<button id='jky-action-publish'		class='btn btn-success' type='button'>Publish	</button>
+			<button id='jky-action-export'		class='btn btn-success' type='button'><span>Export	</span></button>
+			<button id='jky-action-publish'		class='btn btn-success' type='button'><span>Publish	</span></button>
 		</div>
 		<div id='jky-app-displays' class='btn-group'>
 			<button id='jky-action-list'		class='btn' title=    'List View'><i class='icon-align-justify'	></i></button>
@@ -24,8 +20,8 @@
 			<button id='jky-action-calendar'	class='btn' title='Calendar View'><i class='icon-calendar'		></i></button>
 			<button id='jky-action-form'		class='btn' title=    'Form View'><i class='icon-list-alt'		></i></button>
 		</div>
-		<div id='jky-app-counters'><span id='jky-app-index'>1</span> of <span id='jky-app-count'>12</span></div>
-		<div id='jky-app-add-new' >New</div>
+		<div id='jky-app-counters'><span id='jky-app-index'></span> of <span id='jky-app-count'></span></div>
+		<div id='jky-app-add-new' ><span>New</span></div>
 		<div id='jky-app-navs' class='btn-group'>
 			<button id='jky-action-prev'		class='btn' title='Previous'	 ><i class='icon-backward'		></i></button>
 			<button id='jky-action-next'		class='btn' title='Next'		 ><i class='icon-forward'		></i></button>
@@ -35,14 +31,25 @@
 </div>
 
 <style>
+.jky-form-line-1		{width:240px;}
+.jky-form-line-2		{width:240px;}
+.jky-form-line-3		{width:240px;}
 .jky-form-label			{width:100px;}
-.jky-form-label			{width:150px;}
+.jky-form-label			{width:160px;}
 .jky-form-label-1		{width:100px;}
-.jky-form-label-2		{width:140px;}
-.jky-form-label-3		{width:140px;}
+.jky-form-label-2		{width:100px;}
+.jky-form-label-3		{width:100px;}
 .jky-form-value			{width: 50px;}
+.jky-form-value			{width:100px;}
 .jky-form-value			{width:270px;}
 .jky-form-value			{width:300px;}
+.jky-form-value			{width:350px;}
+.jky-form-value-1		{width: 50px;}
+.jky-form-value-2		{width: 50px;}
+.jky-form-value-3		{width: 50px;}
+.jky-form-value1		{width:240px;}
+.jky-form-value input	{width:300px;}
+.jky-form-buttons		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 #jky-check-all			{width: 30px;}
 .datepicker-dropdown:after	{left:432px;}
@@ -52,10 +59,15 @@
 .jky-name				{text-align:left;	}
 .jky-value				{text-align:left;	}
 
-.jky-status				{text-align:center; width:100px;}
-.jky-user-role			{text-align:center; width: 80px;}
-.jky-user-resource		{text-align:left;	}
-.jky-user-action		{text-align:left;	}
+.jky-status				{width: 80px; text-align:center;}
+.jky-user-role			{width:150px; text-align:center;}
+.jky-user-resource		{width:150px; text-align:center;}
+.jky-user-action		{width:150px; text-align:center;}
+
+.jky-status				{width: 80px; text-align:center;}
+.jky-sentence			{width:300px; text-align:left  ;}
+.jky-created-at			{width:100px; text-align:center;}
+.jky-updated-at			{width:100px; text-align:center;}
 
 #jky-status				{width:100px;}
 #jky-sequence			{width: 30px;}
@@ -100,14 +112,14 @@
 .jky-composition		{width:150px; text-align:center;}
 
 #jky-code				{width: 60px; font-size:16px; font-weight:bold;}
-#jky-product			{width:340px; text-transform:capitalize;}
+#jky-product			{width:340px;}		/* text-transform:capitalize; */
 #jky-product span		{padding:4px 20px 0 4px; vertical-align:bottom;}
 #jky-composition		{width:340px;}
 #jky-machine			{width:350px;}
 
-#jky-drawing			{float: left; margin-left: 10px;}
+#jky-drawing			{float: left; margin:7px;}
 #jky-drawing-img		{width:110px; height:110px; border:4px ridge darkblue;}
-#jky-photo				{float: left; margin-left: 10px;}
+#jky-photo				{float: left; margin:7px;}
 #jky-photo-img			{width:110px; height:110px; border:4px ridge black;}
 
 #jky-diameter			{width: 40px;}
@@ -220,44 +232,49 @@
 	<thead>
 		<tr>
 			<th    id='jky-check-all'		><input type='checkbox' /></th>
-			<th class='jky-sequence'		>Sequence		</th>
-			<th class='jky-name'			>Name			</th>
-			<th class='jky-value'			>Value			</th>
-			<th class='jky-status'			>Status			</th>
+			<th class='jky-sequence'		><span>Sequence			</span></th>
+			<th class='jky-name'			><span>Name				</span></th>
+			<th class='jky-value'			><span>Value			</span></th>
+			<th class='jky-status'			><span>Status			</span></th>
 
-			<th class='jky-full-name'		>Full Name		</th>
-			<th class='jky-phone'			>Phone			</th>
-			<th class='jky-mobile'			>Mobile			</th>
-			<th class='jky-email'			>Email			</th>
+			<th class='jky-full-name'		><span>Full Name		</span></th>
+			<th class='jky-phone'			><span>Phone			</span></th>
+			<th class='jky-mobile'			><span>Mobile			</span></th>
+			<th class='jky-email'			><span>Email			</span></th>
 
-			<th class='jky-code'			>Code			</th>
-			<th class='jky-product'			>Product		</th>
-			<th class='jky-machine'			>Machine		</th>
-			<th class='jky-composition'		>Composition	</th>
+			<th class='jky-code'			><span>Code				</span></th>
+			<th class='jky-product'			><span>Product			</span></th>
+			<th class='jky-machine'			><span>Machine			</span></th>
+			<th class='jky-composition'		><span>Composition		</span></th>
 
-			<th class='jky-name'			>Name			</th>
-			<th class='jky-diameter'		>Diameter		</th>
-			<th class='jky-width'			>Width			</th>
-			<th class='jky-density'			>Density		</th>
-			<th class='jky-inputs'			>Inputs			</th>
-			<th class='jky-lanes'			>Lanes			</th>
+			<th class='jky-name'			><span>Name				</span></th>
+			<th class='jky-diameter'		><span>Diameter			</span></th>
+			<th class='jky-width'			><span>Width			</span></th>
+			<th class='jky-density'			><span>Density			</span></th>
+			<th class='jky-inputs'			><span>Inputs			</span></th>
+			<th class='jky-lanes'			><span>Lanes			</span></th>
 
-			<th class='jky-code'			>Code			</th>
-			<th class='jky-name'			>Name			</th>
-			<th class='jky-thread_group'	>Thread Group	</th>
-			<th class='jky-thread_color'	>Thread Color	</th>
-			<th class='jky-composition'		>Composition	</th>
+			<th class='jky-code'			><span>Code				</span></th>
+			<th class='jky-name'			><span>Name				</span></th>
+			<th class='jky-thread_group'	><span>Thread Group		</span></th>
+			<th class='jky-thread_color'	><span>Thread Color		</span></th>
+			<th class='jky-composition'		><span>Composition		</span></th>
 
-			<th class='jky-user-role'		>User Role		</th>
-			<th class='jky-user-resource'	>User Resource	</th>
-			<th class='jky-user-action'		>User Action	</th>
-			<th class='jky-status'			>Status			</th>
+			<th class='jky-user-role'		><span>User Role		</span></th>
+			<th class='jky-user-resource'	><span>User Resource	</span></th>
+			<th class='jky-user-action'		><span>User Action		</span></th>
+			<th class='jky-status'			><span>Status			</span></th>
 
-			<th class='jky-user-name'		>User Name		</th>
-			<th class='jky-user-role'		>User Role		</th>
-			<th class='jky-full-name'		>Full Name		</th>
-			<th class='jky-mobile'			>Mobile			</th>
-			<th class='jky-email'			>Email			</th>
+			<th class='jky-user-name'		><span>User Name		</span></th>
+			<th class='jky-user-role'		><span>User Role		</span></th>
+			<th class='jky-full-name'		><span>Full Name		</span></th>
+			<th class='jky-mobile'			><span>Mobile			</span></th>
+			<th class='jky-email'			><span>Email			</span></th>
+
+			<th class='jky-sentence'		><span>Sentence			</span></th>
+			<th class='jky-created-at'		><span>Created At		</span></th>
+			<th class='jky-updated-at'		><span>Updated At		</span></th>
+			<th class='jky-status'			><span>Status			</span></th>
 		</tr>
 	</thead>
 
@@ -281,83 +298,78 @@
 		<span id='jky-form-action'	></span>
 		<span id='jky-form-id'		></span>
 		<div class='jky-right'>
-			<button id='jky-action-comment'	class='btn btn-success' type='button'>Comment</button>
+			<button id='jky-action-comment'	class='btn btn-success' type='button'><span>Comment</span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
 -->
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'>           Status:</div><select id='jky-status'></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'>         Sequence:</div><div class='jky-form-value'><input  id='jky-sequence'		 placeholder='0'			/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>             Name:</div><div class='jky-form-value'><input  id='jky-name'			 placeholder='Name'			/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>            Value:</div><div class='jky-form-value'><textarea id='jky-value'			 placeholder='Value'></textarea></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>           Status</span>:</div><select id='jky-status'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         Sequence</span>:</div><input		id='jky-sequence'	class='jky-form-value'										/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input		id='jky-name'		class='jky-form-value'		placeholder='Name'				/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>            Value</span>:</div><textarea	id='jky-value'		class='jky-form-value'		placeholder='Value'></textarea>   </div>
 
-			<div class='jky-form-line'><div class='jky-form-label'>             Code:</div><div class='jky-form-value'><input  id='jky-code'										readonly='readonly'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>          Product:</div><div class='jky-form-value'><input  id='jky-product'			placeholder='Product Name'	readonly='readonly'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>      Composition:</div><div class='jky-form-value'><input  id='jky-composition'									readonly='readonly'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>          Machine:</div><div class='jky-form-value'><select id='jky-machine'></select></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>			  Code</span>:</div><input  id='jky-code'			class='jky-form-value'									readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>          Product</span>:</div><input  id='jky-product'		class='jky-form-value'		placeholder='Product Name'	readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>      Composition</span>:</div><input  id='jky-composition'	class='jky-form-value'									readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>          Machine</span>:</div><select id='jky-machine'></select></div>
 
 			<div class='jky-form-line'>
-				<div class='jky-form-label'>Name:</div>
+				<div class='jky-form-label'><span>Name</span>:</div>
 				<div class='jky-form-value'>
 					<input id='jky-full-name' class='jky-form-value' placeholder='Name' />
-					<input id='jky-is-company' type='checkbox' value='Yes' /> (Is a Company ?)
-					<select id='jky-company-name'>
-						<option>JKY Software Corp</option>
-						<option>Tecno Malhas</option>
-						<option>DL Malhas</option>
-						<option class='jky-option-search'>Search More...</option>
-						<option class='jky-option-add-new'>Add New...</option>
-					</select>
-					<select id='jky-customer-tags'>
-						<option>Company Contact</option>
-						<option>Distributor</option>
-						<option>Employee</option>
-						<option class='jky-option-search'>Search More...</option>
-						<option class='jky-option-add-new'>Add New...</option>
-					</select>
+					<input id='jky-is-company' type='checkbox' value='Yes' /> (<span>Is a Company</span> ?)
+					<select id='jky-company-name' ></select>
+					<select id='jky-customer-tags'></select>
 				</div>
 			</div>
 
-			<div class='jky-form-line'><div class='jky-form-label'>             Name:</div><div class='jky-form-value'><input  id='jky-name'			placeholder='Name'				/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input  id='jky-name'			class='jky-form-value'		placeholder='Name'				/></div>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'>Machine Type:</div>
+				<div class='jky-form-label'><span>Machine Type</span>:</div>
 				<div id='jky-machine-type' class='jky-form-value'>
 					<input type='radio' name='jky-machine-type' value='Circular'  /><span>Circular </span>
 					<input type='radio' name='jky-machine-type' value='Retilinea' /><span>Retilinea</span>
 				</div>
 			</div>
 
-			<div class='jky-form-line'><div class='jky-form-label'>   Machine Family:</div><select id='jky-machine-family'	></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'>    Machine Brand:</div><select id='jky-machine-brand'	></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'>    Serial Number:</div><div class='jky-form-value'><input  id='jky-serial-number'	placeholder='Serial Number'		/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>   Machine Family</span>:</div><select id='jky-machine-family'	></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>    Machine Brand</span>:</div><select id='jky-machine-brand'	></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>    Serial Number</span>:</div><input  id='jky-serial-number'	class='jky-form-value'		placeholder='Serial Number'		/></div>
 
-			<div class='jky-form-line'><div class='jky-form-label'>             Code:</div><div class='jky-form-value'><input  id='jky-code'			placeholder='Code' 				/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>             Name:</div><div class='jky-form-value'><input  id='jky-name'			placeholder='Name' 				/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>             Code</span>:</div><input  id='jky-code'			class='jky-form-value'		placeholder='Code' 				/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input  id='jky-name'			class='jky-form-value'		placeholder='Name' 				/></div>
+		</div>
+		<div class='jky-left'>
+			<div id='jky-drawing'><img id='jky-drawing-img' src='/img/placeholder.png'><br><a id='jky-upload_drawing'><span>Upload Drawing</span></a></div>
+			<div id='jky-photo'  ><img id='jky-photo-img'   src='/img/placeholder.png'><br><a id='jky-upload_photo'  ><span>Upload Photo  </span></a></div>
+		</div>
 
-			<div id='jky-drawing'><img id='jky-drawing-img' src='/img/placeholder.png'><br><a id='jky-upload_drawing'>Upload Drawing</a></div>
-			<div id='jky-photo'  ><img id='jky-photo-img'   src='/img/placeholder.png'><br><a id='jky-upload_photo'  >Upload Photo  </a></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>        First Name</span>:</div><input  id='jky-first-name'	class='jky-form-value'		placeholder='First Name'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         Last Name</span>:</div><input  id='jky-last-name'   	class='jky-form-value'		placeholder='Last Name'			/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>            Mobile</span>:</div><input  id='jky-mobile'		class='jky-form-value'		placeholder='123-456-7890'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>             Email</span>:</div><input  id='jky-email'			class='jky-form-value'		placeholder='Email'				/></div>
 
-			<div class='jky-form-line'><div class='jky-form-label'>       First Name:</div><div class='jky-form-value'><input  id='jky-first-name'		placeholder='First Name'		/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>        Last Name:</div><div class='jky-form-value'><input  id='jky-last-name'   	placeholder='Last Name'			/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>           Mobile:</div><div class='jky-form-value'><input  id='jky-mobile'			placeholder='e.g. 123-456-7890'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>            Email:</div><div class='jky-form-value'><input  id='jky-email'			placeholder='Email'				/></div></div>
+				<div class='jky-form-label'><span>Status</span>:</div>
+				<div class='jky-form-value'><select id='jky-status'></select></div>
+			</div>
+			<div    id='jky-locales'></div>
 			<br><br>
-			<div class='jky-form-line'><div class='jky-form-label'>        User Name:</div><div class="jky-form-value"><input  id='jky-user-name'		placeholder='User Name'			/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>        User Role:</div><div class="jky-form-value"><select id='jky-user-role'></select>						  		  </div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         User Name</span>:</div><input  id='jky-user-name'		placeholder='User Name'			/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         User Role</span>:</div><select id='jky-user-role'></select>						  	  </div>
 		</div>
 		<div class="jky-left">
-			<div id='jky-photo'><img id='jky-photo-src' src='/img/placeholder.png'><br><a id='jky-upload-photo'>Upload Photo</a></div>
+			<div id='jky-photo'><img id='jky-photo-src' src='/img/placeholder.png'><br><a id='jky-upload-photo'><span>Upload Photo</span></a></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
 
 		<div class='jky-left'>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'>Address:</div>
+				<div class='jky-form-label'><span>Address</span>:</div>
 				<div class='jky-form-value'>
-					<input	id='jky-street1'	class='jky-form-value' placeholder='Street ...'	/>
+					<input	id='jky-street1'	class='jky-form-value' placeholder='Street'		/>
 					<input	id='jky-street2'	class='jky-form-value' placeholder=''			/>
 					<input	id='jky-city'		class='jky-form-value' placeholder='City'		/>
 					<input	id='jky-zip'		class='jky-form-value' placeholder='Zip'		/>
@@ -365,117 +377,154 @@
 					<select id='jky-country'></select>
 				</div>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'>          Website:</div><div class='jky-form-value'><input id='jky-website'			class='jky-form-value' placeholder='e.g. www.jkysoftware.com'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>           Website</span>:</div><input id='jky-website'	class='jky-form-value'		placeholder='www.jkysoftware.com'	/></div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'>         Position:</div><div class='jky-form-value'><input id='jky-position'			class='jky-form-value' placeholder='e.g. Sales Director'		/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>            Phone:</div><div class='jky-form-value'><input id='jky-phone'			class='jky-form-value' placeholder='e.g. 123-456-7890'			/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>           Mobile:</div><div class='jky-form-value'><input id='jky-mobile'			class='jky-form-value' placeholder=''	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label'>              Fax:</div><div class='jky-form-value'><input id='jky-fax'				class='jky-form-value' placeholder=''	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label'>            Email:</div><div class='jky-form-value'><input id='jky-email'			class='jky-form-value' placeholder=''	/></div>		</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>          Position</span>:</div><input id='jky-position'	class='jky-form-value'		placeholder='Sales Director'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>             Phone</span>:</div><input id='jky-phone'		class='jky-form-value'		placeholder='123-456-7890'			/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>            Mobile</span>:</div><input id='jky-mobile'		class='jky-form-value'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>               Fax</span>:</div><input id='jky-fax'		class='jky-form-value'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>             Email</span>:</div><input id='jky-email'		class='jky-form-value'		/></div>
 
-			<div class='jky-form-line'><div class='jky-form-label-1'>       Diameter:</div><div class='jky-form-value'><input id='jky-diameter'			class='jky-form-value' placeholder='0'	/></div>(cm)	</div>
-			<div class='jky-form-line'><div class='jky-form-label-1'>        Density:</div><div class='jky-form-value'><input id='jky-density'			class='jky-form-value' placeholder='0'	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label-1'>         Inputs:</div><div class='jky-form-value'><input id='jky-inputs'			class='jky-form-value' placeholder='0'	/></div>(cones)	</div>
-			<div class='jky-form-line'><div class='jky-form-label-1'>          Speed:</div><div class='jky-form-value'><input id='jky-speed'			class='jky-form-value' placeholder='0'	/></div>(rpm)	</div>
+			<div class='jky-form-line-1'><div class='jky-form-label-1'><span>      Diameter</span>:</div><input id='jky-diameter'	class='jky-form-value-1'	/>(cm)		</div>
+			<div class='jky-form-line-1'><div class='jky-form-label-1'><span>       Density</span>:</div><input id='jky-density'	class='jky-form-value-1'	/>			</div>
+			<div class='jky-form-line-1'><div class='jky-form-label-1'><span>        Inputs</span>:</div><input id='jky-inputs'		class='jky-form-value-1'	/>(cones)	</div>
+			<div class='jky-form-line-1'><div class='jky-form-label-1'><span>         Speed</span>:</div><input id='jky-speed'		class='jky-form-value-1'	/>(rpm)		</div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label-2'>          Turns:</div><div class='jky-form-value'><input id='jky-turns'			class='jky-form-value' placeholder='0'	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label-2'>         Weight:</div><div class='jky-form-value'><input id='jky-weight'			class='jky-form-value' placeholder='0'	/></div>(gr)	</div>
-			<div class='jky-form-line'><div class='jky-form-label-2'>          Width:</div><div class='jky-form-value'><input id='jky-width'			class='jky-form-value' placeholder='0'	/></div>(cm)	</div>
-			<div class='jky-form-line'><div class='jky-form-label-2'>          Lanes:</div><div class='jky-form-value'><input id='jky-lanes'			class='jky-form-value' placeholder='0'	/></div>		</div>
+			<div class='jky-form-line-2'><div class='jky-form-label-2'><span>         Turns</span>:</div><input id='jky-turns'		class='jky-form-value-2'	/>			</div>
+			<div class='jky-form-line-2'><div class='jky-form-label-2'><span>        Weight</span>:</div><input id='jky-weight'		class='jky-form-value-2'	/>(gr)		</div>
+			<div class='jky-form-line-2'><div class='jky-form-label-2'><span>         Width</span>:</div><input id='jky-width'		class='jky-form-value-2'	/>(cm)		</div>
+			<div class='jky-form-line-2'><div class='jky-form-label-2'><span>         Lanes</span>:</div><input id='jky-lanes'		class='jky-form-value-2'	/>			</div>
 		</div>
 		<div class='jky-left'>
-
-			<div class='jky-form-line'><div class='jky-form-label'>         Diameter:</div><div class='jky-form-value'><input id='jky-diameter'			class='jky-form-value' placeholder='0'	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label'>            Width:</div><div class='jky-form-value'><input id='jky-width'			class='jky-form-value' placeholder='0'	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label'>          Density:</div><div class='jky-form-value'><input id='jky-density'			class='jky-form-value' placeholder='0'	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label'>           Inputs:</div><div class='jky-form-value'><input id='jky-inputs'			class='jky-form-value' placeholder='0'	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label'>            Lanes:</div><div class='jky-form-value'><input id='jky-lanes'			class='jky-form-value' placeholder='0'	/></div>		</div>
-		</div>
-		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'> Purchased Date:</div>
-				<div id='jky-purchase-date' class='input-append date' data-date-format='dd-mm-yyyy'>
-					<input id='jky-purchase-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
-				</div>
-			</div>
-			<div class='jky-form-line'><div class='jky-form-label'> Last Repair Date:</div>
-				<div id='jky-repair-date' class='input-append date' data-date-format='dd-mm-yyyy'>
-					<input id='jky-repair-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
-				</div>
-			</div>
-			<div class='jky-form-line'><div class='jky-form-label'> Last Return Date:</div>
-				<div id='jky-return-date' class='input-append date' data-date-format='dd-mm-yyyy'>
-					<input id='jky-return-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
-				</div>
-			</div>
-
-			<div class='jky-form-line'><div class='jky-form-label-3'>          Yield:</div><div class='jky-form-value'><input id='jky-yield'		class='jky-form-value' placeholder='0'	/></div>(%)		</div>
-			<div class='jky-form-line'><div class='jky-form-label-3'>       Needling:</div><div class='jky-form-value'><input id='jky-needling'		class='jky-form-value' placeholder='0'	/></div>		</div>
-			<div class='jky-form-line'><div class='jky-form-label-3'>           Peso:</div><div class='jky-form-value'><input id='jky-peso'			class='jky-form-value' placeholder='0'	/></div>(Kg)	</div>
-			<div class='jky-form-line'>
-				<div class='jky-form-label-3'>Has Break?</div>
+			<div class='jky-form-line-3'><div class='jky-form-label-3'><span>         Yield</span>:</div><input id='jky-yield'		class='jky-form-value-3'	/>(%)		</div>
+			<div class='jky-form-line-3'><div class='jky-form-label-3'><span>      Needling</span>:</div><input id='jky-needling'	class='jky-form-value-3'	/>			</div>
+			<div class='jky-form-line-3'><div class='jky-form-label-3'><span>          Peso</span>:</div><input id='jky-peso'		class='jky-form-value-3'	/>(Kg)		</div>
+			<div class='jky-form-line-3'>
+				<div class='jky-form-label-3'><span>Has Break</span>?</div>
 				<div id='jky-has-break' class='jky-form-value'>
 					<input type='radio' name='jky-has-break' value='No'  /><span>No </span>
 					<input type='radio' name='jky-has-break' value='Yes' /><span>Yes</span>
 				</div>
 			</div>
+		</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>          Diameter</span>:</div><input id='jky-diameter'	class='jky-form-value'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>             Width</span>:</div><input id='jky-width'		class='jky-form-value'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>           Density</span>:</div><input id='jky-density'	class='jky-form-value'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>            Inputs</span>:</div><input id='jky-inputs'		class='jky-form-value'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>             Lanes</span>:</div><input id='jky-lanes'		class='jky-form-value'		/></div>
+		</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	 Purchased Date</span>:</div>
+				<div id='jky-purchase-date' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-purchase-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
+				</div>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	 Last Repair Date</span>:</div>
+				<div id='jky-repair-date' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-repair-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
+				</div>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	 Last Return Date</span>:</div>
+				<div id='jky-return-date' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-return-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
+				</div>
+			</div>
 
-			<div class='jky-form-line'><div class='jky-form-label'>     Thread Group:</div><div class='jky-form-value'><input id='jky-thread_group'	class='jky-form-value' placeholder='0'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>     Thread Color:</div><div class='jky-form-value'><input id='jky-thread_color'	class='jky-form-value' placeholder='0'	/></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>      Composition:</div><div class='jky-form-value'><input id='jky-composition'	class='jky-form-value' placeholder='0'	/></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>      Thread Group</span>:</div><input id='jky-thread_group'	class='jky-form-value'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>      Thread Color</span>:</div><input id='jky-thread_color'	class='jky-form-value'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>       Composition</span>:</div><input id='jky-composition'	class='jky-form-value'		/></div>
 
-			<div class='jky-form-line'><div class='jky-form-label'>           Status:</div><div class='jky-form-value'><select id='jky-status'			></select></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>        User Role:</div><div class='jky-form-value'><select id='jky-user-role'		></select></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>    User Resource:</div><div class='jky-form-value'><select id='jky-user-resource'	></select></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'>      User Action:</div><div class='jky-form-value'><select id='jky-user-action'		></select></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>            Status</span>:</div><select id='jky-status'		></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         User Role</span>:</div><select id='jky-user-role'		></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>     User Resource</span>:</div><select id='jky-user-resource'	></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>       User Action</span>:</div><select id='jky-user-action'	></select></div>
+		</div>
+
+		<div class='jky-clear'></div>
+		<br>
+		<div>
+			<div class='jky-form-label'></div>
+			<div class='jky-form-buttons'>
+				<button id='jky-action-save'	class='btn btn-success' type='button'><span>Save	</span></button>
+				<button id='jky-action-copy'	class='btn btn-success' type='button'><span>Copy	</span></button>
+			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button'><span>Delete	</span></a>
+			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button'><span>Cancel	</span></a>
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li id='jky-tab-contacts'		class='active'	><a href='#jky-contacts'			data-toggle='tab'>Contacts		</a></li>
-			<li	id='jky-tab-notes'							><a href='#jky-notes'				data-toggle='tab'>Notes			</a></li>
-			<li	id='jky-tab-sales'							><a href='#jky-sales'				data-toggle='tab'>Sales			</a></li>
-			<li	id='jky-tab-account'						><a href='#jky-account'				data-toggle='tab'>Account		</a></li>
-			<li	id='jky-tab-history'						><a href='#jky-history'				data-toggle='tab'>History		</a></li>
+			<li id='jky-tab-contacts'		class='active'	><a href='#jky-contacts'			data-toggle='tab'><span>Contacts		</span></a></li>
+			<li	id='jky-tab-notes'							><a href='#jky-notes'				data-toggle='tab'><span>Notes			</span></a></li>
+			<li	id='jky-tab-sales'							><a href='#jky-sales'				data-toggle='tab'><span>Sales			</span></a></li>
+			<li	id='jky-tab-account'						><a href='#jky-account'				data-toggle='tab'><span>Account			</span></a></li>
+			<li	id='jky-tab-history'						><a href='#jky-history'				data-toggle='tab'><span>History			</span></a></li>
 
-			<li id='jky-tab-address'		class='active'	><a href='#jky-address'				data-toggle='tab'>Address		</a></li>
-			<li	id='jky-tab-notes'							><a href='#jky-notes'				data-toggle='tab'>Notes			</a></li>
-			<li	id='jky-tab-sales'							><a href='#jky-sales'				data-toggle='tab'>Sales			</a></li>
-			<li	id='jky-tab-account'						><a href='#jky-account'				data-toggle='tab'>Account		</a></li>
-			<li	id='jky-tab-history'						><a href='#jky-history'				data-toggle='tab'>History		</a></li>
+			<li id='jky-tab-address'		class='active'	><a href='#jky-address'				data-toggle='tab'><span>Address			</span></a></li>
+			<li	id='jky-tab-notes'							><a href='#jky-notes'				data-toggle='tab'><span>Notes			</span></a></li>
+			<li	id='jky-tab-sales'							><a href='#jky-sales'				data-toggle='tab'><span>Sales			</span></a></li>
+			<li	id='jky-tab-account'						><a href='#jky-account'				data-toggle='tab'><span>Account			</span></a></li>
+			<li	id='jky-tab-history'						><a href='#jky-history'				data-toggle='tab'><span>History			</span></a></li>
 
-			<li	id='jky-tab-cylinders'		class='active'	><a href='#jky-pane-cylinders'		data-toggle='tab'>Cylinders		</a></li>
-			<li	id='jky-tab-notes'							><a href='#jky-pane-notes'			data-toggle='tab'>Notes			</a></li>
-			<li	id='jky-tab-history'						><a href='#jky-pane-history'		data-toggle='tab'>History		</a></li>
+			<li	id='jky-tab-cylinders'		class='active'	><a href='#jky-pane-cylinders'		data-toggle='tab'><span>Cylinders		</span></a></li>
+			<li	id='jky-tab-notes'							><a href='#jky-pane-notes'			data-toggle='tab'><span>Notes			</span></a></li>
+			<li	id='jky-tab-history'						><a href='#jky-pane-history'		data-toggle='tab'><span>History			</span></a></li>
 
-			<li id='jky-tab-composition'	class='active'	><a href='#jky-pane-composition'	data-toggle='tab'>Composition	</a></li>
-			<li	id='jky-tab-threads'						><a href='#jky-pane-threads'		data-toggle='tab'>Threads		</a></li>
-			<li	id='jky-tab-loads'							><a href='#jky-pane-loads'			data-toggle='tab'>Loads			</a></li>
-			<li	id='jky-tab-settings'						><a href='#jky-pane-settings'		data-toggle='tab'>Settings		</a></li>
+			<li id='jky-tab-composition'	class='active'	><a href='#jky-pane-composition'	data-toggle='tab'><span>Composition		</span></a></li>
+			<li	id='jky-tab-threads'						><a href='#jky-pane-threads'		data-toggle='tab'><span>Threads			</span></a></li>
+			<li	id='jky-tab-loads'							><a href='#jky-pane-loads'			data-toggle='tab'><span>Loads			</span></a></li>
+			<li	id='jky-tab-settings'						><a href='#jky-pane-settings'		data-toggle='tab'><span>Settings		</span></a></li>
 
-			<li	id='jky-tab-notes'			class='active'	><a href='#jky-notes'				data-toggle='tab'>Notes			</a></li>
-			<li	id='jky-tab-history'						><a href='#jky-history'				data-toggle='tab'>History		</a></li>
+			<li	id='jky-tab-notes'			class='active'	><a href='#jky-notes'				data-toggle='tab'><span>Notes			</span></a></li>
+			<li	id='jky-tab-history'						><a href='#jky-history'				data-toggle='tab'><span>History			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
-			<div id='jky-pane-composition' class='tab-pane active'>
+			<div id='jky-pane-composition'	class='tab-pane active'>
+			<div id='jky-pane-threads'		class='tab-pane'>
+			<div id='jky-pane-loads'		class='tab-pane'>
+			<div id='jky-pane-settings'		class='tab-pane'>
+			<div id='jky-pane-cylinders'	class='tab-pane active'>
 				<table class='table table-striped' >
 					<thead>
 						<tr>
 							<td class='jky-action'></td>
-							<td class='jky-comp-value'>Percent</td>
-							<td class='jky-comp-label'>Material</td>
+							<td class='jky-comp-value'><span>Percent </span></td>
+							<td class='jky-comp-label'><span>Material</span></td>
+						</tr>
+						<tr>
+							<td class='jky-action'></td>
+							<td class='jky-thread-value'><span>Percent</span></td>
+							<td class='jky-thread-label'><span>Thread </span></td>
+						</tr>
+						<tr>
+							<td class='jky-action'></td>
+							<td class='jky-load-first-value'	><span>First Number	</span></td>
+							<td class='jky-load-first-select'	><span>First Thread	</span></td>
+							<td class='jky-load-second-value'	><span>Second Number</span></td>
+							<td class='jky-load-second-select'	><span>Second Thread</span></td>
+						</tr>
+						<tr>
+							<td class='jky-set-label'><span>Name </span></td>
+							<td class='jky-set-value'><span>Value</span></td>
+						</tr>
+						<tr>
+							<td class='jky-action'></td>
+							<td class='jky-cylinder-value'><span>Current</span></td>
+							<td class='jky-cylinder-label'><span>Name	</span></td>
 						</tr>
 					</thead>
 					<tbody id='jky-comp-body'></tbody>
 					<tfoot>
 						<tr>
-							<td    id='jky-comp-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'>Add New</a></td>
+							<td    id='jky-comp-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 							<td    id='jky-comp-total'></td>
-							<td class='jky-comp-label'>Total</td>
+							<td class='jky-comp-label'><span>Total</span></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -486,16 +535,18 @@
 					<thead>
 						<tr>
 							<td class='jky-action'></td>
-							<td class='jky-thread-value'>Percent</td>
-							<td class='jky-thread-label'>Thread</td>
+							<td class='jky-thread-value'><span>Percent</span></td>
+							<td class='jky-thread-label'><span>Thread </span></td>
 						</tr>
 					</thead>
 					<tbody id='jky-thread-body'></tbody>
+					<tbody id='jky-cylinder-body'></tbody>
 					<tfoot>
 						<tr>
-							<td    id='jky-thread-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'>Add New</a></td>
+							<td    id='jky-thread-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td    id='jky-cylinder-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 							<td    id='jky-thread-total'></td>
-							<td class='jky-thread-label'>Total</td>
+							<td class='jky-thread-label'><span>Total</span></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -506,16 +557,16 @@
 					<thead>
 						<tr>
 							<td class='jky-action'></td>
-							<td class='jky-load-first-value'	>First Number	</td>
-							<td class='jky-load-first-select'	>First Thread	</td>
-							<td class='jky-load-second-value'	>Second Number	</td>
-							<td class='jky-load-second-select'	>Second Thread	</td>
+							<td class='jky-load-first-value'	><span>First Number		</span></td>
+							<td class='jky-load-first-select'	><span>First Thread		</span></td>
+							<td class='jky-load-second-value'	><span>Second Number	</span></td>
+							<td class='jky-load-second-select'	><span>Second Thread	</span></td>
 						</tr>
 					</thead>
 					<tbody id='jky-load-body'></tbody>
 					<tfoot>
 						<tr>
-							<td    id='jky-load-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'>Add New</a></td>
+							<td    id='jky-load-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -525,30 +576,12 @@
 				<table class='table table-striped' >
 					<thead>
 						<tr>
-							<td class='jky-set-label'>Name</td>
-							<td class='jky-set-value'>Value</td>
+							<td class='jky-set-label'><span>Name </span></td>
+							<td class='jky-set-value'><span>Value</span></td>
 						</tr>
 					</thead>
 					<tbody id='jky-set-body'></tbody>
 					<tfoot></tfoot>
-				</table>
-			</div>
-
-			<div id='jky-pane-cylinders' class='tab-pane active'>
-				<table class='table table-striped' >
-					<thead>
-						<tr>
-							<td class='jky-action'></td>
-							<td class='jky-cylinder-value'>Current</td>
-							<td class='jky-cylinder-label'>Name</td>
-						</tr>
-					</thead>
-					<tbody id='jky-cylinder-body'></tbody>
-					<tfoot>
-						<tr>
-							<td    id='jky-cylinder-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'>Add New</a></td>
-						</tr>
-					</tfoot>
 				</table>
 			</div>
 
@@ -557,13 +590,13 @@
 					<div class='jky-form-line'>
 						<div class='jky-form-label'></div>
 						<div class='jky-form-value'>
-							<input	id='jky-street1'	class='jky-form-value' placeholder='Street ...'	/>
+							<input	id='jky-street1'	class='jky-form-value' placeholder='Street'		/>
 							<input	id='jky-street2'	class='jky-form-value' placeholder=''			/>
 							<input	id='jky-city'		class='jky-form-value' placeholder='City'		/>
 							<input	id='jky-zip'		class='jky-form-value' placeholder='Zip'		/>
 							<select id='jky-state'	></select>
 							<select id='jky-country'></select>
-							<button id='jky-save-address' class='btn btn-success' type='button'>Save Address</button>
+							<button id='jky-save-address' class='btn btn-success' type='button'><span>Save Address</span></button>
 						</div>
 					</div>
 				</div>
@@ -571,11 +604,11 @@
 
 			<div id='jky-notes' class='tab-pane'>
 				<div class='jky-left'>
-					<div class='jky-form-line'><div class='jky-form-label'>		Expected Date</div><div id='jky-expected-date'		class='jky-form-value'>02/01/2013	</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'>	Invoicing Control</div><div id='jky-invoicing-control'	class='jky-form-value'>Based on 	</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'>	 Invoice Received</div><div id='jky-invoice-received'	class='jky-form-value'>No			</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'>		 Payment Term</div><div id='jky-payment-term'		class='jky-form-value'>				</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'>	  Fiscal Position</div><div id='jky-fiscal-position'	class='jky-form-value'>				</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>		Expected Date</span></div><div id='jky-expected-date'		class='jky-form-value'>02/01/2013	</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>	Invoicing Control</span></div><div id='jky-invoicing-control'	class='jky-form-value'>Based on 	</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>	 Invoice Received</span></div><div id='jky-invoice-received'	class='jky-form-value'>No			</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>		 Payment Term</span></div><div id='jky-payment-term'		class='jky-form-value'>				</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>	  Fiscal Position</span></div><div id='jky-fiscal-position'		class='jky-form-value'>				</div></div>
 				</div>
 			</div>
 		</div>
@@ -600,3 +633,4 @@
 <script src='js/contact_users.js'></script>
 <script src='js/permissions.js'></script>
 <script src='js/users.js'></script>
+<script src='js/translations.js'></script>

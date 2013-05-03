@@ -135,15 +135,58 @@ JKY.run_when_is_ready = function(template_name, function_name) {
 }
 
 /**
+ * set translations
+ *
+ * @param	array
+ * @example	JKY.set_translations('portugues')
+ */
+JKY.set_translations = function(the_array) {
+    JKY.translations = the_array;
+}
+
+/**
  * translate
  *
  * @param	text
  * @return	translated text
  * @example JKY.t('Home')
  */
-JKY.t = function(text) {
-//	return JKY.Translation.translate(text);
-	return text;
+JKY.t = function(the_text) {
+	if (typeof the_text == 'undefined' || the_text == '') {
+		return '';
+	}
+
+	var my_result = JKY.translations[the_text];
+	if (typeof my_result == 'undefined') {
+//alert('the_text: ' + the_text);
+		my_result = '';
+		var my_names = the_text.split('<br>');
+		for (var i=0; i<my_names.length; i++) {
+			var my_name = my_names[i];
+			var my_translation = JKY.translations[my_name];
+			my_result += (i == 0) ? '' : '<br>';
+			if (typeof my_translation == 'undefined') {
+				my_result += my_name;
+			}else{
+				my_result += my_translation;
+			}
+		}
+	}
+    return my_result;
+}
+
+JKY.t_tag = function(the_tag) {
+	$('#jky-application ' + the_tag).each(function() {
+		var my_text = $(this).html().trim();
+		$(this).html(JKY.t(my_text));
+	});
+}
+
+JKY.t_input = function(the_attr) {
+	$('#jky-application input').each(function() {
+		var my_text = $(this).attr(the_attr);
+		$(this).attr(the_attr, JKY.t(my_text));
+	});
 }
 
 /**
@@ -157,6 +200,8 @@ JKY.load_html = function(id_name, file_name) {
 	if ($('#' + id_name).length > 0) {
 		$('#' + id_name).load('../' + file_name);
 //		JKY.display_trace('load_html: ' + id_name + ' DONE');
+		JKY.t_tag	('span');
+		JKY.t_input	('placeholder');
 	}else{
 		setTimeout(function() {JKY.load_html(id_name, file_name);}, 100);
 	}
@@ -167,6 +212,7 @@ JKY.load_html = function(id_name, file_name) {
  * @param	action
  */
 JKY.process_action = function(action) {
+//	JKY.display_trace('process_action: ' + action);
 //	JKY.load_html('jky-body-content', action + '.html');
 	JKY.invisible('jky-application');
 	JKY.load_html('jky-application', action + '.html');
@@ -249,6 +295,36 @@ JKY.fix_br = function(string_value){
 	}else{
 		return '&nbsp;';
 	}
+}
+
+/**
+ * get now date or time
+ * @return yyyy-mm-dd
+ */
+JKY.get_now = function(the_format) {
+	if (typeof the_format == 'undefined') {
+		the_format = 'yyyy-mm-dd';
+	}
+	var my_date = new Date();
+//	return my_date.format(the_format);
+	return my_date;
+}
+
+/**
+ * short date time
+ * @param	date_time	yyyy-mm-dd hh:mm:ss
+ * @return	yyyy-mm-dd
+ * @return	mm-dd hh:ss
+ */
+JKY.short_date = function(the_date_time){
+	var my_date = '';
+	if (the_date_time != null) {
+		my_date = the_date_time.substr(0, 10);
+		if (my_date == JKY.get_now()) {
+			my_date = the_date_time.substr(5, 11);
+		}
+	}
+	return my_date;
 }
 
 /**
@@ -904,8 +980,9 @@ JKY.set_user_info = function(full_name) {
 		JKY.hide('jky-user-logged');
 		JKY.show('jky-user-unkown');
 	}else{
+		var my_full_name = '<a href="#" onclick="JKY.process_profile()">' + full_name + '</a>';
 		var my_log_off = ':&nbsp; <a href="#" onclick="JKY.process_log_off()">Log Off</a>';
-		JKY.set_html('jky-user-full-name', full_name + my_log_off);
+		JKY.set_html('jky-user-full-name', my_full_name + my_log_off);
 		JKY.hide('jky-user-unkown')
 		JKY.show('jky-user-logged');
 	}
@@ -1341,6 +1418,14 @@ JKY.get_rows = function(table_name, id) {
 		}
 	);
 	return my_rows;
+}
+
+/**
+ * process profile
+ */
+JKY.process_profile = function() {
+	JKY.display_trace('process_profile');
+	JKY.display_message('soon: Process Profile');
 }
 
 /**

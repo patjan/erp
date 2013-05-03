@@ -200,12 +200,12 @@ li .arrow span {
 }
 
 
-#jky-form-data	{margin-top:10px; padding:10px 0;}
+#jky-form-data	{margin:10px 0; padding:10px 0;}
 #jky-form-title	{padding:10px;}
 #jky-form-action{font-size:20px; font-weight:bold;}
 #jky-form-id	{font-size:20px; font-weight:bold; padding-top:10px;}
 
-#jky-form-tabs	{background-color:#FFFFFF; margin:10px 0; padding:10px 0;}
+#jky-form-tabs	{margin:10px 0; padding:10px 0; background-color:#FFFFFF;}
 /* -------------------------------------------------------------------------- */
 
 #jky-loading			{display:none; position:fixed; top:50%;	left:50%; margin:-50px 0 0 -50px; overflow:auto; z-index:9999;}
