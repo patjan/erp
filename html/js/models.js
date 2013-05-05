@@ -64,6 +64,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-tab-loads'			).click (function() {JKY.display_loads		();});
 		$('#jky-tab-settings'		).click (function() {JKY.display_settings	();});
 
+		$('#jky-start-date'			).datepicker();
 		$('#jky-purchase-date'		).datepicker();
 		$('#jky-repair-date'		).datepicker();
 		$('#jky-return-date'		).datepicker();
@@ -90,48 +91,45 @@ JKY.set_initial_values = function(jky_program) {
 
 		JKY.set_menu_active('jky-menu-production');
 		JKY.set_side_active('jky-production-ftps');
-//		JKY.set_html('jky-product', JKY.set_radio('Configs', '', 'Machine Types' ));
-		JKY.set_html('jky-machine', JKY.set_table_options('Machines', 'name', '', null));
-
-		JKY.set_menu_active('jky-menu-production');
 		JKY.set_side_active('jky-production-threads');
-		JKY.set_html('jky-machine-brand', JKY.set_group_set('Configs', '', 'Machine Brands'));
-
-		JKY.set_menu_active('jky-menu-production');
 		JKY.set_side_active('jky-production-machines');
-		JKY.set_html('jky-machine-family', JKY.set_group_set('Configs', '', 'Machine Families'));
-		JKY.set_html('jky-machine-brand' , JKY.set_group_set('Configs', '', 'Machine Brands'  ));
+		JKY.set_side_active('jky-production-products');
+//		JKY.set_html('jky-product'			, JKY.set_radio('Configs', '', 'Machine Types' ));
+		JKY.set_html('jky-machine'			, JKY.set_table_options('Machines', 'name', '', null));
+		JKY.set_html('jky-machine-brand'	, JKY.set_group_set('Configs', '', 'Machine Brands'		));
+		JKY.set_html('jky-machine-family'	, JKY.set_group_set('Configs', '', 'Machine Families'	));
+		JKY.set_html('jky-machine-brand'	, JKY.set_group_set('Configs', '', 'Machine Brands'		));
 
 		JKY.set_menu_active('jky-menu-help');
 		JKY.set_side_active('jky-help-tickets');
-		JKY.set_html('jky-status'		, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
-		JKY.set_html('jky-user-role'    , JKY.set_group_set('Controls', '', 'User Roles'	));
-		JKY.set_html('jky-user-resource', JKY.set_group_set('Controls', '', 'User Resources'));
-		JKY.set_html('jky-user-action'  , JKY.set_group_set('Controls', '', 'User Actions'	));
+		JKY.set_html('jky-status'			, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
+		JKY.set_html('jky-user-role'		, JKY.set_group_set('Controls', '', 'User Roles'		));
+		JKY.set_html('jky-user-resource'	, JKY.set_group_set('Controls', '', 'User Resources'	));
+		JKY.set_html('jky-user-action'		, JKY.set_group_set('Controls', '', 'User Actions'	));
 
 		JKY.set_menu_active('jky-menu-admin');
 		JKY.set_side_active('jky-admin-configs');
-		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table , jky_select, 'Root'));
-		JKY.set_html('jky-status'    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
+		JKY.set_html('jky-app-select'		, JKY.set_group_set(jky_table , jky_select, 'Root'));
+		JKY.set_html('jky-status'			, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
 
 		JKY.set_menu_active('jky-menu-admin');
 		JKY.set_side_active('jky-admin-contacts');
-		JKY.set_html('jky-user-role'	, JKY.set_group_set('Controls', '', 'User Roles'));
-		JKY.set_html('jky-state'		, JKY.set_group_set('Configs' , '', 'States'	));
-		JKY.set_html('jky-country'		, JKY.set_group_set('Configs' , '', 'Countries'	));
-		JKY.set_html('jky-user-role'	, JKY.set_group_set('Controls', '', 'User Roles'	));
+		JKY.set_html('jky-user-role'		, JKY.set_group_set('Controls', '', 'User Roles'));
+		JKY.set_html('jky-state'			, JKY.set_group_set('Configs' , '', 'States'	));
+		JKY.set_html('jky-country'			, JKY.set_group_set('Configs' , '', 'Countries'	));
+		JKY.set_html('jky-user-role'		, JKY.set_group_set('Controls', '', 'User Roles'	));
 
 		JKY.set_menu_active('jky-menu-support');
 		JKY.set_side_active('jky-support-controls');
 		JKY.set_side_active('jky-support-permissions');
 		JKY.set_side_active('jky-support-translations');
-		JKY.set_html('jky-app-select'   , JKY.set_group_set(jky_table , jky_select, 'Root'));
-		JKY.set_html('jky-status'	    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
+		JKY.set_html('jky-app-select'	, JKY.set_group_set(jky_table , jky_select, 'Root'));
+		JKY.set_html('jky-status'		, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
 
-		JKY.set_html('jky-user-role'    , JKY.set_group_set('Controls', '', 'User Roles'	));
+		JKY.set_html('jky-user-role'	, JKY.set_group_set('Controls', '', 'User Roles'	));
 		JKY.set_html('jky-user-resource', JKY.set_group_set('Controls', '', 'User Resources'));
-		JKY.set_html('jky-user-action'  , JKY.set_group_set('Controls', '', 'User Actions'	));
-		JKY.set_html('jky-app-breadcrumb', jky_program);
+		JKY.set_html('jky-user-action'	, JKY.set_group_set('Controls', '', 'User Actions'	));
+		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.show('jky-side-sales'		);
@@ -158,7 +156,7 @@ JKY.display_company = function(id) {
 }
 
 JKY.display_list = function() {
-	JKY.show('jky-app-filter'		);
+//	JKY.show('jky-app-filter'		);
 	JKY.show('jky-app-more'			);
 	JKY.hide('jky-app-navs'			);
 	JKY.hide('jky-app-add-new'		);
@@ -168,19 +166,19 @@ JKY.display_list = function() {
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
-	JKY.show('jky-action-publish'	);
+//	JKY.show('jky-action-publish'	);
 	JKY.show('jky-app-table'		);
 	JKY.hide('jky-app-form'			);
 	JKY.load_table();
 }
 
 JKY.display_form = function(index) {
-	JKY.hide('jky-app-filter'		);
+//	JKY.show('jky-app-filter'		);
 	JKY.hide('jky-app-more'			);
 	JKY.show('jky-app-navs'			);
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
-	JKY.hide('jky-action-add-new'	);
+	JKY.show('jky-action-add-new'	);
 	JKY.show('jky-action-save'		);
 	JKY.show('jky-action-copy'		);
 	JKY.show('jky-action-delete'	);
@@ -271,15 +269,17 @@ JKY.display_row = function(index) {
 	JKY.set_radio	('jky-machine-type'		, JKY.row.machine_type	);
 	JKY.set_option	('jky-machine-family'	, JKY.row.machine_family);
 	JKY.set_option	('jky-machine-brand'	, JKY.row.machine_brand	);
+	JKY.set_radio	('jky-product-type'		, JKY.row.product_type	);
 	JKY.set_value	('jky-serial-number'	, JKY.row.serial_number	);
 	JKY.set_value	('jky-diameter'			, JKY.row.diameter		);
 	JKY.set_value	('jky-width'			, JKY.row.width			);
 	JKY.set_value	('jky-density'			, JKY.row.density		);
 	JKY.set_value	('jky-inputs'			, JKY.row.inputs		);
 	JKY.set_value	('jky-lanes'			, JKY.row.lanes			);
-	JKY.set_value	('jky-purchase-value'	, JKY.fix_ymd2dmy(JKY.row.purchase_date));
-	JKY.set_value	('jky-repair-value'		, JKY.fix_ymd2dmy(JKY.row.repair_date));
-	JKY.set_value	('jky-return-value'		, JKY.fix_ymd2dmy(JKY.row.return_date));
+	JKY.set_value	('jky-purchase-value'	, JKY.fix_ymd2dmy(JKY.row.purchase_date	));
+	JKY.set_value	('jky-repair-value'		, JKY.fix_ymd2dmy(JKY.row.repair_date	));
+	JKY.set_value	('jky-return-value'		, JKY.fix_ymd2dmy(JKY.row.return_date	));
+	JKY.set_value	('jky-start-value'		, JKY.fix_ymd2dmy(JKY.row.start_date	));
 
 	JKY.set_value	('jky-code'				, JKY.row.code			);
 	JKY.set_radio	('jky-machine-type'		, JKY.row.machine_type	);
@@ -296,10 +296,12 @@ JKY.display_row = function(index) {
 
 	if (jky_select == 'Root' && JKY.row.name == 'Root') {
 		JKY.hide('jky-action-save'		);
+		JKY.hide('jky-action-copy'		);
 		JKY.hide('jky-action-delete'	);
 		JKY.hide('jky-action-cancel'	);
 	}else{
 		JKY.show('jky-action-save'		);
+		JKY.show('jky-action-copy'		);
 		JKY.show('jky-action-delete'	);
 		JKY.show('jky-action-cancel'	);
 	}
@@ -333,11 +335,15 @@ JKY.display_row = function(index) {
 	}
 	JKY.set_html('jky-locales', my_html);
 	JKY.set_focus(jky_focus);
-	JKY.display_composition()
-	JKY.display_cylinders()
+	JKY.display_composition();
+	JKY.display_threads();
+	JKY.display_loads();
+	JKY.display_settings();
+	JKY.display_cylinders();
 }
 
 JKY.load_table = function() {
+	JKY.show('jky-loading');
 	var my_order_by = jky_sort_by + ' ' + (jky_sort_seq == 0 ? 'ASC' : 'DESC');
 	var my_data =
 		{ method	: 'get_index'
@@ -358,6 +364,7 @@ JKY.process_load_success = function(response) {
 	var my_html = '';
 	for(var i=0; i<jky_count; i++) {
 		var my_row = JKY.rows[i];
+		var my_start_date = JKY.fix_ymd2dmy(my_row.start_date);
 		var my_created_date = JKY.short_date(my_row.created_at);
 		var my_updated_date = JKY.short_date(my_row.updated_at);
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
@@ -376,6 +383,7 @@ JKY.process_load_success = function(response) {
 				+  '<td class="jky-product"			>' + my_row.product			+ '</td>'
 				+  '<td class="jky-machine"			>' + my_row.machine			+ '</td>'
 				+  '<td class="jky-composition"		>' + my_row.composition		+ '</td>'
+				+  '<td class="jky-product-type"	>' + my_row.product_type	+ '</td>'
 
 				+  '<td class="jky-name"			>' + my_row.name			+ '</td>'
 				+  '<td class="jky-diameter"		>' + my_row.diameter		+ '</td>'
@@ -402,6 +410,7 @@ JKY.process_load_success = function(response) {
 				+  '<td class="jky-user-role"		>' + my_row.user_role		+ '</td>'
 
 				+  '<td class="jky-sentence"		>' + my_row.sentence		+ '</td>'
+				+  '<td class="jky-start-date"		>' + my_start_date			+ '</td>'
 				+  '<td class="jky-created-at"		>' + my_created_date		+ '</td>'
 				+  '<td class="jky-updated-at"		>' + my_updated_date		+ '</td>'
 				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
@@ -412,11 +421,12 @@ JKY.process_load_success = function(response) {
 	JKY.set_html('jky-app-count', jky_count);
 	JKY.set_html('jky-table-body', my_html );
 	JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
+	JKY.hide('jky-loading');
 }
 
 JKY.process_add_new = function() {
 	JKY.hide('jky-form-tabs');
-	JKY.hide('jky-app-filter'		);
+//	JKY.hide('jky-app-filter'		);
 	JKY.hide('jky-app-more'			);
 	JKY.hide('jky-app-navs'			);
 	JKY.show('jky-app-add-new'		);
@@ -466,7 +476,7 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-email'			, '');
 
 	JKY.set_value	('jky-code'				,  JKY.t('New'));
-	JKY.set_radio	('jky-product'			,  null);
+	JKY.set_value	('jky-product'			, '');
 	JKY.set_value	('jky-composition'		, '');
 	JKY.set_option	('jky-machine'			,  null);
 	JKY.set_value	('jky-diameter'			, '0');
@@ -483,6 +493,7 @@ JKY.display_new = function() {
 	JKY.set_radio	('jky-has-break'		, 'No');
 
 	JKY.set_value	('jky-name'				, '' );
+	JKY.set_radio	('jky-product-type'		,  JKY.t('Tubular'));
 	JKY.set_radio	('jky-machine-type'		,  JKY.t('Circular'));
 	JKY.set_option	('jky-machine-family'	, '' );
 	JKY.set_option	('jky-machine-brand'	, '' );
@@ -492,6 +503,7 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-density'			, '0');
 	JKY.set_value	('jky-inputs'			, '0');
 	JKY.set_value	('jky-lanes'			, '0');
+	JKY.set_value	('jky-start-value'		, '' );
 	JKY.set_value	('jky-purchase-value'	, '' );
 	JKY.set_value	('jky-repair-value'		, '' );
 	JKY.set_value	('jky-return-value'		, '' );
@@ -574,6 +586,7 @@ JKY.get_form_set = function() {
 		+     ', has_break=\'' + JKY.get_checked('jky-has-break'		) + '\''
 
 		+            'name=\'' + JKY.get_value	('jky-name'				) + '\''
+		+  ', product_type=\'' + JKY.get_checked('jky-product-type'		) + '\''
 		+  ', machine_type=\'' + JKY.get_checked('jky-machine-type'		) + '\''
 		+ ', machine_family=\'' + JKY.get_value	('jky-machine-family'	) + '\''
 		+ ', machine_brand=\'' + JKY.get_value	('jky-machine-brand'	) + '\''
@@ -604,6 +617,8 @@ JKY.get_form_set = function() {
 		+      ', sentence=\'' + JKY.get_value	('en_us'					) + '\''
 		;
 	var my_date = '';
+	my_date = JKY.get_value('jky-start-value');
+	my_set += ', start_date = ' + JKY.fix_dmy2ymd(my_date);
 	my_date = JKY.get_value('jky-purchase-value');
 	my_set += ', purchase_date = ' + JKY.fix_dmy2ymd(my_date);
 	my_date = JKY.get_value('jky-repair-value');
@@ -643,7 +658,7 @@ JKY.process_insert_success = function(response) {
 		, set	: 'parent_id = ' + response.id
 		, where :        'id = ' + response.id
 		};
-	JKY.ajax(true, my_data);
+	JKY.ajax(false, my_data);
 	JKY.process_update_more(response.id);			//	only used on [Translations]
 
 	JKY.refresh_select(jky_select);					//	only used on [Configs and Controls]

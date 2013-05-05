@@ -31,37 +31,40 @@
 </div>
 
 <style>
+.jky-form-line-1		{width:273px;}
+.jky-form-line-2		{width:290px;}
 .jky-form-label			{width:160px;}
-.jky-form-value			{width:270px;}
+.jky-form-label-1		{width:100px;}
+.jky-form-value			{width:100px;}
+.jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 #jky-check-all			{width: 30px;}
+.datepicker-dropdown:after	{left:432px;}
 
-.jky-code				{width: 40px; text-align:center;}
-.jky-name				{width: 80px; text-align:left  ;}
-.jky-thread_group		{width: 80px; text-align:center;}
-.jky-thread_color		{width: 80px; text-align:center;}
-.jky-composition		{width: 80px; text-align:center;}
 
-#jky-code				{width: 40px; font-size:16px; font-weight:bold;}
-#jky-machine-type		{width:230px;}
-#jky-machine-type span	{padding:4px 20px 0 4px; vertical-align:bottom;}
-#jky-machine-brand		{width:385px;}
+.jky-name				{width:300px; text-transform:capitalize;}
+.jky-product-type		{width:100px; text-align:center;}
+.jky-start-date			{width:100px; text-align:center;}
 
-#jky-name				{width:300px;}
-#jky-thread_group		{width:300px;}
-#jky-thread_color		{width:300px;}
-#jky-composition		{width:300px;}
+#jky-name				{width:300px; text-transform:capitalize; font-size:16px; font-weight:bold;}
+#jky-product-type		{width:230px;}
+#jky-product-type span	{padding:4px 20px 0 4px; vertical-align:bottom;}
+
+.jky-cylinder-value		{width: 5%;		text-align:center;}
+.jky-cylinder-label		{width:80%;		text-align:left  ;}
+.jky-cylinder-current	{width: 40px;	text-align:right ; margin-right:0;}
+.jky-cylinder-name		{width:400px;}
+#jky-cylinder-total		{				text-align:right;}
+
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
 			<th    id='jky-check-all'		><input type='checkbox' /></th>
-			<th class='jky-code'			><span>Code				</span></th>
 			<th class='jky-name'			><span>Name				</span></th>
-			<th class='jky-thread_group'	><span>Thread Group		</span></th>
-			<th class='jky-thread_color'	><span>Thread Color		</span></th>
-			<th class='jky-composition'		><span>Composition		</span></th>
+			<th class='jky-product-type'	><span>Product Type		</span></th>
+			<th class='jky-start-date'		><span>Start Date		</span></th>
 		</tr>
 	</thead>
 
@@ -92,16 +95,27 @@
 -->
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>             Code</span>:</div><input  id='jky-code'			class='jky-form-value'		placeholder='Code' 				/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input  id='jky-name'			class='jky-form-value'		placeholder='Name' 				/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input  id='jky-name'			class='jky-form-value'		placeholder='Name'				/></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Product Type</span>:</div>
+				<div id='jky-product-type' class='jky-form-value'>
+					<input type='radio' name='jky-product-type' value='Tubular'	/><span>Tubular	</span><br>
+					<input type='radio' name='jky-product-type' value='Ramada'	/><span>Ramada	</span><br>
+					<input type='radio' name='jky-product-type' value='Gola'	/><span>Gola	</span><br>
+					<input type='radio' name='jky-product-type' value='Punho'	/><span>Punho	</span><br>
+				</div>
+			</div>
+
 		</div>
 		<div class='jky-clear'></div>
 		<br>
 
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Thread Group</span>:</div><input id='jky-thread_group'	class='jky-form-value'		/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Thread Color</span>:</div><input id='jky-thread_color'	class='jky-form-value'		/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>       Composition</span>:</div><input id='jky-composition'	class='jky-form-value'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Start Date</span>:</div>
+				<div id='jky-start-date' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-start-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
+				</div>
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -119,11 +133,29 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-notes'			class='active'	><a href='#jky-notes'				data-toggle='tab'><span>Notes			</span></a></li>
-			<li	id='jky-tab-history'						><a href='#jky-history'				data-toggle='tab'><span>History			</span></a></li>
+			<li	id='jky-tab-cylinders'		class='active'	><a href='#jky-pane-cylinders'		data-toggle='tab'><span>Cylinders		</span></a></li>
+			<li	id='jky-tab-notes'							><a href='#jky-pane-notes'			data-toggle='tab'><span>Notes			</span></a></li>
+			<li	id='jky-tab-history'						><a href='#jky-pane-history'		data-toggle='tab'><span>History			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
+			<div id='jky-pane-cylinders'	class='tab-pane active'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<td class='jky-action'></td>
+							<td class='jky-cylinder-value'><span>Current</span></td>
+							<td class='jky-cylinder-label'><span>Name	</span></td>
+						</tr>
+					</thead>
+					<tbody id='jky-cylinder-body'></tbody>
+					<tfoot>
+						<tr>
+							<td    id='jky-cylinder-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
 
 			<div id='jky-notes' class='tab-pane'>
 				<div class='jky-left'>
@@ -140,4 +172,5 @@
 </div>
 
 <div id='jky-body-loaded'></div>
-<script src='js/threads.js'></script>
+<script src='js/products.js'></script>
+<script src='js/product_ftps.js'></script>

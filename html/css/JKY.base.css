@@ -16,7 +16,8 @@ option	{padding:2px 6px;}
 input.span2 {width:80px; padding:2px 4px;}
 
 .btn			{padding:2px 10px;}
-.nav			{margin-bottom:5px;}
+.close			{color:#FFFFFF; opacity:0.8;}
+.nav			{margin-bottom:0px;}
 .nav-tabs > li	{margin-left:10px;}
 .nav-tabs > li > a				{background-color:#999999; color:black; margin-right:0; line-height:10px;}
 .nav-tabs > .active > a,
@@ -111,7 +112,7 @@ input.span2 {width:80px; padding:2px 4px;}
     padding:0;
 }
 
-#jky-application thead tr		{height:40px;}
+#jky-application thead tr		{height:40px; background-color:#EEEEEE;}
 #jky-application tbody tr		{height:20px;}
 #jky-application thead th		{border:1px solid #999999;}
 #jky-application tbody td		{margin:2px; padding:4px 8px;}
@@ -214,3 +215,9 @@ li .arrow span {
 #jky-confirm			{display:none; position:absolite; top:auto; bottom:0; left:auto ; right:0; width:340px; z-index:2000;}
 #jky-export				{display:none;}
 
+#jky-search-filter		{margin-bottom:10px;}
+#jky-search-table thead tr	{border-radius:3px;}
+#jky-search-table tbody tr	{height:30px;}
+.jky-search-product-name	{width:260px;}
+.jky-search-product-type	{width: 60px; text-align:center;}
+.jky-search-start-date		{width: 60px; text-align:center;}

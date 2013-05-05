@@ -40,7 +40,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
 		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
 		$('#jky-action-export'		).click (function() {JKY.process_export		();});
-		$('#jky-action-publish'		).click (function() {JKY.process_publish	();});	// not needed on version 0
+		$('#jky-action-publish'		).click (function() {JKY.process_publish	();});
 		$('#jky-action-prev'		).click (function() {JKY.display_prev		();});
 		$('#jky-action-next'		).click (function() {JKY.display_next		();});
 		$('#jky-action-list'		).click (function() {JKY.display_list		();});
@@ -64,10 +64,10 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-admin');
 		JKY.set_side_active('jky-admin-contacts');
-		JKY.set_html('jky-user-role', JKY.set_group_set('Controls', '', 'User Roles'));
-		JKY.set_html('jky-state'    , JKY.set_group_set('Configs' , '', 'States'	));
-		JKY.set_html('jky-country'  , JKY.set_group_set('Configs' , '', 'Countries'	));
-		JKY.set_html('jky-app-breadcrumb', jky_program);
+		JKY.set_html('jky-user-role'	, JKY.set_group_set('Controls', '', 'User Roles'));
+		JKY.set_html('jky-state'		, JKY.set_group_set('Configs' , '', 'States'	));
+		JKY.set_html('jky-country'		, JKY.set_group_set('Configs' , '', 'Countries'	));
+		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.show('jky-side-admin'		);
@@ -88,6 +88,7 @@ JKY.display_list = function() {
 //	JKY.hide('jky-action-copy'		);
 //	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
+//	JKY.show('jky-action-publish'	);
 	JKY.show('jky-app-table'		);
 	JKY.hide('jky-app-form'			);
 	JKY.load_table();
@@ -258,8 +259,8 @@ JKY.process_save = function() {
 JKY.process_insert = function() {
 	var my_data =
 		{ method: 'insert'
-		, table : jky_table
-		, set	: JKY.get_form_set()
+		, table :  jky_table
+		, set	:  JKY.get_form_set()
 		};
 	JKY.ajax(false, my_data, JKY.process_insert_success);
 }
@@ -277,9 +278,9 @@ JKY.process_update = function() {
 	var my_where = 'id = ' + JKY.rows[jky_index-1]['id'];
 	var my_data =
 		{ method: 'update'
-		, table : jky_table
-		, set	: JKY.get_form_set()
-		, where : my_where
+		, table :  jky_table
+		, set	:  JKY.get_form_set()
+		, where :  my_where
 		};
 	JKY.ajax(false, my_data, JKY.process_update_success);
 }
@@ -289,7 +290,8 @@ JKY.process_update_success = function(response) {
 	JKY.display_message(response.message);
 	JKY.update_user(response.id, JKY.row.user_id);	//	only used on [Contacts]
 	JKY.rows[jky_index-1] = JKY.get_row(jky_table, JKY.rows[jky_index-1]['id']);
-	JKY.display_next();
+//	JKY.display_next();
+	JKY.display_row(jky_index);
 }
 
 JKY.process_delete = function() {

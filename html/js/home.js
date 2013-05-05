@@ -31,6 +31,9 @@ $(function() {
 JKY.set_all_events_home = function(jky_program) {
 	if (JKY.is_loaded('jky')) {
 JKY.display_trace('set_all_events_home');
+		JKY.t_tag	('jky-wrapper', 'span');
+		JKY.t_input	('jky-wrapper', 'placeholder');
+/*
 		$('#jky-sign-up'		).click (function() {JKY.display_sign_up	()		;});
 		$('#jky-log-in'			).click (function() {JKY.display_log_in		()		;});
 		$('#jky-profile'		).click (function() {JKY.display_profile	()		;});
@@ -40,12 +43,13 @@ JKY.display_trace('set_all_events_home');
 		$('#jky-company-name'	).click (function() {JKY.display_company	(this)	;});
 
 		$('#jky-copyright'		).click (function() {JKY.display_copyright	()		;});
-//		$('#jky-contact-us'		).click (function() {JKY.display_contact_us	()		;});
-
+		$('#jky-contact-us'		).click (function() {JKY.display_contact_us	()		;});
+*/
 		$('#jky-sales-customers'		).click (function() {JKY.process_action('customers'		);});
 		$('#jky-production-ftps'		).click (function() {JKY.process_action('ftps'			);});
 		$('#jky-production-threads'		).click (function() {JKY.process_action('threads'		);});
 		$('#jky-production-machines'	).click (function() {JKY.process_action('machines'		);});
+		$('#jky-production-products'	).click (function() {JKY.process_action('products'		);});
 		$('#jky-help-tickets'			).click (function() {JKY.process_action('tickets'		);});
 		$('#jky-admin-configs'			).click (function() {JKY.process_action('configs'		);});
 		$('#jky-admin-contacts'			).click (function() {JKY.process_action('contacts'		);});
@@ -66,11 +70,13 @@ JKY.set_initial_values_home = function(jky_program) {
 	if (JKY.is_loaded('jky')) {
 JKY.display_trace('set_initial_values_home');
 //		JKY.set_menu_active('jky-menu-admin');
+/*
 		$('#jky-home'				).click (function() {JKY.process_home		()		;});
 		$('#jky-help'				).click (function() {JKY.process_help		()		;});
 		$('#jky-my-info'			).click (function() {JKY.process_my_info	()		;});
 		$('#jky-control-language'	).change(function() {JKY.change_language	(this)	;});
-		JKY.set_html('jky-app-breadcrumb', jky_program);
+		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
+*/
 		JKY.show('jky-side-bar');
 	}else{
 		setTimeout(function() {JKY.set_initial_values_home();}, 100);
@@ -158,7 +164,7 @@ JKY.process_start_page = function() {
 	JKY.set_user_info(JKY.Session.get_value('full_name'));
 	JKY.show('jky-side-bar');
 //	JKY.process_action(JKY.Session.get_value('start_page'));
-	JKY.process_action('translations');
+	JKY.process_action('ftps');
 }
 
 /** ------------------------------------------------------------------------ **/

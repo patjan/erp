@@ -62,7 +62,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_side_active('jky-admin-configs');
 		JKY.set_html('jky-app-select', JKY.set_group_set(jky_table , jky_select, 'Root'));
 		JKY.set_html('jky-status'    , JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
-		JKY.set_html('jky-app-breadcrumb', jky_program);
+		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 		JKY.show('jky-side-admin'		);
 		JKY.show('jky-app-header'		);
@@ -139,10 +139,12 @@ JKY.display_row = function(index) {
 
 	if (jky_select == 'Root' && JKY.row.name == 'Root') {
 		JKY.hide('jky-action-save'		);
+		JKY.hide('jky-action-copy'		);
 		JKY.hide('jky-action-delete'	);
 		JKY.hide('jky-action-cancel'	);
 	}else{
 		JKY.show('jky-action-save'		);
+		JKY.show('jky-action-copy'		);
 		JKY.show('jky-action-delete'	);
 		JKY.show('jky-action-cancel'	);
 	}

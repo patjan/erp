@@ -44,7 +44,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
 		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
 		$('#jky-action-export'		).click (function() {JKY.process_export		();});
-		$('#jky-action-publish'		).click (function() {JKY.process_publish	();});	// not needed on version 0
+		$('#jky-action-publish'		).click (function() {JKY.process_publish	();});
 		$('#jky-action-prev'		).click (function() {JKY.display_prev		();});
 		$('#jky-action-next'		).click (function() {JKY.display_next		();});
 		$('#jky-action-list'		).click (function() {JKY.display_list		();});
@@ -59,6 +59,10 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-tab-threads'		).click (function() {JKY.display_threads	();});
 		$('#jky-tab-loads'			).click (function() {JKY.display_loads		();});
 		$('#jky-tab-settings'		).click (function() {JKY.display_settings	();});
+
+		$('#jky-action-product'		).click (function() {JKY.display_product	();});
+		$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});
+		$('#jky-search-filter'		).keyupDelay(JKY.filter_product);
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -74,7 +78,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_side_active('jky-production-ftps');
 //		JKY.set_html('jky-product', JKY.set_radio('Configs', '', 'Machine Types' ));
 		JKY.set_html('jky-machine', JKY.set_table_options('Machines', 'name', '', null));
-		JKY.set_html('jky-app-breadcrumb', jky_program);
+		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.show('jky-side-production'	);
@@ -98,6 +102,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
+//	JKY.show('jky-action-publish'	);
 	JKY.show('jky-app-table'		);
 	JKY.hide('jky-app-form'			);
 	JKY.load_table();
@@ -164,7 +169,10 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-peso'				, JKY.row.peso			);
 	JKY.set_radio	('jky-has-break'		, JKY.row.has_break		);
 	JKY.set_focus(jky_focus);
-	JKY.display_composition()
+	JKY.display_composition();
+	JKY.display_threads();
+	JKY.display_loads();
+	JKY.display_settings();
 }
 
 JKY.load_table = function() {
@@ -273,8 +281,8 @@ JKY.process_save = function() {
 JKY.process_insert = function() {
 	var my_data =
 		{ method: 'insert'
-		, table : jky_table
-		, set	: JKY.get_form_set()
+		, table :  jky_table
+		, set	:  JKY.get_form_set()
 		};
 	JKY.ajax(false, my_data, JKY.process_insert_success);
 }
@@ -291,9 +299,9 @@ JKY.process_update = function() {
 	var my_where = 'id = ' + JKY.rows[jky_index-1]['id'];
 	var my_data =
 		{ method: 'update'
-		, table : jky_table
-		, set	: JKY.get_form_set()
-		, where : my_where
+		, table :  jky_table
+		, set	:  JKY.get_form_set()
+		, where :  my_where
 		};
 	JKY.ajax(false, my_data, JKY.process_update_success);
 }
@@ -302,7 +310,8 @@ JKY.process_update_success = function(response) {
 	JKY.display_trace('process_update_success');
 	JKY.display_message(response.message);
 	JKY.rows[jky_index-1] = JKY.get_row(jky_table, JKY.rows[jky_index-1]['id']);
-	JKY.display_next();
+//	JKY.display_next();
+	JKY.display_row(jky_index);
 }
 
 JKY.process_delete = function() {
@@ -361,3 +370,26 @@ JKY.process_export = function() {
 	}
 	JKY.run_export(jky_table, jky_select, jky_filter, jky_specific, my_sort_by);
 };
+
+/**
+ * process search product
+ */
+JKY.display_product = function(the_id) {
+	JKY.show_modal('jky-search-product');
+	JKY.set_focus('jky-search-filter');
+}
+
+JKY.filter_product = function() {
+	var my_filter = JKY.get_value('jky-search-filter');
+	JKY.display_message('filter: ' + my_filter);
+}
+
+JKY.add_new_product = function() {
+	JKY.display_message('add_new_product');
+}
+
+JKY.select_product = function(the_index, the_id) {
+	var my_name = $(the_index).find('.jky-search-product-name').html();
+	JKY.display_message('id: ' + the_id + ', name: ' + my_name)
+	JKY.hide_modal('jky-search-product');
+}

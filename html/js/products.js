@@ -1,15 +1,15 @@
 "use strict";
 
 /**
- * permissions.html
+ * products.html
  */
-var jky_program		= 'Translations';
-var jky_table		= 'Translations';
-var jky_select		= 'Active';
-var jky_focus		= 'en_us';
+var jky_program		= 'Products';
+var jky_table		= 'Products';
+var jky_select		= '';
+var jky_focus		= 'jky-name';
 var jky_filter		= '';
-var jky_specific	= 'locale';
-var jky_sort_by		= 'sentence';
+var jky_specific	= '';
+var jky_sort_by		= 'name';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_count		=  0;
@@ -17,8 +17,6 @@ var jky_index		=  0;				//	0=Add New
 
 JKY.rows		= [];
 JKY.row 		= null;
-JKY.languages	= [];
-JKY.today		= JKY.get_now();
 
 /**
  * start program
@@ -49,6 +47,9 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-form'		).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'			).click (function() {JKY.process_check_all	();});	// not needed on version 0
+
+		$('#jky-start-date'			).datepicker();
+//		$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -60,22 +61,20 @@ JKY.set_all_events = function(jky_program) {
 JKY.set_initial_values = function(jky_program) {
 	JKY.display_trace('set_initial_values');
 	if (JKY.is_loaded('jky-body')) {
-		JKY.set_menu_active('jky-menu-support');
-		JKY.set_side_active('jky-support-translations');
-		JKY.set_html('jky-status'		, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
+		JKY.set_menu_active('jky-menu-production');
+		JKY.set_side_active('jky-production-products');
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
-		JKY.show('jky-side-support'		);
+		JKY.show('jky-side-production'	);
 		JKY.show('jky-app-header'		);
-		JKY.languages	= JKY.get_controls('Languages');
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
 }
 
 JKY.display_list = function() {
-	JKY.show('jky-app-filter'		);
+//	JKY.show('jky-app-filter'		);
 	JKY.show('jky-app-more'			);
 	JKY.hide('jky-app-navs'			);
 	JKY.hide('jky-app-add-new'		);
@@ -85,14 +84,14 @@ JKY.display_list = function() {
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
-	JKY.show('jky-action-publish'	);
+//	JKY.show('jky-action-publish'	);
 	JKY.show('jky-app-table'		);
 	JKY.hide('jky-app-form'			);
 	JKY.load_table();
 }
 
 JKY.display_form = function(index) {
-	JKY.hide('jky-app-filter'		);
+//	JKY.show('jky-app-filter'		);
 	JKY.hide('jky-app-more'			);
 	JKY.show('jky-app-navs'			);
 	JKY.hide('jky-app-add-new'		);
@@ -132,33 +131,18 @@ JKY.display_next = function() {
 JKY.display_row = function(index) {
 	JKY.show('jky-form-tabs');
 	jky_index = index;
-	var my_rows = JKY.get_rows(jky_table, JKY.rows[index-1]['id']);
-	var my_html = '';
-	for(var l=0; l<JKY.languages.length; l++) {
-		var my_locale   = JKY.languages[l].name ;
-		var my_language = JKY.languages[l].value;
-		var my_sentence = '';
-		for(var n=0; n<my_rows.length; n++) {
-			var my_row = my_rows[n];
-			if (my_row.locale == 'en_us') {
-				JKY.row_id = my_row.id;
-				JKY.set_option('jky_status', my_row.status);
-			}
-			if (my_row.locale == my_locale) {
-				my_sentence = my_row.sentence;
-			}
-		}
-		my_html += '<div class="jky-form-line">'
-				+  '<div class="jky-form-label">' + my_language + ':</div>'
-				+  '<div class="jky-form-value"><input id="' + my_locale + '" value="' + my_sentence + '" /></div>'
-				+  '</div>'
-				;
-	}
-	JKY.set_html('jky-locales', my_html);
+	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
+	JKY.rows[index-1] = JKY.row;
+	JKY.set_html('jky-app-index', index);
+	JKY.set_value	('jky-name'				, JKY.row.name			);
+	JKY.set_value	('jky-serial-number'	, JKY.row.serial_number	);
+	JKY.set_value	('jky-start-value'		, JKY.fix_ymd2dmy(JKY.row.start_date	));
 	JKY.set_focus(jky_focus);
+//	JKY.display_cylinders()
 }
 
 JKY.load_table = function() {
+	JKY.show('jky-loading');
 	var my_order_by = jky_sort_by + ' ' + (jky_sort_seq == 0 ? 'ASC' : 'DESC');
 	var my_data =
 		{ method	: 'get_index'
@@ -179,14 +163,12 @@ JKY.process_load_success = function(response) {
 	var my_html = '';
 	for(var i=0; i<jky_count; i++) {
 		var my_row = JKY.rows[i];
-		var my_created_date = JKY.short_date(my_row.created_at);
-		var my_updated_date = JKY.short_date(my_row.updated_at);
+		var my_start_date = JKY.fix_ymd2dmy(my_row.start_date);
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"		><input type="checkbox"		 /></td>'
-				+  '<td class="jky-sentence"		>' + my_row.sentence		+ '</td>'
-				+  '<td class="jky-created-at"		>' + my_created_date		+ '</td>'
-				+  '<td class="jky-updated-at"		>' + my_updated_date		+ '</td>'
-				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
+				+  '<td class="jky-name"			>' + my_row.name			+ '</td>'
+				+  '<td class="jky-product-type"	>' + my_row.product_type	+ '</td>'
+				+  '<td class="jky-start-date"		>' + my_start_date			+ '</td>'
 				+  '</tr>'
 				;
 	}
@@ -194,6 +176,7 @@ JKY.process_load_success = function(response) {
 	JKY.set_html('jky-app-count', jky_count);
 	JKY.set_html('jky-table-body', my_html );
 	JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
+	JKY.hide('jky-loading');
 }
 
 JKY.process_add_new = function() {
@@ -215,28 +198,20 @@ JKY.process_add_new = function() {
 
 JKY.display_new = function() {
 	jky_index = 0;
-	JKY.set_option	('jky-status'			, 'Active');
-	var my_html = '';
-	for(var l=0; l<JKY.languages.length; l++) {
-		var my_locale   = JKY.languages[l].name ;
-		var my_language = JKY.languages[l].value;
-		var my_sentence = '';
-		my_html += '<div class="jky-form-line">'
-				+  '<div class="jky-form-label">' + my_language + ':</div>'
-				+  '<div class="jky-form-value"><input id="' + my_locale + '" value="' + my_sentence + '" /></div>'
-				+  '</div>'
-				;
-	}
-	JKY.set_html('jky-locales', my_html);
+	JKY.set_value	('jky-name'				, '' );
+	JKY.set_radio	('jky-product-type'		,  JKY.t('Tubular'));
+	JKY.set_value	('jky-start-value'		, '' );
 	JKY.set_focus(jky_focus);
 }
 
 JKY.get_form_set = function() {
 	var my_set = ''
-		+          'status=\'' + JKY.get_value	('jky-status'				) + '\''
-		+        ', locale=\'' +				 'en_us'					  + '\''
-		+      ', sentence=\'' + JKY.get_value	('en_us'					) + '\''
+		+            'name=\'' + JKY.get_value	('jky-name'				) + '\''
+		+  ', product_type=\'' + JKY.get_checked('jky-product-type'		) + '\''
 		;
+	var my_date = '';
+	my_date = JKY.get_value('jky-start-value');
+	my_set += ', start_date = ' + JKY.fix_dmy2ymd(my_date);
 	return my_set;
 }
 
@@ -260,18 +235,9 @@ JKY.process_insert = function() {
 JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
 	JKY.display_message(response.message);
-
-	var my_data =
-		{ method: 'update'
-		, table :  jky_table
-		, set	: 'parent_id = ' + response.id
-		, where :        'id = ' + response.id
-		};
-	JKY.ajax(false, my_data);
-	JKY.process_update_more(response.id);			//	only used on [Translations]
 	JKY.load_table();
 //	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
-	JKY.display_new();
+	JKY.process_add_new();
 }
 
 JKY.process_update = function() {
@@ -288,47 +254,29 @@ JKY.process_update = function() {
 JKY.process_update_success = function(response) {
 	JKY.display_trace('process_update_success');
 	JKY.display_message(response.message);
-	JKY.process_update_more(response.id);			//	only used on [Translations]
 	JKY.rows[jky_index-1] = JKY.get_row(jky_table, JKY.rows[jky_index-1]['id']);
 //	JKY.display_next();
 	JKY.display_row(jky_index);
 }
-
-JKY.process_update_more = function(row_id) {
-	for(var l=0; l<JKY.languages.length; l++) {
-		var my_locale = JKY.languages[l].name ;
-		if (my_locale != 'en_us') {
-			var my_where = '  parent_id='   + row_id
-						 + ' AND locale=\'' + my_locale + '\''
-						;
-			var my_id = JKY.get_id(jky_table, my_where);
-			if (my_id) {
-				var my_set  = '  sentence=\'' + JKY.get_value(my_locale) + '\'';
-				var my_data = {method:'update', table:jky_table, set:my_set, where:'id=' + my_id};
-				JKY.ajax(true, my_data);
-			}else{
-				var my_set  = ' parent_id='   + row_id
-							+ ',   locale=\'' + my_locale + '\''
-							+ ', sentence=\'' + JKY.get_value(my_locale) +'\''
-							;
-				var my_data = {method:'insert', table:jky_table, set:my_set};
-				JKY.ajax(true, my_data);
-			}
-		}
-	}
-};
 
 JKY.process_delete = function() {
 	JKY.display_confirm(JKY.delete_confirmed, null, 'Delete', 'You requested to <b>delete</b> this record. <br>Are you sure?', 'Yes', 'No');
 }
 
 JKY.delete_confirmed = function() {
-	var my_id = JKY.rows[jky_index-1]['id'];
+	var my_id = JKY.row.id;
 
 	var my_data =
 		{ method: 'delete_many'
+		, table : 'Cylinders'
+		, where : 'product_id = ' + my_id
+		};
+	JKY.ajax(true, my_data);
+
+	var my_data =
+		{ method: 'delete'
 		, table :  jky_table
-		, where : 'parent_id = ' + my_id
+		, where : 'id = ' + my_id
 		};
 	JKY.ajax(false, my_data, JKY.process_delete_success);
 }
@@ -353,20 +301,3 @@ JKY.process_export = function() {
 	}
 	JKY.run_export(jky_table, jky_select, jky_filter, jky_specific, my_sort_by);
 };
-
-/**
- * process publish
- */
-JKY.process_publish = function() {
-	var my_data =
-		{ method: 'publish'
-		, table :  jky_table
-		};
-	JKY.ajax(false, my_data, JKY.process_publish_success);
-};
-
-JKY.process_publish_success = function(response) {
-	JKY.display_trace('process_publish_success');
-	JKY.display_message(response.message);
-//	JKY.display_list();
-}

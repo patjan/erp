@@ -712,6 +712,19 @@ private function set_where($table, $filter) {
 			}
 		}
 
+		if ($table == 'Products') {
+			if ($name == 'code'
+			or	$name == 'name'
+			or	$name == 'product_type'
+			or	$name == 'start_date') {
+				if ($value == '"%null%"') {
+					return ' AND Products.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Products.' . $name . ' LIKE ' . $value;
+				}
+			}
+		}
+
 		if ($table == 'Receives') {
 			if ($name == 'receive_on'
 			or	$name == 'receive_amount'
@@ -846,7 +859,15 @@ private function set_where($table, $filter) {
 	if ($table == 'Permissions') {
 		$return = '      Permissions.user_role			LIKE ' . $filter
 				. ' OR   Permissions.user_resource		LIKE ' . $filter
-				. ' OR    Permissions.user_action		LIKE ' . $filter
+				. ' OR   Permissions.user_action		LIKE ' . $filter
+				;
+	}
+
+	if ($table == 'Products') {
+		$return = '    Products.code			LIKE ' . $filter
+				. ' OR Products.name			LIKE ' . $filter
+				. ' OR Products.product_type	LIKE ' . $filter
+				. ' OR Products.start_date		LIKE ' . $filter
 				;
 	}
 

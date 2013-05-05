@@ -64,10 +64,10 @@ JKY.binding_on_resize = function() {
 	}
 	if (JKY.orders.length > 0) {
 		$(window).bind('resize', function() {
-			CX.setTableWidthHeight('jky-app-table', 690, 390, 150);
+			JKY.setTableWidthHeight('jky-app-table', 690, 390, 150);
 		});
 	} else {
-		setTimeout(function() {CX.binding_on_resize();}, 100);
+		setTimeout(function() {JKY.binding_on_resize();}, 100);
 	}
 }
 
@@ -155,10 +155,12 @@ JKY.t = function(the_text) {
 	if (typeof the_text == 'undefined' || the_text == '') {
 		return '';
 	}
-
+	if (the_text.substr(0,1) == '<') {
+		return the_text;
+	}
 	var my_result = JKY.translations[the_text];
 	if (typeof my_result == 'undefined') {
-//alert('the_text: ' + the_text);
+alert('the_text: ' + the_text);
 		my_result = '';
 		var my_names = the_text.split('<br>');
 		for (var i=0; i<my_names.length; i++) {
@@ -175,15 +177,22 @@ JKY.t = function(the_text) {
     return my_result;
 }
 
-JKY.t_tag = function(the_tag) {
-	$('#jky-application ' + the_tag).each(function() {
+JKY.t_tag = function(the_id, the_tag) {
+	$('#' + the_id + ' ' + the_tag).each(function() {
 		var my_text = $(this).html().trim();
 		$(this).html(JKY.t(my_text));
 	});
 }
 
-JKY.t_input = function(the_attr) {
-	$('#jky-application input').each(function() {
+JKY.t_input = function(the_id, the_attr) {
+	$('#' + the_id + ' input').each(function() {
+		var my_text = $(this).attr(the_attr);
+		$(this).attr(the_attr, JKY.t(my_text));
+	});
+}
+
+JKY.t_button = function(the_id, the_attr) {
+	$('#' + the_id + ' button').each(function() {
 		var my_text = $(this).attr(the_attr);
 		$(this).attr(the_attr, JKY.t(my_text));
 	});
@@ -200,8 +209,9 @@ JKY.load_html = function(id_name, file_name) {
 	if ($('#' + id_name).length > 0) {
 		$('#' + id_name).load('../' + file_name);
 //		JKY.display_trace('load_html: ' + id_name + ' DONE');
-		JKY.t_tag	('span');
-		JKY.t_input	('placeholder');
+		JKY.t_tag	('jky-application', 'span');
+		JKY.t_input	('jky-application', 'placeholder');
+		JKY.t_button('jky-application', 'title');
 	}else{
 		setTimeout(function() {JKY.load_html(id_name, file_name);}, 100);
 	}
@@ -498,12 +508,12 @@ JKY.display_trace = function(message){
 }
 
 /**
- * append specific id with html content
- * @param	id_name
- * @param	html
+ * get html content of specific id
+ * @param	idName
+ * @return	html
  */
-JKY.append_html = function(id_name, html){
-	$('#' + id_name).append(html);
+JKY.get_html = function(idName){
+	return $('#' + idName).html();
 }
 
 /**
@@ -513,6 +523,33 @@ JKY.append_html = function(id_name, html){
  */
 JKY.set_html = function(id_name, html){
 	$('#' + id_name).html(html);
+}
+
+/**
+ * append specific id with html content
+ * @param	id_name
+ * @param	html
+ */
+JKY.append_html = function(id_name, html){
+	$('#' + id_name).append(html);
+}
+
+/**
+ * set specific id attr title with value
+ * @param	idName
+ * @param	value
+ */
+JKY.set_title = function(idName, the_title){
+	$('#' + idName).attr('title', the_title);
+}
+
+/**
+ * get value of specific id
+ * @param	id_name
+ * @return	value
+ */
+JKY.get_value = function(id_name){
+	return $('#' + id_name).val();
 }
 
 /**
@@ -679,21 +716,36 @@ JKY.set_side_active = function(id_name){
 }
 
 /**
- * get value of specific id
- * @param	id_name
- * @return	value
- */
-JKY.get_value = function(id_name){
-	return $('#' + id_name).val();
-}
-
-/**
  * get value of checkbox or radio checked
  * @param	id_name
  * @return	value
  */
 JKY.get_checked = function(id_name){
 	return $('input[name=' + id_name + ']:checked').val();
+}
+
+/**
+ * set 'active' class on specific id
+ * @param	id_name
+ */
+JKY.set_active = function(id_name){
+	$('#' + id_name).addClass('active');
+}
+
+/**
+ * reset 'active' class on specific id
+ * @param	id_name
+ */
+JKY.reset_active = function(id_name){
+	$('#' + id_name).removeClass('active');
+}
+
+/**
+ * reset all 'active' class on specific id
+ * @param	id_name
+ */
+JKY.reset_all_active = function(id_name){
+	$('#' + id_name + ' .active').each(function() {$(this).removeClass('active');})
 }
 
 /**
@@ -728,6 +780,38 @@ JKY.invisible = function(id_name){
  */
 JKY.visible = function(id_name){
 	$('#' + id_name).css('visibility', 'visible');
+}
+
+/**
+ * show modal specific id name
+ * @param	id_name
+ */
+JKY.show_modal = function(id_name) {
+	$('#' + id_name).modal('show');
+}
+
+/**
+ * hide modal specific id name
+ * @param	id_name
+ */
+JKY.hide_modal = function(id_name) {
+	$('#' + id_name).modal('hide');
+}
+
+/**
+ * enable button
+ */
+JKY.enable_button = function(id_name) {
+	$('#' + id_name).removeAttr ('disabled');
+	$('#' + id_name).css('cursor', 'pointer');
+}
+
+/**
+ * disable button
+ */
+JKY.disable_button = function(id_name) {
+	$('#' + id_name).attr('disabled', 'disabled');
+	$('#' + id_name).css('cursor', 'not-allowed');
 }
 
 /**
@@ -981,7 +1065,7 @@ JKY.set_user_info = function(full_name) {
 		JKY.show('jky-user-unkown');
 	}else{
 		var my_full_name = '<a href="#" onclick="JKY.process_profile()">' + full_name + '</a>';
-		var my_log_off = ':&nbsp; <a href="#" onclick="JKY.process_log_off()">Log Off</a>';
+		var my_log_off = ':&nbsp; <a href="#" onclick="JKY.process_log_off()">' + JKY.t('Log Off') + '</a>';
 		JKY.set_html('jky-user-full-name', my_full_name + my_log_off);
 		JKY.hide('jky-user-unkown')
 		JKY.show('jky-user-logged');
@@ -1010,7 +1094,7 @@ JKY.set_buttons_menus = function(menus) {
 	for(var i=0; i<menus.length; i++) {
 		var my_menu = menus[i];
 		my_html += '<li id="' + my_menu.id + '">'
-				+  '<a onclick="JKY.process_menu(\'' + my_menu.id + '\')" >' +  my_menu.label
+				+  '<a onclick="JKY.process_menu(\'' + my_menu.id + '\')" >' +  JKY.t(my_menu.label)
 //				+  '<i class="icon-' + my_menu.icon + ' icon-white"></i>' + my_menu.label
 				+  '</a>'
 				+  '</li>'
@@ -1025,12 +1109,12 @@ JKY.set_buttons_menus = function(menus) {
 JKY.set_buttons_control = function(admins, language, languages) {
 	var my_html = '';
 	if (languages.length > 0) {
-		my_html += '<span class="jky-label">Language:</span>';
+		my_html += '<span class="jky-label">' + JKY.t('Language') + ':</span>';
 		my_html += '<select id="jky-control-language">';
 		for(var i=0; i<languages.length; i++) {
 			var my_language = languages[i];
 			var my_selected = (my_language == language) ? ' selected="selected"' : '';
-			my_html += '<option value="' + my_language + '"' + my_selected + '>' + my_language + '</option>';
+			my_html += '<option value="' + my_language + '"' + my_selected + '>' + JKY.t(my_language) + '</option>';
 		}
 		my_html += '</select>';
 	}
@@ -1058,7 +1142,7 @@ JKY.set_body_header = function(name, buttons) {
 	var my_html = '';
 	for(var i=0; i<buttons.length; i++) {
 		var my_button = buttons[i];
-		my_html += '<button onclick="JKY.display_trace(\'' + my_button.on_click + '\')" class="btn"><i class="icon-' + my_button.icon + '"></i> ' + my_button.label + '</button>';
+		my_html += '<button onclick="JKY.display_trace(\'' + my_button.on_click + '\')" class="btn"><i class="icon-' + my_button.icon + '"></i> ' + JKY.t(my_button.label) + '</button>';
 	}
 	JKY.set_html('jky-body-buttons', my_html);
 }
@@ -1599,7 +1683,7 @@ JKY.set_initial_values = function(jky_program) {
 				JKY.set_html('jky-machine-brand', JKY.set_group_set('Configs', '', 'Machine Brands'));
 				break;
 		}
-		JKY.set_html('jky-app-breadcrumb', jky_program);
+		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 
 //		JKY.show('jky-side-sales');

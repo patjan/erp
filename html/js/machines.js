@@ -40,7 +40,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
 		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
 		$('#jky-action-export'		).click (function() {JKY.process_export		();});
-		$('#jky-action-publish'		).click (function() {JKY.process_publish	();});	// not needed on version 0
+		$('#jky-action-publish'		).click (function() {JKY.process_publish	();});
 		$('#jky-action-prev'		).click (function() {JKY.display_prev		();});
 		$('#jky-action-next'		).click (function() {JKY.display_next		();});
 		$('#jky-action-list'		).click (function() {JKY.display_list		();});
@@ -67,7 +67,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_side_active('jky-production-machines');
 		JKY.set_html('jky-machine-family', JKY.set_group_set('Configs', '', 'Machine Families'));
 		JKY.set_html('jky-machine-brand' , JKY.set_group_set('Configs', '', 'Machine Brands'  ));
-		JKY.set_html('jky-app-breadcrumb', jky_program);
+		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.show('jky-side-production'	);
@@ -88,6 +88,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
+//	JKY.show('jky-action-publish'	);
 	JKY.show('jky-app-table'		);
 	JKY.hide('jky-app-form'			);
 	JKY.load_table();
@@ -99,7 +100,7 @@ JKY.display_form = function(index) {
 	JKY.show('jky-app-navs'			);
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
-	JKY.hide('jky-action-add-new'	);
+	JKY.show('jky-action-add-new'	);
 	JKY.show('jky-action-save'		);
 	JKY.show('jky-action-copy'		);
 	JKY.show('jky-action-delete'	);
@@ -194,7 +195,7 @@ JKY.process_load_success = function(response) {
 
 JKY.process_add_new = function() {
 	JKY.hide('jky-form-tabs');
-	JKY.hide('jky-app-filter'		);
+//	JKY.hide('jky-app-filter'		);
 	JKY.hide('jky-app-more'			);
 	JKY.hide('jky-app-navs'			);
 	JKY.show('jky-app-add-new'		);
@@ -212,7 +213,7 @@ JKY.process_add_new = function() {
 JKY.display_new = function() {
 	jky_index = 0;
 	JKY.set_value	('jky-name'				, '' );
-	JKY.set_radio	('jky-machine-type'		, 'Circular');
+	JKY.set_radio	('jky-machine-type'		,  JKY.t('Circular'));
 	JKY.set_option	('jky-machine-family'	, '' );
 	JKY.set_option	('jky-machine-brand'	, '' );
 	JKY.set_value	('jky-serial-number'	, '' );
@@ -261,8 +262,8 @@ JKY.process_save = function() {
 JKY.process_insert = function() {
 	var my_data =
 		{ method: 'insert'
-		, table : jky_table
-		, set	: JKY.get_form_set()
+		, table :  jky_table
+		, set	:  JKY.get_form_set()
 		};
 	JKY.ajax(false, my_data, JKY.process_insert_success);
 }
@@ -279,9 +280,9 @@ JKY.process_update = function() {
 	var my_where = 'id = ' + JKY.rows[jky_index-1]['id'];
 	var my_data =
 		{ method: 'update'
-		, table : jky_table
-		, set	: JKY.get_form_set()
-		, where : my_where
+		, table :  jky_table
+		, set	:  JKY.get_form_set()
+		, where :  my_where
 		};
 	JKY.ajax(false, my_data, JKY.process_update_success);
 }
@@ -290,7 +291,8 @@ JKY.process_update_success = function(response) {
 	JKY.display_trace('process_update_success');
 	JKY.display_message(response.message);
 	JKY.rows[jky_index-1] = JKY.get_row(jky_table, JKY.rows[jky_index-1]['id']);
-	JKY.display_next();
+//	JKY.display_next();
+	JKY.display_row(jky_index);
 }
 
 JKY.process_delete = function() {

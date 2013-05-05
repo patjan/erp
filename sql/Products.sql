@@ -9,10 +9,11 @@ CREATE TABLE IF NOT EXISTS Products
 
 , code				VARCHAR(32)			DEFAULT NULL
 , name				VARCHAR(255)		DEFAULT NULL
-, product_type		VARCHAR(32)			DEFAULT NULL
+, product_type		VARCHAR(32)			DEFAULT 'Tubular'
+, start_date		DATE				DEFAULT null
 
 , PRIMARY KEY(id)
 , UNIQUE(code)
-, KEY name		(name)
+, UNIQUE(name)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
