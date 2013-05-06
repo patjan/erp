@@ -135,7 +135,7 @@ JKY.display_row = function(index) {
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
 	JKY.set_value	('jky-name'				, JKY.row.name			);
-	JKY.set_value	('jky-serial-number'	, JKY.row.serial_number	);
+	JKY.set_value	('jky-product-type'		, JKY.row.product_type	);
 	JKY.set_value	('jky-start-value'		, JKY.fix_ymd2dmy(JKY.row.start_date	));
 	JKY.set_focus(jky_focus);
 //	JKY.display_cylinders()
@@ -198,9 +198,9 @@ JKY.process_add_new = function() {
 
 JKY.display_new = function() {
 	jky_index = 0;
-	JKY.set_value	('jky-name'				, '' );
+	JKY.set_value	('jky-name'				, '');
 	JKY.set_radio	('jky-product-type'		,  JKY.t('Tubular'));
-	JKY.set_value	('jky-start-value'		, '' );
+	JKY.set_value	('jky-start-value'		, '');
 	JKY.set_focus(jky_focus);
 }
 

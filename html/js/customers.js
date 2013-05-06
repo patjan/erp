@@ -83,7 +83,7 @@ JKY.display_company = function(id) {
 }
 
 JKY.display_list = function() {
-	JKY.show('jky-app-filter'		);
+//	JKY.show('jky-app-filter'		);
 	JKY.show('jky-app-more'			);
 	JKY.hide('jky-app-navs'			);
 	JKY.hide('jky-app-add-new'		);
@@ -100,12 +100,12 @@ JKY.display_list = function() {
 }
 
 JKY.display_form = function(index) {
-	JKY.hide('jky-app-filter'		);
+//	JKY.show('jky-app-filter'		);
 	JKY.hide('jky-app-more'			);
 	JKY.show('jky-app-navs'			);
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
-	JKY.hide('jky-action-add-new'	);
+	JKY.show('jky-action-add-new'	);
 	JKY.show('jky-action-save'		);
 //	JKY.show('jky-action-copy'		);
 //	JKY.show('jky-action-delete'	);
@@ -171,6 +171,7 @@ JKY.display_row = function(index) {
 }
 
 JKY.load_table = function() {
+	JKY.show('jky-loading');
 	var my_order_by = jky_sort_by + ' ' + (jky_sort_seq == 0 ? 'ASC' : 'DESC');
 	var my_data =
 		{ method	: 'get_index'
@@ -204,11 +205,12 @@ JKY.process_load_success = function(response) {
 	JKY.set_html('jky-app-count', jky_count);
 	JKY.set_html('jky-table-body', my_html );
 	JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
+	JKY.hide('jky-loading');
 }
 
 JKY.process_add_new = function() {
 	JKY.hide('jky-form-tabs');
-	JKY.hide('jky-app-filter'		);
+//	JKY.hide('jky-app-filter'		);
 	JKY.hide('jky-app-more'			);
 	JKY.hide('jky-app-navs'			);
 	JKY.show('jky-app-add-new'		);

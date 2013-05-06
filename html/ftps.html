@@ -9,6 +9,7 @@
 	<div>
 		<div id='jky-app-actions'>
 			<button id='jky-action-add-new'		class='btn btn-success' type='button'><span>Add New	</span></button>
+			<button id='jky-action-print'		class='btn btn-success' type='button'><span>Print	</span></button>
 		</div>
 		<div id='jky-app-more'>
 			<button id='jky-action-export'		class='btn btn-success' type='button'><span>Export	</span></button>
@@ -43,7 +44,6 @@
 .jky-form-value-2		{width: 50px;}
 .jky-form-value-3		{width: 50px;}
 .jky-checkbox			{width: 30px; text-align:center;}
-#jky-check-all			{width: 30px;}
 #jky-action-product 	{margin-left:-30px; padding:5px;}
 
 .jky-code				{width: 40px; text-align:center;}
@@ -52,10 +52,10 @@
 .jky-composition		{width:150px; text-align:center;}
 
 #jky-code				{width: 60px; font-size:16px; font-weight:bold;}
-#jky-product			{width:340px;}		/* text-transform:capitalize; */
+#jky-product			{width:340px; text-transform:capitalize;}
 #jky-product span		{padding:4px 20px 0 4px; vertical-align:bottom;}
 #jky-composition		{width:340px;}
-#jky-machine			{width:350px;}
+#jky-machine			{width:350px; text-transform:capitalize;}
 
 #jky-drawing			{float: left; margin:7px;}
 #jky-drawing-img		{width:110px; height:110px; border:4px ridge darkblue;}
@@ -116,12 +116,17 @@
 #jky-set-body tr		{margin: 0 auto;}
 #jky-set-body tr td		{padding:0 8px;}
 #jky-set-body input		{margin:0 5px 0 0; height:18px;}
+
+.jky-search-product-name	{width:260px; text-transform:capitalize;}
+.jky-search-product-type	{width: 60px; text-align:center;}
+.jky-search-start-date		{width: 60px; text-align:center;}
+
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th    id='jky-check-all'		><input type='checkbox' /></th>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' /></th>
 			<th class='jky-code'			><span>Code				</span></th>
 			<th class='jky-product'			><span>Product			</span></th>
 			<th class='jky-machine'			><span>Machine			</span></th>
@@ -158,6 +163,7 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>			  Code</span>:</div><input  id='jky-code'			class='jky-form-value'									readonly='readonly'	/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>          Product</span>:</div>
+				<input  id='jky-product-id' type='hidden' />
 				<input  id='jky-product' class='jky-form-value' placeholder='Product Name' readonly='readonly' />
 				<a id='jky-action-product'><i class='icon-share'></i></a>
 			</div>

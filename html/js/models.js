@@ -42,6 +42,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-app-select'			).change(function() {JKY.change_select  (this);});
 		$('#jky-app-filter'			).change(function() {JKY.change_filter  (this);});
 		$('#jky-action-add-new'		).click (function() {JKY.process_add_new	();});
+		$('#jky-action-print'		).click (function() {JKY.process_print		();});
 		$('#jky-action-save'		).click (function() {JKY.process_save		();});
 		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
 		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
@@ -52,7 +53,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-list'		).click (function() {JKY.display_list		();});
 		$('#jky-action-form'		).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
-		$('#jky-check-all'			).click (function() {JKY.process_check_all	();});	// not needed on version 0
+		$('#jky-check-all'			).click (function() {JKY.set_all_check  (this);});
 
 		$('#jky-is-company'			).click	(function() {JKY.display_company(this);});
 
@@ -63,6 +64,10 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-tab-threads'		).click (function() {JKY.display_threads	();});
 		$('#jky-tab-loads'			).click (function() {JKY.display_loads		();});
 		$('#jky-tab-settings'		).click (function() {JKY.display_settings	();});
+
+		$('#jky-action-product'		).click (function() {JKY.display_product	();});
+		$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});
+		$('#jky-search-filter'		).keyupDelay(JKY.filter_product);
 
 		$('#jky-start-date'			).datepicker();
 		$('#jky-purchase-date'		).datepicker();
@@ -162,6 +167,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
+	JKY.show('jky-action-print'		);
 	JKY.hide('jky-action-save'		);
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
@@ -170,22 +176,6 @@ JKY.display_list = function() {
 	JKY.show('jky-app-table'		);
 	JKY.hide('jky-app-form'			);
 	JKY.load_table();
-}
-
-JKY.display_form = function(index) {
-//	JKY.show('jky-app-filter'		);
-	JKY.hide('jky-app-more'			);
-	JKY.show('jky-app-navs'			);
-	JKY.hide('jky-app-add-new'		);
-	JKY.show('jky-app-counters'		);
-	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-save'		);
-	JKY.show('jky-action-copy'		);
-	JKY.show('jky-action-delete'	);
-	JKY.show('jky-action-cancel'	);
-	JKY.hide('jky-app-table'		);
-	JKY.show('jky-app-form'			);
-	JKY.display_row(index);
 }
 
 JKY.change_select = function(event){
@@ -208,6 +198,122 @@ JKY.display_prev = function() {
 JKY.display_next = function() {
 	jky_index = (jky_index == jky_count) ? 1 : (jky_index+1);
 	JKY.display_row(jky_index);
+}
+
+JKY.load_table = function() {
+	JKY.show('jky-loading');
+	var my_order_by = jky_sort_by + ' ' + (jky_sort_seq == 0 ? 'ASC' : 'DESC');
+	var my_data =
+		{ method	: 'get_index'
+		, table		: jky_table
+		, select	: jky_select
+		, filter	: jky_filter
+		, specific	: jky_specific
+		, order_by	: my_order_by
+		};
+	JKY.ajax(false, my_data, JKY.process_load_success);
+}
+
+JKY.process_load_success = function(response) {
+	JKY.display_trace('process_load_success');
+	JKY.rows	= response.rows;
+	jky_count	= JKY.rows.length;
+	jky_index	= 1;
+	var my_html = '';
+	for(var i=0; i<jky_count; i++) {
+		var my_row = JKY.rows[i];
+		var my_checkbox = '<input type="checkbox" onclick="JKY.set_checkbox(this)" row_id=' + my_row.id + ' />';
+		var my_start_date = JKY.fix_ymd2dmy(my_row.start_date);
+		var my_created_date = JKY.short_date(my_row.created_at);
+		var my_updated_date = JKY.short_date(my_row.updated_at);
+		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
+				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
+				+  '<td class="jky-sequence"		>' + my_row.sequence		+ '</td>'
+				+  '<td class="jky-name"			>' + my_row.name			+ '</td>'
+				+  '<td class="jky-value"			>' + my_row.value			+ '</td>'
+				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
+
+				+  '<td class="jky-full-name"		>' + my_row.full_name		+ '</td>'
+				+  '<td class="jky-phone"			>' + my_row.phone			+ '</td>'
+				+  '<td class="jky-mobile"			>' + my_row.mobile			+ '</td>'
+				+  '<td class="jky-email"			>' + my_row.email			+ '</td>'
+
+				+  '<td class="jky-code"			>' + my_row.code			+ '</td>'
+				+  '<td class="jky-product"			>' + my_row.product			+ '</td>'
+				+  '<td class="jky-machine"			>' + my_row.machine			+ '</td>'
+				+  '<td class="jky-composition"		>' + my_row.composition		+ '</td>'
+				+  '<td class="jky-product-type"	>' + my_row.product_type	+ '</td>'
+
+				+  '<td class="jky-name"			>' + my_row.name			+ '</td>'
+				+  '<td class="jky-diameter"		>' + my_row.diameter		+ '</td>'
+				+  '<td class="jky-width"			>' + my_row.width			+ '</td>'
+				+  '<td class="jky-density"			>' + my_row.density			+ '</td>'
+				+  '<td class="jky-inputs"			>' + my_row.inputs			+ '</td>'
+				+  '<td class="jky-lanes"			>' + my_row.lanes			+ '</td>'
+
+				+  '<td class="jky-code"			>' + my_row.code			+ '</td>'
+				+  '<td class="jky-name"			>' + my_row.name			+ '</td>'
+				+  '<td class="jky-thread_group"	>' + my_row.thread_group	+ '</td>'
+				+  '<td class="jky-thread_color"	>' + my_row.thread_color	+ '</td>'
+				+  '<td class="jky-composition"		>' + my_row.composition		+ '</td>'
+
+				+  '<td class="jky-user-role"		>' + my_row.user_role		+ '</td>'
+				+  '<td class="jky-user-resource"	>' + my_row.user_resource	+ '</td>'
+				+  '<td class="jky-user-action"		>' + my_row.user_action		+ '</td>'
+				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
+
+				+  '<td class="jky-full-name"		>' + my_row.full_name		+ '</td>'
+				+  '<td class="jky-mobile"			>' + my_row.mobile			+ '</td>'
+				+  '<td class="jky-email"			>' + my_row.email			+ '</td>'
+				+  '<td class="jky-user-name"		>' + my_row.user_name		+ '</td>'
+				+  '<td class="jky-user-role"		>' + my_row.user_role		+ '</td>'
+
+				+  '<td class="jky-sentence"		>' + my_row.sentence		+ '</td>'
+				+  '<td class="jky-start-date"		>' + my_start_date			+ '</td>'
+				+  '<td class="jky-created-at"		>' + my_created_date		+ '</td>'
+				+  '<td class="jky-updated-at"		>' + my_updated_date		+ '</td>'
+				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
+				+  '</tr>'
+				;
+	}
+	JKY.set_html('jky-app-index', jky_index);
+	JKY.set_html('jky-app-count', jky_count);
+	JKY.set_html('jky-table-body', my_html );
+	JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
+	JKY.hide('jky-loading');
+}
+
+JKY.set_all_check = function(the_index) {
+	if ($(the_index).is(':checked')) {
+		$('#jky-table-body .jky-checkbox input').each(function() {$(this).attr('checked', 'checked');})
+	}else{
+		$('#jky-table-body .jky-checkbox input').each(function() {$(this).removeAttr('checked');})
+	}
+}
+
+JKY.set_checkbox = function(the_index) {
+	JKY.skip_form = true;
+}
+
+JKY.display_form = function(index) {
+	if (JKY.skip_form) {
+		JKY.skip_form = false;
+		return;
+	}
+//	JKY.show('jky-app-filter'		);
+	JKY.hide('jky-app-more'			);
+	JKY.show('jky-app-navs'			);
+	JKY.hide('jky-app-add-new'		);
+	JKY.show('jky-app-counters'		);
+	JKY.show('jky-action-add-new'	);
+	JKY.show('jky-action-print'		);
+	JKY.show('jky-action-save'		);
+	JKY.show('jky-action-copy'		);
+	JKY.show('jky-action-delete'	);
+	JKY.show('jky-action-cancel'	);
+	JKY.hide('jky-app-table'		);
+	JKY.show('jky-app-form'			);
+	JKY.display_row(index);
 }
 
 JKY.display_row = function(index) {
@@ -249,6 +355,7 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-email'			, JKY.row.email			);
 
 	JKY.set_value	('jky-code'				, JKY.row.code			);
+	JKY.set_value	('jky-product-id'		, JKY.row.product_id	);
 	JKY.set_value	('jky-product'			, JKY.row.product		);
 	JKY.set_value	('jky-composition'		, JKY.row.composition	);
 	JKY.set_option	('jky-machine'			, JKY.row.machine_id	);
@@ -342,105 +449,6 @@ JKY.display_row = function(index) {
 	JKY.display_cylinders();
 }
 
-JKY.load_table = function() {
-	JKY.show('jky-loading');
-	var my_order_by = jky_sort_by + ' ' + (jky_sort_seq == 0 ? 'ASC' : 'DESC');
-	var my_data =
-		{ method	: 'get_index'
-		, table		: jky_table
-		, select	: jky_select
-		, filter	: jky_filter
-		, specific	: jky_specific
-		, order_by	: my_order_by
-		};
-	JKY.ajax(false, my_data, JKY.process_load_success);
-}
-
-JKY.process_load_success = function(response) {
-	JKY.display_trace('process_load_success');
-	JKY.rows	= response.rows;
-	jky_count	= JKY.rows.length;
-	jky_index	= 1;
-	var my_html = '';
-	for(var i=0; i<jky_count; i++) {
-		var my_row = JKY.rows[i];
-		var my_start_date = JKY.fix_ymd2dmy(my_row.start_date);
-		var my_created_date = JKY.short_date(my_row.created_at);
-		var my_updated_date = JKY.short_date(my_row.updated_at);
-		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
-				+  '<td class="jky-checkbox"		><input type="checkbox"		 /></td>'
-				+  '<td class="jky-sequence"		>' + my_row.sequence		+ '</td>'
-				+  '<td class="jky-name"			>' + my_row.name			+ '</td>'
-				+  '<td class="jky-value"			>' + my_row.value			+ '</td>'
-				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
-
-				+  '<td class="jky-full-name"		>' + my_row.full_name		+ '</td>'
-				+  '<td class="jky-phone"			>' + my_row.phone			+ '</td>'
-				+  '<td class="jky-mobile"			>' + my_row.mobile			+ '</td>'
-				+  '<td class="jky-email"			>' + my_row.email			+ '</td>'
-
-				+  '<td class="jky-code"			>' + my_row.code			+ '</td>'
-				+  '<td class="jky-product"			>' + my_row.product			+ '</td>'
-				+  '<td class="jky-machine"			>' + my_row.machine			+ '</td>'
-				+  '<td class="jky-composition"		>' + my_row.composition		+ '</td>'
-				+  '<td class="jky-product-type"	>' + my_row.product_type	+ '</td>'
-
-				+  '<td class="jky-name"			>' + my_row.name			+ '</td>'
-				+  '<td class="jky-diameter"		>' + my_row.diameter		+ '</td>'
-				+  '<td class="jky-width"			>' + my_row.width			+ '</td>'
-				+  '<td class="jky-density"			>' + my_row.density			+ '</td>'
-				+  '<td class="jky-inputs"			>' + my_row.inputs			+ '</td>'
-				+  '<td class="jky-lanes"			>' + my_row.lanes			+ '</td>'
-
-				+  '<td class="jky-code"			>' + my_row.code			+ '</td>'
-				+  '<td class="jky-name"			>' + my_row.name			+ '</td>'
-				+  '<td class="jky-thread_group"	>' + my_row.thread_group	+ '</td>'
-				+  '<td class="jky-thread_color"	>' + my_row.thread_color	+ '</td>'
-				+  '<td class="jky-composition"		>' + my_row.composition		+ '</td>'
-
-				+  '<td class="jky-user-role"		>' + my_row.user_role		+ '</td>'
-				+  '<td class="jky-user-resource"	>' + my_row.user_resource	+ '</td>'
-				+  '<td class="jky-user-action"		>' + my_row.user_action		+ '</td>'
-				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
-
-				+  '<td class="jky-full-name"		>' + my_row.full_name		+ '</td>'
-				+  '<td class="jky-mobile"			>' + my_row.mobile			+ '</td>'
-				+  '<td class="jky-email"			>' + my_row.email			+ '</td>'
-				+  '<td class="jky-user-name"		>' + my_row.user_name		+ '</td>'
-				+  '<td class="jky-user-role"		>' + my_row.user_role		+ '</td>'
-
-				+  '<td class="jky-sentence"		>' + my_row.sentence		+ '</td>'
-				+  '<td class="jky-start-date"		>' + my_start_date			+ '</td>'
-				+  '<td class="jky-created-at"		>' + my_created_date		+ '</td>'
-				+  '<td class="jky-updated-at"		>' + my_updated_date		+ '</td>'
-				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
-				+  '</tr>'
-				;
-	}
-	JKY.set_html('jky-app-index', jky_index);
-	JKY.set_html('jky-app-count', jky_count);
-	JKY.set_html('jky-table-body', my_html );
-	JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
-	JKY.hide('jky-loading');
-}
-
-JKY.process_add_new = function() {
-	JKY.hide('jky-form-tabs');
-//	JKY.hide('jky-app-filter'		);
-	JKY.hide('jky-app-more'			);
-	JKY.hide('jky-app-navs'			);
-	JKY.show('jky-app-add-new'		);
-	JKY.hide('jky-app-counters'		);
-	JKY.hide('jky-action-add-new'	);
-	JKY.show('jky-action-save'		);
-	JKY.hide('jky-action-copy'		);
-	JKY.hide('jky-action-delete'	);
-	JKY.show('jky-action-cancel'	);
-	JKY.hide('jky-app-table'		);
-	JKY.show('jky-app-form'			);
-	JKY.display_new();
-}
-
 JKY.display_new = function() {
 	jky_index = 0;
 	JKY.set_option	('jky-status'			, 'Active');
@@ -476,6 +484,7 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-email'			, '');
 
 	JKY.set_value	('jky-code'				,  JKY.t('New'));
+	JKY.set_value	('jky-product-id'		,  0);
 	JKY.set_value	('jky-product'			, '');
 	JKY.set_value	('jky-composition'		, '');
 	JKY.set_option	('jky-machine'			,  null);
@@ -535,6 +544,24 @@ JKY.display_new = function() {
 	JKY.set_focus(jky_focus);
 }
 
+JKY.process_add_new = function() {
+	JKY.hide('jky-form-tabs');
+//	JKY.hide('jky-app-filter'		);
+	JKY.hide('jky-app-more'			);
+	JKY.hide('jky-app-navs'			);
+	JKY.show('jky-app-add-new'		);
+	JKY.hide('jky-app-counters'		);
+	JKY.hide('jky-action-add-new'	);
+	JKY.hide('jky-action-print'		);
+	JKY.show('jky-action-save'		);
+	JKY.hide('jky-action-copy'		);
+	JKY.hide('jky-action-delete'	);
+	JKY.show('jky-action-cancel'	);
+	JKY.hide('jky-app-table'		);
+	JKY.show('jky-app-form'			);
+	JKY.display_new();
+}
+
 JKY.get_form_set = function() {
 	var my_set = ''
 		+       'group_set=\'' + jky_select + '\''
@@ -570,8 +597,8 @@ JKY.get_form_set = function() {
 		+         ', email=\'' + JKY.get_value	('jky-email'			) + '\''
 
 //		+            'code=\'' + JKY.get_value	('jky-code'				) + '\''
-//		+    ', product_id=\'' + JKY.get_value	('jky-product'			) + '\''
-		+    '  machine_id=\'' + JKY.get_value	('jky-machine'			) + '\''
+		+      'product_id=  ' + JKY.get_value	('jky-product-id'		)
+		+    ', machine_id=  ' + JKY.get_value	('jky-machine'			)
 		+      ', diameter=\'' + JKY.get_value	('jky-diameter'			) + '\''
 		+       ', density=\'' + JKY.get_value	('jky-density'			) + '\''
 		+        ', inputs=\'' + JKY.get_value	('jky-inputs'			) + '\''
@@ -779,6 +806,23 @@ JKY.process_delete_success = function(response) {
 
 JKY.process_cancel = function() {
 	JKY.display_list();
+}
+
+/**
+ * process print
+ */
+JKY.process_print = function() {
+	if ($('#jky-app-form').css('display') == 'block') {
+		JKY.print_row(JKY.row.id);
+	}else{
+		$('#jky-table-body .jky-checkbox input:checked').each(function() {
+			JKY.print_row($(this).attr('row_id'));
+		})
+	}
+};
+
+JKY.print_row = function(the_id) {
+	JKY.display_message('print_row: ' + the_id);
 }
 
 /**

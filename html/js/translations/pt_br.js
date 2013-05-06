@@ -88,6 +88,7 @@ JKY.translations =
 , "Planning":"Planejamento"
 , "Position":"Posição"
 , "Previous":"Anterior"
+, "Print":"Imprimir"
 , "Product":"Produto"
 , "Product Name":"Nome do Produto"
 , "Product Type":"Tipo de Produto"

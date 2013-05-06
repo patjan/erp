@@ -28,3 +28,31 @@ UPDATE Tecidos SET product_type = 'Gola'    WHERE product_type = 'G';
 UPDATE Tecidos SET product_type = 'Punho'   WHERE product_type = 'P';
 UPDATE Tecidos SET product_type = 'Tubular' WHERE product_type = '';
 UPDATE Tecidos SET product_type = 'Tubular' WHERE product_type IS NULL;
+
+
+ALTER TABLE Maquinas	DROP UserId;
+ALTER TABLE Maquinas	DROP Status;
+ALTER TABLE Maquinas	DROP Codigo;
+
+ALTER TABLE Maquinas	CHANGE Id			id				BIGINT;
+ALTER TABLE Maquinas	CHANGE Created		created_at		DATE; 
+ALTER TABLE Maquinas	CHANGE Updated		updated_at		DATE; 
+ALTER TABLE Maquinas	CHANGE Tipo			machine_type	VARCHAR(32); 
+ALTER TABLE Maquinas	CHANGE Nome			name			VARCHAR(255); 
+ALTER TABLE Maquinas	CHANGE Reparo		repair_date		DATE; 
+ALTER TABLE Maquinas	CHANGE Retorno		return_date		DATE; 
+
+UPDATE Maquinas SET machine_type = lower(machine_type);
+UPDATE Machines SET machine_type = 'Circular'	WHERE machine_type = 'circular';
+UPDATE Maquinas SET machine_type = 'Retilinea'	WHERE machine_type = 'retilinea';
+UPDATE Maquinas SET name = lower(name);
+UPDATE Maquinas SET name = 'apollo1'	WHERE name = 'apollo 1';
+UPDATE Maquinas SET name = 'apollo2'	WHERE name = 'apollo 2';
+UPDATE Maquinas SET name = 'nasa1'		WHERE name = 'nasa 1';
+UPDATE Maquinas SET name = 'nasa2'		WHERE name = 'nasa 2';
+UPDATE Maquinas SET name = 'paquita1'	WHERE name = 'paquita 1';
+UPDATE Maquinas SET name = 'paquita2'	WHERE name = 'paquita 2';
+UPDATE Maquinas SET name = 'paquita3'	WHERE name = 'paquita 3';
+UPDATE Maquinas SET name = 'paquita4'	WHERE name = 'paquita 4';
+
+

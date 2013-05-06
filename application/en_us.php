@@ -88,6 +88,7 @@ $translations = array
 , "Planning"=>"Planning"
 , "Position"=>"Position"
 , "Previous"=>"Previous"
+, "Print"=>"Print"
 , "Product"=>"Product"
 , "Product Name"=>"Product Name"
 , "Product Type"=>"Product Type"

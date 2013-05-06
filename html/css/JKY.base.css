@@ -113,7 +113,7 @@ input.span2 {width:80px; padding:2px 4px;}
 }
 
 #jky-application thead tr		{height:40px; background-color:#EEEEEE;}
-#jky-application tbody tr		{height:20px;}
+#jky-application tbody tr		{height:20px; border-bottom:1px solid #DDDDDD;}
 #jky-application thead th		{border:1px solid #999999;}
 #jky-application tbody td		{margin:2px; padding:4px 8px;}
 #jky-application input[type='checkbox']	{width:20px; margin:0 0 2px 0;}
@@ -218,6 +218,3 @@ li .arrow span {
 #jky-search-filter		{margin-bottom:10px;}
 #jky-search-table thead tr	{border-radius:3px;}
 #jky-search-table tbody tr	{height:30px;}
-.jky-search-product-name	{width:260px;}
-.jky-search-product-type	{width: 60px; text-align:center;}
-.jky-search-start-date		{width: 60px; text-align:center;}

@@ -1,57 +1,85 @@
--- phpMyAdmin SQL Dump
--- version 3.3.3
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Apr 15, 2013 at 09:31 PM
--- Server version: 5.1.50
--- PHP Version: 5.3.14
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Database: `erp`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `machines`
---
-
-CREATE TABLE IF NOT EXISTS `machines` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `created_at` datetime DEFAULT NULL,
-  `created_by` bigint(20) DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `updated_by` bigint(20) DEFAULT NULL,
-  `status` varchar(32) COLLATE utf8_unicode_ci DEFAULT 'Active',
-  `name` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `machine_type` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `machine_brand` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `diameter` int(11) DEFAULT '0',
-  `width` int(11) DEFAULT '0',
-  `density` int(11) DEFAULT '0',
-  `inputs` int(11) DEFAULT '0',
-  `lanes` int(11) DEFAULT '0',
-  `repair_date` date DEFAULT NULL,
-  `return_date` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `machines`
---
-
-INSERT INTO `machines` (`id`, `created_at`, `created_by`, `updated_at`, `updated_by`, `status`, `name`, `machine_type`, `machine_brand`, `diameter`, `width`, `density`, `inputs`, `lanes`, `repair_date`, `return_date`) VALUES
-(1, '2013-04-10 21:39:10', 4, '2013-04-15 21:25:08', 4, 'Active', 'Altesa', 'undefined', 'BRAND1', 100, 200, 300, 50, 6, '2013-04-10', '2013-04-11'),
-(2, '2013-04-10 21:40:59', 4, '2013-04-15 21:25:09', 4, 'Active', 'Ana', 'undefined', 'BRAND1', 120, 210, 140, 60, 4, '2013-04-12', '2013-04-13'),
-(3, '2013-04-11 19:27:04', 4, '2013-04-15 21:25:11', 4, 'Active', 'Angelica', 'undefined', 'BRAND1', 100, 200, 300, 400, 500, '2013-04-13', '2013-04-14'),
-(4, '2013-04-15 21:23:30', 4, '2013-04-15 21:25:23', 4, 'Active', 'Angelina', 'undefined', 'BRAND1', 0, 0, 0, 0, 0, '2013-04-15', NULL);
+INSERT INTO `Machines` (`id`, `created_at`, `updated_at`, `machine_type`, `name`, `repair_date`, `return_date`) VALUES
+(1000000005, '2011-12-18', NULL, 'circular', 'ana', NULL, NULL),
+(1000000004, '2011-12-18', '2011-12-28', 'circular', 'altesa', '2011-02-01', '2011-03-02'),
+(1000000006, '2011-12-18', NULL, 'circular', 'angelica', NULL, NULL),
+(1000000007, '2011-12-18', NULL, 'circular', 'audi', NULL, NULL),
+(1000000008, '2011-12-18', NULL, 'circular', 'apollo2', NULL, NULL),
+(1000000009, '2011-12-18', NULL, 'circular', 'apollo1', NULL, NULL),
+(1000000010, '2011-12-18', NULL, 'circular', 'babalu', NULL, NULL),
+(1000000011, '2011-12-18', NULL, 'circular', 'band', NULL, NULL),
+(1000000012, '2011-12-18', NULL, 'circular', 'bebel', NULL, NULL),
+(1000000013, '2011-12-18', NULL, 'circular', 'betina', NULL, NULL),
+(1000000014, '2011-12-18', NULL, 'circular', 'bia', NULL, NULL),
+(1000000015, '2011-12-18', NULL, 'circular', 'bruna', NULL, NULL),
+(1000000016, '2011-12-18', NULL, 'circular', 'camila', NULL, NULL),
+(1000000017, '2011-12-18', NULL, 'circular', 'carol', NULL, NULL),
+(1000000018, '2011-12-18', NULL, 'circular', 'claudia', NULL, NULL),
+(1000000019, '2011-12-18', NULL, 'circular', 'comadre', NULL, NULL),
+(1000000020, '2011-12-18', NULL, 'circular', 'condessa', NULL, NULL),
+(1000000021, '2011-12-18', NULL, 'circular', 'darlene', NULL, NULL),
+(1000000022, '2011-12-18', NULL, 'circular', 'dercy', NULL, NULL),
+(1000000023, '2011-12-18', NULL, 'circular', 'duquesa', NULL, NULL),
+(1000000024, '2011-12-18', NULL, 'circular', 'elizabeth', NULL, NULL),
+(1000000025, '2011-12-18', NULL, 'circular', 'eva', NULL, NULL),
+(1000000026, '2011-12-18', NULL, 'circular', 'filo', NULL, NULL),
+(1000000027, '2011-12-18', NULL, 'circular', 'gisele', NULL, NULL),
+(1000000028, '2011-12-18', NULL, 'circular', 'guria', NULL, NULL),
+(1000000029, '2011-12-18', NULL, 'circular', 'hortencia', NULL, NULL),
+(1000000030, '2011-12-18', NULL, 'circular', 'imperatriz', NULL, NULL),
+(1000000031, '2011-12-18', NULL, 'circular', 'isadora', NULL, NULL),
+(1000000032, '2011-12-18', NULL, 'circular', 'jacqueline', NULL, NULL),
+(1000000033, '2011-12-18', NULL, 'circular', 'jaguar', NULL, NULL),
+(1000000034, '2011-12-18', NULL, 'circular', 'jumbo', NULL, NULL),
+(1000000035, '2011-12-18', NULL, 'circular', 'kelly', NULL, NULL),
+(1000000036, '2011-12-18', NULL, 'circular', 'leticia', NULL, NULL),
+(1000000037, '2011-12-18', NULL, 'circular', 'luma', NULL, NULL),
+(1000000038, '2011-12-18', NULL, 'circular', 'madrinha', NULL, NULL),
+(1000000039, '2011-12-18', NULL, 'circular', 'mag', NULL, NULL),
+(1000000040, '2011-12-18', NULL, 'circular', 'mara', NULL, NULL),
+(1000000041, '2011-12-18', NULL, 'circular', 'monica', NULL, NULL),
+(1000000042, '2011-12-18', NULL, 'circular', 'naomi', NULL, NULL),
+(1000000043, '2011-12-18', '2011-12-18', 'circular', 'nasa1', NULL, NULL),
+(1000000044, '2011-12-18', NULL, 'circular', 'nathalia', NULL, NULL),
+(1000000045, '2011-12-18', NULL, 'circular', 'omega', NULL, NULL),
+(1000000046, '2011-12-18', NULL, 'circular', 'paola', NULL, NULL),
+(1000000047, '2011-12-18', NULL, 'circular', 'patricia', NULL, NULL),
+(1000000048, '2011-12-18', NULL, 'circular', 'pitanga', NULL, NULL),
+(1000000049, '2011-12-18', NULL, 'circular', 'priscila', NULL, NULL),
+(1000000050, '2011-12-18', NULL, 'circular', 'rainha', NULL, NULL),
+(1000000051, '2011-12-18', NULL, 'circular', 'rita', NULL, NULL),
+(1000000052, '2011-12-18', NULL, 'circular', 'sabrina', NULL, NULL),
+(1000000053, '2011-12-18', NULL, 'circular', 'samambaia', NULL, NULL),
+(1000000054, '2011-12-18', NULL, 'circular', 'sandy', NULL, NULL),
+(1000000055, '2011-12-18', NULL, 'circular', 'sasha', NULL, NULL),
+(1000000056, '2011-12-18', NULL, 'circular', 'shakira', NULL, NULL),
+(1000000057, '2011-12-18', NULL, 'circular', 'stephanie', NULL, NULL),
+(1000000058, '2011-12-18', NULL, 'circular', 'talita', NULL, NULL),
+(1000000059, '2011-12-18', NULL, 'circular', 'tempra', NULL, NULL),
+(1000000060, '2011-12-18', NULL, 'circular', 'ursula', NULL, NULL),
+(1000000061, '2011-12-18', NULL, 'circular', 'valeria', NULL, NULL),
+(1000000062, '2011-12-18', NULL, 'circular', 'vanessa', NULL, NULL),
+(1000000063, '2011-12-18', NULL, 'circular', 'xuxa', NULL, NULL),
+(1000000064, '2011-12-18', NULL, 'circular', 'yona', NULL, NULL),
+(1000000065, '2011-12-18', NULL, 'circular', 'zelia', NULL, NULL),
+(1000000066, '2011-12-18', NULL, 'circular', 'zizi', NULL, NULL),
+(1000000067, '2011-12-18', '2011-12-18', 'circular', 'gaby', NULL, NULL),
+(1000000068, '2011-12-18', '2011-12-18', 'circular', 'isabel', NULL, NULL),
+(1000000069, '2011-12-18', '2011-12-18', 'circular', 'limousine', NULL, NULL),
+(1000000070, '2011-12-18', '2011-12-18', 'circular', 'giovanna', NULL, NULL),
+(1000000071, '2011-12-18', '2011-12-18', 'circular', 'katia', NULL, NULL),
+(1000000072, '2011-12-18', '2011-12-18', 'circular', 'harley', NULL, NULL),
+(1000000073, '2011-12-18', NULL, 'circular', 'nasa2', NULL, NULL),
+(1000000074, '2011-12-18', '2011-12-18', 'circular', 'tati', NULL, NULL),
+(1000000075, '2011-12-18', NULL, 'retilinea', 'cicciolina', NULL, NULL),
+(1000000076, '2011-12-18', NULL, 'retilinea', 'feiticeira', NULL, NULL),
+(1000000077, '2011-12-18', NULL, 'retilinea', 'lady', NULL, NULL),
+(1000000078, '2011-12-18', NULL, 'retilinea', 'moranguinho', NULL, NULL),
+(1000000079, '2011-12-18', NULL, 'retilinea', 'panycat', NULL, NULL),
+(1000000080, '2011-12-18', NULL, 'retilinea', 'paquita1', NULL, NULL),
+(1000000081, '2011-12-18', NULL, 'retilinea', 'paquita2', NULL, NULL),
+(1000000082, '2011-12-18', NULL, 'retilinea', 'paquita3', NULL, NULL),
+(1000000083, '2011-12-18', NULL, 'retilinea', 'paquita4', NULL, NULL),
+(1000000084, '2011-12-18', NULL, 'retilinea', 'paquitao', NULL, NULL),
+(1000000085, '2011-12-18', NULL, 'retilinea', 'tiazinha', NULL, NULL),
+(1000000086, '2011-12-18', NULL, 'retilinea', 'angelina', NULL, NULL),
+(1000000087, '2011-12-18', NULL, 'retilinea', 'beyonce', NULL, NULL);
