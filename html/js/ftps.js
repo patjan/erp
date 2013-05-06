@@ -154,6 +154,7 @@ JKY.process_load_success = function(response) {
 	var my_html = '';
 	for(var i=0; i<jky_count; i++) {
 		var my_row = JKY.rows[i];
+		var my_checkbox = '<input type="checkbox" onclick="JKY.set_checkbox(this)" row_id=' + my_row.id + ' />';
 		var my_start_date = JKY.fix_ymd2dmy(my_row.start_date);
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
