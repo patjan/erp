@@ -6,10 +6,10 @@
 var jky_program		= 'Tickets';
 var jky_table		= 'Tickets';
 var jky_select		= 'All';
-var jky_focus		= 'jky-user-role';
+var jky_focus		= 'jky-priority';
 var jky_filter		= '';
 var jky_specific	= '';
-var jky_sort_by		= 'user_role';
+var jky_sort_by		= 'created_at';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_count		=  0;
@@ -36,6 +36,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-app-select'			).change(function() {JKY.change_select  (this);});
 		$('#jky-app-filter'			).change(function() {JKY.change_filter  (this);});
 		$('#jky-action-add-new'		).click (function() {JKY.process_add_new	();});
+		$('#jky-action-print'		).click (function() {JKY.process_print		();});
 		$('#jky-action-save'		).click (function() {JKY.process_save		();});
 		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
 		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
@@ -46,7 +47,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-list'		).click (function() {JKY.display_list		();});
 		$('#jky-action-form'		).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
-		$('#jky-check-all'			).click (function() {JKY.process_check_all	();});	// not needed on version 0
+		$('#jky-check-all'			).click (function() {JKY.set_all_check  (this);});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -60,10 +61,10 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-help');
 		JKY.set_side_active('jky-help-tickets');
-		JKY.set_html('jky-status'		, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
-		JKY.set_html('jky-user-role'    , JKY.set_group_set('Controls', '', 'User Roles'	));
-		JKY.set_html('jky-user-resource', JKY.set_group_set('Controls', '', 'User Resources'));
-		JKY.set_html('jky-user-action'  , JKY.set_group_set('Controls', '', 'User Actions'	));
+		JKY.set_html('jky-status'			, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
+		JKY.set_html('jky-user-role'		, JKY.set_group_set('Controls', '', 'User Roles'		));
+		JKY.set_html('jky-user-resource'	, JKY.set_group_set('Controls', '', 'User Resources'	));
+		JKY.set_html('jky-user-action'		, JKY.set_group_set('Controls', '', 'User Actions'	));
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
@@ -72,39 +73,6 @@ JKY.set_initial_values = function(jky_program) {
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
-}
-
-JKY.display_list = function() {
-//	JKY.show('jky-app-filter'		);
-	JKY.show('jky-app-more'			);
-	JKY.hide('jky-app-navs'			);
-	JKY.hide('jky-app-add-new'		);
-	JKY.show('jky-app-counters'		);
-	JKY.show('jky-action-add-new'	);
-	JKY.hide('jky-action-save'		);
-	JKY.hide('jky-action-copy'		);
-	JKY.hide('jky-action-delete'	);
-	JKY.hide('jky-action-cancel'	);
-//	JKY.show('jky-action-publish'	);
-	JKY.show('jky-app-table'		);
-	JKY.hide('jky-app-form'			);
-	JKY.load_table();
-}
-
-JKY.display_form = function(index) {
-//	JKY.show('jky-app-filter'		);
-	JKY.hide('jky-app-more'			);
-	JKY.show('jky-app-navs'			);
-	JKY.hide('jky-app-add-new'		);
-	JKY.show('jky-app-counters'		);
-	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-save'		);
-	JKY.show('jky-action-copy'		);
-	JKY.show('jky-action-delete'	);
-	JKY.show('jky-action-cancel'	);
-	JKY.hide('jky-app-table'		);
-	JKY.show('jky-app-form'			);
-	JKY.display_row(index);
 }
 
 JKY.change_select = function(event){
@@ -129,17 +97,34 @@ JKY.display_next = function() {
 	JKY.display_row(jky_index);
 }
 
-JKY.display_row = function(index) {
-	JKY.show('jky-form-tabs');
-	jky_index = index;
-	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
-	JKY.rows[index-1] = JKY.row;
-	JKY.set_html('jky-app-index', index);
-	JKY.set_option	('jky-status'			, JKY.row.status		);
-	JKY.set_value	('jky-user-role'		, JKY.row.user_role		);
-	JKY.set_value	('jky-user-resource'	, JKY.row.user_resource	);
-	JKY.set_value	('jky-user-action'		, JKY.row.user_action	);
-	JKY.set_focus(jky_focus);
+JKY.set_all_check = function(the_index) {
+	if ($(the_index).is(':checked')) {
+		$('#jky-table-body .jky-checkbox input').each(function() {$(this).attr('checked', 'checked');})
+	}else{
+		$('#jky-table-body .jky-checkbox input').each(function() {$(this).removeAttr('checked');})
+	}
+}
+
+JKY.set_checkbox = function(the_index) {
+	JKY.skip_form = true;
+}
+
+JKY.display_list = function() {
+//	JKY.show('jky-app-filter'		);
+	JKY.show('jky-app-more'			);
+	JKY.hide('jky-app-navs'			);
+	JKY.hide('jky-app-add-new'		);
+	JKY.show('jky-app-counters'		);
+	JKY.show('jky-action-add-new'	);
+	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-save'		);
+	JKY.hide('jky-action-copy'		);
+	JKY.hide('jky-action-delete'	);
+	JKY.hide('jky-action-cancel'	);
+//	JKY.show('jky-action-publish'	);
+	JKY.show('jky-app-table'		);
+	JKY.hide('jky-app-form'			);
+	JKY.load_table();
 }
 
 JKY.load_table = function() {
@@ -164,8 +149,9 @@ JKY.process_load_success = function(response) {
 	var my_html = '';
 	for(var i=0; i<jky_count; i++) {
 		var my_row = JKY.rows[i];
+		var my_checkbox = '<input type="checkbox" onclick="JKY.set_checkbox(this)" row_id=' + my_row.id + ' />';
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
-				+  '<td class="jky-checkbox"		><input type="checkbox"		 /></td>'
+				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
 				+  '<td class="jky-user-role"		>' + my_row.user_role		+ '</td>'
 				+  '<td class="jky-user-resource"	>' + my_row.user_resource	+ '</td>'
 				+  '<td class="jky-user-action"		>' + my_row.user_action		+ '</td>'
@@ -180,6 +166,40 @@ JKY.process_load_success = function(response) {
 	JKY.hide('jky-loading');
 }
 
+JKY.display_form = function(index) {
+	if (JKY.skip_form) {
+		JKY.skip_form = false;
+		return;
+	}
+//	JKY.show('jky-app-filter'		);
+	JKY.hide('jky-app-more'			);
+	JKY.show('jky-app-navs'			);
+	JKY.hide('jky-app-add-new'		);
+	JKY.show('jky-app-counters'		);
+	JKY.show('jky-action-add-new'	);
+	JKY.show('jky-action-print'		);
+	JKY.show('jky-action-save'		);
+	JKY.show('jky-action-copy'		);
+	JKY.show('jky-action-delete'	);
+	JKY.show('jky-action-cancel'	);
+	JKY.hide('jky-app-table'		);
+	JKY.show('jky-app-form'			);
+	JKY.display_row(index);
+}
+
+JKY.display_row = function(index) {
+	JKY.show('jky-form-tabs');
+	jky_index = index;
+	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
+	JKY.rows[index-1] = JKY.row;
+	JKY.set_html('jky-app-index', index);
+	JKY.set_option	('jky-status'			, JKY.row.status		);
+	JKY.set_value	('jky-user-role'		, JKY.row.user_role		);
+	JKY.set_value	('jky-user-resource'	, JKY.row.user_resource	);
+	JKY.set_value	('jky-user-action'		, JKY.row.user_action	);
+	JKY.set_focus(jky_focus);
+}
+
 JKY.process_add_new = function() {
 	JKY.hide('jky-form-tabs');
 //	JKY.hide('jky-app-filter'		);
@@ -188,6 +208,7 @@ JKY.process_add_new = function() {
 	JKY.show('jky-app-add-new'		);
 	JKY.hide('jky-app-counters'		);
 	JKY.hide('jky-action-add-new'	);
+	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
@@ -283,6 +304,23 @@ JKY.process_delete_success = function(response) {
 
 JKY.process_cancel = function() {
 	JKY.display_list();
+}
+
+/**
+ * process print
+ */
+JKY.process_print = function() {
+	if ($('#jky-app-form').css('display') == 'block') {
+		JKY.print_row(JKY.row.id);
+	}else{
+		$('#jky-table-body .jky-checkbox input:checked').each(function() {
+			JKY.print_row($(this).attr('row_id'));
+		})
+	}
+};
+
+JKY.print_row = function(the_id) {
+	JKY.display_message('print_row: ' + the_id);
 }
 
 /**

@@ -9,6 +9,7 @@
 	<div>
 		<div id='jky-app-actions'>
 			<button id='jky-action-add-new'		class='btn btn-success' type='button'><span>Add New	</span></button>
+			<button id='jky-action-print'		class='btn btn-success' type='button'><span>Print	</span></button>
 		</div>
 		<div id='jky-app-more'>
 			<button id='jky-action-export'		class='btn btn-success' type='button'><span>Export	</span></button>
@@ -38,7 +39,6 @@
 .jky-form-value			{width:100px;}
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
-#jky-check-all			{width: 30px;}
 .datepicker-dropdown:after	{left:432px;}
 
 
@@ -46,7 +46,7 @@
 .jky-product-type		{width:100px; text-align:center;}
 .jky-start-date			{width:100px; text-align:center;}
 
-#jky-name				{width:300px; text-transform:capitalize; font-size:16px; font-weight:bold;}
+#jky-name				{width:300px; font-size:16px; font-weight:bold; text-transform:capitalize;}
 #jky-product-type		{width:230px;}
 #jky-product-type span	{padding:4px 20px 0 4px; vertical-align:bottom;}
 
@@ -61,7 +61,7 @@
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th    id='jky-check-all'		><input type='checkbox' /></th>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' /></th>
 			<th class='jky-name'			><span>Name				</span></th>
 			<th class='jky-product-type'	><span>Product Type		</span></th>
 			<th class='jky-start-date'		><span>Start Date		</span></th>
@@ -95,7 +95,7 @@
 -->
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input  id='jky-name'			class='jky-form-value'		placeholder='Name'				/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input		id='jky-name'		class='jky-form-value'		placeholder='Name'				/></div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Product Type</span>:</div>
 				<div id='jky-product-type' class='jky-form-value'>

@@ -9,6 +9,7 @@
 	<div>
 		<div id='jky-app-actions'>
 			<button id='jky-action-add-new'		class='btn btn-success' type='button'><span>Add New	</span></button>
+			<button id='jky-action-print'		class='btn btn-success' type='button'><span>Print	</span></button>
 		</div>
 		<div id='jky-app-more'>
 			<button id='jky-action-export'		class='btn btn-success' type='button'><span>Export	</span></button>
@@ -35,7 +36,6 @@
 .jky-form-value			{width:300px;}
 .jky-form-value input	{width:300px;}
 .jky-checkbox			{width: 30px; text-align:center;}
-#jky-check-all			{width: 30px;}
 
 .jky-status				{width: 80px; text-align:center;}
 .jky-sentence			{width:300px; text-align:left  ;}
@@ -48,7 +48,7 @@
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th    id='jky-check-all'		><input type='checkbox' /></th>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' /></th>
 			<th class='jky-sentence'		><span>Sentence			</span></th>
 			<th class='jky-created-at'		><span>Created At		</span></th>
 			<th class='jky-updated-at'		><span>Updated At		</span></th>
@@ -103,7 +103,6 @@
 		<div class='jky-clear'></div>
 	</div>
 		</div>
-		<div class='jky-clear'></div>
 	</div>
 
 	<div id='jky-form-footer'></div>

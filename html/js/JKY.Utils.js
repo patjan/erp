@@ -1509,7 +1509,7 @@ JKY.get_rows = function(table_name, id) {
  */
 JKY.process_profile = function() {
 	JKY.display_trace('process_profile');
-	JKY.display_message('soon: Process Profile');
+	JKY.show_modal('jky-profile');
 }
 
 /**

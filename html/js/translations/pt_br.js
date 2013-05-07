@@ -95,6 +95,7 @@ JKY.translations =
 , "Production":"Produção"
 , "Production Orders":"Ordens de Produção"
 , "Products":"Produtos"
+, "Profile":"Perfil"
 , "Publish":"Publicar"
 , "Punho":"Punho"
 , "Purchase Orders":"Ordens de Compra"

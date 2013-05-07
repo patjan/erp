@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS Tickets
 , company_id		BIGINT				DEFAULT NULL
 , opened_by			BIGINT				DEFAULT NULL
 , opened_at			DATETIME			DEFAULT NULL
-, assigned_by		BIGINT				DEFAULT NULL
+, assigned_to		BIGINT				DEFAULT NULL
 , assigned_at		DATETIME			DEFAULT NULL
 , closed_by			BIGINT				DEFAULT NULL
 , closed_at			DATETIME			DEFAULT NULL
