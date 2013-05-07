@@ -129,6 +129,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-user-role'		, JKY.set_group_set('Controls', '', 'User Roles'	));
 		JKY.set_html('jky-user-resource'	, JKY.set_group_set('Controls', '', 'User Resources'));
 		JKY.set_html('jky-user-action'		, JKY.set_group_set('Controls', '', 'User Actions'	));
+		JKY.set_html('jky-priority'			, JKY.set_group_set('Controls', '', 'Priorities'	));
 
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
@@ -273,6 +274,12 @@ JKY.process_load_success = function(response) {
 				+  '<td class="jky-created-at"		>' + my_created_date		+ '</td>'
 				+  '<td class="jky-updated-at"		>' + my_updated_date		+ '</td>'
 				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
+				+  '<td class="jky-opened-at"		>' + my_row.opened_at		+ '</td>'
+				+  '<td class="jky-opened-by"		>' + my_row.opened_by		+ '</td>'
+				+  '<td class="jky-priority"		>' + my_row.priority		+ '</td>'
+				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
+				+  '<td class="jky-description"		>' + my_row.description		+ '</td>'
+				+  '<td class="jky-resolution"		>' + my_row.resolution		+ '</td>'
 				+  '</tr>'
 				;
 	}
@@ -631,6 +638,11 @@ JKY.get_form_set = function() {
 		+          'status=\'' + JKY.get_value	('jky-status'				) + '\''
 		+        ', locale=\'' +				 'en_us'					  + '\''
 		+      ', sentence=\'' + JKY.get_value	('en_us'					) + '\''
+
+		+          'status=\'' + JKY.get_value	('jky-status'			) + '\''
+		+      ', priority=\'' + JKY.get_value	('jky-priority'			) + '\''
+		+   ', description=\'' + JKY.get_value	('jky-description'		) + '\''
+		+    ', resolution=\'' + JKY.get_value	('jky-resolution'		) + '\''
 		;
 	var my_date = '';
 	my_date = JKY.get_value('jky-start-value');
