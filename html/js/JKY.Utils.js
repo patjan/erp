@@ -111,7 +111,6 @@ JKY.setTableWidthHeight = function(tableId, width, off_width, minHeight, offHeig
  * @param	program_name
  */
 JKY.re_direct = function(program_name) {
-alert('re direct to ' + program_name);
 	if (typeof program_name == 'undefined') {
 		location = '/home';
 	}else{
@@ -131,6 +130,61 @@ JKY.run_when_is_ready = function(template_name, function_name) {
 		function_name();
 	}else{
 		setTimeout( function() {JKY.run_when_is_ready(template_name, function_name);}, 100);
+	}
+}
+
+/**
+ * load html into specific id
+ * wait until the id is rendered
+ * @param	id_name
+ * @param	file_name
+ */
+JKY.load_html = function(id_name, file_name) {
+//	JKY.display_trace('load_html: ' + id_name);
+	if ($('#' + id_name).length > 0) {
+		$('#' + id_name).load('../' + file_name);						// production mode
+//		$('#' + id_name).load('../' + file_name + '?' + Math.random());	//	testing mode
+//		JKY.display_trace('load_html: ' + id_name + ' DONE');
+		JKY.t_tag	('jky-application', 'span');
+		JKY.t_input	('jky-application', 'placeholder');
+		JKY.t_button('jky-application', 'title');
+	}else{
+		setTimeout(function() {JKY.load_html(id_name, file_name);}, 100);
+	}
+}
+
+/**
+ * load handlebar into specific template
+ * @param	template_name
+ * @param	file_name
+ */
+JKY.load_hb = function(template_name, file_name) {
+	JKY.display_trace('load_hb: ' + template_name);
+	if ($('#jky-hb').length > 0) {
+		$('#jky-hb').load('../hb/' + file_name, function(src) {
+			Em.TEMPLATES[template_name] = Em.Handlebars.compile(src);
+			$('#jky-hb').html('');
+		});
+		JKY.display_trace('load_hb: ' + template_name + ' DONE');
+	}else{
+		setTimeout(function() {JKY.load_hb(template_name, file_name);}, 100);
+	}
+}
+
+/**
+ * replace in template into specific id
+ * wait until the template is loaded
+ * @param	template_name
+ * @param	id_name
+ * @return	(new)View
+ */
+JKY.replace_in = function(template_name, id_name, view_object) {
+	JKY.display_trace('replace_in: ' + template_name);
+	if (Em.TEMPLATES[template_name] && $('#' + id_name)) {
+		view_object.replaceIn('#' + id_name);
+		JKY.display_trace('replace_in: ' + template_name + ' DONE');
+	}else{
+		setTimeout(function() {JKY.replace_in(template_name, id_name, view_object)}, 100);
 	}
 }
 
@@ -174,7 +228,7 @@ alert('the_text: ' + the_text);
 			}
 		}
 	}
-    return my_result;
+	return my_result;
 }
 
 JKY.t_tag = function(the_id, the_tag) {
@@ -199,25 +253,6 @@ JKY.t_button = function(the_id, the_attr) {
 }
 
 /**
- * load html into specific id
- * wait until the id is rendered
- * @param	id_name
- * @param	file_name
- */
-JKY.load_html = function(id_name, file_name) {
-//	JKY.display_trace('load_html: ' + id_name);
-	if ($('#' + id_name).length > 0) {
-		$('#' + id_name).load('../' + file_name);
-//		JKY.display_trace('load_html: ' + id_name + ' DONE');
-		JKY.t_tag	('jky-application', 'span');
-		JKY.t_input	('jky-application', 'placeholder');
-		JKY.t_button('jky-application', 'title');
-	}else{
-		setTimeout(function() {JKY.load_html(id_name, file_name);}, 100);
-	}
-}
-
-/**
  * process action
  * @param	action
  */
@@ -230,41 +265,6 @@ JKY.process_action = function(action) {
 		JKY.start_program(action);
 		JKY.visible('jky-application');
 //	});
-}
-
-/**
- * load handlebar into specific template
- * @param	template_name
- * @param	file_name
- */
-JKY.load_hb = function(template_name, file_name) {
-	JKY.display_trace('load_hb: ' + template_name);
-	if ($('#jky-hb').length > 0) {
-		$('#jky-hb').load('../hb/' + file_name, function(src) {
-			Em.TEMPLATES[template_name] = Em.Handlebars.compile(src);
-			$('#jky-hb').html('');
-		});
-		JKY.display_trace('load_hb: ' + template_name + ' DONE');
-	}else{
-		setTimeout(function() {JKY.load_hb(template_name, file_name);}, 100);
-	}
-}
-
-/**
- * replace in template into specific id
- * wait until the template is loaded
- * @param	template_name
- * @param	id_name
- * @return	(new)View
- */
-JKY.replace_in = function(template_name, id_name, view_object) {
-	JKY.display_trace('replace_in: ' + template_name);
-	if (Em.TEMPLATES[template_name] && $('#' + id_name)) {
-		view_object.replaceIn('#' + id_name);
-		JKY.display_trace('replace_in: ' + template_name + ' DONE');
-	}else{
-		setTimeout(function() {JKY.replace_in(template_name, id_name, view_object)}, 100);
-	}
 }
 
 /**
@@ -305,36 +305,6 @@ JKY.fix_br = function(string_value){
 	}else{
 		return '&nbsp;';
 	}
-}
-
-/**
- * get now date or time
- * @return yyyy-mm-dd
- */
-JKY.get_now = function(the_format) {
-	if (typeof the_format == 'undefined') {
-		the_format = 'yyyy-mm-dd';
-	}
-	var my_date = new Date();
-//	return my_date.format(the_format);
-	return my_date;
-}
-
-/**
- * short date time
- * @param	date_time	yyyy-mm-dd hh:mm:ss
- * @return	yyyy-mm-dd
- * @return	mm-dd hh:ss
- */
-JKY.short_date = function(the_date_time){
-	var my_date = '';
-	if (the_date_time != null) {
-		my_date = the_date_time.substr(0, 10);
-		if (my_date == JKY.get_now()) {
-			my_date = the_date_time.substr(5, 11);
-		}
-	}
-	return my_date;
 }
 
 /**
@@ -414,38 +384,6 @@ JKY.fix_dmy2ymd = function(date){
 }
 
 /**
- * set table width and height
- * adjust height minus offset height, but not less than minimum height
- * @param	tableId
- * @param	width
- * @param	minHeight
- * @param	offHeight
- */
-JKY.XsetTableWidthHeight = function(tableId, width, minHeight, offHeight) {
-	/*
-	 * jquery 1.7.x the function .height() was working for all 4 browsers (IE,FF,CH,SF)
-	 * but on 1.8.x it was working only on IE
-	 */
-	var myHeight = $(window).height();
-	if (!JKY.is_browser('msie')) {
-		myHeight = document.body[ "clientHeight" ];
-	}
-	myHeight -= offHeight;
-
-	if (myHeight < minHeight) {
-		myHeight = minHeight;
-	}
-	JKY.display_trace('setTableWidthHeight, width: ' + width + ', height: ' + myHeight);
-//	$('#' + tableId).tableScroll({width :width		});
-//	$('#' + tableId).tableScroll({height:myHeight	});
-setTimeout(function() {
-//$('#' + tableId).tableScroll({width:width, height:270});
-$('#' + tableId).tableScroll({width:width, height:myHeight});
-$('#scroll-bar').css('width', '4px');
-}, 100);
-}
-
-/**
  * display message on right bottom corner
  * it will stay be displayed long enought to be read
  * if provided id_name, will set focus after timeout
@@ -508,6 +446,36 @@ JKY.display_trace = function(message){
 }
 
 /**
+ * get now date or time
+ * @return yyyy-mm-dd
+ */
+JKY.get_now = function(the_format) {
+	if (typeof the_format == 'undefined') {
+		the_format = 'yyyy-mm-dd';
+	}
+	var my_date = new Date();
+//	return my_date.format(the_format);
+	return my_date;
+}
+
+/**
+ * short date time
+ * @param	date_time	yyyy-mm-dd hh:mm:ss
+ * @return	yyyy-mm-dd
+ * @return	mm-dd hh:ss
+ */
+JKY.short_date = function(the_date_time){
+	var my_date = '';
+	if (the_date_time != null) {
+		my_date = the_date_time.substr(0, 10);
+		if (my_date == JKY.get_now()) {
+			my_date = the_date_time.substr(5, 11);
+		}
+	}
+	return my_date;
+}
+
+/**
  * get html content of specific id
  * @param	idName
  * @return	html
@@ -522,7 +490,11 @@ JKY.get_html = function(idName){
  * @param	html
  */
 JKY.set_html = function(id_name, html){
-	$('#' + id_name).html(html);
+	if ($('#' + id_name).length > 0) {
+		$('#' + id_name).html(html);
+	}else{
+		setTimeout(function() {CX.set_html(id_name, html);}, 100);
+	}
 }
 
 /**
@@ -753,7 +725,6 @@ JKY.reset_all_active = function(id_name){
  * @param	id_name
  */
 JKY.show = function(id_name){
-//	$('#' + id_name).css('display', 'block');
 	$('#' + id_name).show();
 }
 
@@ -762,9 +733,12 @@ JKY.show = function(id_name){
  * @param	id_name
  */
 JKY.hide = function(id_name){
-//	$('#' + id_name).css('display', 'none');
-	$('#' + id_name).hide();
-}
+	if (id_name == 'jky-loading') {
+//		the delay of 1 sec is just ilusion for the user to perceive the end of loading 
+		setTimeout(function()	{$('#jky-loading').hide();}, 1000);
+	}else{
+		$('#' + id_name).hide();
+	}
 
 /**
  * hide specific id name
@@ -850,7 +824,7 @@ JKY.scroll_to_top = function(class_name){
 JKY.is_scroll_at_end = function(class_name){
 	var my_id = $('.' + class_name)[0];
 	var my_offset = my_id.scrollHeight - my_id.scrollTop - my_id.offsetHeight;
-	if (my_offset < 0) {
+	if (my_offset < 100) {
 		return true;
 	}else{
 		return false;
@@ -914,6 +888,32 @@ JKY.hide_layer = function(layer) {
      $('#' + shadow_name).hide();
 }
 
+/**
+ * set string
+ * @param	string
+ * @return	string
+ */
+JKY.set_string = function(the_string) {
+	if (the_string) {
+		return the_string;
+	}else{
+		return '&nbsp;';
+	}
+}
+
+/**
+ * set icon file
+ * @param	file-id
+ * @return	image
+ */
+CX.set_icon_file = function(the_file_id) {
+	if (the_file_id) {
+		return '<i class="icon-file"></i>';
+	}else{
+		return '&nbsp;';
+	}
+}
+
 //        JKY.set_focus('user_name', 100)
 //        ----------------------------------------------------------------------
 JKY.set_focus = function(the_name, the_delay) {
@@ -928,6 +928,92 @@ JKY.set_focus = function(the_name, the_delay) {
 		setTimeout( function() {
 			JKY.set_focus(the_name, the_delay);
 		}, 100);
+	}
+}
+
+/**
+ * convert all [\n] to [<br>]
+ */
+JKY.nl2br = function(string)		{return string.replace(/\n/g, '<br>');}
+
+/**
+ * convert all [<br>] to [\n]
+ */
+JKY.br2nl = function(string)		{return string.replace(/<br>/g, "\n").replace(/<BR>/g, "\n");}
+
+/*
+ *	json to array
+ */
+JKY.json2Array = function(json) {
+	JKY.display_trace('JKY.json2Array');
+	var array = {'Status':'error', 'Error':{'Message':'Error, contact IT support'}};
+	try{
+		array = eval("(" + json + ")");
+	} catch(error) {
+		alert('Error: ' + error);
+	}
+	return array;
+}
+
+/**
+ * convert all
+ * [&] to [&amp;	]
+ * [<] to [&lt;		]
+ * [>] to [&gl;		]
+ * ["] to [&quot;	]
+ * ['] to [&#039;	]
+ * [\] to [&#092;	]
+ * [t] to [ ]
+ */
+JKY.encode = function(string) {
+  string = string.replace( /&/g, "&amp;"	);
+  string = string.replace( />/g, "&gt;"		);
+  string = string.replace( /</g, "&lt;"		);
+  string = string.replace( /"/g, "&quot;"	);
+  string = string.replace( /'/g, "&#039;"	);
+  string = string.replace(/\\/g, "&#092;"	);
+  string = string.replace(/\t/g, " "		);
+  return string;
+}
+
+/**
+ * convert all
+ * [&amp;	] to [&]
+ * [&lt;	] to [<]
+ * [&gl;	] to [>]
+ * [&quot;	] to ["]
+ * [&#039;	] to [']
+ * [&#092;	] to [\]
+ * [&nbsp;	] to [ ]
+ */
+JKY.decode = function(string)	{
+	string = string.replace(/&amp;/g , '&' );
+	string = string.replace(/&lt;/g	 , '<' );
+	string = string.replace(/&gt;/g  , '>' );
+	string = string.replace(/&quot;/g, '"' );
+	string = string.replace(/&#039;/g, "'" );
+	string = string.replace(/&#092;/g, "\\");
+	string = string.replace(/&nbsp;/g, ' ' );
+	return string;
+}
+
+/*
+ *	capitalise only first character
+ */
+JKY.capitalise = function(string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+JKY.max = function(max_size, string) {
+	if (string == null) {
+		return '&nbsp;';
+	}else{
+		var my_length = string.length;
+		if (my_length < max_size) {
+			return string;
+		}else{
+			return string.substr(0, max_size);
+		}
 	}
 }
 
@@ -995,6 +1081,43 @@ JKY.is_email = function(email) {
      var  pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
      return pattern.test(email);
 }
+
+/*
+ * is required, if empty then display message [x...x is required]
+ *
+ * @param	value
+ * @param	label
+ * 
+ * @return	false		(if value is empty)		
+ * @return	true		(if value is not empty)
+ */
+JKY.is_required = function(value, label) {
+	if (value == '') {
+		JKY.display_message(label + ' is required.');
+		return false;
+	}else{
+		return true;
+	}
+};
+
+/*
+ * is numeric, if not then display message [x...x must be numeric]
+ *
+ * @param	value
+ * @param	label
+ * 
+ * @return	false		(if value is empty)		
+ * @return	true		(if value is not empty)
+ */
+JKY.is_numeric = function(value, label) {
+	if (value == ''
+	||  isNaN(value)) {
+		JKY.display_message(label + ' must be numeric.');
+		return false;
+	}else{
+		return true;
+	}
+};
 
 //        date format mm/dd/yyyy
 JKY.is_date = function(date) {

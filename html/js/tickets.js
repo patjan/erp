@@ -48,7 +48,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-form'		).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'			).click (function() {JKY.set_all_check  (this);});
-		$('#jky-opened_at'			).datepicker();
+		$('#jky-opened-at'			).datepicker();
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -225,6 +225,11 @@ JKY.process_add_new = function() {
 JKY.display_new = function() {
 	jky_index = 0;
 	JKY.set_option	('jky-status'			, 'Active');
+	JKY.set_value	('jky-opened-by'		, '');
+	JKY.set_value	('jky-opened-at'		, '');
+	JKY.set_value	('jky-priority'			, '');
+	JKY.set_value	('jky-description'		, '');
+	JKY.set_value	('jky-resolution'		, '');
 	JKY.set_focus(jky_focus);
 }
 
