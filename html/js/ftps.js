@@ -77,7 +77,6 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-production');
 		JKY.set_side_active('jky-production-ftps');
-//		JKY.set_html('jky-product'			, JKY.set_radio('Configs', '', 'Machine Types' ));
 		JKY.set_html('jky-machine'			, JKY.set_table_options('Machines', 'name', '', null));
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
@@ -276,7 +275,6 @@ JKY.display_new = function() {
 
 JKY.get_form_set = function() {
 	var my_set = ''
-//		+            'code=\'' + JKY.get_value	('jky-code'				) + '\''
 		+      'product_id=  ' + JKY.get_value	('jky-product-id'		)
 		+    ', machine_id=  ' + JKY.get_value	('jky-machine'			)
 		+      ', diameter=\'' + JKY.get_value	('jky-diameter'			) + '\''
