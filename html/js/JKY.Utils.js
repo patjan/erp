@@ -1510,6 +1510,14 @@ JKY.get_rows = function(table_name, id) {
 JKY.process_profile = function() {
 	JKY.display_trace('process_profile');
 	JKY.show_modal('jky-profile');
+	var my_user_name = JKY.Session.get_value('user_name');
+	var my_user_id	 = JKY.Session.get_value('user_id'	);
+	var my_user = JKY.get_row('Contacts', my_user_id);
+	JKY.set_value('jky-profile-user-name'	, my_user_name		);
+	JKY.set_value('jky-profile-first-name'	, my_user.first_name);
+	JKY.set_value('jky-profile-last-name'	, my_user.last_name	);
+	JKY.set_value('jky-profile-email'		, my_user.email		);
+	JKY.set_focus('jky-profile-user-name');
 }
 
 /**
