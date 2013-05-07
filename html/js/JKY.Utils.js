@@ -493,7 +493,7 @@ JKY.set_html = function(id_name, html){
 	if ($('#' + id_name).length > 0) {
 		$('#' + id_name).html(html);
 	}else{
-		setTimeout(function() {CX.set_html(id_name, html);}, 100);
+		setTimeout(function() {JKY.set_html(id_name, html);}, 100);
 	}
 }
 
@@ -734,11 +734,12 @@ JKY.show = function(id_name){
  */
 JKY.hide = function(id_name){
 	if (id_name == 'jky-loading') {
-//		the delay of 1 sec is just ilusion for the user to perceive the end of loading 
+//		the delay of 1 sec is just ilusion for the user to perceive the end of loading
 		setTimeout(function()	{$('#jky-loading').hide();}, 1000);
 	}else{
 		$('#' + id_name).hide();
 	}
+}
 
 /**
  * hide specific id name
@@ -906,7 +907,7 @@ JKY.set_string = function(the_string) {
  * @param	file-id
  * @return	image
  */
-CX.set_icon_file = function(the_file_id) {
+JKY.set_icon_file = function(the_file_id) {
 	if (the_file_id) {
 		return '<i class="icon-file"></i>';
 	}else{
@@ -1087,8 +1088,8 @@ JKY.is_email = function(email) {
  *
  * @param	value
  * @param	label
- * 
- * @return	false		(if value is empty)		
+ *
+ * @return	false		(if value is empty)
  * @return	true		(if value is not empty)
  */
 JKY.is_required = function(value, label) {
@@ -1105,8 +1106,8 @@ JKY.is_required = function(value, label) {
  *
  * @param	value
  * @param	label
- * 
- * @return	false		(if value is empty)		
+ *
+ * @return	false		(if value is empty)
  * @return	true		(if value is not empty)
  */
 JKY.is_numeric = function(value, label) {
