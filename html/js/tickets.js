@@ -61,10 +61,8 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-help');
 		JKY.set_side_active('jky-help-tickets');
-		JKY.set_html('jky-status'			, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
-		JKY.set_html('jky-user-role'		, JKY.set_group_set('Controls', '', 'User Roles'		));
-		JKY.set_html('jky-user-resource'	, JKY.set_group_set('Controls', '', 'User Resources'	));
-		JKY.set_html('jky-user-action'		, JKY.set_group_set('Controls', '', 'User Actions'	));
+		JKY.set_html('jky-status'		, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
+		JKY.set_html('jky-priority'    , JKY.set_group_set('Controls', '', 'Priorities'	));
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
@@ -151,10 +149,12 @@ JKY.process_load_success = function(response) {
 		var my_row = JKY.rows[i];
 		var my_checkbox = '<input type="checkbox" onclick="JKY.set_checkbox(this)" row_id=' + my_row.id + ' />';
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
-				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
-				+  '<td class="jky-user-role"		>' + my_row.user_role		+ '</td>'
-				+  '<td class="jky-user-resource"	>' + my_row.user_resource	+ '</td>'
-				+  '<td class="jky-user-action"		>' + my_row.user_action		+ '</td>'
+				+  '<td class="jky-checkbox"		><input type="checkbox"		 /></td>'
+				+  '<td class="jky-opened-at"		>' + my_row.opened_at + '</td>'
+				+  '<td class="jky-opened-by"		>' + my_row.opened_by + '</td>'
+				+  '<td class="jky-priority"		>' + my_row.priority + '</td>'
+				+  '<td class="jky-description"	>' + my_row.description + '</td>'
+				+  '<td class="jky-resolution"		>' + my_row.resolution	+ '</td>'
 				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
 				+  '</tr>'
 				;
@@ -230,9 +230,9 @@ JKY.display_new = function() {
 JKY.get_form_set = function() {
 	var my_set = ''
 		+          'status=\'' + JKY.get_value	('jky-status'			) + '\''
-		+     ', user_role=\'' + JKY.get_value	('jky-user-role'		) + '\''
-		+ ', user_resource=\'' + JKY.get_value	('jky-user-resource'	) + '\''
-		+   ', user_action=\'' + JKY.get_value	('jky-user-action'		) + '\''
+		+     ', priority=\'' + JKY.get_value	('jky-priority'		) + '\''
+		+ ', description=\'' + JKY.get_value	('jky-description'	) + '\''
+		+   ', resolution=\'' + JKY.get_value	('jky-resolution'		) + '\''
 		;
 	return my_set;
 }
