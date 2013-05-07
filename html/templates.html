@@ -39,8 +39,8 @@
 .jky-status				{width:100px; text-align:center;}
 .jky-opened-date		{width:100px; text-align:center;}
 
-#jky-status				{width:140px;}
 #jky-priority			{width:140px;}
+#jky-status				{width:140px;}
 #jky-description		{height:100px; width:500px;}
 #jky-resolution			{height:100px; width:500px;}
 </style>
@@ -86,13 +86,13 @@
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>        Opened By</span>:</div>
+				<div class='jky-form-label'><span>        Created By</span>:</div>
 				<input id='jky-opened-by' class='jky-form-value' placeholder='Name' />
 			</div>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>         Opened At</span>:</div>
-				<div id='jky-opened-at-date' date-format='dd-mm-yyyy'>
-					<input id='jky-opened-at-value' class='span2' type='text' readonly='' value='' size='16' />
+				<div class='jky-form-label'><span>        Created At</span>:</div>
+				<div id='jky-opened-at-date' date-date-format='dd-mm-yyyy'>
+					<input id='jky-opened-at-value' class=''"span2' type='text' readonly='' value='' size='16' />
 				</div>
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>		   Priority</span>:</div>
@@ -107,6 +107,7 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span>		 Resolution</span>:</div>
 				<textarea id='jky-resolution' placeholder='Resolution'></textarea>
 			</div>
+</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -126,4 +127,4 @@
 </div>
 
 <div id='jky-body-loaded'></div>
-<script src='js/tickets.js'></script>
+<script src='js/templates.js'></script>
