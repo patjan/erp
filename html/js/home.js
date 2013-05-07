@@ -57,6 +57,7 @@ JKY.display_trace('set_all_events_home');
 		$('#jky-admin-history'			).click (function() {JKY.process_action('history'		);});
 		$('#jky-support-controls'		).click (function() {JKY.process_action('controls'		);});
 		$('#jky-support-permissions'	).click (function() {JKY.process_action('permissions'	);});
+		$('#jky-support-templates'	).click (function() {JKY.process_action('templates'	);});
 		$('#jky-support-translations'	).click (function() {JKY.process_action('translations'	);});
 	}else{
 		setTimeout(function() {JKY.set_all_events_home();}, 100);
