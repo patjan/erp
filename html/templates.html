@@ -49,11 +49,14 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' /></th>
-			<th class='jky-opened-by'		><span>Opened At		</span></th>
-			<th class='jky-opened-at'		><span>Opened By		</span></th>
-			<th class='jky-priority'		><span>Priority			</span></th>
-			<th class='jky-description'		><span>Description		</span></th>
-			<th class='jky-resolution'		><span>Resolution		</span></th>
+			<th class='jky-opened-by'		><span>Created By		</span></th>
+			<th class='jky-opened-at'		><span>Created At		</span></th>
+			<th class='jky-priority'		><span>Template Name	</span></th>
+			<th class='jky-description'		><span>Template Type	</span></th>
+			<th class='jky-resolution'		><span>Template Subject	</span></th>
+			<th class='jky-resolution'		><span>Template Body	</span></th>
+			<th class='jky-resolution'		><span>Template SQL		</span></th>
+			<th class='jky-resolution'		><span>Description		</span></th>
 			<th class='jky-status'			><span>Status			</span></th>
 		</tr>
 	</thead>
@@ -91,8 +94,9 @@
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>        Created At</span>:</div>
-				<div id='jky-opened-at-date' date-date-format='dd-mm-yyyy'>
-					<input id='jky-opened-at-value' class=''"span2' type='text' readonly='' value='' size='16' />
+				<div id='jky-created-date' class="input-append date" date-date-format='dd-mm-yyyy'>
+					<input id='jky-created-value' class='span2' size='16' value=''  type='text' readonly />
+					<span class="add-on"><i class="icon-th"></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line'>
@@ -120,8 +124,8 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span>		Description</span>:</div>
 				<textarea id='jky-description' placeholder='Description'></textarea>
 			</div>
-</div>
 		</div>
+	</div>
 		<div class='jky-clear'></div>
 		<br>
 		<div>
