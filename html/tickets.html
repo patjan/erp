@@ -32,7 +32,7 @@
 
 <style>
 .jky-form-label			{width:160px;}
-.jky-form-value			{width:300px;}
+.jky-form-value			{width:210px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 #jky-check-all			{width: 30px;}
 
@@ -41,6 +41,7 @@
 .jky-user-resource		{width:150px; text-align:center;}
 .jky-user-action		{width:150px; text-align:center;}
 
+#jky-priority			{width:140px;}
 #jky-status				{width:140px;}
 #jky-user-role			{width:260px;}
 #jky-user-resource		{width:260px;}
@@ -51,9 +52,11 @@
 	<thead>
 		<tr>
 			<th    id='jky-check-all'		><input type='checkbox' /></th>
-			<th class='jky-user-role'		><span>User Role		</span></th>
-			<th class='jky-user-resource'	><span>User Resource	</span></th>
-			<th class='jky-user-action'		><span>User Action		</span></th>
+			<th class='jky-opened-by'		><span>Opened At		</span></th>
+			<th class='jky-opened-at'		><span>Opened By		</span></th>
+			<th class='jky-priority'		><span>Priority			</span></th>
+			<th class='jky-description'		><span>Description		</span></th>
+			<th class='jky-resolution'		><span>Resolution		</span></th>
 			<th class='jky-status'			><span>Status			</span></th>
 		</tr>
 	</thead>
@@ -85,10 +88,27 @@
 -->
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>           Status</span>:</div><select id='jky-status'></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>         User Role</span>:</div><select id='jky-user-role'></select>						  	  </div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>     User Resource</span>:</div><select id='jky-user-resource'	></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>       User Action</span>:</div><select id='jky-user-action'	></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         Opened By</span>:</div>
+				<input id="jky-opened-by" class="jky-form-value" placeholder="Name">
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         Opened At</span>:</div>
+				<div id="jky-opened-at-date" date-date-format="dd-mm-yyyy">
+					<input id="jky-opened-at-value" class="span2" type="text" readonly="" value="" size="16" placeholder="">
+				</div>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		   Priority</span>:</div>
+				<select id='jky-priority'></select>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>			 Status</span>:</div>
+				<select id='jky-status'></select>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		Description</span>:</div>
+				<textarea id="jky-description" placeholder="Description"></textarea>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		 Resolution</span>:</div>
+				<textarea id="jky-resolution" placeholder="Resolution"></textarea>
+			</div>
+</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
