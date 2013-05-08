@@ -449,13 +449,12 @@ JKY.display_trace = function(message){
  * get now date or time
  * @return yyyy-mm-dd
  */
-JKY.get_now = function(the_format) {
-	if (typeof the_format == 'undefined') {
-		the_format = 'yyyy-mm-dd';
-	}
+JKY.get_now = function() {
 	var my_date = new Date();
-//	return my_date.format(the_format);
-	return my_date;
+	var my_dd = my_date.getDate();
+	var my_mm = my_date.getMonth()+1;
+	var my_yy = my_date.getFullYear();
+	return my_dd + '-' + my_mm + '-' + my_yy;
 }
 
 /**

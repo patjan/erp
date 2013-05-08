@@ -6,11 +6,11 @@
 var jky_program		= 'Tickets';
 var jky_table		= 'Tickets';
 var jky_select		= 'All';
-var jky_focus		= 'jky-priority';
+var jky_focus		= 'jky-description';
 var jky_filter		= '';
 var jky_specific	= '';
 var jky_sort_by		= 'created_at';
-var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
+var jky_sort_seq	=  -1;				//	0=ASC, -1=DESC
 
 var jky_count		=  0;
 var jky_index		=  0;				//	0=Add New
@@ -48,7 +48,6 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-form'		).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'			).click (function() {JKY.set_all_check  (this);});
-		$('#jky-opened-at'			).datepicker();
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -155,7 +154,6 @@ JKY.process_load_success = function(response) {
 				+  '<td class="jky-opened-at"		>' + my_opened_at			+ '</td>'
 				+  '<td class="jky-opened-by"		>' + my_row.opened_name		+ '</td>'
 				+  '<td class="jky-priority"		>' + my_row.priority		+ '</td>'
-				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
 				+  '<td class="jky-description"		>' + my_row.description		+ '</td>'
 				+  '<td class="jky-resolution"		>' + my_row.resolution		+ '</td>'
 				+  '</tr>'
@@ -196,9 +194,8 @@ JKY.display_row = function(index) {
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
 	JKY.set_value	('jky-opened-by'		, JKY.row.opened_name	);
-	JKY.set_value	('jky-opened-at'		, JKY.fix_ymd2dmy(JKY.row.opened_at));
+	JKY.set_value	('jky-opened-value'		, JKY.short_date(JKY.row.opened_at));
 	JKY.set_value	('jky-priority'			, JKY.row.priority		);
-	JKY.set_value	('jky-status'			, JKY.row.status		);
 	JKY.set_value	('jky-description'		, JKY.row.description	);
 	JKY.set_value	('jky-resolution'		, JKY.row.resolution	);
 	JKY.set_focus(jky_focus);
@@ -225,8 +222,8 @@ JKY.process_add_new = function() {
 JKY.display_new = function() {
 	jky_index = 0;
 	JKY.set_option	('jky-status'			, 'Active');
-	JKY.set_value	('jky-opened-by'		, '');
-	JKY.set_value	('jky-opened-at'		, '');
+	JKY.set_value	('jky-opened-by'		, JKY.Session.get_value('full_name'));
+	JKY.set_value	('jky-opened-value'		, JKY.get_now());
 	JKY.set_value	('jky-priority'			, '');
 	JKY.set_value	('jky-description'		, '');
 	JKY.set_value	('jky-resolution'		, '');
@@ -235,8 +232,7 @@ JKY.display_new = function() {
 
 JKY.get_form_set = function() {
 	var my_set = ''
-		+          'status=\'' + JKY.get_value	('jky-status'			) + '\''
-		+      ', priority=\'' + JKY.get_value	('jky-priority'			) + '\''
+		+        'priority=\'' + JKY.get_value	('jky-priority'			) + '\''
 		+   ', description=\'' + JKY.get_value	('jky-description'		) + '\''
 		+    ', resolution=\'' + JKY.get_value	('jky-resolution'		) + '\''
 		;
