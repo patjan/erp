@@ -48,7 +48,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-form'		).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
 		$('#jky-check-all'			).click (function() {JKY.set_all_check  (this);});
-		$('#jky-opened_at'			).datepicker();
+		$('#jky-created-date'		).datepicker();
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -196,7 +196,7 @@ JKY.display_row = function(index) {
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
 	JKY.set_value	('jky-opened-by'		, JKY.row.opened_name	);
-	JKY.set_value	('jky-opened-at'		, JKY.fix_ymd2dmy(JKY.row.opened_at));
+	JKY.set_value	('jky-created-value'	, JKY.fix_ymd2dmy(JKY.row.created_at));
 	JKY.set_value	('jky-priority'			, JKY.row.priority		);
 	JKY.set_value	('jky-status'			, JKY.row.status		);
 	JKY.set_value	('jky-description'		, JKY.row.description	);
@@ -225,6 +225,7 @@ JKY.process_add_new = function() {
 JKY.display_new = function() {
 	jky_index = 0;
 	JKY.set_option	('jky-status'			, 'Active');
+	JKY.set_value	('jky-created-value'	, '' );
 	JKY.set_focus(jky_focus);
 }
 

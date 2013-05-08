@@ -37,8 +37,8 @@
 .jky-checkbox			{width: 30px; text-align:center;}
 
 .jky-status				{width:100px; text-align:center;}
-.jky-opened-date		{width:100px; text-align:center;}
 
+#jky-opened-value		{width:140px;}
 #jky-priority			{width:140px;}
 #jky-status				{width:140px;}
 #jky-description		{height:100px; width:500px;}
@@ -90,36 +90,36 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>        Created By</span>:</div>
-				<input id='jky-opened-by' class='jky-form-value' placeholder='Name' />
+				<input id='jky-created-name' class='jky-form-value' placeholder='Name' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>        Created At</span>:</div>
-				<div id='jky-created-date' class="input-append date" date-date-format='dd-mm-yyyy'>
-					<input id='jky-created-value' class='span2' size='16' value=''  type='text' readonly />
-					<span class="add-on"><i class="icon-th"></i></span>
+				<div id='jky-created-date' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-created-value' class='span2' size='16' type='text' value='' readonly />
+					<span class='add-on'><i class='icon-th'></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>        Template Name</span>:</div>
-				<input id='jky-opened-by' class='jky-form-value' placeholder='Name' />
+				<input id='jky-template-name' class='jky-form-value' placeholder='Name' />
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>		Template Type</span>:</div>
-				<select id='jky-priority'></select>
+				<select id='jky-template-type'></select>
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>			 Status</span>:</div>
 				<select id='jky-status'></select>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>        Template Subject</span>:</div>
-				<input id='jky-opened-by' class='jky-form-value' placeholder='Name' />
+				<input id='jky-template-subject' class='jky-form-value' placeholder='Subject' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>        Template Body</span>:</div>
-				<input id='jky-opened-by' class='jky-form-value' placeholder='Name' />
+				<input id='jky-template-body' class='jky-form-value' placeholder='Body' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>        Template SQL</span>:</div>
-				<input id='jky-opened-by' class='jky-form-value' placeholder='Name' />
+				<input id='jky-template-sql' class='jky-form-value' placeholder='SQL' />
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>		Description</span>:</div>
 				<textarea id='jky-description' placeholder='Description'></textarea>
