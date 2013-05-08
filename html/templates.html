@@ -8,12 +8,12 @@
 
 	<div>
 		<div id='jky-app-actions'>
-			<button id='jky-action-add-new'		class='btn btn-success' type='button' title="Add New"><span>Add New	</span></button>
-			<button id='jky-action-print'		class='btn btn-success' type='button' title="Print Page"><span>Print	</span></button>
+			<button id='jky-action-add-new'		class='btn btn-success' type='button' title="Click here to add new record"			><span>Add New	</span></button>
+			<button id='jky-action-print'		class='btn btn-success' type='button' title="Click here to print selected records"	><span>Print	</span></button>
 		</div>
 		<div id='jky-app-more'>
-			<button id='jky-action-export'		class='btn btn-success' type='button' title="Export as Splash Page"><span>Export	</span></button>
-			<button id='jky-action-publish'		class='btn btn-success' type='button' title="Publish into system"><span>Publish	</span></button>
+			<button id='jky-action-export'		class='btn btn-success' type='button' title="Click here to export as Excel file"	><span>Export	</span></button>
+			<button id='jky-action-publish'		class='btn btn-success' type='button' title="Publish into system"					><span>Publish	</span></button>
 		</div>
 		<div id='jky-app-displays' class='btn-group'>
 			<button id='jky-action-list'		class='btn' title=    'List View'><i class='icon-align-justify'	></i></button>
@@ -38,26 +38,20 @@
 
 .jky-status				{width:100px; text-align:center;}
 
-#jky-opened-value		{width:140px;}
-#jky-priority			{width:140px;}
-#jky-status				{width:140px;}
-#jky-description		{height:100px; width:500px;}
-#jky-resolution			{height:100px; width:500px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' /></th>
-			<th class='jky-opened-by'		><span>Created By		</span></th>
-			<th class='jky-opened-at'		><span>Created At		</span></th>
-			<th class='jky-priority'		><span>Template Name	</span></th>
-			<th class='jky-description'		><span>Template Type	</span></th>
-			<th class='jky-resolution'		><span>Template Subject	</span></th>
-			<th class='jky-resolution'		><span>Template Body	</span></th>
-			<th class='jky-resolution'		><span>Template SQL		</span></th>
-			<th class='jky-resolution'		><span>Description		</span></th>
-			<th class='jky-status'			><span>Status			</span></th>
+			<th class='jky-created-by'		><span>Created By		</span></th>
+			<th class='jky-created-at'		><span>Created At		</span></th>
+			<th class='jky-template-name'	><span>Template Name	</span></th>
+			<th class='jky-template-type'	><span>Template Type	</span></th>
+			<th class='jky-template-subject'><span>Template Subject	</span></th>
+			<th class='jky-template-body'	><span>Template Body	</span></th>
+			<th class='jky-template-sql'	><span>Template SQL		</span></th>
+			<th class='jky-description'		><span>Description		</span></th>
 		</tr>
 	</thead>
 
@@ -125,16 +119,15 @@
 				<textarea id='jky-description' placeholder='Description'></textarea>
 			</div>
 		</div>
-	</div>
 		<div class='jky-clear'></div>
 		<br>
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
-				<button id='jky-action-save'	class='btn btn-success' type='button' title="Save the changes"><span>Save	</span></button>
-				<button id='jky-action-copy'	class='btn btn-success' type='button' title="duplicate"><span>Copy	</span></button>
-				&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="delete the file"><span>Delete	</span></a>
-				&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="cancel changes"><span>Cancel	</span></a>
+				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save the changes"		><span>Save		</span></button>
+				<button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></a>
+			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any chnages"		><span>Cancel	</span></a>
 			</div>
 		</div>
 		<div class='jky-clear'></div>

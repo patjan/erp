@@ -62,7 +62,6 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_menu_active('jky-menu-help');
 		JKY.set_side_active('jky-help-tickets');
 		JKY.set_html('jky-priority'			, JKY.set_group_set('Controls', '', 'Priorities'	));
-		JKY.set_html('jky-status'			, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
@@ -148,10 +147,10 @@ JKY.process_load_success = function(response) {
 	for(var i=0; i<jky_count; i++) {
 		var my_row = JKY.rows[i];
 		var my_checkbox = '<input type="checkbox" onclick="JKY.set_checkbox(this)" row_id=' + my_row.id + ' />';
-		var my_opened_at = JKY.short_date(my_row.opened_at);
+		var my_opened_date = JKY.short_date(my_row.opened_at);
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
-				+  '<td class="jky-opened-at"		>' + my_opened_at			+ '</td>'
+				+  '<td class="jky-opened-at"		>' + my_opened_date			+ '</td>'
 				+  '<td class="jky-opened-by"		>' + my_row.opened_name		+ '</td>'
 				+  '<td class="jky-priority"		>' + my_row.priority		+ '</td>'
 				+  '<td class="jky-description"		>' + my_row.description		+ '</td>'
