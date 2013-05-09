@@ -105,6 +105,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_side_active('jky-admin-contacts');
 		JKY.set_side_active('jky-support-controls');
 		JKY.set_side_active('jky-support-permissions');
+		JKY.set_side_active('jky-support-templates');
 		JKY.set_side_active('jky-support-translations');
 
 		JKY.set_html('jky-state'			, JKY.set_group_set('Configs', '', 'States'	));
@@ -223,9 +224,10 @@ JKY.process_load_success = function(response) {
 	for(var i=0; i<jky_count; i++) {
 		var my_row = JKY.rows[i];
 		var my_checkbox = '<input type="checkbox" onclick="JKY.set_checkbox(this)" row_id=' + my_row.id + ' />';
-		var my_start_date = JKY.fix_ymd2dmy(my_row.start_date);
+		var my_start_date   = JKY.fix_ymd2dmy(my_row.start_date);
 		var my_created_date = JKY.short_date(my_row.created_at);
 		var my_updated_date = JKY.short_date(my_row.updated_at);
+		var my_opened_date  = JKY.short_date(my_row.opened_at);
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
 				+  '<td class="jky-sequence"		>' + my_row.sequence		+ '</td>'
@@ -273,10 +275,9 @@ JKY.process_load_success = function(response) {
 				+  '<td class="jky-created-at"		>' + my_created_date		+ '</td>'
 				+  '<td class="jky-updated-at"		>' + my_updated_date		+ '</td>'
 				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
-				+  '<td class="jky-opened-at"		>' + my_row.opened_at		+ '</td>'
-				+  '<td class="jky-opened-by"		>' + my_row.opened_by		+ '</td>'
+				+  '<td class="jky-opened-at"		>' + my_opened_date			+ '</td>'
+				+  '<td class="jky-opened-by"		>' + my_row.opened_name		+ '</td>'
 				+  '<td class="jky-priority"		>' + my_row.priority		+ '</td>'
-				+  '<td class="jky-status"			>' + my_row.status			+ '</td>'
 				+  '<td class="jky-description"		>' + my_row.description		+ '</td>'
 				+  '<td class="jky-resolution"		>' + my_row.resolution		+ '</td>'
 				+  '</tr>'
@@ -395,6 +396,12 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-user-role'		, JKY.row.user_role		);
 	JKY.set_value	('jky-user-resource'	, JKY.row.user_resource	);
 	JKY.set_value	('jky-user-action'		, JKY.row.user_action	);
+
+	JKY.set_value	('jky-opened-by'		, JKY.row.opened_name	);
+	JKY.set_value	('jky-opened-value'		, JKY.short_date(JKY.row.opened_at));
+	JKY.set_value	('jky-priority'			, JKY.row.priority		);
+	JKY.set_value	('jky-description'		, JKY.row.description	);
+	JKY.set_value	('jky-resolution'		, JKY.row.resolution	);
 
 	if (jky_select == 'Root' && JKY.row.name == 'Root') {
 		JKY.hide('jky-action-save'		);
@@ -540,6 +547,12 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-user-resource'	, '');
 	JKY.set_value	('jky-user-action'		, '');
 
+	JKY.set_value	('jky-opened-by'		, JKY.Session.get_value('full_name'));
+	JKY.set_value	('jky-opened-value'		, JKY.get_now());
+	JKY.set_value	('jky-priority'			, '');
+	JKY.set_value	('jky-description'		, '');
+	JKY.set_value	('jky-resolution'		, '');
+
 	var my_html = '';
 	for(var l=0; l<JKY.languages.length; l++) {
 		var my_locale   = JKY.languages[l].name ;
@@ -637,8 +650,7 @@ JKY.get_form_set = function() {
 		+        ', locale=\'' +				 'en_us'					  + '\''
 		+      ', sentence=\'' + JKY.get_value	('en_us'					) + '\''
 
-		+          'status=\'' + JKY.get_value	('jky-status'			) + '\''
-		+      ', priority=\'' + JKY.get_value	('jky-priority'			) + '\''
+		+        'priority=\'' + JKY.get_value	('jky-priority'			) + '\''
 		+   ', description=\'' + JKY.get_value	('jky-description'		) + '\''
 		+    ', resolution=\'' + JKY.get_value	('jky-resolution'		) + '\''
 		;

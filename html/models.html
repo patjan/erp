@@ -73,6 +73,12 @@
 .jky-updated-at			{width:100px; text-align:center;}
 .jky-opened-date		{width:100px; text-align:center;}
 
+.jky-opened-by			{width: 80px; text-align:center;}
+.jky-opened-at			{width: 80px; text-align:center;}
+.jky-priority			{width: 80px; text-align:center;}
+.jky-description		{width:200px;}
+.jky-resolution			{width:200px;}
+
 #jky-action-product 	{margin-left:-30px; padding:5px;}
 
 #jky-status				{width:100px;}
@@ -244,7 +250,11 @@
 #jky-user-resource		{width:260px;}
 #jky-user-action		{width:260px;}
 
-#jky-priority			{width:140px;}
+#jky-opened-by			{width:240px;}
+#jky-opened-value		{width:100px;}
+#jky-priority			{width:110px;}
+#jky-description		{width:500px; height:100px;}
+#jky-resolution			{width:500px; height:100px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -303,7 +313,15 @@
 			<th class='jky-priority'		><span>Priority			</span></th>
 			<th class='jky-description'		><span>Description		</span></th>
 			<th class='jky-resolution'		><span>Resolution		</span></th>
-			<th class='jky-status'			><span>Status			</span></th>
+			
+			<th class='jky-created-by'		><span>Created By		</span></th>
+			<th class='jky-created-at'		><span>Created At		</span></th>
+			<th class='jky-template-name'	><span>Template Name	</span></th>
+			<th class='jky-template-type'	><span>Template Type	</span></th>
+			<th class='jky-template-subject'><span>Template Subject	</span></th>
+			<th class='jky-template-body'	><span>Template Body	</span></th>
+			<th class='jky-template-sql'	><span>Template SQL		</span></th>
+			<th class='jky-description'		><span>Description		</span></th>
 		</tr>
 	</thead>
 
@@ -490,15 +508,76 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span>     User Resource</span>:</div><select id='jky-user-resource'	></select></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>       User Action</span>:</div><select id='jky-user-action'	></select></div>
 		</div>
+
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>        Opened By</span>:</div>
+				<input id='jky-opened-by' class='jky-form-value' placeholder='Name' readonly />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>         Opened At</span>:</div>
+				<div id='jky-opened-date' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-opened-value' class='span2' type='text' readonly value='' size='16' />
+				</div>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		   Priority</span>:</div>
+				<select id='jky-priority'></select>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		Description</span>:</div>
+				<textarea id='jky-description' placeholder='Description'></textarea>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		 Resolution</span>:</div>
+				<textarea id='jky-resolution' placeholder='Resolution'></textarea>
+			</div>
+		</div>
+
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>        Created By</span>:</div>
+				<input id='jky-created-name' class='jky-form-value' placeholder='Name' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>        Created At</span>:</div>
+				<div id='jky-created-date' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-created-value' class='span2' size='16' type='text' value='' readonly />
+					<span class='add-on'><i class='icon-th'></i></span>
+				</div>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>        Template Name</span>:</div>
+				<input id='jky-template-name' class='jky-form-value' placeholder='Name' />
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		Template Type</span>:</div>
+				<select id='jky-template-type'></select>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>			 Status</span>:</div>
+				<select id='jky-status'></select>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>        Template Subject</span>:</div>
+				<input id='jky-template-subject' class='jky-form-value' placeholder='Subject' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>        Template Body</span>:</div>
+				<input id='jky-template-body' class='jky-form-value' placeholder='Body' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>        Template SQL</span>:</div>
+				<input id='jky-template-sql' class='jky-form-value' placeholder='SQL' />
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		Description</span>:</div>
+				<textarea id='jky-description' placeholder='Description'></textarea>
+			</div>
+		</div>
 		<div class='jky-clear'></div>
 		<br>
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
-				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save changes"><span>Save	</span></button>
-				<button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate the record"><span>Copy	</span></button>
-				&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"><span>Delete	</span></a>
-				&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"><span>Cancel	</span></a>
+				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save the changes"		><span>Save		</span></button>
+				<button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></a>
+			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any chnages"		><span>Cancel	</span></a>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -711,3 +790,4 @@
 <script src='js/permissions.js'></script>
 <script src='js/users.js'></script>
 <script src='js/translations.js'></script>
+<script src='js/templates.js'></script>

@@ -454,7 +454,7 @@ JKY.get_now = function() {
 	var my_dd = my_date.getDate();
 	var my_mm = my_date.getMonth()+1;
 	var my_yy = my_date.getFullYear();
-	return my_dd + '-' + my_mm + '-' + my_yy;
+	return my_yy + '-' + my_mm + '-' + my_dd;
 }
 
 /**
@@ -914,8 +914,8 @@ JKY.set_icon_file = function(the_file_id) {
 	}
 }
 
-//        JKY.set_focus('user_name', 100)
-//        ----------------------------------------------------------------------
+//		JKY.set_focus('user_name', 100)
+//		----------------------------------------------------------------------
 JKY.set_focus = function(the_name, the_delay) {
 	var my_id = $('#' + the_name);
 	if (my_id && my_id.is(':visible')) {
