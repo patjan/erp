@@ -32,7 +32,7 @@ define( 'SERVER_NAME'         , 'http://erp/'				);
 define( 'SERVER_BASE'         , '../'						);
 define( 'APPLICATION'         , '../application/'			);
 define( 'LIBRARY'             , '/../library/'              );
-define( 'DELIVERY_BASE'       , 'C:/htdocs/relations/'      );
+define( 'DELIVERY_BASE'       , 'C:/htdocs/erp/'			);
 define( 'START_ASSET'         , 'start/'     );
 define( 'END_ASSET'           , 'end/'       );
 define( 'IMAGES'              , 'images/layout/'            );

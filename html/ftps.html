@@ -58,9 +58,9 @@
 #jky-machine			{width:350px; text-transform:capitalize;}
 
 #jky-drawing			{float: left; margin:7px;}
-#jky-drawing-img		{width:110px; height:110px; border:4px ridge darkblue;}
+#jky-drawing-img		{width:120px; height:120px; border:4px ridge darkblue;}
 #jky-photo				{float: left; margin:7px;}
-#jky-photo-img			{width:110px; height:110px; border:4px ridge black;}
+#jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
 
 #jky-diameter			{width: 40px;}
 #jky-density			{width: 40px;}
@@ -169,10 +169,27 @@
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>      Composition</span>:</div><input  id='jky-composition'	class='jky-form-value'									readonly='readonly'	/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>          Machine</span>:</div><select id='jky-machine'></select></div>
+			<div class='jky-form-line'>&nbsp;</div>
+			<div class='jky-form-line'>&nbsp;</div>
 		</div>
 		<div class='jky-left'>
-			<div id='jky-drawing'><img id='jky-drawing-img' src='/img/placeholder.png'><br><a id='jky-upload_drawing'><span>Upload Drawing</span></a></div>
-			<div id='jky-photo'  ><img id='jky-photo-img'   src='/img/placeholder.png'><br><a id='jky-upload_photo'  ><span>Upload Photo  </span></a></div>
+			<div class='jky-left'>
+				<div id='jky-drawing-box'><img id='jky-drawing-img' src='/img/placeholder.png'></div>
+				<a id='jky-upload-drawing'><span>Upload Drawing</span></a>
+			</div>
+			<div class='jky-left'>
+				<div id='jky-photo-box'  ><img id='jky-photo-img'   src='/img/placeholder.png'></div>
+				<a id='jky-upload-photo'  ><span>Upload Photo  </span></a>
+			</div>
+			<div class='jky-clear'></div>
+			<div>
+				<div>
+					<span>Progress</span>:
+					<span id='jky-upload-percent'></span>
+					<span id='jky-upload-name'></span>
+				</div>
+				<div class='progress progress-striped active'><div id='jky-upload-progress' class='bar'></div></div>
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 

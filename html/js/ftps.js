@@ -209,6 +209,21 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
+
+	if (JKY.row.draw == null) {
+		JKY.set_src('jky-drawing-img', '/img/placeholder.png' );
+	}else{
+		JKY.set_src('jky-drawing-img', '/uploads/drawings/' + JKY.row.id + '.' + JKY.row.draw );
+	}
+	if (JKY.row.photo == null) {
+		JKY.set_src('jky-photo-img'  , '/img/placeholder.png' );
+	}else{
+		JKY.set_src('jky-photo-img'  , '/uploads/photos/'   + JKY.row.id + '.' + JKY.row.photo);
+	}
+	JKY.set_html('jky-upload-name'		, '');
+	JKY.set_html('jky-upload-percent'	, '');
+	JKY.set_css ('jky-upload-progress', 'width', '0%');
+
 	JKY.set_value	('jky-code'				, JKY.row.code			);
 	JKY.set_value	('jky-product-id'		, JKY.row.product_id	);
 	JKY.set_value	('jky-product'			, JKY.row.product		);
@@ -410,3 +425,133 @@ JKY.process_export = function() {
 	}
 	JKY.run_export(jky_table, jky_select, jky_filter, jky_specific, my_sort_by);
 };
+
+$( function() {
+//	upload drawing -------------------------------------------------------------
+	JKY.drawing = new plupload.Uploader(
+		{ browse_button	: 'jky-upload-drawing'
+		, runtimes		: 'html5,flash'
+		, url			: 'plupload.php'
+		, flash_swf_url	: 'swf/plupload.flash.swf'
+		, filters		:[{title:"Drawing files", extensions:"avi,jpg,gif,png,xls"}]
+		}
+	);
+
+	JKY.drawing.bind('Init', function(up, params) {});
+
+	JKY.drawing.bind('FilesAdded', function(up, files) {
+		JKY.show('jky_loading');
+		$.each(files, function(i, file) {
+			JKY.set_html('jky-upload-name', file.name);
+			JKY.saved_name = file.name;
+			file.name = 'drawings.' + JKY.row.id + '.' + JKY.saved_name;
+		});
+		up.refresh();			//	reposition Flash/Silverlight
+		setTimeout('JKY.drawing.start()', 100);
+	});
+
+	JKY.drawing.bind('UploadProgress', function(up, file) {
+		JKY.set_html('jky-upload-percent', file.percent + '%');
+		JKY.set_css ('jky-upload-progress', 'width', file.percent + '%');
+	});
+
+	JKY.drawing.bind('FileUploaded', function(up, file) {
+		JKY.display_message('File ' + JKY.saved_name + ' uploaded');
+		JKY.set_html('jky-upload-percent', '100%');
+
+		var my_file_name = $('#jky-upload-name').text();
+		var my_file_size = file.size;
+		var my_data = {command:'file_uploaded', file_name:my_file_name, file_size:my_file_size};
+//		$.ajax({async:false, cache:true, type:'post', dataType:'json', url:'fuploads/ajax', data:my_data}).success(function(data) {});
+
+		var my_data = {command:'end_upload'};
+//		$.ajax({async:true , cache:true, type:'post', dataType:'json', url:'fuploads/ajax', data:my_data}).success(function(data) {});
+
+		var my_file_type = JKY.get_file_type(JKY.saved_name);
+		JKY.saved_name = JKY.row.id + '.' + my_file_type;
+		var my_time = new Date();
+		JKY.set_src('jky-drawing-img', '/uploads/drawings/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime());
+
+		var my_data =
+			{ method: 'update'
+			, table :  jky_table
+			, set	:  'draw=\'' + my_file_type + '\''
+			, where :  'id=' + JKY.row.id
+			};
+		JKY.ajax(false, my_data);
+
+		JKY.hide('jky_loading');
+	});
+
+	JKY.drawing.bind('Error', function(up, error) {
+		JKY.show('jky_loading');
+		JKY.display_message('error: ' + error.code + '<br>message: ' + error.message + (error.file ? '<br> file: ' + error.file.name : ''));
+		up.refresh();			//	reposition Flash/Silverlight
+	});
+
+	JKY.drawing.init();
+
+//	upload photo -------------------------------------------------------------
+	JKY.photo = new plupload.Uploader(
+		{ browse_button	: 'jky-upload-photo'
+		, runtimes		: 'html5,flash'
+		, url			: 'plupload.php'
+		, flash_swf_url	: 'swf/plupload.flash.swf'
+		, filters		:[{title:"Photo files", extensions:"jpg,gif,png"}]
+		}
+	);
+
+	JKY.photo.bind('Init', function(up, params) {});
+
+	JKY.photo.bind('FilesAdded', function(up, files) {
+		JKY.show('jky_loading');
+		$.each(files, function(i, file) {
+			JKY.set_html('jky-upload-name', file.name);
+			JKY.saved_name = file.name;
+			file.name = 'photos.' + JKY.row.id + '.' + JKY.saved_name;
+		});
+		up.refresh();			//	reposition Flash/Silverlight
+		setTimeout('JKY.photo.start()', 100);
+	});
+
+	JKY.photo.bind('UploadProgress', function(up, file) {
+		JKY.set_html('jky-upload-percent', file.percent + '%');
+		JKY.set_css ('jky-upload-progress', 'width', file.percent + '%');
+	});
+
+	JKY.photo.bind('FileUploaded', function(up, file) {
+		JKY.display_message('File ' + JKY.saved_name + ' uploaded');
+		JKY.set_html('jky-upload-percent', '100%');
+
+		var my_file_name = $('#jky-upload-name').text();
+		var my_file_size = file.size;
+		var my_data = {command:'file_uploaded', file_name:my_file_name, file_size:my_file_size};
+//		$.ajax({async:false, cache:true, type:'post', dataType:'json', url:'fuploads/ajax', data:my_data}).success(function(data) {});
+
+		var my_data = {command:'end_upload'};
+//		$.ajax({async:true , cache:true, type:'post', dataType:'json', url:'fuploads/ajax', data:my_data}).success(function(data) {});
+
+		var my_file_type = JKY.get_file_type(JKY.saved_name);
+		JKY.saved_name = JKY.row.id + '.' + my_file_type;
+		var my_time = new Date();
+		JKY.set_src('jky-photo-img', '/uploads/photos/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime());
+
+		var my_data =
+			{ method: 'update'
+			, table :  jky_table
+			, set	:  'photo=\'' + my_file_type + '\''
+			, where :  'id=' + JKY.row.id
+			};
+		JKY.ajax(false, my_data);
+
+		JKY.hide('jky_loading');
+	});
+
+	JKY.photo.bind('Error', function(up, error) {
+		JKY.show('jky_loading');
+		JKY.display_message('error: ' + error.code + '<br>message: ' + error.message + (error.file ? '<br> file: ' + error.file.name : ''));
+		up.refresh();			//	reposition Flash/Silverlight
+	});
+
+	JKY.photo.init();
+});

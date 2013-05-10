@@ -214,7 +214,7 @@ JKY.t = function(the_text) {
 	}
 	var my_result = JKY.translations[the_text];
 	if (typeof my_result == 'undefined') {
-//alert('the_text: ' + the_text);
+alert('the_text: ' + the_text);
 		my_result = '';
 		var my_names = the_text.split('<br>');
 		for (var i=0; i<my_names.length; i++) {
@@ -506,12 +506,31 @@ JKY.append_html = function(id_name, html){
 }
 
 /**
- * set specific id attr title with value
- * @param	idName
- * @param	value
+ * set specific id attr title with title
+ * @param	the_id
+ * @param	the_title
  */
-JKY.set_title = function(idName, the_title){
-	$('#' + idName).attr('title', the_title);
+JKY.set_title = function(the_id , the_title){
+	$('#' + the_id).attr('title', the_title);
+}
+
+/**
+ * set specific id attr src with filename
+ * @param	the_id
+ * @param	the_file_name
+ */
+JKY.set_src = function(the_id , the_file_name){
+	$('#' + the_id).attr('src', the_file_name);
+}
+
+/**
+ * set specific id attr css with value
+ * @param	the_id
+ * @param	the_css
+ * @param	the_value
+ */
+JKY.set_css = function(the_id , the_css, the_value){
+	$('#' + the_id).css(the_css, the_value);
 }
 
 /**
@@ -1752,6 +1771,16 @@ JKY.get_value_by_id = function(table, field, id) {
 		}
 	);
 	return my_value;
+}
+
+JKY.get_file_type = function(the_full_name) {
+	var my_names = the_full_name.split('.');
+	var my_length = my_names.length;
+	if (my_length > 1 ) {
+		return my_names[my_length-1];
+	}else{
+		return '';
+	}
 }
 
 /* -------------------------------------------------------------------------- */
