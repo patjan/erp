@@ -450,11 +450,11 @@ JKY.display_trace = function(message){
  * @return yyyy-mm-dd
  */
 JKY.get_now = function() {
-	var my_date = new Date();
-	var my_dd = my_date.getDate();
-	var my_mm = my_date.getMonth()+1;
-	var my_yy = my_date.getFullYear();
-	return my_yy + '-' + my_mm + '-' + my_dd;
+	var  my_today = new Date();
+	var  my_year	= my_today.getFullYear();
+	var  my_month	= my_today.getMonth()+1;	if (my_month < 10)	my_month= '0' + my_month;
+	var  my_day		= my_today.getDate ();		if (my_day   < 10)	my_day	= '0' + my_day	;
+	return my_year + '-' + my_month + '-' + my_day;
 }
 
 /**
@@ -467,6 +467,7 @@ JKY.short_date = function(the_date_time){
 	var my_date = '';
 	if (the_date_time != null) {
 		my_date = the_date_time.substr(0, 10);
+//alert(JKY.get_now());
 		if (my_date == JKY.get_now()) {
 			my_date = the_date_time.substr(5, 11);
 		}
@@ -535,20 +536,22 @@ JKY.set_css = function(the_id , the_css, the_value){
 
 /**
  * get value of specific id
- * @param	id_name
+ * @param	the_id
  * @return	value
  */
-JKY.get_value = function(id_name){
-	return $('#' + id_name).val();
+JKY.get_value = function(the_id){
+	var my_value = $('#' + the_id).val().trim();
+	return (my_value == '') ? null : my_value;
 }
 
 /**
  * set specific id with value
- * @param	id_name
+ * @param	the_id
  * @param	value
  */
-JKY.set_value = function(id_name, value){
-	$('#' + id_name).val(value);
+JKY.set_value = function(the_id, the_value){
+	var my_value = (the_value == 'null') ? '' : the_value;
+	$('#' + the_id).val(my_value);
 }
 
 /**

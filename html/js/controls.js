@@ -114,7 +114,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-print'		);
 	JKY.hide('jky-action-save'		);
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
@@ -175,7 +175,7 @@ JKY.display_form = function(index) {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
 	JKY.show('jky-action-copy'		);
 	JKY.show('jky-action-delete'	);

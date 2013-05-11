@@ -119,7 +119,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-print'		);
 	JKY.hide('jky-action-save'		);
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
@@ -182,7 +182,7 @@ JKY.display_form = function(index) {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
 	JKY.show('jky-action-copy'		);
 	JKY.show('jky-action-delete'	);
@@ -264,13 +264,9 @@ JKY.get_form_set = function() {
 		+        ', inputs=\'' + JKY.get_value	('jky-inputs'			) + '\''
 		+	      ', lanes=\'' + JKY.get_value	('jky-lanes'			) + '\''
 		;
-	var my_date = '';
-	my_date = JKY.get_value('jky-purchase-value');
-	my_set += ', purchase_date = ' + JKY.fix_dmy2ymd(my_date);
-	my_date = JKY.get_value('jky-repair-value');
-	my_set +=   ', repair_date = ' + JKY.fix_dmy2ymd(my_date);
-	my_date = JKY.get_value('jky-return-value');
-	my_set +=   ', return_date = ' + JKY.fix_dmy2ymd(my_date);
+	my_set += ', purchase_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-purchase-value'	));
+	my_set +=   ', repair_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-repair-value'	));
+	my_set +=   ', return_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-return-value'	));
 	return my_set;
 }
 

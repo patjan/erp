@@ -115,7 +115,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-print'		);
 	JKY.hide('jky-action-save'		);
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
@@ -149,7 +149,7 @@ JKY.process_load_success = function(response) {
 	for(var i=0; i<jky_count; i++) {
 		var my_row = JKY.rows[i];
 		var my_checkbox = '<input type="checkbox" onclick="JKY.set_checkbox(this)" row_id=' + my_row.id + ' />';
-		var my_start_date = JKY.fix_ymd2dmy(my_row.start_date);
+		var my_start_date   = JKY.fix_ymd2dmy(my_row.start_date);
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
 				+  '<td class="jky-name"			>' + my_row.name			+ '</td>'
@@ -176,7 +176,7 @@ JKY.display_form = function(index) {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
 	JKY.show('jky-action-copy'		);
 	JKY.show('jky-action-delete'	);
@@ -196,7 +196,7 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-product-type'		, JKY.row.product_type	);
 	JKY.set_value	('jky-start-value'		, JKY.fix_ymd2dmy(JKY.row.start_date	));
 	JKY.set_focus(jky_focus);
-//	JKY.display_cylinders()
+//	JKY.display_cylinders();
 }
 
 JKY.process_add_new = function() {
@@ -230,9 +230,7 @@ JKY.get_form_set = function() {
 		+            'name=\'' + JKY.get_value	('jky-name'				) + '\''
 		+  ', product_type=\'' + JKY.get_checked('jky-product-type'		) + '\''
 		;
-	var my_date = '';
-	my_date = JKY.get_value('jky-start-value');
-	my_set += ', start_date = ' + JKY.fix_dmy2ymd(my_date);
+	my_set +=    ', start_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-start-value'	));
 	return my_set;
 }
 

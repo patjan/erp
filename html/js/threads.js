@@ -6,10 +6,10 @@
 var jky_program		= 'Threads';
 var jky_table		= 'Threads';
 var jky_select		= '';
-var jky_focus		= 'jky-code';
+var jky_focus		= 'jky-name';
 var jky_filter		= '';
 var jky_specific	= '';
-var jky_sort_by		= 'code';
+var jky_sort_by		= 'name';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_count		=  0;
@@ -113,7 +113,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-print'		);
 	JKY.hide('jky-action-save'		);
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
@@ -175,7 +175,7 @@ JKY.display_form = function(index) {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
 	JKY.show('jky-action-copy'		);
 	JKY.show('jky-action-delete'	);

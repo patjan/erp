@@ -63,7 +63,7 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-sales');
 		JKY.set_side_active('jky-sales-customers');
-		JKY.set_html('jky-state'			, JKY.set_group_set('Configs', '', 'States'	));
+		JKY.set_html('jky-state'			, JKY.set_group_set('Configs', '', 'States'   ));
 		JKY.set_html('jky-country'			, JKY.set_group_set('Configs', '', 'Countries'));
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
@@ -116,7 +116,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-print'		);
 	JKY.hide('jky-action-save'		);
 //	JKY.hide('jky-action-copy'		);
 //	JKY.hide('jky-action-delete'	);
@@ -177,7 +177,7 @@ JKY.display_form = function(index) {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
 //	JKY.show('jky-action-copy'		);
 //	JKY.show('jky-action-delete'	);
@@ -250,8 +250,8 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-street2'			, '');
 	JKY.set_value	('jky-city'				, '');
 	JKY.set_value	('jky-zip'				, '');
-	JKY.set_option	('jky-state'			, '');
-	JKY.set_option	('jky-country'			, '');
+	JKY.set_option	('jky-state'			, 'SP');
+	JKY.set_option	('jky-country'			, 'Brasil');
 	JKY.set_value	('jky-website'			, '');
 
 	JKY.set_value	('jky-position'			, '');

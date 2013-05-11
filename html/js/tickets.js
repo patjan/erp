@@ -9,8 +9,8 @@ var jky_select		= 'All';
 var jky_focus		= 'jky-description';
 var jky_filter		= '';
 var jky_specific	= '';
-var jky_sort_by		= 'created_at';
-var jky_sort_seq	=  -1;				//	0=ASC, -1=DESC
+var jky_sort_by		= 'description';
+var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_count		=  0;
 var jky_index		=  0;				//	0=Add New
@@ -113,7 +113,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-print'		);
 	JKY.hide('jky-action-save'		);
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
@@ -150,8 +150,8 @@ JKY.process_load_success = function(response) {
 		var my_opened_date = JKY.short_date(my_row.opened_at);
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
-				+  '<td class="jky-opened-at"		>' + my_opened_date			+ '</td>'
 				+  '<td class="jky-opened-by"		>' + my_row.opened_name		+ '</td>'
+				+  '<td class="jky-opened-at"		>' + my_opened_date			+ '</td>'
 				+  '<td class="jky-priority"		>' + my_row.priority		+ '</td>'
 				+  '<td class="jky-description"		>' + my_row.description		+ '</td>'
 				+  '<td class="jky-resolution"		>' + my_row.resolution		+ '</td>'
@@ -223,7 +223,7 @@ JKY.display_new = function() {
 	JKY.set_option	('jky-status'			, 'Active');
 	JKY.set_value	('jky-opened-by'		, JKY.Session.get_value('full_name'));
 	JKY.set_value	('jky-opened-value'		, JKY.get_now());
-	JKY.set_value	('jky-priority'			, '');
+	JKY.set_value	('jky-priority'			, 'Normal');
 	JKY.set_value	('jky-description'		, '');
 	JKY.set_value	('jky-resolution'		, '');
 	JKY.set_focus(jky_focus);

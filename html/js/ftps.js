@@ -210,16 +210,27 @@ JKY.display_row = function(index) {
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
 
-	if (JKY.row.draw == null) {
-		JKY.set_src('jky-drawing-img', '/img/placeholder.png' );
+	var my_html = '';
+    if (JKY.row.draw == null) {
+		my_html = '<img id="jky-drawing-img" src="/img/placeholder.png" class="the_icon" />';
 	}else{
-		JKY.set_src('jky-drawing-img', '/uploads/drawings/' + JKY.row.id + '.' + JKY.row.draw );
-	}
+        my_html = '<a href="' + 'jky_download.php?file_name=drawings/' + JKY.row.id + '.' + JKY.row.draw + '">'
+				+ '<img id="jky-drawing-img" src="/uploads/drawings/' + JKY.row.id + '.' + JKY.row.draw + '" class="the_icon" />';
+				+ '</a>'
+				;
+    }
+    JKY.set_html('jky-download-drawing', my_html);
+
 	if (JKY.row.photo == null) {
-		JKY.set_src('jky-photo-img'  , '/img/placeholder.png' );
+		my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
 	}else{
-		JKY.set_src('jky-photo-img'  , '/uploads/photos/'   + JKY.row.id + '.' + JKY.row.photo);
-	}
+        my_html = '<a href="' + 'jky_download.php?file_name=photos/' + JKY.row.id + '.' + JKY.row.photo + '">'
+				+ '<img id="jky-photo-img" src="/uploads/photos/' + JKY.row.id + '.' + JKY.row.photo + '" class="the_icon" />';
+				+ '</a>'
+				;
+    }
+    JKY.set_html('jky-download-photo', my_html);
+
 	JKY.set_html('jky-upload-name'		, '');
 	JKY.set_html('jky-upload-percent'	, '');
 	JKY.set_css ('jky-upload-progress', 'width', '0%');
@@ -292,17 +303,17 @@ JKY.get_form_set = function() {
 	var my_set = ''
 		+      'product_id=  ' + JKY.get_value	('jky-product-id'		)
 		+    ', machine_id=  ' + JKY.get_value	('jky-machine'			)
-		+      ', diameter=\'' + JKY.get_value	('jky-diameter'			) + '\''
-		+       ', density=\'' + JKY.get_value	('jky-density'			) + '\''
-		+        ', inputs=\'' + JKY.get_value	('jky-inputs'			) + '\''
-		+         ', speed=\'' + JKY.get_value	('jky-speed'			) + '\''
-		+         ', turns=\'' + JKY.get_value	('jky-turns'			) + '\''
-		+        ', weight=\'' + JKY.get_value	('jky-weight'			) + '\''
-		+         ', width=\'' + JKY.get_value	('jky-width'			) + '\''
-		+         ', lanes=\'' + JKY.get_value	('jky-lanes'			) + '\''
-		+         ', yield=\'' + JKY.get_value	('jky-yield'			) + '\''
-		+      ', needling=\'' + JKY.get_value	('jky-needling'			) + '\''
-		+		   ', peso=\'' + JKY.get_value	('jky-peso'				) + '\''
+		+      ', diameter=  ' + JKY.get_value	('jky-diameter'			)
+		+       ', density=  ' + JKY.get_value	('jky-density'			)
+		+        ', inputs=  ' + JKY.get_value	('jky-inputs'			)
+		+         ', speed=  ' + JKY.get_value	('jky-speed'			)
+		+         ', turns=  ' + JKY.get_value	('jky-turns'			)
+		+        ', weight=  ' + JKY.get_value	('jky-weight'			)
+		+         ', width=  ' + JKY.get_value	('jky-width'			)
+		+         ', lanes=  ' + JKY.get_value	('jky-lanes'			)
+		+         ', yield=  ' + JKY.get_value	('jky-yield'			)
+		+      ', needling=  ' + JKY.get_value	('jky-needling'			)
+		+		   ', peso=  ' + JKY.get_value	('jky-peso'				)
 		+     ', has_break=\'' + JKY.get_checked('jky-has-break'		) + '\''
 		;
 	return my_set;
@@ -470,7 +481,10 @@ $( function() {
 		var my_file_type = JKY.get_file_type(JKY.saved_name);
 		JKY.saved_name = JKY.row.id + '.' + my_file_type;
 		var my_time = new Date();
-		JKY.set_src('jky-drawing-img', '/uploads/drawings/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime());
+        var my_html = '<a href="' + 'jky_download.php?file_name=drawings/' + JKY.row.id + '.' + my_file_type + '">'
+					+ '<img id="jky-drawing-img" src="/uploads/drawings/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
+					+ '</a>'
+		JKY.set_html('jky-download-drawing', my_html);
 
 		var my_data =
 			{ method: 'update'
@@ -534,7 +548,10 @@ $( function() {
 		var my_file_type = JKY.get_file_type(JKY.saved_name);
 		JKY.saved_name = JKY.row.id + '.' + my_file_type;
 		var my_time = new Date();
-		JKY.set_src('jky-photo-img', '/uploads/photos/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime());
+        var my_html = '<a href="' + 'jky_download.php?file_name=photos/' + JKY.row.id + '.' + my_file_type + '">'
+					+ '<img id="jky-photo-img" src="/uploads/photos/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
+					+ '</a>'
+		JKY.set_html('jky-download-photo', my_html);
 
 		var my_data =
 			{ method: 'update'

@@ -8,12 +8,12 @@
 
 	<div>
 		<div id='jky-app-actions'>
-			<button id='jky-action-add-new'		class='btn btn-success' type='button'><span>Add New	</span></button>
-			<button id='jky-action-print'		class='btn btn-success' type='button'><span>Print	</span></button>
+			<button id='jky-action-add-new'		class='btn btn-success' type='button' title="Click here to add new record"			><span>Add New	</span></button>
+			<button id='jky-action-print'		class='btn btn-success' type='button' title="Click here to print selected records"	><span>Print	</span></button>
 		</div>
 		<div id='jky-app-more'>
-			<button id='jky-action-export'		class='btn btn-success' type='button'><span>Export	</span></button>
-			<button id='jky-action-publish'		class='btn btn-success' type='button'><span>Publish	</span></button>
+			<button id='jky-action-export'		class='btn btn-success' type='button' title="Click here to export as excel file"><span>Export	</span></button>
+			<button id='jky-action-publish'		class='btn btn-success' type='button' title="Click here to publish the content"><span>Publish	</span></button>
 		</div>
 		<div id='jky-app-displays' class='btn-group'>
 			<button id='jky-action-list'		class='btn' title=    'List View'><i class='icon-align-justify'	></i></button>
@@ -48,7 +48,7 @@
 #jky-action-product 	{margin-left:-30px; padding:5px;}
 .jky-code				{width: 40px; text-align:center;}
 .jky-product			{width:200px; text-transform:capitalize;}
-.jky-machine			{width:100px; text-align:center;}
+.jky-machine			{width:100px; text-transform:capitalize; text-align:center;}
 .jky-composition		{width:150px; text-align:center;}
 
 #jky-code				{width: 60px; font-size:16px; font-weight:bold;}
@@ -126,7 +126,7 @@
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' /></th>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-code'			><span>Code				</span></th>
 			<th class='jky-product'			><span>Product			</span></th>
 			<th class='jky-machine'			><span>Machine			</span></th>
@@ -174,11 +174,11 @@
 		</div>
 		<div class='jky-left'>
 			<div class='jky-left'>
-				<div id='jky-drawing-box'><img id='jky-drawing-img' src='/img/placeholder.png'></div>
+				<div id='jky-download-drawing'></div>
 				<a id='jky-upload-drawing'><span>Upload Drawing</span></a>
 			</div>
 			<div class='jky-left'>
-				<div id='jky-photo-box'  ><img id='jky-photo-img'   src='/img/placeholder.png'></div>
+				<div id='jky-download-photo'  ></div>
 				<a id='jky-upload-photo'  ><span>Upload Photo  </span></a>
 			</div>
 			<div class='jky-clear'></div>
@@ -222,10 +222,10 @@
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
-				<button id='jky-action-save'	class='btn btn-success' type='button'><span>Save	</span></button>
-				<button id='jky-action-copy'	class='btn btn-success' type='button'><span>Copy	</span></button>
-			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button'><span>Delete	</span></a>
-			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button'><span>Cancel	</span></a>
+				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+				<button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></a>
+			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></a>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -272,7 +272,7 @@
 					<tbody id='jky-thread-body'></tbody>
 					<tfoot>
 						<tr>
-							<td    id='jky-thread-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td    id='jky-thread-add-new'   class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 							<td    id='jky-thread-total'></td>
 							<td class='jky-thread-label'><span>Total</span></td>
 						</tr>

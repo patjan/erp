@@ -8,8 +8,8 @@
 
 	<div>
 		<div id='jky-app-actions'>
-			<button id='jky-action-add-new'		class='btn btn-success' type='button' title="Click here to add new record"><span>Add New	</span></button>
-			<button id='jky-action-print'		class='btn btn-success' type='button' title="Click here to print current page"><span>Print	</span></button>
+			<button id='jky-action-add-new'		class='btn btn-success' type='button' title="Click here to add new record"			><span>Add New	</span></button>
+			<button id='jky-action-print'		class='btn btn-success' type='button' title="Click here to print selected records"	><span>Print	</span></button>
 		</div>
 		<div id='jky-app-more'>
 			<button id='jky-action-export'		class='btn btn-success' type='button' title="Click here to export as excel file"><span>Export	</span></button>
@@ -55,10 +55,13 @@
 .jky-form-value input	{width:300px;}
 .jky-form-buttons		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
-.datepicker-dropdown:after	{left:432px;}
+.jky-full-name			{width:200px;}
+.jky-phone				{width:100px;}
+.jky-mobile				{width:100px;}
+.jky-email				{width:200px;}
 
 .jky-status				{width:100px; text-align:center;}
-.jky-sequence			{text-align:center; width: 80px;}
+.jky-sequence			{width: 80px; text-align:center;}
 .jky-name				{text-align:left;	}
 .jky-value				{text-align:left;	}
 
@@ -73,11 +76,11 @@
 .jky-updated-at			{width:100px; text-align:center;}
 .jky-opened-date		{width:100px; text-align:center;}
 
-.jky-opened-by			{width: 80px; text-align:center;}
-.jky-opened-at			{width: 80px; text-align:center;}
-.jky-priority			{width: 80px; text-align:center;}
-.jky-description		{width:200px;}
-.jky-resolution			{width:200px;}
+.jky-opened-by			{width: 70px; text-align:center;}
+.jky-opened-at			{width: 70px; text-align:center;}
+.jky-priority			{width: 60px; text-align:center;}
+.jky-description		{width:300px;}
+.jky-resolution			{width:100px;}
 
 #jky-action-product 	{margin-left:-30px; padding:5px;}
 
@@ -103,7 +106,8 @@
 #jky-company-name		{width:260px;}
 #jky-user-name			{width:250px;}
 #jky-user-role			{width:260px;}
-#jky-photo-src			{border:4px ridge black; width:120px; height:120px;}
+#jky-photo				{float: left; margin:7px;}
+#jky-photo-src			{width:120px; height:120px; border:4px ridge black;}
 
 #jky-street1			{width:250px;}
 #jky-street2			{width:250px;}
@@ -120,7 +124,7 @@
 
 .jky-code				{width: 40px; text-align:center;}
 .jky-product			{width:200px; text-transform:capitalize;}
-.jky-machine			{width:100px; text-align:center;}
+.jky-machine			{width:100px; text-transform:capitalize; text-align:center;}
 .jky-composition		{width:150px; text-align:center;}
 .jky-name				{width: 80px; text-transform:capitalize;}
 .jky-name				{width:300px; text-transform:capitalize;}
@@ -134,9 +138,9 @@
 #jky-machine			{width:350px; text-transform:capitalize;}
 
 #jky-drawing			{float: left; margin:7px;}
-#jky-drawing-img		{width:110px; height:110px; border:4px ridge darkblue;}
+#jky-drawing-img		{width:120px; height:120px; border:4px ridge darkblue;}
 #jky-photo				{float: left; margin:7px;}
-#jky-photo-img			{width:110px; height:110px; border:4px ridge black;}
+#jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
 
 #jky-diameter			{width: 40px;}
 #jky-density			{width: 40px;}
@@ -201,7 +205,7 @@
 .jky-set-value			{width:100px; text-align:right;}
 #jky-set-body tr		{margin: 0 auto;}
 
-.jky-name				{width: 80px; text-align:left ;}
+.jky-name				{width:120px; text-align:left  ;}
 .jky-diameter			{width: 40px; text-align:right;}
 .jky-width				{width: 40px; text-align:right;}
 .jky-density			{width: 40px; text-align:right;}
@@ -231,7 +235,7 @@
 #jky-cylinder-total		{				text-align:right;}
 
 .jky-name				{width: 80px; text-align:left  ;}
-.jky-thread_group		{width: 80px; text-align:center;}
+.jky-thread_group		{width:120px; text-align:center;}
 .jky-thread_color		{width: 80px; text-align:center;}
 .jky-composition		{width: 80px; text-align:center;}
 
@@ -260,7 +264,7 @@
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' /></th>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-sequence'		><span>Sequence			</span></th>
 			<th class='jky-name'			><span>Name				</span></th>
 			<th class='jky-value'			><span>Value			</span></th>
@@ -308,8 +312,8 @@
 			<th class='jky-updated-at'		><span>Updated At		</span></th>
 			<th class='jky-status'			><span>Status			</span></th>
 
-			<th class='jky-opened-by'		><span>Opened At		</span></th>
 			<th class='jky-opened-at'		><span>Opened By		</span></th>
+			<th class='jky-opened-by'		><span>Opened At		</span></th>
 			<th class='jky-priority'		><span>Priority			</span></th>
 			<th class='jky-description'		><span>Description		</span></th>
 			<th class='jky-resolution'		><span>Resolution		</span></th>
@@ -574,10 +578,10 @@
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
-				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save the changes"		><span>Save		</span></button>
+				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
 				<button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
 			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></a>
-			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any chnages"		><span>Cancel	</span></a>
+			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></a>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -669,7 +673,7 @@
 					<tbody id='jky-cylinder-body'></tbody>
 					<tfoot>
 						<tr>
-							<td    id='jky-thread-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td    id='jky-thread-add-new'   class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 							<td    id='jky-cylinder-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 							<td    id='jky-thread-total'></td>
 							<td class='jky-thread-label'><span>Total</span></td>
@@ -775,6 +779,7 @@
 <script src='js/controls.js'></script>
 <script src='js/customers.js'></script>
 <script src='js/ftps.js'></script>
+<script src='js/select_product.js'></script>
 <script src='js/ftp_composition.js'></script>
 <script src='js/ftp_threads.js'></script>
 <script src='js/ftp_loads.js'></script>
