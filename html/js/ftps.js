@@ -413,6 +413,7 @@ JKY.process_print = function() {
 
 JKY.print_row = function(the_id) {
 	JKY.display_message('print_row: ' + the_id);
+window.print();
 }
 
 /**
