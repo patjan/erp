@@ -8,12 +8,12 @@
 
 	<div>
 		<div id='jky-app-actions'>
-			<button id='jky-action-add-new'		class='btn btn-success' type='button'><span>Add New	</span></button>
-			<button id='jky-action-print'		class='btn btn-success' type='button'><span>Print	</span></button>
+			<button id='jky-action-add-new'		class='btn btn-success' type='button' title="Click here to add new record"			><span>Add New	</span></button>
+			<button id='jky-action-print'		class='btn btn-success' type='button' title="Click here to print selected records"	><span>Print	</span></button>
 		</div>
 		<div id='jky-app-more'>
-			<button id='jky-action-export'		class='btn btn-success' type='button'><span>Export	</span></button>
-			<button id='jky-action-publish'		class='btn btn-success' type='button'><span>Publish	</span></button>
+			<button id='jky-action-export'		class='btn btn-success' type='button' title="Click here to export as excel file"><span>Export	</span></button>
+			<button id='jky-action-publish'		class='btn btn-success' type='button' title="Click here to publish the content"><span>Publish	</span></button>
 		</div>
 		<div id='jky-app-displays' class='btn-group'>
 			<button id='jky-action-list'		class='btn' title=    'List View'><i class='icon-align-justify'	></i></button>
@@ -39,8 +39,6 @@
 .jky-form-value			{width:100px;}
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
-.datepicker-dropdown:after	{left:432px;}
-
 
 .jky-name				{width: 80px; text-transform:capitalize;}
 .jky-diameter			{width: 40px; text-align:right;}
@@ -73,7 +71,7 @@
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' /></th>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-name'			><span>Name				</span></th>
 			<th class='jky-diameter'		><span>Diameter			</span></th>
 			<th class='jky-width'			><span>Width			</span></th>
@@ -155,10 +153,10 @@
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
-				<button id='jky-action-save'	class='btn btn-success' type='button'><span>Save	</span></button>
-				<button id='jky-action-copy'	class='btn btn-success' type='button'><span>Copy	</span></button>
-			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button'><span>Delete	</span></a>
-			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button'><span>Cancel	</span></a>
+				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+				<button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></a>
+			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></a>
 			</div>
 		</div>
 		<div class='jky-clear'></div>

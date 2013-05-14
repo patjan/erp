@@ -1,0 +1,42 @@
+	Program Steps
+
+
+	add into [home.html]
+	add into [home.js  ]
+10	program SQL
+20	create table in MySQL
+	add table fields into AjaxController.php
+30	program HTML
+40	program JS
+	add [Countries] into [Configs]
+	add [States   ] into [Configs]
+	add [Status   ] into [Controls]
+	add [Root     ] into [Controls]
+	program TABS
+	program [Contacts] pane
+	
+
+	program JKY.display_company
+	program select by [Company Names]
+	program select by [Company Tags]
+	
+	------------------------------------------------------
+	validate, if [Name] is empty
+	validate, if [Name] is duplicated
+
+	program JKY.set_group_set
+	
+	program JKY.set_value
+	program JKY.set_yes
+	program JKY.set_option
+	program JKY.set_check
+
+	program JKY.get_value
+	program JKY.set_option
+	program JKY.refresh_select
+
+	------------------------------------------------------
+	
+	[Is Company?] not working properly
+	remove [Delete] function
+	remove all action functions for Root

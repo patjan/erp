@@ -8,12 +8,12 @@
 
 	<div>
 		<div id='jky-app-actions'>
-			<button id='jky-action-add-new'		class='btn btn-success' type='button'><span>Add New	</span></button>
-			<button id='jky-action-print'		class='btn btn-success' type='button'><span>Print	</span></button>
+			<button id='jky-action-add-new'		class='btn btn-success' type='button' title="Click here to add new record"			><span>Add New	</span></button>
+			<button id='jky-action-print'		class='btn btn-success' type='button' title="Click here to print selected records"	><span>Print	</span></button>
 		</div>
 		<div id='jky-app-more'>
-			<button id='jky-action-export'		class='btn btn-success' type='button'><span>Export	</span></button>
-			<button id='jky-action-publish'		class='btn btn-success' type='button'><span>Publish	</span></button>
+			<button id='jky-action-export'		class='btn btn-success' type='button' title="Click here to export as excel file"><span>Export	</span></button>
+			<button id='jky-action-publish'		class='btn btn-success' type='button' title="Click here to publish the content"><span>Publish	</span></button>
 		</div>
 		<div id='jky-app-displays' class='btn-group'>
 			<button id='jky-action-list'		class='btn' title=    'List View'><i class='icon-align-justify'	></i></button>
@@ -35,6 +35,10 @@
 .jky-form-label			{width:100px;}
 .jky-form-value			{width:270px;}
 .jky-checkbox			{width: 30px; text-align:center;}
+.jky-full-name			{width:200px;}
+.jky-phone				{width:100px;}
+.jky-mobile				{width:100px;}
+.jky-email				{width:200px;}
 
 #jky-full-name			{width:375px; font-size:16px; font-weight:bold;}
 #jky-company-name		{width:385px;}
@@ -57,7 +61,7 @@
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' /></th>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-full-name'		><span>Full Name		</span></th>
 			<th class='jky-phone'			><span>Phone			</span></th>
 			<th class='jky-mobile'			><span>Mobile			</span></th>
@@ -143,10 +147,10 @@
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
-				<button id='jky-action-save'	class='btn btn-success' type='button'><span>Save	</span></button>
-				<button id='jky-action-copy'	class='btn btn-success' type='button'><span>Copy	</span></button>
-			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button'><span>Delete	</span></a>
-			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button'><span>Cancel	</span></a>
+				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+				<button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></a>
+			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></a>
 			</div>
 		</div>
 		<div class='jky-clear'></div>

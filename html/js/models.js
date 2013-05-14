@@ -108,7 +108,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_side_active('jky-support-templates');
 		JKY.set_side_active('jky-support-translations');
 
-		JKY.set_html('jky-state'			, JKY.set_group_set('Configs', '', 'States'	));
+		JKY.set_html('jky-state'			, JKY.set_group_set('Configs', '', 'States'   ));
 		JKY.set_html('jky-country'			, JKY.set_group_set('Configs', '', 'Countries'));
 		JKY.set_html('jky-machine'			, JKY.set_table_options('Machines', 'name', '', null));
 		JKY.set_html('jky-machine-brand'	, JKY.set_group_set('Configs', '', 'Machine Brands'		));
@@ -190,7 +190,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-print'		);
 	JKY.hide('jky-action-save'		);
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
@@ -301,7 +301,7 @@ JKY.display_form = function(index) {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
 	JKY.show('jky-action-copy'		);
 	JKY.show('jky-action-delete'	);
@@ -372,7 +372,6 @@ JKY.display_row = function(index) {
 	JKY.set_radio	('jky-machine-type'		, JKY.row.machine_type	);
 	JKY.set_option	('jky-machine-family'	, JKY.row.machine_family);
 	JKY.set_option	('jky-machine-brand'	, JKY.row.machine_brand	);
-	JKY.set_radio	('jky-product-type'		, JKY.row.product_type	);
 	JKY.set_value	('jky-serial-number'	, JKY.row.serial_number	);
 	JKY.set_value	('jky-diameter'			, JKY.row.diameter		);
 	JKY.set_value	('jky-width'			, JKY.row.width			);
@@ -493,8 +492,8 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-street2'			, '');
 	JKY.set_value	('jky-city'				, '');
 	JKY.set_value	('jky-zip'				, '');
-	JKY.set_option	('jky-state'			, '');
-	JKY.set_option	('jky-country'			, '');
+	JKY.set_option	('jky-state'			, 'SP');
+	JKY.set_option	('jky-country'			, 'Brasil');
 	JKY.set_value	('jky-website'			, '');
 
 	JKY.set_value	('jky-position'			, '');
@@ -522,8 +521,8 @@ JKY.display_new = function() {
 	JKY.set_radio	('jky-has-break'		, 'No');
 
 	JKY.set_value	('jky-name'				, '' );
-	JKY.set_radio	('jky-product-type'		,  JKY.t('Tubular'));
 	JKY.set_radio	('jky-machine-type'		,  JKY.t('Circular'));
+	JKY.set_radio	('jky-product-type'		,  JKY.t('Tubular'));
 	JKY.set_option	('jky-machine-family'	, '' );
 	JKY.set_option	('jky-machine-brand'	, '' );
 	JKY.set_value	('jky-serial-number'	, '' );
@@ -620,8 +619,8 @@ JKY.get_form_set = function() {
 		+     ', has_break=\'' + JKY.get_checked('jky-has-break'		) + '\''
 
 		+            'name=\'' + JKY.get_value	('jky-name'				) + '\''
-		+  ', product_type=\'' + JKY.get_checked('jky-product-type'		) + '\''
 		+  ', machine_type=\'' + JKY.get_checked('jky-machine-type'		) + '\''
+		+  ', product_type=\'' + JKY.get_checked('jky-product-type'		) + '\''
 		+ ', machine_family=\'' + JKY.get_value	('jky-machine-family'	) + '\''
 		+ ', machine_brand=\'' + JKY.get_value	('jky-machine-brand'	) + '\''
 		+ ', serial_number=\'' + JKY.get_value	('jky-serial-number'	) + '\''

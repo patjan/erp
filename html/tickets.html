@@ -36,11 +36,11 @@
 .jky-form-value			{width:210px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-opened-by			{width: 80px; text-align:center;}
-.jky-opened-at			{width: 80px; text-align:center;}
-.jky-priority			{width: 80px; text-align:center;}
-.jky-description		{width:200px;}
-.jky-resolution			{width:200px;}
+.jky-opened-by			{width: 70px; text-align:center;}
+.jky-opened-at			{width: 70px; text-align:center;}
+.jky-priority			{width: 60px; text-align:center;}
+.jky-description		{width:300px;}
+.jky-resolution			{width:100px;}
 
 #jky-opened-by			{width:240px;}
 #jky-opened-value		{width:100px;}
@@ -52,9 +52,9 @@
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' /></th>
-			<th class='jky-opened-by'		><span>Opened At		</span></th>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-opened-at'		><span>Opened By		</span></th>
+			<th class='jky-opened-by'		><span>Opened At		</span></th>
 			<th class='jky-priority'		><span>Priority			</span></th>
 			<th class='jky-description'		><span>Description		</span></th>
 			<th class='jky-resolution'		><span>Resolution		</span></th>
@@ -113,10 +113,10 @@
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
-				<button id='jky-action-save'	class='btn btn-success' type='button'><span>Save	</span></button>
-				<button id='jky-action-copy'	class='btn btn-success' type='button'><span>Copy	</span></button>
-			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button'><span>Delete	</span></a>
-			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button'><span>Cancel	</span></a>
+				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+				<button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></a>
+			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></a>
 			</div>
 		</div>
 		<div class='jky-clear'></div>

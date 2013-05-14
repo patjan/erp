@@ -8,8 +8,8 @@
 
 	<div>
 		<div id='jky-app-actions'>
-			<button id='jky-action-add-new'		class='btn btn-success' type='button' title="Click here to add new record"><span>Add New	</span></button>
-			<button id='jky-action-print'		class='btn btn-success' type='button' title="Click here to print current page"><span>Print	</span></button>
+			<button id='jky-action-add-new'		class='btn btn-success' type='button' title="Click here to add new record"			><span>Add New	</span></button>
+			<button id='jky-action-print'		class='btn btn-success' type='button' title="Click here to print selected records"	><span>Print	</span></button>
 		</div>
 		<div id='jky-app-more'>
 			<button id='jky-action-export'		class='btn btn-success' type='button' title="Click here to export as excel file"><span>Export	</span></button>
@@ -44,15 +44,14 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-opened-by'		><span>Created By		</span></th>
-			<th class='jky-opened-at'		><span>Created At		</span></th>
-			<th class='jky-priority'		><span>Template Name	</span></th>
-			<th class='jky-description'		><span>Template Type	</span></th>
-			<th class='jky-resolution'		><span>Template Subject	</span></th>
-			<th class='jky-resolution'		><span>Template Body	</span></th>
-			<th class='jky-resolution'		><span>Template SQL		</span></th>
-			<th class='jky-resolution'		><span>Description		</span></th>
-			<th class='jky-status'			><span>Status			</span></th>
+			<th class='jky-created-by'		><span>Created By		</span></th>
+			<th class='jky-created-at'		><span>Created At		</span></th>
+			<th class='jky-template-name'	><span>Template Name	</span></th>
+			<th class='jky-template-type'	><span>Template Type	</span></th>
+			<th class='jky-template-subject'><span>Template Subject	</span></th>
+			<th class='jky-template-body'	><span>Template Body	</span></th>
+			<th class='jky-template-sql'	><span>Template SQL		</span></th>
+			<th class='jky-description'		><span>Description		</span></th>
 		</tr>
 	</thead>
 
@@ -125,10 +124,10 @@
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
-				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save the changes"		><span>Save		</span></button>
+				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
 				<button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
 			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></a>
-			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any chnages"		><span>Cancel	</span></a>
+			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></a>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
