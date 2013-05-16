@@ -219,3 +219,5 @@ li .arrow span {
 #jky-search-filter		{margin-bottom:10px;}
 #jky-search-table thead tr	{border-radius:3px;}
 #jky-search-table tbody tr	{height:30px;}
+
+#jky-printable {display:none}

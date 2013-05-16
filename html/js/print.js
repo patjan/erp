@@ -425,41 +425,7 @@ JKY.process_print = function() {
 JKY.print_row = function(the_id) {
 	JKY.display_message('print_row: ' + the_id);
 //window.print();
-	var my_html = ''
-		+ "<table id='jky-form-data'>"
-		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>			  Code</span>:</td><td><input  id='jky-code'			class='jky-form-value'									readonly='readonly'	/></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>          Product</span>:</td>"
-		+ "<td><input  id='jky-product-id' type='hidden' />"
-		+ "<input  id='jky-product' class='jky-form-value' placeholder='Product Name' readonly='readonly' />"
-		+ "<a id='jky-action-product'><i class='icon-share'></i></a>"
-		+ "</td>"
-		+ "</tr>"
-		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>      Composition</span>:</td><td><input  id='jky-composition'	class='jky-form-value'									readonly='readonly'	/></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>          Machine</span>:</td><td><select id='jky-machine'></select></td></tr>"
-		+ "<tr class='jky-form-line'>&nbsp;</tr>"
-		+ "<tr class='jky-form-line'>&nbsp;</tr>"
-		+ "</table>"
-		+ "<table class='jky-left'>"
-		+ "<tr class='jky-left'>"
-		+ "<td id='jky-download-drawing'></td>"
-		+ "<td><a id='jky-upload-drawing'><span>Upload Drawing</span></a></td>"
-		+ "</tr>"
-		+ "<tr class='jky-left'>"
-		+ "<td id='jky-download-photo'  ></td>"
-		+ "<td><a id='jky-upload-photo'  ><span>Upload Photo  </span></a></td>"
-		+ "</tr>"
-		+ "<tr class='jky-clear'></tr>"
-		+ "<tr>"
-		+ "<td>"
-		+ "<span>Progress</span>:"
-		+ "<span id='jky-upload-percent'></span>"
-		+ "<span id='jky-upload-name'></span>"
-		+ "</td>"
-		+ "<td class='progress progress-striped active'></td><td id='jky-upload-progress' class='bar'></td>"
-		+ "</tr>"
-		+ "</table>"
-		;
-	JKY.set_html('jky-printable', my_html);
+	JKY.set_html('jky-printable','<table class="table table-striped"><thead><tr><td class="jky-action"></td><td class="jky-comp-value"><span>Percent</span></td><td class="jky-comp-label"><span>Material</span></td></tr></thead><tbody id="jky-comp-body"><tr><td class="jky-action"><a onclick="JKY.delete_composition(this)"><i class="icon-trash"></i></a></td><td class="jky-comp-value"><input value="40" onchange="JKY.update_composition()" text="text" class="jky-comp-percent"></td><td class="jky-comp-label"><select onchange="JKY.update_composition()" class="jky-comp-material"><option value="63">Acrilico</option><option selected="selected" value="60">Algodao</option><option value="69">Elastano</option><option value="64">Linho</option><option value="72">Liocel</option><option value="73">Metalica</option><option value="70">Modal</option><option value="65">Nylon</option><option value="66">Poliamida</option><option value="71">Polinosic</option><option value="61">Polyester</option><option value="67">Rayon</option><option value="68">Seda</option><option value="62">Viscose</option></select></td></tr><tr><td class="jky-action"><a onclick="JKY.delete_composition(this)"><i class="icon-trash"></i></a></td><td class="jky-comp-value"><input value="60" onchange="JKY.update_composition()" text="text" class="jky-comp-percent"></td><td class="jky-comp-label"><select onchange="JKY.update_composition()" class="jky-comp-material"><option selected="selected" value="63">Acrilico</option><option value="60">Algodao</option><option value="69">Elastano</option><option value="64">Linho</option><option value="72">Liocel</option><option value="73">Metalica</option><option value="70">Modal</option><option value="65">Nylon</option><option value="66">Poliamida</option><option value="71">Polinosic</option><option value="61">Polyester</option><option value="67">Rayon</option><option value="68">Seda</option><option value="62">Viscose</option></select></td></tr></tbody><tfoot><tr><td class="jky-action" id="jky-comp-add-new"><a href="#" type="button" class="btn btn-success"><span>Add New</span></a></td><td id="jky-comp-total">100</td><td class="jky-comp-label"><span>Total</span></td></tr></tfoot></table>');
 	$("#jky-printable").print();
 }
 

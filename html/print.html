@@ -1,36 +1,3 @@
-<div id='jky-app-header'>
-	<div>
-		<div id='jky-app-breadcrumb'></div>
-		<select id='jky-app-select'></select>
-		<input  id='jky-app-filter' class='search-query' type='text' placeholder='Search' />
-		<div class='jky-clear'></div>
-	</div>
-
-	<div>
-		<div id='jky-app-actions'>
-			<button id='jky-action-add-new'		class='btn btn-success' type='button' title="Click here to add new record"			><span>Add New	</span></button>
-			<button id='jky-action-print'		class='btn btn-success' type='button' title="Click here to print selected records"	><span>Print	</span></button>
-		</div>
-		<div id='jky-app-more'>
-			<button id='jky-action-export'		class='btn btn-success' type='button' title="Click here to export as excel file"><span>Export	</span></button>
-			<button id='jky-action-publish'		class='btn btn-success' type='button' title="Click here to publish the content"><span>Publish	</span></button>
-		</div>
-		<div id='jky-app-displays' class='btn-group'>
-			<button id='jky-action-list'		class='btn' title=    'List View'><i class='icon-align-justify'	></i></button>
-			<button id='jky-action-graph'		class='btn' title= 'Graphic View'><i class='icon-signal'		></i></button>
-			<button id='jky-action-calendar'	class='btn' title='Calendar View'><i class='icon-calendar'		></i></button>
-			<button id='jky-action-form'		class='btn' title=    'Form View'><i class='icon-list-alt'		></i></button>
-		</div>
-		<div id='jky-app-counters'><span id='jky-app-index'></span> of <span id='jky-app-count'></span></div>
-		<div id='jky-app-add-new' ><span>New</span></div>
-		<div id='jky-app-navs' class='btn-group'>
-			<button id='jky-action-prev'		class='btn' title='Previous'	 ><i class='icon-backward'		></i></button>
-			<button id='jky-action-next'		class='btn' title='Next'		 ><i class='icon-forward'		></i></button>
-		</div>
-		<div class='jky-clear'></div>
-	</div>
-</div>
-
 <style>
 .jky-form-line-1		{width:240px;}
 .jky-form-line-2		{width:240px;}
@@ -123,76 +90,39 @@
 
 </style>
 
-<table id='jky-app-table' class='table table-striped'>
-	<thead>
-		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-code'			><span>Code				</span></th>
-			<th class='jky-product'			><span>Product			</span></th>
-			<th class='jky-machine'			><span>Machine			</span></th>
-			<th class='jky-composition'		><span>Composition		</span></th>
-		</tr>
-	</thead>
-
-	<tbody id='jky-table-body'></tbody>
-
-	<tfoot>
-		<tr>
-			<td></td>
-		</tr>
-	</tfoot>
-</table>
-
-<div id='jky-app-form'>
-	<div id='jky-form-control'>
-		<div id='jky-form-actions'	></div>
-		<ul  id='jky-form-status'	></ul>
-	</div>
-	<div class='jky-clear'></div>
-<!--
-	<div id='jky-form-title'>
-		<span id='jky-form-action'	></span>
-		<span id='jky-form-id'		></span>
-		<div class='jky-right'>
-			<button id='jky-action-comment'	class='btn btn-success' type='button'><span>Comment</span></button>
-		</div>
-		<div class='jky-clear'></div>
-	</div>
--->
-	<div id='jky-form-data'>
-		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>			  Code</span>:</div><input  id='jky-code'			class='jky-form-value'									readonly='readonly'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>          Product</span>:</div>
-				<input  id='jky-product-id' type='hidden' />
+	<table id='jky-form-data'>
+		<tr class='jky-form-line'><td class='jky-form-label'><span>			  Code</span>:</td><td><input  id='jky-code'			class='jky-form-value'									readonly='readonly'	/></td></tr>
+		<tr class='jky-form-line'><td class='jky-form-label'><span>          Product</span>:</td>
+			<td><input  id='jky-product-id' type='hidden' />
 				<input  id='jky-product' class='jky-form-value' placeholder='Product Name' readonly='readonly' />
 				<a id='jky-action-product'><i class='icon-share'></i></a>
-			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Composition</span>:</div><input  id='jky-composition'	class='jky-form-value'									readonly='readonly'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>          Machine</span>:</div><select id='jky-machine'></select></div>
-			<div class='jky-form-line'>&nbsp;</div>
-			<div class='jky-form-line'>&nbsp;</div>
-		</div>
-		<div class='jky-left'>
-			<div class='jky-left'>
-				<div id='jky-download-drawing'></div>
-				<a id='jky-upload-drawing'><span>Upload Drawing</span></a>
-			</div>
-			<div class='jky-left'>
-				<div id='jky-download-photo'  ></div>
-				<a id='jky-upload-photo'  ><span>Upload Photo  </span></a>
-			</div>
-			<div class='jky-clear'></div>
-			<div>
-				<div>
+			</td>
+		</tr>
+		<tr class='jky-form-line'><td class='jky-form-label'><span>      Composition</span>:</td><td><input  id='jky-composition'	class='jky-form-value'									readonly='readonly'	/></td></tr>
+			<tr class='jky-form-line'><td class='jky-form-label'><span>          Machine</span>:</td><td><select id='jky-machine'></select></td></tr>
+			<tr class='jky-form-line'>&nbsp;</tr>
+			<tr class='jky-form-line'>&nbsp;</tr>
+	</table>
+		<table class='jky-left'>
+			<tr class='jky-left'>
+				<td id='jky-download-drawing'></td>
+				<td><a id='jky-upload-drawing'><span>Upload Drawing</span></a></td>
+			</tr>
+			<tr class='jky-left'>
+				<td id='jky-download-photo'  ></td>
+				<td><a id='jky-upload-photo'  ><span>Upload Photo  </span></a></td>
+			</tr>
+			<tr class='jky-clear'></tr>
+			<tr>
+				<td>
 					<span>Progress</span>:
 					<span id='jky-upload-percent'></span>
 					<span id='jky-upload-name'></span>
-				</div>
-				<div class='progress progress-striped active'><div id='jky-upload-progress' class='bar'></div></div>
-			</div>
-		</div>
-		<div class='jky-clear'></div>
-
+				</td>
+				<td class='progress progress-striped active'></td><td id='jky-upload-progress' class='bar'></td>
+			</tr>
+		</table>
+<!--
 		<div class='jky-left'>
 			<div class='jky-form-line-1'><div class='jky-form-label-1'><span>      Diameter</span>:</div><input id='jky-diameter'	class='jky-form-value-1'	/>(cm)		</div>
 			<div class='jky-form-line-1'><div class='jky-form-label-1'><span>       Density</span>:</div><input id='jky-density'	class='jky-form-value-1'	/>			</div>
@@ -339,12 +269,11 @@
 			</tbody>
 		</table>
 	</div>
-	<div class='modal-footer'>
-<!--	<button  id='jky-search-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>
--->		&nbsp;<a id='jky-search-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel	</span></a>
+	<div class='modal-footer'>	<button  id='jky-search-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>
+		&nbsp;<a id='jky-search-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel	</span></a>
 	</div>
 </div>
-
+-->
 <div id='jky-body-loaded'></div>
 
 <div id="jky-printable"></div>
