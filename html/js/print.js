@@ -63,7 +63,7 @@ JKY.set_all_events = function(jky_program) {
 
 		$('#jky-action-product'		).click (function() {JKY.display_product	();});
 		$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});
-		$('#jky-search-filter'		).KeyUpDelay(JKY.filter_product);
+		$('#jky-search-filter'		).keyupDelay(JKY.filter_product);
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -200,7 +200,6 @@ JKY.display_form = function(index) {
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
-	JKY.show('jky-app-upload'		);
 	JKY.display_row(index);
 }
 
@@ -210,28 +209,27 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
-	var my_time = JKY.get_time();
 
 	var my_html = '';
-	if (JKY.row.draw == null) {
+    if (JKY.row.draw == null) {
 		my_html = '<img id="jky-drawing-img" src="/img/placeholder.png" class="the_icon" />';
 	}else{
-		my_html = '<a href="' + 'jky_download.php?file_name=ftp_draws/' + JKY.row.id + '.' + JKY.row.draw + '">'
-				+ '<img id="jky-drawing-img"  src="/uploads/ftp_draws/' + JKY.row.id + '.' + JKY.row.draw + '?' + my_time + '" class="the_icon" />';
+        my_html = '<a href="' + 'jky_download.php?file_name=drawings/' + JKY.row.id + '.' + JKY.row.draw + '">'
+				+ '<img id="jky-drawing-img" src="/uploads/drawings/' + JKY.row.id + '.' + JKY.row.draw + '" class="the_icon" />';
 				+ '</a>'
 				;
-	}
-	JKY.set_html('jky-download-drawing', my_html);
+    }
+    JKY.set_html('jky-download-drawing', my_html);
 
 	if (JKY.row.photo == null) {
 		my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
 	}else{
-		my_html = '<a href="' + 'jky_download.php?file_name=ftp_photos/' + JKY.row.id + '.' + JKY.row.photo + '">'
-				+ '<img id="jky-photo-img"    src="/uploads/ftp_photos/' + JKY.row.id + '.' + JKY.row.photo + '?' + my_time + '" class="the_icon" />';
+        my_html = '<a href="' + 'jky_download.php?file_name=photos/' + JKY.row.id + '.' + JKY.row.photo + '">'
+				+ '<img id="jky-photo-img" src="/uploads/photos/' + JKY.row.id + '.' + JKY.row.photo + '" class="the_icon" />';
 				+ '</a>'
 				;
-	}
-	JKY.set_html('jky-download-photo', my_html);
+    }
+    JKY.set_html('jky-download-photo', my_html);
 
 	JKY.set_html('jky-upload-name'		, '');
 	JKY.set_html('jky-upload-percent'	, '');
@@ -276,7 +274,6 @@ JKY.process_add_new = function() {
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
-	JKY.hide('jky-app-upload'		);
 	JKY.display_new();
 }
 
@@ -428,41 +425,7 @@ JKY.process_print = function() {
 JKY.print_row = function(the_id) {
 	JKY.display_message('print_row: ' + the_id);
 //window.print();
-	var my_html = ''
-		+ "<table id='jky-form-data'>"
-		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>			  Code</span>:</td><td><input  id='jky-code'			class='jky-form-value'									readonly='readonly'	/></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>          Product</span>:</td>"
-		+ "<td><input  id='jky-product-id' type='hidden' />"
-		+ "<input  id='jky-product' class='jky-form-value' placeholder='Product Name' readonly='readonly' />"
-		+ "<a id='jky-action-product'><i class='icon-share'></i></a>"
-		+ "</td>"
-		+ "</tr>"
-		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>      Composition</span>:</td><td><input  id='jky-composition'	class='jky-form-value'									readonly='readonly'	/></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>          Machine</span>:</td><td><select id='jky-machine'></select></td></tr>"
-		+ "<tr class='jky-form-line'>&nbsp;</tr>"
-		+ "<tr class='jky-form-line'>&nbsp;</tr>"
-		+ "</table>"
-		+ "<table class='jky-left'>"
-		+ "<tr class='jky-left'>"
-		+ "<td id='jky-download-drawing'></td>"
-		+ "<td><a id='jky-upload-drawing'><span>Upload Drawing</span></a></td>"
-		+ "</tr>"
-		+ "<tr class='jky-left'>"
-		+ "<td id='jky-download-photo'  ></td>"
-		+ "<td><a id='jky-upload-photo'  ><span>Upload Photo  </span></a></td>"
-		+ "</tr>"
-		+ "<tr class='jky-clear'></tr>"
-		+ "<tr>"
-		+ "<td>"
-		+ "<span>Progress</span>:"
-		+ "<span id='jky-upload-percent'></span>"
-		+ "<span id='jky-upload-name'></span>"
-		+ "</td>"
-		+ "<td class='progress progress-striped active'></td><td id='jky-upload-progress' class='bar'></td>"
-		+ "</tr>"
-		+ "</table>"
-		;
-	JKY.set_html('jky-printable', my_html);
+	JKY.set_html('jky-printable','<table class="table table-striped"><thead><tr><td class="jky-action"></td><td class="jky-comp-value"><span>Percent</span></td><td class="jky-comp-label"><span>Material</span></td></tr></thead><tbody id="jky-comp-body"><tr><td class="jky-action"><a onclick="JKY.delete_composition(this)"><i class="icon-trash"></i></a></td><td class="jky-comp-value"><input value="40" onchange="JKY.update_composition()" text="text" class="jky-comp-percent"></td><td class="jky-comp-label"><select onchange="JKY.update_composition()" class="jky-comp-material"><option value="63">Acrilico</option><option selected="selected" value="60">Algodao</option><option value="69">Elastano</option><option value="64">Linho</option><option value="72">Liocel</option><option value="73">Metalica</option><option value="70">Modal</option><option value="65">Nylon</option><option value="66">Poliamida</option><option value="71">Polinosic</option><option value="61">Polyester</option><option value="67">Rayon</option><option value="68">Seda</option><option value="62">Viscose</option></select></td></tr><tr><td class="jky-action"><a onclick="JKY.delete_composition(this)"><i class="icon-trash"></i></a></td><td class="jky-comp-value"><input value="60" onchange="JKY.update_composition()" text="text" class="jky-comp-percent"></td><td class="jky-comp-label"><select onchange="JKY.update_composition()" class="jky-comp-material"><option selected="selected" value="63">Acrilico</option><option value="60">Algodao</option><option value="69">Elastano</option><option value="64">Linho</option><option value="72">Liocel</option><option value="73">Metalica</option><option value="70">Modal</option><option value="65">Nylon</option><option value="66">Poliamida</option><option value="71">Polinosic</option><option value="61">Polyester</option><option value="67">Rayon</option><option value="68">Seda</option><option value="62">Viscose</option></select></td></tr></tbody><tfoot><tr><td class="jky-action" id="jky-comp-add-new"><a href="#" type="button" class="btn btn-success"><span>Add New</span></a></td><td id="jky-comp-total">100</td><td class="jky-comp-label"><span>Total</span></td></tr></tfoot></table>');
 	$("#jky-printable").print();
 }
 
@@ -495,7 +458,7 @@ $( function() {
 		$.each(files, function(i, file) {
 			JKY.set_html('jky-upload-name', file.name);
 			JKY.saved_name = file.name;
-			file.name = 'ftp_draws.' + JKY.row.id + '.' + JKY.saved_name;
+			file.name = 'drawings.' + JKY.row.id + '.' + JKY.saved_name;
 		});
 		up.refresh();			//	reposition Flash/Silverlight
 		setTimeout('JKY.drawing.start()', 100);
@@ -521,8 +484,8 @@ $( function() {
 		var my_file_type = JKY.get_file_type(JKY.saved_name);
 		JKY.saved_name = JKY.row.id + '.' + my_file_type;
 		var my_time = new Date();
-		var my_html = '<a href="' + 'jky_download.php?file_name=ftp_draws/' + JKY.row.id + '.' + my_file_type + '">'
-					+ '<img id="jky-drawing-img"  src="/uploads/ftp_draws/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
+        var my_html = '<a href="' + 'jky_download.php?file_name=drawings/' + JKY.row.id + '.' + my_file_type + '">'
+					+ '<img id="jky-drawing-img" src="/uploads/drawings/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
 					+ '</a>'
 		JKY.set_html('jky-download-drawing', my_html);
 
@@ -562,7 +525,7 @@ $( function() {
 		$.each(files, function(i, file) {
 			JKY.set_html('jky-upload-name', file.name);
 			JKY.saved_name = file.name;
-			file.name = 'ftp_photos.' + JKY.row.id + '.' + JKY.saved_name;
+			file.name = 'photos.' + JKY.row.id + '.' + JKY.saved_name;
 		});
 		up.refresh();			//	reposition Flash/Silverlight
 		setTimeout('JKY.photo.start()', 100);
@@ -588,8 +551,8 @@ $( function() {
 		var my_file_type = JKY.get_file_type(JKY.saved_name);
 		JKY.saved_name = JKY.row.id + '.' + my_file_type;
 		var my_time = new Date();
-		var my_html = '<a href="' + 'jky_download.php?file_name=ftp_photos/' + JKY.row.id + '.' + my_file_type + '">'
-					+ '<img id="jky-photo-img"    src="/uploads/ftp_photos/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
+        var my_html = '<a href="' + 'jky_download.php?file_name=photos/' + JKY.row.id + '.' + my_file_type + '">'
+					+ '<img id="jky-photo-img" src="/uploads/photos/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
 					+ '</a>'
 		JKY.set_html('jky-download-photo', my_html);
 
