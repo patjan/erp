@@ -2,7 +2,7 @@
 
 
 	add into [home.html]
-	add into [home.js  ]
+	add into [home.js]
 10	program SQL
 20	create table in MySQL
 	add table fields into AjaxController.php
@@ -16,6 +16,7 @@
 	program [Contacts] pane
 	
 
+	program [Date] input
 	program JKY.display_company
 	program select by [Company Names]
 	program select by [Company Tags]

@@ -1,24 +1,17 @@
 JKY.verify_user_name = function() {
-	JKY.display_message('JKY.verify_user_name');
-	var my_error = '';
+	JKY.display_trace('verify_user_name');
 	var my_user_name = JKY.get_value('jky-user-name');
-	var my_user_role = JKY.get_value('jky-user-role');
+	var my_error = '';
 
-	if (JKY.is_empty(my_error) && JKY.is_empty(my_user_name)) {
-		my_error += JKY.set_is_required('User Name');
-	}
-	if (JKY.is_empty(my_error)) {
-		var my_where = 'user_name = \'' + my_user_name + '\'';
-		var my_user_id = JKY.get_id('JKY_Users', my_where);
+	if (!JKY.is_empty(my_user_name)) {
+		var my_user_id = JKY.get_user_id(my_user_name);
 //	JKY.display_message('my_user_id: ' + my_user_id + ', JKY.row.user_id: ' + JKY.row.user_id);
-//		if (!JKY.is_empty(my_user_id)			//	found user_name
-//		&&  my_user_id != JKY.row.user_id) {	//	but not the same record
-		if (!JKY.is_empty(my_user_id)			//	found user_name
-		&& (JKY.row == null
-		||  my_user_id != JKY.row.user_id)) {	//	but not the same record
-			my_error += JKY.set_already_taken('User Name [' + my_user_name + ']');
+		if (!JKY.is_empty(my_user_id)								//	found user_name
+		&& (JKY.row == null || my_user_id != JKY.row.user_id)) {	//	and not the same record
+			my_error += JKY.set_already_taken('User Name');
 		}
 	}
+
 	if (!JKY.is_empty(my_error)) {
 		JKY.display_message(my_error);
 		JKY.set_focus('jky-user-name', 100);
@@ -28,20 +21,52 @@ JKY.verify_user_name = function() {
 	}
 }
 
-JKY.insert_user = function(contact_id, user_id) {
+JKY.verify_input = function() {
+	JKY.display_trace('verify_input');
+	var my_first_name= JKY.get_value('jky-first-name');
+	var my_last_name = JKY.get_value('jky-last-name');
+	var my_email	 = JKY.get_value('jky-email'	);
+	var my_user_name = JKY.get_value('jky-user-name');
+	var my_error = '';
+
+	if (JKY.is_empty(my_first_name)) {
+		my_error += JKY.set_is_required('First Name');
+	}
+	if (JKY.is_empty(my_last_name)) {
+		my_error += JKY.set_is_required('Last Name');
+	}
+	if (!JKY.is_empty(my_email) && !JKY.is_email(my_email)) {
+		my_error += JKY.set_is_invalid('Email');
+	}
+	if (!JKY.is_empty(my_user_name)) {
+		var my_user_id = JKY.get_user_id(my_user_name);
+//	JKY.display_message('my_user_id: ' + my_user_id + ', JKY.row.user_id: ' + JKY.row.user_id);
+		if (!JKY.is_empty(my_user_id)								//	found user_name
+		&& (JKY.row == null || my_user_id != JKY.row.user_id)) {	//	and not the same record
+			my_error += JKY.set_already_taken('User Name');
+		}
+	}
+
+	if (!JKY.is_empty(my_error)) {
+		JKY.display_message(my_error);
+		JKY.set_focus('jky-user-name', 100);
+		return false;
+	}else{
+		return true;
+	}
+}
+
+JKY.insert_user = function(contact_id) {
+	JKY.display_trace('insert_user: ' + contact_id);
+
+	var my_first_name= JKY.get_value('jky-first-name');
+	var my_last_name = JKY.get_value('jky-last-name');
 	var my_user_name = JKY.get_value('jky-user-name');
 	var my_user_role = JKY.get_value('jky-user-role');
-	if (JKY.is_empty(my_user_name)) {
-		return;
-	}
-	if (!JKY.is_empty(user_id)) {
-		JKY.update_user(contact_id, user_id);
-		return;
-	}
-	JKY.display_message('JKY.insert_user');
 	var my_set  =  'contact_id =   ' + contact_id
 				+ ', user_name = \'' + my_user_name + '\''
 				+ ', user_role = \'' + my_user_role + '\''
+				+  ', password = \'' + $.md5(my_first_name + my_last_name) + '\''
 				;
 	var my_data =
 		{ method: 'insert'
@@ -59,14 +84,17 @@ JKY.insert_user_success = function(response) {
 JKY.update_user = function(contact_id, user_id) {
 	var my_user_name = JKY.get_value('jky-user-name');
 	var my_user_role = JKY.get_value('jky-user-role');
+
 	if (JKY.is_empty(my_user_name)) {
 		return;
 	}
+
 	if (JKY.is_empty(user_id)) {
-		JKY.insert_user(contact_id, user_id);
-		return;
+		JKY.insert_user(contact_id);
+		user_id = JKY.get_user_id(my_user_name);
 	}
-	JKY.display_message('JKY.update_user: ' + contact_id + ' : ' + user_id);
+	JKY.display_trace('update_user: ' + contact_id + ' : ' + user_id);
+
 	var my_set  =  'contact_id =   ' + contact_id
 				+ ', user_name = \'' + my_user_name + '\''
 				+ ', user_role = \'' + my_user_role + '\''
@@ -83,6 +111,46 @@ JKY.update_user = function(contact_id, user_id) {
 
 JKY.update_user_success = function(response) {
 	JKY.display_trace('update_user_success');
+	JKY.display_message(response.message);
+}
+
+JKY.reset_user = function() {
+	JKY.display_trace('JKY.reset_user');
+	var my_first_name= JKY.get_value('jky-first-name');
+	var my_last_name = JKY.get_value('jky-last-name');
+	var my_user_name = JKY.get_value('jky-user-name');
+
+	if (JKY.is_empty(my_user_name)) {
+		return;
+	}
+
+	var my_error = '';
+	if (JKY.is_empty(my_first_name)) {
+		my_error += JKY.set_is_required('First Name');
+	}
+	if (JKY.is_empty(my_last_name)) {
+		my_error += JKY.set_is_required('Last Name');
+	}
+
+	if (!JKY.is_empty(my_error)) {
+		JKY.display_message(my_error);
+		JKY.set_focus('jky-first-name', 100);
+		return false;
+	}
+
+	var my_set = 'password = \'' + $.md5(my_first_name + my_last_name) + '\'';
+	var my_where = 'id = ' + JKY.row.user_id;
+	var my_data =
+		{ method: 'update'
+		, table : 'JKY_Users'
+		, set	: my_set
+		, where : my_where
+		};
+	JKY.ajax(false, my_data, JKY.reset_user_success);
+}
+
+JKY.reset_user_success = function(response) {
+	JKY.display_trace('reset_user_success');
 	JKY.display_message(response.message);
 }
 

@@ -55,4 +55,4 @@ UPDATE Maquinas SET name = 'paquita2'	WHERE name = 'paquita 2';
 UPDATE Maquinas SET name = 'paquita3'	WHERE name = 'paquita 3';
 UPDATE Maquinas SET name = 'paquita4'	WHERE name = 'paquita 4';
 
-
+UPDATE Tickets	SET status = 'Open'		WHERE status = 'Active';

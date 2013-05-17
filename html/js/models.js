@@ -370,6 +370,7 @@ JKY.display_row = function(index) {
 
 	JKY.set_value	('jky-name'				, JKY.row.name			);
 	JKY.set_radio	('jky-machine-type'		, JKY.row.machine_type	);
+	JKY.set_radio	('jky-product-type'		, JKY.row.product_type	);
 	JKY.set_option	('jky-machine-family'	, JKY.row.machine_family);
 	JKY.set_option	('jky-machine-brand'	, JKY.row.machine_brand	);
 	JKY.set_value	('jky-serial-number'	, JKY.row.serial_number	);

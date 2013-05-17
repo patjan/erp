@@ -7,8 +7,8 @@
  *	status = 'ok'
  *	status = 'error'
  *
- *	message = 'table name [X...x] is undefined'
- *	message = 'method name [ X...x ] is undefined'
+ *	message = 'table name	[X...x] is undefined'
+ *	message = 'method name	[X...x] is undefined'
  *	message = 'error on server'				(only for no support)
  *	message = 'error on mysql: x...x'		(only for support)
  *	message = 'duplicate id'
@@ -23,9 +23,9 @@ public function init() {
 
 //	set_session('user_level', MINIMUM_TO_BROWSE  );
 //	set_session('user_level', MINIMUM_TO_SUPPORT );
-	set_session('user_role' , 'Support'  );
+//	set_session('user_role' , 'Support'  );
 //	set_session('full_name' , 'Pat Jan'  );
-	set_session('user_id'	, 4 );
+//	set_session('user_id'	, 4 );
 	set_permissions('Support');
 
 	if (!is_session('control_company'	))		set_session('control_company'	, COMPANY_ID);
@@ -62,7 +62,7 @@ public function indexAction() {
 			case 'get_profile'		: $this->get_profile	(); return;
 			case 'get_contact'		: $this->get_contact	(); return;
 			case 'get_contact_id'	: $this->get_contact_id	(); return;
-			case 'get_user_id'		: $this->get_user_id	(); return;
+			case 'get_user_id'		: $this->get_user_id	($data); return;
 			case 'set_company_id'	: $this->set_company_id	(); return;
 			case 'get_company_id'	: $this->get_company_id	(); return;
 			case 'set_user_id'		: $this->set_user_id	(); return;
@@ -77,7 +77,7 @@ public function indexAction() {
 			case 'log_in'			: $this->log_in			($data); return;
 			case 'log_out'			: $this->log_out		($data); return;
 			case 'log_help'			: $this->log_help		(); return;
-			case 'profile'			: $this->profile		(); return;
+			case 'profile'			: $this->profile		($data); return;
 			case 'sign_up'			: $this->sign_up		(); return;
 			case 'confirm'			: $this->confirm		(); return;
 			case 'reset'			: $this->reset			(); return;
@@ -773,6 +773,7 @@ private function set_where($table, $filter) {
 		if ($table == 'Tickets') {
 			if ($name == 'opened_at'
 			or	$name == 'priority'
+			or	$name == 'category'
 			or	$name == 'description'
 			or	$name == 'resolution'
 			or	$name == 'status') {
@@ -892,6 +893,7 @@ private function set_where($table, $filter) {
 	if ($table == 'Tickets') {
 		$return = '           Tickets.opened_at			LIKE ' . $filter
 				. ' OR        Tickets.priority			LIKE ' . $filter
+				. ' OR        Tickets.category			LIKE ' . $filter
 				. ' OR        Tickets.description		LIKE ' . $filter
 				. ' OR        Tickets.resolution		LIKE ' . $filter
 				. ' OR         Opened.full_name			LIKE ' . $filter
@@ -1770,8 +1772,7 @@ private function get_session() {
 	if (is_session('control_company'))   $data['control_company'] =   get_session('control_company', COMPANY_ID);
 	if (is_session('company_name'	))   $data['company_name'	] =   get_session('company_name');
 	if (is_session('company_logo'	))   $data['company_logo'	] =   get_session('company_logo');
-	if (is_session('event_id'		))   $data['event_id'		] =   get_session('event_id'	);
-	if (is_session('event_name'		))   $data['event_name'		] =   get_session('event_name'	);
+	if (is_session('contact_id'		))   $data['contact_id'		] =   get_session('contact_id'	);
 	if (is_session('full_name'		))   $data['full_name'		] =   get_session('full_name'	);
 	if (is_session('user_name'		))   $data['user_name'		] =   get_session('user_name'	);
 	if (is_session('user_time'		))   $data['user_time'		] =   get_session('user_time'	);
@@ -1879,29 +1880,20 @@ private function get_contact_id() {
 }
 
 /**
- *	$.ajax({ method: get_user_id, full_name: x...x | user_name: x...x );
+ *	$.ajax({ method: get_user_id, user_name: x...x );
  *
  *	status: ok     | error
  *		id: 9...9  | null
  */
-private function get_user_id() {
-	$where = '';
-	if (is_request('full_name'))	$where = 'full_name = "' . get_request('full_name') . '"';
-	if (is_request('user_name'))	$where = 'user_name = "' . get_request('user_name') . '"';
-
+private function get_user_id($data) {
+	$sql= 'SELECT id'
+		. '  FROM JKY_Users'
+		. ' WHERE user_name = "' . $data['user_name'] . '"'
+		;
 	$return = array();
-	if ($where != '') {
-		$sql= 'SELECT id'
-			. '  FROM Contacts'
-			. ' WHERE ' . $where
-			;
-		$db = Zend_Registry::get('db');
-		$return['status'] = 'ok';
-		$return['id'	] = $db->fetchOne($sql);
-	}else{
-		$return['status'] = 'error';
-		$return['id'	] = null;
-	}
+	$db = Zend_Registry::get('db');
+	$return['status'] = 'ok';
+	$return['id'	] = $db->fetchOne($sql);
 	echo json_encode($return);
 }
 
@@ -2265,6 +2257,7 @@ private function set_user_session($user_id) {
 	set_session('user_role'		, $user['user_role'		]);
 
 	$contact = db_get_row('Contacts', 'id = ' . $user['contact_id']);
+	set_session('contact_id'	, $contact['id'			]);
 	set_session('first_name'	, $contact['first_name'	]);
 	set_session('last_name'		, $contact['last_name'	]);
 	set_session('full_name'		, $contact['full_name'	]);
@@ -2479,59 +2472,58 @@ private function log_help() {
 }
 
 /**
- *	$.ajax({ method: profile, user_name: x...x, first_name: x...x, last_name: x...x, email_address: x...x, phone: x...x, mobile: x...x, cur_password: x...x, new_password: x...x });
+ *	$.ajax({ method: profile, user_name: x...x, first_name: x...x, last_name: x...x, email: x...x, current: x...x, password: x...x });
  *
  *	status: ok
  * message: x...x
  */
-private function profile() {
-	$id = get_session('user_id');
-	$user_name		= get_request('user_name'		);
-	$first_name		= get_request('first_name'		);
-	$last_name		= get_request('last_name'		);
-	$email_address	= get_request('email_address'	);
-	$phone			= get_request('phone'			);
-	$mobile			= get_request('mobile'			);
-	$cur_password	= get_request('cur_password'	);
-	$new_password	= get_request('new_password'	);
-	$full_name		= $first_name . ' ' . $last_name;
+private function profile($data) {
+	$user_name	= $data['user_name'	];
+	$first_name	= $data['first_name'];
+	$last_name	= $data['last_name'	];
+	$email		= $data['email'		];
+	$current	= $data['current'	];
+	$password	= $data['password'	];
+	$full_name	= $first_name . ' ' . $last_name;
 
-	$set= '  user_name		= "' . $user_name		. '"'
-		. ', first_name		= "' . $first_name		. '"'
-		. ', last_name		= "' . $last_name		. '"'
-		. ', full_name		= "' . $full_name		. '"'
-		. ', user_email		= "' . $email_address	. '"'
-		. ', phone			= "' . $phone			. '"'
-		. ', mobile			= "' . $mobile			. '"'
-		;
-	$sql= 'UPDATE Contacts'
-		. '   SET ' . $set
-		. ' WHERE id = ' . $id
-		;
 	$db = Zend_Registry::get('db');
-	$db->query($sql);
-	$this->log_sql('profile', $id, $sql);
-
-	set_session('full_name', $full_name);
-
 	$error = '';
-	if ($new_password != MD5('')) {
+	if ($password != MD5('')) {
 		$sql= 'SELECT password'
 			. '  FROM JKY_Users'
-			. ' WHERE id = ' . $id
+			. ' WHERE id = ' . get_session('user_id')
 			;
-		$password = $db->fetchOne($sql);
+		$my_password = $db->fetchOne($sql);
 
-		if ($password != $cur_password) {
-			$error .= 'Current Password is invalid';
-		}else{
-			$sql= 'UPDATE JKY_Users'
-				. '   SET password = "' . $new_password . '"'
-				. ' WHERE id = ' . $id
-				;
-			$db->query($sql);
-			$this->log_sql('profile', $id, $sql);
+		if ($my_password != $current) {
+			$error = 'Current Password is invalid';
 		}
+		$set_password = ', password = "' . $password . '"';
+	}else{
+		$set_password = '';
+	}
+
+	if ($error == '') {
+		$set= '  first_name		= "' . $first_name		. '"'
+			. ', last_name		= "' . $last_name		. '"'
+			. ', full_name		= "' . $full_name		. '"'
+			. ', email			= "' . $email			. '"'
+			;
+		$sql= 'UPDATE Contacts'
+			. '   SET ' . $set
+			. ' WHERE id = ' . get_session('contact_id')
+			;
+		$this->log_sql('profile', null, $sql);
+		$db->query($sql);
+
+//		set_session('full_name', $full_name);
+
+		$sql= 'UPDATE JKY_Users'
+			. '   SET user_name	= "' . $user_name . '"'	. $set_password
+			. ' WHERE id = ' . get_session('user_id')
+			;
+		$this->log_sql('profile', null, $sql);
+		$db->query($sql);
 	}
 
 	$return = array();
@@ -2630,7 +2622,7 @@ private function send_email() {
      $template_name = get_request( 'template_name'     );
      $email_from    = 'Email From System';
 
-     $user     = db_get_row( 'Contacts'  , 'id = ' . $user_id );
+     $user     = db_get_row( 'Contacts' , 'id = ' . $user_id );
      $user_jky = db_get_row( 'JKY_Users', 'id = ' . $user_id );
      $to_name  = $user[ 'full_name'     ];
      $to_email = $user[ 'user_email'    ];

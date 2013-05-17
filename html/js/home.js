@@ -85,7 +85,7 @@ JKY.display_trace('set_initial_values_home');
 }
 
 /** ------------------------------------------------------------------------ **/
-
+/*
 JKY.display_sign_up = function() {
 	JKY.display_trace('display_sign_up');
 }
@@ -101,7 +101,7 @@ JKY.display_profile = function() {
 JKY.display_log_out = function() {
 	JKY.display_trace('display_log_out');
 }
-
+*/
 JKY.display_wordpress = function() {
 	JKY.display_trace('display_wordpress');
 }

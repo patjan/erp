@@ -38,6 +38,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-add-new'		).click (function() {JKY.process_add_new	();});
 		$('#jky-action-print'		).click (function() {JKY.process_print		();});
 		$('#jky-action-save'		).click (function() {JKY.process_save		();});
+		$('#jky-action-reset'		).click (function() {JKY.reset_user			();});
 		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
 		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
 		$('#jky-action-export'		).click (function() {JKY.process_export		();});
@@ -50,7 +51,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-check-all'			).click (function() {JKY.set_all_check  (this);});
 
 		$('#jky-user-name'			).change(function() {JKY.verify_user_name	();});
-		$('#jky-upload-photo'		).change(function() {JKY.upload-user-photo	();});
+//		$('#jky-upload-photo'		).change(function() {JKY.upload-user-photo	();});
 		$('#jky-save-address'		).click (function() {JKY.save_address		();});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
@@ -183,11 +184,13 @@ JKY.display_form = function(index) {
 	JKY.show('jky-action-add-new'	);
 	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
+	JKY.show('jky-action-reset'		);
 //	JKY.show('jky-action-copy'		);
 //	JKY.show('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.show('jky-app-upload'		);
 	JKY.display_row(index);
 }
 
@@ -197,15 +200,22 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
+
+	var my_html = '';
 	if (JKY.row.photo == null) {
-		JKY.set_src('jky-photo-img'  , '/img/placeholder.png' );
+		my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
 	}else{
-		JKY.set_src('jky-photo-img'  , '/uploads/photos/'   + JKY.row.id + '.' + JKY.row.photo);
+		my_html = '<a href="' + 'jky_download.php?file_name=contacts/' + JKY.row.id + '.' + JKY.row.photo + '">'
+				+ '<img id="jky-photo-img"    src="/uploads/contacts/' + JKY.row.id + '.' + JKY.row.photo + '" class="the_icon" />';
+				+ '</a>'
+				;
 	}
+	JKY.set_html('jky-download-photo', my_html);
+
 	JKY.set_html('jky-upload-name'		, '');
 	JKY.set_html('jky-upload-percent'	, '');
 	JKY.set_css ('jky-upload-progress', 'width', '0%');
-	
+
 	JKY.set_value	('jky-first-name'		, JKY.row.first_name	);
 	JKY.set_value	('jky-last-name'		, JKY.row.last_name		);
 	JKY.set_value	('jky-mobile'			, JKY.row.mobile		);
@@ -221,6 +231,11 @@ JKY.display_row = function(index) {
 	JKY.set_option	('jky-country'			, JKY.row.country		);
 	JKY.set_value	('jky-website'			, JKY.row.website		);
 
+	if (JKY.is_empty(JKY.row.user_id)) {
+		JKY.hide('jky-action-reset');
+	}else{
+		JKY.show('jky-action-reset');
+	}
 	JKY.set_focus(jky_focus);
 }
 
@@ -234,11 +249,13 @@ JKY.process_add_new = function() {
 	JKY.hide('jky-action-add-new'	);
 	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
+	JKY.hide('jky-action-reset'		);
 //	JKY.hide('jky-action-copy'		);
 //	JKY.hide('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.hide('jky-app-upload'		);
 	JKY.display_new();
 }
 
@@ -276,7 +293,7 @@ JKY.get_form_set = function() {
 }
 
 JKY.process_save = function() {
-	if (!JKY.verify_user_name()) {
+	if (!JKY.verify_input()) {
 		return;
 	}
 	if (jky_index == 0) {
@@ -298,7 +315,7 @@ JKY.process_insert = function() {
 JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
 	JKY.display_message(response.message);
-	JKY.insert_user(response.id, JKY.row.user_id);	//	only used on [Contacts]
+	JKY.insert_user(response.id);	//	only used on [Contacts]
 	JKY.load_table();
 //	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
 	JKY.process_add_new();
@@ -396,7 +413,7 @@ $( function() {
 		$.each(files, function(i, file) {
 			JKY.set_html('jky-upload-name', file.name);
 			JKY.saved_name = file.name;
-			file.name = 'photos.' + JKY.row.id + '.' + JKY.saved_name;
+			file.name = 'contacts.' + JKY.row.id + '.' + JKY.saved_name;
 		});
 		up.refresh();			//	reposition Flash/Silverlight
 		setTimeout('JKY.photo.start()', 100);
@@ -422,7 +439,10 @@ $( function() {
 		var my_file_type = JKY.get_file_type(JKY.saved_name);
 		JKY.saved_name = JKY.row.id + '.' + my_file_type;
 		var my_time = new Date();
-		JKY.set_src('jky-photo-img', '/uploads/contacts/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime());
+		var my_html = '<a href="' + 'jky_download.php?file_name=contacts/' + JKY.row.id + '.' + my_file_type + '">'
+					+ '<img id="jky-photo-img"    src="/uploads/contacts/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
+					+ '</a>'
+		JKY.set_html('jky-download-photo', my_html);
 
 		var my_data =
 			{ method: 'update'

@@ -5,7 +5,7 @@
  */
 var jky_program		= 'Tickets';
 var jky_table		= 'Tickets';
-var jky_select		= 'All';
+var jky_select		= 'Open';
 var jky_focus		= 'jky-description';
 var jky_filter		= '';
 var jky_specific	= '';
@@ -61,7 +61,9 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-help');
 		JKY.set_side_active('jky-help-tickets');
+		JKY.set_html('jky-app-select'		, JKY.set_group_set('Controls', 'All', 'Ticket Status Codes'));
 		JKY.set_html('jky-priority'			, JKY.set_group_set('Controls', '', 'Priorities'	));
+		JKY.set_html('jky-category'			, JKY.set_group_set('Controls', '', 'Ticket Categories'));
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
@@ -148,13 +150,13 @@ JKY.process_load_success = function(response) {
 		var my_row = JKY.rows[i];
 		var my_checkbox = '<input type="checkbox" onclick="JKY.set_checkbox(this)" row_id=' + my_row.id + ' />';
 		var my_opened_date = JKY.short_date(my_row.opened_at);
+		var my_description = my_row.description + ' <b>' + my_row.resolution + '</b>';
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
-				+  '<td class="jky-opened-by"		>' + my_row.opened_name		+ '</td>'
 				+  '<td class="jky-opened-at"		>' + my_opened_date			+ '</td>'
 				+  '<td class="jky-priority"		>' + my_row.priority		+ '</td>'
-				+  '<td class="jky-description"		>' + my_row.description		+ '</td>'
-				+  '<td class="jky-resolution"		>' + my_row.resolution		+ '</td>'
+				+  '<td class="jky-category"		>' + my_row.category		+ '</td>'
+				+  '<td class="jky-description"		>' + my_description			+ '</td>'
 				+  '</tr>'
 				;
 	}
@@ -176,7 +178,7 @@ JKY.display_form = function(index) {
 	JKY.hide('jky-app-add-new'		);
 	JKY.show('jky-app-counters'		);
 	JKY.show('jky-action-add-new'	);
-	JKY.show('jky-action-print'		);
+	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
 	JKY.show('jky-action-copy'		);
 	JKY.show('jky-action-delete'	);
@@ -192,9 +194,30 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
+
+	var my_html = '';
+	if (JKY.row.photo == null) {
+		my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
+	}else{
+		my_html = '<a href="' + 'jky_download.php?file_name=tickets/' + JKY.row.id + '.' + JKY.row.photo + '">'
+				+ '<img id="jky-photo-img"    src="/uploads/tickets/' + JKY.row.id + '.' + JKY.row.photo + '" class="the_icon" />';
+				+ '</a>'
+				;
+	}
+	JKY.set_html('jky-download-photo', my_html);
+
+	JKY.set_html('jky-upload-name'		, '');
+	JKY.set_html('jky-upload-percent'	, '');
+	JKY.set_css ('jky-upload-progress', 'width', '0%');
+
+	JKY.set_value	('jky-opened-at'		, JKY.short_date(JKY.row.opened_at));
 	JKY.set_value	('jky-opened-by'		, JKY.row.opened_name	);
-	JKY.set_value	('jky-opened-value'		, JKY.short_date(JKY.row.opened_at));
+	JKY.set_value	('jky-assigned-at'		, JKY.short_date(JKY.row.assigned_at));
+	JKY.set_value	('jky-assigned-to'		, JKY.row.assigned_name	);
+	JKY.set_value	('jky-closed-at'		, JKY.short_date(JKY.row.closed_at));
+	JKY.set_value	('jky-closed-by'		, JKY.row.closed_name	);
 	JKY.set_value	('jky-priority'			, JKY.row.priority		);
+	JKY.set_value	('jky-category'			, JKY.row.category		);
 	JKY.set_value	('jky-description'		, JKY.row.description	);
 	JKY.set_value	('jky-resolution'		, JKY.row.resolution	);
 	JKY.set_focus(jky_focus);
@@ -220,10 +243,11 @@ JKY.process_add_new = function() {
 
 JKY.display_new = function() {
 	jky_index = 0;
-	JKY.set_option	('jky-status'			, 'Active');
+	JKY.set_option	('jky-status'			, 'Open');
 	JKY.set_value	('jky-opened-by'		, JKY.Session.get_value('full_name'));
 	JKY.set_value	('jky-opened-value'		, JKY.get_now());
 	JKY.set_value	('jky-priority'			, 'Normal');
+	JKY.set_option	('jky-category'			, '');
 	JKY.set_value	('jky-description'		, '');
 	JKY.set_value	('jky-resolution'		, '');
 	JKY.set_focus(jky_focus);
@@ -232,6 +256,7 @@ JKY.display_new = function() {
 JKY.get_form_set = function() {
 	var my_set = ''
 		+        'priority=\'' + JKY.get_value	('jky-priority'			) + '\''
+		+      ', category=\'' + JKY.get_value	('jky-category'			) + '\''
 		+   ', description=\'' + JKY.get_value	('jky-description'		) + '\''
 		+    ', resolution=\'' + JKY.get_value	('jky-resolution'		) + '\''
 		;
@@ -334,3 +359,72 @@ JKY.process_export = function() {
 	}
 	JKY.run_export(jky_table, jky_select, jky_filter, jky_specific, my_sort_by);
 };
+
+$( function() {
+//	upload photo -------------------------------------------------------------
+	JKY.photo = new plupload.Uploader(
+		{ browse_button	: 'jky-upload-photo'
+		, runtimes		: 'html5,flash'
+		, url			: 'plupload.php'
+		, flash_swf_url	: 'swf/plupload.flash.swf'
+		, filters		:[{title:"Photo files", extensions:"jpg,gif,png"}]
+		}
+	);
+
+	JKY.photo.bind('Init', function(up, params) {});
+
+	JKY.photo.bind('FilesAdded', function(up, files) {
+		JKY.show('jky_loading');
+		$.each(files, function(i, file) {
+			JKY.set_html('jky-upload-name', file.name);
+			JKY.saved_name = file.name;
+			file.name = 'tickets.' + JKY.row.id + '.' + JKY.saved_name;
+		});
+		up.refresh();			//	reposition Flash/Silverlight
+		setTimeout('JKY.photo.start()', 100);
+	});
+
+	JKY.photo.bind('UploadProgress', function(up, file) {
+		JKY.set_html('jky-upload-percent', file.percent + '%');
+		JKY.set_css ('jky-upload-progress', 'width', file.percent + '%');
+	});
+
+	JKY.photo.bind('FileUploaded', function(up, file) {
+		JKY.display_message('File ' + JKY.saved_name + ' uploaded');
+		JKY.set_html('jky-upload-percent', '100%');
+
+		var my_file_name = $('#jky-upload-name').text();
+		var my_file_size = file.size;
+		var my_data = {command:'file_uploaded', file_name:my_file_name, file_size:my_file_size};
+//		$.ajax({async:false, cache:true, type:'post', dataType:'json', url:'fuploads/ajax', data:my_data}).success(function(data) {});
+
+		var my_data = {command:'end_upload'};
+//		$.ajax({async:true , cache:true, type:'post', dataType:'json', url:'fuploads/ajax', data:my_data}).success(function(data) {});
+
+		var my_file_type = JKY.get_file_type(JKY.saved_name);
+		JKY.saved_name = JKY.row.id + '.' + my_file_type;
+		var my_time = new Date();
+		var my_html = '<a href="' + 'jky_download.php?file_name=tickets/' + JKY.row.id + '.' + my_file_type + '">'
+					+ '<img id="jky-photo-img"    src="/uploads/tickets/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
+					+ '</a>'
+		JKY.set_html('jky-download-photo', my_html);
+
+		var my_data =
+			{ method: 'update'
+			, table :  jky_table
+			, set	:  'photo=\'' + my_file_type + '\''
+			, where :  'id=' + JKY.row.id
+			};
+		JKY.ajax(false, my_data);
+
+		JKY.hide('jky_loading');
+	});
+
+	JKY.photo.bind('Error', function(up, error) {
+		JKY.show('jky_loading');
+		JKY.display_message('error: ' + error.code + '<br>message: ' + error.message + (error.file ? '<br> file: ' + error.file.name : ''));
+		up.refresh();			//	reposition Flash/Silverlight
+	});
+
+	JKY.photo.init();
+});

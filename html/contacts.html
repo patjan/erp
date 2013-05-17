@@ -50,7 +50,7 @@
 #jky-user-name			{width:250px;}
 #jky-user-role			{width:260px;}
 #jky-photo				{float: left; margin:7px;}
-#jky-photo-src			{width:120px; height:120px; border:4px ridge black;}
+#jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
 
 #jky-street1			{width:250px;}
 #jky-street2			{width:250px;}
@@ -107,20 +107,19 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span>         User Name</span>:</div><input  id='jky-user-name'		placeholder='User Name'			/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>         User Role</span>:</div><select id='jky-user-role'></select>						  	  </div>
 		</div>
-		<div class='jky-left>
-			<div class='jky-left>
-				<div id='jky-photo-box'  ><img id='jky-photo-img'   src='/img/placeholder.png'></div>
+		<div id='jky-app-upload' class='jky-left'>
+			<div class='jky-left' style='margin-left:10px;'>
+				<div id='jky-download-photo'  ></div>
 				<a id='jky-upload-photo'  ><span>Upload Photo  </span></a>
 			</div>
 			<div class='jky-clear'></div>
-			<div>
+			<div style='margin-left:10px;'>
 				<div>
 					<span>Progress</span>:
 					<span id='jky-upload-percent'></span>
 					<span id='jky-upload-name'></span>
 				</div>
 				<div class='progress progress-striped active'><div id='jky-upload-progress' class='bar'></div></div>
-				 </div>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -129,6 +128,7 @@
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
 				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+				<button id='jky-action-reset'	class='btn btn-success' type='button' title="Click here to reset the password"		><span>Reset Password</span></button>
 				<button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
 			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></a>
 			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></a>

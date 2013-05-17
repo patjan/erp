@@ -589,6 +589,8 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
+			<li	id='jky-tab-ftps'			class='active'	><a href='#jky-pane-ftps'			data-toggle='tab'><span>FTPs			</span></a></li>
+
 			<li id='jky-tab-contacts'		class='active'	><a href='#jky-contacts'			data-toggle='tab'><span>Contacts		</span></a></li>
 			<li	id='jky-tab-notes'							><a href='#jky-notes'				data-toggle='tab'><span>Notes			</span></a></li>
 			<li	id='jky-tab-sales'							><a href='#jky-sales'				data-toggle='tab'><span>Sales			</span></a></li>
@@ -620,6 +622,7 @@
 			<div id='jky-pane-loads'		class='tab-pane'>
 			<div id='jky-pane-settings'		class='tab-pane'>
 			<div id='jky-pane-cylinders'	class='tab-pane active'>
+			<div id='jky-pane-ftps'			class='tab-pane active'>
 				<table class='table table-striped' >
 					<thead>
 						<tr>
@@ -648,13 +651,23 @@
 							<td class='jky-cylinder-value'><span>Current</span></td>
 							<td class='jky-cylinder-label'><span>Name	</span></td>
 						</tr>
+						<tr>
+							<td class='jky-action'></td>
+							<td class='jky-ftp-value'><span>Number		</span></td>
+							<td class='jky-ftp-label'><span>Machine		</span></td>
+							<td class='jky-ftp-label'><span>Composition	</span></td>
+						</tr>
 					</thead>
 					<tbody id='jky-comp-body'></tbody>
+					<tbody id='jky-ftp-body'></tbody>
 					<tfoot>
 						<tr>
 							<td    id='jky-comp-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 							<td    id='jky-comp-total'></td>
 							<td class='jky-comp-label'><span>Total</span></td>
+						</tr>
+						<tr>
+							<td    id='jky-ftp-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 						</tr>
 					</tfoot>
 				</table>
