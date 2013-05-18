@@ -1,0 +1,3022 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Pat Jan</Author>
+  <LastAuthor>Marcelo</LastAuthor>
+  <LastPrinted>2012-01-02T02:34:37Z</LastPrinted>
+  <Created>2011-12-08T14:36:11Z</Created>
+  <LastSaved>2012-01-02T02:14:38Z</LastSaved>
+  <Version>14.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11760</WindowHeight>
+  <WindowWidth>15015</WindowWidth>
+  <WindowTopX>315</WindowTopX>
+  <WindowTopY>630</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Arial"/>
+   <Interior/>
+   <NumberFormat ss:Format="0"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+  </Style>
+  <Style ss:ID="s63">
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s66">
+   <Font ss:FontName="Arial" ss:Size="11"/>
+  </Style>
+  <Style ss:ID="s67">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s69">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+  </Style>
+  <Style ss:ID="s70">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Font ss:FontName="Arial" x:Family="Swiss"/>
+  </Style>
+  <Style ss:ID="s71">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" ss:Color="#FF0000" ss:Bold="1"/>
+   <Interior ss:Color="#FFFF99" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s72">
+   <Borders/>
+  </Style>
+  <Style ss:ID="s73">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders/>
+  </Style>
+  <Style ss:ID="s74">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" ss:Size="11"/>
+  </Style>
+  <Style ss:ID="s75">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <NumberFormat ss:Format="Standard"/>
+  </Style>
+  <Style ss:ID="s76">
+   <Font ss:FontName="Arial" ss:Size="11"/>
+   <NumberFormat ss:Format="Standard"/>
+  </Style>
+  <Style ss:ID="s77">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1"/>
+   <NumberFormat ss:Format="Standard"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Table ss:ExpandedColumnCount="9" ss:ExpandedRowCount="324" x:FullColumns="1"
+   x:FullRows="1">
+   <Column ss:AutoFitWidth="0" ss:Width="34.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="109.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="113.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="55.5" ss:Span="1"/>
+   <Column ss:Index="6" ss:AutoFitWidth="0" ss:Width="49.5"/>
+   <Column ss:Index="8" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="49.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="58.5"/>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Lista de Promocao (disponivel no mercado)</Data></Cell>
+    <Cell ss:Index="8" ss:StyleID="s64"><Data ss:Type="String">17-05-2013</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Previsao do mercado /ton</Data></Cell>
+    <Cell ss:Index="8" ss:StyleID="s64"/>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">Fios a chegar</Data></Cell>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:StyleID="s70"><Data ss:Type="String">Grupo:</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">1 - 100% CO-CARD/PENT</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Maio</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Junho</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Julho</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">08/1 CO CARD OE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COCAMAR</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1062.03</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1062.03</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">10/1 CO CARD OE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">882.19</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">882.19</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 CO CARD</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SAO BENTO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1378.28</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1378.28</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 CO CARD OE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">159.21</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">159.21</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 CO PENT</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SAO BENTO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">539.04999999999995</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">539.04999999999995</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 CO PENT</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">655.17999999999995</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1194.23</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">26/1 CO PENT</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">KURASHIKI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">29024.32</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">29024.32</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO CARD</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COCAMAR</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">751.19</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">751.19</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">10000</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO CARD</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">KURASHIKI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">27243</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">27994.19</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO CARD OE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">24171.24</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">24171.24</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO ORGANICO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">247.06</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">247.06</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO PENT</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">KURASHIKI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">62973</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">62973</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO PENT</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">20135.580000000002</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">83108.58</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">40/1 CO ORGANICO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">239.29</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">239.29</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">40/1 CO PENT</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">7312.86</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">7312.86</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">12000</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">176773.48</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">22000</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="6" ss:StyleID="s76"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">Fios a chegar</Data></Cell>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:StyleID="s70"><Data ss:Type="String">Grupo:</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">2 - PA - CARD/PENT</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Maio</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Junho</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Julho</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">06/1 PAC FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">15.19</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">15.19</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">08/1 PAC</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FIOTEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">40648.720000000001</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">40648.720000000001</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">08/1 PAC</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SAO BENTO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5045.72</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">45694.44</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">08/1 PAC</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">13785.76</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">59480.2</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">08/1 PAC FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">513.53</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">513.53</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">08/1 PAC OE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COCAMAR</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">33721.83</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">33721.83</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">08/1 PAC OE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1126.78</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">34848.61</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">08/1 PAC OE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SAO BENTO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2070.56</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">36919.17</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">12/1 PAC</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">57.5</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">57.5</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">12/1 PAC</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FIOTEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">12386.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">12444.38</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA MOULINE CRU</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2040.74</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2040.74</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA PENT</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SUECO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">19686.240000000002</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">19686.240000000002</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PAC</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">56.49</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">56.49</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PAC</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FIOTEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">56.49</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">10000</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PAC</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1488.14</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1544.63</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PAC FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">3158.27</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">3158.27</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">24/1 PAC</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">ALPINA</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">34022.370000000003</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">34022.370000000003</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">24/1 PAC</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1022.99</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">35045.360000000001</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">24/1 PAC FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1152.48</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1152.48</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">24/1 PAC OE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTEMINAS</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">15430.23</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">15430.23</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA BOTONE 20/80</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">66.260000000000005</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">66.260000000000005</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA BOTONE 60/40</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2540.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2540.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA MOULINE CRU</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">37.979999999999997</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">37.979999999999997</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA MOULINE TURBO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1527.17</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1527.17</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA ORGANICO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">82.98</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">82.98</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA PENT</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">GUABIFIOS</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">3900</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">3900</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA PENT</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SUECO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">22864.32</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">26764.32</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">22000</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PAC</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COCAMAR</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1079.6500000000001</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1079.6500000000001</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PAC</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FIOTEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">36268.03</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">37347.68</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">10000</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PAC</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SAO BENTO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1088.69</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">38436.370000000003</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PAC</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1239</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">39675.370000000003</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PAC DE MORUNGABA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">ALPINA</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">9128.07</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">9128.07</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">42000</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PAC FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FIOTEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1332.86</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1332.86</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PAC FLAME INVERTIDO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">19.64</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">19.64</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PAC FLAME NUVOLA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COCAMAR</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">26.97</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">26.97</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2000</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PAC FLAME NUVOLA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">98</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">124.97</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PAC OE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">40106.18</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">40106.18</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">13500</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PAP FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1740.3</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1740.3</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">36/1 PA PENT</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SUECO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">41232.239999999998</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">41232.239999999998</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">22000</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">36/1 PA PENT</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">7921.78</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">49154.02</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">40/1 PA ORGANICO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">85.37</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">85.37</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">359816.31</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">99500</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">22000</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="6" ss:StyleID="s76"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">Fios a chegar</Data></Cell>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:StyleID="s70"><Data ss:Type="String">Grupo:</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">3 - VISCOSE</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Maio</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Junho</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Julho</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">08/1 CV FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">152.52000000000001</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">152.52000000000001</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">AVANTI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1762.9</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1762.9</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">224.51</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1987.41</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FAZAL/LINK</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">408.24</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2395.65</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">RAPSODIA</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1451.52</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1451.52</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV FLAME INVERTIDO QUANTUM</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">255.12</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">255.12</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV OE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">ALPINA</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">12232.86</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">12232.86</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV OE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">GUABIFIOS</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5011.3</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">17244.16</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV/LA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">262.92</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">262.92</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV/LINHO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">437.22</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">437.22</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 MODAL FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">31</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">31</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">40/1 CV/LINHO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">136.78</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">136.78</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">40/1 MODAL/LINHO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">432.94</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">432.94</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">22799.83</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="6" ss:StyleID="s76"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">Fios a chegar</Data></Cell>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:StyleID="s70"><Data ss:Type="String">Grupo:</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">4 - PES - TEXT/FIADO</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Maio</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Junho</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Julho</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PP</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">GUABIFIOS</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5654.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5654.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PP</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">KETER</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">12247.2</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">17902.080000000002</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PP</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">RAPSODIA</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1250.6400000000001</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">19152.72</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PP FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">GUABIFIOS</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5103</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5103</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PP OPEN END</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">AVANTI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">229.86</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">229.86</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PP PET</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">308.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">308.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">40/1 PP</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">HUVISPAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">844.2</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">844.2</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">40/1 PP</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SUECO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">844.2</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">10000</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">40/1 PP FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">22.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">22.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">PES 100/144 TEX OP</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">AVANTI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">132</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">132</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">PES 110/48 TEXT S/OP CHUVISCO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">HUVISPAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">516.98</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">516.98</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">PES 30/1 MONOFIL</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">HUVISPAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">575.11</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">575.11</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">PES 300/96 TEXT OP</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">AVANTI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">8.36</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">8.36</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">PES 50/24 LISO S/OPACO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SUECO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">324</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">324</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">PES 75/36 TEXT OP</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">AVANTI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1326.33</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1326.33</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">PES 75/36 TEXT OP</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">KETER</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">149.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1476.21</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">28693.72</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">10000</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="6" ss:StyleID="s76"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">Fios a chegar</Data></Cell>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:StyleID="s70"><Data ss:Type="String">Grupo:</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">5 - PV CRU</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Maio</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Junho</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Julho</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SUECO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">21628.799999999999</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">21628.799999999999</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1566.98</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">23195.78</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV FIRENZE 3</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">25.96</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">25.96</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">OSASUNA</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2298.2399999999998</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2298.2399999999998</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/2 PV</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">ESPECIFICOS/GUABIFIOS</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">88.15</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">88.15</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/3 PV</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">ESPECIFICOS/GUABIFIOS</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">228.66</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">228.66</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">40/1 PV 50/50</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">609.66999999999996</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">609.66999999999996</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">40/1 PV 50/50</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SUECO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">609.66999999999996</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">10000</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">40/1 PV 65/35</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">AVANTI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">362.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">362.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">40/1 PV 65/35</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">HUVISPAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5942.16</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">6305.04</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">32751.5</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">10000</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="6" ss:StyleID="s76"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">Fios a chegar</Data></Cell>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:StyleID="s70"><Data ss:Type="String">Grupo:</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">6 - ELASTANOS</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Maio</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Junho</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Julho</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">ELASTANO 20/1 NUA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">CREORA</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">273.60000000000002</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">273.60000000000002</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">500</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">273.60000000000002</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">500</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="6" ss:StyleID="s76"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">Fios a chegar</Data></Cell>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:StyleID="s70"><Data ss:Type="String">Grupo:</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">7 - MESCLAS</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Maio</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Junho</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Julho</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA MESC PRETO 50/50</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SAO BENTO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">59.92</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">59.92</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA MESC PRETO 50/50</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">4592.6899999999996</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">4652.6099999999997</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA MESCLA CINZA 50/38/12</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2625.44</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2625.44</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA MESCLA CINZA 85/15</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">260.74</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">260.74</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA MESCLA CINZA 88/12</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SAO BENTO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">9.98</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">9.98</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">24/1 MESC GRAFITE PV</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FIOTEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">115.26</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">115.26</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">24/1 PA MESC CINZA 88/12</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SAO BENTO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">20.76</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">20.76</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">24/1 SL APM SHORT</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">308.91000000000003</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">308.91000000000003</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 ACLVBM MORISOT COTLIN</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">23.82</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">23.82</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 ACPM REVIVAL 50</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">24.04</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">24.04</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 ACVBPM FIRENZE 4</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">42</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">42</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO MAGIC CLSD</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">225.08</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">225.08</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO REVIVAL BLACK 14</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">539.38</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">539.38</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO REVIVAL BLACK 17</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">39.28</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">39.28</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO/CV/PES LUMIERE(GRANULADO)</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">265.69</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">265.69</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO/CV/PES STAR</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">150.82</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">150.82</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO/PES FENIX BLACK</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COCAMAR</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">27.13</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">27.13</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO/PES FENIX BLACK</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">405.21</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">432.34</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO/PES FENIX WHITE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">75.78</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">75.78</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO/PES REVIVAL 50 WHITE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COCAMAR</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">26.99</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">26.99</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO/PES REVIVAL LIGHT WHITE 17</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1573.93</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1573.93</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV MAGIC CLSD</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">223.05</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">223.05</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV MYSTIC CRYSTAL</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV OE MESC PRETO/20</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">GUABIFIOS</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">676.37</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">676.37</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV OE MESC PRETO/50</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">GUABIFIOS</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">257.83</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">257.83</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV OE SPACEDYE ARCO IRIS</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">JANGADEIRO TEXTIL</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">61</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">61</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV OE SPACEDYE AZUL</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">JANGADEIRO TEXTIL</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">66.260000000000005</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">66.260000000000005</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV OE SPACEDYE TUTTI FRUTI</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">JANGADEIRO TEXTIL</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">94.92</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">94.92</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV/ACR COLOR (FRISSON)</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">229.28</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">229.28</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV/LINHO/PES (RISQUE)</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">60.9</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">60.9</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV/PES COLOR (CONFETE)</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">317.52999999999997</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">317.52999999999997</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV/PES NOVEMBER INDIGO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">965.71</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">965.71</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 MESC ALGODAO 98/2</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2122.0100000000002</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2122.0100000000002</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 MESC GRAFITE PV</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">GUABIFIOS</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">500</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">500</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA MESC 88/12 FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FIOTEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">225.58</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">225.58</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA MESC CINZA 50/38/12</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">7050.74</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">7050.74</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA MESC PRETO 50/50</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SAO BENTO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">31.18</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">31.18</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA MESC PRETO 50/50</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">11532.82</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">11564</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA MESC PRETO 70/30</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FIOTEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1578</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1578</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA MESCLA CINZA 88/12</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COCARI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1127.95</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1127.95</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA MESCLA CINZA 88/12</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SAO BENTO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5032.4799999999996</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">6160.43</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA MESCLA CINZA 88/12</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2720.9</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">8881.33</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PP MESC CINZA 88/12</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEBASA</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2822.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">2822.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV BOTONE BALL COLOR</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">256.32</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">256.32</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV MESCLA PRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">79</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">79</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV PRETO BRINEL</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">325.67</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">325.67</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 SL VP CV/PES FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1681.75</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">1681.75</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 VBM ARTIF FLAX</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">21.8</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">21.8</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 VBPM CELEBRITE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">22.05</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">22.05</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">36/1 POLIESTER/LINHO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">COTAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">117.42</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">117.42</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">36/1 SL VV MIDDLE FLAME</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TBM</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">330.28</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">330.28</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">51962.05</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="6" ss:StyleID="s76"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s67"/>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">Fios a chegar</Data></Cell>
+    <Cell ss:StyleID="s69"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25">
+    <Cell ss:StyleID="s70"><Data ss:Type="String">Grupo:</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">8 - TINTOS</Data></Cell>
+    <Cell ss:Index="5" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Maio</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Junho</Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="String">Julho</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">1/100 LUREX OURO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SUECO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">25.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">25.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">1/100 LUREX PRATA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">HUVISPAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">14.56</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">14.56</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">1/139 LUREX PRATA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">HUVISPAN</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 CO BRANCO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">85.27</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">85.27</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 CO CANCUN</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">48.92</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">48.92</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 CO MARINHO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">69.7</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">69.7</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 CO PRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">111.5</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">111.5</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 CO TULIPA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">81.3</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">81.3</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA ABACAXI</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">29.18</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">29.18</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA ABACAXI</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">188.15</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">217.33</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA ACQUA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FITEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">107.5</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">107.5</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA ACQUA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">17.739999999999998</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">125.24</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA AZUL LAGO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">260</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA AZUL LAGO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">6.38</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">6.38</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA AZUL PACIFICO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">77.59</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">77.59</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA AZUL PACIFICO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">103.01</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">180.6</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA BERINGELA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">28.42</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">28.42</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA BRANCO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FITEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">260</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA BRANCO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA CAFE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FITEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">283.3</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">283.3</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA CANCUN</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">40.6</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">40.6</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA CEREJINHA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FITEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">85.87</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">85.87</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA CEREJINHA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">187.37</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">273.24</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA CHUMBO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">32.520000000000003</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">32.520000000000003</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA CHUMBO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">294.54000000000002</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">327.06</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA CORAL</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">4.74</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">4.74</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA ESTANHO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FITEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">85.7</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">85.7</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA FLAME BRANCO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">53.54</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">53.54</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA FRAMBOESA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">203.77</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">203.77</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA LARANJINA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">204.41</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">204.41</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA LILAS</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">NOVA ESPERANCA</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">12.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">12.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA LILAS</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">45.46</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">58.34</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA MARINHO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">117.66</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">117.66</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA MARINHO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">509.35</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">627.01</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA MILITAR</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">83.49</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">83.49</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA NAUTICO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">241.07</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">241.07</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">260</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA NAUTICO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">6.96</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">248.03</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA NIVEA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">8.82</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">8.82</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA NUVEM</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">200</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA NUVEM</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">11.16</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">11.16</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA OCEAN</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">10.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">10.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA ORANGE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">42.9</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">42.9</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA PRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">59.16</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">59.16</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA RED FLY</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">205.58</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">205.58</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA RICE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FITEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">166.54</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">166.54</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA RICE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">11.12</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">177.66</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA RICE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">139.19</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">316.85000000000002</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA ROSA PETUNIA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">28.6</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">28.6</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA ROSA PILLOW</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">170.89</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">170.89</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA SILVER</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">200</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA SILVER</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">39.86</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">39.86</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA TULIPA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">41.24</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">41.24</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA TULIPA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">16.68</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">57.92</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA TULIPA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">232.01</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">289.93</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA VERDE ALFACE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">245.28</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">245.28</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA VERDE FOLHA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">87.19</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">87.19</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA VERDE ISLAND</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">141.75</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">141.75</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA VERDE TROPICAL</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">13.38</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">13.38</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PA VERDE TROPICAL</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">34.04</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">47.42</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">20/1 PP MOSTARDA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">11.8</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">11.8</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">24/1 PA FLAME BRANCO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">169.25</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">169.25</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">24/1 PA FLAME PRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">43.06</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">43.06</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO AZUL CANCUN</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">34.92</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">34.92</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO BRANCO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">74.709999999999994</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">74.709999999999994</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO MARINHO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">65.099999999999994</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">65.099999999999994</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO PRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">91.66</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">91.66</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CO TULIPA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">76.599999999999994</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">76.599999999999994</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 CV OE PRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">GUABIFIOS</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">114.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">114.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA ACQUA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">98.56</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">98.56</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA ALCACHOFRA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">53.82</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">53.82</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA AZUL BEACH</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">234.6</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">234.6</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA AZUL LAGO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">36.24</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">36.24</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA BERINGELA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">41.46</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">41.46</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA BERINGELA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">156.1</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">197.56</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA BRANCO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FITEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">347.2</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">347.2</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">530</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA BRANCO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">29.28</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">376.48</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA CAFE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FITEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">149.55000000000001</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">149.55000000000001</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA CAFE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">18.96</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">168.51</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA CEREJINHA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">134.53</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">134.53</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA CHUMBO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">17.46</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">17.46</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA CHUMBO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">252.81</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">270.27</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA ESTANHO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">21.48</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">21.48</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA ESTANHO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">25.2</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">46.68</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA FLAME BRANCO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">39.44</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">39.44</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA FLAME PRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">66.33</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">66.33</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA FRAMBOESA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">77.319999999999993</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">77.319999999999993</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA LILAS</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">NOVA ESPERANCA</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">11.08</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">11.08</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA LILAS</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">97.38</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">108.46</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA MARINHO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FITEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">197.41</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">197.41</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA MARINHO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">40.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">237.81</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA MARINHO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">24.08</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">261.89</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA MOLINE PRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">25.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">25.4</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA NAUTICO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">40.71</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">40.71</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA NIVEA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FITEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">171.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">171.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA NIVEA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5.64</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">177.52</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA NUVEM</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">113.04</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">113.04</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA OCEAN</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">20.94</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">20.94</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA PRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">264.20999999999998</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">264.20999999999998</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA PRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">16.68</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">280.89</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA RED FLY</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FITEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">264.45</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">264.45</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA RED FLY</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">38.619999999999997</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">303.07</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA RICE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FITEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">156.69999999999999</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">156.69999999999999</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA RICE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL BISELLI</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">19.760000000000002</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">176.46</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA RICE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">15.96</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">192.42</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA ROSA PILLOW</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">69.7</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">69.7</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA ROSA PILLOW</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">145.18</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">214.88</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA ROXO PRIMULA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">125.42</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">125.42</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA TULIPA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">318.2</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">318.2</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA VERDE ALFACE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">31.36</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">31.36</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA VERDE FOLHA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FITEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">271</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA VERDE ISLAND</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">67.66</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">67.66</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PA WINE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">FITEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">98.58</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">98.58</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PP BLUE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5.66</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5.66</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PP CENOURA CS</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">38.450000000000003</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">38.450000000000003</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PP CORAL</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">37.14</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">37.14</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PP PRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">128.22</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">128.22</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PP SALMAO/EVER</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">4.84</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">4.84</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PP VERDE BB</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">TEXTIL SAO JOAO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">48.1</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">48.1</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV ALCACHOFRA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">238.9</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">238.9</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV AMARELO FLUOR</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5.94</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">5.94</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV AMARELO NEON</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">95.06</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">95.06</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV AZUL NEON</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">113.75</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">113.75</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV CAFE</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">6.48</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">6.48</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV FRAMBOESA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">84.78</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">84.78</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV LARANJA NEON</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">78.78</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">78.78</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV LARANJINA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">81.17</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">81.17</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV NIVEA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">20.239999999999998</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">20.239999999999998</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV PINK NEON</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">46.22</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">46.22</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV PRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">27.78</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">27.78</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV PRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">NOVA ESPERANCA</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">4.9000000000000004</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">32.68</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV ROXO PRIMULA</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">75.56</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">75.56</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">30/1 PV VERDE NEON</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">LEAO JETEX</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">14.68</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">14.68</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">PES 167/48 TEXT AMARELO FLUOR</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">POLYENKA</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">38.92</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">38.92</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">PES 167/48 TEXTPRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">VICUNHA</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">201.9</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">201.9</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s74"><Data ss:Type="String">PES 75/36 TEXT PRETO</Data></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">SUECO</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">186.72</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">186.72</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s75"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">11645.99</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">1981</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s77"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s72">
+    <Cell ss:Index="2" ss:StyleID="s66"/>
+    <Cell ss:StyleID="s66"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:Index="6" ss:StyleID="s76"/>
+    <Cell ss:StyleID="s76"/>
+    <Cell ss:StyleID="s73"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.4921259845"/>
+    <Footer x:Margin="0.4921259845"/>
+    <PageMargins x:Left="0.25" x:Right="0.25"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveCol>7</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1">
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.4921259845"/>
+    <Footer x:Margin="0.4921259845"/>
+    <PageMargins x:Bottom="0.984251969" x:Left="0.78740157499999996"
+     x:Right="0.78740157499999996" x:Top="0.984251969"/>
+   </PageSetup>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Sheet3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1">
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.4921259845"/>
+    <Footer x:Margin="0.4921259845"/>
+    <PageMargins x:Bottom="0.984251969" x:Left="0.78740157499999996"
+     x:Right="0.78740157499999996" x:Top="0.984251969"/>
+   </PageSetup>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>
