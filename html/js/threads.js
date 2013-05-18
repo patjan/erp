@@ -193,8 +193,8 @@ JKY.display_row = function(index) {
 	JKY.set_html('jky-app-index', index);
 	JKY.set_value	('jky-code'				, JKY.row.code			);
 	JKY.set_value	('jky-name'				, JKY.row.name			);
-	JKY.set_value	('jky-thread_group'		, JKY.row.thread_group	);
-	JKY.set_value	('jky-thread_color'		, JKY.row.thread_color	);
+	JKY.set_option	('jky-thread-group'		, JKY.row.thread_group	);
+	JKY.set_value	('jky-thread-color'		, JKY.row.thread_color	);
 	JKY.set_value	('jky-composition'		, JKY.row.composition	);
 	JKY.set_focus(jky_focus);
 }
@@ -220,9 +220,9 @@ JKY.process_add_new = function() {
 JKY.display_new = function() {
 	jky_index = 0;
 	JKY.set_value	('jky-code'				, '' );
-	JKY.set_value	('jky-name'				, '0');
-	JKY.set_value	('jky-thread_group'		, '0');
-	JKY.set_value	('jky-thread_color'		, '0');
+	JKY.set_value	('jky-name'				, '' );
+	JKY.set_option	('jky-thread-group'		, '' );
+	JKY.set_value	('jky-thread-color'		, '0');
 	JKY.set_value	('jky-composition'		, '0');
 	JKY.set_focus(jky_focus);
 }
@@ -231,8 +231,8 @@ JKY.get_form_set = function() {
 	var my_set = ''
 		+            'code=\'' + JKY.get_value	('jky-code'				) + '\''
 		+          ', name=\'' + JKY.get_value	('jky-name'				) + '\''
-		+  ', thread_group=\'' + JKY.get_value	('jky-thread_group'		) + '\''
-		+  ', thread_color=\'' + JKY.get_value	('jky-thread_color'		) + '\''
+		+  ', thread_group=\'' + JKY.get_value	('jky-thread-group'		) + '\''
+		+  ', thread_color=\'' + JKY.get_value	('jky-thread-color'		) + '\''
 		+   ', composition=\'' + JKY.get_value	('jky-composition'		) + '\''
 		;
 	return my_set;
