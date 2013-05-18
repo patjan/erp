@@ -214,8 +214,11 @@ JKY.display_row = function(index) {
 
 	if (JKY.row.is_company == 'Yes') {
 		JKY.hide('jky-company-name');
+		JKY.hide('jky-position-line');
 	}else{
+		JKY.show('jky-position-line');
 		JKY.show('jky-company-name');
+		
 	}
 	JKY.set_focus(jky_focus);
 }
@@ -260,6 +263,7 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-fax'				, '');
 	JKY.set_value	('jky-email'			, '');
 
+	JKY.show('jky-position-line');
 	JKY.show('jky-company-name');
 	JKY.set_focus(jky_focus);
 }
