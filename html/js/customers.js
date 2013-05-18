@@ -212,9 +212,7 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-fax'				, JKY.row.fax			);
 	JKY.set_value	('jky-email'			, JKY.row.email			);
 
-	setTimeout(function() {
-		JKY.display_company($('#jky-is-company'));
-	}, 100);
+	setTimeout(function() {JKY.display_company($('#jky-is-company'));}, 100);
 	JKY.set_focus(jky_focus);
 }
 
