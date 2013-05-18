@@ -160,6 +160,7 @@ $translations = array
 , "Thread"=>"Thread"
 , "Thread Color"=>"Thread Color"
 , "Thread Group"=>"Thread Group"
+, "Thread Groups"=>"Thread Groups"
 , "Threads"=>"Threads"
 , "Tickets"=>"Tickets"
 , "Total"=>"Total"
