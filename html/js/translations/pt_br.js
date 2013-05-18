@@ -160,7 +160,7 @@ JKY.translations =
 , "Thread":"Fio"
 , "Thread Color":"Cor do Fio"
 , "Thread Group":"Grupo do Fio"
-, "Thread Groups":"Fio Grupos"
+, "Thread Groups":"Grupos de Fios"
 , "Threads":"Fios"
 , "Tickets":"Reportes"
 , "Total":"Total"

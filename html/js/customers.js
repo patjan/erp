@@ -212,14 +212,9 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-fax'				, JKY.row.fax			);
 	JKY.set_value	('jky-email'			, JKY.row.email			);
 
-	if (JKY.row.is_company == 'Yes') {
-		JKY.hide('jky-company-name');
-		JKY.hide('jky-position-line');
-	}else{
-		JKY.show('jky-position-line');
-		JKY.show('jky-company-name');
-		
-	}
+	setTimeout(function() {
+		JKY.display_company($('#jky-is-company'));
+	}, 100);
 	JKY.set_focus(jky_focus);
 }
 
@@ -392,11 +387,14 @@ JKY.process_export = function() {
 /**
  * only used on [Contacts]
  */
-JKY.display_company = function(id) {
-	if ($(id).is(':checked')) {
-		JKY.hide('jky-company-name');
+JKY.display_company = function(the_id) {
+	if ($(the_id).is(':checked')) {
+		JKY.hide('jky-company-name' );
+		JKY.hide('jky-position-line');
+		JKY.show('jky-website-line' )
 	}else{
-		JKY.show('jky-company-name');
+		JKY.show('jky-company-name' );
+		JKY.show('jky-position-line');
+		JKY.hide('jky-website-line' )
 	}
 }
-
