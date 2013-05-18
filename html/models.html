@@ -1,7 +1,7 @@
 <div id='jky-app-header'>
 	<div>
 		<div id='jky-app-breadcrumb'></div>
-		<select id='jky-app-select'></select>
+		<span class='jky-app-label'><span>Status</span>: </span><select id='jky-app-select'></select>
 		<input  id='jky-app-filter' class='search-query' type='text' placeholder='Search' />
 		<div class='jky-clear'></div>
 	</div>
@@ -47,6 +47,7 @@
 .jky-form-value			{width:210px;}
 .jky-form-value			{width:270px;}
 .jky-form-value			{width:300px;}
+.jky-form-value			{width:320px;}
 .jky-form-value			{width:350px;}
 .jky-form-value-1		{width: 50px;}
 .jky-form-value-2		{width: 50px;}
@@ -55,6 +56,10 @@
 .jky-form-value input	{width:300px;}
 .jky-form-buttons		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
+
+.jky-app-label			{float:left; margin:14px 0 0 14px; font-weight:bold;}
+#jky-app-select			{width: 80px;}
+#jky-action-product 	{margin-left:-30px; padding:5px;}
 .jky-full-name			{width:200px;}
 .jky-phone				{width:100px;}
 .jky-mobile				{width:100px;}
@@ -77,12 +82,12 @@
 .jky-opened-date		{width:100px; text-align:center;}
 
 .jky-opened-by			{width: 70px; text-align:center;}
-.jky-opened-at			{width: 70px; text-align:center;}
-.jky-priority			{width: 60px; text-align:center;}
+.jky-opened-at			{width: 60px; text-align:center;}
+.jky-worked-hour		{width: 40px; text-align:right ;}
+.jky-priority			{width: 50px; text-align:center;}
+.jky-category			{width: 70px; text-align:center;}
 .jky-description		{width:300px;}
 .jky-resolution			{width:100px;}
-
-#jky-action-product 	{margin-left:-30px; padding:5px;}
 
 #jky-status				{width:100px;}
 #jky-sequence			{width: 30px;}
@@ -91,7 +96,7 @@
 
 #jky-full-name			{width:375px; font-size:16px; font-weight:bold;}
 #jky-company-name		{width:385px;}
-#jky-customer-tags		{width:385px;}
+#jky-tags				{width:385px;}
 
 .jky-full-name			{width:100px;}
 .jky-mobile				{width: 70px; text-align:center;}
@@ -107,7 +112,7 @@
 #jky-user-name			{width:250px;}
 #jky-user-role			{width:260px;}
 #jky-photo				{float: left; margin:7px;}
-#jky-photo-src			{width:120px; height:120px; border:4px ridge black;}
+#jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
 
 #jky-street1			{width:250px;}
 #jky-street2			{width:250px;}
@@ -116,7 +121,7 @@
 #jky-zip				{width: 50px;}
 #jky-country			{width:260px;}
 #jky-website			{width:250px;}
-#jky-position			{width:200px;}
+#jky-position			{width:250px;}
 #jky-phone				{width:200px;}
 #jky-mobile				{width:200px;}
 #jky-fax				{width:200px;}
@@ -235,8 +240,8 @@
 #jky-cylinder-total		{				text-align:right;}
 
 .jky-name				{width: 80px; text-align:left  ;}
-.jky-thread_group		{width:120px; text-align:center;}
-.jky-thread_color		{width: 80px; text-align:center;}
+.jky-thread-group		{width:120px; text-align:center;}
+.jky-thread-color		{width: 80px; text-align:center;}
 .jky-composition		{width: 80px; text-align:center;}
 
 #jky-code				{width: 40px; font-size:16px; font-weight:bold;}
@@ -245,8 +250,8 @@
 #jky-machine-brand		{width:385px;}
 
 #jky-name				{width:300px;}
-#jky-thread_group		{width:300px;}
-#jky-thread_color		{width:300px;}
+#jky-thread-group		{width:300px;}
+#jky-thread-color		{width:300px;}
 #jky-composition		{width:300px;}
 
 #jky-status				{width:140px;}
@@ -257,6 +262,20 @@
 #jky-opened-by			{width:240px;}
 #jky-opened-value		{width:100px;}
 #jky-priority			{width:110px;}
+#jky-description		{width:500px; height:100px;}
+#jky-resolution			{width:500px; height:100px;}
+
+#jky-opened-at			{width: 80px;}
+#jky-opened-by			{width:200px;}
+#jky-assigned-at		{width: 80px;}
+#jky-assigned-to		{width:200px;}
+#jky-closed-at			{width: 80px;}
+#jky-closed-by			{width:200px;}
+#jky-worked-hour		{width: 40px;}
+#jky-priority			{width:140px;}
+#jky-category			{width:140px;}
+#jky-photo				{float: left; margin:7px;}
+#jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
 #jky-description		{width:500px; height:100px;}
 #jky-resolution			{width:500px; height:100px;}
 </style>
@@ -292,8 +311,8 @@
 
 			<th class='jky-code'			><span>Code				</span></th>
 			<th class='jky-name'			><span>Name				</span></th>
-			<th class='jky-thread_group'	><span>Thread Group		</span></th>
-			<th class='jky-thread_color'	><span>Thread Color		</span></th>
+			<th class='jky-thread-group'	><span>Thread Group		</span></th>
+			<th class='jky-thread-color'	><span>Thread Color		</span></th>
 			<th class='jky-composition'		><span>Composition		</span></th>
 
 			<th class='jky-user-role'		><span>User Role		</span></th>
@@ -314,7 +333,9 @@
 
 			<th class='jky-opened-at'		><span>Opened By		</span></th>
 			<th class='jky-opened-by'		><span>Opened At		</span></th>
+			<th class='jky-worked-hour'		><span>Worked<br>Hour	</span></th>
 			<th class='jky-priority'		><span>Priority			</span></th>
+			<th class='jky-category'		><span>Category			</span></th>
 			<th class='jky-description'		><span>Description		</span></th>
 			<th class='jky-resolution'		><span>Resolution		</span></th>
 			
@@ -369,6 +390,8 @@
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>      Composition</span>:</div><input  id='jky-composition'	class='jky-form-value'									readonly='readonly'	/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>          Machine</span>:</div><select id='jky-machine'></select></div>
+			<div class='jky-form-line'>&nbsp;</div>
+			<div class='jky-form-line'>&nbsp;</div>
 
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Name</span>:</div>
@@ -376,7 +399,7 @@
 					<input id='jky-full-name' class='jky-form-value' placeholder='Name' />
 					<input id='jky-is-company' type='checkbox' value='Yes' /> (<span>Is a Company</span> ?)
 					<select id='jky-company-name' ></select>
-					<select id='jky-customer-tags'></select>
+					<select id='jky-tags'></select>
 				</div>
 			</div>
 
@@ -416,16 +439,29 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span>            Mobile</span>:</div><input  id='jky-mobile'		class='jky-form-value'		placeholder='123-456-7890'		/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>             Email</span>:</div><input  id='jky-email'			class='jky-form-value'		placeholder='Email'				/></div>
 
-				<div class='jky-form-label'><span>Status</span>:</div>
-				<div class='jky-form-value'><select id='jky-status'></select></div>
-			</div>
 			<div    id='jky-locales'></div>
 			<br><br>
 			<div class='jky-form-line'><div class='jky-form-label'><span>         User Name</span>:</div><input  id='jky-user-name'		placeholder='User Name'			/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>         User Role</span>:</div><select id='jky-user-role'></select>						  	  </div>
 		</div>
-		<div class="jky-left">
-			<div id='jky-photo'><img id='jky-photo-src' src='/img/placeholder.png'><br><a id='jky-upload-photo'><span>Upload Photo</span></a></div>
+		<div id='jky-app-upload' class='jky-left'>
+			<div class='jky-left' style='margin-left:10px;'>
+				<div id='jky-download-drawing'></div>
+				<a id='jky-upload-drawing'><span>Upload Drawing</span></a>
+			</div>
+			<div class='jky-left' style='margin-left:10px;'>
+				<div id='jky-download-photo'  ></div>
+				<a id='jky-upload-photo'  ><span>Upload Photo  </span></a>
+			</div>
+			<div class='jky-clear'></div>
+			<div style='margin-left:10px;'>
+				<div>
+					<span>Progress</span>:
+					<span id='jky-upload-percent'></span>
+					<span id='jky-upload-name'></span>
+				</div>
+				<div class='progress progress-striped active'><div id='jky-upload-progress' class='bar'></div></div>
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -442,10 +478,10 @@
 					<select id='jky-country'></select>
 				</div>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>           Website</span>:</div><input id='jky-website'	class='jky-form-value'		placeholder='www.jkysoftware.com'	/></div>
+			<div id='jky-website-line'  class='jky-form-line'><div class='jky-form-label'><span>           Website</span>:</div><input id='jky-website'		class='jky-form-value'		placeholder='www.jkysoftware.com'	/></div>
+			<div id='jky-position-line' class='jky-form-line'><div class='jky-form-label'><span>          Position</span>:</div><input id='jky-position'	class='jky-form-value'		placeholder='Purchase Director'		/></div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>          Position</span>:</div><input id='jky-position'	class='jky-form-value'		placeholder='Sales Director'		/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>             Phone</span>:</div><input id='jky-phone'		class='jky-form-value'		placeholder='123-456-7890'			/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>            Mobile</span>:</div><input id='jky-mobile'		class='jky-form-value'		/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>               Fax</span>:</div><input id='jky-fax'		class='jky-form-value'		/></div>
@@ -503,8 +539,8 @@
 				</div>
 			</div>
 
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Thread Group</span>:</div><input id='jky-thread_group'	class='jky-form-value'		/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Thread Color</span>:</div><input id='jky-thread_color'	class='jky-form-value'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>      Thread Group</span>:</div><select id='jky-thread-groups'	></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>      Thread Color</span>:</div><input id='jky-thread-color'	class='jky-form-value'		/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>       Composition</span>:</div><input id='jky-composition'	class='jky-form-value'		/></div>
 
 			<div class='jky-form-line'><div class='jky-form-label'><span>            Status</span>:</div><select id='jky-status'		></select></div>
@@ -579,6 +615,7 @@
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
 				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+				<button id='jky-action-reset'	class='btn btn-success' type='button' title="Click here to reset the password"		><span>Reset Password</span></button>
 				<button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
 			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></a>
 			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></a>
@@ -663,11 +700,9 @@
 					<tfoot>
 						<tr>
 							<td    id='jky-comp-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td    id='jky-ftp-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 							<td    id='jky-comp-total'></td>
 							<td class='jky-comp-label'><span>Total</span></td>
-						</tr>
-						<tr>
-							<td    id='jky-ftp-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -788,6 +823,8 @@
 </div>
 
 <div id='jky-body-loaded'></div>
+<div id="jky-printable"></div>
+
 <script src='js/configs.js'></script>
 <script src='js/controls.js'></script>
 <script src='js/customers.js'></script>
@@ -806,6 +843,7 @@
 <script src='js/contacts.js'></script>
 <script src='js/contact_users.js'></script>
 <script src='js/permissions.js'></script>
-<script src='js/users.js'></script>
+<script src='js/suppliers.js'></script>
 <script src='js/translations.js'></script>
 <script src='js/templates.js'></script>
+<script src='js/users.js'></script>

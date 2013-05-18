@@ -1,14 +1,14 @@
 "use strict";
 
 /**
- * customers.html
+ * suppliers.html
  */
-var jky_program		= 'Customers';
+var jky_program		= 'Suppliers';
 var jky_table		= 'Contacts';
 var jky_select		= '';
 var jky_focus		= 'jky-full-name';
 var jky_filter		= '';
-var jky_specific	= 'is_customer';
+var jky_specific	= 'is_supplier';
 var jky_sort_by		= 'full_name';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
@@ -61,15 +61,15 @@ JKY.set_all_events = function(jky_program) {
 JKY.set_initial_values = function(jky_program) {
 	JKY.display_trace('set_initial_values');
 	if (JKY.is_loaded('jky-body')) {
-		JKY.set_menu_active('jky-menu-sales');
-		JKY.set_side_active('jky-sales-customers');
+		JKY.set_menu_active('jky-menu-production');
+		JKY.set_side_active('jky-production-suppliers');
 		JKY.set_html('jky-state'			, JKY.set_group_set('Configs', '', 'States'   ));
 		JKY.set_html('jky-country'			, JKY.set_group_set('Configs', '', 'Countries'));
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.hide('jky-action-export'	);
-		JKY.show('jky-side-sales'		);
+		JKY.show('jky-side-production'	);
 		JKY.show('jky-app-header'		);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
@@ -239,7 +239,7 @@ JKY.display_new = function() {
 	jky_index = 0;
 	JKY.set_option	('jky-status'			, 'Active');
 	JKY.set_value	('jky-full-name'		, '');
-	JKY.set_yes		('jky-is-company'		, 'No');
+	JKY.set_check	('jky-is-company'		, 'No');
 	JKY.set_option	('jky-company-name'		, '');
 	JKY.set_option	('jky-company-tag'		, '');
 
@@ -257,7 +257,8 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-fax'				, '');
 	JKY.set_value	('jky-email'			, '');
 
-	setTimeout(function() {JKY.display_company($('#jky-is-company'));}, 100);
+	JKY.show('jky-position-line');
+	JKY.show('jky-company-name');
 	JKY.set_focus(jky_focus);
 }
 
@@ -294,7 +295,7 @@ JKY.process_save = function() {
 }
 
 JKY.process_insert = function() {
-	var my_set  = ', is_customer = \'Yes\'';
+	var my_set  = ', is_supplier = \'Yes\'';
 	var my_data =
 		{ method: 'insert'
 		, table :  jky_table

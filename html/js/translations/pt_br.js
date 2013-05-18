@@ -179,6 +179,8 @@ JKY.translations =
 , "Website":"Website"
 , "Weight":"Gramatura"
 , "Width":"Largura"
+, "Worked":"Trabalhado"
+, "Worked<br>Hour":"Horas<br>Trabalhado"
 , "www.jkysoftware.com":"www.jkysoftware.com"
 , "Yes":"Sim"
 , "Yield":"Rendimento"

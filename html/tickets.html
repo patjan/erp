@@ -34,14 +34,16 @@
 <style>
 .jky-form-label			{width:160px;}
 .jky-form-value			{width:320px;}
-.jky-app-label			{float:left; margin:14px 0 0 14px; font-weight:bold;}
-#jky-app-select			{width: 80px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
+.jky-app-label			{float:left; margin:14px 0 0 14px; font-weight:bold;}
+#jky-app-select			{width: 80px;}
+
 .jky-opened-by			{width: 70px; text-align:center;}
-.jky-opened-at			{width: 70px; text-align:center;}
-.jky-priority			{width: 60px; text-align:center;}
-.jky-category			{width: 80px; text-align:center;}
+.jky-opened-at			{width: 60px; text-align:center;}
+.jky-worked-hour		{width: 40px; text-align:right ;}
+.jky-priority			{width: 50px; text-align:center;}
+.jky-category			{width: 70px; text-align:center;}
 .jky-description		{width:300px;}
 .jky-resolution			{width:100px;}
 
@@ -51,6 +53,7 @@
 #jky-assigned-to		{width:200px;}
 #jky-closed-at			{width: 80px;}
 #jky-closed-by			{width:200px;}
+#jky-worked-hour		{width: 40px;}
 #jky-priority			{width:140px;}
 #jky-category			{width:140px;}
 #jky-photo				{float: left; margin:7px;}
@@ -64,6 +67,7 @@
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-opened-by'		><span>Opened At		</span></th>
+			<th class='jky-worked-hour'		><span>Worked<br>Hour	</span></th>
 			<th class='jky-priority'		><span>Priority			</span></th>
 			<th class='jky-category'		><span>Category			</span></th>
 			<th class='jky-description'		><span>Description		</span></th>
@@ -124,8 +128,11 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span>		   Category</span>:</div>
 				<select id='jky-category'></select>
 			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>			 Worked</span>:</div>
+				<input id='jky-worked-hour' type='number' /> (hour)
+			</div>
 		</div>
-		<div class='jky-left'>
+		<div id='jky-app-upload' class='jky-left'>
 			<div class='jky-left' style='margin-left:10px;'>
 				<div id='jky-download-photo'  ></div>
 				<a id='jky-upload-photo'  ><span>Upload Photo  </span></a>

@@ -44,6 +44,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-add-new'		).click (function() {JKY.process_add_new	();});
 		$('#jky-action-print'		).click (function() {JKY.process_print		();});
 		$('#jky-action-save'		).click (function() {JKY.process_save		();});
+		$('#jky-action-reset'		).click (function() {JKY.reset_user			();});
 		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
 		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
 		$('#jky-action-export'		).click (function() {JKY.process_export		();});
@@ -76,7 +77,6 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
 
 		$('#jky-user-name'			).change(function() {JKY.verify_user_name	();});
-		$('#jky-upload-photo'		).change(function() {JKY.upload-user-photo	();});
 		$('#jky-save-address'		).click (function() {JKY.save_address		();});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
@@ -303,11 +303,13 @@ JKY.display_form = function(index) {
 	JKY.show('jky-action-add-new'	);
 	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
+	JKY.show('jky-action-reset'		);
 	JKY.show('jky-action-copy'		);
 	JKY.show('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.show('jky-app-upload'		);
 	JKY.display_row(index);
 }
 
@@ -461,11 +463,13 @@ JKY.process_add_new = function() {
 	JKY.hide('jky-action-add-new'	);
 	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
+	JKY.hide('jky-action-reset'		);
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.hide('jky-app-upload'		);
 	JKY.display_new();
 }
 
@@ -487,7 +491,6 @@ JKY.display_new = function() {
 	JKY.set_option	('jky-company-tag'		, '');
 	JKY.set_value	('jky-user-name'		, '');
 	JKY.set_value	('jky-user-role'		, '');
-	JKY.set_photo	('jky-photo-src'		, 'placeholder.png');
 
 	JKY.set_value	('jky-street1'			, '');
 	JKY.set_value	('jky-street2'			, '');

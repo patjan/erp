@@ -50,6 +50,7 @@ JKY.display_trace('set_all_events_home');
 		$('#jky-production-threads'		).click (function() {JKY.process_action('threads'		);});
 		$('#jky-production-machines'	).click (function() {JKY.process_action('machines'		);});
 		$('#jky-production-products'	).click (function() {JKY.process_action('products'		);});
+		$('#jky-production-suppliers'	).click (function() {JKY.process_action('suppliers'		);});
 		$('#jky-help-tickets'			).click (function() {JKY.process_action('tickets'		);});
 		$('#jky-admin-configs'			).click (function() {JKY.process_action('configs'		);});
 		$('#jky-admin-contacts'			).click (function() {JKY.process_action('contacts'		);});
@@ -165,7 +166,8 @@ JKY.process_start_page = function() {
 	JKY.set_user_info(JKY.Session.get_value('full_name'));
 	JKY.show('jky-side-bar');
 //	JKY.process_action(JKY.Session.get_value('start_page'));
-	JKY.process_action('ftps');
+//	JKY.process_action('ftps');
+	JKY.process_action('suppliers');
 }
 
 /** ------------------------------------------------------------------------ **/

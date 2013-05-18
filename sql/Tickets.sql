@@ -56,7 +56,7 @@ UPDATE Tickets			SET category = 'Translations'	, description = substr(descriptio
 SELECT category, count(*)
   FROM Tickets
  GROUP BY category
- 
+
 AjaxController 	69
 Configs		 	13
 Contacts	 	14
@@ -75,3 +75,9 @@ Templates 		 9
 Threads 		16
 Tickets 		19
 Translations 	 8
+
+SELECT substr(resolution,11) FROM Tickets	WHERE substr(resolution, 1, 8) = 'Resolved';
+
+UPDATE Tickets		SET worked_hour = substr(resolution,11)		WHERE substr(resolution, 1, 8) = 'Resolved';
+UPDATE Tickets		SET resolution = 'resolved'					WHERE substr(resolution, 1, 8) = 'Resolved';
+UPDATE Tickets		SET status = 'Closed'						WHERE worked_hour > 0;

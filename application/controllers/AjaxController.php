@@ -527,7 +527,8 @@ private function set_specific($table, $specific) {
 	if ($table == 'Services'		&& $specific == 'fee_amount')       $return .= ' AND Services.fee_amount > 0';
 	if ($table == 'Translations'	&& $specific == 'locale'	)		$return .= ' AND Translations.locale = "en_us"';
 //	if ($specific == 'parent_id')	$return .= ' AND Categories.parent_id = ' . get_session('parent_id');
-	if ($table == 'Contacts'		&& $specific == 'is_user'	)		$return .= ' AND Contacts.is_company = "no"';
+	if ($table == 'Contacts'		&& $specific == 'is_customer'	)	$return .= ' AND Contacts.is_customer = "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	$return .= ' AND Contacts.is_supplier = "Yes"';
 
 	return $return;
 }
@@ -606,7 +607,8 @@ private function set_left_joins($table) {
 											. '  LEFT JOIN     Contacts AS Assigned	ON  Assigned.id =    Tickets.assigned_to';
 
 	if ($table == 'Contacts'	)	$return = '  LEFT JOIN   JKY_Users AS JKY_Users	ON  Contacts.id =  JKY_Users.contact_id'
-											. '  LEFT JOIN    Contacts AS Companies	ON Companies.id =   Contacts.company_id AND Companies.is_company = "yes"';
+//											. '  LEFT JOIN    Contacts AS Companies	ON Companies.id =   Contacts.company_id AND Companies.is_company = "Yes"';
+											. '  LEFT JOIN    Contacts AS Companies	ON Companies.id =   Contacts.company_id';
 	if ($table == 'FTPs'		)	$return = '  LEFT JOIN    Products				ON  Products.id =		FTPS.product_id'
 											. '  LEFT JOIN    Machines				ON  Machines.id =		FTPS.machine_id';
 	if ($table == 'FTP_Loads'	)	$return = '  LEFT JOIN     Threads AS Thread1	ON   Thread1.id =  FTP_Loads.first_thread_id'

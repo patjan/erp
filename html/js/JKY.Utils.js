@@ -553,7 +553,8 @@ JKY.set_css = function(the_id , the_css, the_value){
  */
 JKY.get_value = function(the_id){
 	var my_value = $('#' + the_id).val().trim();
-	return (my_value == '') ? null : my_value;
+//	return (my_value == '') ? null : my_value;
+	return my_value;
 }
 
 /**
@@ -1456,7 +1457,7 @@ JKY.set_group_set = function(table, selected, group_set) {
 				if (response.status == 'ok') {
 					my_html = '';
 					if (selected == 'All') {
-						my_html += '<option value="All" selected="selected">All</option>';
+						my_html += '<option value="All">All</option>';
 					}
 					for(var i=0; i<response.rows.length; i+=1) {
 						var my_name  = response.rows[i]['name' ];

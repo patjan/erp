@@ -9,7 +9,7 @@ var jky_select		= 'Open';
 var jky_focus		= 'jky-description';
 var jky_filter		= '';
 var jky_specific	= '';
-var jky_sort_by		= 'description';
+var jky_sort_by		= 'category, description';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_count		=  0;
@@ -62,13 +62,14 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_menu_active('jky-menu-help');
 		JKY.set_side_active('jky-help-tickets');
 		JKY.set_html('jky-app-select'		, JKY.set_group_set('Controls', 'All', 'Ticket Status Codes'));
-		JKY.set_html('jky-priority'			, JKY.set_group_set('Controls', '', 'Priorities'	));
-		JKY.set_html('jky-category'			, JKY.set_group_set('Controls', '', 'Ticket Categories'));
+		JKY.set_html('jky-priority'			, JKY.set_group_set('Controls', '', 'Priorities'			));
+		JKY.set_html('jky-category'			, JKY.set_group_set('Controls', '', 'Ticket Categories'		));
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.show('jky-side-help'		);
 		JKY.show('jky-app-header'		);
+		setTimeout(function() {JKY.set_option('jky-app-select', jky_select);}, 100);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
@@ -150,13 +151,14 @@ JKY.process_load_success = function(response) {
 		var my_row = JKY.rows[i];
 		var my_checkbox = '<input type="checkbox" onclick="JKY.set_checkbox(this)" row_id=' + my_row.id + ' />';
 		var my_opened_date = JKY.short_date(my_row.opened_at);
-		var my_description = my_row.description + ' <b>' + my_row.resolution + '</b>';
+		var my_worked_hour = (my_row.worked_hour > 0) ? my_row.worked_hour : '';
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
 				+  '<td class="jky-opened-at"		>' + my_opened_date			+ '</td>'
+				+  '<td class="jky-worked-hour"		>' + my_worked_hour			+ '</td>'
 				+  '<td class="jky-priority"		>' + my_row.priority		+ '</td>'
 				+  '<td class="jky-category"		>' + my_row.category		+ '</td>'
-				+  '<td class="jky-description"		>' + my_description			+ '</td>'
+				+  '<td class="jky-description"		>' + my_row.description		+ '</td>'
 				+  '</tr>'
 				;
 	}
@@ -185,6 +187,7 @@ JKY.display_form = function(index) {
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.show('jky-app-upload'		);
 	JKY.display_row(index);
 }
 
@@ -216,6 +219,7 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-assigned-to'		, JKY.row.assigned_name	);
 	JKY.set_value	('jky-closed-at'		, JKY.short_date(JKY.row.closed_at));
 	JKY.set_value	('jky-closed-by'		, JKY.row.closed_name	);
+	JKY.set_value	('jky-worked-hour'		, JKY.row.worked_hour	);
 	JKY.set_value	('jky-priority'			, JKY.row.priority		);
 	JKY.set_value	('jky-category'			, JKY.row.category		);
 	JKY.set_value	('jky-description'		, JKY.row.description	);
@@ -238,6 +242,7 @@ JKY.process_add_new = function() {
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.hide('jky-app-upload'		);
 	JKY.display_new();
 }
 
@@ -246,8 +251,9 @@ JKY.display_new = function() {
 	JKY.set_option	('jky-status'			, 'Open');
 	JKY.set_value	('jky-opened-by'		, JKY.Session.get_value('full_name'));
 	JKY.set_value	('jky-opened-value'		, JKY.get_now());
-	JKY.set_value	('jky-priority'			, 'Normal');
-	JKY.set_option	('jky-category'			, '');
+	JKY.set_value	('jky-worked-hour'		, 0 );
+//	JKY.set_value	('jky-priority'			, 'Normal');
+//	JKY.set_option	('jky-category'			, '');
 	JKY.set_value	('jky-description'		, '');
 	JKY.set_value	('jky-resolution'		, '');
 	JKY.set_focus(jky_focus);
@@ -255,7 +261,8 @@ JKY.display_new = function() {
 
 JKY.get_form_set = function() {
 	var my_set = ''
-		+        'priority=\'' + JKY.get_value	('jky-priority'			) + '\''
+		+     'worked_hour=  ' + JKY.get_value	('jky-worked-hour'		)
+		+      ', priority=\'' + JKY.get_value	('jky-priority'			) + '\''
 		+      ', category=\'' + JKY.get_value	('jky-category'			) + '\''
 		+   ', description=\'' + JKY.get_value	('jky-description'		) + '\''
 		+    ', resolution=\'' + JKY.get_value	('jky-resolution'		) + '\''

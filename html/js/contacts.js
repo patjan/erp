@@ -8,7 +8,7 @@ var jky_table		= 'Contacts';
 var jky_select		= 'All';
 var jky_focus		= 'jky-first-name';
 var jky_filter		= '';
-var jky_specific	= 'is_user';
+var jky_specific	= '';
 var jky_sort_by		= 'full_name';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
@@ -51,7 +51,6 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-check-all'			).click (function() {JKY.set_all_check  (this);});
 
 		$('#jky-user-name'			).change(function() {JKY.verify_user_name	();});
-//		$('#jky-upload-photo'		).change(function() {JKY.upload-user-photo	();});
 		$('#jky-save-address'		).click (function() {JKY.save_address		();});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
@@ -268,7 +267,6 @@ JKY.display_new = function() {
 	JKY.set_option	('jky-company-name'		, '');
 	JKY.set_value	('jky-user-name'		, '');
 	JKY.set_value	('jky-user-role'		, '');
-//	JKY.set_photo	('jky-photo-src'		, 'placeholder.png');
 
 	JKY.set_value	('jky-street1'			, '');
 	JKY.set_value	('jky-street2'			, '');

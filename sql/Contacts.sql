@@ -52,5 +52,5 @@ CREATE TABLE IF NOT EXISTS Contacts
 
 
 ALTER TABLE Contacts      ADD COLUMN is_customer    		CHAR(3)   		DEFAULT 'no'  AFTER is_company;
-
 ALTER TABLE Contacts      CHANGE job_position	position	VARCHAR(255)	DEFAULT NULL;
+ALTER TABLE Contacts      ADD COLUMN is_supplier    		CHAR(3)   		DEFAULT 'no'  AFTER is_customer;
