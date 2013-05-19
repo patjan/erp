@@ -608,11 +608,11 @@ JKY.set_radio = function(id_name, value){
  * @param	value
  */
 JKY.set_option = function(id_name, value){
-     $('#' + id_name + ' option:selected').removeAttr('selected');
-     if(  value ) {
-          var my_command = "$('#" + id_name + " option[ value=\"" + value + "\" ]').attr('selected', 'selected');";
-          setTimeout(my_command, 100);
-     }
+	$('#' + id_name + ' option:selected').removeAttr('selected');
+	if (value) {
+		var my_command = "$('#" + id_name + " option[ value=\"" + value + "\" ]').attr('selected', 'selected');";
+		setTimeout(my_command, 100);
+	}
 }
 
 //        JKY.set_options(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
@@ -1436,7 +1436,7 @@ JKY.get_configs = function(group_set) {
 /**
  * set group set
  */
-JKY.set_group_set = function(table, selected, group_set) {
+JKY.set_group_set = function(table, selected, group_set, initial) {
 	JKY.display_trace('set_control_set: ' + group_set);
 	var my_html = '';
 	var my_data =
@@ -1456,8 +1456,14 @@ JKY.set_group_set = function(table, selected, group_set) {
 		, success	: function(response) {
 				if (response.status == 'ok') {
 					my_html = '';
-					if (selected == 'All') {
-						my_html += '<option value="All">All</option>';
+					if (initial == null ) {
+//						no initial option
+					}else{
+						if (initial == '' ) {
+							my_html += '<option value=""   >' + initial + '</option>';
+						}else{
+							my_html += '<option value="All">' + initial + '</option>';
+						}
 					}
 					for(var i=0; i<response.rows.length; i+=1) {
 						var my_name  = response.rows[i]['name' ];
@@ -1521,7 +1527,6 @@ JKY.set_table_options = function(table, field, selected, initial) {
 							my_html += '<option value="All">' + initial + '</option>';
 						}
 					}
-
 					for(var i=0; i<response.rows.length; i+=1) {
 						var my_id  	 = response.rows[i]['id' ];
 						var my_value = response.rows[i][field];

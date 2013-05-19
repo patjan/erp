@@ -834,6 +834,57 @@ private function set_where($table, $filter) {
 			}
 		}
 
+		if ($table == 'FTPs') {
+			if ($name == 'code'
+			or	$name == 'diameter'
+			or	$name == 'density'
+			or	$name == 'inputs'
+			or	$name == 'speed'
+			or	$name == 'turns'
+			or	$name == 'weight'
+			or	$name == 'width'
+			or	$name == 'lanes'
+			or	$name == 'yield'
+			or	$name == 'needling'
+			or	$name == 'peso'
+			or	$name == 'composition') {
+				if ($value == '"%null%"') {
+					return ' AND FTPs.' . $name . ' IS NULL ';
+				}else{
+					return ' AND FTPs.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'product_name') {
+					if ($value == '"%null%"') {
+						return ' AND Contacts.product_id IS NULL';
+					}else{
+						return ' AND Products.name LIKE ' . $value;
+					}
+			}else{
+				if ($name == 'machine_name') {
+					if ($value == '"%null%"') {
+						return ' AND Contacts.machine_id IS NULL';
+					}else{
+						return ' AND Machines.name LIKE ' . $value;
+					}
+				}
+			}}
+		}
+
+		if ($table == 'Threads') {
+			if ($name == 'code'
+			or	$name == 'name'
+			or	$name == 'thread_group'
+			or	$name == 'thread_color'
+			or	$name == 'composition') {
+				if ($value == '"%null%"') {
+					return ' AND Threads.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Threads.' . $name . ' LIKE ' . $value;
+				}
+			}
+		}
+
 	}
 
 	$filter = '"%' . $filter . '%"';
@@ -923,6 +974,25 @@ private function set_where($table, $filter) {
 			. ' OR	Contacts.zip					LIKE ' . $filter
 			. ' OR	Contacts.country				LIKE ' . $filter
 			. ' OR	Companies.full_name				LIKE ' . $filter
+			;
+		}
+
+	if ($table == 'FTPs') {
+		$return = ' FTPS.code				LIKE ' . $filter
+			. ' OR  FTPS.diameter			LIKE ' . $filter
+			. ' OR  FTPS.density			LIKE ' . $filter
+			. ' OR  FTPS.inputs				LIKE ' . $filter
+			. ' OR  FTPS.speed				LIKE ' . $filter
+			. ' OR  FTPS.turns				LIKE ' . $filter
+			. ' OR  FTPS.weight				LIKE ' . $filter
+			. ' OR  FTPS.width				LIKE ' . $filter
+			. ' OR  FTPS.lanes				LIKE ' . $filter
+			. ' OR  FTPS.yield				LIKE ' . $filter
+			. ' OR  FTPS.needling			LIKE ' . $filter
+			. ' OR  FTPS.peso				LIKE ' . $filter
+			. ' OR  FTPS.composition		LIKE ' . $filter
+			. ' OR  Products.name			LIKE ' . $filter
+			. ' OR  Machines.name			LIKE ' . $filter
 			;
 		}
 

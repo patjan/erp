@@ -77,7 +77,7 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-production');
 		JKY.set_side_active('jky-production-ftps');
-		JKY.set_html('jky-machine'			, JKY.set_table_options('Machines', 'name', '', null));
+		JKY.set_html('jky-machine'			, JKY.set_table_options('Machines', 'name', '', ''));
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
@@ -303,9 +303,12 @@ JKY.display_new = function() {
 }
 
 JKY.get_form_set = function() {
+	var my_machine = JKY.get_value('jky-machine');
+	my_machine = (my_machine == '') ? 'null' : my_machine;
+
 	var my_set = ''
 		+      'product_id=  ' + JKY.get_value	('jky-product-id'		)
-		+    ', machine_id=  ' + JKY.get_value	('jky-machine'			)
+		+    ', machine_id=  ' + my_machine
 		+      ', diameter=  ' + JKY.get_value	('jky-diameter'			)
 		+       ', density=  ' + JKY.get_value	('jky-density'			)
 		+        ', inputs=  ' + JKY.get_value	('jky-inputs'			)

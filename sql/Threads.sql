@@ -14,8 +14,7 @@ CREATE TABLE IF NOT EXISTS Threads
 , composition		VARCHAR(255)		DEFAULT NULL
 
 , PRIMARY KEY(id)
-, UNIQUE(code)
-, KEY name(name)
+, UNIQUE(name)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 

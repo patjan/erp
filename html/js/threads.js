@@ -61,7 +61,8 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-production');
 		JKY.set_side_active('jky-production-threads');
-		JKY.set_html('jky-thread-groups' , JKY.set_group_set('Configs', '', 'Thread Groups'));
+		JKY.set_html('jky-thread-groups' , JKY.set_group_set('Configs', '', 'Thread Groups'		 , ''));
+		JKY.set_html('jky-compositions'	 , JKY.set_group_set('Configs', '', 'Thread Compositions', ''));
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
@@ -193,9 +194,9 @@ JKY.display_row = function(index) {
 	JKY.set_html('jky-app-index', index);
 	JKY.set_value	('jky-code'				, JKY.row.code			);
 	JKY.set_value	('jky-name'				, JKY.row.name			);
-	JKY.set_option	('jky-thread-group'		, JKY.row.thread_group	);
+	JKY.set_option	('jky-thread-groups'	, JKY.row.thread_group	);
 	JKY.set_value	('jky-thread-color'		, JKY.row.thread_color	);
-	JKY.set_value	('jky-composition'		, JKY.row.composition	);
+	JKY.set_option	('jky-compositions'		, JKY.row.composition	);
 	JKY.set_focus(jky_focus);
 }
 
@@ -221,9 +222,9 @@ JKY.display_new = function() {
 	jky_index = 0;
 	JKY.set_value	('jky-code'				, '' );
 	JKY.set_value	('jky-name'				, '' );
-	JKY.set_option	('jky-thread-group'		, '' );
+	JKY.set_option	('jky-thread-groups'	, '' );
 	JKY.set_value	('jky-thread-color'		, '0');
-	JKY.set_value	('jky-composition'		, '0');
+	JKY.set_option	('jky-compositions'		, '0');
 	JKY.set_focus(jky_focus);
 }
 
@@ -231,14 +232,19 @@ JKY.get_form_set = function() {
 	var my_set = ''
 		+            'code=\'' + JKY.get_value	('jky-code'				) + '\''
 		+          ', name=\'' + JKY.get_value	('jky-name'				) + '\''
-		+  ', thread_group=\'' + JKY.get_value	('jky-thread-group'		) + '\''
+		+  ', thread_group=\'' + JKY.get_value	('jky-thread-groups'	) + '\''
 		+  ', thread_color=\'' + JKY.get_value	('jky-thread-color'		) + '\''
-		+   ', composition=\'' + JKY.get_value	('jky-composition'		) + '\''
+		+   ', composition=\'' + JKY.get_value	('jky-compositions'		) + '\''
 		;
 	return my_set;
 }
 
 JKY.process_save = function() {
+	var my_name = JKY.get_value	('jky-name');
+	if (JKY.is_empty(my_name)) {
+		JKY.display_message(JKY.set_is_required('Name'));
+		return;
+	}
 	if (jky_index == 0) {
 		JKY.process_insert();
 	}else{
