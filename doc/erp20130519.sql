@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 19, 2013 at 08:13 AM
+-- Generation Time: May 19, 2013 at 02:54 PM
 -- Server version: 5.1.50
 -- PHP Version: 5.3.14
 
@@ -402,14 +402,23 @@ CREATE TABLE IF NOT EXISTS `cylinders` (
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `machine_id` (`machine_id`,`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `cylinders`
 --
 
 INSERT INTO `cylinders` (`id`, `created_by`, `created_at`, `updated_by`, `updated_at`, `status`, `machine_id`, `is_current`, `name`) VALUES
-(1, 1, '2013-05-19 08:06:11', NULL, NULL, 'Active', 1000000004, 'No', NULL);
+(1, 1, '2013-05-19 08:06:11', NULL, NULL, 'Active', 1000000004, 'No', NULL),
+(2, 1, '2013-05-19 13:17:03', NULL, NULL, 'Active', 1000000013, 'No', NULL),
+(3, 1, '2013-05-19 13:32:50', NULL, NULL, 'Active', 1000000005, 'No', NULL),
+(4, 1, '2013-05-19 13:32:50', NULL, NULL, 'Active', 1000000006, 'No', NULL),
+(5, 1, '2013-05-19 13:32:51', NULL, NULL, 'Active', 1000000086, 'No', NULL),
+(6, 1, '2013-05-19 13:32:51', NULL, NULL, 'Active', 1000000009, 'No', NULL),
+(7, 1, '2013-05-19 13:32:52', NULL, NULL, 'Active', 1000000008, 'No', NULL),
+(8, 1, '2013-05-19 13:33:43', NULL, NULL, 'Active', 1000000007, 'No', NULL),
+(9, 1, '2013-05-19 13:33:53', NULL, NULL, 'Active', 1000000066, 'No', NULL),
+(10, 1, '2013-05-19 13:39:55', NULL, NULL, 'Active', 1000000012, 'No', NULL);
 
 -- --------------------------------------------------------
 
@@ -558,7 +567,7 @@ CREATE TABLE IF NOT EXISTS `history` (
   `history` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `parent` (`parent_name`,`parent_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=186 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=226 ;
 
 --
 -- Dumping data for table `history`
@@ -749,7 +758,47 @@ INSERT INTO `history` (`id`, `created_by`, `created_at`, `parent_name`, `parent_
 (182, 1, '2013-05-19 07:46:00', 'Configs', 114, 'update', 'updated_by:=>1, name:100% Algodao=>100% CO'),
 (183, 1, '2013-05-19 07:46:13', 'Configs', 116, 'update', 'updated_by:=>1, name:100% Polyester=>100% PES'),
 (184, 1, '2013-05-19 07:46:29', 'Configs', 118, 'update', 'updated_by:=>1, name:50% Algodao 50% Polyester=>50% CO 50% PES'),
-(185, 1, '2013-05-19 08:06:11', 'Cylinders', 1, 'insert', 'id:1, created_by:1, created_at:2013-05-19 08:06:11, updated_by:, updated_at:, status:Active, machine_id:1000000004, is_current:No, name:');
+(185, 1, '2013-05-19 08:06:11', 'Cylinders', 1, 'insert', 'id:1, created_by:1, created_at:2013-05-19 08:06:11, updated_by:, updated_at:, status:Active, machine_id:1000000004, is_current:No, name:'),
+(186, 1, '2013-05-19 08:19:30', 'Threads', 1000000299, 'insert', 'id:1000000299, created_at:2013-05-19 08:19:30, created_by:1, updated_at:, updated_by:, status:Active, code:999, name:Teste Fio, thread_group:, thread_color:0, composition:'),
+(187, 1, '2013-05-19 08:20:53', 'Threads', 1000000300, 'insert', 'id:1000000300, created_at:2013-05-19 08:20:53, created_by:1, updated_at:, updated_by:, status:Active, code:, name:, thread_group:, thread_color:0, composition:'),
+(188, 1, '2013-05-19 08:21:25', 'Tickets', 301, 'update', 'updated_by:=>1, priority:Normal=>Critical, resolution:null=>'),
+(189, 1, '2013-05-19 08:21:39', 'Threads', 1000000300, 'update', 'updated_by:=>1'),
+(190, 1, '2013-05-19 08:22:03', 'Tickets', 23, 'update', 'priority:Normal=>Critical'),
+(191, 1, '2013-05-19 08:22:25', 'Tickets', 26, 'update', 'worked_hour:0.0=>1.0'),
+(192, 1, '2013-05-19 08:23:34', 'Tickets', 26, 'update', 'resolution:=>resolved'),
+(193, 1, '2013-05-19 08:23:59', 'Tickets', 23, 'update', 'priority:Critical=>Normal'),
+(194, 1, '2013-05-19 08:27:13', 'Threads', 1000000300, 'update', 'name:=>Teste Fio2'),
+(195, 1, '2013-05-19 08:27:32', 'Threads', 1000000299, 'update', 'updated_by:=>1, thread_group:=>CO-Card/Pent'),
+(196, 1, '2013-05-19 08:27:38', 'Threads', 1000000300, 'update', 'thread_group:=>PA-Card/Pent'),
+(197, 1, '2013-05-19 08:27:44', 'Threads', 1000000300, 'update', 'composition:=>100% CO'),
+(198, 1, '2013-05-19 08:27:49', 'Threads', 1000000299, 'update', 'composition:=>100% CO'),
+(199, 1, '2013-05-19 08:27:55', 'Threads', 1000000300, 'update', 'composition:100% CO=>100% PES'),
+(200, 1, '2013-05-19 08:28:05', 'Threads', 1000000299, 'update', 'thread_group:CO-Card/Pent=>'),
+(201, 1, '2013-05-19 08:28:17', 'Threads', 1000000299, 'update', 'composition:100% CO=>'),
+(202, 1, '2013-05-19 08:28:29', 'Threads', 1000000300, 'update', 'thread_group:PA-Card/Pent=>, composition:100% PES=>'),
+(203, 1, '2013-05-19 08:28:35', 'Threads', 1000000299, 'delete', 'id:1000000299, created_at:2013-05-19 08:19:30, created_by:1, updated_at:2013-05-19 08:28:17, updated_by:1, status:Active, code:999, name:Teste Fio, thread_group:, thread_color:0, composition:'),
+(204, 1, '2013-05-19 08:28:42', 'Threads', 1000000300, 'delete', 'id:1000000300, created_at:2013-05-19 08:20:53, created_by:1, updated_at:2013-05-19 08:28:29, updated_by:1, status:Active, code:, name:Teste Fio2, thread_group:, thread_color:0, composition:'),
+(205, 1, '2013-05-19 08:29:55', 'Tickets', 301, 'update', 'worked_hour:0.0=>0.2, resolution:=>added JKY.is_empty(my_name) in JKY.process_save'),
+(206, 1, '2013-05-19 13:01:24', 'Tickets', 310, 'update', 'description:add [Thread Colors] into [Configs]\ndefine if to keep field name [thread_color]=>add [Thread Colors] into [Configs], resolution:=>define if to keep field name [thread_color]'),
+(207, 1, '2013-05-19 13:01:57', 'Tickets', 310, 'update', 'description:add [Thread Colors] into [Configs]=>add [Thread Colors] into [Configs]<br>\ndefine if to keep field name [thread_color], resolution:define if to keep field name [thread_color]=>'),
+(208, 1, '2013-05-19 13:05:11', 'Tickets', 412, 'insert', 'id:412, created_by:1, created_at:2013-05-19 13:05:11, updated_by:, updated_at:, status:Open, company_id:3, opened_by:1, opened_at:2013-05-19 13:05:11, assigned_to:, assigned_at:, closed_by:, closed_at:, estimate_hour:0.0, worked_hour:0.0, priority:Critical, category:Machines, description:fill in Machine Families on Config, resolution:, photo:'),
+(209, 1, '2013-05-19 13:05:22', 'Tickets', 413, 'insert', 'id:413, created_by:1, created_at:2013-05-19 13:05:22, updated_by:, updated_at:, status:Open, company_id:3, opened_by:1, opened_at:2013-05-19 13:05:22, assigned_to:, assigned_at:, closed_by:, closed_at:, estimate_hour:0.0, worked_hour:0.0, priority:Critical, category:Machines, description:fill in Machine Brands on Config, resolution:, photo:'),
+(210, 1, '2013-05-19 13:07:43', 'Tickets', 30, 'update', 'updated_by:=>1, worked_hour:0.0=>0.1, resolution:=>no fix, was working'),
+(211, 1, '2013-05-19 13:17:03', 'Cylinders', 2, 'insert', 'id:2, created_by:1, created_at:2013-05-19 13:17:03, updated_by:, updated_at:, status:Active, machine_id:1000000013, is_current:No, name:'),
+(212, 1, '2013-05-19 13:32:50', 'Cylinders', 3, 'insert', 'id:3, created_by:1, created_at:2013-05-19 13:32:50, updated_by:, updated_at:, status:Active, machine_id:1000000005, is_current:No, name:'),
+(213, 1, '2013-05-19 13:32:50', 'Cylinders', 4, 'insert', 'id:4, created_by:1, created_at:2013-05-19 13:32:50, updated_by:, updated_at:, status:Active, machine_id:1000000006, is_current:No, name:'),
+(214, 1, '2013-05-19 13:32:51', 'Cylinders', 5, 'insert', 'id:5, created_by:1, created_at:2013-05-19 13:32:51, updated_by:, updated_at:, status:Active, machine_id:1000000086, is_current:No, name:'),
+(215, 1, '2013-05-19 13:32:51', 'Cylinders', 6, 'insert', 'id:6, created_by:1, created_at:2013-05-19 13:32:51, updated_by:, updated_at:, status:Active, machine_id:1000000009, is_current:No, name:'),
+(216, 1, '2013-05-19 13:32:52', 'Cylinders', 7, 'insert', 'id:7, created_by:1, created_at:2013-05-19 13:32:52, updated_by:, updated_at:, status:Active, machine_id:1000000008, is_current:No, name:'),
+(217, 1, '2013-05-19 13:33:43', 'Cylinders', 8, 'insert', 'id:8, created_by:1, created_at:2013-05-19 13:33:43, updated_by:, updated_at:, status:Active, machine_id:1000000007, is_current:No, name:'),
+(218, 1, '2013-05-19 13:33:53', 'Cylinders', 9, 'insert', 'id:9, created_by:1, created_at:2013-05-19 13:33:53, updated_by:, updated_at:, status:Active, machine_id:1000000066, is_current:No, name:'),
+(219, 1, '2013-05-19 13:35:02', 'Tickets', 29, 'update', 'updated_by:=>1, worked_hour:0.0=>1.0'),
+(220, 1, '2013-05-19 13:36:51', 'Tickets', 20, 'update', 'resolution:Resolved=>resolved'),
+(221, 1, '2013-05-19 13:37:03', 'Tickets', 29, 'update', 'resolution:=>resolved'),
+(222, 1, '2013-05-19 13:37:40', 'Tickets', 181, 'update', 'updated_by:=>1, worked_hour:0.0=>1.0, resolution:null=>added FTPs  attributes on set_where'),
+(223, 1, '2013-05-19 13:37:55', 'Tickets', 29, 'update', 'worked_hour:1.0=>0.1'),
+(224, 1, '2013-05-19 13:38:08', 'Tickets', 43, 'update', 'updated_by:=>1, priority:Normal=>Minor'),
+(225, 1, '2013-05-19 13:39:55', 'Cylinders', 10, 'insert', 'id:10, created_by:1, created_at:2013-05-19 13:39:55, updated_by:, updated_at:, status:Active, machine_id:1000000012, is_current:No, name:');
 
 -- --------------------------------------------------------
 
@@ -8294,9 +8343,8 @@ CREATE TABLE IF NOT EXISTS `threads` (
   `thread_color` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `composition` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `code` (`code`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1000000299 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1000000301 ;
 
 --
 -- Dumping data for table `threads`
@@ -8627,7 +8675,7 @@ CREATE TABLE IF NOT EXISTS `tickets` (
   PRIMARY KEY (`id`),
   KEY `opened_by` (`opened_by`),
   KEY `opened_at` (`opened_at`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=412 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=414 ;
 
 --
 -- Dumping data for table `tickets`
@@ -8649,17 +8697,17 @@ INSERT INTO `tickets` (`id`, `created_by`, `created_at`, `updated_by`, `updated_
 (17, 4, '2013-05-10 19:31:09', 4, '2013-05-12 07:47:23', 'Open', 3, 4, '2013-05-10 19:31:09', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'FTPs', 'validate, no duplicates on [Thread] pane', 'null', NULL),
 (18, 4, '2013-05-10 19:32:24', 4, '2013-05-11 09:15:55', 'Open', 3, 4, '2013-05-10 19:32:24', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'General', 'program, JKY is_integer (RPM)', 'null', NULL),
 (19, 4, '2013-05-10 19:32:44', 4, '2013-05-11 09:15:17', 'Open', 3, 4, '2013-05-10 19:32:44', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'General', 'program JKY.is_positive: percentage', 'null', NULL),
-(20, 4, '2013-05-10 19:33:28', 1, '2013-05-19 06:51:37', 'Open', 3, 4, '2013-05-10 19:33:28', NULL, NULL, NULL, NULL, '0.0', '0.1', 'Normal', 'FTPs', '[Search] is not working', 'Resolved', NULL),
+(20, 4, '2013-05-10 19:33:28', 1, '2013-05-19 13:36:51', 'Open', 3, 4, '2013-05-10 19:33:28', NULL, NULL, NULL, NULL, '0.0', '0.1', 'Normal', 'FTPs', '[Search] is not working', 'resolved', NULL),
 (21, 4, '2013-05-10 19:33:40', 1, '2013-05-19 06:51:22', 'Open', 3, 4, '2013-05-10 19:33:40', NULL, NULL, NULL, NULL, '0.0', '0.1', 'Normal', 'FTPs', '[Export] is not working', 'Resolved', NULL),
 (22, 4, '2013-05-10 19:35:36', 1, '2013-05-18 06:09:45', 'Closed', 3, 4, '2013-05-10 19:35:36', NULL, NULL, NULL, NULL, '0.0', '1.0', 'Normal', 'Tickets', 'program upload [Screenshoot]', 'resolved', NULL),
-(23, 4, '2013-05-10 19:36:24', 1, '2013-05-19 07:19:16', 'Open', 3, 4, '2013-05-10 19:36:24', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Threads', 'delete field name [code] from table', '', NULL),
+(23, 4, '2013-05-10 19:36:24', 1, '2013-05-19 08:23:59', 'Open', 3, 4, '2013-05-10 19:36:24', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Threads', 'delete field name [code] from table', '', NULL),
 (24, 4, '2013-05-10 19:38:29', 1, '2013-05-17 17:53:16', 'Closed', 3, 4, '2013-05-10 19:38:29', NULL, NULL, NULL, NULL, '0.0', '0.2', 'Normal', 'Threads', 'select by [Thread Groups]', 'resolved', NULL),
 (25, 4, '2013-05-10 19:38:47', 4, '2013-05-10 22:32:29', 'Open', 3, 4, '2013-05-10 19:38:47', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Threads', 'select by [Thread Colors]', '', NULL),
-(26, 4, '2013-05-10 19:39:00', 1, '2013-05-19 07:41:27', 'Open', 3, 4, '2013-05-10 19:39:00', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Critical', 'Threads', 'select by [Thread Compositions]', '', NULL),
+(26, 4, '2013-05-10 19:39:00', 1, '2013-05-19 08:23:34', 'Open', 3, 4, '2013-05-10 19:39:00', NULL, NULL, NULL, NULL, '0.0', '1.0', 'Critical', 'Threads', 'select by [Thread Compositions]', 'resolved', NULL),
 (27, 4, '2013-05-10 22:33:44', 4, '2013-05-12 08:19:27', 'Open', 3, 4, '2013-05-10 22:33:44', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Threads', 'validate, if [Name] is duplicated', 'null', NULL),
 (28, 4, '2013-05-10 22:34:30', NULL, NULL, 'Open', 3, 4, '2013-05-10 22:34:30', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Machines', 'no duplicates on [Name]', '', NULL),
-(29, 4, '2013-05-10 22:40:18', NULL, NULL, 'Open', 3, 4, '2013-05-10 22:40:18', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Machines', '[Search] is not working', '', NULL),
-(30, 4, '2013-05-10 22:41:29', NULL, NULL, 'Open', 3, 4, '2013-05-10 22:41:29', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Machines', '[Export] is not working', '', NULL),
+(29, 4, '2013-05-10 22:40:18', 1, '2013-05-19 13:37:55', 'Open', 3, 4, '2013-05-10 22:40:18', NULL, NULL, NULL, NULL, '0.0', '0.1', 'Normal', 'Machines', '[Search] is not working', 'resolved', NULL),
+(30, 4, '2013-05-10 22:41:29', 1, '2013-05-19 13:07:43', 'Open', 3, 4, '2013-05-10 22:41:29', NULL, NULL, NULL, NULL, '0.0', '0.1', 'Normal', 'Machines', '[Export] is not working', 'no fix, was working', NULL),
 (31, 4, '2013-05-10 22:48:11', NULL, NULL, 'Open', 3, 4, '2013-05-10 22:48:11', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Products', '[Export] is not working', '', NULL),
 (32, 4, '2013-05-10 22:49:47', 4, '2013-05-12 06:49:45', 'Closed', 3, 4, '2013-05-10 22:49:47', NULL, NULL, NULL, NULL, '0.0', '4.0', 'Normal', 'Contacts', 'program upload [Photo]', 'resolved', NULL),
 (33, 4, '2013-05-10 22:50:00', 4, '2013-05-12 06:51:30', 'Closed', 3, 4, '2013-05-10 22:50:00', NULL, NULL, NULL, NULL, '0.0', '1.0', 'Normal', 'Contacts', 'program download [Photo]', 'resolved', NULL),
@@ -8672,7 +8720,7 @@ INSERT INTO `tickets` (`id`, `created_by`, `created_at`, `updated_by`, `updated_
 (40, 4, '2013-05-10 23:12:23', 4, '2013-05-11 09:13:58', 'Open', 3, 4, '2013-05-10 23:12:23', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'General', 'program JKY.is_date', 'null', NULL),
 (41, 4, '2013-05-10 23:12:47', 4, '2013-05-12 07:04:35', 'Closed', 3, 4, '2013-05-10 23:12:47', NULL, NULL, NULL, NULL, '0.0', '4.0', 'Normal', 'General', 'add [tooltip], display on hover', 'resolved', NULL),
 (42, 4, '2013-05-10 23:13:28', 4, '2013-05-11 06:27:45', 'Open', 3, 4, '2013-05-10 23:13:28', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'General', 'drop out [Created] from tables', 'null', NULL),
-(43, 4, '2013-05-10 23:13:59', NULL, NULL, 'Open', 3, 4, '2013-05-10 23:13:59', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Machines', 'add tab for [Tipo de Agulhas]', '', NULL),
+(43, 4, '2013-05-10 23:13:59', 1, '2013-05-19 13:38:08', 'Open', 3, 4, '2013-05-10 23:13:59', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Minor', 'Machines', 'add tab for [Tipo de Agulhas]', '', NULL),
 (44, 4, '2013-05-10 23:14:44', 1, '2013-05-18 07:09:12', 'Closed', 3, 4, '2013-05-10 23:14:44', NULL, NULL, NULL, NULL, '0.0', '2.0', 'Critical', 'Profile', 'update [User Name]', 'resolved', NULL),
 (45, 4, '2013-05-10 23:14:55', 1, '2013-05-18 07:09:00', 'Closed', 3, 4, '2013-05-10 23:14:55', NULL, NULL, NULL, NULL, '0.0', '2.0', 'Critical', 'Profile', 'update [Password]', 'resolved', NULL),
 (46, 4, '2013-05-11 06:05:17', 4, '2013-05-11 07:38:39', 'Closed', 3, 4, '2013-05-11 06:05:17', NULL, NULL, NULL, NULL, '0.0', '0.2', 'Normal', 'Customers', 'add into [home.html]', 'resolved', NULL),
@@ -8808,7 +8856,7 @@ INSERT INTO `tickets` (`id`, `created_by`, `created_at`, `updated_by`, `updated_
 (178, 4, '2013-05-11 21:20:41', NULL, NULL, 'Closed', 3, 4, '2013-05-11 21:20:41', NULL, NULL, NULL, NULL, '0.0', '0.2', 'Normal', 'Machines', 'add into [home.js]', 'resolved', NULL),
 (179, 4, '2013-05-11 21:21:07', NULL, NULL, 'Closed', 3, 4, '2013-05-11 21:21:07', NULL, NULL, NULL, NULL, '0.0', '4.0', 'Normal', 'Machines', 'program SQL', 'resolved', NULL),
 (180, 4, '2013-05-11 21:21:24', 4, '2013-05-11 21:41:41', 'Closed', 3, 4, '2013-05-11 21:21:24', NULL, NULL, NULL, NULL, '0.0', '2.0', 'Normal', 'Machines', 'create table in MySQL + Cylinders', 'resolved', NULL),
-(181, 4, '2013-05-11 21:22:04', NULL, NULL, 'Open', 3, 4, '2013-05-11 21:22:04', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Machines', 'add table fields into AjaxController.php', 'null', NULL),
+(181, 4, '2013-05-11 21:22:04', 1, '2013-05-19 13:37:40', 'Open', 3, 4, '2013-05-11 21:22:04', NULL, NULL, NULL, NULL, '0.0', '1.0', 'Normal', 'Machines', 'add table fields into AjaxController.php', 'added FTPs  attributes on set_where', NULL),
 (182, 4, '2013-05-11 21:22:23', NULL, NULL, 'Closed', 3, 4, '2013-05-11 21:22:23', NULL, NULL, NULL, NULL, '0.0', '16.0', 'Normal', 'Machines', 'program HTML', 'resolved', NULL),
 (183, 4, '2013-05-11 21:22:45', 4, '2013-05-11 21:39:53', 'Closed', 3, 4, '2013-05-11 21:22:45', NULL, NULL, NULL, NULL, '0.0', '24.0', 'Normal', 'Machines', 'program JS', 'resolved', NULL),
 (184, 4, '2013-05-11 21:23:49', NULL, NULL, 'Closed', 3, 4, '2013-05-11 21:23:49', NULL, NULL, NULL, NULL, '0.0', '24.0', 'Normal', 'Machines', 'program [Cylinders] pane', 'resolved', NULL),
@@ -8926,7 +8974,7 @@ INSERT INTO `tickets` (`id`, `created_by`, `created_at`, `updated_by`, `updated_
 (298, 4, '2013-05-12 08:04:23', NULL, NULL, 'Open', 3, 4, '2013-05-12 08:04:23', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Products', 'add [Product Types] into [Configs]', 'null', NULL),
 (299, 4, '2013-05-12 08:04:49', NULL, NULL, 'Open', 3, 4, '2013-05-12 08:04:49', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Products', 'validate, if [Name] is empty', 'null', NULL),
 (300, 4, '2013-05-12 08:05:05', NULL, NULL, 'Open', 3, 4, '2013-05-12 08:05:05', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Products', 'validate, if [Name] is duplicated', 'null', NULL),
-(301, 4, '2013-05-12 08:19:57', NULL, NULL, 'Open', 3, 4, '2013-05-12 08:19:57', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Threads', 'validate, if [Name] is empty', 'null', NULL),
+(301, 4, '2013-05-12 08:19:57', 1, '2013-05-19 08:30:15', 'Open', 3, 4, '2013-05-12 08:19:57', NULL, NULL, NULL, NULL, '0.0', '0.2', 'Critical', 'Threads', 'validate, if [Name] is empty', 'added JKY.is_empty(my_name) in JKY.process_save', NULL),
 (302, 4, '2013-05-12 08:20:41', NULL, NULL, 'Closed', 3, 4, '2013-05-12 08:20:41', NULL, NULL, NULL, NULL, '0.0', '0.2', 'Normal', 'Threads', 'add into [home.html]', 'resolved', NULL),
 (303, 4, '2013-05-12 08:21:00', NULL, NULL, 'Closed', 3, 4, '2013-05-12 08:21:00', NULL, NULL, NULL, NULL, '0.0', '0.2', 'Normal', 'Threads', 'add into [home.js]', 'resolved', NULL),
 (304, 4, '2013-05-12 08:21:18', NULL, NULL, 'Closed', 3, 4, '2013-05-12 08:21:18', NULL, NULL, NULL, NULL, '0.0', '4.0', 'Normal', 'Threads', 'program SQL', 'resolved', NULL),
@@ -8935,7 +8983,7 @@ INSERT INTO `tickets` (`id`, `created_by`, `created_at`, `updated_by`, `updated_
 (307, 4, '2013-05-12 08:22:10', NULL, NULL, 'Closed', 3, 4, '2013-05-12 08:22:10', NULL, NULL, NULL, NULL, '0.0', '8.0', 'Normal', 'Threads', 'program HTML', 'resolved', NULL),
 (308, 4, '2013-05-12 08:22:23', NULL, NULL, 'Closed', 3, 4, '2013-05-12 08:22:23', NULL, NULL, NULL, NULL, '0.0', '16.0', 'Normal', 'Threads', 'program JS', 'resolved', NULL),
 (309, 4, '2013-05-12 08:23:43', 1, '2013-05-19 07:42:10', 'Open', 3, 4, '2013-05-12 08:23:43', NULL, NULL, NULL, NULL, '0.0', '1.0', 'Critical', 'Threads', 'add [Thread Compositions] into [Configs]', 'added it [Configs] table', NULL),
-(310, 4, '2013-05-12 08:23:56', 1, '2013-05-19 07:23:30', 'Open', 3, 4, '2013-05-12 08:23:56', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Critical', 'Threads', 'add [Thread Colors] into [Configs]\ndefine if to keep field name [thread_color]', '', NULL),
+(310, 4, '2013-05-12 08:23:56', 1, '2013-05-19 13:01:57', 'Open', 3, 4, '2013-05-12 08:23:56', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Critical', 'Threads', 'add [Thread Colors] into [Configs]<br>\ndefine if to keep field name [thread_color]', '', NULL),
 (311, 4, '2013-05-12 08:24:08', 1, '2013-05-19 07:22:30', 'Open', 3, 4, '2013-05-12 08:24:08', NULL, NULL, NULL, NULL, '0.0', '1.0', 'Normal', 'Threads', 'add [Thread Groups] into [Configs]', 'added it [Configs] table', NULL),
 (312, 4, '2013-05-12 08:26:19', 1, '2013-05-18 08:27:04', 'Closed', 3, 4, '2013-05-12 08:26:19', NULL, NULL, NULL, NULL, '0.0', '0.2', 'Normal', 'Tickets', 'add into [home.html]', 'resolved', NULL),
 (313, 4, '2013-05-12 08:26:37', 1, '2013-05-18 08:27:14', 'Closed', 3, 4, '2013-05-12 08:26:37', NULL, NULL, NULL, NULL, '0.0', '0.2', 'Normal', 'Tickets', 'add into [home.js]', 'resolved', NULL),
@@ -9034,7 +9082,9 @@ INSERT INTO `tickets` (`id`, `created_by`, `created_at`, `updated_by`, `updated_
 (407, 1, '2013-05-19 07:17:29', 1, '2013-05-19 07:23:52', 'Open', 3, 1, '2013-05-19 07:17:29', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Critical', 'Threads', 'define if camel case on thread name convention', '', NULL),
 (408, 1, '2013-05-19 07:18:29', NULL, NULL, 'Open', 3, 1, '2013-05-19 07:18:29', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Critical', 'FTPs', 'alter field name from [code] to [number]', '', NULL),
 (409, 1, '2013-05-19 07:19:58', NULL, NULL, 'Open', 3, 1, '2013-05-19 07:19:58', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Threads', 'add new field [nmc] numeric', '', NULL),
-(411, 1, '2013-05-19 07:42:49', 1, '2013-05-19 07:43:33', 'Open', 3, 1, '2013-05-19 07:42:49', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Critical', 'Threads', 'update [composition] with full name', '', NULL);
+(411, 1, '2013-05-19 07:42:49', 1, '2013-05-19 07:43:33', 'Open', 3, 1, '2013-05-19 07:42:49', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Critical', 'Threads', 'update [composition] with full name', '', NULL),
+(412, 1, '2013-05-19 13:05:11', NULL, NULL, 'Open', 3, 1, '2013-05-19 13:05:11', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Critical', 'Machines', 'fill in Machine Families on Config', '', NULL),
+(413, 1, '2013-05-19 13:05:22', NULL, NULL, 'Open', 3, 1, '2013-05-19 13:05:22', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Critical', 'Machines', 'fill in Machine Brands on Config', '', NULL);
 
 -- --------------------------------------------------------
 

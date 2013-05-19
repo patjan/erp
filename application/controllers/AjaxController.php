@@ -609,8 +609,8 @@ private function set_left_joins($table) {
 	if ($table == 'Contacts'	)	$return = '  LEFT JOIN   JKY_Users AS JKY_Users	ON  Contacts.id =  JKY_Users.contact_id'
 //											. '  LEFT JOIN    Contacts AS Companies	ON Companies.id =   Contacts.company_id AND Companies.is_company = "Yes"';
 											. '  LEFT JOIN    Contacts AS Companies	ON Companies.id =   Contacts.company_id';
-	if ($table == 'FTPs'		)	$return = '  LEFT JOIN    Products				ON  Products.id =		FTPS.product_id'
-											. '  LEFT JOIN    Machines				ON  Machines.id =		FTPS.machine_id';
+	if ($table == 'FTPs'		)	$return = '  LEFT JOIN    Products				ON  Products.id =		FTPs.product_id'
+											. '  LEFT JOIN    Machines				ON  Machines.id =		FTPs.machine_id';
 	if ($table == 'FTP_Loads'	)	$return = '  LEFT JOIN     Threads AS Thread1	ON   Thread1.id =  FTP_Loads.first_thread_id'
 											. '  LEFT JOIN     Threads AS Thread2	ON   Thread2.id =  FTP_Loads.second_thread_id';
 	if ($table == 'FTP_Threads'	)	$return = '  LEFT JOIN     Threads  			ON   Threads.id =FTP_Threads.thread_id';
@@ -871,6 +871,28 @@ private function set_where($table, $filter) {
 			}}
 		}
 
+		if ($table ==  'Machines') {
+			if ($name == 'name'
+			or	$name == 'machine_type'
+			or	$name == 'machine_family'
+			or	$name == 'machine_brand'
+			or	$name == 'serial_number'
+			or	$name == 'diameter'
+			or	$name == 'width'
+			or	$name == 'density'
+			or	$name == 'inputs'
+			or	$name == 'lanes'
+			or	$name == 'purchase_date'
+			or	$name == 'repair_date'
+			or	$name == 'return_date') {
+				if ($value == '"%null%"') {
+					return ' AND Machines.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Machines.' . $name . ' LIKE ' . $value;
+				}
+			}
+		}
+
 		if ($table == 'Threads') {
 			if ($name == 'code'
 			or	$name == 'name'
@@ -881,7 +903,7 @@ private function set_where($table, $filter) {
 					return ' AND Threads.' . $name . ' IS NULL ';
 				}else{
 					return ' AND Threads.' . $name . ' LIKE ' . $value;
-				}
+			}
 			}
 		}
 
@@ -960,48 +982,65 @@ private function set_where($table, $filter) {
 				;
 }
 
-	if ($table == 'Contacts') {
-		$return = ' Contacts.first_name				LIKE ' . $filter
-			. ' OR	Contacts.last_name				LIKE ' . $filter
-			. ' OR	Contacts.full_name				LIKE ' . $filter
-			. ' OR	Contacts.mobile					LIKE ' . $filter
-			. ' OR	Contacts.email					LIKE ' . $filter
-			. ' OR	Contacts.phone					LIKE ' . $filter
-			. ' OR	Contacts.street1				LIKE ' . $filter
-			. ' OR	Contacts.street2				LIKE ' . $filter
-			. ' OR	Contacts.city					LIKE ' . $filter
-			. ' OR	Contacts.state					LIKE ' . $filter
-			. ' OR	Contacts.zip					LIKE ' . $filter
-			. ' OR	Contacts.country				LIKE ' . $filter
-			. ' OR	Companies.full_name				LIKE ' . $filter
+	if ($table ==  'Contacts') {
+		$return = ' Contacts.first_name		LIKE ' . $filter
+			. ' OR	Contacts.last_name		LIKE ' . $filter
+			. ' OR	Contacts.full_name		LIKE ' . $filter
+			. ' OR	Contacts.mobile			LIKE ' . $filter
+			. ' OR	Contacts.email			LIKE ' . $filter
+			. ' OR	Contacts.phone			LIKE ' . $filter
+			. ' OR	Contacts.street1		LIKE ' . $filter
+			. ' OR	Contacts.street2		LIKE ' . $filter
+			. ' OR	Contacts.city			LIKE ' . $filter
+			. ' OR	Contacts.state			LIKE ' . $filter
+			. ' OR	Contacts.zip			LIKE ' . $filter
+			. ' OR	Contacts.country		LIKE ' . $filter
+			. ' OR	Companies.full_name		LIKE ' . $filter
 			;
 		}
 
-	if ($table == 'FTPs') {
-		$return = ' FTPS.code				LIKE ' . $filter
-			. ' OR  FTPS.diameter			LIKE ' . $filter
-			. ' OR  FTPS.density			LIKE ' . $filter
-			. ' OR  FTPS.inputs				LIKE ' . $filter
-			. ' OR  FTPS.speed				LIKE ' . $filter
-			. ' OR  FTPS.turns				LIKE ' . $filter
-			. ' OR  FTPS.weight				LIKE ' . $filter
-			. ' OR  FTPS.width				LIKE ' . $filter
-			. ' OR  FTPS.lanes				LIKE ' . $filter
-			. ' OR  FTPS.yield				LIKE ' . $filter
-			. ' OR  FTPS.needling			LIKE ' . $filter
-			. ' OR  FTPS.peso				LIKE ' . $filter
-			. ' OR  FTPS.composition		LIKE ' . $filter
+	if ($table ==  'FTPs') {
+		$return = ' FTPs.code				LIKE ' . $filter
+			. ' OR  FTPs.diameter			LIKE ' . $filter
+			. ' OR  FTPs.density			LIKE ' . $filter
+			. ' OR  FTPs.inputs				LIKE ' . $filter
+			. ' OR  FTPs.speed				LIKE ' . $filter
+			. ' OR  FTPs.turns				LIKE ' . $filter
+			. ' OR  FTPs.weight				LIKE ' . $filter
+			. ' OR  FTPs.width				LIKE ' . $filter
+			. ' OR  FTPs.lanes				LIKE ' . $filter
+			. ' OR  FTPs.yield				LIKE ' . $filter
+			. ' OR  FTPs.needling			LIKE ' . $filter
+			. ' OR  FTPs.peso				LIKE ' . $filter
+			. ' OR  FTPs.composition		LIKE ' . $filter
 			. ' OR  Products.name			LIKE ' . $filter
 			. ' OR  Machines.name			LIKE ' . $filter
 			;
 		}
 
-	if ($table == 'Threads') {
-		$return = ' Threads.code					LIKE ' . $filter
-			. ' OR	Threads.name					LIKE ' . $filter
-			. ' OR	Threads.thread_group			LIKE ' . $filter
-			. ' OR	Threads.thread_color			LIKE ' . $filter
-			. ' OR	Threads.composition				LIKE ' . $filter
+	if ($table ==  'Machines') {
+		$return = ' Machines.name			LIKE ' . $filter
+			. ' OR  Machines.machine_type	LIKE ' . $filter
+			. ' OR  Machines.machine_family	LIKE ' . $filter
+			. ' OR  Machines.machine_brand	LIKE ' . $filter
+			. ' OR  Machines.serial_number	LIKE ' . $filter
+			. ' OR  Machines.diameter		LIKE ' . $filter
+			. ' OR  Machines.width			LIKE ' . $filter
+			. ' OR  Machines.density		LIKE ' . $filter
+			. ' OR  Machines.inputs			LIKE ' . $filter
+			. ' OR  Machines.lanes			LIKE ' . $filter
+			. ' OR  Machines.purchase_date	LIKE ' . $filter
+			. ' OR  Machines.repair_date	LIKE ' . $filter
+			. ' OR  Machines.return_date	LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'Threads') {
+		$return = ' Threads.code			LIKE ' . $filter
+			. ' OR	Threads.name			LIKE ' . $filter
+			. ' OR	Threads.thread_group	LIKE ' . $filter
+			. ' OR	Threads.thread_color	LIKE ' . $filter
+			. ' OR	Threads.composition		LIKE ' . $filter
 			;
 		}
 
