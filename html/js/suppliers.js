@@ -206,6 +206,8 @@ JKY.display_row = function(index) {
 	JKY.set_option	('jky-state'			, JKY.row.state			);
 	JKY.set_option	('jky-country'			, JKY.row.country		);
 	JKY.set_value	('jky-website'			, JKY.row.website		);
+	JKY.set_value	('jky-cnpj'				, JKY.row.cnpj			);
+	JKY.set_value	('jky-ie'				, JKY.row.ie			);
 
 	JKY.set_value	('jky-position'			, JKY.row.position		);
 	JKY.set_value	('jky-phone'			, JKY.row.phone			);
@@ -239,7 +241,7 @@ JKY.display_new = function() {
 	jky_index = 0;
 	JKY.set_option	('jky-status'			, 'Active');
 	JKY.set_value	('jky-full-name'		, '');
-	JKY.set_check	('jky-is-company'		, 'No');
+	JKY.set_yes		('jky-is-company'		, 'No');
 	JKY.set_option	('jky-company-name'		, '');
 	JKY.set_option	('jky-company-tag'		, '');
 
@@ -250,6 +252,8 @@ JKY.display_new = function() {
 	JKY.set_option	('jky-state'			, 'SP');
 	JKY.set_option	('jky-country'			, 'Brasil');
 	JKY.set_value	('jky-website'			, '');
+	JKY.set_value	('jky-cnpj'			, '');
+	JKY.set_value	('jky-ie'			, '');
 
 	JKY.set_value	('jky-position'			, '');
 	JKY.set_value	('jky-phone'			, '');
@@ -257,8 +261,7 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-fax'				, '');
 	JKY.set_value	('jky-email'			, '');
 
-	JKY.show('jky-position-line');
-	JKY.show('jky-company-name');
+	setTimeout(function() {JKY.display_company($('#jky-is-company'));}, 100);
 	JKY.set_focus(jky_focus);
 }
 
@@ -276,6 +279,8 @@ JKY.get_form_set = function() {
 		+         ', state=\'' + JKY.get_value	('jky-state'			) + '\''
 		+       ', country=\'' + JKY.get_value	('jky-country'			) + '\''
 		+       ', website=\'' + JKY.get_value	('jky-website'			) + '\''
+		+       ', cnpj=\''	   + JKY.get_value	('jky-cnpj'				) + '\''
+		+       ', ie=\''	   + JKY.get_value	('jky-ie'				) + '\''
 
 		+      ', position=\'' + JKY.get_value	('jky-position'			) + '\''
 		+         ', phone=\'' + JKY.get_value	('jky-phone'			) + '\''
@@ -391,10 +396,16 @@ JKY.display_company = function(the_id) {
 	if ($(the_id).is(':checked')) {
 		JKY.hide('jky-company-name' );
 		JKY.hide('jky-position-line');
-		JKY.show('jky-website-line' )
+		JKY.show('jky-website-line' );
+		JKY.show('jky-cnpj-line' );
+		JKY.hide('jky-ie-line');
+
 	}else{
 		JKY.show('jky-company-name' );
 		JKY.show('jky-position-line');
-		JKY.hide('jky-website-line' )
+		JKY.hide('jky-website-line' );
+		JKY.hide('jky-cnpj-line' );
+		JKY.show('jky-ie-line');
+		
 	}
 }

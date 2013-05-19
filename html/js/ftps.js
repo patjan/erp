@@ -9,7 +9,7 @@ var jky_select		= '';
 var jky_focus		= 'jky-diameter';
 var jky_filter		= '';
 var jky_specific	= '';
-var jky_sort_by		= 'code';
+var jky_sort_by		= 'number';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 
 var jky_count		=  0;
@@ -168,7 +168,7 @@ JKY.process_load_success = function(response) {
 		var my_checkbox = '<input type="checkbox" onclick="JKY.set_checkbox(this)" row_id=' + my_row.id + ' />';
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
-				+  '<td class="jky-code"			>' + my_row.code			+ '</td>'
+				+  '<td class="jky-number"			>' + my_row.number			+ '</td>'
 				+  '<td class="jky-product"			>' + my_row.product			+ '</td>'
 				+  '<td class="jky-machine"			>' + my_row.machine			+ '</td>'
 				+  '<td class="jky-composition"		>' + my_row.composition		+ '</td>'
@@ -237,7 +237,7 @@ JKY.display_row = function(index) {
 	JKY.set_html('jky-upload-percent'	, '');
 	JKY.set_css ('jky-upload-progress', 'width', '0%');
 
-	JKY.set_value	('jky-code'				, JKY.row.code			);
+	JKY.set_value	('jky-number'				, JKY.row.number			);
 	JKY.set_value	('jky-product-id'		, JKY.row.product_id	);
 	JKY.set_value	('jky-product'			, JKY.row.product		);
 	JKY.set_value	('jky-composition'		, JKY.row.composition	);
@@ -282,7 +282,7 @@ JKY.process_add_new = function() {
 
 JKY.display_new = function() {
 	jky_index = 0;
-	JKY.set_value	('jky-code'				,  JKY.t('New'));
+	JKY.set_value	('jky-number'				,  JKY.t('New'));
 	JKY.set_value	('jky-product-id'		,  0);
 	JKY.set_value	('jky-product'			, '');
 	JKY.set_value	('jky-composition'		, '');
@@ -433,7 +433,7 @@ JKY.print_row = function(the_id) {
 //window.print();
 	var my_html = ''
 		+ "<table id='jky-form-data'>"
-		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>			  Code</span>:</td><td><input  id='jky-code'			class='jky-form-value'									readonly='readonly'	/></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>			  Number</span>:</td><td><input  id='jky-number'			class='jky-form-value'									readonly='readonly'	/></td></tr>"
 		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>          Product</span>:</td>"
 		+ "<td><input  id='jky-product-id' type='hidden' />"
 		+ "<input  id='jky-product' class='jky-form-value' placeholder='Product Name' readonly='readonly' />"
@@ -542,7 +542,7 @@ $( function() {
 
 	JKY.drawing.bind('Error', function(up, error) {
 		JKY.show('jky_loading');
-		JKY.display_message('error: ' + error.code + '<br>message: ' + error.message + (error.file ? '<br> file: ' + error.file.name : ''));
+		JKY.display_message('error: ' + error.number + '<br>message: ' + error.message + (error.file ? '<br> file: ' + error.file.name : ''));
 		up.refresh();			//	reposition Flash/Silverlight
 	});
 
@@ -609,7 +609,7 @@ $( function() {
 
 	JKY.photo.bind('Error', function(up, error) {
 		JKY.show('jky_loading');
-		JKY.display_message('error: ' + error.code + '<br>message: ' + error.message + (error.file ? '<br> file: ' + error.file.name : ''));
+		JKY.display_message('error: ' + error.number + '<br>message: ' + error.message + (error.file ? '<br> file: ' + error.file.name : ''));
 		up.refresh();			//	reposition Flash/Silverlight
 	});
 

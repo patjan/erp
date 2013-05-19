@@ -835,7 +835,7 @@ private function set_where($table, $filter) {
 		}
 
 		if ($table == 'FTPs') {
-			if ($name == 'code'
+			if ($name == 'number'
 			or	$name == 'diameter'
 			or	$name == 'density'
 			or	$name == 'inputs'
@@ -1000,7 +1000,7 @@ private function set_where($table, $filter) {
 		}
 
 	if ($table ==  'FTPs') {
-		$return = ' FTPs.code				LIKE ' . $filter
+		$return = ' FTPs.number				LIKE ' . $filter
 			. ' OR  FTPs.diameter			LIKE ' . $filter
 			. ' OR  FTPs.density			LIKE ' . $filter
 			. ' OR  FTPs.inputs				LIKE ' . $filter

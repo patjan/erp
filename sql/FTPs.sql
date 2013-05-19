@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS FTPs
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'
 
-, code				VARCHAR(32)			DEFAULT NULL
+, number			VARCHAR(32)			DEFAULT NULL
 , product_id		BIGINT				DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
 , diameter			INT(11)				DEFAULT 0		# Diametro (cm)
@@ -31,3 +31,5 @@ CREATE TABLE IF NOT EXISTS FTPs
 , KEY product(product_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
+
+ALTER TABLE FTPs      CHANGE code	number	VARCHAR(32)	DEFAULT NULL;
