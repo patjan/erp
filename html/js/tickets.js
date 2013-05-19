@@ -61,7 +61,7 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-help');
 		JKY.set_side_active('jky-help-tickets');
-		JKY.set_html('jky-app-select'		, JKY.set_group_set('Controls', 'All', 'Ticket Status Codes'));
+		JKY.set_html('jky-app-select'		, JKY.set_group_set('Controls', jky_select, 'Ticket Status Codes', 'All'));
 		JKY.set_html('jky-priority'			, JKY.set_group_set('Controls', '', 'Priorities'			));
 		JKY.set_html('jky-category'			, JKY.set_group_set('Controls', '', 'Ticket Categories'		));
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
