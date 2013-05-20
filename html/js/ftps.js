@@ -237,7 +237,7 @@ JKY.display_row = function(index) {
 	JKY.set_html('jky-upload-percent'	, '');
 	JKY.set_css ('jky-upload-progress', 'width', '0%');
 
-	JKY.set_value	('jky-number'				, JKY.row.number			);
+	JKY.set_value	('jky-number'			, JKY.row.number		);
 	JKY.set_value	('jky-product-id'		, JKY.row.product_id	);
 	JKY.set_value	('jky-product'			, JKY.row.product		);
 	JKY.set_value	('jky-composition'		, JKY.row.composition	);
@@ -282,7 +282,7 @@ JKY.process_add_new = function() {
 
 JKY.display_new = function() {
 	jky_index = 0;
-	JKY.set_value	('jky-number'				,  JKY.t('New'));
+	JKY.set_value	('jky-number'			,  JKY.t('New'));
 	JKY.set_value	('jky-product-id'		,  0);
 	JKY.set_value	('jky-product'			, '');
 	JKY.set_value	('jky-composition'		, '');
@@ -416,60 +416,6 @@ JKY.process_cancel = function() {
 }
 
 /**
- * process print
- */
-JKY.process_print = function() {
-	if ($('#jky-app-form').css('display') == 'block') {
-		JKY.print_row(JKY.row.id);
-	}else{
-		$('#jky-table-body .jky-checkbox input:checked').each(function() {
-			JKY.print_row($(this).attr('row_id'));
-		})
-	}
-};
-
-JKY.print_row = function(the_id) {
-	JKY.display_message('print_row: ' + the_id);
-//window.print();
-	var my_html = ''
-		+ "<table id='jky-form-data'>"
-		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>			  Number</span>:</td><td><input  id='jky-number'			class='jky-form-value'									readonly='readonly'	/></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>          Product</span>:</td>"
-		+ "<td><input  id='jky-product-id' type='hidden' />"
-		+ "<input  id='jky-product' class='jky-form-value' placeholder='Product Name' readonly='readonly' />"
-		+ "<a id='jky-action-product'><i class='icon-share'></i></a>"
-		+ "</td>"
-		+ "</tr>"
-		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>      Composition</span>:</td><td><input  id='jky-composition'	class='jky-form-value'									readonly='readonly'	/></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-form-label'><span>          Machine</span>:</td><td><select id='jky-machine'></select></td></tr>"
-		+ "<tr class='jky-form-line'>&nbsp;</tr>"
-		+ "<tr class='jky-form-line'>&nbsp;</tr>"
-		+ "</table>"
-		+ "<table class='jky-left'>"
-		+ "<tr class='jky-left'>"
-		+ "<td id='jky-download-drawing'></td>"
-		+ "<td><a id='jky-upload-drawing'><span>Upload Drawing</span></a></td>"
-		+ "</tr>"
-		+ "<tr class='jky-left'>"
-		+ "<td id='jky-download-photo'  ></td>"
-		+ "<td><a id='jky-upload-photo'  ><span>Upload Photo  </span></a></td>"
-		+ "</tr>"
-		+ "<tr class='jky-clear'></tr>"
-		+ "<tr>"
-		+ "<td>"
-		+ "<span>Progress</span>:"
-		+ "<span id='jky-upload-percent'></span>"
-		+ "<span id='jky-upload-name'></span>"
-		+ "</td>"
-		+ "<td class='progress progress-striped active'></td><td id='jky-upload-progress' class='bar'></td>"
-		+ "</tr>"
-		+ "</table>"
-		;
-	JKY.set_html('jky-printable', my_html);
-	$("#jky-printable").print();
-}
-
-/**
  * process export
  */
 JKY.process_export = function() {
@@ -542,7 +488,7 @@ $( function() {
 
 	JKY.drawing.bind('Error', function(up, error) {
 		JKY.show('jky_loading');
-		JKY.display_message('error: ' + error.number + '<br>message: ' + error.message + (error.file ? '<br> file: ' + error.file.name : ''));
+		JKY.display_message('error: ' + error.code + '<br>message: ' + error.message + (error.file ? '<br> file: ' + error.file.name : ''));
 		up.refresh();			//	reposition Flash/Silverlight
 	});
 
@@ -609,9 +555,113 @@ $( function() {
 
 	JKY.photo.bind('Error', function(up, error) {
 		JKY.show('jky_loading');
-		JKY.display_message('error: ' + error.number + '<br>message: ' + error.message + (error.file ? '<br> file: ' + error.file.name : ''));
+		JKY.display_message('error: ' + error.code + '<br>message: ' + error.message + (error.file ? '<br> file: ' + error.file.name : ''));
 		up.refresh();			//	reposition Flash/Silverlight
 	});
 
 	JKY.photo.init();
 });
+
+/**
+ * process print
+ */
+JKY.process_print = function() {
+	if ($('#jky-app-form').css('display') == 'block') {
+		JKY.print_row(JKY.row.id);
+	}else{
+		$('#jky-table-body .jky-checkbox input:checked').each(function() {
+			JKY.print_row($(this).attr('row_id'));
+		})
+	}
+};
+
+JKY.print_row = function(the_id) {
+	JKY.display_message('print_row: ' + the_id);
+//window.print();jky0body
+	var my_html = ''
+		+ "<table style='border:1px solid black;'>"
+		+ "<tr>"
+
+		+ "<td width=60%><table>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'>FTP  <span>Number</span>:</td><td id='jky-print-number'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>	   Product</span>:</td><td id='jky-print-product'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>Composition</span>:</td><td id='jky-print-composition'	class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>	   Machine</span>:</td><td id='jky-print-machine'		class='jky-form-value'></td></tr>"
+		+ "</table></td>"
+
+		+ "<td id='jky-print-drawing' width=20%></td>"
+		+ "<td id='jky-print-photo'   width=20%></td>"
+
+		+ "</tr>"
+		+ "</table>"
+
+		+ "<br>"
+		+ "<div style='border:1px solid black;'>"
+		+ "<table>"
+		+ "<tr>"
+		+ "<td class='jky-print-label1'><span> Diameter</span>:</td><td id='jky-print-diameter'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label2'><span>    Turns</span>:</td><td id='jky-print-turns'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label3'><span>    Yield</span>:</td><td id='jky-print-yield'		class='jky-print-value'></td>"
+		+ "</tr>"
+		+ "<tr>"
+		+ "<td class='jky-print-label1'><span>  Density</span>:</td><td id='jky-print-density'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label2'><span>   Weight</span>:</td><td id='jky-print-weight'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label3'><span> Needling</span>:</td><td id='jky-print-needling'		class='jky-print-value'></td>"
+		+ "</tr>"
+		+ "<tr>"
+		+ "<td class='jky-print-label1'><span>   Inputs</span>:</td><td id='jky-print-inputs'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label2'><span>    Width</span>:</td><td id='jky-print-width'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label3'><span>     Peso</span>:</td><td id='jky-print-peso'			class='jky-print-value'></td>"
+		+ "</tr>"
+		+ "<tr>"
+		+ "<td class='jky-print-label1'><span>    Speed</span>:</td><td id='jky-print-speed'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label2'><span>    Lanes</span>:</td><td id='jky-print-lanes'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label3'><span>Has Break</span>?</td><td id='jky-print-has-break'	class='jky-print-value'></td>"
+		+ "</tr>"
+		+ "</table>"
+		+ "</div>"
+		+ "<br>"
+		+ "<table style='border:1px solid black;'>"
+		+ "<thead><tr class='jky-print-head'><td><span>Threads</span></td><td><span>Percent</span></td><td><span>Thread</span></td><tr><thead>"
+		+ "<tbody id='jky-print-thread-body'></table>"
+		+ "</table>"
+		+ "<br>"
+		+ "<table style='border:1px solid black;'>"
+		+ "<thead><tr class='jky-print-head'><td><span>Loads</span></td><td><span>First</span></td><td><span>Thread</span></td><td><span>Second</span></td><td><span>Thread</span></td><tr><thead>"
+		+ "<tbody id='jky-print-load-body'></table>"
+		+ "</table>"
+		+ "<br>"
+		+ "<table style='border:1px solid black;'>"
+		+ "<thead><tr class='jky-print-head'><td><span>Settings</span></td><td><span>Name</span></td><td><span>Value</span></td><td><span>Name</span></td><td><span>Value</span></td><tr><thead>"
+		+ "<tbody id='jky-print-set-body'></table>"
+		+ "</table>"
+		;
+	JKY.set_html('jky-printable', my_html);
+
+	JKY.set_html('jky-print-number'			, JKY.get_value('jky-number'		));
+	JKY.set_html('jky-print-product'		, JKY.get_value('jky-product'		));
+	JKY.set_html('jky-print-composition'	, JKY.get_value('jky-composition'	));
+	JKY.set_html('jky-print-machine'		, JKY.get_selected_text('jky-machine'));
+
+	JKY.set_html('jky-print-drawing'		, JKY.get_html('jky-download-drawing'	));
+	JKY.set_html('jky-print-photo'			, JKY.get_html('jky-download-photo'	));
+
+	JKY.set_html('jky-print-diameter'		, JKY.get_value('jky-diameter'		) + ' (cm)');
+	JKY.set_html('jky-print-turns'			, JKY.get_value('jky-turns'			));
+	JKY.set_html('jky-print-yield'			, JKY.get_value('jky-yield'			) + ' (%)');
+	JKY.set_html('jky-print-density'		, JKY.get_value('jky-density'		));
+	JKY.set_html('jky-print-weight'			, JKY.get_value('jky-weight'		) + ' (gr)');
+	JKY.set_html('jky-print-needling'		, JKY.get_value('jky-needling'		));
+	JKY.set_html('jky-print-inputs'			, JKY.get_value('jky-inputs'		) + ' (cones)');
+	JKY.set_html('jky-print-width'			, JKY.get_value('jky-width'			) + ' (cm)');
+	JKY.set_html('jky-print-peso'			, JKY.get_value('jky-peso'			) + ' (Kg)');
+	JKY.set_html('jky-print-speed'			, JKY.get_value('jky-speed'			) + ' (rpm)');
+	JKY.set_html('jky-print-lanes'			, JKY.get_value('jky-lanes'			));
+	JKY.set_html('jky-print-has-break'		, JKY.get_checked('jky-has-break'	));
+
+	JKY.set_html('jky-print-thread-body'	, JKY.get_html('jky-thread-body'	));
+	JKY.set_html('jky-print-load-body'		, JKY.get_html('jky-load-body'		));
+	JKY.set_html('jky-print-set-body'		, JKY.get_html('jky-set-body'		));
+
+	$("#jky-printable").print();
+}

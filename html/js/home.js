@@ -166,8 +166,8 @@ JKY.process_start_page = function() {
 	JKY.set_user_info(JKY.Session.get_value('full_name'));
 	JKY.show('jky-side-bar');
 //	JKY.process_action(JKY.Session.get_value('start_page'));
-//	JKY.process_action('ftps');
-	JKY.process_action('suppliers');
+	JKY.process_action('ftps');
+//	JKY.process_action('suppliers');
 }
 
 /** ------------------------------------------------------------------------ **/

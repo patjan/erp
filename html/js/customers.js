@@ -252,8 +252,8 @@ JKY.display_new = function() {
 	JKY.set_option	('jky-state'			, 'SP');
 	JKY.set_option	('jky-country'			, 'Brasil');
 	JKY.set_value	('jky-website'			, '');
-	JKY.set_value	('jky-cnpj'			, '');
-	JKY.set_value	('jky-ie'			, '');
+	JKY.set_value	('jky-cnpj'				, '');
+	JKY.set_value	('jky-ie'				, '');
 
 	JKY.set_value	('jky-position'			, '');
 	JKY.set_value	('jky-phone'			, '');
@@ -397,15 +397,15 @@ JKY.display_company = function(the_id) {
 		JKY.hide('jky-company-name' );
 		JKY.hide('jky-position-line');
 		JKY.show('jky-website-line' );
-		JKY.show('jky-cnpj-line' );
-		JKY.hide('jky-ie-line');
+		JKY.show('jky-cnpj-line'	);
+		JKY.hide('jky-ie-line'		);
 
 	}else{
 		JKY.show('jky-company-name' );
 		JKY.show('jky-position-line');
 		JKY.hide('jky-website-line' );
-		JKY.hide('jky-cnpj-line' );
-		JKY.show('jky-ie-line');
+		JKY.hide('jky-cnpj-line'	);
+		JKY.show('jky-ie-line'		);
 		
 	}
 }

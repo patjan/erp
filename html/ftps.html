@@ -121,13 +121,24 @@
 .jky-search-product-type	{width: 60px; text-align:center;}
 .jky-search-start-date		{width: 60px; text-align:center;}
 
+.jky-print-label		{width:100px; text-align:right; font-weight:bold;}
+.jky-print-label1		{width: 80px; text-align:right; font-weight:bold;}
+.jky-print-label2		{width: 80px; text-align:right; font-weight:bold;}
+.jky-print-label3		{width:100px; text-align:right; font-weight:bold;}
+.jky-print-value		{width:200px;}
+.jky-print-head			{font-weight:bold;}
+#jky-print-number		{font-size:20px; font-weight:bold;}
+#jky-print-product		{text-transform:capitalize;}
+#jky-print-machine		{text-transform:capitalize;}
+
+
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-number'			><span>Number				</span></th>
+			<th class='jky-number'			><span>Number			</span></th>
 			<th class='jky-product'			><span>Product			</span></th>
 			<th class='jky-machine'			><span>Machine			</span></th>
 			<th class='jky-composition'		><span>Composition		</span></th>
@@ -161,14 +172,14 @@
 -->
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>			  Number</span>:</div><input  id='jky-number'			class='jky-form-value'									readonly='readonly'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>          Product</span>:</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>			Number</span>:</div><input  id='jky-number'			class='jky-form-value'									readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>			Product</span>:</div>
 				<input  id='jky-product-id' type='hidden' />
 				<input  id='jky-product' class='jky-form-value' placeholder='Product Name' readonly='readonly' />
 				<a id='jky-action-product'><i class='icon-share'></i></a>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Composition</span>:</div><input  id='jky-composition'	class='jky-form-value'									readonly='readonly'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>          Machine</span>:</div><select id='jky-machine'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		Composition</span>:</div><input  id='jky-composition'	class='jky-form-value'									readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>			Machine</span>:</div><select id='jky-machine'></select></div>
 			<div class='jky-form-line'>&nbsp;</div>
 			<div class='jky-form-line'>&nbsp;</div>
 		</div>

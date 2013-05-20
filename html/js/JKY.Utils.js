@@ -581,6 +581,15 @@ JKY.set_yes = function(id_name, value){
 }
 
 /**
+ * get text of selected id
+ * @param	the_id
+ * @return	value
+ */
+JKY.get_selected_text = function(the_id){
+	var my_value = $('#' + the_id + ' option:selected').text();
+	return my_value;
+}
+/**
  * set check on specific value
  * @param	id_name
  * @param	value
