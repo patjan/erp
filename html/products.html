@@ -45,6 +45,8 @@
 .jky-start-date			{width:100px; text-align:center;}
 
 #jky-name				{width:300px; font-size:16px; font-weight:bold; text-transform:capitalize;}
+#jky-photo				{float: left; margin:7px;}
+#jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
 #jky-product-type		{width:230px;}
 #jky-product-type span	{padding:4px 20px 0 4px; vertical-align:bottom;}
 
@@ -94,6 +96,27 @@
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input		id='jky-name'		class='jky-form-value'		placeholder='Name'				/></div>
+		</div>
+		<div class="jky-left">
+			<div id='jky-app-upload' class='jky-left'>
+				<div class='jky-left' style='margin-left:10px;'>
+					<div id='jky-download-photo'  >
+						<img class="the_icon" src="/img/placeholder.png" id="jky-photo-img">
+					</div>
+					<a id='jky-upload-photo'  ><span>Upload Photo  </span></a>
+				</div>
+				<div class='jky-clear'></div>
+				<div style='margin-left:10px;'>
+					<div>
+						<span>Progress</span>:
+						<span id='jky-upload-percent'></span>
+						<span id='jky-upload-name'></span>
+					</div>
+					<div class='progress progress-striped active'><div id='jky-upload-progress' class='bar'></div></div>
+				</div>
+			</div>
+		</div>
+		<div class="jky-left">
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Product Type</span>:</div>
 				<div id='jky-product-type' class='jky-form-value'>
@@ -103,7 +126,7 @@
 					<input type='radio' name='jky-product-type' value='Punho'	/><span>Punho	</span><br>
 				</div>
 			</div>
-
+		</div>	
 		</div>
 		<div class='jky-clear'></div>
 		<br>
