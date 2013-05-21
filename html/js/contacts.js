@@ -440,6 +440,7 @@ $( function() {
 		var my_html = '<a href="' + 'jky_download.php?file_name=contacts/' + JKY.row.id + '.' + my_file_type + '">'
 					+ '<img id="jky-photo-img"    src="/uploads/contacts/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
 					+ '</a>'
+					;
 		JKY.set_html('jky-download-photo', my_html);
 
 		var my_data =

@@ -185,6 +185,7 @@ JKY.display_form = function(index) {
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.show('jky-app-upload'		);
 	JKY.display_row(index);
 }
 
@@ -234,6 +235,7 @@ JKY.process_add_new = function() {
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.hide('jky-app-upload'		);
 	JKY.display_new();
 }
 
@@ -406,6 +408,5 @@ JKY.display_company = function(the_id) {
 		JKY.hide('jky-website-line' );
 		JKY.hide('jky-cnpj-line'	);
 		JKY.show('jky-ie-line'		);
-		
 	}
 }

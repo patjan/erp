@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 19, 2013 at 09:54 PM
+-- Generation Time: May 20, 2013 at 09:18 PM
 -- Server version: 5.1.50
 -- PHP Version: 5.3.14
 
@@ -149,7 +149,7 @@ INSERT INTO `configs` (`id`, `created_at`, `created_by`, `updated_at`, `updated_
 (87, '2013-04-22 19:30:42', 4, NULL, NULL, 'Active', 1, 50, 'xxxxx', 'x1', ''),
 (88, '2013-04-22 19:30:46', 4, NULL, NULL, 'Active', 1, 50, 'xxxxx', 'x2', ''),
 (89, '2013-04-22 19:30:50', 4, NULL, NULL, 'Active', 1, 50, 'xxxxx', 'x3', ''),
-(104, '2013-05-17 06:11:04', 1, NULL, NULL, 'Active', 1, 50, 'Root', 'Thread Groups', 'null'),
+(104, '2013-05-17 06:11:04', 1, '2013-05-20 21:15:22', 1, 'Active', 1, 50, 'Root', 'Thread Groups', ''),
 (105, '2013-05-17 06:11:25', 1, '2013-05-17 06:18:02', 1, 'Active', 1, 10, 'Thread Groups', 'CO-Card/Pent', 'null'),
 (106, '2013-05-17 06:11:39', 1, '2013-05-17 06:23:38', 1, 'Active', 1, 20, 'Thread Groups', 'PA-Card/Pent', 'null'),
 (107, '2013-05-17 06:11:47', 1, '2013-05-17 06:24:02', 1, 'Active', 1, 30, 'Thread Groups', 'Viscose', 'null'),
@@ -351,7 +351,7 @@ INSERT INTO `controls` (`id`, `created_at`, `created_by`, `updated_at`, `updated
 (1000000246, '2012-08-15 13:51:00', 1000000001, NULL, NULL, 'Active', 1000000001, 50, 'User Resources', 'Summary', ''),
 (1000000260, '2013-04-10 19:01:19', 4, NULL, NULL, 'Active', 1, 50, 'User Resources', 'Machines', ''),
 (1000000262, '2013-04-14 15:42:02', 4, '2013-04-14 15:42:11', 4, 'Active', 1, 0, 'Root', 'System Numbers', ''),
-(1000000263, '2013-04-14 15:43:40', 4, '2013-05-16 21:35:20', 1, 'Active', 1, 50, 'System Numbers', 'Next FTP number', '100005'),
+(1000000263, '2013-04-14 15:43:40', 4, '2013-05-20 21:14:37', 1, 'Active', 1, 50, 'System Numbers', 'Next FTP number', '100001'),
 (1000000264, '2013-04-16 17:36:19', 4, NULL, NULL, 'Active', 1, 50, 'User Resources', 'FTPs', ''),
 (1000000265, '2013-04-16 17:36:36', 4, NULL, NULL, 'Active', 1, 50, 'User Resources', 'Colors', ''),
 (1000000266, '2013-04-16 17:37:08', 4, NULL, NULL, 'Active', 1, 50, 'User Resources', 'FTP_Loads', ''),
@@ -485,7 +485,7 @@ CREATE TABLE IF NOT EXISTS `ftp_loads` (
   `second_number` int(11) DEFAULT '0',
   `second_thread_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `ftp_loads`
@@ -510,7 +510,7 @@ CREATE TABLE IF NOT EXISTS `ftp_sets` (
   `value` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ftp_id` (`ftp_id`,`setting_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `ftp_sets`
@@ -535,7 +535,7 @@ CREATE TABLE IF NOT EXISTS `ftp_threads` (
   `percent` decimal(6,2) DEFAULT '0.00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `ftp_id` (`ftp_id`,`thread_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `ftp_threads`
@@ -558,7 +558,7 @@ CREATE TABLE IF NOT EXISTS `history` (
   `history` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `parent` (`parent_name`,`parent_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=270 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=440 ;
 
 --
 -- Dumping data for table `history`
@@ -834,7 +834,177 @@ INSERT INTO `history` (`id`, `created_by`, `created_at`, `parent_name`, `parent_
 (266, 1, '2013-05-19 21:52:35', 'Configs', 121, 'insert', 'id:121, created_at:2013-05-19 21:52:35, created_by:1, updated_at:, updated_by:, status:Active, company_id:1, sequence:50, group_set:Product Types, name:Ramado, value:'),
 (267, 1, '2013-05-19 21:52:53', 'Configs', 121, 'update', 'updated_by:=>1, name:Ramado=>Ramada'),
 (268, 1, '2013-05-19 21:53:25', 'Configs', 122, 'insert', 'id:122, created_at:2013-05-19 21:53:25, created_by:1, updated_at:, updated_by:, status:Active, company_id:1, sequence:50, group_set:Product Types, name:Gola, value:'),
-(269, 1, '2013-05-19 21:53:31', 'Configs', 123, 'insert', 'id:123, created_at:2013-05-19 21:53:31, created_by:1, updated_at:, updated_by:, status:Active, company_id:1, sequence:50, group_set:Product Types, name:Punho, value:');
+(269, 1, '2013-05-19 21:53:31', 'Configs', 123, 'insert', 'id:123, created_at:2013-05-19 21:53:31, created_by:1, updated_at:, updated_by:, status:Active, company_id:1, sequence:50, group_set:Product Types, name:Punho, value:'),
+(270, 1, '2013-05-19 21:55:32', 'Tickets', 298, 'update', 'updated_by:=>1, worked_hour:0.0=>0.5, resolution:null=>resolved'),
+(271, 1, '2013-05-20 17:20:20', 'FTPs', 100006, 'insert', 'id:100006, created_by:1, created_at:2013-05-20 17:20:20, updated_by:, updated_at:, status:Active, number:100006, product_id:7495, machine_id:1000000010, diameter:111, density:112, inputs:113, speed:114, turns:121, weight:122, width:123, lanes:124, yield:125, needling:126, peso:12.50, has_break:Yes, composition:, draw:, photo:'),
+(272, 1, '2013-05-20 17:21:13', 'FTPs', 100007, 'insert', 'id:100007, created_by:1, created_at:2013-05-20 17:21:13, updated_by:, updated_at:, status:Active, number:100007, product_id:8551, machine_id:1000000063, diameter:211, density:212, inputs:213, speed:214, turns:221, weight:222, width:223, lanes:224, yield:231, needling:232, peso:12.50, has_break:No, composition:, draw:, photo:'),
+(273, 1, '2013-05-20 17:21:24', 'FTP_Threads', 7, 'insert', 'id:7, created_by:1, created_at:2013-05-20 17:21:24, updated_by:, updated_at:, status:Active, ftp_id:100006, thread_id:, percent:0.00'),
+(274, 1, '2013-05-20 17:21:24', 'FTP_Loads', 7, 'insert', 'id:7, created_by:1, created_at:2013-05-20 17:21:24, updated_by:, updated_at:, status:Active, ftp_id:100006, first_number:0, first_thread_id:, second_number:0, second_thread_id:'),
+(275, 1, '2013-05-20 17:21:29', 'FTPs', 100006, 'update', 'updated_by:=>1, draw:=>jpg'),
+(276, 1, '2013-05-20 17:21:32', 'FTPs', 100006, 'update', 'photo:=>jpg'),
+(277, 1, '2013-05-20 17:21:43', 'FTPs', 100006, 'update', 'composition:=>100 Acrilico'),
+(278, 1, '2013-05-20 17:21:46', 'FTPs', 100006, 'update', 'composition:100 Acrilico=>100 Algodao'),
+(279, 1, '2013-05-20 17:21:59', 'FTP_Threads', 8, 'insert', 'id:8, created_by:1, created_at:2013-05-20 17:21:59, updated_by:, updated_at:, status:Active, ftp_id:100007, thread_id:, percent:0.00'),
+(280, 1, '2013-05-20 17:21:59', 'FTP_Loads', 8, 'insert', 'id:8, created_by:1, created_at:2013-05-20 17:21:59, updated_by:, updated_at:, status:Active, ftp_id:100007, first_number:0, first_thread_id:, second_number:0, second_thread_id:'),
+(281, 1, '2013-05-20 17:22:05', 'FTPs', 100007, 'update', 'updated_by:=>1, draw:=>jpg'),
+(282, 1, '2013-05-20 17:22:08', 'FTPs', 100007, 'update', 'photo:=>jpg'),
+(283, 1, '2013-05-20 17:22:22', 'FTPs', 100007, 'update', 'composition:=>50 Algodao, 50 Acrilico'),
+(284, 1, '2013-05-20 17:22:29', 'FTPs', 100007, 'update', 'composition:50 Algodao, 50 Acrilico=>50 Algodao, 50 Polyester'),
+(285, 1, '2013-05-20 17:22:36', 'FTP_Threads', 8, 'update', 'updated_by:=>1, percent:0.00=>50.00'),
+(286, 1, '2013-05-20 17:22:41', 'FTP_Threads', 8, 'update', 'thread_id:=>1000000001'),
+(287, 1, '2013-05-20 17:22:43', 'FTP_Threads', 9, 'insert', 'id:9, created_by:1, created_at:2013-05-20 17:22:43, updated_by:, updated_at:, status:Active, ftp_id:100007, thread_id:, percent:0.00'),
+(288, 1, '2013-05-20 17:22:46', 'FTP_Threads', 9, 'update', 'updated_by:=>1, percent:0.00=>50.00'),
+(289, 1, '2013-05-20 17:22:50', 'FTP_Threads', 9, 'update', 'thread_id:=>1000000013'),
+(290, 1, '2013-05-20 17:23:05', 'FTP_Loads', 8, 'update', 'updated_by:=>1, first_number:0=>1'),
+(291, 1, '2013-05-20 17:23:08', 'FTP_Loads', 8, 'update', 'first_thread_id:=>1000000001'),
+(292, 1, '2013-05-20 17:23:10', 'FTP_Loads', 8, 'update', 'second_number:0=>1'),
+(293, 1, '2013-05-20 17:23:12', 'FTP_Loads', 8, 'update', 'second_thread_id:=>1000000013'),
+(294, 1, '2013-05-20 17:23:14', 'FTP_Loads', 9, 'insert', 'id:9, created_by:1, created_at:2013-05-20 17:23:14, updated_by:, updated_at:, status:Active, ftp_id:100007, first_number:0, first_thread_id:, second_number:0, second_thread_id:'),
+(295, 1, '2013-05-20 17:23:18', 'FTP_Loads', 9, 'update', 'updated_by:=>1, first_number:0=>1'),
+(296, 1, '2013-05-20 17:23:20', 'FTP_Loads', 9, 'update', 'second_number:0=>2'),
+(297, 1, '2013-05-20 17:23:21', 'FTP_Loads', 9, 'update', 'first_thread_id:=>1000000001'),
+(298, 1, '2013-05-20 17:23:23', 'FTP_Loads', 9, 'update', 'second_thread_id:=>1000000013'),
+(299, 1, '2013-05-20 17:23:30', 'FTP_Sets', 1, 'insert', 'id:1, created_by:1, created_at:2013-05-20 17:23:30, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:44, value:1'),
+(300, 1, '2013-05-20 17:23:31', 'FTP_Sets', 2, 'insert', 'id:2, created_by:1, created_at:2013-05-20 17:23:31, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:45, value:2'),
+(301, 1, '2013-05-20 17:23:32', 'FTP_Sets', 3, 'insert', 'id:3, created_by:1, created_at:2013-05-20 17:23:32, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:46, value:3'),
+(302, 1, '2013-05-20 17:23:33', 'FTP_Sets', 4, 'insert', 'id:4, created_by:1, created_at:2013-05-20 17:23:33, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:47, value:4'),
+(303, 1, '2013-05-20 17:23:33', 'FTP_Sets', 5, 'insert', 'id:5, created_by:1, created_at:2013-05-20 17:23:33, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:48, value:5'),
+(304, 1, '2013-05-20 17:23:34', 'FTP_Sets', 6, 'insert', 'id:6, created_by:1, created_at:2013-05-20 17:23:34, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:49, value:6'),
+(305, 1, '2013-05-20 17:23:35', 'FTP_Sets', 7, 'insert', 'id:7, created_by:1, created_at:2013-05-20 17:23:35, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:50, value:7'),
+(306, 1, '2013-05-20 17:23:36', 'FTP_Sets', 8, 'insert', 'id:8, created_by:1, created_at:2013-05-20 17:23:35, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:51, value:8'),
+(307, 1, '2013-05-20 17:23:37', 'FTP_Sets', 9, 'insert', 'id:9, created_by:1, created_at:2013-05-20 17:23:37, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:81, value:9'),
+(308, 1, '2013-05-20 17:23:38', 'FTP_Sets', 10, 'insert', 'id:10, created_by:1, created_at:2013-05-20 17:23:38, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:52, value:10'),
+(309, 1, '2013-05-20 17:23:39', 'FTP_Sets', 11, 'insert', 'id:11, created_by:1, created_at:2013-05-20 17:23:38, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:53, value:11'),
+(310, 1, '2013-05-20 17:23:39', 'FTP_Sets', 12, 'insert', 'id:12, created_by:1, created_at:2013-05-20 17:23:39, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:54, value:12'),
+(311, 1, '2013-05-20 17:23:40', 'FTP_Sets', 13, 'insert', 'id:13, created_by:1, created_at:2013-05-20 17:23:40, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:55, value:13'),
+(312, 1, '2013-05-20 17:23:41', 'FTP_Sets', 14, 'insert', 'id:14, created_by:1, created_at:2013-05-20 17:23:41, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:43, value:14'),
+(313, 1, '2013-05-20 17:23:42', 'FTP_Sets', 15, 'insert', 'id:15, created_by:1, created_at:2013-05-20 17:23:42, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:79, value:15'),
+(314, 1, '2013-05-20 17:23:43', 'FTP_Sets', 16, 'insert', 'id:16, created_by:1, created_at:2013-05-20 17:23:43, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:80, value:16'),
+(315, 1, '2013-05-20 17:23:46', 'FTP_Sets', 17, 'insert', 'id:17, created_by:1, created_at:2013-05-20 17:23:46, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:77, value:17'),
+(316, 1, '2013-05-20 17:23:47', 'FTP_Sets', 18, 'insert', 'id:18, created_by:1, created_at:2013-05-20 17:23:47, updated_by:, updated_at:, status:Active, ftp_id:100007, setting_id:78, value:18'),
+(317, 1, '2013-05-20 17:24:21', 'FTPs', 100007, 'update', 'composition:50 Algodao, 50 Polyester=>60 Algodao, 40 Polyester'),
+(318, 1, '2013-05-20 17:42:22', 'FTP_Threads', 7, 'update', 'updated_by:=>1, percent:0.00=>100.00'),
+(319, 1, '2013-05-20 17:42:26', 'FTP_Threads', 7, 'update', 'thread_id:=>1000000001'),
+(320, 1, '2013-05-20 17:42:32', 'FTP_Loads', 7, 'update', 'updated_by:=>1, first_number:0=>1'),
+(321, 1, '2013-05-20 17:42:34', 'FTP_Loads', 7, 'update', 'first_thread_id:=>1000000001'),
+(322, 1, '2013-05-20 17:42:42', 'FTP_Threads', 7, 'update', 'percent:100.00=>50.00'),
+(323, 1, '2013-05-20 17:42:42', 'FTP_Threads', 10, 'insert', 'id:10, created_by:1, created_at:2013-05-20 17:42:42, updated_by:, updated_at:, status:Active, ftp_id:100006, thread_id:, percent:0.00'),
+(324, 1, '2013-05-20 17:42:45', 'FTP_Threads', 10, 'update', 'updated_by:=>1, percent:0.00=>50.00'),
+(325, 1, '2013-05-20 17:42:57', 'FTP_Threads', 10, 'update', 'thread_id:=>1000000282'),
+(326, 1, '2013-05-20 17:43:04', 'FTP_Loads', 7, 'update', 'second_number:0=>1'),
+(327, 1, '2013-05-20 17:43:06', 'FTP_Loads', 7, 'update', 'second_thread_id:=>1000000282'),
+(328, 1, '2013-05-20 17:43:07', 'FTP_Loads', 10, 'insert', 'id:10, created_by:1, created_at:2013-05-20 17:43:07, updated_by:, updated_at:, status:Active, ftp_id:100006, first_number:0, first_thread_id:, second_number:0, second_thread_id:'),
+(329, 1, '2013-05-20 17:43:10', 'FTP_Loads', 10, 'update', 'updated_by:=>1, first_number:0=>1'),
+(330, 1, '2013-05-20 17:43:11', 'FTP_Loads', 10, 'update', 'first_thread_id:=>1000000001'),
+(331, 1, '2013-05-20 17:43:13', 'FTP_Loads', 10, 'update', 'second_number:0=>2'),
+(332, 1, '2013-05-20 17:43:14', 'FTP_Loads', 10, 'update', 'second_thread_id:=>1000000282'),
+(333, 1, '2013-05-20 18:16:56', 'FTP_Threads', 8, 'update', 'percent:50.00=>60.00'),
+(334, 1, '2013-05-20 18:17:00', 'FTP_Threads', 9, 'update', 'percent:50.00=>40.00'),
+(335, 1, '2013-05-20 18:17:14', 'FTP_Loads', 9, 'update', 'first_number:1=>2'),
+(336, 1, '2013-05-20 20:54:45', 'FTP_Sets', 19, 'insert', 'id:19, created_by:1, created_at:2013-05-20 20:54:45, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:44, value:123'),
+(337, 1, '2013-05-20 20:54:52', 'FTP_Sets', 20, 'insert', 'id:20, created_by:1, created_at:2013-05-20 20:54:52, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:45, value:12.34'),
+(338, 1, '2013-05-20 20:54:57', 'FTP_Sets', 21, 'insert', 'id:21, created_by:1, created_at:2013-05-20 20:54:57, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:46, value:12'),
+(339, 1, '2013-05-20 20:55:02', 'FTP_Sets', 19, 'update', 'updated_by:=>1, value:123=>101'),
+(340, 1, '2013-05-20 20:55:06', 'FTP_Sets', 20, 'update', 'updated_by:=>1, value:12.34=>10.02'),
+(341, 1, '2013-05-20 20:55:10', 'FTP_Sets', 21, 'update', 'updated_by:=>1, value:12=>1003'),
+(342, 1, '2013-05-20 20:55:43', 'FTP_Sets', 21, 'update', 'value:1003=>103'),
+(343, 1, '2013-05-20 20:55:45', 'FTP_Sets', 22, 'insert', 'id:22, created_by:1, created_at:2013-05-20 20:55:45, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:47, value:104'),
+(344, 1, '2013-05-20 20:55:54', 'FTP_Sets', 23, 'insert', 'id:23, created_by:1, created_at:2013-05-20 20:55:54, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:48, value:10.05'),
+(345, 1, '2013-05-20 20:55:58', 'FTP_Sets', 24, 'insert', 'id:24, created_by:1, created_at:2013-05-20 20:55:58, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:49, value:106'),
+(346, 1, '2013-05-20 20:56:03', 'FTP_Sets', 25, 'insert', 'id:25, created_by:1, created_at:2013-05-20 20:56:03, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:50, value:107'),
+(347, 1, '2013-05-20 20:56:05', 'FTP_Sets', 26, 'insert', 'id:26, created_by:1, created_at:2013-05-20 20:56:05, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:51, value:108'),
+(348, 1, '2013-05-20 20:56:06', 'FTP_Sets', 27, 'insert', 'id:27, created_by:1, created_at:2013-05-20 20:56:06, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:81, value:109'),
+(349, 1, '2013-05-20 20:56:09', 'FTP_Sets', 28, 'insert', 'id:28, created_by:1, created_at:2013-05-20 20:56:09, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:52, value:110'),
+(350, 1, '2013-05-20 20:56:11', 'FTP_Sets', 29, 'insert', 'id:29, created_by:1, created_at:2013-05-20 20:56:11, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:53, value:111'),
+(351, 1, '2013-05-20 20:56:12', 'FTP_Sets', 30, 'insert', 'id:30, created_by:1, created_at:2013-05-20 20:56:12, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:54, value:112'),
+(352, 1, '2013-05-20 20:56:14', 'FTP_Sets', 31, 'insert', 'id:31, created_by:1, created_at:2013-05-20 20:56:14, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:55, value:113'),
+(353, 1, '2013-05-20 20:56:25', 'FTP_Sets', 32, 'insert', 'id:32, created_by:1, created_at:2013-05-20 20:56:25, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:43, value:123 cima'),
+(354, 1, '2013-05-20 20:56:36', 'FTP_Sets', 32, 'update', 'updated_by:=>1, value:123 cima=>114 cima'),
+(355, 1, '2013-05-20 20:56:40', 'FTP_Sets', 33, 'insert', 'id:33, created_by:1, created_at:2013-05-20 20:56:40, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:79, value:115 baixo'),
+(356, 1, '2013-05-20 20:56:44', 'FTP_Sets', 34, 'insert', 'id:34, created_by:1, created_at:2013-05-20 20:56:44, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:80, value:116 cima'),
+(357, 1, '2013-05-20 20:57:24', 'FTP_Sets', 35, 'insert', 'id:35, created_by:1, created_at:2013-05-20 20:57:24, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:77, value:abcdefghijklmnopqrstuvwxyz117'),
+(358, 1, '2013-05-20 20:57:34', 'FTP_Sets', 36, 'insert', 'id:36, created_by:1, created_at:2013-05-20 20:57:34, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:78, value:abcdefghijklmnopqrstuvwxyz118'),
+(359, 1, '2013-05-20 20:57:54', 'FTP_Sets', 1, 'update', 'updated_by:=>1, value:1=>201'),
+(360, 1, '2013-05-20 20:57:59', 'FTP_Sets', 2, 'update', 'updated_by:=>1, value:2=>20.02'),
+(361, 1, '2013-05-20 20:58:00', 'FTP_Sets', 3, 'update', 'updated_by:=>1, value:3=>203'),
+(362, 1, '2013-05-20 20:58:02', 'FTP_Sets', 4, 'update', 'updated_by:=>1, value:4=>204'),
+(363, 1, '2013-05-20 20:58:04', 'FTP_Sets', 5, 'update', 'updated_by:=>1, value:5=>205'),
+(364, 1, '2013-05-20 20:58:05', 'FTP_Sets', 6, 'update', 'updated_by:=>1, value:6=>206'),
+(365, 1, '2013-05-20 20:58:07', 'FTP_Sets', 7, 'update', 'updated_by:=>1, value:7=>207'),
+(366, 1, '2013-05-20 20:58:09', 'FTP_Sets', 8, 'update', 'updated_by:=>1, value:8=>208'),
+(367, 1, '2013-05-20 20:58:11', 'FTP_Sets', 9, 'update', 'updated_by:=>1, value:9=>209'),
+(368, 1, '2013-05-20 20:58:12', 'FTP_Sets', 10, 'update', 'updated_by:=>1, value:10=>210'),
+(369, 1, '2013-05-20 20:58:14', 'FTP_Sets', 11, 'update', 'updated_by:=>1, value:11=>211'),
+(370, 1, '2013-05-20 20:58:15', 'FTP_Sets', 12, 'update', 'updated_by:=>1, value:12=>212'),
+(371, 1, '2013-05-20 20:58:17', 'FTP_Sets', 13, 'update', 'updated_by:=>1, value:13=>213'),
+(372, 1, '2013-05-20 20:58:33', 'FTP_Sets', 14, 'update', 'updated_by:=>1, value:14=>213 cima'),
+(373, 1, '2013-05-20 20:58:37', 'FTP_Sets', 15, 'update', 'updated_by:=>1, value:15=>214 baixo'),
+(374, 1, '2013-05-20 20:58:40', 'FTP_Sets', 16, 'update', 'updated_by:=>1, value:16=>215 cima'),
+(375, 1, '2013-05-20 20:58:49', 'FTP_Sets', 17, 'update', 'updated_by:=>1, value:17=>abcdefghijklmnopqrstuvwxyz217'),
+(376, 1, '2013-05-20 20:58:53', 'FTP_Sets', 18, 'update', 'updated_by:=>1, value:18=>abcdefghijklmnopqrstuvwxyz218'),
+(377, 1, '2013-05-20 20:58:57', 'FTP_Sets', 16, 'update', 'value:215 cima=>216 cima'),
+(378, 1, '2013-05-20 20:59:00', 'FTP_Sets', 15, 'update', 'value:214 baixo=>215 baixo'),
+(379, 1, '2013-05-20 20:59:05', 'FTP_Sets', 14, 'update', 'value:213 cima=>214 cima'),
+(380, 1, '2013-05-20 21:04:36', 'FTP_Sets', 35, 'update', 'updated_by:=>1, value:abcdefghijklmnopqrstuvwxyz117=>abcdefghijklmn117'),
+(381, 1, '2013-05-20 21:04:41', 'FTP_Sets', 36, 'update', 'updated_by:=>1, value:abcdefghijklmnopqrstuvwxyz118=>abcdefghijklmn118'),
+(382, 1, '2013-05-20 21:04:43', 'FTP_Sets', 35, 'update', 'value:abcdefghijklmn117=>abcdefghij117'),
+(383, 1, '2013-05-20 21:04:51', 'FTP_Sets', 36, 'update', 'value:abcdefghijklmn118=>abcdefghij118'),
+(384, 1, '2013-05-20 21:04:58', 'FTP_Sets', 17, 'update', 'value:abcdefghijklmnopqrstuvwxyz217=>abcdefghij217'),
+(385, 1, '2013-05-20 21:05:06', 'FTP_Sets', 18, 'update', 'value:abcdefghijklmnopqrstuvwxyz218=>abcdefghij218'),
+(386, 1, '2013-05-20 21:08:46', 'Translations', 491, 'insert', 'id:491, created_by:1, created_at:2013-05-20 21:08:46, updated_by:, updated_at:, status:Active, parent_id:, locale:en_us, sentence:First'),
+(387, 1, '2013-05-20 21:08:46', 'Translations', 491, 'update', 'updated_by:=>1, parent_id:=>491'),
+(388, 1, '2013-05-20 21:08:46', 'Translations', 492, 'insert', 'id:492, created_by:1, created_at:2013-05-20 21:08:46, updated_by:, updated_at:, status:Active, parent_id:491, locale:pt_br, sentence:Primeiro'),
+(389, 1, '2013-05-20 21:08:56', 'Translations', 493, 'insert', 'id:493, created_by:1, created_at:2013-05-20 21:08:56, updated_by:, updated_at:, status:Active, parent_id:, locale:en_us, sentence:Second'),
+(390, 1, '2013-05-20 21:08:56', 'Translations', 493, 'update', 'updated_by:=>1, parent_id:=>493'),
+(391, 1, '2013-05-20 21:08:56', 'Translations', 494, 'insert', 'id:494, created_by:1, created_at:2013-05-20 21:08:56, updated_by:, updated_at:, status:Active, parent_id:493, locale:pt_br, sentence:Segundo'),
+(392, 1, '2013-05-20 21:13:54', 'FTP_Sets', 14, 'delete', 'id:14, created_by:1, created_at:2013-05-20 17:23:41, updated_by:1, updated_at:2013-05-20 20:59:05, status:Active, ftp_id:100007, setting_id:43, value:214 cima'),
+(393, 1, '2013-05-20 21:13:54', 'FTP_Sets', 1, 'delete', 'id:1, created_by:1, created_at:2013-05-20 17:23:30, updated_by:1, updated_at:2013-05-20 20:57:54, status:Active, ftp_id:100007, setting_id:44, value:201'),
+(394, 1, '2013-05-20 21:13:54', 'FTP_Sets', 2, 'delete', 'id:2, created_by:1, created_at:2013-05-20 17:23:31, updated_by:1, updated_at:2013-05-20 20:57:59, status:Active, ftp_id:100007, setting_id:45, value:20.02'),
+(395, 1, '2013-05-20 21:13:54', 'FTP_Sets', 3, 'delete', 'id:3, created_by:1, created_at:2013-05-20 17:23:32, updated_by:1, updated_at:2013-05-20 20:58:00, status:Active, ftp_id:100007, setting_id:46, value:203'),
+(396, 1, '2013-05-20 21:13:54', 'FTP_Sets', 4, 'delete', 'id:4, created_by:1, created_at:2013-05-20 17:23:33, updated_by:1, updated_at:2013-05-20 20:58:02, status:Active, ftp_id:100007, setting_id:47, value:204'),
+(397, 1, '2013-05-20 21:13:54', 'FTP_Sets', 5, 'delete', 'id:5, created_by:1, created_at:2013-05-20 17:23:33, updated_by:1, updated_at:2013-05-20 20:58:04, status:Active, ftp_id:100007, setting_id:48, value:205'),
+(398, 1, '2013-05-20 21:13:54', 'FTP_Sets', 6, 'delete', 'id:6, created_by:1, created_at:2013-05-20 17:23:34, updated_by:1, updated_at:2013-05-20 20:58:05, status:Active, ftp_id:100007, setting_id:49, value:206'),
+(399, 1, '2013-05-20 21:13:54', 'FTP_Sets', 7, 'delete', 'id:7, created_by:1, created_at:2013-05-20 17:23:35, updated_by:1, updated_at:2013-05-20 20:58:07, status:Active, ftp_id:100007, setting_id:50, value:207'),
+(400, 1, '2013-05-20 21:13:54', 'FTP_Sets', 8, 'delete', 'id:8, created_by:1, created_at:2013-05-20 17:23:35, updated_by:1, updated_at:2013-05-20 20:58:09, status:Active, ftp_id:100007, setting_id:51, value:208'),
+(401, 1, '2013-05-20 21:13:54', 'FTP_Sets', 10, 'delete', 'id:10, created_by:1, created_at:2013-05-20 17:23:38, updated_by:1, updated_at:2013-05-20 20:58:12, status:Active, ftp_id:100007, setting_id:52, value:210'),
+(402, 1, '2013-05-20 21:13:54', 'FTP_Sets', 11, 'delete', 'id:11, created_by:1, created_at:2013-05-20 17:23:38, updated_by:1, updated_at:2013-05-20 20:58:14, status:Active, ftp_id:100007, setting_id:53, value:211'),
+(403, 1, '2013-05-20 21:13:54', 'FTP_Sets', 12, 'delete', 'id:12, created_by:1, created_at:2013-05-20 17:23:39, updated_by:1, updated_at:2013-05-20 20:58:15, status:Active, ftp_id:100007, setting_id:54, value:212'),
+(404, 1, '2013-05-20 21:13:54', 'FTP_Sets', 13, 'delete', 'id:13, created_by:1, created_at:2013-05-20 17:23:40, updated_by:1, updated_at:2013-05-20 20:58:17, status:Active, ftp_id:100007, setting_id:55, value:213'),
+(405, 1, '2013-05-20 21:13:54', 'FTP_Sets', 17, 'delete', 'id:17, created_by:1, created_at:2013-05-20 17:23:46, updated_by:1, updated_at:2013-05-20 21:04:57, status:Active, ftp_id:100007, setting_id:77, value:abcdefghij217'),
+(406, 1, '2013-05-20 21:13:54', 'FTP_Sets', 18, 'delete', 'id:18, created_by:1, created_at:2013-05-20 17:23:47, updated_by:1, updated_at:2013-05-20 21:05:06, status:Active, ftp_id:100007, setting_id:78, value:abcdefghij218'),
+(407, 1, '2013-05-20 21:13:54', 'FTP_Sets', 15, 'delete', 'id:15, created_by:1, created_at:2013-05-20 17:23:42, updated_by:1, updated_at:2013-05-20 20:59:00, status:Active, ftp_id:100007, setting_id:79, value:215 baixo'),
+(408, 1, '2013-05-20 21:13:54', 'FTP_Sets', 16, 'delete', 'id:16, created_by:1, created_at:2013-05-20 17:23:43, updated_by:1, updated_at:2013-05-20 20:58:57, status:Active, ftp_id:100007, setting_id:80, value:216 cima'),
+(409, 1, '2013-05-20 21:13:54', 'FTP_Sets', 9, 'delete', 'id:9, created_by:1, created_at:2013-05-20 17:23:37, updated_by:1, updated_at:2013-05-20 20:58:11, status:Active, ftp_id:100007, setting_id:81, value:209'),
+(410, 1, '2013-05-20 21:13:54', 'FTP_Loads', 8, 'delete', 'id:8, created_by:1, created_at:2013-05-20 17:21:59, updated_by:1, updated_at:2013-05-20 17:23:12, status:Active, ftp_id:100007, first_number:1, first_thread_id:1000000001, second_number:1, second_thread_id:1000000013'),
+(411, 1, '2013-05-20 21:13:54', 'FTP_Loads', 9, 'delete', 'id:9, created_by:1, created_at:2013-05-20 17:23:14, updated_by:1, updated_at:2013-05-20 18:17:14, status:Active, ftp_id:100007, first_number:2, first_thread_id:1000000001, second_number:2, second_thread_id:1000000013'),
+(412, 1, '2013-05-20 21:13:54', 'FTP_Threads', 8, 'delete', 'id:8, created_by:1, created_at:2013-05-20 17:21:59, updated_by:1, updated_at:2013-05-20 18:16:56, status:Active, ftp_id:100007, thread_id:1000000001, percent:60.00'),
+(413, 1, '2013-05-20 21:13:54', 'FTP_Threads', 9, 'delete', 'id:9, created_by:1, created_at:2013-05-20 17:22:43, updated_by:1, updated_at:2013-05-20 18:17:00, status:Active, ftp_id:100007, thread_id:1000000013, percent:40.00'),
+(414, 1, '2013-05-20 21:13:54', 'FTPs', 100007, 'delete', 'id:100007, created_by:1, created_at:2013-05-20 17:21:13, updated_by:1, updated_at:2013-05-20 17:24:21, status:Active, number:100007, product_id:8551, machine_id:1000000063, diameter:211, density:212, inputs:213, speed:214, turns:221, weight:222, width:223, lanes:224, yield:231, needling:232, peso:12.50, has_break:No, composition:60 Algodao, 40 Polyester, draw:jpg, photo:jpg'),
+(415, 1, '2013-05-20 21:13:59', 'FTPs', 100006, 'delete', 'id:100006, created_by:1, created_at:2013-05-20 17:20:20, updated_by:1, updated_at:2013-05-20 17:43:23, status:Active, number:100006, product_id:7495, machine_id:1000000010, diameter:111, density:112, inputs:113, speed:114, turns:121, weight:122, width:123, lanes:124, yield:125, needling:126, peso:12.50, has_break:Yes, composition:100 Algodao, draw:jpg, photo:jpg'),
+(416, 1, '2013-05-20 21:13:59', 'FTP_Threads', 7, 'delete', 'id:7, created_by:1, created_at:2013-05-20 17:21:24, updated_by:1, updated_at:2013-05-20 17:42:42, status:Active, ftp_id:100006, thread_id:1000000001, percent:50.00'),
+(417, 1, '2013-05-20 21:13:59', 'FTP_Threads', 10, 'delete', 'id:10, created_by:1, created_at:2013-05-20 17:42:42, updated_by:1, updated_at:2013-05-20 17:42:57, status:Active, ftp_id:100006, thread_id:1000000282, percent:50.00'),
+(418, 1, '2013-05-20 21:13:59', 'FTP_Loads', 7, 'delete', 'id:7, created_by:1, created_at:2013-05-20 17:21:24, updated_by:1, updated_at:2013-05-20 17:43:06, status:Active, ftp_id:100006, first_number:1, first_thread_id:1000000001, second_number:1, second_thread_id:1000000282'),
+(419, 1, '2013-05-20 21:13:59', 'FTP_Loads', 10, 'delete', 'id:10, created_by:1, created_at:2013-05-20 17:43:07, updated_by:1, updated_at:2013-05-20 17:43:14, status:Active, ftp_id:100006, first_number:1, first_thread_id:1000000001, second_number:2, second_thread_id:1000000282'),
+(420, 1, '2013-05-20 21:13:59', 'FTP_Sets', 32, 'delete', 'id:32, created_by:1, created_at:2013-05-20 20:56:25, updated_by:1, updated_at:2013-05-20 20:56:36, status:Active, ftp_id:100006, setting_id:43, value:114 cima'),
+(421, 1, '2013-05-20 21:13:59', 'FTP_Sets', 19, 'delete', 'id:19, created_by:1, created_at:2013-05-20 20:54:45, updated_by:1, updated_at:2013-05-20 20:55:02, status:Active, ftp_id:100006, setting_id:44, value:101'),
+(422, 1, '2013-05-20 21:13:59', 'FTP_Sets', 20, 'delete', 'id:20, created_by:1, created_at:2013-05-20 20:54:52, updated_by:1, updated_at:2013-05-20 20:55:06, status:Active, ftp_id:100006, setting_id:45, value:10.02'),
+(423, 1, '2013-05-20 21:13:59', 'FTP_Sets', 21, 'delete', 'id:21, created_by:1, created_at:2013-05-20 20:54:57, updated_by:1, updated_at:2013-05-20 20:55:43, status:Active, ftp_id:100006, setting_id:46, value:103'),
+(424, 1, '2013-05-20 21:13:59', 'FTP_Sets', 22, 'delete', 'id:22, created_by:1, created_at:2013-05-20 20:55:45, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:47, value:104'),
+(425, 1, '2013-05-20 21:13:59', 'FTP_Sets', 23, 'delete', 'id:23, created_by:1, created_at:2013-05-20 20:55:54, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:48, value:10.05'),
+(426, 1, '2013-05-20 21:13:59', 'FTP_Sets', 24, 'delete', 'id:24, created_by:1, created_at:2013-05-20 20:55:58, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:49, value:106'),
+(427, 1, '2013-05-20 21:13:59', 'FTP_Sets', 25, 'delete', 'id:25, created_by:1, created_at:2013-05-20 20:56:03, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:50, value:107'),
+(428, 1, '2013-05-20 21:13:59', 'FTP_Sets', 26, 'delete', 'id:26, created_by:1, created_at:2013-05-20 20:56:05, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:51, value:108'),
+(429, 1, '2013-05-20 21:13:59', 'FTP_Sets', 28, 'delete', 'id:28, created_by:1, created_at:2013-05-20 20:56:09, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:52, value:110'),
+(430, 1, '2013-05-20 21:13:59', 'FTP_Sets', 29, 'delete', 'id:29, created_by:1, created_at:2013-05-20 20:56:11, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:53, value:111'),
+(431, 1, '2013-05-20 21:13:59', 'FTP_Sets', 30, 'delete', 'id:30, created_by:1, created_at:2013-05-20 20:56:12, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:54, value:112'),
+(432, 1, '2013-05-20 21:13:59', 'FTP_Sets', 31, 'delete', 'id:31, created_by:1, created_at:2013-05-20 20:56:14, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:55, value:113'),
+(433, 1, '2013-05-20 21:13:59', 'FTP_Sets', 35, 'delete', 'id:35, created_by:1, created_at:2013-05-20 20:57:24, updated_by:1, updated_at:2013-05-20 21:04:43, status:Active, ftp_id:100006, setting_id:77, value:abcdefghij117'),
+(434, 1, '2013-05-20 21:13:59', 'FTP_Sets', 36, 'delete', 'id:36, created_by:1, created_at:2013-05-20 20:57:34, updated_by:1, updated_at:2013-05-20 21:04:51, status:Active, ftp_id:100006, setting_id:78, value:abcdefghij118'),
+(435, 1, '2013-05-20 21:13:59', 'FTP_Sets', 33, 'delete', 'id:33, created_by:1, created_at:2013-05-20 20:56:40, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:79, value:115 baixo'),
+(436, 1, '2013-05-20 21:13:59', 'FTP_Sets', 34, 'delete', 'id:34, created_by:1, created_at:2013-05-20 20:56:44, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:80, value:116 cima'),
+(437, 1, '2013-05-20 21:13:59', 'FTP_Sets', 27, 'delete', 'id:27, created_by:1, created_at:2013-05-20 20:56:06, updated_by:, updated_at:, status:Active, ftp_id:100006, setting_id:81, value:109'),
+(438, 1, '2013-05-20 21:14:37', 'Controls', 1000000263, 'update', 'value:100008=>100001'),
+(439, 1, '2013-05-20 21:15:22', 'Configs', 104, 'update', 'updated_by:=>1, value:null=>');
 
 -- --------------------------------------------------------
 
@@ -990,113 +1160,6 @@ INSERT INTO `machines` (`id`, `created_at`, `created_by`, `updated_at`, `updated
 (1000000085, '2011-12-18 00:00:00', NULL, NULL, NULL, 'Active', 'tiazinha', 'retilinea', NULL, NULL, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL),
 (1000000086, '2011-12-18 00:00:00', NULL, NULL, NULL, 'Active', 'angelina', 'retilinea', NULL, NULL, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL),
 (1000000087, '2011-12-18 00:00:00', NULL, NULL, NULL, 'Active', 'beyonce', 'retilinea', NULL, NULL, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `maquinas`
---
-
-CREATE TABLE IF NOT EXISTS `maquinas` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `created_at` date DEFAULT NULL,
-  `updated_at` date DEFAULT NULL,
-  `machine_type` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `repair_date` date DEFAULT NULL,
-  `return_date` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `maquinas`
---
-
-INSERT INTO `maquinas` (`id`, `created_at`, `updated_at`, `machine_type`, `name`, `repair_date`, `return_date`) VALUES
-(1000000005, '2011-12-18', NULL, 'circular', 'ana', NULL, NULL),
-(1000000004, '2011-12-18', '2011-12-28', 'circular', 'altesa', '2011-02-01', '2011-03-02'),
-(1000000006, '2011-12-18', NULL, 'circular', 'angelica', NULL, NULL),
-(1000000007, '2011-12-18', NULL, 'circular', 'audi', NULL, NULL),
-(1000000008, '2011-12-18', NULL, 'circular', 'apollo2', NULL, NULL),
-(1000000009, '2011-12-18', NULL, 'circular', 'apollo1', NULL, NULL),
-(1000000010, '2011-12-18', NULL, 'circular', 'babalu', NULL, NULL),
-(1000000011, '2011-12-18', NULL, 'circular', 'band', NULL, NULL),
-(1000000012, '2011-12-18', NULL, 'circular', 'bebel', NULL, NULL),
-(1000000013, '2011-12-18', NULL, 'circular', 'betina', NULL, NULL),
-(1000000014, '2011-12-18', NULL, 'circular', 'bia', NULL, NULL),
-(1000000015, '2011-12-18', NULL, 'circular', 'bruna', NULL, NULL),
-(1000000016, '2011-12-18', NULL, 'circular', 'camila', NULL, NULL),
-(1000000017, '2011-12-18', NULL, 'circular', 'carol', NULL, NULL),
-(1000000018, '2011-12-18', NULL, 'circular', 'claudia', NULL, NULL),
-(1000000019, '2011-12-18', NULL, 'circular', 'comadre', NULL, NULL),
-(1000000020, '2011-12-18', NULL, 'circular', 'condessa', NULL, NULL),
-(1000000021, '2011-12-18', NULL, 'circular', 'darlene', NULL, NULL),
-(1000000022, '2011-12-18', NULL, 'circular', 'dercy', NULL, NULL),
-(1000000023, '2011-12-18', NULL, 'circular', 'duquesa', NULL, NULL),
-(1000000024, '2011-12-18', NULL, 'circular', 'elizabeth', NULL, NULL),
-(1000000025, '2011-12-18', NULL, 'circular', 'eva', NULL, NULL),
-(1000000026, '2011-12-18', NULL, 'circular', 'filo', NULL, NULL),
-(1000000027, '2011-12-18', NULL, 'circular', 'gisele', NULL, NULL),
-(1000000028, '2011-12-18', NULL, 'circular', 'guria', NULL, NULL),
-(1000000029, '2011-12-18', NULL, 'circular', 'hortencia', NULL, NULL),
-(1000000030, '2011-12-18', NULL, 'circular', 'imperatriz', NULL, NULL),
-(1000000031, '2011-12-18', NULL, 'circular', 'isadora', NULL, NULL),
-(1000000032, '2011-12-18', NULL, 'circular', 'jacqueline', NULL, NULL),
-(1000000033, '2011-12-18', NULL, 'circular', 'jaguar', NULL, NULL),
-(1000000034, '2011-12-18', NULL, 'circular', 'jumbo', NULL, NULL),
-(1000000035, '2011-12-18', NULL, 'circular', 'kelly', NULL, NULL),
-(1000000036, '2011-12-18', NULL, 'circular', 'leticia', NULL, NULL),
-(1000000037, '2011-12-18', NULL, 'circular', 'luma', NULL, NULL),
-(1000000038, '2011-12-18', NULL, 'circular', 'madrinha', NULL, NULL),
-(1000000039, '2011-12-18', NULL, 'circular', 'mag', NULL, NULL),
-(1000000040, '2011-12-18', NULL, 'circular', 'mara', NULL, NULL),
-(1000000041, '2011-12-18', NULL, 'circular', 'monica', NULL, NULL),
-(1000000042, '2011-12-18', NULL, 'circular', 'naomi', NULL, NULL),
-(1000000043, '2011-12-18', '2011-12-18', 'circular', 'nasa1', NULL, NULL),
-(1000000044, '2011-12-18', NULL, 'circular', 'nathalia', NULL, NULL),
-(1000000045, '2011-12-18', NULL, 'circular', 'omega', NULL, NULL),
-(1000000046, '2011-12-18', NULL, 'circular', 'paola', NULL, NULL),
-(1000000047, '2011-12-18', NULL, 'circular', 'patricia', NULL, NULL),
-(1000000048, '2011-12-18', NULL, 'circular', 'pitanga', NULL, NULL),
-(1000000049, '2011-12-18', NULL, 'circular', 'priscila', NULL, NULL),
-(1000000050, '2011-12-18', NULL, 'circular', 'rainha', NULL, NULL),
-(1000000051, '2011-12-18', NULL, 'circular', 'rita', NULL, NULL),
-(1000000052, '2011-12-18', NULL, 'circular', 'sabrina', NULL, NULL),
-(1000000053, '2011-12-18', NULL, 'circular', 'samambaia', NULL, NULL),
-(1000000054, '2011-12-18', NULL, 'circular', 'sandy', NULL, NULL),
-(1000000055, '2011-12-18', NULL, 'circular', 'sasha', NULL, NULL),
-(1000000056, '2011-12-18', NULL, 'circular', 'shakira', NULL, NULL),
-(1000000057, '2011-12-18', NULL, 'circular', 'stephanie', NULL, NULL),
-(1000000058, '2011-12-18', NULL, 'circular', 'talita', NULL, NULL),
-(1000000059, '2011-12-18', NULL, 'circular', 'tempra', NULL, NULL),
-(1000000060, '2011-12-18', NULL, 'circular', 'ursula', NULL, NULL),
-(1000000061, '2011-12-18', NULL, 'circular', 'valeria', NULL, NULL),
-(1000000062, '2011-12-18', NULL, 'circular', 'vanessa', NULL, NULL),
-(1000000063, '2011-12-18', NULL, 'circular', 'xuxa', NULL, NULL),
-(1000000064, '2011-12-18', NULL, 'circular', 'yona', NULL, NULL),
-(1000000065, '2011-12-18', NULL, 'circular', 'zelia', NULL, NULL),
-(1000000066, '2011-12-18', NULL, 'circular', 'zizi', NULL, NULL),
-(1000000067, '2011-12-18', '2011-12-18', 'circular', 'gaby', NULL, NULL),
-(1000000068, '2011-12-18', '2011-12-18', 'circular', 'isabel', NULL, NULL),
-(1000000069, '2011-12-18', '2011-12-18', 'circular', 'limousine', NULL, NULL),
-(1000000070, '2011-12-18', '2011-12-18', 'circular', 'giovanna', NULL, NULL),
-(1000000071, '2011-12-18', '2011-12-18', 'circular', 'katia', NULL, NULL),
-(1000000072, '2011-12-18', '2011-12-18', 'circular', 'harley', NULL, NULL),
-(1000000073, '2011-12-18', NULL, 'circular', 'nasa2', NULL, NULL),
-(1000000074, '2011-12-18', '2011-12-18', 'circular', 'tati', NULL, NULL),
-(1000000075, '2011-12-18', NULL, 'Retilinea', 'cicciolina', NULL, NULL),
-(1000000076, '2011-12-18', NULL, 'Retilinea', 'feiticeira', NULL, NULL),
-(1000000077, '2011-12-18', NULL, 'Retilinea', 'lady', NULL, NULL),
-(1000000078, '2011-12-18', NULL, 'Retilinea', 'moranguinho', NULL, NULL),
-(1000000079, '2011-12-18', NULL, 'Retilinea', 'panycat', NULL, NULL),
-(1000000080, '2011-12-18', NULL, 'Retilinea', 'paquita1', NULL, NULL),
-(1000000081, '2011-12-18', NULL, 'Retilinea', 'paquita2', NULL, NULL),
-(1000000082, '2011-12-18', NULL, 'Retilinea', 'paquita3', NULL, NULL),
-(1000000083, '2011-12-18', NULL, 'Retilinea', 'paquita4', NULL, NULL),
-(1000000084, '2011-12-18', NULL, 'Retilinea', 'paquitao', NULL, NULL),
-(1000000085, '2011-12-18', NULL, 'Retilinea', 'tiazinha', NULL, NULL),
-(1000000086, '2011-12-18', NULL, 'Retilinea', 'angelina', NULL, NULL),
-(1000000087, '2011-12-18', NULL, 'Retilinea', 'beyonce', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -9009,7 +9072,7 @@ INSERT INTO `tickets` (`id`, `created_by`, `created_at`, `updated_by`, `updated_
 (295, 4, '2013-05-12 08:00:17', 4, '2013-05-12 08:00:37', 'Open', 3, 4, '2013-05-12 08:00:17', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Products', 'program [FTPs] pane', 'null', NULL),
 (296, 4, '2013-05-12 08:01:37', NULL, NULL, 'Closed', 3, 4, '2013-05-12 08:01:37', NULL, NULL, NULL, NULL, '0.0', '1.0', 'Normal', 'Products', 'program [Date] input', 'resolved', NULL),
 (297, 4, '2013-05-12 08:02:51', 2, '2013-05-14 06:07:08', 'Open', 3, 4, '2013-05-12 08:02:51', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Products', 'program select criteria by product type', 'null', NULL),
-(298, 4, '2013-05-12 08:04:23', NULL, NULL, 'Open', 3, 4, '2013-05-12 08:04:23', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Products', 'add [Product Types] into [Configs]', 'null', NULL),
+(298, 4, '2013-05-12 08:04:23', 1, '2013-05-19 21:55:32', 'Open', 3, 4, '2013-05-12 08:04:23', NULL, NULL, NULL, NULL, '0.0', '0.5', 'Normal', 'Products', 'add [Product Types] into [Configs]', 'resolved', NULL),
 (299, 4, '2013-05-12 08:04:49', NULL, NULL, 'Open', 3, 4, '2013-05-12 08:04:49', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Products', 'validate, if [Name] is empty', 'null', NULL),
 (300, 4, '2013-05-12 08:05:05', NULL, NULL, 'Open', 3, 4, '2013-05-12 08:05:05', NULL, NULL, NULL, NULL, '0.0', '0.0', 'Normal', 'Products', 'validate, if [Name] is duplicated', 'null', NULL),
 (301, 4, '2013-05-12 08:19:57', 1, '2013-05-19 08:30:15', 'Open', 3, 4, '2013-05-12 08:19:57', NULL, NULL, NULL, NULL, '0.0', '0.2', 'Critical', 'Threads', 'validate, if [Name] is empty', 'added JKY.is_empty(my_name) in JKY.process_save', NULL),
@@ -9144,7 +9207,7 @@ CREATE TABLE IF NOT EXISTS `translations` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `parent_id` (`parent_id`,`locale`),
   KEY `parent` (`parent_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=491 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=495 ;
 
 --
 -- Dumping data for table `translations`
@@ -9522,4 +9585,8 @@ INSERT INTO `translations` (`id`, `created_by`, `created_at`, `updated_by`, `upd
 (487, 1, '2013-05-19 15:37:49', 1, '2013-05-19 15:37:49', 'Active', 487, 'en_us', 'CNPJ'),
 (488, 1, '2013-05-19 15:37:49', NULL, NULL, 'Active', 487, 'pt_br', 'CNPJ'),
 (489, 1, '2013-05-19 15:37:53', 1, '2013-05-19 15:37:53', 'Active', 489, 'en_us', 'IE'),
-(490, 1, '2013-05-19 15:37:53', NULL, NULL, 'Active', 489, 'pt_br', 'IE');
+(490, 1, '2013-05-19 15:37:53', NULL, NULL, 'Active', 489, 'pt_br', 'IE'),
+(491, 1, '2013-05-20 21:08:46', 1, '2013-05-20 21:08:46', 'Active', 491, 'en_us', 'First'),
+(492, 1, '2013-05-20 21:08:46', NULL, NULL, 'Active', 491, 'pt_br', 'Primeiro'),
+(493, 1, '2013-05-20 21:08:56', 1, '2013-05-20 21:08:56', 'Active', 493, 'en_us', 'Second'),
+(494, 1, '2013-05-20 21:08:56', NULL, NULL, 'Active', 493, 'pt_br', 'Segundo');

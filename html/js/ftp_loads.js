@@ -143,3 +143,49 @@ JKY.load_ids = function(the_id) {
 	)
 	return my_rows;
 }
+
+JKY.print_loads = function(the_id) {
+	var my_html  = '';
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'FTP_Loads'
+		, select	:  the_id
+		, order_by  : 'FTP_Loads.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_rows = response.rows;
+					for(var i in my_rows) {
+						var my_row			= my_rows[i];
+						var my_first_number	= my_row.first_number;
+						var my_first_name	= my_row.first_name;
+						var my_second_number= my_row.second_number;
+						var my_second_name	= my_row.second_name;
+
+						my_html  += ''
+							+ '<tr>'
+							+ '<td></td>'
+							+ '<td>' + my_first_number  + '</td>'
+							+ '<td>' + my_first_name	+ '</td>'
+							+ '<td>' + my_second_number + '</td>'
+							+ '<td>' + my_second_name	+ '</td>'
+							+ '</tr>'
+							;
+					}
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		}
+	)
+	return my_html;
+}
+

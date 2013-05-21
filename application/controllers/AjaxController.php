@@ -1231,8 +1231,8 @@ private function insert($data) {
 
 	if ($table == 'FTPs') {
 		$my_number = $this->get_next_number('Controls', 'Next FTP Number');
-		$set .= ',   id= ' . $my_number;
-		$set .= ', code= ' . $my_number;
+		$set .= ',     id= ' . $my_number;
+		$set .= ', number= ' . $my_number;
 	}
 
 	$sql= 'INSERT ' . $table
