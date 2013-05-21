@@ -162,7 +162,7 @@ JKY.print_loads = function(the_id) {
 		, async		: false
 		, success	: function(response) {
 				if (response.status == 'ok') {
-					my_rows = response.rows;
+					var my_rows = response.rows;
 					for(var i in my_rows) {
 						var my_row			= my_rows[i];
 						var my_first_number	= my_row.first_number;
