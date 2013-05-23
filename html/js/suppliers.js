@@ -202,8 +202,8 @@ JKY.display_row = function(index) {
 	if (JKY.row.photo == null) {
 		my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
 	}else{
-		my_html = '<a href="' + 'jky_download.php?file_name=products/' + JKY.row.id + '.' + JKY.row.photo + '">'
-				+ '<img id="jky-photo-img"    src="/uploads/products/' + JKY.row.id + '.' + JKY.row.photo + '" class="the_icon" />';
+		my_html = '<a href="' + 'jky_download.php?file_name=contacts/' + JKY.row.id + '.' + JKY.row.photo + '">'
+				+ '<img id="jky-photo-img"    src="/uploads/contacts/' + JKY.row.id + '.' + JKY.row.photo + '" class="the_icon" />';
 				+ '</a>'
 				;
 	}
@@ -431,7 +431,7 @@ $( function() {
 		$.each(files, function(i, file) {
 			JKY.set_html('jky-upload-name', file.name);
 			JKY.saved_name = file.name;
-			file.name = 'products.' + JKY.row.id + '.' + JKY.saved_name;
+			file.name = 'contacts.' + JKY.row.id + '.' + JKY.saved_name;
 		});
 		up.refresh();			//	reposition Flash/Silverlight
 		setTimeout('JKY.photo.start()', 100);
@@ -457,8 +457,8 @@ $( function() {
 		var my_file_type = JKY.get_file_type(JKY.saved_name);
 		JKY.saved_name = JKY.row.id + '.' + my_file_type;
 		var my_time = new Date();
-		var my_html = '<a href="' + 'jky_download.php?file_name=products/' + JKY.row.id + '.' + my_file_type + '">'
-					+ '<img id="jky-photo-img"    src="/uploads/products/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
+		var my_html = '<a href="' + 'jky_download.php?file_name=contacts/' + JKY.row.id + '.' + my_file_type + '">'
+					+ '<img id="jky-photo-img"    src="/uploads/contacts/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
 					+ '</a>'
 		JKY.set_html('jky-download-photo', my_html);
 
