@@ -1,7 +1,7 @@
 <?
 //   define constants
 
-define( 'SITE_NAME'           , 'Advent'                    );
+define( 'SITE_NAME'           , 'ERP'                       );
 define( 'HEADER_TEXT'         , ''                          );
 define( 'TIME_ZONE'           , 'pst: '                     );
 define( 'PER_PAGE'            , '15'                        );
@@ -60,8 +60,8 @@ define( 'TRUST_VAULT_PASSWORD', 'commerce7'                 );
 
 define( 'DB_HOST'             , 'internal-db.s122232.gridserver.com'                  );
 define( 'DB_USER'             , 'db122232_pat_jan'          );
-define( 'DB_PASS'             , 'Brazil18781'               );
-define( 'DB_NAME'             , 'db122232_advent'           );
+define( 'DB_PASS'             , 'brazil.18781'              );
+define( 'DB_NAME'             , 'db122232_erp'              );
 
 define( 'DATE_FORMAT'         , 'mm-dd-yyyy'                );
 define( 'DECIMAL_POINT'       , '.'                         );

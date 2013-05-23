@@ -3123,7 +3123,7 @@ function get_control_rows( $control_set ) {
           . '  FROM Controls'
           . ' WHERE company_id  =  ' . get_session( 'control_company', COMPANY_ID )
           . '   AND control_set = "' . $control_set . '"'
-          . '   AND status = "active"'
+          . '   AND status = "Active"'
           . ' ORDER BY sequence'
           ;
      $db   = Zend_Registry::get( 'db' );
