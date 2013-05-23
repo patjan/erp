@@ -120,8 +120,8 @@ JKY.display_list = function() {
 	JKY.show('jky-action-add-new'	);
 	JKY.hide('jky-action-print'		);
 	JKY.hide('jky-action-save'		);
-	JKY.hide('jky-action-copy'		);
-	JKY.hide('jky-action-delete'	);
+//	JKY.hide('jky-action-copy'		);
+//	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
 //	JKY.show('jky-action-publish'	);
 	JKY.show('jky-app-table'		);
@@ -197,7 +197,7 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
-	
+
 	var my_html = '';
 	if (JKY.row.photo == null) {
 		my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
@@ -212,7 +212,7 @@ JKY.display_row = function(index) {
 	JKY.set_html('jky-upload-name'		, '');
 	JKY.set_html('jky-upload-percent'	, '');
 	JKY.set_css ('jky-upload-progress', 'width', '0%');
-	
+
 	JKY.set_value	('jky-full-name'		, JKY.row.full_name		);
 	JKY.set_yes		('jky-is-company'		, JKY.row.is_company	);
 	JKY.set_option	('jky-company-name'		, JKY.row.company_name	);

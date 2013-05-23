@@ -38,6 +38,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-add-new'		).click (function() {JKY.process_add_new	();});
 		$('#jky-action-print'		).click (function() {JKY.process_print		();});
 		$('#jky-action-save'		).click (function() {JKY.process_save		();});
+		$('#jky-action-reset'		).click (function() {JKY.reset_user			();});
 		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
 		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
 		$('#jky-action-export'		).click (function() {JKY.process_export		();});
@@ -180,8 +181,9 @@ JKY.display_form = function(index) {
 	JKY.show('jky-action-add-new'	);
 	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
-//	JKY.show('jky-action-copy'		);
-//	JKY.show('jky-action-delete'	);
+	JKY.hide('jky-action-reset'		);
+	JKY.hide('jky-action-copy'		);
+	JKY.hide('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
@@ -211,19 +213,6 @@ JKY.display_row = function(index) {
 	JKY.set_html('jky-upload-percent'	, '');
 	JKY.set_css ('jky-upload-progress', 'width', '0%');
 
-	JKY.set_value	('jky-name'				, JKY.row.name			);
-	JKY.set_radio	('jky-product-type'		, JKY.row.product_type	);
-	JKY.set_value	('jky-start-value'		, JKY.fix_ymd2dmy(JKY.row.start_date	));
-	JKY.set_focus(jky_focus);
-//	JKY.display_cylinders();
-}
-
-JKY.display_row = function(index) {
-	JKY.show('jky-form-tabs');
-	jky_index = index;
-	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
-	JKY.rows[index-1] = JKY.row;
-	JKY.set_html('jky-app-index', index);
 	JKY.set_value	('jky-full-name'		, JKY.row.full_name		);
 	JKY.set_yes		('jky-is-company'		, JKY.row.is_company	);
 	JKY.set_option	('jky-company-name'		, JKY.row.company_name	);
@@ -259,8 +248,9 @@ JKY.process_add_new = function() {
 	JKY.hide('jky-action-add-new'	);
 	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
-//	JKY.hide('jky-action-copy'		);
-//	JKY.hide('jky-action-delete'	);
+	JKY.hide('jky-action-reset'		);
+	JKY.hide('jky-action-copy'		);
+	JKY.hide('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
@@ -390,23 +380,6 @@ JKY.process_delete_success = function(response) {
 
 JKY.process_cancel = function() {
 	JKY.display_list();
-}
-
-/**
- * process print
- */
-JKY.process_print = function() {
-	if ($('#jky-app-form').css('display') == 'block') {
-		JKY.print_row(JKY.row.id);
-	}else{
-		$('#jky-table-body .jky-checkbox input:checked').each(function() {
-			JKY.print_row($(this).attr('row_id'));
-		})
-	}
-};
-
-JKY.print_row = function(the_id) {
-	JKY.display_message('print_row: ' + the_id);
 }
 
 /**
