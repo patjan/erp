@@ -40,9 +40,11 @@
 .jky-mobile				{width:100px;}
 .jky-email				{width:200px;}
 
-#jky-full-name			{width:375px; font-size:16px; font-weight:bold;}
-#jky-company-name		{width:385px;}
-#jky-tags				{width:385px;}
+#jky-full-name			{width:280px; font-size:16px; font-weight:bold;}
+#jky-company-name		{width:280px;}
+#jky-tags				{width:280px;}
+#jky-photo				{float: left; margin:7px;}
+#jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
 
 #jky-street1			{width:250px;}
 #jky-street2			{width:250px;}
@@ -116,10 +118,25 @@
 						<option class='jky-option-add-new'>Add New...</option>
 					</select>
 				</div>
-				
 				<div id='jky-cnpj-line'	class='jky-form-line'><div class='jky-form-label'><span>           CNPJ</span>:</div><input id='jky-cnpj'	class='jky-form-value'		placeholder=''	/></div>
 				<div id='jky-ie-line'	class='jky-form-line'><div class='jky-form-label'><span>             IE</span>:</div><input id='jky-ie'		class='jky-form-value'		placeholder=''	/></div>
-				
+			</div>
+		</div>
+		<div id='jky-app-upload' class='jky-left'>
+			<div class='jky-left' style='margin-left:10px;'>
+				<div id='jky-download-photo'  >
+					<img class="the_icon" src="/img/placeholder.png" id="jky-photo-img">
+				</div>
+				<a id='jky-upload-photo'  ><span>Upload Photo  </span></a>
+			</div>
+			<div class='jky-clear'></div>
+			<div style='margin-left:10px;'>
+				<div>
+					<span>Progress</span>:
+					<span id='jky-upload-percent'></span>
+					<span id='jky-upload-name'></span>
+				</div>
+				<div class='progress progress-striped active'><div id='jky-upload-progress' class='bar'></div></div>
 			</div>
 		</div>
 		<div class='jky-clear'></div>

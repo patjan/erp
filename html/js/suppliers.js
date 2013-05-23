@@ -194,6 +194,35 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
+
+	var my_html = '';
+	if (JKY.row.photo == null) {
+		my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
+	}else{
+		my_html = '<a href="' + 'jky_download.php?file_name=products/' + JKY.row.id + '.' + JKY.row.photo + '">'
+				+ '<img id="jky-photo-img"    src="/uploads/products/' + JKY.row.id + '.' + JKY.row.photo + '" class="the_icon" />';
+				+ '</a>'
+				;
+	}
+	JKY.set_html('jky-download-photo', my_html);
+
+	JKY.set_html('jky-upload-name'		, '');
+	JKY.set_html('jky-upload-percent'	, '');
+	JKY.set_css ('jky-upload-progress', 'width', '0%');
+
+	JKY.set_value	('jky-name'				, JKY.row.name			);
+	JKY.set_radio	('jky-product-type'		, JKY.row.product_type	);
+	JKY.set_value	('jky-start-value'		, JKY.fix_ymd2dmy(JKY.row.start_date	));
+	JKY.set_focus(jky_focus);
+//	JKY.display_cylinders();
+}
+
+JKY.display_row = function(index) {
+	JKY.show('jky-form-tabs');
+	jky_index = index;
+	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
+	JKY.rows[index-1] = JKY.row;
+	JKY.set_html('jky-app-index', index);
 	JKY.set_value	('jky-full-name'		, JKY.row.full_name		);
 	JKY.set_yes		('jky-is-company'		, JKY.row.is_company	);
 	JKY.set_option	('jky-company-name'		, JKY.row.company_name	);
@@ -409,3 +438,72 @@ JKY.display_company = function(the_id) {
 		
 	}
 }
+
+$( function() {
+//	upload photo -------------------------------------------------------------
+	JKY.photo = new plupload.Uploader(
+		{ browse_button	: 'jky-upload-photo'
+		, runtimes		: 'html5,flash'
+		, url			: 'plupload.php'
+		, flash_swf_url	: 'swf/plupload.flash.swf'
+		, filters		:[{title:"Photo files", extensions:"jpg,gif,png"}]
+		}
+	);
+
+	JKY.photo.bind('Init', function(up, params) {});
+
+	JKY.photo.bind('FilesAdded', function(up, files) {
+		JKY.show('jky_loading');
+		$.each(files, function(i, file) {
+			JKY.set_html('jky-upload-name', file.name);
+			JKY.saved_name = file.name;
+			file.name = 'products.' + JKY.row.id + '.' + JKY.saved_name;
+		});
+		up.refresh();			//	reposition Flash/Silverlight
+		setTimeout('JKY.photo.start()', 100);
+	});
+
+	JKY.photo.bind('UploadProgress', function(up, file) {
+		JKY.set_html('jky-upload-percent', file.percent + '%');
+		JKY.set_css ('jky-upload-progress', 'width', file.percent + '%');
+	});
+
+	JKY.photo.bind('FileUploaded', function(up, file) {
+		JKY.display_message('File ' + JKY.saved_name + ' uploaded');
+		JKY.set_html('jky-upload-percent', '100%');
+
+		var my_file_name = $('#jky-upload-name').text();
+		var my_file_size = file.size;
+		var my_data = {command:'file_uploaded', file_name:my_file_name, file_size:my_file_size};
+//		$.ajax({async:false, cache:true, type:'post', dataType:'json', url:'fuploads/ajax', data:my_data}).success(function(data) {});
+
+		var my_data = {command:'end_upload'};
+//		$.ajax({async:true , cache:true, type:'post', dataType:'json', url:'fuploads/ajax', data:my_data}).success(function(data) {});
+
+		var my_file_type = JKY.get_file_type(JKY.saved_name);
+		JKY.saved_name = JKY.row.id + '.' + my_file_type;
+		var my_time = new Date();
+		var my_html = '<a href="' + 'jky_download.php?file_name=products/' + JKY.row.id + '.' + my_file_type + '">'
+					+ '<img id="jky-photo-img"    src="/uploads/products/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
+					+ '</a>'
+		JKY.set_html('jky-download-photo', my_html);
+
+		var my_data =
+			{ method: 'update'
+			, table :  jky_table
+			, set	:  'photo=\'' + my_file_type + '\''
+			, where :  'id=' + JKY.row.id
+			};
+		JKY.ajax(false, my_data);
+
+		JKY.hide('jky_loading');
+	});
+
+	JKY.photo.bind('Error', function(up, error) {
+		JKY.show('jky_loading');
+		JKY.display_message('error: ' + error.code + '<br>message: ' + error.message + (error.file ? '<br> file: ' + error.file.name : ''));
+		up.refresh();			//	reposition Flash/Silverlight
+	});
+
+	JKY.photo.init();
+});
