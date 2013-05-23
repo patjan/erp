@@ -245,6 +245,7 @@ JKY.process_save = function() {
 		JKY.display_message(JKY.set_is_required('Name'));
 		return;
 	}
+	
 	if (jky_index == 0) {
 		JKY.process_insert();
 	}else{

@@ -114,3 +114,43 @@ JKY.verify_total_percent = function() {
 		JKY.display_message('Total percent is not 100.')
 	}
 }
+
+JKY.print_threads = function(the_id) {
+	var my_html  = '';
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'FTP_Threads'
+		, select	:  the_id
+		, order_by  : 'FTP_Threads.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					var my_rows = response.rows;
+					for(var i in my_rows) {
+						var my_row			= my_rows[i];
+						var my_name			= my_row.name;
+						var my_percent		= parseFloat(my_row.percent);
+						my_html  += ''
+							+ '<tr>'
+							+ '<td></td>'
+							+ '<td>' + my_percent + '</td>'
+							+ '<td>' + my_name    + '</td>'
+							+ '</tr>'
+							;
+					}
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		}
+	)
+	return my_html;
+}

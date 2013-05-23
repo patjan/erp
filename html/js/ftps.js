@@ -42,6 +42,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-add-new'		).click (function() {JKY.process_add_new	();});
 		$('#jky-action-print'		).click (function() {JKY.process_print		();});
 		$('#jky-action-save'		).click (function() {JKY.process_save		();});
+		$('#jky-action-reset'		).click (function() {JKY.reset_user			();});
 		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
 		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
 		$('#jky-action-export'		).click (function() {JKY.process_export		();});
@@ -195,6 +196,7 @@ JKY.display_form = function(index) {
 	JKY.show('jky-action-add-new'	);
 	JKY.show('jky-action-print'		);
 	JKY.show('jky-action-save'		);
+	JKY.hide('jky-action-reset'		);
 	JKY.show('jky-action-copy'		);
 	JKY.show('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
@@ -577,9 +579,10 @@ JKY.process_print = function() {
 
 JKY.print_row = function(the_id) {
 	JKY.display_message('print_row: ' + the_id);
-//window.print();jky0body
+	var my_row = JKY.get_row(jky_table, the_id);
+//window.print();
 	var my_html = ''
-		+ "<table style='border:1px solid black;'>"
+		+ "<table style='width:700px; border:1px solid black;'>"
 		+ "<tr>"
 
 		+ "<td width=60%><table>"
@@ -596,7 +599,7 @@ JKY.print_row = function(the_id) {
 		+ "</table>"
 
 		+ "<br>"
-		+ "<div style='border:1px solid black;'>"
+		+ "<div style='width:700px; border:1px solid black;'>"
 		+ "<table>"
 		+ "<tr>"
 		+ "<td class='jky-print-label1'><span> Diameter</span>:</td><td id='jky-print-diameter'		class='jky-print-value'></td>"
@@ -621,47 +624,48 @@ JKY.print_row = function(the_id) {
 		+ "</table>"
 		+ "</div>"
 		+ "<br>"
-		+ "<table style='border:1px solid black;'>"
+		+ "<table style='width:700px; border:1px solid black;'>"
 		+ "<thead><tr class='jky-print-head'><td><span>Threads</span></td><td><span>Percent</span></td><td><span>Thread</span></td><tr><thead>"
 		+ "<tbody id='jky-print-thread-body'></table>"
 		+ "</table>"
 		+ "<br>"
-		+ "<table style='border:1px solid black;'>"
+		+ "<table style='width:700px; border:1px solid black;'>"
 		+ "<thead><tr class='jky-print-head'><td><span>Loads</span></td><td><span>First</span></td><td><span>Thread</span></td><td><span>Second</span></td><td><span>Thread</span></td><tr><thead>"
 		+ "<tbody id='jky-print-load-body'></table>"
 		+ "</table>"
 		+ "<br>"
-		+ "<table style='border:1px solid black;'>"
+		+ "<table style='width:700px; border:1px solid black;'>"
 		+ "<thead><tr class='jky-print-head'><td><span>Settings</span></td><td><span>Name</span></td><td><span>Value</span></td><td><span>Name</span></td><td><span>Value</span></td><tr><thead>"
-		+ "<tbody id='jky-print-set-body'></table>"
+		+ "<tbody id='jky-print-setting-body'></table>"
 		+ "</table>"
 		;
 	JKY.set_html('jky-printable', my_html);
+	JKY.t_tag	('jky-printable', 'span');
 
-	JKY.set_html('jky-print-number'			, JKY.get_value('jky-number'		));
-	JKY.set_html('jky-print-product'		, JKY.get_value('jky-product'		));
-	JKY.set_html('jky-print-composition'	, JKY.get_value('jky-composition'	));
-	JKY.set_html('jky-print-machine'		, JKY.get_selected_text('jky-machine'));
+	JKY.set_html('jky-print-number'			, my_row.number			);
+	JKY.set_html('jky-print-product'		, my_row.product		);
+	JKY.set_html('jky-print-composition'	, my_row.composition	);
+	JKY.set_html('jky-print-machine'		, my_row.machine		);
 
-	JKY.set_html('jky-print-drawing'		, JKY.get_html('jky-download-drawing'	));
-	JKY.set_html('jky-print-photo'			, JKY.get_html('jky-download-photo'	));
+	JKY.set_html('jky-print-drawing'		, '<img id="jky-drawing-img"  src="/uploads/ftp_draws/'  + the_id + '.' + my_row.draw  + '" />');
+	JKY.set_html('jky-print-photo'			, '<img id="jky-photo-img"    src="/uploads/ftp_photos/' + the_id + '.' + my_row.photo + '" />');
 
-	JKY.set_html('jky-print-diameter'		, JKY.get_value('jky-diameter'		) + ' (cm)');
-	JKY.set_html('jky-print-turns'			, JKY.get_value('jky-turns'			));
-	JKY.set_html('jky-print-yield'			, JKY.get_value('jky-yield'			) + ' (%)');
-	JKY.set_html('jky-print-density'		, JKY.get_value('jky-density'		));
-	JKY.set_html('jky-print-weight'			, JKY.get_value('jky-weight'		) + ' (gr)');
-	JKY.set_html('jky-print-needling'		, JKY.get_value('jky-needling'		));
-	JKY.set_html('jky-print-inputs'			, JKY.get_value('jky-inputs'		) + ' (cones)');
-	JKY.set_html('jky-print-width'			, JKY.get_value('jky-width'			) + ' (cm)');
-	JKY.set_html('jky-print-peso'			, JKY.get_value('jky-peso'			) + ' (Kg)');
-	JKY.set_html('jky-print-speed'			, JKY.get_value('jky-speed'			) + ' (rpm)');
-	JKY.set_html('jky-print-lanes'			, JKY.get_value('jky-lanes'			));
-	JKY.set_html('jky-print-has-break'		, JKY.get_checked('jky-has-break'	));
+	JKY.set_html('jky-print-diameter'		, my_row.diameter		+ ' (cm)'	);
+	JKY.set_html('jky-print-turns'			, my_row.turns						);
+	JKY.set_html('jky-print-yield'			, my_row.yield			+ ' (%)'	);
+	JKY.set_html('jky-print-density'		, my_row.density					);
+	JKY.set_html('jky-print-weight'			, my_row.weight			+ ' (gr)'	);
+	JKY.set_html('jky-print-needling'		, my_row.needling					);
+	JKY.set_html('jky-print-inputs'			, my_row.inputs			+ ' (cones)');
+	JKY.set_html('jky-print-width'			, my_row.width			+ ' (cm)'	);
+	JKY.set_html('jky-print-peso'			, my_row.peso			+ ' (Kg)'	);
+	JKY.set_html('jky-print-speed'			, my_row.speed			+ ' (rpm)'	);
+	JKY.set_html('jky-print-lanes'			, my_row.lanes						);
+	JKY.set_html('jky-print-has-break'		, JKY.t(my_row.has_break));
 
-	JKY.set_html('jky-print-thread-body'	, JKY.get_html('jky-thread-body'	));
-	JKY.set_html('jky-print-load-body'		, JKY.get_html('jky-load-body'		));
-	JKY.set_html('jky-print-set-body'		, JKY.get_html('jky-set-body'		));
+	JKY.set_html('jky-print-thread-body'	, JKY.print_threads	(the_id));
+	JKY.set_html('jky-print-load-body'		, JKY.print_loads	(the_id));
+	JKY.set_html('jky-print-setting-body'	, JKY.print_settings(the_id));
 
 	$("#jky-printable").print();
 }

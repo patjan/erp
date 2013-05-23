@@ -197,13 +197,14 @@ JKY.display_row = function(index) {
 	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
 	JKY.rows[index-1] = JKY.row;
 	JKY.set_html('jky-app-index', index);
+	var my_time = JKY.get_time();
 
 	var my_html = '';
 	if (JKY.row.photo == null) {
 		my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
 	}else{
 		my_html = '<a href="' + 'jky_download.php?file_name=tickets/' + JKY.row.id + '.' + JKY.row.photo + '">'
-				+ '<img id="jky-photo-img"    src="/uploads/tickets/' + JKY.row.id + '.' + JKY.row.photo + '" class="the_icon" />';
+				+ '<img id="jky-photo-img"    src="/uploads/tickets/' + JKY.row.id + '.' + JKY.row.photo + '?' + my_time + '" class="the_icon" />';
 				+ '</a>'
 				;
 	}
@@ -414,6 +415,7 @@ $( function() {
 		var my_html = '<a href="' + 'jky_download.php?file_name=tickets/' + JKY.row.id + '.' + my_file_type + '">'
 					+ '<img id="jky-photo-img"    src="/uploads/tickets/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
 					+ '</a>'
+					;
 		JKY.set_html('jky-download-photo', my_html);
 
 		var my_data =

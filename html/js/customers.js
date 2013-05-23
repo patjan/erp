@@ -38,6 +38,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-add-new'		).click (function() {JKY.process_add_new	();});
 		$('#jky-action-print'		).click (function() {JKY.process_print		();});
 		$('#jky-action-save'		).click (function() {JKY.process_save		();});
+		$('#jky-action-reset'		).click (function() {JKY.reset_user			();});
 		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
 		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
 		$('#jky-action-export'		).click (function() {JKY.process_export		();});
@@ -119,8 +120,8 @@ JKY.display_list = function() {
 	JKY.show('jky-action-add-new'	);
 	JKY.hide('jky-action-print'		);
 	JKY.hide('jky-action-save'		);
-//	JKY.hide('jky-action-copy'		);
-//	JKY.hide('jky-action-delete'	);
+	JKY.hide('jky-action-copy'		);
+	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
 //	JKY.show('jky-action-publish'	);
 	JKY.show('jky-app-table'		);
@@ -180,11 +181,13 @@ JKY.display_form = function(index) {
 	JKY.show('jky-action-add-new'	);
 	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
-//	JKY.show('jky-action-copy'		);
-//	JKY.show('jky-action-delete'	);
+	JKY.hide('jky-action-reset'		);
+	JKY.hide('jky-action-copy'		);
+	JKY.hide('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.show('jky-app-upload'		);
 	JKY.display_row(index);
 }
 
@@ -245,11 +248,13 @@ JKY.process_add_new = function() {
 	JKY.hide('jky-action-add-new'	);
 	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
-//	JKY.hide('jky-action-copy'		);
-//	JKY.hide('jky-action-delete'	);
+	JKY.hide('jky-action-reset'		);
+	JKY.hide('jky-action-copy'		);
+	JKY.hide('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.hide('jky-app-upload'		);
 	JKY.display_new();
 }
 
@@ -378,23 +383,6 @@ JKY.process_cancel = function() {
 }
 
 /**
- * process print
- */
-JKY.process_print = function() {
-	if ($('#jky-app-form').css('display') == 'block') {
-		JKY.print_row(JKY.row.id);
-	}else{
-		$('#jky-table-body .jky-checkbox input:checked').each(function() {
-			JKY.print_row($(this).attr('row_id'));
-		})
-	}
-};
-
-JKY.print_row = function(the_id) {
-	JKY.display_message('print_row: ' + the_id);
-}
-
-/**
  * process export
  */
 JKY.process_export = function() {
@@ -422,7 +410,6 @@ JKY.display_company = function(the_id) {
 		JKY.hide('jky-website-line' );
 		JKY.hide('jky-cnpj-line'	);
 		JKY.show('jky-ie-line'		);
-		
 	}
 }
 

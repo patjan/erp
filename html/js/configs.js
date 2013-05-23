@@ -38,6 +38,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-add-new'		).click (function() {JKY.process_add_new	();});
 		$('#jky-action-print'		).click (function() {JKY.process_print		();});
 		$('#jky-action-save'		).click (function() {JKY.process_save		();});
+		$('#jky-action-reset'		).click (function() {JKY.reset_user			();});
 		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
 		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
 		$('#jky-action-export'		).click (function() {JKY.process_export		();});
@@ -61,7 +62,7 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-admin');
 		JKY.set_side_active('jky-admin-configs');
-		JKY.set_html('jky-app-select'		, JKY.set_group_set(jky_table , jky_select, 'Root'));
+		JKY.set_html('jky-app-select'		, JKY.set_group_set('Configs' , jky_select, 'Root'));
 		JKY.set_html('jky-status'			, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
@@ -177,11 +178,13 @@ JKY.display_form = function(index) {
 	JKY.show('jky-action-add-new'	);
 	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
+	JKY.hide('jky-action-reset'		);
 	JKY.show('jky-action-copy'		);
 	JKY.show('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.hide('jky-app-upload'		);
 	JKY.display_row(index);
 }
 
@@ -220,11 +223,13 @@ JKY.process_add_new = function() {
 	JKY.hide('jky-action-add-new'	);
 	JKY.hide('jky-action-print'		);
 	JKY.show('jky-action-save'		);
+	JKY.hide('jky-action-reset'		);
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.show('jky-action-cancel'	);
 	JKY.hide('jky-app-table'		);
 	JKY.show('jky-app-form'			);
+	JKY.hide('jky-app-upload'		);
 	JKY.display_new();
 }
 
@@ -327,23 +332,6 @@ JKY.process_delete_success = function(response) {
 
 JKY.process_cancel = function() {
 	JKY.display_list();
-}
-
-/**
- * process print
- */
-JKY.process_print = function() {
-	if ($('#jky-app-form').css('display') == 'block') {
-		JKY.print_row(JKY.row.id);
-	}else{
-		$('#jky-table-body .jky-checkbox input:checked').each(function() {
-			JKY.print_row($(this).attr('row_id'));
-		})
-	}
-};
-
-JKY.print_row = function(the_id) {
-	JKY.display_message('print_row: ' + the_id);
 }
 
 /**

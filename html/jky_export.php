@@ -261,7 +261,8 @@ $args = '&table='        . $_REQUEST[ 'table'     ]
 $args = ',"table":"'	. $_REQUEST[ 'table'     ] . '"'
       . ',"filter":"'	. $_REQUEST[ 'filter'    ] . '"'
       . ',"select":"'	. $_REQUEST[ 'select'    ] . '"'
-      . ',"display":"'	. $_REQUEST[ 'display'   ] . '"'
+//      . ',"display":"'	. $_REQUEST[ 'display'   ] . '"'
+      . ',"display":"'	. '99999' . '"'
       . ',"order_by":"'	. $_REQUEST[ 'order_by'  ] . '"'
       . ',"specific":"'	. $_REQUEST[ 'specific'  ] . '"'
       ;
