@@ -58,6 +58,7 @@ public function indexAction() {
 			case 'get_users'		: $this->get_users		(); return;
 			case 'get_controls' 	: $this->get_controls	($data); return;
 			case 'get_configs'		: $this->get_configs	($data); return;
+			case 'get_contacts'		: $this->get_contacts	($data); return;
 			case 'get_categories'	: $this->get_categories	(); return;
 			case 'get_profile'		: $this->get_profile	(); return;
 			case 'get_contact'		: $this->get_contact	(); return;
@@ -529,6 +530,7 @@ private function set_specific($table, $specific) {
 //	if ($specific == 'parent_id')	$return .= ' AND Categories.parent_id = ' . get_session('parent_id');
 	if ($table == 'Contacts'		&& $specific == 'is_customer'	)	$return .= ' AND Contacts.is_customer = "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	$return .= ' AND Contacts.is_supplier = "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	$return .= ' AND Contacts.is_company  = "No" ';
 
 	return $return;
 }
@@ -578,7 +580,8 @@ private function set_new_fields($table) {
 											. ',  Machines.name			AS			machine';
 	if ($table == 'FTP_Loads'	)	$return = ',   Thread1.name			AS    first_name'
 											. ',   Thread2.name			AS   second_name';
-	if ($table == 'FTP_Threads'	)	$return = ',   Threads.name			AS			name';
+	if ($table == 'FTP_Threads'	)	$return = ',   Threads.name			AS			name'
+											. ', Suppliers.full_name	AS			supplier';
 	if ($table == 'FTP_Sets'	)	$return = ',   Configs.sequence		AS			sequence'
 											. ',   Configs.name			AS			name';
 
@@ -602,9 +605,12 @@ private function set_left_joins($table) {
 	if ($table == 'Categories'	)	$return = '  LEFT JOIN  Categories AS Parent	ON    Parent.id = Categories.parent_id';
 	if ($table == 'Companies'	)	$return = '  LEFT JOIN     Contacts AS Contact	ON   Contact.id =  Companies.contact_id';
 	if ($table == 'Templates'	)	$return = '  LEFT JOIN     Contacts AS Created	ON   Created.id =  Templates.created_by';
-	if ($table == 'Tickets'		)	$return = '  LEFT JOIN     Contacts AS Opened	ON    Opened.id =    Tickets.opened_by'
-											. '  LEFT JOIN     Contacts AS Closed	ON    Closed.id =    Tickets.closed_by'
-											. '  LEFT JOIN     Contacts AS Assigned	ON  Assigned.id =    Tickets.assigned_to';
+	if ($table == 'Tickets'		)	$return = '  LEFT JOIN    JKY_Users AS User_Op	ON   User_Op.id =    Tickets.opened_by'
+											. '  LEFT JOIN    JKY_Users AS User_As	ON   User_As.id =    Tickets.assigned_to'
+											. '  LEFT JOIN    JKY_Users AS User_Cl	ON   User_Cl.id =    Tickets.closed_by'
+											. '  LEFT JOIN     Contacts AS Opened	ON    Opened.id =    User_Op.contact_id'
+											. '  LEFT JOIN     Contacts AS Assigned	ON  Assigned.id =    User_As.contact_id'
+											. '  LEFT JOIN     Contacts AS Closed 	ON    Closed.id =    User_Cl.contact_id';
 
 	if ($table == 'Contacts'	)	$return = '  LEFT JOIN   JKY_Users AS JKY_Users	ON  Contacts.id =  JKY_Users.contact_id'
 //											. '  LEFT JOIN    Contacts AS Companies	ON Companies.id =   Contacts.company_id AND Companies.is_company = "Yes"';
@@ -613,7 +619,8 @@ private function set_left_joins($table) {
 											. '  LEFT JOIN    Machines				ON  Machines.id =		FTPs.machine_id';
 	if ($table == 'FTP_Loads'	)	$return = '  LEFT JOIN     Threads AS Thread1	ON   Thread1.id =  FTP_Loads.first_thread_id'
 											. '  LEFT JOIN     Threads AS Thread2	ON   Thread2.id =  FTP_Loads.second_thread_id';
-	if ($table == 'FTP_Threads'	)	$return = '  LEFT JOIN     Threads  			ON   Threads.id =FTP_Threads.thread_id';
+	if ($table == 'FTP_Threads'	)	$return = '  LEFT JOIN     Threads  			ON   Threads.id =FTP_Threads.thread_id'
+											. '  LEFT JOIN    Contacts AS Suppliers	ON Suppliers.id =FTP_Threads.supplier_id';
 	if ($table == 'FTP_Sets'	)	$return = '  LEFT JOIN     Configs  			ON   Configs.id =	FTP_Sets.setting_id';
 	return $return;
 }
@@ -2200,6 +2207,32 @@ private function get_configs($data) {
 }
 
 /**
+ *   $.ajax({ method: get_contacts, specific: x...x);
+ *
+ *	status: ok
+ *	  rows: [{ x...x: y...y, ... } (false)
+ *			,{ x...x: y...y, ... }
+ *			,{ x...x: y...y, ... }
+ *			]
+
+ */
+private function get_contacts($data) {
+	$specific = get_data($data, 'specific');
+
+	$sql= 'SELECT * '
+		. '  FROM Contacts'
+		. ' WHERE ' . $specific . ' = "Yes"'
+		. ' ORDER BY full_name'
+		;
+	$db = Zend_Registry::get('db');
+	$rows = $db->fetchAll($sql);
+	$return = array();
+	$return['status'] = 'ok';
+	$return['rows'	] = $rows;
+	$this->echo_json($return);
+}
+
+/**
  *	$.ajax({ method: get_options, group_set: x...x, select: x...x, initial: x...x });
  *
  *	return: <options value="x...x" selected="selected">x...x</options>
@@ -2531,7 +2564,7 @@ private function get_password($id) {
  *	status: ok
  * message: x...x
  */
-private function log_out() {
+private function log_out($data) {
 //	setcookie('remember_me'  , '', time() - 86400, '/');
 //	setcookie('authorization', '', time() - 86400, '/');
 

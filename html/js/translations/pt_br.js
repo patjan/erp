@@ -153,6 +153,7 @@ JKY.translations =
 , "Status":"Estado"
 , "Street":"Rua"
 , "Subject":"Assunto"
+, "Supplier":"Fornecedor"
 , "Suppliers":"Fornecedores"
 , "Support":"Suporte"
 , "Template Body":"Corpo do Modelo"

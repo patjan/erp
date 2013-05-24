@@ -81,3 +81,7 @@ SELECT substr(resolution,11) FROM Tickets	WHERE substr(resolution, 1, 8) = 'Reso
 UPDATE Tickets		SET worked_hour = substr(resolution,11)		WHERE substr(resolution, 1, 8) = 'Resolved';
 UPDATE Tickets		SET resolution = 'resolved'					WHERE substr(resolution, 1, 8) = 'Resolved';
 UPDATE Tickets		SET status = 'Closed'						WHERE worked_hour > 0;
+
+UPDATE Tickets		SET created_by = 1							WHERE created_by = 4;
+UPDATE Tickets		SET updated_by = 1							WHERE updated_by = 4;
+UPDATE Tickets		SET  opened_by = 1							WHERE  opened_by = 4;

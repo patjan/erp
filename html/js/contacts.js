@@ -8,7 +8,7 @@ var jky_table		= 'Contacts';
 var jky_select		= 'All';
 var jky_focus		= 'jky-first-name';
 var jky_filter		= '';
-var jky_specific	= '';
+var jky_specific	= 'is_contact';
 var jky_sort_by		= 'full_name';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
 

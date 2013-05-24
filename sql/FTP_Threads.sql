@@ -7,8 +7,9 @@ CREATE TABLE IF NOT EXISTS FTP_Threads
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'
 
-, ftp_id			BIGINT
-, thread_id			BIGINT
+, ftp_id			BIGINT				DEFAULT NULL
+, thread_id			BIGINT				DEFAULT NULL
+, supplier_id		BIGINT				DEFAULT NULL
 
 , percent   		DECIMAL(6,2)		DEFAULT 0
 
@@ -16,3 +17,5 @@ CREATE TABLE IF NOT EXISTS FTP_Threads
 , UNIQUE(ftp_id,thread_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
+
+ALTER TABLE FTP_Threads		ADD COLUMN supplier_id		BIGINT		DEFAULT NULL	AFTER thread_id;

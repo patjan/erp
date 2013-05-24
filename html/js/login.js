@@ -93,5 +93,6 @@ JKY.process_log_in = function() {
 JKY.process_log_in_success = function(response) {
 	JKY.display_trace('process_log_in_success');
 	JKY.Session.load_values();
+//alert('JKY.Session.load_values');
 	JKY.process_start_page();
 }

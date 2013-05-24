@@ -23,6 +23,7 @@ JKY.Session = function() {
 
 	function my_load_values_success(response) {
 		my_session = response.data;
+//alert('my_load_values_success:' + my_session['full_name']);
 	};
 
 //	it is incomplete, not sure if it is needed.

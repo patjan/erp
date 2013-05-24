@@ -84,9 +84,10 @@ JKY.set_initial_values = function(jky_program) {
 //		JKY.display_form(1);
 		JKY.show('jky-side-production'	);
 		JKY.show('jky-app-header'		);
-		JKY.materials	= JKY.get_configs('Materials');
-		JKY.threads		= JKY.get_ids	 ('Threads'  );
-		JKY.settings	= JKY.get_configs('Settings' );
+		JKY.materials	= JKY.get_configs	('Materials'	);
+		JKY.threads		= JKY.get_ids		('Threads'		);
+		JKY.suppliers	= JKY.get_contacts	('is_supplier'	);
+		JKY.settings	= JKY.get_configs	('Settings'		);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}

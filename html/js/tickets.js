@@ -214,6 +214,7 @@ JKY.display_row = function(index) {
 	JKY.set_html('jky-upload-percent'	, '');
 	JKY.set_css ('jky-upload-progress', 'width', '0%');
 
+	JKY.set_value	('jky-status'			, JKY.row.status);
 	JKY.set_value	('jky-opened-at'		, JKY.short_date(JKY.row.opened_at));
 	JKY.set_value	('jky-opened-by'		, JKY.row.opened_name	);
 	JKY.set_value	('jky-assigned-at'		, JKY.short_date(JKY.row.assigned_at));
@@ -261,12 +262,23 @@ JKY.display_new = function() {
 }
 
 JKY.get_form_set = function() {
+	var my_status		= JKY.get_value('jky-status');
+	var my_worked_hour	= JKY.get_value('jky-worked-hour');
+	var my_extra_set	= '';
+	if (my_status != 'Closed' && my_worked_hour > 0) {
+		my_extra_set = ''
+				+    ', status = \'Closed\''
+				+ ', closed_by = ' + JKY.Session.get_value('user_id')
+				+ ', closed_at = NOW()'
+				;
+	}
 	var my_set = ''
 		+     'worked_hour=  ' + JKY.get_value	('jky-worked-hour'		)
 		+      ', priority=\'' + JKY.get_value	('jky-priority'			) + '\''
 		+      ', category=\'' + JKY.get_value	('jky-category'			) + '\''
 		+   ', description=\'' + JKY.get_value	('jky-description'		) + '\''
 		+    ', resolution=\'' + JKY.get_value	('jky-resolution'		) + '\''
+		+ my_extra_set
 		;
 	return my_set;
 }

@@ -646,7 +646,13 @@ JKY.set_options_array = function(the_selected, the_array, the_null) {
 		my_options += '<option value=null></option>';
 	}
 	for(var i=0; i<the_array.length; i++) {
-		var my_value = the_array[i].name;
+		var my_value = '';
+		if (typeof the_array[i].name != 'undefined') {
+			my_value = the_array[i].name;
+		}
+		if (typeof the_array[i].full_name != 'undefined') {
+			my_value = the_array[i].full_name;
+		}
 		var my_id    = the_array[i].id;
 		if (typeof my_id == 'undefined') {
 			my_id = my_value;
@@ -1443,6 +1449,44 @@ JKY.get_configs = function(group_set) {
 }
 
 /**
+ * get contacts
+ */
+JKY.get_contacts = function(specific) {
+	JKY.display_trace('get_contacts: ' + specific);
+	var my_rows = [];
+	var my_data =
+		{ method	: 'get_contacts'
+		, specific	:  specific
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_rows = response.rows;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.hide('jky-loading');
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	)
+	return my_rows;
+}
+
+/**
  * set group set
  */
 JKY.set_group_set = function(table, selected, group_set, initial) {
@@ -1712,7 +1756,9 @@ JKY.process_log_off = function() {
  * process log off success
  */
 JKY.process_log_off_success = function() {
-	JKY.process_action('login');
+//	JKY.process_action('login');
+	JKY.hide('jky-wrapper');
+	window.location = 'home.html';
 }
 
 /**

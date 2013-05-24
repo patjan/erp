@@ -153,6 +153,7 @@ $translations = array
 , "Status"=>"Status"
 , "Street"=>"Street"
 , "Subject"=>"Subject"
+, "Supplier"=>"Supplier"
 , "Suppliers"=>"Suppliers"
 , "Support"=>"Support"
 , "Template Body"=>"Template Body"
