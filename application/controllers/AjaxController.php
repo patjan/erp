@@ -26,15 +26,17 @@ public function init() {
 //	set_session('user_role' , 'Support'  );
 //	set_session('full_name' , 'Pat Jan'  );
 //	set_session('user_id'	, 4 );
-	set_permissions('Support');
+//	set_permissions('Support');
 
-	if (!is_session('control_company'	))		set_session('control_company'	, COMPANY_ID);
-	if (!is_session('user_time'			))		set_session('user_time'			, date( 'Y-m-d H:i:s'));
-	if (!is_session('user_role'			))		set_session('user_role'			, 'visitor');
-	if (!is_session('event_id'			)) {
+	if (!is_session('control_company'	))		set_session('control_company'	, COMPANY_ID			);
+	if (!is_session('user_time'			))		set_session('user_time'			, date( 'Y-m-d H:i:s')	);
+	if (!is_session('user_role'			))		set_session('user_role'			, 'visitor'				);
+	if (!is_session('company_name'		))		set_session('company_name'		, COMPANY_NAME			);
+	if (!is_session('company_logo'		))		set_session('company_logo'		, COMPANY_LOGO			);
+//	if (!is_session('event_id'			)) {
 //		set_session('event_id'	, $this->get_last_id('Events', 'status="Active"'));
 //		set_session('event_name', get_table_value('Events', 'event_name', get_session('event_id')));
-	}
+//	}
 	if (!is_session('permissions'		))		set_permissions(get_session('user_role'));
 
 }
@@ -1899,8 +1901,6 @@ private function get_session() {
 	if (is_session('permissions'	))   $data['permissions'	] =   get_session('permissions'	);
 	if (is_session('start_page'		))   $data['start_page'		] =   get_session('start_page'	);
 
-	$data['company_name'] = 'DL Malhas';
-	$data['company_logo'] = 'dl-malhas.png';
 //	$data['event_name'	] = 'Event 2013';
 	$data['copyright'	] = '© 2013 JKY Software Corp';
 	$data['contact_us'	] = 'Contact Us';

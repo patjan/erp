@@ -25,7 +25,9 @@ define( 'POS_LOGIN_EXTERNAL'  , 'home'                      );
 define( 'MODEL'               , 'Model_'                    );        //   ZF 1.10 must be Model_
 define( 'INDEX'               , '/'                         );        //   windows must be '/'
 define( 'APP_PATH'            ,  dirname( __FILE__ )        );
-define( 'COMPANY_ID'          , '3'							);		//	DL malhas
+define( 'COMPANY_ID'          , '3'							);
+define( 'COMPANY_NAME'        , 'DL Malhas'					);
+define( 'COMPANY_LOGO'        , 'DL-Malhas.png'				);
 define( 'WEB_SITE'            , 'http://im4/'               );
 define( 'DOMAIN_NAME'         , 'pat'                       );
 define( 'SERVER_NAME'         , 'http://erp/'				);

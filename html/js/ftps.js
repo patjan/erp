@@ -583,6 +583,7 @@ JKY.print_row = function(the_id) {
 	var my_row = JKY.get_row(jky_table, the_id);
 //window.print();
 	var my_html = ''
+		+ "<h3>" + JKY.Session.get_value('company_name') + '</h3p>'
 		+ "<table style='width:700px; border:1px solid black;'>"
 		+ "<tr>"
 
@@ -626,7 +627,7 @@ JKY.print_row = function(the_id) {
 		+ "</div>"
 		+ "<br>"
 		+ "<table style='width:700px; border:1px solid black;'>"
-		+ "<thead><tr class='jky-print-head'><td><span>Threads</span></td><td><span>Percent</span></td><td><span>Thread</span></td><tr><thead>"
+		+ "<thead><tr class='jky-print-head'><td><span>Threads</span></td><td><span>Percent</span></td><td><span>Thread</span></td><td><span>Supplier</span></td><tr><thead>"
 		+ "<tbody id='jky-print-thread-body'></table>"
 		+ "</table>"
 		+ "<br>"
