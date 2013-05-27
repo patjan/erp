@@ -865,14 +865,14 @@ private function set_where($table, $filter) {
 			}else{
 				if ($name == 'product_name') {
 					if ($value == '"%null%"') {
-						return ' AND Contacts.product_id IS NULL';
+						return ' AND FTPs.product_id IS NULL';
 					}else{
 						return ' AND Products.name LIKE ' . $value;
 					}
 			}else{
 				if ($name == 'machine_name') {
 					if ($value == '"%null%"') {
-						return ' AND Contacts.machine_id IS NULL';
+						return ' AND FTPs.machine_id IS NULL';
 					}else{
 						return ' AND Machines.name LIKE ' . $value;
 					}
@@ -1233,7 +1233,7 @@ private function insert($data) {
 	}
 
 	if ($table == 'Contacts') {
-		$set .= ',     company_id= ' . get_session('company_id', COMPANY_ID);
+//		$set .= ',     company_id= ' . get_session('company_id', COMPANY_ID);
 //		$set .= ',        user_id= ' . $this->insert_user_jky();
 //		$set .= ',    user_number= ' . $this->getUniqueNumber($table, 'user_number');
 	}
@@ -1595,13 +1595,13 @@ private function combine() {
 	  $db->query( 'UPDATE Tickets        SET  assigned_to = ' . $target . ' WHERE assigned_to = ' . $source );
 	  $db->query( 'UPDATE Tickets        SET    closed_by = ' . $target . ' WHERE   closed_by = ' . $source );
 
-	  $db->query( 'UPDATE Contacts          SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
-	  $db->query( 'UPDATE Contacts          SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
-	  $db->query( 'UPDATE Contacts          SET   support_id = ' . $target . ' WHERE  support_id = ' . $source );
+	  $db->query( 'UPDATE Contacts       SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
+	  $db->query( 'UPDATE Contacts       SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
+	  $db->query( 'UPDATE Contacts       SET   support_id = ' . $target . ' WHERE  support_id = ' . $source );
 
 	  $db->query( 'UPDATE User_metas     SET    parent_id = ' . $target . ' WHERE   parent_id = ' . $source );
 
-	  $db->query( 'DELETE FROM Contacts                                        WHERE          id = ' . $source );
+	  $db->query( 'DELETE FROM Contacts                                     WHERE          id = ' . $source );
 	  $db->query( 'DELETE FROM JKY_Users                                    WHERE          id = ' . $source );
 
 	  $return = array();
