@@ -568,6 +568,20 @@ JKY.set_value = function(the_id, the_value){
 }
 
 /**
+ * get yes or no on specific id
+ * @param	id_name
+ * @return	Yes
+ * @return	No
+ */
+JKY.get_yes_no = function(id_name){
+	if (JKY.is_checked(id_name)) {
+		return 'Yes';
+	}else{
+		return 'No';
+	}
+}
+
+/**
  * set yes on specific value
  * @param	id_name
  * @param	value
@@ -1073,15 +1087,16 @@ JKY.is_disabled = function(id_name) {return $('#' + id_name).hasClass	('disabled
 
 //        JKY.set_...
 //        ----------------------------------------------------------------------
-JKY.set_is_zero          = function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t( 'is zero'        );}
-JKY.set_is_invalid       = function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t( 'is invalid'     );}
-JKY.set_is_required      = function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t( 'is required'    );}
-JKY.set_already_taken    = function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t( 'already taken'  );}
-JKY.set_not_found        = function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t( 'not found'      );}
-JKY.set_size_is_under    = function(name, size )       {return '<br>' + JKY.t( name ) + ' ' + JKY.t( 'size is under'  ) + ' [' + size  + ']';}
-JKY.set_size_is_above    = function(name, size )       {return '<br>' + JKY.t( name ) + ' ' + JKY.t( 'size is above'  ) + ' [' + size  + ']';}
-JKY.set_value_is_under   = function(name, value)       {return '<br>' + JKY.t( name ) + ' ' + JKY.t( 'value is under' ) + ' [' + value + ']';}
-JKY.set_value_is_above   = function(name, value)       {return '<br>' + JKY.t( name ) + ' ' + JKY.t( 'value is above' ) + ' [' + value + ']';}
+JKY.set_is_zero			= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('is zero'		);}
+JKY.set_is_invalid		= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('is invalid'		);}
+JKY.set_is_required		= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('is required'	);}
+JKY.set_already_taken	= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('already taken'	);}
+JKY.set_not_found		= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('not found'		);}
+JKY.set_must_be_numeric	= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('must be numeric');}
+JKY.set_size_is_under	= function(name, size )       {return '<br>' + JKY.t( name ) + ' ' + JKY.t('size is under'	) + ' [' + size  + ']';}
+JKY.set_size_is_above	= function(name, size )       {return '<br>' + JKY.t( name ) + ' ' + JKY.t('size is above'	) + ' [' + size  + ']';}
+JKY.set_value_is_under	= function(name, value)       {return '<br>' + JKY.t( name ) + ' ' + JKY.t('value is under'	) + ' [' + value + ']';}
+JKY.set_value_is_above	= function(name, value)       {return '<br>' + JKY.t( name ) + ' ' + JKY.t('value is above'	) + ' [' + value + ']';}
 
 //   Set Languages -------------------------------------------------------------
 JKY.set_languages = function() {
@@ -1117,7 +1132,7 @@ JKY.is_loaded = function(id_name) {
 //	check if the_string is empty
 JKY.is_empty = function(the_string) {
 	if (typeof the_string == 'undefined'
-	||  the_string == null
+	||  the_string == 'null'
 	||  the_string == false
 	||  $.trim(the_string) == '') {
 		return true;
@@ -1125,6 +1140,22 @@ JKY.is_empty = function(the_string) {
 		return false;
 	}
 }
+
+/*
+ * is checked, if specific id is checked
+ *
+ * @param	id_name
+ *
+ * @return	true		(if is  checked)
+ * @return	false		(if not checked)
+ */
+JKY.is_checked = function(id_name) {
+	if ($('#' + id_name).is(':checked')) {
+		return true;
+	}else{
+		return false;
+	}
+};
 
 //	email format xxx@xxx.xxx
 JKY.is_email = function(the_email) {
@@ -1162,7 +1193,7 @@ JKY.is_required = function(value, label) {
 JKY.is_numeric = function(value, label) {
 	if (value == ''
 	||  isNaN(value)) {
-		JKY.display_message(label + ' must be numeric.');
+//		JKY.display_message(label + ' must be numeric.');
 		return false;
 	}else{
 		return true;
@@ -1449,13 +1480,13 @@ JKY.get_configs = function(group_set) {
 }
 
 /**
- * get contacts
+ * get companies
  */
-JKY.get_contacts = function(specific) {
-	JKY.display_trace('get_contacts: ' + specific);
+JKY.get_companies = function(specific) {
+	JKY.display_trace('get_companies: ' + specific);
 	var my_rows = [];
 	var my_data =
-		{ method	: 'get_contacts'
+		{ method	: 'get_companies'
 		, specific	:  specific
 		};
 	var my_object = {};

@@ -41,17 +41,16 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-app-filter'			).change(function() {JKY.change_filter  (this);});
 		$('#jky-action-add-new'		).click (function() {JKY.process_add_new	();});
 		$('#jky-action-print'		).click (function() {JKY.process_print		();});
-		$('#jky-action-save'		).click (function() {JKY.process_save		();});
-		$('#jky-action-reset'		).click (function() {JKY.reset_user			();});
-		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
-		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
 		$('#jky-action-export'		).click (function() {JKY.process_export		();});
 		$('#jky-action-publish'		).click (function() {JKY.process_publish	();});
 		$('#jky-action-prev'		).click (function() {JKY.display_prev		();});
 		$('#jky-action-next'		).click (function() {JKY.display_next		();});
 		$('#jky-action-list'		).click (function() {JKY.display_list		();});
 		$('#jky-action-form'		).click (function() {JKY.display_form	   (1);});
-		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
+		$('#jky-action-save'		).click (function() {JKY.process_save		();});
+		$('#jky-action-reset'		).click (function() {JKY.reset_user			();});
+		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
+		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
 		$('#jky-check-all'			).click (function() {JKY.set_all_check  (this);});
 
 		$('#jky-comp-add-new'		).click (function() {JKY.insert_composition	();});
@@ -65,6 +64,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-product'		).click (function() {JKY.display_product	();});
 		$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});
 		$('#jky-search-filter'		).KeyUpDelay(JKY.filter_product);
+		$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data);
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -78,29 +78,29 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-production');
 		JKY.set_side_active('jky-production-ftps');
+		JKY.set_html('jky-app-breadcrumb'	, JKY.t(jky_program));
 		JKY.set_html('jky-machine'			, JKY.set_table_options('Machines', 'name', '', ''));
-		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.show('jky-side-production'	);
 		JKY.show('jky-app-header'		);
 		JKY.materials	= JKY.get_configs	('Materials'	);
 		JKY.threads		= JKY.get_ids		('Threads'		);
-		JKY.suppliers	= JKY.get_contacts	('is_supplier'	);
+		JKY.suppliers	= JKY.get_companies	('is_supplier'	);
 		JKY.settings	= JKY.get_configs	('Settings'		);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
 }
 
-JKY.change_select = function(event){
-	jky_select = event.value;
+JKY.change_select = function(){
+	jky_select = JKY.get_value('jky-app-select');
 	JKY.display_trace('change_select: ' + jky_select);
 	JKY.display_list();
 }
 
-JKY.change_filter = function(event){
-	jky_filter = event.value;
+JKY.change_filter = function(){
+	jky_filter = JKY.get_value('jky-app-filter');
 	JKY.display_trace('change_filter: ' + jky_filter);
 	JKY.display_list();
 }
@@ -139,7 +139,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
-//	JKY.show('jky-action-publish'	);
+	JKY.hide('jky-action-publish'	);
 	JKY.show('jky-app-table'		);
 	JKY.hide('jky-app-form'			);
 	JKY.load_table();

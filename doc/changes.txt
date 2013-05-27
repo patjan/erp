@@ -1,0 +1,158 @@
+CX.changes = 0;		//	counter of changes (add edit drag)	
+
+CX.reset_changes();
+CX.decrement_changes();
+CX.increment_changes();
+
+/*
+ * on change type
+ */
+CX.on_change_type = function() {
+	CX.display_trace('CX.on_change_type');
+	if (CX.no_changes()) {
+		CX.process_new_type();
+	}else{ 
+		CX.display_confirm(CX.process_new_type, CX.reset_new_type, 'Switch Page', 'This page has <strong>unsaved</strong> change(s). <br>Do you want to <strong>switch</strong> to new page <br> without saving the change(s)?', 'Switch Page', 'Stay on Page');
+	}
+}
+
+/*
+ * on change label
+ */
+CX.on_change_label = function(id) {
+	CX.display_trace('CX.on_change_label');
+	if (CX.no_changes()) {
+		CX.process_new_label();
+	}else{ 
+		CX.display_confirm(CX.process_new_label, CX.reset_new_label, 'Switch Page', 'This page has <strong>unsaved</strong> change(s). <br>Do you want to <strong>switch</strong> to new page <br> without saving the change(s)?', 'Switch Page', 'Stay on Page');
+	}
+}
+
+/*
+ * set party id
+ */
+CX.set_party_id = function(party_id) {
+	CX.display_trace('CX.set_party_id');
+	CX.temp_id = party_id;
+	if (CX.no_changes()) {
+		CX.process_new_party();
+	}else{ 
+		CX.display_confirm(CX.process_new_party, CX.reset_new_party, 'Switch Page', 'This page has <strong>unsaved</strong> change(s). <br>Do you want to <strong>switch</strong> to new page <br> without saving the change(s)?', 'Switch Page', 'Stay on Page');
+	}
+}
+
+/**
+ * process restore action
+ */
+CX.process_restore = function() {
+	CX.display_trace('CX.process_restore');
+	if (CX.no_changes()) {
+		CX.restore_data();
+	}else{ 
+		CX.display_confirm(CX.restore_data, null, 'Restore', 'This page has <strong>unsaved</strong> change(s). <br>Do you want to <strong>restore</strong> this page <br> to the initial status without <br> saving the change(s)?', 'Restore', 'Stay on Page');
+	}
+}
+
+/**
+ * restore data to initial status
+ */
+CX.restore_data = function() {
+	CX.display_trace('CX.restore_data');
+	CX.reset_changes();
+	var my_html = '';
+	$.each(CX.guidelines, function(index, value) {
+		my_html += CX.generate_guideline_row(value.assignmentsheet_guideline, value.assignmentsheet_guideline_state);
+	});
+	$('#gl-data' ).html(my_html);
+	$('#gl-trash-box').html('');
+}
+
+/**
+ * process save action
+ */
+CX.process_save = function() {
+	CX.display_trace('CX.process_save');
+	CX.process_add_new();
+
+	if (CX.no_changes()) {
+		return;
+	}
+	...
+}
+
+/**
+ * on change add text
+ */
+CX.on_change_add_text = function() {
+	my_text = $.trim($('#gl-add-text').val());
+	if (my_text == '') {
+		$('#gl-button-add'	).addClass('disabled');
+		if (CX.no_changes()) {
+			$('#gl-button-save'	).addClass('disabled');
+		}
+	}else{
+		$('#gl-button-add'	).removeClass('disabled');
+		$('#gl-button-save'	).removeClass('disabled');
+	}
+}
+
+/**
+ * process add new action
+ */
+CX.process_add_new = function() {
+	...
+	CX.increment_changes();
+	CX.set_focus_on_add_text();
+}
+
+/**
+ * save the layer guideline edit
+ */
+CX.save_guideline_row = function() {
+	...
+	CX.increment_changes();
+	CX.set_focus_on_add_text();
+}
+
+/*
+ * return true, if no changes and no new guideline
+ */
+CX.no_changes = function() {
+	CX.display_trace('CX.no_changes');
+	if (CX.changes == 0 && $('#gl-add-text' ).val() == '') {
+		return true;
+	}else{
+		return false;
+	}
+}
+
+/*
+ * reset changes and clean new guideline
+ */
+CX.reset_changes = function() {
+	CX.changes = 0;
+	$('#gl-add-text').val('');
+	CX.display_counter(CX.changes);
+	CX.set_focus_on_add_text();
+}
+
+CX.increment_changes = function() {
+	CX.changes += 1;
+	CX.display_counter(CX.changes);
+}
+
+CX.decrement_changes = function() {
+	CX.changes -= 1;
+	CX.display_counter(CX.changes);
+}
+
+CX.display_counter = function(counter) {
+	$('#gl-changes').html(counter);
+	if (counter == 0) {
+		$('#gl-button-save'		).addClass('disabled');
+		$('#gl-button-restore'	).addClass('disabled');
+	}else{
+		$('#gl-button-save'		).removeClass('disabled');
+		$('#gl-button-restore'	).removeClass('disabled');
+	}
+}

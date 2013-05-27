@@ -1,7 +1,7 @@
 <div id='jky-app-header'>
 	<div>
 		<div id='jky-app-breadcrumb'></div>
-		<span class='jky-app-label'><span>Status</span>: </span><select id='jky-app-select'></select>
+		<span class='jky-app-label'><span>  Status</span>: </span><select id='jky-app-select'></select>
 		<input  id='jky-app-filter' class='search-query' type='text' placeholder='Search' />
 		<div class='jky-clear'></div>
 	</div>
@@ -94,9 +94,9 @@
 #jky-name				{}
 #jky-value				{width:295px; height:100px;}
 
-#jky-full-name			{width:375px; font-size:16px; font-weight:bold;}
-#jky-company-name		{width:385px;}
-#jky-tags				{width:385px;}
+#jky-full-name			{width:270px; font-size:16px; font-weight:bold;}
+#jky-contact-company	{width:280px;}
+#jky-contact-tag		{width:280px;}
 
 .jky-full-name			{width:100px;}
 .jky-mobile				{width: 70px; text-align:center;}
@@ -127,7 +127,7 @@
 #jky-fax				{width:200px;}
 #jky-email				{width:200px;}
 
-.jky-code				{width: 40px; text-align:center;}
+.jky-number				{width: 40px; text-align:center;}
 .jky-product			{width:200px; text-transform:capitalize;}
 .jky-machine			{width:100px; text-transform:capitalize; text-align:center;}
 .jky-composition		{width:150px; text-align:center;}
@@ -136,7 +136,7 @@
 .jky-product-type		{width:100px; text-align:center;}
 .jky-start-date			{width:100px; text-align:center;}
 
-#jky-code				{width: 60px; font-size:16px; font-weight:bold;}
+#jky-number				{width: 60px; font-size:16px; font-weight:bold;}
 #jky-product			{width:340px; text-transform:capitalize;}
 #jky-product span		{padding:4px 20px 0 4px; vertical-align:bottom;}
 #jky-composition		{width:340px;}
@@ -178,9 +178,10 @@
 #jky-comp-total			{				text-align:right ;}
 
 .jky-thread-value		{width:10%;		text-align:right ;}
-.jky-thread-label		{width:80%;		text-align:left  ;}
+.jky-thread-label		{width:40%;		text-align:left  ;}
 .jky-thread-percent		{width: 40px;	text-align:right ; margin-right:0;}
-.jky-thread-name		{width:400px;}
+.jky-thread-name		{width:270px;}
+.jky-thread-supplier	{width:270px;}
 #jky-thread-total		{				text-align:right;}
 
 .jky-load-sequence		{width:10%; text-align:center;}
@@ -205,6 +206,16 @@
 .jky-search-product-name	{width:260px; text-transform:capitalize;}
 .jky-search-product-type	{width: 60px; text-align:center;}
 .jky-search-start-date		{width: 60px; text-align:center;}
+
+.jky-print-label		{width:100px; text-align:right; font-weight:bold;}
+.jky-print-label1		{width: 80px; text-align:right; font-weight:bold;}
+.jky-print-label2		{width: 80px; text-align:right; font-weight:bold;}
+.jky-print-label3		{width:100px; text-align:right; font-weight:bold;}
+.jky-print-value		{width:200px;}
+.jky-print-head			{font-weight:bold;}
+#jky-print-number		{font-size:20px; font-weight:bold;}
+#jky-print-product		{text-transform:capitalize;}
+#jky-print-machine		{text-transform:capitalize;}
 
 .jky-set-name			{width:200px; text-align:left ;}
 .jky-set-value			{width:100px; text-align:right;}
@@ -297,7 +308,7 @@
 			<th class='jky-product-type'	><span>Product Type		</span></th>
 			<th class='jky-start-date'		><span>Start Date		</span></th>
 
-			<th class='jky-code'			><span>Code				</span></th>
+			<th class='jky-number'			><span>Number			</span></th>
 			<th class='jky-product'			><span>Product			</span></th>
 			<th class='jky-machine'			><span>Machine			</span></th>
 			<th class='jky-composition'		><span>Composition		</span></th>
@@ -382,25 +393,29 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input		id='jky-name'		class='jky-form-value'		placeholder='Name'				/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>            Value</span>:</div><textarea	id='jky-value'		class='jky-form-value'		placeholder='Value'></textarea>   </div>
 
-			<div class='jky-form-line'><div class='jky-form-label'><span>			  Code</span>:</div><input  id='jky-code'			class='jky-form-value'									readonly='readonly'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>          Product</span>:</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>			Number</span>:</div><input  id='jky-number'			class='jky-form-value'									readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>			Product</span>:</div>
 				<input  id='jky-product-id' type='hidden' />
 				<input  id='jky-product' class='jky-form-value' placeholder='Product Name' readonly='readonly' />
 				<a id='jky-action-product'><i class='icon-share'></i></a>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Composition</span>:</div><input  id='jky-composition'	class='jky-form-value'									readonly='readonly'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>          Machine</span>:</div><select id='jky-machine'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		Composition</span>:</div><input  id='jky-composition'	class='jky-form-value'									readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>			Machine</span>:</div><select id='jky-machine'></select></div>
 			<div class='jky-form-line'>&nbsp;</div>
 			<div class='jky-form-line'>&nbsp;</div>
 
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Name</span>:</div>
+				<div class='jky-form-label'><span>Full Name</span>:</div>
 				<div class='jky-form-value'>
 					<input id='jky-full-name' class='jky-form-value' placeholder='Name' />
 					<input id='jky-is-company' type='checkbox' value='Yes' /> (<span>Is a Company</span> ?)
-					<select id='jky-company-name' ></select>
-					<select id='jky-tags'></select>
 				</div>
+			</div>
+			<div id='jky-company'	class='jky-form-line'><div class='jky-form-label'><span>Company</span>:</div><select id='jky-contact-company'></select></div>
+			<div					class='jky-form-line'><div class='jky-form-label'><span>    Tag</span>:</div><select id='jky-contact-tag'></select></div>
+			<div					class='jky-form-line'><div class='jky-form-label'><span id='jky-cnpj-label'>CNPJ</span>:</div><input id='jky-cnpj'	class='jky-form-value' /></div>
+			<div					class='jky-form-line'><div class='jky-form-label'><span id='jky-ie-label'  >  IE</span>:</div><input id='jky-ie'	class='jky-form-value' /></div>
+			<div class='jky-form-line'>&nbsp;</div>
 			</div>
 
 			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input  id='jky-name'			class='jky-form-value'		placeholder='Name'				/></div>
@@ -464,7 +479,6 @@
 			</div>
 		</div>
 		<div class='jky-clear'></div>
-		<br>
 
 		<div class='jky-left'>
 			<div class='jky-form-line'>
@@ -614,11 +628,11 @@
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
-				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-				<button id='jky-action-reset'	class='btn btn-success' type='button' title="Click here to reset the password"		><span>Reset Password</span></button>
-				<button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
-			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></a>
-			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></a>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+				  <button id='jky-action-reset'		class='btn btn-success' type='button' title="Click here to reset the password"		><span>Reset Password</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -713,8 +727,9 @@
 					<thead>
 						<tr>
 							<td class='jky-action'></td>
-							<td class='jky-thread-value'><span>Percent</span></td>
-							<td class='jky-thread-label'><span>Thread </span></td>
+							<td class='jky-thread-value'><span>Percent	</span></td>
+							<td class='jky-thread-label'><span>Thread	</span></td>
+							<td class='jky-thread-label'><span>Supplier	</span></td>
 						</tr>
 					</thead>
 					<tbody id='jky-thread-body'></tbody>

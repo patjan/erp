@@ -1,7 +1,6 @@
 <div id='jky-app-header'>
 	<div>
 		<div id='jky-app-breadcrumb'></div>
-		<select id='jky-app-select'></select>
 		<input  id='jky-app-filter' class='search-query' type='text' placeholder='Search' />
 		<div class='jky-clear'></div>
 	</div>
@@ -92,6 +91,7 @@
 .jky-comp-material		{width:200px;}
 #jky-comp-total			{				text-align:right ;}
 
+#jky-thread-body a 		{margin-left:-30px; padding:5px;}
 .jky-thread-value		{width:10%;		text-align:right ;}
 .jky-thread-label		{width:40%;		text-align:left  ;}
 .jky-thread-percent		{width: 40px;	text-align:right ; margin-right:0;}
@@ -121,6 +121,13 @@
 .jky-search-product-name	{width:260px; text-transform:capitalize;}
 .jky-search-product-type	{width: 60px; text-align:center;}
 .jky-search-start-date		{width: 60px; text-align:center;}
+
+#jky-thread-filter				{margin-bottom:10px;}
+.jky-thread-header-name			{width:200px; text-transform:capitalize;}
+.jky-thread-header-group		{width: 80px; text-align:center;}
+.jky-thread-header-composition	{width:100px; text-align:center;}
+
+.jky-thread-row-name			{width:280px;}
 
 .jky-print-label		{width:100px; text-align:right; font-weight:bold;}
 .jky-print-label1		{width: 80px; text-align:right; font-weight:bold;}
@@ -232,10 +239,10 @@
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
-				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-				<button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
-			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></a>
-			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></a>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -343,16 +350,36 @@
 					<th class='jky-search-start-date'	><span>Start	</span></th>
 				</tr>
 			</thead>
-			<tbody id='jky-search-body'>
-				<tr onclick="JKY.select_product(this, 1)"><td class="jky-search-product-name">acetinado promocao		</td><td class="jky-search-product-type">Tubular</td><td class="jky-search-start-date">00-00-0000</td></tr>
-				<tr onclick="JKY.select_product(this, 2)"><td class="jky-search-product-name">acrochetado listrado		</td><td class="jky-search-product-type">Tubular</td><td class="jky-search-start-date">00-00-0000</td></tr>
-				<tr onclick="JKY.select_product(this, 3)"><td class="jky-search-product-name">adiantamento pedido pg	</td><td class="jky-search-product-type">Ramada </td><td class="jky-search-start-date">06-07-2007</td></tr>
-			</tbody>
+			<tbody id='jky-search-body'></tbody>
 		</table>
 	</div>
 	<div class='modal-footer'>
 <!--	<button  id='jky-search-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>
--->		&nbsp;<a id='jky-search-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel	</span></a>
+-->		&nbsp;<a id='jky-search-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
+	</div>
+</div>
+
+<div id='jky-thread-search' class='modal hide fade in'>
+	<div class='modal-header'>
+		<a class='close' data-dismiss='modal'>X</a>
+		<h3><span>Search</span>: <span>Thread</span></h3>
+	</div>
+	<div class='modal-body'>
+		<div><input id='jky-thread-filter' class='search-query' type='text' placeholder='Search' /></div>
+		<table id='jky-thread-table' class='table table-striped'>
+			<thead>
+				<tr>
+					<th class='jky-thread-header-name'			><span>Name			</span></th>
+					<th class='jky-thread-header-group'			><span>Group		</span></th>
+					<th class='jky-thread-header-composition'	><span>Composition	</span></th>
+				</tr>
+			</thead>
+			<tbody id='jky-thread-search-body'></tbody>
+		</table>
+	</div>
+	<div class='modal-footer'>
+<!--	<button  id='jky-thread-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>
+-->		&nbsp;<a id='jky-thread-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
 	</div>
 </div>
 
@@ -361,6 +388,7 @@
 
 <script src='js/ftps.js'></script>
 <script src='js/select_product.js'></script>
+<script src='js/JKY.Thread.js'></script>
 <script src='js/ftp_composition.js'></script>
 <script src='js/ftp_threads.js'></script>
 <script src='js/ftp_loads.js'></script>

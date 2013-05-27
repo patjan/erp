@@ -26,7 +26,7 @@ public function init() {
 //	set_session('user_role' , 'Support'  );
 //	set_session('full_name' , 'Pat Jan'  );
 //	set_session('user_id'	, 4 );
-//	set_permissions('Support');
+	set_permissions('Support');
 
 	if (!is_session('control_company'	))		set_session('control_company'	, COMPANY_ID			);
 	if (!is_session('user_time'			))		set_session('user_time'			, date( 'Y-m-d H:i:s')	);
@@ -60,7 +60,7 @@ public function indexAction() {
 			case 'get_users'		: $this->get_users		(); return;
 			case 'get_controls' 	: $this->get_controls	($data); return;
 			case 'get_configs'		: $this->get_configs	($data); return;
-			case 'get_contacts'		: $this->get_contacts	($data); return;
+			case 'get_companies'	: $this->get_companies	($data); return;
 			case 'get_categories'	: $this->get_categories	(); return;
 			case 'get_profile'		: $this->get_profile	(); return;
 			case 'get_contact'		: $this->get_contact	(); return;
@@ -2207,7 +2207,7 @@ private function get_configs($data) {
 }
 
 /**
- *   $.ajax({ method: get_contacts, specific: x...x);
+ *   $.ajax({ method: get_companies, specific: x...x);
  *
  *	status: ok
  *	  rows: [{ x...x: y...y, ... } (false)
@@ -2216,12 +2216,13 @@ private function get_configs($data) {
  *			]
 
  */
-private function get_contacts($data) {
+private function get_companies($data) {
 	$specific = get_data($data, 'specific');
 
 	$sql= 'SELECT * '
 		. '  FROM Contacts'
 		. ' WHERE ' . $specific . ' = "Yes"'
+		. '   AND is_company = "Yes"'
 		. ' ORDER BY full_name'
 		;
 	$db = Zend_Registry::get('db');

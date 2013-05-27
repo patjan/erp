@@ -304,8 +304,8 @@ JKY.process_insert_success = function(response) {
 	JKY.display_trace('process_insert_success');
 	JKY.display_message(response.message);
 	JKY.load_table();
-//	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
-	JKY.process_add_new();
+	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
+//	JKY.process_add_new();
 }
 
 JKY.process_update = function() {
