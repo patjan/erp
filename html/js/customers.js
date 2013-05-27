@@ -344,11 +344,12 @@ JKY.is_invalid = function(the_id) {
 			my_error += JKY.set_already_taken('Full Name');
 		}
 	}
-	if (!JKY.is_checked('is_company')
-	&& (the_id == null || the_id == 'jky-contact-company')) {
-		var my_company_id = JKY.get_value('jky-contact-company');
-		if (JKY.is_empty(my_company_id)) {
-			my_error += JKY.set_is_required('Company');
+	if (the_id == null || the_id == 'jky-contact-company') {
+		if (!JKY.is_checked('jky-is-company')) {
+			var my_company_id = JKY.get_value('jky-contact-company');
+			if (JKY.is_empty(my_company_id)) {
+				my_error += JKY.set_is_required('Company');
+			}
 		}
 	}
 	if (the_id == null || the_id == 'jky-contact-tag') {
