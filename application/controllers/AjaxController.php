@@ -27,7 +27,7 @@ public function init() {
 //	set_session('full_name' , 'Pat Jan'  );
 //	set_session('user_id'	, 4 );
 
-//	*************************************** Export rquired Support	
+//	*************************************** Export rquired Support
 //	set_permissions('Support');
 
 	if (!is_session('control_company'	))		set_session('control_company'	, COMPANY_ID			);
@@ -563,6 +563,7 @@ private function set_select($table, $select) {
 	if ($table == 'FTP_Loads'	)	$return = ' AND      FTP_Loads.ftp_id			=  ' . $select;
 	if ($table == 'FTP_Threads'	)	$return = ' AND    FTP_Threads.ftp_id			=  ' . $select;
 	if ($table == 'FTP_Sets'	)	$return = ' AND       FTP_Sets.ftp_id			=  ' . $select;
+	if ($table == 'Products'	)	$return = ' AND       Products.product_type     = "' . $select . '"';
 
 	return $return;
 }
