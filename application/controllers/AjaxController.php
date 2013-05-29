@@ -26,7 +26,9 @@ public function init() {
 //	set_session('user_role' , 'Support'  );
 //	set_session('full_name' , 'Pat Jan'  );
 //	set_session('user_id'	, 4 );
-	set_permissions('Support');
+
+//	*************************************** Export rquired Support	
+//	set_permissions('Support');
 
 	if (!is_session('control_company'	))		set_session('control_company'	, COMPANY_ID			);
 	if (!is_session('user_time'			))		set_session('user_time'			, date( 'Y-m-d H:i:s')	);

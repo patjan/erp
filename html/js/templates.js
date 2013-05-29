@@ -61,8 +61,8 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-support');
 		JKY.set_side_active('jky-support-templates');
-		JKY.set_html('jky-priority'			, JKY.set_group_set('Controls', '', 'Priorities'	));
-		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
+		JKY.set_html('jky-app-breadcrumb'	, JKY.t(jky_program));
+		JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.show('jky-side-support'		);

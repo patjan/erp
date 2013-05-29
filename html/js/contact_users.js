@@ -78,7 +78,7 @@ JKY.insert_user = function(contact_id) {
 
 JKY.insert_user_success = function(response) {
 	JKY.display_trace('insert_user_success');
-	JKY.display_message(response.message);
+//	JKY.display_message(response.message);
 }
 
 JKY.update_user = function(contact_id, user_id) {
@@ -111,7 +111,7 @@ JKY.update_user = function(contact_id, user_id) {
 
 JKY.update_user_success = function(response) {
 	JKY.display_trace('update_user_success');
-	JKY.display_message(response.message);
+//	JKY.display_message(response.message);
 }
 
 JKY.reset_user = function() {

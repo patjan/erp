@@ -7,7 +7,7 @@ var jky_program		= 'Tickets';
 var jky_table		= 'Tickets';
 var jky_select		= 'Open';
 var jky_focus		= 'jky-description';
-var jky_filter		= '';
+var jky_filter		= 'critical';
 var jky_specific	= '';
 var jky_sort_by		= 'category, description';
 var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
@@ -61,15 +61,17 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-help');
 		JKY.set_side_active('jky-help-tickets');
-		JKY.set_html('jky-app-select'		, JKY.set_group_set('Controls', jky_select, 'Ticket Status Codes', 'All'));
-		JKY.set_html('jky-priority'			, JKY.set_group_set('Controls', '', 'Priorities'			));
-		JKY.set_html('jky-category'			, JKY.set_group_set('Controls', '', 'Ticket Categories'		));
-		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
+		JKY.set_html('jky-app-breadcrumb'	, JKY.t(jky_program));
+		JKY.set_html('jky-app-select'		, JKY.set_controls('Ticket Status Codes', jky_select, 'All'));
+		JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
+		JKY.set_html('jky-category'			, JKY.set_controls('Ticket Categories', '', ''));
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.show('jky-side-help'		);
 		JKY.show('jky-app-header'		);
-		setTimeout(function() {JKY.set_option('jky-app-select', jky_select);}, 100);
+//		setTimeout(function() {JKY.set_option('jky-app-select', jky_select);}, 100);
+		JKY.set_option('jky-app-select', jky_select);
+		JKY.set_value ('jky-app-filter', jky_filter);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}

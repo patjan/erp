@@ -63,8 +63,8 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-support');
 		JKY.set_side_active('jky-support-translations');
-		JKY.set_html('jky-status'			, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
-		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
+		JKY.set_html('jky-app-breadcrumb'	, JKY.t(jky_program));
+		JKY.set_html('jky-status'			, JKY.set_controls('Status Codes', 'Active', ''));
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.show('jky-side-support'		);

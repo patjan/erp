@@ -93,12 +93,15 @@ JKY.set_all_events = function(jky_program) {
 JKY.set_initial_values = function(jky_program) {
 	JKY.display_trace('set_initial_values');
 	if (JKY.is_loaded('jky-body')) {
+		JKY.set_menu_active('jky-menu-admin');
+		
 		JKY.set_menu_active('jky-menu-sales');
 		JKY.set_menu_active('jky-menu-production');
 		JKY.set_menu_active('jky-menu-help');
-		JKY.set_menu_active('jky-menu-admin');
 		JKY.set_menu_active('jky-menu-support');
 
+		JKY.set_side_active('jky-admin-configs');
+		
 		JKY.set_side_active('jky-sales-customers');
 		JKY.set_side_active('jky-production-ftps');
 		JKY.set_side_active('jky-production-threads');
@@ -106,7 +109,6 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_side_active('jky-production-products');
 		JKY.set_side_active('jky-production-suppliers');
 		JKY.set_side_active('jky-help-tickets');
-		JKY.set_side_active('jky-admin-configs');
 		JKY.set_side_active('jky-admin-contacts');
 		JKY.set_side_active('jky-support-controls');
 		JKY.set_side_active('jky-support-permissions');
@@ -114,8 +116,10 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_side_active('jky-support-translations');
 
 		JKY.set_html('jky-app-breadcrumb'	, JKY.t(jky_program));
-		JKY.set_html('jky-app-select'		, JKY.set_group_set('Controls', jky_select, 'Ticket Status Codes', 'All'));
+		JKY.set_html('jky-app-select'		, JKY.set_configs ('Root', jky_select, ''));
+		JKY.set_html('jky-status'			, JKY.set_controls('Status Codes', 'Active', ''));
 
+		JKY.set_html('jky-app-select'		, JKY.set_group_set('Controls', jky_select, 'Ticket Status Codes', 'All'));
 		JKY.set_html('jky-state'			, JKY.set_group_set('Configs', '', 'States'   ));
 		JKY.set_html('jky-country'			, JKY.set_group_set('Configs', '', 'Countries'));
 		JKY.set_html('jky-machine'			, JKY.set_table_options('Machines', 'name', '', ''));
@@ -126,8 +130,6 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-user-role'		, JKY.set_group_set('Controls', '', 'User Roles'		));
 		JKY.set_html('jky-user-resource'	, JKY.set_group_set('Controls', '', 'User Resources'	));
 		JKY.set_html('jky-user-action'		, JKY.set_group_set('Controls', '', 'User Actions'	));
-		JKY.set_html('jky-app-select'		, JKY.set_group_set('Configs' , jky_select, 'Root'));
-		JKY.set_html('jky-status'			, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
 		JKY.set_html('jky-user-role'		, JKY.set_group_set('Controls', '', 'User Roles'));
 		JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
 		JKY.set_html('jky-contact-tag'		, JKY.set_group_set('Configs', '', 'Customer Tags', ''	));
@@ -145,11 +147,12 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_html('jky-compositions'	 , JKY.set_group_set('Configs', '', 'Thread Compositions', ''));
 		JKY.display_list();
 //		JKY.display_form(1);
+		JKY.show('jky-side-admin'		);
+		
 		JKY.hide('jky-action-export'	);
 		JKY.show('jky-side-sales'		);
 		JKY.show('jky-side-production'	);
 		JKY.show('jky-side-help'		);
-		JKY.show('jky-side-admin'		);
 		JKY.show('jky-side-support'		);
 		JKY.show('jky-app-header'		);
 		setTimeout(function() {JKY.set_option('jky-app-select', jky_select);}, 100);
@@ -764,11 +767,12 @@ JKY.is_invalid = function(the_id) {
 			my_error += JKY.set_already_taken('Full Name');
 		}
 	}
-	if (!JKY.is_checked('is_company')
-	&& (the_id == null || the_id == 'jky-contact-company')) {
-		var my_company_id = JKY.get_value('jky-contact-company');
-		if (JKY.is_empty(my_company_id)) {
-			my_error += JKY.set_is_required('Company');
+	if (the_id == null || the_id == 'jky-contact-company') {
+		if (!JKY.is_checked('jky-is-company')) {
+			var my_company_id = JKY.get_value('jky-contact-company');
+			if (JKY.is_empty(my_company_id)) {
+				my_error += JKY.set_is_required('Company');
+			}
 		}
 	}
 	if (the_id == null || the_id == 'jky-contact-tag') {

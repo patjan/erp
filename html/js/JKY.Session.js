@@ -43,15 +43,26 @@ JKY.Session = function() {
 		return my_rows;
 	};
 
+	function my_get_action(the_resource) {
+		for(var i=0; i<my_session.permissions.length; i++) {
+			var my_permission = my_session.permissions[i];
+			if (my_permission.user_resource == the_resource) {
+				return my_permission.user_action;
+			}
+		}
+		return '';
+	};
+
 	$(function() {
 		my_load_values();
 	});
 
 	return {
-			load_values	: function()			{		my_load_values()		;}
-		,	save_values	: function()			{		my_save_values()		;}
-		,	set_value	: function(key, value)	{		my_session[key] = value	;}
-		,	get_value	: function(key)			{return my_session[key]			;}
-		,	has			: function(key)			{return my_session[key] ? true : false;}
+		  load_values	: function()				{		my_load_values()		;}
+		, save_values	: function()				{		my_save_values()		;}
+		, set_value		: function(key, value)		{		my_session[key] = value	;}
+		, get_value		: function(key)				{return my_session[key]			;}
+		, has			: function(key)				{return my_session[key] ? true : false;}
+		, get_action	: function(the_resource)	{return my_get_action(the_resource);}
 	};
 }();

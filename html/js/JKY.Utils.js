@@ -1290,6 +1290,28 @@ JKY.set_event_name = function(event_name) {
 	JKY.set_html('jky-event-name', event_name);
 }
 
+JKY.is_permitted = function(the_menu_id) {
+	var my_resource = '';
+			if (the_menu_id == 'jky-menu-sales'			) {my_resource = 'Menu-Sales'		;
+	}else{	if (the_menu_id == 'jky-menu-production'	) {my_resource = 'Menu-Production'	;
+	}else{	if (the_menu_id == 'jky-menu-help'			) {my_resource = 'Menu-Help'		;
+	}else{	if (the_menu_id == 'jky-menu-admin'			) {my_resource = 'Menu-Admin'		;
+	}else{	if (the_menu_id == 'jky-menu-support'		) {my_resource = 'Menu-Support'		;
+	}else{	alert('JKY.is_permitted: ' + the_menu_id);
+	}}}}}
+
+	var my_action = JKY.Session.get_action(my_resource);
+	if (my_action == '') {
+		my_action = JKY.Session.get_action('All');
+	}
+
+	if (my_action == 'All') {
+		return true;
+	}else{
+		return false;
+	}
+}
+
 /**
  * set buttons menus
  */
@@ -1297,12 +1319,14 @@ JKY.set_buttons_menus = function(menus) {
 	var my_html = '';
 	for(var i=0; i<menus.length; i++) {
 		var my_menu = menus[i];
-		my_html += '<li id="' + my_menu.id + '">'
-				+  '<a onclick="JKY.process_menu(\'' + my_menu.id + '\')" >' +  JKY.t(my_menu.label)
-//				+  '<i class="icon-' + my_menu.icon + ' icon-white"></i>' + my_menu.label
-				+  '</a>'
-				+  '</li>'
-				;
+		if (JKY.is_permitted(my_menu.id)) {
+			my_html += '<li id="' + my_menu.id + '">'
+					+  '<a onclick="JKY.process_menu(\'' + my_menu.id + '\')" >' +  JKY.t(my_menu.label)
+	//				+  '<i class="icon-' + my_menu.icon + ' icon-white"></i>' + my_menu.label
+					+  '</a>'
+					+  '</li>'
+					;
+		}
 	}
 	JKY.set_html('jky-menus', my_html);
 }
@@ -1575,6 +1599,62 @@ JKY.set_group_set = function(table, selected, group_set, initial) {
 			}
 		}
 	)
+	return my_html;
+}
+
+/**
+ * set configs
+ */
+JKY.set_configs = function(group_set, selected, initial) {
+	JKY.display_trace('set_configs: ' + group_set);
+	var my_html = '';
+	var my_rows = JKY.get_configs(group_set);
+
+	if (initial == '' ) {
+		my_html += '<option value=""   >' + initial + '</option>';
+	}else{
+		my_html += '<option value="All">' + initial + '</option>';
+	}
+	for(var i=0; i<my_rows.length; i+=1) {
+		var my_name  = my_rows[i]['name' ];
+		var my_value = my_rows[i]['value'];
+//		if (my_value == '' || group_set == 'User Roles') {
+		if (my_value == '' || my_value == 'null' || group_set == 'User Roles') {
+			my_value = my_name;
+		}
+		var my_selected = (my_name == selected) ? ' selected="selected"' : '';
+		my_html += '<option value="' + my_name + '"' + my_selected + '>' + my_value + '</option>';
+	}
+//	my_html += '<option onclick="JKY.process_option_search(this)"	class="jky-option-search"	>Search More...</option>';
+//	my_html += '<option onclick="JKY.process_option_add_new(this)"	class="jky-option-add-new"	>Add New...</option>';
+	return my_html;
+}
+
+/**
+ * set controls
+ */
+JKY.set_controls = function(group_set, selected, initial) {
+	JKY.display_trace('set_controls: ' + group_set);
+	var my_html = '';
+	var my_rows = JKY.get_controls(group_set);
+
+	if (initial == '' ) {
+		my_html += '<option value=""   >' + initial + '</option>';
+	}else{
+		my_html += '<option value="All">' + initial + '</option>';
+	}
+	for(var i=0; i<my_rows.length; i+=1) {
+		var my_name  = my_rows[i]['name' ];
+		var my_value = my_rows[i]['value'];
+//		if (my_value == '' || group_set == 'User Roles') {
+		if (my_value == '' || my_value == 'null' || group_set == 'User Roles') {
+			my_value = my_name;
+		}
+		var my_selected = (my_name == selected) ? ' selected="selected"' : '';
+		my_html += '<option value="' + my_name + '"' + my_selected + '>' + my_value + '</option>';
+	}
+//	my_html += '<option onclick="JKY.process_option_search(this)"	class="jky-option-search"	>Search More...</option>';
+//	my_html += '<option onclick="JKY.process_option_add_new(this)"	class="jky-option-add-new"	>Add New...</option>';
 	return my_html;
 }
 

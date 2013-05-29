@@ -70,9 +70,9 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_side_active('jky-sales-customers');
 		JKY.set_html('jky-app-breadcrumb'	, JKY.t(jky_program));
 		JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
-		JKY.set_html('jky-contact-tag'		, JKY.set_group_set('Configs', '', 'Customer Tags', ''	));
-		JKY.set_html('jky-state'			, JKY.set_group_set('Configs', '', 'States'		  , ''	));
-		JKY.set_html('jky-country'			, JKY.set_group_set('Configs', '', 'Countries'			));
+		JKY.set_html('jky-contact-tag'		, JKY.set_configs('Customer Tags', '', ''));
+		JKY.set_html('jky-state'			, JKY.set_configs('States'		 , '', ''));
+		JKY.set_html('jky-country'			, JKY.set_configs('Countries'	 , ''	 ));
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.hide('jky-action-export'	);
@@ -130,7 +130,7 @@ JKY.display_list = function() {
 	JKY.hide('jky-action-copy'		);
 	JKY.hide('jky-action-delete'	);
 	JKY.hide('jky-action-cancel'	);
-//	JKY.show('jky-action-publish'	);
+	JKY.hide('jky-action-publish'	);
 	JKY.show('jky-app-table'		);
 	JKY.hide('jky-app-form'			);
 	JKY.load_table();

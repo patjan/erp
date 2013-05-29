@@ -61,11 +61,11 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-support');
 		JKY.set_side_active('jky-support-permissions');
-		JKY.set_html('jky-status'			, JKY.set_group_set('Controls', 'Active', 'Status Codes' ));
-		JKY.set_html('jky-user-role'		, JKY.set_group_set('Controls', '', 'User Roles'));
-		JKY.set_html('jky-user-resource'	, JKY.set_group_set('Controls', '', 'User Resources'));
-		JKY.set_html('jky-user-action'		, JKY.set_group_set('Controls', '', 'User Actions'	));
-		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
+		JKY.set_html('jky-app-breadcrumb'	, JKY.t(jky_program));
+		JKY.set_html('jky-status'			, JKY.set_controls('Status Codes', 'Active', ''));
+		JKY.set_html('jky-user-role'		, JKY.set_controls('User Roles', '', ''));
+		JKY.set_html('jky-user-resource'	, JKY.set_controls('User Resources', '', ''));
+		JKY.set_html('jky-user-action'		, JKY.set_controls('User Actions', '', ''));
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.show('jky-side-support'		);
@@ -221,7 +221,7 @@ JKY.process_add_new = function() {
 JKY.display_new = function() {
 	jky_index = 0;
 	JKY.set_option	('jky-status'			, 'Active');
-	JKY.set_value	('jky-user-role'		, '');
+//	JKY.set_value	('jky-user-role'		, '');
 	JKY.set_value	('jky-user-resource'	, '');
 	JKY.set_value	('jky-user-action'		, '');
 	JKY.set_focus(jky_focus);

@@ -65,10 +65,10 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-admin');
 		JKY.set_side_active('jky-admin-contacts');
-		JKY.set_html('jky-user-role'		, JKY.set_group_set('Controls', '', 'User Roles'		));
-		JKY.set_html('jky-state'			, JKY.set_group_set('Configs' , '', 'States'	));
-		JKY.set_html('jky-country'			, JKY.set_group_set('Configs' , '', 'Countries'	));
-		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
+		JKY.set_html('jky-app-breadcrumb'	, JKY.t(jky_program));
+		JKY.set_html('jky-user-role'		, JKY.set_controls('User Roles', '', ''));
+		JKY.set_html('jky-state'			, JKY.set_configs('States', '', ''));
+		JKY.set_html('jky-country'			, JKY.set_configs('Countries', '', ''));
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.show('jky-side-admin'		);
