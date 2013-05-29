@@ -5,7 +5,7 @@
  */
 var jky_program		= 'Products';
 var jky_table		= 'Products';
-var jky_select		= '';
+var jky_select		= 'Tubular';
 var jky_focus		= 'jky-name';
 var jky_filter		= '';
 var jky_specific	= '';
@@ -56,6 +56,8 @@ JKY.set_all_events = function(jky_program) {
 	}
 }
 
+
+
 /**
  *	set initial values (run only once per load)
  */
@@ -64,11 +66,15 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-production');
 		JKY.set_side_active('jky-production-products');
+		JKY.set_html('jky-app-select'		, JKY.set_group_set('Configs', jky_select, 'Product Types', 'All'));
+		JKY.set_html('jky-priority'			, JKY.set_group_set('Controls', '', 'Priorities'			));
+		JKY.set_html('jky-category'			, JKY.set_group_set('Controls', '', 'Ticket Categories'		));
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.show('jky-side-production'	);
 		JKY.show('jky-app-header'		);
+		setTimeout(function() {JKY.set_option('jky-app-select', jky_select);}, 100);
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}
