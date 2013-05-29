@@ -48,6 +48,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-action-list'		).click (function() {JKY.display_list		();});
 		$('#jky-action-form'		).click (function() {JKY.display_form	   (1);});
 		$('#jky-action-save'		).click (function() {JKY.process_save		();});
+		$('#jky-action-copy'		).click (function() {JKY.process_copy		();});
 		$('#jky-action-reset'		).click (function() {JKY.reset_user			();});
 		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
 		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
@@ -336,6 +337,22 @@ JKY.process_save = function() {
 	}
 }
 
+JKY.process_copy = function() {
+	var my_data =
+		{ method: 'insert'
+		, table :  jky_table
+		, set	:  JKY.get_form_set()
+		};
+	JKY.ajax(false, my_data, JKY.process_copy_success);
+}
+
+JKY.process_copy_success = function(response) {
+	JKY.display_trace('process_copy_success');
+	JKY.display_message(response.message);
+	JKY.load_table();
+	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
+}
+
 JKY.process_insert = function() {
 	var my_data =
 		{ method: 'insert'
@@ -350,7 +367,7 @@ JKY.process_insert_success = function(response) {
 	JKY.display_message(response.message);
 	JKY.load_table();
 //	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
-	JKY.process_add_new();
+//	JKY.process_add_new();
 }
 
 JKY.process_update = function() {
