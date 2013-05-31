@@ -39,28 +39,24 @@
 .jky-app-label			{float:left; margin:14px 0 0 14px; font-weight:bold;}
 #jky-app-select			{width: 80px;}
 
-.jky-id					{width: 70px; text-align:center;}
+.jky-id					{width: 30px; text-align:center;}
 .jky-opened-at			{width: 60px; text-align:center;}
-.jky-created-at			{width: 70px; text-align:right ;}
-.jky-created-by			{width: 70px; text-align:center;}
-.jky-parent-name		{width: 100px; text-align:center;}
-.jky-parent-id			{width:100px;}
-.jky-method				{width:100px;}
-.jky-resolution			{width:100px;}
+.jky-created-at			{width: 70px; text-align:center;}
+.jky-created-by			{width: 50px; text-align:center;}
+.jky-parent-name		{width: 50px; text-align:center;}
+.jky-parent-id			{width: 40px;}
+.jky-method				{width: 40px;}
+.jky-history			{width: 100px;}
 
-#jky-opened-at			{width: 80px;}
-#jky-id					{width:200px;}
-#jky-assigned-at		{width: 80px;}
-#jky-assigned-to		{width:200px;}
-#jky-closed-at			{width: 80px;}
-#jky-closed-by			{width:200px;}
-#jky-created-at			{width: 40px;}
+#jky-id					{width:140px;}
+#jky-created-at			{width:140px;}
 #jky-created-by			{width:140px;}
 #jky-parent-name		{width:140px;}
+#jky-parent-id			{width:140px;}
 #jky-photo				{float: left; margin:7px;}
 #jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
-#jky-method				{width:500px; height:100px;}
-#jky-resolution			{width:500px; height:100px;}
+#jky-method				{width:140px; height:20px;}
+#jky-history			{width:500px; height:100px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -68,11 +64,12 @@
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-id'				><span>ID				</span></th>
-			<th class='jky-created-at'		><span>Created At		</span></th>
 			<th class='jky-created-by'		><span>Created By		</span></th>
+			<th class='jky-created-at'		><span>Created At		</span></th>
 			<th class='jky-parent-name'		><span>Parent Name		</span></th>
 			<th class='jky-parent-id'		><span>Parent ID		</span></th>
 			<th class='jky-method'			><span>Method			</span></th>
+			<th class='jky-history'			><span>History			</span></th>
 		</tr>
 	</thead>
 
@@ -106,36 +103,31 @@
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>        ID</span>:</div>
 				<div class='jky-form-value'>
-					<input id='jky-opened-at' readonly />
 					<input id='jky-id' readonly />
 				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>      Created By</span>:</div>
 				<div class='jky-form-value'>
-					<input id='jky-assigned-at' readonly />
-					<input id='jky-assigned-to' readonly />
+					<input id='jky-created-by' readonly />
 				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>        Created At</span>:</div>
 				<div class='jky-form-value'>
-					<input id='jky-closed-at' readonly />
-					<input id='jky-closed-by' readonly />
+					<input id='jky-created-at' readonly />
 				</div>
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>		   Parent Name</span>:</div>
-					<input id='jky-closed-at' readonly />
-					<input id='jky-closed-by' readonly />
+					<input id='jky-parent-name' readonly />
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>		   Parent ID</span>:</div>
-					<input id='jky-closed-at' readonly />
-					<input id='jky-closed-by' readonly />
+					<input id='jky-parent-id' readonly />
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>		   Method</span>:</div>
-					<input id='jky-closed-at' readonly />
-					<input id='jky-closed-by' readonly />
+					<input id='jky-method' readonly />
 			</div>
+
 		</div>
 		<div id='jky-app-upload' class='jky-left'>
 			<div class='jky-left' style='margin-left:10px;'>
@@ -155,11 +147,8 @@
 	</div>
 		<div class='jky-clear'></div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>		Description</span>:</div>
-				<textarea id='jky-method' placeholder='Description'></textarea>
-			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>		 Resolution</span>:</div>
-				<textarea id='jky-resolution' placeholder='Resolution'></textarea>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		History</span>:</div>
+				<textarea id='jky-history' placeholder='Description'></textarea>
 			</div>
 		</div>
 		<div class='jky-clear'></div>

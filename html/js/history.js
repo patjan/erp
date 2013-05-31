@@ -156,11 +156,13 @@ JKY.process_load_success = function(response) {
 		var my_worked_hour = (my_row.worked_hour > 0) ? my_row.worked_hour : '';
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
-				+  '<td class="jky-opened-at"		>' + my_opened_date			+ '</td>'
-				+  '<td class="jky-worked-hour"		>' + my_worked_hour			+ '</td>'
-				+  '<td class="jky-priority"		>' + my_row.priority		+ '</td>'
-				+  '<td class="jky-category"		>' + my_row.category		+ '</td>'
-				+  '<td class="jky-description"		>' + my_row.description		+ '</td>'
+				+  '<td class="jky-opened-at"		>' + my_row.id			+ '</td>'
+				+  '<td class="jky-worked-hour"		>' + my_row.created_by		+ '</td>'
+				+  '<td class="jky-priority"		>' + my_row.created_at		+ '</td>'
+				+  '<td class="jky-category"		>' + my_row.parent_name		+ '</td>'
+				+  '<td class="jky-description"		>' + my_row.parent_id		+ '</td>'
+				+  '<td class="jky-description"		>' + my_row.method		+ '</td>'
+				+  '<td class="jky-description"		>' + my_row.history		+ '</td>'
 				+  '</tr>'
 				;
 	}
@@ -216,18 +218,13 @@ JKY.display_row = function(index) {
 	JKY.set_html('jky-upload-percent'	, '');
 	JKY.set_css ('jky-upload-progress', 'width', '0%');
 
-	JKY.set_value	('jky-status'			, JKY.row.status);
-	JKY.set_value	('jky-opened-at'		, JKY.short_date(JKY.row.opened_at));
-	JKY.set_value	('jky-opened-by'		, JKY.row.opened_name	);
-	JKY.set_value	('jky-assigned-at'		, JKY.short_date(JKY.row.assigned_at));
-	JKY.set_value	('jky-assigned-to'		, JKY.row.assigned_name	);
-	JKY.set_value	('jky-closed-at'		, JKY.short_date(JKY.row.closed_at));
-	JKY.set_value	('jky-closed-by'		, JKY.row.closed_name	);
-	JKY.set_value	('jky-worked-hour'		, JKY.row.worked_hour	);
-	JKY.set_value	('jky-priority'			, JKY.row.priority		);
-	JKY.set_value	('jky-category'			, JKY.row.category		);
-	JKY.set_value	('jky-description'		, JKY.row.description	);
-	JKY.set_value	('jky-resolution'		, JKY.row.resolution	);
+	JKY.set_value	('jky-id'				, JKY.row.id);
+	JKY.set_value	('jky-created-by'		, JKY.row.created_by);
+	JKY.set_value	('jky-created-at'		, JKY.row.created_at);
+	JKY.set_value	('jky-parent-name'		, JKY.row.parent_name);
+	JKY.set_value	('jky-parent-id'		, JKY.row.parent_id);
+	JKY.set_value	('jky-method'			, JKY.row.method);
+	JKY.set_value	('jky-history'			, JKY.row.history);
 	JKY.set_focus(jky_focus);
 }
 
