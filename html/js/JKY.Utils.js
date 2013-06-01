@@ -214,7 +214,7 @@ JKY.t = function(the_text) {
 	}
 	var my_result = JKY.translations[the_text];
 	if (typeof my_result == 'undefined') {
-alert('the_text: ' + the_text);
+//alert('the_text: ' + the_text);
 		my_result = '';
 		var my_names = the_text.split('<br>');
 		for (var i=0; i<my_names.length; i++) {
