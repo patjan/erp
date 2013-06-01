@@ -38,7 +38,6 @@ JKY.start_program = function() {
 		JKY.set_html('jky-app-select'		, JKY.set_controls('User Resources'	, JKY.App.get('select')));
 		JKY.show('jky-side-admin');
 	};
-
 /**
  *	set table row
  */

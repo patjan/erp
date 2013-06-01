@@ -18,8 +18,8 @@ CREATE TABLE IF NOT EXISTS FTPs
 , weight	   		INT(11)				DEFAULT 0		# Gramatura
 , width				INT(11)				DEFAULT 0		# Largura (cm)
 , lanes				INT(11)				DEFAULT 0		# Trilhos
-, yield				INT(11)				DEFAULT 0		# Rendimento
-, needling			INT(11)				DEFAULT 0		# Agulhamento
+, elasticity		INT(11)				DEFAULT 0		# Elasticidade
+, needling			VARCHAR(32)			DEFAULT NULL	# Agulhamento
 , peso				DECIMAL(5,2)		DEFAULT 0		# Peso da Peca (12.5) (Kg)
 , has_break			CHAR(3)				DEFAULT 'no'	# Tem falha
 , composition		VARCHAR(255)		DEFAULT ''		# Composicao: 96 Polyester, 4 Elastano
@@ -33,3 +33,5 @@ CREATE TABLE IF NOT EXISTS FTPs
 ;
 
 ALTER TABLE FTPs      CHANGE code	number	VARCHAR(32)	DEFAULT NULL;
+ALTER TABLE FTPs      CHANGE needling	needling	VARCHAR(32)	DEFAULT NULL;
+ALTER TABLE FTPs      CHANGE yield elasticity INT(11)	DEFAULT 0;
