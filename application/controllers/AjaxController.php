@@ -28,7 +28,12 @@ public function init() {
 //	set_session('user_id'	, 4 );
 
 //	*************************************** Export rquired Support
-//	set_permissions('Support');
+	$data = json_decode(get_request('data'), true);
+	$method = $data['method'];
+	if ($method == 'get_columns'
+	||  $method == 'export') {
+		set_permissions('Support');
+	}
 
 	if (!is_session('control_company'	))		set_session('control_company'	, COMPANY_ID			);
 	if (!is_session('user_time'			))		set_session('user_time'			, date( 'Y-m-d H:i:s')	);
@@ -534,6 +539,7 @@ private function set_specific($table, $specific) {
 //	if ($specific == 'parent_id')	$return .= ' AND Categories.parent_id = ' . get_session('parent_id');
 	if ($table == 'Contacts'		&& $specific == 'is_customer'	)	$return .= ' AND Contacts.is_customer = "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	$return .= ' AND Contacts.is_supplier = "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_company'	)	$return .= ' AND Contacts.is_company  = "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	$return .= ' AND Contacts.is_company  = "No" ';
 
 	return $return;
@@ -564,6 +570,7 @@ private function set_select($table, $select) {
 	if ($table == 'FTP_Threads'	)	$return = ' AND    FTP_Threads.ftp_id			=  ' . $select;
 	if ($table == 'FTP_Sets'	)	$return = ' AND       FTP_Sets.ftp_id			=  ' . $select;
 	if ($table == 'Products'	)	$return = ' AND       Products.product_type     = "' . $select . '"';
+	if ($table == 'History'		)	$return = ' AND        History.parent_name      = "' . $select . '"';
 
 	return $return;
 }
@@ -589,6 +596,7 @@ private function set_new_fields($table) {
 											. ', Suppliers.full_name	AS			supplier';
 	if ($table == 'FTP_Sets'	)	$return = ',   Configs.sequence		AS			sequence'
 											. ',   Configs.name			AS			name';
+	if ($table == 'History'		)	$return = ',  Contacts.full_name	AS	created_name';
 
 //	special code to append fields from Contacts to Services table
 	if (get_request('method') == 'export') {
@@ -627,6 +635,8 @@ private function set_left_joins($table) {
 	if ($table == 'FTP_Threads'	)	$return = '  LEFT JOIN     Threads  			ON   Threads.id =FTP_Threads.thread_id'
 											. '  LEFT JOIN    Contacts AS Suppliers	ON Suppliers.id =FTP_Threads.supplier_id';
 	if ($table == 'FTP_Sets'	)	$return = '  LEFT JOIN     Configs  			ON   Configs.id =	FTP_Sets.setting_id';
+	if ($table == 'History'		)	$return = '  LEFT JOIN   JKY_Users AS Users		ON   History.created_by =    Users.id'
+											. '  LEFT JOIN    Contacts				ON     Users.contact_id = Contacts.id';
 	return $return;
 }
 
@@ -915,10 +925,24 @@ private function set_where($table, $filter) {
 					return ' AND Threads.' . $name . ' IS NULL ';
 				}else{
 					return ' AND Threads.' . $name . ' LIKE ' . $value;
-			}
+				}
 			}
 		}
 
+		if ($table == 'History') {
+			if ($name == 'created_at'
+			or	$name == 'created_by'
+			or	$name == 'parent_name'
+			or	$name == 'parent_id'
+			or	$name == 'method'
+			or	$name == 'history') {
+				if ($value == '"%null%"') {
+					return ' AND History.' . $name . ' IS NULL ';
+				}else{
+					return ' AND History.' . $name . ' LIKE ' . $value;
+				}
+			}
+		}
 	}
 
 	$filter = '"%' . $filter . '%"';
@@ -1053,6 +1077,16 @@ private function set_where($table, $filter) {
 			. ' OR	Threads.thread_group	LIKE ' . $filter
 			. ' OR	Threads.thread_color	LIKE ' . $filter
 			. ' OR	Threads.composition		LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'History') {
+		$return = ' History.created_at		LIKE ' . $filter
+			. ' OR	History.created_by		LIKE ' . $filter
+			. ' OR	History.parent_name		LIKE ' . $filter
+			. ' OR	History.parent_id		LIKE ' . $filter
+			. ' OR	History.method			LIKE ' . $filter
+			. ' OR	History.history			LIKE ' . $filter
 			;
 		}
 
@@ -1905,7 +1939,7 @@ private function get_session() {
 	if (is_session('start_page'		))   $data['start_page'		] =   get_session('start_page'	);
 
 //	$data['event_name'	] = 'Event 2013';
-	$data['copyright'	] = '© 2013 JKY Software Corp';
+	$data['copyright'	] = '&#64; 2013 JKY Software Corp';
 	$data['contact_us'	] = 'Contact Us';
 	$data['language'	] = 'Portugues';
 	$data['languages'	] = array('English', 'Portugues', 'Chinese', 'Taiwanese');

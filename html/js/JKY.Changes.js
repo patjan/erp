@@ -16,15 +16,15 @@ JKY.Changes = function() {
 	var my_changes = 0;		//	number of changes applied on current transaction
 
 	/**
-	 * 
+	 *
 	 */
 	function my_set_button_save() {
 		if (my_changes == 0) {
 			JKY.disable_button('jky-action-save'	);
-			JKY.disable_button('jky-action-cancel'	);
+//			JKY.disable_button('jky-action-cancel'	);
 		}else{
 			JKY.enable_button('jky-action-save'		);
-			JKY.enable_button('jky-action-cancel'	);
+//			JKY.enable_button('jky-action-cancel'	);
 		}
 	}
 

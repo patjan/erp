@@ -1,7 +1,7 @@
 <div id='jky-app-header'>
 	<div>
 		<div id='jky-app-breadcrumb'></div>
-		<span   id='jky-app-label'><span>Status</span>: </span><select id='jky-app-select'></select>
+		<span   id='jky-app-label'><span>Parent</span>: </span><select id='jky-app-select'></select>
 		<input  id='jky-app-filter' class='search-query' type='text' placeholder='Search' />
 		<div class='jky-clear'></div>
 	</div>
@@ -37,40 +37,33 @@
 .jky-checkbox			{width: 30px; text-align:center;}
 
 .jky-app-label			{float:left; margin:14px 0 0 14px; font-weight:bold;}
-#jky-app-select			{width: 80px;}
+#jky-app-select			{width:120px;}
 
-.jky-opened-by			{width: 70px; text-align:center;}
-.jky-opened-at			{width: 60px; text-align:center;}
-.jky-worked-hour		{width: 40px; text-align:right ;}
-.jky-priority			{width: 50px; text-align:center;}
-.jky-category			{width: 70px; text-align:center;}
-.jky-description		{width:300px;}
-.jky-resolution			{width:100px;}
+.jky-created-at			{width: 60px; text-align:center;}
+.jky-created-by			{width: 80px; text-align:center;}
+.jky-parent-name		{width: 80px; text-align:right ;}
+.jky-parent-id			{width: 50px; text-align:center;}
+.jky-method				{width: 60px; text-align:center;}
+.jky-history			{width:300px;}
 
-#jky-opened-at			{width: 80px;}
-#jky-opened-by			{width:200px;}
-#jky-assigned-at		{width: 80px;}
-#jky-assigned-to		{width:200px;}
-#jky-closed-at			{width: 80px;}
-#jky-closed-by			{width:200px;}
-#jky-worked-hour		{width: 40px;}
-#jky-priority			{width:140px;}
-#jky-category			{width:140px;}
-#jky-photo				{float: left; margin:7px;}
-#jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
-#jky-description		{width:500px; height:100px;}
-#jky-resolution			{width:500px; height:100px;}
+#jky-created-at			{width: 80px;}
+#jky-created-by			{width:200px;}
+#jky-parent-name		{width:200px;}
+#jky-parent-id			{width:140px;}
+#jky-method				{width:140px;}
+#jky-history			{width:500px; height:100px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-opened-by'		><span>ID				</span></th>
-			<th class='jky-worked-hour'		><span>Created At		</span></th>
-			<th class='jky-priority'		><span>Created By		</span></th>
-			<th class='jky-category'		><span>Parent Name		</span></th>
-			<th class='jky-description'		><span>Method			</span></th>
+			<th class='jky-created-at'		><span>Created At		</span></th>
+			<th class='jky-created-by'		><span>Created By		</span></th>
+			<th class='jky-parent-name'		><span>Parent Name		</span></th>
+			<th class='jky-parent-id'		><span>Parent ID		</span></th>
+			<th class='jky-method'			><span>Method			</span></th>
+			<th class='jky-history'			><span>History			</span></th>
 		</tr>
 	</thead>
 
@@ -102,58 +95,26 @@
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>        Opened</span>:</div>
+				<div class='jky-form-label'><span>      Created</span>:</div>
 				<div class='jky-form-value'>
-					<input id='jky-opened-at' readonly />
-					<input id='jky-opened-by' readonly />
+					<input id='jky-created-at' readonly />
+					<input id='jky-created-by' readonly />
 				</div>
 			</div>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>      Assigned</span>:</div>
-				<div class='jky-form-value'>
-					<input id='jky-assigned-at' readonly />
-					<input id='jky-assigned-to' readonly />
-				</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	  Parent Name</span>:</div>
+				<select id='jky-parent-name'></select>
 			</div>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>        Closed</span>:</div>
-				<div class='jky-form-value'>
-					<input id='jky-closed-at' readonly />
-					<input id='jky-closed-by' readonly />
-				</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>       Parent ID</span>:</div>
+				<input id='jky-parent-id' type='number' />
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>		   Priority</span>:</div>
-				<select id='jky-priority'></select>
-			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>		   Category</span>:</div>
-				<select id='jky-category'></select>
-			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>			 Worked</span>:</div>
-				<input id='jky-worked-hour' type='number' /> (hour)
-			</div>
-		</div>
-		<div id='jky-app-upload' class='jky-left'>
-			<div class='jky-left' style='margin-left:10px;'>
-				<div id='jky-download-photo'  ></div>
-				<a id='jky-upload-photo'  ><span>Upload Photo  </span></a>
-			</div>
-			<div class='jky-clear'></div>
-			<div style='margin-left:10px;'>
-				<div>
-					<span>Progress</span>:
-					<span id='jky-upload-percent'></span>
-					<span id='jky-upload-name'></span>
-				</div>
-				<div class='progress progress-striped active'><div id='jky-upload-progress' class='bar'></div></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		   Method</span>:</div>
+				<select id='jky-method'></select>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>		Description</span>:</div>
-				<textarea id='jky-description' placeholder='Description'></textarea>
-			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>		 Resolution</span>:</div>
-				<textarea id='jky-resolution' placeholder='Resolution'></textarea>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  		 History</span>:</div>
+				<textarea id='jky-history' placeholder='History'></textarea>
 			</div>
 		</div>
 		<div class='jky-clear'></div>

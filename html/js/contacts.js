@@ -3,447 +3,163 @@
 /**
  * contacts.html
  */
-var jky_program		= 'Contacts';
-var jky_table		= 'Contacts';
-var jky_select		= 'All';
-var jky_focus		= 'jky-first-name';
-var jky_filter		= '';
-var jky_specific	= 'is_contact';
-var jky_sort_by		= 'full_name';
-var jky_sort_seq	=  0;				//	0=ASC, -1=DESC
-
-var jky_count		=  0;
-var jky_index		=  0;				//	0=Add New
-
-JKY.rows		= [];
-JKY.row 		= null;
 
 /**
  * start program
  */
-JKY.start_program = function(action) {
-	JKY.display_trace('start_program - ' + jky_program);
-	JKY.set_all_events(jky_program);
-	JKY.set_initial_values(jky_program);
-}
+JKY.start_program = function() {
+	JKY.App = JKY.Application;
+	JKY.App.set(
+		{ object_name	: 'JKY.App'
+		, program_name	: 'Contacts'
+		, table_name	: 'Contacts'
+		, specific		: 'is_contact'
+		, select		: 'All'
+		, filter		: ''
+		, sort_by		: 'full_name'
+		, sort_seq		: 'ASC'
+		, focus			: 'jky-first-name'
+		});
+	JKY.App.init();
+
+	JKY.Photo = JKY.Upload.create(
+		{ object_name	: 'JKY.Photo'
+		, table_name	: 'Contacts'
+		, directory		: 'contacts'
+		, field_name	: 'photo'
+		, title			: 'Photo files'
+		, extensions	: 'jpg,gif,png'
+		, button_id		: 'jky-upload-photo'
+		, filename_id	: 'jky-upload-name'
+		, percent_id	: 'jky-upload-percent'
+		, progress_id	: 'jky-upload-progress'
+		, img_id		: 'jky-photo-img'
+		, download_id	: 'jky-download-photo'
+		});
+};
 
 /**
  *	set all events (run only once per load)
  */
-JKY.set_all_events = function(jky_program) {
-	JKY.display_trace('set_all_events');
-	if (JKY.is_loaded('jky-body')) {
-		$('#jky-app-select'			).change(function() {JKY.change_select  (this);});
-		$('#jky-app-filter'			).change(function() {JKY.change_filter  (this);});
-		$('#jky-action-add-new'		).click (function() {JKY.process_add_new	();});
-		$('#jky-action-print'		).click (function() {JKY.process_print		();});
-		$('#jky-action-save'		).click (function() {JKY.process_save		();});
-		$('#jky-action-reset'		).click (function() {JKY.reset_user			();});
-		$('#jky-action-delete'		).click (function() {JKY.process_delete		();});
-		$('#jky-action-cancel'		).click (function() {JKY.process_cancel		();});
-		$('#jky-action-export'		).click (function() {JKY.process_export		();});
-		$('#jky-action-publish'		).click (function() {JKY.process_publish	();});
-		$('#jky-action-prev'		).click (function() {JKY.display_prev		();});
-		$('#jky-action-next'		).click (function() {JKY.display_next		();});
-		$('#jky-action-list'		).click (function() {JKY.display_list		();});
-		$('#jky-action-form'		).click (function() {JKY.display_form	   (1);});
-		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
-		$('#jky-check-all'			).click (function() {JKY.set_all_check  (this);});
-
-		$('#jky-user-name'			).change(function() {JKY.verify_user_name	();});
-		$('#jky-save-address'		).click (function() {JKY.save_address		();});
-	}else{
-		setTimeout(function() {JKY.set_all_events();}, 100);
-	}
-}
+	JKY.set_all_events = function() {
+		$('#jky-action-reset').click(function()	{JKY.reset_user  ();});
+		$('#jky-save-address').click(function()	{JKY.save_address();});
+	};
 
 /**
  *	set initial values (run only once per load)
  */
-JKY.set_initial_values = function(jky_program) {
-	JKY.display_trace('set_initial_values');
-	if (JKY.is_loaded('jky-body')) {
+	JKY.set_initial_values = function() {
 		JKY.set_menu_active('jky-menu-admin');
 		JKY.set_side_active('jky-admin-contacts');
-		JKY.set_html('jky-app-breadcrumb'	, JKY.t(jky_program));
-		JKY.set_html('jky-user-role'		, JKY.set_controls('User Roles', '', ''));
-		JKY.set_html('jky-state'			, JKY.set_configs('States', '', ''));
-		JKY.set_html('jky-country'			, JKY.set_configs('Countries', '', ''));
-		JKY.display_list();
-//		JKY.display_form(1);
-		JKY.show('jky-side-admin'		);
-		JKY.show('jky-app-header'		);
-	}else{
-		setTimeout(function() {JKY.set_initial_values();}, 100);
-	}
-}
-
-JKY.change_select = function(event){
-	jky_select = event.value;
-	JKY.display_trace('change_select: ' + jky_select);
-	JKY.display_list();
-}
-
-JKY.change_filter = function(event){
-	jky_filter = event.value;
-	JKY.display_trace('change_filter: ' + jky_filter);
-	JKY.display_list();
-}
-
-JKY.display_prev = function() {
-	jky_index = (jky_index == 1) ? jky_count : (jky_index-1);
-	JKY.display_row(jky_index);
-}
-
-JKY.display_next = function() {
-	jky_index = (jky_index == jky_count) ? 1 : (jky_index+1);
-	JKY.display_row(jky_index);
-}
-
-JKY.set_all_check = function(the_index) {
-	if ($(the_index).is(':checked')) {
-		$('#jky-table-body .jky-checkbox input').each(function() {$(this).attr('checked', 'checked');})
-	}else{
-		$('#jky-table-body .jky-checkbox input').each(function() {$(this).removeAttr('checked');})
-	}
-}
-
-JKY.set_checkbox = function(the_index) {
-	JKY.skip_form = true;
-}
-
-JKY.display_list = function() {
-//	JKY.show('jky-app-filter'		);
-	JKY.show('jky-app-more'			);
-	JKY.hide('jky-app-navs'			);
-	JKY.hide('jky-app-add-new'		);
-	JKY.show('jky-app-counters'		);
-	JKY.show('jky-action-add-new'	);
-	JKY.hide('jky-action-print'		);
-	JKY.hide('jky-action-save'		);
-	JKY.hide('jky-action-copy'		);
-	JKY.hide('jky-action-delete'	);
-	JKY.hide('jky-action-cancel'	);
-//	JKY.show('jky-action-publish'	);
-	JKY.show('jky-app-table'		);
-	JKY.hide('jky-app-form'			);
-	JKY.load_table();
-}
-
-JKY.load_table = function() {
-	JKY.show('jky-loading');
-	var my_order_by = jky_sort_by + ' ' + (jky_sort_seq == 0 ? 'ASC' : 'DESC');
-	var my_data =
-		{ method	: 'get_index'
-		, table		: jky_table
-		, select	: jky_select
-		, filter	: jky_filter
-		, specific	: jky_specific
-		, order_by	: my_order_by
-		};
-	JKY.ajax(false, my_data, JKY.process_load_success);
-}
-
-JKY.process_load_success = function(response) {
-	JKY.display_trace('process_load_success');
-	JKY.rows	= response.rows;
-	jky_count	= JKY.rows.length;
-	jky_index	= 1;
-	var my_html = '';
-	for(var i=0; i<jky_count; i++) {
-		var my_row = JKY.rows[i];
-		var my_checkbox = '<input type="checkbox" onclick="JKY.set_checkbox(this)" row_id=' + my_row.id + ' />';
-		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
-				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
-				+  '<td class="jky-full-name"		>' + my_row.full_name		+ '</td>'
-				+  '<td class="jky-mobile"			>' + my_row.mobile			+ '</td>'
-				+  '<td class="jky-email"			>' + my_row.email			+ '</td>'
-				+  '<td class="jky-user-name"		>' + my_row.user_name		+ '</td>'
-				+  '<td class="jky-user-role"		>' + my_row.user_role		+ '</td>'
-				+  '</tr>'
-				;
-	}
-	JKY.set_html('jky-app-index', jky_index);
-	JKY.set_html('jky-app-count', jky_count);
-	JKY.set_html('jky-table-body', my_html );
-	JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
-	JKY.hide('jky-loading');
-}
-
-JKY.display_form = function(index) {
-	if (JKY.skip_form) {
-		JKY.skip_form = false;
-		return;
-	}
-//	JKY.show('jky-app-filter'		);
-	JKY.hide('jky-app-more'			);
-	JKY.show('jky-app-navs'			);
-	JKY.hide('jky-app-add-new'		);
-	JKY.show('jky-app-counters'		);
-	JKY.show('jky-action-add-new'	);
-	JKY.hide('jky-action-print'		);
-	JKY.show('jky-action-save'		);
-	JKY.show('jky-action-reset'		);
-	JKY.hide('jky-action-copy'		);
-	JKY.hide('jky-action-delete'	);
-	JKY.show('jky-action-cancel'	);
-	JKY.hide('jky-app-table'		);
-	JKY.show('jky-app-form'			);
-	JKY.show('jky-app-upload'		);
-	JKY.display_row(index);
-}
-
-JKY.display_row = function(index) {
-	JKY.show('jky-form-tabs');
-	jky_index = index;
-	JKY.row = JKY.get_row(jky_table, JKY.rows[index-1]['id']);
-	JKY.rows[index-1] = JKY.row;
-	JKY.set_html('jky-app-index', index);
-	var my_time = JKY.get_time();
-
-	var my_html = '';
-	if (JKY.row.photo == null) {
-		my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
-	}else{
-		my_html = '<a href="' + 'jky_download.php?file_name=contacts/' + JKY.row.id + '.' + JKY.row.photo + '">'
-				+ '<img id="jky-photo-img"    src="/uploads/contacts/' + JKY.row.id + '.' + JKY.row.photo + '" class="the_icon" />';
-				+ '</a>'
-				;
-	}
-	JKY.set_html('jky-download-photo', my_html);
-
-	JKY.set_html('jky-upload-name'		, '');
-	JKY.set_html('jky-upload-percent'	, '');
-	JKY.set_css ('jky-upload-progress', 'width', '0%');
-
-	JKY.set_value	('jky-first-name'		, JKY.row.first_name	);
-	JKY.set_value	('jky-last-name'		, JKY.row.last_name		);
-	JKY.set_value	('jky-mobile'			, JKY.row.mobile		);
-	JKY.set_value	('jky-email'			, JKY.row.email			);
-	JKY.set_option	('jky-company-name'		, JKY.row.company_name	);
-	JKY.set_value	('jky-user-name'		, JKY.row.user_name		);
-	JKY.set_value	('jky-user-role'		, JKY.row.user_role		);
-	JKY.set_value	('jky-street1'			, JKY.row.street1		);
-	JKY.set_value	('jky-street2'			, JKY.row.street2		);
-	JKY.set_value	('jky-city'				, JKY.row.city			);
-	JKY.set_value	('jky-zip'				, JKY.row.zip			);
-	JKY.set_option	('jky-state'			, JKY.row.state			);
-	JKY.set_option	('jky-country'			, JKY.row.country		);
-	JKY.set_value	('jky-website'			, JKY.row.website		);
-
-	if (JKY.is_empty(JKY.row.user_id)) {
-		JKY.hide('jky-action-reset');
-	}else{
-		JKY.show('jky-action-reset');
-	}
-	JKY.set_focus(jky_focus);
-}
-
-JKY.process_add_new = function() {
-	JKY.hide('jky-form-tabs');
-//	JKY.hide('jky-app-filter'		);
-	JKY.hide('jky-app-more'			);
-	JKY.hide('jky-app-navs'			);
-	JKY.show('jky-app-add-new'		);
-	JKY.hide('jky-app-counters'		);
-	JKY.hide('jky-action-add-new'	);
-	JKY.hide('jky-action-print'		);
-	JKY.show('jky-action-save'		);
-	JKY.hide('jky-action-reset'		);
-	JKY.hide('jky-action-copy'		);
-	JKY.hide('jky-action-delete'	);
-	JKY.show('jky-action-cancel'	);
-	JKY.hide('jky-app-table'		);
-	JKY.show('jky-app-form'			);
-	JKY.hide('jky-app-upload'		);
-	JKY.display_new();
-}
-
-JKY.display_new = function() {
-	jky_index = 0;
-	JKY.set_value	('jky-first-name'		, '');
-	JKY.set_value	('jky-last-name'		, '');
-	JKY.set_value	('jky-mobile'			, '');
-	JKY.set_value	('jky-email'			, '');
-	JKY.set_option	('jky-company-name'		, '');
-	JKY.set_value	('jky-user-name'		, '');
-	JKY.set_value	('jky-user-role'		, '');
-
-	JKY.set_value	('jky-street1'			, '');
-	JKY.set_value	('jky-street2'			, '');
-	JKY.set_value	('jky-city'				, '');
-	JKY.set_value	('jky-zip'				, '');
-	JKY.set_option	('jky-state'			, 'SP');
-	JKY.set_option	('jky-country'			, 'Brasil');
-	JKY.set_value	('jky-website'			, '');
-
-	JKY.set_focus(jky_focus);
-}
-
-JKY.get_form_set = function() {
-	var my_set = ''
-		+      'first_name=\'' + JKY.get_value	('jky-first-name'		) + '\''
-		+     ', last_name=\'' + JKY.get_value	('jky-last-name'		) + '\''
-		+        ', mobile=\'' + JKY.get_value	('jky-mobile'			) + '\''
-		+         ', email=\'' + JKY.get_value	('jky-email'			) + '\''
-		+     ', full_name=\'' + JKY.get_value	('jky-first-name') + ' ' + JKY.get_value('jky-last-name') +'\''
-		;
-	return my_set;
-}
-
-JKY.process_save = function() {
-	if (!JKY.verify_input()) {
-		return;
-	}
-
-	if (jky_index == 0) {
-		JKY.process_insert();
-	}else{
-		JKY.process_update();
-	}
-}
-
-JKY.process_insert = function() {
-	var my_data =
-		{ method: 'insert'
-		, table :  jky_table
-		, set	:  JKY.get_form_set()
-		};
-	JKY.ajax(false, my_data, JKY.process_insert_success);
-}
-
-JKY.process_insert_success = function(response) {
-	JKY.display_trace('process_insert_success');
-	JKY.display_message(response.message);
-	JKY.insert_user(response.id);	//	only used on [Contacts]
-	JKY.load_table();
-//	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
-	JKY.process_add_new();
-}
-
-JKY.process_update = function() {
-	var my_where = 'id = ' + JKY.rows[jky_index-1]['id'];
-	var my_data =
-		{ method: 'update'
-		, table :  jky_table
-		, set	:  JKY.get_form_set()
-		, where :  my_where
-		};
-	JKY.ajax(false, my_data, JKY.process_update_success);
-}
-
-JKY.process_update_success = function(response) {
-	JKY.display_trace('process_update_success');
-	JKY.display_message(response.message);
-	JKY.update_user(response.id, JKY.row.user_id);	//	only used on [Contacts]
-	JKY.rows[jky_index-1] = JKY.get_row(jky_table, JKY.rows[jky_index-1]['id']);
-//	JKY.display_next();
-	JKY.display_row(jky_index);
-}
-
-JKY.process_delete = function() {
-	JKY.display_confirm(JKY.delete_confirmed, null, 'Delete', 'You requested to <b>delete</b> this record. <br>Are you sure?', 'Yes', 'No');
-}
-
-JKY.delete_confirmed = function() {
-	var my_id = JKY.row.id;
-
-	var my_data =
-		{ method: 'delete'
-		, table :  jky_table
-		, where : 'id = ' + my_id
-		};
-	JKY.ajax(false, my_data, JKY.process_delete_success);
-}
-
-JKY.process_delete_success = function(response) {
-	JKY.display_trace('process_delete_success');
-	JKY.display_message(response.message);
-	JKY.delete_user(response.id, JKY.row.user_id);	//	only used on [Contacts]
-	JKY.display_list();
-}
-
-JKY.process_cancel = function() {
-	JKY.display_list();
-}
+		JKY.set_html('jky-user-role'		, JKY.set_controls('User Roles'		, '', ''));
+		JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
+		JKY.set_html('jky-country'			, JKY.set_configs ('Countries'		, '', ''));
+		JKY.show('jky-action-export');
+		JKY.show('jky-side-admin');
+	};
 
 /**
- * process export
+ *	set table row
  */
-JKY.process_export = function() {
-	var my_sort_by = jky_sort_by;
-	if (jky_sort_seq < 0 ) {
-		my_sort_by += ' DESC';
-	}
-	JKY.run_export(jky_table, jky_select, jky_filter, jky_specific, my_sort_by);
-};
+	JKY.set_table_row = function(the_row) {
+		var my_html = ''
+			+  '<td class="jky-full-name"		>' + the_row.full_name		+ '</td>'
+			+  '<td class="jky-mobile"			>' + the_row.mobile			+ '</td>'
+			+  '<td class="jky-email"			>' + the_row.email			+ '</td>'
+			+  '<td class="jky-user-name"		>' + the_row.user_name		+ '</td>'
+			+  '<td class="jky-user-role"		>' + the_row.user_role		+ '</td>'
+			;
+		return my_html;
+	};
 
-$( function() {
-//	upload photo -------------------------------------------------------------
-	JKY.photo = new plupload.Uploader(
-		{ browse_button	: 'jky-upload-photo'
-		, runtimes		: 'html5,flash'
-		, url			: 'plupload.php'
-		, flash_swf_url	: 'swf/plupload.flash.swf'
-		, filters		:[{title:"Photo files", extensions:"jpg,gif,png"}]
-		}
-	);
+/**
+ *	set form row
+ */
+	JKY.set_form_row = function(the_row) {
+		JKY.set_value	('jky-first-name'		, the_row.first_name	);
+		JKY.set_value	('jky-last-name'		, the_row.last_name		);
+		JKY.set_value	('jky-mobile'			, the_row.mobile		);
+		JKY.set_value	('jky-email'			, the_row.email			);
+		JKY.set_option	('jky-company-name'		, the_row.company_name	);
+		JKY.set_value	('jky-user-name'		, the_row.user_name		);
+		JKY.set_value	('jky-user-role'		, the_row.user_role		);
+		JKY.set_value	('jky-street1'			, the_row.street1		);
+		JKY.set_value	('jky-street2'			, the_row.street2		);
+		JKY.set_value	('jky-city'				, the_row.city			);
+		JKY.set_value	('jky-zip'				, the_row.zip			);
+		JKY.set_option	('jky-state'			, the_row.state			);
+		JKY.set_option	('jky-country'			, the_row.country		);
+		JKY.set_value	('jky-website'			, the_row.website		);
 
-	JKY.photo.bind('Init', function(up, params) {});
-
-	JKY.photo.bind('FilesAdded', function(up, files) {
-		JKY.show('jky_loading');
-		$.each(files, function(i, file) {
-			JKY.set_html('jky-upload-name', file.name);
-			JKY.saved_name = file.name;
-			file.name = 'contacts.' + JKY.row.id + '.' + JKY.saved_name;
-		});
-		up.refresh();			//	reposition Flash/Silverlight
-		setTimeout('JKY.photo.start()', 100);
-	});
-
-	JKY.photo.bind('UploadProgress', function(up, file) {
-		JKY.set_html('jky-upload-percent', file.percent + '%');
-		JKY.set_css ('jky-upload-progress', 'width', file.percent + '%');
-	});
-
-	JKY.photo.bind('FileUploaded', function(up, file) {
-		JKY.display_message('File ' + JKY.saved_name + ' uploaded');
-		JKY.set_html('jky-upload-percent', '100%');
-
-		var my_file_name = $('#jky-upload-name').text();
-		var my_file_size = file.size;
-		var my_data = {command:'file_uploaded', file_name:my_file_name, file_size:my_file_size};
-//		$.ajax({async:false, cache:true, type:'post', dataType:'json', url:'fuploads/ajax', data:my_data}).success(function(data) {});
-
-		var my_data = {command:'end_upload'};
-//		$.ajax({async:true , cache:true, type:'post', dataType:'json', url:'fuploads/ajax', data:my_data}).success(function(data) {});
-
-		var my_file_type = JKY.get_file_type(JKY.saved_name);
-		JKY.saved_name = JKY.row.id + '.' + my_file_type;
 		var my_time = new Date();
-		var my_html = '<a href="' + 'jky_download.php?file_name=contacts/' + JKY.row.id + '.' + my_file_type + '">'
-					+ '<img id="jky-photo-img"    src="/uploads/contacts/' + JKY.row.id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
+		var my_html = '';
+		if (JKY.row.photo == null) {
+			my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
+		}else{
+			my_html = '<a href="' + 'jky_download.php?file_name=contacts/' + JKY.row.id + '.' + JKY.row.photo + '">'
+					+ '<img id="jky-photo-img"    src="/uploads/contacts/' + JKY.row.id + '.' + JKY.row.photo + '?time=' + my_time.getTime() + '" class="the_icon" />';
 					+ '</a>'
 					;
-		JKY.set_html('jky-download-photo', my_html);
+		}
+		JKY.set_html('jky-download-photo'	, my_html);
+		JKY.set_html('jky-upload-name'		, '');
+		JKY.set_html('jky-upload-percent'	, '');
+		JKY.set_css ('jky-upload-progress'	, 'width', '0%');
 
-		var my_data =
-			{ method: 'update'
-			, table :  jky_table
-			, set	:  'photo=\'' + my_file_type + '\''
-			, where :  'id=' + JKY.row.id
-			};
-		JKY.ajax(false, my_data);
+		if (JKY.is_empty(the_row.user_id)) {
+			JKY.hide('jky-action-reset');
+		}else{
+			JKY.show('jky-action-reset');
+		}
+	};
 
-		JKY.hide('jky_loading');
-	});
+/**
+ *	set add new row
+ */
+	JKY.set_add_new_row = function() {
+		JKY.set_value	('jky-first-name'		, '');
+		JKY.set_value	('jky-last-name'		, '');
+		JKY.set_value	('jky-mobile'			, '');
+		JKY.set_value	('jky-email'			, '');
+		JKY.set_option	('jky-company-name'		, '');
+		JKY.set_value	('jky-user-name'		, '');
+		JKY.set_value	('jky-user-role'		, '');
+		JKY.set_value	('jky-street1'			, '');
+		JKY.set_value	('jky-street2'			, '');
+		JKY.set_value	('jky-city'				, '');
+		JKY.set_value	('jky-zip'				, '');
+		JKY.set_option	('jky-state'			, 'SP');
+		JKY.set_option	('jky-country'			, 'Brasil');
+		JKY.set_value	('jky-website'			, '');
+	};
 
-	JKY.photo.bind('Error', function(up, error) {
-		JKY.show('jky_loading');
-		JKY.display_message('error: ' + error.code + '<br>message: ' + error.message + (error.file ? '<br> file: ' + error.file.name : ''));
-		up.refresh();			//	reposition Flash/Silverlight
-	});
+/**
+ *	get form set
+ */
+	JKY.get_form_set = function() {
+		var my_set = ''
+			+      'first_name=\'' + JKY.get_value	('jky-first-name'		) + '\''
+			+     ', last_name=\'' + JKY.get_value	('jky-last-name'		) + '\''
+			+        ', mobile=\'' + JKY.get_value	('jky-mobile'			) + '\''
+			+         ', email=\'' + JKY.get_value	('jky-email'			) + '\''
+			+     ', full_name=\'' + JKY.get_value	('jky-first-name') + ' ' + JKY.get_value('jky-last-name') +'\''
+			;
+		return my_set;
+	};
 
-	JKY.photo.init();
-});
+	JKY.display_form = function() {
+		JKY.show('jky-action-reset');
+	};
+
+	JKY.process_insert = function(the_id) {
+		JKY.insert_user(the_id);
+	};
+
+	JKY.process_update = function(the_id, the_row) {
+		JKY.update_user(the_id, the_row.user_id);
+	};
+
+	JKY.process_delete = function(the_id, the_row) {
+		JKY.delete_user(the_id, the_row.user_id);
+	};
