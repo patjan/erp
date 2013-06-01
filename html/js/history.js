@@ -62,7 +62,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.set_menu_active('jky-menu-admin');
 		JKY.set_side_active('jky-admin-history');
 		JKY.set_html('jky-app-breadcrumb'	, JKY.t(jky_program));
-		JKY.set_html('jky-app-select'		, JKY.set_controls('Ticket Status Codes', jky_select, 'All'));
+		JKY.set_html('jky-app-select'		, JKY.set_controls('User Resources', jky_select, 'All'));
 		JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
 		JKY.set_html('jky-category'			, JKY.set_controls('Ticket Categories', '', ''));
 		JKY.display_list();
@@ -156,13 +156,13 @@ JKY.process_load_success = function(response) {
 		var my_worked_hour = (my_row.worked_hour > 0) ? my_row.worked_hour : '';
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
 				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
-				+  '<td class="jky-opened-at"		>' + my_row.id			+ '</td>'
-				+  '<td class="jky-worked-hour"		>' + my_row.created_by		+ '</td>'
-				+  '<td class="jky-priority"		>' + my_row.created_at		+ '</td>'
-				+  '<td class="jky-category"		>' + my_row.parent_name		+ '</td>'
-				+  '<td class="jky-description"		>' + my_row.parent_id		+ '</td>'
-				+  '<td class="jky-description"		>' + my_row.method		+ '</td>'
-				+  '<td class="jky-description"		>' + my_row.history		+ '</td>'
+				+  '<td class="jky-id"		>' + my_row.id			+ '</td>'
+				+  '<td class="jky-created-by"		>' + my_row.created_by		+ '</td>'
+				+  '<td class="jky-created-at"		>' + my_row.created_at		+ '</td>'
+				+  '<td class="jky-parent-name"		>' + my_row.parent_name		+ '</td>'
+				+  '<td class="jky-parent-id"		>' + my_row.parent_id		+ '</td>'
+				+  '<td class="jky-method"		>' + my_row.method		+ '</td>'
+				+  '<td class="jky-history"		>' + my_row.history		+ '</td>'
 				+  '</tr>'
 				;
 	}

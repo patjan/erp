@@ -107,6 +107,7 @@ JKY.translations =
 , "Opened":"Aberto"
 , "Opened At":"Aberto Em"
 , "Opened By":"Aberto Por"
+, "Parent":"Parente"
 , "Parent ID":"Parent ID"
 , "Parent Name":"Nome do Pai"
 , "Password":"Senha"

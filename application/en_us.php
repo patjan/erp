@@ -107,6 +107,7 @@ $translations = array
 , "Opened"=>"Opened"
 , "Opened At"=>"Opened At"
 , "Opened By"=>"Opened By"
+, "Parent"=>"Parent"
 , "Parent ID"=>"Parent ID"
 , "Parent Name"=>"Parent Name"
 , "Password"=>"Password"
