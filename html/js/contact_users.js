@@ -57,12 +57,15 @@ JKY.verify_input = function() {
 }
 
 JKY.insert_user = function(contact_id) {
-	JKY.display_trace('insert_user: ' + contact_id);
-
 	var my_first_name= JKY.get_value('jky-first-name');
 	var my_last_name = JKY.get_value('jky-last-name');
 	var my_user_name = JKY.get_value('jky-user-name');
 	var my_user_role = JKY.get_value('jky-user-role');
+	if (JKY.is_empty(my_user_name)) {
+		return;
+	}
+	JKY.display_trace('insert_user: ' + contact_id);
+
 	var my_set  =  'contact_id =   ' + contact_id
 				+ ', user_name = \'' + my_user_name + '\''
 				+ ', user_role = \'' + my_user_role + '\''
@@ -84,11 +87,9 @@ JKY.insert_user_success = function(response) {
 JKY.update_user = function(contact_id, user_id) {
 	var my_user_name = JKY.get_value('jky-user-name');
 	var my_user_role = JKY.get_value('jky-user-role');
-
 	if (JKY.is_empty(my_user_name)) {
 		return;
 	}
-
 	if (JKY.is_empty(user_id)) {
 		JKY.insert_user(contact_id);
 		user_id = JKY.get_user_id(my_user_name);
@@ -111,6 +112,28 @@ JKY.update_user = function(contact_id, user_id) {
 
 JKY.update_user_success = function(response) {
 	JKY.display_trace('update_user_success');
+//	JKY.display_message(response.message);
+}
+
+JKY.delete_user = function(contact_id, user_id) {
+	var my_user_name = JKY.get_value('jky-user-name');
+	if (JKY.is_empty(my_user_name)) {
+		return;
+	}
+
+	JKY.display_trace('delete_user: ' + contact_id + ' : ' + user_id);
+
+	var my_where = 'id = ' + user_id;
+	var my_data =
+		{ method: 'delete'
+		, table : 'JKY_Users'
+		, where : my_where
+		};
+	JKY.ajax(false, my_data, JKY.delete_user_success);
+}
+
+JKY.delete_user_success = function(response) {
+	JKY.display_trace('delete_user_success');
 //	JKY.display_message(response.message);
 }
 

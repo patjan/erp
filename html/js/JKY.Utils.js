@@ -488,6 +488,15 @@ JKY.short_date = function(the_date_time){
 }
 
 /**
+ * get text content of specific id
+ * @param	idName
+ * @return	html
+ */
+JKY.get_text = function(idName){
+	return $('#' + idName).text();
+}
+
+/**
  * get html content of specific id
  * @param	idName
  * @return	html
@@ -905,7 +914,7 @@ JKY.is_scroll_at_end = function(class_name){
  *				(  JKY.restore_data
  *				,  null
  *				, 'Leaving'
- *				, 'You have <b>unsaved</b> change(s). <br>Do you want to <b>restore</b> this screen without save it?'
+ *				, 'You have <b>unessd</b> change(s). <br>Do you want to <b>restore</b> this screen without save it?'
  *				, 'Leave Page'
  *				, 'Stay on Page'
  *				);
@@ -1122,7 +1131,8 @@ JKY.set_languages = function() {
  * @return  true | false
  */
 JKY.is_loaded = function(id_name) {
-	if ($('#' + id_name + '-loaded').length > 0) {
+	if ($('#' + id_name).length > 0
+	||  $('#' + id_name + '-loaded').length > 0) {
 		return true;
 	}else{
 		return false;
@@ -1140,6 +1150,9 @@ JKY.is_empty = function(the_string) {
 		return false;
 	}
 }
+
+
+
 
 /*
  * is checked, if specific id is checked
@@ -1610,11 +1623,14 @@ JKY.set_configs = function(group_set, selected, initial) {
 	var my_html = '';
 	var my_rows = JKY.get_configs(group_set);
 
+	if (typeof initial == 'undefined' ) {
+		my_html += '';
+	}else{
 	if (initial == '' ) {
 		my_html += '<option value=""   >' + initial + '</option>';
 	}else{
 		my_html += '<option value="All">' + initial + '</option>';
-	}
+	}}
 	for(var i=0; i<my_rows.length; i+=1) {
 		var my_name  = my_rows[i]['name' ];
 		var my_value = my_rows[i]['value'];
@@ -1638,11 +1654,14 @@ JKY.set_controls = function(group_set, selected, initial) {
 	var my_html = '';
 	var my_rows = JKY.get_controls(group_set);
 
+	if (typeof initial == 'undefined' ) {
+		my_html += '';
+	}else{
 	if (initial == '' ) {
 		my_html += '<option value=""   >' + initial + '</option>';
 	}else{
 		my_html += '<option value="All">' + initial + '</option>';
-	}
+	}}
 	for(var i=0; i<my_rows.length; i+=1) {
 		var my_name  = my_rows[i]['name' ];
 		var my_value = my_rows[i]['value'];
@@ -2008,101 +2027,3 @@ JKY.get_file_type = function(the_full_name) {
 	}
 }
 
-/* -------------------------------------------------------------------------- */
-
-/**
- * start program
- */
-JKY.start_program = function(jky_program) {
-	JKY.display_trace('start_program - ' + jky_program);
-	JKY.set_all_events(jky_program);
-	JKY.set_initial_values(jky_program);
-}
-
-/**
- *	set all events (run only once per load)
- */
-JKY.set_all_events = function(jky_program) {
-	JKY.display_trace('set_all_events');
-	if (JKY.is_loaded('jky-body')) {
-		$('#jky-app-select'		).change(function() {JKY.change_select  (this);});
-		$('#jky-app-filter'		).change(function() {JKY.change_filter  (this);});
-		$('#jky-action-add-new'	).click (function() {JKY.process_add_new	();});
-		$('#jky-action-save'	).click (function() {JKY.process_save		();});
-		$('#jky-action-delete'	).click (function() {JKY.process_delete		();});
-		$('#jky-action-cancel'	).click (function() {JKY.process_cancel		();});
-		$('#jky-action-export'	).click (function() {JKY.process_export		();});
-		$('#jky-action-publish'	).click (function() {JKY.process_publish	();});	// not needed on version 0
-		$('#jky-action-prev'	).click (function() {JKY.display_prev		();});
-		$('#jky-action-next'	).click (function() {JKY.display_next		();});
-		$('#jky-action-list'	).click (function() {JKY.display_list		();});
-		$('#jky-action-form'	).click (function() {JKY.display_form	   (1);});
-		$('#jky-action-comment'	).click (function() {JKY.process_comment	();});	// not done
-		$('#jky-check-all'		).click (function() {JKY.process_check_all	();});	// not needed on version 0
-
-		if (jky_program == 'Customers')	{$('#jky-is-company').click	(function() {JKY.display_company(this);});		}
-	}else{
-		setTimeout(function() {JKY.set_all_events();}, 100);
-	}
-}
-
-/**
- *	set initial values (run only once per load)
- */
-JKY.set_initial_values = function(jky_program) {
-	JKY.display_trace('set_initial_values');
-	if (JKY.is_loaded('jky-body')) {
-		switch(jky_program) {
-			case 'Customers'	:
-				JKY.show('jky-side-sales');
-				JKY.set_menu_active('jky-menu-sales');
-				JKY.set_side_active('jky-sales-customers');
-				JKY.set_html('jky-state'  , JKY.set_group_set('Configs', '', 'States'	));
-				JKY.set_html('jky-country', JKY.set_group_set('Configs', '', 'Countries'));
-				break;
-			case 'Machines' :
-				JKY.show('jky-side-production');
-				JKY.set_menu_active('jky-menu-production');
-				JKY.set_side_active('jky-production-machines');
-//				JKY.set_html('jky-machine-type' , JKY.set_radio('Configs', '', 'Machine Types' ));
-				JKY.set_html('jky-machine-brand', JKY.set_group_set('Configs', '', 'Machine Brands'));
-				break;
-		}
-		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
-		JKY.display_list();
-
-//		JKY.show('jky-side-sales');
-		JKY.show('jky-action-add-new');
-	}else{
-		setTimeout(function() {JKY.set_initial_values();}, 100);
-	}
-}
-
-JKY.display_list = function() {
-	JKY.load_table();
-	JKY.show('jky-app-filter'		);
-	JKY.show('jky-app-more'			);
-	JKY.hide('jky-app-navs'			);
-	JKY.hide('jky-app-add-new'		);
-	JKY.show('jky-action-add-new'	);
-	JKY.hide('jky-action-save'		);
-	JKY.hide('jky-action-delete'	);
-	JKY.hide('jky-action-cancel'	);
-	JKY.show('jky-app-table'		);
-	JKY.hide('jky-app-form'			);
-}
-
-JKY.display_form = function(index) {
-	JKY.display_row(index);
-	JKY.hide('jky-app-filter'		);
-	JKY.hide('jky-app-more'			);
-	JKY.show('jky-app-navs'			);
-	JKY.hide('jky-app-add-new'		);
-	JKY.show('jky-app-counters'		);
-	JKY.hide('jky-action-add-new'	);
-	JKY.show('jky-action-save'		);
-	JKY.show('jky-action-delete'	);
-	JKY.show('jky-action-cancel'	);
-	JKY.hide('jky-app-table'		);
-	JKY.show('jky-app-form'			);
-}
