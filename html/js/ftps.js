@@ -621,24 +621,24 @@ JKY.print_row = function(the_id) {
 		+ "<div style='width:700px; border:1px solid black;'>"
 		+ "<table>"
 		+ "<tr>"
-		+ "<td class='jky-print-label1'><span> Diameter</span>:</td><td id='jky-print-diameter'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label2'><span>    Turns</span>:</td><td id='jky-print-turns'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label3'><span>    Yield</span>:</td><td id='jky-print-yield'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>  Diameter</span>:</td><td id='jky-print-diameter'	class='jky-print-value'></td>"
+		+ "<td class='jky-print-label2'><span>     Turns</span>:</td><td id='jky-print-turns'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label3'><span>Elasticity</span>:</td><td id='jky-print-elasticity'	class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
-		+ "<td class='jky-print-label1'><span>  Density</span>:</td><td id='jky-print-density'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label2'><span>   Weight</span>:</td><td id='jky-print-weight'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label3'><span> Needling</span>:</td><td id='jky-print-needling'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>   Density</span>:</td><td id='jky-print-density'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label2'><span>    Weight</span>:</td><td id='jky-print-weight'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label3'><span>  Needling</span>:</td><td id='jky-print-needling'	class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
-		+ "<td class='jky-print-label1'><span>   Inputs</span>:</td><td id='jky-print-inputs'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label2'><span>    Width</span>:</td><td id='jky-print-width'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label3'><span>     Peso</span>:</td><td id='jky-print-peso'			class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>    Inputs</span>:</td><td id='jky-print-inputs'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label2'><span>     Width</span>:</td><td id='jky-print-width'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label3'><span>      Peso</span>:</td><td id='jky-print-peso'		class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
-		+ "<td class='jky-print-label1'><span>    Speed</span>:</td><td id='jky-print-speed'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label2'><span>    Lanes</span>:</td><td id='jky-print-lanes'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label3'><span>Has Break</span>?</td><td id='jky-print-has-break'	class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>     Speed</span>:</td><td id='jky-print-speed'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label2'><span>     Lanes</span>:</td><td id='jky-print-lanes'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label3'><span> Has Break</span>?</td><td id='jky-print-has-break'	class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "</table>"
 		+ "</div>"
@@ -669,9 +669,9 @@ JKY.print_row = function(the_id) {
 	JKY.set_html('jky-print-drawing'		, '<img id="jky-drawing-img"  src="/uploads/ftp_draws/'  + the_id + '.' + my_row.draw  + '" />');
 	JKY.set_html('jky-print-photo'			, '<img id="jky-photo-img"    src="/uploads/ftp_photos/' + the_id + '.' + my_row.photo + '" />');
 
-	JKY.set_html('jky-print-diameter'		, my_row.diameter		+ ' (cm)'	);
+	JKY.set_html('jky-print-diameter'		, my_row.diameter		+ ' (pol)'	);
 	JKY.set_html('jky-print-turns'			, my_row.turns						);
-	JKY.set_html('jky-print-yield'			, my_row.yield			+ ' (%)'	);
+	JKY.set_html('jky-print-yield'			, my_row.yield						);
 	JKY.set_html('jky-print-density'		, my_row.density					);
 	JKY.set_html('jky-print-weight'			, my_row.weight			+ ' (gr)'	);
 	JKY.set_html('jky-print-needling'		, my_row.needling					);
