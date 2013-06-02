@@ -254,7 +254,7 @@ JKY.display_row = function(index) {
 	JKY.set_value	('jky-weight'			, JKY.row.weight		);
 	JKY.set_value	('jky-width'			, JKY.row.width			);
 	JKY.set_value	('jky-lanes'			, JKY.row.lanes			);
-	JKY.set_value	('jky-yield'			, JKY.row.yield			);
+	JKY.set_value	('jky-elasticity'		, JKY.row.elasticity	);
 	JKY.set_value	('jky-needling'			, JKY.row.needling		);
 	JKY.set_value	('jky-peso'				, JKY.row.peso			);
 	JKY.set_radio	('jky-has-break'		, JKY.row.has_break		);
@@ -299,7 +299,7 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-weight'			, '0');
 	JKY.set_value	('jky-width'			, '0');
 	JKY.set_value	('jky-lanes'			, '0');
-	JKY.set_value	('jky-yield'			, '0');
+	JKY.set_value	('jky-elasticity'		, '0');
 	JKY.set_value	('jky-needling'			, '0');
 	JKY.set_value	('jky-peso'				, '12.5');
 	JKY.set_radio	('jky-has-break'		, 'No');
@@ -321,7 +321,7 @@ JKY.get_form_set = function() {
 		+        ', weight=  ' + JKY.get_value	('jky-weight'			)
 		+         ', width=  ' + JKY.get_value	('jky-width'			)
 		+         ', lanes=  ' + JKY.get_value	('jky-lanes'			)
-		+         ', yield=  ' + JKY.get_value	('jky-yield'			)
+		+    ', elasticity=  ' + JKY.get_value	('jky-elasticity'		)
 		+      ', needling=  ' + JKY.get_value	('jky-needling'			)
 		+		   ', peso=  ' + JKY.get_value	('jky-peso'				)
 		+     ', has_break=\'' + JKY.get_checked('jky-has-break'		) + '\''
@@ -621,9 +621,9 @@ JKY.print_row = function(the_id) {
 		+ "<div style='width:700px; border:1px solid black;'>"
 		+ "<table>"
 		+ "<tr>"
-		+ "<td class='jky-print-label1'><span> Diameter</span>:</td><td id='jky-print-diameter'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label2'><span>    Turns</span>:</td><td id='jky-print-turns'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label3'><span>    Yield</span>:</td><td id='jky-print-yield'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span> Diameter</span>:</td><td id='jky-print-diameter'	class='jky-print-value'></td>"
+		+ "<td class='jky-print-label2'><span> Turns</span>:</td><td id='jky-print-turns'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label3'><span> Elasticity</span>:</td><td id='jky-print-elasticity'	class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
 		+ "<td class='jky-print-label1'><span>  Density</span>:</td><td id='jky-print-density'		class='jky-print-value'></td>"
@@ -671,7 +671,7 @@ JKY.print_row = function(the_id) {
 
 	JKY.set_html('jky-print-diameter'		, my_row.diameter		+ ' (cm)'	);
 	JKY.set_html('jky-print-turns'			, my_row.turns						);
-	JKY.set_html('jky-print-yield'			, my_row.yield			+ ' (%)'	);
+	JKY.set_html('jky-print-elasticity'		, my_row.elasticity				+ 	);
 	JKY.set_html('jky-print-density'		, my_row.density					);
 	JKY.set_html('jky-print-weight'			, my_row.weight			+ ' (gr)'	);
 	JKY.set_html('jky-print-needling'		, my_row.needling					);
