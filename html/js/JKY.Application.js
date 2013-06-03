@@ -238,9 +238,8 @@ JKY.Application = function() {
 			JKY.display_trace('my_process_insert');
 
 			var my_set = '';
-			if (my_args.program_name == 'Companies') {
-				my_set = ', is_customer = \'Yes\'';
-			}
+			if (my_args.program_name == 'Customers') {my_set = ', is_customer = \'Yes\'';}
+			if (my_args.program_name == 'Suppliers') {my_set = ', is_supplier = \'Yes\'';}
 			var my_data =
 				{ method: 'insert'
 				, table :  my_args.table_name
