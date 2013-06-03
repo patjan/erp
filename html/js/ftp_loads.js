@@ -23,8 +23,8 @@ JKY.generate_loads = function(response) {
 			my_html  += ''
 				+ '<tr ftp_load_id=' + my_id + '>'
 				+ '<td class="jky-action"><a onclick="JKY.delete_load(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-				+ '<td class="jky-load-input-from"		><input  class="jky-load-input-from" type="number"	onchange="JKY.update_load(this, ' + my_id + ')" value="' + my_row.input_from + '" /></td>'
-				+ '<td class="jky-load-input-upto"		><input  class="jky-load-input-upto" type="number"	onchange="JKY.update_load(this, ' + my_id + ')" value="' + my_row.input_upto + '" /></td>'
+				+ '<td class="jky-load-input-from"		><input  class="jky-load-input-from" type="text"	onchange="JKY.update_load(this, ' + my_id + ')" value="' + my_row.input_from + '" /></td>'
+				+ '<td class="jky-load-input-upto"		><input  class="jky-load-input-upto" type="text"	onchange="JKY.update_load(this, ' + my_id + ')" value="' + my_row.input_upto + '" /></td>'
 				+ '<td class="jky-load-thread-name-1"	><select class="jky-load-thread-name-1"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_row.thread_id_1, JKY.loads, true) + '</select></td>'
 				+ '<td class="jky-load-thread-name-2"	><select class="jky-load-thread-name-2"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_row.thread_id_2, JKY.loads, true) + '</select></td>'
 				+ '<td class="jky-load-thread-name-3"	><select class="jky-load-thread-name-3"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_row.thread_id_3, JKY.loads, true) + '</select></td>'
@@ -41,7 +41,6 @@ JKY.generate_loads = function(response) {
 	if (my_rows == '') {
 		JKY.insert_load();
 	}
-
 }
 
 JKY.update_load = function(id_name, the_id) {
@@ -162,6 +161,17 @@ JKY.load_ids = function(the_id) {
 	return my_rows;
 }
 
+JKY.get_name = function(the_id, the_array) {
+	var my_name = '';
+	for( var i=0; i<the_array.length; i++) {
+		if (the_array[i].id == the_id) {
+			my_name = the_array[i].name;
+			break;
+		}
+	}
+	return my_name;
+}
+
 JKY.print_loads = function(the_id) {
 	var my_html  = '';
 	var my_data =
@@ -195,10 +205,13 @@ JKY.print_loads = function(the_id) {
 							+ '<td></td>'
 							+ '<td>' + my_input_from	+ '</td>'
 							+ '<td>' + my_input_upto	+ '</td>'
-							+ '<td>' + my_thread_id_1	+ '</td>'
-							+ '<td>' + my_thread_id_2	+ '</td>'
-							+ '<td>' + my_thread_id_3	+ '</td>'
-							+ '<td>' + my_remarks		+ '</td>'
+							+ '<td>' + JKY.get_name(my_thread_id_1, JKY.loads) + '</td>'
+							+ '<td>' + JKY.get_name(my_thread_id_2, JKY.loads) + '</td>'
+							+ '<td>' + JKY.get_name(my_thread_id_3, JKY.loads) + '</td>'
+							+ '</tr>'
+							+ '<tr>'
+							+ '<td colspan=3></td>'
+							+ '<td colspan=3>' + JKY.nl2br(my_remarks) + '</td>'
 							+ '</tr>'
 							;
 					}
@@ -210,4 +223,3 @@ JKY.print_loads = function(the_id) {
 	)
 	return my_html;
 }
-
