@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * customers.html
+ * companies.html
  */
 
 /**
