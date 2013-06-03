@@ -9,10 +9,12 @@ CREATE TABLE IF NOT EXISTS FTP_Loads
 
 , ftp_id			BIGINT				DEFAULT NULL
 
-, first_number		INT(11)				DEFAULT 0
-, first_thread_id	BIGINT				DEFAULT NULL
-, second_number		INT(11)				DEFAULT 0
-, second_thread_id	BIGINT				DEFAULT NULL
+, input_from		INT(11)				DEFAULT 0
+, input_upto		INT(11)				DEFAULT 0
+, thread_id_1		BIGINT				DEFAULT NULL
+, thread_id_2		BIGINT				DEFAULT NULL
+, thread_id_3		BIGINT				DEFAULT NULL
+, remarks			VARCHAR(255)		DEFAULT NULL
 
 , PRIMARY KEY(id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1

@@ -37,8 +37,9 @@ JKY.Application = function() {
 				$('#jky-action-delete'		).click (function() {JKY.Changes.can_leave(function() { my_process_delete		();})});
 				$('#jky-action-cancel'		).click (function() {JKY.Changes.can_leave(function() { my_process_cancel		();})});
 				$('#jky-check-all'			).click (function() {									my_set_all_check	(this);});
-				$('#jky-form-data  input[id]').each (function() {$(this).change(function() 		  {	my_process_change_input(this);});});
-				$('#jky-form-data select[id]').each (function() {$(this).change(function()		  { my_process_change_input(this);});});
+				$('#jky-form-data    input[id]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
+				$('#jky-form-data   select[id]').each (function() {$(this).change(function()	{my_process_change_input(this);});});
+				$('#jky-form-data textarea[id]').each (function() {$(this).change(function()	{my_process_change_input(this);});});
 				JKY.set_all_events();	// from caller
 			}else{
 				setTimeout(function() {my_set_all_events();}, 100);
@@ -426,10 +427,12 @@ JKY.Application = function() {
 //	});
 
 	return {version			:	'1.0.0'
-		, set				:	function(the_args)		{		my_set(the_args)			;}
-		, get				:	function(the_property)	{return my_get(the_property)		;}
-		, display_form		:	function(the_index)		{		my_display_form(the_index)	;}
-		, set_checkbox		:	function(the_index)		{		my_set_checkbox(the_index)	;}
+		, set				:	function(the_args)		{		my_set(the_args)				;}
+		, get				:	function(the_property)	{return my_get(the_property)			;}
+		, display_form		:	function(the_index)		{		my_display_form(the_index)		;}
+		, set_checkbox		:	function(the_index)		{		my_set_checkbox(the_index)		;}
+		, process_is_company:	function(the_id)		{		my_process_is_company(the_id)	;}
+
 		, init				:	function() {
 									my_set_all_events();
 									my_set_initial_values();

@@ -15,6 +15,7 @@ JKY.load_product = function() {
 		{ method	: 'get_index'
 		, table		: 'Products'
 		, filter	:  JKY.get_value('jky-search-filter')
+		, select	: 'All'
 		, display	: '10'
 		, order_by	: 'name'
 		};

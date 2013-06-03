@@ -214,7 +214,11 @@ JKY.t = function(the_text) {
 	}
 	var my_result = JKY.translations[the_text];
 	if (typeof my_result == 'undefined') {
-//alert('the_text: ' + the_text);
+
+if (JKY.Session.get_value('user_name') == 'patjan') {
+	alert('the_text: ' + the_text);
+}
+
 		my_result = '';
 		var my_names = the_text.split('<br>');
 		for (var i=0; i<my_names.length; i++) {
@@ -598,7 +602,8 @@ JKY.get_yes_no = function(id_name){
 JKY.set_yes = function(id_name, value){
 	$('#' + id_name).removeAttr('checked');
 	if (value == 'Yes') {
-		var my_command = "$('#" + id_name + "').attr('checked', 'checked');";
+//		var my_command = "$('#" + id_name + "').attr('checked', 'checked');";
+		var my_command = "$('#" + id_name + "').attr('checked', true);";
 		setTimeout(my_command, 100);
 	}
 }
@@ -619,7 +624,8 @@ JKY.get_selected_text = function(the_id){
  */
 JKY.set_check = function(id_name, value){
 	$('#' + id_name).removeAttr('checked');
-	var my_command = "$('#" + id_name + " :checkbox[value=" + value + "]').attr('checked', 'checked');";
+//	var my_command = "$('#" + id_name + " :checkbox[value=" + value + "]').attr('checked', 'checked');";
+	var my_command = "$('#" + id_name + " :checkbox[value=" + value + "]').attr('checked', true);";
 	setTimeout(my_command, 100);
 }
 
@@ -630,7 +636,8 @@ JKY.set_check = function(id_name, value){
  */
 JKY.set_radio = function(id_name, value){
 	$('#' + id_name).removeAttr('checked');
-	var my_command = "$('#" + id_name + " :radio[value=" + value + "]').attr('checked', 'checked');";
+//	var my_command = "$('#" + id_name + " :radio[value=" + value + "]').attr('checked', 'checked');";
+	var my_command = "$('#" + id_name + " :radio[value=" + value + "]').attr('checked', true);";
 	setTimeout(my_command, 100);
 }
 
@@ -680,7 +687,11 @@ JKY.set_options_array = function(the_selected, the_array, the_null) {
 		if (typeof my_id == 'undefined') {
 			my_id = my_value;
 		}
-		var my_selected = (my_value == the_selected) ? ' selected="selected"' : '';
+		if (isNaN(the_selected)) {
+			var my_selected = (my_value == the_selected) ? ' selected="selected"' : '';
+		}else{
+			var my_selected = (my_id    == the_selected) ? ' selected="selected"' : '';
+		}
 		my_options += '<option value="' + my_id + '"' + my_selected + '>' + my_value + '</option>';
      }
      return my_options;
@@ -718,7 +729,7 @@ JKY.set_radios = function() {
      for( var i=2; i<arguments.length; i++ ) {
           value = arguments[i];
           checked = (value == set_value) ? ' checked="checked"' : '';
-          radios += '<input type="radio" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + checked + '/>&nbsp;' + value + ' &nbsp; ';
+		radios += '<input type="radio" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + checked + '/>&nbsp;' + value + ' &nbsp; ';
      }
      return radios;
 }
@@ -914,7 +925,7 @@ JKY.is_scroll_at_end = function(class_name){
  *				(  JKY.restore_data
  *				,  null
  *				, 'Leaving'
- *				, 'You have <b>unessd</b> change(s). <br>Do you want to <b>restore</b> this screen without save it?'
+ *				, 'You have <b>unsaved</b> change(s). <br>Do you want to <b>restore</b> this screen without save it?'
  *				, 'Leave Page'
  *				, 'Stay on Page'
  *				);
@@ -1150,9 +1161,6 @@ JKY.is_empty = function(the_string) {
 		return false;
 	}
 }
-
-
-
 
 /*
  * is checked, if specific id is checked

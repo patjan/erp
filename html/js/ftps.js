@@ -322,7 +322,7 @@ JKY.get_form_set = function() {
 		+         ', width=  ' + JKY.get_value	('jky-width'			)
 		+         ', lanes=  ' + JKY.get_value	('jky-lanes'			)
 		+    ', elasticity=  ' + JKY.get_value	('jky-elasticity'		)
-		+      ', needling=  ' + JKY.get_value	('jky-needling'			)
+		+      ', needling=\'' + JKY.get_value	('jky-needling'			) + '\''
 		+		   ', peso=  ' + JKY.get_value	('jky-peso'				)
 		+     ', has_break=\'' + JKY.get_checked('jky-has-break'		) + '\''
 		;
@@ -638,7 +638,7 @@ JKY.print_row = function(the_id) {
 		+ "<tr>"
 		+ "<td class='jky-print-label1'><span>     Speed</span>:</td><td id='jky-print-speed'		class='jky-print-value'></td>"
 		+ "<td class='jky-print-label2'><span>     Lanes</span>:</td><td id='jky-print-lanes'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label3'><span> Has Break</span>?</td><td id='jky-print-has-break'	class='jky-print-value'></td>"
+		+ "<td class='jky-print-label3'><span>     Break</span>?</td><td id='jky-print-has-break'	class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "</table>"
 		+ "</div>"
@@ -649,7 +649,7 @@ JKY.print_row = function(the_id) {
 		+ "</table>"
 		+ "<br>"
 		+ "<table style='width:700px; border:1px solid black;'>"
-		+ "<thead><tr class='jky-print-head'><td><span>Loads</span></td><td><span>First</span></td><td><span>Thread</span></td><td><span>Second</span></td><td><span>Thread</span></td><tr><thead>"
+		+ "<thead><tr class='jky-print-head'><td><span>Loads</span></td><td><span>From</span></td><td><span>Upto</span></td><td><span>Thread 1</span></td><td><span>Thread 2</span></td><td><span>Thread 3</span></td><tr><thead>"
 		+ "<tbody id='jky-print-load-body'></table>"
 		+ "</table>"
 		+ "<br>"
@@ -680,7 +680,7 @@ JKY.print_row = function(the_id) {
 	JKY.set_html('jky-print-peso'			, my_row.peso			+ ' (Kg)'	);
 	JKY.set_html('jky-print-speed'			, my_row.speed			+ ' (rpm)'	);
 	JKY.set_html('jky-print-lanes'			, my_row.lanes						);
-	JKY.set_html('jky-print-has-break'		, JKY.t(my_row.has_break));
+	JKY.set_html('jky-print-has-break'		, JKY.t((my_row.has_break == 'No') ? 'Without' : 'With'));
 
 	JKY.set_html('jky-print-thread-body'	, JKY.print_threads	(the_id));
 	JKY.set_html('jky-print-load-body'		, JKY.print_loads	(the_id));

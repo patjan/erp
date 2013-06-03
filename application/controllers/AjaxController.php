@@ -590,8 +590,9 @@ private function set_new_fields($table) {
 											. ', Companies.full_name	AS  company_name';
 	if ($table == 'FTPs'		)	$return = ',  Products.name			AS			product'
 											. ',  Machines.name			AS			machine';
-	if ($table == 'FTP_Loads'	)	$return = ',   Thread1.name			AS    first_name'
-											. ',   Thread2.name			AS   second_name';
+	if ($table == 'FTP_Loads'	)	$return = ',   Thread1.name			AS   thread_name_1'
+											. ',   Thread2.name			AS   thread_name_2'
+											. ',   Thread3.name			AS   thread_name_3';
 	if ($table == 'FTP_Threads'	)	$return = ',   Threads.name			AS			name'
 											. ', Suppliers.full_name	AS			supplier';
 	if ($table == 'FTP_Sets'	)	$return = ',   Configs.sequence		AS			sequence'
@@ -630,8 +631,9 @@ private function set_left_joins($table) {
 											. '  LEFT JOIN    Contacts AS Companies	ON Companies.id =   Contacts.company_id';
 	if ($table == 'FTPs'		)	$return = '  LEFT JOIN    Products				ON  Products.id =		FTPs.product_id'
 											. '  LEFT JOIN    Machines				ON  Machines.id =		FTPs.machine_id';
-	if ($table == 'FTP_Loads'	)	$return = '  LEFT JOIN     Threads AS Thread1	ON   Thread1.id =  FTP_Loads.first_thread_id'
-											. '  LEFT JOIN     Threads AS Thread2	ON   Thread2.id =  FTP_Loads.second_thread_id';
+	if ($table == 'FTP_Loads'	)	$return = '  LEFT JOIN     Threads AS Thread1	ON   Thread1.id =  FTP_Loads.thread_id_1'
+											. '  LEFT JOIN     Threads AS Thread2	ON   Thread2.id =  FTP_Loads.thread_id_2'
+											. '  LEFT JOIN     Threads AS Thread3	ON   Thread3.id =  FTP_Loads.thread_id_3';
 	if ($table == 'FTP_Threads'	)	$return = '  LEFT JOIN     Threads  			ON   Threads.id =FTP_Threads.thread_id'
 											. '  LEFT JOIN    Contacts AS Suppliers	ON Suppliers.id =FTP_Threads.supplier_id';
 	if ($table == 'FTP_Sets'	)	$return = '  LEFT JOIN     Configs  			ON   Configs.id =	FTP_Sets.setting_id';
@@ -866,7 +868,7 @@ private function set_where($table, $filter) {
 			or	$name == 'weight'
 			or	$name == 'width'
 			or	$name == 'lanes'
-			or	$name == 'yield'
+			or	$name == 'elasticity'
 			or	$name == 'needling'
 			or	$name == 'peso'
 			or	$name == 'composition') {
@@ -1045,7 +1047,7 @@ private function set_where($table, $filter) {
 			. ' OR  FTPs.weight				LIKE ' . $filter
 			. ' OR  FTPs.width				LIKE ' . $filter
 			. ' OR  FTPs.lanes				LIKE ' . $filter
-			. ' OR  FTPs.yield				LIKE ' . $filter
+			. ' OR  FTPs.elasticity			LIKE ' . $filter
 			. ' OR  FTPs.needling			LIKE ' . $filter
 			. ' OR  FTPs.peso				LIKE ' . $filter
 			. ' OR  FTPs.composition		LIKE ' . $filter
@@ -1937,13 +1939,12 @@ private function get_session() {
 	if (is_session('full_name'		))   $data['full_name'		] =   get_session('full_name'	);
 	if (is_session('permissions'	))   $data['permissions'	] =   get_session('permissions'	);
 	if (is_session('start_page'		))   $data['start_page'		] =   get_session('start_page'	);
-
-//	$data['event_name'	] = 'Event 2013';
+/*
 	$data['copyright'	] = '&#64; 2013 JKY Software Corp';
 	$data['contact_us'	] = 'Contact Us';
 	$data['language'	] = 'Portugues';
 	$data['languages'	] = array('English', 'Portugues', 'Chinese', 'Taiwanese');
-
+*/
 	$obj = array();
 	$obj['status'] = 'ok';
 	$obj['data'  ] = $data;
