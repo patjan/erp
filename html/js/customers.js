@@ -18,7 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'full_name'
 		, sort_seq		: 'ASC'
-		, focus			: 'jky-full-name'
+		, focus			: 'jky-nick-name'
 		});
 	JKY.App.init();
 
@@ -63,7 +63,7 @@ JKY.start_program = function() {
  */
 	JKY.set_table_row = function(the_row) {
 		var my_html = ''
-			+  '<td class="jky-full-name"		>' + the_row.full_name		+ '</td>'
+			+  '<td class="jky-nick-name"		>' + the_row.nick_name		+ '</td>'
 			+  '<td class="jky-phone"			>' + the_row.phone			+ '</td>'
 			+  '<td class="jky-mobile"			>' + the_row.mobile			+ '</td>'
 			+  '<td class="jky-email"			>' + the_row.email			+ '</td>'
@@ -75,6 +75,7 @@ JKY.start_program = function() {
  *	set form row
  */
 	JKY.set_form_row = function(the_row) {
+		JKY.set_value	('jky-nick-name'		, the_row.nick_name		);
 		JKY.set_value	('jky-full-name'		, the_row.full_name		);
 		JKY.set_yes		('jky-is-company'		, the_row.is_company	);
 		JKY.set_option	('jky-contact-company'	, the_row.company_id	);
@@ -93,14 +94,15 @@ JKY.start_program = function() {
 		JKY.set_value	('jky-mobile'			, the_row.mobile		);
 		JKY.set_value	('jky-fax'				, the_row.fax			);
 		JKY.set_value	('jky-email'			, the_row.email			);
+		setTimeout(function() {JKY.App.process_is_company($('#jky-is-company'));}, 100);
 
 		var my_time = new Date();
 		var my_html = '';
-		if (JKY.row.photo == null) {
+		if (the_row.photo == null) {
 			my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
 		}else{
-			my_html = '<a href="' + 'jky_download.php?file_name=contacts/' + JKY.row.id + '.' + JKY.row.photo + '">'
-					+ '<img id="jky-photo-img"    src="/uploads/contacts/' + JKY.row.id + '.' + JKY.row.photo + '?time=' + my_time.getTime() + '" class="the_icon" />';
+			my_html = '<a href="' + 'jky_download.php?file_name=contacts/' + the_row.id + '.' + the_row.photo + '">'
+					+ '<img id="jky-photo-img"    src="/uploads/contacts/' + the_row.id + '.' + the_row.photo + '?time=' + my_time.getTime() + '" class="the_icon" />';
 					+ '</a>'
 					;
 		}
@@ -108,14 +110,13 @@ JKY.start_program = function() {
 		JKY.set_html('jky-upload-name'		, '');
 		JKY.set_html('jky-upload-percent'	, '');
 		JKY.set_css ('jky-upload-progress'	, 'width', '0%');
-
-		setTimeout(function() {JKY.App.process_is_company($('#jky-is-company'));}, 100);
 	};
 
 /**
  *	set add new row
  */
 	JKY.set_add_new_row = function() {
+		JKY.set_value	('jky-nick-name'		, '');
 		JKY.set_value	('jky-full-name'		, '');
 		JKY.set_yes		('jky-is-company'		, 'No');
 		JKY.set_option	('jky-contact-company'	, '');
@@ -142,7 +143,8 @@ JKY.start_program = function() {
  */
 	JKY.get_form_set = function() {
 		var my_set = ''
-			+       'full_name=\'' + JKY.get_value	('jky-full-name'		) + '\''
+			+       'nick_name=\'' + JKY.get_value	('jky-nick-name'		) + '\''
+			+     ', full_name=\'' + JKY.get_value	('jky-full-name'		) + '\''
 			+    ', is_company=\'' + JKY.get_yes_no	('jky-is-company'		) + '\''
 			+    ', company_id=  ' + JKY.get_value	('jky-contact-company'	)
 			+          ', tags=\'' + JKY.get_value	('jky-contact-tag'		) + '\''

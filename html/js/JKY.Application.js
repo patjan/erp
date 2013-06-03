@@ -354,6 +354,7 @@ JKY.Application = function() {
 	function my_is_invalid(the_id) {
 			JKY.display_trace('my_is_invalid');
 			var my_error = '';
+
 			if (JKY.is_loaded('jky-user-name') && (the_id == null || the_id == 'jky-user-name')) {
 				var my_user_name = JKY.get_value('jky-user-name');
 				if (JKY.is_empty(my_user_name)) {
@@ -367,6 +368,18 @@ JKY.Application = function() {
 					}
 				}
 			}
+
+			if (JKY.is_loaded('jky-nick-name') && (the_id == null || the_id == 'jky-nick-name')) {
+				var my_nick_name = JKY.get_value('jky-nick-name');
+				if (JKY.is_empty(my_nick_name)) {
+					my_error += JKY.set_is_required('Nick Name');
+				}
+				var my_id = JKY.get_id('Contacts', 'nick_name = \'' + my_nick_name + '\'');
+				if (!JKY.is_empty(my_id) && ( JKY.row == null || my_id != JKY.row.id)) {
+					my_error += JKY.set_already_taken('Nick Name');
+				}
+			}
+
 			if (JKY.is_loaded('jky-full-name') && (the_id == null || the_id == 'jky-full-name')) {
 				var my_full_name = JKY.get_value('jky-full-name');
 				if (JKY.is_empty(my_full_name)) {
@@ -377,6 +390,7 @@ JKY.Application = function() {
 					my_error += JKY.set_already_taken('Full Name');
 				}
 			}
+
 			if (JKY.is_loaded('jky-contact-company') && (the_id == null || the_id == 'jky-contact-company')) {
 				if (!JKY.is_checked('jky-is-company')) {
 					var my_company_id = JKY.get_value('jky-contact-company');
@@ -385,24 +399,28 @@ JKY.Application = function() {
 					}
 				}
 			}
+
 			if (JKY.is_loaded('jky-contact-tag') && (the_id == null || the_id == 'jky-contact-tag')) {
 				var my_contact_tag = JKY.get_value('jky-contact-tag');
 				if (JKY.is_empty(my_contact_tag)) {
 					my_error += JKY.set_is_required('Tag');
 				}
 			}
+
 			if (JKY.is_loaded('jky-cnpj') && (the_id == null || the_id == 'jky-cnpj')) {
 				var my_cnpj = JKY.get_value('jky-cnpj');
 				if (!JKY.is_empty(my_cnpj) && !JKY.is_numeric(my_cnpj)) {
 					my_error += JKY.set_must_be_numeric('CNPJ or CPF');
 				}
 			}
+
 			if (JKY.is_loaded('jky-ie') && (the_id == null || the_id == 'jky-ie')) {
 				var my_ie = JKY.get_value('jky-ie');
 				if (!JKY.is_empty(my_ie) && !JKY.is_numeric(my_ie)) {
 					my_error += JKY.set_must_be_numeric('IE or RG');
 				}
 			}
+
 			if (JKY.is_empty(my_error)) {
 				return false;
 			}else{

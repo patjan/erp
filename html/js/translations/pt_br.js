@@ -114,6 +114,7 @@ JKY.translations =
 , "New":"Novo"
 , "New Password":"Nova Senha"
 , "Next":"Próximo"
+, "Nick Name":"Apelido"
 , "No":"Não"
 , "Normal":"Normal"
 , "Notes":"Notas"

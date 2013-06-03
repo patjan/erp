@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS Contacts
 , is_customer		CHAR(3)				DEFAULT 'no'
 , is_taxable		CHAR(3)				DEFAULT 'yes'
 , photo				VARCHAR(255)		DEFAULT NULL
+, nick_name			VARCHAR(255)		DEFAULT NULL
 , first_name		VARCHAR(255)		DEFAULT NULL
 , last_name			VARCHAR(255)		DEFAULT NULL
 , full_name			VARCHAR(255)		DEFAULT NULL
@@ -43,6 +44,7 @@ CREATE TABLE IF NOT EXISTS Contacts
 
 , PRIMARY KEY(id)
 , KEY company	(company_id	)
+, KEY nick_name	(first_name	)
 , KEY first_name(first_name	)
 , KEY last_name	(last_name	)
 , KEY full_name (full_name	)
@@ -54,3 +56,6 @@ CREATE TABLE IF NOT EXISTS Contacts
 ALTER TABLE Contacts      ADD COLUMN is_customer    		CHAR(3)   		DEFAULT 'no'  AFTER is_company;
 ALTER TABLE Contacts      CHANGE job_position	position	VARCHAR(255)	DEFAULT NULL;
 ALTER TABLE Contacts      ADD COLUMN is_supplier    		CHAR(3)   		DEFAULT 'no'  AFTER is_customer;
+
+ALTER TABLE Contacts      ADD COLUMN nick_name				VARCHAR(255)	DEFAULT NULL  AFTER photo;
+ALTER TABLE Contacts      ADD UNIQUE KEY	 nick_name	(nick_name);
