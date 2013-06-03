@@ -165,7 +165,7 @@ JKY.start_program = function() {
 	};
 
 	JKY.display_form = function() {
-//		JKY.hide('jky-action-delete');
+		JKY.hide('jky-action-delete');
 	};
 
 	JKY.process_insert = function(the_id) {
