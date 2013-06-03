@@ -44,7 +44,7 @@ JKY.start_program = function() {
 	JKY.set_table_row = function(the_row) {
 		var my_html = ''
 			+  '<td class="jky-created-at"		>' + the_row.created_at		+ '</td>'
-			+  '<td class="jky-created-name"	>' + the_row.created_name	+ '</td>'
+			+  '<td class="jky-created-by"		>' + the_row.created_name	+ '</td>'
 			+  '<td class="jky-parent-name"		>' + the_row.parent_name	+ '</td>'
 			+  '<td class="jky-parent-id"		>' + the_row.parent_id		+ '</td>'
 			+  '<td class="jky-method"			>' + the_row.method			+ '</td>'
@@ -58,7 +58,7 @@ JKY.start_program = function() {
  */
 	JKY.set_form_row = function(the_row) {
 		JKY.set_value	('jky-created-at'		, the_row.created_at	);
-		JKY.set_value	('jky-created-name'		, the_row.created_name	);
+		JKY.set_value	('jky-created-by'		, the_row.created_name	);
 		JKY.set_value	('jky-parent-name'		, the_row.parent_name	);
 		JKY.set_value	('jky-parent-id'		, the_row.parent_id		);
 		JKY.set_value	('jky-method'			, the_row.method		);
@@ -70,7 +70,7 @@ JKY.start_program = function() {
  */
 	JKY.set_add_new_row = function() {
 		JKY.set_value	('jky-created-at'		, JKY.get_now());
-		JKY.set_value	('jky-created-name'		, JKY.Session.get_value('full_name'));
+		JKY.set_value	('jky-created-by'		, JKY.Session.get_value('full_name'));
 		JKY.set_value	('jky-parent-name'		, '');
 		JKY.set_value	('jky-parent-id'		, '');
 		JKY.set_value	('jky-method'			, '');
