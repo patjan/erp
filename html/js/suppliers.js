@@ -22,7 +22,7 @@ JKY.start_program = function() {
 		});
 	JKY.App.init();
 
-	JKY.Photo = JKY.Upload.create(
+	JKY.Photo = JKY.Upload(
 		{ object_name	: 'JKY.Photo'
 		, table_name	: 'Contacts'
 		, directory		: 'contacts'
@@ -96,6 +96,7 @@ JKY.start_program = function() {
 		JKY.set_value	('jky-email'			, the_row.email			);
 		setTimeout(function() {JKY.App.process_is_company($('#jky-is-company'));}, 100);
 
+		JKY.Photo.set_row_id(the_row.id);
 		var my_time = new Date();
 		var my_html = '';
 		if (the_row.photo == null) {
