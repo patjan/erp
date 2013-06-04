@@ -21,7 +21,6 @@ JKY.start_program = function() {
 		, focus			: 'jky-priority'
 		});
 	JKY.App.init();
-
 };
 
 /**
@@ -40,7 +39,6 @@ JKY.start_program = function() {
 		JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
 		JKY.show('jky-side-support'		);
 	};
-
 /**
  *	set table row
  */
@@ -54,16 +52,15 @@ JKY.start_program = function() {
 			;
 		return my_html;
 	};
-
 /**
  *	set form row
  */
 	JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-opened-by'		, JKY.row.opened_name	);
-	JKY.set_value	('jky-created-value'	, JKY.fix_ymd2dmy(JKY.row.created_at));
-	JKY.set_value	('jky-priority'			, JKY.row.priority		);
-	JKY.set_value	('jky-description'		, JKY.row.description	);
-	JKY.set_value	('jky-resolution'		, JKY.row.resolution	);
+	JKY.set_value	('jky-opened-by'		, the_row.opened_name	);
+	JKY.set_value	('jky-created-value'	, JKY.fix_ymd2dmy(the_row.created_at));
+	JKY.set_value	('jky-priority'			, the_row.priority		);
+	JKY.set_value	('jky-description'		, the_row.description	);
+	JKY.set_value	('jky-resolution'		, the_row.resolution	);
 	};
 
 /**
@@ -85,7 +82,6 @@ JKY.display_new = function() {
 			;
 		return my_set;
 };
-
 /**
  * process print
  */
@@ -98,10 +94,6 @@ JKY.process_print = function() {
 		})
 	}
 };
-
-JKY.print_row = function(the_id) {
-	JKY.display_message('print_row: ' + the_id);
-	};
 
 	JKY.display_form = function() {
 	};
