@@ -22,7 +22,7 @@ JKY.start_program = function() {
 		});
 	JKY.App.init();
 
-	JKY.Photo = JKY.Upload.create(
+	JKY.Photo = JKY.Upload(
 		{ object_name	: 'JKY.Photo'
 		, table_name	: 'Contacts'
 		, directory		: 'contacts'
@@ -64,7 +64,7 @@ JKY.start_program = function() {
  */
 	JKY.set_table_row = function(the_row) {
 		var my_html = ''
-			+  '<td class="jky-full-name"		>' + the_row.full_name		+ '</td>'
+			+  '<td class="jky-nick-name"		>' + the_row.nick_name		+ '</td>'
 			+  '<td class="jky-mobile"			>' + the_row.mobile			+ '</td>'
 			+  '<td class="jky-email"			>' + the_row.email			+ '</td>'
 			+  '<td class="jky-user-name"		>' + the_row.user_name		+ '</td>'
@@ -77,6 +77,7 @@ JKY.start_program = function() {
  *	set form row
  */
 	JKY.set_form_row = function(the_row) {
+		JKY.set_value	('jky-nick-name'		, the_row.nick_name		);
 		JKY.set_value	('jky-first-name'		, the_row.first_name	);
 		JKY.set_value	('jky-last-name'		, the_row.last_name		);
 		JKY.set_value	('jky-mobile'			, the_row.mobile		);
@@ -94,11 +95,11 @@ JKY.start_program = function() {
 
 		var my_time = new Date();
 		var my_html = '';
-		if (JKY.row.photo == null) {
+		if (the_row.photo == null) {
 			my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
 		}else{
-			my_html = '<a href="' + 'jky_download.php?file_name=contacts/' + JKY.row.id + '.' + JKY.row.photo + '">'
-					+ '<img id="jky-photo-img"    src="/uploads/contacts/' + JKY.row.id + '.' + JKY.row.photo + '?time=' + my_time.getTime() + '" class="the_icon" />';
+			my_html = '<a href="' + 'jky_download.php?file_name=contacts/' + the_row.id + '.' + the_row.photo + '">'
+					+ '<img id="jky-photo-img"    src="/uploads/contacts/' + the_row.id + '.' + the_row.photo + '?time=' + my_time.getTime() + '" class="the_icon" />';
 					+ '</a>'
 					;
 		}
@@ -118,6 +119,7 @@ JKY.start_program = function() {
  *	set add new row
  */
 	JKY.set_add_new_row = function() {
+		JKY.set_value	('jky-nick-name'		, '');
 		JKY.set_value	('jky-first-name'		, '');
 		JKY.set_value	('jky-last-name'		, '');
 		JKY.set_value	('jky-mobile'			, '');
@@ -139,7 +141,8 @@ JKY.start_program = function() {
  */
 	JKY.get_form_set = function() {
 		var my_set = ''
-			+      'first_name=\'' + JKY.get_value	('jky-first-name'		) + '\''
+			+       'nick_name=\'' + JKY.get_value	('jky-nick-name'		) + '\''
+			+    ', first_name=\'' + JKY.get_value	('jky-first-name'		) + '\''
 			+     ', last_name=\'' + JKY.get_value	('jky-last-name'		) + '\''
 			+        ', mobile=\'' + JKY.get_value	('jky-mobile'			) + '\''
 			+         ', email=\'' + JKY.get_value	('jky-email'			) + '\''

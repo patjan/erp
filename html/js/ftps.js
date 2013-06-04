@@ -600,7 +600,7 @@ JKY.print_row = function(the_id) {
 	var my_row = JKY.get_row(jky_table, the_id);
 //window.print();
 	var my_html = ''
-		+ "<h3>" + JKY.Session.get_value('company_name') + '</h3p>'
+		+ "<h3>" + JKY.Session.get_value('company_name') + '</h3>'
 		+ "<table style='width:700px; border:1px solid black;'>"
 		+ "<tr>"
 
@@ -686,5 +686,6 @@ JKY.print_row = function(the_id) {
 	JKY.set_html('jky-print-load-body'		, JKY.print_loads	(the_id));
 	JKY.set_html('jky-print-setting-body'	, JKY.print_settings(the_id));
 
+//	JKY.show('jky-printable');
 	$("#jky-printable").print();
 }

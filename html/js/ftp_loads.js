@@ -211,7 +211,7 @@ JKY.print_loads = function(the_id) {
 							+ '</tr>'
 							+ '<tr>'
 							+ '<td colspan=3></td>'
-							+ '<td colspan=3>' + JKY.nl2br(my_remarks) + '</td>'
+							+ '<td colspan=3><b>' + JKY.nl2br(my_remarks) + '</b></td>'
 							+ '</tr>'
 							;
 					}

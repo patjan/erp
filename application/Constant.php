@@ -28,6 +28,7 @@ define( 'APP_PATH'            ,  dirname( __FILE__ )        );
 define( 'COMPANY_ID'          , '3'							);
 define( 'COMPANY_NAME'        , 'DL Malhas'					);
 define( 'COMPANY_LOGO'        , 'DL-Malhas.png'				);
+define( 'LOCALE'	          , 'en_us'						);
 define( 'WEB_SITE'            , 'http://im4/'               );
 define( 'DOMAIN_NAME'         , 'pat'                       );
 define( 'SERVER_NAME'         , 'http://erp/'				);

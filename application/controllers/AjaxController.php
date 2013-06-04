@@ -40,6 +40,7 @@ public function init() {
 	if (!is_session('user_role'			))		set_session('user_role'			, 'visitor'				);
 	if (!is_session('company_name'		))		set_session('company_name'		, COMPANY_NAME			);
 	if (!is_session('company_logo'		))		set_session('company_logo'		, COMPANY_LOGO			);
+	if (!is_session('locale'			))		set_session('locale'			, LOCALE				);
 //	if (!is_session('event_id'			)) {
 //		set_session('event_id'	, $this->get_last_id('Events', 'status="Active"'));
 //		set_session('event_name', get_table_value('Events', 'event_name', get_session('event_id')));
@@ -1931,6 +1932,7 @@ private function get_session() {
 	if (is_session('control_company'))   $data['control_company'] =   get_session('control_company', COMPANY_ID);
 	if (is_session('company_name'	))   $data['company_name'	] =   get_session('company_name');
 	if (is_session('company_logo'	))   $data['company_logo'	] =   get_session('company_logo');
+	if (is_session('locale'			))   $data['locale'			] =   get_session('locale'		);
 	if (is_session('contact_id'		))   $data['contact_id'		] =   get_session('contact_id'	);
 	if (is_session('full_name'		))   $data['full_name'		] =   get_session('full_name'	);
 	if (is_session('user_name'		))   $data['user_name'		] =   get_session('user_name'	);

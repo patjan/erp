@@ -32,38 +32,39 @@
 
 <style>
 .jky-form-label			{width:160px;}
-.jky-form-value			{width:270px;}
+.jky-form-value			{width:280px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-full-name			{width:100px;}
+.jky-nick-name			{width:140px;}
 .jky-mobile				{width: 70px; text-align:center;}
 .jky-email				{width:140px;}
 .jky-user-name			{width: 70px;}
 .jky-user-role			{width: 70px;}
 
-#jky-first-name			{width:250px;}
-#jky-last-name			{width:250px;}
-#jky-email				{width:250px;}
-#jky-mobile				{width:250px;}
-#jky-company-name		{width:260px;}
-#jky-user-name			{width:250px;}
-#jky-user-role			{width:260px;}
-#jky-photo				{float: left; margin:7px;}
+#jky-nick-name			{width:270px; font-size:16px; font-weight:bold;}
+#jky-first-name			{width:270px;}
+#jky-last-name			{width:270px;}
+#jky-email				{width:270px;}
+#jky-mobile				{width:270px;}
+#jky-company-name		{width:280px;}
+#jky-user-name			{width:270px;}
+#jky-user-role			{width:280px;}
+#jky-app-upload			{margin-left:105px;}
 #jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
 
-#jky-street1			{width:250px;}
-#jky-street2			{width:250px;}
+#jky-street1			{width:270px;}
+#jky-street2			{width:270px;}
 #jky-city				{width:125px;}
+#jky-zip				{width: 70px;}
 #jky-state				{width: 50px;}
-#jky-zip				{width: 50px;}
-#jky-country			{width:260px;}
+#jky-country			{width:280px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-full-name'		><span>Full Name		</span></th>
+			<th class='jky-nick-name'		><span>Nick Name		</span></th>
 			<th class='jky-mobile'			><span>Mobile			</span></th>
 			<th class='jky-email'			><span>Email			</span></th>
 			<th class='jky-user-name'		><span>User Name		</span></th>
@@ -98,8 +99,10 @@
 -->
 	<div id='jky-form-data'>
 		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		  Nick Name</span>:</div><input  id='jky-nick-name'		class='jky-form-value'		placefolder='Nick Name'			/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>        First Name</span>:</div><input  id='jky-first-name'	class='jky-form-value'		placeholder='First Name'		/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>         Last Name</span>:</div><input  id='jky-last-name'   	class='jky-form-value'		placeholder='Last Name'			/></div>
+			<br><br>
 			<div class='jky-form-line'><div class='jky-form-label'><span>            Mobile</span>:</div><input  id='jky-mobile'		class='jky-form-value'		placeholder='123-456-7890'		/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>             Email</span>:</div><input  id='jky-email'			class='jky-form-value'		placeholder='Email'				/></div>
 			<br><br>
@@ -108,7 +111,9 @@
 		</div>
 		<div id='jky-app-upload' class='jky-left'>
 			<div class='jky-left' style='margin-left:10px;'>
-				<div id='jky-download-photo'  ></div>
+				<div id='jky-download-photo'>
+					<img class="the_icon" src="/img/placeholder.png" id="jky-photo-img">
+				</div>
 				<a id='jky-upload-photo'  ><span>Upload Photo  </span></a>
 			</div>
 			<div class='jky-clear'></div>

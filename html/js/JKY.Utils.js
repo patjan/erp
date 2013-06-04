@@ -20,6 +20,8 @@ JKY.AJAX_URL	= '../index.php/ajax?';		//  relative to remote directory
 JKY.sort_name	= '';
 JKY.sort_seq	=  1;
 
+//JKY.translations = {}
+
 /**
  * run after jquery loaded
  * setup ajax
@@ -677,12 +679,15 @@ JKY.set_options_array = function(the_selected, the_array, the_null) {
 	}
 	for(var i=0; i<the_array.length; i++) {
 		var my_value = '';
+		if (typeof the_array[i].nick_name != 'undefined') {
+			my_value = the_array[i].nick_name;
+		}else{
 		if (typeof the_array[i].name != 'undefined') {
 			my_value = the_array[i].name;
-		}
+		}else{
 		if (typeof the_array[i].full_name != 'undefined') {
 			my_value = the_array[i].full_name;
-		}
+		}}}
 		var my_id    = the_array[i].id;
 		if (typeof my_id == 'undefined') {
 			my_id = my_value;

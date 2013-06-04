@@ -1,5 +1,5 @@
 "use strict";
-
+var JKY = JKY || {};
 /*
 	JKY.Upload - process all upload functions
 
@@ -10,7 +10,7 @@
 
 */
 /*
-	JKY.Photo = JKY.Upload.create(
+	JKY.Photo = JKY.Upload(
 		{ object_name	: 'JKY.Photo'
 		, table_name	: 'Contacts'
 		, directory		: 'contacts'
@@ -25,9 +25,8 @@
 		, download_id	: 'jky-download-photo'
 		});
 */
-JKY.Upload = function() {
+JKY.Upload = function(the_args) {
 
-	function Upload(the_args) {
 		var my_args = the_args;
 		var my_saved_name;
 
@@ -96,17 +95,10 @@ JKY.Upload = function() {
 		});
 
 		this.photo.init();
-	}
-
-//	$(function() {
-//		my_changes = 0;
-//	});
 
 	return {
-		  version	:	'1.0.0'
-		, create	:	function(the_args) {
-							var my_object = new Upload(the_args);
-							return my_object;
-						}
+		  program_name		:	'Upload'
+		, program_version	:	'1.0.0'
+		, photo	: function()	{photo();}
 	};
-}();
+};
