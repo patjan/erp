@@ -93,6 +93,7 @@ JKY.start_program = function() {
 		JKY.set_option	('jky-country'			, the_row.country		);
 		JKY.set_value	('jky-website'			, the_row.website		);
 
+		JKY.Photo.set_row_id(the_row.id);
 		var my_time = new Date();
 		var my_html = '';
 		if (the_row.photo == null) {
