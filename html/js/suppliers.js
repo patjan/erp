@@ -13,7 +13,7 @@ JKY.start_program = function() {
 		{ object_name	: 'JKY.App'
 		, program_name	: 'Suppliers'
 		, table_name	: 'Contacts'
-		, specific		: 'is_customer'
+		, specific		: 'is_supplier'
 		, select		: ''
 		, filter		: ''
 		, sort_by		: 'full_name'

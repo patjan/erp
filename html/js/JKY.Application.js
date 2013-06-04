@@ -406,7 +406,7 @@ JKY.Application = function() {
 					my_error += JKY.set_is_required('Tag');
 				}
 			}
-*/
+
 			if (JKY.is_loaded('jky-cnpj') && (the_id == null || the_id == 'jky-cnpj')) {
 				var my_cnpj = JKY.get_value('jky-cnpj');
 				if (!JKY.is_empty(my_cnpj) && !JKY.is_numeric(my_cnpj)) {
@@ -420,7 +420,7 @@ JKY.Application = function() {
 					my_error += JKY.set_must_be_numeric('IE or RG');
 				}
 			}
-
+*/
 			if (JKY.is_empty(my_error)) {
 				return false;
 			}else{

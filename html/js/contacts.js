@@ -18,7 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'full_name'
 		, sort_seq		: 'ASC'
-		, focus			: 'jky-first-name'
+		, focus			: 'jky-nick-name'
 		});
 	JKY.App.init();
 
