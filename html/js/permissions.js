@@ -75,7 +75,6 @@ JKY.start_program = function() {
 		JKY.set_value	('jky-user-resource'	, '');
 		JKY.set_value	('jky-user-action'		, '');
 	};
-
 /**
  *	get form set
  */
