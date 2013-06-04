@@ -64,8 +64,6 @@ JKY.start_program = function() {
 	JKY.set_value	('jky-user-role'		, JKY.row.user_role		);
 	JKY.set_value	('jky-user-resource'	, JKY.row.user_resource	);
 	JKY.set_value	('jky-user-action'		, JKY.row.user_action	);
-
-
 	};
 
 /**
@@ -76,9 +74,7 @@ JKY.start_program = function() {
 	JKY.set_value	('jky-user-role'		, '');
 	JKY.set_value	('jky-user-resource'	, '');
 	JKY.set_value	('jky-user-action'		, '');
-
 	};
-
 /**
  *	get form set
  */
