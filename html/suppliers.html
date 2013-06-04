@@ -1,7 +1,6 @@
 <div id='jky-app-header'>
 	<div>
 		<div id='jky-app-breadcrumb'></div>
-		<select id='jky-app-select'></select>
 		<input  id='jky-app-filter' class='search-query' type='text' placeholder='Search' />
 		<div class='jky-clear'></div>
 	</div>
@@ -33,27 +32,33 @@
 
 <style>
 .jky-form-label			{width:100px;}
-.jky-form-value			{width:270px;}
+.jky-form-value			{width:280px;}
 .jky-checkbox			{width: 30px; text-align:center;}
-.jky-full-name			{width:200px;}
+
+.jky-nick-name			{width:200px;}
 .jky-phone				{width:100px;}
 .jky-mobile				{width:100px;}
 .jky-email				{width:200px;}
 
-#jky-full-name			{width:270px; font-size:16px; font-weight:bold;}
-#jky-company-name		{width:280px;}
-#jky-tags				{width:280px;}
-#jky-photo				{float: left; margin:7px;}
+#jky-nick-name			{width:270px; font-size:16px; font-weight:bold;}
+#jky-full-name			{width:270px;}
+#jky-contact-company	{width:280px;}
+#jky-contact-tag		{width:280px;}
+#jky-cnpj				{width:270px;}
+#jky-ie					{width:270px;}
+
+#jky-app-upload			{margin-left:105px;}
 #jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
 
-#jky-street1			{width:250px;}
-#jky-street2			{width:250px;}
+#jky-street1			{width:270px;}
+#jky-street2			{width:270px;}
 #jky-city				{width:125px;}
+#jky-zip				{width: 70px;}
 #jky-state				{width: 50px;}
-#jky-zip				{width: 50px;}
-#jky-country			{width:260px;}
-#jky-website			{width:250px;}
-#jky-position			{width:250px;}
+#jky-country			{width:280px;}
+#jky-website			{width:270px;}
+
+#jky-position			{width:270px;}
 #jky-phone				{width:200px;}
 #jky-mobile				{width:200px;}
 #jky-fax				{width:200px;}
@@ -64,7 +69,7 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-full-name'		><span>Full Name		</span></th>
+			<th class='jky-nick-name'		><span>Nick Name		</span></th>
 			<th class='jky-phone'			><span>Phone			</span></th>
 			<th class='jky-mobile'			><span>Mobile			</span></th>
 			<th class='jky-email'			><span>Email			</span></th>
@@ -98,29 +103,14 @@
 -->
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Name</span>:</div>
-				<div class='jky-form-value'>
-					<input id='jky-full-name' class='jky-form-value' placeholder='Name' />
-					<input id='jky-is-company' type='checkbox' value='Yes' /> (<span>Is a Company</span> ?)
-					<select id='jky-company-name'>
-						<option>JKY Software Corp</option>
-						<option>Tecno Malhas</option>
-						<option>DL Malhas</option>
-						<option class='jky-option-search'>Search More...</option>
-						<option class='jky-option-add-new'>Add New...</option>
-					</select>
-					<select id='jky-tags'>
-						<option>Company Contact</option>
-						<option>Distributor</option>
-						<option>Employee</option>
-						<option class='jky-option-search'>Search More...</option>
-						<option class='jky-option-add-new'>Add New...</option>
-					</select>
-				</div>
-				<div id='jky-cnpj-line'	class='jky-form-line'><div class='jky-form-label'><span>           CNPJ</span>:</div><input id='jky-cnpj'	class='jky-form-value'		placeholder=''	/></div>
-				<div id='jky-ie-line'	class='jky-form-line'><div class='jky-form-label'><span>             IE</span>:</div><input id='jky-ie'		class='jky-form-value'		placeholder=''	/></div>
-			</div>
+			<div					class='jky-form-line'><div class='jky-form-label'><span>				Nick Name</span>:</div><input  id='jky-nick-name'	class='jky-form-value' placefolder='Nick Name' /></div>
+			<div					class='jky-form-line'><div class='jky-form-label'><span>				Full Name</span>:</div><input  id='jky-full-name'	class='jky-form-value' placeholder='Full Name' /></div>
+			<div					class='jky-form-line'><div class='jky-form-label'>										 </div><input  id='jky-is-company' type='checkbox' value='Yes' /> (<span>Is a Company</span> ?)</div>
+			<div id='jky-company'	class='jky-form-line'><div class='jky-form-label'><span>				  Company</span>:</div><select id='jky-contact-company'	></select></div>
+			<div					class='jky-form-line'><div class='jky-form-label'><span>				      Tag</span>:</div><select id='jky-contact-tag'		></select></div>
+			<div					class='jky-form-line'><div class='jky-form-label'><span id='jky-cnpj-label'	>CNPJ</span>:</div><input  id='jky-cnpj'		class='jky-form-value' /></div>
+			<div					class='jky-form-line'><div class='jky-form-label'><span id='jky-ie-label'	>  IE</span>:</div><input  id='jky-ie'			class='jky-form-value' /></div>
+			<div class='jky-form-line'>&nbsp;</div>
 		</div>
 		<div id='jky-app-upload' class='jky-left'>
 			<div class='jky-left' style='margin-left:10px;'>
@@ -167,10 +157,10 @@
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
-				<button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-				<button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
-			&nbsp;<a	id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></a>
-			&nbsp;<a	id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></a>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
