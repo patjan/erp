@@ -53,7 +53,7 @@ JKY.insert_setting = function(index, setting) {
 }
 
 JKY.insert_settings_success = function(response) {
-	JKY.display_message(response.message)
+//	JKY.display_message(response.message)
 	$(jky_set_index).attr('onchange', 'JKY.update_setting(this, ' + jky_set_setting + ', ' + response.id + ')');
 }
 
@@ -69,7 +69,7 @@ JKY.update_setting = function(index, setting, id) {
 }
 
 JKY.update_settings_success = function(response) {
-	JKY.display_message(response.message)
+//	JKY.display_message(response.message)
 }
 
 JKY.print_settings = function(the_id) {
@@ -96,7 +96,7 @@ JKY.print_settings = function(the_id) {
 						var my_row1		= my_rows[i];
 						var my_name1	= my_row1.name;
 						var my_value1	= (my_row1.value == null) ? 0 : my_row1.value;
-						
+
 						var my_row2		= '';
 						var my_name2	= '';
 						var my_value2	= '';

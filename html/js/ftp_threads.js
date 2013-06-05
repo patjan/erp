@@ -22,7 +22,7 @@ JKY.generate_threads = function(response) {
 			var my_id			= my_row.id;
 			var my_thread_id	= my_row.thread_id;
 			var my_name			= my_row.name;
-			var my_supplier		= my_row.supplier;
+			var my_supplier_id	= my_row.supplier_id;
 			var my_percent		= parseFloat(my_row.percent);
 
 			my_total += my_percent;
@@ -39,7 +39,7 @@ JKY.generate_threads = function(response) {
 				+ '<td class="jky-thread-value"		><input  class="jky-thread-percent" text="text" onchange="JKY.update_thread(this, ' + my_id + ')" value="' + my_percent + '" /></td>'
 //				+ '<td class="jky-thread-label"		><select class="jky-thread-name"				onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_name		, JKY.threads	, true) + '</select></td>'
 				+ '<td class="jky-thread-label"		>' + my_thread + '</td>'
-				+ '<td class="jky-thread-label"		><select class="jky-thread-supplier"			onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_supplier	, JKY.suppliers	, true) + '</select></td>'
+				+ '<td class="jky-thread-label"		><select class="jky-thread-supplier"			onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_supplier_id, JKY.suppliers	, true) + '</select></td>'
 				+ '</tr>'
 				;
 		}
@@ -71,7 +71,7 @@ JKY.update_thread = function(id_name, the_id ) {
 }
 
 JKY.update_thread_success = function(response) {
-	JKY.display_message(response.message)
+//	JKY.display_message(response.message)
 	JKY.verify_total_percent();
 }
 
@@ -118,7 +118,7 @@ JKY.delete_thread = function(id_name, the_id) {
 }
 
 JKY.delete_thread_success = function(response) {
-	JKY.display_message(response.message)
+//	JKY.display_message(response.message)
 	JKY.verify_total_percent();
 }
 

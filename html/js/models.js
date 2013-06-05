@@ -61,7 +61,7 @@ JKY.set_all_events = function(jky_program) {
 		$('#jky-form-data select[id]').each(function() {
 			$(this).change(function() {JKY.process_change_input	(this);});
 		});
-		
+
 		$('#jky-comp-add-new'		).click (function() {JKY.insert_composition	();});
 		$('#jky-thread-add-new'		).click (function() {JKY.insert_thread		();});
 		$('#jky-load-add-new'		).click (function() {JKY.insert_load		();});
@@ -94,14 +94,14 @@ JKY.set_initial_values = function(jky_program) {
 	JKY.display_trace('set_initial_values');
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-admin');
-		
+
 		JKY.set_menu_active('jky-menu-sales');
 		JKY.set_menu_active('jky-menu-production');
 		JKY.set_menu_active('jky-menu-help');
 		JKY.set_menu_active('jky-menu-support');
 
 		JKY.set_side_active('jky-admin-configs');
-		
+
 		JKY.set_side_active('jky-sales-customers');
 		JKY.set_side_active('jky-production-ftps');
 		JKY.set_side_active('jky-production-threads');
@@ -148,7 +148,7 @@ JKY.set_initial_values = function(jky_program) {
 		JKY.display_list();
 //		JKY.display_form(1);
 		JKY.show('jky-side-admin'		);
-		
+
 		JKY.hide('jky-action-export'	);
 		JKY.show('jky-side-sales'		);
 		JKY.show('jky-side-production'	);
@@ -562,7 +562,7 @@ JKY.display_new = function() {
 	JKY.set_value	('jky-city'				, '');
 	JKY.set_value	('jky-zip'				, '');
 	JKY.set_option	('jky-state'			, 'SP');
-	JKY.set_option	('jky-country'			, 'Brasil');
+	JKY.set_option	('jky-country'			, 'BR');
 	JKY.set_value	('jky-website'			, '');
 	JKY.set_value	('jky-cnpj'				, '');
 	JKY.set_value	('jky-ie'				, '');

@@ -133,7 +133,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-city'				, '');
 	JKY.set_value	('jky-zip'				, '');
 	JKY.set_option	('jky-state'			, 'SP');
-	JKY.set_option	('jky-country'			, 'Brasil');
+	JKY.set_option	('jky-country'			, 'BR');
 	JKY.set_value	('jky-website'			, '');
 };
 

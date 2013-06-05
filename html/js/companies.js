@@ -129,7 +129,7 @@ JKY.start_program = function() {
 		JKY.set_value	('jky-city'				, '');
 		JKY.set_value	('jky-zip'				, '');
 		JKY.set_option	('jky-state'			, 'SP');
-		JKY.set_option	('jky-country'			, 'Brasil');
+		JKY.set_option	('jky-country'			, 'BR');
 		JKY.set_value	('jky-website'			, '');
 		JKY.set_value	('jky-cnpj'				, '');
 		JKY.set_value	('jky-ie'				, '');
