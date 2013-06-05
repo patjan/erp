@@ -21,14 +21,12 @@ JKY.start_program = function() {
 		, focus			: 'jky-priority'
 		});
 	JKY.App.init();
-
 };
 
 /**
  *	set all events (run only once per load)
  */
 	JKY.set_all_events = function() {
-		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
 	};
 
 /**
@@ -38,7 +36,7 @@ JKY.start_program = function() {
 		JKY.set_menu_active('jky-menu-support');
 		JKY.set_side_active('jky-support-templates');
 		JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
-		JKY.show('jky-side-support'		);
+		JKY.show('jky-side-support');
 	};
 
 /**
@@ -46,11 +44,11 @@ JKY.start_program = function() {
  */
 	JKY.set_table_row = function(the_row) {
 		var my_html = ''
-				+  '<td class="jky-created-at"		>' + the_created_date		+ '</td>'
-				+  '<td class="jky-opened-by"		>' + the_row.opened_name		+ '</td>'
-				+  '<td class="jky-priority"		>' + the_row.priority		+ '</td>'
-				+  '<td class="jky-description"		>' + the_row.description		+ '</td>'
-				+  '<td class="jky-resolution"		>' + the_row.resolution		+ '</td>'
+			+  '<td class="jky-created-at"		>' + the_created_date		+ '</td>'
+			+  '<td class="jky-opened-by"		>' + the_row.opened_name		+ '</td>'
+			+  '<td class="jky-priority"		>' + the_row.priority		+ '</td>'
+			+  '<td class="jky-description"		>' + the_row.description		+ '</td>'
+			+  '<td class="jky-resolution"		>' + the_row.resolution		+ '</td>'
 			;
 		return my_html;
 	};
@@ -59,11 +57,11 @@ JKY.start_program = function() {
  *	set form row
  */
 	JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-opened-by'		, JKY.row.opened_name	);
-	JKY.set_value	('jky-created-value'	, JKY.fix_ymd2dmy(JKY.row.created_at));
-	JKY.set_value	('jky-priority'			, JKY.row.priority		);
-	JKY.set_value	('jky-description'		, JKY.row.description	);
-	JKY.set_value	('jky-resolution'		, JKY.row.resolution	);
+		JKY.set_value	('jky-opened-by'		, JKY.row.opened_name	);
+		JKY.set_value	('jky-created-value'	, JKY.fix_ymd2dmy(JKY.row.created_at));
+		JKY.set_value	('jky-priority'			, JKY.row.priority		);
+		JKY.set_value	('jky-description'		, JKY.row.description	);
+		JKY.set_value	('jky-resolution'		, JKY.row.resolution	);
 	};
 
 /**
@@ -79,9 +77,9 @@ JKY.display_new = function() {
  */
 	JKY.get_form_set = function() {
 		var my_set = ''
-		+        'priority=\'' + JKY.get_value	('jky-priority'			) + '\''
-		+   ', description=\'' + JKY.get_value	('jky-description'		) + '\''
-		+    ', resolution=\'' + JKY.get_value	('jky-resolution'		) + '\''
+			+        'priority=\'' + JKY.get_value	('jky-priority'			) + '\''
+			+   ', description=\'' + JKY.get_value	('jky-description'		) + '\''
+			+    ', resolution=\'' + JKY.get_value	('jky-resolution'		) + '\''
 			;
 		return my_set;
 };

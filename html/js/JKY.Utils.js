@@ -1,14 +1,9 @@
 "use strict";
-
+var JKY = JKY || {};
 /**
  * JKY.Util.js
  * generic functions for the JKY application
  */
-
-/**
- * define JKY namespace for all application
- */
-var JKY = JKY || {};
 
 /**
  * define all constants
@@ -16,11 +11,6 @@ var JKY = JKY || {};
 JKY.AJAX_APP	= '../';					//  relative to application directory
 //JKY.AJAX_URL	= '../jky_proxy.php?';		//  relative to remote directory
 JKY.AJAX_URL	= '../index.php/ajax?';		//  relative to remote directory
-
-JKY.sort_name	= '';
-JKY.sort_seq	=  1;
-
-//JKY.translations = {}
 
 /**
  * run after jquery loaded
@@ -36,7 +26,7 @@ $(function() {
 			JKY.display_message('Error from backend server, please re-try later.');
 		}
 	});
-	if ($('#jky-utils').length == 0)	{
+	if(!JKY.is_loaded('jky-utils'))	{
 		$('body').append('<div id="jky-utils"></div>');
 		JKY.load_html('jky-utils', 'JKY.utils.html'	);
 	}
@@ -44,7 +34,7 @@ $(function() {
 	if (JKY.is_browser('msie')) {
 		JKY.TRACE = false;		//	IE, TRACE must be false
 	}else{
-		JKY.TRACE = false;		//	on production, should be set to false, help developement to trace sequence flow
+		JKY.TRACE = false;		//	on production, should be set to false, help development to trace sequence flow
 	}
 
 	$(window).bind('resize', function() {
@@ -55,7 +45,7 @@ $(function() {
 /**
  * binding on resize
  * not to bind on IE < 9, it will cause infinite loops
- * wait until any order is loaded, to binding on scroll
+ * wait until home.html is loaded, to binding on scroll
  *
  * !!! important !!!
  * window resize can be bond only once per load
@@ -64,7 +54,7 @@ JKY.binding_on_resize = function() {
 	if (JKY.is_browser('msie') && $.browser.version < 9) {
 		return;
 	}
-	if (JKY.orders.length > 0) {
+	if (JKY.is_loaded('jky-loaded')) {
 		$(window).bind('resize', function() {
 			JKY.setTableWidthHeight('jky-app-table', 690, 390, 150);
 		});
@@ -131,7 +121,7 @@ JKY.run_when_is_ready = function(template_name, function_name) {
 	if (Em.TEMPLATES[template_name]) {
 		function_name();
 	}else{
-		setTimeout( function() {JKY.run_when_is_ready(template_name, function_name);}, 100);
+		setTimeout(function() {JKY.run_when_is_ready(template_name, function_name);}, 100);
 	}
 }
 
@@ -144,7 +134,7 @@ JKY.run_when_is_ready = function(template_name, function_name) {
 JKY.load_html = function(id_name, file_name) {
 //	JKY.display_trace('load_html: ' + id_name);
 	if ($('#' + id_name).length > 0) {
-		$('#' + id_name).load('../' + file_name);						// production mode
+		$('#' + id_name).load('../' + file_name);						//	production mode
 //		$('#' + id_name).load('../' + file_name + '?' + Math.random());	//	testing mode
 //		JKY.display_trace('load_html: ' + id_name + ' DONE');
 		JKY.t_tag	('jky-application', 'span');
@@ -656,8 +646,8 @@ JKY.set_option = function(id_name, value){
 	}
 }
 
-//        JKY.set_options(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
-//        ----------------------------------------------------------------------
+//	JKY.set_options(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
+//	----------------------------------------------------------------------------
 JKY.set_options = function( ) {
      options   = '';
      set_value = arguments[0];
@@ -724,8 +714,8 @@ JKY.get_index_by_id = function(the_id, the_array) {
 	return null;
 }
 
-//        JKY.set_radios(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
-//        ----------------------------------------------------------------------
+//	JKY.set_radios(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
+//	----------------------------------------------------------------------------
 JKY.set_radios = function() {
      radios    = '';
      set_id    = arguments[0];
@@ -739,8 +729,8 @@ JKY.set_radios = function() {
      return radios;
 }
 
-//        JKY.set_checks('...', ..., '...')
-//        ----------------------------------------------------------------------
+//	JKY.set_checks('...', ..., '...')
+//	----------------------------------------------------------------------------
 JKY.set_checks = function() {
      checks    = '';
      set_id    = arguments[0];
