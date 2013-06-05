@@ -26,17 +26,17 @@ JKY.start_program = function() {
 /**
  *	set all events (run only once per load)
  */
-JKY.set_all_events = function() {
+	JKY.set_all_events = function() {
 	$('#jky-purchase-date'		).datepicker();
 	$('#jky-repair-date'		).datepicker();
 	$('#jky-return-date'		).datepicker();
 	$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
-};
+	};
 
 /**
  *	set initial values (run only once per load)
  */
-JKY.set_initial_values = function() {
+	JKY.set_initial_values = function() {
 	JKY.set_menu_active('jky-menu-production');
 	JKY.set_side_active('jky-production-machines');
 	JKY.set_html('jky-machine-family'	, JKY.set_configs('Machine Families', '', ''));
@@ -47,18 +47,17 @@ JKY.set_initial_values = function() {
 /**
  *	set table row
  */
-JKY.set_table_row = function(the_row) {
-	var my_html = ''
+	JKY.set_table_row = function(the_row) {
+		var my_html = ''
 			+  '<td class="jky-name"			>' + the_row.name			+ '</td>'
 			+  '<td class="jky-diameter"		>' + the_row.diameter		+ '</td>'
 			+  '<td class="jky-width"			>' + the_row.width			+ '</td>'
 			+  '<td class="jky-density"			>' + the_row.density			+ '</td>'
 			+  '<td class="jky-inputs"			>' + the_row.inputs			+ '</td>'
 			+  '<td class="jky-lanes"			>' + the_row.lanes			+ '</td>'
-		;
-	return my_html;
-};
-
+			;
+		return my_html;
+	};
 /**
  *	set form row
  */
@@ -101,8 +100,8 @@ JKY.display_new = function() {
 /**
  *	get form set
  */
-JKY.get_form_set = function() {
-	var my_set = ''
+	JKY.get_form_set = function() {
+		var my_set = ''
 		+            'name=\'' + JKY.get_value	('jky-name'				) + '\''
 		+  ', machine_type=\'' + JKY.get_checked('jky-machine-type'		) + '\''
 		+ ', machine_family=\'' + JKY.get_value	('jky-machine-family'	) + '\''
@@ -113,11 +112,12 @@ JKY.get_form_set = function() {
 		+       ', density=\'' + JKY.get_value	('jky-density'			) + '\''
 		+        ', inputs=\'' + JKY.get_value	('jky-inputs'			) + '\''
 		+	      ', lanes=\'' + JKY.get_value	('jky-lanes'			) + '\''
-		;
+			;
 	my_set += ', purchase_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-purchase-value'	));
 	my_set +=   ', repair_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-repair-value'	));
 	my_set +=   ', return_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-return-value'	));
-	return my_set;
+		return my_set;
+
 };
 
 JKY.display_form = function() {
@@ -127,7 +127,7 @@ JKY.process_insert = function(the_id) {
 };
 
 JKY.process_update = function(the_id, the_row) {
-};
+	};
 
 JKY.process_delete = function(the_id, the_row) {
 	var my_data =
