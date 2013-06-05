@@ -41,9 +41,8 @@ JKY.start_program = function() {
 	JKY.set_side_active('jky-production-machines');
 	JKY.set_html('jky-machine-family'	, JKY.set_configs('Machine Families', '', ''));
 	JKY.set_html('jky-machine-brand'	, JKY.set_configs('Machine Brands'  , '', ''));
-	JKY.show('jky-side-production');
-};
-
+	JKY.show('jky-side-production'	);
+	};
 /**
  *	set table row
  */
@@ -79,23 +78,11 @@ JKY.set_form_row = function(the_row) {
 }
 
 /**
- *	set add new
+ *	set add new row
  */
-JKY.display_new = function() {
-	JKY.set_value	('jky-name'				, '' );
-	JKY.set_radio	('jky-machine-type'		,  JKY.t('Circular'));
-	JKY.set_option	('jky-machine-family'	, '' );
-	JKY.set_option	('jky-machine-brand'	, '' );
-	JKY.set_value	('jky-serial-number'	, '' );
-	JKY.set_value	('jky-diameter'			, '0');
-	JKY.set_value	('jky-width'			, '0');
-	JKY.set_value	('jky-density'			, '0');
-	JKY.set_value	('jky-inputs'			, '0');
-	JKY.set_value	('jky-lanes'			, '0');
-	JKY.set_value	('jky-purchase-value'	, '' );
-	JKY.set_value	('jky-repair-value'		, '' );
-	JKY.set_value	('jky-return-value'		, '' );
-}
+JKY.set_add_new_row = function() {
+	JKY.set_option	('jky-status'			, 'Active');
+	JKY.set_value	('jky-created-value'	, '');
 
 /**
  *	get form set
@@ -130,10 +117,5 @@ JKY.process_update = function(the_id, the_row) {
 	};
 
 JKY.process_delete = function(the_id, the_row) {
-	var my_data =
-		{ method: 'delete_many'
-		, table : 'Cylinders'
-		, where : 'machine_id = ' + my_id
-		};
-	JKY.ajax(true, my_data);
-};
+	};
+
