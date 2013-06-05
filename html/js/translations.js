@@ -55,7 +55,6 @@ JKY.start_program = function() {
 			;
 		return my_html;
 	};
-
 /**
  *	set form row
  */
