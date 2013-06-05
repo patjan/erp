@@ -26,47 +26,45 @@ JKY.start_program = function() {
 /**
  *	set all events (run only once per load)
  */
-	JKY.set_all_events = function() {
-		$('#jky-action-export'		).click (function() {JKY.process_export		();});
-		$('#jky-action-publish'		).click (function() {JKY.process_publish	();});
-		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
-	};
+JKY.set_all_events = function() {
+	$('#jky-action-export'		).click (function() {JKY.process_export		();});
+	$('#jky-action-publish'		).click (function() {JKY.process_publish	();});
+};
 
 /**
  *	set initial values (run only once per load)
  */
-	JKY.set_initial_values = function() {
-		JKY.set_menu_active('jky-menu-support');
-		JKY.set_side_active('jky-support-translations');
-		JKY.set_html('jky-status'			, JKY.set_controls('Status Codes', 'Active', ''));
-		JKY.show('jky-side-support'		);
-		JKY.show('jky-app-header'		);
-		JKY.languages	= JKY.get_controls('Languages');
-	};
+JKY.set_initial_values = function() {
+	JKY.set_menu_active('jky-menu-support');
+	JKY.set_side_active('jky-support-translations');
+	JKY.set_html('jky-status'			, JKY.set_controls('Status Codes'	, 'Active', ''));
+	JKY.show('jky-side-support');
+	JKY.languages	= JKY.get_controls('Languages');
+};
+
 /**
  *	set table row
  */
-	JKY.set_table_row = function(the_row) {
-		var my_html = ''
-				+  '<td class="jky-sentence"		>' + the_row.sentence		+ '</td>'
-				+  '<td class="jky-created-at"		>' + the_row.created_date		+ '</td>'
-				+  '<td class="jky-updated-at"		>' + the_row.updated_date		+ '</td>'
-				+  '<td class="jky-status"			>' + the_row.status			+ '</td>'
-			;
-		return my_html;
-	};
+JKY.set_table_row = function(the_row) {
+	var my_html = ''
+		+  '<td class="jky-sentence"		>' + the_row.sentence		+ '</td>'
+		+  '<td class="jky-created-at"		>' + the_row.created_date	+ '</td>'
+		+  '<td class="jky-updated-at"		>' + the_row.updated_date	+ '</td>'
+		+  '<td class="jky-status"			>' + the_row.status			+ '</td>'
+		;
+	return my_html;
+};
 
 /**
  *	set form row
  */
-
-	JKY.get_form_set = function() {
-		var my_set = ''
-		+          'status=\'' + JKY.get_value	('jky-status'				) + '\''
-		+        ', locale=\'' +				 'en_us'					  + '\''
-		+      ', sentence=\'' + JKY.get_value	('en_us'					) + '\''
-			;
-		return my_set;
+JKY.get_form_set = function() {
+	var my_set = ''
+		+          'status=\'' + JKY.get_value	('jky-status'			) + '\''
+		+        ', locale=\'' +				 'en_us'				  + '\''
+		+      ', sentence=\'' + JKY.get_value	('en_us'				) + '\''
+		;
+	return my_set;
 }
 
 JKY.process_update_more = function(row_id) {
@@ -92,23 +90,6 @@ JKY.process_update_more = function(row_id) {
 		}
 	}
 };
-
-/**
- * process print
- */
-JKY.process_print = function() {
-	if ($('#jky-app-form').css('display') == 'block') {
-		JKY.print_row(JKY.row.id);
-	}else{
-		$('#jky-table-body .jky-checkbox input:checked').each(function() {
-			JKY.print_row($(this).attr('row_id'));
-		})
-	}
-};
-
-JKY.print_row = function(the_id) {
-	JKY.display_message('print_row: ' + the_id);
-}
 
 /**
  * process publish
