@@ -39,7 +39,7 @@ JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-support-translations');
 	JKY.set_html('jky-status'			, JKY.set_controls('Status Codes'	, 'Active', ''));
 	JKY.show('jky-side-support');
-	JKY.languages	= JKY.get_controls('Languages');
+	JKY.languages = JKY.get_controls('Languages');
 };
 
 /**

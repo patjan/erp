@@ -44,6 +44,7 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
+		+  '<td class="jky-created-at"		>' + the_created_date		+ '</td>'
 		+  '<td class="jky-opened-by"		>' + the_row.opened_name	+ '</td>'
 		+  '<td class="jky-priority"		>' + the_row.priority		+ '</td>'
 		+  '<td class="jky-description"		>' + the_row.description	+ '</td>'
