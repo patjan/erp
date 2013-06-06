@@ -28,4 +28,5 @@ ALTER TABLE FTPs      CHANGE yield		elasticity	INT(11)			DEFAULT 0;
 ----- 2013/06/02
 ALTER TABLE Contacts      ADD COLUMN		nick_name	VARCHAR(255)	DEFAULT NULL  AFTER photo;
 ALTER TABLE Contacts      ADD UNIQUE KEY	nick_name	(nick_name);
------ 2013/06/03
+----- 2013/06/05
+ALTER TABLE Products		CHANGE name product_name			VARCHAR(255)		DEFAULT NULL	;

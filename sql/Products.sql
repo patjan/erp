@@ -8,14 +8,15 @@ CREATE TABLE IF NOT EXISTS Products
 , status			VARCHAR(32)			DEFAULT 'Active'
 
 , code				VARCHAR(32)			DEFAULT NULL
-, name				VARCHAR(255)		DEFAULT NULL
+, product_name				VARCHAR(255)		DEFAULT NULL
 , product_type		VARCHAR(32)			DEFAULT 'Tubular'
 , start_date		DATE				DEFAULT null
 , photo				VARCHAR(255)		DEFAULT NULL
 
 , PRIMARY KEY(id)
 , UNIQUE(code)
-, UNIQUE(name)
+, UNIQUE(product_name)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 ALTER TABLE Products		ADD COLUMN photo			VARCHAR(255)		DEFAULT NULL	AFTER start_date;
+ALTER TABLE Products		CHANGE name product_name			VARCHAR(255)		DEFAULT NULL	;
