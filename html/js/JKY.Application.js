@@ -350,7 +350,19 @@ JKY.Application = function() {
 	function my_is_invalid(the_id) {
 			JKY.display_trace('my_is_invalid');
 			var my_error = '';
-
+			
+			if (JKY.is_loaded('jky-product-name') && (the_id == null || the_id == 'jky-product-name')) {
+				var my_product_name = JKY.get_value('jky-product-name');
+				if (JKY.is_empty(my_product_name)) {
+						my_error += JKY.set_is_required('Product Name');
+				}else{
+					var my_id = JKY.get_product_id(my_product_name);
+					if (!JKY.is_empty(my_id) && ( JKY.row == null || my_id != JKY.row.id)) {
+						my_error += JKY.set_already_taken('Product Name');
+					}
+				}
+			}
+			
 			if (JKY.is_loaded('jky-user-name') && (the_id == null || the_id == 'jky-user-name')) {
 				var my_user_name = JKY.get_value('jky-user-name');
 				if (JKY.is_empty(my_user_name)) {

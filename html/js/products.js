@@ -63,9 +63,9 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-name"			>' + the_row.name			+ '</td>'
+		+  '<td class="jky-product-name"	>' + the_row.name			+ '</td>'
 		+  '<td class="jky-product-type"	>' + the_row.product_type	+ '</td>'
-		+  '<td class="jky-start-date"		>' + the_row.start_date			+ '</td>'
+		+  '<td class="jky-start-date"		>' + the_row.start_date		+ '</td>'
 		;
 	return my_html;
 };
@@ -74,7 +74,7 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-name'				, the_row.name			);
+	JKY.set_value	('jky-product-name'				, the_row.name			);
 	JKY.set_radio	('jky-product-type'		, the_row.product_type	);
 	JKY.set_value	('jky-start-value'		, JKY.fix_ymd2dmy(the_row.start_date	));
 

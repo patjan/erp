@@ -1949,6 +1949,40 @@ JKY.get_user_id = function(the_user_name) {
 	return my_id;
 }
 
+JKY.get_product_id = function(the_product_name) {
+	var my_id = null;
+	var my_data =
+		{ method: 'get_product_id'
+		, name: the_product_name
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_id = response.id;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_id;
+}
+
 JKY.get_id = function(table, where) {
 	var my_id = null;
 	var my_data =
