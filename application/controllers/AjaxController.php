@@ -74,6 +74,7 @@ public function indexAction() {
 			case 'get_contact'		: $this->get_contact	(); return;
 			case 'get_contact_id'	: $this->get_contact_id	(); return;
 			case 'get_user_id'		: $this->get_user_id	($data); return;
+			case 'get_product_id'	: $this->get_product_id	($data); return;
 			case 'set_company_id'	: $this->set_company_id	(); return;
 			case 'get_company_id'	: $this->get_company_id	(); return;
 			case 'set_user_id'		: $this->set_user_id	(); return;
@@ -589,7 +590,7 @@ private function set_new_fields($table) {
 											. ', JKY_Users.user_name	AS     user_name'
 											. ', JKY_Users.user_role	AS     user_role'
 											. ', Companies.full_name	AS  company_name';
-	if ($table == 'FTPs'		)	$return = ',  Products.name			AS			product'
+	if ($table == 'FTPs'		)	$return = ',  Products.product_name	AS			product'
 											. ',  Machines.name			AS			machine';
 	if ($table == 'FTP_Loads'	)	$return = ',   Thread1.name			AS   thread_name_1'
 											. ',   Thread2.name			AS   thread_name_2'
@@ -741,7 +742,7 @@ private function set_where($table, $filter) {
 
 		if ($table == 'Products') {
 			if ($name == 'code'
-			or	$name == 'name'
+			or	$name == 'product_name'
 			or	$name == 'product_type'
 			or	$name == 'start_date') {
 				if ($value == '"%null%"') {
@@ -883,7 +884,7 @@ private function set_where($table, $filter) {
 					if ($value == '"%null%"') {
 						return ' AND FTPs.product_id IS NULL';
 					}else{
-						return ' AND Products.name LIKE ' . $value;
+						return ' AND Products.product_name LIKE ' . $value;
 					}
 			}else{
 				if ($name == 'machine_name') {
@@ -980,7 +981,7 @@ private function set_where($table, $filter) {
 
 	if ($table == 'Products') {
 		$return = '    Products.code			LIKE ' . $filter
-				. ' OR Products.name			LIKE ' . $filter
+				. ' OR Products.product_name	LIKE ' . $filter
 				. ' OR Products.product_type	LIKE ' . $filter
 				. ' OR Products.start_date		LIKE ' . $filter
 				;
@@ -1052,7 +1053,7 @@ private function set_where($table, $filter) {
 			. ' OR  FTPs.needling			LIKE ' . $filter
 			. ' OR  FTPs.peso				LIKE ' . $filter
 			. ' OR  FTPs.composition		LIKE ' . $filter
-			. ' OR  Products.name			LIKE ' . $filter
+			. ' OR  Products.product_name	LIKE ' . $filter
 			. ' OR  Machines.name			LIKE ' . $filter
 			;
 		}
@@ -2048,6 +2049,24 @@ private function get_user_id($data) {
 	$sql= 'SELECT id'
 		. '  FROM JKY_Users'
 		. ' WHERE user_name = "' . $data['user_name'] . '"'
+		;
+	$return = array();
+	$db = Zend_Registry::get('db');
+	$return['status'] = 'ok';
+	$return['id'	] = $db->fetchOne($sql);
+	echo json_encode($return);
+}
+
+/**
+ *	$.ajax({ method: get_product_id, product_name: x...x );
+ *
+ *	status: ok     | error
+ *		id: 9...9  | null
+ */
+private function get_product_id($data) {
+	$sql= 'SELECT id'
+		. '  FROM Products'
+		. ' WHERE product_name = "' . $data['product_name'] . '"'
 		;
 	$return = array();
 	$db = Zend_Registry::get('db');

@@ -42,7 +42,6 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-		$('#jky-action-comment'		).click (function() {JKY.process_comment	();});	// not done
 };
 
 /**
@@ -63,8 +62,8 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-opened-at"		>' + the_row.opened_at			+ '</td>'
-		+  '<td class="jky-worked-hour"		>' + the_row.worked_hour			+ '</td>'
+		+  '<td class="jky-opened-at"		>' + the_row.opened_at		+ '</td>'
+		+  '<td class="jky-worked-hour"		>' + the_row.worked_hour	+ '</td>'
 		+  '<td class="jky-priority"		>' + the_row.priority		+ '</td>'
 		+  '<td class="jky-description"		>' + the_row.description	+ '</td>'
 		;
@@ -75,7 +74,6 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-
 	JKY.set_value	('jky-status'			, JKY.row.status);
 	JKY.set_value	('jky-opened-at'		, JKY.short_date(JKY.row.opened_at));
 	JKY.set_value	('jky-opened-by'		, JKY.row.opened_name	);
