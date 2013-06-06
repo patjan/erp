@@ -81,13 +81,23 @@ JKY.set_form_row = function(the_row) {
 }
 
 /**
+ *	set add new row
+ */
+JKY.set_add_new_row = function() {
+	JKY.set_value	('jky-name'				, '');
+	JKY.set_radio	('jky-product-type'		,  JKY.t('Tubular'));
+	JKY.set_value	('jky-start-value'		, '' );
+	JKY.set_focus(jky_focus);
+}
+
+/**
  *	get form set
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-	+            'name=\'' + JKY.get_value	('jky-name'				) + '\''
-	+  ', product_type=\'' + JKY.get_checked('jky-product-type'		) + '\''
-	;
+		+            'name=\'' + JKY.get_value	('jky-name'				) + '\''
+		+  ', product_type=\'' + JKY.get_checked('jky-product-type'		) + '\''
+		;
 	my_set +=    ', start_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-start-value'	));
 	return my_set;
 };
@@ -102,11 +112,5 @@ JKY.process_update = function(the_id, the_row) {
 };
 
 JKY.process_delete = function(the_id, the_row) {
-	var my_data =
-		{ method: 'delete_many'
-		, table : 'Cylinders'
-		, where : 'product_id = ' + my_id
-		};
-	JKY.ajax(true, my_data);
 };
 

@@ -28,7 +28,6 @@ JKY.Application = function() {
 				$('#jky-action-add-new'		).click (function() {JKY.Changes.can_leave(function() { my_process_add_new		();})});
 				$('#jky-action-print'		).click (function() {JKY.Changes.can_leave(function() { my_process_print		();})});
 				$('#jky-action-export'		).click (function() {JKY.Changes.can_leave(function() { my_process_export		();})});
-				$('#jky-action-publish'		).click (function() {JKY.Changes.can_leave(function() { my_process_publish		();})});
 				$('#jky-action-prev'		).click (function() {JKY.Changes.can_leave(function() { my_display_prev			();})});
 				$('#jky-action-next'		).click (function() {JKY.Changes.can_leave(function() { my_display_next			();})});
 				$('#jky-action-list'		).click (function() {JKY.Changes.can_leave(function() { my_display_list			();})});
@@ -114,7 +113,6 @@ JKY.Application = function() {
 			JKY.hide('jky-action-copy'		);
 			JKY.hide('jky-action-delete'	);
 			JKY.hide('jky-action-cancel'	);
-			JKY.hide('jky-action-publish'	);
 			JKY.show('jky-app-table'		);
 			JKY.hide('jky-app-form'			);
 			my_load_table();
@@ -171,7 +169,6 @@ JKY.Application = function() {
 			JKY.show('jky-action-add-new'	);
 			JKY.hide('jky-action-print'		);
 			JKY.show('jky-action-save'		);
-			JKY.hide('jky-action-reset'		);
 			JKY.hide('jky-action-copy'		);
 			JKY.show('jky-action-delete'	);
 			JKY.show('jky-action-cancel'	);
@@ -204,7 +201,6 @@ JKY.Application = function() {
 			JKY.hide('jky-action-add-new'	);
 			JKY.hide('jky-action-print'		);
 			JKY.show('jky-action-save'		);
-			JKY.hide('jky-action-reset'		);
 			JKY.hide('jky-action-copy'		);
 			JKY.hide('jky-action-delete'	);
 			JKY.show('jky-action-cancel'	);
@@ -443,12 +439,13 @@ JKY.Application = function() {
 //		my_changes = 0;
 //	});
 
-	return {version			:	'1.0.0'
-		, set				:	function(the_args)		{		my_set(the_args)				;}
-		, get				:	function(the_property)	{return my_get(the_property)			;}
-		, display_form		:	function(the_index)		{		my_display_form(the_index)		;}
-		, set_checkbox		:	function(the_index)		{		my_set_checkbox(the_index)		;}
-		, process_is_company:	function(the_id)		{		my_process_is_company(the_id)	;}
+	return {version				:	'1.0.0'
+		, set					:	function(the_args)		{		my_set(the_args)				;}
+		, get					:	function(the_property)	{return my_get(the_property)			;}
+		, display_form			:	function(the_index)		{		my_display_form(the_index)		;}
+		, set_checkbox			:	function(the_index)		{		my_set_checkbox(the_index)		;}
+		, process_is_company	:	function(the_id)		{		my_process_is_company(the_id)	;}
+		, process_change_input	:	function(the_id)		{		my_process_change_input(the_id) ;}
 
 		, init				:	function() {
 									my_set_all_events();

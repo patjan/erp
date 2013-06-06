@@ -1466,6 +1466,7 @@ private function delete($data) {
 		$db = Zend_Registry::get('db');
 		$db->query($sql);
 		$return['message'] = 'record (' . $id . ') deleted';
+		$return['id'     ] = $id;
 	}else{
 		$return['message'] = 'record already deleted';
 	}

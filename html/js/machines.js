@@ -135,7 +135,7 @@ JKY.process_delete = function(the_id, the_row) {
 	var my_data =
 		{ method: 'delete_many'
 		, table : 'Cylinders'
-		, where : 'machine_id = ' + my_id
+		, where : 'machine_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
 };

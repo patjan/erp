@@ -70,7 +70,7 @@ JKY.set_form_row = function(the_row) {
  */
 JKY.set_add_new_row = function() {
 	JKY.set_option	('jky-status'			, 'Active');
-	JKY.set_value	('jky-user-role'		, '');
+//	JKY.set_value	('jky-user-role'		, '');
 	JKY.set_value	('jky-user-resource'	, '');
 	JKY.set_value	('jky-user-action'		, '');
 };
