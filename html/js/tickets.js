@@ -65,6 +65,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-opened-at"		>' + the_row.opened_at		+ '</td>'
 		+  '<td class="jky-worked-hour"		>' + the_row.worked_hour	+ '</td>'
 		+  '<td class="jky-priority"		>' + the_row.priority		+ '</td>'
+		+  '<td class="jky-category"		>' + the_row.category		+ '</td>'
 		+  '<td class="jky-description"		>' + the_row.description	+ '</td>'
 		;
 	return my_html;
@@ -122,6 +123,16 @@ JKY.set_add_new_row = function() {
  *	get form set
  */
 JKY.get_form_set = function() {
+	var my_status		= JKY.get_value('jky-status');
+	var my_worked_hour	= JKY.get_value('jky-worked-hour');
+	var my_extra_set	= '';
+	if (my_status != 'Closed' && my_worked_hour > 0) {
+		my_extra_set = ''
+				+    ', status = \'Closed\''
+				+ ', closed_by = ' + JKY.Session.get_value('user_id')
+				+ ', closed_at = NOW()'
+				;
+	}
 	var my_set = ''
 		+     'worked_hour=  ' + JKY.get_value	('jky-worked-hour'		)
 		+      ', priority=\'' + JKY.get_value	('jky-priority'			) + '\''
