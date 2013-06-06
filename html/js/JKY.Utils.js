@@ -1953,7 +1953,7 @@ JKY.get_product_id = function(the_product_name) {
 	var my_id = null;
 	var my_data =
 		{ method: 'get_product_id'
-		, name: the_product_name
+		, product_name: the_product_name
 		};
 
 	var my_object = {};
