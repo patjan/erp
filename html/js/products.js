@@ -21,6 +21,21 @@ JKY.start_program = function() {
 		, focus			: 'jky-name'
 		});
 	JKY.App.init();
+
+	JKY.Photo = JKY.Upload(
+		{ object_name	: 'JKY.Photo'
+		, table_name	: 'Contacts'
+		, directory		: 'contacts'
+		, field_name	: 'photo'
+		, title			: 'Photo files'
+		, extensions	: 'jpg,gif,png'
+		, button_id		: 'jky-upload-photo'
+		, filename_id	: 'jky-upload-name'
+		, percent_id	: 'jky-upload-percent'
+		, progress_id	: 'jky-upload-progress'
+		, img_id		: 'jky-photo-img'
+		, download_id	: 'jky-download-photo'
+		});
 };
 
 /**
@@ -50,7 +65,7 @@ JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-name"			>' + the_row.name			+ '</td>'
 		+  '<td class="jky-product-type"	>' + the_row.product_type	+ '</td>'
-		+  '<td class="jky-start-date"		>' + the_start_date			+ '</td>'
+		+  '<td class="jky-start-date"		>' + the_row.start_date			+ '</td>'
 		;
 	return my_html;
 };
@@ -78,7 +93,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_html('jky-upload-name'		, '');
 	JKY.set_html('jky-upload-percent'	, '');
 	JKY.set_css ('jky-upload-progress'	, 'width', '0%');
-}
+};
 
 /**
  *	set add new row
@@ -87,7 +102,6 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-name'				, '');
 	JKY.set_radio	('jky-product-type'		,  JKY.t('Tubular'));
 	JKY.set_value	('jky-start-value'		, '' );
-	JKY.set_focus(jky_focus);
 }
 
 /**

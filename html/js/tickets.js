@@ -51,41 +51,30 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 		JKY.set_menu_active('jky-menu-help');
 		JKY.set_side_active('jky-help-tickets');
-		JKY.set_html('jky-app-select'		, JKY.set_controls('Ticket Status Codes', jky_select, 'All'));
-	JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
+		JKY.set_html('jky-app-select'		, JKY.set_controls('Ticket Status Codes', JKY.App.get('select'), 'All'));
+		JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
 		JKY.set_html('jky-category'			, JKY.set_controls('Ticket Categories', '', ''));
 		JKY.show('jky-side-help'		);
-		JKY.set_value ('jky-app-filter', jky_filter);
-}
+		JKY.set_value ('jky-app-filter', JKY.App.get('filter'));
+};
 
 /**
  *	set table row
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-opened-at"		>' + the_opened_date			+ '</td>'
-		+  '<td class="jky-worked-hour"		>' + the_worked_hour			+ '</td>'
+		+  '<td class="jky-opened-at"		>' + the_row.opened_at			+ '</td>'
+		+  '<td class="jky-worked-hour"		>' + the_row.worked_hour			+ '</td>'
 		+  '<td class="jky-priority"		>' + the_row.priority		+ '</td>'
 		+  '<td class="jky-description"		>' + the_row.description	+ '</td>'
 		;
 	return my_html;
 };
-JKY.display_row = function(the_index) {
-		var my_time = JKY.get_time();
-		var my_html = '';
-	if (JKY.row.photo == null) {
-		my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
-	}else{
-		my_html = '<a href="' + 'jky_download.php?file_name=tickets/' + JKY.row.id + '.' + JKY.row.photo + '">'
-				+ '<img id="jky-photo-img"    src="/uploads/tickets/' + JKY.row.id + '.' + JKY.row.photo + '?' + my_time + '" class="the_icon" />';
-				+ '</a>'
-				;
-	}
-	JKY.set_html('jky-download-photo', my_html);
 
-	JKY.set_html('jky-upload-name'		, '');
-	JKY.set_html('jky-upload-percent'	, '');
-	JKY.set_css ('jky-upload-progress', 'width', '0%');
+/**
+ *	set form row
+ */
+JKY.set_form_row = function(the_row) {
 
 	JKY.set_value	('jky-status'			, JKY.row.status);
 	JKY.set_value	('jky-opened-at'		, JKY.short_date(JKY.row.opened_at));
@@ -99,10 +88,28 @@ JKY.display_row = function(the_index) {
 	JKY.set_value	('jky-category'			, JKY.row.category		);
 	JKY.set_value	('jky-description'		, JKY.row.description	);
 	JKY.set_value	('jky-resolution'		, JKY.row.resolution	);
-	JKY.set_focus(jky_focus);
-}
-JKY.display_new = function() {
-	jky_index = 0;
+
+	JKY.Photo.set_row_id(the_row.id);
+	var my_time = new Date();
+	var my_html = '';
+	if (the_row.photo == null) {
+		my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
+	}else{
+		my_html = '<a href="' + 'jky_download.php?file_name=tickets/' + the_row.id + '.' + the_row.photo + '">'
+				+ '<img id="jky-photo-img"    src="/uploads/tickets/' + the_row.id + '.' + the_row.photo + '?time=' + my_time.getTime() + '" class="the_icon" />';
+				+ '</a>'
+				;
+	}
+	JKY.set_html('jky-download-photo'	, my_html);
+	JKY.set_html('jky-upload-name'		, '');
+	JKY.set_html('jky-upload-percent'	, '');
+	JKY.set_css ('jky-upload-progress'	, 'width', '0%');
+};
+
+/**
+ *	set add new row
+ */
+JKY.set_add_new_row = function() {
 	JKY.set_option	('jky-status'			, 'Open');
 	JKY.set_value	('jky-opened-by'		, JKY.Session.get_value('full_name'));
 	JKY.set_value	('jky-opened-value'		, JKY.get_now());
@@ -111,8 +118,7 @@ JKY.display_new = function() {
 //	JKY.set_option	('jky-category'			, '');
 	JKY.set_value	('jky-description'		, '');
 	JKY.set_value	('jky-resolution'		, '');
-	JKY.set_focus(jky_focus);
-}
+};
 
 /**
  *	get form set
@@ -140,4 +146,3 @@ JKY.process_update = function(the_id, the_row) {
 
 JKY.process_delete = function(the_id, the_row) {
 };
-
