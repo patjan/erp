@@ -153,7 +153,6 @@ JKY.get_form_set = function() {
 };
 
 JKY.display_form = function() {
-	JKY.show('jky-action-reset');
 };
 
 JKY.process_insert = function(the_id) {

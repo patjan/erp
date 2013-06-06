@@ -37,9 +37,9 @@ JKY.generate_threads = function(response) {
 				+ '<tr ftp_thread_id=' + my_id + '>'
 				+ '<td class="jky-action"><a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
 				+ '<td class="jky-thread-value"		><input  class="jky-thread-percent" text="text" onchange="JKY.update_thread(this, ' + my_id + ')" value="' + my_percent + '" /></td>'
-//				+ '<td class="jky-thread-label"		><select class="jky-thread-name"				onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_name		, JKY.threads	, true) + '</select></td>'
+//				+ '<td class="jky-thread-label"		><select class="jky-thread-name"				onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_name		  , JKY.threads	 , true) + '</select></td>'
 				+ '<td class="jky-thread-label"		>' + my_thread + '</td>'
-				+ '<td class="jky-thread-label"		><select class="jky-thread-supplier"			onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_supplier_id, JKY.suppliers	, true) + '</select></td>'
+				+ '<td class="jky-thread-label"		><select class="jky-thread-supplier"			onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_supplier_id, JKY.suppliers, true) + '</select></td>'
 				+ '</tr>'
 				;
 		}
