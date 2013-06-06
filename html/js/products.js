@@ -16,9 +16,9 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: 'Tubular'
 		, filter		: ''
-		, sort_by		: 'name'
+		, sort_by		: 'product_name'
 		, sort_seq		: 'ASC'
-		, focus			: 'jky-name'
+		, focus			: 'jky-product-name'
 		});
 	JKY.App.init();
 
@@ -63,7 +63,7 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-product-name"	>' + the_row.name			+ '</td>'
+		+  '<td class="jky-product-name"	>' + the_row.product_name	+ '</td>'
 		+  '<td class="jky-product-type"	>' + the_row.product_type	+ '</td>'
 		+  '<td class="jky-start-date"		>' + the_row.start_date		+ '</td>'
 		;
@@ -74,7 +74,7 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-product-name'				, the_row.name			);
+	JKY.set_value	('jky-product-name'				, the_row.product_name			);
 	JKY.set_radio	('jky-product-type'		, the_row.product_type	);
 	JKY.set_value	('jky-start-value'		, JKY.fix_ymd2dmy(the_row.start_date	));
 
@@ -99,7 +99,7 @@ JKY.set_form_row = function(the_row) {
  *	set add new row
  */
 JKY.set_add_new_row = function() {
-	JKY.set_value	('jky-name'				, '');
+	JKY.set_value	('jky-product-name'				, '');
 	JKY.set_radio	('jky-product-type'		,  JKY.t('Tubular'));
 	JKY.set_value	('jky-start-value'		, '' );
 }
@@ -109,7 +109,7 @@ JKY.set_add_new_row = function() {
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-		+            'name=\'' + JKY.get_value	('jky-name'				) + '\''
+		+  'product_name=\'' + JKY.get_value	('jky-product-name'		) + '\''
 		+  ', product_type=\'' + JKY.get_checked('jky-product-type'		) + '\''
 		;
 	my_set +=    ', start_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-start-value'	));
