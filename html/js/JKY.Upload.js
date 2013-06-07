@@ -1,11 +1,11 @@
 "use strict";
 var JKY = JKY || {};
-/*
-	JKY.Upload - process all upload functions
-	 method:	start()
+/**
+	program:	JKY.Upload.js - process all upload functions
+
 	require:	Uploader.js
 */
-/*
+/**
 	JKY.Photo = JKY.Upload(
 		{ object_name	: 'JKY.Photo'
 		, table_name	: 'Contacts'
@@ -22,6 +22,9 @@ var JKY = JKY || {};
 		});
 */
 JKY.Upload = function(the_args) {
+	var PROGRAM_NAME	= 'JKY.Upload.js';
+	var PROGRAM_VERSION	= '1.0.0';
+
 	var my_args = the_args;
 	var my_row_id;
 	var my_saved_name;
@@ -29,14 +32,14 @@ JKY.Upload = function(the_args) {
 	var my_out_photo = function(the_photo) {
 		var my_html = '';
 		if (the_photo == null) {
-			my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
+			my_html = '<img id="' + my_args.img_id + '" src="/img/placeholder.png" class="the_icon" />';
 		}else{
 //			the_photo = file_name,file_time,file_size
 			var my_names = the_photo.split(',');
 			var my_extension = JKY.get_file_type(my_names[0]);
 			var my_time = my_names[1];
-			my_html = '<a href="' + 'jky_download.php?file_name=contacts/' + my_row_id + '.' + my_extension + '">'
-					+ '<img id="jky-photo-img"    src="/uploads/contacts/' + my_row_id + '.' + my_extension + '?time=' + my_time + '" class="the_icon" />';
+			my_html = '<a href="' + 'jky_download.php?file_name='		+ my_args.directory + '/' + my_row_id + '.' + my_extension + '">'
+					+ '<img id="' + my_args.img_id + '" src="/uploads/' + my_args.directory + '/' + my_row_id + '.' + my_extension + '?time=' + my_time + '" class="the_icon" />';
 					+ '</a>'
 					;
 		}
@@ -97,10 +100,8 @@ JKY.Upload = function(the_args) {
 	my_photo.init();
 
 	return {
-		  program_name		: 'Upload'
-		, program_version	: '1.0.0'
-		, set_row_id		: function(the_row_id)	{my_row_id = the_row_id;}
-		, out_photo			: function(the_photo)	{return my_out_photo(the_photo);}
-		, start_upload		: function()			{my_photo.start();}
+		  set_row_id	: function(the_row_id)	{		my_row_id = the_row_id;}
+		, out_photo		: function(the_photo)	{return my_out_photo(the_photo);}
+		, start_upload	: function()			{		my_photo.start();}
 	};
 };

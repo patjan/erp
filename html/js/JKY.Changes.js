@@ -1,5 +1,5 @@
 "use strict";
-
+var JKY = JKY || {};
 /**
  * JKY.Changes - process all changes during one transaction
  *				 control save into private array [my_appraisals]
@@ -10,7 +10,6 @@
  *			has_changes(the_stay_on_page)
  *
  * require:	JKY.Utils.js(JKY.display_confirm)
- *
  */
 JKY.Changes = function() {
 	var my_changes = 0;		//	number of changes applied on current transaction

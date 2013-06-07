@@ -15,7 +15,7 @@ JKY.start_program = function() {
 		, table_name	: 'Tickets'
 		, specific		: ''
 		, select		: 'Open'
-		, filter		: ''
+		, filter		: 'critical'
 		, sort_by		: 'category, description'
 		, sort_seq		: 'ASC'
 		, focus			: 'jky-description'
@@ -24,8 +24,8 @@ JKY.start_program = function() {
 
 	JKY.Photo = JKY.Upload(
 		{ object_name	: 'JKY.Photo'
-		, table_name	: 'Contacts'
-		, directory		: 'contacts'
+		, table_name	: 'Tickets'
+		, directory		: 'tickets'
 		, field_name	: 'photo'
 		, title			: 'Photo files'
 		, extensions	: 'jpg,gif,png'

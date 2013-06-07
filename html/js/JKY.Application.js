@@ -1,12 +1,11 @@
 "use strict";
-
+var JKY = JKY || {};
 /**
  * JKY.Application - process all application functions
  *
  * method:
  *
  * require:	JKY.Utils.js
- *
  */
 JKY.Application = function() {
 	var my_args		= null;
@@ -36,6 +35,7 @@ JKY.Application = function() {
 				$('#jky-action-delete'		).click (function() {JKY.Changes.can_leave(function() { my_process_delete		();})});
 				$('#jky-action-cancel'		).click (function() {JKY.Changes.can_leave(function() { my_process_cancel		();})});
 				$('#jky-check-all'			).click (function() {									my_set_all_check	(this);});
+
 				$('#jky-form-data    input[id]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
 				$('#jky-form-data   select[id]').each (function() {$(this).change(function()	{my_process_change_input(this);});});
 				$('#jky-form-data textarea[id]').each (function() {$(this).change(function()	{my_process_change_input(this);});});
@@ -350,7 +350,7 @@ JKY.Application = function() {
 	function my_is_invalid(the_id) {
 			JKY.display_trace('my_is_invalid');
 			var my_error = '';
-			
+
 			if (JKY.is_loaded('jky-product-name') && (the_id == null || the_id == 'jky-product-name')) {
 				var my_product_name = JKY.get_value('jky-product-name');
 				if (JKY.is_empty(my_product_name)) {
@@ -362,7 +362,7 @@ JKY.Application = function() {
 					}
 				}
 			}
-			
+
 			if (JKY.is_loaded('jky-user-name') && (the_id == null || the_id == 'jky-user-name')) {
 				var my_user_name = JKY.get_value('jky-user-name');
 				if (JKY.is_empty(my_user_name)) {
@@ -447,6 +447,12 @@ JKY.Application = function() {
 			return my_args[the_property];
 		}
 
+	function my_init() {
+		JKY.display_trace('my_init');
+		my_set_all_events();
+		my_set_initial_values();
+	}
+
 //	$(function() {
 //		my_changes = 0;
 //	});
@@ -454,14 +460,11 @@ JKY.Application = function() {
 	return {version				:	'1.0.0'
 		, set					:	function(the_args)		{		my_set(the_args)				;}
 		, get					:	function(the_property)	{return my_get(the_property)			;}
+		, init					:	function()				{		my_init()						;}
+
 		, display_form			:	function(the_index)		{		my_display_form(the_index)		;}
 		, set_checkbox			:	function(the_index)		{		my_set_checkbox(the_index)		;}
 		, process_is_company	:	function(the_id)		{		my_process_is_company(the_id)	;}
 		, process_change_input	:	function(the_id)		{		my_process_change_input(the_id) ;}
-
-		, init				:	function() {
-									my_set_all_events();
-									my_set_initial_values();
-								}
 	};
 }();

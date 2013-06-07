@@ -24,8 +24,8 @@ JKY.start_program = function() {
 
 	JKY.Photo = JKY.Upload(
 		{ object_name	: 'JKY.Photo'
-		, table_name	: 'Contacts'
-		, directory		: 'contacts'
+		, table_name	: 'Products'
+		, directory		: 'products'
 		, field_name	: 'photo'
 		, title			: 'Photo files'
 		, extensions	: 'jpg,gif,png'
