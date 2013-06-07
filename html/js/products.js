@@ -79,17 +79,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-start-value'		, JKY.fix_ymd2dmy(the_row.start_date	));
 
 	JKY.Photo.set_row_id(the_row.id);
-	var my_time = new Date();
-	var my_html = '';
-	if (the_row.photo == null) {
-		my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
-	}else{
-		my_html = '<a href="' + 'jky_download.php?file_name=products/' + the_row.id + '.' + the_row.photo + '">'
-				+ '<img id="jky-photo-img"    src="/uploads/products/' + the_row.id + '.' + the_row.photo + '?time=' + my_time.getTime() + '" class="the_icon" />';
-				+ '</a>'
-				;
-	}
-	JKY.set_html('jky-download-photo'	, my_html);
+	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));
 	JKY.set_html('jky-upload-name'		, '');
 	JKY.set_html('jky-upload-percent'	, '');
 	JKY.set_css ('jky-upload-progress'	, 'width', '0%');

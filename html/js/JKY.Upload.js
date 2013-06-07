@@ -26,6 +26,23 @@ JKY.Upload = function(the_args) {
 	var my_row_id;
 	var my_saved_name;
 
+	var my_out_photo = function(the_photo) {
+		var my_html = '';
+		if (the_photo == null) {
+			my_html = '<img id="jky-photo-img" src="/img/placeholder.png" class="the_icon" />';
+		}else{
+//			the_photo = file_name,file_time,file_size
+			var my_names = the_photo.split(',');
+			var my_extension = JKY.get_file_type(my_names[0]);
+			var my_time = my_names[1];
+			my_html = '<a href="' + 'jky_download.php?file_name=contacts/' + my_row_id + '.' + my_extension + '">'
+					+ '<img id="jky-photo-img"    src="/uploads/contacts/' + my_row_id + '.' + my_extension + '?time=' + my_time + '" class="the_icon" />';
+					+ '</a>'
+					;
+		}
+		return my_html;
+	}
+
 	var my_photo = new plupload.Uploader(
 		{ browse_button	: my_args.button_id
 		, runtimes		: 'html5,flash'
@@ -56,27 +73,14 @@ JKY.Upload = function(the_args) {
 		JKY.display_message('File ' + my_saved_name + ' uploaded');
 		JKY.set_html(my_args.percent_id, '100%');
 
-		var my_file_name = JKY.get_text(my_args.filename_id);
-		var my_file_size = file.size;
-
-//			var my_data = {command:'file_uploaded', file_name:my_file_name, file_size:my_file_size};
-//			$.ajax({async:false, cache:true, type:'post', dataType:'json', url:'fuploads/ajax', data:my_data}).success(function(data) {});
-
-//			var my_data = {command:'end_upload'};
-//			$.ajax({async:true , cache:true, type:'post', dataType:'json', url:'fuploads/ajax', data:my_data}).success(function(data) {});
-
-		var my_file_type = JKY.get_file_type(my_saved_name);
-		var my_time = new Date();
-		var my_html = '<a href="' + 'jky_download.php?file_name='		+ my_args.directory + '/' + my_row_id + '.' + my_file_type + '">'
-					+ '<img id="' + my_args.img_id + '" src="/uploads/' + my_args.directory + '/' + my_row_id + '.' + my_file_type + '?time=' + my_time.getTime() + '" class="the_icon" />';
-					+ '</a>'
-					;
-		JKY.set_html(my_args.download_id, my_html);
+		var my_time = JKY.get_now() + ' ' + JKY.get_time();
+		var my_photo = my_saved_name + ',' + my_time + ',' + file.size;
+		JKY.set_html(my_args.download_id, my_out_photo(my_photo));
 
 		var my_data =
 			{ method: 'update'
 			, table :  my_args.table_name
-			, set	:  my_args.field_name + '=\'' + my_file_type + '\''
+			, set	:  my_args.field_name + '=\'' + my_photo + '\''
 			, where :  'id=' + my_row_id
 			};
 		JKY.ajax(false, my_data);
@@ -96,6 +100,7 @@ JKY.Upload = function(the_args) {
 		  program_name		: 'Upload'
 		, program_version	: '1.0.0'
 		, set_row_id		: function(the_row_id)	{my_row_id = the_row_id;}
+		, out_photo			: function(the_photo)	{return my_out_photo(the_photo);}
 		, start_upload		: function()			{my_photo.start();}
 	};
 };

@@ -45,9 +45,8 @@ JKY.add_new_product = function() {
 }
 
 JKY.select_product = function(the_index, the_id) {
-	var my_name = $(the_index).find('.jky-search-product-name').html();
-//	JKY.display_message('id: ' + the_id + ',product name: ' + my_name);
+	var my_product_name = $(the_index).find('.jky-search-product-name').html();
 	JKY.set_value('jky-product-id', the_id);
-	JKY.set_value('jky-product', my_name);
+	JKY.set_value('jky-product', my_product_name);
 	JKY.hide_modal('jky-search-product');
 }
