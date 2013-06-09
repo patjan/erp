@@ -210,13 +210,26 @@ public function indexAction() {
  *	return where
  */
 private function get_security($table, $where) {
-	if (get_session('user_action') == 'All') {
-		return $where;
+//	if (get_session('user_action') == 'All') {
+//		return $where;
+//	}
+
+	if ($table == 'Contacts') {
+		if (get_session('user_role') != 'Support') {
+			$my_where = '(JKY_Users.id IS NULL OR JKY_Users.user_role != "Support")';
+			if ($where != '') {
+				return $my_where . ' AND ' . $where;
+			}else{
+				return $my_where;
+			}
+		}else{
+			return $where;
+		}
 	}
 
 	switch($table) {
-		case 'Contacts'		: return      'Contacts.id=' . get_session('user_id');
-		case 'Services'		: return 'Services.user_id=' . get_session('user_id') . ' AND Services.event_id=' . get_session('event_id');
+//		case 'Contacts'		: return      'Contacts.id=' . get_session('user_id');
+//		case 'Services'		: return 'Services.user_id=' . get_session('user_id') . ' AND Services.event_id=' . get_session('event_id');
 		default				: return $where;
 	}
 }
@@ -280,13 +293,14 @@ private function get_user_screen() {
  */
 private function get_id($data) {
 	$table = get_data($data, 'table');
-	$where = $this->get_security($table, get_data($data, 'where'));
+	$where = get_data($data, 'where');
 
 	if ($where == '') {
 		$this->echo_error('missing [where] statement');
 		return;
 	}
 
+	$where = $this->get_security($table, $where);
 	$sql= 'SELECT id'
 		. '  FROM ' . $table
 		. ' WHERE ' . $where
@@ -326,8 +340,9 @@ private function get_ids($data) {
  */
 private function get_count($data) {
 	$table = get_data($data, 'table');
-	$where = $this->get_security($table, get_data($data, 'where'));
+	$where = get_data($data, 'where');
 
+	$where = $this->get_security($table, $where);
 	if ($where != '') {
 		$where = ' WHERE ' . $where;
 	}
@@ -353,7 +368,7 @@ private function get_count($data) {
 private function get_value($data) {
 	$table = get_data($data, 'table');
 	$field = get_data($data, 'field');
-	$where = $this->get_security($table, get_data($data, 'where'));
+	$where = get_data($data, 'where');
 
 	if ($field == '') {
 		$this->echo_error('missing [field] statement');
@@ -365,6 +380,7 @@ private function get_value($data) {
 		return;
 	}
 
+	$where = $this->get_security($table, $where);
 	$sql= 'SELECT ' . $field
 		. '  FROM ' . $table
 		. ' WHERE ' . $where
@@ -384,18 +400,19 @@ private function get_value($data) {
  */
 private function get_row($data) {
 	$table = get_data($data, 'table');
-	$where = $this->get_security($table, get_data($data, 'where'));
+	$where = get_data($data, 'where');
 
 	if ($where == '') {
 		$this->echo_error('missing [where] statement');
 		return;
 	}
 
+	$where = $this->get_security($table, $where);
 	$sql= 'SELECT ' . $table . '.*' . $this->set_new_fields($table)
 		. '  FROM ' . $table		. $this->set_left_joins($table)
 		. ' WHERE ' . $where
 		;
-//$this->log_sql( $table, 'get_row', $sql );
+$this->log_sql( $table, 'get_row', $sql );
 	$db  = Zend_Registry::get('db');
 	$row = $db->fetchRow($sql);
 
@@ -420,10 +437,11 @@ private function get_row($data) {
  *			]
  */
 private function get_rows($data) {
-	$table = get_data($data, 'table');
-	$where = $this->get_security($table, get_data($data, 'where'));
-	$order_by = get_data($data, 'order_by');
+	$table		= get_data($data, 'table');
+	$where		= get_data($data, 'where');
+	$order_by	= get_data($data, 'order_by');
 
+	$where = $this->get_security($table, $where);
 	if ($where		!= '')		$where		= ' WHERE '		. $where	;
 	if ($order_by	!= '')		$order_by	= ' ORDER BY '	. $order_by	;
 
@@ -494,16 +512,21 @@ private function get_index($data) {
 		$limit = '';
 	}
 
+	if ($where != '') {
+		$where  = substr($where, 4);
+	}
+	$where = $this->get_security($table, $where);
+
 	if ($table == 'FTP_Sets') {
 		$sql= 'SELECT Configs.id as setting, Configs.name, FTP_Sets.id, FTP_Sets.value'
 			. '  FROM Configs'
 			. '  LEFT JOIN FTP_Sets'
-			. '    ON FTP_Sets.setting_id = Configs.id' . $where
+			. '    ON FTP_Sets.setting_id = Configs.id AND ' . $where
 			. ' WHERE Configs.group_set = "Settings"'
 			. ' ORDER BY Configs.sequence'
 			;
 	}else{
-		if ($where    != '')	{$where		= ' WHERE 1 '  . $where   ;}
+		if ($where    != '')	{$where		= ' WHERE '    . $where   ;}
 		if ($order_by != '')	{$order_by	= ' ORDER BY ' . $order_by;}
 
 		$sql= 'SELECT ' . $table . '.*' . $this->set_new_fields($table)
@@ -1938,6 +1961,7 @@ private function get_session() {
 	if (is_session('contact_id'		))   $data['contact_id'		] =   get_session('contact_id'	);
 	if (is_session('full_name'		))   $data['full_name'		] =   get_session('full_name'	);
 	if (is_session('user_name'		))   $data['user_name'		] =   get_session('user_name'	);
+	if (is_session('user_role'		))   $data['user_role'		] =   get_session('user_role'	);
 	if (is_session('user_time'		))   $data['user_time'		] =   get_session('user_time'	);
 	if (is_session('user_id'		))   $data['user_id'		] =   get_session('user_id'		);
 	if (is_session('full_name'		))   $data['full_name'		] =   get_session('full_name'	);
@@ -2227,11 +2251,19 @@ $this->log_sql(null, 'get_users', $sql);
 private function get_controls($data) {
 	$group_set = get_data($data, 'group_set');
 
+	$security = '';
+	if ($group_set == 'User Roles') {
+		if (get_session('user_role') != 'Support') {
+			$security = ' AND Controls.name != "Support"';
+		}
+	}
+
 	$sql= 'SELECT * '
 		. '  FROM Controls'
-		. ' WHERE group_set = "' . $group_set . '"'
+		. ' WHERE group_set = "' . $group_set . '"' . $security
 		. ' ORDER BY sequence, name'
 		;
+$this->log_sql(null, 'get_users', $sql);
 	$db = Zend_Registry::get('db');
 	$rows = $db->fetchAll($sql);
 	$return = array();

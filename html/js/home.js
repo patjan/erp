@@ -15,7 +15,6 @@ $(function() {
 //	JKY.set_contact_us	(JKY.Session.get_value('contact_us'		));
 //	JKY.set_buttons_menus(my_menus);
 //	JKY.set_buttons_control([], JKY.Session.get_value('language'), JKY.Session.get_value('languages'));
-//	$('body').append('<scr' + 'ipt src="js/translations/' + JKY.Session.get_value('locale') + '.js"></scr' + 'ipt>');
 	JKY.set_all_events_home(jky_program);
 
 	if (JKY.Session.has('full_name')) {
@@ -31,7 +30,8 @@ $(function() {
  */
 JKY.set_all_events_home = function(jky_program) {
 	if (JKY.is_loaded('jky')) {
-JKY.display_trace('set_all_events_home');
+		JKY.display_trace('set_all_events_home');
+		JKY.set_html('jky-loaded', '<scr' + 'ipt src="js/translations/' + JKY.Session.get_value('locale') + '.js"></scr' + 'ipt>');
 		JKY.t_tag	('jky-wrapper', 'span');
 		JKY.t_input	('jky-wrapper', 'placeholder');
 /*

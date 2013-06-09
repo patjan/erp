@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link type="text/css" href="/tandem/styles/bootstrap.min.css"			 rel="stylesheet">
+	<link type="text/css" href="/tandem/styles/bootstrap-responsive.min.css" rel="stylesheet">
+	<link type="text/css" href="/tandem/styles/CX-base.css"					 rel="stylesheet">
+
+	<script src="/tandem/scripts/jquery-1.8.2.min.js" 	type="text/javascript"></script>
+	<script src="/tandem/scripts/CX-util.js" 			type="text/javascript"></script>
+</head>
+
+<body>
+<p>Test OOP 18</p>
+
+<script>
+"use strict";
+
+var CX = CX || {}; 
+
+CX.MyClass = function(the_args) {
+	var my_args = the_args;
+
+	var my_set = function(the_property, the_value) {
+		my_args[the_property] = the_value;
+	}
+
+	var my_get = function(the_property) {
+		return my_args[the_property];
+	}
+
+	return {
+		  program_name		: 'MyClass'		
+		, program_version	: '1.0.0'
+
+		, set	: function(the_property, the_value)		{		my_set(the_property, the_value);}
+		, get	: function(the_property)				{return my_get(the_property);}
+	};
+};
+
+
+$(function() {	 
+	if ($('#ihs-util').length == 0)	{
+		$('body').append('<div id="ihs-util"></div>');
+		CX.load_html('ihs-util', 'CX-util.html');
+	}
+
+	CX.display_message('Start Test');
+//	var my_class1 = new CX.MyClass({id:'1', name:'Pat' });
+//	var my_class2 = new CX.MyClass({id:'2', name:'Joel'});
+
+	var my_class1 = 	CX.MyClass({id:'1', name:'Pat' });
+	 CX.my_class2 = new CX.MyClass({id:'2', name:'Joel'});
+	 
+	 
+	CX.display_message('Program, name: ' + my_class1.program_name + ', version: ' + CX.my_class2.program_version);
+
+	CX.display_message('my_class1, id: ' + my_class1.get('id') + ', name: ' + my_class1.get('name'));
+	CX.display_message('my_class2, id: ' + CX.my_class2.get('id') + ', name: ' + CX.my_class2.get('name'));
+
+	my_class1.set('name', 'new Pat');
+	CX.my_class2.set('name', 'new Joel');
+
+	CX.my_class3 =		CX.MyClass({id:'3', name:'Susan'});
+	CX.my_class4 =		CX.MyClass({id:'4', name:'Raquel'});
+	
+	CX.my_class5 = 		CX.my_class2;
+	CX.my_class5.set('id', '5');
+	CX.my_class5.set('name', 'Fang');
+	
+	CX.display_message('my_class1, id: ' + my_class1.get('id') + ', name: ' + my_class1.get('name'));
+	CX.display_message('my_class2, id: ' + CX.my_class2.get('id') + ', name: ' + CX.my_class2.get('name'));
+
+	CX.display_message('my_class3, id: ' + CX.my_class3.get('id') + ', name: ' + CX.my_class3.get('name'));
+	CX.display_message('my_class4, id: ' + CX.my_class4.get('id') + ', name: ' + CX.my_class4.get('name'));
+
+	CX.display_message('my_class5, id: ' + CX.my_class5.get('id') + ', name: ' + CX.my_class5.get('name'));
+	CX.display_message('my_class2, id: ' + CX.my_class2.get('id') + ', name: ' + CX.my_class2.get('name'));
+
+	CX.display_message('Program, name: ' + CX.my_class2.program_name + ', version: ' + my_class1.program_version);
+	CX.display_message('Program, name: ' + CX.MyClass.program_name + ', version: ' + CX.MyClass.program_version);
+	CX.display_message(  'End Test');
+});
+
+</script>
+
+
+</body>
+</html>

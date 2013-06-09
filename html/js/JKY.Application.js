@@ -3,9 +3,8 @@ var JKY = JKY || {};
 /**
  * JKY.Application - process all application functions
  *
- * method:
- *
  * require:	JKY.Utils.js
+ *			JKY.Changes.js
  */
 JKY.Application = function() {
 	var my_args		= null;

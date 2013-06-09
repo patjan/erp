@@ -1150,7 +1150,7 @@ JKY.is_empty = function(the_string) {
 	if (typeof the_string == 'undefined'
 	||  the_string == 'null'
 	||  the_string == false
-	||  $.trim(the_string) == '') {
+	||  the_string.trim() == '') {
 		return true;
 	}else{
 		return false;
@@ -1760,7 +1760,7 @@ JKY.ajax = function(async, data, function_success, function_error) {
 					}
 				}else{
 					var my_messages = response.message.split(':');
-					if (my_messages.length > 1) {
+					if (my_messages.length > 2) {
 						var my_words = my_messages[2].trim().split(' ');
 						if (my_words[0] == '1062') {
 							JKY.display_message('Error, the key of this record is already taken.');
@@ -1949,7 +1949,7 @@ JKY.get_user_id = function(the_user_name) {
 	return my_id;
 }
 
-JKY.get_product_id = function(the_product_name) {
+JKY.Xget_product_id = function(the_product_name) {
 	var my_id = null;
 	var my_data =
 		{ method: 'get_product_id'
