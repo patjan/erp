@@ -159,6 +159,9 @@ JKY.process_start_page = function() {
 //		,{id:'jky-menu-inventory'	, icon:'plus', label:'Inventory'	}
 //		,{id:'jky-menu-payable'		, icon:'plus', label:'Payable'		}
 //		,{id:'jky-menu-receivable'	, icon:'plus', label:'Receivable'	}
+		,{id:'jky-menu-fabrics'		, icon:'plus', label:'Fabrics'		}
+		,{id:'jky-menu-raws'		, icon:'plus', label:'Raws'			}
+		,{id:'jky-menu-threads'		, icon:'plus', label:'Threads'		}
 		,{id:'jky-menu-help'		, icon:'plus', label:'Help'			}
 		,{id:'jky-menu-admin'		, icon:'plus', label:'Admin'		}
 		,{id:'jky-menu-support'		, icon:'plus', label:'Support'		}
