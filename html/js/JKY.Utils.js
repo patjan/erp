@@ -1013,12 +1013,26 @@ JKY.set_focus = function(the_name, the_delay) {
 /**
  * convert all [\n] to [<br>]
  */
-JKY.nl2br = function(string)		{return string.replace(/\n/g, '<br>');}
+JKY.nl2br = function(string) {
+	if (string == null) {
+		return '';
+	}else{
+		return string.replace(/\n/g, '<br>');
+	}
+}
+
 
 /**
  * convert all [<br>] to [\n]
  */
-JKY.br2nl = function(string)		{return string.replace(/<br>/g, "\n").replace(/<BR>/g, "\n");}
+JKY.br2nl = function(string) {
+	if (string == null) {
+		return '';
+	}else{
+		return string.replace(/<br>/g, "\n").replace(/<BR>/g, "\n");
+	}
+}
+
 
 /*
  *	json to array
