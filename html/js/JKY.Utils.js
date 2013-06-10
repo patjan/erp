@@ -1150,7 +1150,7 @@ JKY.is_empty = function(the_string) {
 	if (typeof the_string == 'undefined'
 	||  the_string == 'null'
 	||  the_string == false
-	||  the_string.trim() == '') {
+	||  $.trim(the_string) == '') {
 		return true;
 	}else{
 		return false;
@@ -1310,11 +1310,14 @@ JKY.is_permitted = function(the_menu_id) {
 	var my_resource = '';
 			if (the_menu_id == 'jky-menu-sales'			) {my_resource = 'Menu-Sales'		;
 	}else{	if (the_menu_id == 'jky-menu-production'	) {my_resource = 'Menu-Production'	;
+	}else{	if (the_menu_id == 'jky-menu-fabrics'		) {my_resource = 'Menu-Fabrics'		;
+	}else{	if (the_menu_id == 'jky-menu-raws'			) {my_resource = 'Menu-Raws'		;
+	}else{	if (the_menu_id == 'jky-menu-threads'		) {my_resource = 'Menu-Threads'		;
 	}else{	if (the_menu_id == 'jky-menu-help'			) {my_resource = 'Menu-Help'		;
 	}else{	if (the_menu_id == 'jky-menu-admin'			) {my_resource = 'Menu-Admin'		;
 	}else{	if (the_menu_id == 'jky-menu-support'		) {my_resource = 'Menu-Support'		;
 	}else{	alert('JKY.is_permitted: ' + the_menu_id);
-	}}}}}
+	}}}}}}}}
 
 	var my_action = JKY.Session.get_action(my_resource);
 	if (my_action == '') {

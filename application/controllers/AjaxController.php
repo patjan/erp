@@ -301,10 +301,14 @@ private function get_id($data) {
 	}
 
 	$where = $this->get_security($table, $where);
-	$sql= 'SELECT id'
-		. '  FROM ' . $table
-		. ' WHERE ' . $where
+	$names = explode('=', $where);
+	if (trim($names[0]) == 'user_name') {
+		$sql = 'SELECT contact_id as id FROM JKY_Users WHERE ' . $where;
+	}else{
+		$sql = 'SELECT id FROM ' . $table . ' WHERE ' . $where;
 		;
+	}
+
 $this->log_sql( $table, 'get_id', $sql );
 	$db = Zend_Registry::get('db');
 	$return = array();
