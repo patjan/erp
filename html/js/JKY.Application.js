@@ -3,18 +3,18 @@ var JKY = JKY || {};
 /**
  * JKY.Application - process all application functions
  *
- * method:
- *
  * require:	JKY.Utils.js
+ *			JKY.Changes.js
+ *			JKY.Validation.js
  */
 JKY.Application = function() {
 	var my_args		= null;
 	var my_count	= 0;
-	var my_index	= 0;		//	0=Add New
+	var my_index	= 0;
 	var my_skip_form;
 
 	JKY.rows		= [];
-	JKY.row 		= null;
+	JKY.row 		= null;		// null=Add New
 
 /**
  *	set all events (run only once per load)
@@ -212,18 +212,19 @@ JKY.Application = function() {
 
 	function my_display_new() {
 			JKY.display_trace('my_display_new');
-			my_index = 0;
+//			my_index = 0;
+			JKY.row = null;
 			JKY.set_add_new_row();
 			JKY.set_focus(my_args.focus);
 		}
 
 	function my_process_save() {
 			JKY.display_trace('my_process_save');
-			if (my_is_invalid(null)) {
+			if (JKY.Validation.is_invalid(JKY.row, null)) {
 				return;
 			}
 
-			if (my_index == 0) {
+			if (JKY.row == null) {
 				my_process_insert();
 			}else{
 				my_process_update();
@@ -323,7 +324,7 @@ JKY.Application = function() {
 			if (my_id == 'jky-is-company') {
 				my_process_is_company(the_id);
 			}else{
-				my_is_invalid(my_id);
+				JKY.Validation.is_invalid(JKY.row, my_id);
 			}
 		}
 
@@ -344,96 +345,6 @@ JKY.Application = function() {
 				JKY.hide		('jky-website-line'		);
 				JKY.set_html	('jky-cnpj-label','CPF'	);
 				JKY.set_html	('jky-ie-label'  ,'RG'	);
-			}
-		}
-
-	function my_is_invalid(the_id) {
-			JKY.display_trace('my_is_invalid');
-			var my_error = '';
-
-			if (JKY.is_loaded('jky-product-name') && (the_id == null || the_id == 'jky-product-name')) {
-				var my_product_name = JKY.get_value('jky-product-name');
-				if (JKY.is_empty(my_product_name)) {
-						my_error += JKY.set_is_required('Product Name');
-				}else{
-					var my_id = JKY.get_product_id(my_product_name);
-					if (!JKY.is_empty(my_id) && ( JKY.row == null || my_id != JKY.row.id)) {
-						my_error += JKY.set_already_taken('Product Name');
-					}
-				}
-			}
-
-			if (JKY.is_loaded('jky-user-name') && (the_id == null || the_id == 'jky-user-name')) {
-				var my_user_name = JKY.get_value('jky-user-name');
-				if (JKY.is_empty(my_user_name)) {
-					if (my_args.program_name != 'Contacts') {
-						my_error += JKY.set_is_required('User Name');
-					}
-				}else{
-					var my_id = JKY.get_user_id(my_user_name);
-					if (!JKY.is_empty(my_id) && ( JKY.row == null || my_id != JKY.row.user_id)) {
-						my_error += JKY.set_already_taken('User Name');
-					}
-				}
-			}
-
-			if (JKY.is_loaded('jky-nick-name') && (the_id == null || the_id == 'jky-nick-name')) {
-				var my_nick_name = JKY.get_value('jky-nick-name');
-				if (JKY.is_empty(my_nick_name)) {
-					my_error += JKY.set_is_required('Nick Name');
-				}
-				var my_id = JKY.get_id('Contacts', 'nick_name = \'' + my_nick_name + '\'');
-				if (!JKY.is_empty(my_id) && ( JKY.row == null || my_id != JKY.row.id)) {
-					my_error += JKY.set_already_taken('Nick Name');
-				}
-			}
-
-			if (JKY.is_loaded('jky-full-name') && (the_id == null || the_id == 'jky-full-name')) {
-				var my_full_name = JKY.get_value('jky-full-name');
-				if (JKY.is_empty(my_full_name)) {
-					my_error += JKY.set_is_required('Full Name');
-				}
-				var my_id = JKY.get_id('Contacts', 'full_name = \'' + my_full_name + '\'');
-				if (!JKY.is_empty(my_id) && ( JKY.row == null || my_id != JKY.row.id)) {
-					my_error += JKY.set_already_taken('Full Name');
-				}
-			}
-
-			if (JKY.is_loaded('jky-contact-company') && (the_id == null || the_id == 'jky-contact-company')) {
-				if (!JKY.is_checked('jky-is-company')) {
-					var my_company_id = JKY.get_value('jky-contact-company');
-					if (JKY.is_empty(my_company_id)) {
-						my_error += JKY.set_is_required('Company');
-					}
-				}
-			}
-/*
-			if (JKY.is_loaded('jky-contact-tag') && (the_id == null || the_id == 'jky-contact-tag')) {
-				var my_contact_tag = JKY.get_value('jky-contact-tag');
-				if (JKY.is_empty(my_contact_tag)) {
-					my_error += JKY.set_is_required('Tag');
-				}
-			}
-
-			if (JKY.is_loaded('jky-cnpj') && (the_id == null || the_id == 'jky-cnpj')) {
-				var my_cnpj = JKY.get_value('jky-cnpj');
-				if (!JKY.is_empty(my_cnpj) && !JKY.is_numeric(my_cnpj)) {
-					my_error += JKY.set_must_be_numeric('CNPJ or CPF');
-				}
-			}
-
-			if (JKY.is_loaded('jky-ie') && (the_id == null || the_id == 'jky-ie')) {
-				var my_ie = JKY.get_value('jky-ie');
-				if (!JKY.is_empty(my_ie) && !JKY.is_numeric(my_ie)) {
-					my_error += JKY.set_must_be_numeric('IE or RG');
-				}
-			}
-*/
-			if (JKY.is_empty(my_error)) {
-				return false;
-			}else{
-				JKY.display_message(my_error);
-				return true;
 			}
 		}
 

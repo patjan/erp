@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * permissions.html
+ * translations.js
  */
 
 JKY.languages	= [];
@@ -117,7 +117,7 @@ JKY.get_form_set = function() {
 		;
 	return my_set;
 }
-	
+
 JKY.display_form = function() {
 };
 

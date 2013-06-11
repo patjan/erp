@@ -1013,12 +1013,26 @@ JKY.set_focus = function(the_name, the_delay) {
 /**
  * convert all [\n] to [<br>]
  */
-JKY.nl2br = function(string)		{return string.replace(/\n/g, '<br>');}
+JKY.nl2br = function(string) {
+	if (string == null) {
+		return '';
+	}else{
+		return string.replace(/\n/g, '<br>');
+	}
+}
+
 
 /**
  * convert all [<br>] to [\n]
  */
-JKY.br2nl = function(string)		{return string.replace(/<br>/g, "\n").replace(/<BR>/g, "\n");}
+JKY.br2nl = function(string) {
+	if (string == null) {
+		return '';
+	}else{
+		return string.replace(/<br>/g, "\n").replace(/<BR>/g, "\n");
+	}
+}
+
 
 /*
  *	json to array
@@ -1310,11 +1324,14 @@ JKY.is_permitted = function(the_menu_id) {
 	var my_resource = '';
 			if (the_menu_id == 'jky-menu-sales'			) {my_resource = 'Menu-Sales'		;
 	}else{	if (the_menu_id == 'jky-menu-production'	) {my_resource = 'Menu-Production'	;
+	}else{	if (the_menu_id == 'jky-menu-fabrics'		) {my_resource = 'Menu-Fabrics'		;
+	}else{	if (the_menu_id == 'jky-menu-raws'			) {my_resource = 'Menu-Raws'		;
+	}else{	if (the_menu_id == 'jky-menu-threads'		) {my_resource = 'Menu-Threads'		;
 	}else{	if (the_menu_id == 'jky-menu-help'			) {my_resource = 'Menu-Help'		;
 	}else{	if (the_menu_id == 'jky-menu-admin'			) {my_resource = 'Menu-Admin'		;
 	}else{	if (the_menu_id == 'jky-menu-support'		) {my_resource = 'Menu-Support'		;
 	}else{	alert('JKY.is_permitted: ' + the_menu_id);
-	}}}}}
+	}}}}}}}}
 
 	var my_action = JKY.Session.get_action(my_resource);
 	if (my_action == '') {
@@ -1760,7 +1777,7 @@ JKY.ajax = function(async, data, function_success, function_error) {
 					}
 				}else{
 					var my_messages = response.message.split(':');
-					if (my_messages.length > 1) {
+					if (my_messages.length > 2) {
 						var my_words = my_messages[2].trim().split(' ');
 						if (my_words[0] == '1062') {
 							JKY.display_message('Error, the key of this record is already taken.');
@@ -1949,7 +1966,7 @@ JKY.get_user_id = function(the_user_name) {
 	return my_id;
 }
 
-JKY.get_product_id = function(the_product_name) {
+JKY.Xget_product_id = function(the_product_name) {
 	var my_id = null;
 	var my_data =
 		{ method: 'get_product_id'
