@@ -1,7 +1,7 @@
 <div id='jky-app-header'>
 	<div>
 		<div id='jky-app-breadcrumb'></div>
-		<select id='jky-app-select'></select>
+		<span   id='jky-app-label'><span>Machine Brand</span>: </span><select id='jky-machine-brands'></select>
 		<input  id='jky-app-filter' class='search-query' type='text' placeholder='Search' />
 		<div class='jky-clear'></div>
 	</div>
@@ -32,6 +32,7 @@
 </div>
 
 <style>
+
 .jky-form-line-1		{width:273px;}
 .jky-form-line-2		{width:290px;}
 .jky-form-label			{width:160px;}
@@ -40,14 +41,16 @@
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-name				{width: 80px; text-transform:capitalize;}
+.jky-app-label			{float:left; margin:14px 0 0 14px; font-weight:bold;}
+
+.jky-machine-name				{width: 80px; text-transform:capitalize;}
 .jky-diameter			{width: 40px; text-align:right;}
 .jky-width				{width: 40px; text-align:right;}
 .jky-density			{width: 40px; text-align:right;}
 .jky-inputs				{width: 40px; text-align:right;}
 .jky-lanes				{width: 40px; text-align:right;}
 
-#jky-name				{width:100px; font-size:16px; font-weight:bold; text-transform:capitalize;}
+#jky-machine-name				{width:100px; font-size:16px; font-weight:bold; text-transform:capitalize;}
 #jky-machine-type		{width:230px;}
 #jky-machine-type span	{padding:4px 20px 0 4px; vertical-align:bottom;}
 #jky-machine-family		{width:385px;}
@@ -72,7 +75,7 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-name'			><span>Name				</span></th>
+			<th class='jky-machine-name'			><span>Name				</span></th>
 			<th class='jky-diameter'		><span>Diameter			</span></th>
 			<th class='jky-width'			><span>Width			</span></th>
 			<th class='jky-density'			><span>Density			</span></th>
@@ -108,7 +111,7 @@
 -->
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input  id='jky-name'			class='jky-form-value'		placeholder='Name'				/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input  id='jky-machine-name'			class='jky-form-value'		placeholder='Name'				/></div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Machine Type</span>:</div>
 				<div id='jky-machine-type' class='jky-form-value'>
