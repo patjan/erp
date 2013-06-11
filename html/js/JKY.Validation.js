@@ -20,6 +20,8 @@ JKY.Validation = function() {
 		my_error += my_validate_name	('jky-full-name'	, 'Full Name'	, 'Contacts'	, 'full_name'	);
 
 		my_error += my_validate_required		('jky-contact-company'	, 'Company'		);
+		my_error += my_validate_required		('jky-first-name'	, 'First Name'		);
+		my_error += my_validate_required		('jky-last-name'	, 'Last Name'		);
 /*
 		my_error += my_validate_required		('jky-contact-tag'		, 'Tag'			);
 		my_error += my_validate_numeric			('jky-cnpj'				, 'CNPJ or CPF'	);

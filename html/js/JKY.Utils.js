@@ -1668,6 +1668,9 @@ JKY.set_configs = function(group_set, selected, initial) {
 
 /**
  * set controls
+ * initial is undefined then nothing will show up
+ * initial is equal to '' then add up a '___' option
+ * initial is equal to all then add up one 'all' option
  */
 JKY.set_controls = function(group_set, selected, initial) {
 	JKY.display_trace('set_controls: ' + group_set);
