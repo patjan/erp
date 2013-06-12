@@ -52,7 +52,7 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_menu_active('jky-menu-admin');
 	JKY.set_side_active('jky-admin-contacts');
-	JKY.set_html('jky-user-role'		, JKY.set_controls('User Roles'		, ''));
+	JKY.set_html('jky-user-role'		, JKY.set_controls('User Roles'		, ''	));
 	JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
 	JKY.set_html('jky-country'			, JKY.set_configs ('Countries'		, '', ''));
 	JKY.show('jky-action-export');

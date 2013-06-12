@@ -174,7 +174,7 @@ JKY.Application = function() {
 			JKY.show('jky-action-cancel'	);
 			JKY.hide('jky-app-table'		);
 			JKY.show('jky-app-form'			);
-			JKY.show('jky-app-upload'		);
+			JKY.show('jky-app-upload'		);		//	??????????
 			JKY.display_form();
 			my_display_row(the_index);
 		}
@@ -206,7 +206,7 @@ JKY.Application = function() {
 			JKY.show('jky-action-cancel'	);
 			JKY.hide('jky-app-table'		);
 			JKY.show('jky-app-form'			);
-			JKY.hide('jky-app-upload'		);
+			JKY.hide('jky-app-upload'		);		//	??????
 			my_display_new();
 		}
 
@@ -305,6 +305,28 @@ JKY.Application = function() {
 			JKY.Changes.reset();
 		}
 
+/**
+ * process print
+ */
+	function my_process_print() {
+		JKY.display_trace('my_process_print');
+		if ($('#jky-app-form').css('display') == 'block') {
+			my_print_row(JKY.row.id);
+		}else{
+			$('#jky-table-body .jky-checkbox input:checked').each(function() {
+				my_print_row($(this).attr('row_id'));
+			});
+		};
+	};
+
+/**
+ * process print
+ */
+	function my_print_row(the_id) {
+		JKY.display_trace('my_print_row');
+		JKY.print_row(the_id);
+	}
+	
 /**
  * process export
  */

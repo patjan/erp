@@ -126,6 +126,7 @@ JKY.translations =
 , "Opened":"Aberto"
 , "Opened At":"Aberto Em"
 , "Opened By":"Aberto Por"
+, "Orders":"Pedidos"
 , "Parent":"Parente"
 , "Parent ID":"Parente ID"
 , "Parent Name":"Nome do Parente"

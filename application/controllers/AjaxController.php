@@ -623,7 +623,7 @@ private function set_new_fields($table) {
 											. ',   Thread2.name			AS   thread_name_2'
 											. ',   Thread3.name			AS   thread_name_3';
 	if ($table == 'FTP_Threads'	)	$return = ',   Threads.name			AS			name'
-											. ', Suppliers.full_name	AS			supplier';
+											. ', Suppliers.nick_name	AS			supplier';
 	if ($table == 'FTP_Sets'	)	$return = ',   Configs.sequence		AS			sequence'
 											. ',   Configs.name			AS			name';
 	if ($table == 'History'		)	$return = ',  Contacts.full_name	AS	created_name';

@@ -29,7 +29,7 @@ JKY.process_load_product_success = function(response) {
 	for(var i=0; i<my_rows.length; i++) {
 		var my_row = my_rows[i];
 		my_html += '<tr onclick="JKY.select_product(this, ' + my_row.id + ')">'
-				+  '<td class="jky-search-product-name"	>' + my_row.product_name			+ '</td>'
+				+  '<td class="jky-search-product-name"	>' + my_row.product_name	+ '</td>'
 				+  '<td class="jky-search-product-type"	>' + my_row.product_type	+ '</td>'
 				+  '<td class="jky-search-start-date"	>' + JKY.fix_ymd2dmy(my_row.start_date) + '</td>'
 				+  '</tr>'
@@ -49,4 +49,5 @@ JKY.select_product = function(the_index, the_id) {
 	JKY.set_value('jky-product-id', the_id);
 	JKY.set_value('jky-product', my_product_name);
 	JKY.hide_modal('jky-search-product');
+	JKY.Changes.increment();
 }
