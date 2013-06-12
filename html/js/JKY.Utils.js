@@ -134,6 +134,7 @@ JKY.run_when_is_ready = function(template_name, function_name) {
 JKY.load_html = function(id_name, file_name) {
 //	JKY.display_trace('load_html: ' + id_name);
 	if ($('#' + id_name).length > 0) {
+		$('#' + id_name).load('../js/JKY.Reset.js');					//	reset abstract functions
 		$('#' + id_name).load('../' + file_name);						//	production mode
 //		$('#' + id_name).load('../' + file_name + '?' + Math.random());	//	testing mode
 //		JKY.display_trace('load_html: ' + id_name + ' DONE');

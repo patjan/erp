@@ -4,6 +4,7 @@ var JKY = JKY || {};
  * JKY.Application - process all application functions
  *
  * require:	JKY.Utils.js
+ *			JKY.Reset.js
  *			JKY.Changes.js
  *			JKY.Validation.js
  */
@@ -32,7 +33,7 @@ JKY.Application = function() {
 				$('#jky-action-list'		).click (function() {JKY.Changes.can_leave(function() { my_display_list			();})});
 				$('#jky-action-form'		).click (function() {JKY.Changes.can_leave(function() { my_display_form		   (1);})});
 				$('#jky-action-save'		).click (function() {									my_process_save			();});
-				$('#jky-action-delete'		).click (function() {JKY.Changes.can_leave(function() { my_process_delete		();})});
+				$('#jky-action-delete'		).click (function() {									my_process_delete		();});
 				$('#jky-action-cancel'		).click (function() {JKY.Changes.can_leave(function() { my_process_cancel		();})});
 				$('#jky-check-all'			).click (function() {									my_set_all_check	(this);});
 
@@ -109,12 +110,18 @@ JKY.Application = function() {
 			JKY.show('jky-app-counters'		);
 			JKY.show('jky-action-add-new'	);
 			JKY.hide('jky-action-print'		);
+			if (JKY.Session.get_value('user_role') == 'Support') {
+				JKY.show('jky-action-export');
+			}else{
+				JKY.hide('jky-action-export');
+			};
 			JKY.hide('jky-action-save'		);
 			JKY.hide('jky-action-copy'		);
 			JKY.hide('jky-action-delete'	);
 			JKY.hide('jky-action-cancel'	);
 			JKY.show('jky-app-table'		);
 			JKY.hide('jky-app-form'			);
+			JKY.display_list();
 			my_load_table();
 		}
 
@@ -207,6 +214,7 @@ JKY.Application = function() {
 			JKY.hide('jky-app-table'		);
 			JKY.show('jky-app-form'			);
 			JKY.hide('jky-app-upload'		);		//	??????
+			JKY.process_add_new();
 			my_display_new();
 		}
 
@@ -326,7 +334,7 @@ JKY.Application = function() {
 		JKY.display_trace('my_print_row');
 		JKY.print_row(the_id);
 	}
-	
+
 /**
  * process export
  */

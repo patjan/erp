@@ -48,6 +48,7 @@ JKY.translations =
 , "Created By":"Criado Por"
 , "Current":"Atual"
 , "Current Password":"Senha Atual"
+, "Customer":"Cliente"
 , "Customer Tag":"Tag do Cliente"
 , "Customers":"Clientes"
 , "Cylinders":"Cilindros"

@@ -58,6 +58,7 @@ JKY.materials	= [];
 JKY.threads		= [];
 JKY.loads		= [];
 JKY.settings	= [];
+JKY.suppliers	= [];
 
 /**
  *	set all events (run only once per load)
@@ -91,8 +92,8 @@ JKY.set_initial_values = function() {
 		JKY.show('jky-action-print');
 		JKY.materials	= JKY.get_configs	('Materials'	);
 		JKY.threads		= JKY.get_ids		('Threads'		);
-		JKY.suppliers	= JKY.get_companies	('is_supplier'	);
 		JKY.settings	= JKY.get_configs	('Settings'		);
+		JKY.suppliers	= JKY.get_companies	('is_supplier'	);
 }
 
 /**
@@ -108,7 +109,6 @@ JKY.set_table_row = function(the_row) {
 		;
 	return my_html;
 }
-
 
 /**
  *	set form row
@@ -203,12 +203,6 @@ JKY.display_list = function() {
 JKY.display_form = function() {
 	JKY.show('jky-action-print');
 	JKY.show('jky-action-copy');
-};
-
-JKY.process_insert = function(the_id) {
-};
-
-JKY.process_update = function(the_id, the_row) {
 };
 
 JKY.process_delete = function(the_id, the_row) {

@@ -28,12 +28,12 @@ define( 'APP_PATH'            ,  dirname( __FILE__ )        );
 define( 'COMPANY_ID'          , '3'							);
 define( 'COMPANY_NAME'        , 'DL Malhas'					);
 define( 'COMPANY_LOGO'        , 'DL-Malhas.png'				);
-define( 'LOCALE'	          , 'pt_br'						);		//	en_us, pt_br
+define( 'LOCALE'	          , 'en_us'						);		//	en_us, pt_br
 define( 'WEB_SITE'            , 'http://im4/'               );
 define( 'DOMAIN_NAME'         , 'pat'                       );
 define( 'SERVER_NAME'         , 'http://erp/'				);
-define( 'SERVER_BASE'         , '../'						);
-define( 'APPLICATION'         , '../application/'			);
+define( 'SERVER_BASE'         , '../'                       );
+define( 'APPLICATION'         , '../application/'           );
 define( 'LIBRARY'             , '/../library/'              );
 define( 'DELIVERY_BASE'       , 'C:/htdocs/erp/'			);
 define( 'START_ASSET'         , 'start/'     );

@@ -55,7 +55,6 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-user-role'		, JKY.set_controls('User Roles'		, ''	));
 	JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
 	JKY.set_html('jky-country'			, JKY.set_configs ('Countries'		, '', ''));
-	JKY.show('jky-action-export');
 	JKY.show('jky-side-admin');
 };
 
@@ -140,9 +139,6 @@ JKY.get_form_set = function() {
 		+     ', full_name=\'' + JKY.get_value	('jky-first-name') + ' ' + JKY.get_value('jky-last-name') +'\''
 		;
 	return my_set;
-};
-
-JKY.display_form = function() {
 };
 
 JKY.process_insert = function(the_id) {

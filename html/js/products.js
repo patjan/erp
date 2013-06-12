@@ -53,10 +53,9 @@ JKY.set_initial_values = function() {
 	JKY.set_menu_active('jky-menu-production');
 	JKY.set_side_active('jky-production-products');
 	JKY.set_html('jky-app-select-label', JKY.t('Type'));
-	JKY.set_html('jky-app-select', JKY.set_group_set('Configs',  JKY.App.get('select'), 'Product Types', 'All'));
+	JKY.set_html('jky-app-select', JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
 	JKY.show('jky-side-production');
 	JKY.show('jky-app-header');
-	setTimeout(function() {JKY.set_option('jky-app-select', JKY.App.get('select'))}, 100);
 };
 
 /**
@@ -106,16 +105,3 @@ JKY.get_form_set = function() {
 	my_set +=    ', start_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-start-value'	));
 	return my_set;
 };
-
-JKY.display_form = function() {
-};
-
-JKY.process_insert = function(the_id) {
-};
-
-JKY.process_update = function(the_id, the_row) {
-};
-
-JKY.process_delete = function(the_id, the_row) {
-};
-

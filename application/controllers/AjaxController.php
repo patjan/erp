@@ -234,7 +234,19 @@ private function get_security($table, $where) {
 	}
 }
 
+private function get_left_join($table) {
+	$my_left_join = '';
+	if ($table == 'Contacts') {
+		if (get_session('user_role') != 'Support') {
+			$my_left_join = '  LEFT JOIN   JKY_Users AS JKY_Users	ON  Contacts.id =  JKY_Users.contact_id';
+		}
+	}
+	return $my_left_join;
+}
+
 /**
+}
+}
  *	$.ajax({ method: get_names, table: x...x, field: x...x, key: x...x });
  *
  *	return: [ x...x, ..., x...x ]
@@ -303,9 +315,15 @@ private function get_id($data) {
 	$where = $this->get_security($table, $where);
 	$names = explode('=', $where);
 	if (trim($names[0]) == 'user_name') {
-		$sql = 'SELECT contact_id as id FROM JKY_Users WHERE ' . $where;
+		$sql= 'SELECT contact_id as id'
+			. '  FROM JKY_Users'
+			. ' WHERE ' . $where
+			;
 	}else{
-		$sql = 'SELECT id FROM ' . $table . ' WHERE ' . $where;
+		$sql= 'SELECT ' . $table . '.id'
+			. '  FROM ' . $table . $this->get_left_join($table)
+			. ' WHERE ' . $where
+			;
 		;
 	}
 
@@ -647,14 +665,14 @@ private function set_new_fields($table) {
 private function set_left_joins($table) {
 	$return = '';
 	if ($table == 'Categories'	)	$return = '  LEFT JOIN  Categories AS Parent	ON    Parent.id = Categories.parent_id';
-	if ($table == 'Companies'	)	$return = '  LEFT JOIN     Contacts AS Contact	ON   Contact.id =  Companies.contact_id';
-	if ($table == 'Templates'	)	$return = '  LEFT JOIN     Contacts AS Created	ON   Created.id =  Templates.created_by';
-	if ($table == 'Tickets'		)	$return = '  LEFT JOIN    JKY_Users AS User_Op	ON   User_Op.id =    Tickets.opened_by'
-											. '  LEFT JOIN    JKY_Users AS User_As	ON   User_As.id =    Tickets.assigned_to'
-											. '  LEFT JOIN    JKY_Users AS User_Cl	ON   User_Cl.id =    Tickets.closed_by'
-											. '  LEFT JOIN     Contacts AS Opened	ON    Opened.id =    User_Op.contact_id'
-											. '  LEFT JOIN     Contacts AS Assigned	ON  Assigned.id =    User_As.contact_id'
-											. '  LEFT JOIN     Contacts AS Closed 	ON    Closed.id =    User_Cl.contact_id';
+	if ($table == 'Companies'	)	$return = '  LEFT JOIN    Contacts AS Contact	ON   Contact.id =  Companies.contact_id';
+	if ($table == 'Templates'	)	$return = '  LEFT JOIN    Contacts AS Created	ON   Created.id =  Templates.created_by';
+	if ($table == 'Tickets'		)	$return = '  LEFT JOIN   JKY_Users AS User_Op	ON   User_Op.id =    Tickets.opened_by'
+											. '  LEFT JOIN   JKY_Users AS User_As	ON   User_As.id =    Tickets.assigned_to'
+											. '  LEFT JOIN   JKY_Users AS User_Cl	ON   User_Cl.id =    Tickets.closed_by'
+											. '  LEFT JOIN    Contacts AS Opened	ON    Opened.id =    User_Op.contact_id'
+											. '  LEFT JOIN    Contacts AS Assigned	ON  Assigned.id =    User_As.contact_id'
+											. '  LEFT JOIN    Contacts AS Closed 	ON    Closed.id =    User_Cl.contact_id';
 
 	if ($table == 'Contacts'	)	$return = '  LEFT JOIN   JKY_Users AS JKY_Users	ON  Contacts.id =  JKY_Users.contact_id'
 //											. '  LEFT JOIN    Contacts AS Companies	ON Companies.id =   Contacts.company_id AND Companies.is_company = "Yes"';
@@ -1354,7 +1372,7 @@ private function insert_user_jky() {
 private function update($data) {
 	$table	= get_data($data, 'table');
 	$set	= get_data($data, 'set'  );
-	$where	= $this->get_security($table, get_data($data, 'where'));
+	$where	= get_data($data, 'where');
 
 	if ($set == '') {
 		$this->echo_error('missing [set] statement');
@@ -1416,7 +1434,7 @@ private function update_user_jky($id, $set) {
 private function replace($data) {
 	$table	= get_data($data, 'table');
 	$set	= get_data($data, 'set'  );
-	$where	= $this->get_security($table, get_data($data, 'where'));
+	$where	= get_data($data, 'where');
 
 	if ($set == '') {
 		$this->echo_error('missing [set] statement');
@@ -1440,7 +1458,7 @@ private function replace($data) {
 	$set .= ', updated_at="' . get_time() . '"';
 	$sql= 'REPLACE ' . $table
 		. '   SET ' . str_replace("*#", "&", $set)
-		. ' WHERE ' . $where
+		. ' WHERE id = ' . $id
 		;
 	$this->log_sql($table, $id, $sql);
 	$return = array();
@@ -1468,7 +1486,7 @@ private function replace($data) {
  */
 private function delete($data) {
 	$table = get_data($data, 'table');
-	$where = $this->get_security($table, get_data($data, 'where'));
+	$where = get_data($data, 'where');
 
 	if ($where == '') {
 		$this->echo_error('missing [where] statement');
@@ -2987,10 +3005,10 @@ private function get_last_id( $table, $where='1' ) {
 }
 
 private function get_only_id($table, $where) {
-     $sql = 'SELECT id'
-	  . '  FROM ' . $table
-	  . ' WHERE ' . $where
-	  ;
+	$sql= 'SELECT id'
+		. '  FROM ' . $table
+		. ' WHERE ' . $where
+		;
 //$this->log_sql( 'get_only_id', null, $sql );
      $db  = Zend_Registry::get( 'db' );
      return $db->fetchOne( $sql );

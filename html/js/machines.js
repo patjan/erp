@@ -40,6 +40,7 @@ JKY.set_initial_values = function() {
 	JKY.set_menu_active('jky-menu-production');
 	JKY.set_side_active('jky-production-machines');
 	JKY.set_html('jky-machine-family'	, JKY.set_configs('Machine Families', '', ''));
+	JKY.set_html('jky-machine-brand'	, JKY.set_configs('Machine Brands'  , JKY.App.get('select'), ''));
 	JKY.set_html('jky-app-select'		, JKY.set_configs('Machine Brands'  , JKY.App.get('select'), 'All'));
 	JKY.show('jky-side-production'	);
 };
@@ -120,15 +121,6 @@ JKY.get_form_set = function() {
 	my_set +=   ', return_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-return-value'	));
 	return my_set;
 
-};
-
-JKY.display_form = function() {
-};
-
-JKY.process_insert = function(the_id) {
-};
-
-JKY.process_update = function(the_id, the_row) {
 };
 
 JKY.process_delete = function(the_id, the_row) {

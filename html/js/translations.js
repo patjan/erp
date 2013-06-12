@@ -118,9 +118,6 @@ JKY.get_form_set = function() {
 	return my_set;
 }
 
-JKY.display_form = function() {
-};
-
 JKY.process_insert = function(the_id) {
 	var my_data =
 		{ method: 'update'

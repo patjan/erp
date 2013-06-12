@@ -54,7 +54,6 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-contact-tag'		, JKY.set_configs ('Customer Tags'	, '', ''));
 	JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
 	JKY.set_html('jky-country'			, JKY.set_configs ('Countries'		, '', ''));
-	JKY.hide('jky-action-export'	);
 	JKY.show('jky-side-production'	);
 };
 
@@ -159,13 +158,4 @@ JKY.get_form_set = function() {
 
 JKY.display_form = function() {
 	JKY.hide('jky-action-delete');
-};
-
-JKY.process_insert = function(the_id) {
-};
-
-JKY.process_update = function(the_id, the_row) {
-};
-
-JKY.process_delete = function(the_id, the_row) {
 };
