@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Machines'
 		, table_name	: 'Machines'
 		, specific		: ''
-		, select		: 'Brand 1'
+		, select		: 'All'
 		, filter		: ''
 		, sort_by		: 'name'
 		, sort_seq		: 'ASC'
@@ -40,7 +40,7 @@ JKY.set_initial_values = function() {
 	JKY.set_menu_active('jky-menu-production');
 	JKY.set_side_active('jky-production-machines');
 	JKY.set_html('jky-machine-family'	, JKY.set_configs('Machine Families', '', ''));
-	JKY.set_html('jky-app-select'		, JKY.set_configs('Machine Brands'  , JKY.App.get('select'), ''));
+	JKY.set_html('jky-app-select'		, JKY.set_configs('Machine Brands'  , JKY.App.get('select'), 'All'));
 	JKY.show('jky-side-production'	);
 };
 

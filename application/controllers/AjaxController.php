@@ -585,7 +585,7 @@ private function set_select($table, $select) {
 	if ($table == 'Companies'	)	$return = ' AND      Companies.status        = "' . $select . '"';
 	if ($table == 'Events'		)	$return = ' AND         Events.status        = "' . $select . '"';
 	if ($table == 'Groups'		)	$return = ' AND         Groups.status        = "' . $select . '"';
-	if ($table == 'Permissions'	)	$return = ' AND    Permissions.user_resource = "' . $select . '"';
+	if ($table == 'Permissions'	)	$return = ' AND    Permissions.user_role     = "' . $select . '"';
 	if ($table == 'Services'	)	$return = ' AND         Groups.id            = "' . $select . '"';
 	if ($table == 'Settings'	)	$return = ' AND       Settings.setting_set   = "' . $select . '"';
 	if ($table == 'Summary'		)	$return = ' AND        Summary.group_by      = "' . $select . '"';
@@ -598,6 +598,7 @@ private function set_select($table, $select) {
 	if ($table == 'FTP_Loads'	)	$return = ' AND      FTP_Loads.ftp_id			=  ' . $select;
 	if ($table == 'FTP_Threads'	)	$return = ' AND    FTP_Threads.ftp_id			=  ' . $select;
 	if ($table == 'FTP_Sets'	)	$return = ' AND       FTP_Sets.ftp_id			=  ' . $select;
+	if ($table == 'Machines'	)	$return = ' AND       Machines.machine_brand    = "' . $select . '"';
 	if ($table == 'Products'	)	$return = ' AND       Products.product_type     = "' . $select . '"';
 	if ($table == 'History'		)	$return = ' AND        History.parent_name      = "' . $select . '"';
 
