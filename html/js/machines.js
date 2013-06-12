@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Machines'
 		, table_name	: 'Machines'
 		, specific		: ''
-		, select		: ''
+		, select		: 'Brand 1'
 		, filter		: ''
 		, sort_by		: 'name'
 		, sort_seq		: 'ASC'
@@ -40,7 +40,7 @@ JKY.set_initial_values = function() {
 	JKY.set_menu_active('jky-menu-production');
 	JKY.set_side_active('jky-production-machines');
 	JKY.set_html('jky-machine-family'	, JKY.set_configs('Machine Families', '', ''));
-	JKY.set_html('jky-machine-brand'	, JKY.set_configs('Machine Brands'  , '', ''));
+	JKY.set_html('jky-app-select'		, JKY.set_configs('Machine Brands'  , JKY.App.get('select'), ''));
 	JKY.show('jky-side-production'	);
 };
 
@@ -49,7 +49,7 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-machine-name"			>' + the_row.name			+ '</td>'
+		+  '<td class="jky-machine-name"	>' + the_row.name			+ '</td>'
 		+  '<td class="jky-diameter"		>' + the_row.diameter		+ '</td>'
 		+  '<td class="jky-width"			>' + the_row.width			+ '</td>'
 		+  '<td class="jky-density"			>' + the_row.density		+ '</td>'
@@ -63,7 +63,7 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-machine-name'				, the_row.name			);
+	JKY.set_value	('jky-machine-name'		, the_row.name			);
 	JKY.set_radio	('jky-machine-type'		, the_row.machine_type	);
 	JKY.set_option	('jky-machine-family'	, the_row.machine_family);
 	JKY.set_option	('jky-machine-brand'	, the_row.machine_brand	);
@@ -83,7 +83,7 @@ JKY.set_form_row = function(the_row) {
  *	set add new row
  */
 JKY.set_add_new_row = function() {
-	JKY.set_value	('jky-machine-name'				, '' );
+	JKY.set_value	('jky-machine-name'		, '' );
 	JKY.set_radio	('jky-machine-type'		,  JKY.t('Circular'));
 	JKY.set_option	('jky-machine-family'	, '' );
 	JKY.set_option	('jky-machine-brand'	, '' );
