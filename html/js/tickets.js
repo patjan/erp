@@ -54,6 +54,7 @@ JKY.set_initial_values = function() {
 		JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
 		JKY.set_html('jky-category'			, JKY.set_controls('Ticket Categories', '', ''));
 		JKY.show('jky-side-help'		);
+		JKY.set_html('jky-app-select-label', JKY.t('Status'));
 		JKY.set_value ('jky-app-filter', JKY.App.get('filter'));
 };
 

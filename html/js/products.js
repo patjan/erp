@@ -53,7 +53,7 @@ JKY.set_initial_values = function() {
 	JKY.set_menu_active('jky-menu-production');
 	JKY.set_side_active('jky-production-products');
 	JKY.set_html('jky-app-select-label', JKY.t('Type'));
-	JKY.set_html('jky-app-select'		, JKY.set_group_set('Configs',  JKY.App.get('select'), 'Product Types', 'All'));
+	JKY.set_html('jky-app-select', JKY.set_group_set('Configs',  JKY.App.get('select'), 'Product Types', 'All'));
 	JKY.show('jky-side-production');
 	JKY.show('jky-app-header');
 	setTimeout(function() {JKY.set_option('jky-app-select', JKY.App.get('select'))}, 100);
