@@ -255,7 +255,10 @@ JKY.process_copy_success = function(response) {
  */
 JKY.print_row = function(the_id) {
 	JKY.display_message('print_row: ' + the_id);
+	var my_names;
+	var my_extension;
 	var my_row = JKY.get_row(JKY.App.get('table_name'), the_id);
+
 //window.print();
 	var my_html = ''
 		+ "<h3>" + JKY.Session.get_value('company_name') + '</h3>'
@@ -324,8 +327,13 @@ JKY.print_row = function(the_id) {
 	JKY.set_html('jky-print-composition'	, my_row.composition	);
 	JKY.set_html('jky-print-machine'		, my_row.machine		);
 
-	JKY.set_html('jky-print-photo'			, JKY.Photo.out_photo(my_row.photo));
-	JKY.set_html('jky-print-drawing'		, JKY.Draw .out_photo(my_row.draw ));
+	my_names = my_row.photo.split(',');
+	my_extension = JKY.get_file_type(my_names[0]);
+	JKY.set_html('jky-print-drawing'		, '<img id="jky-drawing-img"  src="/uploads/ftp_draws/'  + my_row.id + '.' + my_extension  + '" />');
+
+	my_names = my_row.draw.split(',');
+	my_extension = JKY.get_file_type(my_names[0]);
+	JKY.set_html('jky-print-photo'			, '<img id="jky-photo-img"    src="/uploads/ftp_photos/' + my_row.id + '.' + my_extension + '" />');
 
 	JKY.set_html('jky-print-diameter'		, my_row.diameter		+ ' (pol)'	);
 	JKY.set_html('jky-print-turns'			, my_row.turns						);

@@ -191,6 +191,7 @@ JKY.translations =
 , "Template SQL":"Template SQL"
 , "Template Subject":"Template Subject"
 , "Template Type":"Template Type"
+, "Template Types":"Template Types"
 , "Templates":"Templates"
 , "Thread":"Thread"
 , "Thread 1":"Thread 1"
