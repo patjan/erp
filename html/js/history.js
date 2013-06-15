@@ -38,6 +38,7 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select'		, JKY.set_controls('User Resources'	, JKY.App.get('select')));
 	JKY.set_html('jky-app-select-label', JKY.t('Parent'));
 	JKY.show('jky-side-admin');
+	JKY.show('jky-app-select-line');
 };
 /**
  *	set table row

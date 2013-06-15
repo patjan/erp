@@ -37,7 +37,9 @@ JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-support-controls');
 	JKY.set_html('jky-app-select'		, JKY.set_controls('Root'			, JKY.App.get('select')));
 	JKY.set_html('jky-status'			, JKY.set_controls('Status Codes'	, 'Active'));
+	JKY.set_html('jky-app-select-label', JKY.t('Group Set'));
 	JKY.show('jky-side-support');
+	JKY.show('jky-app-select-line');
 };
 
 /**

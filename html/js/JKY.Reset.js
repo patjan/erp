@@ -17,5 +17,6 @@ JKY.get_form_set		= function()				{};
 JKY.process_insert		= function(the_id)			{};
 JKY.process_update		= function(the_id, the_row)	{};
 JKY.process_delete		= function(the_id, the_row)	{};
+JKY.process_publish		= function()				{};
 JKY.print_row			= function(the_id)			{};
 </script>

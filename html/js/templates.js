@@ -35,10 +35,11 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_menu_active('jky-menu-support');
 	JKY.set_side_active('jky-support-templates');
-	JKY.set_html('jky-app-select'		, JKY.set_controls('Template Types', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
-	JKY.show('jky-side-support');
+	JKY.set_html('jky-app-select'		, JKY.set_controls('Template Types', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-app-select-label', JKY.t('Template Types'));
+	JKY.show('jky-side-support');
+	JKY.show('jky-app-select-line');
 };
 
 /**

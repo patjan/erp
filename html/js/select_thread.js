@@ -17,8 +17,9 @@ JKY.load_thread = function() {
 	var my_data =
 		{ method	: 'get_index'
 		, table		: 'Threads'
+		, select	: 'All'
 		, filter	:  JKY.get_value('jky-thread-filter')
-		, display	: '10'
+		, display	: '20'
 		, order_by	: 'name'
 		};
 	JKY.ajax(false, my_data, JKY.process_load_thread_success);

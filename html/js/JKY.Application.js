@@ -28,6 +28,7 @@ JKY.Application = function() {
 				$('#jky-action-add-new'		).click (function() {JKY.Changes.can_leave(function() { my_process_add_new		();})});
 				$('#jky-action-print'		).click (function() {JKY.Changes.can_leave(function() { my_process_print		();})});
 				$('#jky-action-export'		).click (function() {JKY.Changes.can_leave(function() { my_process_export		();})});
+				$('#jky-action-publish'		).click (function() {JKY.Changes.can_leave(function() { my_process_publish		();})});
 				$('#jky-action-prev'		).click (function() {JKY.Changes.can_leave(function() { my_display_prev			();})});
 				$('#jky-action-next'		).click (function() {JKY.Changes.can_leave(function() { my_display_next			();})});
 				$('#jky-action-list'		).click (function() {JKY.Changes.can_leave(function() { my_display_list			();})});
@@ -53,9 +54,11 @@ JKY.Application = function() {
 			JKY.display_trace('my_set_initial_values');
 			if (JKY.is_loaded('jky-body')) {
 				JKY.set_html('jky-app-breadcrumb', JKY.t(my_args.program_name));
+				JKY.hide('jky-app-select-line');
 				my_display_list();
 //				my_display_form(1);
 				JKY.show('jky-app-header');
+				JKY.hide('jky-action-publish');
 				JKY.set_initial_values();
 				JKY.Changes.reset();
 			}else{
@@ -343,6 +346,14 @@ JKY.Application = function() {
 			var my_sort_by = my_args.sort_by + ' ' + my_args.sort_seq;
 			JKY.run_export(my_args.table_name, my_args.select, my_args.filter, my_args.specific, my_sort_by);
 		};
+
+/**
+ * process publish
+ */
+	function my_process_publish() {
+		JKY.display_trace('my_process_publish');
+		JKY.process_publish();
+	};
 
 /**
  * process change input

@@ -37,6 +37,14 @@ $(function() {
 		JKY.TRACE = false;		//	on production, should be set to false, help development to trace sequence flow
 	}
 
+//	reset session timeout for every ajax request
+//	if (JKY.Session) {
+//		$(document).ajaxSend (function() {JKY.Session.reset_timeout();});
+//	}
+
+//	$(document).ajaxStart(function() {						 $('#jky-loading').show();});
+//	$(document).ajaxStop (function() {setTimeout(function() {$('#jky-loading').hide();}, 2000)});
+
 	$(window).bind('resize', function() {
 		JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
 	});
@@ -138,9 +146,10 @@ JKY.load_html = function(id_name, file_name) {
 		$('#' + id_name).load('../' + file_name);						//	production mode
 //		$('#' + id_name).load('../' + file_name + '?' + Math.random());	//	testing mode
 //		JKY.display_trace('load_html: ' + id_name + ' DONE');
-		JKY.t_tag	('jky-application', 'span');
-		JKY.t_input	('jky-application', 'placeholder');
-		JKY.t_button('jky-application', 'title');
+
+		JKY.t_tag	('jky-app-body', 'span');
+		JKY.t_input	('jky-app-body', 'placeholder');
+		JKY.t_button('jky-app-body', 'title');
 	}else{
 		setTimeout(function() {JKY.load_html(id_name, file_name);}, 100);
 	}
@@ -257,7 +266,8 @@ JKY.process_action = function(action) {
 //	JKY.display_trace('process_action: ' + action);
 //	JKY.load_html('jky-body-content', action + '.html');
 	JKY.invisible('jky-application');
-	JKY.load_html('jky-application', action + '.html');
+//	JKY.load_html('jky-application', action + '.html');
+	JKY.load_html('jky-app-body', action + '.html');
 //	$.getScript(JKY.AJAX_APP + 'js/' + action + '.js', function() {
 	JKY.start_program(action);
 	JKY.visible('jky-application');
@@ -928,6 +938,7 @@ JKY.is_scroll_at_end = function(class_name){
  */
 JKY.display_confirm = function(function_yes, function_no, header, body, label_yes, label_no) {
 	JKY.click_confirm = function(reply) {
+		$('#jky-confirm').unbind('hidden');
 		$('#jky-confirm').modal('hide');
 		if (reply == 'Yes' && typeof(function_yes) == 'function')	{function_yes();}
 		if (reply == 'No'  && typeof(function_no ) == 'function')	{function_no ();}
@@ -936,6 +947,7 @@ JKY.display_confirm = function(function_yes, function_no, header, body, label_ye
 	$('#jky-confirm-body'	).html(body		);
 	$('#jky-confirm-yes'	).html(label_yes);
 	$('#jky-confirm-no'		).html(label_no	);
+	$('#jky-confirm').on('hidden', function() {JKY.clickConfirm('No');});
 	$('#jky-confirm').modal('show');
 }
 

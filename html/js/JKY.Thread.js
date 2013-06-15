@@ -28,6 +28,7 @@ JKY.Thread = function() {
 		var my_data =
 			{ method	: 'get_index'
 			, table		: 'Threads'
+			, select	: 'All'
 			, filter	:  JKY.get_value(my_filter)
 			, display	: '10'
 			, order_by	:  my_order_by

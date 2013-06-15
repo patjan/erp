@@ -42,7 +42,9 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-machine-family'	, JKY.set_configs('Machine Families', '', ''));
 	JKY.set_html('jky-machine-brand'	, JKY.set_configs('Machine Brands'  , JKY.App.get('select'), ''));
 	JKY.set_html('jky-app-select'		, JKY.set_configs('Machine Brands'  , JKY.App.get('select'), 'All'));
-	JKY.show('jky-side-production'	);
+	JKY.set_html('jky-app-select-label', JKY.t('Brand'));
+	JKY.show('jky-side-production');
+	JKY.show('jky-app-select-line');
 };
 
 /**

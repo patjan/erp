@@ -7,14 +7,12 @@ CREATE TABLE IF NOT EXISTS Products
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'
 
-, code				VARCHAR(32)			DEFAULT NULL
-, product_name				VARCHAR(255)		DEFAULT NULL
+, product_name		VARCHAR(255)		DEFAULT NULL
 , product_type		VARCHAR(32)			DEFAULT 'Tubular'
 , start_date		DATE				DEFAULT null
 , photo				VARCHAR(255)		DEFAULT NULL
 
 , PRIMARY KEY(id)
-, UNIQUE(code)
 , UNIQUE(product_name)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;

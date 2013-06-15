@@ -245,8 +245,6 @@ private function get_left_join($table) {
 }
 
 /**
-}
-}
  *	$.ajax({ method: get_names, table: x...x, field: x...x, key: x...x });
  *
  *	return: [ x...x, ..., x...x ]
@@ -619,6 +617,7 @@ private function set_select($table, $select) {
 	if ($table == 'Machines'	)	$return = ' AND       Machines.machine_brand    = "' . $select . '"';
 	if ($table == 'Products'	)	$return = ' AND       Products.product_type     = "' . $select . '"';
 	if ($table == 'History'		)	$return = ' AND        History.parent_name      = "' . $select . '"';
+	if ($table == 'Threads'		)	$return = ' AND        Threads.thread_group     = "' . $select . '"';
 
 	return $return;
 }

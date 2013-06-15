@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Threads'
 		, table_name	: 'Threads'
 		, specific		: ''
-		, select		: ''
+		, select		: 'All'
 		, filter		: ''
 		, sort_by		: 'name'
 		, sort_seq		: 'ASC'
@@ -35,9 +35,12 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_menu_active('jky-menu-production');
 	JKY.set_side_active('jky-production-threads');
-	JKY.set_html('jky-thread-groups'	, JKY.set_configs('Thread Groups', '', ''));
 	JKY.set_html('jky-compositions'		, JKY.set_configs('Thread Compositions', '', ''));
+	JKY.set_html('jky-thread-groups'	, JKY.set_configs('Thread Groups', '', ''));
+	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups' , JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-app-select-label', JKY.t('Group'));
 	JKY.show('jky-side-production');
+	JKY.show('jky-app-select-line');
 };
 
 /**

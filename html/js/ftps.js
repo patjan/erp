@@ -209,21 +209,21 @@ JKY.process_delete = function(the_id, the_row) {
 	var my_data =
 		{ method: 'delete_many'
 		, table : 'FTP_Sets'
-		, where : 'ftp_id = ' + my_id
+		, where : 'ftp_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
 
 	var my_data =
 		{ method: 'delete_many'
 		, table : 'FTP_Loads'
-		, where : 'ftp_id = ' + my_id
+		, where : 'ftp_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
 
 	var my_data =
 		{ method: 'delete_many'
 		, table : 'FTP_Threads'
-		, where : 'ftp_id = ' + my_id
+		, where : 'ftp_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
 };
