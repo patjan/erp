@@ -64,9 +64,6 @@ JKY.suppliers	= [];
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-		$('#jky-action-publish'		).click (function() {JKY.process_publish	();});
-		$('#jky-action-copy'		).click (function() {JKY.process_copy		();});
-
 		$('#jky-comp-add-new'		).click (function() {JKY.insert_composition	();});
 		$('#jky-thread-add-new'		).click (function() {JKY.insert_thread		();});
 		$('#jky-load-add-new'		).click (function() {JKY.insert_load		();});

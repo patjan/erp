@@ -34,7 +34,7 @@ $(function() {
 	if (JKY.is_browser('msie')) {
 		JKY.TRACE = false;		//	IE, TRACE must be false
 	}else{
-		JKY.TRACE = false;		//	on production, should be set to false, help development to trace sequence flow
+		JKY.TRACE = true;		//	on production, should be set to false, help development to trace sequence flow
 	}
 
 //	reset session timeout for every ajax request

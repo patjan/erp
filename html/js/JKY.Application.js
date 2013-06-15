@@ -13,6 +13,7 @@ JKY.Application = function() {
 	var my_count	= 0;
 	var my_index	= 0;
 	var my_skip_form;
+	var my_first	= true;
 
 	JKY.rows		= [];
 	JKY.row 		= null;		// null=Add New
@@ -21,8 +22,10 @@ JKY.Application = function() {
  *	set all events (run only once per load)
  */
 	function my_set_all_events() {
-			JKY.display_trace('my_set_all_events');
+			JKY.display_trace('JKY.App.my_set_all_events');
 			if (JKY.is_loaded('jky-body-loaded')) {
+if (my_first == true) {
+	my_first = false;
 				$('#jky-app-select'			).change(function() {JKY.Changes.can_leave(function() { my_change_select		();})});
 				$('#jky-app-filter'			).change(function() {JKY.Changes.can_leave(function() { my_change_filter		();})});
 				$('#jky-action-add-new'		).click (function() {JKY.Changes.can_leave(function() { my_process_add_new		();})});
@@ -34,6 +37,7 @@ JKY.Application = function() {
 				$('#jky-action-list'		).click (function() {JKY.Changes.can_leave(function() { my_display_list			();})});
 				$('#jky-action-form'		).click (function() {JKY.Changes.can_leave(function() { my_display_form		   (1);})});
 				$('#jky-action-save'		).click (function() {									my_process_save			();});
+				$('#jky-action-copy'		).click (function() {JKY.Changes.can_leave(function() { JKY.process_copy		();})});
 				$('#jky-action-delete'		).click (function() {									my_process_delete		();});
 				$('#jky-action-cancel'		).click (function() {JKY.Changes.can_leave(function() { my_process_cancel		();})});
 				$('#jky-check-all'			).click (function() {									my_set_all_check	(this);});
@@ -41,7 +45,9 @@ JKY.Application = function() {
 				$('#jky-form-data    input[id]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
 				$('#jky-form-data   select[id]').each (function() {$(this).change(function()	{my_process_change_input(this);});});
 				$('#jky-form-data textarea[id]').each (function() {$(this).change(function()	{my_process_change_input(this);});});
+}
 				JKY.set_all_events();	// from caller
+
 			}else{
 				setTimeout(function() {my_set_all_events();}, 100);
 			}

@@ -119,6 +119,7 @@ $translations = array
 , "New Password"=>"New Password"
 , "Next"=>"Next"
 , "Nick Name"=>"Nick Name"
+, "NMC"=>"NMC"
 , "No"=>"No"
 , "Normal"=>"Normal"
 , "Notes"=>"Notes"
