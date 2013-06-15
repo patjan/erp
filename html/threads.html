@@ -1,15 +1,51 @@
+<<<<<<< HEAD
+=======
+<div id='jky-app-header'>
+	<div>
+		<div id='jky-app-breadcrumb'></div>
+		<span   id='jky-app-label'><span id='jky-app-select-label'></span>: </span><select id='jky-app-select'></select>
+		<input  id='jky-app-filter' class='search-query' type='text' placeholder='Search' />
+		<div class='jky-clear'></div>
+	</div>
+
+	<div>
+		<div id='jky-app-actions'>
+			<button id='jky-action-add-new'		class='btn btn-success' type='button' title="Click here to add new record"			><span>Add New	</span></button>
+			<button id='jky-action-print'		class='btn btn-success' type='button' title="Click here to print selected records"	><span>Print	</span></button>
+		</div>
+		<div id='jky-app-more'>
+			<button id='jky-action-export'		class='btn btn-success' type='button' title="Click here to export as excel file"><span>Export	</span></button>
+			<button id='jky-action-publish'		class='btn btn-success' type='button' title="Click here to publish the content"><span>Publish	</span></button>
+		</div>
+		<div id='jky-app-displays' class='btn-group'>
+			<button id='jky-action-list'		class='btn' title=    'List View'><i class='icon-align-justify'	></i></button>
+			<button id='jky-action-graph'		class='btn' title= 'Graphic View'><i class='icon-signal'		></i></button>
+			<button id='jky-action-calendar'	class='btn' title='Calendar View'><i class='icon-calendar'		></i></button>
+			<button id='jky-action-form'		class='btn' title=    'Form View'><i class='icon-list-alt'		></i></button>
+		</div>
+		<div id='jky-app-counters'><span id='jky-app-index'></span> of <span id='jky-app-count'></span></div>
+		<div id='jky-app-add-new' ><span>New</span></div>
+		<div id='jky-app-navs' class='btn-group'>
+			<button id='jky-action-prev'		class='btn' title='Previous'	 ><i class='icon-backward'		></i></button>
+			<button id='jky-action-next'		class='btn' title='Next'		 ><i class='icon-forward'		></i></button>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+</div>
+
+>>>>>>> e8364d2d64445725b789a4bf646f8fa396c7c126
 <style>
 .jky-form-label			{width:110px;}
 .jky-form-value			{width:280px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-code				{width: 40px; text-align:center;}
+.jky-nmc				{width: 40px; text-align:center;}
 .jky-thread-name		{width:120px; text-align:left  ;}
 .jky-thread-group		{width: 80px; text-align:center;}
 .jky-thread-color		{width: 80px; text-align:center;}
 .jky-composition		{width: 80px; text-align:center;}
 
-#jky-code				{width: 40px; font-size:16px; font-weight:bold;}
+#jky-nmc				{width: 40px; font-size:16px; font-weight:bold;}
 #jky-machine-type		{width:230px;}
 #jky-machine-type span	{padding:4px 20px 0 4px; vertical-align:bottom;}
 #jky-machine-brand		{width:385px;}
@@ -24,10 +60,10 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-code'			><span>Code				</span></th>
+			<th class='jky-nmc'			><span>NMC					</span></th>
 			<th class='jky-thread-name'		><span>Name				</span></th>
 			<th class='jky-thread-group'	><span>Thread Group		</span></th>
-			<th class='jky-thread-color'	><span>Thread Color		</span></th>
+<!--			<th class='jky-thread-color'	><span>Thread Color		</span></th> -->
 			<th class='jky-composition'		><span>Composition		</span></th>
 		</tr>
 	</thead>
@@ -59,7 +95,7 @@
 -->
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>             Code</span>:</div><input  id='jky-code'			class='jky-form-value'		placeholder='Code' 				/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>             NMC</span>:</div><input  id='jky-nmc'			class='jky-form-value'		placeholder='NMC' 				/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input  id='jky-thread-name'	class='jky-form-value'		placeholder='Name' 				/></div>
 		</div>
 		<div class='jky-clear'></div>
@@ -67,7 +103,8 @@
 
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>      Thread Group</span>:</div><select id='jky-thread-groups'	></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Thread Color</span>:</div><input  id='jky-thread-color'	class='jky-form-value'		/></div>
+<!--			<div class='jky-form-line'><div class='jky-form-label'><span>      Thread Color</span>:</div><input  id='jky-thread-color'	class='jky-form-value'		/></div>
+-->
 			<div class='jky-form-line'><div class='jky-form-label'><span>       Composition</span>:</div><select id='jky-compositions'	></select></div>
 		</div>
 		<div class='jky-clear'></div>

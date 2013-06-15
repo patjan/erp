@@ -48,10 +48,10 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-code"			>' + the_row.code			+ '</td>'
+		+  '<td class="jky-nmc"			>' + the_row.nmc			+ '</td>'
 		+  '<td class="jky-thread-name"		>' + the_row.name			+ '</td>'
 		+  '<td class="jky-thread_group"	>' + the_row.thread_group	+ '</td>'
-		+  '<td class="jky-thread_color"	>' + the_row.thread_color	+ '</td>'
+//		+  '<td class="jky-thread_color"	>' + the_row.thread_color	+ '</td>'
 		+  '<td class="jky-composition"		>' + the_row.composition	+ '</td>'
 		;
 	return my_html;
@@ -61,10 +61,10 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-code'				, the_row.code			);
+	JKY.set_value	('jky-nmc'				, the_row.nmc			);
 	JKY.set_value	('jky-thread-name'		, the_row.name			);
 	JKY.set_option	('jky-thread-groups'	, the_row.thread_group	);
-	JKY.set_value	('jky-thread-color'		, the_row.thread_color	);
+//	JKY.set_value	('jky-thread-color'		, the_row.thread_color	);
 	JKY.set_option	('jky-compositions'		, the_row.composition	);
 };
 
@@ -72,10 +72,10 @@ JKY.set_form_row = function(the_row) {
  *	set add new row
  */
 JKY.set_add_new_row = function() {
-	JKY.set_value	('jky-code'				, '' );
+	JKY.set_value	('jky-nmc'				, '' );
 	JKY.set_value	('jky-thread-name'		, '' );
 	JKY.set_option	('jky-thread-groups'	, '' );
-	JKY.set_value	('jky-thread-color'		, '0');
+//	JKY.set_value	('jky-thread-color'		, '0');
 	JKY.set_option	('jky-compositions'		, '0');
 };
 
@@ -84,10 +84,10 @@ JKY.set_add_new_row = function() {
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-		+            'code=\'' + JKY.get_value	('jky-code'				) + '\''
+		+            'nmc=\'' + JKY.get_value	('jky-nmc'				) + '\''
 		+          ', name=\'' + JKY.get_value	('jky-thread-name'		) + '\''
 		+  ', thread_group=\'' + JKY.get_value	('jky-thread-groups'	) + '\''
-		+  ', thread_color=\'' + JKY.get_value	('jky-thread-color'		) + '\''
+//		+  ', thread_color=\'' + JKY.get_value	('jky-thread-color'		) + '\''
 		+   ', composition=\'' + JKY.get_value	('jky-compositions'		) + '\''
 		;
 	return my_set;
