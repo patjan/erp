@@ -133,7 +133,7 @@ JKY.verify_total_percent = function() {
 		$('#jky-thread-total').css('color', 'black');
 	}else{
 		$('#jky-thread-total').css('color', 'red');
-		JKY.display_message('Total percent is not 100.')
+		JKY.display_message(JKY.t('Total percent is not 100.'))
 	}
 }
 

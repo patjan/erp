@@ -12,8 +12,8 @@ JKY.Application = function() {
 	var my_args		= null;
 	var my_count	= 0;
 	var my_index	= 0;
-	var my_skip_form;
 	var my_first	= true;
+	var my_skip_form;
 
 	JKY.rows		= [];
 	JKY.row 		= null;		// null=Add New
@@ -22,10 +22,11 @@ JKY.Application = function() {
  *	set all events (run only once per load)
  */
 	function my_set_all_events() {
-			JKY.display_trace('JKY.App.my_set_all_events');
+			JKY.display_trace('my_set_all_events - ' + my_args.program_name);
 			if (JKY.is_loaded('jky-body-loaded')) {
 if (my_first == true) {
 	my_first = false;
+			JKY.display_trace('my_set_all_events - first - ' + my_args.program_name);
 				$('#jky-app-select'			).change(function() {JKY.Changes.can_leave(function() { my_change_select		();})});
 				$('#jky-app-filter'			).change(function() {JKY.Changes.can_leave(function() { my_change_filter		();})});
 				$('#jky-action-add-new'		).click (function() {JKY.Changes.can_leave(function() { my_process_add_new		();})});
@@ -36,18 +37,18 @@ if (my_first == true) {
 				$('#jky-action-next'		).click (function() {JKY.Changes.can_leave(function() { my_display_next			();})});
 				$('#jky-action-list'		).click (function() {JKY.Changes.can_leave(function() { my_display_list			();})});
 				$('#jky-action-form'		).click (function() {JKY.Changes.can_leave(function() { my_display_form		   (1);})});
+}
 				$('#jky-action-save'		).click (function() {									my_process_save			();});
-				$('#jky-action-copy'		).click (function() {JKY.Changes.can_leave(function() { JKY.process_copy		();})});
+				$('#jky-action-copy'		).click (function() {JKY.Changes.can_leave(function() { my_process_copy			();})});
 				$('#jky-action-delete'		).click (function() {									my_process_delete		();});
 				$('#jky-action-cancel'		).click (function() {JKY.Changes.can_leave(function() { my_process_cancel		();})});
 				$('#jky-check-all'			).click (function() {									my_set_all_check	(this);});
 
 				$('#jky-form-data    input[id]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
+				$('#jky-form-data  input[name]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
 				$('#jky-form-data   select[id]').each (function() {$(this).change(function()	{my_process_change_input(this);});});
 				$('#jky-form-data textarea[id]').each (function() {$(this).change(function()	{my_process_change_input(this);});});
-}
 				JKY.set_all_events();	// from caller
-
 			}else{
 				setTimeout(function() {my_set_all_events();}, 100);
 			}
@@ -57,9 +58,10 @@ if (my_first == true) {
  *	set initial values (run only once per load)
  */
 	function my_set_initial_values() {
-			JKY.display_trace('my_set_initial_values');
+			JKY.display_trace('my_set_initial_values - ' + my_args.program_name);
 			if (JKY.is_loaded('jky-body')) {
-				JKY.set_html('jky-app-breadcrumb', JKY.t(my_args.program_name));
+				JKY.set_html ('jky-app-breadcrumb', JKY.t(my_args.program_name));
+				JKY.set_value('jky-app-filter', my_args.filter);
 				JKY.hide('jky-app-select-line');
 				my_display_list();
 //				my_display_form(1);
@@ -168,6 +170,7 @@ if (my_first == true) {
 			JKY.set_html('jky-table-body', my_html );
 //			JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
 			JKY.setTableWidthHeight('jky-app-table', 851, 240, 350, 125);
+			JKY.set_focus('jky-app-filter');
 			JKY.hide('jky-loading');
 		}
 
@@ -293,6 +296,25 @@ if (my_first == true) {
 			my_display_row(my_index);
 			JKY.Changes.reset();
 		}
+
+/**
+ * process copy
+ */
+	function my_process_copy() {
+		JKY.display_trace('my_process_copy');
+		var my_data =
+			{ method: 'insert'
+			, table :  my_args.table_name
+			, set	:  JKY.get_form_set()
+			};
+		JKY.ajax(false, my_data, my_process_copy_success);
+}
+
+	function my_process_copy_success(response) {
+		JKY.display_trace('my_process_copy_success');
+		JKY.display_message(response.message);
+		my_display_list();
+	};
 
 	function my_process_delete() {
 			JKY.display_trace('my_process_delete');

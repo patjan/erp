@@ -7,9 +7,7 @@ var jky_program	= 'Home';
 
 $(function() {
 	JKY.display_trace('start_program - ' + jky_program);
-
 	JKY.set_company_name(JKY.Session.get_value('company_name'	));
-//	JKY.set_user_info	(JKY.Session.get_value('full_name'		));
 	JKY.set_company_logo(JKY.Session.get_value('company_logo'	));
 	JKY.set_copyright	(JKY.Session.get_value('copyright'		));
 //	JKY.set_contact_us	(JKY.Session.get_value('contact_us'		));
@@ -29,8 +27,8 @@ $(function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events_home = function(jky_program) {
-	if (JKY.is_loaded('jky')) {
-		JKY.display_trace('set_all_events_home');
+	if (JKY.is_loaded('jky-loaded')) {
+		JKY.display_trace('set_all_events - '  + jky_program);
 		JKY.set_html('jky-loaded', '<scr' + 'ipt src="js/translations/' + JKY.Session.get_value('locale') + '.js"></scr' + 'ipt>');
 		JKY.t_tag	('jky-wrapper', 'span');
 		JKY.t_input	('jky-wrapper', 'placeholder');
@@ -71,7 +69,7 @@ JKY.set_all_events_home = function(jky_program) {
  */
 JKY.set_initial_values_home = function(jky_program) {
 	if (JKY.is_loaded('jky')) {
-JKY.display_trace('set_initial_values_home');
+JKY.display_trace('set_initial_values - '  + jky_program);
 //		JKY.set_menu_active('jky-menu-admin');
 /*
 		$('#jky-home'				).click (function() {JKY.process_home		()		;});
@@ -147,6 +145,7 @@ JKY.process_my_info = function() {
 }
 
 JKY.process_start_page = function() {
+	JKY.display_trace('process_start_page - '  + jky_program);
 	var my_menus =
 		[{id:'jky-menu-sales'		, icon:'plus', label:'Sales'		}
 //		,{id:'jky-menu-invoicing'	, icon:'plus', label:'Invoicing'	}
@@ -178,7 +177,7 @@ JKY.process_start_page = function() {
 
 /** ------------------------------------------------------------------------ **/
 JKY.process_menu = function(menu) {
-	JKY.display_trace('process_menu: ' + menu);
+	JKY.display_trace('process_menu - '  + jky_program + ': ' + menu);
 	JKY.set_menu_active(menu);
 	switch(menu) {
 		case 'jky-menu-sales'		: JKY.process_action('customers'	); break;

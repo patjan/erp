@@ -153,16 +153,16 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-product'			, '');
 	JKY.set_value	('jky-composition'		, '');
 	JKY.set_option	('jky-machine'			,  null);
-	JKY.set_value	('jky-diameter'			, '0');
-	JKY.set_value	('jky-density'			, '0');
-	JKY.set_value	('jky-inputs'			, '0');
-	JKY.set_value	('jky-speed'			, '0');
-	JKY.set_value	('jky-turns'			, '0');
-	JKY.set_value	('jky-weight'			, '0');
-	JKY.set_value	('jky-width'			, '0');
-	JKY.set_value	('jky-lanes'			, '0');
-	JKY.set_value	('jky-elasticity'		, '0');
-	JKY.set_value	('jky-needling'			, '0');
+	JKY.set_value	('jky-diameter'			, '');
+	JKY.set_value	('jky-density'			, '');
+	JKY.set_value	('jky-inputs'			, '');
+	JKY.set_value	('jky-speed'			, '');
+	JKY.set_value	('jky-turns'			, '');
+	JKY.set_value	('jky-weight'			, '');
+	JKY.set_value	('jky-width'			, '');
+	JKY.set_value	('jky-lanes'			, '');
+	JKY.set_value	('jky-elasticity'		, '');
+	JKY.set_value	('jky-needling'			, '');
 	JKY.set_value	('jky-peso'				, '12.5');
 	JKY.set_radio	('jky-has-break'		, 'No');
 }
@@ -224,22 +224,6 @@ JKY.process_delete = function(the_id, the_row) {
 		};
 	JKY.ajax(true, my_data);
 };
-
-JKY.process_copy = function() {
-	var my_data =
-		{ method: 'insert'
-		, table :  jky_table
-		, set	:  JKY.get_form_set()
-		};
-	JKY.ajax(false, my_data, JKY.process_copy_success);
-}
-
-JKY.process_copy_success = function(response) {
-	JKY.display_trace('process_copy_success');
-	JKY.display_message(response.message);
-	JKY.load_table();
-	JKY.display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
-}
 
 /**
  * print row

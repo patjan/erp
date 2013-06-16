@@ -19,14 +19,18 @@ ALTER TABLE Permissions	DROP INDEX  user_role;
 ALTER TABLE Permissions	DROP INDEX  user_resource;
 ALTER TABLE Permissions	ADD UNIQUE (user_role, user_resource);
 
-ALTER TABLE FTPs		ADD COLUMN peso    				DECIMAL(5,2)	DEFAULT 0		AFTER needling;
+ALTER TABLE FTPs		ADD COLUMN peso    			DECIMAL(5,2)	DEFAULT 0		AFTER needling;
 UPDATE		FTPs		SET peso = 12.5;
 
 ----- 2013/06/01
 ALTER TABLE FTPs      CHANGE needling	needling	VARCHAR(32)		DEFAULT NULL;
 ALTER TABLE FTPs      CHANGE yield		elasticity	INT(11)			DEFAULT 0;
 ----- 2013/06/02
-ALTER TABLE Contacts      ADD COLUMN		nick_name	VARCHAR(255)	DEFAULT NULL  AFTER photo;
-ALTER TABLE Contacts      ADD UNIQUE KEY	nick_name	(nick_name);
+ALTER TABLE Contacts	ADD COLUMN		nick_name	VARCHAR(255)	DEFAULT NULL  AFTER photo;
+ALTER TABLE Contacts	ADD UNIQUE KEY	nick_name	(nick_name);
 ----- 2013/06/05
-ALTER TABLE Products		CHANGE name product_name			VARCHAR(255)		DEFAULT NULL	;
+ALTER TABLE Products	CHANGE name product_name	VARCHAR(255)	DEFAULT NULL	;
+----- 2013/06/15
+ALTER TABLE Threads		CHANGE	code		ncm		VARCHAR(32);
+ALTER TABLE Threads		DROP	thread_color;
+UPDATE Threads	SET ncm = null;

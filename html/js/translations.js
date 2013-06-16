@@ -27,12 +27,6 @@ JKY.start_program = function() {
 };
 
 /**
- *	set all events (run only once per load)
- */
-JKY.set_all_events = function() {
-};
-
-/**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {

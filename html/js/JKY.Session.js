@@ -15,8 +15,8 @@
  */
 JKY.Session = function() {
 	var my_session = [];
-	var my_session_time = 1800;	//	in seconds
-	var my_recover_time =   60;	//	in seconds
+	var my_session_time = 1800;	//	in seconds 1800
+	var my_recover_time =   60;	//	in seconds   60
 	var my_count_down;			//  in seconds
 	var my_call_back;			//	call back function name
 	var my_session_event;		//	last session event
@@ -60,7 +60,7 @@ JKY.Session = function() {
 	};
 
 	var my_reset_timeout = function(the_call_back) {
-//JKY.display_message('my_reset_timeout: ' + (my_session_time - my_recover_time));
+JKY.display_trace('my_reset_timeout: ' + (my_session_time - my_recover_time));
 		if (typeof(the_call_back) == 'function') {
 			my_call_back = the_call_back;
 		}
@@ -75,7 +75,7 @@ JKY.Session = function() {
 	};
 
 	var my_display_count_down = function() {
-//JKY.display_message('my_display_count_down');
+JKY.display_trace('my_display_count_down');
 		JKY.display_confirm
 				(  my_process_timeout
 				,  my_keep_in_session
@@ -91,11 +91,11 @@ JKY.Session = function() {
 	};
 
 	var my_process_count_down = function() {
-//JKY.display_message('my_process_count_down');
+JKY.display_trace('my_process_count_down');
 		if (my_count_down_event) {
 			clearTimeout(my_count_down_event);
 		}
-		JKY.set_html('jky-count-down', my_count_down);	
+		JKY.set_html('jky-count-down', my_count_down);
 		my_count_down_event = setTimeout(function() {
 			my_count_down -= 1;
 			if (my_count_down <= 0) {
@@ -108,7 +108,7 @@ JKY.Session = function() {
 	};
 
 	var my_keep_in_session = function() {
-//JKY.display_message('my_keep_in_session');
+JKY.display_trace('my_keep_in_session');
 		clearTimeout(my_count_down_event);
 		my_reset_timeout();
 
@@ -117,16 +117,17 @@ JKY.Session = function() {
 	};
 
 	var my_process_timeout = function() {
-//JKY.display_message('my_process_timeout');
-		clearTimeout(my_time_event);
-		JKY.hideModal('jky-confirm');
+JKY.display_trace('my_process_timeout');
+		clearTimeout(my_count_down_event);
+		JKY.hide_modal('jky-confirm');
 		if (typeof(my_call_back) == 'function') {
 			my_call_back();
 		}else{
 			var my_log_out = $('#jky-header a:contains("Log Off")');
 			if (my_log_out) {
-//				my_log_out.click();		//	this click is not working
-				window.location = my_log_out.attr('href');
+				clearTimeout(my_session_event);
+				my_log_out.click();		//	this click is not working
+//				window.location = my_log_out.attr('onclick');
 			};
 		};
 	};

@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS Threads
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'
 
-, code				VARCHAR(32)			UNIQUE
+, ncm				VARCHAR(32)			UNIQUE
 , name				VARCHAR(255)		DEFAULT NULL
 , thread_group		VARCHAR(255)		DEFAULT NULL
 , thread_color		VARCHAR(255)		DEFAULT NULL
@@ -18,12 +18,12 @@ CREATE TABLE IF NOT EXISTS Threads
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
-ALTER TABLE Fios		CHANGE ID			id				BIGINT; 
-ALTER TABLE Fios		CHANGE Created		created_at		DATETIME; 
-ALTER TABLE Fios		CHANGE Updated		updated_at		DATETIME; 
-ALTER TABLE Fios		CHANGE UserId		updated_by		BIGINT; 
+ALTER TABLE Fios		CHANGE ID			id				BIGINT;
+ALTER TABLE Fios		CHANGE Created		created_at		DATETIME;
+ALTER TABLE Fios		CHANGE Updated		updated_at		DATETIME;
+ALTER TABLE Fios		CHANGE UserId		updated_by		BIGINT;
 ALTER TABLE Fios		CHANGE Status		status			VARCHAR(32);
-ALTER TABLE Fios		CHANGE Codigo		code			VARCHAR(32); 
+ALTER TABLE Fios		CHANGE Codigo		code			VARCHAR(32);
 ALTER TABLE Fios		CHANGE Grupo		thread_group	VARCHAR(32);
 ALTER TABLE Fios		CHANGE Nome			name			VARCHAR(255);
 ALTER TABLE Fios		CHANGE Composicao	composition		VARCHAR(255);
@@ -353,7 +353,7 @@ SELECT composition, COUNT(*)
   FROM Threads
  GROUP BY composition
 	 ;
-	 
+
 composition 	COUNT(*)
   	246
 100% CO 	12
@@ -361,3 +361,8 @@ composition 	COUNT(*)
 100% PES 	9
 100% PUE 	3
 50% CO 50% PES 	18
+
+
+ALTER TABLE Threads		CHANGE	code		ncm		VARCHAR(32);
+ALTER TABLE Threads		DROP	thread_color;
+UPDATE Threads	SET ncm = null;

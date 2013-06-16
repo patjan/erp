@@ -38,10 +38,9 @@ $(function() {
 	}
 
 //	reset session timeout for every ajax request
-//	if (JKY.Session) {
-//		$(document).ajaxSend (function() {JKY.Session.reset_timeout();});
-//	}
-
+	if (JKY.Session) {
+		$(document).ajaxSend (function() {JKY.Session.reset_timeout();});
+	}
 //	$(document).ajaxStart(function() {						 $('#jky-loading').show();});
 //	$(document).ajaxStop (function() {setTimeout(function() {$('#jky-loading').hide();}, 2000)});
 
@@ -140,12 +139,12 @@ JKY.run_when_is_ready = function(template_name, function_name) {
  * @param	file_name
  */
 JKY.load_html = function(id_name, file_name) {
-//	JKY.display_trace('load_html: ' + id_name);
+	JKY.display_trace('load_html: ' + file_name);
 	if ($('#' + id_name).length > 0) {
 		$('#' + id_name).load('../js/JKY.Reset.js');					//	reset abstract functions
 		$('#' + id_name).load('../' + file_name);						//	production mode
 //		$('#' + id_name).load('../' + file_name + '?' + Math.random());	//	testing mode
-//		JKY.display_trace('load_html: ' + id_name + ' DONE');
+		JKY.display_trace('load_html: ' + file_name + ' DONE');
 
 		JKY.t_tag	('jky-app-body', 'span');
 		JKY.t_input	('jky-app-body', 'placeholder');
@@ -446,9 +445,9 @@ JKY.display_trace = function(message){
 	var my_time = my_date.getMinutes() + ':' + my_date.getSeconds() + '.' + my_msec;
 	console.log(my_time + ' ' + message);
 
-	var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
-	$('#jky-trace-body').html(my_html);
-	JKY.show('jky-trace');
+//	var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
+//	$('#jky-trace-body').html(my_html);
+//	JKY.show('jky-trace');
 
 }
 
@@ -947,7 +946,7 @@ JKY.display_confirm = function(function_yes, function_no, header, body, label_ye
 	$('#jky-confirm-body'	).html(body		);
 	$('#jky-confirm-yes'	).html(label_yes);
 	$('#jky-confirm-no'		).html(label_no	);
-	$('#jky-confirm').on('hidden', function() {JKY.clickConfirm('No');});
+	$('#jky-confirm').on('hidden', function() {JKY.click_confirm('No');});
 	$('#jky-confirm').modal('show');
 }
 
@@ -1176,7 +1175,7 @@ JKY.is_loaded = function(id_name) {
 JKY.is_empty = function(the_string) {
 	if (typeof the_string == 'undefined'
 	||  the_string == 'null'
-	||  the_string == false
+//	||  the_string == false			//	'0'
 	||  $.trim(the_string) == '') {
 		return true;
 	}else{
@@ -1911,7 +1910,7 @@ JKY.process_profile = function() {
  */
 JKY.process_log_off = function() {
 	JKY.display_trace('process_log_off');
-	JKY.hide('jky-side-bar');
+//	JKY.hide('jky-body');
 	JKY.set_buttons_menus([]);
 	JKY.set_user_info(null);
 	var my_data = { method : 'log_out'};
@@ -1923,7 +1922,7 @@ JKY.process_log_off = function() {
  */
 JKY.process_log_off_success = function() {
 //	JKY.process_action('login');
-	JKY.hide('jky-wrapper');
+//	JKY.hide('jky-wrapper');
 	window.location = 'home.html';
 }
 

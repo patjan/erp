@@ -13,15 +13,15 @@ JKY.start_program = function(action) {
 	JKY.display_trace('start_program - ' + jky_program);
 	JKY.hide('jky-side-bar');
 	JKY.Session.load_values();
-	JKY.set_all_events(jky_program);
-	JKY.set_initial_values(jky_program);
+	JKY.set_all_events();
+	JKY.set_initial_values();
 }
 
 /**
  *	set all events (run only once per load)
  */
-JKY.set_all_events = function(jky_program) {
-	JKY.display_trace('set_all_events');
+JKY.set_all_events = function() {
+	JKY.display_trace('set_all_events - ' + jky_program);
 	if (JKY.is_loaded('jky-body')) {
 		$('#jky-log-in-user-name'	).change(function() {JKY.change_log_in_name	(this)	;});
 		$('#jky-log-in-password'	).change(function() {JKY.change_password	(this)	;});
@@ -34,8 +34,8 @@ JKY.set_all_events = function(jky_program) {
 /**
  *	set initial values (run only once per load)
  */
-JKY.set_initial_values = function(jky_program) {
-	JKY.display_trace('set_initial_values');
+JKY.set_initial_values = function() {
+	JKY.display_trace('set_initial_values - ' + jky_program);
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_html('jky-log-in-logo', '<img src="/img/' + JKY.Session.get_value('company_logo') + '" />');
 		$('#jky-log-in-user-name').val('');
@@ -61,7 +61,7 @@ JKY.change_password= function(password) {
 }
 
 JKY.set_button_log_in = function() {
-	JKY.display_trace('set_button_log_in');
+	JKY.display_trace('set_button_log_in - ' + jky_program);
 	var my_user_name 	= $('#jky-log-in-user-name'	).val();
 	var my_password		= $('#jky-log-in-password'	).val();
 	if (my_user_name === '' || my_password === '') {
@@ -72,7 +72,7 @@ JKY.set_button_log_in = function() {
 }
 
 JKY.process_log_in = function() {
-	JKY.display_trace('process_log_in');
+	JKY.display_trace('process_log_in - ' + jky_program);
 	if (JKY.is_disabled('jky-button-log-in')) {
 		JKY.display_message('Please, fill in all information');
 		JKY.set_focus(jky_focus);
@@ -84,15 +84,13 @@ JKY.process_log_in = function() {
 		{ method		: 'log_in'
 		, user_name		: my_user_name
 		, encrypted		: $.md5(JKY.Session.get_value('user_time') + $.md5(my_password))
-//		, encrypted		: $.md5(my_password)
 		};
 	JKY.ajax(false, my_data, JKY.process_log_in_success);
 	JKY.set_focus(jky_focus);
 }
 
 JKY.process_log_in_success = function(response) {
-	JKY.display_trace('process_log_in_success');
+	JKY.display_trace('process_log_in_success - ' + jky_program);
 	JKY.Session.load_values();
-//alert('JKY.Session.load_values');
 	JKY.process_start_page();
 }

@@ -28,6 +28,14 @@ JKY.Changes = function() {
 	}
 
 	/**
+	 *
+	 */
+	function my_reset() {
+		my_changes  = 0;
+		my_set_button_save();
+	}
+
+	/**
 	 * if has changes
 	 *    then display confirmation layer
 	 * 		   if reply = no
@@ -40,19 +48,19 @@ JKY.Changes = function() {
 			JKY.click_confirm = function(reply) {
 				$('#jky-confirm').modal('hide');
 				if (reply == 'Yes' && typeof(the_function) == 'function') {
-					my_changes = 0;
+					my_reset();
 					the_function();
 				}
 			}
 
-			var my_header = 'Leaving';
+			var my_header = JKY.t('Leaving');
 			var my_body   = ''
-				+ 'This page has <b>' + my_changes + ' unsaved</b> change(s).'
-				+ ' <br>Do you want to leave to new page'
-				+ ' <br> <b>without</b> saving them?'
+				+ JKY.t('This page has') + ' <b>' + my_changes + '</b> ' + JKY.t('unsaved change(s).')
+				+ ' <br>' + JKY.t('Do you want to leave to new page')
+				+ ' <br> <b>' + JKY.t('without') + '</b> ' + JKY.t('saving them?')
 				;
-			var my_label_yes = 'Leave Page';
-			var my_label_no  = 'Stay on Page';
+			var my_label_yes = JKY.t('Leave Page');
+			var my_label_no  = JKY.t('Stay on Page');
 			JKY.set_html	('jky-confirm-header'	, my_header		);
 			JKY.set_html	('jky-confirm-body'		, my_body		);
 			JKY.set_html	('jky-confirm-yes'		, my_label_yes	);
@@ -66,7 +74,7 @@ JKY.Changes = function() {
 //	});
 
 	return {
-		  reset			: function()	{my_changes  = 0; my_set_button_save();}
+		  reset			: function()	{my_reset();}
 		, increment		: function()	{my_changes += 1; my_set_button_save();}
 		, decrement		: function()	{my_changes -= 1; my_set_button_save();}
 

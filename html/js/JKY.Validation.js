@@ -29,6 +29,21 @@ JKY.Validation = function() {
 		my_error += my_validate_numeric			('jky-cnpj'				, 'CNPJ or CPF'	);
 		my_error += my_validate_numeric			('jky-ie'				, 'IE or RG'	);
 */
+
+		if (JKY.Application.get('program_name') == 'FTPs') {
+			my_error += my_validate_numeric		('jky-diameter'			, 'Diameter'	);
+			my_error += my_validate_numeric		('jky-density'			, 'Density'		);
+			my_error += my_validate_numeric		('jky-inputs'			, 'Inputs'		);
+			my_error += my_validate_numeric		('jky-speed'			, 'Speed'		);
+			my_error += my_validate_numeric		('jky-turns'			, 'Turns'		);
+			my_error += my_validate_numeric		('jky-weight'			, 'Weight'		);
+			my_error += my_validate_numeric		('jky-width'			, 'Width'		);
+			my_error += my_validate_numeric		('jky-lanes'			, 'Lanes'		);
+			my_error += my_validate_numeric		('jky-elasticity'		, 'Elasticity'	);
+			my_error += my_validate_required	('jky-needling'			, 'Needling'	);
+			my_error += my_validate_numeric		('jky-peso'				, 'Peso'		);
+		}
+
 		if (JKY.is_empty(my_error)) {
 			return false;
 		}else{
@@ -40,7 +55,8 @@ JKY.Validation = function() {
 	function my_validate_numeric(the_dom_id, the_label) {
 		if (JKY.is_loaded(the_dom_id) && (my_id == null || my_id == the_dom_id)) {
 			var my_value = JKY.get_value(the_dom_id);
-			if (JKY.is_empty(my_value) || JKY.is_numeric(my_value)) {
+//			if (JKY.is_empty(my_value) || JKY.is_numeric(my_value)) {
+			if (JKY.is_numeric(my_value)) {
 				return '';
 			}else{
 				return JKY.set_must_be_numeric(the_label);
