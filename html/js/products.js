@@ -42,6 +42,8 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
+	$('#jky-tab-ftps'			).click (function() {JKY.display_ftps		();});
+
 	$('#jky-start-date'			).datepicker();
 //	$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
 };
@@ -52,7 +54,8 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_menu_active('jky-menu-production');
 	JKY.set_side_active('jky-production-products');
-	JKY.set_html('jky-app-select', JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-app-select'  , JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-product-type', JKY.set_radios_array('jky-product-type', JKY.get_configs('Product Types')));
 	JKY.set_html('jky-app-select-label', JKY.t('Type'));
 	JKY.show('jky-side-production');
 	JKY.show('jky-app-select-line');
@@ -83,6 +86,8 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_html('jky-upload-name'		, '');
 	JKY.set_html('jky-upload-percent'	, '');
 	JKY.set_css ('jky-upload-progress'	, 'width', '0%');
+
+	JKY.display_ftps();
 };
 
 /**

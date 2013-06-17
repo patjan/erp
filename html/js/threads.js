@@ -31,7 +31,7 @@ JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-production-threads');
 	JKY.set_html('jky-compositions'		, JKY.set_configs('Thread Compositions', '', ''));
 	JKY.set_html('jky-thread-groups'	, JKY.set_configs('Thread Groups', '', ''));
-	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups' , JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-app-select-label', JKY.t('Group'));
 	JKY.show('jky-side-production');
 	JKY.show('jky-app-select-line');
@@ -44,8 +44,8 @@ JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-thread-name"		>' + the_row.name			+ '</td>'
 		+  '<td class="jky-ncm"				>' + the_row.ncm			+ '</td>'
-		+  '<td class="jky-thread_group"	>' + the_row.thread_group	+ '</td>'
-//		+  '<td class="jky-thread_color"	>' + the_row.thread_color	+ '</td>'
+		+  '<td class="jky-thread-group"	>' + the_row.thread_group	+ '</td>'
+//		+  '<td class="jky-thread-color"	>' + the_row.thread_color	+ '</td>'
 		+  '<td class="jky-composition"		>' + the_row.composition	+ '</td>'
 		;
 	return my_html;

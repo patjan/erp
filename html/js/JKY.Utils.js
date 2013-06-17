@@ -57,7 +57,7 @@ $(function() {
  * !!! important !!!
  * window resize can be bond only once per load
  */
-JKY.binding_on_resize = function() {
+JKY.Xbinding_on_resize = function() {
 	if (JKY.is_browser('msie') && $.browser.version < 9) {
 		return;
 	}
@@ -413,6 +413,7 @@ JKY.display_message = function(message, id_name) {
 	}else{
 		my_body.append('<br />' + message);
 	}
+	JKY.set_html('jky-message-header', JKY.t('Message'));
 	JKY.show('jky-message');
 
 	var my_time = my_body.html().length / 10;
@@ -727,16 +728,36 @@ JKY.get_index_by_id = function(the_id, the_array) {
 //	JKY.set_radios(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
 //	----------------------------------------------------------------------------
 JKY.set_radios = function() {
-     radios    = '';
-     set_id    = arguments[0];
-     set_value = arguments[1];
+	radios    = '';
+	set_id    = arguments[0];
+	set_value = arguments[1];
 
-     for( var i=2; i<arguments.length; i++ ) {
-          value = arguments[i];
-          checked = (value == set_value) ? ' checked="checked"' : '';
+	for(var i=2, max=arguments.length; i<max; i++) {
+		value = arguments[i];
+		checked = (value == set_value) ? ' checked="checked"' : '';
 		radios += '<input type="radio" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + checked + '/>&nbsp;' + value + ' &nbsp; ';
-     }
-     return radios;
+	}
+	return radios;
+}
+
+//	JKY.set_radios_array('jky-product-type', array)
+//	----------------------------------------------------------------------------
+JKY.set_radios_array = function(the_name, the_array) {
+	var my_radios = '';
+	for(var i=0, max=the_array.length; i<max; i++) {
+		var my_value = '';
+		if (typeof the_array[i].name != 'undefined') {
+			my_value = the_array[i].name;
+		}else{
+		if (typeof the_array[i].nick_name != 'undefined') {
+			my_value = the_array[i].nick_name;
+		}else{
+		if (typeof the_array[i].full_name != 'undefined') {
+			my_value = the_array[i].full_name;
+		}}}
+		my_radios += '<input type="radio" name="' + the_name + '" value="' + my_value + '" /><span>' + my_value + '</span><br>';
+	}
+	return my_radios;
 }
 
 //	JKY.set_checks('...', ..., '...')
@@ -1311,7 +1332,7 @@ JKY.set_user_info = function(full_name) {
 		JKY.show('jky-user-unkown');
 	}else{
 		var my_full_name = '<a href="#" onclick="JKY.process_profile()">' + full_name + '</a>';
-		var my_log_off = ':&nbsp; <a href="#" onclick="JKY.process_log_off()">' + JKY.t('Log Off') + '</a>';
+		var my_log_off = ':&nbsp; <a id="jky-menu-logoff" href="#" onclick="JKY.process_log_off()">' + JKY.t('Log Off') + '</a>';
 		JKY.set_html('jky-user-full-name', my_full_name + my_log_off);
 		JKY.hide('jky-user-unkown');
 		JKY.show('jky-user-logged');
@@ -1800,7 +1821,11 @@ JKY.ajax = function(async, data, function_success, function_error) {
 							JKY.display_message(response.message);
 						}
 					}else{
-						JKY.display_message(response.message);
+						var my_message = response.message;
+						if (my_message.substr(0, 4) == '<br>') {
+							my_message = my_message.substr(4);
+						}
+						JKY.display_message(JKY.t(my_message)	);
 					}
 				}
 			}

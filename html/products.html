@@ -17,12 +17,13 @@
 #jky-product-type		{width:230px;}
 #jky-product-type span	{padding:4px 20px 0 4px; vertical-align:bottom;}
 
-.jky-cylinder-value		{width: 5%;		text-align:center;}
-.jky-cylinder-label		{width:80%;		text-align:left  ;}
-.jky-cylinder-current	{width: 40px;	text-align:right ; margin-right:0;}
-.jky-cylinder-name		{width:400px;}
-#jky-cylinder-total		{text-align:right;}
-
+#jky-ftp-body td	{height:30px; padding:0 8px;}
+.jky-ftp-value		{width: 5%;		text-align:center;}
+.jky-ftp-label		{width:80%;		text-align:left  ;}
+.jky-ftp-current	{width: 40px; text-align:right ; margin-right:0;}
+.jky-ftp-number		{width: 60px; text-align:center;}
+.jky-ftp-composition{width:300px;}
+.jky-ftp-machine	{width:120px; text-align:center; text-transform:capitalize;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -68,13 +69,7 @@
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Product Type</span>:</div>
-				<div id='jky-product-type' class='jky-form-value'>
-					<input type='radio' name='jky-product-type' value='Galao'	/><span>Galao	</span><br>
-					<input type='radio' name='jky-product-type' value='Gola'	/><span>Gola	</span><br>
-					<input type='radio' name='jky-product-type' value='Punho'	/><span>Punho	</span><br>
-					<input type='radio' name='jky-product-type' value='Ramado'	/><span>Ramado	</span><br>
-					<input type='radio' name='jky-product-type' value='Tubular'	/><span>Tubular	</span><br>
-				</div>
+				<div id='jky-product-type' class='jky-form-value'></div>
 			</div>
 			<div class='jky-form-line'>&nbsp;</div>
 			<div class='jky-form-line'>
@@ -126,10 +121,10 @@
 				<table class='table table-striped' >
 					<thead>
 						<tr>
-							<td class='jky-action'></td>
-							<td class='jky-ftp-value'><span>Number		</span></td>
-							<td class='jky-ftp-label'><span>Machine		</span></td>
-							<td class='jky-ftp-label'><span>Composition	</span></td>
+							<th class='jky-action'></td>
+							<th class='jky-ftp-number'		><span>Number		</span></td>
+							<th class='jky-ftp-composition'	><span>Composition	</span></td>
+							<th class='jky-ftp-machine'		><span>Machine		</span></td>
 						</tr>
 					</thead>
 					<tbody id='jky-ftp-body'></tbody>

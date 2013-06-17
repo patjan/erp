@@ -60,6 +60,9 @@ JKY.Session = function() {
 	};
 
 	var my_reset_timeout = function(the_call_back) {
+		if (!JKY.Session.has('user_id')) {
+			return;
+		}
 JKY.display_trace('my_reset_timeout: ' + (my_session_time - my_recover_time));
 		if (typeof(the_call_back) == 'function') {
 			my_call_back = the_call_back;
@@ -110,7 +113,7 @@ JKY.display_trace('my_process_count_down');
 	var my_keep_in_session = function() {
 JKY.display_trace('my_keep_in_session');
 		clearTimeout(my_count_down_event);
-		my_reset_timeout();
+//		my_reset_timeout();			//	not needed because ajax will reset timeout
 
 //		extra ajax call to reset session timeout on Apache
 		my_load_values();
@@ -123,18 +126,17 @@ JKY.display_trace('my_process_timeout');
 		if (typeof(my_call_back) == 'function') {
 			my_call_back();
 		}else{
-			var my_log_out = $('#jky-header a:contains("Log Off")');
+			var my_log_out = $('#jky-menu-logoff');
 			if (my_log_out) {
 				clearTimeout(my_session_event);
-				my_log_out.click();		//	this click is not working
+				my_log_out.click();		//	this will work on [Log Off] anchor
 //				window.location = my_log_out.attr('onclick');
 			};
 		};
 	};
 
 	$(function() {
-		my_load_values();
-		my_reset_timeout();
+		JKY.Session.load_values();
 	});
 
 	return {

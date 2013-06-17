@@ -6,6 +6,7 @@ JKY.display_threads = function() {
 	var my_data =
 		{ method	: 'get_index'
 		, table		: 'FTP_Threads'
+		, specific	: 'product'
 		, select	:  JKY.row.id
 		, order_by  : 'FTP_Threads.id'
 		};

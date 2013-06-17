@@ -64,13 +64,13 @@ JKY.suppliers	= [];
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-		$('#jky-comp-add-new'		).click (function() {JKY.insert_composition	();});
-		$('#jky-thread-add-new'		).click (function() {JKY.insert_thread		();});
-		$('#jky-load-add-new'		).click (function() {JKY.insert_load		();});
-
 		$('#jky-tab-threads'		).click (function() {JKY.display_threads	();});
 		$('#jky-tab-loads'			).click (function() {JKY.display_loads		();});
 		$('#jky-tab-settings'		).click (function() {JKY.display_settings	();});
+
+		$('#jky-comp-add-new'		).click (function() {JKY.insert_composition	();});
+		$('#jky-thread-add-new'		).click (function() {JKY.insert_thread		();});
+		$('#jky-load-add-new'		).click (function() {JKY.insert_load		();});
 
 		$('#jky-action-product'		).click (function() {JKY.display_product	();});
 		$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});

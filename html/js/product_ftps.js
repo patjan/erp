@@ -2,40 +2,36 @@
  * display FTPs ----------------------------------------------------------------
  */
 
-JKY.display_cylinders = function() {
+JKY.display_ftps = function() {
 	var my_data =
-		{ method	: 'get_index'
-		, table		: 'Cylinders'
-		, select	:  JKY.row.id
-		, order_by  : 'Cylinders.id'
+		{ method		: 'get_index'
+		, table			: 'FTPs'
+		, specific		: 'product'
+		, specific_id	:  JKY.row.id
+		, order_by		: 'FTPs.id'
 		};
-	JKY.ajax(false, my_data, JKY.generate_cylinders);
+	JKY.ajax(false, my_data, JKY.generate_ftps);
 }
 
-JKY.generate_cylinders = function(response) {
+JKY.generate_ftps = function(response) {
 	var my_html  = '';
 	var my_rows  = response.rows;
 	if (my_rows != '') {
 		for(var i in my_rows) {
-			var my_row			= my_rows[i];
-			var my_id			= my_row.id;
-			var my_name			= my_row.name;
-			var my_current		= my_row.is_current;
-			var my_checked	= my_current == 'Yes' ? ' checked="checked"' : '';
+			var my_row	= my_rows[i];
+			var my_id	= my_row.id;
 
 			my_html  += ''
-				+ '<tr cylinder_id=' + my_id + '>'
-				+ '<td class="jky-action"><a onclick="JKY.delete_cylinder(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-				+ '<td class="jky-cylinder-value"><input name="jky-cylinder-current" type="radio" onchange="JKY.set_current(this, ' + my_id + ')"'		 + my_checked + ' /></td>'
-				+ '<td class="jky-cylinder-label"><input class="jky-cylinder-name"   text="text"  onchange="JKY.update_name(this, ' + my_id + ')" value="'	+ my_name + '" /></td>'
+				+ '<tr ftp_id=' + my_id + '>'
+				+ '<td class="jky-action"><a onclick="JKY.delete_ftp(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
+				+ '<td class="jky-ftp-number"		>' + my_row.number		+ '</td>'
+				+ '<td class="jky-ftp-composition"	>' + my_row.composition	+ '</td>'
+				+ '<td class="jky-ftp-machine"		>' + my_row.machine		+ '</td>'
 				+ '</tr>'
 				;
 		}
 	}
-	JKY.set_html('jky-cylinder-body' , my_html );
-	if (my_rows == '') {
-		JKY.insert_cylinder();
-	}
+	JKY.set_html('jky-ftp-body' , my_html);
 }
 
 JKY.set_current = function(id_name, the_id ) {

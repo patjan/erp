@@ -62,9 +62,9 @@ JKY.change_password= function(password) {
 
 JKY.set_button_log_in = function() {
 	JKY.display_trace('set_button_log_in - ' + jky_program);
-	var my_user_name 	= $('#jky-log-in-user-name'	).val();
-	var my_password		= $('#jky-log-in-password'	).val();
-	if (my_user_name === '' || my_password === '') {
+	var my_user_name = JKY.get_value('jky-log-in-user-name'	);
+	var my_password  = JKY.get_value('jky-log-in-password'	);
+	if (JKY.is_empty(my_user_name) || JKY.is_empty(my_password)) {
 		JKY.disabled_id('jky-button-log-in');
 	}else{
 		JKY.enabled_id ('jky-button-log-in');
@@ -74,7 +74,7 @@ JKY.set_button_log_in = function() {
 JKY.process_log_in = function() {
 	JKY.display_trace('process_log_in - ' + jky_program);
 	if (JKY.is_disabled('jky-button-log-in')) {
-		JKY.display_message('Please, fill in all information');
+		JKY.display_message(JKY.t('Please, fill in all information'));
 		JKY.set_focus(jky_focus);
 		return;
 	}

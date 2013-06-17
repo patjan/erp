@@ -504,16 +504,16 @@ private function get_index($data) {
 	}
 
 	$table		= get_data($data, 'table'	);
-	$filter		= get_data($data, 'filter'	);
+	$specific	= get_data($data, 'specific');
 	$select		= get_data($data, 'select'	);
+	$filter		= get_data($data, 'filter'	);
 	$display	= get_data($data, 'display'	);
 	$order_by	= get_data($data, 'order_by');
-	$specific	= get_data($data, 'specific');
 
 	$where = '';
 
 	if ($specific != '') {
-		$where .= $this->set_specific($table, $specific);
+		$where .= $this->set_specific($table, $specific, get_data($data, 'specific_id'));
 	}
 
 	if ($select != 'All') {
@@ -575,17 +575,18 @@ $this->log_sql($table, 'get_index', $sql);
 	$this->echo_json($return);
 }
 
-private function set_specific($table, $specific) {
+private function set_specific($table, $specific, $specific_id) {
 	$return = '';
-	if ($table == 'Groups'			&& $specific == 'event_id'	)		$return .= ' AND   Groups.event_id   = ' . get_session('event_id');
-	if ($table == 'Services'		&& $specific == 'event_id'	)		$return .= ' AND Services.event_id   = ' . get_session('event_id');
+	if ($table == 'Groups'			&& $specific == 'event_id'	)		$return .= ' AND   Groups.event_id		= ' . get_session('event_id');
+	if ($table == 'Services'		&& $specific == 'event_id'	)		$return .= ' AND Services.event_id		= ' . get_session('event_id');
 	if ($table == 'Services'		&& $specific == 'fee_amount')       $return .= ' AND Services.fee_amount > 0';
-	if ($table == 'Translations'	&& $specific == 'locale'	)		$return .= ' AND Translations.locale = "en_us"';
+	if ($table == 'Translations'	&& $specific == 'locale'	)		$return .= ' AND Translations.locale	= "en_us"';
 //	if ($specific == 'parent_id')	$return .= ' AND Categories.parent_id = ' . get_session('parent_id');
-	if ($table == 'Contacts'		&& $specific == 'is_customer'	)	$return .= ' AND Contacts.is_customer = "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	$return .= ' AND Contacts.is_supplier = "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_company'	)	$return .= ' AND Contacts.is_company  = "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	$return .= ' AND Contacts.is_company  = "No" ';
+	if ($table == 'Contacts'		&& $specific == 'is_customer'	)	$return .= ' AND Contacts.is_customer	= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	$return .= ' AND Contacts.is_supplier	= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_company'	)	$return .= ' AND Contacts.is_company	= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	$return .= ' AND Contacts.is_company	= "No" ';
+	if ($table == 'FTPs'			&& $specific == 'product'		)	$return .= ' AND     FTPs.product_id	= ' . $specific_id;
 
 	return $return;
 }
