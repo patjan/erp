@@ -53,6 +53,7 @@ JKY.set_initial_values = function() {
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-machine-name"	>' + the_row.name			+ '</td>'
+		+  '<td class="jky-machine-brand"	>' + the_row.machine_brand	+ '</td>'
 		+  '<td class="jky-diameter"		>' + the_row.diameter		+ '</td>'
 		+  '<td class="jky-width"			>' + the_row.width			+ '</td>'
 		+  '<td class="jky-density"			>' + the_row.density		+ '</td>'
