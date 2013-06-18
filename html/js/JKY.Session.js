@@ -15,8 +15,8 @@
  */
 JKY.Session = function() {
 	var my_session = [];
-	var my_session_time = 1800;	//	in seconds 1800
-	var my_recover_time =   60;	//	in seconds   60
+	var my_session_time = 1800;	//	in seconds 1800 = 30 minutes
+	var my_recover_time =   60;	//	in seconds   60 =  1 minute
 	var my_count_down;			//  in seconds
 	var my_call_back;			//	call back function name
 	var my_session_event;		//	last session event
@@ -60,7 +60,7 @@ JKY.Session = function() {
 	};
 
 	var my_reset_timeout = function(the_call_back) {
-		if (!JKY.Session.has('user_id')) {
+		if(!JKY.Session.has('user_id')) {
 			return;
 		}
 JKY.display_trace('my_reset_timeout: ' + (my_session_time - my_recover_time));
@@ -100,6 +100,7 @@ JKY.display_trace('my_process_count_down');
 		}
 		JKY.set_html('jky-count-down', my_count_down);
 		my_count_down_event = setTimeout(function() {
+			clearTimeout(my_count_down_event);
 			my_count_down -= 1;
 			if (my_count_down <= 0) {
 				JKY.set_html('jky-count-down', my_count_down);
@@ -153,6 +154,5 @@ JKY.display_trace('my_process_timeout');
 		, get_session_time	: function()					{return	my_session_time						;}
 		, get_recover_time	: function()					{return	my_recover_time						;}
 		, reset_timeout		: function(the_call_back)		{		my_reset_timeout(the_call_back)		;}
-
 	};
 }();

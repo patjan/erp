@@ -20,7 +20,7 @@ JKY.generate_settings = function(response) {
 			var my_id			= my_row.id;
 			var my_setting		= my_row.setting;
 			var my_name			= my_row.name;
-			var my_value		= (my_row.value == null) ? 0 : my_row.value;
+			var my_value		= (my_row.value == null) ? '' : my_row.value;
 
 			var my_onchange = '';
 			if (my_row.value == null) {

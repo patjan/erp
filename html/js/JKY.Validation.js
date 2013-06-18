@@ -94,7 +94,8 @@ JKY.Validation = function() {
 				}
 			}else{
 				var my_found_id = JKY.get_id(the_table_name, the_key_name + ' = \'' + my_value + '\'');
-				if (JKY.is_empty(my_found_id) || (my_row != null && my_found_id == my_row.id)) {
+//				if (JKY.is_empty(my_found_id) || (my_row != null && my_found_id == my_row.id)) {
+				if(!my_found_id || (my_row != null && my_row.id == my_found_id)) {
 					return '';
 				}else{
 					return JKY.set_already_taken(the_label);

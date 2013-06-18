@@ -85,6 +85,7 @@ JKY.set_initial_values = function() {
 		JKY.set_menu_active('jky-menu-production');
 		JKY.set_side_active('jky-production-ftps');
 		JKY.set_html('jky-machine', JKY.set_table_options('Machines', 'name', '', ''));
+		JKY.set_html('jky-collection', JKY.set_configs('Collections', '', ''));
 		JKY.show('jky-side-production');
 		JKY.show('jky-action-print');
 		JKY.materials	= JKY.get_configs	('Materials'	);
@@ -123,9 +124,9 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-turns'			, the_row.turns			);
 	JKY.set_value	('jky-weight'			, the_row.weight		);
 	JKY.set_value	('jky-width'			, the_row.width			);
-	JKY.set_value	('jky-lanes'			, the_row.lanes			);
-	JKY.set_value	('jky-elasticity'		, the_row.elasticity	);
-	JKY.set_value	('jky-needling'			, the_row.needling		);
+//	JKY.set_value	('jky-lanes'			, the_row.lanes			);
+//	JKY.set_value	('jky-elasticity'		, the_row.elasticity	);
+//	JKY.set_value	('jky-needling'			, the_row.needling		);
 	JKY.set_value	('jky-peso'				, the_row.peso			);
 	JKY.set_radio	('jky-has-break'		, the_row.has_break		);
 
@@ -160,9 +161,9 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-turns'			, '');
 	JKY.set_value	('jky-weight'			, '');
 	JKY.set_value	('jky-width'			, '');
-	JKY.set_value	('jky-lanes'			, '');
-	JKY.set_value	('jky-elasticity'		, '');
-	JKY.set_value	('jky-needling'			, '');
+//	JKY.set_value	('jky-lanes'			, '');
+//	JKY.set_value	('jky-elasticity'		, '');
+//	JKY.set_value	('jky-needling'			, '');
 	JKY.set_value	('jky-peso'				, '12.5');
 	JKY.set_radio	('jky-has-break'		, 'No');
 }
@@ -184,9 +185,9 @@ JKY.get_form_set = function() {
 		+         ', turns=  ' + JKY.get_value	('jky-turns'			)
 		+        ', weight=  ' + JKY.get_value	('jky-weight'			)
 		+         ', width=  ' + JKY.get_value	('jky-width'			)
-		+         ', lanes=  ' + JKY.get_value	('jky-lanes'			)
-		+    ', elasticity=  ' + JKY.get_value	('jky-elasticity'		)
-		+      ', needling=\'' + JKY.get_value	('jky-needling'			) + '\''
+//		+         ', lanes=  ' + JKY.get_value	('jky-lanes'			)
+//		+    ', elasticity=  ' + JKY.get_value	('jky-elasticity'		)
+//		+      ', needling=\'' + JKY.get_value	('jky-needling'			) + '\''
 		+		   ', peso=  ' + JKY.get_value	('jky-peso'				)
 		+     ', has_break=\'' + JKY.get_checked('jky-has-break'		) + '\''
 		;
@@ -259,23 +260,23 @@ JKY.print_row = function(the_id) {
 		+ "<tr>"
 		+ "<td class='jky-print-label1'><span>  Diameter</span>:</td><td id='jky-print-diameter'	class='jky-print-value'></td>"
 		+ "<td class='jky-print-label2'><span>     Turns</span>:</td><td id='jky-print-turns'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label3'><span>Elasticity</span>:</td><td id='jky-print-elasticity'	class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>     Speed</span>:</td><td id='jky-print-speed'		class='jky-print-value'></td>"
+//		+ "<td class='jky-print-label3'><span>Elasticity</span>:</td><td id='jky-print-elasticity'	class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
 		+ "<td class='jky-print-label1'><span>   Density</span>:</td><td id='jky-print-density'		class='jky-print-value'></td>"
 		+ "<td class='jky-print-label2'><span>    Weight</span>:</td><td id='jky-print-weight'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label3'><span>  Needling</span>:</td><td id='jky-print-needling'	class='jky-print-value'></td>"
+		+ "<td class='jky-print-label3'><span>      Peso</span>:</td><td id='jky-print-peso'		class='jky-print-value'></td>"
+//		+ "<td class='jky-print-label3'><span>  Needling</span>:</td><td id='jky-print-needling'	class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
 		+ "<td class='jky-print-label1'><span>    Inputs</span>:</td><td id='jky-print-inputs'		class='jky-print-value'></td>"
 		+ "<td class='jky-print-label2'><span>     Width</span>:</td><td id='jky-print-width'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label3'><span>      Peso</span>:</td><td id='jky-print-peso'		class='jky-print-value'></td>"
-		+ "</tr>"
-		+ "<tr>"
-		+ "<td class='jky-print-label1'><span>     Speed</span>:</td><td id='jky-print-speed'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label2'><span>     Lanes</span>:</td><td id='jky-print-lanes'		class='jky-print-value'></td>"
 		+ "<td class='jky-print-label3'><span>     Break</span>?</td><td id='jky-print-has-break'	class='jky-print-value'></td>"
 		+ "</tr>"
+//		+ "<tr>"
+//		+ "<td class='jky-print-label2'><span>     Lanes</span>:</td><td id='jky-print-lanes'		class='jky-print-value'></td>"
+//		+ "</tr>"
 		+ "</table>"
 		+ "</div>"
 		+ "<br>"
@@ -312,15 +313,15 @@ JKY.print_row = function(the_id) {
 
 	JKY.set_html('jky-print-diameter'		, my_row.diameter		+ ' (pol)'	);
 	JKY.set_html('jky-print-turns'			, my_row.turns						);
-	JKY.set_html('jky-print-elasticity'		, my_row.elasticity					);
+	JKY.set_html('jky-print-speed'			, my_row.speed			+ ' (rpm)'	);
+//	JKY.set_html('jky-print-elasticity'		, my_row.elasticity					);
 	JKY.set_html('jky-print-density'		, my_row.density					);
 	JKY.set_html('jky-print-weight'			, my_row.weight			+ ' (gr)'	);
-	JKY.set_html('jky-print-needling'		, my_row.needling					);
+	JKY.set_html('jky-print-peso'			, my_row.peso			+ ' (Kg)'	);
+//	JKY.set_html('jky-print-needling'		, my_row.needling					);
 	JKY.set_html('jky-print-inputs'			, my_row.inputs			+ ' (cones)');
 	JKY.set_html('jky-print-width'			, my_row.width			+ ' (cm)'	);
-	JKY.set_html('jky-print-peso'			, my_row.peso			+ ' (Kg)'	);
-	JKY.set_html('jky-print-speed'			, my_row.speed			+ ' (rpm)'	);
-	JKY.set_html('jky-print-lanes'			, my_row.lanes						);
+//	JKY.set_html('jky-print-lanes'			, my_row.lanes						);
 	JKY.set_html('jky-print-has-break'		, JKY.t((my_row.has_break == 'No') ? 'Without' : 'With'));
 
 	JKY.set_html('jky-print-thread-body'	, JKY.print_threads	(the_id));

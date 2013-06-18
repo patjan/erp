@@ -787,8 +787,7 @@ private function set_where($table, $filter) {
 		}
 
 		if ($table == 'Products') {
-			if ($name == 'code'
-			or	$name == 'product_name'
+			if ($name == 'product_name'
 			or	$name == 'product_type'
 			or	$name == 'start_date') {
 				if ($value == '"%null%"') {
@@ -966,10 +965,8 @@ private function set_where($table, $filter) {
 		}
 
 		if ($table == 'Threads') {
-			if ($name == 'code'
-			or	$name == 'name'
+			if ($name == 'name'
 			or	$name == 'thread_group'
-			or	$name == 'thread_color'
 			or	$name == 'composition') {
 				if ($value == '"%null%"') {
 					return ' AND Threads.' . $name . ' IS NULL ';
@@ -1026,8 +1023,7 @@ private function set_where($table, $filter) {
 	}
 
 	if ($table == 'Products') {
-		$return = '    Products.code			LIKE ' . $filter
-				. ' OR Products.product_name	LIKE ' . $filter
+		$return = '    Products.product_name	LIKE ' . $filter
 				. ' OR Products.product_type	LIKE ' . $filter
 				. ' OR Products.start_date		LIKE ' . $filter
 				;
@@ -1122,10 +1118,8 @@ private function set_where($table, $filter) {
 		}
 
 	if ($table ==  'Threads') {
-		$return = ' Threads.code			LIKE ' . $filter
-			. ' OR	Threads.name			LIKE ' . $filter
+		$return = ' Threads.name			LIKE ' . $filter
 			. ' OR	Threads.thread_group	LIKE ' . $filter
-			. ' OR	Threads.thread_color	LIKE ' . $filter
 			. ' OR	Threads.composition		LIKE ' . $filter
 			;
 		}
