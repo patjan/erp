@@ -27,6 +27,7 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
+	$('#jky-created-date'			).datepicker();
 };
 
 /**
