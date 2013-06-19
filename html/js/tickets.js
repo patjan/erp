@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Tickets'
 		, table_name	: 'Tickets'
 		, specific		: ''
-		, select		: 'All'
+		, select		: 'Open'
 		, filter		: ''
 		, sort_by		: 'category, description'
 		, sort_seq		: 'ASC'

@@ -16,7 +16,7 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: 'All'
 		, filter		: ''
-		, sort_by		: 'user_role'
+		, sort_by		: 'user_resource'
 		, sort_seq		: 'ASC'
 		, focus			: 'jky-user-role'
 		});
@@ -83,8 +83,8 @@ JKY.set_add_new_row = function() {
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-	//	+          'status=\'' + JKY.get_value	('jky-status'			) + '\''
-		+     ', user_role=\'' + JKY.get_value	('jky-user-role'		) + '\''
+//		+          'status=\'' + JKY.get_value	('jky-status'			) + '\''
+		+       'user_role=\'' + JKY.get_value	('jky-user-role'		) + '\''
 		+ ', user_resource=\'' + JKY.get_value	('jky-user-resource'	) + '\''
 		+   ', user_action=\'' + JKY.get_value	('jky-user-action'		) + '\''
 		;
