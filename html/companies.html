@@ -104,20 +104,10 @@
 		<div class='jky-clear'></div>
 
 		<div class='jky-left'>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Address</span>:</div>
-				<div class='jky-form-value'>
-					<input	id='jky-street1'	class='jky-form-value' placeholder='Street'		/>
-					<input	id='jky-street2'	class='jky-form-value' placeholder=''			/>
-					<input	id='jky-city'		class='jky-form-value' placeholder='City'		/>
-					<input	id='jky-zip'		class='jky-form-value' placeholder='Zip'		/>
-					<select id='jky-state'	></select>
-					<select id='jky-country'></select>
-				</div>
-			</div>
 			<div id='jky-website-line'  class='jky-form-line'><div class='jky-form-label'><span>           Website</span>:</div><input id='jky-website'		class='jky-form-value'		placeholder='www.jkysoftware.com'	/></div>
 			<div id='jky-position-line' class='jky-form-line'><div class='jky-form-label'><span>          Position</span>:</div><input id='jky-position'	class='jky-form-value'		placeholder='Purchase Director'		/></div>
 		</div>
+		
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>             Phone</span>:</div><input id='jky-phone'		class='jky-form-value'		placeholder='123-456-7890'			/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>            Mobile</span>:</div><input id='jky-mobile'		class='jky-form-value'		/></div>
@@ -140,16 +130,48 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li id='jky-tab-contacts'		class='active'	><a href='#jky-contacts'			data-toggle='tab'><span>Address		</span></a></li>
-			<li	id='jky-tab-notes'							><a href='#jky-notes'				data-toggle='tab'><span>Notes			</span></a></li>
+			<li id='jky-tab-contacts'		class='active'	><a href='#jky-contacts'			data-toggle='tab'><span>Address			</span></a></li>
+			<li	id='jky-tab-notes'							><a href='#jky-notes'				data-toggle='tab'><span>Phone			</span></a></li>
 			<li	id='jky-tab-sales'							><a href='#jky-sales'				data-toggle='tab'><span>Sales			</span></a></li>
 			<li	id='jky-tab-account'						><a href='#jky-account'				data-toggle='tab'><span>Account			</span></a></li>
 			<li	id='jky-tab-history'						><a href='#jky-history'				data-toggle='tab'><span>History			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
-
-
+			
+			<div id='jky-address' class='tab-pane active'>
+				<div class='jky-left'>
+					<div class='jky-form-line'>
+						<div class='jky-form-label'></div>
+						<div class='jky-form-value'>
+							<br>
+							<input	id='jky-street1'	class='jky-form-value' placeholder='Street'		/>
+							<input	id='jky-street2'	class='jky-form-value' placeholder=''			/>
+							<input	id='jky-city'		class='jky-form-value' placeholder='City'		/>
+							<input	id='jky-zip'		class='jky-form-value' placeholder='Zip'		/>
+							<select id='jky-state'	></select>
+							<select id='jky-country'></select>
+							<br>
+							<br>
+							<button id='jky-save-address' class='btn btn-success' type='button'><span>Save Address</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id='jky-phone' class='tab-pane active'>
+				<div class='jky-left'>
+					<div class='jky-form-line'>
+						<div class='jky-form-label'></div>
+						<div class='jky-form-value'>
+							<br>
+							<input	id='jky-phone'	class='jky-form-value' placeholder='123-456-7890'		/>
+							<input	id='jky-mobile'	class='jky-form-value' placeholder='123-456-7890'		/>
+							<input	id='jky-fax'	class='jky-form-value' placeholder='123-456-7890'		/>
+							<input	id='jky-email'	class='jky-form-value' placeholder=''					/>
+						</div>
+					</div>
+				</div>
+			</div>	
 		</div>
 	</div>
 
