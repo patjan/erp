@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * contacts.html
+ * contacts.js
  */
 
 /**
@@ -55,8 +55,10 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-user-role'		, JKY.set_controls('User Roles'		, ''	));
 	JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
 	JKY.set_html('jky-country'			, JKY.set_configs ('Countries'		, '', ''));
+	JKY.set_html('jky-app-select'		, JKY.set_controls('User Roles', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('User Role'));
 	JKY.show('jky-side-admin');
+	JKY.show('jky-app-select-line');
 };
 
 /**

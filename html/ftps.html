@@ -17,6 +17,7 @@
 .jky-product			{width:200px; text-transform:capitalize;}
 .jky-machine			{width:100px; text-transform:capitalize; text-align:center;}
 .jky-composition		{width:150px; text-align:center;}
+.jky-start-date			{width:100px; text-align:center;}
 
 #jky-number				{width: 60px; font-size:16px; font-weight:bold;}
 #jky-product			{width:340px; text-transform:capitalize;}
@@ -155,6 +156,12 @@
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>			Number</span>:</div><input  id='jky-number'			class='jky-form-value'									readonly='readonly'	/></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Start Date</span>:</div>
+				<div id='jky-start-date' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-start-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
+				</div>
+			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>			Product</span>:</div>
 				<input  id='jky-product-id' type='hidden' />
 				<input  id='jky-product' class='jky-form-value' placeholder='Product Name' readonly='readonly' />

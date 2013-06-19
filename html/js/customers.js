@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * customers.html
+ * customers.js
  */
 
 /**
@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Customers'
 		, table_name	: 'Contacts'
 		, specific		: 'is_customer'
-		, select		: ''
+		, select		: 'All'
 		, filter		: ''
 		, sort_by		: 'nick_name'
 		, sort_seq		: 'ASC'

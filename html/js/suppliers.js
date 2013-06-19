@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * suppliers.html
+ * suppliers.js
  */
 
 /**
@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Suppliers'
 		, table_name	: 'Contacts'
 		, specific		: 'is_supplier'
-		, select		: ''
+		, select		: 'All'
 		, filter		: ''
 		, sort_by		: 'nick_name'
 		, sort_seq		: 'ASC'

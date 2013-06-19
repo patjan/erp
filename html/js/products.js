@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * products.html
+ * products.js
  */
 
 /**
@@ -79,7 +79,7 @@ JKY.set_table_row = function(the_row) {
 JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-product-name'		, the_row.product_name	);
 	JKY.set_radio	('jky-product-type'		, the_row.product_type	);
-	JKY.set_value	('jky-start-value'		, JKY.fix_ymd2dmy(the_row.start_date	));
+	JKY.set_value	('jky-start-value'		, JKY.fix_ymd2dmy(the_row.start_date));
 
 	JKY.Photo.set_row_id(the_row.id);
 	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));
@@ -107,6 +107,6 @@ JKY.get_form_set = function() {
 		+    'product_name=\'' + JKY.get_value	('jky-product-name'		) + '\''
 		+  ', product_type=\'' + JKY.get_checked('jky-product-type'		) + '\''
 		;
-	my_set +=    ', start_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-start-value'	));
+	my_set +=    ', start_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-start-value'));
 	return my_set;
 };

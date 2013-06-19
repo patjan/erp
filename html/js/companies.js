@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * companies.html
+ * companies.js
  */
 
 /**
@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Companies'
 		, table_name	: 'Contacts'
 		, specific		: 'is_company'
-		, select		: ''
+		, select		: 'All'
 		, filter		: ''
 		, sort_by		: 'nick_name'
 		, sort_seq		: 'ASC'
@@ -42,6 +42,8 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
+	$('#jky-tab-address'		).click (function() {JKY.display_address	();});
+	$('#jky-tab-phones'			).click (function() {JKY.display_phones		();});
 };
 
 /**

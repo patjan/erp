@@ -610,7 +610,7 @@ private function set_select($table, $select) {
 	if ($table == 'Tickets'		)	$return = ' AND        Tickets.status        = "' . $select . '"';
 	if ($table == 'Translations')	$return = ' AND   Translations.status        = "' . $select . '"';
 
-//	if ($table == 'Contacts'	)	$return = ' AND       Contacts.user_role		= "' . $select . '"';
+	if ($table == 'Contacts'	)	$return = ' AND      JKY_Users.user_role		= "' . $select . '"';
 	if ($table == 'Cylinders'	)	$return = ' AND      Cylinders.machine_id		=  ' . $select;
 	if ($table == 'FTP_Loads'	)	$return = ' AND      FTP_Loads.ftp_id			=  ' . $select;
 	if ($table == 'FTP_Threads'	)	$return = ' AND    FTP_Threads.ftp_id			=  ' . $select;

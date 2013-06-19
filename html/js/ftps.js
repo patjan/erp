@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * ftps.html
+ * ftps.js
  */
 
 /**
@@ -64,6 +64,8 @@ JKY.suppliers	= [];
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
+	$('#jky-start-date').datepicker();
+
 		$('#jky-tab-threads'		).click (function() {JKY.display_threads	();});
 		$('#jky-tab-loads'			).click (function() {JKY.display_loads		();});
 		$('#jky-tab-settings'		).click (function() {JKY.display_settings	();});
@@ -113,6 +115,7 @@ JKY.set_table_row = function(the_row) {
  */
 JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-number'			, the_row.number		);
+	JKY.set_value	('jky-start-value'		, JKY.fix_ymd2dmy(the_row.start_date));
 	JKY.set_value	('jky-product-id'		, the_row.product_id	);
 	JKY.set_value	('jky-product'			, the_row.product		);
 	JKY.set_value	('jky-composition'		, the_row.composition	);
@@ -150,6 +153,7 @@ JKY.set_form_row = function(the_row) {
  */
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-number'			,  JKY.t('New'));
+	JKY.set_value	('jky-start-value'		,  JKY.fix_ymd2dmy(JKY.get_now()));
 	JKY.set_value	('jky-product-id'		,  0);
 	JKY.set_value	('jky-product'			, '');
 	JKY.set_value	('jky-composition'		, '');
@@ -177,6 +181,7 @@ JKY.get_form_set = function() {
 
 	var my_set = ''
 		+      'product_id=  ' + JKY.get_value	('jky-product-id'		)
+		+    ', start_date=  ' + JKY.fix_dmy2ymd(JKY.get_value('jky-start-value'))
 		+    ', machine_id=  ' + my_machine
 		+      ', diameter=  ' + JKY.get_value	('jky-diameter'			)
 		+       ', density=  ' + JKY.get_value	('jky-density'			)
@@ -299,17 +304,27 @@ JKY.print_row = function(the_id) {
 	JKY.t_tag	('jky-printable', 'span');
 
 	JKY.set_html('jky-print-number'			, my_row.number			);
+	JKY.set_html('jky-print-start-date'		, my_row.start_date		);
 	JKY.set_html('jky-print-product'		, my_row.product		);
 	JKY.set_html('jky-print-composition'	, my_row.composition	);
 	JKY.set_html('jky-print-machine'		, my_row.machine		);
+	JKY.set_html('jky-print-collection'		, my_row.collections	);
 
-	my_names = my_row.photo.split(',');
-	my_extension = JKY.get_file_type(my_names[0]);
-	JKY.set_html('jky-print-drawing'		, '<img id="jky-drawing-img"  src="/uploads/ftp_draws/'  + my_row.id + '.' + my_extension  + '" />');
+	if (JKY.is_empty(my_row.draw)) {
+		JKY.set_html('jky-print-drawing', '<img id="jky-drawing-img"  src="/img/placeholder.png" />');
+	}else{
+		my_names = my_row.draw.split(',');
+		my_extension = JKY.get_file_type(my_names[0]);
+		JKY.set_html('jky-print-drawing', '<img id="jky-drawing-img"  src="/uploads/ftp_draws/'  + my_row.id + '.' + my_extension  + '" />');
+	}
 
-	my_names = my_row.draw.split(',');
-	my_extension = JKY.get_file_type(my_names[0]);
-	JKY.set_html('jky-print-photo'			, '<img id="jky-photo-img"    src="/uploads/ftp_photos/' + my_row.id + '.' + my_extension + '" />');
+	if (JKY.is_empty(my_row.photo)) {
+		JKY.set_html('jky-print-photo'	, '<img id="jky-photo-img"  src="/img/placeholder.png" />');
+	}else{
+		my_names = my_row.photo.split(',');
+		my_extension = JKY.get_file_type(my_names[0]);
+		JKY.set_html('jky-print-photo'	, '<img id="jky-photo-img"    src="/uploads/ftp_photos/' + my_row.id + '.' + my_extension + '" />');
+	}
 
 	JKY.set_html('jky-print-diameter'		, my_row.diameter		+ ' (pol)'	);
 	JKY.set_html('jky-print-turns'			, my_row.turns						);

@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * machines.html
+ * machines.js
  */
 
 /**

@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * Templates.html
+ * templates.js
  */
 
 /**
