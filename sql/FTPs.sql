@@ -8,8 +8,10 @@ CREATE TABLE IF NOT EXISTS FTPs
 , status			VARCHAR(32)			DEFAULT 'Active'
 
 , number			VARCHAR(32)			DEFAULT NULL
+, start_date		DATE				DEFAULT NULL
 , product_id		BIGINT				DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
+, collection		VARCHAR(32)			DEFAULT NULL
 , diameter			INT(11)				DEFAULT 0		# Diametro (cm)
 , density			INT(11)				DEFAULT 0		# Finura
 , inputs			INT(11)				DEFAULT 0		# Alimentos
@@ -17,9 +19,6 @@ CREATE TABLE IF NOT EXISTS FTPs
 , turns		   		INT(11)				DEFAULT 0		# Voltas
 , weight	   		INT(11)				DEFAULT 0		# Gramatura
 , width				INT(11)				DEFAULT 0		# Largura (cm)
-, lanes				INT(11)				DEFAULT 0		# Trilhos
-, elasticity		INT(11)				DEFAULT 0		# Elasticidade
-, needling			VARCHAR(32)			DEFAULT NULL	# Agulhamento
 , peso				DECIMAL(5,2)		DEFAULT 0		# Peso da Peca (12.5) (Kg)
 , has_break			CHAR(3)				DEFAULT 'no'	# Tem falha
 , composition		VARCHAR(255)		DEFAULT ''		# Composicao: 96 Polyester, 4 Elastano
@@ -32,6 +31,12 @@ CREATE TABLE IF NOT EXISTS FTPs
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
-ALTER TABLE FTPs      CHANGE code		number		VARCHAR(32)	DEFAULT NULL;
-ALTER TABLE FTPs      CHANGE needling	needling	VARCHAR(32)	DEFAULT NULL;
-ALTER TABLE FTPs      CHANGE yield		elasticity	INT(11)		DEFAULT 0;
+ALTER TABLE FTPs		CHANGE	code		number		VARCHAR(32)	DEFAULT NULL;
+ALTER TABLE FTPs		CHANGE	needling	needling	VARCHAR(32)	DEFAULT NULL;
+ALTER TABLE FTPs		CHANGE	yield		elasticity	INT(11)		DEFAULT 0;
+
+ALTER TABLE FTPs		ADD		start_date				DATE		DEFAULT NULL	AFTER number;
+ALTER TABLE FTPs		ADD		collection				VARCHAR(32) DEFAULT NULL	AFTER machine_id;
+ALTER TABLE FTPs		DROP	lanes;
+ALTER TABLE FTPs		DROP	elasticity;
+ALTER TABLE FTPs		DROP	needling;

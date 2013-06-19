@@ -31,6 +31,7 @@ JKY.translations =
 , "CNPJ":"CNPJ"
 , "CNPJ or CPF":"CNPJ or CPF"
 , "Code":"Code"
+, "Collection":"Collection"
 , "Companies":"Companies"
 , "Company":"Company"
 , "Company Name":"Company Name"

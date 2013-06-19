@@ -86,9 +86,9 @@ JKY.display_trace('my_display_count_down');
 				, 'You have been inactive for too long. '
 				+ '<br>The system will <b>log-out</b> automatically in '
 				+ '<span id="jky-count-down" style="padding-left:10px; font-size:24px; font-weight:bold;"></span> seconds.'
-				+ '<br><br>Do you want to <b>keep</b> in this session?'
+				+ '<br><br>Do you want to <b>continue</b> working in this session?'
 				, 'Log Off'
-				, 'Keep'
+				, 'Continue'
 				);
 		my_process_count_down();
 	};
@@ -100,7 +100,6 @@ JKY.display_trace('my_process_count_down');
 		}
 		JKY.set_html('jky-count-down', my_count_down);
 		my_count_down_event = setTimeout(function() {
-			clearTimeout(my_count_down_event);
 			my_count_down -= 1;
 			if (my_count_down <= 0) {
 				JKY.set_html('jky-count-down', my_count_down);

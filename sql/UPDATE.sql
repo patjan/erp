@@ -34,3 +34,9 @@ ALTER TABLE Products	CHANGE name product_name	VARCHAR(255)	DEFAULT NULL	;
 ALTER TABLE Threads		CHANGE	code		ncm		VARCHAR(32);
 ALTER TABLE Threads		DROP	thread_color;
 UPDATE Threads	SET ncm = null;
+----- 2013/06/18
+ALTER TABLE FTPs		ADD		start_date			DATE			DEFAULT NULL	AFTER number;
+ALTER TABLE FTPs		ADD		collection			VARCHAR(32)		DEFAULT NULL	AFTER machine_id;
+ALTER TABLE FTPs		DROP	lanes;
+ALTER TABLE FTPs		DROP	elasticity;
+ALTER TABLE FTPs		DROP	needling;
