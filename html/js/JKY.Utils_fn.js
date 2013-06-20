@@ -1,4 +1,6 @@
-// delay time for Keyup Delay time
+/**
+ * delay time for Keyup Delay time
+ */
 jQuery.fn.KeyUpDelay = function( cb, delay ){
 	if (delay == null){
 		delay = 400;
@@ -34,3 +36,13 @@ jQuery.fn.ForceNumericOnly = function(){
 //<input type="number" value="0"> 						float
 //<input type="number" value="0" min="0"> 				positive
 //<input type="number" value="0" min="0" step="1"> 		positive integer
+
+/**
+ * return checked value(s)
+ */
+jQuery.fn.GetCheckedValues = function() {
+	return $.map(this, function(elem) {
+		return elem.value || '';
+//	}).join( ',' );
+	});
+};

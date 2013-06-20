@@ -25,9 +25,9 @@ define( 'POS_LOGIN_EXTERNAL'  , 'home'                      );
 define( 'MODEL'               , 'Model_'                    );        //   ZF 1.10 must be Model_
 define( 'INDEX'               , '/'                         );        //   windows must be '/'
 define( 'APP_PATH'            ,  dirname( __FILE__ )        );
-define( 'COMPANY_ID'          , '3'							);
-define( 'COMPANY_NAME'        , 'DL Malhas'					);
-define( 'COMPANY_LOGO'        , 'DL-Malhas.png'				);
+define( 'COMPANY_ID'          , '1'							);
+define( 'COMPANY_NAME'        , 'JKY Software'				);
+define( 'COMPANY_LOGO'        , 'JKY-Software.png'			);
 define( 'LOCALE'	          , 'en_us'						);		//	en_us, pt_br
 define( 'WEB_SITE'            , 'http://im4/'               );
 define( 'DOMAIN_NAME'         , 'pat'                       );

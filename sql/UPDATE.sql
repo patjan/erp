@@ -40,3 +40,6 @@ ALTER TABLE FTPs		ADD		collection			VARCHAR(32)		DEFAULT NULL	AFTER machine_id;
 ALTER TABLE FTPs		DROP	lanes;
 ALTER TABLE FTPs		DROP	elasticity;
 ALTER TABLE FTPs		DROP	needling;
+----- 2013/06/19
+ALTER TABLE Contacts	CHANGE	is_supplier	is_supplier	CHAR(3)			DEFAULT 'No';
+UPDATE		Contacts	SET is_supplier = 'No'		WHERE is_supplier = 'no';

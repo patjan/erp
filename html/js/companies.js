@@ -42,8 +42,8 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-tab-address'		).click (function() {JKY.display_address	();});
-	$('#jky-tab-phones'			).click (function() {JKY.display_phones		();});
+	$('#jky-save-address'	).click (function() {JKY.save_address	();});
+	$('#jky-save-phones'	).click (function() {JKY.save_phones	();});
 };
 
 /**
@@ -52,7 +52,7 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_menu_active('jky-menu-admin');
 	JKY.set_side_active('jky-admin-companies');
-	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
+//	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
 	JKY.set_html('jky-contact-tag'		, JKY.set_configs ('Customer Tags'	, '', ''));
 	JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
 	JKY.set_html('jky-country'			, JKY.set_configs ('Countries'		, '', ''));
@@ -146,17 +146,8 @@ JKY.get_form_set = function() {
 		+          ', tags=\'' + JKY.get_value	('jky-contact-tag'		) + '\''
 		+          ', cnpj=\'' + JKY.get_value	('jky-cnpj'				) + '\''
 		+            ', ie=\'' + JKY.get_value	('jky-ie'				) + '\''
-		+       ', street1=\'' + JKY.get_value	('jky-street1'			) + '\''
-		+       ', street2=\'' + JKY.get_value	('jky-street2'			) + '\''
-		+          ', city=\'' + JKY.get_value	('jky-city'				) + '\''
-		+           ', zip=\'' + JKY.get_value	('jky-zip'				) + '\''
-		+         ', state=\'' + JKY.get_value	('jky-state'			) + '\''
-		+       ', country=\'' + JKY.get_value	('jky-country'			) + '\''
 		+       ', website=\'' + JKY.get_value	('jky-website'			) + '\''
 		+      ', position=\'' + JKY.get_value	('jky-position'			) + '\''
-		+         ', phone=\'' + JKY.get_value	('jky-phone'			) + '\''
-		+        ', mobile=\'' + JKY.get_value	('jky-mobile'			) + '\''
-		+           ', fax=\'' + JKY.get_value	('jky-fax'				) + '\''
 		+         ', email=\'' + JKY.get_value	('jky-email'			) + '\''
 		;
 	return my_set;

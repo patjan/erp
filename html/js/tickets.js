@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * tickets.html
+ * tickets.js
  */
 
 /**

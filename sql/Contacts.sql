@@ -9,9 +9,10 @@ CREATE TABLE IF NOT EXISTS Contacts
 
 , company_id		BIGINT				DEFAULT NULL
 , support_id		BIGINT				DEFAULT NULL
-, is_company		CHAR(3)				DEFAULT 'no'
-, is_customer		CHAR(3)				DEFAULT 'no'
-, is_taxable		CHAR(3)				DEFAULT 'yes'
+, is_company		CHAR(3)				DEFAULT 'No'
+, is_customer		CHAR(3)				DEFAULT 'No'
+, is_supplier		CHAR(3)				DEFAULT 'No'
+, is_taxable		CHAR(3)				DEFAULT 'Yes'
 , photo				VARCHAR(255)		DEFAULT NULL
 , nick_name			VARCHAR(255)		DEFAULT NULL
 , first_name		VARCHAR(255)		DEFAULT NULL
@@ -53,9 +54,13 @@ CREATE TABLE IF NOT EXISTS Contacts
 ;
 
 
-ALTER TABLE Contacts      ADD COLUMN is_customer    		CHAR(3)   		DEFAULT 'no'  AFTER is_company;
-ALTER TABLE Contacts      CHANGE job_position	position	VARCHAR(255)	DEFAULT NULL;
-ALTER TABLE Contacts      ADD COLUMN is_supplier    		CHAR(3)   		DEFAULT 'no'  AFTER is_customer;
+ALTER TABLE Contacts	ADD COLUMN is_customer    		CHAR(3)   		DEFAULT 'No'  AFTER is_company;
+ALTER TABLE Contacts	CHANGE job_position	position	VARCHAR(255)	DEFAULT NULL;
+ALTER TABLE Contacts	ADD COLUMN is_supplier    		CHAR(3)   		DEFAULT 'No'  AFTER is_customer;
 
-ALTER TABLE Contacts      ADD COLUMN nick_name				VARCHAR(255)	DEFAULT NULL  AFTER photo;
-ALTER TABLE Contacts      ADD UNIQUE KEY	 nick_name	(nick_name);
+ALTER TABLE Contacts	ADD COLUMN nick_name				VARCHAR(255)	DEFAULT NULL  AFTER photo;
+ALTER TABLE Contacts	ADD UNIQUE KEY	 nick_name	(nick_name);
+
+ALTER TABLE Contacts	CHANGE is_supplier	is_supplier	CHAR(3)			DEFAULT 'No';
+UPDATE		Contacts	SET is_supplier = 'No'		WHERE is_supplier = 'no';
+

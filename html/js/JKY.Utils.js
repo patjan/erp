@@ -3,6 +3,8 @@ var JKY = JKY || {};
 /**
  * JKY.Util.js
  * generic functions for the JKY application
+ *
+ * require: JKY.Session.js
  */
 
 /**

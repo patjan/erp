@@ -98,6 +98,8 @@ JKY.display_trace('my_process_count_down');
 		if (my_count_down_event) {
 			clearTimeout(my_count_down_event);
 		}
+//		this line is only QA
+//		JKY.set_html('header-logo', '<span style="font-size:64px;">' + my_count_down + '</span>');
 		JKY.set_html('jky-count-down', my_count_down);
 		my_count_down_event = setTimeout(function() {
 			my_count_down -= 1;
