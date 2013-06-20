@@ -96,13 +96,9 @@ JKY.setTableWidthHeight = function(tableId, width, off_width, minHeight, offHeig
 		my_height = minHeight;
 	}
 	$('#jky-app-table').css('width' , my_width );
-	$('#jky-app-table').css('height', my_height);
+//	$('#jky-app-table').css('height', my_height);
 	$('#jky-app-form' ).css('width' , my_width );
-	$('#jky-app-form' ).css('height', my_height);
-	$('#jky-app-table').css('width' , my_width );
-	$('#jky-app-table').css('height', my_height);
-	$('#jky-app-form' ).css('width' , my_width );
-	$('#jky-app-form' ).css('height', my_height);
+//	$('#jky-app-form' ).css('height', my_height);
 }
 
 /**
