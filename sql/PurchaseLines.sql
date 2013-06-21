@@ -7,9 +7,9 @@ CREATE TABLE IF NOT EXISTS PurchaseLines
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Draft'
 
-, purchase_id		BIGINT
-, thread_id			BIGINT
-, expected_dt		DATE				DEFAULT NULL
+, purchase_id		BIGINT				DEFAULT NULL
+, thread_id			BIGINT				DEFAULT NULL
+, expected_date		DATE				DEFAULT NULL
 , scheduled_at		DATETIME			DEFAULT NULL
 , expected_weight	DECIMAL(10,2)		DEFAULT 0
 , received_weight	DECIMAL(10,2)		DEFAULT 0

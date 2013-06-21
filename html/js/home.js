@@ -45,6 +45,7 @@ JKY.set_all_events_home = function(jky_program) {
 		$('#jky-contact-us'		).click (function() {JKY.display_contact_us	()		;});
 */
 		$('#jky-sales-customers'		).click (function() {JKY.process_action('customers'		);});
+		$('#jky-purchases-purchases'	).click (function() {JKY.process_action('purchases'		);});
 		$('#jky-production-ftps'		).click (function() {JKY.process_action('ftps'			);});
 		$('#jky-production-threads'		).click (function() {JKY.process_action('threads'		);});
 		$('#jky-production-machines'	).click (function() {JKY.process_action('machines'		);});
@@ -150,7 +151,7 @@ JKY.process_start_page = function() {
 		[{id:'jky-menu-sales'		, icon:'plus', label:'Sales'		}
 //		,{id:'jky-menu-invoicing'	, icon:'plus', label:'Invoicing'	}
 //		,{id:'jky-menu-delivers'	, icon:'plus', label:'Delivers'		}
-//		,{id:'jky-menu-purchases'	, icon:'plus', label:'Purchases'	}
+		,{id:'jky-menu-purchases'	, icon:'plus', label:'Purchases'	}
 //		,{id:'jky-menu-incomings'	, icon:'plus', label:'Incomings'	}
 //		,{id:'jky-menu-storage'		, icon:'plus', label:'Storage'		}
 		,{id:'jky-menu-production'	, icon:'plus', label:'Production'	}
@@ -181,6 +182,7 @@ JKY.process_menu = function(menu) {
 	JKY.set_menu_active(menu);
 	switch(menu) {
 		case 'jky-menu-sales'		: JKY.process_action('customers'	); break;
+		case 'jky-menu-purchases'	: JKY.process_action('purchases'	); break;
 		case 'jky-menu-production'	: JKY.process_action('ftps'			); break;
 		case 'jky-menu-help'		: JKY.process_action('tickets'		); break;
 		case 'jky-menu-admin'		: JKY.process_action('contacts'		); break;

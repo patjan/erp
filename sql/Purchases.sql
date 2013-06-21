@@ -7,17 +7,17 @@ CREATE TABLE IF NOT EXISTS Purchases
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Draft'
 
-, code				VARCHAR(32)			UNIQUE
+, number			VARCHAR(32)			DEFAULT NULL
 , source_doc		VARCHAR(32)			DEFAULT NULL
 , ordered_at		DATETIME			DEFAULT NULL
-, expected_dt		DATE				DEFAULT NULL
+, expected_date		DATE				DEFAULT NULL
 , scheduled_at		DATETIME			DEFAULT NULL
 , supplier_id		BIGINT				DEFAULT NULL
 , supplier_ref      VARCHAR(32)			DEFAULT NULL
 , payment_term      VARCHAR(255)		DEFAULT NULL
 
 , PRIMARY KEY(id)
-, UNIQUE(code)
+, UNIQUE(number)
 , KEY supplier(supplier_id)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
 ;

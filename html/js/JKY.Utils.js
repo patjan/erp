@@ -1354,6 +1354,7 @@ JKY.set_event_name = function(event_name) {
 JKY.is_permitted = function(the_menu_id) {
 	var my_resource = '';
 			if (the_menu_id == 'jky-menu-sales'			) {my_resource = 'Menu-Sales'		;
+	}else{	if (the_menu_id == 'jky-menu-purchases'		) {my_resource = 'Menu-Purchases'	;
 	}else{	if (the_menu_id == 'jky-menu-production'	) {my_resource = 'Menu-Production'	;
 	}else{	if (the_menu_id == 'jky-menu-fabrics'		) {my_resource = 'Menu-Fabrics'		;
 	}else{	if (the_menu_id == 'jky-menu-raws'			) {my_resource = 'Menu-Raws'		;
@@ -1362,7 +1363,7 @@ JKY.is_permitted = function(the_menu_id) {
 	}else{	if (the_menu_id == 'jky-menu-admin'			) {my_resource = 'Menu-Admin'		;
 	}else{	if (the_menu_id == 'jky-menu-support'		) {my_resource = 'Menu-Support'		;
 	}else{	alert('JKY.is_permitted: ' + the_menu_id);
-	}}}}}}}}
+	}}}}}}}}}
 
 	var my_action = JKY.Session.get_action(my_resource);
 	if (my_action == '') {
