@@ -646,7 +646,7 @@ private function set_new_fields($table) {
 	if ($table == 'FTP_Sets'	)	$return = ',   Configs.sequence		AS			sequence'
 											. ',   Configs.name			AS			name';
 	if ($table == 'History'		)	$return = ',  Contacts.full_name	AS	created_name';
-	if ($table == 'Purchases'	)	$return = ',  Contacts.full_name	AS	   full_name';
+	if ($table == 'Purchases'	)	$return = ',  Supplier.nick_name	AS supplier_name';
 
 //	special code to append fields from Contacts to Services table
 	if (get_request('method') == 'export') {
@@ -999,6 +999,7 @@ private function set_where($table, $filter) {
 			or	$name == 'ordered_at'
 			or	$name == 'expected_date'
 			or	$name == 'scheduled_at'
+			or	$name == 'supplier_name'
 			or	$name == 'supplier_ref'
 			or	$name == 'payment_term') {
 				if ($value == '"%null%"') {
@@ -1011,7 +1012,7 @@ private function set_where($table, $filter) {
 					if ($value == '"%null%"') {
 						return ' AND Purchases.supplier_id IS NULL';
 					}else{
-						return ' AND Supplier.full_name LIKE ' . $value;
+						return ' AND Supplier.nick_name LIKE ' . $value;
 					}
 				}
 			}
@@ -1359,6 +1360,12 @@ private function insert($data) {
 
 	if ($table == 'FTPs') {
 		$my_number = $this->get_next_number('Controls', 'Next FTP Number');
+		$set .= ',     id= ' . $my_number;
+		$set .= ', number= ' . $my_number;
+	}
+
+	if ($table == 'Purchases') {
+		$my_number = $this->get_next_number('Controls', 'Next Purchase Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', number= ' . $my_number;
 	}

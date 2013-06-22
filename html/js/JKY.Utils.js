@@ -215,7 +215,7 @@ JKY.t = function(the_text) {
 	if (typeof my_result == 'undefined') {
 
 if (JKY.Session.get_value('user_name') == 'patjan') {
-	alert('the_text: ' + the_text);
+//	alert('the_text: ' + the_text);
 }
 
 		my_result = '';
@@ -777,6 +777,7 @@ JKY.set_checks = function() {
  */
 JKY.set_menu_active = function(id_name){
 	JKY.hide('jky-side-sales'		);
+	JKY.hide('jky-side-purchases'	);
 	JKY.hide('jky-side-production'	);
 	JKY.hide('jky-side-help'		);
 	JKY.hide('jky-side-admin'		);

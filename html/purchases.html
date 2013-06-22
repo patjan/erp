@@ -7,11 +7,16 @@
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-product-name		{width:300px; text-transform:capitalize;}
-.jky-product-type		{width:100px; text-align:center;}
-.jky-start-date			{width:100px; text-align:center;}
+.jky-number				{width: 60px; text-align:center;}
+.jky-source-doc			{width: 80px; text-align:center;}
+.jky-ordered-at			{width: 80px; text-align:center;}
+.jky-expected-date		{width: 80px; text-align:center;}
+.jky-scheduled-at		{width: 80px; text-align:center;}
+.jky-supplier-name		{width:120px; text-align:center; text-transform:capitalize;}
+.jky-supplier-ref		{width: 80px; text-align:center;}
+.jky-payment-term		{width: 80px; text-align:center;}
 
-#jky-product-name		{width:300px; font-size:16px; font-weight:bold; text-transform:capitalize;}
+#jky-number				{width: 60px; font-size:16px; font-weight:bold;}
 #jky-photo				{float: left; margin:7px;}
 #jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
 #jky-product-type		{width:230px;}
@@ -30,9 +35,14 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-product-name'	><span>Product Name				</span></th>
-			<th class='jky-product-type'	><span>Product Type		</span></th>
-			<th class='jky-start-date'		><span>Start Date		</span></th>
+			<th class='jky-number'			><span>   Number			</span></th>
+			<th class='jky-source-doc'		><span>   Source<br>Doc		</span></th>
+			<th class='jky-ordered-at'		><span>  Ordered<br>Time	</span></th>
+			<th class='jky-expected-date'	><span> Expected<br>Date	</span></th>
+			<th class='jky-scheduled-at'	><span>Scheduled<br>Time	</span></th>
+			<th class='jky-supplier-name'	><span> Supplier Name		</span></th>
+			<th class='jky-supplier-ref'	><span> Supplier<br>Ref		</span></th>
+			<th class='jky-payment-term'	><span>  Payment<br>Term	</span></th>
 		</tr>
 	</thead>
 
@@ -63,38 +73,29 @@
 -->
 	<div id='jky-form-data'>
 		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>			Number</span>:</div><input  id='jky-number'			class='jky-form-value'	readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		Source Doc</span>:</div><input  id='jky-source-doc'		class='jky-form-value' /></div>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Product Name</span>:</div>
-				<input id='jky-product-name' class='jky-form-value' placeholder='Name' />
-			</div>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Product Type</span>:</div>
-				<div id='jky-product-type' class='jky-form-value'></div>
-			</div>
-			<div class='jky-form-line'>&nbsp;</div>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Start Date</span>:</div>
-				<div id='jky-start-date' class='input-append date' data-date-format='dd-mm-yyyy'>
-					<input id='jky-start-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
+				<div class='jky-form-label'><span>Ordered Date</span>:</div>
+				<div id='jky-ordered-at' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-ordered-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
 				</div>
 			</div>
-		</div>
-		<div id='jky-app-upload' class='jky-left'>
-			<div class='jky-left' style='margin-left:10px;'>
-				<div id='jky-download-photo'  >
-					<img class="the_icon" src="/img/placeholder.png" id="jky-photo-img">
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Expected Date</span>:</div>
+				<div id='jky-expected-date' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-expected-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
 				</div>
-				<a id='jky-upload-photo'  ><span>Upload Photo  </span></a>
 			</div>
-			<div class='jky-clear'></div>
-			<div style='margin-left:10px;'>
-				<div>
-					<span>Progress</span>:
-					<span id='jky-upload-percent'></span>
-					<span id='jky-upload-name'></span>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Scheduled Date</span>:</div>
+				<div id='jky-scheduled-at' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-scheduled-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
 				</div>
-				<div class='progress progress-striped active'><div id='jky-upload-progress' class='bar'></div></div>
 			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	 Supplier Name</span>:</div><select id='jky-supplier-name'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	  Supplier Ref</span>:</div><input  id='jky-supplier-ref'	class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	  Payment Term</span>:</div><select id='jky-payment-term' ></select></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
