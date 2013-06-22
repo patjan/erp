@@ -1,0 +1,156 @@
+<style>
+.jky-form-line-1		{width:273px;}
+.jky-form-line-2		{width:290px;}
+.jky-form-label			{width:160px;}
+.jky-form-label-1		{width:100px;}
+.jky-form-value			{width:100px;}
+.jky-form-value1		{width:240px;}
+.jky-checkbox			{width: 30px; text-align:center;}
+
+.jky-product-name		{width:300px; text-transform:capitalize;}
+.jky-product-type		{width:100px; text-align:center;}
+.jky-start-date			{width:100px; text-align:center;}
+
+#jky-product-name		{width:300px; font-size:16px; font-weight:bold; text-transform:capitalize;}
+#jky-photo				{float: left; margin:7px;}
+#jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
+#jky-product-type		{width:230px;}
+#jky-product-type span	{padding:4px 20px 0 4px; vertical-align:bottom;}
+
+#jky-ftp-body td	{height:30px; padding:0 8px;}
+.jky-ftp-value		{width: 5%;		text-align:center;}
+.jky-ftp-label		{width:80%;		text-align:left  ;}
+.jky-ftp-current	{width: 40px; text-align:right ; margin-right:0;}
+.jky-ftp-number		{width: 60px; text-align:center;}
+.jky-ftp-composition{width:300px;}
+.jky-ftp-machine	{width:120px; text-align:center; text-transform:capitalize;}
+</style>
+
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-product-name'	><span>Product Name				</span></th>
+			<th class='jky-product-type'	><span>Product Type		</span></th>
+			<th class='jky-start-date'		><span>Start Date		</span></th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+
+	<tfoot>
+		<tr>
+			<td></td>
+		</tr>
+	</tfoot>
+</table>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'	></div>
+		<ul  id='jky-form-status'	></ul>
+	</div>
+	<div class='jky-clear'></div>
+<!--
+	<div id='jky-form-title'>
+		<span id='jky-form-action'	></span>
+		<span id='jky-form-id'		></span>
+		<div class='jky-right'>
+			<button id='jky-action-comment'	class='btn btn-success' type='button'><span>Comment</span></button>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+-->
+	<div id='jky-form-data'>
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Product Name</span>:</div>
+				<input id='jky-product-name' class='jky-form-value' placeholder='Name' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Product Type</span>:</div>
+				<div id='jky-product-type' class='jky-form-value'></div>
+			</div>
+			<div class='jky-form-line'>&nbsp;</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Start Date</span>:</div>
+				<div id='jky-start-date' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-start-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
+				</div>
+			</div>
+		</div>
+		<div id='jky-app-upload' class='jky-left'>
+			<div class='jky-left' style='margin-left:10px;'>
+				<div id='jky-download-photo'  >
+					<img class="the_icon" src="/img/placeholder.png" id="jky-photo-img">
+				</div>
+				<a id='jky-upload-photo'  ><span>Upload Photo  </span></a>
+			</div>
+			<div class='jky-clear'></div>
+			<div style='margin-left:10px;'>
+				<div>
+					<span>Progress</span>:
+					<span id='jky-upload-percent'></span>
+					<span id='jky-upload-name'></span>
+				</div>
+				<div class='progress progress-striped active'><div id='jky-upload-progress' class='bar'></div></div>
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+		<div>
+			<div class='jky-form-label'></div>
+			<div class='jky-form-buttons'>
+				  <button id='jky-action-save'	class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+				  <button id='jky-action-copy'	class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'			type='button' title="Click here to delete this record"		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'			type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-tabs' class='tabbable'>
+		<ul class='nav nav-tabs' id='cd-ul-tabs'>
+			<li	id='jky-tab-ftps'			class='active'	><a href='#jky-pane-ftps'			data-toggle='tab'><span>FTPs			</span></a></li>
+			<li	id='jky-tab-notes'							><a href='#jky-pane-notes'			data-toggle='tab'><span>Notes			</span></a></li>
+			<li	id='jky-tab-history'						><a href='#jky-pane-history'		data-toggle='tab'><span>History			</span></a></li>
+		</ul>
+
+		<div class='tab-content'>
+			<div id='jky-pane-ftps'			class='tab-pane active'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<th class='jky-action'></td>
+							<th class='jky-ftp-number'		><span>Number		</span></td>
+							<th class='jky-ftp-composition'	><span>Composition	</span></td>
+							<th class='jky-ftp-machine'		><span>Machine		</span></td>
+						</tr>
+					</thead>
+					<tbody id='jky-ftp-body'></tbody>
+					<tfoot>
+						<tr>
+							<td    id='jky-ftp-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+			<div id='jky-notes' class='tab-pane'>
+				<div class='jky-left'>
+					<div class='jky-form-line'><div class='jky-form-label'><span>		Expected Date</span></div><div id='jky-expected-date'		class='jky-form-value'>02/01/2013	</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>	Invoicing Control</span></div><div id='jky-invoicing-control'	class='jky-form-value'>Based on 	</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>	 Invoice Received</span></div><div id='jky-invoice-received'	class='jky-form-value'>No			</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>		 Payment Term</span></div><div id='jky-payment-term'		class='jky-form-value'>				</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>	  Fiscal Position</span></div><div id='jky-fiscal-position'		class='jky-form-value'>				</div></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id='jky-form-footer'></div>
+</div>
+
+<div id='jky-body-loaded'></div>
+<script src='js/purchases.js'></script>
+<script src='js/product_ftps.js'></script>
