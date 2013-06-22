@@ -646,6 +646,7 @@ private function set_new_fields($table) {
 	if ($table == 'FTP_Sets'	)	$return = ',   Configs.sequence		AS			sequence'
 											. ',   Configs.name			AS			name';
 	if ($table == 'History'		)	$return = ',  Contacts.full_name	AS	created_name';
+	if ($table == 'Purchases'	)	$return = ',  Contacts.full_name	AS	   full_name';
 
 //	special code to append fields from Contacts to Services table
 	if (get_request('method') == 'export') {
@@ -687,6 +688,7 @@ private function set_left_joins($table) {
 	if ($table == 'FTP_Sets'	)	$return = '  LEFT JOIN     Configs  			ON   Configs.id =	FTP_Sets.setting_id';
 	if ($table == 'History'		)	$return = '  LEFT JOIN   JKY_Users AS Users		ON   History.created_by =    Users.id'
 											. '  LEFT JOIN    Contacts				ON     Users.contact_id = Contacts.id';
+	if ($table == 'Purchases'	)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id =  Purchases.supplier_id';
 	return $return;
 }
 
@@ -990,6 +992,30 @@ private function set_where($table, $filter) {
 				}
 			}
 		}
+
+		if ($table == 'Purchases') {
+			if ($name == 'number'
+			or	$name == 'source_doc'
+			or	$name == 'ordered_at'
+			or	$name == 'expected_date'
+			or	$name == 'scheduled_at'
+			or	$name == 'supplier_ref'
+			or	$name == 'payment_term') {
+				if ($value == '"%null%"') {
+					return ' AND Purchases.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Purchases.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'supplier_name') {
+					if ($value == '"%null%"') {
+						return ' AND Purchases.supplier_id IS NULL';
+					}else{
+						return ' AND Supplier.full_name LIKE ' . $value;
+					}
+				}
+			}
+		}
 	}
 
 	$filter = '"%' . $filter . '%"';
@@ -1114,6 +1140,18 @@ private function set_where($table, $filter) {
 			. ' OR  Machines.purchase_date	LIKE ' . $filter
 			. ' OR  Machines.repair_date	LIKE ' . $filter
 			. ' OR  Machines.return_date	LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'Purchases') {
+		$return = ' Purchases.number		LIKE ' . $filter
+			. ' OR  Purchases.source_doc	LIKE ' . $filter
+			. ' OR  Purchases.ordered_at	LIKE ' . $filter
+			. ' OR  Purchases.expected_date	LIKE ' . $filter
+			. ' OR  Purchases.scheduler_at	LIKE ' . $filter
+			. ' OR  Purchases.supplier_name	LIKE ' . $filter
+			. ' OR  Purchases.supplier_ref	LIKE ' . $filter
+			. ' OR  Purchases.payment_term	LIKE ' . $filter
 			;
 		}
 
