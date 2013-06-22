@@ -71,9 +71,9 @@ JKY.set_table_row = function(the_row) {
 JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-number'			, the_row.number		);
 	JKY.set_value	('jky-source-doc'		, the_row.source_doc	);
-	JKY.set_value	('jky-ordered-value'		, JKY.fix_ymd2dmy(the_row.ordered_at));
+	JKY.set_value	('jky-ordered-value'	, JKY.fix_ymd2dmy(the_row.ordered_at));
 	JKY.set_value	('jky-expected-value'	, JKY.fix_ymd2dmy(the_row.expected_date));
-	JKY.set_value	('jky-scheduled-value'		, JKY.fix_ymd2dmy(the_row.scheduled_at));
+	JKY.set_value	('jky-scheduled-value'	, JKY.fix_ymd2dmy(the_row.scheduled_at));
 	JKY.set_option	('jky-supplier-name'	, the_row.supplier_name	);
 	JKY.set_value	('jky-supplier-ref'		, the_row.supplier_ref	);
 	JKY.set_option	('jky-payment-term'		, the_row.payment_term	);

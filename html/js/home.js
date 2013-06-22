@@ -11,7 +11,6 @@ $(function() {
 	JKY.set_company_logo(JKY.Session.get_value('company_logo'	));
 	JKY.set_copyright	(JKY.Session.get_value('copyright'		));
 //	JKY.set_contact_us	(JKY.Session.get_value('contact_us'		));
-//	JKY.set_buttons_menus(my_menus);
 //	JKY.set_buttons_control([], JKY.Session.get_value('language'), JKY.Session.get_value('languages'));
 	JKY.set_all_events_home(jky_program);
 
