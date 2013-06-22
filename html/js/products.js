@@ -52,12 +52,12 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_menu_active('jky-menu-production');
+//	JKY.set_menu_active('jky-menu-production');
 	JKY.set_side_active('jky-production-products');
 	JKY.set_html('jky-app-select'  , JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-product-type', JKY.set_radios_array('jky-product-type', JKY.get_configs('Product Types')));
 	JKY.set_html('jky-app-select-label', JKY.t('Type'));
-	JKY.show('jky-side-production');
+//	JKY.show('jky-side-production');
 	JKY.show('jky-app-select-line');
 };
 

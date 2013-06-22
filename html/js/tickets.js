@@ -48,14 +48,14 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_menu_active('jky-menu-help');
+//	JKY.set_menu_active('jky-menu-help');
 	JKY.set_side_active('jky-help-tickets');
 	JKY.set_html('jky-app-select'		, JKY.set_controls('Ticket Status Codes', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
 	JKY.set_html('jky-category'			, JKY.set_controls('Ticket Categories', '', ''));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.set_value ('jky-app-filter', JKY.App.get('filter'));
-	JKY.show('jky-side-help');
+//	JKY.show('jky-side-help');
 	JKY.show('jky-app-select-line');
 };
 

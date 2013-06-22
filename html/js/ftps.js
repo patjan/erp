@@ -84,11 +84,11 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-		JKY.set_menu_active('jky-menu-production');
+//		JKY.set_menu_active('jky-menu-production');
 		JKY.set_side_active('jky-production-ftps');
 		JKY.set_html('jky-machine', JKY.set_table_options('Machines', 'name', '', ''));
 		JKY.set_html('jky-collection', JKY.set_configs('Collections', '', ''));
-		JKY.show('jky-side-production');
+//		JKY.show('jky-side-production');
 		JKY.show('jky-action-print');
 		JKY.materials	= JKY.get_configs	('Materials'	);
 		JKY.threads		= JKY.get_ids		('Threads'		);
