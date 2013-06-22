@@ -19,6 +19,7 @@ JKY.start_program = function() {
 		, sort_by		: 'number'
 		, sort_seq		: 'DESC'
 		, focus			: 'jky-source-doc'
+		, add_new		: 'display form'
 		});
 	JKY.App.init();
 };
@@ -41,7 +42,7 @@ JKY.set_initial_values = function() {
 	JKY.set_menu_active('jky-menu-purchases');
 	JKY.set_side_active('jky-purchases-purchases');
 //	JKY.set_html('jky-app-select', JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
-	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), true));
+	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
 	JKY.set_html('jky-payment-term', JKY.set_configs('Payment Terms', '', ''));
 //	JKY.set_html('jky-app-select-label', JKY.t('Type'));
 	JKY.show('jky-side-purchases');
@@ -55,12 +56,12 @@ JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-number"			>' + the_row.number			+ '</td>'
 		+  '<td class="jky-source-doc"		>' + the_row.source_doc		+ '</td>'
-		+  '<td class="jky-ordered-at"		>' + the_row.ordered_at		+ '</td>'
-		+  '<td class="jky-expected-date"	>' + the_row.expected_date	+ '</td>'
-		+  '<td class="jky-scheduled-at"	>' + the_row.scheduled_at	+ '</td>'
+		+  '<td class="jky-ordered-at"		>' + JKY.short_date(the_row.ordered_at   )	+ '</td>'
+		+  '<td class="jky-expected-date"	>' + the_row.expected_date 	+ '</td>'
+		+  '<td class="jky-scheduled-at"	>' + JKY.short_date(the_row.scheduled_at )	+ '</td>'
 		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name	+ '</td>'
-		+  '<td class="jky-supplier_ref"	>' + the_row.supplier_ref	+ '</td>'
-		+  '<td class="jky-payment_term"	>' + the_row.payment_term	+ '</td>'
+		+  '<td class="jky-supplier-ref"	>' + the_row.supplier_ref	+ '</td>'
+		+  '<td class="jky-payment-term"	>' + the_row.payment_term	+ '</td>'
 		;
 	return my_html;
 };
@@ -74,7 +75,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-ordered-value'	, JKY.fix_ymd2dmy(the_row.ordered_at));
 	JKY.set_value	('jky-expected-value'	, JKY.fix_ymd2dmy(the_row.expected_date));
 	JKY.set_value	('jky-scheduled-value'	, JKY.fix_ymd2dmy(the_row.scheduled_at));
-	JKY.set_option	('jky-supplier-name'	, the_row.supplier_name	);
+	JKY.set_option	('jky-supplier-name'	, the_row.supplier_id	);
 	JKY.set_value	('jky-supplier-ref'		, the_row.supplier_ref	);
 	JKY.set_option	('jky-payment-term'		, the_row.payment_term	);
 

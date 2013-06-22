@@ -999,7 +999,6 @@ private function set_where($table, $filter) {
 			or	$name == 'ordered_at'
 			or	$name == 'expected_date'
 			or	$name == 'scheduled_at'
-			or	$name == 'supplier_name'
 			or	$name == 'supplier_ref'
 			or	$name == 'payment_term') {
 				if ($value == '"%null%"') {
@@ -1149,10 +1148,10 @@ private function set_where($table, $filter) {
 			. ' OR  Purchases.source_doc	LIKE ' . $filter
 			. ' OR  Purchases.ordered_at	LIKE ' . $filter
 			. ' OR  Purchases.expected_date	LIKE ' . $filter
-			. ' OR  Purchases.scheduler_at	LIKE ' . $filter
-			. ' OR  Purchases.supplier_name	LIKE ' . $filter
+			. ' OR  Purchases.scheduled_at	LIKE ' . $filter
 			. ' OR  Purchases.supplier_ref	LIKE ' . $filter
 			. ' OR  Purchases.payment_term	LIKE ' . $filter
+			. ' OR   Supplier.nick_name		LIKE ' . $filter
 			;
 		}
 

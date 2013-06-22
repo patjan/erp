@@ -270,9 +270,13 @@ if (my_first == true) {
 			JKY.display_message(response.message);
 			JKY.process_insert (response.id);
 			my_load_table();
-//			display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
-			my_process_add_new();
 			JKY.Changes.reset();
+
+			if (my_args.add_new == 'display form') {
+				my_display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
+			}else{
+				my_process_add_new();
+			}
 		}
 
 	function my_process_update() {

@@ -45,6 +45,7 @@ JKY.set_all_events_home = function(jky_program) {
 */
 		$('#jky-sales-customers'		).click (function() {JKY.process_action('customers'		);});
 		$('#jky-purchases-purchases'	).click (function() {JKY.process_action('purchases'		);});
+		$('#jky-purchases-suppliers'	).click (function() {JKY.process_action('suppliers'		);});
 		$('#jky-production-ftps'		).click (function() {JKY.process_action('ftps'			);});
 		$('#jky-production-threads'		).click (function() {JKY.process_action('threads'		);});
 		$('#jky-production-machines'	).click (function() {JKY.process_action('machines'		);});
@@ -180,11 +181,11 @@ JKY.process_menu = function(menu) {
 	JKY.display_trace('process_menu - '  + jky_program + ': ' + menu);
 	JKY.set_menu_active(menu);
 	switch(menu) {
-		case 'jky-menu-sales'		: JKY.process_action('customers'	); break;
-		case 'jky-menu-purchases'	: JKY.process_action('purchases'	); break;
-		case 'jky-menu-production'	: JKY.process_action('ftps'			); break;
-		case 'jky-menu-help'		: JKY.process_action('tickets'		); break;
-		case 'jky-menu-admin'		: JKY.process_action('contacts'		); break;
-		case 'jky-menu-support'		: JKY.process_action('translations'	); break;
+		case 'jky-menu-sales'		: JKY.set_menu_active('jky-side-sales'		); JKY.process_action('customers'	); break;
+		case 'jky-menu-purchases'	: JKY.set_menu_active('jky-side-purchase'	); JKY.process_action('purchases'	); break;
+		case 'jky-menu-production'	: JKY.set_menu_active('jky-side-production'	); JKY.process_action('ftps'		); break;
+		case 'jky-menu-help'		: JKY.set_menu_active('jky-side-help'		); JKY.process_action('tickets'		); break;
+		case 'jky-menu-admin'		: JKY.set_menu_active('jky-side-admin'		); JKY.process_action('contacts'	); break;
+		case 'jky-menu-support'		: JKY.set_menu_active('jky-side-support'	); JKY.process_action('translations'); break;
 	}
 }
