@@ -18,11 +18,11 @@ JKY.generate_threads = function(response) {
 	var my_rows  = response.rows;
 	if (my_rows != '') {
 		for(var i in my_rows) {
-			var my_row			= my_rows[i];
-			var my_id			= my_row.id;
-			var my_thread_id	= my_row.thread_id;
-			var my_name			= my_row.name;
-			var my_supplier_id	= my_row.supplier_id;
+			var my_row			=			 my_rows[i];
+			var my_id			=			 my_row.id;
+			var my_thread_id	=			 my_row.thread_id;
+			var my_name			=			 my_row.name;
+			var my_supplier_id	=			 my_row.supplier_id;
 			var my_percent		= parseFloat(my_row.percent);
 
 			my_total += my_percent;

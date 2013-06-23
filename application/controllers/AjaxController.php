@@ -648,7 +648,7 @@ private function set_new_fields($table) {
 												. ',   Configs.name			AS			name';
 	if ($table == 'History'			)	$return = ',  Contacts.full_name	AS	created_name';
 	if ($table == 'Purchases'		)	$return = ',  Supplier.nick_name	AS supplier_name';
-	if ($table == 'PurchaseLines'	)	$return = ',   Threads.name			AS	 thread_name';
+	if ($table == 'PurchaseLines'	)	$return = ',   Threads.name			AS			name';
 
 //	special code to append fields from Contacts to Services table
 	if (get_request('method') == 'export') {

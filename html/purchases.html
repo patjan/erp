@@ -22,13 +22,14 @@
 #jky-supplier-ref		{width:110px;}
 #jky-payment-term		{width:120px;}
 
-#jky-ftp-body td	{height:30px; padding:0 8px;}
-.jky-ftp-value		{width: 5%;		text-align:center;}
-.jky-ftp-label		{width:80%;		text-align:left  ;}
-.jky-ftp-current	{width: 40px; text-align:right ; margin-right:0;}
-.jky-ftp-number		{width: 60px; text-align:center;}
-.jky-ftp-composition{width:300px;}
-.jky-ftp-machine	{width:120px; text-align:center; text-transform:capitalize;}
+.jky-line-label			{font-weight:bold; text-align:right;}
+.jky-line-value input	{width:100px;	text-align:right ;}
+.jky-line-thread input	{width:275px;	text-align:left  ;}
+.jky-line-thread a		{margin-left:-30px; padding:5px;}
+.jky-line-percent		{width: 40px;	text-align:right ; margin-right:0;}
+.jky-line-name			{width:280px;}
+#jky-line-total-expected{				text-align:right;}
+#jky-line-total-received{				text-align:right;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -124,7 +125,7 @@
 					<thead>
 						<tr>
 							<th class='jky-action'></td>
-							<th class='jky-line-thread'				><span>   Thread			</span></td>
+							<th class='jky-line-name'				><span>   Thread			</span></td>
 							<th class='jky-line-expected-weight'	><span> Expected<br>Weight	</span></td>
 							<th class='jky-line-received-weight'	><span> Received<br>Weight	</span></td>
 							<th class='jky-line-expected-date'		><span> Expected<br>Date	</span></td>
@@ -134,7 +135,10 @@
 					<tbody id='jky-line-body'></tbody>
 					<tfoot>
 						<tr>
-							<td id='jky-line-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td	   id='jky-line-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td class='jky-line-label'><span>Total</span></td>
+							<td    id='jky-line-total-expected'></td>
+							<td    id='jky-line-total-received'></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -154,6 +158,31 @@
 	<div id='jky-form-footer'></div>
 </div>
 
+<div id='jky-thread-search' class='modal hide fade in'>
+	<div class='modal-header'>
+		<a class='close' data-dismiss='modal'>X</a>
+		<h3><span>Search</span>: <span>Thread</span></h3>
+	</div>
+	<div class='modal-body'>
+		<div><input id='jky-thread-filter' class='search-query' type='text' placeholder='Search' /></div>
+		<table id='jky-thread-table' class='table table-striped'>
+			<thead>
+				<tr>
+					<th class='jky-thread-header-name'			><span>Name			</span></th>
+					<th class='jky-thread-header-group'			><span>Group		</span></th>
+					<th class='jky-thread-header-composition'	><span>Composition	</span></th>
+				</tr>
+			</thead>
+			<tbody id='jky-thread-search-body'></tbody>
+		</table>
+	</div>
+	<div class='modal-footer'>
+<!--	<button  id='jky-thread-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>
+-->		&nbsp;<a id='jky-thread-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
+	</div>
+</div>
+
 <div id='jky-body-loaded'></div>
 <script src='js/purchases.js'></script>
+<script src='js/JKY.Thread.js'></script>
 <script src='js/purchase_lines.js'></script>

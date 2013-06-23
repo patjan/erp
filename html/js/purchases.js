@@ -79,7 +79,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-supplier-ref'		, the_row.supplier_ref	);
 	JKY.set_option	('jky-payment-term'		, the_row.payment_term	);
 
-//	JKY.display_lines();
+	JKY.display_lines();
 };
 
 /**
