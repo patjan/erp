@@ -7,37 +7,43 @@
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-product-name		{width:300px; text-transform:capitalize;}
-.jky-product-type		{width:100px; text-align:center;}
-.jky-start-date			{width:100px; text-align:center;}
+.jky-number				{width: 60px; text-align:center;}
+.jky-source-doc			{width: 80px; text-align:center;}
+.jky-ordered-at			{width: 80px; text-align:center;}
+.jky-expected-date		{width: 80px; text-align:center;}
+.jky-scheduled-at		{width: 80px; text-align:center;}
+.jky-supplier-name		{width:120px; text-align:center;}
+.jky-supplier-ref		{width: 80px; text-align:center;}
+.jky-payment-term		{width: 80px; text-align:center;}
 
-#jky-product-name		{width:300px; font-size:16px; font-weight:bold; text-transform:capitalize;}
-#jky-photo				{float: left; margin:7px;}
-#jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
-#jky-product-type		{width:230px;}
-#jky-product-type span	{padding:4px 20px 0 4px; vertical-align:bottom;}
+#jky-number				{width: 60px; font-size:16px; font-weight:bold;}
+#jky-source-doc			{width:110px;}
+#jky-supplier-name		{width:300px;text-transform:capitalize;}
+#jky-supplier-ref		{width:110px;}
+#jky-payment-term		{width:120px;}
 
-#jky-ftp-body td	{height:30px; padding:0 8px;}
-.jky-ftp-value		{width: 5%;		text-align:center;}
-.jky-ftp-label		{width:80%;		text-align:left  ;}
-.jky-ftp-current	{width: 40px; text-align:right ; margin-right:0;}
-.jky-ftp-number		{width: 60px; text-align:center;}
-.jky-ftp-composition{width:300px;}
-.jky-ftp-machine	{width:120px; text-align:center; text-transform:capitalize;}
+.jky-line-label			{font-weight:bold; text-align:right;}
+.jky-line-value input	{width:100px;	text-align:right ;}
+.jky-line-thread input	{width:275px;	text-align:left  ;}
+.jky-line-thread a		{margin-left:-30px; padding:5px;}
+.jky-line-percent		{width: 40px;	text-align:right ; margin-right:0;}
+.jky-line-name			{width:280px;}
+#jky-line-total-expected{				text-align:right;}
+#jky-line-total-received{				text-align:right;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-product-name'	><span>Number				</span></th>
-			<th class='jky-product-type'	><span>Source Doc			</span></th>
-			<th class='jky-start-date'		><span>Order Date			</span></th>
-			<th class='jky-start-date'		><span>Expected Date		</span></th>
-			<th class='jky-start-date'		><span>Scheduled Date		</span></th>
-			<th class='jky-start-date'		><span>Supplier Name		</span></th>
-			<th class='jky-start-date'		><span>Supplier Reference	</span></th>
-			<th class='jky-start-date'		><span>Payment Term			</span></th>
+			<th class='jky-number'			><span>   Number			</span></th>
+			<th class='jky-source-doc'		><span>   Source<br>Document</span></th>
+			<th class='jky-ordered-at'		><span>  Ordered<br>Time	</span></th>
+			<th class='jky-expected-date'	><span> Expected<br>Date	</span></th>
+			<th class='jky-scheduled-at'	><span>Scheduled<br>Time	</span></th>
+			<th class='jky-supplier-name'	><span> Supplier Name		</span></th>
+			<th class='jky-supplier-ref'	><span> Supplier<br>Document</span></th>
+			<th class='jky-payment-term'	><span>  Payment<br>Term	</span></th>
 		</tr>
 	</thead>
 
@@ -68,38 +74,29 @@
 -->
 	<div id='jky-form-data'>
 		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>			Number</span>:</div><input  id='jky-number'			class='jky-form-value'	readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	Source Document</span>:</div><input  id='jky-source-doc'		class='jky-form-value' /></div>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Product Name</span>:</div>
-				<input id='jky-product-name' class='jky-form-value' placeholder='Name' />
-			</div>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Product Type</span>:</div>
-				<div id='jky-product-type' class='jky-form-value'></div>
-			</div>
-			<div class='jky-form-line'>&nbsp;</div>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Start Date</span>:</div>
-				<div id='jky-start-date' class='input-append date' data-date-format='dd-mm-yyyy'>
-					<input id='jky-start-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
+				<div class='jky-form-label'><span>Ordered Time</span>:</div>
+				<div id='jky-ordered-at' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-ordered-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
 				</div>
 			</div>
-		</div>
-		<div id='jky-app-upload' class='jky-left'>
-			<div class='jky-left' style='margin-left:10px;'>
-				<div id='jky-download-photo'  >
-					<img class="the_icon" src="/img/placeholder.png" id="jky-photo-img">
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Expected Date</span>:</div>
+				<div id='jky-expected-date' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-expected-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
 				</div>
-				<a id='jky-upload-photo'  ><span>Upload Photo  </span></a>
 			</div>
-			<div class='jky-clear'></div>
-			<div style='margin-left:10px;'>
-				<div>
-					<span>Progress</span>:
-					<span id='jky-upload-percent'></span>
-					<span id='jky-upload-name'></span>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Scheduled Time</span>:</div>
+				<div id='jky-scheduled-at' class='input-append date' data-date-format='dd-mm-yyyy'>
+					<input id='jky-scheduled-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
 				</div>
-				<div class='progress progress-striped active'><div id='jky-upload-progress' class='bar'></div></div>
 			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	 Supplier Name</span>:</div><select id='jky-supplier-name'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Supplier Document</span>:</div><input  id='jky-supplier-ref'	class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	  Payment Term</span>:</div><select id='jky-payment-term' ></select></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -117,26 +114,31 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-ftps'			class='active'	><a href='#jky-pane-ftps'			data-toggle='tab'><span>FTPs			</span></a></li>
+			<li	id='jky-tab-lines'			class='active'	><a href='#jky-pane-lines'			data-toggle='tab'><span>Lines			</span></a></li>
 			<li	id='jky-tab-notes'							><a href='#jky-pane-notes'			data-toggle='tab'><span>Notes			</span></a></li>
 			<li	id='jky-tab-history'						><a href='#jky-pane-history'		data-toggle='tab'><span>History			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
-			<div id='jky-pane-ftps'			class='tab-pane active'>
+			<div id='jky-pane-lines' class='tab-pane active'>
 				<table class='table table-striped' >
 					<thead>
 						<tr>
 							<th class='jky-action'></td>
-							<th class='jky-ftp-number'		><span>Number		</span></td>
-							<th class='jky-ftp-composition'	><span>Composition	</span></td>
-							<th class='jky-ftp-machine'		><span>Machine		</span></td>
+							<th class='jky-line-name'				><span>   Thread			</span></td>
+							<th class='jky-line-expected-weight'	><span> Expected<br>Weight	</span></td>
+							<th class='jky-line-received-weight'	><span> Received<br>Weight	</span></td>
+							<th class='jky-line-expected-date'		><span> Expected<br>Date	</span></td>
+							<th class='jky-line-scheduled-at'		><span>Scheduled<br>Time	</span></td>
 						</tr>
 					</thead>
-					<tbody id='jky-ftp-body'></tbody>
+					<tbody id='jky-line-body'></tbody>
 					<tfoot>
 						<tr>
-							<td    id='jky-ftp-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td	   id='jky-line-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td class='jky-line-label'><span>Total</span></td>
+							<td    id='jky-line-total-expected'></td>
+							<td    id='jky-line-total-received'></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -156,6 +158,31 @@
 	<div id='jky-form-footer'></div>
 </div>
 
+<div id='jky-thread-search' class='modal hide fade in'>
+	<div class='modal-header'>
+		<a class='close' data-dismiss='modal'>X</a>
+		<h3><span>Search</span>: <span>Thread</span></h3>
+	</div>
+	<div class='modal-body'>
+		<div><input id='jky-thread-filter' class='search-query' type='text' placeholder='Search' /></div>
+		<table id='jky-thread-table' class='table table-striped'>
+			<thead>
+				<tr>
+					<th class='jky-thread-header-name'			><span>Name			</span></th>
+					<th class='jky-thread-header-group'			><span>Group		</span></th>
+					<th class='jky-thread-header-composition'	><span>Composition	</span></th>
+				</tr>
+			</thead>
+			<tbody id='jky-thread-search-body'></tbody>
+		</table>
+	</div>
+	<div class='modal-footer'>
+<!--	<button  id='jky-thread-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>
+-->		&nbsp;<a id='jky-thread-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
+	</div>
+</div>
+
 <div id='jky-body-loaded'></div>
 <script src='js/purchases.js'></script>
-<script src='js/product_ftps.js'></script>
+<script src='js/JKY.Thread.js'></script>
+<script src='js/purchase_lines.js'></script>

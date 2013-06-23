@@ -11,7 +11,6 @@ $(function() {
 	JKY.set_company_logo(JKY.Session.get_value('company_logo'	));
 	JKY.set_copyright	(JKY.Session.get_value('copyright'		));
 //	JKY.set_contact_us	(JKY.Session.get_value('contact_us'		));
-//	JKY.set_buttons_menus(my_menus);
 //	JKY.set_buttons_control([], JKY.Session.get_value('language'), JKY.Session.get_value('languages'));
 	JKY.set_all_events_home(jky_program);
 
@@ -45,17 +44,23 @@ JKY.set_all_events_home = function(jky_program) {
 		$('#jky-contact-us'		).click (function() {JKY.display_contact_us	()		;});
 */
 		$('#jky-sales-customers'		).click (function() {JKY.process_action('customers'		);});
+
 		$('#jky-purchases-purchases'	).click (function() {JKY.process_action('purchases'		);});
+		$('#jky-purchases-suppliers'	).click (function() {JKY.process_action('suppliers'		);});
+
 		$('#jky-production-ftps'		).click (function() {JKY.process_action('ftps'			);});
 		$('#jky-production-threads'		).click (function() {JKY.process_action('threads'		);});
 		$('#jky-production-machines'	).click (function() {JKY.process_action('machines'		);});
 		$('#jky-production-products'	).click (function() {JKY.process_action('products'		);});
 		$('#jky-production-suppliers'	).click (function() {JKY.process_action('suppliers'		);});
+
 		$('#jky-help-tickets'			).click (function() {JKY.process_action('tickets'		);});
+
 		$('#jky-admin-configs'			).click (function() {JKY.process_action('configs'		);});
 		$('#jky-admin-contacts'			).click (function() {JKY.process_action('contacts'		);});
 		$('#jky-admin-companies'		).click (function() {JKY.process_action('companies'		);});
 		$('#jky-admin-history'			).click (function() {JKY.process_action('history'		);});
+
 		$('#jky-support-controls'		).click (function() {JKY.process_action('controls'		);});
 		$('#jky-support-permissions'	).click (function() {JKY.process_action('permissions'	);});
 		$('#jky-support-templates'		).click (function() {JKY.process_action('templates'		);});
@@ -170,7 +175,9 @@ JKY.process_start_page = function() {
 		];
 	JKY.set_buttons_menus(my_menus);
 	JKY.set_user_info(JKY.Session.get_value('full_name'));
-	JKY.process_action(JKY.Session.get_value('start_page'));
+	var my_start_page = JKY.Session.get_value('start_page');
+	JKY.process_menu  ('jky-menu-' + my_start_page);
+//	JKY.process_action(my_start_page);
 //	JKY.process_action('ftps');
 //	JKY.process_action('suppliers');
 	JKY.show('jky-side-bar');
@@ -181,11 +188,11 @@ JKY.process_menu = function(menu) {
 	JKY.display_trace('process_menu - '  + jky_program + ': ' + menu);
 	JKY.set_menu_active(menu);
 	switch(menu) {
-		case 'jky-menu-sales'		: JKY.process_action('customers'	); break;
-		case 'jky-menu-purchases'	: JKY.process_action('purchases'	); break;
-		case 'jky-menu-production'	: JKY.process_action('ftps'			); break;
-		case 'jky-menu-help'		: JKY.process_action('tickets'		); break;
-		case 'jky-menu-admin'		: JKY.process_action('contacts'		); break;
-		case 'jky-menu-support'		: JKY.process_action('translations'	); break;
+		case 'jky-menu-sales'		: JKY.show('jky-side-sales'		); JKY.process_action('customers'	); break;
+		case 'jky-menu-purchases'	: JKY.show('jky-side-purchases'	); JKY.process_action('purchases'	); break;
+		case 'jky-menu-production'	: JKY.show('jky-side-production'); JKY.process_action('ftps'		); break;
+		case 'jky-menu-help'		: JKY.show('jky-side-help'		); JKY.process_action('tickets'		); break;
+		case 'jky-menu-admin'		: JKY.show('jky-side-admin'		); JKY.process_action('contacts'	); break;
+		case 'jky-menu-support'		: JKY.show('jky-side-support'	); JKY.process_action('translations'); break;
 	}
 }

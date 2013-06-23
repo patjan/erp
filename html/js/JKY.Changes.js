@@ -31,7 +31,7 @@ JKY.Changes = function() {
 	 *
 	 */
 	function my_reset() {
-		my_changes  = 0;
+		my_changes = 0;
 		my_set_button_save();
 	}
 

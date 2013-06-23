@@ -596,56 +596,59 @@ private function set_select($table, $select) {
 	if ($select == 'All')		return '';
 
 	$return = '';
-	if ($table == 'Categories'	)	$return = ' AND         Parent.category      = "' . $select . '"';
-	if ($table == 'Controls'	)	$return = ' AND       Controls.group_set     = "' . $select . '"';
-	if ($table == 'Configs'		)	$return = ' AND        Configs.group_set     = "' . $select . '"';
-	if ($table == 'Companies'	)	$return = ' AND      Companies.status        = "' . $select . '"';
-	if ($table == 'Events'		)	$return = ' AND         Events.status        = "' . $select . '"';
-	if ($table == 'Groups'		)	$return = ' AND         Groups.status        = "' . $select . '"';
-	if ($table == 'Permissions'	)	$return = ' AND    Permissions.user_role     = "' . $select . '"';
-	if ($table == 'Services'	)	$return = ' AND         Groups.id            = "' . $select . '"';
-	if ($table == 'Settings'	)	$return = ' AND       Settings.setting_set   = "' . $select . '"';
-	if ($table == 'Summary'		)	$return = ' AND        Summary.group_by      = "' . $select . '"';
-	if ($table == 'Templates'	)	$return = ' AND      Templates.template_type = "' . $select . '"';
-	if ($table == 'Tickets'		)	$return = ' AND        Tickets.status        = "' . $select . '"';
-	if ($table == 'Translations')	$return = ' AND   Translations.status        = "' . $select . '"';
+	if ($table == 'Categories'		)	$return = ' AND         Parent.category      = "' . $select . '"';
+	if ($table == 'Controls'		)	$return = ' AND       Controls.group_set     = "' . $select . '"';
+	if ($table == 'Configs'			)	$return = ' AND        Configs.group_set     = "' . $select . '"';
+	if ($table == 'Companies'		)	$return = ' AND      Companies.status        = "' . $select . '"';
+	if ($table == 'Events'			)	$return = ' AND         Events.status        = "' . $select . '"';
+	if ($table == 'Groups'			)	$return = ' AND         Groups.status        = "' . $select . '"';
+	if ($table == 'Permissions'		)	$return = ' AND    Permissions.user_role     = "' . $select . '"';
+	if ($table == 'Services'		)	$return = ' AND         Groups.id            = "' . $select . '"';
+	if ($table == 'Settings'		)	$return = ' AND       Settings.setting_set   = "' . $select . '"';
+	if ($table == 'Summary'			)	$return = ' AND        Summary.group_by      = "' . $select . '"';
+	if ($table == 'Templates'		)	$return = ' AND      Templates.template_type = "' . $select . '"';
+	if ($table == 'Tickets'			)	$return = ' AND        Tickets.status        = "' . $select . '"';
+	if ($table == 'Translations'	)	$return = ' AND   Translations.status        = "' . $select . '"';
 
-	if ($table == 'Contacts'	)	$return = ' AND      JKY_Users.user_role		= "' . $select . '"';
-	if ($table == 'Cylinders'	)	$return = ' AND      Cylinders.machine_id		=  ' . $select;
-	if ($table == 'FTP_Loads'	)	$return = ' AND      FTP_Loads.ftp_id			=  ' . $select;
-	if ($table == 'FTP_Threads'	)	$return = ' AND    FTP_Threads.ftp_id			=  ' . $select;
-	if ($table == 'FTP_Sets'	)	$return = ' AND       FTP_Sets.ftp_id			=  ' . $select;
-	if ($table == 'Machines'	)	$return = ' AND       Machines.machine_brand    = "' . $select . '"';
-	if ($table == 'Products'	)	$return = ' AND       Products.product_type     = "' . $select . '"';
-	if ($table == 'History'		)	$return = ' AND        History.parent_name      = "' . $select . '"';
-	if ($table == 'Threads'		)	$return = ' AND        Threads.thread_group     = "' . $select . '"';
+	if ($table == 'Contacts'		)	$return = ' AND      JKY_Users.user_role		= "' . $select . '"';
+	if ($table == 'Cylinders'		)	$return = ' AND      Cylinders.machine_id		=  ' . $select;
+	if ($table == 'FTP_Loads'		)	$return = ' AND      FTP_Loads.ftp_id			=  ' . $select;
+	if ($table == 'FTP_Threads'		)	$return = ' AND    FTP_Threads.ftp_id			=  ' . $select;
+	if ($table == 'FTP_Sets'		)	$return = ' AND       FTP_Sets.ftp_id			=  ' . $select;
+	if ($table == 'Machines'		)	$return = ' AND       Machines.machine_brand    = "' . $select . '"';
+	if ($table == 'Products'		)	$return = ' AND       Products.product_type     = "' . $select . '"';
+	if ($table == 'PurchaseLines'	)	$return = ' AND  PurchaseLines.purchase_id		=  ' . $select;
+	if ($table == 'History'			)	$return = ' AND        History.parent_name      = "' . $select . '"';
+	if ($table == 'Threads'			)	$return = ' AND        Threads.thread_group     = "' . $select . '"';
 
 	return $return;
 }
 
 private function set_new_fields($table) {
 	$return = '';
-	if ($table == 'Categories'	)	$return = ',    Parent.category		AS   parent_name';
-	if ($table == 'Companies'	)	$return = ',   Contact.full_name	AS  contact_name';
-	if ($table == 'Templates'	)	$return = ',   Created.full_name	AS  created_name';
-	if ($table == 'Tickets'		)	$return = ',    Opened.full_name	AS   opened_name'
-											. ',    Closed.full_name	AS   closed_name'
-											. ',  Assigned.full_name	AS assigned_name';
+	if ($table == 'Categories'		)	$return = ',    Parent.category		AS   parent_name';
+	if ($table == 'Companies'		)	$return = ',   Contact.full_name	AS  contact_name';
+	if ($table == 'Templates'		)	$return = ',   Created.full_name	AS  created_name';
+	if ($table == 'Tickets'			)	$return = ',    Opened.full_name	AS   opened_name'
+												. ',    Closed.full_name	AS   closed_name'
+												. ',  Assigned.full_name	AS assigned_name';
 
-	if ($table == 'Contacts'	)	$return = ', JKY_Users.id			AS     user_id'
-											. ', JKY_Users.user_name	AS     user_name'
-											. ', JKY_Users.user_role	AS     user_role'
-											. ', Companies.full_name	AS  company_name';
-	if ($table == 'FTPs'		)	$return = ',  Products.product_name	AS			product'
-											. ',  Machines.name			AS			machine';
-	if ($table == 'FTP_Loads'	)	$return = ',   Thread1.name			AS   thread_name_1'
-											. ',   Thread2.name			AS   thread_name_2'
-											. ',   Thread3.name			AS   thread_name_3';
-	if ($table == 'FTP_Threads'	)	$return = ',   Threads.name			AS			name'
-											. ', Suppliers.nick_name	AS			supplier';
-	if ($table == 'FTP_Sets'	)	$return = ',   Configs.sequence		AS			sequence'
-											. ',   Configs.name			AS			name';
-	if ($table == 'History'		)	$return = ',  Contacts.full_name	AS	created_name';
+	if ($table == 'Contacts'		)	$return = ', JKY_Users.id			AS     user_id'
+												. ', JKY_Users.user_name	AS     user_name'
+												. ', JKY_Users.user_role	AS     user_role'
+												. ', Companies.full_name	AS  company_name';
+	if ($table == 'FTPs'			)	$return = ',  Products.product_name	AS			product'
+												. ',  Machines.name			AS			machine';
+	if ($table == 'FTP_Loads'		)	$return = ',   Thread1.name			AS   thread_name_1'
+												. ',   Thread2.name			AS   thread_name_2'
+												. ',   Thread3.name			AS   thread_name_3';
+	if ($table == 'FTP_Threads'		)	$return = ',   Threads.name			AS			name'
+												. ', Suppliers.nick_name	AS			supplier';
+	if ($table == 'FTP_Sets'		)	$return = ',   Configs.sequence		AS			sequence'
+												. ',   Configs.name			AS			name';
+	if ($table == 'History'			)	$return = ',  Contacts.full_name	AS	created_name';
+	if ($table == 'Purchases'		)	$return = ',  Supplier.nick_name	AS supplier_name';
+	if ($table == 'PurchaseLines'	)	$return = ',   Threads.name			AS			name';
 
 //	special code to append fields from Contacts to Services table
 	if (get_request('method') == 'export') {
@@ -664,29 +667,31 @@ private function set_new_fields($table) {
 
 private function set_left_joins($table) {
 	$return = '';
-	if ($table == 'Categories'	)	$return = '  LEFT JOIN  Categories AS Parent	ON    Parent.id = Categories.parent_id';
-	if ($table == 'Companies'	)	$return = '  LEFT JOIN    Contacts AS Contact	ON   Contact.id =  Companies.contact_id';
-	if ($table == 'Templates'	)	$return = '  LEFT JOIN    Contacts AS Created	ON   Created.id =  Templates.created_by';
-	if ($table == 'Tickets'		)	$return = '  LEFT JOIN   JKY_Users AS User_Op	ON   User_Op.id =    Tickets.opened_by'
-											. '  LEFT JOIN   JKY_Users AS User_As	ON   User_As.id =    Tickets.assigned_to'
-											. '  LEFT JOIN   JKY_Users AS User_Cl	ON   User_Cl.id =    Tickets.closed_by'
-											. '  LEFT JOIN    Contacts AS Opened	ON    Opened.id =    User_Op.contact_id'
-											. '  LEFT JOIN    Contacts AS Assigned	ON  Assigned.id =    User_As.contact_id'
-											. '  LEFT JOIN    Contacts AS Closed 	ON    Closed.id =    User_Cl.contact_id';
+	if ($table == 'Categories'		)	$return = '  LEFT JOIN  Categories AS Parent	ON    Parent.id		=   Categories.parent_id';
+	if ($table == 'Companies'		)	$return = '  LEFT JOIN    Contacts AS Contact	ON   Contact.id		=    Companies.contact_id';
+	if ($table == 'Templates'		)	$return = '  LEFT JOIN    Contacts AS Created	ON   Created.id		=    Templates.created_by';
+	if ($table == 'Tickets'			)	$return = '  LEFT JOIN   JKY_Users AS User_Op	ON   User_Op.id		=      Tickets.opened_by'
+												. '  LEFT JOIN   JKY_Users AS User_As	ON   User_As.id		=      Tickets.assigned_to'
+												. '  LEFT JOIN   JKY_Users AS User_Cl	ON   User_Cl.id		=      Tickets.closed_by'
+												. '  LEFT JOIN    Contacts AS Opened	ON    Opened.id		=      User_Op.contact_id'
+												. '  LEFT JOIN    Contacts AS Assigned	ON  Assigned.id		=      User_As.contact_id'
+												. '  LEFT JOIN    Contacts AS Closed 	ON    Closed.id		=      User_Cl.contact_id';
 
-	if ($table == 'Contacts'	)	$return = '  LEFT JOIN   JKY_Users AS JKY_Users	ON  Contacts.id =  JKY_Users.contact_id'
-//											. '  LEFT JOIN    Contacts AS Companies	ON Companies.id =   Contacts.company_id AND Companies.is_company = "Yes"';
-											. '  LEFT JOIN    Contacts AS Companies	ON Companies.id =   Contacts.company_id';
-	if ($table == 'FTPs'		)	$return = '  LEFT JOIN    Products				ON  Products.id =		FTPs.product_id'
-											. '  LEFT JOIN    Machines				ON  Machines.id =		FTPs.machine_id';
-	if ($table == 'FTP_Loads'	)	$return = '  LEFT JOIN     Threads AS Thread1	ON   Thread1.id =  FTP_Loads.thread_id_1'
-											. '  LEFT JOIN     Threads AS Thread2	ON   Thread2.id =  FTP_Loads.thread_id_2'
-											. '  LEFT JOIN     Threads AS Thread3	ON   Thread3.id =  FTP_Loads.thread_id_3';
-	if ($table == 'FTP_Threads'	)	$return = '  LEFT JOIN     Threads  			ON   Threads.id =FTP_Threads.thread_id'
-											. '  LEFT JOIN    Contacts AS Suppliers	ON Suppliers.id =FTP_Threads.supplier_id';
-	if ($table == 'FTP_Sets'	)	$return = '  LEFT JOIN     Configs  			ON   Configs.id =	FTP_Sets.setting_id';
-	if ($table == 'History'		)	$return = '  LEFT JOIN   JKY_Users AS Users		ON   History.created_by =    Users.id'
-											. '  LEFT JOIN    Contacts				ON     Users.contact_id = Contacts.id';
+	if ($table == 'Contacts'		)	$return = '  LEFT JOIN   JKY_Users AS JKY_Users	ON  Contacts.id		=    JKY_Users.contact_id'
+//												. '  LEFT JOIN    Contacts AS Companies	ON Companies.id		=     Contacts.company_id AND Companies.is_company = "Yes"';
+												. '  LEFT JOIN    Contacts AS Companies	ON Companies.id		=     Contacts.company_id';
+	if ($table == 'FTPs'			)	$return = '  LEFT JOIN    Products				ON  Products.id		=		  FTPs.product_id'
+												. '  LEFT JOIN    Machines				ON  Machines.id		=		  FTPs.machine_id';
+	if ($table == 'FTP_Loads'		)	$return = '  LEFT JOIN     Threads AS Thread1	ON   Thread1.id		=    FTP_Loads.thread_id_1'
+												. '  LEFT JOIN     Threads AS Thread2	ON   Thread2.id		=    FTP_Loads.thread_id_2'
+												. '  LEFT JOIN     Threads AS Thread3	ON   Thread3.id		=    FTP_Loads.thread_id_3';
+	if ($table == 'FTP_Threads'		)	$return = '  LEFT JOIN     Threads  			ON   Threads.id		=  FTP_Threads.thread_id'
+												. '  LEFT JOIN    Contacts AS Suppliers	ON Suppliers.id		=  FTP_Threads.supplier_id';
+	if ($table == 'FTP_Sets'		)	$return = '  LEFT JOIN     Configs  			ON   Configs.id		=     FTP_Sets.setting_id';
+	if ($table == 'History'			)	$return = '  LEFT JOIN   JKY_Users AS Users		ON   History.created_by =    Users.id'
+												. '  LEFT JOIN    Contacts				ON     Users.contact_id = Contacts.id';
+	if ($table == 'Purchases'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id		=    Purchases.supplier_id';
+	if ($table == 'PurchaseLines'	)	$return = '  LEFT JOIN     Threads  			ON   Threads.id		=PurchaseLines.thread_id';
 	return $return;
 }
 
@@ -990,6 +995,30 @@ private function set_where($table, $filter) {
 				}
 			}
 		}
+
+		if ($table == 'Purchases') {
+			if ($name == 'number'
+			or	$name == 'source_doc'
+			or	$name == 'ordered_at'
+			or	$name == 'expected_date'
+			or	$name == 'scheduled_at'
+			or	$name == 'supplier_ref'
+			or	$name == 'payment_term') {
+				if ($value == '"%null%"') {
+					return ' AND Purchases.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Purchases.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'supplier_name') {
+					if ($value == '"%null%"') {
+						return ' AND Purchases.supplier_id IS NULL';
+					}else{
+						return ' AND Supplier.nick_name LIKE ' . $value;
+					}
+				}
+			}
+		}
 	}
 
 	$filter = '"%' . $filter . '%"';
@@ -1114,6 +1143,18 @@ private function set_where($table, $filter) {
 			. ' OR  Machines.purchase_date	LIKE ' . $filter
 			. ' OR  Machines.repair_date	LIKE ' . $filter
 			. ' OR  Machines.return_date	LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'Purchases') {
+		$return = ' Purchases.number		LIKE ' . $filter
+			. ' OR  Purchases.source_doc	LIKE ' . $filter
+			. ' OR  Purchases.ordered_at	LIKE ' . $filter
+			. ' OR  Purchases.expected_date	LIKE ' . $filter
+			. ' OR  Purchases.scheduled_at	LIKE ' . $filter
+			. ' OR  Purchases.supplier_ref	LIKE ' . $filter
+			. ' OR  Purchases.payment_term	LIKE ' . $filter
+			. ' OR   Supplier.nick_name		LIKE ' . $filter
 			;
 		}
 
@@ -1321,6 +1362,12 @@ private function insert($data) {
 
 	if ($table == 'FTPs') {
 		$my_number = $this->get_next_number('Controls', 'Next FTP Number');
+		$set .= ',     id= ' . $my_number;
+		$set .= ', number= ' . $my_number;
+	}
+
+	if ($table == 'Purchases') {
+		$my_number = $this->get_next_number('Controls', 'Next Purchase Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', number= ' . $my_number;
 	}

@@ -777,6 +777,7 @@ JKY.set_checks = function() {
  */
 JKY.set_menu_active = function(id_name){
 	JKY.hide('jky-side-sales'		);
+	JKY.hide('jky-side-purchases'	);
 	JKY.hide('jky-side-production'	);
 	JKY.hide('jky-side-help'		);
 	JKY.hide('jky-side-admin'		);
@@ -790,6 +791,9 @@ JKY.set_menu_active = function(id_name){
  * @param	id_name
  */
 JKY.set_side_active = function(id_name){
+	if ($('#' + id_name).parent().css('display') == 'none') {
+		return;
+	};
 	$('#jky-side-bar div').removeClass('active');
 	$('#' + id_name).addClass('active');
 }

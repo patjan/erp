@@ -1,23 +1,23 @@
 /**
  * delay time for Keyup Delay time
  */
-jQuery.fn.KeyUpDelay = function( cb, delay ){
+$.fn.KeyUpDelay = function( cb, delay ){
 	if (delay == null){
-		delay = 400;
-	}
+		delay = 500;
+	};
 	var timer = 0;
 	return $(this).on('keyup', function(){
 		clearTimeout(timer);
 		timer = setTimeout( cb , delay );
 	});
-}
+};
 
 /**
  * numeric only control handler
  *
  * $('#yourTextBoxName').ForceNumericOnly();
  */
-jQuery.fn.ForceNumericOnly = function(){
+$.fn.ForceNumericOnly = function(){
 	return this.each(function(){
 		$(this).keydown(function(e){
 			var key = e.charCode || e.keyCode || 0;
@@ -29,8 +29,8 @@ jQuery.fn.ForceNumericOnly = function(){
 				(key >= 48 && key <= 57) ||
 				(key >= 96 && key <= 105)
 			);
-        });
-    });
+		});
+	});
 };
 
 //<input type="number" value="0"> 						float
@@ -40,9 +40,24 @@ jQuery.fn.ForceNumericOnly = function(){
 /**
  * return checked value(s)
  */
-jQuery.fn.GetCheckedValues = function() {
+$.fn.GetCheckedValues = function() {
 	return $.map(this, function(elem) {
 		return elem.value || '';
 //	}).join( ',' );
 	});
+};
+
+/**
+ * intercept on enter key
+ */
+$.fn.OnEnterKey = function(closure) {
+	$(this).keypress(
+		function(event) {
+			var code = event.keyCode ? event.keyCode : event.which;
+			if (code == 13) {
+				closure();
+				return false;
+			}
+		}
+	);
 };
