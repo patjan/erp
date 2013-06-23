@@ -10,6 +10,9 @@
  *			add_new()
  *
  * require:	JKY.Utils.js(JKY.display_confirm)
+ *
+ * 		$(my_parent).find('.jky-thread-row-id'  ).val(the_id );
+ *		$(my_parent).find('.jky-thread-row-name').val(my_name);
  */
 JKY.Thread = function() {
 	var my_the_id		= null;		//	external id that initiated the call
