@@ -111,7 +111,7 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li id='jky-tab-address'		class='active'	><a href='#jky-address'				data-toggle='tab'><span>Address						</span></a></li>
+			<li id='jky-tab-address'		class='active'	><a href='#jky-pane-address'				data-toggle='tab'><span>Address						</span></a></li>
 			<li	id='jky-tab-company'						><a href='#jky-company'				data-toggle='tab'><span>Company						</span></a></li>
 			<li	id='jky-tab-sales'							><a href='#jky-sales'				data-toggle='tab'><span>Sales						</span></a></li>
 			<li	id='jky-tab-account'						><a href='#jky-account'				data-toggle='tab'><span>Account						</span></a></li>
@@ -119,26 +119,24 @@
 		</ul>
 
 		<div class='tab-content'>
-
-			<div id='jky-address' class='tab-pane active'>
+			<div id='jky-pane-address' class='tab-pane active'>
 				<div class='jky-left'>
-					<div class='jky-form-line'>
-						<div class='jky-form-label'></div>
-						<div class='jky-form-value'>
-							<br>
-							<input	id='jky-street1'	class='jky-form-value' placeholder='Street'		/>
-							<input	id='jky-street2'	class='jky-form-value' placeholder=''			/>
-							<input	id='jky-city'		class='jky-form-value' placeholder='City'		/>
-							<input	id='jky-zip'		class='jky-form-value' placeholder='Zip'		/>
-							<select id='jky-state'	></select>
-							<select id='jky-country'></select>
-							<br>
-							<br>
-							<button id='jky-save-address' class='btn btn-success' type='button'><span>Save Address</span></button>
+						<br>
+						<div class='jky-form-line'><div class='jky-form-label'><span> Street</span>: </div><input	id='jky-street1'	class='jky-form-value' placeholder='Street'		/><input	id='jky-street2'	class='jky-form-value' placeholder=''			/>
 						</div>
-					</div>
-				</div>
+						<div class='jky-form-line'><div class='jky-form-label'><span> City</span>:	</div><input	id='jky-city'		class='jky-form-value' placeholder='City'		/>
+						</div>
+						<input	id='jky-zip'		class='jky-form-value' placeholder='Zip'		/>
+						<select id='jky-state'	></select>
+						<div class='jky-form-line'><div class='jky-form-label'><span> Country</span>:	</div><select id='jky-country'></select>
+						</div>
+						<br>
+						<br>
+						<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-address' class='btn btn-success' type='button'><span>Save Address</span></button>
+						</div>
+				</div>							
 			</div>
+
 			<div id='jky-company' class='tab-pane active'>
 				<div class='jky-left'>
 					<div class='jky-form-line'>
