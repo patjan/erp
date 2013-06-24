@@ -13,35 +13,16 @@ JKY.display_threads = function() {
 }
 
 JKY.generate_threads = function(response) {
-	var my_html  = '';
-	var my_total =  0;
-	var my_rows  = response.rows;
+	var my_html		= '';
+	var my_total	=  0;
+	var my_rows		= response.rows;
 	if (my_rows != '') {
 		for(var i in my_rows) {
-			var my_row			=			 my_rows[i];
-			var my_id			=			 my_row.id;
-			var my_thread_id	=			 my_row.thread_id;
-			var my_name			=			 my_row.name;
-			var my_supplier_id	=			 my_row.supplier_id;
+			var my_row = my_rows[i];
+			my_html += JKY.generate_row(my_row);
+
 			var my_percent		= parseFloat(my_row.percent);
-
 			my_total += my_percent;
-
-			var my_thread = ''
-				+ "<input class='jky-thread-row-id' type='hidden' value=" + my_thread_id + " />"
-				+ "<input class='jky-thread-row-name jky-form-value' readonly='readonly' onclick='JKY.update_thread(this, " + my_id + ")' value='" + my_name + "' />"
-				+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
-				;
-
-			my_html  += ''
-				+ '<tr ftp_thread_id=' + my_id + '>'
-				+ '<td class="jky-action"><a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-				+ '<td class="jky-thread-value"		><input  class="jky-thread-percent" text="text" onchange="JKY.update_thread(this, ' + my_id + ')" value="' + my_percent + '" /></td>'
-//				+ '<td class="jky-thread-label"		><select class="jky-thread-name"				onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_name		  , JKY.threads	 , true) + '</select></td>'
-				+ '<td class="jky-thread-label"		>' + my_thread + '</td>'
-				+ '<td class="jky-thread-label"		><select class="jky-thread-supplier"			onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_supplier_id, JKY.suppliers, true) + '</select></td>'
-				+ '</tr>'
-				;
 		}
 	}
 	JKY.set_html('jky-thread-total', my_total);
@@ -51,15 +32,40 @@ JKY.generate_threads = function(response) {
 	}
 }
 
+JKY.generate_row = function(the_row) {
+	var my_id				=			 the_row.id;
+	var my_thread_id		=			 the_row.thread_id;
+	var my_name				=			 the_row.name;
+	var my_supplier_id		=			 the_row.supplier_id;
+	var my_percent			= parseFloat(the_row.percent);
+
+	var my_thread = ''
+		+ "<input class='jky-thread-row-id' type='hidden' value=" + my_thread_id + " />"
+		+ "<input class='jky-thread-row-name jky-form-value' readonly='readonly' onclick='JKY.update_thread(this, " + my_id + ")' value='" + my_name + "' />"
+		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
+		;
+
+	var my_html = ''
+		+ '<tr ftp_thread_id=' + my_id + '>'
+		+ '<td class="jky-action"><a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
+		+ '<td class="jky-thread-value"		><input  class="jky-thread-percent" text="text" onchange="JKY.update_thread(this, ' + my_id + ')" value="' + my_percent + '" /></td>'
+//				+ '<td class="jky-thread-label"		><select class="jky-thread-name"				onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_name		  , JKY.threads	 , true) + '</select></td>'
+		+ '<td class="jky-thread-label"		>' + my_thread + '</td>'
+		+ '<td class="jky-thread-label"		><select class="jky-thread-supplier"			onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_supplier_id, JKY.suppliers, true) + '</select></td>'
+		+ '</tr>'
+		;
+	return my_html;
+}
+
 JKY.update_thread = function(id_name, the_id ) {
 	var my_tr = $(id_name).parent().parent();
+	var my_thread_id		= my_tr.find('.jky-thread-row-id').val();
 	var my_percent			= parseFloat(my_tr.find('.jky-thread-percent').val());
-	var my_thread_id		= my_tr.find('.jky-thread-row-id'	).val();
 	var my_supplier_id		= my_tr.find('.jky-thread-supplier'	).val();
 	var my_set = ''
-		+     'thread_id = ' + my_thread_id
-		+ ', supplier_id = ' + my_supplier_id
-		+     ', percent = ' + my_percent
+		+        'thread_id =   ' + my_thread_id
+		+    ', supplier_id = ' + my_supplier_id
+		+        ', percent = ' + my_percent
 		;
 	var my_data =
 		{ method	: 'update'
@@ -85,25 +91,14 @@ JKY.insert_thread = function() {
 }
 
 JKY.insert_thread_success = function(response) {
-	var my_id = response.id;
-	var my_percent	= 0;
-	var my_thread_id= null;
-	var my_name		= '';
-	var my_supplier	= '';
-	var my_thread = ''
-		+ "<input class='jky-thread-row-id' type='hidden' value=" + my_thread_id + " />"
-		+ "<input class='jky-thread-row-name jky-form-value' readonly='readonly' onclick='JKY.update_thread(this, " + my_id + ")' value='" + my_name + "' />"
-		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
-		;
-	var	my_html = ''
-		+ '<tr ftp_thread_id=' + my_id + '>'
-		+ '<td class="jky-action"><a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-		+ '<td class="jky-thread-value"><input  class="jky-thread-percent"  text="text"	onchange="JKY.update_thread(this, ' + my_id + ')" value="' + my_percent + '" /></td>'
-//		+ '<td class="jky-thread-label"><select class="jky-thread-name"					onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_name		, JKY.threads	, true) + '</select></td>'
-		+ '<td class="jky-thread-label"		>' + my_thread + '</td>'
-		+ '<td class="jky-thread-label"><select class="jky-thread-supplier"				onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_supplier	, JKY.suppliers	, true) + '</select></td>'
-		+ '</tr>'
-		;
+	var my_row = [];
+	my_row.id				= response.id;
+	my_row.percent			=  0;
+	my_row.thread_id		= null;
+	my_row.name				= '';
+	my_row.supplier			= '';
+
+	var my_html = JKY.generate_row(my_row);
 	JKY.append_html('jky-thread-body', my_html);
 }
 

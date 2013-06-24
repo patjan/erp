@@ -33,6 +33,7 @@ JKY.set_all_events = function() {
 	$('#jky-scheduled-at'	).datepicker();
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
 	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
+	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 };
 
 /**

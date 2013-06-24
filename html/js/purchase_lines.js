@@ -14,8 +14,8 @@ JKY.display_lines = function() {
 
 JKY.generate_lines = function(response) {
 	var my_html		= '';
-	var my_expected =  0;
-	var my_received =  0;
+	var my_expected	=  0;
+	var my_received	=  0;
 	var my_rows		= response.rows;
 	if (my_rows != '') {
 		for(var i in my_rows) {
@@ -64,18 +64,20 @@ JKY.generate_row = function(the_row) {
 
 JKY.update_line = function(id_name, the_id ) {
 	var my_tr = $(id_name).parent().parent();
-	var my_thread_id		= my_tr.find('.jky-tread-row-id').val();
-alert('my_thread_id: ' + my_thread_id);
+	var my_thread_id		= my_tr.find('.jky-thread-row-id').val();
 	var my_expected_weight	= parseFloat(my_tr.find('.jky-line-expected-weight'	).val());
 	var my_received_weight	= parseFloat(my_tr.find('.jky-line-received-weight'	).val());
 	var my_expected_date	= my_tr.find('.jky-line-expected-date'	).val();
 	var my_scheduled_at		= my_tr.find('.jky-line-scheduled-at'	).val();
+	if (my_expected_date != 'null')		{my_expected_date = '\'' + my_expected_date + '\'';	}
+	if (my_scheduled_at  != 'null')		{my_scheduled_at  = '\'' + my_scheduled_at  + '\'';	}
+
 	var my_set = ''
-		+         'thread_id =   ' + my_thread_id
-		+ ', expected_weight =   ' + my_expected_weight
-		+ ', received_weight =   ' + my_received_weight
-		+   ', expected_date = \'' + my_expected_date	+ '\''
-		+    ', scheduled_at = \'' + my_scheduled_at	+ '\''
+		+        'thread_id = ' + my_thread_id
+		+', expected_weight = ' + my_expected_weight
+		+', received_weight = ' + my_received_weight
+		+  ', expected_date = ' + my_expected_date
+		+   ', scheduled_at = ' + my_scheduled_at
 		;
 	var my_data =
 		{ method	: 'update'
@@ -88,7 +90,7 @@ alert('my_thread_id: ' + my_thread_id);
 
 JKY.update_line_success = function(response) {
 //	JKY.display_message(response.message)
-	JKY.verify_total_percent();
+	JKY.update_total_weight();
 }
 
 JKY.insert_line = function() {
@@ -110,7 +112,7 @@ JKY.insert_line_success = function(response) {
 	my_row.expected_date	= null;
 	my_row.scheduled_at		= null;
 
-	my_html = JKY.generate_row(my_row);
+	var my_html = JKY.generate_row(my_row);
 	JKY.append_html('jky-line-body', my_html);
 }
 
@@ -126,10 +128,10 @@ JKY.delete_line = function(id_name, the_id) {
 
 JKY.delete_line_success = function(response) {
 //	JKY.display_message(response.message)
-	JKY.verify_total_percent();
+	JKY.update_total_weight();
 }
 
-JKY.verify_total_percent = function() {
+JKY.update_total_weight = function() {
 	var my_total = 0;
 	$('#jky-line-body tr').each(function() {
 		var my_percent  = parseFloat($(this).find('.jky-line-percent' ).val());
