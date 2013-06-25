@@ -18,19 +18,20 @@
 #jky-app-upload			{margin-left:105px;}
 #jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
 
+#jky-website			{width:270px;}
+#jky-position			{width:270px;}
+#jky-email				{width:270px;}
+
 #jky-street1			{width:270px;}
 #jky-street2			{width:270px;}
 #jky-city				{width:125px;}
 #jky-zip				{width: 70px;}
 #jky-state				{width: 50px;}
 #jky-country			{width:280px;}
-#jky-website			{width:270px;}
 
-#jky-position			{width:270px;}
 #jky-phone				{width:200px;}
 #jky-mobile				{width:200px;}
 #jky-fax				{width:200px;}
-#jky-email				{width:200px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -85,25 +86,9 @@
 		<div class='jky-clear'></div>
 
 		<div class='jky-left'>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Address</span>:</div>
-				<div class='jky-form-value'>
-					<input	id='jky-street1'	class='jky-form-value' placeholder='Street'		/>
-					<input	id='jky-street2'	class='jky-form-value' placeholder=''			/>
-					<input	id='jky-city'		class='jky-form-value' placeholder='City'		/>
-					<input	id='jky-zip'		class='jky-form-value' placeholder='Zip'		/>
-					<select id='jky-state'	></select>
-					<select id='jky-country'></select>
-				</div>
-			</div>
-			<div id='jky-website-line'  class='jky-form-line'><div class='jky-form-label'><span>           Website</span>:</div><input id='jky-website'		class='jky-form-value'		placeholder='www.jkysoftware.com'	/></div>
-			<div id='jky-position-line' class='jky-form-line'><div class='jky-form-label'><span>          Position</span>:</div><input id='jky-position'	class='jky-form-value'		placeholder='Purchase Director'		/></div>
-		</div>
-		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>             Phone</span>:</div><input id='jky-phone'		class='jky-form-value'		placeholder='123-456-7890'			/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>            Mobile</span>:</div><input id='jky-mobile'		class='jky-form-value'		/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>               Fax</span>:</div><input id='jky-fax'		class='jky-form-value'		/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>             Email</span>:</div><input id='jky-email'		class='jky-form-value'		/></div>
+			<div id='jky-website-line'  class='jky-form-line'><div class='jky-form-label'><span> Website</span>:</div><input id='jky-website'	class='jky-form-value'	placeholder='www.jkysoftware.com'	/></div>
+			<div id='jky-position-line' class='jky-form-line'><div class='jky-form-label'><span>Position</span>:</div><input id='jky-position'	class='jky-form-value'	placeholder='Purchase Director'		/></div>
+			<div						class='jky-form-line'><div class='jky-form-label'><span>   Email</span>:</div><input id='jky-email'		class='jky-form-value'	placeholder='company@email.com'		/></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -121,15 +106,57 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li id='jky-tab-contacts'		class='active'	><a href='#jky-contacts'			data-toggle='tab'><span>Contacts		</span></a></li>
+			<li id='jky-tab-contacts'		class='active'	><a href='#jky-pane-contacts'			data-toggle='tab'><span>Contacts		</span></a></li>
+			<li	id='jky-tab-address'						><a href='#jky-pane-address'			data-toggle='tab'><span>Address			</span></a></li>
+			<li	id='jky-tab-phones'							><a href='#jky-pane-phones'				data-toggle='tab'><span>Phones			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
+			<table id='jky-pane-contacts' class='tab-pane active table table-striped'>
+				<thead>
+					<tr>
+						<th class='jky-full-name'		><span>Full Name		</span></th>
+						<th class='jky-mobile'			><span>Mobile			</span></th>
+						<th class='jky-email'			><span>Email			</span></th>
+						<th class='jky-user-name'		><span>User Name		</span></th>
+						<th class='jky-user-role'		><span>User Role		</span></th>
+					</tr>
+				</thead>
+				<tbody id='jky-contacts-body'></tbody>
+			</table>
+
+			<div id='jky-pane-address' class='tab-pane'>
+				<div class='jky-left'>
+						<br>
+						<div class='jky-form-line'><div class='jky-form-label'><span>    Street</span>: </div><input id='jky-street1' class='jky-form-value' placeholder='Street'	/></div>
+						<div class='jky-form-line'><div class='jky-form-label'>							</div><input id='jky-street2' class='jky-form-value'						/></div>
+						<div class='jky-form-line'><div class='jky-form-label'><span>     City</span>:	</div>
+							<input	id='jky-city'		class='jky-form-value' placeholder='City'/>
+							<input	id='jky-zip'		class='jky-form-value' placeholder='Zip' />
+							<select id='jky-state'	></select>
+						</div>
+						<div class='jky-form-line'><div class='jky-form-label'><span>   Country</span>:	</div><select id='jky-country'></select></div>
+						<br>
+						<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-address' class='btn btn-success' type='button'><span>Save Address</span></button></div>
+				</div>
+			</div>
+
+			<div id='jky-pane-phones' class='tab-pane'>
+				<div class='jky-left'>
+					<br>
+					<div class='jky-form-line'><div class='jky-form-label'><span> Phone</span>:	</div><input  id='jky-phone'	class='jky-form-value' placeholder='123-456-7890'	/></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>Mobile</span>:	</div><input  id='jky-mobile'	class='jky-form-value' placeholder='123-456-7890'	/></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>   Fax</span>:	</div><input  id='jky-fax'		class='jky-form-value' placeholder='123-456-7890'	/></div>
+					<br>
+					<br>
+					<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-phones'	class='btn btn-success' type='button'><span>Save Phones</span></button></div>
+				</div>
+			</div>
 		</div>
 	</div>
-
 	<div id='jky-form-footer'></div>
 </div>
 
 <div id='jky-body-loaded'></div>
 <script src='js/suppliers.js'></script>
+<script src='js/company_contacts.js'></script>

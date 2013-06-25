@@ -1,3 +1,30 @@
+/*
+ * display contacts ---------------------------------------------------------
+ */
+JKY.display_contacts = function(the_id) {
+}
+
+/*
+ * display address ---------------------------------------------------------
+ */
+JKY.display_address = function(the_row) {
+	JKY.set_value	('jky-street1'	, the_row.street1	);
+	JKY.set_value	('jky-street2'	, the_row.street2	);
+	JKY.set_value	('jky-city'		, the_row.city		);
+	JKY.set_value	('jky-zip'		, the_row.zip		);
+	JKY.set_option	('jky-state'	, the_row.state		);
+	JKY.set_option	('jky-country'	, the_row.country	);
+}
+
+/*
+ * display phones ---------------------------------------------------------
+ */
+JKY.display_phones = function(the_row) {
+	JKY.set_value	('jky-phone'	, the_row.phone		);
+	JKY.set_value	('jky-mobile'	, the_row.mobile	);
+	JKY.set_value	('jky-fax'		, the_row.fax		);
+}
+
 JKY.verify_user_name = function() {
 	JKY.display_trace('verify_user_name');
 	var my_user_name = JKY.get_value('jky-user-name');
