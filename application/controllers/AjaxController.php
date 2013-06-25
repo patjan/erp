@@ -2379,7 +2379,7 @@ private function get_companies($data) {
 		. '  FROM Contacts'
 		. ' WHERE ' . $specific . ' = "Yes"'
 		. '   AND is_company = "Yes"'
-		. ' ORDER BY full_name'
+		. ' ORDER BY nick_name'
 		;
 	$db = Zend_Registry::get('db');
 	$rows = $db->fetchAll($sql);

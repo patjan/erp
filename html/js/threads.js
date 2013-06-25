@@ -29,6 +29,7 @@ JKY.start_program = function() {
 JKY.set_initial_values = function() {
 //	JKY.set_menu_active('jky-menu-production');
 	JKY.set_side_active('jky-production-threads');
+	JKY.set_side_active('jky-threads-threads');
 	JKY.set_html('jky-compositions'		, JKY.set_configs('Thread Compositions', '', ''));
 	JKY.set_html('jky-thread-groups'	, JKY.set_configs('Thread Groups', '', ''));
 	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));

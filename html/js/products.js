@@ -53,6 +53,7 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 //	JKY.set_menu_active('jky-menu-production');
+	JKY.set_side_active('jky-sales-products');
 	JKY.set_side_active('jky-production-products');
 	JKY.set_html('jky-app-select'  , JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-product-type', JKY.set_radios_array('jky-product-type', JKY.get_configs('Product Types')));

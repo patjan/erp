@@ -16,8 +16,8 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: 'Open'
 		, filter		: ''
-		, sort_by		: 'category, description'
-		, sort_seq		: 'ASC'
+		, sort_by		: 'opened_at'
+		, sort_seq		: 'DESC'
 		, focus			: 'jky-description'
 		});
 	JKY.App.init();

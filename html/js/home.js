@@ -44,6 +44,7 @@ JKY.set_all_events_home = function(jky_program) {
 		$('#jky-contact-us'		).click (function() {JKY.display_contact_us	()		;});
 */
 		$('#jky-sales-customers'		).click (function() {JKY.process_action('customers'		);});
+		$('#jky-sales-products'			).click (function() {JKY.process_action('products'		);});
 
 		$('#jky-purchases-purchases'	).click (function() {JKY.process_action('purchases'		);});
 		$('#jky-purchases-suppliers'	).click (function() {JKY.process_action('suppliers'		);});
@@ -53,6 +54,8 @@ JKY.set_all_events_home = function(jky_program) {
 		$('#jky-production-machines'	).click (function() {JKY.process_action('machines'		);});
 		$('#jky-production-products'	).click (function() {JKY.process_action('products'		);});
 		$('#jky-production-suppliers'	).click (function() {JKY.process_action('suppliers'		);});
+
+		$('#jky-threads-threads'		).click (function() {JKY.process_action('threads'		);});
 
 		$('#jky-help-tickets'			).click (function() {JKY.process_action('tickets'		);});
 
@@ -167,7 +170,7 @@ JKY.process_start_page = function() {
 
 //		,{id:'jky-menu-fabrics'		, icon:'plus', label:'Fabrics'		}
 //		,{id:'jky-menu-raws'		, icon:'plus', label:'Raws'			}
-//		,{id:'jky-menu-threads'		, icon:'plus', label:'Threads'		}
+		,{id:'jky-menu-threads'		, icon:'plus', label:'Threads'		}
 
 		,{id:'jky-menu-help'		, icon:'plus', label:'Help'			}
 		,{id:'jky-menu-admin'		, icon:'plus', label:'Admin'		}
@@ -191,6 +194,7 @@ JKY.process_menu = function(menu) {
 		case 'jky-menu-sales'		: JKY.show('jky-side-sales'		); JKY.process_action('customers'	); break;
 		case 'jky-menu-purchases'	: JKY.show('jky-side-purchases'	); JKY.process_action('purchases'	); break;
 		case 'jky-menu-production'	: JKY.show('jky-side-production'); JKY.process_action('ftps'		); break;
+		case 'jky-menu-threads'		: JKY.show('jky-side-threads'	); JKY.process_action('threads'		); break;
 		case 'jky-menu-help'		: JKY.show('jky-side-help'		); JKY.process_action('tickets'		); break;
 		case 'jky-menu-admin'		: JKY.show('jky-side-admin'		); JKY.process_action('contacts'	); break;
 		case 'jky-menu-support'		: JKY.show('jky-side-support'	); JKY.process_action('translations'); break;
