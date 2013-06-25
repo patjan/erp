@@ -42,6 +42,8 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
+	$('#jky-save-address'	).click (function() {JKY.save_address	();});
+	$('#jky-save-phones'	).click (function() {JKY.save_phones	();});
 };
 
 /**
