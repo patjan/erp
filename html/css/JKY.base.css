@@ -1,5 +1,7 @@
-@import url('bootstrap.css');
-@import url('bootstrap-responsive.css');
+/* @import url('bootstrap.css'); */
+/*@import url('bootstrap.2.3.2.css');*/
+/* @import url('bootstrap-responsive.css'); */
+/*@import url('bootstrap-responsive.2.3.2.css');*/
 
 @font-face				{ font-family:'arial rounded extraBold'; src:url('../fonts/arial-rounded-extrabold') format('woff'); font-style:normal; font-weight:bold;    }
 @font-face				{ font-family:'arial rounded bold'     ; src:url('../fonts/arial-rounded-bold'     ) format('woff'); font-style:normal; font-weight:bold;    }
