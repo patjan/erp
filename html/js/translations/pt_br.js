@@ -45,6 +45,7 @@ JKY.translations =
 , "Contacts":"Contatos"
 , "Controls":"Controles"
 , "Copy":"Copiar"
+, "Country":"País"
 , "Created":"Criado"
 , "Created At":"Criado Em"
 , "Created by":"Criado por"
