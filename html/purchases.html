@@ -64,20 +64,47 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span>  Source Document</span>:</div><input  id='jky-source-doc'		class='jky-form-value' /></div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Ordered Time</span>:</div>
+<!--				
 				<div id='jky-ordered-at' class='input-append date' data-date-format='dd-mm-yyyy'>
 					<input id='jky-ordered-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
+				</div>
+-->
+				<div id="jky-ordered-at" class="input-append date">
+					<input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+					<span class="add-on">
+					  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					  </i>
+					</span>
 				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Expected Date</span>:</div>
+<!--				
 				<div id='jky-expected-date' class='input-append date' data-date-format='dd-mm-yyyy'>
 					<input id='jky-expected-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
+				</div>
+-->
+				<div id="jky-expected-date" class="input-append date">
+					<input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+					<span class="add-on">
+					  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					  </i>
+					</span>
 				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Scheduled Time</span>:</div>
+<!--				
 				<div id='jky-scheduled-at' class='input-append date' data-date-format='dd-mm-yyyy'>
 					<input id='jky-scheduled-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
+				</div>
+-->
+				<div id="jky-scheduled-at" class="input-append date">
+					<input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+					<span class="add-on">
+					  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					  </i>
+					</span>
 				</div>
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>	 Supplier Name</span>:</div><select id='jky-supplier-name'></select></div>
