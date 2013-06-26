@@ -42,9 +42,10 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-tab-contacts'	).click (function() {JKY.display_contacts(JKY.row.id );});
 	$('#jky-tab-address'	).click (function() {JKY.display_address (JKY.row	 );});
 	$('#jky-tab-phones'		).click (function() {JKY.display_phones	 (JKY.row	 );});
+	$('#jky-tab-contacts'	).click (function() {JKY.display_contacts(JKY.row.id );});
+
 	$('#jky-save-address'	).click (function() {JKY.save_address				();});
 	$('#jky-save-phones'	).click (function() {JKY.save_phones				();});
 };
@@ -96,9 +97,9 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_html('jky-upload-percent'	, '');
 	JKY.set_css ('jky-upload-progress'	, 'width', '0%');
 
-	JKY.display_contacts(the_row.id);
 	JKY.display_address (the_row);
 	JKY.display_phones  (the_row);
+	JKY.display_contacts(the_row.id);
 };
 
 /**

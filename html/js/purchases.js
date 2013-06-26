@@ -31,6 +31,7 @@ JKY.set_all_events = function() {
 	$('#jky-ordered-at'		).datetimepicker({language: 'pt-BR'});
 	$('#jky-expected-date'	).datetimepicker({language: 'pt-BR', pickTime: false});
 	$('#jky-scheduled-at'	).datetimepicker({language: 'pt-BR'});
+
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
 	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
 	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
@@ -40,13 +41,11 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-//	JKY.set_menu_active('jky-menu-purchases');
 	JKY.set_side_active('jky-purchases-purchases');
 //	JKY.set_html('jky-app-select', JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
 	JKY.set_html('jky-payment-term', JKY.set_configs('Payment Terms', '', ''));
 //	JKY.set_html('jky-app-select-label', JKY.t('Type'));
-//	JKY.show('jky-side-purchases');
 //	JKY.show('jky-app-select-line');
 };
 

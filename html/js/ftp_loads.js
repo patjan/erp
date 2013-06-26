@@ -31,7 +31,7 @@ JKY.generate_loads = function(response) {
 				+ '</tr>'
 				+ '<tr>'
 				+ '<td></td>'
-				+ '<td colspan=2 class="jky-load-label-remarks"><span>Remarks</span>:</td>'
+				+ '<td colspan=2 class="jky-load-label-remarks"><span>' + JKY.t('Remarks') + '</span>:</td>'
 				+ '<td colspan=3 class="jky-load-remarks"><textarea  class="jky-load-remarks"				onchange="JKY.update_load(this, ' + my_id + ')">' + my_row.remarks + '</textarea></td>'
 				+ '</tr>'
 				;
