@@ -2,7 +2,51 @@
  * display contacts ---------------------------------------------------------
  */
 JKY.display_contacts = function(the_id) {
+	var my_data =
+		{ method		: 'get_index'
+		, table			: 'Contacts'
+		, specific		: 'company'
+		, specific_id	: the_id
+		, select		: 'All'
+		, order_by		: 'Contacts.full_name'
+		};
+	JKY.ajax(false, my_data, JKY.generate_contacts);
 }
+
+JKY.generate_contacts = function(response) {
+	var my_html		= '';
+	var my_rows		= response.rows;
+	if (my_rows != '') {
+		for(var i in my_rows) {
+			var my_row = my_rows[i];
+			my_html += JKY.generate_row(my_row);
+
+		}
+	}
+	JKY.set_html('jky-contacts-body', my_html);
+}
+
+JKY.generate_row = function(the_row) {
+	var my_id = the_row.id;
+/*
+	var my_thread = ''
+		+ "<input class='jky-thread-row-id' type='hidden' value=" + my_thread_id + " />"
+		+ "<input class='jky-thread-row-name jky-form-value' readonly='readonly' onclick='JKY.update_thread(this, " + my_id + ")' value='" + my_name + "' />"
+		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
+		;
+*/
+	var my_html = ''
+		+ '<tr contact_id=' + my_id + '>'
+		+ '<td class="jky-full-name"	>' + the_row.full_name	+ '</td>'
+		+ '<td class="jky-mobile"		>' + the_row.mobile		+ '</td>'
+		+ '<td class="jky-email"		>' + the_row.email		+ '</td>'
+		+ '<td class="jky-user-name"	>' + the_row.user_name	+ '</td>'
+		+ '<td class="jky-user-role"	>' + the_row.user_role	+ '</td>'
+		+ '</tr>'
+		;
+	return my_html;
+}
+
 
 /*
  * display address ---------------------------------------------------------

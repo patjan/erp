@@ -586,6 +586,7 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	$return .= ' AND Contacts.is_supplier	= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_company'	)	$return .= ' AND Contacts.is_company	= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	$return .= ' AND Contacts.is_company	= "No" ';
+	if ($table == 'Contacts'		&& $specific == 'company'		)	$return .= ' AND Contacts.company_id	= ' . $specific_id;
 	if ($table == 'FTPs'			&& $specific == 'product'		)	$return .= ' AND     FTPs.product_id	= ' . $specific_id;
 
 	return $return;
