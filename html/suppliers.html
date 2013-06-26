@@ -121,10 +121,22 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li id='jky-tab-contacts'		class='active'	><a href='#jky-contacts'			data-toggle='tab'><span>Contacts		</span></a></li>
+			<li id='jky-tab-contacts'		class='active'	><a href='#jky-pane-contacts'			data-toggle='tab'><span>Contacts		</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
+			<table id='jky-pane-contacts' class='tab-pane active table table-striped'>
+				<thead>
+					<tr>
+						<th class='jky-nick-name'		><span>Nick Name		</span></th>
+						<th class='jky-mobile'			><span>Mobile			</span></th>
+						<th class='jky-email'			><span>Email			</span></th>
+						<th class='jky-user-name'		><span>User Name		</span></th>
+						<th class='jky-user-role'		><span>User Role		</span></th>
+					</tr>
+				</thead>
+				<tbody id='jky-contacts-body'></tbody>
+			</table>
 		</div>
 	</div>
 

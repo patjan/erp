@@ -29,7 +29,7 @@ JKY.start_program = function() {
  */
 JKY.set_all_events = function() {
 	$('#jky-ordered-at'		).datetimepicker({language: 'pt-BR'});
-	$('#jky-expected-date'	).datetimepicker({language: 'pt-BR'});
+	$('#jky-expected-date'	).datetimepicker({language: 'pt-BR', pickTime: false});
 	$('#jky-scheduled-at'	).datetimepicker({language: 'pt-BR'});
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
 	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
