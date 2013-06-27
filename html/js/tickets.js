@@ -27,8 +27,8 @@ JKY.start_program = function() {
 		, table_name	: 'Tickets'
 		, directory		: 'tickets'
 		, field_name	: 'photo'
-		, title			: 'Photo files'
-		, extensions	: 'jpg,gif,png'
+		, title			: 'Any file type'
+		, extensions	: '*'	//the * subsitute as a wild card for any extension filename
 		, button_id		: 'jky-upload-photo'
 		, filename_id	: 'jky-upload-name'
 		, percent_id	: 'jky-upload-percent'
