@@ -83,6 +83,8 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-nick-name'		, the_row.nick_name		);
 	JKY.set_value	('jky-full-name'		, the_row.full_name		);
 	JKY.set_yes		('jky-is-company'		, the_row.is_company	);
+	JKY.set_yes		('jky-is-customer'		, the_row.is_customer	);
+	JKY.set_yes		('jky-is-supplier'		, the_row.is_supplier	);
 	JKY.set_option	('jky-contact-company'	, the_row.company_id	);
 	JKY.set_option	('jky-contact-tag'		, the_row.tags			);
 	JKY.set_value	('jky-website'			, the_row.website		);
@@ -90,7 +92,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-ie'				, the_row.ie			);
 	JKY.set_value	('jky-position'			, the_row.position		);
 	JKY.set_value	('jky-email'			, the_row.email			);
-	JKY.disable_button('jky-is-company');
+//	JKY.disable_button('jky-is-company');
 	setTimeout(function() {JKY.App.process_is_company($('#jky-is-company'));}, 100);
 
 	JKY.Photo.set_row_id(the_row.id);
@@ -127,7 +129,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-mobile'			, '');
 	JKY.set_value	('jky-fax'				, '');
 	JKY.set_value	('jky-email'			, '');
-	JKY.disable_button('jky-is-company');
+//	JKY.disable_button('jky-is-company');
 	setTimeout(function() {JKY.App.process_is_company($('#jky-is-company'));}, 100);
 };
 
@@ -139,6 +141,8 @@ JKY.get_form_set = function() {
 		+       'nick_name=\'' + JKY.get_value	('jky-nick-name'		) + '\''
 		+     ', full_name=\'' + JKY.get_value	('jky-full-name'		) + '\''
 		+    ', is_company=\'' + JKY.get_yes_no	('jky-is-company'		) + '\''
+		+   ', is_customer=\'' + JKY.get_yes_no	('jky-is-customer'		) + '\''
+		+   ', is_supplier=\'' + JKY.get_yes_no	('jky-is-supplier'		) + '\''
 		+    ', company_id=  ' + JKY.get_value	('jky-contact-company'	)
 		+          ', tags=\'' + JKY.get_value	('jky-contact-tag'		) + '\''
 		+          ', cnpj=\'' + JKY.get_value	('jky-cnpj'				) + '\''
