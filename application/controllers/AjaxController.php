@@ -650,6 +650,7 @@ private function set_new_fields($table) {
 	if ($table == 'History'			)	$return = ',  Contacts.full_name	AS	created_name';
 	if ($table == 'Purchases'		)	$return = ',  Supplier.nick_name	AS supplier_name';
 	if ($table == 'PurchaseLines'	)	$return = ',   Threads.name			AS			name';
+	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name	AS supplier_name';
 
 //	special code to append fields from Contacts to Services table
 	if (get_request('method') == 'export') {
@@ -693,6 +694,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Contacts				ON     Users.contact_id = Contacts.id';
 	if ($table == 'Purchases'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id		=    Purchases.supplier_id';
 	if ($table == 'PurchaseLines'	)	$return = '  LEFT JOIN     Threads  			ON   Threads.id		=PurchaseLines.thread_id';
+	if ($table == 'Incomings'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id		=    Incomings.supplier_id';
 	return $return;
 }
 
@@ -1020,6 +1022,32 @@ private function set_where($table, $filter) {
 				}
 			}
 		}
+
+		if ($table == 'Incomings') {
+			if ($name == 'number'
+			or	$name == 'received_at'
+			or	$name == 'invoice_number'
+			or	$name == 'invoice_date'
+			or	$name == 'invoice_weight'
+			or	$name == 'invoice_amount'
+			or	$name == 'real_weight'
+			or	$name == 'real_amount') {
+				if ($value == '"%null%"') {
+					return ' AND Incomings.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Incomings.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'supplier_name') {
+					if ($value == '"%null%"') {
+						return ' AND Incomings.supplier_id IS NULL';
+					}else{
+						return ' AND Supplier.nick_name LIKE ' . $value;
+					}
+				}
+			}
+		}
+
 	}
 
 	$filter = '"%' . $filter . '%"';
@@ -1156,6 +1184,19 @@ private function set_where($table, $filter) {
 			. ' OR  Purchases.supplier_ref	LIKE ' . $filter
 			. ' OR  Purchases.payment_term	LIKE ' . $filter
 			. ' OR   Supplier.nick_name		LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'Incomings') {
+		$return = ' Incomings.number			LIKE ' . $filter
+			. ' OR  Incomings.received_at		LIKE ' . $filter
+			. ' OR  Incomings.invoice_number	LIKE ' . $filter
+			. ' OR  Incomings.invoice_date		LIKE ' . $filter
+			. ' OR  Incomings.invoice_weight	LIKE ' . $filter
+			. ' OR  Incomings.invoice_amount	LIKE ' . $filter
+			. ' OR  Incomings.real_weight		LIKE ' . $filter
+			. ' OR  Incomings.real_amount		LIKE ' . $filter
+			. ' OR   Supplier.nick_name			LIKE ' . $filter
 			;
 		}
 
