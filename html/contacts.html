@@ -97,40 +97,35 @@
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
 			<li id='jky-tab-address'		class='active'	><a href='#jky-pane-address'				data-toggle='tab'><span>Address						</span></a></li>
-			<li	id='jky-tab-company'						><a href='#jky-company'				data-toggle='tab'><span>Company						</span></a></li>
+			<li	id='jky-tab-company'						><a href='#jky-pane-company'				data-toggle='tab'><span>Company						</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
 			<div id='jky-pane-address' class='tab-pane active'>
-				<div class='jky-left'>
-						<br>
-						<div class='jky-form-line'><div class='jky-form-label'><span> Street</span>: </div><input	id='jky-street1'	class='jky-form-value' placeholder='Street'		/></div>
-						<div class='jky-form-line'><div class='jky-form-label'></div><input	id='jky-street2'	class='jky-form-value' placeholder=''			/></div>
-						<div class='jky-form-line'><div class='jky-form-label'><span> City</span>:	</div><input	id='jky-city'		class='jky-form-value' placeholder='City'		/></div>
-						<input	id='jky-zip'		class='jky-form-value' placeholder='Zip'		/>
-						<select id='jky-state'	></select>
-						<div class='jky-form-line'><div class='jky-form-label'><span> Country</span>:	</div><select id='jky-country'></select></div>
-						<br>
-						<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-address' class='btn btn-success' type='button'><span>Save Address</span></button></div>
-				</div>							
+				<br>
+				<div class='jky-form-line'><div class='jky-form-label'><span> Street</span>: </div><input	id='jky-street1'	class='jky-form-value' placeholder='Street'		/></div>
+				<div class='jky-form-line'><div class='jky-form-label'></div><input	id='jky-street2'	class='jky-form-value' placeholder=''			/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span> City</span>:	</div><input	id='jky-city'		class='jky-form-value' placeholder='City'		/></div>
+				<input	id='jky-zip'		class='jky-form-value' placeholder='Zip'		/>
+				<select id='jky-state'	></select>
+				<div class='jky-form-line'><div class='jky-form-label'><span> Country</span>:	</div><select id='jky-country'></select></div>
+				<br>
+				<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-address' class='btn btn-success' type='button'><span>Save Address</span></button></div>
 			</div>
 
-			<div id='jky-company' class='tab-pane'>
-				<div class='jky-left'>
-							<table id='jky-pane-company-information' class='tab-pane table table-striped'>
-								<thead>
-									<tr>
-										<th class='jky-company-nick-name'><span>Full Name		</span></th>
-										<th class='jky-company-full-name'><span>Mobile			</span></th>
-										<th class='jky-tag'				 ><span>Tag				</span></th>
-										<th class='jky-cnpj'			 ><span>CNPJ			</span></th>
-										<th class='jky-ie'				 ><span>IE				</span></th>
-										<th class='jky-save'			 ><span>Save			</span></th>
-									</tr>
-								</thead>
-								<tbody id='jky-contacts-body'></tbody>
-							</table>
-				</div>
+			<div id='jky-pane-company' class='tab-pane'>
+				<br>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Nick Name</span>:</div><input  id='jky-nick-name'	class='jky-form-value' placeholder='Nick Name' /></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Full Name</span>:</div><input  id='jky-full-name'	class='jky-form-value' placeholder='Full Name' /></div>
+				<div id='jky-company'	class='jky-form-line'><div class='jky-form-label'><span>				  Company</span>:</div><select id='jky-contact-company'	></select></div>
+				<div					class='jky-form-line'><div class='jky-form-label'><span>				      Tag</span>:</div><select id='jky-contact-tag'		></select></div>
+				<div					class='jky-form-line'><div class='jky-form-label'><span id='jky-cnpj-label'	>CNPJ</span>:</div><input  id='jky-cnpj'		class='jky-form-value' /></div>
+				<div					class='jky-form-line'><div class='jky-form-label'><span id='jky-ie-label'	>  IE</span>:</div><input  id='jky-ie'			class='jky-form-value' /></div>
+				<div id='jky-website-line'  class='jky-form-line'><div class='jky-form-label'><span> Website</span>:</div><input id='jky-website'	class='jky-form-value'	placeholder='www.jkysoftware.com'	/></div>
+				<div id='jky-position-line' class='jky-form-line'><div class='jky-form-label'><span>Position</span>:</div><input id='jky-position'	class='jky-form-value'	placeholder='Purchase Director'		/></div>
+				<div						class='jky-form-line'><div class='jky-form-label'><span>   Email</span>:</div><input id='jky-email'		class='jky-form-value'	placeholder='company@email.com'		/></div>
+				<br>
+				<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-company' class='btn btn-success' type='button'><span>Save Company</span></button></div>
 			</div>
 		</div>
 	</div>
