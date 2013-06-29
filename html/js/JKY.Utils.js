@@ -601,11 +601,13 @@ JKY.get_yes_no = function(id_name){
  * @param	value
  */
 JKY.set_yes = function(id_name, value){
-	$('#' + id_name).removeAttr('checked');
+	var my_id = $('#' + id_name);
+	my_id.removeAttr('checked');
 	if (value == 'Yes') {
-//		var my_command = "$('#" + id_name + "').attr('checked', 'checked');";
-		var my_command = "$('#" + id_name + "').attr('checked', true);";
-		setTimeout(my_command, 100);
+		JKY.Changes.track(false);
+//		$('#' + id_name).attr('checked', true);		//	after jquery 1.8.1 stopped work
+		my_id.click();
+		JKY.Changes.track(true);
 	}
 }
 

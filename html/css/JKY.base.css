@@ -42,7 +42,7 @@ input.span2 {width:80px; padding:2px 4px;}
 .jky-side-item	{padding-left:20px;}
 .jky-side-item.active	{
 	background:#323232;
-	color:white;
+	color:white !important;
 }
 .jky-side-item.dev	{
 	color:green;
@@ -154,10 +154,10 @@ input.span2 {width:80px; padding:2px 4px;}
 #jky-action-cancel		{display:none;}
 #jky-action-export		{display:inline-block;}
 #jky-action-publish		{display:none;}
-#jky-action-list		{display:inline-table;}
+#Xjky-action-list		{display:inline-table;}
 #jky-action-graph		{display:none;}
 #jky-action-calendar	{display:none;}
-#jky-action-form		{display:inline-table;}
+#Xjky-action-form		{display:inline-table;}
 .jky-action				{width:12%; text-align:center;}
 
 /* -------------------------------------------------------------------------- */

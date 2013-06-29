@@ -48,8 +48,9 @@ JKY.set_all_events_home = function(jky_program) {
 
 		$('#jky-purchases-purchases'	).click (function() {JKY.process_action('purchases'		);});
 		$('#jky-purchases-suppliers'	).click (function() {JKY.process_action('suppliers'		);});
-		$('#jky-purchases-in-shipments'	).click (function() {JKY.process_action('incomings'		);});
-		$('#jky-purchases-in-batches'	).click (function() {JKY.process_action('batches'		);});
+		$('#jky-purchases-incomings'	).click (function() {JKY.process_action('incomings'		);});
+		$('#jky-purchases-batches'		).click (function() {JKY.process_action('batches'		);});
+		$('#jky-purchases-boxes'		).click (function() {JKY.process_action('boxe'			);});
 
 		$('#jky-production-ftps'		).click (function() {JKY.process_action('ftps'			);});
 		$('#jky-production-threads'		).click (function() {JKY.process_action('threads'		);});

@@ -653,6 +653,11 @@ private function set_new_fields($table) {
 	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name	AS supplier_name';
 	if ($table == 'Batches'			)	$return = ',   Threads.name			AS			name'
 												. ', Incomings.number		AS			number';
+	if ($table == 'Boxes'			)	$return = ',   Batches.batch		AS			batch'
+												. ',    Parent.barcode		AS			parent'
+												. ',   CheckIn.nick_name	AS			checkin'
+												. ',  CheckOut.nick_name	AS			checkout'
+												. ',   Stocked.nick_name	AS			stocked';
 
 //	special code to append fields from Contacts to Services table
 	if (get_request('method') == 'export') {
@@ -699,6 +704,11 @@ private function set_left_joins($table) {
 	if ($table == 'Incomings'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id		=    Incomings.supplier_id';
 	if ($table == 'Batches'			)	$return = '  LEFT JOIN     Threads  			ON   Threads.id		=      Batches.thread_id'
 												. '  LEFT JOIN PurchaseLines AS PLines  ON    PLines.id		=	   Batches.purchase_line_id';
+	if ($table == 'Boxes'			)	$return = '  LEFT JOIN     Batches  			ON   Batches.id		=        Boxes.batch_id'
+												. '  LEFT JOIN       Boxes AS Parent	ON    Parent.id		=	     Boxes.parent_id'
+												. '  LEFT JOIN    Contacts AS CheckIn	ON   CheckIn.id		=		 Boxes.checkin_by'
+												. '  LEFT JOIN    Contacts AS CheckOut	ON  CheckOut.id		=		 Boxes.checkout_by'
+												. '  LEFT JOIN    Contacts AS Stocked	ON   Stocked.id		=		 Boxes.stocked_by';
 	return $return;
 }
 
@@ -1087,6 +1097,36 @@ private function set_where($table, $filter) {
 			}
 		}
 
+		if ($table == 'Boxes') {
+			if ($name == 'barcode'
+			or	$name == 'average_weight'
+			or	$name == 'real_weight'
+			or	$name == 'checkin_location'
+			or	$name == 'checkout_location'
+			or	$name == 'stoced_location') {
+				if ($value == '"%null%"') {
+					return ' AND Boxes.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Boxes.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'batch') {
+					if ($value == '"%null%"') {
+						return ' AND Boxes.batch_id IS NULL';
+					}else{
+						return ' AND Batches.batch LIKE ' . $value;
+					}
+				}
+				if ($name == 'parent') {
+					if ($value == '"%null%"') {
+						return ' AND Boxes.parent_id IS NULL';
+					}else{
+						return ' AND Parent.barcode LIKE ' . $value;
+					}
+				}
+			}
+		}
+
 	}
 
 	$filter = '"%' . $filter . '%"';
@@ -1253,6 +1293,18 @@ private function set_where($table, $filter) {
 			. ' OR  Batches.used_weight		LIKE ' . $filter
 			. ' OR  Threads.name			LIKE ' . $filter
 			. ' OR   PLines.number			LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'Boxes') {
+		$return = ' Boxes.barcode			LIKE ' . $filter
+			. ' OR  Boxes.average_weight	LIKE ' . $filter
+			. ' OR  Boxes.real_weight		LIKE ' . $filter
+			. ' OR  Boxes.checkin_location	LIKE ' . $filter
+			. ' OR  Boxes.checkout_location	LIKE ' . $filter
+			. ' OR  Boxes.stocked_location	LIKE ' . $filter
+			. ' OR  Batches.batch			LIKE ' . $filter
+			. ' OR  Parent.barcode			LIKE ' . $filter
 			;
 		}
 

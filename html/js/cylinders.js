@@ -23,11 +23,18 @@ JKY.generate_cylinders = function(response) {
 			var my_current		= my_row.is_current;
 			var my_checked	= my_current == 'Yes' ? ' checked="checked"' : '';
 
+			var my_cylinder = ''
+//				+ "<input class='jky-thread-row-id' type='hidden' value=" + my_thread_id + " />"
+				+ "<input class='jky-cylinder-name jky-form-value' readonly='readonly' onclick='JKY.update_cylinder(this, " + my_id + ")' value='" + my_name + "' />"
+				+ "<a href='#' onClick='JKY.Cylinder.display(this)'><i class='icon-share'></i></a>"
+				;
+			
 			my_html  += ''
 				+ '<tr cylinder_id=' + my_id + '>'
 				+ '<td class="jky-action"><a onclick="JKY.delete_cylinder(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
 				+ '<td class="jky-cylinder-value"><input name="jky-cylinder-current" type="radio" onchange="JKY.set_current(this, ' + my_id + ')"'		 + my_checked + ' /></td>'
-				+ '<td class="jky-cylinder-label"><input class="jky-cylinder-name"   text="text"  onchange="JKY.update_name(this, ' + my_id + ')" value="'	+ my_name + '" /></td>'
+//				+ '<td class="jky-cylinder-label"><input class="jky-cylinder-name"   text="text"  onchange="JKY.update_name(this, ' + my_id + ')" value="'	+ my_name + '" /></td>'
+				+ '<td class="jky-cylinder-label">' + my_cylinder + '</td>' 
 				+ '</tr>'
 				;
 		}

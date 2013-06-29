@@ -12,7 +12,8 @@ var JKY = JKY || {};
  * require:	JKY.Utils.js(JKY.display_confirm)
  */
 JKY.Changes = function() {
-	var my_changes = 0;		//	number of changes applied on current transaction
+	var my_track	= true;		//	flag to track the changes or not
+	var my_changes	= 0;		//	number of changes applied on current transaction
 
 	/**
 	 *
@@ -75,9 +76,10 @@ JKY.Changes = function() {
 
 	return {
 		  reset			: function()	{my_reset();}
-		, increment		: function()	{my_changes += 1; my_set_button_save();}
-		, decrement		: function()	{my_changes -= 1; my_set_button_save();}
+		, increment		: function()	{if (my_track)	{my_changes += 1; my_set_button_save();}}
+		, decrement		: function()	{if (my_track)	{my_changes -= 1; my_set_button_save();}}
 
+		, track			: function(the_flag)		{		my_track = the_flag;}  
 		, can_leave		: function(the_function)	{return my_can_leave(the_function);}
 	};
 }();

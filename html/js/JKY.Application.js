@@ -391,35 +391,35 @@ if (my_first == true) {
  * process change input
  */
 	function my_process_change_input(the_id) {
-			var my_id = $(the_id).attr('id');
-			JKY.display_trace('my_process_change_input: ' + my_id);
-			JKY.Changes.increment();
-			if (my_id == 'jky-is-company') {
-				my_process_is_company(the_id);
-			}else{
-				JKY.Validation.is_invalid(JKY.row, my_id);
-			}
+		var my_id = $(the_id).attr('id');
+		JKY.display_trace('my_process_change_input: ' + my_id);
+		JKY.Changes.increment();
+		if (my_id == 'jky-is-company') {
+			my_process_is_company(the_id);
+		}else{
+			JKY.Validation.is_invalid(JKY.row, my_id);
 		}
+	}
 
 /**
  * only used on [Customers, Suppliers, Companies]
  */
 	function my_process_is_company(the_id) {
-			JKY.display_trace('my_process_is_company');
-			if ($(the_id).is(':checked')) {
-				JKY.invisible	('jky-company');
-				JKY.hide		('jky-position-line'	);
-				JKY.show		('jky-website-line'		);
-				JKY.set_html	('jky-cnpj-label','CNPJ');
-				JKY.set_html	('jky-ie-label'  ,'IE'	);
-			}else{
-				JKY.visible		('jky-company');
-				JKY.show		('jky-position-line'	);
-				JKY.hide		('jky-website-line'		);
-				JKY.set_html	('jky-cnpj-label','CPF'	);
-				JKY.set_html	('jky-ie-label'  ,'RG'	);
-			}
+		JKY.display_trace('my_process_is_company');
+		if ($(the_id).is(':checked')) {
+			JKY.invisible	('jky-company');
+			JKY.hide		('jky-position-line'	);
+			JKY.show		('jky-website-line'		);
+			JKY.set_html	('jky-cnpj-label','CNPJ');
+			JKY.set_html	('jky-ie-label'  ,'IE'	);
+		}else{
+			JKY.visible		('jky-company');
+			JKY.show		('jky-position-line'	);
+			JKY.hide		('jky-website-line'		);
+			JKY.set_html	('jky-cnpj-label','CPF'	);
+			JKY.set_html	('jky-ie-label'  ,'RG'	);
 		}
+	}
 
 	function my_set(the_args) {
 			JKY.display_trace('my_set');
