@@ -59,16 +59,15 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>			Number</span>:</div><input  id='jky-number'			class='jky-form-value'	readonly='readonly'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>  Source Document</span>:</div><input  id='jky-received-time'		class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Number</span>:</div><input  id='jky-number'class='jky-form-value'	readonly='readonly'	/></div>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Ordered Time</span>:</div>
+				<div class='jky-form-label'><span>Received Time</span>:</div>
 <!--				
-				<div id='jky-invoice-weight' class='input-append date' data-date-format='dd-mm-yyyy'>
+				<div id='jky-ordered-at' class='input-append date' data-date-format='dd-mm-yyyy'>
 					<input id='jky-ordered-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
 				</div>
 -->
-				<div id="jky-invoice-weight" class="input-append date">
+				<div id="jky-received-time" class="input-append date">
 					<input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
 					<span class="add-on">
 					  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
@@ -76,26 +75,13 @@
 					</span>
 				</div>
 			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Supplier Name</span>:</div><input  id='jky-supplier-name'	class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Number</span>:</div><input  id='jky-invoice-number'	class='jky-form-value' /></div>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Expected Date</span>:</div>
+				<div class='jky-form-label'><span>Invoice Date</span>:</div>
 <!--				
-				<div id='jky-invoice-number' class='input-append date' data-date-format='dd-mm-yyyy'>
+				<div id='jky-expected-date' class='input-append date' data-date-format='dd-mm-yyyy'>
 					<input id='jky-expected-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
-				</div>
--->
-				<div id="jky-invoice-number" class="input-append date">
-					<input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
-					<span class="add-on">
-					  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-					  </i>
-					</span>
-				</div>
-			</div>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Scheduled Time</span>:</div>
-<!--				
-				<div id='jky-invoice-date' class='input-append date' data-date-format='dd-mm-yyyy'>
-					<input id='jky-scheduled-value' class='span2' size='16' type='text' value='' readonly><span class='add-on'><i class='icon-th'></i></span>
 				</div>
 -->
 				<div id="jky-invoice-date" class="input-append date">
@@ -106,9 +92,8 @@
 					</span>
 				</div>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>	 Supplier Name</span>:</div><select id='jky-invoice-weight'></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Supplier Document</span>:</div><input  id='jky-invoice-amount'	class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>	  Payment Term</span>:</div><select id='jky-payment-term' ></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Weight</span>:</div><input  id='jky-invoice-weight'	class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Amount</span>:</div><input  id='jky-invoice-amount'	class='jky-form-value' /></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -131,27 +116,6 @@
 
 		<div class='tab-content'>
 			<div id='jky-pane-lines' class='tab-pane active'>
-				<table class='table table-striped' >
-					<thead>
-						<tr>
-							<th class='jky-action'></th>
-							<th class='jky-line-name'				><span>   Thread			</span></th>
-							<th class='jky-line-expected-weight'	><span> Expected<br>Weight	</span></th>
-							<th class='jky-line-received-weight'	><span> Received<br>Weight	</span></th>
-							<th class='jky-line-invoice-number'		><span> Expected<br>Date	</span></th>
-							<th class='jky-line-invoice-date'		><span>Scheduled<br>Time	</span></th>
-						</tr>
-					</thead>
-					<tbody id='jky-line-body'></tbody>
-					<tfoot>
-						<tr>
-							<td	   id='jky-line-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
-							<td class='jky-line-label'><span>Total</span></td>
-							<td    id='jky-line-total-expected'></td>
-							<td    id='jky-line-total-received'></td>
-						</tr>
-					</tfoot>
-				</table>
 			</div>
 		</div>
 	</div>

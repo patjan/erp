@@ -28,8 +28,8 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-invoice-weight'		).datetimepicker({language: 'pt-BR'});
-	$('#jky-expected-date'	).datetimepicker({language: 'pt-BR', pickTime: false});
+	$('#jky-received-time'		).datetimepicker({language: 'pt-BR'});
+	$('#jky-invoice-date'	).datetimepicker({language: 'pt-BR', pickTime: false});
 	$('#jky-scheduled-at'	).datetimepicker({language: 'pt-BR'});
 
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
@@ -56,8 +56,8 @@ JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-number"			>' + the_row.number			+ '</td>'
 		+  '<td class="jky-received-time"		>' + the_row.received_time		+ '</td>'
-		+  '<td class="jky-invoice-weight"		>' + JKY.short_date(the_row.ordered_at   )	+ '</td>'
-		+  '<td class="jky-expected-date"	>' + the_row.expected_date 	+ '</td>'
+		+  '<td class="jky-received-time"		>' + JKY.short_date(the_row.ordered_at   )	+ '</td>'
+		+  '<td class="jky-invoice-date"	>' + the_row.expected_date 	+ '</td>'
 		+  '<td class="jky-scheduled-at"	>' + JKY.short_date(the_row.scheduled_at )	+ '</td>'
 		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name	+ '</td>'
 		+  '<td class="jky-supplier-ref"	>' + the_row.supplier_ref	+ '</td>'
@@ -88,8 +88,8 @@ JKY.set_form_row = function(the_row) {
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-number'			,  JKY.t('New'));
 	JKY.set_value	('jky-received-time'		, '');
-	JKY.set_value	('jky-invoice-weight'		,  JKY.fix_ymd2dmy(JKY.get_now()));
-	JKY.set_value	('jky-expected-date'	,  JKY.fix_ymd2dmy(JKY.get_now()));
+	JKY.set_value	('jky-received-time'		,  JKY.fix_ymd2dmy(JKY.get_now()));
+	JKY.set_value	('jky-invoice-date'	,  JKY.fix_ymd2dmy(JKY.get_now()));
 	JKY.set_value	('jky-scheduled_at'		,  JKY.fix_ymd2dmy(JKY.get_now()));
 	JKY.set_option	('jky-supplier-name'	, '');
 	JKY.set_value	('jky-supplier-ref'		, '');
