@@ -55,6 +55,7 @@ $translations = array
 , "Customer"=>"Cliente"
 , "Customer Tag"=>"Tag do Cliente"
 , "Customers"=>"Clientes"
+, "Cylinder"=>"Cilindro"
 , "Cylinders"=>"Cilindros"
 , "Delete"=>"Deletar"
 , "Density"=>"Finura"

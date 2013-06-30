@@ -34,7 +34,7 @@
 .jky-cylinder-label		{width:80%;		text-align:left  ;}
 .jky-cylinder-label a 	{margin-left:-30px; padding:5px;}
 .jky-cylinder-current	{width: 40px;	text-align:right ; margin-right:0;}
-.jky-cylinder-name		{width:400px;}
+.jky-cylinder-row-name	{width:400px;}
 #jky-cylinder-total		{				text-align:right;}
 
 </style>
@@ -146,6 +146,28 @@
 		</div>
 	</div>
 	<div id='jky-form-footer'></div>
+</div>
+
+<div id='jky-cylinder-search' class='modal hide fade in'>
+	<div class='modal-header'>
+		<a class='close' data-dismiss='modal'>X</a>
+		<h3><span>Search</span>: <span>Cylinder</span></h3>
+	</div>
+	<div class='modal-body'>
+		<div><input id='jky-cylinder-filter' class='search-query' type='text' placeholder='Search' /></div>
+		<table id='jky-cylinder-table' class='table table-striped'>
+			<thead>
+				<tr>
+					<th class='jky-cylinder-header-name'><span>Name</span></th>
+				</tr>
+			</thead>
+			<tbody id='jky-cylinder-search-body'></tbody>
+		</table>
+	</div>
+	<div class='modal-footer'>
+<!--	<button  id='jky-cylinder-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>
+-->		&nbsp;<a id='jky-cylinder-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
+	</div>
 </div>
 
 <div id='jky-body-loaded'></div>

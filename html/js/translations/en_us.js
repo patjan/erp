@@ -55,6 +55,7 @@ JKY.translations =
 , "Customer":"Customer"
 , "Customer Tag":"Customer Tag"
 , "Customers":"Customers"
+, "Cylinder":"Cylinder"
 , "Cylinders":"Cylinders"
 , "Delete":"Delete"
 , "Density":"Density"
