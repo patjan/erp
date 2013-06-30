@@ -388,6 +388,100 @@ JKY.fix_dmy2ymd = function(date){
 }
 
 /**
+ * out date
+ * @param	yyyy-mm-dd hh:mm:ss
+ *
+ * @return	mm-dd-yyyy (en_US)
+ * @return	dd-mm-yyyy (pt_BR)
+ */
+JKY.out_date = function(the_time){
+	if (the_time == 'null') {
+		return '';
+	}
+
+	var my_date		= the_time.substr( 0, 10);
+	var my_dates	= my_date.split('-');
+	var my_result	= '';
+
+	var my_locale = JKY.Session.get_value('locale');
+	switch(my_locale) {
+		case 'en_us'	: my_result = my_dates[1] + '-' + my_dates[2] + '-' + my_dates[0];	break;
+		case 'pt_br'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
+		default			: my_result = my_date;
+	}
+	return my_result;
+}
+
+/**
+ * out time
+ * @param	yyyy-mm-dd hh:mm:ss
+ *
+ * @return	mm-dd-yyyy hh:mm:ss (en_US)
+ * @return	dd-mm-yyyy hh:mm:ss (pt_BR)
+ */
+JKY.out_time = function(the_time){
+	if (the_time == 'null') {
+		return '';
+	}
+
+	var my_date		= the_time.substr( 0, 10);
+	var my_time		= the_time.substr(11);
+	var my_dates	= my_date.split('-');
+	var my_result	= '';
+
+	var my_locale = JKY.Session.get_value('locale');
+	switch(my_locale) {
+		case 'en_us'	: my_result = my_dates[1] + '-' + my_dates[2] + '-' + my_dates[0];	break;
+		case 'pt_br'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
+		default			: my_result = my_date;
+	}
+	return my_result + ' ' + my_time;
+}
+
+/**
+ * input date
+ * @param	mm-dd-yyyy (en-US)
+ * @param	dd-mm-yyyy (pt_BR)
+ *
+ * @return	yyyy-mm-dd
+ */
+JKY.inp_date = function(the_date){
+	var my_date		= the_date.substr(0, 10);
+	var my_dates	= my_date.split('-');
+	var my_result	= '';
+
+	var my_locale = JKY.Session.get_value('locale');
+	switch(my_locale) {
+		case 'en_us'	: my_result = my_dates[2] + '-' + my_dates[0] + '-' + my_dates[1];	break;
+		case 'pt_br'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
+		default			: my_result = my_date;
+	}
+	return '\'' + my_result + '\'';
+}
+
+/**
+ * input time
+ * @param	mm-dd-yyyy hh:mm:ss (en-US)
+ * @param	dd-mm-yyyy hh:mm:ss (pt_BR)
+ *
+ * @return	yyyy-mm-dd hh:mm:ss
+ */
+JKY.inp_time = function(the_time){
+	var my_date		= the_time.substr( 0, 10);
+	var my_time		= the_time.substr(11);
+	var my_dates	= my_date.split('-');
+	var my_result	= '';
+
+	var my_locale = JKY.Session.get_value('locale');
+	switch(my_locale) {
+		case 'en_us'	: my_result = my_dates[2] + '-' + my_dates[0] + '-' + my_dates[1];	break;
+		case 'pt_br'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
+		default			: my_result = my_date;
+	}
+	return '\'' + my_result + ' ' + my_time + '\'';
+}
+
+/**
  * display message on right bottom corner
  * it will stay be displayed long enought to be read
  * if provided id_name, will set focus after timeout

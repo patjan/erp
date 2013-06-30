@@ -1522,6 +1522,12 @@ private function insert($data) {
 		$set .= ', number= ' . $my_number;
 	}
 
+	if ($table == 'Incomings') {
+		$my_number = $this->get_next_number('Controls', 'Next Incoming Number');
+		$set .= ',     id= ' . $my_number;
+		$set .= ', number= ' . $my_number;
+	}
+
 	$sql= 'INSERT ' . $table
 		. '   SET ' . str_replace("*#", "&", $set)
 		;

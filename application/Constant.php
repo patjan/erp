@@ -28,7 +28,7 @@ define( 'APP_PATH'            ,  dirname( __FILE__ )        );
 define( 'COMPANY_ID'          , '1'							);
 define( 'COMPANY_NAME'        , 'JKY Software'				);
 define( 'COMPANY_LOGO'        , 'JKY-Software.png'			);
-define( 'LOCALE'	          , 'en_us'						);		//	en_us, pt_br
+define( 'LOCALE'	          , 'pt_br'						);		//	en_us, pt_br
 define( 'WEB_SITE'            , 'http://im4/'               );
 define( 'DOMAIN_NAME'         , 'pat'                       );
 define( 'SERVER_NAME'         , 'http://erp/'				);
