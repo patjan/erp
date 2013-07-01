@@ -18,7 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'number'
 		, sort_seq		: 'DESC'
-		, focus			: 'jky-received-time'
+		, focus			: 'jky-invoice-number'
 		, add_new		: 'display form'
 		});
 	JKY.App.init();
@@ -28,8 +28,9 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-received-time'	).datetimepicker({language: 'pt-BR'});
-	$('#jky-invoice-date'	).datetimepicker({language: 'pt-BR', pickTime: false});
+	var my_locale = JKY.Session.get_value('locale');
+	$('#jky-received-time'	).datetimepicker({language: my_locale});
+	$('#jky-invoice-date'	).datetimepicker({language: my_locale, pickTime: false});
 
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
 	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
@@ -69,7 +70,7 @@ JKY.set_table_row = function(the_row) {
  */
 JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-number'			, the_row.number		);
-	JKY.set_value	('jky-received-value'	, JKY.out_time(the_row.received_time));
+	JKY.set_value	('jky-received-value'	, JKY.out_time(the_row.received_at));
 	JKY.set_option	('jky-supplier-name'	, the_row.supplier_id	);
 	JKY.set_value	('jky-invoice-number'	, the_row.invoice_number);
 	JKY.set_value	('jky-invoice-value'	, JKY.out_date(the_row.invoice_date));
