@@ -395,7 +395,7 @@ JKY.fix_dmy2ymd = function(date){
  * @return	dd-mm-yyyy (pt_BR)
  */
 JKY.out_date = function(the_time){
-	if (the_time == 'null') {
+	if (the_time == null) {
 		return '';
 	}
 
@@ -403,10 +403,9 @@ JKY.out_date = function(the_time){
 	var my_dates	= my_date.split('-');
 	var my_result	= '';
 
-	var my_locale = JKY.Session.get_value('locale');
-	switch(my_locale) {
-		case 'en_us'	: my_result = my_dates[1] + '-' + my_dates[2] + '-' + my_dates[0];	break;
-		case 'pt_br'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
+	switch(JKY.Session.get_locale()) {
+		case 'en_US'	: my_result = my_dates[1] + '-' + my_dates[2] + '-' + my_dates[0];	break;
+		case 'pt_BR'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
 		default			: my_result = my_date;
 	}
 	return my_result;
@@ -420,7 +419,7 @@ JKY.out_date = function(the_time){
  * @return	dd-mm-yyyy hh:mm:ss (pt_BR)
  */
 JKY.out_time = function(the_time){
-	if (the_time == 'null') {
+	if (the_time == null) {
 		return '';
 	}
 
@@ -429,13 +428,36 @@ JKY.out_time = function(the_time){
 	var my_dates	= my_date.split('-');
 	var my_result	= '';
 
-	var my_locale = JKY.Session.get_value('locale');
-	switch(my_locale) {
-		case 'en_us'	: my_result = my_dates[1] + '-' + my_dates[2] + '-' + my_dates[0];	break;
-		case 'pt_br'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
+	switch(JKY.Session.get_locale()) {
+		case 'en_US'	: my_result = my_dates[1] + '-' + my_dates[2] + '-' + my_dates[0];	break;
+		case 'pt_BR'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
 		default			: my_result = my_date;
 	}
 	return my_result + ' ' + my_time;
+}
+
+/**
+ * short date
+ * @param	yyyy-mm-dd hh:mm:ss
+ *
+ * @return	mm-dd-yyyy	(en_US)
+ * @return	dd-mm-yyyy	(pt_BR)
+ * @return	mm-dd hh:ss	(en_US)
+ * @return	dd-mm hh:ss	(pt_BR)
+ */
+JKY.short_date = function(the_time){
+	if (the_time == null) {
+		return '';
+	}
+
+	var my_time = JKY.out_time(the_time);
+	var my_date = the_time.substr(0, 10);
+	if (my_date == JKY.get_now()) {
+		my_date = my_time.substr(0, 5) + ' ' + my_time.substr(11, 5);
+	}else{
+		my_date = my_time.substr(0, 10);
+	}
+	return my_date;
 }
 
 /**
@@ -450,10 +472,9 @@ JKY.inp_date = function(the_date){
 	var my_dates	= my_date.split('-');
 	var my_result	= '';
 
-	var my_locale = JKY.Session.get_value('locale');
-	switch(my_locale) {
-		case 'en_us'	: my_result = my_dates[2] + '-' + my_dates[0] + '-' + my_dates[1];	break;
-		case 'pt_br'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
+	switch(JKY.Session.get_locale()) {
+		case 'en_US'	: my_result = my_dates[2] + '-' + my_dates[0] + '-' + my_dates[1];	break;
+		case 'pt_BR'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
 		default			: my_result = my_date;
 	}
 	return '\'' + my_result + '\'';
@@ -472,10 +493,9 @@ JKY.inp_time = function(the_time){
 	var my_dates	= my_date.split('-');
 	var my_result	= '';
 
-	var my_locale = JKY.Session.get_value('locale');
-	switch(my_locale) {
-		case 'en_us'	: my_result = my_dates[2] + '-' + my_dates[0] + '-' + my_dates[1];	break;
-		case 'pt_br'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
+	switch(JKY.Session.get_locale()) {
+		case 'en_US'	: my_result = my_dates[2] + '-' + my_dates[0] + '-' + my_dates[1];	break;
+		case 'pt_BR'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
 		default			: my_result = my_date;
 	}
 	return '\'' + my_result + ' ' + my_time + '\'';
@@ -566,24 +586,6 @@ JKY.get_time = function() {
 	var  my_minute	= my_today.getMinutes();	if (my_minute < 10)	my_minute = '0' + my_minute;
 	var  my_second	= my_today.getSeconds();	if (my_second < 10)	my_second = '0' + my_second;
 	return my_hour + ':' + my_minute + ':' + my_second;
-}
-
-/**
- * short date time
- * @param	date_time	yyyy-mm-dd hh:mm:ss
- * @return	yyyy-mm-dd
- * @return	mm-dd hh:ss
- */
-JKY.short_date = function(the_date_time){
-	var my_date = '';
-	if (the_date_time != null) {
-		my_date = the_date_time.substr(0, 10);
-//alert(JKY.get_now());
-		if (my_date == JKY.get_now()) {
-			my_date = the_date_time.substr(5, 11);
-		}
-	}
-	return my_date;
 }
 
 /**

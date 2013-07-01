@@ -43,3 +43,6 @@ ALTER TABLE FTPs		DROP	needling;
 ----- 2013/06/19
 ALTER TABLE Contacts	CHANGE	is_supplier	is_supplier	CHAR(3)			DEFAULT 'No';
 UPDATE		Contacts	SET is_supplier = 'No'		WHERE is_supplier = 'no';
+----- 2013/06/30
+UPDATE Translations	SET locale = 'en_US'	WHERE locale = 'en_us';
+UPDATE Translations	SET locale = 'pt_BR'	WHERE locale = 'pt_br';

@@ -21,7 +21,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'sentence'
 		, sort_seq		: 'ASC'
-		, focus			: 'en_us'
+		, focus			: 'en_US'
 		});
 	JKY.App.init();
 };
@@ -64,7 +64,7 @@ JKY.set_form_row = function(the_row) {
 		var my_sentence = '';
 		for(var n=0; n<my_rows.length; n++) {
 			var my_row = my_rows[n];
-			if (my_row.locale == 'en_us') {
+			if (my_row.locale == 'en_US') {
 				JKY.row_id = my_row.id;
 				JKY.set_option('jky_status', my_row.status);
 			}
@@ -106,8 +106,8 @@ JKY.set_add_new_row = function() {
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-		+          'locale=\'' +				 'en_us'				  + '\''
-		+      ', sentence=\'' + JKY.get_value	('en_us'				) + '\''
+		+          'locale=\'' +				 'en_US'				  + '\''
+		+      ', sentence=\'' + JKY.get_value	('en_US'				) + '\''
 		;
 	return my_set;
 }
@@ -126,7 +126,7 @@ JKY.process_insert = function(the_id) {
 JKY.process_update = function(the_id, the_row) {
 	for(var l=0; l<JKY.languages.length; l++) {
 		var my_locale = JKY.languages[l].name ;
-		if (my_locale != 'en_us') {
+		if (my_locale != 'en_US') {
 			var my_where = '  parent_id='   + the_id
 						 + ' AND locale=\'' + my_locale + '\''
 						;

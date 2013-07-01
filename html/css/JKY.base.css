@@ -27,6 +27,8 @@ input.span2 {width:80px; padding:2px 4px;}
 .modal-backdrop,
 .modal-backdrop.fade.in {opacity:0.5;}
 .datepicker-dropdown:after	{left:432px;}
+.input-append			{margin-bottom:4px;}
+.input-append input		{height:16px;}
 
 .table thead th {vertical-align: middle;}
 .table tbody td {line-height:12px;}

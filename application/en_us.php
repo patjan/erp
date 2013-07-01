@@ -1,5 +1,5 @@
 <?
-//   language en_us
+//   language en_US
 $translations = array
 ( "123-456-7890"=>"123-456-7890"
 , "Account"=>"Account"

@@ -580,7 +580,7 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'Groups'			&& $specific == 'event_id'	)		$return .= ' AND   Groups.event_id		= ' . get_session('event_id');
 	if ($table == 'Services'		&& $specific == 'event_id'	)		$return .= ' AND Services.event_id		= ' . get_session('event_id');
 	if ($table == 'Services'		&& $specific == 'fee_amount')       $return .= ' AND Services.fee_amount > 0';
-	if ($table == 'Translations'	&& $specific == 'locale'	)		$return .= ' AND Translations.locale	= "en_us"';
+	if ($table == 'Translations'	&& $specific == 'locale'	)		$return .= ' AND Translations.locale	= "en_US"';
 //	if ($specific == 'parent_id')	$return .= ' AND Categories.parent_id = ' . get_session('parent_id');
 	if ($table == 'Contacts'		&& $specific == 'is_customer'	)	$return .= ' AND Contacts.is_customer	= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	$return .= ' AND Contacts.is_supplier	= "Yes"';
@@ -1968,7 +1968,7 @@ private function publish($data) {
 			. '    ON Targets.parent_id = Translations.id'
 			. '   AND Targets.locale = "' . $locale . '"'
 			. ' WHERE Translations.status = "Active"'
-			. '   AND Translations.locale = "en_us"'
+			. '   AND Translations.locale = "en_US"'
 			. ' ORDER BY source'
 			;
 		$rows = $db->fetchAll($sql);
@@ -1995,7 +1995,7 @@ private function publish($data) {
 		    . '    ON Targets.parent_id = Translations.id'
 		    . '   AND Targets.locale = "' . $locale . '"'
 		    . ' WHERE Translations.status = "Active"'
-		    . '   AND Translations.locale = "en_us"'
+		    . '   AND Translations.locale = "en_US"'
 		    . ' ORDER BY source'
 	       ;
 	       $rows    = $db->fetchAll($sql);
@@ -2018,7 +2018,7 @@ private function publish($data) {
 			. '    ON Targets.parent_id = Translations.id'
 			. '   AND Targets.locale = "' . $locale . '"'
 			. ' WHERE Translations.status = "Active"'
-			. '   AND Translations.locale = "en_us"'
+			. '   AND Translations.locale = "en_US"'
 			. ' ORDER BY source'
 			;
 		$rows = $db->fetchAll($sql);
@@ -2116,7 +2116,7 @@ private function echo_json($return) {
 /*
  *	$.ajax({method:set_language, language:language});
  *
- *	http://jky/jky_proxy.php?method=set_language&language=pt_br
+ *	http://jky/jky_proxy.php?method=set_language&language=en_US
  *
  *	status: ok
  */

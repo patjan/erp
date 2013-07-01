@@ -16,3 +16,6 @@ CREATE TABLE IF NOT EXISTS Translations
 , KEY parent		(parent_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
+
+UPDATE Translations	SET locale = 'en_US'	WHERE locale = 'en_us';
+UPDATE Translations	SET locale = 'pt_BR'	WHERE locale = 'pt_br';
