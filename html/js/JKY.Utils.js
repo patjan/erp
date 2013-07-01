@@ -403,8 +403,7 @@ JKY.out_date = function(the_time){
 	var my_dates	= my_date.split('-');
 	var my_result	= '';
 
-	var my_locale = JKY.Session.get_value('locale');
-	switch(my_locale) {
+	switch(JKY.Session.get_locale()) {
 		case 'en_US'	: my_result = my_dates[1] + '-' + my_dates[2] + '-' + my_dates[0];	break;
 		case 'pt_BR'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
 		default			: my_result = my_date;
@@ -429,8 +428,7 @@ JKY.out_time = function(the_time){
 	var my_dates	= my_date.split('-');
 	var my_result	= '';
 
-	var my_locale = JKY.Session.get_value('locale');
-	switch(my_locale) {
+	switch(JKY.Session.get_locale()) {
 		case 'en_US'	: my_result = my_dates[1] + '-' + my_dates[2] + '-' + my_dates[0];	break;
 		case 'pt_BR'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
 		default			: my_result = my_date;
@@ -474,8 +472,7 @@ JKY.inp_date = function(the_date){
 	var my_dates	= my_date.split('-');
 	var my_result	= '';
 
-	var my_locale = JKY.Session.get_value('locale');
-	switch(my_locale) {
+	switch(JKY.Session.get_locale()) {
 		case 'en_US'	: my_result = my_dates[2] + '-' + my_dates[0] + '-' + my_dates[1];	break;
 		case 'pt_BR'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
 		default			: my_result = my_date;
@@ -496,8 +493,7 @@ JKY.inp_time = function(the_time){
 	var my_dates	= my_date.split('-');
 	var my_result	= '';
 
-	var my_locale = JKY.Session.get_value('locale');
-	switch(my_locale) {
+	switch(JKY.Session.get_locale()) {
 		case 'en_US'	: my_result = my_dates[2] + '-' + my_dates[0] + '-' + my_dates[1];	break;
 		case 'pt_BR'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
 		default			: my_result = my_date;

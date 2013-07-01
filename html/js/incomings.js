@@ -28,9 +28,10 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	var my_locale = JKY.Session.get_value('locale');
-	$('#jky-received-time'	).datetimepicker({language: my_locale});
-	$('#jky-invoice-date'	).datetimepicker({language: my_locale, pickTime: false});
+	$('#jky-received-value'	).attr('data-format',		JKY.Session.get_date_time	());
+	$('#jky-received-time'	).datetimepicker({language: JKY.Session.get_locale		()});
+	$('#jky-invoice-value'	).attr('data-format',		JKY.Session.get_date		());
+	$('#jky-invoice-date'	).datetimepicker({language: JKY.Session.get_locale		(), pickTime: false});
 
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
 	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});

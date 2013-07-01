@@ -14,7 +14,10 @@
  * require:	JKY.Utils.js	(JKY.AJAX_URL)
  */
 JKY.Session = function() {
-	var my_session = [];
+	var my_session		= [];
+	var my_locale		= '';
+	var my_date_time	= '';
+
 	var my_session_time = 1800;	//	in seconds 1800 = 30 minutes
 	var my_recover_time =   60;	//	in seconds   60 =  1 minute
 	var my_count_down;			//  in seconds
@@ -139,6 +142,12 @@ JKY.display_trace('my_process_timeout');
 
 	$(function() {
 		JKY.Session.load_values();
+		my_locale = my_session['locale'];
+		switch(my_locale) {
+			case 'en_US'	: my_date_time = 'MM-dd-yyyy hh:mm:ss'; break;
+			case 'pt_BR'	: my_date_time = 'dd-MM-yyyy hh:mm:ss'; break;
+			default			: my_date_time = 'yyyy-MM-dd hh:mm:ss';
+		}
 	});
 
 	return {
@@ -148,6 +157,10 @@ JKY.display_trace('my_process_timeout');
 		, get_value		: function(key)				{return my_session[key]			;}
 		, has			: function(key)				{return my_session[key] ? true : false;}
 		, get_action	: function(the_resource)	{return my_get_action(the_resource);}
+
+		, get_locale	: function()	{return my_locale					;}
+		, get_date_time	: function()	{return my_date_time				;}
+		, get_date 		: function()	{return my_date_time.substr(0, 10)	;}
 
 		, set_session_time	: function(the_session_time)	{		my_session_time = the_session_time	;}
 		, set_recover_time	: function(the_recover_time)	{		my_recover_time = the_recover_time	;}
