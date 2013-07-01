@@ -495,7 +495,7 @@ JKY.display_row = function(index) {
 		var my_sentence = '';
 		for(var n=0; n<my_rows.length; n++) {
 			var my_row = my_rows[n];
-			if (my_row.locale == 'en_us') {
+			if (my_row.locale == 'en_US') {
 				JKY.row_id = my_row.id;
 				JKY.set_option('jky_status', my_row.status);
 			}
@@ -722,12 +722,12 @@ JKY.get_form_set = function() {
 		+   ', user_action=\'' + JKY.get_value	('jky-user-action'		) + '\''
 
 		+          'status=\'' + JKY.get_value	('jky-status'			) + '\''
-		+        ', locale=\'' +				 'en_us'				  + '\''
-		+      ', sentence=\'' + JKY.get_value	('en_us'				) + '\''
+		+        ', locale=\'' +				 'en_US'				  + '\''
+		+      ', sentence=\'' + JKY.get_value	('en_US'				) + '\''
 
 		+          'status=\'' + JKY.get_value	('jky-status'				) + '\''
-		+        ', locale=\'' +				 'en_us'					  + '\''
-		+      ', sentence=\'' + JKY.get_value	('en_us'					) + '\''
+		+        ', locale=\'' +				 'en_US'					  + '\''
+		+      ', sentence=\'' + JKY.get_value	('en_US'					) + '\''
 
 		+     'worked_hour=  ' + JKY.get_value	('jky-worked-hour'		)
 		+      ', priority=\'' + JKY.get_value	('jky-priority'			) + '\''
@@ -862,7 +862,7 @@ JKY.process_update_success = function(response) {
 JKY.process_update_more = function(row_id) {
 	for(var l=0; l<JKY.languages.length; l++) {
 		var my_locale = JKY.languages[l].name ;
-		if (my_locale != 'en_us') {
+		if (my_locale != 'en_US') {
 			var my_where = '  parent_id='   + row_id
 						 + ' AND locale=\'' + my_locale + '\''
 						;

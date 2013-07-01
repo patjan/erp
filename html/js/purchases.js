@@ -28,13 +28,12 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	var my_locale = JKY.Session.get_value('locale');
 	$('#jky-ordered-value'	).attr('data-format',		JKY.Session.get_date_time	());
-	$('#jky-ordered-at'		).datetimepicker({language: my_locale});
+	$('#jky-ordered-at'		).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-excepted-value'	).attr('data-format',		JKY.Session.get_date		());
-	$('#jky-expected-date'	).datetimepicker({language: my_locale, pickTime: false});
+	$('#jky-expected-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-scheduled-value').attr('data-format',		JKY.Session.get_date_time	());
-	$('#jky-scheduled-at'	).datetimepicker({language: my_locale});
+	$('#jky-scheduled-at'	).datetimepicker({language: JKY.Session.get_locale()});
 
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
 	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});

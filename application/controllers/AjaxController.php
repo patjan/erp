@@ -2116,7 +2116,7 @@ private function echo_json($return) {
 /*
  *	$.ajax({method:set_language, language:language});
  *
- *	http://jky/jky_proxy.php?method=set_language&language=pt_BR
+ *	http://jky/jky_proxy.php?method=set_language&language=en_US
  *
  *	status: ok
  */
