@@ -702,7 +702,8 @@ private function set_left_joins($table) {
 	if ($table == 'Purchases'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id		=    Purchases.supplier_id';
 	if ($table == 'PurchaseLines'	)	$return = '  LEFT JOIN     Threads  			ON   Threads.id		=PurchaseLines.thread_id';
 	if ($table == 'Incomings'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id		=    Incomings.supplier_id';
-	if ($table == 'Batches'			)	$return = '  LEFT JOIN     Threads  			ON   Threads.id		=      Batches.thread_id'
+	if ($table == 'Batches'			)	$return = '  LEFT JOIN   Incomings  			ON Incomings.id		=      Batches.incoming_id'
+												. '  LEFT JOIN     Threads  			ON   Threads.id		=      Batches.thread_id'
 												. '  LEFT JOIN PurchaseLines AS PLines  ON    PLines.id		=	   Batches.purchase_line_id';
 	if ($table == 'Boxes'			)	$return = '  LEFT JOIN     Batches  			ON   Batches.id		=        Boxes.batch_id'
 												. '  LEFT JOIN       Boxes AS Parent	ON    Parent.id		=	     Boxes.parent_id'
