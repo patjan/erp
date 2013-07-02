@@ -95,21 +95,30 @@
 		</ul>
 
 		<div class='tab-content'>
-<!--
+
 			<div id='jky-pane-batches' class='tab-pane active'>
-				<div class='jky-left'>
-					<br>
-					<div class='jky-form-line'><div class='jky-form-label'><span>    Number</span>: </div><input id='jky-batches-number' class='jky-form-value' placeholder='New'	/></div>
-					<div class='jky-form-line'><div class='jky-form-label'><span>     Thread Name</span>:	</div>
-						<select id='jky-thread-name'></select>
-					</div>
-					<div class='jky-form-line'><div class='jky-form-label'><span>    Number</span>: </div><input id='jky-batches-number' class='jky-form-value' placeholder='New'	/></div>
-					<div class='jky-form-line'><div class='jky-form-label'><span>    Batch</span>: </div><input id='jky-batch' class='jky-form-value' placeholder=''	/></div>
-					<br>
-					<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-batches' class='btn btn-success' type='button'><span>Save Batches</span></button></div>
-				</div>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<td class='jky-action'></td>
+							<td class='jky-thread-value'><span>Code				</span></td>
+							<td class='jky-thread-label'><span>Batch Number		</span></td>
+							<td class='jky-thread-label'><span>Thread Name		</span></td>
+							<td class='jky-thread-label'><span>Check In Boxes	</span></td>
+							<td class='jky-thread-label'><span>Check In Weight	</span></td>
+							<td class='jky-thread-label'><span>Unit Price		</span></td>
+						</tr>
+					</thead>
+					<tbody id='jky-thread-body'></tbody>
+					<tfoot>
+						<tr>
+							<td    id='jky-thread-add-new'   class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td    id='jky-thread-total'></td>
+							<td class='jky-thread-label'><span>Total</span></td>
+						</tr>
+					</tfoot>
+				</table>
 			</div>
--->
 		</div>
 	</div>
 	<div id='jky-form-footer'></div>
