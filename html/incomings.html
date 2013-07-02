@@ -9,7 +9,7 @@
 
 .jky-number				{width: 60px; text-align:center;}
 .jky-received-time		{width: 80px; text-align:center;}
-.jky-supplier-name		{width:200px; text-align:center;}
+.jky-supplier-name		{width: 80px; text-align:center;}
 .jky-invoice-weight		{width: 80px; text-align:center;}
 .jky-invoice-number		{width: 80px; text-align:center;}
 .jky-invoice-date		{width: 80px; text-align:center;}
@@ -41,7 +41,7 @@
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-number'			><span>   Number			</span></th>
 			<th class='jky-received-time'	><span> Received<br>Time	</span></th>
-			<th class='jky-supplier_name'	><span> Supplier<br>Name	</span></th>
+			<th class='jky-supplier-name'	><span> Supplier<br>Name	</span></th>
 			<th class='jky-invoice-number'	><span>  Invoice<br>Number	</span></th>
 			<th class='jky-invoice-date'	><span>  Invoice<br>Date	</span></th>
 			<th class='jky-invoice-weight'	><span>  Invoice<br>Weight	</span></th>
@@ -91,11 +91,22 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-lines'			class='active'	><a href='#jky-pane-lines'			data-toggle='tab'><span>Lines			</span></a></li>
+			<li	id='jky-tab-batches'			class='active'	><a href='#jky-pane-batches'			data-toggle='tab'><span>Batches			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
-			<div id='jky-pane-lines' class='tab-pane active'>
+			<div id='jky-pane-batches' class='tab-pane active'>
+				<div class='jky-left'>
+					<br>
+					<div class='jky-form-line'><div class='jky-form-label'><span>    Number</span>: </div><input id='jky-batches-number' class='jky-form-value' placeholder='New'	/></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>     Thread Name</span>:	</div>
+						<select id='jky-thread-name'></select>
+					</div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>    Number</span>: </div><input id='jky-batches-number' class='jky-form-value' placeholder='New'	/></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>    Batch</span>: </div><input id='jky-batch' class='jky-form-value' placeholder=''	/></div>
+					<br>
+					<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-batches' class='btn btn-success' type='button'><span>Save Batches</span></button></div>
+				</div>
 			</div>
 		</div>
 	</div>
