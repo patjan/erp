@@ -79,7 +79,7 @@ JKY.set_form_row = function(the_row) {
  *	set add new row
  */
 JKY.set_add_new_row = function() {
-	JKY.set_value	('jky-batch'				, 'New');
+	JKY.set_value	('jky-batch'				, '');
 	JKY.set_value	('jky-barcode'				, '');
 	JKY.set_value	('jky-average-weight'		,  0);
 	JKY.set_value	('jky-real-weight'			,  0);
@@ -96,7 +96,8 @@ JKY.get_form_set = function() {
 //	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
 
 	var my_set = ''
-		+'	barcode=\''				+			  JKY.get_value('jky-barcode'				) + '\''
+		+'	batch_id='				+			  JKY.get_value('jky-batch'					)
+		+', barcode=\''				+			  JKY.get_value('jky-barcode'				) + '\''
 		+', average_weight=  '		+			  JKY.get_value('jky-average-weight'		)
 		+', real_weight=  '			+			  JKY.get_value('jky-real-weight'			)
 		+', checkin_location=\''	+			  JKY.get_value('jky-checkin-location'		) + '\''
