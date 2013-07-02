@@ -7,19 +7,18 @@
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-number				{width: 60px; text-align:center;}
-.jky-thread-name		{width: 80px; text-align:center;}
-.jky-code				{width:50px; text-align:center;}
-.jky-batch				{width: 80px; text-align:center;}
-.jky-check-in-boxes		{width: 80px; text-align:center;}
-.jky-unit-price			{width: 80px; text-align:center;}
+.jky-batch				{width: 60px; text-align:center;}
+.jky-parent				{width: 80px; text-align:center;}
+.jky-barcode			{width:50px; text-align:center;}
+.jky-average-weight		{width: 80px; text-align:center;}
+.jky-real-weight		{width: 80px; text-align:center;}
 .jky-average-weight		{width:120px; text-align:center;}
 .jky-check-in-weight	{width: 80px; text-align:center;}
 .jky-returned-weight	{width: 80px; text-align:center;}
 .jky-check-out-weight	{width: 80px; text-align:center;}
 .jky-used-weight		{width: 80px; text-align:center;}
 
-#jky-number				{width: 60px; font-size:16px; font-weight:bold;}
+#jky-batch				{width: 60px; font-size:16px; font-weight:bold;}
 #jky-received-time		{width:150px;}
 #jky-invoice-weight		{width:160px;text-transform:capitalize;}
 #jky-invoice-amount		{width:110px;}
@@ -40,12 +39,11 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-number'				><span>		Number					</span></th>
-			<th class='jky-thread-name'			><span>  	Thread<br>Name			</span></th>
-			<th class='jky-code'				><span>		  Code					</span></th>
-			<th class='jky-batch'				><span>      Batch					</span></th>
-			<th class='jky-check-in-boxes'		><span>		 Check<br>In<br>Boxes	</span></th>
-			<th class='jky-unit-price'			><span>		  Unit<br>Price			</span></th>
+			<th class='jky-batch'				><span>		Batch					</span></th>
+			<th class='jky-parent'				><span>  	Parent					</span></th>
+			<th class='jky-barcode'				><span>		Bar		<br>Code		</span></th>
+			<th class='jky-average-weight'		><span>     Average	<br>Weight		</span></th>
+			<th class='jky-real-weight'			><span>		Real	<br>Weight		</span></th>
 			<th class='jky-average-weight'		><span>    Average<br>Weight		</span></th>
 			<th class='jky-check-in-weight'		><span>	     Check<br>In<br>Weight	</span></th>
 			<th class='jky-returned-weight'		><span>   Returned<br>Weight		</span></th>
@@ -66,16 +64,15 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Number		</span>:</div><input  id='jky-number' class='jky-form-value'	readonly='readonly'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Thread Name	</span>:</div><select id='jky-thread-name'></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Code			</span>:</div><input  id='jky-code'	class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Batch			</span>:</div><input  id='jky-batch'	class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'></div>							  <input  id='jky-check-in-boxes' type='checkbox' value='Yes' /><span>Check In</span></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Unit Price		</span>:</div><input  id='jky-unit-price'	class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'></div>							  <input  id='jky-check-in-weight' type='checkbox' value='Yes' /><span>Check In Weight</span></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Returned Weight</span>:</div><input  id='jky-returned-weight'	class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'></div>							  <input  id='jky-check-out-weight' type='checkbox' value='Yes' /><span>Check Out Weight</span></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Used Weight	</span>:</div><input  id='jky-used-weight'	class='jky-form-value' /></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>Batch		</span>:</div><input  id='jky-batch' class='jky-form-value'	readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Parent				</span>:</div><select id='jky-parent'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Barcode			</span>:</div><input  id='jky-barcode'	class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Average Weight		</span>:</div><input  id='jky-average-weight'	class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Real Weight		</span>:</div><input  id='jky-real-weight'	class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'></div><input  id='jky-check-in-weight' type='checkbox' value='Yes' /><span>Check In Weight</span></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Returned Weight	</span>:</div><input  id='jky-returned-weight'	class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'></div><input  id='jky-check-out-weight' type='checkbox' value='Yes' /><span>Check Out Weight</span></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Used Weight		</span>:</div><input  id='jky-used-weight'	class='jky-form-value' /></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -129,4 +126,4 @@
 </div>
 
 <div id='jky-body-loaded'></div>
-<script src='js/incomings.js'></script>
+<script src='js/boxes.js'></script>

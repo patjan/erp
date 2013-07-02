@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * batches.js
+ * boxes.js
  */
 
 /**
@@ -11,8 +11,8 @@ JKY.start_program = function() {
 	JKY.App = JKY.Application;
 	JKY.App.set(
 		{ object_name	: 'JKY.App'
-		, program_name	: 'Batches'
-		, table_name	: 'Batches'
+		, program_name	: 'Boxes'
+		, table_name	: 'Boxes'
 		, specific		: ''
 		, select		: ''
 		, filter		: ''
