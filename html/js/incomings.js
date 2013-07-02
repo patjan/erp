@@ -18,7 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'number'
 		, sort_seq		: 'DESC'
-		, focus			: 'jky-invoice-number'
+		, focus			: 'jky-supplier-name'
 		, add_new		: 'display form'
 		});
 	JKY.App.init();

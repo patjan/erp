@@ -62,18 +62,18 @@
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>        Number</span>:</div><input  id='jky-number' class='jky-form-value'	readonly='readonly'	/></div>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Received Time</span>:</div>
-				<div id="jky-received-time" class="input-append date"><input id='jky-received-value' data-format="dd-MM-yyyy hh:mm:ss" type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>			</div>
-			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span> Supplier Name</span>:</div><select id='jky-supplier-name'></select></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Number</span>:</div><input  id='jky-invoice-number'	class='jky-form-value' /></div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Invoice Date</span>:</div>
 				<div id="jky-invoice-date" class="input-append date"><input id='jky-invoice-value'   data-format="dd-MM-yyyy"		type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Weight</span>:</div><input  id='jky-invoice-weight'	class='jky-form-value' /></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Received Time</span>:</div>
+				<div id="jky-received-time" class="input-append date"><input id='jky-received-value' data-format="dd-MM-yyyy hh:mm:ss" type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>			</div>
+			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Amount</span>:</div><input  id='jky-invoice-amount'	class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Weight</span>:</div><input  id='jky-invoice-weight'	class='jky-form-value' /></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -89,12 +89,13 @@
 		<div class='jky-clear'></div>
 	</div>
 
-<!--	<div id='jky-form-tabs' class='tabbable'>
+	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
 			<li	id='jky-tab-batches'			class='active'	><a href='#jky-pane-batches'			data-toggle='tab'><span>Batches			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
+<!--
 			<div id='jky-pane-batches' class='tab-pane active'>
 				<div class='jky-left'>
 					<br>
@@ -108,7 +109,8 @@
 					<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-batches' class='btn btn-success' type='button'><span>Save Batches</span></button></div>
 				</div>
 			</div>
-		</div> -->
+-->
+		</div>
 	</div>
 	<div id='jky-form-footer'></div>
 </div>
@@ -139,3 +141,4 @@
 
 <div id='jky-body-loaded'></div>
 <script src='js/incomings.js'></script>
+<script src='js/JKY.Thread.js'></script>
