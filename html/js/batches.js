@@ -16,9 +16,9 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: ''
 		, filter		: ''
-		, sort_by		: 'number'
+		, sort_by		: 'code'
 		, sort_seq		: 'DESC'
-		, focus			: 'jky-received-time'
+		, focus			: 'jky-checkin-boxes'
 		, add_new		: 'display form'
 		});
 	JKY.App.init();
@@ -39,8 +39,8 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-purchases-batches');
 //	JKY.set_html('jky-app-select', JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
-	JKY.set_html('jky-thread-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
-	JKY.set_html('jky-payment-term', JKY.set_configs('Payment Terms', '', ''));
+//	JKY.set_html('jky-thread-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
+//	JKY.set_html('jky-payment-term', JKY.set_configs('Payment Terms', '', ''));
 //	JKY.set_html('jky-app-select-label', JKY.t('Type'));
 //	JKY.show('jky-app-select-line');
 };
@@ -69,12 +69,17 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-number'			, the_row.number		);
-	JKY.set_option	('jky-thread-name'	, the_row.supplier_id	);
-	JKY.set_value	('jky-invoice-number'	, the_row.invoice_number);
-	JKY.set_value	('jky-invoice-weight'	, the_row.invoice_weight);
-	JKY.set_value	('jky-invoice-amount'	, the_row.invoice_amount);
-
+	JKY.set_value	('jky-code'					, the_row.code				);
+	JKY.set_value	('jky-batch'				, the_row.batch				);
+	JKY.set_value	('jky-checkin-boxes'		, the_row.checkin_boxes		);
+	JKY.set_value	('jky-unit-price'			, the_row.unit_price		);
+	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);
+	JKY.set_value	('jky-gross-weight'			, the_row.gross_weight		);
+	JKY.set_value	('jky-checkin-weight'		, the_row.checkin_weight	);
+	JKY.set_value	('jky-returned-weight'		, the_row.returned_weight	);
+	JKY.set_value	('jky-leftover-weight'		, the_row.leftover_weight	);
+	JKY.set_value	('jky-checkout-weight'		, the_row.checkout_weight	);
+	JKY.set_value	('jky-used-weight'			, the_row.used_weight		);
 //	JKY.display_lines();
 };
 
@@ -82,25 +87,38 @@ JKY.set_form_row = function(the_row) {
  *	set add new row
  */
 JKY.set_add_new_row = function() {
-	JKY.set_value	('jky-number'			,  JKY.t('New'));
-	JKY.set_option	('jky-thread-name'	, '');
-	JKY.set_value	('jky-invoice-number'	, '');
-	JKY.set_value	('jky-invoice-weight'	,  0);
-	JKY.set_value	('jky-invoice-amount'	,  0);
+	JKY.set_value	('jky-code'					, '');
+	JKY.set_value	('jky-batch'				, '');
+	JKY.set_value	('jky-checkin-boxes'		,  0);
+	JKY.set_value	('jky-unit-price'			,  0);
+	JKY.set_value	('jky-average-weight'		,  0);
+	JKY.set_value	('jky-gross-weight'			,  0);
+	JKY.set_value	('jky-checkin-weight'		,  0);
+	JKY.set_value	('jky-returned-weight'		,  0);
+	JKY.set_value	('jky-leftover-weight'		,  0);
+	JKY.set_value	('jky-checkout-weight'		,  0);
+	JKY.set_value	('jky-used-weight'			,  0);
 }
 
 /**
  *	get form set
  */
 JKY.get_form_set = function() {
-	var my_supplier_id = JKY.get_value('jky-thread-name');
-	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
+//	var my_supplier_id = JKY.get_value('jky-thread-name');
+//	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
 
 	var my_set = ''
-		+   ', supplier_id=  ' + my_supplier_id
-		+', invoice_number=\'' +			  JKY.get_value('jky-invoice-number'	) + '\''
-		+', invoice_weight=  ' +			  JKY.get_value('jky-invoice-weight'	)
-		+', invoice_amount=  ' +			  JKY.get_value('jky-invoice-amount'	)
+		+   'code=\''			+			  JKY.get_value('jky-code'				) + '\''
+		+', batch=\''			+			  JKY.get_value('jky-batch'				) + '\''
+		+', checkin_boxes=  '	+			  JKY.get_value('jky-checkin-boxes'		)
+		+', unit_price=  '		+			  JKY.get_value('jky-unit-price'		)
+		+', average_weight=  '	+			  JKY.get_value('jky-average-weight'	)
+		+', gross_weight=  '	+			  JKY.get_value('jky-gross-weight'		)
+		+', checkin_weight=  '	+			  JKY.get_value('jky-checkin-weight'	)
+		+', returned_weight=  ' +			  JKY.get_value('jky-returned-weight'	)
+		+', leftover_weight=  ' +			  JKY.get_value('jky-leftover-weight'	)
+		+', checkout_weight=  ' +			  JKY.get_value('jky-checkout-weight'	)
+		+', used_weight=  '		+			  JKY.get_value('jky-used-weight'		)
 		;
 	return my_set;
 };

@@ -16,7 +16,7 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: ''
 		, filter		: ''
-		, sort_by		: 'number'
+		, sort_by		: 'batch'
 		, sort_seq		: 'DESC'
 		, focus			: 'jky-received-time'
 		, add_new		: 'display form'
@@ -37,7 +37,7 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-purchases-incomings');
+	JKY.set_side_active('jky-purchases-boxes');
 //	JKY.set_html('jky-app-select', JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-thread-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
 	JKY.set_html('jky-payment-term', JKY.set_configs('Payment Terms', '', ''));
