@@ -78,7 +78,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-invoice-weight'	, the_row.invoice_weight);
 	JKY.set_value	('jky-invoice-amount'	, the_row.invoice_amount);
 
-//	JKY.display_lines();
+	JKY.display_batches();
 };
 
 /**

@@ -621,6 +621,7 @@ private function set_select($table, $select) {
 	if ($table == 'PurchaseLines'	)	$return = ' AND  PurchaseLines.purchase_id		=  ' . $select;
 	if ($table == 'History'			)	$return = ' AND        History.parent_name      = "' . $select . '"';
 	if ($table == 'Threads'			)	$return = ' AND        Threads.thread_group     = "' . $select . '"';
+	if ($table == 'Batches'			)	$return = ' AND        Batches.incoming_id		=  ' . $select;
 
 	return $return;
 }

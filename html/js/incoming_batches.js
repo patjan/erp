@@ -21,7 +21,7 @@ JKY.generate_batches = function(response) {
 			var my_row = my_rows[i];
 			my_html += JKY.generate_row(my_row);
 
-			var my_percent		= parseFloat(my_row.percent);
+			var my_percent = parseFloat(my_row.percent);
 			my_total += my_percent;
 		}
 	}
@@ -33,23 +33,23 @@ JKY.generate_batches = function(response) {
 }
 
 JKY.generate_row = function(the_row) {
-	var my_id				=			 the_row.id;
+	var my_id = the_row.id;
 
 	var my_thread = ''
-		+ "<input class='jky-batch-row-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-batch-row-name jky-form-value' readonly='readonly' onclick='JKY.update_batch(this, " + my_id + ")' value='" + the_row.name + "' />"
-		+ "<a href='#' onClick='JKY.Batch.display(this)'><i class='icon-share'></i></a>"
+		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
+		+ "<input class='jky-thread-row-name jky-form-value' readonly='readonly' onclick='JKY.update_batch(this, " + my_id + ")' value='" + the_row.name + "' />"
+		+ "<a class='jky-thread-row-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 
 	var my_html = ''
 		+ '<tr batch_id=' + my_id + '>'
 		+ '<td class="jky-action"><a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-		+ '<td class="jky-batch-value"		><input  class="jky-batch-code" text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.code + '" /></td>'
-		+ '<td class="jky-batch-value"		><input  class="jky-batch-number" text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.batch + '" /></td>'
-		+ '<td class="jky-batch-label"		>' + my_thread + '</td>'
-		+ '<td class="jky-batch-value"		><input  class="jky-batch-checkin-boxes" text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.checkin_boxes + '" /></td>'
-		+ '<td class="jky-batch-value"		><input  class="jky-batch-checkin-weight" text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.checkin_weight + '" /></td>'
-		+ '<td class="jky-batch-value"		><input  class="jky-batch-unit-price" text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.unit_price + '" /></td>'
+		+ '<td><input  class="jky-batch-code"			text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.code			+ '" /></td>'
+		+ '<td><input  class="jky-batch-number"			text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.batch			+ '" /></td>'
+		+ '<td>' + my_thread + '</td>'
+		+ '<td><input  class="jky-batch-checkin-boxes"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.checkin_boxes	+ '" /></td>'
+		+ '<td><input  class="jky-batch-checkin-weight"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.checkin_weight	+ '" /></td>'
+		+ '<td><input  class="jky-batch-unit-price"		text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.unit_price		+ '" /></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -57,13 +57,19 @@ JKY.generate_row = function(the_row) {
 
 JKY.update_batch = function(id_name, the_id ) {
 	var my_tr = $(id_name).parent().parent();
-	var my_batch_id		= my_tr.find('.jky-batch-row-id').val();
-	var my_percent			= parseFloat(my_tr.find('.jky-batch-percent').val());
-	var my_supplier_id		= my_tr.find('.jky-batch-supplier'	).val();
+	var my_thread_id		= my_tr.find('.jky-thread-row-id'	).val();
+	var my_code				= my_tr.find('.jky-batch-code'		).val();
+	var my_batch			= my_tr.find('.jky-batch-number'	).val();
+	var my_checkin_boxes	= parseFloat(my_tr.find('.jky-batch-checkin-boxes'	).val());
+	var my_checkin_weight	= parseFloat(my_tr.find('.jky-batch-checkin-weight'	).val());
+	var my_unit_price		= parseFloat(my_tr.find('.jky-batch-unit-price'		).val());
 	var my_set = ''
-		+        'batch_id =   ' + my_batch_id
-		+    ', supplier_id = ' + my_supplier_id
-		+        ', percent = ' + my_percent
+		+        'thread_id =  ' + my_thread_id
+		+           ', code =\'' + my_code	+ '\''
+		+          ', batch =\'' + my_batch	+ '\''
+		+  ', checkin_boxes =  ' + my_checkin_boxes
+		+ ', checkin_weight =  ' + my_checkin_weight
+		+     ', unit_price =  ' + my_unit_price
 		;
 	var my_data =
 		{ method	: 'update'
