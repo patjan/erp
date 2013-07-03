@@ -1,0 +1,47 @@
+<html>
+<body>
+<style>
+.collapse {
+  height: auto;
+  width: auto;
+}
+
+.collapse.height {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: height 0.35s ease;
+  -moz-transition: height 0.35s ease;
+  -o-transition: height 0.35s ease;
+  transition: height 0.35s ease;
+}
+
+.collapse.width {
+  position: relative;
+  width: 0;
+  overflow: hidden;
+  -webkit-transition: width 0.35s ease;
+  -moz-transition: width 0.35s ease;
+  -o-transition: width 0.35s ease;
+  transition: width 0.35s ease;
+}
+
+.collapse.in.width {
+  width: auto;
+}
+
+.collapse.in.height {
+  height: auto;
+}
+</style>
+<button role="button" class="btn-danger" data-toggle="collapse" data-target="#demo">
+      simple horizontal collapsible
+</button>
+    <div id="demo" class="collapse in width">
+      <div style="width: 400px;">
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+      </div>
+    </div>
+</body>
+</html>
