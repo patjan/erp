@@ -588,6 +588,7 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	$return .= ' AND Contacts.is_company	= "No" ';
 	if ($table == 'Contacts'		&& $specific == 'company'		)	$return .= ' AND Contacts.company_id	= ' . $specific_id;
 	if ($table == 'FTPs'			&& $specific == 'product'		)	$return .= ' AND     FTPs.product_id	= ' . $specific_id;
+	if ($table == 'Batches'			&& $specific == 'incoming'		)	$return .= ' AND  Batches.incoming_id	= ' . $specific_id;
 
 	return $return;
 }
@@ -621,7 +622,6 @@ private function set_select($table, $select) {
 	if ($table == 'PurchaseLines'	)	$return = ' AND  PurchaseLines.purchase_id		=  ' . $select;
 	if ($table == 'History'			)	$return = ' AND        History.parent_name      = "' . $select . '"';
 	if ($table == 'Threads'			)	$return = ' AND        Threads.thread_group     = "' . $select . '"';
-	if ($table == 'Batches'			)	$return = ' AND        Batches.incoming_id		=  ' . $select;
 
 	return $return;
 }
