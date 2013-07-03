@@ -33,8 +33,8 @@ JKY.set_all_events = function() {
 	$('#jky-invoice-value'	).attr('data-format',		JKY.Session.get_date		());
 	$('#jky-invoice-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 
-	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
-	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
+	$('#jky-tab-batches'	).click (function() {JKY.display_batches	();});
+	$('#jky-batch-add-new'	).click (function() {JKY.insert_batch		();});
 	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 };
 

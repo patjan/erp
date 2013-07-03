@@ -24,11 +24,22 @@
 #jky-invoice-weight		{width:100px;}
 #jky-invoice-amount		{width:100px;}
 
+.jky-batch-value			{width:10%;		text-align:right ;}
+.jky-batch-label			{width:40%;		text-align:left  ;}
+.jky-batch-label a			{margin-left:-30px; padding:5px;}
+.jky-batch-code				{width:50px;	text-align:right ; margin-right:0;}
+.jky-batch-number			{width:100px;}
+.jky-batch-thread-name		{width:200px;}
+.jky-batch-checkin-boxes	{width:200px;}
+.jky-batch-checkin-weight	{width:200px;}
+.jky-batch-unit-price		{width:200px;}
+#jky-batch-total			{				text-align:right;}
+
 .jky-line-label			{font-weight:bold; text-align:right;}
 .jky-line-value  input	{width: 90%;	text-align:right ;}
-.jky-line-thread input	{width:275px;	text-align:left  ;}
-.jky-line-thread a		{margin-left:-30px; padding:5px;}
-.jky-line-thread a		{margin-left:-30px; padding:5px;}
+.jky-line-batch input	{width:275px;	text-align:left  ;}
+.jky-line-batch a		{margin-left:-30px; padding:5px;}
+.jky-line-batch a		{margin-left:-30px; padding:5px;}
 .jky-line-percent		{width: 40px;	text-align:right ; margin-right:0;}
 .jky-line-name			{width:280px;}
 #jky-line-total-expected{padding-right:15px; font-weight:bold; text-align:right;}
@@ -101,20 +112,20 @@
 					<thead>
 						<tr>
 							<td class='jky-action'></td>
-							<td class='jky-thread-value'><span>Code				</span></td>
-							<td class='jky-thread-label'><span>Batch Number		</span></td>
-							<td class='jky-thread-label'><span>Thread Name		</span></td>
-							<td class='jky-thread-label'><span>Check In Boxes	</span></td>
-							<td class='jky-thread-label'><span>Check In Weight	</span></td>
-							<td class='jky-thread-label'><span>Unit Price		</span></td>
+							<td class='jky-batch-value'><span>Code				</span></td>
+							<td class='jky-batch-label'><span>Batch Number		</span></td>
+							<td class='jky-batch-label'><span>Thread Name		</span></td>
+							<td class='jky-batch-label'><span>Check In Boxes	</span></td>
+							<td class='jky-batch-label'><span>Check In Weight	</span></td>
+							<td class='jky-batch-label'><span>Unit Price		</span></td>
 						</tr>
 					</thead>
-					<tbody id='jky-thread-body'></tbody>
+					<tbody id='jky-batch-body'></tbody>
 					<tfoot>
 						<tr>
-							<td    id='jky-thread-add-new'   class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
-							<td    id='jky-thread-total'></td>
-							<td class='jky-thread-label'><span>Total</span></td>
+							<td    id='jky-batch-add-new'   class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td    id='jky-batch-total'></td>
+							<td class='jky-batch-label'><span>Total</span></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -124,30 +135,31 @@
 	<div id='jky-form-footer'></div>
 </div>
 
-<div id='jky-thread-search' class='modal hide fade in'>
+<div id='jky-batch-search' class='modal hide fade in'>
 	<div class='modal-header'>
 		<a class='close' data-dismiss='modal'>X</a>
 		<h3><span>Search</span>: <span>Thread</span></h3>
 	</div>
 	<div class='modal-body'>
-		<div><input id='jky-thread-filter' class='search-query' type='text' placeholder='Search' /></div>
-		<table id='jky-thread-table' class='table table-striped'>
+		<div><input id='jky-batch-filter' class='search-query' type='text' placeholder='Search' /></div>
+		<table id='jky-batch-table' class='table table-striped'>
 			<thead>
 				<tr>
-					<th class='jky-thread-header-name'			><span>Name			</span></th>
-					<th class='jky-thread-header-group'			><span>Group		</span></th>
-					<th class='jky-thread-header-composition'	><span>Composition	</span></th>
+					<th class='jky-batch-header-name'			><span>Name			</span></th>
+					<th class='jky-batch-header-group'			><span>Group		</span></th>
+					<th class='jky-batch-header-composition'	><span>Composition	</span></th>
 				</tr>
 			</thead>
-			<tbody id='jky-thread-search-body'></tbody>
+			<tbody id='jky-batch-search-body'></tbody>
 		</table>
 	</div>
 	<div class='modal-footer'>
-<!--	<button  id='jky-thread-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>
--->		&nbsp;<a id='jky-thread-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
+<!--	<button  id='jky-batch-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>
+-->		&nbsp;<a id='jky-batch-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
 	</div>
 </div>
 
 <div id='jky-body-loaded'></div>
 <script src='js/incomings.js'></script>
 <script src='js/JKY.Thread.js'></script>
+<script src='js/incoming_batches.js'></script>
