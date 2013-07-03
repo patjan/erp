@@ -77,7 +77,10 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-invoice-value'	, JKY.out_date(the_row.invoice_date));
 	JKY.set_value	('jky-invoice-weight'	, the_row.invoice_weight);
 	JKY.set_value	('jky-invoice-amount'	, the_row.invoice_amount);
+	JKY.set_value	('jky-real-weight'		, the_row.real_weight);
+	JKY.set_value	('jky-real-amount'		, the_row.real_amount);
 
+	JKY.set_calculated_color();
 	JKY.display_batches();
 };
 
@@ -111,3 +114,15 @@ JKY.get_form_set = function() {
 		;
 	return my_set;
 };
+
+/**
+ *	set calculated color
+ */
+JKY.set_calculated_color = function() {
+	var my_invoice_weight	= parseFloat(JKY.get_value('jky-invoice-weight'	));
+	var my_invoice_amount	= parseFloat(JKY.get_value('jky-invoice-amount'	));
+	var my_real_weight		= parseFloat(JKY.get_value('jky-real-weight'	));
+	var my_real_amount		= parseFloat(JKY.get_value('jky-real-amount'	));
+	JKY.set_css('jky-real-weight', 'color', (my_invoice_weight == my_real_weight) ? 'black' : 'red');
+	JKY.set_css('jky-real-amount', 'color', (my_invoice_amount == my_real_amount) ? 'black' : 'red');
+}

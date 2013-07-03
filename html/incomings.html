@@ -21,13 +21,15 @@
 #jky-supplier-name		{width:185px;}
 #jky-invoice-number		{width:100px;}
 #jky-invoice-value		{width: 96px;}
-#jky-invoice-weight		{width:100px;}
-#jky-invoice-amount		{width:100px;}
+#jky-invoice-weight		{width:100px; text-align:right;}
+#jky-invoice-amount		{width:100px; text-align:right;}
+#jky-real-weight		{width:100px; text-align:right;}
+#jky-real-amount		{width:100px; text-align:right;}
 
-.jky-batch-value			{width:10%;		text-align:right ;}
-.jky-batch-label			{width:40%;		text-align:left  ;}
-.jky-batch-code				{width: 70px;}
-.jky-batch-number			{width: 80px;}
+.jky-batch-value			{width: 10%;	text-align:right ;}
+.jky-batch-label			{width: 40%;	text-align:left  ;}
+.jky-batch-code				{width: 70px; text-align:center;}
+.jky-batch-number			{width: 80px; text-align:center;}
 .jky-thread-row-name		{width:270px;}
 .jky-thread-row-icon		{margin-left:-30px; padding:5px;}
 .jky-batch-checkin-boxes	{width: 70px; text-align:right;}
@@ -57,7 +59,7 @@
 			<th class='jky-invoice-number'	><span>  Invoice<br>Number	</span></th>
 			<th class='jky-invoice-date'	><span>  Invoice<br>Date	</span></th>
 			<th class='jky-invoice-weight'	><span>  Invoice<br>Weight	</span></th>
-			<th class='jky-invoice-amount'	>  Invoice<br>Amount	</span></th>
+			<th class='jky-invoice-amount'	><span>  Invoice<br>Amount	</span></th>
 		</tr>
 	</thead>
 
@@ -84,8 +86,14 @@
 				<div class='jky-form-label'><span>Received Time</span>:</div>
 				<div id="jky-received-time" class="input-append date"><input id='jky-received-value' data-format="dd-MM-yyyy hh:mm:ss" type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>			</div>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Amount</span>:</div><input  id='jky-invoice-amount'	class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Weight</span>:</div><input  id='jky-invoice-weight'	class='jky-form-value' /></div>
+			<div class='jky-left'>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Amount</span>:</div><input  id='jky-invoice-amount'	class='jky-form-value' /></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Weight</span>:</div><input  id='jky-invoice-weight'	class='jky-form-value' /></div>
+			</div>
+			<div class='jky-left'>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Real Amount</span>:</div><input  id='jky-real-amount'	class='jky-form-value' readonly='readonly' /></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Real Weight</span>:</div><input  id='jky-real-weight'	class='jky-form-value' readonly='readonly' /></div>
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -113,9 +121,9 @@
 					<thead>
 						<tr style='font-weight:bold;'>
 							<td class='jky-action'></td>
-							<td class='jky-batch-code'				><span> Product<br>Code		</span></td>
-							<td class='jky-batch-number'			><span>   Batch<br>Number	</span></td>
-							<td class='jky-thread-row-name'		><span> <br> Thread Name		</span></td>
+							<td><div class='jky-batch-code'				><span> Product<br>Code		</span></div></td>
+							<td><div class='jky-batch-number'			><span>   Batch<br>Number	</span></div></td>
+							<td		 class='jky-thread-row-name'		><span> <br> Thread Name	</span>		 </td>
 							<td><div class='jky-batch-checkin-boxes'	><span>Check In<br>Boxes	</span></div></td>
 							<td><div class='jky-batch-checkin-weight'	><span>Check In<br>Weight	</span></div></td>
 							<td><div class='jky-batch-unit-price'		><span>    Unit<br>Price	</span></div></td>
@@ -125,8 +133,6 @@
 					<tfoot>
 						<tr>
 							<td    id='jky-batch-add-new'   class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
-							<td    id='jky-batch-total'></td>
-							<td class='jky-batch-label'><span>Total</span></td>
 						</tr>
 					</tfoot>
 				</table>
