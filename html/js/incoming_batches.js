@@ -64,6 +64,7 @@ JKY.generate_row = function(the_row) {
 }
 
 JKY.update_batch = function(id_name, the_id ) {
+JKY.display_trace('update_batch');
 	JKY.select_batch(the_id);
 	var my_tr = $(id_name).parent().parent();
 	var my_thread_id		= my_tr.find('.jky-thread-row-id'	).val();
@@ -92,6 +93,7 @@ JKY.update_batch = function(id_name, the_id ) {
 }
 
 JKY.update_batch_success = function(response) {
+JKY.display_trace('update_batch_success');
 //	JKY.display_message(response.message)
 	JKY.update_incoming();
 }
@@ -152,14 +154,15 @@ JKY.select_batch_success = function(response) {
 }
 
 JKY.update_incoming = function() {
+JKY.display_trace('update_incoming');
 	var my_delta_weight = (my_new_checkin_weight - my_old_checkin_weight);
-	var my_delta_amount = (my_new_unit_price	 - my_old_unit_price	) * my_delta_weight;
-
+	var my_delta_amount = (my_new_checkin_weight * my_new_unit_price)
+						- (my_old_checkin_weight * my_old_unit_price)
+						;
 	var my_set = ''
 		+  ' real_weight = real_weight + ' + my_delta_weight
-		+ ', real_amount = real_amount + ' + my_delta_amount
+		+ ', real_amount = real_amount + ' + Math.round(my_delta_amount * 100) / 100;
 		;
-
 	var my_data =
 		{ method	: 'update'
 		, table		: 'Incomings'
@@ -170,7 +173,24 @@ JKY.update_incoming = function() {
 }
 
 JKY.update_incoming_success = function(response) {
+JKY.display_trace('update_incoming_success');
 //	JKY.display_message(response.message)
+	var my_data =
+		{ method	: 'get_row'
+		, table		: 'Incomings'
+		, where		: 'Incomings.id = ' + my_incoming_id
+		};
+	JKY.ajax(true, my_data, JKY.display_incoming_real);
+}
+
+JKY.display_incoming_real = function(response) {
+JKY.display_trace('display_incoming_real');
+//	JKY.display_message(response.message)
+	var my_real_weight = parseFloat(response.row.real_weight);
+	var my_real_amount = parseFloat(response.row.real_amount);
+	JKY.set_value('jky-real-weight', my_real_weight);
+	JKY.set_value('jky-real-amount', my_real_amount);
+	JKY.set_calculated_color();
 }
 
 JKY.print_batches = function(the_id) {
