@@ -27,23 +27,6 @@
 </tr>
 
 <style>
-	.collapse {
-  width: auto;
-}
-
-.collapse.width {
-  position: relative;
-  width: 0;
-  overflow: hidden;
-  -webkit-transition: width 0.35s ease;
-  -moz-transition: width 0.35s ease;
-  -o-transition: width 0.35s ease;
-  transition: width 0.35s ease;
-}
-
-.collapse.in.width {
-  width: auto;
-}
 #jky-wrapper table	{height:100%; width:100%;}
 #jky-application	{background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAKUlEQVQIHWO8e/fufwYsgAUkJigoiCIF5DMyoYggcUiXgNnBiGQKmAkARpcEQeriln4AAAAASUVORK5CYII=");}
 #jky-side-bar		{display:none;}
@@ -52,12 +35,9 @@
 #jky-app-form		{display:none;}
 </style>
 
-<tr id='jky-body'><button role="button" class="btn-danger" data-toggle="collapse" data-target="#jky-side-header">
-	Collapse
-</button>
+<tr id='jky-body'>
 	<td id='jky-side-bar'>
-		<div id='jky-side-header' class="collapse in width"><a id='jky-company-logo'></a></div>
-
+		<div id='jky-side-header'><a id='jky-company-logo'></a></div>
 		<div id='jky-side-sales'>
 			<div									class='jky-side-set'><span>Sales</span></div>
 			<div id='jky-sales-customers'			class='jky-side-item dev'	><span>Customers			</span></div>
@@ -153,6 +133,7 @@
 	<td id='jky-application' style='width:100%; height:100%'>
 		<div id='jky-app-header'>
 			<div>
+				<div><a onclick='JKY.collapse("jky-side-bar")'><i id='jky-collapsible-icon' class='icon-step-backward'></i></a></div>
 				<div  id='jky-app-breadcrumb'></div>
 				<span id='jky-app-select-line'>
 					<span   id='jky-app-select-label'></span>:

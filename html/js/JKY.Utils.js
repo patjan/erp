@@ -952,6 +952,26 @@ JKY.hide = function(id_name){
 }
 
 /**
+ * Collapse Side Bar
+ * @param	id_name
+ */
+
+JKY.collapse = function(id_name){
+	var my_id = $('#' + id_name);
+	var x= my_id.css('margin-left');
+	if (my_id.css('margin-left') == '0px') {
+		my_id.css('display' , 'block');
+		my_id.css('margin-left' , '-200px');	
+		$('#jky-collapsible-icon').removeClass('icon-step-backward').addClass('icon-step-forward');
+	}else{
+		$('#jky-collapsible-icon').removeClass('icon-step-forward').addClass('icon-step-backward');
+		my_id.css('display' , 'table-cell');
+		my_id.css('margin-left' , '0px');	
+	}
+	
+}
+
+/**
  * hide specific id name
  * @param	id_name
  */
