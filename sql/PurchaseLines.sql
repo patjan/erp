@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS PurchaseLines
 
 , purchase_id		BIGINT				DEFAULT NULL
 , thread_id			BIGINT				DEFAULT NULL
+, batch_id			BIGINT				DEFAULT NULL
 , expected_date		DATE				DEFAULT NULL
 , scheduled_at		DATETIME			DEFAULT NULL
 , expected_weight	DECIMAL(10,2)		DEFAULT 0
@@ -19,3 +20,4 @@ CREATE TABLE IF NOT EXISTS PurchaseLines
 , KEY thread	(thread_id	)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
+ALTER TABLE PurchaseLines	ADD		batch_id		BIGINT		DEFAULT NULL	AFTER barcode;

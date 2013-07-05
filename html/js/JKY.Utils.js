@@ -499,6 +499,9 @@ JKY.inp_date = function(the_date){
  * @return	yyyy-mm-dd hh:mm
  */
 JKY.inp_time = function(the_time){
+	if (the_time == '') {
+		return 'null';
+	}
 	var my_date		= the_time.substr( 0, 10);
 	var my_time		= the_time.substr(11,  5);
 	var my_dates	= my_date.split('-');
@@ -601,7 +604,7 @@ JKY.get_date = function() {
  */
 JKY.get_time = function() {
 	var  my_today = new Date();
-	var  my_hour	= my_today.getHours();
+	var  my_hour	= my_today.getHours();		if (my_hour   < 10)	my_hour   = ' ' + my_hour  ;
 	var  my_minute	= my_today.getMinutes();	if (my_minute < 10)	my_minute = '0' + my_minute;
 	var  my_second	= my_today.getSeconds();	if (my_second < 10)	my_second = '0' + my_second;
 	return my_hour + ':' + my_minute + ':' + my_second;
