@@ -193,6 +193,10 @@ JKY.display_trace('display_incoming_real');
 	JKY.set_calculated_color();
 }
 
+JKY.display_print_labels = function() {
+
+}
+
 JKY.print_batches = function(the_id) {
 	var my_html  = '';
 	var my_data =
