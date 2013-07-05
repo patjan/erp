@@ -16,9 +16,9 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: ''
 		, filter		: ''
-		, sort_by		: 'number'
+		, sort_by		: 'ordered_at'
 		, sort_seq		: 'DESC'
-		, focus			: 'jky-source-doc'
+		, focus			: 'jky-schedule-at'
 		, add_new		: 'display form'
 		});
 	JKY.App.init();
@@ -28,15 +28,14 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-ordered-value'	).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-expected-value'	).attr('data-format', JKY.Session.get_date		());
-	$('#jky-scheduled-value').attr('data-format', JKY.Session.get_date_time	());
 	$('#jky-ordered-at'		).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-expected-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-scheduled-at'	).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-received-at'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-ordered-at'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 	$('#jky-expected-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 	$('#jky-scheduled-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+	$('#jky-received-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
 	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
