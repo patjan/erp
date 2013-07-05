@@ -48,7 +48,6 @@ if (my_first == true) {
 				$('#jky-form-data     input[name]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
 				$('#jky-form-data      select[id]').each (function() {$(this).change(function()	{my_process_change_input(this);});});
 				$('#jky-form-data    textarea[id]').each (function() {$(this).change(function()	{my_process_change_input(this);});});
-				$('#jky-form-data i.icon-calendar').each (function() {$(this).on (function()	{alert('icon');});});
 				JKY.set_all_events();	// from caller
 			}else{
 				setTimeout(function() {my_set_all_events();}, 100);
