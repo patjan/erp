@@ -50,3 +50,5 @@ UPDATE Translations	SET locale = 'pt_BR'	WHERE locale = 'pt_br';
 ALTER TABLE Incomings	ADD		nfe_tm			VARCHAR(32)		DEFAULT NULL	AFTER supplier_id;
 ALTER TABLE Incomings	ADD		nfe_dl			VARCHAR(32)		DEFAULT NULL	AFTER supplier_id;
 ALTER TABLE Incomings	DROP	invoice_number;
+ALTER TABLE Batches    ADD COLUMN labels_printed    		INT(11)   		DEFAULT 0  AFTER checkin_boxes;
+ALTER TABLE Batches    ADD COLUMN number_of_cones    		INT(11)   		DEFAULT 0  AFTER labels_printed;
