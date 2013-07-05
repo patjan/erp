@@ -58,14 +58,15 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-number"			>' + the_row.number			+ '</td>'
-		+  '<td class="jky-source-doc"		>' + the_row.source_doc		+ '</td>'
+		+  '<td class="jky-number"			>' + the_row.number							+ '</td>'
 		+  '<td class="jky-ordered-at"		>' + JKY.short_date(the_row.ordered_at   )	+ '</td>'
+		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name					+ '</td>'
+		+  '<td class="jky-thread-name"		>' + the_row.thread_name					+ '</td>'
 		+  '<td class="jky-expected-date"	>' + JKY.out_date  (the_row.expected_date) 	+ '</td>'
 		+  '<td class="jky-scheduled-at"	>' + JKY.short_date(the_row.scheduled_at )	+ '</td>'
-		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name	+ '</td>'
-		+  '<td class="jky-supplier-ref"	>' + the_row.supplier_ref	+ '</td>'
-		+  '<td class="jky-payment-term"	>' + the_row.payment_term	+ '</td>'
+		+  '<td class="jky-received-at"		>' + JKY.short_date(the_row.scheduled_at )	+ '</td>'
+		+  '<td class="jky-expected-weight"	>' + the_row.expected_weight				+ '</td>'
+		+  '<td class="jky-received-weight"	>' + the_row.received_weight				+ '</td>'
 		;
 	return my_html;
 };
@@ -74,15 +75,15 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-number'			, the_row.number		);
-	JKY.set_value	('jky-source-doc'		, the_row.source_doc	);
+	JKY.set_value	('jky-number'			, the_row.number					);
 	JKY.set_date	('jky-ordered-at'		, JKY.out_time(the_row.ordered_at	));
+	JKY.set_option	('jky-supplier-name'	, the_row.supplier_id				);
+	JKY.set_option	('jky-thread-name'		, the_row.thread_id					);
 	JKY.set_date	('jky-expected-date'	, JKY.out_date(the_row.expected_date));
 	JKY.set_date	('jky-scheduled-at'		, JKY.out_time(the_row.scheduled_at	));
-	JKY.set_option	('jky-supplier-name'	, the_row.supplier_id	);
-	JKY.set_value	('jky-supplier-ref'		, the_row.supplier_ref	);
-	JKY.set_option	('jky-payment-term'		, the_row.payment_term	);
-
+	JKY.set_date	('jky-received-at'		, JKY.out_time(the_row.scheduled_at	));
+	JKY.set_value	('jky-expected-weight'	, the_row.expected_weight			);
+	JKY.set_value	('jky-received-weight'	, the_row.received_weight			);
 	JKY.display_lines();
 };
 
@@ -91,13 +92,14 @@ JKY.set_form_row = function(the_row) {
  */
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-number'			,  JKY.t('New'));
-	JKY.set_value	('jky-source-doc'		, '');
+	JKY.set_option	('jky-supplier-name'	, '');
+	JKY.set_option	('jky-thread-name'		, '');
 	JKY.set_date	('jky-ordered-at'		,  JKY.out_time(JKY.get_now ()));
 	JKY.set_date	('jky-expected-date'	,  JKY.out_date(JKY.get_date()));
 	JKY.set_date	('jky-scheduled-at'		, '');
-	JKY.set_option	('jky-supplier-name'	, '');
-	JKY.set_value	('jky-supplier-ref'		, '');
-	JKY.set_option	('jky-payment-term'		, '');
+	JKY.set_date	('jky-received-at'		, '');
+	JKY.set_value	('jky-expected-weight'	, '');
+	JKY.set_option	('jky-received-weight'	, '');
 }
 
 /**
