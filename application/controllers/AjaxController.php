@@ -710,7 +710,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=PurchaseLines.thread_id'
 												. '  LEFT JOIN     Batches  			ON   Batches.id	=PurchaseLines.batch_id'
 												. '  LEFT JOIN   Incomings				ON Incomings.id	=      Batches.incoming_id'
-												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=    Incomings.supplier_id';
+												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=    Purchases.supplier_id';
 	if ($table == 'Incomings'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=    Incomings.supplier_id';
 	if ($table == 'Batches'			)	$return = '  LEFT JOIN   Incomings  			ON Incomings.id	=      Batches.incoming_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=      Batches.thread_id'
@@ -724,7 +724,8 @@ private function set_left_joins($table) {
 }
 
 private function set_where($table, $filter) {
-	$filter = trim(strtolower($filter));
+	$filter = strtolower($filter);
+	$filter = trim($filter);
 	if ($filter == '') {
 		return '';
 	}

@@ -12,11 +12,11 @@ JKY.start_program = function() {
 	JKY.App.set(
 		{ object_name	: 'JKY.App'
 		, program_name	: 'Lines'
-		, table_name	: 'Lines'
+		, table_name	: 'PurchaseLines'
 		, specific		: ''
-		, select		: ''
+		, select		: 'All'
 		, filter		: ''
-		, sort_by		: 'ordered_at'
+		, sort_by		: 'expected_date'
 		, sort_seq		: 'DESC'
 		, focus			: 'jky-schedule-at'
 		, add_new		: 'display form'
@@ -46,9 +46,8 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-purchases-purchases');
+	JKY.set_side_active('jky-purchases-lines');
 	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
-	JKY.set_html('jky-payment-term', JKY.set_configs('Payment Terms', '', ''));
 //	JKY.set_html('jky-app-select-label', JKY.t('Type'));
 //	JKY.show('jky-app-select-line');
 };
