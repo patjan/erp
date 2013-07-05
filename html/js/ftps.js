@@ -153,7 +153,7 @@ JKY.set_form_row = function(the_row) {
  */
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-number'			,  JKY.t('New'));
-	JKY.set_value	('jky-start-value'		,  JKY.fix_ymd2dmy(JKY.get_now()));
+	JKY.set_value	('jky-start-value'		,  JKY.fix_ymd2dmy(JKY.get_date()));
 	JKY.set_value	('jky-product-id'		,  0);
 	JKY.set_value	('jky-product'			, '');
 	JKY.set_value	('jky-composition'		, '');

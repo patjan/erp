@@ -77,6 +77,7 @@ JKY.Xbinding_on_resize = function() {
  * adjust height minus offset height, but not less than minimum height
  * @param	tableId
  * @param	width
+ * @param	off_width
  * @param	minHeight
  * @param	offHeight
  */
@@ -175,6 +176,7 @@ JKY.load_hb = function(template_name, file_name) {
  * wait until the template is loaded
  * @param	template_name
  * @param	id_name
+ * @param	view_object
  * @return	(new)View
  */
 JKY.replace_in = function(template_name, id_name, view_object) {
@@ -190,7 +192,7 @@ JKY.replace_in = function(template_name, id_name, view_object) {
 /**
  * set translations
  *
- * @param	array
+ * @param	the_array
  * @example	JKY.set_translations('portugues')
  */
 JKY.set_translations = function(the_array) {
@@ -200,7 +202,7 @@ JKY.set_translations = function(the_array) {
 /**
  * translate
  *
- * @param	text
+ * @param	the_text
  * @return	translated text
  * @example JKY.t('Home')
  */
@@ -362,8 +364,8 @@ JKY.fix_null = function(string_value){
 
 /**
  * fix ymd to dmy
- * @param	yyyy-mm-dd
- * @return	dd-mm-yyyy
+ * @param	date	yyyy-mm-dd
+ * @return			dd-mm-yyyy
  */
 JKY.fix_ymd2dmy = function(date){
 	if (date == null) {
@@ -375,8 +377,8 @@ JKY.fix_ymd2dmy = function(date){
 
 /**
  * fix dmy to ymd
- * @param	dd-mm-yyyy
- * @return	yyyy-mm-dd
+ * @param	date	dd-mm-yyyy
+ * @return			yyyy-mm-dd
  */
 JKY.fix_dmy2ymd = function(date){
 	var my_date = date.trim();
@@ -389,7 +391,7 @@ JKY.fix_dmy2ymd = function(date){
 
 /**
  * out date
- * @param	yyyy-mm-dd hh:mm:ss
+ * @param	the_time	yyyy-mm-dd hh:mm:ss
  *
  * @return	mm-dd-yyyy (en_US)
  * @return	dd-mm-yyyy (pt_BR)
@@ -413,10 +415,10 @@ JKY.out_date = function(the_time){
 
 /**
  * out time
- * @param	yyyy-mm-dd hh:mm:ss
+ * @param	the_time	yyyy-mm-dd hh:mm:ss
  *
- * @return	mm-dd-yyyy hh:mm:ss (en_US)
- * @return	dd-mm-yyyy hh:mm:ss (pt_BR)
+ * @return	mm-dd-yyyy hh:mm (en_US)
+ * @return	dd-mm-yyyy hh:mm (pt_BR)
  */
 JKY.out_time = function(the_time){
 	if (the_time == null) {
@@ -424,7 +426,7 @@ JKY.out_time = function(the_time){
 	}
 
 	var my_date		= the_time.substr( 0, 10);
-	var my_time		= the_time.substr(11);
+	var my_time		= the_time.substr(11,  5);
 	var my_dates	= my_date.split('-');
 	var my_result	= '';
 
@@ -438,7 +440,7 @@ JKY.out_time = function(the_time){
 
 /**
  * short date
- * @param	yyyy-mm-dd hh:mm:ss
+ * @param	the_time	yyyy-mm-dd hh:mm:ss
  *
  * @return	mm-dd-yyyy	(en_US)
  * @return	dd-mm-yyyy	(pt_BR)
@@ -452,7 +454,7 @@ JKY.short_date = function(the_time){
 
 	var my_time = JKY.out_time(the_time);
 	var my_date = the_time.substr(0, 10);
-	if (my_date == JKY.get_now()) {
+	if (my_date == JKY.get_date()) {
 		my_date = my_time.substr(0, 5) + ' ' + my_time.substr(11, 5);
 	}else{
 		my_date = my_time.substr(0, 10);
@@ -461,9 +463,18 @@ JKY.short_date = function(the_time){
 }
 
 /**
+ * set date
+ * @param	the_id
+ * @param	the_date
+ */
+JKY.set_date = function(the_id, the_date){
+	$('#' + the_id).datetimepicker('setDate', the_date);
+}
+
+/**
  * input date
- * @param	mm-dd-yyyy (en-US)
- * @param	dd-mm-yyyy (pt_BR)
+ * @param	the_date	mm-dd-yyyy (en-US)
+ *						dd-mm-yyyy (pt_BR)
  *
  * @return	yyyy-mm-dd
  */
@@ -482,14 +493,14 @@ JKY.inp_date = function(the_date){
 
 /**
  * input time
- * @param	mm-dd-yyyy hh:mm:ss (en-US)
- * @param	dd-mm-yyyy hh:mm:ss (pt_BR)
+ * @param	the_time	mm-dd-yyyy hh:mm (en-US)
+ *						dd-mm-yyyy hh:mm (pt_BR)
  *
- * @return	yyyy-mm-dd hh:mm:ss
+ * @return	yyyy-mm-dd hh:mm
  */
 JKY.inp_time = function(the_time){
 	var my_date		= the_time.substr( 0, 10);
-	var my_time		= the_time.substr(11);
+	var my_time		= the_time.substr(11,  5);
 	var my_dates	= my_date.split('-');
 	var my_result	= '';
 
@@ -565,10 +576,18 @@ JKY.display_trace = function(message){
 }
 
 /**
- * get now date or time
- * @return yyyy-mm-dd
+ * get now date and time
+ * @return yyyy-mm-dd hh:mm:ss
  */
 JKY.get_now = function() {
+	return JKY.get_date() + ' ' + JKY.get_time();
+}
+
+/**
+ * get date
+ * @return yyyy-mm-dd
+ */
+JKY.get_date = function() {
 	var  my_today = new Date();
 	var  my_year	= my_today.getFullYear();
 	var  my_month	= my_today.getMonth()+1;	if (my_month < 10)	my_month= '0' + my_month;
@@ -577,7 +596,7 @@ JKY.get_now = function() {
 }
 
 /**
- * get now time
+ * get time
  * @return hh:mm:ss
  */
 JKY.get_time = function() {
@@ -670,7 +689,7 @@ JKY.get_value = function(the_id){
 /**
  * set specific id with value
  * @param	the_id
- * @param	value
+ * @param	the_value
  */
 JKY.set_value = function(the_id, the_value){
 	var my_value = (the_value == 'null') ? '' : the_value;
@@ -789,10 +808,11 @@ JKY.set_options_array = function(the_selected, the_array, the_null) {
 		if (typeof my_id == 'undefined') {
 			my_id = my_value;
 		}
+		var my_selected = '';
 		if (isNaN(the_selected)) {
-			var my_selected = (my_value == the_selected) ? ' selected="selected"' : '';
+			my_selected = (my_value == the_selected) ? ' selected="selected"' : '';
 		}else{
-			var my_selected = (my_id    == the_selected) ? ' selected="selected"' : '';
+			my_selected = (my_id    == the_selected) ? ' selected="selected"' : '';
 		}
 		my_options += '<option value="' + my_id + '"' + my_selected + '>' + my_value + '</option>';
      }
@@ -961,14 +981,14 @@ JKY.collapse = function(id_name){
 	var x= my_id.css('margin-left');
 	if (my_id.css('margin-left') == '0px') {
 		my_id.css('display' , 'block');
-		my_id.css('margin-left' , '-200px');	
+		my_id.css('margin-left' , '-200px');
 		$('#jky-collapsible-icon').removeClass('icon-step-backward').addClass('icon-step-forward');
 	}else{
 		$('#jky-collapsible-icon').removeClass('icon-step-forward').addClass('icon-step-backward');
 		my_id.css('display' , 'table-cell');
-		my_id.css('margin-left' , '0px');	
+		my_id.css('margin-left' , '0px');
 	}
-	
+
 }
 
 /**
@@ -1066,7 +1086,10 @@ JKY.is_scroll_at_end = function(class_name){
  * show confirm layer with message
  * @param	function_yes	(null | callback function if reply = Yes)
  * @param	function_no		(null | callback function if reply = No )
- * @param	message
+ * @param	header
+ * @param	body
+ * @param	label_yes
+ * @param	label_no
  *
  * @example JKY.display_confirm
  *				(  JKY.restore_data
@@ -1123,7 +1146,7 @@ JKY.hide_layer = function(layer) {
 
 /**
  * set string
- * @param	string
+ * @param	the_string
  * @return	string
  */
 JKY.set_string = function(the_string) {
@@ -1136,7 +1159,7 @@ JKY.set_string = function(the_string) {
 
 /**
  * set icon file
- * @param	file-id
+ * @param	the_file_id
  * @return	image
  */
 JKY.set_icon_file = function(the_file_id) {

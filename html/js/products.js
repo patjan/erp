@@ -99,7 +99,7 @@ JKY.set_form_row = function(the_row) {
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-product-name'		, '');
 	JKY.set_radio	('jky-product-type'		,  JKY.t('Tubular'));
-	JKY.set_value	('jky-start-date'		,  JKY.out_time(JKY.get_now()));
+	JKY.set_value	('jky-start-date'		,  JKY.out_time(JKY.get_date()));
 }
 
 /**

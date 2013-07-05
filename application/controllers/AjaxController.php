@@ -1042,7 +1042,8 @@ private function set_where($table, $filter) {
 		if ($table == 'Incomings') {
 			if ($name == 'number'
 			or	$name == 'received_at'
-			or	$name == 'invoice_number'
+			or	$name == 'nfe_dl'
+			or	$name == 'nfe_tm'
 			or	$name == 'invoice_date'
 			or	$name == 'invoice_weight'
 			or	$name == 'invoice_amount'
@@ -1271,7 +1272,8 @@ private function set_where($table, $filter) {
 	if ($table ==  'Incomings') {
 		$return = ' Incomings.number			LIKE ' . $filter
 			. ' OR  Incomings.received_at		LIKE ' . $filter
-			. ' OR  Incomings.invoice_number	LIKE ' . $filter
+			. ' OR  Incomings.nfe_dl			LIKE ' . $filter
+			. ' OR  Incomings.nfe_tm			LIKE ' . $filter
 			. ' OR  Incomings.invoice_date		LIKE ' . $filter
 			. ' OR  Incomings.invoice_weight	LIKE ' . $filter
 			. ' OR  Incomings.invoice_amount	LIKE ' . $filter

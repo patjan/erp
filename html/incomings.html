@@ -7,24 +7,25 @@
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-number				{width: 60px; text-align:center;}
-.jky-received-time		{width: 80px; text-align:center;}
-.jky-supplier-name		{width: 80px; text-align:center;}
-.jky-invoice-weight		{width: 80px; text-align:center;}
-.jky-invoice-number		{width: 80px; text-align:center;}
-.jky-invoice-date		{width: 80px; text-align:center;}
-.jky-invoice-weight		{width: 80px; text-align:center;}
-.jky-invoice-amount		{width: 80px; text-align:center;}
+.jky-number				{width: 60px; text-align:right  !important;}
+.jky-received-time		{width: 60px; text-align:center !important;}
+.jky-supplier-name		{width: 80px; text-align:center !important;}
+.jky-nfe-dl				{width: 60px; text-align:right  !important;}
+.jky-nfe-tm				{width: 60px; text-align:right  !important;}
+.jky-invoice-date		{width: 60px; text-align:center !important;}
+.jky-invoice-weight		{width: 80px; text-align:right  !important;}
+.jky-invoice-amount		{width: 80px; text-align:right  !important;}
 
 #jky-number				{width: 60px; font-size:16px; font-weight:bold;}
-#jky-received-value		{width:150px;}
 #jky-supplier-name		{width:185px;}
-#jky-invoice-number		{width:100px;}
-#jky-invoice-value		{width: 96px;}
-#jky-invoice-weight		{width:100px; text-align:right;}
+#jky-nfe-dl				{width:100px;}
+#jky-nfe-tm				{width:100px;}
+#jky-invoice-value		{width: 75px;}
+#jky-received-value		{width:120px;}
 #jky-invoice-amount		{width:100px; text-align:right;}
-#jky-real-weight		{width:100px; text-align:right;}
+#jky-invoice-weight		{width:100px; text-align:right;}
 #jky-real-amount		{width:100px; text-align:right;}
+#jky-real-weight		{width:100px; text-align:right;}
 
 .jky-batch-value			{width: 10%;	text-align:right ;}
 .jky-batch-label			{width: 40%;	text-align:left  ;}
@@ -53,10 +54,11 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-number'			><span>   Number			</span></th>
+			<th class='jky-number'			><span>			<br>Number	</span></th>
 			<th class='jky-received-time'	><span> Received<br>Time	</span></th>
 			<th class='jky-supplier-name'	><span> Supplier<br>Name	</span></th>
-			<th class='jky-invoice-number'	><span>  Invoice<br>Number	</span></th>
+			<th class='jky-nfe-dl'			><span>			<br>NFe DL	</span></th>
+			<th class='jky-nfe-tm'			><span>			<br>NFe TM	</span></th>
 			<th class='jky-invoice-date'	><span>  Invoice<br>Date	</span></th>
 			<th class='jky-invoice-weight'	><span>  Invoice<br>Weight	</span></th>
 			<th class='jky-invoice-amount'	><span>  Invoice<br>Amount	</span></th>
@@ -77,7 +79,8 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>        Number</span>:</div><input  id='jky-number' class='jky-form-value'	readonly='readonly'	/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span> Supplier Name</span>:</div><select id='jky-supplier-name'></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Number</span>:</div><input  id='jky-invoice-number'	class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>        NFe DL</span>:</div><input  id='jky-nfe-dl' class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>        NFe TM</span>:</div><input  id='jky-nfe-tm' class='jky-form-value' /></div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Invoice Date</span>:</div>
 				<div id="jky-invoice-date" class="input-append date"><input id='jky-invoice-value'   data-format="dd-MM-yyyy"		type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>

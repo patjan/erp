@@ -22,7 +22,7 @@ JKY.threads		= [];
 JKY.loads		= [];
 JKY.settings	= [];
 JKY.languages	= [];
-JKY.today		= JKY.get_now();
+JKY.today		= JKY.get_date();
 
 /**
  * start program
@@ -619,7 +619,7 @@ JKY.display_new = function() {
 
 	JKY.set_option	('jky-status'			, 'Open');
 	JKY.set_value	('jky-opened-by'		, JKY.Session.get_value('full_name'));
-	JKY.set_value	('jky-opened-value'		, JKY.get_now());
+	JKY.set_value	('jky-opened-value'		, JKY.get_date());
 	JKY.set_value	('jky-worked-hour'		, 0 );
 //	JKY.set_value	('jky-priority'			, 'Normal');
 //	JKY.set_option	('jky-category'			, '');

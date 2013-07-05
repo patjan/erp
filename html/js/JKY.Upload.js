@@ -76,7 +76,7 @@ JKY.Upload = function(the_args) {
 		JKY.display_message('File ' + my_saved_name + ' uploaded');
 		JKY.set_html(my_args.percent_id, '100%');
 
-		var my_time = JKY.get_now() + ' ' + JKY.get_time();
+		var my_time = JKY.get_now();
 		var my_photo = my_saved_name + ',' + my_time + ',' + file.size;
 		JKY.set_html(my_args.download_id, my_out_photo(my_photo));
 

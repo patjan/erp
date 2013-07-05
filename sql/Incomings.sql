@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS Incomings
 , number			VARCHAR(32)			DEFAULT NULL
 , received_at		DATETIME			DEFAULT NULL
 , supplier_id		BIGINT				DEFAULT NULL
-, invoice_number	VARCHAR(32)			DEFAULT NULL
+, nfe_dl			VARCHAR(32)			DEFAULT NULL
+, nfe_tm			VARCHAR(32)			DEFAULT NULL
 , invoice_date		DATE				DEFAULT NULL
 , invoice_weight	DECIMAL(10,2)		DEFAULT 0
 , invoice_amount	DECIMAL(10,2)		DEFAULT 0
@@ -22,3 +23,7 @@ CREATE TABLE IF NOT EXISTS Incomings
 , KEY supplier	(supplier_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
 ;
+
+ALTER TABLE Incomings	ADD		nfe_tm			VARCHAR(32)		DEFAULT NULL	AFTER supplier_id;
+ALTER TABLE Incomings	ADD		nfe_dl			VARCHAR(32)		DEFAULT NULL	AFTER supplier_id;
+ALTER TABLE Incomings	DROP	invoice_number;

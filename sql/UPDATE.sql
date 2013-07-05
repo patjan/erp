@@ -46,3 +46,7 @@ UPDATE		Contacts	SET is_supplier = 'No'		WHERE is_supplier = 'no';
 ----- 2013/06/30
 UPDATE Translations	SET locale = 'en_US'	WHERE locale = 'en_us';
 UPDATE Translations	SET locale = 'pt_BR'	WHERE locale = 'pt_br';
+----- 2013/07/04
+ALTER TABLE Incomings	ADD		nfe_tm			VARCHAR(32)		DEFAULT NULL	AFTER supplier_id;
+ALTER TABLE Incomings	ADD		nfe_dl			VARCHAR(32)		DEFAULT NULL	AFTER supplier_id;
+ALTER TABLE Incomings	DROP	invoice_number;

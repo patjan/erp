@@ -79,10 +79,11 @@ input.span2 {width:80px; padding:2px 4px;}
 
 #jky-body				{width:100%; height:100%;}
 
-#jky-side-bar			{width:200px; border-right:1px solid #AFAFB6; background:none repeat scroll 0 0 #F0EEEE; vertical-align:top; margin-left: 0px; display: block;}
+#jky-side-bar			{width:200px; border-right:1px solid #AFAFB6; background:none repeat scroll 0 0 #F0EEEE; vertical-align:top; margin-left: 0px;}
 
 #jky-side-header		{width:200px; padding:21px 0; text-align:center;}
 #jky-company-logo		{}
+#jky-collapsible-icon	{margin:12px 0;}
 
 #jky-side-sales			{height:auto; display:none;}
 #jky-side-purchases		{height:auto; display:none;}

@@ -44,10 +44,11 @@ if (my_first == true) {
 				$('#jky-action-cancel'		).click (function() {JKY.Changes.can_leave(function() { my_process_cancel		();})});
 				$('#jky-check-all'			).click (function() {									my_set_all_check	(this);});
 
-				$('#jky-form-data    input[id]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
-				$('#jky-form-data  input[name]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
-				$('#jky-form-data   select[id]').each (function() {$(this).change(function()	{my_process_change_input(this);});});
-				$('#jky-form-data textarea[id]').each (function() {$(this).change(function()	{my_process_change_input(this);});});
+				$('#jky-form-data       input[id]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
+				$('#jky-form-data     input[name]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
+				$('#jky-form-data      select[id]').each (function() {$(this).change(function()	{my_process_change_input(this);});});
+				$('#jky-form-data    textarea[id]').each (function() {$(this).change(function()	{my_process_change_input(this);});});
+				$('#jky-form-data i.icon-calendar').each (function() {$(this).on (function()	{alert('icon');});});
 				JKY.set_all_events();	// from caller
 			}else{
 				setTimeout(function() {my_set_all_events();}, 100);

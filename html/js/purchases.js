@@ -91,9 +91,9 @@ JKY.set_form_row = function(the_row) {
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-number'			,  JKY.t('New'));
 	JKY.set_value	('jky-source-doc'		, '');
-	JKY.set_value	('jky-ordered-at'		,  JKY.out_time(JKY.get_now()));
-	JKY.set_value	('jky-expected-date'	,  JKY.out_time(JKY.get_now()));
-	JKY.set_value	('jky-scheduled_at'		,  JKY.out_time(JKY.get_now()));
+	JKY.set_value	('jky-ordered-at'		,  JKY.out_time(JKY.get_now ()));
+	JKY.set_value	('jky-expected-date'	,  JKY.out_time(JKY.get_date()));
+	JKY.set_value	('jky-scheduled_at'		,  JKY.out_time(JKY.get_now ()));
 	JKY.set_option	('jky-supplier-name'	, '');
 	JKY.set_value	('jky-supplier-ref'		, '');
 	JKY.set_option	('jky-payment-term'		, '');

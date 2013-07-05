@@ -144,9 +144,9 @@ JKY.display_trace('my_process_timeout');
 		JKY.Session.load_values();
 		my_locale = my_session['locale'];
 		switch(my_locale) {
-			case 'en_US'	: my_date_time = 'MM-dd-yyyy hh:mm:ss'; break;
-			case 'pt_BR'	: my_date_time = 'dd-MM-yyyy hh:mm:ss'; break;
-			default			: my_date_time = 'yyyy-MM-dd hh:mm:ss';
+			case 'en_US'	: my_date_time = 'MM-dd-yyyy hh:mm'; break;
+			case 'pt_BR'	: my_date_time = 'dd-MM-yyyy hh:mm'; break;
+			default			: my_date_time = 'yyyy-MM-dd hh:mm';
 		}
 	});
 

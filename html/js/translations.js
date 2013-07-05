@@ -5,7 +5,7 @@
  */
 
 JKY.languages	= [];
-JKY.today		= JKY.get_now();
+JKY.today		= JKY.get_date();
 
 /**
  * start program

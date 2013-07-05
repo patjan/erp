@@ -28,10 +28,12 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-received-value'	).attr('data-format',		JKY.Session.get_date_time	());
+	$('#jky-received-value'	).attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-invoice-value'	).attr('data-format', JKY.Session.get_date		());
 	$('#jky-received-time'	).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-invoice-value'	).attr('data-format',		JKY.Session.get_date		());
 	$('#jky-invoice-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-received-time'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+	$('#jky-invoice-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-tab-batches'	).click (function() {JKY.display_batches	();});
 	$('#jky-batch-add-new'	).click (function() {JKY.insert_batch		();});
@@ -58,9 +60,10 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-number"			>' + the_row.number			+ '</td>'
 		+  '<td class="jky-received-time"	>' + JKY.short_date(the_row.received_at)	+ '</td>'
 		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name	+ '</td>'
-		+  '<td class="jky-invoice-number"	>' + the_row.invoice_number	+ '</td>'
+		+  '<td class="jky-nfe-dl"			>' + the_row.nfe_dl			+ '</td>'
+		+  '<td class="jky-nfe-tm"			>' + the_row.nfe_tm			+ '</td>'
 		+  '<td class="jky-invoice-date"	>' + JKY.out_date(the_row.invoice_date) 	+ '</td>'
-		+  '<td class="jky-invoice-weigth"	>' + the_row.invoice_weight	+ '</td>'
+		+  '<td class="jky-invoice-weight"	>' + the_row.invoice_weight	+ '</td>'
 		+  '<td class="jky-invoice-amount"	>' + the_row.invoice_amount	+ '</td>'
 		;
 	return my_html;
@@ -71,10 +74,11 @@ JKY.set_table_row = function(the_row) {
  */
 JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-number'			, the_row.number		);
-	JKY.set_value	('jky-received-value'	, JKY.out_time(the_row.received_at));
+	JKY.set_date	('jky-received-time'	, JKY.out_time(the_row.received_at));
 	JKY.set_option	('jky-supplier-name'	, the_row.supplier_id	);
-	JKY.set_value	('jky-invoice-number'	, the_row.invoice_number);
-	JKY.set_value	('jky-invoice-value'	, JKY.out_date(the_row.invoice_date));
+	JKY.set_value	('jky-nfe-dl'			, the_row.nfe_dl);
+	JKY.set_value	('jky-nfe-tm'			, the_row.nfe_tm);
+	JKY.set_date	('jky-invoice-date'		, JKY.out_date(the_row.invoice_date));
 	JKY.set_value	('jky-invoice-weight'	, the_row.invoice_weight);
 	JKY.set_value	('jky-invoice-amount'	, the_row.invoice_amount);
 	JKY.set_value	('jky-real-weight'		, the_row.real_weight);
@@ -89,12 +93,15 @@ JKY.set_form_row = function(the_row) {
  */
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-number'			,  JKY.t('New'));
-	JKY.set_value	('jky-received-value'	,  JKY.out_time(JKY.get_now()));
+	JKY.set_date	('jky-received-time'	,  JKY.out_time(JKY.get_now()));
 	JKY.set_option	('jky-supplier-name'	, '');
-	JKY.set_value	('jky-invoice-number'	, '');
-	JKY.set_value	('jky-invoice-value'	,  JKY.out_date(JKY.get_now()));
+	JKY.set_value	('jky-nfe-dl'			, '');
+	JKY.set_value	('jky-nfe-tm'			, '');
+	JKY.set_date	('jky-invoice-date'		,  JKY.out_date(JKY.get_date()));
 	JKY.set_value	('jky-invoice-weight'	,  0);
 	JKY.set_value	('jky-invoice-amount'	,  0);
+	JKY.set_value	('jky-real-weight'		,  0);
+	JKY.set_value	('jky-real-amount'		,  0);
 }
 
 /**
@@ -107,12 +114,22 @@ JKY.get_form_set = function() {
 	var my_set = ''
 		+     'received_at=  ' + JKY.inp_time(JKY.get_value('jky-received-value'	))
 		+   ', supplier_id=  ' + my_supplier_id
-		+', invoice_number=\'' +			  JKY.get_value('jky-invoice-number'	) + '\''
+		+		 ', nfe_dl=\'' +			  JKY.get_value('jky-nfe-dl'			) + '\''
+		+		 ', nfe_tm=\'' +			  JKY.get_value('jky-nfe-tm'			) + '\''
 		+  ', invoice_date=  ' + JKY.inp_date(JKY.get_value('jky-invoice-value'		))
 		+', invoice_weight=  ' +			  JKY.get_value('jky-invoice-weight'	)
 		+', invoice_amount=  ' +			  JKY.get_value('jky-invoice-amount'	)
 		;
 	return my_set;
+};
+
+JKY.process_delete = function(the_id, the_row) {
+	var my_data =
+		{ method: 'delete_many'
+		, table : 'Batches'
+		, where : 'incoming_id = ' + the_id
+		};
+	JKY.ajax(true, my_data);
 };
 
 /**

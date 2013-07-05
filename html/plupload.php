@@ -135,7 +135,7 @@ if( !file_exists( $targetDir ))
 
 //   remove old temp files
 /* this doesn't really work by now
-	
+
 if(  is_dir( $targetDir ) && ( $dir = opendir( $targetDir ))) {
 	while(( $file = readdir( $dir )) !== false ) {
 		$filePath = $targetDir . $file;
@@ -159,7 +159,7 @@ if(  isset( $_SERVER[ 'CONTENT_TYPE' ]))
 	$contentType = $_SERVER[ 'CONTENT_TYPE' ];
 
 Xlog_sql( ' contentType: ' . $contentType );
-     
+
 //   handle non multipart uploads older WebKit versions didn't support multipart in HTML5
 if(  strpos( $contentType, 'multipart' ) !== false ) {
 Xlog_sql( ' multipart' );
@@ -169,7 +169,7 @@ Xlog_sql( ' fileSize: ' . $_FILES[ 'file' ][ 'size' ] );
 //	     $out = fopen( $targetDir . $fileName, $chunk == 0 ? 'wb' : 'ab' );
           if(  $chunk == 0 ) {
                $mode = 'wb';
-//               $file_key = encrypt_hash( get_now() );
+//               $file_key = encrypt_hash( get_date() );
                $file_key = $file_id;
                set_session( 'file_key'       , $file_key    );
                set_session( 'file_name'      , $fileName    );
@@ -206,7 +206,7 @@ Xlog_sql( 'php://input' );
 //	     $out = fopen( $targetDir . $fileName, $chunk == 0 ? 'wb' : 'ab' );
           if(  $chunk == 0 ) {
                $mode = 'wb';
-//               $file_key = encrypt_hash( get_now() );
+//               $file_key = encrypt_hash( get_date() );
                $file_key = $file_id;
                set_session( 'file_key'       , $file_key    );
                set_session( 'file_name'      , $fileName    );
