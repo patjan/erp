@@ -48,7 +48,7 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-purchases-lines');
-	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
+//	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
 //	JKY.set_html('jky-app-select-label', JKY.t('Type'));
 //	JKY.show('jky-app-select-line');
 };
@@ -61,10 +61,10 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-purchase-number"	>' + the_row.purchase_number				+ '</td>'
 		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name					+ '</td>'
 		+  '<td class="jky-thread-name"		>' + the_row.thread_name					+ '</td>'
-		+  '<td class="jky-ordered-at"		>' + JKY.short_date(the_row.ordered_at   )	+ '</td>'
-		+  '<td class="jky-expected-date"	>' + JKY.out_date  (the_row.expected_date) 	+ '</td>'
-		+  '<td class="jky-scheduled-at"	>' + JKY.short_date(the_row.scheduled_at )	+ '</td>'
-		+  '<td class="jky-received-at"		>' + JKY.short_date(the_row.scheduled_at )	+ '</td>'
+		+  '<td class="jky-ordered-at"		>' + JKY.out_time(the_row.ordered_at   )	+ '</td>'
+		+  '<td class="jky-expected-date"	>' + JKY.out_date(the_row.expected_date) 	+ '</td>'
+//		+  '<td class="jky-scheduled-at"		>' + JKY.out_time(the_row.scheduled_at )	+ '</td>'
+//		+  '<td class="jky-received-at"		>' + JKY.out_time(the_row.received_at )	+ '</td>'
 		+  '<td class="jky-expected-weight"	>' + the_row.expected_weight				+ '</td>'
 		+  '<td class="jky-received-weight"	>' + the_row.received_weight				+ '</td>'
 		;
@@ -76,7 +76,7 @@ JKY.set_table_row = function(the_row) {
  */
 JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-purchase-number'	, the_row.purchase_number			);
-	JKY.set_option	('jky-supplier-name'	, the_row.supplier_id				);
+	JKY.set_value	('jky-supplier-name'	, the_row.supplier_name				);
 	JKY.set_value	('jky-thread-name'		, the_row.thread_name				);
 	JKY.set_date	('jky-ordered-at'		, JKY.out_time(the_row.ordered_at	));
 	JKY.set_date	('jky-expected-date'	, JKY.out_date(the_row.expected_date));
@@ -92,7 +92,7 @@ JKY.set_form_row = function(the_row) {
  */
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-purchase-number'	,  JKY.t('New'));
-	JKY.set_option	('jky-supplier-name'	, '');
+	JKY.set_value	('jky-supplier-name'	, '');
 	JKY.set_value	('jky-thread-name'		, '');
 	JKY.set_date	('jky-ordered-at'		,  JKY.out_time(JKY.get_now ()));
 	JKY.set_date	('jky-expected-date'	,  JKY.out_date(JKY.get_date()));
