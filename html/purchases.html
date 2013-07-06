@@ -12,26 +12,25 @@
 .jky-ordered-at			{width: 80px; text-align:center;}
 .jky-expected-date		{width: 80px; text-align:center;}
 .jky-scheduled-at		{width: 80px; text-align:center;}
-.jky-supplier-name		{width:120px; text-align:center;}
+.jky-supplier-name		{width:155px; text-align:center;}
 .jky-supplier-ref		{width: 80px; text-align:center;}
-.jky-payment-term		{width: 80px; text-align:center;}
 
 #jky-number				{width: 60px; font-size:16px; font-weight:bold;}
-#jky-source-doc			{width:150px;}
+#jky-source-doc			{width:100px;}
 #jky-ordered-value		{width:120px;}
 #jky-expected-value		{width: 75px;}
 #jky-scheduled-value	{width:120px;}
-#jky-supplier-name		{width:185px;}
-#jky-supplier-ref		{width:150px;}
-#jky-payment-term		{width:160px;}
+#jky-supplier-name		{width:155px;}
+#jky-supplier-ref		{width:100px;}
+#jky-payment-term		{width:110px;}
 
 .jky-line-label			{font-weight:bold; text-align:right;}
 .jky-line-value  input	{width: 90%;	text-align:right ;}
 .jky-line-thread input	{width:275px;	text-align:left  ;}
 .jky-line-thread a		{margin-left:-30px; padding:5px;}
 .jky-line-thread a		{margin-left:-30px; padding:5px;}
-.jky-line-percent		{width: 40px;	text-align:right ; margin-right:0;}
 .jky-line-name			{width:280px;}
+
 #jky-line-total-expected{padding-right:15px; font-weight:bold; text-align:right;}
 #jky-line-total-received{padding-right:15px; font-weight:bold; text-align:right;}
 </style>
@@ -47,7 +46,6 @@
 			<th class='jky-scheduled-at'	><span>Scheduled<br>Time	</span></th>
 			<th class='jky-supplier-name'	><span> Supplier Name		</span></th>
 			<th class='jky-supplier-ref'	><span> Supplier<br>Document</span></th>
-			<th class='jky-payment-term'	><span>  Payment<br>Term	</span></th>
 		</tr>
 	</thead>
 
@@ -108,8 +106,8 @@
 							<th class='jky-action'></th>
 							<th class='jky-line-name'				><span>   Thread			</span></th>
 							<th class='jky-line-expected-weight'	><span> Expected<br>Weight	</span></th>
-							<th class='jky-line-received-weight'	><span> Received<br>Weight	</span></th>
 							<th class='jky-line-expected-date'		><span> Expected<br>Date	</span></th>
+							<th class='jky-line-received-weight'	><span> Received<br>Weight	</span></th>
 							<th class='jky-line-scheduled-at'		><span>Scheduled<br>Time	</span></th>
 						</tr>
 					</thead>
@@ -119,7 +117,9 @@
 							<td	   id='jky-line-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 							<td class='jky-line-label'><span>Total</span></td>
 							<td    id='jky-line-total-expected'></td>
+							<td></td>
 							<td    id='jky-line-total-received'></td>
+							<td></td>
 						</tr>
 					</tfoot>
 				</table>

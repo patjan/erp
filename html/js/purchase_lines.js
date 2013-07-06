@@ -21,9 +21,12 @@ JKY.generate_lines = function(response) {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];
 			my_html += JKY.generate_row(my_row);
-
-			my_expected += parseFloat(my_row.expected_weight);
-			my_received	+= parseFloat(my_row.received_weight);
+			if (my_row.expected_weight != null) {
+				my_expected += parseFloat(my_row.expected_weight);
+			}
+			if (my_row.received_weight != null) {
+				my_received	+= parseFloat(my_row.received_weight);
+			}
 		}
 	}
 	JKY.set_html('jky-line-total-expected', my_expected);
@@ -35,7 +38,8 @@ JKY.generate_lines = function(response) {
 }
 
 JKY.generate_row = function(the_row) {
-	var my_id				=			 the_row.id;
+	var my_id = the_row.id;
+	var my_trash = (the_row.batch_id == null) ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_line = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
 		+ "<input class='jky-thread-row-name jky-form-value' readonly='readonly' onclick='JKY.update_line(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
@@ -43,12 +47,12 @@ JKY.generate_row = function(the_row) {
 		;
 	var my_html = ''
 		+ '<tr purchase_line_id=' + my_id + '>'
-		+ '<td class="jky-action"><a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-		+ '<td class="jky-line-thread"		>' + my_line + '</td>'
-		+ '<td class="jky-line-value"		><input class="jky-line-expected-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + parseFloat	(the_row.expected_weight) + '" /></td>'
-		+ '<td class="jky-line-value"		><input class="jky-line-received-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + parseFloat	(the_row.received_weight) + '" /></td>'
-		+ '<td class="jky-line-value"		><input class="jky-line-expected-date"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_date	(the_row.expected_date	) + '" /></td>'
-		+ '<td class="jky-line-value"		><input class="jky-line-scheduled-at"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	) + '" /></td>'
+		+ '<td class="jky-action"			>' + my_trash + '</td>'
+		+ '<td class="jky-line-thread"		>' + my_line  + '</td>'
+		+ '<td class="jky-line-value"		><input class="jky-line-expected-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.expected_weight) + '"						/></td>'
+		+ '<td class="jky-line-value"		><input class="jky-line-expected-date"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_date	(the_row.expected_date	) + '"						/></td>'
+		+ '<td class="jky-line-value"		><input class="jky-line-received-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.received_weight) + '" disabled="disabled"	/></td>'
+		+ '<td class="jky-line-value"		><input class="jky-line-scheduled-at"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	) + '" disabled="disabled"	/></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -58,18 +62,18 @@ JKY.update_line = function(id_name, the_id ) {
 	var my_tr = $(id_name).parent().parent();
 	var my_thread_id		= my_tr.find('.jky-thread-row-id').val();
 	var my_expected_weight	= parseFloat(my_tr.find('.jky-line-expected-weight'	).val());
-//	var my_received_weight	= parseFloat(my_tr.find('.jky-line-received-weight'	).val());
 	var my_expected_date	= JKY.inp_date(my_tr.find('.jky-line-expected-date'	).val());
-	var my_scheduled_at		= JKY.inp_time(my_tr.find('.jky-line-scheduled-at'	).val());
+//	var my_received_weight	= parseFloat(my_tr.find('.jky-line-received-weight'	).val());
+//	var my_scheduled_at		= JKY.inp_time(my_tr.find('.jky-line-scheduled-at'	).val());
 //	if (my_expected_date != 'null')		{my_expected_date = '\'' + my_expected_date + '\'';	}
 //	if (my_scheduled_at  != 'null')		{my_scheduled_at  = '\'' + my_scheduled_at  + '\'';	}
 
 	var my_set = ''
 		+        'thread_id = ' + my_thread_id
 		+', expected_weight = ' + my_expected_weight
-//		+', received_weight = ' + my_received_weight
 		+  ', expected_date = ' + my_expected_date
-		+   ', scheduled_at = ' + my_scheduled_at
+//		+', received_weight = ' + my_received_weight
+//		+   ', scheduled_at = ' + my_scheduled_at
 		;
 	var my_data =
 		{ method	: 'update'
@@ -100,8 +104,8 @@ JKY.insert_line_success = function(response) {
 	my_row.thread_id		= null;
 	my_row.name				= '';
 	my_row.expected_weight	=  0;
-	my_row.received_weight	=  0;
 	my_row.expected_date	= null;
+	my_row.received_weight	=  0;
 	my_row.scheduled_at		= null;
 
 	var my_html = JKY.generate_row(my_row);

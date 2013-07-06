@@ -21,6 +21,7 @@ JKY.start_program = function() {
 		, focus			: 'jky-product-name'
 		});
 	JKY.App.init();
+
 	JKY.Photo = JKY.Upload(
 		{ object_name	: 'JKY.Photo'
 		, table_name	: 'Products'
@@ -41,13 +42,11 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-start-value'		).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-start-date'			).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-start-at'			).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-tab-ftps'			).click (function() {JKY.display_ftps		();});
-
-	$('#jky-start-value'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+	$('#jky-start-value'		).attr('data-format', JKY.Session.get_date());
+	$('#jky-start-date'			).datetimepicker({language:JKY.Session.get_locale(), pickTime:false});
 	$('#jky-start-date'			).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+
+	$('#jky-tab-ftps'			).click (function() {JKY.display_ftps		();});
 //	$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
 };
 
@@ -70,10 +69,9 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-start-date"		>' + JKY.short_date(the_row.start_date   )	+ '</td>'
 		+  '<td class="jky-product-name"	>' + the_row.product_name	+ '</td>'
 		+  '<td class="jky-product-type"	>' + the_row.product_type	+ '</td>'
-		+  '<td class="jky-start-date"		>' + the_row.start_date		+ '</td>'
+		+  '<td class="jky-start-date"		>' + JKY.short_date(the_row.start_date)	+ '</td>'
 		;
 	return my_html;
 };
@@ -84,7 +82,7 @@ JKY.set_table_row = function(the_row) {
 JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-product-name'		, the_row.product_name	);
 	JKY.set_radio	('jky-product-type'		, the_row.product_type	);
-	JKY.set_value	('jky-start-date'		, JKY.out_date(the_row.start_date));
+	JKY.set_date	('jky-start-date'		, JKY.out_date(the_row.start_date));
 
 	JKY.Photo.set_row_id(the_row.id);
 	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));
@@ -101,7 +99,7 @@ JKY.set_form_row = function(the_row) {
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-product-name'		, '');
 	JKY.set_radio	('jky-product-type'		,  JKY.t('Tubular'));
-	JKY.set_date	('jky-start-date'		,  JKY.out_time(JKY.get_now ()));
+	JKY.set_date	('jky-start-date'		,  JKY.out_date(JKY.get_date()));
 };
 
 /**
@@ -111,7 +109,7 @@ JKY.get_form_set = function() {
 	var my_set = ''
 		+    'product_name=\'' + JKY.get_value	('jky-product-name'		) + '\''
 		+  ', product_type=\'' + JKY.get_checked('jky-product-type'		) + '\''
-		+    ', start_date = ' + JKY.inp_date(JKY.get_value('jky-start-value'))
+		+    ', start_date=  ' + JKY.inp_date(JKY.get_value('jky-start-value'))
 		;
 	return my_set;
 };

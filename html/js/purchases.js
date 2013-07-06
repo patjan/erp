@@ -66,7 +66,6 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-scheduled-at"	>' + JKY.short_date(the_row.scheduled_at )	+ '</td>'
 		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name	+ '</td>'
 		+  '<td class="jky-supplier-ref"	>' + the_row.supplier_ref	+ '</td>'
-		+  '<td class="jky-payment-term"	>' + the_row.payment_term	+ '</td>'
 		;
 	return my_html;
 };

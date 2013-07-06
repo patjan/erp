@@ -390,6 +390,20 @@ JKY.fix_dmy2ymd = function(date){
 }
 
 /**
+ * out float
+ * @param	the_float
+ *
+ * @return	mm-dd-yyyy (en_US)
+ * @return	dd-mm-yyyy (pt_BR)
+ */
+JKY.out_float = function(the_float){
+	if (the_float == null) {
+		return '';
+	}
+	return parseFloat(the_float);
+}
+
+/**
  * out date
  * @param	the_time	yyyy-mm-dd hh:mm:ss
  *
@@ -679,6 +693,15 @@ JKY.set_src = function(the_id , the_file_name){
  */
 JKY.set_css = function(the_id , the_css, the_value){
 	$('#' + the_id).css(the_css, the_value);
+}
+
+JKY.has_attr = function(the_id, the_attr){
+	var my_attr = $('#' + the_id).attr(the_attr);
+	if (typeof my_attr == 'undefined' || my_attr == false) {
+		return false;
+	}else{
+		return true;
+	}
 }
 
 /**

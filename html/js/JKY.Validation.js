@@ -85,6 +85,12 @@ JKY.Validation = function() {
 
 	function my_validate_name(the_dom_id, the_label, the_table_name, the_key_name) {
 		if (JKY.is_loaded(the_dom_id) && (my_id == null || my_id == the_dom_id)) {
+/**
+ * skip the validation for input with attr = readonly
+ */
+			if (JKY.has_attr(the_dom_id, 'readonly')) {
+				return '';
+			}
 			var my_value = JKY.get_value(the_dom_id);
 			if (JKY.is_empty(my_value)) {
 				if (the_dom_id == 'jky-user-name') {

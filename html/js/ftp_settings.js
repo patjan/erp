@@ -95,7 +95,7 @@ JKY.print_settings = function(the_id) {
 					for(var i=0; i<my_half; i++) {
 						var my_row1		= my_rows[i];
 						var my_name1	= my_row1.name;
-						var my_value1	= (my_row1.value == null) ? 0 : my_row1.value;
+						var my_value1	= (my_row1.value == null) ? '' : my_row1.value;
 
 						var my_row2		= '';
 						var my_name2	= '';
@@ -105,7 +105,7 @@ JKY.print_settings = function(the_id) {
 						if (j<my_count) {
 							my_row2		= my_rows[j];
 							my_name2	= my_row2.name;
-							my_value2	= (my_row2.value == null) ? 0 : my_row2.value;
+							my_value2	= (my_row2.value == null) ? '' : my_row2.value;
 						}
 
 						my_html += ''
