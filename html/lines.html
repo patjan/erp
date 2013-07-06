@@ -7,23 +7,23 @@
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-purchase			{width: 60px; text-align:center;}
-.jky-ordered-at			{width: 80px; text-align:center;}
+.jky-purchase-number	{width: 60px; text-align:center;}
+.jky-ordered-at			{width: 75px; text-align:center;}
 .jky-supplier-name		{width:120px; text-align:center;}
-.jky-thread-name		{width:120px; text-align:center;}
-.jky-expected-date		{width: 80px; text-align:center;}
-.jky-scheduled-at		{width: 80px; text-align:center;}
-.jky-received-time		{width: 80px; text-align:center;}
+.jky-thread-name		{width:200px; text-align:center;}
+.jky-expected-date		{width: 75px; text-align:center;}
+.jky-scheduled-at		{width: 75px; text-align:center;}
+.jky-received-at		{width: 75px; text-align:center;}
 .jky-expected-weight	{width: 80px; text-align:center;}
 .jky-received-weight	{width: 80px; text-align:center;}
 
-#jky-purchase			{width: 60px; font-size:16px; font-weight:bold;}
-#jky-ordered-at			{width:150px;}
+#jky-purchase-number	{width: 60px; font-size:16px; font-weight:bold;}
 #jky-supplier-name		{width:185px;}
 #jky-thread-name		{width:185px;}
+#jky-ordered-at			{width:120px;}
 #jky-expected-date		{width: 75px;}
 #jky-scheduled-at		{width:120px;}
-#jky-received-time		{width:150px;}
+#jky-received-at		{width:120px;}
 #jky-expected-weight	{width:160px;}
 #jky-received-weight	{width:160px;}
 
@@ -42,13 +42,13 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-purchase'		><span>	Purchase<br>Number		</span></th>
-			<th class='jky-ordered-at'		><span>	Ordered	<br>Time		</span></th>
+			<th class='jky-purchase-number'	><span>	Purchase<br>Number		</span></th>
 			<th class='jky-supplier-name'	><span>	Supplier<br>Name		</span></th>
 			<th class='jky-thread-name'		><span>	Thread	<br>Name		</span></th>
+			<th class='jky-ordered-at'		><span>	Ordered	<br>Time		</span></th>
 			<th class='jky-expected-date'	><span>	Expected<br>Date		</span></th>
 			<th class='jky-scheduled-at'	><span>	Schedule<br>Time		</span></th>
-			<th class='jky-received-time'	><span>	Supplier<br>Document	</span></th>
+			<th class='jky-received-at'		><span>	Received<br>Time		</span></th>
 			<th class='jky-expected-weight'	><span>	Expected<br>Weight		</span></th>
 			<th class='jky-received-weight'	><span>	Received<br>Weight		</span></th>
 		</tr>
@@ -66,24 +66,24 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>	Purchase Number</span>:</div><input  id='jky-purchase'			class='jky-form-value'	readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	Purchase Number</span>:</div><input  id='jky-purchase-number'	class='jky-form-value'	readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	  Supplier Name</span>:</div><select id='jky-supplier-name'	></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	    Thread Name</span>:</div><input  id='jky-thread-name'		class='jky-form-value' /></div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Ordered Time</span>:</div>
 				<div id="jky-ordered-at"	class="input-append date"><input id='jky-ordered-value'		type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>	 Supplier Name	</span>:</div><select id='jky-supplier-name'></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>	 Thread Name	</span>:</div><select id='jky-thread-name'></select></div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Expected Date</span>:</div>
-				<div id="jky-expected-date"	class="input-append date"><input id='jky-expected-date'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+				<div id="jky-expected-date"	class="input-append date"><input id='jky-expected-value'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Scheduled Time</span>:</div>
-				<div id="jky-scheduled-at"	class="input-append date"><input id='jky-scheduled-at'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+				<div id="jky-scheduled-at"	class="input-append date"><input id='jky-scheduled-value'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Received Time</span>:</div>
-				<div id="jky-scheduled-at"	class="input-append date"><input id='jky-received-time'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>			
+				<div id="jky-received-at"	class="input-append date"><input id='jky-received-value'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Expected Weight</span>:</div><input  id='jky-expected-weight'	class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Received Weight</span>:</div><input  id='jky-received-weight'	class='jky-form-value' /></div>

@@ -650,12 +650,13 @@ private function set_new_fields($table) {
 												. ',   Configs.name				AS			name';
 	if ($table == 'History'			)	$return = ',  Contacts.full_name		AS	created_name';
 	if ($table == 'Purchases'		)	$return = ',  Supplier.nick_name		AS supplier_name';
-	if ($table == 'PurchaseLines'	)	$return = ', Purchases.number			AS			purchase'
+	if ($table == 'PurchaseLines'	)	$return = ', Purchases.number			AS			purchase_number'
 												. ', Purchases.ordered_at		AS			ordered_at'
-												. ',   Threads.name				AS			thread'
+												. ', Purchases.supplier_id		AS			supplier_id'
+												. ',   Threads.name				AS			thread_name'
 												. ',   Batches.checkin_weight	AS			received_weight'
 												. ', Incomings.received_at		AS			received_at'
-												. ',  Supplier.nick_name		AS			supplier';
+												. ',  Supplier.nick_name		AS			supplier_name';
 	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name		AS supplier_name';
 	if ($table == 'Batches'			)	$return = ',   Threads.name				AS			name'
 												. ', Incomings.number			AS			number';

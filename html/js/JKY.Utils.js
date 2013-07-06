@@ -479,6 +479,9 @@ JKY.set_date = function(the_id, the_date){
  * @return	yyyy-mm-dd
  */
 JKY.inp_date = function(the_date){
+	if (the_date == '') {
+		return 'null';
+	}
 	var my_date		= the_date.substr(0, 10);
 	var my_dates	= my_date.split('-');
 	var my_result	= '';

@@ -20,3 +20,4 @@ CREATE TABLE IF NOT EXISTS PurchaseLines
 , KEY thread	(thread_id	)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
+ALTER TABLE PurchaseLines	ADD COLUMN batch_id				BIGINT		DEFAULT NULL	AFTER thread_id;
