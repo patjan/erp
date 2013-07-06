@@ -64,7 +64,7 @@ JKY.suppliers	= [];
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-start-date').datepicker();
+	$('#jky-start-date').datetimepicker({language: JKY.Session.get_locale()});
 
 		$('#jky-tab-threads'		).click (function() {JKY.display_threads	();});
 		$('#jky-tab-loads'			).click (function() {JKY.display_loads		();});

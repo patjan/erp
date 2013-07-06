@@ -27,9 +27,12 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-purchase-date'		).datepicker();
-	$('#jky-repair-date'		).datepicker();
-	$('#jky-return-date'		).datepicker();
+	$('#jky-purchase-date'		).attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-repair-date'		).attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-return-date'		).attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-purchase-date'		).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-repair-date'		).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-return-date'		).datetimepicker({language: JKY.Session.get_locale()});	
 	$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
 };
 

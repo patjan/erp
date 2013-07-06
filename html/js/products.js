@@ -21,7 +21,6 @@ JKY.start_program = function() {
 		, focus			: 'jky-product-name'
 		});
 	JKY.App.init();
-
 	JKY.Photo = JKY.Upload(
 		{ object_name	: 'JKY.Photo'
 		, table_name	: 'Products'
@@ -42,11 +41,13 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-start-value'		).attr('data-format',		JKY.Session.get_date	());
+	$('#jky-start-value'		).attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-start-date'			).attr('data-format', JKY.Session.get_date_time	());
 	$('#jky-start-at'			).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-tab-ftps'			).click (function() {JKY.display_ftps		();});
 
-	$('#jky-start-date'			).datepicker();
+	$('#jky-start-value'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+	$('#jky-start-date'			).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 //	$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
 };
 
@@ -69,6 +70,7 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
+		+  '<td class="jky-start-date"		>' + JKY.short_date(the_row.start_date   )	+ '</td>'
 		+  '<td class="jky-product-name"	>' + the_row.product_name	+ '</td>'
 		+  '<td class="jky-product-type"	>' + the_row.product_type	+ '</td>'
 		+  '<td class="jky-start-date"		>' + the_row.start_date		+ '</td>'
@@ -99,8 +101,8 @@ JKY.set_form_row = function(the_row) {
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-product-name'		, '');
 	JKY.set_radio	('jky-product-type'		,  JKY.t('Tubular'));
-	JKY.set_value	('jky-start-date'		,  JKY.out_time(JKY.get_date()));
-}
+	JKY.set_date	('jky-start-date'		,  JKY.out_time(JKY.get_now ()));
+};
 
 /**
  *	get form set
