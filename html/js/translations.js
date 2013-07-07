@@ -30,11 +30,9 @@ JKY.start_program = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-//	JKY.set_menu_active('jky-menu-support');
 	JKY.set_side_active('jky-support-translations');
 	JKY.set_html('jky-status', JKY.set_controls('Status Codes', 'Active', ''));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
-//	JKY.show('jky-side-support');
 	JKY.show('jky-action-publish');
 	JKY.languages = JKY.get_controls('Languages');
 };

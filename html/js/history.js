@@ -33,11 +33,9 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-//	JKY.set_menu_active('jky-menu-admin');
 	JKY.set_side_active('jky-admin-history');
 	JKY.set_html('jky-app-select', JKY.set_controls('User Resources', JKY.App.get('select')));
 	JKY.set_html('jky-app-select-label', JKY.t('Parent'));
-//	JKY.show('jky-side-admin');
 	JKY.show('jky-app-select-line');
 };
 /**

@@ -54,8 +54,8 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-purchases-suppliers');
 	JKY.set_side_active('jky-production-suppliers');
+	JKY.set_side_active('jky-threads-suppliers');
 	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
 	JKY.set_html('jky-contact-tag'		, JKY.set_configs ('Customer Tags'	, '', ''));
 	JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
