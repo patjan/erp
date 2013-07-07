@@ -7,25 +7,25 @@
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-purchase-number	{width: 60px; text-align:center;}
-.jky-supplier-name		{width:120px;}
-.jky-thread-name		{width:200px;}
-.jky-ordered-at			{width:100px; text-align:center;}
-.jky-expected-date		{width: 65px; text-align:center;}
-.jky-scheduled-at		{width:100px; text-align:center;}
-.jky-received-at		{width: 75px; text-align:center;}
-.jky-expected-weight	{width: 70px; text-align:right;}
-.jky-received-weight	{width: 70px; text-align:right;}
+.jky-purchase-number	{width: 60px; text-align:center !important;}
+.jky-supplier-name		{width:100px;}
+.jky-thread-name		{width:180px;}
+.jky-ordered-at			{width: 65px; text-align:center !important;}
+.jky-expected-date		{width: 65px; text-align:center !important;}
+.jky-scheduled-at		{width: 65px; text-align:center !important;}
+.jky-received-at		{width: 75px; text-align:center !important;}
+.jky-expected-weight	{width: 70px; text-align:right  !important;}
+.jky-received-weight	{width: 70px; text-align:right  !important;}
 
 #jky-purchase-number	{width: 60px; font-size:16px; font-weight:bold;}
 #jky-supplier-name		{width:260px;}
 #jky-thread-name		{width:260px;}
 #jky-ordered-at			{width:120px;}
 #jky-expected-value		{width: 75px;}
-#jky-expected-weight	{width:100px; text-align:right;}
+#jky-expected-weight	{width:  80px; text-align:right;}
 #jky-scheduled-value	{width:120px;}
 #jky-received-at		{width:120px;}
-#jky-received-weight	{width:120px; text-align:right;}
+#jky-received-weight	{width:  80px; text-align:right;}
 
 .jky-line-label			{font-weight:bold; text-align:right;}
 .jky-line-value  input	{width: 90%;	text-align:right ;}
@@ -44,10 +44,10 @@
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-purchase-number'	><span>	Purchase<br>Number		</span></th>
 			<th class='jky-supplier-name'	><span>	Supplier<br>Name		</span></th>
-			<th class='jky-thread-name'		><span>	Thread	<br>Name		</span></th>
-			<th class='jky-ordered-at'		><span>	Ordered	<br>Time		</span></th>
+			<th class='jky-thread-name'		><span>	  Thread<br>Name		</span></th>
+			<th class='jky-ordered-at'		><span>	 Ordered<br>Time		</span></th>
 			<th class='jky-expected-date'	><span>	Expected<br>Date		</span></th>
-			<th class='jky-scheduled-at'	><span>	Schedule<br>Time		</span></th>
+			<th class='jky-scheduled-at'	><span>Scheduled<br>Time		</span></th>
 <!--
 			<th class='jky-received-at'		><span>	Received<br>Time		</span></th>
 -->
@@ -61,7 +61,9 @@
 
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
-		<div id='jky-form-actions'	></div>
+		<div id='jky-form-actions'	>
+			  <button id='jky-action-batch'		class='btn' type='button' title="Click here to generate incoming batch"	><span>Generate Batch</span></button>
+		</div>
 		<ul  id='jky-form-status'	></ul>
 	</div>
 	<div class='jky-clear'></div>

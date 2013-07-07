@@ -201,10 +201,12 @@ if (my_first == true) {
 	function my_display_row(the_index) {
 			JKY.display_trace('my_display_row');
 			JKY.show('jky-form-tabs');
-			my_index = the_index;
-			JKY.row = JKY.get_row(my_args.table_name, JKY.rows[the_index-1]['id']);
-			JKY.rows[the_index-1] = JKY.row;
-			JKY.set_html('jky-app-index', the_index);
+			if (the_index) {
+				my_index = the_index;
+			}
+			JKY.row = JKY.get_row(my_args.table_name, JKY.rows[my_index-1]['id']);
+			JKY.rows[my_index-1] = JKY.row;
+			JKY.set_html('jky-app-index', my_index);
 			JKY.set_form_row(JKY.row);
 			JKY.set_focus(my_args.focus);
 		}
@@ -447,6 +449,7 @@ if (my_first == true) {
 		, init					:	function()				{		my_init()						;}
 
 		, display_form			:	function(the_index)		{		my_display_form(the_index)		;}
+		, display_row			:	function(the_index)		{		my_display_row (the_index)		;}
 		, set_checkbox			:	function(the_index)		{		my_set_checkbox(the_index)		;}
 		, process_is_company	:	function(the_id)		{		my_process_is_company(the_id)	;}
 		, process_change_input	:	function(the_id)		{		my_process_change_input(the_id) ;}

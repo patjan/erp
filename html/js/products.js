@@ -46,8 +46,8 @@ JKY.set_all_events = function() {
 	$('#jky-start-date'			).datetimepicker({language:JKY.Session.get_locale(), pickTime:false});
 	$('#jky-start-date'			).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
-	$('#jky-tab-ftps'			).click (function() {JKY.display_ftps		();});
-//	$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
+	$('#jky-tab-ftps'			).click (function() {JKY.display_ftps	();});
+//	$('#jky-ftp-add-new'			).click (function() {JKY.insert_ftp		();});
 };
 
 /**
