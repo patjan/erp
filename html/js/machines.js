@@ -30,9 +30,9 @@ JKY.set_all_events = function() {
 	$('#jky-purchase-date'		).attr('data-format', JKY.Session.get_date_time	());
 	$('#jky-repair-date'		).attr('data-format', JKY.Session.get_date_time	());
 	$('#jky-return-date'		).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-purchase-date'		).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-repair-date'		).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-return-date'		).datetimepicker({language: JKY.Session.get_locale()});	
+	$('#jky-purchase-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-repair-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-return-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});	
 	$('#jky-purchase-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 	$('#jky-repair-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 	$('#jky-return-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
@@ -106,7 +106,6 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-return-value'		, '' );
 }
 
-
 /**
  *	get form set
  */
@@ -127,7 +126,6 @@ JKY.get_form_set = function() {
 	my_set +=   ', repair_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-repair-value'	));
 	my_set +=   ', return_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-return-value'	));
 	return my_set;
-
 };
 
 JKY.process_delete = function(the_id, the_row) {
