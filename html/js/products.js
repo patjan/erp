@@ -69,7 +69,7 @@ JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-product-name"	>' + the_row.product_name	+ '</td>'
 		+  '<td class="jky-product-type"	>' + the_row.product_type	+ '</td>'
-		+  '<td class="jky-start-date"		>' + JKY.short_date(the_row.start_date)	+ '</td>'
+		+  '<td class="jky-start-date"		>' + JKY.out_date(the_row.start_date)	+ '</td>'
 		;
 	return my_html;
 };
@@ -107,7 +107,7 @@ JKY.get_form_set = function() {
 	var my_set = ''
 		+    'product_name=\'' + JKY.get_value	('jky-product-name'		) + '\''
 		+  ', product_type=\'' + JKY.get_checked('jky-product-type'		) + '\''
-		+    ', start_date=  ' + JKY.inp_date(JKY.get_value('jky-start-value'))
+		+  ', start_date=  '   + JKY.inp_date(JKY.get_value('jky-start-value'))
 		;
 	return my_set;
 };
