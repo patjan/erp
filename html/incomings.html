@@ -27,15 +27,18 @@
 #jky-real-amount		{width:100px; text-align:right;}
 #jky-real-weight		{width:100px; text-align:right;}
 
+.jky-action					{width: 80px; text-align:center !important;}
 .jky-batch-value			{width: 10%;	text-align:right ;}
 .jky-batch-label			{width: 40%;	text-align:left  ;}
-.jky-batch-code				{width: 70px; text-align:center;}
-.jky-batch-number			{width: 80px; text-align:center;}
-.jky-thread-row-name		{width:270px;}
+.jky-batch-code				{width: 60px; text-align:center;}
+.jky-batch-number			{width: 70px; text-align:center;}
+.jky-thread-row-name		{width:220px;}
 .jky-thread-row-icon		{margin-left:-30px; padding:5px;}
-.jky-batch-checkin-boxes	{width: 70px; text-align:right;}
-.jky-batch-checkin-weight	{width: 70px; text-align:right;}
-.jky-batch-unit-price		{width: 70px; text-align:right;}
+.jky-batch-checkin-boxes	{width: 55px; text-align:right;}
+.jky-batch-labels-printed	{width: 50px; text-align:right;}
+.jky-batch-action-print		{width: 30px; text-align:center;}
+.jky-batch-checkin-weight	{width: 60px; text-align:right;}
+.jky-batch-unit-price		{width: 60px; text-align:right;}
 
 #jky-batch-total			{				text-align:right;}
 
@@ -54,7 +57,7 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-number'			><span>			<br>Number	</span></th>
+			<th class='jky-number'			><span>	Incoming<br>Number	</span></th>
 			<th class='jky-received-time'	><span> Received<br>Time	</span></th>
 			<th class='jky-supplier-name'	><span> Supplier<br>Name	</span></th>
 			<th class='jky-nfe-dl'			><span>			<br>NFe DL	</span></th>
@@ -77,10 +80,10 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>        Number</span>:</div><input  id='jky-number' class='jky-form-value'	readonly='readonly'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span> Supplier Name</span>:</div><select id='jky-supplier-name'></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>        NFe DL</span>:</div><input  id='jky-nfe-dl' class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>        NFe TM</span>:</div><input  id='jky-nfe-tm' class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Incoming Number</span>:</div><input  id='jky-number' class='jky-form-value'	readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Supplier Name</span>:</div><select id='jky-supplier-name'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         NFe DL</span>:</div><input  id='jky-nfe-dl' class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         NFe TM</span>:</div><input  id='jky-nfe-tm' class='jky-form-value' /></div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Invoice Date</span>:</div>
 				<div id="jky-invoice-date" class="input-append date"><input id='jky-invoice-value'   data-format="dd-MM-yyyy"		type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
@@ -128,6 +131,7 @@
 							<td><div class='jky-batch-number'			><span>   Batch<br>Number	</span></div></td>
 							<td		 class='jky-thread-row-name'		><span> <br> Thread Name	</span>		 </td>
 							<td><div class='jky-batch-checkin-boxes'	><span>Check In<br>Boxes	</span></div></td>
+							<td><div class='jky-batch-labels-printed'	><span>  Labels<br>Printed	</span></div></td>
 							<td><div class='jky-batch-checkin-weight'	><span>Check In<br>Weight	</span></div></td>
 							<td><div class='jky-batch-unit-price'		><span>    Unit<br>Price	</span></div></td>
 						</tr>
@@ -175,7 +179,7 @@
 		<h3><span>Print</span>: <span>Boxes</span></h3>
 	</div>
 	<div class='modal-body'>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>   Checkin Boxes</span><input id='jky-boxes-checkin-boxes'	 type='text' readonly='readonly' /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Check In Boxes</span><input id='jky-boxes-checkin-boxes'	 type='text' readonly='readonly' /></div>
 		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Labels Printed</span><input id='jky-boxes-labels-printed'	 type='text' readonly='readonly' /></div>
 		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>Labels Unprinted</span><input id='jky-boxes-labels-unprinted' type='text' readonly='readonly' /></div>
 		<div class='jky-boxes-line'><div class='jky-boxes-label'><span> Labels to Print</span><input id='jky-boxes-labels-to-print'	 type='text'					 /></div>

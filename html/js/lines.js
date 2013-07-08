@@ -130,13 +130,6 @@ JKY.process_delete = function(the_id, the_row) {
 };
 
 JKY.generate_batch = function() {
-	JKY.display_message('generate_batch');
-/**
- * insert  new Incoming
- * insert  new Batch
- * connect new Batch to this PurchaseLine
- * refresh this form
- */
 	JKY.insert_incoming();
 }
 
@@ -183,5 +176,6 @@ JKY.connect_batch = function(response) {
 }
 
 JKY.refresh_form = function(response) {
+	JKY.display_message('Batch row generated');
 	JKY.Application.display_row();
 }
