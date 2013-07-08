@@ -33,6 +33,9 @@ JKY.set_all_events = function() {
 	$('#jky-purchase-date'		).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-repair-date'		).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-return-date'		).datetimepicker({language: JKY.Session.get_locale()});	
+	$('#jky-purchase-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+	$('#jky-repair-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+	$('#jky-return-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 	$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
 };
 
