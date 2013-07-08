@@ -27,15 +27,16 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-purchase-date'		).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-repair-date'		).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-return-date'		).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-purchase-date'		).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-repair-date'		).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-return-date'		).datetimepicker({language: JKY.Session.get_locale()});	
+	$('#jky-purchase-value'		).attr('data-format', JKY.Session.get_date());
+	$('#jky-repair-value'		).attr('data-format', JKY.Session.get_date());
+	$('#jky-return-value'		).attr('data-format', JKY.Session.get_date());
+	$('#jky-purchase-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime:false});
+	$('#jky-repair-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime:false});
+	$('#jky-return-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime:false});
 	$('#jky-purchase-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 	$('#jky-repair-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 	$('#jky-return-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+
 	$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
 };
 
@@ -81,9 +82,9 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-density'			, the_row.density		);
 	JKY.set_value	('jky-inputs'			, the_row.inputs		);
 	JKY.set_value	('jky-lanes'			, the_row.lanes			);
-	JKY.set_value	('jky-purchase-value'	, JKY.fix_ymd2dmy(the_row.purchase_date	));
-	JKY.set_value	('jky-repair-value'		, JKY.fix_ymd2dmy(the_row.repair_date	));
-	JKY.set_value	('jky-return-value'		, JKY.fix_ymd2dmy(the_row.return_date	));
+	JKY.set_date	('jky-purchase-date'	, JKY.out_date(the_row.purchase_date));
+	JKY.set_date	('jky-repair-date'		, JKY.out_date(the_row.repair_date	));
+	JKY.set_date	('jky-return-date'		, JKY.out_date(the_row.return_date	));
 	JKY.display_cylinders();
 }
 
@@ -101,9 +102,9 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-density'			, '0');
 	JKY.set_value	('jky-inputs'			, '0');
 	JKY.set_value	('jky-lanes'			, '0');
-	JKY.set_value	('jky-purchase-value'	, '' );
-	JKY.set_value	('jky-repair-value'		, '' );
-	JKY.set_value	('jky-return-value'		, '' );
+	JKY.set_date	('jky-purchase-date'	, '' );
+	JKY.set_date	('jky-repair-date'		, '' );
+	JKY.set_date	('jky-return-date'		, '' );
 }
 
 
@@ -123,9 +124,9 @@ JKY.get_form_set = function() {
 		+        ', inputs=\'' + JKY.get_value	('jky-inputs'			) + '\''
 		+	      ', lanes=\'' + JKY.get_value	('jky-lanes'			) + '\''
 		;
-	my_set += ', purchase_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-purchase-value'	));
-	my_set +=   ', repair_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-repair-value'	));
-	my_set +=   ', return_date = ' + JKY.fix_dmy2ymd(JKY.get_value('jky-return-value'	));
+	my_set += ', purchase_date = ' + JKY.inp_date(JKY.get_value('jky-purchase-value'));
+	my_set +=   ', repair_date = ' + JKY.inp_date(JKY.get_value('jky-repair-value'	));
+	my_set +=   ', return_date = ' + JKY.inp_date(JKY.get_value('jky-return-value'	));
 	return my_set;
 
 };
