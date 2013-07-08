@@ -17,7 +17,7 @@ JKY.start_program = function() {
 		, select		: 'All'
 		, filter		: ''
 		, sort_by		: 'expected_date'
-		, sort_seq		: 'DESC'
+		, sort_seq		: 'ASC'
 		, focus			: 'jky-scheduled-value'
 		, add_new		: 'display form'
 		});
@@ -34,6 +34,8 @@ JKY.set_all_events = function() {
 	$('#jky-scheduled-at'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-expected-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 	$('#jky-scheduled-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+
+	$('#jky-action-batch'	).click( function() {JKY.generate_batch();})
 };
 
 /**
@@ -54,9 +56,9 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-purchase-number"	>' + the_row.purchase_number				+ '</td>'
 		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name					+ '</td>'
 		+  '<td class="jky-thread-name"		>' + the_row.thread_name					+ '</td>'
-		+  '<td class="jky-ordered-at"		>' + JKY.out_time(the_row.ordered_at   )	+ '</td>'
-		+  '<td class="jky-expected-date"	>' + JKY.out_date(the_row.expected_date) 	+ '</td>'
-		+  '<td class="jky-scheduled-at"		>' + JKY.out_time(the_row.scheduled_at )	+ '</td>'
+		+  '<td class="jky-ordered-at"		>' + JKY.short_date(the_row.ordered_at   )	+ '</td>'
+		+  '<td class="jky-expected-date"	>' + JKY.out_date  (the_row.expected_date) 	+ '</td>'
+		+  '<td class="jky-scheduled-at"	>' + JKY.short_date(the_row.scheduled_at )	+ '</td>'
 //		+  '<td class="jky-received-at"		>' + JKY.out_time(the_row.received_at )	+ '</td>'
 		+  '<td class="jky-expected-weight"	>' + the_row.expected_weight				+ '</td>'
 		+  '<td class="jky-received-weight"	>' + the_row.received_weight				+ '</td>'
@@ -79,8 +81,10 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-received-weight'	, the_row.received_weight			);
 
 	if (the_row.batch_id == null) {
+		JKY.show('jky-action-batch');
 		JKY.show('jky-action-delete');
 	}else{
+		JKY.hide('jky-action-batch');
 		JKY.hide('jky-action-delete');
 	}
 
@@ -125,3 +129,59 @@ JKY.process_delete = function(the_id, the_row) {
 	JKY.ajax(true, my_data);
 };
 
+JKY.generate_batch = function() {
+	JKY.display_message('generate_batch');
+/**
+ * insert  new Incoming
+ * insert  new Batch
+ * connect new Batch to this PurchaseLine
+ * refresh this form
+ */
+	JKY.insert_incoming();
+}
+
+JKY.insert_incoming = function() {
+	var my_incoming = ''
+		+   '  supplier_id=  ' + JKY.row.supplier_id
+		+        ', nfe_dl=\'' + '' + '\''
+		+        ', nfe_tm=\'' + '' + '\''
+		+  ', invoice_date=\'' + JKY.row.expected_date + '\''
+		+', invoice_weight=  ' + JKY.row.expected_weight
+		;
+	var my_data =
+		{ method	: 'insert'
+		, table		: 'Incomings'
+		, set		: my_incoming
+		};
+	JKY.ajax(false, my_data, JKY.insert_batch);
+}
+
+JKY.insert_batch = function(response) {
+	var my_batch = ''
+		+     '  incoming_id=  ' + response.id
+		+       ', thread_id=  ' + JKY.row.thread_id
+		+', purchase_line_id=  ' + JKY.row.id
+		+            ', code=\'' + '' + '\''
+		+           ', batch=\'' + '' + '\''
+		;
+	var my_data =
+		{ method	: 'insert'
+		, table		: 'Batches'
+		, set		: my_batch
+		};
+	JKY.ajax(false, my_data, JKY.connect_batch);
+}
+
+JKY.connect_batch = function(response) {
+	var my_data =
+		{ method	: 'update'
+		, table		: 'PurchaseLines'
+		, set		: 'batch_id = ' + response.id
+		, where		: 'id = ' + JKY.row.id
+		};
+	JKY.ajax(false, my_data, JKY.refresh_form);
+}
+
+JKY.refresh_form = function(response) {
+	JKY.Application.display_row();
+}

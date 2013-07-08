@@ -217,7 +217,7 @@ JKY.t = function(the_text) {
 	if (typeof my_result == 'undefined') {
 
 if (JKY.Session.get_value('user_name') == 'patjan') {
-	alert('the_text: ' + the_text);
+//	alert('the_text: ' + the_text);
 }
 
 		my_result = '';

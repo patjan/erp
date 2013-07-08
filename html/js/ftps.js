@@ -17,7 +17,7 @@ JKY.start_program = function() {
 		, select		: ''
 		, filter		: ''
 		, sort_by		: 'number'
-		, sort_seq		: 'ASC'
+		, sort_seq		: 'DESC'
 		, focus			: 'jky-diameter'
 		});
 	JKY.App.init();

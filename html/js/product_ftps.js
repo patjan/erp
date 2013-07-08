@@ -19,19 +19,25 @@ JKY.generate_ftps = function(response) {
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row	= my_rows[i];
-			var my_id	= my_row.id;
-
-			my_html  += ''
-				+ '<tr ftp_id=' + my_id + '>'
-				+ '<td class="jky-action"><a onclick="JKY.delete_ftp(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-				+ '<td class="jky-ftp-number"		>' + my_row.number		+ '</td>'
-				+ '<td class="jky-ftp-composition"	>' + my_row.composition	+ '</td>'
-				+ '<td class="jky-ftp-machine"		>' + my_row.machine		+ '</td>'
-				+ '</tr>'
-				;
+			my_html += JKY.generate_row(my_row);
 		}
 	}
 	JKY.set_html('jky-ftp-body' , my_html);
+}
+
+JKY.generate_row = function(the_row) {
+	var my_id = the_row.id;
+	var my_trash = (false) ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+
+	var my_html  = ''
+		+ '<tr ftp_id=' + my_id + '>'
+		+ '<td class="jky-action">' + my_trash + '</td>'
+		+ '<td class="jky-ftp-number"		>' + the_row.number		+ '</td>'
+		+ '<td class="jky-ftp-composition"	>' + the_row.composition+ '</td>'
+		+ '<td class="jky-ftp-machine"		>' + the_row.machine	+ '</td>'
+		+ '</tr>'
+		;
+	return my_html;
 }
 
 JKY.set_current = function(id_name, the_id ) {
