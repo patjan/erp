@@ -1152,7 +1152,7 @@ private function set_where($table, $filter) {
 					if ($value == '"%null%"') {
 						return ' AND Batches.purchase_line_id IS NULL';
 					}else{
-						return ' AND PLines.number LIKE ' . $value;
+						return ' AND Incomings.number LIKE ' . $value;
 					}
 				}
 			}
@@ -1354,20 +1354,20 @@ private function set_where($table, $filter) {
 			;
 		}
 
-	if ($table ==  'Batches') {
-		$return = ' Batches.code			LIKE ' . $filter
-			. ' OR  Batches.batch			LIKE ' . $filter
-			. ' OR  Batches.checkin_boxes	LIKE ' . $filter
-			. ' OR  Batches.unit_price		LIKE ' . $filter
-			. ' OR  Batches.average_weight	LIKE ' . $filter
-			. ' OR  Batches.gross_weight	LIKE ' . $filter
-			. ' OR  Batches.checkin_weight	LIKE ' . $filter
-			. ' OR  Batches.returned_weight	LIKE ' . $filter
-			. ' OR  Batches.leftover_weight	LIKE ' . $filter
-			. ' OR  Batches.checkout_weight	LIKE ' . $filter
-			. ' OR  Batches.used_weight		LIKE ' . $filter
-			. ' OR  Threads.name			LIKE ' . $filter
-			. ' OR   PLines.number			LIKE ' . $filter
+	if ($table ==    'Batches') {
+		$return = '   Batches.code				LIKE ' . $filter
+			. ' OR    Batches.batch				LIKE ' . $filter
+			. ' OR    Batches.checkin_boxes		LIKE ' . $filter
+			. ' OR    Batches.unit_price		LIKE ' . $filter
+			. ' OR    Batches.average_weight	LIKE ' . $filter
+			. ' OR    Batches.gross_weight		LIKE ' . $filter
+			. ' OR    Batches.checkin_weight	LIKE ' . $filter
+			. ' OR    Batches.returned_weight	LIKE ' . $filter
+			. ' OR    Batches.leftover_weight	LIKE ' . $filter
+			. ' OR    Batches.checkout_weight	LIKE ' . $filter
+			. ' OR    Batches.used_weight		LIKE ' . $filter
+			. ' OR    Threads.name				LIKE ' . $filter
+			. ' OR	Incomings.number			LIKE ' . $filter
 			;
 		}
 

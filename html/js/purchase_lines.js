@@ -14,24 +14,19 @@ JKY.display_lines = function() {
 
 JKY.generate_lines = function(response) {
 	var my_html		= '';
-	var my_expected	=  0;
-	var my_received	=  0;
+	JKY.Purchase.set_expected(0);
+	JKY.Purchase.set_received(0);
 	var my_rows		= response.rows;
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];
 			my_html += JKY.generate_row(my_row);
-			if (my_row.expected_weight != null) {
-				my_expected += parseFloat(my_row.expected_weight);
-			}
-			if (my_row.received_weight != null) {
-				my_received	+= parseFloat(my_row.received_weight);
-			}
+			JKY.Purchase.add_expected(my_row.expected_weight);
+			JKY.Purchase.add_received(my_row.received_weight);
 		}
 	}
-	JKY.set_html('jky-line-total-expected', my_expected);
-	JKY.set_html('jky-line-total-received', my_received);
 	JKY.set_html('jky-line-body', my_html );
+	JKY.update_total_weight();
 	if (my_rows == '') {
 		JKY.insert_line();
 	}
@@ -59,6 +54,8 @@ JKY.generate_row = function(the_row) {
 }
 
 JKY.update_line = function(id_name, the_id ) {
+	var my_saved_expected = parseFloat(JKY.get_value_by_id('PurchaseLines', 'expected_weight', the_id));
+
 	var my_tr = $(id_name).parent().parent();
 	var my_thread_id		= my_tr.find('.jky-thread-row-id').val();
 	var my_expected_weight	= parseFloat(my_tr.find('.jky-line-expected-weight'	).val());
@@ -82,6 +79,8 @@ JKY.update_line = function(id_name, the_id ) {
 		, where		: 'PurchaseLines.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, JKY.update_line_success);
+
+	JKY.Purchase.add_expected(my_expected_weight - my_saved_expected);
 }
 
 JKY.update_line_success = function(response) {
@@ -128,19 +127,8 @@ JKY.delete_line_success = function(response) {
 }
 
 JKY.update_total_weight = function() {
-return;
-	var my_total = 0;
-	$('#jky-line-body tr').each(function() {
-		var my_percent  = parseFloat($(this).find('.jky-line-percent' ).val());
-		my_total += my_percent
-	})
-	JKY.set_html('jky-line-total', my_total);
-	if (my_total == 100) {
-		$('#jky-line-total').css('color', 'black');
-	}else{
-		$('#jky-line-total').css('color', 'red');
-		JKY.display_message(JKY.t('Total percent is not 100.'))
-	}
+	JKY.set_html('jky-line-total-expected', JKY.Purchase.get_expected());
+	JKY.set_html('jky-line-total-received', JKY.Purchase.get_received());
 }
 
 JKY.print_lines = function(the_id) {
