@@ -188,6 +188,8 @@ JKY.translations =
 , "No":"Não"
 , "Normal":"Normal"
 , "Notes":"Notas"
+, "Number of Cones":"Numero de Cones"
+, "Number<br>of Cones":"Numero<br>de Cones"
 , "On Draft Invoices":"Esboço de Notas"
 , "On Incomings":"Em Entregas"
 , "On Order Lines":"Em Pedidos"
