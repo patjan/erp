@@ -53,6 +53,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-code"			>' + the_row.code			+ '</td>'
 		+  '<td class="jky-batch"			>' + the_row.batch			+ '</td>'
 		+  '<td class="jky-checkin-boxes"	>' + the_row.checkin_boxes	+ '</td>'
+		+  '<td class="jky-labels-printed"	>' + the_row.labels_printed	+ '</td>'
 		+  '<td class="jky-unit-price"		>' + the_row.unit_price		+ '</td>'
 		+  '<td class="jky-average-weight"	>' + the_row.average_weight	+ '</td>'
 		+  '<td class="jky-gross-weight"	>' + the_row.gross_weight	+ '</td>'
@@ -72,6 +73,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-code'					, the_row.code				);
 	JKY.set_value	('jky-batch'				, the_row.batch				);
 	JKY.set_value	('jky-checkin-boxes'		, the_row.checkin_boxes		);
+	JKY.set_value	('jky-labels-printed'		, the_row.labels_printed	);
 	JKY.set_value	('jky-unit-price'			, the_row.unit_price		);
 	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);
 	JKY.set_value	('jky-gross-weight'			, the_row.gross_weight		);
@@ -90,6 +92,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-code'					, '');
 	JKY.set_value	('jky-batch'				, '');
 	JKY.set_value	('jky-checkin-boxes'		,  0);
+	JKY.set_value	('jky-labels-printed'		,  0);
 	JKY.set_value	('jky-unit-price'			,  0);
 	JKY.set_value	('jky-average-weight'		,  0);
 	JKY.set_value	('jky-gross-weight'			,  0);
@@ -111,6 +114,7 @@ JKY.get_form_set = function() {
 		+   'code=\''			+			  JKY.get_value('jky-code'				) + '\''
 		+', batch=\''			+			  JKY.get_value('jky-batch'				) + '\''
 		+', checkin_boxes=  '	+			  JKY.get_value('jky-checkin-boxes'		)
+		+', labels_printed=  '	+			  JKY.get_value('jky-labels-printed'	)
 		+', unit_price=  '		+			  JKY.get_value('jky-unit-price'		)
 		+', average_weight=  '	+			  JKY.get_value('jky-average-weight'	)
 		+', gross_weight=  '	+			  JKY.get_value('jky-gross-weight'		)
