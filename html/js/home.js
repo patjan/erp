@@ -54,12 +54,12 @@ JKY.set_all_events_home = function(jky_program) {
 
 		$('#jky-threads-threads'		).click (function() {JKY.process_action('threads'		);});
 		$('#jky-threads-suppliers'		).click (function() {JKY.process_action('suppliers'		);});
+		$('#jky-threads-machines'		).click (function() {JKY.process_action('machines'		);});
 		$('#jky-threads-purchases'		).click (function() {JKY.process_action('purchases'		);});
 		$('#jky-threads-lines'			).click (function() {JKY.process_action('lines'			);});
 		$('#jky-threads-incomings'		).click (function() {JKY.process_action('incomings'		);});
 		$('#jky-threads-batches'		).click (function() {JKY.process_action('batches'		);});
 		$('#jky-threads-boxes'			).click (function() {JKY.process_action('boxes'			);});
-
 
 		$('#jky-help-tickets'			).click (function() {JKY.process_action('tickets'		);});
 

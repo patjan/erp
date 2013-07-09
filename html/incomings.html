@@ -27,7 +27,7 @@
 #jky-real-amount		{width:100px; text-align:right;}
 #jky-real-weight		{width:100px; text-align:right;}
 
-.jky-action					{width: 80px; text-align:center !important;}
+.jky-action					{width: 85px; text-align:center !important;}
 .jky-batch-value			{width: 10%;	text-align:right ;}
 .jky-batch-label			{width: 40%;	text-align:left  ;}
 .jky-batch-code				{width: 60px; text-align:center;}
@@ -42,15 +42,10 @@
 
 #jky-batch-total			{				text-align:right;}
 
-.jky-line-label			{font-weight:bold; text-align:right;}
-.jky-line-value  input	{width: 90%;	text-align:right ;}
-.jky-line-batch input	{width:275px;	text-align:left  ;}
-.jky-line-batch a		{margin-left:-30px; padding:5px;}
-.jky-line-batch a		{margin-left:-30px; padding:5px;}
-.jky-line-percent		{width: 40px;	text-align:right ; margin-right:0;}
-.jky-line-name			{width:280px;}
-#jky-line-total-expected{padding-right:15px; font-weight:bold; text-align:right;}
-#jky-line-total-received{padding-right:15px; font-weight:bold; text-align:right;}
+#jky-boxes-layer		{width:350px; top:240px; left:920px;}
+.jky-boxes-line			{width:260px; font-weight:bold; text-align:right;}
+.jky-boxes-label		{width:160px; float:left; font-weight:bold; text-align:right;}
+.jky-boxes-line input	{width: 60px; margin-left:10px; text-align:right;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -173,17 +168,16 @@
 	</div>
 </div>
 
-<div id='jky-boxes-print' class='modal hide fade in'>
+<div id='jky-boxes-layer' class='modal hide fade in'>
 	<div class='modal-header'>
 		<a class='close' data-dismiss='modal'>X</a>
-		<h3><span>Print</span>: <span>Boxes</span></h3>
+		<h3><span>Print</span>: <span>Labels</span></h3>
 	</div>
 	<div class='modal-body'>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Check In Boxes</span><input id='jky-boxes-checkin-boxes'	 type='text' readonly='readonly' /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Labels Printed</span><input id='jky-boxes-labels-printed'	 type='text' readonly='readonly' /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>Labels Unprinted</span><input id='jky-boxes-labels-unprinted' type='text' readonly='readonly' /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span> Labels to Print</span><input id='jky-boxes-labels-to-print'	 type='text'					 /></div>
-
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Check In Boxes</span>:</div><input id='jky-boxes-checkin-boxes'	 type='text' readonly='readonly' /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Labels Printed</span>:</div><input id='jky-boxes-labels-printed'	 type='text' readonly='readonly' /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>Labels Unprinted</span>:</div><input id='jky-boxes-labels-unprinted' type='text' readonly='readonly' /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span> Labels to Print</span>:</div><input id='jky-boxes-labels-to-print'	 type='text'					 /></div>
 	</div>
 	<div class='modal-footer'>
 		<button  id='jky-boxes-print'  class='btn btn-success'			type='button'><span>Print</span></button>
@@ -194,4 +188,5 @@
 <div id='jky-body-loaded'></div>
 <script src='js/incomings.js'></script>
 <script src='js/JKY.Thread.js'></script>
+<script src='js/JKY.Batch.js'></script>
 <script src='js/incoming_batches.js'></script>

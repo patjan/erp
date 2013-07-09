@@ -47,7 +47,7 @@ JKY.generate_row = function(the_row) {
 		+ "<input class='jky-thread-row-name jky-form-value' readonly='readonly' onclick='JKY.update_batch(this, " + my_id + ")' value='" + the_row.name + "' />"
 		+ "<a class='jky-thread-row-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
-	var my_print = (the_row.checkin_boxes == the_row.labels_printed) ? '' : '<a onclick="JKY.display_print_labels(this, ' + my_id + ')"><i class="icon-print"></i></a>';
+	var my_print = (the_row.checkin_boxes == the_row.labels_printed) ? '' : '<a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
 	var my_html = ''
 		+ '<tr batch_id=' + my_id + '>'
 		+ '<td class="jky-action"><a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
@@ -55,7 +55,7 @@ JKY.generate_row = function(the_row) {
 		+ '<td><input  class="jky-batch-number"			text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.batch			+ '" /></td>'
 		+ '<td>' + my_thread + '</td>'
 		+ '<td><input  class="jky-batch-checkin-boxes"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.checkin_boxes	+ '" /></td>'
-		+ '<td><input  class="jky-batch-labels-printed"	text="text" disabled="disabled" />' + my_print + '</td>'
+		+ '<td><input  class="jky-batch-labels-printed"	text="text" disabled="disabled"	value="' + the_row.labels_printed	+ '" />' + my_print + '</td>'
 		+ '<td><input  class="jky-batch-checkin-weight"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.checkin_weight	+ '" /></td>'
 		+ '<td><input  class="jky-batch-unit-price"		text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.unit_price		+ '" /></td>'
 		+ '</tr>'
@@ -192,10 +192,6 @@ JKY.display_trace('display_incoming_real');
 	JKY.set_value('jky-real-weight', my_real_weight);
 	JKY.set_value('jky-real-amount', my_real_amount);
 	JKY.set_calculated_color();
-}
-
-JKY.display_print_labels = function() {
-	JKY.display_message('display_print_labels');
 }
 
 JKY.print_batches = function(the_id) {

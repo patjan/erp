@@ -38,6 +38,8 @@ JKY.set_all_events = function() {
 	$('#jky-tab-batches'	).click (function() {JKY.display_batches	();});
 	$('#jky-batch-add-new'	).click (function() {JKY.insert_batch		();});
 	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
+
+	$('#jky-boxes-print'	).click (function() {JKY.Batch.print()});
 };
 
 /**

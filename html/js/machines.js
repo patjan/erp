@@ -27,7 +27,6 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-
 	$('#jky-purchase-value'		).attr('data-format', JKY.Session.get_date());
 	$('#jky-repair-value'		).attr('data-format', JKY.Session.get_date());
 	$('#jky-return-value'		).attr('data-format', JKY.Session.get_date());
@@ -46,6 +45,7 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-production-machines');
+	JKY.set_side_active('jky-threads-machines');
 	JKY.set_html('jky-machine-family', JKY.set_configs('Machine Families', '', ''));
 	JKY.set_html('jky-machine-brand', JKY.set_configs('Machine Brands', JKY.App.get('select'), ''));
 	JKY.set_html('jky-app-select', JKY.set_configs('Machine Brands', JKY.App.get('select'), 'All'));
