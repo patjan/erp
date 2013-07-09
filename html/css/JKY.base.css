@@ -121,6 +121,7 @@ input.span2 {width:80px; padding:2px 4px;}
 #jky-application thead tr		{height:40px; background-color:#EEEEEE;}
 #jky-application tbody tr		{height:20px; border-bottom:1px solid #DDDDDD;}
 #jky-application thead th		{border:1px solid #999999;}
+#jky-form-tabs	 thead th		{border:0px solid #999999;}
 #jky-application thead th:first-child	{border-left :0px}
 #jky-application thead th:last-child	{border-right:0px}
 #jky-application tbody td		{margin:2px; padding:4px 8px; vertical-align:middle;}

@@ -1543,7 +1543,7 @@ JKY.is_permitted = function(the_menu_id) {
 */
 	switch(the_menu_id) {
 		case('jky-menu-sales'		)	:	my_resource = 'Menu-Sales'		; break;
-		case('jky-menu-purchases'	)	:	my_resource = 'Menu-Purchases'	; break;
+//		case('jky-menu-purchases'	)	:	my_resource = 'Menu-Purchases'	; break;
 		case('jky-menu-production'	)	:	my_resource = 'Menu-Production'	; break;
 		case('jky-menu-fabrics'		)	:	my_resource = 'Menu-Fabrics'	; break;
 		case('jky-menu-raws'		)	:	my_resource = 'Menu-Raws'		; break;
