@@ -55,3 +55,5 @@ ALTER TABLE Batches			ADD COLUMN labels_printed    	INT(11)		DEFAULT 0		AFTER ch
 ALTER TABLE Batches			ADD COLUMN number_of_cones    	INT(11)		DEFAULT 0		AFTER labels_printed;
 ALTER TABLE Boxes			ADD COLUMN number_of_cones		INT(11)		DEFAULT 0		AFTER barcode;
 ALTER TABLE PurchaseLines	ADD COLUMN batch_id				BIGINT		DEFAULT NULL	AFTER thread_id;
+----- 2013/07/09
+ALTER TABLE Boxes	ADD		number_of_boxes		INT(11)		DEFAULT 0	AFTER barcode;

@@ -134,11 +134,15 @@ JKY.generate_batch = function() {
 }
 
 JKY.insert_incoming = function() {
+	var my_invoice_date = JKY.row.expected_date;
+	if (my_invoice_date == null) {
+		my_invoice_date = JKY.get_date();
+	}
 	var my_incoming = ''
 		+   '  supplier_id=  ' + JKY.row.supplier_id
 		+        ', nfe_dl=\'' + '' + '\''
 		+        ', nfe_tm=\'' + '' + '\''
-		+  ', invoice_date=\'' + JKY.row.expected_date + '\''
+		+  ', invoice_date=\'' + my_invoice_date + '\''
 		+', invoice_weight=  ' + JKY.row.expected_weight
 		;
 	var my_data =

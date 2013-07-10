@@ -36,6 +36,7 @@
 .jky-thread-row-icon		{margin-left:-30px; padding:5px;}
 .jky-batch-checkin-boxes	{width: 55px; text-align:right;}
 .jky-batch-labels-printed	{width: 50px; text-align:right;}
+.jky-batch-labels-print		{width: 20px; text-align:right;}
 .jky-batch-action-print		{width: 30px; text-align:center;}
 .jky-batch-checkin-weight	{width: 60px; text-align:right;}
 .jky-batch-unit-price		{width: 60px; text-align:right;}
@@ -122,13 +123,14 @@
 					<thead>
 						<tr style='font-weight:bold;'>
 							<td class='jky-action'></td>
-							<td><div class='jky-batch-code'				><span> Product<br>Code		</span></div></td>
-							<td><div class='jky-batch-number'			><span>   Batch<br>Number	</span></div></td>
-							<td		 class='jky-thread-row-name'		><span> <br> Thread Name	</span>		 </td>
-							<td><div class='jky-batch-checkin-boxes'	><span>Check In<br>Boxes	</span></div></td>
-							<td><div class='jky-batch-labels-printed'	><span>  Labels<br>Printed	</span></div></td>
-							<td><div class='jky-batch-checkin-weight'	><span>Check In<br>Weight	</span></div></td>
-							<td><div class='jky-batch-unit-price'		><span>    Unit<br>Price	</span></div></td>
+							<td class='jky-batch-code'			><span> Product<br>Code		</span></td>
+							<td class='jky-batch-number'		><span>   Batch<br>Number	</span></td>
+							<td	class='jky-thread-row-name'		><span> <br> Thread Name	</span></td>
+							<td class='jky-batch-checkin-boxes'	><span>Check In<br>Boxes	</span></td>
+							<td class='jky-batch-labels-printed'><span>  Labels<br>Printed	</span></td>
+							<td class='jky-batch-labels-print'  ><span>						</span></td>
+							<td class='jky-batch-checkin-weight'><span>Check In<br>Weight	</span></td>
+							<td class='jky-batch-unit-price'	><span>    Unit<br>Price	</span></td>
 						</tr>
 					</thead>
 					<tbody id='jky-batch-body'></tbody>
@@ -174,10 +176,11 @@
 		<h3><span>Print</span>: <span>Labels</span></h3>
 	</div>
 	<div class='modal-body'>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Check In Boxes</span>:</div><input id='jky-boxes-checkin-boxes'	 type='text' readonly='readonly' /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Labels Printed</span>:</div><input id='jky-boxes-labels-printed'	 type='text' readonly='readonly' /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>Labels Unprinted</span>:</div><input id='jky-boxes-labels-unprinted' type='text' readonly='readonly' /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span> Labels to Print</span>:</div><input id='jky-boxes-labels-to-print'	 type='text'					 /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Check In Boxes</span>:</div><input id='jky-boxes-checkin-boxes'	type='text' readonly='readonly' /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Labels Printed</span>:</div><input id='jky-boxes-labels-printed'	type='text' readonly='readonly' /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>Labels Unprinted</span>:</div><input id='jky-boxes-labels-unprinted'	type='text' readonly='readonly' /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span> Labels to Print</span>:</div><input id='jky-boxes-labels-to-print'	type='text'						 /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>        Location</span>:</div><input id='jky-boxes-location'			type='text'						 /></div>
 	</div>
 	<div class='modal-footer'>
 		<button  id='jky-boxes-print'  class='btn btn-success'			type='button'><span>Print</span></button>

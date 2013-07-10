@@ -162,6 +162,7 @@ $translations = array
 , "Lines"=>"Lines"
 , "List View"=>"List View"
 , "Loads"=>"Loads"
+, "Location"=>"Location"
 , "Log In"=>"Log In"
 , "Log Off"=>"Log Off"
 , "Machine"=>"Machine"

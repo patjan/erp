@@ -469,7 +469,7 @@ JKY.short_date = function(the_time){
 	var my_time = JKY.out_time(the_time);
 	var my_date = the_time.substr(0, 10);
 	if (my_date == JKY.get_date()) {
-		my_date = my_time.substr(0, 5) + ' ' + my_time.substr(11, 5);
+		my_date = my_time.substr(0, 5) + '&nbsp;' + my_time.substr(11, 5);
 	}else{
 		my_date = my_time.substr(0, 10);
 	}

@@ -51,13 +51,14 @@ JKY.generate_row = function(the_row) {
 	var my_html = ''
 		+ '<tr batch_id=' + my_id + '>'
 		+ '<td class="jky-action"><a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-		+ '<td><input  class="jky-batch-code"			text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.code			+ '" /></td>'
-		+ '<td><input  class="jky-batch-number"			text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.batch			+ '" /></td>'
-		+ '<td>' + my_thread + '</td>'
-		+ '<td><input  class="jky-batch-checkin-boxes"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.checkin_boxes	+ '" /></td>'
-		+ '<td><input  class="jky-batch-labels-printed"	text="text" disabled="disabled"	value="' + the_row.labels_printed	+ '" />' + my_print + '</td>'
-		+ '<td><input  class="jky-batch-checkin-weight"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.checkin_weight	+ '" /></td>'
-		+ '<td><input  class="jky-batch-unit-price"		text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.unit_price		+ '" /></td>'
+		+ '<td ><input  class="jky-batch-code"				text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.code			+ '" /></td>'
+		+ '<td ><input  class="jky-batch-number"			text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.batch			+ '" /></td>'
+		+ '<td class="jky-thread-row-name"		>' + my_thread + '</td>'
+		+ '<td ><input  class="jky-batch-checkin-boxes"		text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.checkin_boxes	+ '" /></td>'
+		+ '<td ><input  class="jky-batch-labels-printed"	text="text"								 disabled="disabled" value="' + the_row.labels_printed	+ '" /></td>'
+		+ '<td class="jky-batch-labels-print"	>' + my_print + '</td>'
+		+ '<td ><input  class="jky-batch-checkin-weight"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.checkin_weight	+ '" /></td>'
+		+ '<td ><input  class="jky-batch-unit-price"		text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.unit_price		+ '" /></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -73,6 +74,11 @@ JKY.update_batch = function(id_name, the_id ) {
 	var my_checkin_boxes	= parseFloat(my_tr.find('.jky-batch-checkin-boxes'	).val());
 	var my_checkin_weight	= parseFloat(my_tr.find('.jky-batch-checkin-weight'	).val());
 	var my_unit_price		= parseFloat(my_tr.find('.jky-batch-unit-price'		).val());
+	var my_average_weight	= 0;
+	if (my_checkin_boxes > 0) {
+		my_average_weight	= my_checkin_weight / my_checkin_boxes;
+	}
+
 	var my_set = ''
 		+        'thread_id =  ' + my_thread_id
 		+           ', code =\'' + my_code	+ '\''
@@ -80,6 +86,7 @@ JKY.update_batch = function(id_name, the_id ) {
 		+  ', checkin_boxes =  ' + my_checkin_boxes
 		+ ', checkin_weight =  ' + my_checkin_weight
 		+     ', unit_price =  ' + my_unit_price
+		+ ', average_weight =  ' + my_average_weight
 		;
 	var my_data =
 		{ method	: 'update'

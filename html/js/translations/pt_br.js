@@ -162,6 +162,7 @@ JKY.translations =
 , "Lines":"Linhas"
 , "List View":"Vista - Lista"
 , "Loads":"Cargas"
+, "Location":"Mapeamento"
 , "Log In":"Entrar"
 , "Log Off":"Sair"
 , "Machine":"Maquina"

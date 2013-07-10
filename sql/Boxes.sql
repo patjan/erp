@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS Boxes
 , batch_id			BIGINT				DEFAULT NULL
 , parent_id			BIGINT				DEFAULT NULL
 , barcode			VARCHAR(32)			DEFAULT NULL
+, number_of_boxes	INT(11)				DEFAULT 0
 , number_of_cones	INT(11)				DEFAULT 0
 , average_weight	DECIMAL(10,2)		DEFAULT 0
 , real_weight		DECIMAL(10,2)		DEFAULT 0
@@ -29,3 +30,4 @@ CREATE TABLE IF NOT EXISTS Boxes
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100000001
 ;
 ALTER TABLE Boxes	ADD		number_of_cones		INT(11)		DEFAULT 0	AFTER barcode;
+ALTER TABLE Boxes	ADD		number_of_boxes		INT(11)		DEFAULT 0	AFTER barcode;
