@@ -1,0 +1,28 @@
+DROP   TABLE IF     EXISTS CheckOuts;
+CREATE TABLE IF NOT EXISTS CheckOuts
+( id				BIGINT				NOT NULL AUTO_INCREMENT
+, created_by		BIGINT				DEFAULT NULL
+, created_at		DATETIME			DEFAULT NULL
+, updated_by		BIGINT				DEFAULT NULL
+, updated_at		DATETIME			DEFAULT NULL
+, status			VARCHAR(32)			DEFAULT 'Active'
+
+, number			VARCHAR(32)			DEFAULT NULL
+, checkout_at		DATETIME			DEFAULT NULL
+, checkout_id		BIGINT				DEFAULT NULL		/*	dyer_id supplier_id */
+, machine_id		BIGINT				DEFAULT NULL
+, nfe_dl			VARCHAR(32)			DEFAULT NULL
+, nfe_tm			VARCHAR(32)			DEFAULT NULL
+, invoice_date		DATE				DEFAULT NULL
+, invoice_weight	DECIMAL(10,2)		DEFAULT 0
+, invoice_amount	DECIMAL(10,2)		DEFAULT 0
+, real_weight		DECIMAL(10,2)		DEFAULT 0
+, real_amount		DECIMAL(10,2)		DEFAULT 0
+
+, PRIMARY KEY(id)
+, UNIQUE(number)
+, KEY checkout	(checkout_id)
+, KEY machine	(machine_id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
+;
+

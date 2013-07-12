@@ -53,7 +53,16 @@ JKY.Batch = function() {
 
 
 	function my_print() {
-		var my_labels_to_print = parseFloat(JKY.get_value('jky-boxes-labels-to-print'));
+		var my_labels_unprinted	= parseFloat(JKY.get_value('jky-boxes-labels-unprinted'));
+		var my_labels_to_print	= parseFloat(JKY.get_value('jky-boxes-labels-to-print' ));
+		var my_location			= JKY.get_value('jky-boxes-location').toUpperCase();
+		if (my_labels_to_print <= 0 || my_location == '') {
+			JKY.set_focus('jky-boxes-labels-to-print');
+			return;
+		}
+		if (my_labels_to_print > my_labels_unprinted) {
+			my_labels_to_print = my_labels_unprinted;
+		}
 		var my_data = '';
 		for(var i=0; i<my_labels_to_print; i++) {
 			my_labels_printed ++;
@@ -63,8 +72,8 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_checkin_
 					+  ', number_of_boxes =  ' + my_labels_printed
 					+  ', number_of_cones =  ' + my_row.number_of_cones
 					+   ', average_weight =  ' + my_row.average_weight
-					+  ', number_of_cones =  ' + my_row.number_of_cones
-					+ ', checkin_location =\'' + JKY.get_value('jky-boxes-location') + '\''
+					+ ', checkin_location =\'' + my_location + '\''
+					+       ', checkin_by =  ' + JKY.Session.get_value('user_id')
 					+       ', checkin_at =\'' + JKY.get_now() + '\''
 					;
 			my_data =
@@ -84,10 +93,50 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_checkin_
 	}
 
 	function my_insert_boxes_success(response) {
+		var my_data =
+			{ method	: 'get_row'
+			, table		: 'Boxes'
+			, where		: 'Boxes.id = ' + response.id
+			}
+		JKY.ajax(false, my_data, my_get_row_boxes_success);
+	}
+
+	function my_get_row_boxes_success(response) {
+		var my_row = response.row;
+		var my_thread_id		= JKY.get_value_by_id('Batches'		, 'thread_id'	, my_row.batch_id	);
+		var my_incoming_id		= JKY.get_value_by_id('Batches'		, 'incoming_id'	, my_row.batch_id	);
+		var my_supplier_id		= JKY.get_value_by_id('Incomings'	, 'supplier_id'	, my_incoming_id	);
+		var my_composition		= JKY.get_value_by_id('Threads'		, 'composition'	, my_thread_id		);
+		var my_thread_name		= JKY.get_value_by_id('Threads'		, 'name'		, my_thread_id		);
+		var my_supplier_name	= JKY.get_value_by_id('Contacts'	, 'nick_name'	, my_supplier_id	);
+
+		var my_checkin_at		= JKY.out_time	(my_row.checkin_at		);
+		var my_average_weight	= parseFloat	(my_row.average_weight	);
+		var my_real_weight		= parseFloat	(my_row.real_weight		);
+		if (my_real_weight == 0) {
+			my_real_weight = my_average_weight;
+		}
+		var my_number_of_cones	= my_row.number_of_cones	;
+		var my_batch_number		= my_row.batch				;
+		var my_checkin_location	= my_row.checkin_location	;
+		var my_barcode			= my_row.barcode			;
+
+		var my_html = ''
+			+ '<br>    Checkin Time: ' + my_checkin_at
+			+ '<br>     Real Weight: ' + my_real_weight + ' Kg'
+			+ '<br>     Composition: ' + my_composition
+			+ '<br> Number of Cones: ' + my_number_of_cones
+			+ '<br>    Batch Number: ' + my_batch_number
+			+ '<br>     Thread Name: ' + my_thread_name
+			+ '<br>   Supplier Name: ' + my_supplier_name
+			+ '<br>Checkin Location: ' + my_checkin_location
+			+ '<br>         Barcode: ' + my_barcode + '------------------'
+			;
+		JKY.display_message(my_html);
 	}
 
 	function my_update_data_success(response) {
-		$(my_index).parent().find('.jky-batch-labels-printed' ).val(my_labels_printed);
+		$(my_index).parent().parent().find('.jky-batch-labels-printed' ).val(my_labels_printed);
 		JKY.hide_modal(my_layer);
 	}
 

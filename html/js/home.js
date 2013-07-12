@@ -60,6 +60,8 @@ JKY.set_all_events_home = function(jky_program) {
 		$('#jky-threads-incomings'		).click (function() {JKY.process_action('incomings'		);});
 		$('#jky-threads-batches'		).click (function() {JKY.process_action('batches'		);});
 		$('#jky-threads-boxes'			).click (function() {JKY.process_action('boxes'			);});
+		$('#jky-threads-checkouts'		).click (function() {JKY.process_action('checkouts'		);});
+		$('#jky-threads-batchouts'		).click (function() {JKY.process_action('batchouts'		);});
 
 		$('#jky-help-tickets'			).click (function() {JKY.process_action('tickets'		);});
 
