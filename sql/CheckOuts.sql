@@ -8,9 +8,9 @@ CREATE TABLE IF NOT EXISTS CheckOuts
 , status			VARCHAR(32)			DEFAULT 'Active'
 
 , number			VARCHAR(32)			DEFAULT NULL
-, checkout_at		DATETIME			DEFAULT NULL
-, checkout_id		BIGINT				DEFAULT NULL		/*	dyer_id supplier_id */
+, checkout_time		DATETIME			DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
+, checkout_id		BIGINT				DEFAULT NULL	/*	dyer_id supplier_id */
 , nfe_dl			VARCHAR(32)			DEFAULT NULL
 , nfe_tm			VARCHAR(32)			DEFAULT NULL
 , invoice_date		DATE				DEFAULT NULL
@@ -21,8 +21,10 @@ CREATE TABLE IF NOT EXISTS CheckOuts
 
 , PRIMARY KEY(id)
 , UNIQUE(number)
-, KEY checkout	(checkout_id)
 , KEY machine	(machine_id)
+, KEY checkout	(checkout_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
 ;
+
+INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next CheckOut Number', value='100001', created_by=1, created_at=NOW();
 

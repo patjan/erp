@@ -24,6 +24,8 @@ CREATE TABLE IF NOT EXISTS Incomings
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
 ;
 
+INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next Incomings Number', value='100001', created_by=1, created_at=NOW();
+
 ALTER TABLE Incomings	ADD		nfe_tm			VARCHAR(32)		DEFAULT NULL	AFTER supplier_id;
 ALTER TABLE Incomings	ADD		nfe_dl			VARCHAR(32)		DEFAULT NULL	AFTER supplier_id;
 ALTER TABLE Incomings	DROP	invoice_number;
