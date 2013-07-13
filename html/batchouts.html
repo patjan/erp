@@ -1,0 +1,130 @@
+<style>
+.jky-form-line-1		{width:273px;}
+.jky-form-line-2		{width:290px;}
+.jky-form-label			{width:160px;}
+.jky-form-label-1		{width:100px;}
+.jky-form-value			{width:100px;}
+.jky-form-value1		{width:240px;}
+.jky-checkbox			{width: 30px; text-align:center;}
+
+.jky-number				{width: 60px; text-align:center;}
+.jky-code				{width: 60px; text-align:right !important;}
+.jky-batch				{width: 60px; text-align:right !important;}
+.jky-thread-name		{width:180px; text-align:center;}
+.jky-requested-boxes	{width: 60px; text-align:right !important;}
+.jky-checkout-boxes		{width: 60px; text-align:right !important;}
+.jky-average-weight		{width: 60px; text-align:right !important;}
+.jky-requested-weight	{width: 60px; text-align:right !important;}
+.jky-checkout-weight	{width: 60px; text-align:right !important;}
+
+#jky-number				{width: 60px; font-size:16px; font-weight:bold;}
+#jky-received-time		{width:150px;}
+#jky-invoice-weight		{width:160px;text-transform:capitalize;}
+#jky-invoice-amount		{width:110px;}
+#jky-payment-term		{width:120px;}
+
+.jky-line-label			{font-weight:bold; text-align:right;}
+.jky-line-value  input	{width: 90%;	text-align:right ;}
+.jky-line-thread input	{width:275px;	text-align:left  ;}
+.jky-line-thread a		{margin-left:-30px; padding:5px;}
+.jky-line-thread a		{margin-left:-30px; padding:5px;}
+.jky-line-percent		{width: 40px;	text-align:right ; margin-right:0;}
+.jky-line-name			{width:280px;}
+#jky-line-total-expected{padding-right:15px; font-weight:bold; text-align:right;}
+#jky-line-total-received{padding-right:15px; font-weight:bold; text-align:right;}
+</style>
+
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-code'				><span>	   Product<br>Code			</span></th>
+			<th class='jky-batch'				><span>      Batch<br>Code			</span></th>
+			<th class='jky-thread-name'			><span>     Thread<br>Name			</span></th>
+			<th class='jky-requested-boxes'		><span>  Requested<br>Boxes			</span></th>
+			<th class='jky-checkout-boxes'		><span>  Check Out<br>Boxes			</span></th>
+			<th class='jky-average-weight'		><span>    Average<br>Weight		</span></th>
+			<th class='jky-requested-weight'	><span>  Requested<br>Weight		</span></th>
+			<th class='jky-checkout-weight'		><span>	 Check Out<br>Weight		</span></th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+</table>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'	></div>
+		<ul  id='jky-form-status'	></ul>
+	</div>
+	<div class='jky-clear'></div>
+
+	<div id='jky-form-data'>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>            Code</span>:</div><input  id='jky-code'			type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>           Batch</span>:</div><input  id='jky-batch'			type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Check In Boxes</span>:</div><input  id='jky-checkin-boxes'	type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Labels Printed</span>:</div><input  id='jky-labels-printed'	type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Number of Cones</span>:</div><input  id='jky-number-of-cones'	type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>      Unit Price</span>:</div><input  id='jky-unit-price'		type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Average Weight</span>:</div><input  id='jky-average-weight'	type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>    Gross Weight</span>:</div><input  id='jky-gross-weight'	type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Check In Weight</span>:</div><input  id='jky-checkin-weight'	type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Returned Weight</span>:</div><input  id='jky-returned-weight'	type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Left Over Weight</span>:</div><input  id='jky-leftover-weight'	type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Weight</span>:</div><input  id='jky-checkout-weight'	type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>     Used Weight</span>:</div><input  id='jky-used-weight'		type='text' /></div>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+		<div>
+			<div class='jky-form-label'></div>
+			<div class='jky-form-buttons'>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+				  <button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+<!--	<div id='jky-form-tabs' class='tabbable'>
+		<ul class='nav nav-tabs' id='cd-ul-tabs'>
+			<li	id='jky-tab-lines'			class='active'	><a href='#jky-pane-lines'			data-toggle='tab'><span>Lines			</span></a></li>
+		</ul>
+
+		<div class='tab-content'>
+			<div id='jky-pane-lines' class='tab-pane active'>
+			</div>
+		</div>
+	</div>
+	<div id='jky-form-footer'></div>
+</div>
+
+<div id='jky-thread-search' class='modal hide fade in'>
+	<div class='modal-header'>
+		<a class='close' data-dismiss='modal'>X</a>
+		<h3><span>Search</span>: <span>Thread</span></h3>
+	</div>
+	<div class='modal-body'>
+		<div><input id='jky-thread-filter' class='search-query' type='text' placeholder='Search' /></div>
+		<table id='jky-thread-table' class='table table-striped'>
+			<thead>
+				<tr>
+					<th class='jky-thread-header-name'			><span>Name			</span></th>
+					<th class='jky-thread-header-group'			><span>Group		</span></th>
+					<th class='jky-thread-header-composition'	><span>Composition	</span></th>
+				</tr>
+			</thead>
+			<tbody id='jky-thread-search-body'></tbody>
+		</table>
+	</div>
+	<div class='modal-footer'>
+<!--	<button  id='jky-thread-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>
+&nbsp;<a id='jky-thread-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
+	</div> -->
+</div>
+
+<div id='jky-body-loaded'></div>
+<script src='js/batchouts.js'></script>

@@ -17,6 +17,7 @@ JKY.translations =
 , "Batch<br>Code":"Batch<br>Code"
 , "Batch<br>Number":"Batch<br>Number"
 , "Batches":"Batches"
+, "BatchOuts":"BatchOuts"
 , "Body":"Body"
 , "Boxes":"Boxes"
 , "Brand":"Brand"

@@ -679,7 +679,7 @@ private function set_new_fields($table) {
 												. ',  Supplier.nick_name		AS			supplier_name';
 	if ($table == 'CheckOuts'		)	$return = ',  Checkout.nick_name		AS checkout_name'
 												. ',  Machines.name				AS  machine_name';
-	if ($table == 'BatchOuts'		)	$return = ',   Threads.name				AS			name'
+	if ($table == 'BatchOuts'		)	$return = ',   Threads.name				AS	 thread_name'
 												. ', CheckOuts.number			AS			number';
 
 //	special code to append fields from Contacts to Services table

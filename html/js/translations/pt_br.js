@@ -17,6 +17,7 @@ JKY.translations =
 , "Batch<br>Code":"Codigo<br>Lote"
 , "Batch<br>Number":"Numero<br>Lote"
 , "Batches":"Lotes"
+, "BatchOuts":"Saida de Lotes"
 , "Body":"Corpo"
 , "Boxes":"Caixas"
 , "Brand":"Marca"
