@@ -17,8 +17,8 @@ JKY.Validation = function() {
 		my_error += my_validate_name	('jky-nick-name'	, 'Nick Name'	, 'Contacts'	, 'nick_name'	);
 		my_error += my_validate_name	('jky-user-name'	, 'User Name'	, 'Contacts'	, 'user_name'	);
 		my_error += my_validate_name	('jky-full-name'	, 'Full Name'	, 'Contacts'	, 'full_name'	);
-		my_error += my_validate_name	('jky-thread-name'	, 'Name'		, 'Threads'		, 'name'		);
-		my_error += my_validate_name	('jky-machine-name'	, 'Name'		, 'Machines'	, 'name'		);
+		my_error += my_validate_name	('jky-thread-name'	, 'Thread Name'	, 'Threads'		, 'name'		);
+		my_error += my_validate_name	('jky-machine-name'	, 'Machine Name', 'Machines'	, 'name'		);
 		my_error += my_validate_name	('jky-product-name'	, 'Product Name', 'Products'	, 'product_name');
 
 		my_error += my_validate_required		('jky-contact-company'	, 'Company'		);
@@ -84,6 +84,10 @@ JKY.Validation = function() {
 	}
 
 	function my_validate_name(the_dom_id, the_label, the_table_name, the_key_name) {
+		if (JKY.has_class(the_dom_id, 'optional')) {
+			return '';
+		}
+
 		if (JKY.is_loaded(the_dom_id) && (my_id == null || my_id == the_dom_id)) {
 /**
  * skip the validation for input with attr = readonly

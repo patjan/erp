@@ -31,6 +31,8 @@ CREATE TABLE IF NOT EXISTS FTPs
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
 ;
 
+INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next FTP Number', value='100001', created_by=1, created_at=NOW();
+
 ALTER TABLE FTPs		CHANGE	code		number		VARCHAR(32)	DEFAULT NULL;
 ALTER TABLE FTPs		CHANGE	needling	needling	VARCHAR(32)	DEFAULT NULL;
 ALTER TABLE FTPs		CHANGE	yield		elasticity	INT(11)		DEFAULT 0;

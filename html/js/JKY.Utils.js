@@ -704,6 +704,10 @@ JKY.has_attr = function(the_id, the_attr){
 	}
 }
 
+JKY.has_class = function(the_id, the_class){
+	return $('#' + the_id).hasClass(the_class);
+}
+
 /**
  * get value of specific id
  * @param	the_id
@@ -925,8 +929,9 @@ JKY.set_checks = function() {
 JKY.set_menu_active = function(id_name){
 	JKY.hide('jky-side-sales'		);
 	JKY.hide('jky-side-purchases'	);
-	JKY.hide('jky-side-production'	);
+	JKY.hide('jky-side-planning'	);
 	JKY.hide('jky-side-threads'		);
+	JKY.hide('jky-side-production'	);
 	JKY.hide('jky-side-help'		);
 	JKY.hide('jky-side-admin'		);
 	JKY.hide('jky-side-support'		);
@@ -1531,7 +1536,7 @@ JKY.is_permitted = function(the_menu_id) {
 /*
 			if (the_menu_id == 'jky-menu-sales'			) {my_resource = 'Menu-Sales'		;
 	}else{	if (the_menu_id == 'jky-menu-purchases'		) {my_resource = 'Menu-Purchases'	;
-	}else{	if (the_menu_id == 'jky-menu-production'	) {my_resource = 'Menu-Production'	;
+	}else{	if (the_menu_id == 'jky-menu-production'		) {my_resource = 'Menu-Production'	;
 	}else{	if (the_menu_id == 'jky-menu-fabrics'		) {my_resource = 'Menu-Fabrics'		;
 	}else{	if (the_menu_id == 'jky-menu-raws'			) {my_resource = 'Menu-Raws'		;
 	}else{	if (the_menu_id == 'jky-menu-threads'		) {my_resource = 'Menu-Threads'		;
@@ -1544,10 +1549,11 @@ JKY.is_permitted = function(the_menu_id) {
 	switch(the_menu_id) {
 		case('jky-menu-sales'		)	:	my_resource = 'Menu-Sales'		; break;
 //		case('jky-menu-purchases'	)	:	my_resource = 'Menu-Purchases'	; break;
-		case('jky-menu-production'	)	:	my_resource = 'Menu-Production'	; break;
+		case('jky-menu-planning'	)	:	my_resource = 'Menu-Planning'	; break;
 		case('jky-menu-fabrics'		)	:	my_resource = 'Menu-Fabrics'	; break;
 		case('jky-menu-raws'		)	:	my_resource = 'Menu-Raws'		; break;
 		case('jky-menu-threads'		)	:	my_resource = 'Menu-Threads'	; break;
+		case('jky-menu-production'	)	:	my_resource = 'Menu-Production'	; break;
 		case('jky-menu-help'		)	:	my_resource = 'Menu-Help'		; break;
 		case('jky-menu-admin'		)	:	my_resource = 'Menu-Admin'		; break;
 		case('jky-menu-support'		)	:	my_resource = 'Menu-Support'	; break;

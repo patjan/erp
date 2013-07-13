@@ -29,5 +29,7 @@ CREATE TABLE IF NOT EXISTS Boxes
 , KEY batch		(batch_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100000001
 ;
+INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next Box Number', value='1000000001', created_by=1, created_at=NOW();
+
 ALTER TABLE Boxes	ADD		number_of_cones		INT(11)		DEFAULT 0	AFTER barcode;
 ALTER TABLE Boxes	ADD		number_of_boxes		INT(11)		DEFAULT 0	AFTER barcode;

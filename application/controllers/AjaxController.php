@@ -577,18 +577,19 @@ $this->log_sql($table, 'get_index', $sql);
 
 private function set_specific($table, $specific, $specific_id) {
 	$return = '';
-	if ($table == 'Groups'			&& $specific == 'event_id'	)		$return .= ' AND   Groups.event_id		= ' . get_session('event_id');
-	if ($table == 'Services'		&& $specific == 'event_id'	)		$return .= ' AND Services.event_id		= ' . get_session('event_id');
-	if ($table == 'Services'		&& $specific == 'fee_amount')       $return .= ' AND Services.fee_amount > 0';
+	if ($table == 'Groups'			&& $specific == 'event_id'	)		$return .= ' AND    Groups.event_id		= ' . get_session('event_id');
+	if ($table == 'Services'		&& $specific == 'event_id'	)		$return .= ' AND  Services.event_id		= ' . get_session('event_id');
+	if ($table == 'Services'		&& $specific == 'fee_amount')       $return .= ' AND  Services.fee_amount > 0';
 	if ($table == 'Translations'	&& $specific == 'locale'	)		$return .= ' AND Translations.locale	= "en_US"';
 //	if ($specific == 'parent_id')	$return .= ' AND Categories.parent_id = ' . get_session('parent_id');
-	if ($table == 'Contacts'		&& $specific == 'is_customer'	)	$return .= ' AND Contacts.is_customer	= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	$return .= ' AND Contacts.is_supplier	= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_company'	)	$return .= ' AND Contacts.is_company	= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	$return .= ' AND Contacts.is_company	= "No" ';
-	if ($table == 'Contacts'		&& $specific == 'company'		)	$return .= ' AND Contacts.company_id	= ' . $specific_id;
-	if ($table == 'FTPs'			&& $specific == 'product'		)	$return .= ' AND     FTPs.product_id	= ' . $specific_id;
-	if ($table == 'Batches'			&& $specific == 'incoming'		)	$return .= ' AND  Batches.incoming_id	= ' . $specific_id;
+	if ($table == 'Contacts'		&& $specific == 'is_customer'	)	$return .= ' AND  Contacts.is_customer	= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	$return .= ' AND  Contacts.is_supplier	= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_company'	)	$return .= ' AND  Contacts.is_company	= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	$return .= ' AND  Contacts.is_company	= "No" ';
+	if ($table == 'Contacts'		&& $specific == 'company'		)	$return .= ' AND  Contacts.company_id	= ' . $specific_id;
+	if ($table == 'FTPs'			&& $specific == 'product'		)	$return .= ' AND      FTPs.product_id	= ' . $specific_id;
+	if ($table == 'Batches'			&& $specific == 'incoming'		)	$return .= ' AND   Batches.incoming_id	= ' . $specific_id;
+	if ($table == 'BatchOuts'		&& $specific == 'checkout'		)	$return .= ' AND BatchOuts.checkout_id	= ' . $specific_id;
 
 	return $return;
 }
@@ -622,6 +623,7 @@ private function set_select($table, $select) {
 	if ($table == 'PurchaseLines'	)	$return = ' AND  PurchaseLines.purchase_id		=  ' . $select;
 	if ($table == 'History'			)	$return = ' AND        History.parent_name      = "' . $select . '"';
 	if ($table == 'Threads'			)	$return = ' AND        Threads.thread_group     = "' . $select . '"';
+	if ($table == 'ReqLines'		)	$return = ' AND       ReqLines.request_id		=  ' . $select;
 
 	return $return;
 }
@@ -665,6 +667,20 @@ private function set_new_fields($table) {
 												. ',   CheckIn.nick_name		AS			checkin'
 												. ',  CheckOut.nick_name		AS			checkout'
 												. ',   Stocked.nick_name		AS			stocked';
+	if ($table == 'Requests'		)	$return = ',  Machines.name				AS  machine_name'
+												. ',  CheckOut.nick_name		AS checkout_name';
+	if ($table == 'ReqLines'		)	$return = ',  Requests.number			AS			request_number'
+												. ',  Requests.ordered_at		AS			ordered_at'
+												. ',  Requests.machine_id		AS			machine_id'
+												. ',  Requests.checkout_id		AS			checkout_id'
+												. ',   Threads.name				AS			thread_name'
+												. ', BatchOuts.checkout_weight	AS			checkout_weight'
+												. ', CheckOuts.checkout_at		AS			checkout_at'
+												. ',  Supplier.nick_name		AS			supplier_name';
+	if ($table == 'CheckOuts'		)	$return = ',  Checkout.nick_name		AS checkout_name'
+												. ',  Machines.name				AS  machine_name';
+	if ($table == 'BatchOuts'		)	$return = ',   Threads.name				AS			name'
+												. ', CheckOuts.number			AS			number';
 
 //	special code to append fields from Contacts to Services table
 	if (get_request('method') == 'export') {
@@ -721,6 +737,18 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Contacts AS CheckIn	ON   CheckIn.id	=		 Boxes.checkin_by'
 												. '  LEFT JOIN    Contacts AS CheckOut	ON  CheckOut.id	=		 Boxes.checkout_by'
 												. '  LEFT JOIN    Contacts AS Stocked	ON   Stocked.id	=		 Boxes.stocked_by';
+	if ($table == 'Requests'		)	$return = '  LEFT JOIN    Machines				ON  Machines.id	=     Requests.machine_id'
+												. '  LEFT JOIN    Contacts AS CheckOut	ON  CheckOut.id	=	  Requests.checkout_id';
+	if ($table == 'ReqLines'		)	$return = '  LEFT JOIN    Requests  			ON  Requests.id	=     ReqLines.request_id'
+												. '  LEFT JOIN     Threads  			ON   Threads.id	=     ReqLines.thread_id'
+												. '  LEFT JOIN   BatchOuts  			ON BatchOuts.id	=     ReqLines.batch_id'
+												. '  LEFT JOIN   CheckOuts				ON CheckOuts.id	=    BatchOuts.checkout_id'
+												. '  LEFT JOIN    Contacts AS CheckOut	ON  CheckOut.id	=     Requests.checkout_id';
+	if ($table == 'CheckOuts'		)	$return = '  LEFT JOIN    Machines				ON  Machines.id	=    CheckOuts.machine_id'
+												. '  LEFT JOIN    Contacts AS CheckOut	ON  CheckOut.id	=    CheckOuts.checkout_id';
+	if ($table == 'BatchOuts'		)	$return = '  LEFT JOIN   CheckOuts  			ON CheckOuts.id	=    BatchOuts.checkout_id'
+												. '  LEFT JOIN     Threads  			ON   Threads.id	=    BatchOuts.thread_id'
+												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=	 BatchOuts.req_line_id';
 	return $return;
 }
 
@@ -1188,6 +1216,143 @@ private function set_where($table, $filter) {
 			}
 		}
 
+		if ($table == 'Requests') {
+			if ($name == 'number'
+			or	$name == 'source_doc'
+			or	$name == 'ordered_at'
+			or	$name == 'expected_date'
+			or	$name == 'scheduled_at'
+			or	$name == 'supplier_ref'
+			or	$name == 'payment_term') {
+				if ($value == '"%null%"') {
+					return ' AND Requests.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Requests.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'machine_name') {
+					if ($value == '"%null%"') {
+						return ' AND Requests.machine_id IS NULL';
+					}else{
+						return ' AND Machines.name LIKE ' . $value;
+					}
+				}
+				if ($name == 'checkout_name') {
+					if ($value == '"%null%"') {
+						return ' AND Requests.checkout_id IS NULL';
+					}else{
+						return ' AND CheckOut.nick_name LIKE ' . $value;
+					}
+				}
+			}
+		}
+
+		if ($table == 'ReqLines') {
+			if ($name == 'requested_date'
+			or	$name == 'scheduled_at'
+			or	$name == 'requested_weight') {
+				if ($value == '"%null%"') {
+					return ' AND ReqLines.' . $name . ' IS NULL ';
+				}else{
+					return ' AND ReqLines.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'request') {
+					if ($value == '"%null%"') {
+						return ' AND ReqLines.request_id IS NULL';
+					}else{
+						return ' AND Requests.number LIKE ' . $value;
+					}
+				}
+				if ($name == 'thread') {
+					if ($value == '"%null%"') {
+						return ' AND ReqLines.thread_id IS NULL';
+					}else{
+						return ' AND Threads.name LIKE ' . $value;
+					}
+				}
+				if ($name == 'batch') {
+					if ($value == '"%null%"') {
+						return ' AND ReqLines.batch_id IS NULL';
+					}else{
+						return ' AND BatchOuts.checkout_weight LIKE ' . $value;
+					}
+				}
+				if ($name == 'checkout') {
+					if ($value == '"%null%"') {
+						return ' AND Batches.checkout_id IS NULL';
+					}else{
+						return ' AND CheckOut.nick_name LIKE ' . $value;
+					}
+				}
+			}
+		}
+
+		if ($table == 'CheckOuts') {
+			if ($name == 'number'
+			or	$name == 'checkout_at'
+			or	$name == 'nfe_dl'
+			or	$name == 'nfe_tm'
+			or	$name == 'invoice_date'
+			or	$name == 'invoice_weight'
+			or	$name == 'invoice_amount'
+			or	$name == 'real_weight'
+			or	$name == 'real_amount') {
+				if ($value == '"%null%"') {
+					return ' AND CheckOuts.' . $name . ' IS NULL ';
+				}else{
+					return ' AND CheckOuts.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'checkout_name') {
+					if ($value == '"%null%"') {
+						return ' AND CheckOuts.checkout_id IS NULL';
+					}else{
+						return ' AND CheckOut.nick_name LIKE ' . $value;
+					}
+				}
+				if ($name == 'machine_name') {
+					if ($value == '"%null%"') {
+						return ' AND CheckOuts.machine_id IS NULL';
+					}else{
+						return ' AND Machines.name LIKE ' . $value;
+					}
+				}
+			}
+		}
+
+		if ($table == 'BatchOuts') {
+			if ($name == 'code'
+			or	$name == 'batch'
+			or	$name == 'unit_price'
+			or	$name == 'requested_weight'
+			or	$name == 'average_weight'
+			or	$name == 'requested_boxes'
+			or	$name == 'checkout_boxes'
+			or	$name == 'checkout_weight') {
+				if ($value == '"%null%"') {
+					return ' AND BatchOuts.' . $name . ' IS NULL ';
+				}else{
+					return ' AND BatchOuts.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'thread_name') {
+					if ($value == '"%null%"') {
+						return ' AND BatchOuts.thread_id IS NULL';
+					}else{
+						return ' AND Threads.name LIKE ' . $value;
+					}
+				}
+				if ($name == 'request_number') {
+					if ($value == '"%null%"') {
+						return ' AND BatchOuts.req_line_id IS NULL';
+					}else{
+						return ' AND Requests.number LIKE ' . $value;
+					}
+				}
+			}
+		}
+
 	}
 
 	$filter = '"%' . $filter . '%"';
@@ -1380,6 +1545,60 @@ private function set_where($table, $filter) {
 			. ' OR  Boxes.stocked_location	LIKE ' . $filter
 			. ' OR  Batches.batch			LIKE ' . $filter
 			. ' OR  Parent.barcode			LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'Purchases') {
+		$return = ' Purchases.number		LIKE ' . $filter
+			. ' OR  Purchases.source_doc	LIKE ' . $filter
+			. ' OR  Purchases.ordered_at	LIKE ' . $filter
+			. ' OR  Purchases.expected_date	LIKE ' . $filter
+			. ' OR  Purchases.scheduled_at	LIKE ' . $filter
+			. ' OR  Purchases.supplier_ref	LIKE ' . $filter
+			. ' OR  Purchases.payment_term	LIKE ' . $filter
+			. ' OR   Supplier.nick_name		LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'ReqLines') {
+		$return = ' ReqLines.requested_date		LIKE ' . $filter
+			. ' OR  ReqLines.scheduled_at		LIKE ' . $filter
+			. ' OR  ReqLines.requested_weight	LIKE ' . $filter
+			. ' OR  Requests.number				LIKE ' . $filter
+			. ' OR	Requests.ordered_at			LIKE ' . $filter
+			. ' OR	 Threads.name				LIKE ' . $filter
+			. ' OR BatchOuts.checkout_weight	LIKE ' . $filter
+			. ' OR CheckOuts.checkout_at		LIKE ' . $filter
+			. ' OR	CheckOut.nick_name			LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'CheckOuts') {
+		$return = ' CheckOuts.number			LIKE ' . $filter
+			. ' OR  CheckOuts.checkout_at		LIKE ' . $filter
+			. ' OR  CheckOuts.nfe_dl			LIKE ' . $filter
+			. ' OR  CheckOuts.nfe_tm			LIKE ' . $filter
+			. ' OR  CheckOuts.invoice_date		LIKE ' . $filter
+			. ' OR  CheckOuts.invoice_weight	LIKE ' . $filter
+			. ' OR  CheckOuts.invoice_amount	LIKE ' . $filter
+			. ' OR  CheckOuts.real_weight		LIKE ' . $filter
+			. ' OR  CheckOuts.real_amount		LIKE ' . $filter
+			. ' OR   Checkout.nick_name			LIKE ' . $filter
+			. ' OR   Machines.name				LIKE ' . $filter
+			;
+		}
+
+	if ($table ==    'BatchOuts') {
+		$return = '   BatchOuts.code				LIKE ' . $filter
+			. ' OR    BatchOuts.batch				LIKE ' . $filter
+			. ' OR    BatchOuts.unit_price			LIKE ' . $filter
+			. ' OR    BatchOuts.requested_weight	LIKE ' . $filter
+			. ' OR    BatchOuts.average_weight		LIKE ' . $filter
+			. ' OR    BatchOuts.requested_boxes		LIKE ' . $filter
+			. ' OR    BatchOuts.checkout_boxes		LIKE ' . $filter
+			. ' OR    BatchOuts.checkout_weight		LIKE ' . $filter
+			. ' OR    Threads.name					LIKE ' . $filter
+			. ' OR	CheckOuts.number				LIKE ' . $filter
 			;
 		}
 
@@ -1607,6 +1826,18 @@ private function insert($data) {
 		$my_number = $this->get_next_number('Controls', 'Next Box Number');
 		$set .= ',      id= ' . $my_number;
 		$set .= ', barcode= ' . $my_number;
+	}
+
+	if ($table == 'Requests') {
+		$my_number = $this->get_next_number('Controls', 'Next Request Number');
+		$set .= ',     id= ' . $my_number;
+		$set .= ', number= ' . $my_number;
+	}
+
+	if ($table == 'CheckOuts') {
+		$my_number = $this->get_next_number('Controls', 'Next CheckOut Number');
+		$set .= ',     id= ' . $my_number;
+		$set .= ', number= ' . $my_number;
 	}
 
 	$sql= 'INSERT ' . $table
