@@ -57,7 +57,7 @@ JKY.generate_row = function(the_row) {
 		+ '<td ><input  class="jky-batch-checkin-boxes"		text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.checkin_boxes	+ '" /></td>'
 		+ '<td ><input  class="jky-batch-labels-printed"	text="text"								 disabled="disabled" value="' + the_row.labels_printed	+ '" /></td>'
 		+ '<td class="jky-batch-labels-print"	>' + my_print + '</td>'
-		+ '<td ><input  class="jky-batch-number-of-cones"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.number_of_cones		+ '" /></td>'
+		+ '<td ><input  class="jky-batch-number-of-cones"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.number_of_cones	+ '" /></td>'
 		+ '<td ><input  class="jky-batch-checkin-weight"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.checkin_weight	+ '" /></td>'
 		+ '<td ><input  class="jky-batch-unit-price"		text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.unit_price		+ '" /></td>'
 		+ '</tr>'
@@ -82,14 +82,14 @@ JKY.update_batch = function(id_name, the_id ) {
 	}
 
 	var my_set = ''
-		+        'thread_id		=  ' + my_thread_id
-		+           ', code		=\'' + my_code	+ '\''
-		+          ', batch		=\'' + my_batch	+ '\''
-		+  ', checkin_boxes		=  ' + my_checkin_boxes
-		+ ', checkin_weight		=  ' + my_checkin_weight
-		+ ', number_of_cones	=  ' + my_number_of_cones
-		+     ', unit_price		=  ' + my_unit_price
-		+ ', average_weight		=  ' + my_average_weight
+		+            'thread_id	=  ' + my_thread_id
+		+               ', code	=\'' + my_code	+ '\''
+		+              ', batch	=\'' + my_batch	+ '\''
+		+      ', checkin_boxes	=  ' + my_checkin_boxes
+		+     ', checkin_weight	=  ' + my_checkin_weight
+		+    ', number_of_cones	=  ' + my_number_of_cones
+		+         ', unit_price	=  ' + my_unit_price
+		+     ', average_weight	=  ' + my_average_weight
 		;
 	var my_data =
 		{ method	: 'update'

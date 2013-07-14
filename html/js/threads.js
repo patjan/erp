@@ -27,8 +27,9 @@ JKY.start_program = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-production-threads');
+	JKY.set_side_active('jky-planning-threads');
 	JKY.set_side_active('jky-threads-threads');
+	JKY.set_side_active('jky-production-threads');
 	JKY.set_html('jky-compositions'		, JKY.set_configs('Thread Compositions', '', ''));
 	JKY.set_html('jky-thread-groups'	, JKY.set_configs('Thread Groups', '', ''));
 	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));

@@ -44,8 +44,9 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-production-machines');
+	JKY.set_side_active('jky-planning-machines');
 	JKY.set_side_active('jky-threads-machines');
+	JKY.set_side_active('jky-production-machines');
 	JKY.set_html('jky-machine-family', JKY.set_configs('Machine Families', '', ''));
 	JKY.set_html('jky-machine-brand', JKY.set_configs('Machine Brands', JKY.App.get('select'), ''));
 	JKY.set_html('jky-app-select', JKY.set_configs('Machine Brands', JKY.App.get('select'), 'All'));

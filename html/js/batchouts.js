@@ -73,7 +73,6 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-number-of-cones'		, the_row.number_of_cones	);
 	JKY.set_value	('jky-unit-price'			, the_row.unit_price		);
 	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);
-	JKY.set_value	('jky-gross-weight'			, the_row.gross_weight		);
 	JKY.set_value	('jky-checkin-weight'		, the_row.checkin_weight	);
 	JKY.set_value	('jky-returned-weight'		, the_row.returned_weight	);
 	JKY.set_value	('jky-leftover-weight'		, the_row.leftover_weight	);
@@ -93,7 +92,6 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-number-of-cones'		,  0);
 	JKY.set_value	('jky-unit-price'			,  0);
 	JKY.set_value	('jky-average-weight'		,  0);
-	JKY.set_value	('jky-gross-weight'			,  0);
 	JKY.set_value	('jky-checkin-weight'		,  0);
 	JKY.set_value	('jky-returned-weight'		,  0);
 	JKY.set_value	('jky-leftover-weight'		,  0);
@@ -116,7 +114,6 @@ JKY.get_form_set = function() {
 		+', number_of_cones=  '	+			  JKY.get_value('jky-number-of-cones'	)
 		+', unit_price=  '		+			  JKY.get_value('jky-unit-price'		)
 		+', average_weight=  '	+			  JKY.get_value('jky-average-weight'	)
-		+', gross_weight=  '	+			  JKY.get_value('jky-gross-weight'		)
 		+', checkin_weight=  '	+			  JKY.get_value('jky-checkin-weight'	)
 		+', returned_weight=  ' +			  JKY.get_value('jky-returned-weight'	)
 		+', leftover_weight=  ' +			  JKY.get_value('jky-leftover-weight'	)
