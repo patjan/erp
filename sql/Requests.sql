@@ -13,14 +13,14 @@ CREATE TABLE IF NOT EXISTS Requests
 , expected_date		DATE				DEFAULT NULL
 , scheduled_at		DATETIME			DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
-, checkout_id		BIGINT				DEFAULT NULL
-, checkout_ref      VARCHAR(32)			DEFAULT NULL
+, supplier_id		BIGINT				DEFAULT NULL
+, supplier_ref      VARCHAR(32)			DEFAULT NULL
 , payment_term      VARCHAR(255)		DEFAULT NULL
 
 , PRIMARY KEY(id)
 , UNIQUE(number)
 , KEY machine 	(machine_id)
-, KEY checkout	(checkout_id)
+, KEY supplier	(supplier_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
 ;
  

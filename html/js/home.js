@@ -206,7 +206,7 @@ JKY.process_menu = function(menu) {
 	switch(menu) {
 		case 'jky-menu-sales'		: JKY.show('jky-side-sales'		); JKY.process_action('customers'	); break;
 //		case 'jky-menu-purchases'	: JKY.show('jky-side-purchases'	); JKY.process_action('purchases'	); break;
-		case 'jky-menu-planning'	: JKY.show('jky-side-planning'	); JKY.process_action('threads'		); break;
+		case 'jky-menu-planning'	: JKY.show('jky-side-planning'	); JKY.process_action('requests'	); break;
 		case 'jky-menu-threads'		: JKY.show('jky-side-threads'	); JKY.process_action('checkouts'	); break;
 		case 'jky-menu-production'	: JKY.show('jky-side-production'); JKY.process_action('ftps'		); break;
 		case 'jky-menu-help'		: JKY.show('jky-side-help'		); JKY.process_action('tickets'		); break;

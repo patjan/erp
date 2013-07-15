@@ -668,16 +668,16 @@ private function set_new_fields($table) {
 												. ',  CheckOut.nick_name		AS			checkout'
 												. ',   Stocked.nick_name		AS			stocked';
 	if ($table == 'Requests'		)	$return = ',  Machines.name				AS  machine_name'
-												. ',  CheckOut.nick_name		AS checkout_name';
+												. ',  Supplier.nick_name		AS supplier_name';
 	if ($table == 'ReqLines'		)	$return = ',  Requests.number			AS			request_number'
 												. ',  Requests.ordered_at		AS			ordered_at'
 												. ',  Requests.machine_id		AS			machine_id'
-												. ',  Requests.checkout_id		AS			checkout_id'
+												. ',  Requests.supplier_id		AS			supplier_id'
 												. ',   Threads.name				AS			thread_name'
 												. ', BatchOuts.checkout_weight	AS			checkout_weight'
 												. ', CheckOuts.checkout_at		AS			checkout_at'
 												. ',  Supplier.nick_name		AS			supplier_name';
-	if ($table == 'CheckOuts'		)	$return = ',  Checkout.nick_name		AS checkout_name'
+	if ($table == 'CheckOuts'		)	$return = ',  Supplier.nick_name		AS supplier_name'
 												. ',  Machines.name				AS  machine_name';
 	if ($table == 'BatchOuts'		)	$return = ',   Threads.name				AS	 thread_name'
 												. ', CheckOuts.number			AS			number';
@@ -738,14 +738,14 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Contacts AS CheckOut	ON  CheckOut.id	=		 Boxes.checkout_by'
 												. '  LEFT JOIN    Contacts AS Stocked	ON   Stocked.id	=		 Boxes.stocked_by';
 	if ($table == 'Requests'		)	$return = '  LEFT JOIN    Machines				ON  Machines.id	=     Requests.machine_id'
-												. '  LEFT JOIN    Contacts AS CheckOut	ON  CheckOut.id	=	  Requests.checkout_id';
+												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=	  Requests.supplier_id';
 	if ($table == 'ReqLines'		)	$return = '  LEFT JOIN    Requests  			ON  Requests.id	=     ReqLines.request_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=     ReqLines.thread_id'
 												. '  LEFT JOIN   BatchOuts  			ON BatchOuts.id	=     ReqLines.batch_id'
 												. '  LEFT JOIN   CheckOuts				ON CheckOuts.id	=    BatchOuts.checkout_id'
-												. '  LEFT JOIN    Contacts AS CheckOut	ON  CheckOut.id	=     Requests.checkout_id';
+												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=     Requests.supplier_id';
 	if ($table == 'CheckOuts'		)	$return = '  LEFT JOIN    Machines				ON  Machines.id	=    CheckOuts.machine_id'
-												. '  LEFT JOIN    Contacts AS CheckOut	ON  CheckOut.id	=    CheckOuts.checkout_id';
+												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=    CheckOuts.supplier_id';
 	if ($table == 'BatchOuts'		)	$return = '  LEFT JOIN   CheckOuts  			ON CheckOuts.id	=    BatchOuts.checkout_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=    BatchOuts.thread_id'
 												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=	 BatchOuts.req_line_id';
@@ -1237,11 +1237,11 @@ private function set_where($table, $filter) {
 						return ' AND Machines.name LIKE ' . $value;
 					}
 				}
-				if ($name == 'checkout_name') {
+				if ($name == 'supplier_name') {
 					if ($value == '"%null%"') {
-						return ' AND Requests.checkout_id IS NULL';
+						return ' AND Requests.supplier_id IS NULL';
 					}else{
-						return ' AND CheckOut.nick_name LIKE ' . $value;
+						return ' AND Supplier.nick_name LIKE ' . $value;
 					}
 				}
 			}
@@ -1304,18 +1304,18 @@ private function set_where($table, $filter) {
 					return ' AND CheckOuts.' . $name . ' LIKE ' . $value;
 				}
 			}else{
-				if ($name == 'checkout_name') {
-					if ($value == '"%null%"') {
-						return ' AND CheckOuts.checkout_id IS NULL';
-					}else{
-						return ' AND CheckOut.nick_name LIKE ' . $value;
-					}
-				}
 				if ($name == 'machine_name') {
 					if ($value == '"%null%"') {
 						return ' AND CheckOuts.machine_id IS NULL';
 					}else{
 						return ' AND Machines.name LIKE ' . $value;
+					}
+				}
+				if ($name == 'checkout_name') {
+					if ($value == '"%null%"') {
+						return ' AND CheckOuts.supplier_id IS NULL';
+					}else{
+						return ' AND Supplier.nick_name LIKE ' . $value;
 					}
 				}
 			}
@@ -1569,7 +1569,7 @@ private function set_where($table, $filter) {
 			. ' OR	 Threads.name				LIKE ' . $filter
 			. ' OR BatchOuts.checkout_weight	LIKE ' . $filter
 			. ' OR CheckOuts.checkout_at		LIKE ' . $filter
-			. ' OR	CheckOut.nick_name			LIKE ' . $filter
+			. ' OR	Supplier.nick_name			LIKE ' . $filter
 			;
 		}
 
@@ -1583,7 +1583,7 @@ private function set_where($table, $filter) {
 			. ' OR  CheckOuts.invoice_amount	LIKE ' . $filter
 			. ' OR  CheckOuts.real_weight		LIKE ' . $filter
 			. ' OR  CheckOuts.real_amount		LIKE ' . $filter
-			. ' OR   Checkout.nick_name			LIKE ' . $filter
+			. ' OR   Supplier.nick_name			LIKE ' . $filter
 			. ' OR   Machines.name				LIKE ' . $filter
 			;
 		}

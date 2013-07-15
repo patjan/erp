@@ -59,13 +59,13 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-number"			>' + the_row.number			+ '</td>'
-		+  '<td class="jky-source-doc"		>' + the_row.source_doc		+ '</td>'
+		+  '<td class="jky-number"			>' + the_row.number							+ '</td>'
+		+  '<td class="jky-source-doc"		>' + the_row.source_doc						+ '</td>'
 		+  '<td class="jky-ordered-at"		>' + JKY.short_date(the_row.ordered_at   )	+ '</td>'
 		+  '<td class="jky-expected-date"	>' + JKY.out_date  (the_row.expected_date) 	+ '</td>'
 		+  '<td class="jky-scheduled-at"	>' + JKY.short_date(the_row.scheduled_at )	+ '</td>'
-		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name	+ '</td>'
-		+  '<td class="jky-supplier-ref"	>' + the_row.supplier_ref	+ '</td>'
+		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name					+ '</td>'
+		+  '<td class="jky-supplier-ref"	>' + the_row.supplier_ref					+ '</td>'
 		;
 	return my_html;
 };

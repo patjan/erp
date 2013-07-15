@@ -48,7 +48,7 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-threads-checkouts');
 	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
-	JKY.set_html('jky-checkout-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
+	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
 //	JKY.set_html('jky-app-select-label', JKY.t('Type'));
 //	JKY.show('jky-app-select-line');
 };
@@ -61,7 +61,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-number"			>' + the_row.number			+ '</td>'
 		+  '<td class="jky-checkout-time"	>' + JKY.short_date(the_row.checkout_at)	+ '</td>'
 		+  '<td class="jky-machine-name"	>' + the_row.machine_name	+ '</td>'
-		+  '<td class="jky-checkout-name"	>' + the_row.checkout_name	+ '</td>'
+		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name	+ '</td>'
 		+  '<td class="jky-nfe-dl"			>' + the_row.nfe_dl			+ '</td>'
 		+  '<td class="jky-nfe-tm"			>' + the_row.nfe_tm			+ '</td>'
 		+  '<td class="jky-invoice-date"	>' + JKY.out_date(the_row.invoice_date) 	+ '</td>'
@@ -78,7 +78,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-number'			, the_row.number		);
 	JKY.set_date	('jky-checkout-time'	, JKY.out_time(the_row.checkout_at));
 	JKY.set_option	('jky-machine-name'		, the_row.machine_id	);
-	JKY.set_option	('jky-checkout-name'	, the_row.checkout_id	);
+	JKY.set_option	('jky-supplier-name'	, the_row.supplier_id	);
 	JKY.set_value	('jky-nfe-dl'			, the_row.nfe_dl);
 	JKY.set_value	('jky-nfe-tm'			, the_row.nfe_tm);
 	JKY.set_date	('jky-invoice-date'		, JKY.out_date(the_row.invoice_date));
@@ -98,7 +98,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-number'			,  JKY.t('New'));
 	JKY.set_date	('jky-checkout-time'	,  JKY.out_time(JKY.get_now()));
 	JKY.set_option	('jky-machine-name'		, '');
-	JKY.set_option	('jky-checkout-name'	, '');
+	JKY.set_option	('jky-supplier-name'	, '');
 	JKY.set_value	('jky-nfe-dl'			, '');
 	JKY.set_value	('jky-nfe-tm'			, '');
 	JKY.set_date	('jky-invoice-date'		,  JKY.out_date(JKY.get_date()));
@@ -113,14 +113,14 @@ JKY.set_add_new_row = function() {
  */
 JKY.get_form_set = function() {
 	var my_machine_id  = JKY.get_value('jky-machine-name' );
-	var my_checkout_id = JKY.get_value('jky-checkout-name');
+	var my_supplier_id = JKY.get_value('jky-supplier-name');
 	my_machine_id  = (my_machine_id  == '') ? 'null' : my_machine_id ;
-	my_checkout_id = (my_checkout_id == '') ? 'null' : my_checkout_id;
+	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
 
 	var my_set = ''
 		+     'checkout_at=  ' + JKY.inp_time(JKY.get_value('jky-checkout-value'	))
 		+    ', machine_id=  ' + my_machine_id
-		+   ', checkout_id=  ' + my_checkout_id
+		+   ', supplier_id=  ' + my_supplier_id
 		+		 ', nfe_dl=\'' +			  JKY.get_value('jky-nfe-dl'			) + '\''
 		+		 ', nfe_tm=\'' +			  JKY.get_value('jky-nfe-tm'			) + '\''
 		+  ', invoice_date=  ' + JKY.inp_date(JKY.get_value('jky-invoice-value'		))
