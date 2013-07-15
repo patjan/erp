@@ -497,7 +497,7 @@ JKY.inp_date = function(the_date){
 		return 'null';
 	}
 	var my_date		= the_date.substr(0, 10);
-	var my_dates	= my_date.split('-');
+	var my_dates	= my_date.replace(/\//g, '-').split('-');
 	var my_result	= '';
 
 	switch(JKY.Session.get_locale()) {
@@ -521,7 +521,7 @@ JKY.inp_time = function(the_time){
 	}
 	var my_date		= the_time.substr( 0, 10);
 	var my_time		= the_time.substr(11,  5);
-	var my_dates	= my_date.split('-');
+	var my_dates	= my_date.replace(/\//g, '-').split('-');
 	var my_result	= '';
 
 	switch(JKY.Session.get_locale()) {
@@ -1444,7 +1444,7 @@ JKY.is_numeric = function(value, label) {
 //        date format mm/dd/yyyy
 JKY.is_date = function(date) {
      var  string = JKY.str_replace('%2F', '/', date);
-     var  dates  = string.split('/');
+     var  dates  = string.replace(/\//g, '-').split('-');
      var  mm   = parseInt(dates[0], 10);
      var  dd   = parseInt(dates[1], 10);
      var  yyyy = parseInt(dates[2], 10);
