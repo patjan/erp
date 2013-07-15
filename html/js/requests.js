@@ -29,13 +29,13 @@ JKY.start_program = function() {
  */
 JKY.set_all_events = function() {
 	$('#jky-ordered-value'	).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-expected-value'	).attr('data-format', JKY.Session.get_date		());
+	$('#jky-requested-value'	).attr('data-format', JKY.Session.get_date		());
 	$('#jky-scheduled-value').attr('data-format', JKY.Session.get_date_time	());
 	$('#jky-ordered-at'		).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-expected-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-requested-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-scheduled-at'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-ordered-at'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-expected-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+	$('#jky-requested-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 	$('#jky-scheduled-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
@@ -62,7 +62,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-number"			>' + the_row.number							+ '</td>'
 		+  '<td class="jky-source-doc"		>' + the_row.source_doc						+ '</td>'
 		+  '<td class="jky-ordered-at"		>' + JKY.short_date(the_row.ordered_at   )	+ '</td>'
-		+  '<td class="jky-expected-date"	>' + JKY.out_date  (the_row.expected_date) 	+ '</td>'
+		+  '<td class="jky-requested-date"	>' + JKY.out_date  (the_row.requested_date) 	+ '</td>'
 		+  '<td class="jky-scheduled-at"	>' + JKY.short_date(the_row.scheduled_at )	+ '</td>'
 		+  '<td class="jky-machine-name"	>' + the_row.machine_name					+ '</td>'
 		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name					+ '</td>'
@@ -78,7 +78,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-number'			, the_row.number		);
 	JKY.set_value	('jky-source-doc'		, the_row.source_doc	);
 	JKY.set_date	('jky-ordered-at'		, JKY.out_time(the_row.ordered_at	));
-	JKY.set_date	('jky-expected-date'	, JKY.out_date(the_row.expected_date));
+	JKY.set_date	('jky-requested-date'	, JKY.out_date(the_row.requested_date));
 	JKY.set_date	('jky-scheduled-at'		, JKY.out_time(the_row.scheduled_at	));
 	JKY.set_option	('jky-machine-name'		, the_row.machine_name	);
 	JKY.set_value	('jky-supplier-name'	, the_row.supplier_name	);
@@ -94,7 +94,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-number'			,  JKY.t('New'));
 	JKY.set_value	('jky-source-doc'		, '');
 	JKY.set_date	('jky-ordered-at'		,  JKY.out_time(JKY.get_now ()));
-	JKY.set_date	('jky-expected-date'	,  JKY.out_date(JKY.get_date()));
+	JKY.set_date	('jky-requested-date'	,  JKY.out_date(JKY.get_date()));
 	JKY.set_date	('jky-scheduled-at'		, '');
 	JKY.set_option	('jky-machine-name'		, '');
 	JKY.set_option	('jky-supplier-name'	, '');
@@ -113,7 +113,7 @@ JKY.get_form_set = function() {
 	var my_set = ''
 		+      'source_doc=\'' + JKY.get_value	('jky-source-doc'		) + '\''
 		+    ', ordered_at=  ' + JKY.inp_time(JKY.get_value('jky-ordered-value'		))
-		+ ', expected_date=  ' + JKY.inp_date(JKY.get_value('jky-expected-value'	))
+		+ ', requested_date=  ' + JKY.inp_date(JKY.get_value('jky-requested-value'	))
 		+  ', scheduled_at=  ' + JKY.inp_time(JKY.get_value('jky-scheduled-value'	))
 		+    ', machine_id=  ' + my_machine_id
 		+   ', supplier_id=  ' + my_supplier_id
