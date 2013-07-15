@@ -58,4 +58,8 @@ ALTER TABLE PurchaseLines	ADD COLUMN batch_id				BIGINT		DEFAULT NULL	AFTER thre
 ----- 2013/07/09
 ALTER TABLE Boxes	ADD		number_of_boxes		INT(11)		DEFAULT 0	AFTER barcode;
 ----- 2013/07/14
-ALTER TABLE CheckOuts		CHANGE	checkout_id		supplier_id		BIGINT;
+ALTER TABLE CheckOuts		CHANGE	checkout_id		supplier_id			BIGINT;
+----- 2013/07/15
+ALTER TABLE Requests		CHANGE	checkout_id		supplier_id			BIGINT;
+ALTER TABLE Requests		CHANGE	checkout_ref	supplier_ref		VARCHAR(32);
+	

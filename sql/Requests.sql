@@ -27,3 +27,5 @@ CREATE TABLE IF NOT EXISTS Requests
 INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next Request Number', value='100001', created_by=1, created_at=NOW()
 
 ALTER TABLE Requests		CHANGE	expected_date	requested_date		DATE;
+ALTER TABLE Requests		CHANGE	checkout_id		supplier_id			BIGINT;
+ALTER TABLE Requests		CHANGE	checkout_ref	supplier_ref		VARCHAR(32);
