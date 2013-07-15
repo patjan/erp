@@ -125,8 +125,8 @@ JKY.get_form_set = function() {
 JKY.process_delete = function(the_id, the_row) {
 	var my_data =
 		{ method: 'delete_many'
-		, table : 'PurchaseLines'
-		, where : 'purchase_id = ' + the_id
+		, table : 'ReqLines'
+		, where : 'request_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
 };

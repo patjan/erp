@@ -29,4 +29,3 @@ CREATE TABLE IF NOT EXISTS CheckOuts
 INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next CheckOut Number', value='100001', created_by=1, created_at=NOW();
 
 ALTER TABLE CheckOuts		CHANGE	checkout_id		supplier_id		BIGINT;
-
