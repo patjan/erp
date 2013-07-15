@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS Requests
 , number			VARCHAR(32)			DEFAULT NULL
 , source_doc		VARCHAR(32)			DEFAULT NULL
 , ordered_at		DATETIME			DEFAULT NULL
-, expected_date		DATE				DEFAULT NULL
+, requested_date	DATE				DEFAULT NULL
 , scheduled_at		DATETIME			DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
 , supplier_id		BIGINT				DEFAULT NULL
@@ -25,3 +25,5 @@ CREATE TABLE IF NOT EXISTS Requests
 ;
  
 INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next Request Number', value='100001', created_by=1, created_at=NOW()
+
+ALTER TABLE Requests		CHANGE	expected_date	requested_date		DATE;
