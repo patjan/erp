@@ -66,11 +66,11 @@ JKY.update_line = function(id_name, the_id ) {
 //	if (my_scheduled_at  != 'null')		{my_scheduled_at  = '\'' + my_scheduled_at  + '\'';	}
 
 	var my_set = ''
-		+        'thread_id = ' + my_thread_id
+		+         'thread_id = ' + my_thread_id
 		+', requested_weight = ' + my_requested_weight
 		+  ', requested_date = ' + my_requested_date
-//		+', checkout_weight = ' + my_checkout_weight
-//		+   ', scheduled_at = ' + my_scheduled_at
+//		+ ', checkout_weight = ' + my_checkout_weight
+//		+    ', scheduled_at = ' + my_scheduled_at
 		;
 	var my_data =
 		{ method	: 'update'
