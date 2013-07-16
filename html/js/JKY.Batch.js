@@ -105,6 +105,8 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_checkin_
 		var my_row = response.row;
 		var my_thread_id		= JKY.get_value_by_id('Batches'		, 'thread_id'	, my_row.batch_id	);
 		var my_incoming_id		= JKY.get_value_by_id('Batches'		, 'incoming_id'	, my_row.batch_id	);
+		var my_nfe_dl			= JKY.get_value_by_id('Incomings'	, 'nfe_dl'		, my_incoming_id	);
+		var my_nfe_tm			= JKY.get_value_by_id('Incomings'	, 'nfe_tm'		, my_incoming_id	);
 		var my_supplier_id		= JKY.get_value_by_id('Incomings'	, 'supplier_id'	, my_incoming_id	);
 		var my_composition		= JKY.get_value_by_id('Threads'		, 'composition'	, my_thread_id		);
 		var my_thread_name		= JKY.get_value_by_id('Threads'		, 'name'		, my_thread_id		);
@@ -116,11 +118,12 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_checkin_
 		if (my_real_weight == 0) {
 			my_real_weight = my_average_weight;
 		}
+		var my_number_of_boxes	= my_row.number_of_boxes	;
 		var my_number_of_cones	= my_row.number_of_cones	;
 		var my_batch_number		= my_row.batch				;
 		var my_checkin_location	= my_row.checkin_location	;
 		var my_barcode			= my_row.barcode			;
-
+/*
 		var my_html = ''
 			+ '<br>    Checkin Time: ' + my_checkin_at
 			+ '<br>     Real Weight: ' + my_real_weight + ' Kg'
@@ -131,6 +134,64 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_checkin_
 			+ '<br>   Supplier Name: ' + my_supplier_name
 			+ '<br>Checkin Location: ' + my_checkin_location
 			+ '<br>         Barcode: ' + my_barcode + '------------------'
+			;
+*/
+		var my_html = ''
++ "\n" + '~NORMAL'
++ "\n" + '~NORMAL'
++ "\n" + '~PIOFF'
++ "\n" + '~DELETE LOGO;*ALL'
++ "\n" + '~PAPER;INTENSITY 6;MEDIA 1;FEED SHIFT 0;CUT 0;PAUSE 0;TYPE 0;LABELS 2;SPEED IPS 7;SLEW IPS 4'
+
++ "\n" + '~CREATE;CXFIOS;283'
++ "\n" + 'SCALE;DOT;203;203'
+
++ "\n" + '/PARTE FIXA'
++ "\n" + 'ISET;0'
++ "\n" + 'FONT;FACE 92250'
++ "\n" + 'ALPHA'
++ "\n" + 'INV;POINT;748;790;16;16;*NFe DL:*'
++ "\n" + 'INV;POINT;748;333;16;16;*NFe TM:*'
++ "\n" + 'INV;POINT;695;789;16;16;*DATA:*'
++ "\n" + 'INV;POINT;695;333;16;16;*PESO:*'
++ "\n" + 'INV;POINT;634;789;16;16;*COMP:*'
++ "\n" + 'INV;POINT;574;788;16;16;*CONES:*'
++ "\n" + 'INV;POINT;574;327;16;16;*LOTE:*'
++ "\n" + 'INV;POINT;519;788;14;14;*FIO:*'
++ "\n" + 'INV;POINT;445;789;22;22;*FORNEC:*'
++ "\n" + 'INV;POINT;351;789;32;33;*ESTOCAGEM:*'
++ "\n" + 'INV;POINT;269;788;22;22;*CAIXA:*'
++ "\n" + 'STOP'
+
++ "\n" + '/PARTE VARIAVEL'
++ "\n" + 'ISET;0'
++ "\n" + 'FONT;FACE 92250'
++ "\n" + 'ALPHA'
++ "\n" + 'INV;POINT;748;643;16;16;*' + my_nfe_dl			+ '*'
++ "\n" + 'INV;POINT;748;175;16;16;*' + my_nfe_tm			+ '*'
++ "\n" + 'INV;POINT;695;679;16;16;*' + my_checkin_at		+ '*'
++ "\n" + 'INV;POINT;695;216;16;16;*' + my_real_weight		+ ' KG*'
++ "\n" + 'INV;POINT;634;667;16;16;*' + my_composition		+ '*'
++ "\n" + 'INV;POINT;574;647;16;16;*' + my_number_of_cones	+ '*'
++ "\n" + 'INV;POINT;574;217;16;16;*' + my_batch_number		+ '*'
++ "\n" + 'INV;POINT;519;713;14;14;*' + my_thread_name		+ '*'
++ "\n" + 'INV;POINT;445;562;22;22;*' + my_supplier_name		+ '*'
++ "\n" + 'INV;POINT;351;296;32;33;*' + my_checkin_location	+ '*'
++ "\n" + 'INV;POINT;269;616;22;22;*' + my_number_of_boxes	+ '*'
++ "\n" + 'STOP'
+
++ "\n" + '/CODIGO DE BARRAS'
++ "\n" + 'BARCODE'
++ "\n" + 'C128C;INV;XRD7:7:14:14:21:21:28:28;H8;67;100'
++ "\n" + '*' + my_barcode + '*'
++ "\n" + 'PDF;B'
++ "\n" + 'STOP'
+
++ "\n" + '/FIM DO PROGRAMA'
++ "\n" + 'END'
++ "\n" + '~EXECUTE;CXFIOS;1'
+
++ "\n" + '~NORMAL'
 			;
 		JKY.display_message(my_html);
 	}
