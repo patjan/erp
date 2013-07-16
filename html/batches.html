@@ -34,7 +34,7 @@
 .jky-line-thread a		{margin-left:-30px; padding:5px;}
 .jky-line-thread a		{margin-left:-30px; padding:5px;}
 .jky-line-percent		{width: 40px;	text-align:right ; margin-right:0;}
-.jky-line-name			{width:280px;}
+.jky-line-name			{width: 50px;}
 #jky-line-total-expected{padding-right:15px; font-weight:bold; text-align:right;}
 #jky-line-total-received{padding-right:15px; font-weight:bold; text-align:right;}
 </style>
@@ -102,42 +102,50 @@
 		<div class='jky-clear'></div>
 	</div>
 
-<!--	<div id='jky-form-tabs' class='tabbable'>
+	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-lines'			class='active'	><a href='#jky-pane-lines'			data-toggle='tab'><span>Lines			</span></a></li>
+			<li	id='jky-tab-lines'			class='active'	><a href='#jky-pane-lines'			data-toggle='tab'><span>Incoming Lines			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
 			<div id='jky-pane-lines' class='tab-pane active'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<th class='jky-action'></th>
+							<th class='jky-line-name'					><span>	    Name					</span></th>
+							<th class='jky-line-barcode'				><span>	 Barcode					</span></th>
+							<th class='jky-line-number-of-boxes'		><span>	  Number<br>of Boxes		</span></th>
+							<th class='jky-line-number-of-cones'		><span>	  Number<br>of Cones		</span></th>
+							<th class='jky-line-average-weight'			><span>  Average<br>Weight			</span></th>
+							<th class='jky-line-real-weight'			><span>		Real<br>Weight			</span></th>
+							<th class='jky-line-checkin-location'		><span>    Check<br>In Location		</span></th>
+							<th class='jky-line-checkout-location'		><span>	   Check<br>Out Location	</span></th>
+							<th class='jky-line-stored-loaction'		><span>  Stocked<br>Location		</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-line-body'></tbody>
+					<tfoot>
+						<tr>
+							<td	   id='jky-line-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td class='jky-line-label'><span>Total</span></td>
+							<td    id='jky-line-total-requested'></td>
+							<td></td>
+							<td    id='jky-line-total-checkout'></td>
+							<td></td>
+						</tr>
+					</tfoot>
+				</table>
 			</div>
 		</div>
 	</div>
 	<div id='jky-form-footer'></div>
 </div>
-
-<div id='jky-thread-search' class='modal hide fade in'>
-	<div class='modal-header'>
-		<a class='close' data-dismiss='modal'>X</a>
-		<h3><span>Search</span>: <span>Thread</span></h3>
-	</div>
-	<div class='modal-body'>
-		<div><input id='jky-thread-filter' class='search-query' type='text' placeholder='Search' /></div>
-		<table id='jky-thread-table' class='table table-striped'>
-			<thead>
-				<tr>
-					<th class='jky-thread-header-name'			><span>Name			</span></th>
-					<th class='jky-thread-header-group'			><span>Group		</span></th>
-					<th class='jky-thread-header-composition'	><span>Composition	</span></th>
-				</tr>
-			</thead>
-			<tbody id='jky-thread-search-body'></tbody>
-		</table>
-	</div>
 	<div class='modal-footer'>
 <!--	<button  id='jky-thread-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>
 &nbsp;<a id='jky-thread-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
 	</div> -->
-</div>
+	</div>
 
 <div id='jky-body-loaded'></div>
 <script src='js/batches.js'></script>
