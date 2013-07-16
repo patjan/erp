@@ -7,25 +7,25 @@
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-number				{width: 60px; text-align:center !important;}
-.jky-machine-name		{width:100px; text-align:left	!important;}
-.jky-supplier-name		{width:100px; text-align:left	!important;}
-.jky-thread-name		{width:100px; text-align:left	!important;}
+.jky-request-number		{width: 60px; text-align:center !important;}
+.jky-machine-name		{width: 75px; text-align:left	!important;}
+.jky-supplier-name		{width: 75px; text-align:left	!important;}
+.jky-thread-name		{width:150px; text-align:left	!important;}
 .jky-ordered-at			{width: 65px; text-align:center !important;}
-.jky-requested-at		{width: 65px; text-align:center !important;}
+.jky-requested-date		{width: 65px; text-align:center !important;}
 .jky-scheduled-at		{width: 65px; text-align:center !important;}
-.jky-requested-weight	{width:100px; text-align:left	!important;}
-.jky-checkout-weight	{width:100px; text-align:left	!important;}
+.jky-requested-weight	{width: 60px; text-align:right	!important;}
+.jky-checkout-weight	{width: 60px; text-align:right	!important;}
 
-#jky-number				{width: 60px; font-size:16px; font-weight:bold;}
-#jky-machine-name		{width:100px;}
-#jky-supplier-name		{width:100px;}
-#jky-thread-name		{width:120px;}
-#jky-ordered-at			{width: 75px;}
-#jky-requested-at		{width:120px;}
-#jky-scheduled-at		{width:350px; text-transform:capitalize;}
-#jky-requested-weight	{width:100px;}
-#jky-checkout-weight	{width:100px;}
+#jky-request-number		{width: 60px; font-size:16px; font-weight:bold;}
+#jky-machine-name		{width:350px; text-transform:capitalize;}
+#jky-supplier-name		{width:350px; text-transform:capitalize;}
+#jky-thread-name		{width:350px; text-transform:capitalize;}
+#jky-ordered-value		{width:120px;}
+#jky-requested-value	{width: 75px;}
+#jky-scheduled-value	{width:120px;}
+#jky-requested-weight	{width:100px; text-align:right;}
+#jky-checkout-weight	{width:100px; text-align:right;}
 
 .jky-line-label			{font-weight:bold; text-align:right;}
 .jky-line-value  input	{width: 90%;	text-align:right ;}
@@ -42,15 +42,15 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-number'				><span>		Request<br>Number		</span></th>
+			<th class='jky-request-number'		><span>		Request<br>Number		</span></th>
 			<th class='jky-machine-name'		><span>		Machine<br>Name			</span></th>
-			<th class='jky-supplier-name'		><span>		  Check<br>Out Name		</span></th>
-			<th class='jky-thread-name'			><span>		 Thread<br>Name			</span></th>		
+			<th class='jky-supplier-name'		><span>	   Supplier<br>Name			</span></th>
+			<th class='jky-thread-name'			><span>		 Thread<br>Name			</span></th>
 			<th class='jky-ordered-at'			><span>		Ordered<br>Time			</span></th>
-			<th class='jky-requested-at'		><span>	  Requested<br>Time			</span></th>
+			<th class='jky-requested-date'		><span>	  Requested<br>Date				</span></th>
 			<th class='jky-scheduled-at'		><span>	  Scheduled<br>Time			</span></th>
 			<th class='jky-requested-weight'	><span>	  Requested<br>Weight		</span></th>
-			<th class='jky-checkout-weight'		><span>		  Check<br>Out Weight	</span></th>
+			<th class='jky-checkout-weight'		><span>	  Check Out<br>Weight		</span></th>
 		</tr>
 	</thead>
 
@@ -66,10 +66,10 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>   Request Number	</span>:</div><input  id='jky-number'			class='jky-form-value'	readonly='readonly'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>     Machine Name	</span>:</div><select id='jky-machine-name'		class='optional' ></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>     Request Number</span>:</div><input  id='jky-request-number'	class='jky-form-value'	readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>       Machine Name</span>:</div><select id='jky-machine-name'		class='optional' ></select></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>      Supplier Name</span>:</div><select id='jky-supplier-name'	class='optional' ></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Thread Name	</span>:</div><select id='jky-thread-name'		class='optional' ></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>        Thread Name</span>:</div><select id='jky-thread-name'		class='optional' ></select></div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Ordered Time</span>:</div>
 				<div id="jky-ordered-at"	class="input-append date"><input id='jky-ordered-value'		type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>

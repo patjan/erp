@@ -80,9 +80,9 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_date	('jky-ordered-at'		, JKY.out_time(the_row.ordered_at	));
 	JKY.set_date	('jky-requested-date'	, JKY.out_date(the_row.requested_date));
 	JKY.set_date	('jky-scheduled-at'		, JKY.out_time(the_row.scheduled_at	));
-	JKY.set_option	('jky-machine-name'		, the_row.machine_name	);
-	JKY.set_value	('jky-supplier-name'	, the_row.supplier_name	);
-	JKY.set_option	('jky-supplier-ref'		, the_row.supplier_ref	);
+	JKY.set_option	('jky-machine-name'		, the_row.machine_id	);
+	JKY.set_option	('jky-supplier-name'	, the_row.supplier_id	);
+	JKY.set_value	('jky-supplier-ref'		, the_row.supplier_ref	);
 
 	JKY.display_lines();
 };

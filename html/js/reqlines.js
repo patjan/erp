@@ -29,13 +29,13 @@ JKY.start_program = function() {
  */
 JKY.set_all_events = function() {
 	$('#jky-ordered-value'	).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-expected-value'	).attr('data-format', JKY.Session.get_date		());
+	$('#jky-requested-value').attr('data-format', JKY.Session.get_date		());
 	$('#jky-scheduled-value').attr('data-format', JKY.Session.get_date_time	());
 	$('#jky-ordered-at'		).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-expected-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-requested-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-scheduled-at'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-ordered-at'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-expected-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+	$('#jky-requested-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 	$('#jky-scheduled-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
@@ -59,12 +59,12 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-number"				>' + the_row.number							+ '</td>'
+		+  '<td class="jky-request-number"		>' + the_row.request_number					+ '</td>'
 		+  '<td class="jky-machine-name"		>' + the_row.machine_name					+ '</td>'
 		+  '<td class="jky-supplier-name"		>' + the_row.supplier_name					+ '</td>'
 		+  '<td class="jky-thread-name"			>' + the_row.thread_name					+ '</td>'
 		+  '<td class="jky-ordered-at"			>' + JKY.short_date(the_row.ordered_at   )	+ '</td>'
-		+  '<td class="jky-expected-date"		>' + JKY.out_date  (the_row.expected_date) 	+ '</td>'
+		+  '<td class="jky-requested-date"		>' + JKY.out_date  (the_row.requested_date) + '</td>'
 		+  '<td class="jky-scheduled-at"		>' + JKY.short_date(the_row.scheduled_at )	+ '</td>'
 		+  '<td class="jky-requested-weight"	>' + the_row.requested_weight				+ '</td>'
 		+  '<td class="jky-checkout-weight"		>' + the_row.checkout_weight				+ '</td>'
@@ -76,12 +76,12 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-number'				, the_row.number		);
-	JKY.set_option	('jky-machine-name'			, the_row.machine_name	);
-	JKY.set_value	('jky-supplier-name'		, the_row.supplier_name	);
+	JKY.set_value	('jky-request-number'		, the_row.request_number);
+	JKY.set_option	('jky-machine-name'			, the_row.machine_id	);
+	JKY.set_option	('jky-supplier-name'		, the_row.supplier_id	);
 	JKY.set_value	('jky-thread-name'			, the_row.thread_name	);
 	JKY.set_date	('jky-ordered-at'			, JKY.out_time(the_row.ordered_at	));
-	JKY.set_date	('jky-expected-date'		, JKY.out_date(the_row.expected_date));
+	JKY.set_date	('jky-requested-date'		, JKY.out_date(the_row.requested_date));
 	JKY.set_date	('jky-scheduled-at'			, JKY.out_time(the_row.scheduled_at	));
 	JKY.set_value	('jky-requested-weight'		, the_row.requested_weight	);
 	JKY.set_value	('jky-checkout-weight'		, the_row.checkout_weight	);
@@ -93,12 +93,12 @@ JKY.set_form_row = function(the_row) {
  *	set add new row
  */
 JKY.set_add_new_row = function() {
-	JKY.set_value	('jky-number'				,  JKY.t('New'));
+	JKY.set_value	('jky-request-number'		,  JKY.t('New'));
 	JKY.set_option	('jky-machine-name'			, '');
 	JKY.set_option	('jky-supplier-name'		, '');
 	JKY.set_option	('jky-thread-name'			, '');
 	JKY.set_date	('jky-ordered-at'			,  JKY.out_time(JKY.get_now ()));
-	JKY.set_date	('jky-expected-date'		,  JKY.out_date(JKY.get_date()));
+	JKY.set_date	('jky-requested-date'		,  JKY.out_date(JKY.get_date()));
 	JKY.set_date	('jky-scheduled-at'			, '');
 	JKY.set_value	('jky-requested-weight'		,  0);
 	JKY.set_value	('jky-checkout-weight'		,  0);
@@ -117,8 +117,8 @@ JKY.get_form_set = function() {
 		+      ', machine_id=  ' + my_machine_id
 		+	  ', supplier_id=  ' + my_supplier_id
 		+	    ', thread_id=  ' + my_thread_id
-		+	   ', ordered_at=  ' + JKY.inp_time(JKY.get_value('jky-ordered-value'		))
-		+	', expected_date=  ' + JKY.inp_date(JKY.get_value('jky-requestd-value'	))
+		+	   ', ordered_at=  ' + JKY.inp_time(JKY.get_value('jky-ordered-value'	))
+		+  ', requested_date=  ' + JKY.inp_date(JKY.get_value('jky-requestd-value'	))
 		+	 ', scheduled_at=  ' + JKY.inp_time(JKY.get_value('jky-scheduled-value'	))
 		+', requested_weight=  ' + JKY.get_value('jky-requested-weight'	)
 		+ ', checkout_weight=  ' + JKY.get_value('jky-checkout-weight'	)
