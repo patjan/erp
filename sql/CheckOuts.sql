@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS CheckOuts
 , status			VARCHAR(32)			DEFAULT 'Active'
 
 , number			VARCHAR(32)			DEFAULT NULL
-, checkout_time		DATETIME			DEFAULT NULL
+, checkout_at		DATETIME			DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
 , supplier_id		BIGINT				DEFAULT NULL
 , nfe_dl			VARCHAR(32)			DEFAULT NULL
