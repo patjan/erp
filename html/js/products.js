@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Products'
 		, table_name	: 'Products'
 		, specific		: ''
-		, select		: 'Tubular'
+		, select		: 'All'
 		, filter		: ''
 		, sort_by		: 'product_name'
 		, sort_seq		: 'ASC'
