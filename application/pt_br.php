@@ -89,6 +89,7 @@ $translations = array
 , "Customers"=>"Clientes"
 , "Cylinder"=>"Cilindro"
 , "Cylinders"=>"Cilindros"
+, "Date"=>"Data"
 , "Delete"=>"Deletar"
 , "Density"=>"Finura"
 , "Description"=>"Descrição"
