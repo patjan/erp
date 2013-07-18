@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS Boxes
 , batch_id			BIGINT				DEFAULT NULL
 , parent_id			BIGINT				DEFAULT NULL
 , barcode			VARCHAR(32)			DEFAULT NULL
+, is_printed		CHAR(3)				DEFAULT 'No'
 , number_of_boxes	INT(11)				DEFAULT 0
 , number_of_cones	INT(11)				DEFAULT 0
 , average_weight	DECIMAL(10,2)		DEFAULT 0
@@ -31,5 +32,8 @@ CREATE TABLE IF NOT EXISTS Boxes
 ;
 INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next Box Number', value='1000000001', created_by=1, created_at=NOW();
 
-ALTER TABLE Boxes	ADD		number_of_cones		INT(11)		DEFAULT 0	AFTER barcode;
-ALTER TABLE Boxes	ADD		number_of_boxes		INT(11)		DEFAULT 0	AFTER barcode;
+ALTER TABLE Boxes	ADD		number_of_cones		INT(11)		DEFAULT 0		AFTER barcode;
+ALTER TABLE Boxes	ADD		number_of_boxes		INT(11)		DEFAULT 0		AFTER barcode;
+ALTER TABLE Boxes	ADD		is_printed			CHAR(3)		DEFAULT 'No'	AFTER barcode;
+
+UPDATE Boxes	SET is_printed = 'Yes';

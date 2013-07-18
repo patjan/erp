@@ -62,4 +62,5 @@ ALTER TABLE CheckOuts		CHANGE	checkout_id		supplier_id			BIGINT;
 ----- 2013/07/15
 ALTER TABLE Requests		CHANGE	checkout_id		supplier_id			BIGINT;
 ALTER TABLE Requests		CHANGE	checkout_ref	supplier_ref		VARCHAR(32);
-	
+----- 2013/07/17
+ALTER TABLE Boxes	ADD		is_printed			CHAR(3)		DEFAULT 'No'	AFTER barcode;
