@@ -68,10 +68,8 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-checkout-number'		, the_row.checkout_number	);
 	JKY.set_value	('jky-code'					, the_row.code				);
 	JKY.set_value	('jky-batch'				, the_row.batch				);
-	JKY.set_value	('jky-thread-name'			, the_row.thread_name		);
 	JKY.set_value	('jky-requested-boxes'		, the_row.requested_boxes	);
 	JKY.set_value	('jky-checkout-boxes'		, the_row.checkou_boxes		);
 	JKY.set_value	('jky-unit-price'			, the_row.unit_price		);
@@ -85,11 +83,9 @@ JKY.set_form_row = function(the_row) {
  *	set add new row
  */
 JKY.set_add_new_row = function() {
-	JKY.set_value	('jky-checkout-number'		, '');
 	JKY.set_value	('jky-code'					, '');
 	JKY.set_value	('jky-batch'				, '');
-	JKY.set_value	('jky-thread-name'			, '');
-	JKY.set_value	('jky-requestd-boxes'		, '');
+	JKY.set_value	('jky-requested-boxes'		, '');
 	JKY.set_value	('jky-checkout-boxes'		, '');
 	JKY.set_value	('jky-unit-price'			,  0);
 	JKY.set_value	('jky-average-weight'		,  0);
@@ -105,11 +101,9 @@ JKY.get_form_set = function() {
 //	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
 
 	var my_set = ''
-		+   'checkout_number=\''	+	JKY.get_value('jky-checkout-number'		) + '\''
 		+   'code=\''				+	JKY.get_value('jky-code'				) + '\''
 		+', batch=\''				+	JKY.get_value('jky-batch'				) + '\''
-		+', thread_name=  '			+	JKY.get_value('jky-thread-name'			)
-		+', requested_boxes=  '		+	JKY.get_value('jky-requestd-boxes'		)
+		+', requested_boxes=  '		+	JKY.get_value('jky-requested-boxes'		)
 		+', checkout_boxes=  '		+	JKY.get_value('jky-checkout-boxes'		)
 		+', unit_price=  '			+	JKY.get_value('jky-unit-price'			)
 		+', average_weight=  '		+	JKY.get_value('jky-average-weight'		)
