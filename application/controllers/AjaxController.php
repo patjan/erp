@@ -96,6 +96,7 @@ public function indexAction() {
 
 			case 'send_email'		: $this->send_email		(); return;
 			case 'send_receipt'		: $this->send_receipt	(); return;
+			case 'print_labels'		: $this->print_labels	($data); return;
 		}
 
 //		$table = get_request('table');
@@ -3799,5 +3800,116 @@ private function echo_error( $message ) {
 	echo json_encode( $return );
     }
 
+	/**
+	 *	$.ajax({ method: print_labels, table: x...x, key: x...x });
+	 *
+	 *	return: [ x...x, ..., x...x ]
+	 */
+	private function print_labels($data) {
+		$table = get_data($data, 'table');
+
+		$sql= 'SELECT Boxes.*'
+			. '     , Batches.batch AS batch_number'
+			. '     , Threads.composition, Threads.name AS thread_name'
+			. '     , Incomings.nfe_dl, Incomings.nfe_tm'
+			. '     , Contacts.nick_name AS supplier_name'
+			. '  FROM Boxes'
+			. '  LEFT JOIN Batches		ON Batches.id   = Boxes.batch_id'
+			. '  LEFT JOIN Threads		ON Threads.id   = Batches.thread_id'
+			. '  LEFT JOIN Incomings	ON Incomings.id = Batches.incoming_id'
+			. '  LEFT JOIN Contacts		ON Contacts.id  = Incomings.supplier_id'
+			. ' WHERE Boxes.is_printed = "No"'
+			. ' ORDER BY Boxes.barcode ASC'
+			;
+		$db   = Zend_Registry::get('db');
+		$rows = $db->fetchAll($sql);
+
+		$count = 0;
+		$folder		= 'boxes/';
+		$ip_number = '192.168.0.252';	//	printer for boxes labels
+		foreach($rows as $my_row) {
+			$my_id				= $my_row['id'				];
+			$my_checkin_at		= $my_row['checkin_at'		];
+			$my_average_weight	= $my_row['average_weight'	];
+			$my_real_weight		= $my_row['real_weight'		];
+			if ($my_real_weight == 0) {
+				$my_real_weight = $my_average_weight;
+			}
+
+			$labels  =		'~NORMAL';
+			$labels .= NL . '~NORMAL';
+			$labels .= NL . '~PIOFF';
+			$labels .= NL . '~DELETE LOGO;*ALL';
+			$labels .= NL . '~PAPER;INTENSITY 6;MEDIA 1;FEED SHIFT 0;CUT 0;PAUSE 0;TYPE 0;LABELS 2;SPEED IPS 7;SLEW IPS 4';
+			$labels .= NL . '~CREATE;CXFIOS;283';
+			$labels .= NL . 'SCALE;DOT;203;203';
+			$labels .= NL . '/PARTE FIXA';
+			$labels .= NL . 'ISET;0';
+			$labels .= NL . 'FONT;FACE 92250';
+			$labels .= NL . 'ALPHA';
+			$labels .= NL . 'INV;POINT;748;790;16;16;*NFe DL:*';
+			$labels .= NL . 'INV;POINT;748;333;16;16;*NFe TM:*';
+			$labels .= NL . 'INV;POINT;695;789;16;16;*DATA:*';
+			$labels .= NL . 'INV;POINT;695;333;16;16;*PESO:*';
+			$labels .= NL . 'INV;POINT;634;789;16;16;*COMP:*';
+			$labels .= NL . 'INV;POINT;574;788;16;16;*CONES:*';
+			$labels .= NL . 'INV;POINT;574;327;16;16;*LOTE:*';
+			$labels .= NL . 'INV;POINT;519;788;14;14;*FIO:*';
+			$labels .= NL . 'INV;POINT;445;789;22;22;*FORNEC:*';
+			$labels .= NL . 'INV;POINT;351;789;32;33;*ESTOCAGEM:*';
+			$labels .= NL . 'INV;POINT;269;788;22;22;*CAIXA:*';
+			$labels .= NL . 'STOP';
+			$labels .= NL . '/PARTE VARIAVEL';
+			$labels .= NL . 'ISET;0';
+			$labels .= NL . 'FONT;FACE 92250';
+			$labels .= NL . 'ALPHA';
+			$labels .= NL . 'INV;POINT;748;643;16;16;*' . $my_row['nfe_dl'			] . '*';
+			$labels .= NL . 'INV;POINT;748;175;16;16;*' . $my_row['nfe_tm'			] . '*';
+			$labels .= NL . 'INV;POINT;695;679;16;16;*' . $my_checkin_at			  . '*';
+			$labels .= NL . 'INV;POINT;695;216;16;16;*' . $my_real_weight			  . ' KG*';
+			$labels .= NL . 'INV;POINT;634;667;16;16;*' . $my_row['composition'		] . '*';
+			$labels .= NL . 'INV;POINT;574;647;16;16;*' . $my_row['number_of_cones'	] . '*';
+			$labels .= NL . 'INV;POINT;574;217;16;16;*' . $my_row['batch_number'	] . '*';
+			$labels .= NL . 'INV;POINT;519;713;14;14;*' . $my_row['thread_name'		] . '*';
+			$labels .= NL . 'INV;POINT;445;562;22;22;*' . $my_row['supplier_name'	] . '*';
+			$labels .= NL . 'INV;POINT;351;296;32;33;*' . $my_row['checkin_location'] . '*';
+			$labels .= NL . 'INV;POINT;269;616;22;22;*' . $my_row['number_of_boxes'	] . '*';
+			$labels .= NL . 'STOP';
+			$labels .= NL . '/CODIGO DE BARRAS';
+			$labels .= NL . 'BARCODE';
+			$labels .= NL . 'C128C;INV;XRD7:7:14:14:21:21:28:28;H8;67;100';
+			$labels .= NL . '*' . $my_row['barcode'] . '*';
+			$labels .= NL . 'PDF;B';
+			$labels .= NL . 'STOP';
+			$labels .= NL . '/FIM DO PROGRAMA';
+			$labels .= NL . 'END';
+			$labels .= NL . '~EXECUTE;CXFIOS;1';
+			$labels .= NL . '~NORMAL';
+
+			$out_name = $folder . $my_id . '.txt';
+			$out_file = fopen( $out_name, 'w' ) or die( 'cannot open ' . $out_name );
+			fwrite( $out_file, $labels );
+			fwrite( $out_file, NL );
+			fclose( $out_file );
+
+//			system( '( tcp.exe ' . $ip_number . ' 9100 ' . $out_name . ' & ) > /dev/null');
+//			system( '( php ' . APPLICATION . 'GenerateHtml.php & ) > /dev/null' );
+			exec( 'tcp.exe ' . $ip_number . ' 9100 ' . $out_name );
+
+			$sql= 'UPDATE Boxes'
+				. '   SET is_printed = "Yes"'
+				. ' WHERE id = ' . $my_id
+				;
+			$db->query($sql);
+			$count++;
+		}
+
+		$return = array();
+		$return[ 'status' ] = 'ok';
+		$return[ 'message'] = 'Labels printed: ' . $count;
+		echo json_encode( $return );
+	}
+
 }
+
 ?>

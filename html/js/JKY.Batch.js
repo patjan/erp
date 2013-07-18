@@ -93,6 +93,7 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_checkin_
 	}
 
 	function my_insert_boxes_success(response) {
+return;
 		var my_data =
 			{ method	: 'get_row'
 			, table		: 'Boxes'
@@ -197,8 +198,17 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_checkin_
 	}
 
 	function my_update_data_success(response) {
+		var my_data =
+			{ method	: 'print_labels'
+			, table		: 'Boxes'
+			}
+		JKY.ajax(false, my_data, my_print_labels_success);
+	}
+		
+	function my_print_labels_success(response) {
 		$(my_index).parent().parent().find('.jky-batch-labels-printed' ).val(my_labels_printed);
 		JKY.hide_modal(my_layer);
+		JKY.display_message(response.message);
 	}
 
 	return {
