@@ -91,41 +91,40 @@
 		<div class='jky-clear'></div>
 	</div>
 
-<!--	<div id='jky-form-tabs' class='tabbable'>
+	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-lines'			class='active'	><a href='#jky-pane-lines'			data-toggle='tab'><span>Lines			</span></a></li>
+			<li	id='jky-tab-boxes'			class='active'	><a href='#jky-pane-boxes'			data-toggle='tab'><span>Boxes			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
-			<div id='jky-pane-lines' class='tab-pane active'>
+
+			<div id='jky-pane-boxes' class='tab-pane active'>
+				<table class='table table-striped' >
+					<thead>
+						<tr style='font-weight:bold;'>
+							<td class='jky-action'></td>
+							<td class='jky-boxes-batch-number'		><span>	   Batch<br>Number			</span></td>
+							<td	class='jky-barcode'					><span>	 Barcode					</span></td>
+							<td	class='jky-number-of-boxes'			><span>	  Number<br>of Boxes		</span></td>
+							<td	class='jky-number-of-cones'			><span>	  Number<br>of Cones		</span></td>
+							<td class='jky-boxes-average-weight'	><span>	 Average<br>Weight			</span></td>
+							<td class='jky-boxes-requested-weight'	><span>     Real<br>Weight			</span></td>
+							<td class='jky-boxes-checkin-location'	><span>	   Check<br>In Location		</span></td>
+							<td class='jky-boxes-checkout-location'	><span>	   Check<br>Out Location	</span></td>
+							<td class='jky-boxes-stocked-location'	><span>	 Stocked<br>Location		</span></td>
+						</tr>
+					</thead>
+					<tbody id='jky-batch-body'></tbody>
+					<tfoot>
+						<tr>
+							<td    id='jky-batch-add-new'   class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+						</tr>
+					</tfoot>
+				</table>
 			</div>
 		</div>
 	</div>
 	<div id='jky-form-footer'></div>
-</div>
-
-<div id='jky-thread-search' class='modal hide fade in'>
-	<div class='modal-header'>
-		<a class='close' data-dismiss='modal'>X</a>
-		<h3><span>Search</span>: <span>Thread</span></h3>
-	</div>
-	<div class='modal-body'>
-		<div><input id='jky-thread-filter' class='search-query' type='text' placeholder='Search' /></div>
-		<table id='jky-thread-table' class='table table-striped'>
-			<thead>
-				<tr>
-					<th class='jky-thread-header-name'			><span>Name			</span></th>
-					<th class='jky-thread-header-group'			><span>Group		</span></th>
-					<th class='jky-thread-header-composition'	><span>Composition	</span></th>
-				</tr>
-			</thead>
-			<tbody id='jky-thread-search-body'></tbody>
-		</table>
-	</div>
-	<div class='modal-footer'>
-<!--	<button  id='jky-thread-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>
-&nbsp;<a id='jky-thread-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
-	</div> -->
 </div>
 
 <div id='jky-body-loaded'></div>
