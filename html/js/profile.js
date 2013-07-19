@@ -52,6 +52,7 @@ JKY.set_initial_values_profile = function(jky_program) {
 		JKY.set_value('jky-profile-first-name'	, my_user.first_name);
 		JKY.set_value('jky-profile-last-name'	, my_user.last_name	);
 		JKY.set_value('jky-profile-email'		, my_user.email		);
+		JKY.t_tag	 ('jky-profile', 'span');
 		JKY.set_focus(jky_focus);
 	}else{
 		setTimeout(function() {JKY.set_initial_values_profile();}, 100);
