@@ -32,10 +32,10 @@ JKY.set_all_events = function() {
 	$('#jky-requested-value').attr('data-format', JKY.Session.get_date		());
 	$('#jky-scheduled-value').attr('data-format', JKY.Session.get_date_time	());
 	$('#jky-ordered-at'		).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-requested-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-requested-at'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-scheduled-at'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-ordered-at'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-requested-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+	$('#jky-requested-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 	$('#jky-scheduled-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
@@ -77,8 +77,8 @@ JKY.set_table_row = function(the_row) {
  */
 JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-request-number'		, the_row.request_number);
-	JKY.set_option	('jky-machine-name'			, the_row.machine_id	);
-	JKY.set_option	('jky-supplier-name'		, the_row.supplier_id	);
+	JKY.set_value	('jky-machine-name'			, the_row.machine_name	);
+	JKY.set_value	('jky-supplier-name'		, the_row.supplier_name	);
 	JKY.set_value	('jky-thread-name'			, the_row.thread_name	);
 	JKY.set_date	('jky-ordered-at'			, JKY.out_time(the_row.ordered_at	));
 	JKY.set_date	('jky-requested-date'		, JKY.out_date(the_row.requested_date));
