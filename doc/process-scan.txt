@@ -1,0 +1,34 @@
+1. Login in
+2. Scanner
+3. Location (determina: fio / cru / peca) cookie
+	Local: NANN
+4. Action:
+	Acao:	info		de caixa
+			entrada		de caixa (fornecedor / tinturaria)
+			devolucao	de caixa (fornecedor / tinturaria)
+			saida		de caixa (maquina)
+			retorno		de caixa (maquina) (peso)
+			saida		de caixa (tinturaria)
+			venda		de caixa (cliente)
+			contagem	de caixas
+
+			info		de cru
+			rejeicao	de cru (maquina D4)
+			entrada		de cru (maquina)
+			saida		de cru (tinturaria)
+			venda		de cru (cliente)
+			contagem	de crus
+
+			info		de peca
+			entrada		de peca (tinturaria) (peso)
+			devolucao	de peca (tinturaria)
+			venda		de peca (cliente)
+			retorno		de peca (cliente) (peso)
+			contagem	de pecas
+
+	- in 
+	- out
+	- scan
+	- count boxes
+5. Scan
+	- display info

@@ -43,7 +43,7 @@ JKY.start_program = function() {
 		, directory		: 'ftp_draws'
 		, field_name	: 'draw'
 		, title			: 'Drawing files'
-		, extensions	: 'jpg,gif,png,xls'
+		, extensions	: 'jpg,gif,pdf,png,xls,xml'
 		, button_id		: 'jky-upload-drawing'
 		, filename_id	: 'jky-upload-name'
 		, percent_id	: 'jky-upload-percent'

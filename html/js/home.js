@@ -63,6 +63,7 @@ JKY.set_all_events_home = function(jky_program) {
 		$('#jky-threads-boxes'			).click (function() {JKY.process_action('boxes'			);});
 		$('#jky-threads-checkouts'		).click (function() {JKY.process_action('checkouts'		);});
 		$('#jky-threads-batchouts'		).click (function() {JKY.process_action('batchouts'		);});
+		$('#jky-threads-forecast'		).click (function() {JKY.process_action('threadforecast');});
 
 		$('#jky-production-threads'		).click (function() {JKY.process_action('threads'		);});
 		$('#jky-production-machines'	).click (function() {JKY.process_action('machines'		);});

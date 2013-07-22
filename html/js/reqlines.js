@@ -94,8 +94,8 @@ JKY.set_form_row = function(the_row) {
  */
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-request-number'		,  JKY.t('New'));
-	JKY.set_option	('jky-machine-name'			, '');
-	JKY.set_option	('jky-supplier-name'		, '');
+	JKY.set_value	('jky-machine-name'			, '');
+	JKY.set_value	('jky-supplier-name'		, '');
 	JKY.set_option	('jky-thread-name'			, '');
 	JKY.set_date	('jky-ordered-at'			,  JKY.out_time(JKY.get_now ()));
 	JKY.set_date	('jky-requested-date'		,  JKY.out_date(JKY.get_date()));
