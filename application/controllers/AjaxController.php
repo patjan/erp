@@ -624,7 +624,7 @@ private function set_select($table, $select) {
 	if ($table == 'PurchaseLines'	)	$return = ' AND  PurchaseLines.purchase_id		=  ' . $select;
 	if ($table == 'History'			)	$return = ' AND        History.parent_name      = "' . $select . '"';
 	if ($table == 'Threads'			)	$return = ' AND        Threads.thread_group     = "' . $select . '"';
-	if ($table == 'ThreadForecast'	)	$return = ' AND ThreadForecast.thread_group     = "' . $select . '"';
+	if ($table == 'ThreadForecast'	)	$return = ' AND		   Threads.thread_group     = "' . $select . '"';
 	if ($table == 'ReqLines'		)	$return = ' AND       ReqLines.request_id		=  ' . $select;
 
 	return $return;
@@ -1362,6 +1362,36 @@ private function set_where($table, $filter) {
 			}
 		}
 
+		if ($table == 'ThreadForecast') {
+			if ($name == 'current_balance'
+			or	$name == 'forecast_past'
+			or	$name == 'forecast_month_1'
+			or	$name == 'forecast_month_2'
+			or	$name == 'forecast_month_3'
+			or	$name == 'forecast_future') {
+				if ($value == '"%null%"') {
+					return ' AND ThreadForecast.' . $name . ' IS NULL ';
+				}else{
+					return ' AND ThreadForecast.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'thread_name') {
+					if ($value == '"%null%"') {
+						return ' AND ThreadForecast.thread_id IS NULL';
+					}else{
+						return ' AND Threads.name LIKE ' . $value;
+					}
+				}
+				if ($name == 'supplier_name') {
+					if ($value == '"%null%"') {
+						return ' AND ThreadForecast.supplier_id IS NULL';
+					}else{
+						return ' AND Contacts.nick_name LIKE ' . $value;
+					}
+				}
+			}
+		}
+
 	}
 
 	$filter = '"%' . $filter . '%"';
@@ -1625,6 +1655,19 @@ private function set_where($table, $filter) {
 			. ' OR	History.parent_id		LIKE ' . $filter
 			. ' OR	History.method			LIKE ' . $filter
 			. ' OR	History.history			LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'ThreadForecast') {
+		$return =  'ThreadForecast.current_balance	LIKE ' . $filter
+			. ' OR	ThreadForecast.forecast_past	LIKE ' . $filter
+			. ' OR	ThreadForecast.forecast_month_1	LIKE ' . $filter
+			. ' OR	ThreadForecast.forecast_month_2	LIKE ' . $filter
+			. ' OR	ThreadForecast.forecast_month_3	LIKE ' . $filter
+			. ' OR	ThreadForecast.forecast_future	LIKE ' . $filter
+			. ' OR	       Threads.thread_group		LIKE ' . $filter
+			. ' OR	       Threads.name				LIKE ' . $filter
+			. ' OR	      Contacts.nick_name		LIKE ' . $filter
 			;
 		}
 

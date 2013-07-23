@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS PurchaseForecast
 )
 ;
 
-SET @cut_off_date = '2013-06-20';
+SET @cut_off_date = '2013-07-20';
 
 TRUNCATE	ThreadForecast;
 TRUNCATE	PurchaseForecast;
