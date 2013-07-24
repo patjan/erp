@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * threads.html
+ * threadforecast.html
  */
 
 /**
@@ -24,17 +24,29 @@ JKY.start_program = function() {
 };
 
 /**
+ *	set all events (run only once per load)
+ */
+JKY.set_all_events = function() {
+	$('#jky-reference-value').attr('data-format', JKY.Session.get_date());
+	$('#jky-reference-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-reference-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+
+	$('#jky-action-refresh'	).click (function() {JKY.process_refresh();});
+};
+
+/**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-planning-threads');
-	JKY.set_side_active('jky-threads-threads');
-	JKY.set_side_active('jky-production-threads');
-	JKY.set_html('jky-compositions'		, JKY.set_configs('Thread Compositions', '', ''));
-	JKY.set_html('jky-thread-groups'	, JKY.set_configs('Thread Groups', '', ''));
+	JKY.set_side_active('jky-threads-forecast');
+//	JKY.set_html('jky-compositions'		, JKY.set_configs('Thread Compositions', '', ''));
+//	JKY.set_html('jky-thread-groups'	, JKY.set_configs('Thread Groups', '', ''));
 	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-app-select-label', JKY.t('Group'));
+	JKY.hide('jky-action-add-new');
+	JKY.show('jky-action-print');
 	JKY.show('jky-app-select-line');
+	JKY.set_date('jky-reference-date', JKY.out_time(JKY.get_config_value('System Controls', 'Reference Date')));
 };
 
 /**
@@ -89,4 +101,18 @@ JKY.get_form_set = function() {
 		+   ', composition=\'' + JKY.get_value	('jky-compositions'		) + '\''
 		;
 	return my_set;
+};
+
+/**
+ *	get form set
+ */
+JKY.process_refresh = function() {
+	JKY.show('jky-loading');
+	var my_reference_date = JKY.inp_date(JKY.get_value('jky-reference-value'));
+	var my_data =
+		{ method		: 'refresh'
+		, table			: 'ThreadForecast'
+		, reference_date: my_reference_date
+		};
+	JKY.ajax(true, my_data, JKY.Application.display_list);
 };

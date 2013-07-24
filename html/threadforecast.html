@@ -1,19 +1,30 @@
 <style>
-.jky-form-label			{width:110px;}
+.jky-form-label			{width:185px;}
 .jky-form-value			{width:280px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
 .jky-thread-group		{width:100px; text-align:left  !important;}
 .jky-thread-name		{width:150px; text-align:left  !important;}
 .jky-supplier-name		{width:100px; text-align:left  !important;}
-.jky-current-balance	{width: 80px; text-align:right !important;}
-.jky-forecast-past		{width: 80px; text-align:right !important;}
-.jky-forecast-month-1	{width: 80px; text-align:right !important;}
-.jky-forecast-month-2	{width: 80px; text-align:right !important;}
-.jky-forecast-month-3	{width: 80px; text-align:right !important;}
-.jky-forecast-future	{width: 80px; text-align:right !important;}
+.jky-current-balance	{width: 70px; text-align:right !important;}
+.jky-forecast-past		{width: 70px; text-align:right !important;}
+.jky-forecast-month-1	{width: 70px; text-align:right !important;}
+.jky-forecast-month-2	{width: 70px; text-align:right !important;}
+.jky-forecast-month-3	{width: 70px; text-align:right !important;}
+.jky-forecast-future	{width: 70px; text-align:right !important;}
 
+#jky-reference-value	{width: 75px;}
 </style>
+
+<div id='jky-form-control'>
+	<div id='jky-form-actions'	>
+		<button id='jky-action-refresh'		class='btn btn-success' type='button' title="Click here to refresh the info"		><span>Refresh</span></button>
+	</div>
+	<div style='padding-top:5px;'>
+		<div class='jky-form-label'><span>Reference Date</span>:</div>
+		<div id="jky-reference-date"	class="input-append date"><input id='jky-reference-value'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+	</div>
+</div>
 
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
@@ -35,12 +46,6 @@
 </table>
 
 <div id='jky-app-form'>
-	<div id='jky-form-control'>
-		<div id='jky-form-actions'	></div>
-		<ul  id='jky-form-status'	></ul>
-	</div>
-	<div class='jky-clear'></div>
-
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input  id='jky-thread-name'	class='jky-form-value'		placeholder='Name' 				/></div>

@@ -448,6 +448,7 @@ if (my_first == true) {
 		, get					:	function(the_property)	{return my_get(the_property)			;}
 		, init					:	function()				{		my_init()						;}
 
+		, display_list			:	function()				{		my_display_list()				;}
 		, display_form			:	function(the_index)		{		my_display_form(the_index)		;}
 		, display_row			:	function(the_index)		{		my_display_row (the_index)		;}
 		, set_checkbox			:	function(the_index)		{		my_set_checkbox(the_index)		;}

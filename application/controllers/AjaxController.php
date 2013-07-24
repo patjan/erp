@@ -97,6 +97,7 @@ public function indexAction() {
 			case 'send_email'		: $this->send_email		(); return;
 			case 'send_receipt'		: $this->send_receipt	(); return;
 			case 'print_labels'		: $this->print_labels	($data); return;
+			case 'refresh'			: $this->refresh		($data); return;
 		}
 
 //		$table = get_request('table');
@@ -182,7 +183,7 @@ public function indexAction() {
 		case 'combine'		: $this->combine		(); break;
 		case 'publish'		: $this->publish		($data); break;
 		case 'export'		: $this->get_index		($data); break;
-		case 'refresh'		: $this->refresh		(); break;
+		case 'Xrefresh'		: $this->Xrefresh		(); break;
 
 		case 'set_amount'	: $this->set_amount		(); break;
 		case 'reset_amount'	: $this->reset_amount	(); break;
@@ -3743,7 +3744,7 @@ private function echo_error( $message ) {
  *
  *   status: ok
  */
-    private function refresh() {
+    private function Xrefresh() {
 /*
 	if (get_session('user_action') != 'All') {
 	    return;
@@ -3961,6 +3962,69 @@ private function echo_error( $message ) {
 		echo json_encode( $return );
 	}
 
+	/**
+	 *	$.ajax({ method: refresh, table: x...x, reference_date: yyy-mm-dd });
+	 *
+	 *	return: [ x...x, ..., x...x ]
+	 */
+	private function refresh($data) {
+		$table			= get_data($data, 'table');
+		$reference_date = get_data($data, 'reference_date');
+
+		$sql= 'SET @cut_off_date = ' . $reference_date . ';'
+			. 'TRUNCATE	ThreadForecast;'
+			. 'TRUNCATE	PurchaseForecast;'
+
+			. 'INSERT ThreadForecast(thread_id, supplier_id, current_balance)'
+			. 'SELECT Batches.thread_id'
+			. '	 , Incomings.supplier_id'
+			. '	 , SUM(Batches.checkin_weight - Batches.returned_weight + Batches.leftover_weight - Batches.checkout_weight - Batches.used_weight) AS current_balance'
+			. '  FROM Batches'
+			. '  LEFT JOIN Incomings ON Incomings.id = Batches.incoming_id'
+			. ' WHERE Batches.status = "Active"'
+			. '   AND Incomings.received_at <= @cut_off_date'
+			. ' GROUP BY thread_id, supplier_id'
+			. ';'
+
+			. 'INSERT PurchaseForecast(thread_id, supplier_id, months, forecast_weight)'
+			. 'SELECT PurchaseLines.thread_id'
+			. '	 , Purchases.supplier_id'
+			. '	 , 12 * (YEAR(PurchaseLines.expected_date) - YEAR(@cut_off_date)) + (MONTH(PurchaseLines.expected_date) - MONTH(@cut_off_date)) AS months'
+			. '	 , SUM(PurchaseLines.expected_weight - PurchaseLines.received_weight) AS forecast_weight'
+			. '  FROM PurchaseLines'
+			. '  LEFT JOIN Purchases ON Purchases.id = PurchaseLines.purchase_id'
+			. ' WHERE PurchaseLines.status = "Draft"'
+			. ' GROUP BY thread_id, supplier_id, months'
+			. ';'
+
+			. 'REPLACE ThreadForecast(thread_id, supplier_id, forecast_past, forecast_month_1, forecast_month_2, forecast_month_3, forecast_future)'
+			. 'SELECT thread_id'
+			. '	 , supplier_id'
+			. '	 , SUM(IF (months < 1, forecast_weight, 0)) AS forecast_past'
+			. '	 , SUM(IF (months = 1, forecast_weight, 0)) AS forecast_month_1'
+			. '	 , SUM(IF (months = 2, forecast_weight, 0)) AS forecast_month_2'
+			. '	 , SUM(IF (months = 3, forecast_weight, 0)) AS forecast_month_3'
+			. '	 , SUM(IF (months > 3, forecast_weight, 0)) AS forecast_future'
+			. '  FROM PurchaseForecast'
+			. '  GROUP BY thread_id, supplier_id'
+ 			. ';'
+
+			. 'UPDATE Configs'
+			. '   SET Configs.value = @cut_off_date'
+			. ' WHERE Configs.group_set = "System Controls"'
+			. '   AND Configs.name = "Reference Date"'
+			. ';'
+
+			;
+		$this->log_sql( $table, 'refresh', $sql );
+		$db   = Zend_Registry::get('db');
+		$db->query($sql);
+
+		$return = array();
+		$return[ 'status' ] = 'ok';
+		$return[ 'message'] = 'Refreshed';
+		echo json_encode( $return );
+	}
 }
 
 ?>

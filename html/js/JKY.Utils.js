@@ -2315,3 +2315,11 @@ JKY.get_file_type = function(the_full_name) {
 	}
 }
 
+JKY.get_config_value = function(the_group_set, the_name) {
+	var my_where = 'group_set = \'' + the_group_set + '\''
+				 + ' AND name = \'' + the_name + '\''
+				 ;
+	var my_id	 = JKY.get_id('Configs', my_where);
+	var my_value = JKY.get_value_by_id('Configs', 'value', my_id);
+	return my_value;
+}
