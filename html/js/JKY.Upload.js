@@ -37,12 +37,22 @@ JKY.Upload = function(the_args) {
 //			the_photo = file_name,file_time,file_size
 			var my_names = the_photo.split(',');
 			var my_extension = JKY.get_file_type(my_names[0]);
-			var my_time = my_names[1];
-			my_html = '<a href="' + 'jky_download.php?file_name='		+ my_args.directory + '/' + my_row_id + '.' + my_extension + '">'
-					+ '<img id="' + my_args.img_id + '" src="/uploads/' + my_args.directory + '/' + my_row_id + '.' + my_extension + '?time=' + my_time + '" class="the_icon" />';
-					+ '</a>'
-					;
-		}
+			if (my_extension == 'pdf') {
+				my_html = '<img id="' + my_args.img_id + '" src="/img/pdf.png" class="the_icon" />';
+			}else{
+			if (my_extension == 'xml') {
+				my_html = '<img id="' + my_args.img_id + '" src="/img/xml.png" class="the_icon" />';
+			}else{
+			if (my_extension == 'xls') {
+				my_html = '<img id="' + my_args.img_id + '" src="/img/xls.png" class="the_icon" />';
+			}else{
+				var my_time = my_names[1];
+				my_html = '<a href="' + 'jky_download.php?file_name='		+ my_args.directory + '/' + my_row_id + '.' + my_extension + '">'
+						+ '<img id="' + my_args.img_id + '" src="/uploads/' + my_args.directory + '/' + my_row_id + '.' + my_extension + '?time=' + my_time + '" class="the_icon" />';
+						+ '</a>'
+						;
+			}}}
+		}		
 		return my_html;
 	}
 
