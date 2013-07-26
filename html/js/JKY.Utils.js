@@ -931,6 +931,9 @@ JKY.set_menu_active = function(id_name){
 	JKY.hide('jky-side-purchases'	);
 	JKY.hide('jky-side-planning'	);
 	JKY.hide('jky-side-threads'		);
+	JKY.hide('jky-side-boxes'		);
+	JKY.hide('jky-side-raws'		);
+	JKY.hide('jky-side-fabrics'		);
 	JKY.hide('jky-side-production'	);
 	JKY.hide('jky-side-help'		);
 	JKY.hide('jky-side-admin'		);
@@ -1550,9 +1553,10 @@ JKY.is_permitted = function(the_menu_id) {
 		case('jky-menu-sales'		)	:	my_resource = 'Menu-Sales'		; break;
 //		case('jky-menu-purchases'	)	:	my_resource = 'Menu-Purchases'	; break;
 		case('jky-menu-planning'	)	:	my_resource = 'Menu-Planning'	; break;
+		case('jky-menu-threads'		)	:	my_resource = 'Menu-Threads'	; break;
+		case('jky-menu-boxes'		)	:	my_resource = 'Menu-Boxes'		; break;
 		case('jky-menu-fabrics'		)	:	my_resource = 'Menu-Fabrics'	; break;
 		case('jky-menu-raws'		)	:	my_resource = 'Menu-Raws'		; break;
-		case('jky-menu-threads'		)	:	my_resource = 'Menu-Threads'	; break;
 		case('jky-menu-production'	)	:	my_resource = 'Menu-Production'	; break;
 		case('jky-menu-help'		)	:	my_resource = 'Menu-Help'		; break;
 		case('jky-menu-admin'		)	:	my_resource = 'Menu-Admin'		; break;
