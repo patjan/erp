@@ -121,6 +121,8 @@ if (my_first == true) {
 			JKY.show('jky-app-counters'		);
 			JKY.show('jky-action-add-new'	);
 			JKY.hide('jky-action-print'		);
+			JKY.hide('jky-action-clear'		);
+			JKY.hide('jky-action-confirm'	);
 			if (JKY.Session.get_value('user_role') == 'Support') {
 				JKY.show('jky-action-export');
 			}else{
@@ -142,7 +144,7 @@ if (my_first == true) {
 			if (my_args.table_name == '') {
 				return;
 			}
-			
+
 			JKY.show('jky-loading');
 			var my_data =
 				{ method	: 'get_index'

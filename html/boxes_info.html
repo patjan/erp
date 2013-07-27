@@ -8,42 +8,20 @@
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-barcode			{width:100px; text-align:center !important;}
-.jky-status				{width: 50px; text-align:center !important;}
+.jky-barcode			{width: 90px; text-align:center !important;}
+.jky-sequence			{width: 35px; text-align:center !important;}
+.jky-status				{width: 60px; text-align:center !important;}
 .jky-batch				{width: 80px; text-align:center !important;}
 .jky-number-of-boxes	{width: 40px; text-align:center !important;}
 .jky-number-of-cones	{width: 40px; text-align:center !important;}
 .jky-average-weight		{width: 50px; text-align:right  !important;}
 .jky-real-weight		{width: 50px; text-align:right  !important;}
 .jky-checkin-location	{width: 50px; text-align:center !important;}
-.jky-checkin-by			{width: 60px; text-align:center !important;}
-.jky-checkin-at			{width: 60px; text-align:center !important;}
-.jky-checkout-location	{width: 50px; text-align:center !important;}
-.jky-checkout-by		{width: 60px; text-align:center !important;}
-.jky-checkout-at		{width: 60px; text-align:center !important;}
-.jky-stocked-location	{width: 50px; text-align:center !important;}
-.jky-stocked-by			{width: 60px; text-align:center !important;}
-.jky-stocked-at			{width: 60px; text-align:center !important;}
 .jky-supplier-name		{width: 80px; text-align:left   !important;}
-.jky-thread-name		{width:200px; text-align:left   !important;}
+.jky-thread-name		{width:220px; text-align:left   !important;}
 
-#jky-input-barcode		{width: 90px; color:red;}
+#jky-input-barcode		{width: 80px; color:red;}
 #jky-input-message		{color:red;}
-#jky-batch				{width: 60px; font-size:16px; font-weight:bold;}
-#jky-received-time		{width:150px;}
-#jky-invoice-weight		{width:160px;text-transform:capitalize;}
-#jky-invoice-amount		{width:110px;}
-#jky-payment-term		{width:120px;}
-
-.jky-line-label			{font-weight:bold; text-align:right;}
-.jky-line-value  input	{width: 90%;	text-align:right ;}
-.jky-line-thread input	{width:275px;	text-align:left  ;}
-.jky-line-thread a		{margin-left:-30px; padding:5px;}
-.jky-line-thread a		{margin-left:-30px; padding:5px;}
-.jky-line-percent		{width: 40px;	text-align:right ; margin-right:0;}
-.jky-line-name			{width:280px;}
-#jky-line-total-expected{padding-right:15px; font-weight:bold; text-align:right;}
-#jky-line-total-received{padding-right:15px; font-weight:bold; text-align:right;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -51,10 +29,11 @@
 		<tr>
 			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-barcode'				><span>					Barcode			</span></th>
+			<th class='jky-sequence'			><span>					Seq				</span></th>
 			<th class='jky-status'				><span>					Status			</span></th>
 			<th class='jky-batch'				><span>		   Batch<br>Number			</span></th>
-			<th class='jky-number-of-boxes'		><span>					Seq				</span></th>
-			<th class='jky-number-of-cones'		><span>					Cones			</span></th>
+			<th class='jky-number-of-boxes'		><span>			# of<br>Box				</span></th>
+			<th class='jky-number-of-cones'		><span>		    # of<br>Cones			</span></th>
 			<th class='jky-average-weight'		><span>      Average<br>Weight			</span></th>
 			<th class='jky-real-weight'			><span>		    Real<br>Weight			</span></th>
 			<th class='jky-checkin-location'	><span>	    Check In<br>Location		</span></th>
@@ -62,8 +41,9 @@
 			<th class='jky-thread-name'			><span>					Thread Name		</span></th>
 		</tr>
 		<tr>
-			<td></td>
+			<td>&nbsp;</td>
 			<td><input id='jky-input-barcode' /></td>
+			<td>&nbsp;</td>
 			<td id='jky-input-message' colspan='99'></td>
 		</tr>
 	</thead>
