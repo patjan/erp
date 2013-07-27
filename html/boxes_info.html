@@ -1,29 +1,34 @@
 <style>
+.jky-not-found			{color:red; text-align:center !important;}
 .jky-form-line-1		{width:273px;}
 .jky-form-line-2		{width:290px;}
 .jky-form-label			{width:160px;}
 .jky-form-label-1		{width:100px;}
-.jky-form-value			{width:100px;}
+.jky-form-value			{width: 90px;}
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-barcode			{width:120px; text-align:center !important;}
-.jky-parent				{width:120px; text-align:center !important;}
-.jky-batch				{width:100px; text-align:center !important;}
-.jky-number-of-boxes	{width: 60px; text-align:center !important;}
-.jky-number-of-cones	{width: 60px; text-align:center !important;}
-.jky-average-weight		{width: 60px; text-align:right  !important;}
-.jky-real-weight		{width: 60px; text-align:right  !important;}
-.jky-checkin-location	{width: 60px; text-align:center !important;}
+.jky-barcode			{width:100px; text-align:center !important;}
+.jky-status				{width: 50px; text-align:center !important;}
+.jky-batch				{width: 80px; text-align:center !important;}
+.jky-number-of-boxes	{width: 40px; text-align:center !important;}
+.jky-number-of-cones	{width: 40px; text-align:center !important;}
+.jky-average-weight		{width: 50px; text-align:right  !important;}
+.jky-real-weight		{width: 50px; text-align:right  !important;}
+.jky-checkin-location	{width: 50px; text-align:center !important;}
 .jky-checkin-by			{width: 60px; text-align:center !important;}
 .jky-checkin-at			{width: 60px; text-align:center !important;}
-.jky-checkout-location	{width: 60px; text-align:center !important;}
+.jky-checkout-location	{width: 50px; text-align:center !important;}
 .jky-checkout-by		{width: 60px; text-align:center !important;}
 .jky-checkout-at		{width: 60px; text-align:center !important;}
-.jky-stocked-location	{width: 60px; text-align:center !important;}
+.jky-stocked-location	{width: 50px; text-align:center !important;}
 .jky-stocked-by			{width: 60px; text-align:center !important;}
 .jky-stocked-at			{width: 60px; text-align:center !important;}
+.jky-supplier-name		{width: 80px; text-align:left   !important;}
+.jky-thread-name		{width:200px; text-align:left   !important;}
 
+#jky-input-barcode		{width: 90px; color:red;}
+#jky-input-message		{color:red;}
 #jky-batch				{width: 60px; font-size:16px; font-weight:bold;}
 #jky-received-time		{width:150px;}
 #jky-invoice-weight		{width:160px;text-transform:capitalize;}
@@ -45,21 +50,21 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-barcode'				><span>		 Barcode					</span></th>
-			<th class='jky-parent'				><span>		  Parent					</span></th>
+			<th class='jky-barcode'				><span>					Barcode			</span></th>
+			<th class='jky-status'				><span>					Status			</span></th>
 			<th class='jky-batch'				><span>		   Batch<br>Number			</span></th>
-			<th class='jky-number-of-boxes'		><span>		  Number<br>of Boxes		</span></th>
-			<th class='jky-number-of-cones'		><span>		  Number<br>of Cones		</span></th>
+			<th class='jky-number-of-boxes'		><span>					Seq				</span></th>
+			<th class='jky-number-of-cones'		><span>					Cones			</span></th>
 			<th class='jky-average-weight'		><span>      Average<br>Weight			</span></th>
 			<th class='jky-real-weight'			><span>		    Real<br>Weight			</span></th>
 			<th class='jky-checkin-location'	><span>	    Check In<br>Location		</span></th>
-			<th class='jky-checkout-location'	><span>	   Check Out<br>Location		</span></th>
-			<th class='jky-stocked-location'	><span>		 Stocked<br>Location		</span></th>
+			<th class='jky-supplier-name'		><span>		Supplier<br>Name			</span></th>
+			<th class='jky-thread-name'			><span>					Thread Name		</span></th>
 		</tr>
 		<tr>
 			<td></td>
-			<td><input id='jky-barcode' class='jky-form-value' /></td>
-			<td colspan='99'></td>
+			<td><input id='jky-input-barcode' /></td>
+			<td id='jky-input-message' colspan='99'></td>
 		</tr>
 	</thead>
 
@@ -76,7 +81,7 @@
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Barcode			</span>:</div><input  id='jky-barcode'				class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Parent				</span>:</div><input  id='jky-parent'				class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Parent				</span>:</div><input  id='jky-status'				class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Batch Number		</span>:</div><input  id='jky-batch'				class='jky-form-value'	/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Number of Boxes	</span>:</div><input  id='jky-number-of-boxes'		class='jky-form-value'	/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Number of Cones	</span>:</div><input  id='jky-number-of-cones'		class='jky-form-value'	/></div>

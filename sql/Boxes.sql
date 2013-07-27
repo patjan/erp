@@ -5,8 +5,10 @@ CREATE TABLE IF NOT EXISTS Boxes
 , created_at		DATETIME			DEFAULT NULL
 , updated_by		BIGINT				DEFAULT NULL
 , updated_at		DATETIME			DEFAULT NULL
-, status			VARCHAR(32)			DEFAULT 'Active'
-
+, status			VARCHAR(32)			DEFAULT 'Active'	# Active	> Check In
+															# Check In	> Check Out
+															# Check Out	> Return
+															# Return	> Check Out
 , batch_id			BIGINT				DEFAULT NULL
 , parent_id			BIGINT				DEFAULT NULL
 , barcode			VARCHAR(32)			DEFAULT NULL

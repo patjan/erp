@@ -668,6 +668,15 @@ JKY.append_html = function(id_name, html){
 }
 
 /**
+ * prepend specific id with html content
+ * @param	id_name
+ * @param	html
+ */
+JKY.prepend_html = function(id_name, html){
+	$('#' + id_name).prepend(html);
+}
+
+/**
  * set specific id attr title with title
  * @param	the_id
  * @param	the_title

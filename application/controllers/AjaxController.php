@@ -669,7 +669,9 @@ private function set_new_fields($table) {
 												. ',    Parent.barcode			AS			parent'
 												. ',   CheckIn.nick_name		AS			checkin'
 												. ',  CheckOut.nick_name		AS			checkout'
-												. ',   Stocked.nick_name		AS			stocked';
+												. ',   Stocked.nick_name		AS			stocked'
+												. ',   Threads.name				AS			thread_name'
+												. ',  Supplier.nick_name		AS			supplier_name';
 	if ($table == 'Requests'		)	$return = ',  Machines.name				AS  machine_name'
 												. ',  Supplier.nick_name		AS supplier_name';
 	if ($table == 'ReqLines'		)	$return = ',  Requests.number			AS			request_number'
@@ -743,7 +745,10 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN       Boxes AS Parent	ON    Parent.id	=		     Boxes.parent_id'
 												. '  LEFT JOIN    Contacts AS CheckIn	ON   CheckIn.id	=			 Boxes.checkin_by'
 												. '  LEFT JOIN    Contacts AS CheckOut	ON  CheckOut.id	=			 Boxes.checkout_by'
-												. '  LEFT JOIN    Contacts AS Stocked	ON   Stocked.id	=			 Boxes.stocked_by';
+												. '  LEFT JOIN    Contacts AS Stocked	ON   Stocked.id	=			 Boxes.stocked_by'
+												. '  LEFT JOIN   Incomings  			ON Incomings.id	=		   Batches.incoming_id'
+												. '  LEFT JOIN     Threads  			ON   Threads.id	=		   Batches.thread_id'
+												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Incomings.supplier_id';
 	if ($table == 'Requests'		)	$return = '  LEFT JOIN    Machines				ON  Machines.id	=		  Requests.machine_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		  Requests.supplier_id';
 	if ($table == 'ReqLines'		)	$return = '  LEFT JOIN    Requests  			ON  Requests.id	=		  ReqLines.request_id'
