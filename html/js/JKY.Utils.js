@@ -217,7 +217,7 @@ JKY.t = function(the_text) {
 	if (typeof my_result == 'undefined') {
 
 if (JKY.Session.get_value('user_name') == 'patjan') {
-	alert('the_text: ' + the_text);
+//	alert('the_text: ' + the_text);
 }
 
 		my_result = '';
@@ -2326,4 +2326,10 @@ JKY.get_config_value = function(the_group_set, the_name) {
 	var my_id	 = JKY.get_id('Configs', my_where);
 	var my_value = JKY.get_value_by_id('Configs', 'value', my_id);
 	return my_value;
+}
+
+JKY.play_beep = function() {
+	var audio = document.createElement("audio");
+	audio.src = "http://erp/img/beep-5.wav";
+	audio.play();
 }

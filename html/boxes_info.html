@@ -7,9 +7,9 @@
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-barcode			{width:100px; text-align:center !important;}
-.jky-parent				{width:100px; text-align:center !important;}
-.jky-batch				{width: 60px; text-align:center !important;}
+.jky-barcode			{width:120px; text-align:center !important;}
+.jky-parent				{width:120px; text-align:center !important;}
+.jky-batch				{width:100px; text-align:center !important;}
 .jky-number-of-boxes	{width: 60px; text-align:center !important;}
 .jky-number-of-cones	{width: 60px; text-align:center !important;}
 .jky-average-weight		{width: 60px; text-align:right  !important;}
@@ -53,14 +53,13 @@
 			<th class='jky-average-weight'		><span>      Average<br>Weight			</span></th>
 			<th class='jky-real-weight'			><span>		    Real<br>Weight			</span></th>
 			<th class='jky-checkin-location'	><span>	    Check In<br>Location		</span></th>
-			<th class='jky-checkin-by'			><span>	    Check In<br>By				</span></th>
-			<th class='jky-checkin-at'			><span>	    Check In<br>At				</span></th>
 			<th class='jky-checkout-location'	><span>	   Check Out<br>Location		</span></th>
-			<th class='jky-checkout-by'			><span>	   Check Out<br>By				</span></th>
-			<th class='jky-checkout-at'			><span>	   Check Out<br>At				</span></th>
 			<th class='jky-stocked-location'	><span>		 Stocked<br>Location		</span></th>
-			<th class='jky-stocked-by'			><span>		 Stocked<br>By				</span></th>
-			<th class='jky-stocked-at'			><span>		 Stocked<br>At				</span></th>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input id='jky-barcode' class='jky-form-value' /></td>
+			<td colspan='99'></td>
 		</tr>
 	</thead>
 
@@ -73,7 +72,7 @@
 		<ul  id='jky-form-status'	></ul>
 	</div>
 	<div class='jky-clear'></div>
-
+<!--
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Barcode			</span>:</div><input  id='jky-barcode'				class='jky-form-value' /></div>
@@ -106,7 +105,7 @@
 		</div>
 		<div class='jky-clear'></div>
 	</div>
-
+-->
 <!--<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
 			<li	id='jky-tab-lines'			class='active'	><a href='#jky-pane-lines'			data-toggle='tab'><span>Lines			</span></a></li>

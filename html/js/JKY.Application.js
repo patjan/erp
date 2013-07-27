@@ -138,6 +138,11 @@ if (my_first == true) {
 
 	function my_load_table() {
 			JKY.display_trace('my_load_table');
+
+			if (my_args.table_name == '') {
+				return;
+			}
+			
 			JKY.show('jky-loading');
 			var my_data =
 				{ method	: 'get_index'
