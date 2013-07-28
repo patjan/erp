@@ -43,12 +43,12 @@ JKY.set_initial_values = function() {
 
 JKY.display_list = function() {
 	JKY.hide('jky-action-add-new');
-	JKY.show('jky-action-clear'  );
-	JKY.show('jky-action-confirm'  );
 	JKY.hide('jky-action-export' );
 };
 
 JKY.process_clear_screen = function() {
+	JKY.hide('jky-action-clear'  );
+	JKY.hide('jky-action-confirm');
 	JKY.set_html ('jky-table-body'	 , '');
 	JKY.set_html ('jky-input-message', '');
 	JKY.set_value('jky-input-barcode', '');
@@ -76,7 +76,10 @@ JKY.process_barcode_success = function(response) {
 			JKY.set_html ('jky-input-message', JKY.t('duplicate'));
 			JKY.set_focus('jky-input-barcode');
 		}else{
-			var my_checkbox = '<input type="checkbox" onclick="JKY.Application.set_checkbox(this)" barcode=' + my_barcode + ' />';
+			var my_checkbox = '';
+			if ( my_row.status == 'Active') {
+				my_checkbox = '<input type="checkbox" onclick="JKY.Application.set_checkbox(this)" barcode=' + my_barcode + ' />';
+			}
 			JKY.sequence++;
 			var my_html = '<tr>'
 					+ '<td class="jky-checkbox"			>' +  my_checkbox				+ '</td>'
@@ -94,6 +97,8 @@ JKY.process_barcode_success = function(response) {
 					+ '</tr>'
 					;
 			JKY.prepend_html('jky-table-body', my_html);
+			JKY.show('jky-action-clear'  );
+			JKY.show('jky-action-confirm');
 			JKY.set_html ('jky-input-message', '');
 			JKY.set_value('jky-input-barcode', '');
 		}
@@ -103,3 +108,47 @@ JKY.process_barcode_success = function(response) {
 		JKY.set_focus('jky-input-barcode');
 	}
 }
+
+/**
+ * confirm screen
+ */
+JKY.process_confirm_screen = function() {
+	JKY.display_trace('process_confirm_screen');
+	if ($('#jky-app-form').css('display') == 'block') {
+		JKY.confirm_row(JKY.row.id);
+	}else{
+		$('#jky-table-body .jky-checkbox input:checked').each(function() {
+			JKY.confirm_row(this, $(this).attr('barcode'));
+		});
+	}
+
+	if (JKY.get_html('jky-table-body') == '') {
+		JKY.hide('jky-action-clear'  );
+		JKY.hide('jky-action-confirm');
+		JKY.sequence = 0;
+	}
+	JKY.set_focus('jky-input-barcode');
+}
+
+/**
+ * confirm row
+ */
+JKY.confirm_row = function(the_id, the_barcode) {
+	JKY.display_trace('confirm_row');
+	JKY.display_message('confirm_row, ' + the_barcode);
+	var my_data =
+		{ method	: 'checkin'
+		, table		: 'Boxes'
+		, barcode	: the_barcode
+		};
+	JKY.ajax(false, my_data, JKY.confirm_row_success);
+	$(the_id).parent().parent().remove();
+}
+
+/**
+ * confirm row success
+ */
+JKY.confirm_row_success = function(response) {
+	JKY.display_trace('confirm_row');
+}
+

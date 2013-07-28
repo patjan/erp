@@ -152,6 +152,8 @@ public function indexAction() {
 			case 'publish'		: $required = 'Publish'	; break;
 			case 'export'		: $required = 'Export'	; break;
 
+			case 'checkin'		: $required = 'Update'	; break;
+
 			default				: $this->echo_error('method name [' . $method . '] is undefined'); return;
 		}
 
@@ -184,6 +186,9 @@ public function indexAction() {
 		case 'publish'		: $this->publish		($data); break;
 		case 'export'		: $this->get_index		($data); break;
 		case 'Xrefresh'		: $this->Xrefresh		(); break;
+
+		case 'checkin'		: $this->checkin		($data); break;
+
 
 		case 'set_amount'	: $this->set_amount		(); break;
 		case 'reset_amount'	: $this->reset_amount	(); break;
@@ -3641,6 +3646,51 @@ private function echo_error( $message ) {
      $return[ 'message' ] = $message;
      echo json_encode( $return );
 }
+
+/*
+ *   $.ajax({ method:'checkin', table:'Boxes', barcode:9...9};
+ *
+ *   status: ok
+ *  message: record updated
+ */
+private function checkin($data) {
+	$table	 = get_data($data, 'table'	);
+	$barcode = get_data($data, 'barcode');
+
+	$db  = Zend_Registry::get( 'db' );
+
+	$updated = '  updated_by='  . get_session( 'user_id' )
+			 . ', updated_at="' . get_time() . '"'
+			 . ', status="Check In"'
+			 ;
+
+	$sql = 'UPDATE Boxes'
+	     . '   SET ' . $updated
+		 . '     , checkin_by='  . get_session( 'user_id' )
+		 . '     , checkin_at="' . get_time() . '"'
+	     . ' WHERE barcode = ' . $barcode
+	     ;
+	$this->log_sql( 'Boxes', 'update', $sql );
+	$db->query( $sql );
+
+	$sql = 'SELECT Boxes.*'
+		 . '  FROM Boxes'
+		 . ' WHERE Boxes.barcode = \'' . $barcode . '\''
+		 ;
+	$boxes = $db->fetchRow( $sql );
+
+	$sql = 'UPDATE Batches'
+	     . '   SET checkin_boxes = checkin_boxes + 1'
+	     . ' WHERE id = ' . $boxes['batch_id']
+	     ;
+	$this->log_sql( 'Batches', 'update', $sql );
+	$db->query( $sql );
+
+	$return = array();
+	$return[ 'status'   ] = 'ok';
+	$return[ 'message'  ] = 'record updated';
+	echo json_encode( $return );
+    }
 
 /*
  *   $.ajax({ method:'set_amount', table:'Admin', receive_id:receive_id, service_id:service_id, fee_amount:fee_amount};
