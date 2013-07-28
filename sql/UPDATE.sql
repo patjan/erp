@@ -64,3 +64,11 @@ ALTER TABLE Requests		CHANGE	checkout_id		supplier_id			BIGINT;
 ALTER TABLE Requests		CHANGE	checkout_ref	supplier_ref		VARCHAR(32);
 ----- 2013/07/17
 ALTER TABLE Boxes	ADD		is_printed			CHAR(3)		DEFAULT 'No'	AFTER barcode;
+----- 2013/07/27
+ALTER TABLE Batches		ADD COLUMN received_boxes    			INT(11)   		DEFAULT 0  AFTER batch;
+ALTER TABLE Batches		CHANGE	gross_weight received_weight	DECIMAL(10,2) 	DEFAULT 0;
+UPDATE	Batches			SET received_boxes	= checkin_boxes ;
+UPDATE	Batches			SET received_weight = checkin_weight;
+UPDATE	Batches			SET checkin_boxes	= 0;
+UPDATE	Batches			SET checkin_weight	= 0;
+

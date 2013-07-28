@@ -39,3 +39,5 @@ ALTER TABLE Boxes	ADD		number_of_boxes		INT(11)		DEFAULT 0		AFTER barcode;
 ALTER TABLE Boxes	ADD		is_printed			CHAR(3)		DEFAULT 'No'	AFTER barcode;
 
 UPDATE Boxes	SET is_printed = 'Yes';
+
+UPDATE Boxes	SET	average_weight = 30.94	WHERE batch_id = 8;

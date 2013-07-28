@@ -47,7 +47,7 @@ JKY.generate_row = function(the_row) {
 		+ "<input class='jky-thread-row-name jky-form-value' readonly='readonly' onclick='JKY.update_batch(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
 		+ "<a class='jky-thread-row-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
-	var my_print = (the_row.checkin_boxes == the_row.labels_printed) ? '' : '<a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
+	var my_print = (the_row.received_boxes == the_row.labels_printed) ? '' : '<a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
 	var my_html = ''
 		+ '<tr batch_id=' + my_id + '>'
 		+ '<td class="jky-action"><a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
@@ -158,14 +158,7 @@ JKY.select_batch_success = function(response) {
 JKY.update_checkout = function() {
 JKY.display_trace('update_checkout');
 	var my_delta_weight = (my_new_requested_weight - my_old_requested_weight);
-//	var my_delta_amount = (my_new_checkin_weight * my_new_unit_price)
-//						- (my_old_checkin_weight * my_old_unit_price)
-//						;
-	var my_set = ''
-		+  ' real_weight = real_weight + ' + my_delta_weight
-//		+ ', real_amount = real_amount + ' + Math.round(my_delta_amount * 100 + .5) / 100
-//		+ ', real_amount = real_amount + ' + Math.round(my_delta_amount * 100) / 100
-		;
+	var my_set = ' real_weight = real_weight + ' + my_delta_weight;
 	var my_data =
 		{ method	: 'update'
 		, table		: 'CheckOuts'

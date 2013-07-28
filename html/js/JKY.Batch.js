@@ -15,7 +15,7 @@ JKY.Batch = function() {
 	var my_layer	= 'jky-boxes-layer';
 	var my_row		= null;
 
-	var my_checkin_boxes 	= 0;
+	var my_received_boxes 	= 0;
 	var my_labels_printed	= 0;
 
 	function my_display(the_index, the_id) {
@@ -35,14 +35,14 @@ JKY.Batch = function() {
 
 	function my_load_data_success(response) {
 		my_row = response.row;
-		my_checkin_boxes 	= parseFloat(my_row.checkin_boxes	);
+		my_received_boxes 	= parseFloat(my_row.received_boxes	);
 		my_labels_printed	= parseFloat(my_row.labels_printed	);
-		var my_labels_unprinted	= my_checkin_boxes - my_labels_printed;
+		var my_labels_unprinted	= my_received_boxes - my_labels_printed;
 		var my_labels_to_print  = 16;
 		if (my_labels_to_print > my_labels_unprinted) {
 			my_labels_to_print = my_labels_unprinted;
 		}
-		JKY.set_value('jky-boxes-checkin-boxes'		, my_checkin_boxes		);
+		JKY.set_value('jky-boxes-received-boxes'	, my_received_boxes		);
 		JKY.set_value('jky-boxes-labels-printed'	, my_labels_printed		);
 		JKY.set_value('jky-boxes-labels-unprinted'	, my_labels_unprinted	);
 		JKY.set_value('jky-boxes-labels-to-print'	, my_labels_to_print	);
@@ -66,7 +66,7 @@ JKY.Batch = function() {
 		var my_data = '';
 		for(var i=0; i<my_labels_to_print; i++) {
 			my_labels_printed ++;
-JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_checkin_boxes);
+JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_received_boxes);
 			var my_set = ''
 					+          ' batch_id =  ' + my_id
 					+  ', number_of_boxes =  ' + my_labels_printed

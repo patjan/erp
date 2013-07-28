@@ -664,7 +664,7 @@ private function set_new_fields($table) {
 												. ', Purchases.ordered_at		AS			ordered_at'
 												. ', Purchases.supplier_id		AS			supplier_id'
 												. ',   Threads.name				AS			thread_name'
-												. ',   Batches.checkin_weight	AS			received_weight'
+												. ',   Batches.received_weight	AS			received_weight'
 												. ', Incomings.received_at		AS			received_at'
 												. ',  Supplier.nick_name		AS			supplier_name';
 	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name		AS supplier_name';
@@ -1125,7 +1125,7 @@ private function set_where($table, $filter) {
 					if ($value == '"%null%"') {
 						return ' AND PurchaseLines.batch_id IS NULL';
 					}else{
-						return ' AND Batches.checkin_weight LIKE ' . $value;
+						return ' AND Batches.received_weight LIKE ' . $value;
 					}
 				}
 				if ($name == 'incoming') {
@@ -1174,10 +1174,11 @@ private function set_where($table, $filter) {
 		if ($table == 'Batches') {
 			if ($name == 'code'
 			or	$name == 'batch'
+			or	$name == 'received_boxes'
 			or	$name == 'checkin_boxes'
 			or	$name == 'unit_price'
 			or	$name == 'average_weight'
-			or	$name == 'gross_weight'
+			or	$name == 'received_weight'
 			or	$name == 'checkin_weight'
 			or	$name == 'returned_weight'
 			or	$name == 'leftover_weight'
@@ -1549,7 +1550,7 @@ private function set_where($table, $filter) {
 			. ' OR      Purchases.number			LIKE ' . $filter
 			. ' OR		Purchases.ordered_at		LIKE ' . $filter
 			. ' OR		  Threads.name				LIKE ' . $filter
-			. ' OR		  Batches.checkin_weight	LIKE ' . $filter
+			. ' OR		  Batches.received_weight	LIKE ' . $filter
 			. ' OR		Incomings.received_at		LIKE ' . $filter
 			. ' OR		 Supplier.nick_name			LIKE ' . $filter
 			;
@@ -1572,10 +1573,11 @@ private function set_where($table, $filter) {
 	if ($table ==    'Batches') {
 		$return = '   Batches.code				LIKE ' . $filter
 			. ' OR    Batches.batch				LIKE ' . $filter
+			. ' OR    Batches.received_boxes	LIKE ' . $filter
 			. ' OR    Batches.checkin_boxes		LIKE ' . $filter
 			. ' OR    Batches.unit_price		LIKE ' . $filter
 			. ' OR    Batches.average_weight	LIKE ' . $filter
-			. ' OR    Batches.gross_weight		LIKE ' . $filter
+			. ' OR    Batches.received_weight	LIKE ' . $filter
 			. ' OR    Batches.checkin_weight	LIKE ' . $filter
 			. ' OR    Batches.returned_weight	LIKE ' . $filter
 			. ' OR    Batches.leftover_weight	LIKE ' . $filter
@@ -3679,8 +3681,13 @@ private function checkin($data) {
 		 ;
 	$boxes = $db->fetchRow( $sql );
 
+	$average_weight = $boxes['average_weight'];
+	$real_weight	= $boxes['real_weight'	 ];
+	$checkin_weight = ($real_weight == 0) ? $average_weight : $real_weight;
+
 	$sql = 'UPDATE Batches'
-	     . '   SET checkin_boxes = checkin_boxes + 1'
+	     . '   SET checkin_boxes  = checkin_boxes  + 1'
+	     . '     , checkin_weight = checkin_weight + ' . $checkin_weight
 	     . ' WHERE id = ' . $boxes['batch_id']
 	     ;
 	$this->log_sql( 'Batches', 'update', $sql );

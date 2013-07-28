@@ -12,11 +12,12 @@ CREATE TABLE IF NOT EXISTS Batches
 , purchase_line_id	BIGINT				DEFAULT NULL
 , code				VARCHAR(32)			DEFAULT NULL
 , batch				VARCHAR(32)			DEFAULT NULL
+, received_boxes	INT(11)				DEFAULT 0
 , checkin_boxes		INT(11)				DEFAULT 0
 , labels_printed	INT(11)				DEFAULT 0
 , unit_price		DECIMAL(10,2)		DEFAULT 0
 , average_weight	DECIMAL(10,2)		DEFAULT 0
-, gross_weight		DECIMAL(10,2)		DEFAULT 0
+, received_weight	DECIMAL(10,2)		DEFAULT 0
 , checkin_weight	DECIMAL(10,2)		DEFAULT 0
 , returned_weight	DECIMAL(10,2)		DEFAULT 0
 , leftover_weight	DECIMAL(10,2)		DEFAULT 0
@@ -31,3 +32,11 @@ CREATE TABLE IF NOT EXISTS Batches
 
 ALTER TABLE Batches    ADD COLUMN labels_printed    		INT(11)   		DEFAULT 0  AFTER checkin_boxes;
 ALTER TABLE Batches    ADD COLUMN number_of_cones    		INT(11)   		DEFAULT 0  AFTER labels_printed;
+
+ALTER TABLE Batches    ADD COLUMN received_boxes    			INT(11)   		DEFAULT 0  AFTER batch;
+ALTER TABLE Batches    CHANGE	gross_weight received_weight	DECIMAL(10,2) 	DEFAULT 0;
+
+UPDATE	Batches			SET received_boxes	= checkin_boxes ;
+UPDATE	Batches			SET received_weight = checkin_weight;
+UPDATE	Batches			SET checkin_boxes	= 0;
+UPDATE	Batches			SET checkin_weight	= 0;
