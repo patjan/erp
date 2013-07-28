@@ -56,7 +56,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-real-weight"			>' + the_row.real_weight		+ '</td>'
 		+  '<td class="jky-checkin-location"	>' + the_row.checkin_location	+ '</td>'
 		+  '<td class="jky-checkout-location"	>' + the_row.checkout_location	+ '</td>'
-		+  '<td class="jky-stocked-location"	>' + the_row.stocked_location	+ '</td>'
+		+  '<td class="jky-returned-location"	>' + the_row.returned_location	+ '</td>'
 		;
 	return my_html;
 };
@@ -71,7 +71,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-real-weight'				, the_row.real_weight			);
 	JKY.set_value	('jky-checkin-location'			, the_row.checkin_location		);
 	JKY.set_value	('jky-checkout-location'		, the_row.checkout_location		);
-	JKY.set_value	('jky-stocked-location'			, the_row.stocked_location		);
+	JKY.set_value	('jky-returned-location'		, the_row.returned_location		);
 //	JKY.display_lines();
 };
 
@@ -102,6 +102,6 @@ JKY.get_form_set = function() {
 		+', real_weight=  '			+			  JKY.get_value('jky-real-weight'			)
 		+', checkin_location=\''	+			  JKY.get_value('jky-checkin-location'		) + '\''
 		+', checkout_location=\''	+			  JKY.get_value('jky-checkout-location'		) + '\''
-		+', stocked_location=\''	+			  JKY.get_value('jky-stocked-location'		) + '\''
+		+', returned_location=\''	+			  JKY.get_value('jky-returned-location'		) + '\''
 	return my_set;
 };

@@ -66,9 +66,14 @@ ALTER TABLE Requests		CHANGE	checkout_ref	supplier_ref		VARCHAR(32);
 ALTER TABLE Boxes	ADD		is_printed			CHAR(3)		DEFAULT 'No'	AFTER barcode;
 ----- 2013/07/27
 ALTER TABLE Batches		ADD COLUMN received_boxes    			INT(11)   		DEFAULT 0  AFTER batch;
+ALTER TABLE Batches    	ADD COLUMN checkout_boxes    			INT(11)   		DEFAULT 0  AFTER checkin_boxes;
+ALTER TABLE Batches    	ADD COLUMN returned_boxes    			INT(11)   		DEFAULT 0  AFTER checkin_boxes;
 ALTER TABLE Batches		CHANGE	gross_weight received_weight	DECIMAL(10,2) 	DEFAULT 0;
 UPDATE	Batches			SET received_boxes	= checkin_boxes ;
 UPDATE	Batches			SET received_weight = checkin_weight;
 UPDATE	Batches			SET checkin_boxes	= 0;
 UPDATE	Batches			SET checkin_weight	= 0;
+ALTER TABLE Boxes		CHANGE	stocked_location	returned_location	CHAR(4) 	DEFAULT NULL;
+ALTER TABLE Boxes		CHANGE	stocked_by			returned_by			BIGINT		DEFAULT NULL;
+ALTER TABLE Boxes		CHANGE	stocked_at			returned_at			DATETIME	DEFAULT NULL;
 

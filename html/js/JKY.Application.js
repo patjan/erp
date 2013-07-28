@@ -58,21 +58,22 @@ if (my_first == true) {
  *	set initial values (run only once per load)
  */
 	function my_set_initial_values() {
-			JKY.display_trace('my_set_initial_values - ' + my_args.program_name);
-			if (JKY.is_loaded('jky-body')) {
-				JKY.set_html ('jky-app-breadcrumb', JKY.t(my_args.program_name));
-				JKY.set_value('jky-app-filter', my_args.filter);
-				JKY.hide('jky-app-select-line');
-				my_display_list();
-//				my_display_form(1);
-				JKY.show('jky-app-header');
-				JKY.hide('jky-action-publish');
-				JKY.set_initial_values();
-				JKY.Changes.reset();
-			}else{
-				setTimeout(function() {my_set_initial_values();}, 100);
-			}
+		JKY.set_css('jky-app-breadcrumb', 'color', '#4C4C4C');
+		JKY.display_trace('my_set_initial_values - ' + my_args.program_name);
+		if (JKY.is_loaded('jky-body')) {
+			JKY.set_html ('jky-app-breadcrumb', JKY.t(my_args.program_name));
+			JKY.set_value('jky-app-filter', my_args.filter);
+			JKY.hide('jky-app-select-line');
+			my_display_list();
+//			my_display_form(1);
+			JKY.show('jky-app-header');
+			JKY.hide('jky-action-publish');
+			JKY.set_initial_values();
+			JKY.Changes.reset();
+		}else{
+			setTimeout(function() {my_set_initial_values();}, 100);
 		}
+	}
 
 	function my_change_select(){
 			my_args.select = JKY.get_value('jky-app-select');

@@ -217,7 +217,7 @@ JKY.t = function(the_text) {
 	if (typeof my_result == 'undefined') {
 
 if (JKY.Session.get_value('user_name') == 'patjan') {
-//	alert('the_text: ' + the_text);
+	alert('the_text: ' + the_text);
 }
 
 		my_result = '';
@@ -694,7 +694,7 @@ JKY.set_src = function(the_id , the_file_name){
 	$('#' + the_id).attr('src', the_file_name);
 }
 
-/**
+/**	
  * set specific id attr css with value
  * @param	the_id
  * @param	the_css
@@ -715,6 +715,10 @@ JKY.has_attr = function(the_id, the_attr){
 
 JKY.has_class = function(the_id, the_class){
 	return $('#' + the_id).hasClass(the_class);
+}
+
+JKY.remove_attr = function(the_id, the_attr){
+	var my_attr = $('#' + the_id).removeAttr(the_attr);
 }
 
 /**

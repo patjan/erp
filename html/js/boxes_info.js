@@ -36,17 +36,18 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-threads-boxes');
+	JKY.set_side_active('jky-boxes-info');
 	JKY.process_clear_screen();
 };
 
 JKY.display_list = function() {
 	JKY.hide('jky-action-add-new');
-	JKY.show('jky-action-clear'  );
 	JKY.hide('jky-action-export' );
 };
 
 JKY.process_clear_screen = function() {
+	JKY.hide('jky-action-clear'  );
+	JKY.remove_attr('jky-check-all', 'checked');
 	JKY.set_html ('jky-table-body'	 , '');
 	JKY.set_html ('jky-input-message', '');
 	JKY.set_value('jky-input-barcode', '');
@@ -92,6 +93,7 @@ JKY.process_barcode_success = function(response) {
 					+ '</tr>'
 					;
 			JKY.prepend_html('jky-table-body', my_html);
+			JKY.show('jky-action-clear'  );
 			JKY.set_html ('jky-input-message', '');
 			JKY.set_value('jky-input-barcode', '');
 		}

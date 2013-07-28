@@ -23,9 +23,9 @@ CREATE TABLE IF NOT EXISTS Boxes
 , checkout_location	VARCHAR(32)			DEFAULT NULL	# machine name or dyer name
 , checkout_by		BIGINT				DEFAULT NULL
 , checkout_at		DATETIME			DEFAULT NULL
-, stocked_location	CHAR(4)				DEFAULT NULL
-, stocked_by		BIGINT				DEFAULT NULL
-, stocked_at		DATETIME			DEFAULT NULL
+, returned_location	CHAR(4)				DEFAULT NULL
+, returned_by		BIGINT				DEFAULT NULL
+, returned_at		DATETIME			DEFAULT NULL
 
 , PRIMARY KEY(id)
 , KEY barcode	(barcode)
@@ -41,3 +41,7 @@ ALTER TABLE Boxes	ADD		is_printed			CHAR(3)		DEFAULT 'No'	AFTER barcode;
 UPDATE Boxes	SET is_printed = 'Yes';
 
 UPDATE Boxes	SET	average_weight = 30.94	WHERE batch_id = 8;
+
+ALTER TABLE Boxes		CHANGE	stocked_location	returned_location	CHAR(4) 	DEFAULT NULL;
+ALTER TABLE Boxes		CHANGE	stocked_by			returned_by			BIGINT		DEFAULT NULL;
+ALTER TABLE Boxes		CHANGE	stocked_at			returned_at			DATETIME	DEFAULT NULL;

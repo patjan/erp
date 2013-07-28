@@ -153,6 +153,8 @@ public function indexAction() {
 			case 'export'		: $required = 'Export'	; break;
 
 			case 'checkin'		: $required = 'Update'	; break;
+			case 'checkout'		: $required = 'Update'	; break;
+			case 'returned'		: $required = 'Update'	; break;
 
 			default				: $this->echo_error('method name [' . $method . '] is undefined'); return;
 		}
@@ -188,7 +190,8 @@ public function indexAction() {
 		case 'Xrefresh'		: $this->Xrefresh		(); break;
 
 		case 'checkin'		: $this->checkin		($data); break;
-
+		case 'checkout'		: $this->checkout		($data); break;
+		case 'returned'		: $this->returned		($data); break;
 
 		case 'set_amount'	: $this->set_amount		(); break;
 		case 'reset_amount'	: $this->reset_amount	(); break;
@@ -674,7 +677,7 @@ private function set_new_fields($table) {
 												. ',    Parent.barcode			AS			parent'
 												. ',   CheckIn.nick_name		AS			checkin'
 												. ',  CheckOut.nick_name		AS			checkout'
-												. ',   Stocked.nick_name		AS			stocked'
+												. ',  Returned.nick_name		AS			returned'
 												. ',   Threads.name				AS			thread_name'
 												. ',  Supplier.nick_name		AS			supplier_name';
 	if ($table == 'Requests'		)	$return = ',  Machines.name				AS  machine_name'
@@ -750,7 +753,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN       Boxes AS Parent	ON    Parent.id	=		     Boxes.parent_id'
 												. '  LEFT JOIN    Contacts AS CheckIn	ON   CheckIn.id	=			 Boxes.checkin_by'
 												. '  LEFT JOIN    Contacts AS CheckOut	ON  CheckOut.id	=			 Boxes.checkout_by'
-												. '  LEFT JOIN    Contacts AS Stocked	ON   Stocked.id	=			 Boxes.stocked_by'
+												. '  LEFT JOIN    Contacts AS Returned	ON  Returned.id	=			 Boxes.returned_by'
 												. '  LEFT JOIN   Incomings  			ON Incomings.id	=		   Batches.incoming_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		   Batches.thread_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Incomings.supplier_id';
@@ -1176,14 +1179,14 @@ private function set_where($table, $filter) {
 			or	$name == 'batch'
 			or	$name == 'received_boxes'
 			or	$name == 'checkin_boxes'
+			or	$name == 'returned_boxes'
+			or	$name == 'checkout_boxes'
 			or	$name == 'unit_price'
 			or	$name == 'average_weight'
 			or	$name == 'received_weight'
 			or	$name == 'checkin_weight'
 			or	$name == 'returned_weight'
-			or	$name == 'leftover_weight'
-			or	$name == 'checkout_weight'
-			or	$name == 'used_weight') {
+			or	$name == 'checkout_weight') {
 				if ($value == '"%null%"') {
 					return ' AND Batches.' . $name . ' IS NULL ';
 				}else{
@@ -1575,14 +1578,14 @@ private function set_where($table, $filter) {
 			. ' OR    Batches.batch				LIKE ' . $filter
 			. ' OR    Batches.received_boxes	LIKE ' . $filter
 			. ' OR    Batches.checkin_boxes		LIKE ' . $filter
+			. ' OR    Batches.returned_boxes	LIKE ' . $filter
+			. ' OR    Batches.checkout_boxes	LIKE ' . $filter
 			. ' OR    Batches.unit_price		LIKE ' . $filter
 			. ' OR    Batches.average_weight	LIKE ' . $filter
 			. ' OR    Batches.received_weight	LIKE ' . $filter
 			. ' OR    Batches.checkin_weight	LIKE ' . $filter
 			. ' OR    Batches.returned_weight	LIKE ' . $filter
-			. ' OR    Batches.leftover_weight	LIKE ' . $filter
 			. ' OR    Batches.checkout_weight	LIKE ' . $filter
-			. ' OR    Batches.used_weight		LIKE ' . $filter
 			. ' OR    Threads.name				LIKE ' . $filter
 			. ' OR	Incomings.number			LIKE ' . $filter
 			;
@@ -1594,7 +1597,7 @@ private function set_where($table, $filter) {
 			. ' OR  Boxes.real_weight		LIKE ' . $filter
 			. ' OR  Boxes.checkin_location	LIKE ' . $filter
 			. ' OR  Boxes.checkout_location	LIKE ' . $filter
-			. ' OR  Boxes.stocked_location	LIKE ' . $filter
+			. ' OR  Boxes.returned_location	LIKE ' . $filter
 			. ' OR  Batches.batch			LIKE ' . $filter
 			. ' OR  Parent.barcode			LIKE ' . $filter
 			;
@@ -3650,56 +3653,6 @@ private function echo_error( $message ) {
 }
 
 /*
- *   $.ajax({ method:'checkin', table:'Boxes', barcode:9...9};
- *
- *   status: ok
- *  message: record updated
- */
-private function checkin($data) {
-	$table	 = get_data($data, 'table'	);
-	$barcode = get_data($data, 'barcode');
-
-	$db  = Zend_Registry::get( 'db' );
-
-	$updated = '  updated_by='  . get_session( 'user_id' )
-			 . ', updated_at="' . get_time() . '"'
-			 . ', status="Check In"'
-			 ;
-
-	$sql = 'UPDATE Boxes'
-	     . '   SET ' . $updated
-		 . '     , checkin_by='  . get_session( 'user_id' )
-		 . '     , checkin_at="' . get_time() . '"'
-	     . ' WHERE barcode = ' . $barcode
-	     ;
-	$this->log_sql( 'Boxes', 'update', $sql );
-	$db->query( $sql );
-
-	$sql = 'SELECT Boxes.*'
-		 . '  FROM Boxes'
-		 . ' WHERE Boxes.barcode = \'' . $barcode . '\''
-		 ;
-	$boxes = $db->fetchRow( $sql );
-
-	$average_weight = $boxes['average_weight'];
-	$real_weight	= $boxes['real_weight'	 ];
-	$checkin_weight = ($real_weight == 0) ? $average_weight : $real_weight;
-
-	$sql = 'UPDATE Batches'
-	     . '   SET checkin_boxes  = checkin_boxes  + 1'
-	     . '     , checkin_weight = checkin_weight + ' . $checkin_weight
-	     . ' WHERE id = ' . $boxes['batch_id']
-	     ;
-	$this->log_sql( 'Batches', 'update', $sql );
-	$db->query( $sql );
-
-	$return = array();
-	$return[ 'status'   ] = 'ok';
-	$return[ 'message'  ] = 'record updated';
-	echo json_encode( $return );
-    }
-
-/*
  *   $.ajax({ method:'set_amount', table:'Admin', receive_id:receive_id, service_id:service_id, fee_amount:fee_amount};
  *
  *   status: ok
@@ -4087,6 +4040,156 @@ private function checkin($data) {
 		$return[ 'message'] = 'Refreshed';
 		echo json_encode( $return );
 	}
+
+/*
+ *   $.ajax({ method:'checkin', table:'Boxes', barcode:9...9};
+ *
+ *   status: ok
+ *  message: record updated
+ */
+private function checkin($data) {
+//	$table	 = get_data($data, 'table'	);
+	$barcode = get_data($data, 'barcode');
+
+	$db  = Zend_Registry::get( 'db' );
+
+	$updated = '  updated_by='  . get_session( 'user_id' )
+			 . ', updated_at="' . get_time() . '"'
+			 . ', status="Check In"'
+			 ;
+
+	$sql = 'UPDATE Boxes'
+	     . '   SET ' . $updated
+		 . '     , checkin_by='  . get_session( 'user_id' )
+		 . '     , checkin_at="' . get_time() . '"'
+	     . ' WHERE barcode = ' . $barcode
+	     ;
+	$this->log_sql( 'Boxes', 'update', $sql );
+	$db->query( $sql );
+
+	$sql = 'SELECT Boxes.*'
+		 . '  FROM Boxes'
+		 . ' WHERE Boxes.barcode = \'' . $barcode . '\''
+		 ;
+	$boxes = $db->fetchRow( $sql );
+
+	$average_weight = $boxes['average_weight'];
+	$real_weight	= $boxes['real_weight'	 ];
+	$my_weight		= ($real_weight == 0) ? $average_weight : $real_weight;
+
+	$sql = 'UPDATE Batches'
+	     . '   SET checkin_boxes  = checkin_boxes  + 1'
+	     . '     , checkin_weight = checkin_weight + ' . $my_weight
+	     . ' WHERE id = ' . $boxes['batch_id']
+	     ;
+	$this->log_sql( 'Batches', 'update', $sql );
+	$db->query( $sql );
+
+	$return = array();
+	$return[ 'status'   ] = 'ok';
+	$return[ 'message'  ] = 'record updated';
+	echo json_encode( $return );
+    }
+
+/*
+ *   $.ajax({ method:'checkout', table:'Boxes', barcode:9...9};
+ *
+ *   status: ok
+ *  message: record updated
+ */
+private function checkout($data) {
+//	$table	 = get_data($data, 'table'	);
+	$barcode = get_data($data, 'barcode');
+
+	$db  = Zend_Registry::get( 'db' );
+
+	$updated = '  updated_by='  . get_session( 'user_id' )
+			 . ', updated_at="' . get_time() . '"'
+			 . ', status="Check Out"'
+			 ;
+
+	$sql = 'UPDATE Boxes'
+	     . '   SET ' . $updated
+		 . '     , checkout_by='  . get_session( 'user_id' )
+		 . '     , checkout_at="' . get_time() . '"'
+	     . ' WHERE barcode = ' . $barcode
+	     ;
+	$this->log_sql( 'Boxes', 'update', $sql );
+	$db->query( $sql );
+
+	$sql = 'SELECT Boxes.*'
+		 . '  FROM Boxes'
+		 . ' WHERE Boxes.barcode = \'' . $barcode . '\''
+		 ;
+	$boxes = $db->fetchRow( $sql );
+
+	$average_weight = $boxes['average_weight'];
+	$real_weight	= $boxes['real_weight'	 ];
+	$my_weight		= ($real_weight == 0) ? $average_weight : $real_weight;
+
+	$sql = 'UPDATE Batches'
+	     . '   SET checkout_boxes  = checkout_boxes  + 1'
+	     . '     , checkout_weight = checkout_weight + ' . $my_weight
+	     . ' WHERE id = ' . $boxes['batch_id']
+	     ;
+	$this->log_sql( 'Batches', 'update', $sql );
+	$db->query( $sql );
+
+	$return = array();
+	$return[ 'status'   ] = 'ok';
+	$return[ 'message'  ] = 'record updated';
+	echo json_encode( $return );
+    }
+
+/*
+ *   $.ajax({ method:'return', table:'Boxes', barcode:9...9};
+ *
+ *   status: ok
+ *  message: record updated
+ */
+private function returned($data) {
+//	$table	 = get_data($data, 'table'	);
+	$barcode = get_data($data, 'barcode');
+
+	$db  = Zend_Registry::get( 'db' );
+
+	$updated = '  updated_by='  . get_session( 'user_id' )
+			 . ', updated_at="' . get_time() . '"'
+			 . ', status="Return"'
+			 ;
+
+	$sql = 'UPDATE Boxes'
+	     . '   SET ' . $updated
+		 . '     , returned_by='  . get_session( 'user_id' )
+		 . '     , returned_at="' . get_time() . '"'
+	     . ' WHERE barcode = ' . $barcode
+	     ;
+	$this->log_sql( 'Boxes', 'update', $sql );
+	$db->query( $sql );
+
+	$sql = 'SELECT Boxes.*'
+		 . '  FROM Boxes'
+		 . ' WHERE Boxes.barcode = \'' . $barcode . '\''
+		 ;
+	$boxes = $db->fetchRow( $sql );
+
+	$average_weight = $boxes['average_weight'];
+	$real_weight	= $boxes['real_weight'	 ];
+	$my_weight		= ($real_weight == 0) ? $average_weight : $real_weight;
+
+	$sql = 'UPDATE Batches'
+	     . '   SET returned_boxes  = returned_boxes  + 1'
+	     . '     , returned_weight = returned_weight + ' . $my_weight
+	     . ' WHERE id = ' . $boxes['batch_id']
+	     ;
+	$this->log_sql( 'Batches', 'update', $sql );
+	$db->query( $sql );
+
+	$return = array();
+	$return[ 'status'   ] = 'ok';
+	$return[ 'message'  ] = 'record updated';
+	echo json_encode( $return );
+    }
 }
 
 ?>
