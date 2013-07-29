@@ -4149,7 +4149,9 @@ private function checkout($data) {
  */
 private function returned($data) {
 //	$table	 = get_data($data, 'table'	);
-	$barcode = get_data($data, 'barcode');
+	$barcode		= get_data($data, 'barcode'			);
+	$number_of_cones= get_data($data, 'number_of_cones'	);
+	$real_weight	= get_data($data, 'real_weight'		);
 
 	$db  = Zend_Registry::get( 'db' );
 
@@ -4162,6 +4164,8 @@ private function returned($data) {
 	     . '   SET ' . $updated
 		 . '     , returned_by='  . get_session( 'user_id' )
 		 . '     , returned_at="' . get_time() . '"'
+		 . '     , number_of_cones=' . $number_of_cones
+		 . '     , real_weight=' . $real_weight
 	     . ' WHERE barcode = ' . $barcode
 	     ;
 	$this->log_sql( 'Boxes', 'update', $sql );

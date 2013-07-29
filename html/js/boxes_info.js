@@ -28,8 +28,8 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-action-clear'	).click	(function() {JKY.process_clear_screen ();});
-	$('#jky-input-barcode'	).change(function() {JKY.process_input_barcode();});
+	$('#jky-action-clear'			).click	(function() {JKY.process_clear_screen	();});
+	$('#jky-input-barcode'			).change(function() {JKY.process_input_barcode	();});
 };
 
 /**
@@ -81,7 +81,7 @@ JKY.process_barcode_success = function(response) {
 					+ '<td class="jky-checkbox"			>' +  my_checkbox				+ '</td>'
 					+ '<td class="jky-barcode"			>' +  my_row.barcode			+ '</td>'
 					+ '<td class="jky-sequence"			>' +  JKY.sequence				+ '</td>'
-					+ '<td class="jky-status"			>' +  my_row.status				+ '</td>'
+					+ '<td class="jky-status"			>' +  JKY.t(my_row.status)		+ '</td>'
 					+ '<td class="jky-batch"			>' +  my_row.batch				+ '</td>'
 					+ '<td class="jky-number-of-boxes"	>' +  my_row.number_of_boxes	+ '</td>'
 					+ '<td class="jky-number-of-cones"	>' +  my_row.number_of_cones	+ '</td>'

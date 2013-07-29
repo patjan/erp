@@ -28,9 +28,11 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-action-clear'	).click	(function() {JKY.process_clear_screen ();});
-	$('#jky-action-confirm'	).click	(function() {JKY.process_confirm_screen ();});
-	$('#jky-input-barcode'	).change(function() {JKY.process_input_barcode();});
+	$('#jky-action-clear'			).click	(function() {JKY.process_clear_screen			();});
+	$('#jky-action-confirm'			).click	(function() {JKY.process_confirm_screen			();});
+	$('#jky-input-barcode'			).change(function() {JKY.process_input_barcode			();});
+	$('#jky-input-number-of-cones'	).change(function() {JKY.process_input_number_of_cones	();});
+	$('#jky-input-real-weight'		).change(function() {JKY.process_input_real_weight		();});
 };
 
 /**
@@ -60,19 +62,76 @@ JKY.process_clear_screen = function() {
 
 JKY.process_input_barcode = function() {
 	var my_barcode = JKY.get_value('jky-input-barcode');
+
+	if (my_barcode == '' || isNaN(my_barcode))	{
+		JKY.display_message('Barcode is invalid');
+		JKY.set_focus('jky-input-barcode');
+		return;
+	}
+
+	if ($('#jky-table-body td:contains("' + my_barcode + '")').length > 0) {
+		JKY.play_beep();
+		JKY.set_html ('jky-input-message', JKY.t('duplicate'));
+		JKY.set_focus('jky-input-barcode');
+		return;
+	}
+
+	JKY.set_html ('jky-input-message', '');
+	JKY.process_input();
+}
+
+JKY.process_input_number_of_cones = function() {
+	var my_number_of_cones = JKY.get_value('jky-input-number-of-cones');
+
+	if (my_number_of_cones == '' || isNaN(my_number_of_cones)) {
+		JKY.display_message('Number of Cones is invalid');
+		JKY.set_focus('jky-input-number-of-cones');
+		return;
+	}
+
+	JKY.process_input();
+}
+
+JKY.process_input_real_weight = function() {
+	var my_real_weight = JKY.get_value('jky-input-real-weight');
+
+	if (my_real_weight == '' || isNaN(my_real_weight))	{
+		JKY.display_message('Real Weight is invalid');
+		JKY.set_focus('jky-input-real-weight');
+		return;
+	}
+	JKY.process_input();
+}
+
+JKY.process_input = function() {
+	var my_barcode			= JKY.get_value('jky-input-barcode'			);
+	var my_number_of_cones	= JKY.get_value('jky-input-number-of-cones'	);
+	var my_real_weight		= JKY.get_value('jky-input-real-weight'		);
+	var my_focus = '';
+
+	if (my_real_weight		== '' || isNaN(my_real_weight		))	{my_focus = 'jky-input-real-weight'		;}
+	if (my_number_of_cones	== '' || isNaN(my_number_of_cones	))	{my_focus = 'jky-input-number-of-cones'	;}
+	if (my_barcode			== '' || isNaN(my_barcode			))	{my_focus = 'jky-input-barcode'			;}
+
+	if (my_focus != '') {
+		JKY.set_focus(my_focus);
+		return;
+	}
 //	JKY.display_trace('process_input_barcode: ' + my_barcode);
 	var my_data =
 		{ method	: 'get_row'
 		, table		: 'Boxes'
 		, where		: 'Boxes.barcode = \'' + my_barcode +'\''
 		};
-	JKY.ajax(false, my_data, JKY.process_barcode_success);
+	JKY.ajax(false, my_data, JKY.process_input_success);
 }
 
-JKY.process_barcode_success = function(response) {
+JKY.process_input_success = function(response) {
 	var my_row  = response.row;
 	if (my_row) {
-		var my_barcode = JKY.get_value('jky-input-barcode');
+		var my_barcode			= JKY.get_value('jky-input-barcode'			);
+		var my_number_of_cones	= JKY.get_value('jky-input-number-of-cones'	);
+		var my_real_weight		= JKY.get_value('jky-input-real-weight'		);
 		if ($('#jky-table-body td:contains("' + my_barcode + '")').length > 0) {
 			JKY.play_beep();
 			JKY.set_html ('jky-input-message', JKY.t('duplicate'));
@@ -87,12 +146,12 @@ JKY.process_barcode_success = function(response) {
 					+ '<td class="jky-checkbox"			>' +  my_checkbox				+ '</td>'
 					+ '<td class="jky-barcode"			>' +  my_row.barcode			+ '</td>'
 					+ '<td class="jky-sequence"			>' +  JKY.sequence				+ '</td>'
-					+ '<td class="jky-status"			>' +  my_row.status				+ '</td>'
+					+ '<td class="jky-status"			>' +  JKY.t(my_row.status)		+ '</td>'
 					+ '<td class="jky-batch"			>' +  my_row.batch				+ '</td>'
 					+ '<td class="jky-number-of-boxes"	>' +  my_row.number_of_boxes	+ '</td>'
-					+ '<td class="jky-number-of-cones"	>' +  my_row.number_of_cones	+ '</td>'
+					+ '<td class="jky-number-of-cones"	>' +  my_number_of_cones		+ '</td>'
 					+ '<td class="jky-average-weight"	>' +  my_row.average_weight		+ '</td>'
-					+ '<td class="jky-real-weight"		>' +  my_row.real_weight		+ '</td>'
+					+ '<td class="jky-real-weight"		>' +  my_real_weight			+ '</td>'
 					+ '<td class="jky-checkin-location"	>' +  my_row.checkin_location	+ '</td>'
 					+ '<td class="jky-supplier-name"	>' +  my_row.supplier_name		+ '</td>'
 					+ '<td class="jky-thread-name"		>' +  my_row.thread_name		+ '</td>'
@@ -102,7 +161,10 @@ JKY.process_barcode_success = function(response) {
 			JKY.show('jky-action-clear'  );
 			JKY.show('jky-action-confirm');
 			JKY.set_html ('jky-input-message', '');
-			JKY.set_value('jky-input-barcode', '');
+			JKY.set_value('jky-input-barcode'			, '');
+			JKY.set_value('jky-input-number-of-cones'	, '');
+			JKY.set_value('jky-input-real-weight'		, '');
+			JKY.set_focus('jky-input-barcode');
 		}
 	}else{
 		JKY.play_beep();
@@ -135,11 +197,18 @@ JKY.process_confirm_screen = function() {
  */
 JKY.confirm_row = function(the_id, the_barcode) {
 	JKY.display_trace('confirm_row');
-	JKY.display_message('confirm_row, ' + the_barcode);
+	JKY.display_message(JKY.t('Confirmed, barcode') + ': ' + the_barcode);
+	var my_parent = $(the_id).parent().parent();
+	var my_barcode			= $(my_parent).find('.jky-barcode'			).html();
+	var my_number_of_cones	= $(my_parent).find('.jky-number-of-cones'	).html();
+	var my_real_weight		= $(my_parent).find('.jky-real-weight'		).html();
+
 	var my_data =
-		{ method	: 'returned'
-		, table		: 'Boxes'
-		, barcode	: the_barcode
+		{ method			: 'returned'
+		, table				: 'Boxes'
+		, barcode			: my_barcode
+		, number_of_cones	: my_number_of_cones
+		, real_weight		: my_real_weight
 		};
 	JKY.ajax(false, my_data, JKY.confirm_row_success);
 	$(the_id).parent().parent().remove();
