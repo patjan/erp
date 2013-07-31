@@ -152,13 +152,10 @@ public function indexAction() {
 			case 'publish'		: $required = 'Publish'	; break;
 			case 'export'		: $required = 'Export'	; break;
 
-<<<<<<< HEAD
 			case 'checkin'		: $required = 'Update'	; break;
 			case 'checkout'		: $required = 'Update'	; break;
 			case 'returned'		: $required = 'Update'	; break;
 
-=======
->>>>>>> parent of 452f9db... Boxes Checkin
 			default				: $this->echo_error('method name [' . $method . '] is undefined'); return;
 		}
 
@@ -192,13 +189,10 @@ public function indexAction() {
 		case 'export'		: $this->get_index		($data); break;
 		case 'Xrefresh'		: $this->Xrefresh		(); break;
 
-<<<<<<< HEAD
 		case 'checkin'		: $this->checkin		($data); break;
 		case 'checkout'		: $this->checkout		($data); break;
 		case 'returned'		: $this->returned		($data); break;
 
-=======
->>>>>>> parent of 452f9db... Boxes Checkin
 		case 'set_amount'	: $this->set_amount		(); break;
 		case 'reset_amount'	: $this->reset_amount	(); break;
 

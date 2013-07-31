@@ -44,13 +44,13 @@ JKY.set_initial_values = function() {
 
 JKY.display_list = function() {
 	JKY.hide('jky-action-add-new');
-	JKY.show('jky-action-clear'  );
-	JKY.show('jky-action-confirm'  );
 	JKY.hide('jky-action-export' );
 };
 
 JKY.process_clear_screen = function() {
-
+	JKY.hide('jky-action-clear'  );
+	JKY.hide('jky-action-confirm');
+	JKY.remove_attr('jky-check-all', 'checked');
 	JKY.set_html ('jky-table-body'	 , '');
 	JKY.set_html ('jky-input-message', '');
 	JKY.set_value('jky-input-barcode', '');
@@ -78,7 +78,10 @@ JKY.process_barcode_success = function(response) {
 			JKY.set_html ('jky-input-message', JKY.t('duplicate'));
 			JKY.set_focus('jky-input-barcode');
 		}else{
-			var my_checkbox = '<input type="checkbox" onclick="JKY.Application.set_checkbox(this)" barcode=' + my_barcode + ' />';
+			var my_checkbox = '';
+			if ( my_row.status == 'Active') {
+				my_checkbox = '<input type="checkbox" onclick="JKY.Application.set_checkbox(this)" barcode=' + my_barcode + ' />';
+			}
 			JKY.sequence++;
 			var my_html = '<tr>'
 					+ '<td class="jky-checkbox"			>' +  my_checkbox				+ '</td>'
@@ -96,6 +99,8 @@ JKY.process_barcode_success = function(response) {
 					+ '</tr>'
 					;
 			JKY.prepend_html('jky-table-body', my_html);
+			JKY.show('jky-action-clear'  );
+			JKY.show('jky-action-confirm');
 			JKY.set_html ('jky-input-message', '');
 			JKY.set_value('jky-input-barcode', '');
 		}
@@ -104,7 +109,6 @@ JKY.process_barcode_success = function(response) {
 		JKY.set_html ('jky-input-message', JKY.t('not found'));
 		JKY.set_focus('jky-input-barcode');
 	}
-
 }
 
 /**
