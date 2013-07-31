@@ -76,4 +76,30 @@ UPDATE	Batches			SET checkin_weight	= 0;
 ALTER TABLE Boxes		CHANGE	stocked_location	returned_location	CHAR(4) 	DEFAULT NULL;
 ALTER TABLE Boxes		CHANGE	stocked_by			returned_by			BIGINT		DEFAULT NULL;
 ALTER TABLE Boxes		CHANGE	stocked_at			returned_at			DATETIME	DEFAULT NULL;
+----- 2013/07/29
+TRUNCATE TABLE	Batches			;
+TRUNCATE TABLE 	BatchOuts		;
+TRUNCATE TABLE 	Boxes			;
+TRUNCATE TABLE 	CheckOuts		;
+TRUNCATE TABLE 	Incomings		;
+TRUNCATE TABLE 	PurchaseForecast;
+TRUNCATE TABLE 	PurchaseLines	;
+TRUNCATE TABLE 	Purchases		;
+TRUNCATE TABLE 	ReqLines		;
+TRUNCATE TABLE 	Requests		;
+TRUNCATE TABLE 	ThreadForecast	;
 
+ALTER TABLE Boxes		AUTO_INCREMENT	= 1000000001; 
+UPDATE		Controls	SET value		= 1000000001	WHERE group_set = 'System Numbers' AND name = 'Next Box Number'		;
+
+ALTER TABLE CheckOuts	AUTO_INCREMENT	= 100001;
+UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next CheckOut Number';
+
+ALTER TABLE Incomings	AUTO_INCREMENT	= 100001;
+UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next Incoming Number';
+
+ALTER TABLE Purchases	AUTO_INCREMENT	= 100001;
+UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next Purchase Number';
+
+ALTER TABLE Requests	AUTO_INCREMENT	= 100001;
+UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next Request Number'	;

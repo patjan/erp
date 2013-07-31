@@ -3961,7 +3961,8 @@ private function echo_error( $message ) {
 
 //			system( '( tcp.exe ' . $ip_number . ' 9100 ' . $out_name . ' & ) > /dev/null');
 //			system( '( php ' . APPLICATION . 'GenerateHtml.php & ) > /dev/null' );
-			exec( 'tcp.exe ' . $ip_number . ' 9100 ' . $out_name );
+
+//			exec( 'tcp.exe ' . $ip_number . ' 9100 ' . $out_name );
 
 			$sql= 'UPDATE Boxes'
 				. '   SET is_printed = "Yes"'
@@ -3987,42 +3988,50 @@ private function echo_error( $message ) {
 		$reference_date = get_data($data, 'reference_date');
 
 		$sql= 'SET @cut_off_date = ' . $reference_date . ';'
+
+			. 'TRUNCATE	ThreadBalance;'
 			. 'TRUNCATE	ThreadForecast;'
 			. 'TRUNCATE	PurchaseForecast;'
 
-			. 'INSERT ThreadForecast(thread_id, supplier_id, current_balance)'
+			. 'INSERT ThreadBalance(thread_id, supplier_id, current_balance)'
 			. 'SELECT Batches.thread_id'
-			. '	 , Incomings.supplier_id'
-			. '	 , SUM(Batches.checkin_weight - Batches.returned_weight + Batches.leftover_weight - Batches.checkout_weight - Batches.used_weight) AS current_balance'
+			. '	    , Incomings.supplier_id'
+			. '	    , SUM(Batches.checkin_weight + Batches.returned_weight - Batches.checkout_weight) AS current_balance'
 			. '  FROM Batches'
 			. '  LEFT JOIN Incomings ON Incomings.id = Batches.incoming_id'
 			. ' WHERE Batches.status = "Active"'
-			. '   AND Incomings.received_at <= @cut_off_date'
+			. '   AND DATE(Incomings.received_at) <= @cut_off_date'
 			. ' GROUP BY thread_id, supplier_id'
 			. ';'
 
 			. 'INSERT PurchaseForecast(thread_id, supplier_id, months, forecast_weight)'
 			. 'SELECT PurchaseLines.thread_id'
-			. '	 , Purchases.supplier_id'
-			. '	 , 12 * (YEAR(PurchaseLines.expected_date) - YEAR(@cut_off_date)) + (MONTH(PurchaseLines.expected_date) - MONTH(@cut_off_date)) AS months'
-			. '	 , SUM(PurchaseLines.expected_weight - PurchaseLines.received_weight) AS forecast_weight'
+			. '	    , Purchases.supplier_id'
+			. '	    , 12 * (YEAR(PurchaseLines.expected_date) - YEAR(@cut_off_date)) + (MONTH(PurchaseLines.expected_date) - MONTH(@cut_off_date)) AS months'
+			. '	    , SUM(PurchaseLines.expected_weight - PurchaseLines.received_weight) AS forecast_weight'
 			. '  FROM PurchaseLines'
 			. '  LEFT JOIN Purchases ON Purchases.id = PurchaseLines.purchase_id'
 			. ' WHERE PurchaseLines.status = "Draft"'
 			. ' GROUP BY thread_id, supplier_id, months'
 			. ';'
 
-			. 'REPLACE ThreadForecast(thread_id, supplier_id, forecast_past, forecast_month_1, forecast_month_2, forecast_month_3, forecast_future)'
+			. 'INSERT ThreadForecast(thread_id, supplier_id, forecast_past, forecast_month_1, forecast_month_2, forecast_month_3, forecast_future)'
 			. 'SELECT thread_id'
-			. '	 , supplier_id'
-			. '	 , SUM(IF (months < 1, forecast_weight, 0)) AS forecast_past'
-			. '	 , SUM(IF (months = 1, forecast_weight, 0)) AS forecast_month_1'
-			. '	 , SUM(IF (months = 2, forecast_weight, 0)) AS forecast_month_2'
-			. '	 , SUM(IF (months = 3, forecast_weight, 0)) AS forecast_month_3'
-			. '	 , SUM(IF (months > 3, forecast_weight, 0)) AS forecast_future'
+			. '	    , supplier_id'
+			. '	    , SUM(IF (months < 1, forecast_weight, 0)) AS forecast_past'
+			. '	    , SUM(IF (months = 1, forecast_weight, 0)) AS forecast_month_1'
+			. '	    , SUM(IF (months = 2, forecast_weight, 0)) AS forecast_month_2'
+			. '	    , SUM(IF (months = 3, forecast_weight, 0)) AS forecast_month_3'
+			. '	    , SUM(IF (months > 3, forecast_weight, 0)) AS forecast_future'
 			. '  FROM PurchaseForecast'
-			. '  GROUP BY thread_id, supplier_id'
+			. ' GROUP BY thread_id, supplier_id'
  			. ';'
+
+			. 'REPLACE ThreadForecast(thread_id, supplier_id, current_balance)'
+ 			. ' SELECT thread_id, supplier_id, current_balance'
+			. '   FROM ThreadBalance'
+			. '  GROUP BY thread_id, supplier_id'
+			. ';'
 
 			. 'UPDATE Configs'
 			. '   SET Configs.value = @cut_off_date'
