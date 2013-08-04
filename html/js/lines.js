@@ -59,7 +59,6 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-ordered-at"		>' + JKY.short_date(the_row.ordered_at   )	+ '</td>'
 		+  '<td class="jky-expected-date"	>' + JKY.out_date  (the_row.expected_date) 	+ '</td>'
 		+  '<td class="jky-scheduled-at"	>' + JKY.short_date(the_row.scheduled_at )	+ '</td>'
-//		+  '<td class="jky-received-at"		>' + JKY.out_time(the_row.received_at )	+ '</td>'
 		+  '<td class="jky-expected-weight"	>' + the_row.expected_weight				+ '</td>'
 		+  '<td class="jky-received-weight"	>' + the_row.received_weight				+ '</td>'
 		;
@@ -112,7 +111,7 @@ JKY.set_add_new_row = function() {
 JKY.get_form_set = function() {
 	var my_set = ''
 //		+       'source_doc=\'' + JKY.get_value('jky-source-doc'		) + '\''
-//		+     ', ordered_at=  ' + JKY.inp_time(JKY.get_value('jky-ordered-value'		))
+//		+     ', ordered_at=  ' + JKY.inp_time (JKY.get_value('jky-ordered-value'	))
 		+   ' expected_date=  ' + JKY.inp_date (JKY.get_value('jky-expected-value'	))
 		+', expected_weight=  ' +				JKY.get_value('jky-expected-weight'	)
 		+   ', scheduled_at=  ' + JKY.inp_time (JKY.get_value('jky-scheduled-value'	))
@@ -138,7 +137,7 @@ JKY.insert_incoming = function() {
 	if (my_invoice_date == null) {
 		my_invoice_date = JKY.get_date();
 	}
-	var my_incoming = ''
+	var my_set = ''
 		+   '  supplier_id=  ' + JKY.row.supplier_id
 		+        ', nfe_dl=\'' + '' + '\''
 		+        ', nfe_tm=\'' + '' + '\''
@@ -148,13 +147,13 @@ JKY.insert_incoming = function() {
 	var my_data =
 		{ method	: 'insert'
 		, table		: 'Incomings'
-		, set		: my_incoming
+		, set		:  my_set
 		};
 	JKY.ajax(false, my_data, JKY.insert_batch);
 }
 
 JKY.insert_batch = function(response) {
-	var my_batch = ''
+	var my_set = ''
 		+     '  incoming_id=  ' + response.id
 		+       ', thread_id=  ' + JKY.row.thread_id
 		+', purchase_line_id=  ' + JKY.row.id
@@ -164,7 +163,7 @@ JKY.insert_batch = function(response) {
 	var my_data =
 		{ method	: 'insert'
 		, table		: 'Batches'
-		, set		: my_batch
+		, set		:  my_set
 		};
 	JKY.ajax(false, my_data, JKY.connect_batch);
 }

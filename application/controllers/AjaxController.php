@@ -694,7 +694,7 @@ private function set_new_fields($table) {
 	if ($table == 'CheckOuts'		)	$return = ',  Supplier.nick_name		AS supplier_name'
 												. ',  Machines.name				AS  machine_name';
 	if ($table == 'BatchOuts'		)	$return = ',   Threads.name				AS	 thread_name'
-												. ', CheckOuts.number			AS			number';
+												. ', CheckOuts.number			AS checkout_number';
 	if ($table == 'ThreadForecast'	)	$return = ',  Contacts.nick_name		AS supplier_name'
 												. ',   Threads.thread_group		AS	 thread_group'
 												. ',   Threads.name				AS	 thread_name'

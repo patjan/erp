@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS ReqLines
 
 , request_id		BIGINT				DEFAULT NULL
 , thread_id			BIGINT				DEFAULT NULL
+, batchin_id		BIGINT				DEFAULT NULL
 , batch_id			BIGINT				DEFAULT NULL
 , requested_date	DATE				DEFAULT NULL
 , scheduled_at		DATETIME			DEFAULT NULL
@@ -20,3 +21,5 @@ CREATE TABLE IF NOT EXISTS ReqLines
 , KEY thread	(thread_id	)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
+
+ALTER TABLE ReqLines	ADD COLUMN batchin_id		BIGINT		DEFAULT NULL	AFTER thread_id;

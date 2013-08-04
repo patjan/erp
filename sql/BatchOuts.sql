@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS BatchOuts
 
 , checkout_id		BIGINT				DEFAULT NULL
 , thread_id			BIGINT				DEFAULT NULL
+, batchin_id		BIGINT				DEFAULT NULL
 , req_line_id		BIGINT				DEFAULT NULL
 , code				VARCHAR(32)			DEFAULT NULL
 , batch				VARCHAR(32)			DEFAULT NULL
@@ -24,3 +25,5 @@ CREATE TABLE IF NOT EXISTS BatchOuts
 , KEY thread	(thread_id	)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
+
+ALTER TABLE BatchOuts	ADD COLUMN batchin_id		BIGINT		DEFAULT NULL	AFTER thread_id;
