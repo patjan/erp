@@ -15,14 +15,14 @@ JKY.display_lines = function() {
 JKY.generate_lines = function(response) {
 	var my_html		= '';
 	JKY.Request.set_requested(0);
-	JKY.Request.set_checkout(0);
+	JKY.Request.set_checkout (0);
 	var my_rows		= response.rows;
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];
 			my_html += JKY.generate_row(my_row);
 			JKY.Request.add_requested(my_row.requested_weight);
-			JKY.Request.add_checkout(my_row.checkout_weight);
+			JKY.Request.add_checkout (my_row.checkout_weight );
 		}
 	}
 	JKY.set_html('jky-line-body', my_html );
@@ -45,9 +45,9 @@ JKY.generate_row = function(the_row) {
 		+ '<td class="jky-action"			>' + my_trash + '</td>'
 		+ '<td class="jky-line-thread"		>' + my_line  + '</td>'
 		+ '<td class="jky-line-value"		><input class="jky-line-requested-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.requested_weight) + '"						/></td>'
-		+ '<td class="jky-line-value"		><input class="jky-line-requested-date"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_date	(the_row.requested_date	) + '"						/></td>'
-		+ '<td class="jky-line-value"		><input class="jky-line-checkout-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.checkout_weight) + '" disabled="disabled"	/></td>'
-		+ '<td class="jky-line-value"		><input class="jky-line-scheduled-at"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	) + '" disabled="disabled"	/></td>'
+		+ '<td class="jky-line-value"		><input class="jky-line-requested-date"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_date	(the_row.requested_date	 ) + '"						/></td>'
+		+ '<td class="jky-line-value"		><input class="jky-line-checkout-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.checkout_weight ) + '" disabled="disabled"	/></td>'
+		+ '<td class="jky-line-value"		><input class="jky-line-scheduled-at"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	 ) + '" disabled="disabled"	/></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -60,17 +60,11 @@ JKY.update_line = function(id_name, the_id ) {
 	var my_thread_id		= my_tr.find('.jky-thread-row-id').val();
 	var my_requested_weight	= parseFloat(my_tr.find('.jky-line-requested-weight'	).val());
 	var my_requested_date	= JKY.inp_date(my_tr.find('.jky-line-requested-date'	).val());
-//	var my_checkout_weight	= parseFloat(my_tr.find('.jky-line-checkout-weight'	).val());
-//	var my_scheduled_at		= JKY.inp_time(my_tr.find('.jky-line-scheduled-at'	).val());
-//	if (my_requested_date != 'null')		{my_requested_date = '\'' + my_requested_date + '\'';	}
-//	if (my_scheduled_at  != 'null')		{my_scheduled_at  = '\'' + my_scheduled_at  + '\'';	}
 
 	var my_set = ''
 		+         'thread_id = ' + my_thread_id
 		+', requested_weight = ' + my_requested_weight
 		+  ', requested_date = ' + my_requested_date
-//		+ ', checkout_weight = ' + my_checkout_weight
-//		+    ', scheduled_at = ' + my_scheduled_at
 		;
 	var my_data =
 		{ method	: 'update'
@@ -128,7 +122,8 @@ JKY.delete_line_success = function(response) {
 
 JKY.update_total_weight = function() {
 	JKY.set_html('jky-line-total-requested', JKY.Request.get_requested());
-	JKY.set_html('jky-line-total-checkout', JKY.Request.get_checkout());
+	JKY.set_html('jky-line-total-checkout' , JKY.Request.get_checkout ());
+	JKY.Request.update_requested_weight(JKY.row.id);
 }
 
 JKY.print_lines = function(the_id) {

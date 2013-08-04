@@ -384,6 +384,7 @@ $translations = array
 , "Thread 1"=>"Thread 1"
 , "Thread 2"=>"Thread 2"
 , "Thread 3"=>"Thread 3"
+, "Thread 4"=>"Thread 4"
 , "Thread Color"=>"Thread Color"
 , "Thread Group"=>"Thread Group"
 , "Thread Groups"=>"Thread Groups"

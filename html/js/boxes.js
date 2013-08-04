@@ -16,7 +16,7 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: ''
 		, filter		: ''
-		, sort_by		: 'batch'
+		, sort_by		: 'barcode'
 		, sort_seq		: 'DESC'
 		, focus			: 'jky-received-time'
 		, add_new		: 'display form'

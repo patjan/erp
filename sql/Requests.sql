@@ -12,6 +12,8 @@ CREATE TABLE IF NOT EXISTS Requests
 , ordered_at		DATETIME			DEFAULT NULL
 , requested_date	DATE				DEFAULT NULL
 , scheduled_at		DATETIME			DEFAULT NULL
+, requested_weight	DECIMAL(10,2)		DEFAULT 0
+, checkout_weight	DECIMAL(10,2)		DEFAULT 0
 , machine_id		BIGINT				DEFAULT NULL
 , supplier_id		BIGINT				DEFAULT NULL
 , supplier_ref      VARCHAR(32)			DEFAULT NULL
@@ -29,3 +31,7 @@ INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, 
 ALTER TABLE Requests		CHANGE	expected_date	requested_date		DATE;
 ALTER TABLE Requests		CHANGE	checkout_id		supplier_id			BIGINT;
 ALTER TABLE Requests		CHANGE	checkout_ref	supplier_ref		VARCHAR(32);
+
+ALTER TABLE Requests	ADD COLUMN requested_weight		DECIMAL(10,2)		DEFAULT 0	AFTER scheduled_at;
+ALTER TABLE Requests	ADD COLUMN checkout_weight		DECIMAL(10,2)		DEFAULT 0	AFTER scheduled_at;
+

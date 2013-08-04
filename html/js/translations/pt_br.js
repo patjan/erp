@@ -384,6 +384,7 @@ JKY.translations =
 , "Thread 1":"Fio 1"
 , "Thread 2":"Fio 2"
 , "Thread 3":"Fio 3"
+, "Thread 4":"Fio 4"
 , "Thread Color":"Cor Fio"
 , "Thread Group":"Grupo Fio"
 , "Thread Groups":"Grupos Fio"

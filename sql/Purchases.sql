@@ -12,6 +12,8 @@ CREATE TABLE IF NOT EXISTS Purchases
 , ordered_at		DATETIME			DEFAULT NULL
 , expected_date		DATE				DEFAULT NULL
 , scheduled_at		DATETIME			DEFAULT NULL
+, expected_weight	DECIMAL(10,2)		DEFAULT 0
+, received_weight	DECIMAL(10,2)		DEFAULT 0
 , supplier_id		BIGINT				DEFAULT NULL
 , supplier_ref      VARCHAR(32)			DEFAULT NULL
 , payment_term      VARCHAR(255)		DEFAULT NULL
@@ -23,3 +25,6 @@ CREATE TABLE IF NOT EXISTS Purchases
 ;
 
 INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next Purchase Number', value='100001', created_by=1, created_at=NOW();
+
+ALTER TABLE Purchases	ADD COLUMN received_weight		DECIMAL(10,2)		DEFAULT 0	AFTER scheduled_at;
+ALTER TABLE Purchases	ADD COLUMN expected_weight		DECIMAL(10,2)		DEFAULT 0	AFTER scheduled_at;

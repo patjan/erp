@@ -60,17 +60,11 @@ JKY.update_line = function(id_name, the_id ) {
 	var my_thread_id		= my_tr.find('.jky-thread-row-id').val();
 	var my_expected_weight	= parseFloat(my_tr.find('.jky-line-expected-weight'	).val());
 	var my_expected_date	= JKY.inp_date(my_tr.find('.jky-line-expected-date'	).val());
-//	var my_received_weight	= parseFloat(my_tr.find('.jky-line-received-weight'	).val());
-//	var my_scheduled_at		= JKY.inp_time(my_tr.find('.jky-line-scheduled-at'	).val());
-//	if (my_expected_date != 'null')		{my_expected_date = '\'' + my_expected_date + '\'';	}
-//	if (my_scheduled_at  != 'null')		{my_scheduled_at  = '\'' + my_scheduled_at  + '\'';	}
 
 	var my_set = ''
 		+        'thread_id = ' + my_thread_id
 		+', expected_weight = ' + my_expected_weight
 		+  ', expected_date = ' + my_expected_date
-//		+', received_weight = ' + my_received_weight
-//		+   ', scheduled_at = ' + my_scheduled_at
 		;
 	var my_data =
 		{ method	: 'update'
@@ -129,6 +123,7 @@ JKY.delete_line_success = function(response) {
 JKY.update_total_weight = function() {
 	JKY.set_html('jky-line-total-expected', JKY.Purchase.get_expected());
 	JKY.set_html('jky-line-total-received', JKY.Purchase.get_received());
+	JKY.Purchase.update_expected_weight(JKY.row.id);
 }
 
 JKY.print_lines = function(the_id) {

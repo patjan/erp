@@ -694,7 +694,7 @@ JKY.set_src = function(the_id , the_file_name){
 	$('#' + the_id).attr('src', the_file_name);
 }
 
-/**	
+/**
  * set specific id attr css with value
  * @param	the_id
  * @param	the_css

@@ -28,11 +28,12 @@ JKY.generate_loads = function(response) {
 				+ '<td class="jky-load-thread-name-1"	><select class="jky-load-thread-name-1"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_row.thread_id_1, JKY.loads, true) + '</select></td>'
 				+ '<td class="jky-load-thread-name-2"	><select class="jky-load-thread-name-2"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_row.thread_id_2, JKY.loads, true) + '</select></td>'
 				+ '<td class="jky-load-thread-name-3"	><select class="jky-load-thread-name-3"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_row.thread_id_3, JKY.loads, true) + '</select></td>'
+				+ '<td class="jky-load-thread-name-4"	><select class="jky-load-thread-name-4"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_row.thread_id_4, JKY.loads, true) + '</select></td>'
 				+ '</tr>'
 				+ '<tr>'
 				+ '<td></td>'
 				+ '<td colspan=2 class="jky-load-label-remarks"><span>' + JKY.t('Remarks') + '</span>:</td>'
-				+ '<td colspan=3 class="jky-load-remarks"><textarea  class="jky-load-remarks"				onchange="JKY.update_load(this, ' + my_id + ')">' + my_row.remarks + '</textarea></td>'
+				+ '<td colspan=4 class="jky-load-remarks"><textarea  class="jky-load-remarks"				onchange="JKY.update_load(this, ' + my_id + ')">' + my_row.remarks + '</textarea></td>'
 				+ '</tr>'
 				;
 		}
@@ -53,6 +54,7 @@ JKY.update_load = function(id_name, the_id) {
 	var my_thread_id_1	= my_tr.find('td .jky-load-thread-name-1').val();
 	var my_thread_id_2	= my_tr.find('td .jky-load-thread-name-2').val();
 	var my_thread_id_3	= my_tr.find('td .jky-load-thread-name-3').val();
+	var my_thread_id_4	= my_tr.find('td .jky-load-thread-name-4').val();
 	var my_remarks		= my_tr.next().find('td .jky-load-remarks').val();
 	var my_set = ''
 		+       'input_from =  ' + my_input_from
@@ -60,6 +62,7 @@ JKY.update_load = function(id_name, the_id) {
 		+    ', thread_id_1 =  ' + my_thread_id_1
 		+    ', thread_id_2 =  ' + my_thread_id_2
 		+    ', thread_id_3 =  ' + my_thread_id_3
+		+    ', thread_id_4 =  ' + my_thread_id_4
 		+        ', remarks =\'' + my_remarks + '\''
 		;
 	var my_data =
@@ -91,6 +94,7 @@ JKY.insert_load_success = function(response) {
 	var my_thread_id_1	=  0;
 	var my_thread_id_2	=  0;
 	var my_thread_id_3	=  0;
+	var my_thread_id_4	=  0;
 	var my_remarks		= '';
 	var	my_html = ''
 		+ '<tr ftp_load_id=' + my_id + '>'
@@ -100,11 +104,12 @@ JKY.insert_load_success = function(response) {
 		+ '<td class="jky-load-thread-name-1"	><select class="jky-load-thread-name-1"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_thread_id_1, JKY.loads, true) + '</select></td>'
 		+ '<td class="jky-load-thread-name-2"	><select class="jky-load-thread-name-2"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_thread_id_2, JKY.loads, true) + '</select></td>'
 		+ '<td class="jky-load-thread-name-3"	><select class="jky-load-thread-name-3"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_thread_id_3, JKY.loads, true) + '</select></td>'
+		+ '<td class="jky-load-thread-name-4"	><select class="jky-load-thread-name-4"				onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.set_options_array(my_thread_id_4, JKY.loads, true) + '</select></td>'
 		+ '</tr>'
 		+ '<tr>'
 		+ '<td></td>'
 		+ '<td colspan=2 class="jky-load-label-remarks"><span>Remarks</span>:</td>'
-		+ '<td colspan=3 class="jky-load-remarks"><textarea  class="jky-load-remarks"				onchange="JKY.update_load(this, ' + my_id + ')" value="' + my_remarks + '" /></td>'
+		+ '<td colspan=4 class="jky-load-remarks"><textarea  class="jky-load-remarks"				onchange="JKY.update_load(this, ' + my_id + ')" value="' + my_remarks + '" /></td>'
 		+ '</tr>'
 		;
 	JKY.append_html('jky-load-body', my_html);
@@ -199,6 +204,7 @@ JKY.print_loads = function(the_id) {
 						var my_thread_id_1	= my_row.thread_id_1;
 						var my_thread_id_2	= my_row.thread_id_2;
 						var my_thread_id_3	= my_row.thread_id_3;
+						var my_thread_id_4	= my_row.thread_id_4;
 						var my_remarks		= my_row.remarks;
 
 						my_html  += ''
@@ -206,13 +212,16 @@ JKY.print_loads = function(the_id) {
 							+ '<td></td>'
 							+ '<td>' + my_input_from	+ '</td>'
 							+ '<td>' + my_input_upto	+ '</td>'
-							+ '<td>' + JKY.get_name(my_thread_id_1, JKY.loads) + '</td>'
-							+ '<td>' + JKY.get_name(my_thread_id_2, JKY.loads) + '</td>'
-							+ '<td>' + JKY.get_name(my_thread_id_3, JKY.loads) + '</td>'
+							+ '<td>Fio 1 = ' + JKY.get_name(my_thread_id_1, JKY.loads) + '</td>'
 							+ '</tr>'
+							;
+						if (my_thread_id_2) {my_html += '<tr><td colspan="3"></td><td>Fio 2 = ' + JKY.get_name(my_thread_id_2, JKY.loads) + '</td></tr>';}
+						if (my_thread_id_3) {my_html += '<tr><td colspan="3"></td><td>Fio 3 = ' + JKY.get_name(my_thread_id_3, JKY.loads) + '</td></tr>';}
+						if (my_thread_id_4) {my_html += '<tr><td colspan="3"></td><td>Fio 4 = ' + JKY.get_name(my_thread_id_4, JKY.loads) + '</td></tr>';}
+						my_html  += ''
 							+ '<tr>'
 							+ '<td colspan=3></td>'
-							+ '<td colspan=3><b>' + JKY.nl2br(my_remarks) + '</b></td>'
+							+ '<td><b>' + JKY.nl2br(my_remarks) + '</b></td>'
 							+ '</tr>'
 							;
 					}

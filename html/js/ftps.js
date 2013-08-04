@@ -297,7 +297,7 @@ JKY.print_row = function(the_id) {
 		+ "</table>"
 		+ "<br>"
 		+ "<table style='width:700px; border:1px solid black;'>"
-		+ "<thead><tr class='jky-print-head'><td><span>Loads</span></td><td><span>From</span></td><td><span>Upto</span></td><td><span>Thread 1</span></td><td><span>Thread 2</span></td><td><span>Thread 3</span></td><tr><thead>"
+		+ "<thead><tr class='jky-print-head'><td><span>Loads</span></td><td><span>From</span></td><td><span>Upto</span></td><td></td><tr><thead>"
 		+ "<tbody id='jky-print-load-body'></table>"
 		+ "</table>"
 		+ "<br>"

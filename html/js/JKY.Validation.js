@@ -9,6 +9,18 @@ JKY.Validation = function() {
 	var my_row;
 	var my_id;
 
+	/**
+	 *	process validation only inside of jky-form-data
+	 */
+	var my_is_loaded = function(the_dom_id) {
+		if ($('#jky-form-data').find('#' + the_dom_id).length > 0
+		&& (my_id == null || my_id == the_dom_id)) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	function my_is_invalid(the_row, the_id) {
 		my_row	= the_row;
 		my_id	= the_id ;
@@ -53,7 +65,7 @@ JKY.Validation = function() {
 	}
 
 	function my_validate_numeric(the_dom_id, the_label) {
-		if (JKY.is_loaded(the_dom_id) && (my_id == null || my_id == the_dom_id)) {
+		if (my_is_loaded(the_dom_id)) {
 			var my_value = JKY.get_value(the_dom_id);
 //			if (JKY.is_empty(my_value) || JKY.is_numeric(my_value)) {
 			if (JKY.is_numeric(my_value)) {
@@ -66,7 +78,7 @@ JKY.Validation = function() {
 	}
 
 	function my_validate_required(the_dom_id, the_label) {
-		if (JKY.is_loaded(the_dom_id) && (my_id == null || my_id == the_dom_id)) {
+		if (my_is_loaded(the_dom_id)) {
 			var my_value = JKY.get_value(the_dom_id);
 			if (JKY.is_empty(my_value)) {
 				if (the_dom_id == 'jky-contact-company') {
@@ -88,7 +100,7 @@ JKY.Validation = function() {
 			return '';
 		}
 
-		if (JKY.is_loaded(the_dom_id) && (my_id == null || my_id == the_dom_id)) {
+		if (my_is_loaded(the_dom_id)) {
 /**
  * skip the validation for input with attr = readonly
  */

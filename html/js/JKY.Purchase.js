@@ -2,31 +2,44 @@
 
 /**
  * JKY.Purchase - process all changes during one transaction
- *				 control save into private array [my_appraisals]
- *
- * method:	display(the_id)
- * 			load_data()
- *			click_row(the_index, the_id)
- *			add_new()
- *
- * require:	JKY.Utils.js(JKY.display_confirm)
- *
- * 		$(my_parent).find('.jky-Purchase-row-id'  ).val(the_id );
- *		$(my_parent).find('.jky-Purchase-row-name').val(my_name);
  */
 JKY.Purchase = function() {
 	var my_expected	= 0;
 	var my_received	= 0;
+
 	function my_add_expected(the_weight) {
 		if (the_weight != null) {
 			my_expected += parseFloat(the_weight);
+			my_expected  = Math.round(my_expected);
 		}
 	}
 
 	function my_add_received(the_weight) {
 		if (the_weight != null) {
 			my_received += parseFloat(the_weight);
+			my_received  = Math.round(my_received * 100) / 100
+
 		}
+	}
+
+	function my_update_expected_weight(the_id) {
+		var my_data =
+			{ method	: 'update'
+			, table		: 'Purchases'
+			, where		: 'id =' + the_id
+			, set		: 'expected_weight=' + my_expected
+			};
+		JKY.ajax(true, my_data);
+	}
+
+	function my_update_received_weight(the_id) {
+		var my_data =
+			{ method	: 'update'
+			, table		: 'Purchases'
+			, where		: 'id =' + the_id
+			, set		: 'received_weight=' + my_received
+			};
+		JKY.ajax(true, my_data);
 	}
 
 	$(function() {
@@ -41,5 +54,8 @@ JKY.Purchase = function() {
 
 		, get_expected	: function()			{return my_expected;}
 		, get_received	: function()			{return my_received;}
+
+		, update_expected_weight: function(the_id)		{my_update_expected_weight(the_id);}
+		, update_received_weight: function(the_id)		{my_update_received_weight(the_id);}
 	};
 }();

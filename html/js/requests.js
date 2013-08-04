@@ -49,7 +49,7 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-planning-requests');
 	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
-	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
+	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), true));
 //	JKY.set_html('jky-app-select-label', JKY.t('Type'));
 //	JKY.show('jky-app-select-line');
 };
@@ -113,7 +113,7 @@ JKY.get_form_set = function() {
 	var my_set = ''
 		+      'source_doc=\'' + JKY.get_value	('jky-source-doc'		) + '\''
 		+    ', ordered_at=  ' + JKY.inp_time(JKY.get_value('jky-ordered-value'		))
-		+ ', requested_date=  ' + JKY.inp_date(JKY.get_value('jky-requested-value'	))
+		+ ', requested_date= ' + JKY.inp_date(JKY.get_value('jky-requested-value'	))
 		+  ', scheduled_at=  ' + JKY.inp_time(JKY.get_value('jky-scheduled-value'	))
 		+    ', machine_id=  ' + my_machine_id
 		+   ', supplier_id=  ' + my_supplier_id

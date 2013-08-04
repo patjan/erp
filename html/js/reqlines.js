@@ -38,9 +38,7 @@ JKY.set_all_events = function() {
 	$('#jky-requested-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 	$('#jky-scheduled-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
-	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
-	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
-	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
+	$('#jky-action-batch'	).click( function() {JKY.generate_batch();})
 };
 
 /**
@@ -86,7 +84,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-requested-weight'		, the_row.requested_weight	);
 	JKY.set_value	('jky-checkout-weight'		, the_row.checkout_weight	);
 
-	JKY.display_lines();
+//	JKY.display_lines();
 };
 
 /**
@@ -108,11 +106,6 @@ JKY.set_add_new_row = function() {
  *	get form set
  */
 JKY.get_form_set = function() {
-	var my_machine_id  = JKY.get_value('jky-machine-name' );
-	var my_supplier_id = JKY.get_value('jky-supplier-name');
-	my_machine_id  = (my_machine_id  == '') ? 'null' : my_machine_id ;
-	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
-
 	var my_set = ''
 		+      ', machine_id=  ' + my_machine_id
 		+	  ', supplier_id=  ' + my_supplier_id
@@ -120,9 +113,6 @@ JKY.get_form_set = function() {
 		+	   ', ordered_at=  ' + JKY.inp_time(JKY.get_value('jky-ordered-value'	))
 		+  ', requested_date=  ' + JKY.inp_date(JKY.get_value('jky-requestd-value'	))
 		+	 ', scheduled_at=  ' + JKY.inp_time(JKY.get_value('jky-scheduled-value'	))
-		+', requested_weight=  ' + JKY.get_value('jky-requested-weight'	)
-		+ ', checkout_weight=  ' + JKY.get_value('jky-checkout-weight'	)
-
 		;
 	return my_set;
 };
@@ -136,3 +126,57 @@ JKY.process_delete = function(the_id, the_row) {
 	JKY.ajax(true, my_data);
 };
 
+JKY.generate_batch = function() {
+	JKY.insert_incoming();
+}
+
+JKY.insert_incoming = function() {
+	var my_invoice_date = JKY.row.expected_date;
+	if (my_invoice_date == null) {
+		my_invoice_date = JKY.get_date();
+	}
+	var my_incoming = ''
+		+   '  supplier_id=  ' + JKY.row.supplier_id
+		+        ', nfe_dl=\'' + '' + '\''
+		+        ', nfe_tm=\'' + '' + '\''
+		+  ', invoice_date=\'' + my_invoice_date + '\''
+		+', invoice_weight=  ' + JKY.row.expected_weight
+		;
+	var my_data =
+		{ method	: 'insert'
+		, table		: 'Incomings'
+		, set		: my_incoming
+		};
+	JKY.ajax(false, my_data, JKY.insert_batch);
+}
+
+JKY.insert_batch = function(response) {
+	var my_batch = ''
+		+     '  incoming_id=  ' + response.id
+		+       ', thread_id=  ' + JKY.row.thread_id
+		+', purchase_line_id=  ' + JKY.row.id
+		+            ', code=\'' + '' + '\''
+		+           ', batch=\'' + '' + '\''
+		;
+	var my_data =
+		{ method	: 'insert'
+		, table		: 'Batches'
+		, set		: my_batch
+		};
+	JKY.ajax(false, my_data, JKY.connect_batch);
+}
+
+JKY.connect_batch = function(response) {
+	var my_data =
+		{ method	: 'update'
+		, table		: 'PurchaseLines'
+		, set		: 'batch_id = ' + response.id
+		, where		: 'id = ' + JKY.row.id
+		};
+	JKY.ajax(false, my_data, JKY.refresh_form);
+}
+
+JKY.refresh_form = function(response) {
+	JKY.display_message('Batch row generated');
+	JKY.Application.display_row();
+}

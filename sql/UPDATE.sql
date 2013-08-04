@@ -103,3 +103,10 @@ UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND na
 
 ALTER TABLE Requests	AUTO_INCREMENT	= 100001;
 UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next Request Number'	;
+----- 2013/08/01
+ALTER TABLE FTP_Loads		ADD COLUMN thread_id_4    			BIGINT   		DEFAULT NULL  AFTER thread_id_3;
+----- 2013/08/03
+ALTER TABLE Purchases	ADD COLUMN received_weight		DECIMAL(10,2)		DEFAULT 0	AFTER scheduled_at;
+ALTER TABLE Purchases	ADD COLUMN expected_weight		DECIMAL(10,2)		DEFAULT 0	AFTER scheduled_at;
+ALTER TABLE Requests	ADD COLUMN requested_weight		DECIMAL(10,2)		DEFAULT 0	AFTER scheduled_at;
+ALTER TABLE Requests	ADD COLUMN checkout_weight		DECIMAL(10,2)		DEFAULT 0	AFTER scheduled_at;

@@ -689,6 +689,7 @@ private function set_new_fields($table) {
 												. ',   Threads.name				AS			thread_name'
 												. ', BatchOuts.checkout_weight	AS			checkout_weight'
 												. ', CheckOuts.checkout_at		AS			checkout_at'
+												. ',  Machines.name				AS			machine_name'
 												. ',  Supplier.nick_name		AS			supplier_name';
 	if ($table == 'CheckOuts'		)	$return = ',  Supplier.nick_name		AS supplier_name'
 												. ',  Machines.name				AS  machine_name';
@@ -763,6 +764,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		  ReqLines.thread_id'
 												. '  LEFT JOIN   BatchOuts  			ON BatchOuts.id	=		  ReqLines.batch_id'
 												. '  LEFT JOIN   CheckOuts				ON CheckOuts.id	=		 BatchOuts.checkout_id'
+												. '  LEFT JOIN    Machines				ON  Machines.id	=		  Requests.machine_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		  Requests.supplier_id';
 	if ($table == 'CheckOuts'		)	$return = '  LEFT JOIN    Machines				ON  Machines.id	=		 CheckOuts.machine_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id';
@@ -3989,22 +3991,11 @@ private function echo_error( $message ) {
 
 		$sql= 'SET @cut_off_date = ' . $reference_date . ';'
 
-			. 'TRUNCATE	ThreadBalance;'
-			. 'TRUNCATE	ThreadForecast;'
-			. 'TRUNCATE	PurchaseForecast;'
+			. 'TRUNCATE PurchaseMonthly;'
+			. 'TRUNCATE ThreadJoined;'
+			. 'TRUNCATE ThreadForecast;'
 
-			. 'INSERT ThreadBalance(thread_id, supplier_id, current_balance)'
-			. 'SELECT Batches.thread_id'
-			. '	    , Incomings.supplier_id'
-			. '	    , SUM(Batches.checkin_weight + Batches.returned_weight - Batches.checkout_weight) AS current_balance'
-			. '  FROM Batches'
-			. '  LEFT JOIN Incomings ON Incomings.id = Batches.incoming_id'
-			. ' WHERE Batches.status = "Active"'
-			. '   AND DATE(Incomings.received_at) <= @cut_off_date'
-			. ' GROUP BY thread_id, supplier_id'
-			. ';'
-
-			. 'INSERT PurchaseForecast(thread_id, supplier_id, months, forecast_weight)'
+			. 'INSERT PurchaseMonthly(thread_id, supplier_id, months, forecast_weight)'
 			. 'SELECT PurchaseLines.thread_id'
 			. '	    , Purchases.supplier_id'
 			. '	    , 12 * (YEAR(PurchaseLines.expected_date) - YEAR(@cut_off_date)) + (MONTH(PurchaseLines.expected_date) - MONTH(@cut_off_date)) AS months'
@@ -4015,23 +4006,34 @@ private function echo_error( $message ) {
 			. ' GROUP BY thread_id, supplier_id, months'
 			. ';'
 
-			. 'INSERT ThreadForecast(thread_id, supplier_id, forecast_past, forecast_month_1, forecast_month_2, forecast_month_3, forecast_future)'
+			. 'INSERT ThreadJoined(thread_id, supplier_id, current_balance)'
+			. 'SELECT Batches.thread_id'
+			. '	    , Incomings.supplier_id'
+			. '	    , SUM(Batches.checkin_weight + Batches.returned_weight - Batches.checkout_weight) AS current_balance'
+			. '  FROM Batches'
+			. '  LEFT JOIN Incomings ON Incomings.id = Batches.incoming_id'
+			. ' WHERE Batches.status = "Active"'
+			. '   AND DATE(Incomings.received_at) <= @cut_off_date'
+			. ' GROUP BY thread_id, supplier_id'
+			. ';'
+
+			. 'INSERT ThreadJoined(thread_id, supplier_id, months, forecast_weight)'
+			. 'SELECT *'
+			. '  FROM PurchaseMonthly'
+			. ';'
+
+ 			. 'INSERT ThreadForecast(thread_id, supplier_id, current_balance, forecast_past, forecast_month_1, forecast_month_2, forecast_month_3, forecast_future)'
 			. 'SELECT thread_id'
 			. '	    , supplier_id'
+			. '	    , SUM(current_balance) AS current_balance'
 			. '	    , SUM(IF (months < 1, forecast_weight, 0)) AS forecast_past'
 			. '	    , SUM(IF (months = 1, forecast_weight, 0)) AS forecast_month_1'
 			. '	    , SUM(IF (months = 2, forecast_weight, 0)) AS forecast_month_2'
 			. '	    , SUM(IF (months = 3, forecast_weight, 0)) AS forecast_month_3'
 			. '	    , SUM(IF (months > 3, forecast_weight, 0)) AS forecast_future'
-			. '  FROM PurchaseForecast'
+			. '  FROM ThreadJoined'
 			. ' GROUP BY thread_id, supplier_id'
  			. ';'
-
-			. 'REPLACE ThreadForecast(thread_id, supplier_id, current_balance)'
- 			. ' SELECT thread_id, supplier_id, current_balance'
-			. '   FROM ThreadBalance'
-			. '  GROUP BY thread_id, supplier_id'
-			. ';'
 
 			. 'UPDATE Configs'
 			. '   SET Configs.value = @cut_off_date'
