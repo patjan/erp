@@ -3964,7 +3964,7 @@ private function echo_error( $message ) {
 //			system( '( tcp.exe ' . $ip_number . ' 9100 ' . $out_name . ' & ) > /dev/null');
 //			system( '( php ' . APPLICATION . 'GenerateHtml.php & ) > /dev/null' );
 
-//			exec( 'tcp.exe ' . $ip_number . ' 9100 ' . $out_name );
+			exec( 'tcp.exe ' . $ip_number . ' 9100 ' . $out_name );
 
 			$sql= 'UPDATE Boxes'
 				. '   SET is_printed = "Yes"'
