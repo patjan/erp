@@ -599,6 +599,7 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'Contacts'		&& $specific == 'company'		)	$return .= ' AND  Contacts.company_id	= ' . $specific_id;
 	if ($table == 'FTPs'			&& $specific == 'product'		)	$return .= ' AND      FTPs.product_id	= ' . $specific_id;
 	if ($table == 'Batches'			&& $specific == 'incoming'		)	$return .= ' AND   Batches.incoming_id	= ' . $specific_id;
+	if ($table == 'Batches'			&& $specific == 'thread'		)	$return .= ' AND   Batches.thread_id	= ' . $specific_id;
 	if ($table == 'BatchOuts'		&& $specific == 'checkout'		)	$return .= ' AND BatchOuts.checkout_id	= ' . $specific_id;
 
 	return $return;
@@ -687,6 +688,7 @@ private function set_new_fields($table) {
 												. ',  Requests.machine_id		AS			machine_id'
 												. ',  Requests.supplier_id		AS			supplier_id'
 												. ',   Threads.name				AS			thread_name'
+												. ',   Batches.batch			AS			batch_number'
 												. ', BatchOuts.checkout_weight	AS			checkout_weight'
 												. ', CheckOuts.checkout_at		AS			checkout_at'
 												. ',  Machines.name				AS			machine_name'
@@ -694,6 +696,7 @@ private function set_new_fields($table) {
 	if ($table == 'CheckOuts'		)	$return = ',  Supplier.nick_name		AS supplier_name'
 												. ',  Machines.name				AS  machine_name';
 	if ($table == 'BatchOuts'		)	$return = ',   Threads.name				AS	 thread_name'
+												. ',   Batches.batch			AS			batch_number'
 												. ', CheckOuts.number			AS checkout_number';
 	if ($table == 'ThreadForecast'	)	$return = ',  Contacts.nick_name		AS supplier_name'
 												. ',   Threads.thread_group		AS	 thread_group'
@@ -762,6 +765,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		  Requests.supplier_id';
 	if ($table == 'ReqLines'		)	$return = '  LEFT JOIN    Requests  			ON  Requests.id	=		  ReqLines.request_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		  ReqLines.thread_id'
+												. '  LEFT JOIN     Batches  			ON   Batches.id	=		  ReqLines.batchin_id'
 												. '  LEFT JOIN   BatchOuts  			ON BatchOuts.id	=		  ReqLines.batch_id'
 												. '  LEFT JOIN   CheckOuts				ON CheckOuts.id	=		 BatchOuts.checkout_id'
 												. '  LEFT JOIN    Machines				ON  Machines.id	=		  Requests.machine_id'
@@ -770,6 +774,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id';
 	if ($table == 'BatchOuts'		)	$return = '  LEFT JOIN   CheckOuts  			ON CheckOuts.id	=		 BatchOuts.checkout_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		 BatchOuts.thread_id'
+												. '  LEFT JOIN     Batches  			ON   Batches.id	=		 BatchOuts.batchin_id'
 												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=		 BatchOuts.req_line_id';
 	if ($table == 'ThreadForecast'	)	$return = '  LEFT JOIN    Contacts  			ON  Contacts.id	=	ThreadForecast.supplier_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=	ThreadForecast.thread_id'

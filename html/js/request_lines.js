@@ -35,15 +35,21 @@ JKY.generate_lines = function(response) {
 JKY.generate_row = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = (the_row.batch_id == null) ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
-	var my_line = ''
+	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
 		+ "<input class='jky-thread-row-name jky-form-value' readonly='readonly' onclick='JKY.update_line(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
 		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
+	var my_batchin = ''
+		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
+		+ "<input class='jky-batchin-row-batch jky-form-value' readonly='readonly' onclick='JKY.update_line(this, " + my_id + ")' value='" + the_row.batch_number + "' />"
+		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
+		;
 	var my_html = ''
 		+ '<tr request_line_id=' + my_id + '>'
-		+ '<td class="jky-action"			>' + my_trash + '</td>'
-		+ '<td class="jky-line-thread"		>' + my_line  + '</td>'
+		+ '<td class="jky-action"			>' + my_trash	+ '</td>'
+		+ '<td class="jky-line-thread"		>' + my_thread	+ '</td>'
+		+ '<td class="jky-line-batchin"		>' + my_batchin	+ '</td>'
 		+ '<td class="jky-line-value"		><input class="jky-line-requested-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.requested_weight) + '"						/></td>'
 		+ '<td class="jky-line-value"		><input class="jky-line-requested-date"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_date	(the_row.requested_date	 ) + '"						/></td>'
 		+ '<td class="jky-line-value"		><input class="jky-line-checkout-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.checkout_weight ) + '" disabled="disabled"	/></td>'
@@ -58,11 +64,13 @@ JKY.update_line = function(id_name, the_id ) {
 
 	var my_tr = $(id_name).parent().parent();
 	var my_thread_id		= my_tr.find('.jky-thread-row-id').val();
+	var my_batchin_id		= my_tr.find('.jky-batchin-row-id').val();
 	var my_requested_weight	= parseFloat(my_tr.find('.jky-line-requested-weight'	).val());
 	var my_requested_date	= JKY.inp_date(my_tr.find('.jky-line-requested-date'	).val());
 
 	var my_set = ''
 		+         'thread_id = ' + my_thread_id
+		+      ', batchin_id = ' + my_batchin_id
 		+', requested_weight = ' + my_requested_weight
 		+  ', requested_date = ' + my_requested_date
 		;

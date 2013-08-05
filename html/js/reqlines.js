@@ -58,6 +58,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-machine-name"	>' + the_row.machine_name					+ '</td>'
 		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name					+ '</td>'
 		+  '<td class="jky-thread-name"		>' + the_row.thread_name					+ '</td>'
+		+  '<td class="jky-batch-number"	>' + the_row.batch_number					+ '</td>'
 		+  '<td class="jky-ordered-at"		>' + JKY.short_date(the_row.ordered_at   )	+ '</td>'
 		+  '<td class="jky-requested-date"	>' + JKY.out_date  (the_row.requested_date) + '</td>'
 		+  '<td class="jky-scheduled-at"	>' + JKY.short_date(the_row.scheduled_at )	+ '</td>'
@@ -75,6 +76,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-machine-name'		, the_row.machine_name				);
 	JKY.set_value	('jky-supplier-name'	, the_row.supplier_name				);
 	JKY.set_value	('jky-thread-name'		, the_row.thread_name				);
+	JKY.set_value	('jky-batch-number'		, the_row.batch_number				);
 	JKY.set_value	('jky-ordered-at'		, JKY.out_time(the_row.ordered_at	));
 	JKY.set_date	('jky-requested-date'	, JKY.out_date(the_row.requested_date));
 	JKY.set_value	('jky-requested-weight'	, the_row.requested_weight			);
@@ -101,6 +103,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-machine-name'		, '');
 	JKY.set_value	('jky-supplier-name'	, '');
 	JKY.set_value	('jky-thread-name'		, '');
+	JKY.set_value	('jky-batch-number'		, '');
 	JKY.set_value	('jky-ordered-at'		,  JKY.out_time(JKY.get_now ()));
 	JKY.set_date	('jky-requested-date'	,  JKY.out_date(JKY.get_date()));
 	JKY.set_value	('jky-requested-weight'	, '');
@@ -114,10 +117,11 @@ JKY.set_add_new_row = function() {
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-		+      ', machine_id=  ' + my_machine_id
-		+	  ', supplier_id=  ' + my_supplier_id
-		+	    ', thread_id=  ' + my_thread_id
-		+	  ', ordered_at=  ' + JKY.inp_time (JKY.get_value('jky-ordered-value'	))
+//		+     ', machine_id=  ' + my_machine_id
+//		+	 ', supplier_id=  ' + my_supplier_id
+//		+	   ', thread_id=  ' + my_thread_id
+//		+	  ', batchin_id=  ' + my_batchin_id
+		+	   ' ordered_at=  ' + JKY.inp_time (JKY.get_value('jky-ordered-value'	))
 		+ ', requested_date=  ' + JKY.inp_date (JKY.get_value('jky-requestd-value'	))
 		+   ', scheduled_at=  ' + JKY.inp_time (JKY.get_value('jky-scheduled-value'	))
 		;
@@ -159,12 +163,19 @@ JKY.insert_checkout = function() {
 }
 
 JKY.insert_batch = function(response) {
+	var my_batch = JKY.get_row('Batches', JKY.row.batchin_id);
+	var my_requested_boxes = Math.round(JKY.row.requested_weight / my_batch.average_weight + .9);
 	var my_set = ''
 		+     '  checkout_id=  ' + response.id
 		+       ', thread_id=  ' + JKY.row.thread_id
+		+      ', batchin_id=  ' + JKY.row.batchin_id
 		+     ', req_line_id=  ' + JKY.row.id
 		+            ', code=\'' + '' + '\''
-		+           ', batch=\'' + '' + '\''
+		+           ', batch=\'' + my_batch.number + '\''
+		+      ', unit_price=  ' + my_batch.unit_price
+		+  ', average_weight=  ' + my_batch.average_weight
+		+', requested_weight=  ' + JKY.row.requested_weight
+		+ ', requested_boxes=  ' + my_requested_boxes
 		;
 	var my_data =
 		{ method	: 'insert'

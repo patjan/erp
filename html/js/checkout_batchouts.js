@@ -47,16 +47,21 @@ JKY.generate_row = function(the_row) {
 		+ "<input class='jky-thread-row-name jky-form-value' readonly='readonly' onclick='JKY.update_batch(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
 		+ "<a class='jky-thread-row-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
+	var my_batchin = ''
+		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
+		+ "<input class='jky-batchin-row-batch jky-form-value' readonly='readonly' onclick='JKY.update_batch(this, " + my_id + ")' value='" + the_row.batch_number + "' />"
+		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
+		;
 	var my_print = (the_row.received_boxes == the_row.labels_printed) ? '' : '<a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
 	var my_html = ''
 		+ '<tr batch_id=' + my_id + '>'
 		+ '<td class="jky-action"><a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
 		+ '<td ><input  class="jky-batch-code"				text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.code			+ '" /></td>'
-		+ '<td ><input  class="jky-batch-number"			text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.batch			+ '" /></td>'
-		+ '<td class="jky-thread-row-name"		>' + my_thread + '</td>'
+		+ '<td class="jky-thread-row-name"		>' + my_thread	+ '</td>'
+		+ '<td class="jky-line-batchin"			>' + my_batchin	+ '</td>'
 		+ '<td ><input  class="jky-batch-average-weight"	text="text"								 disabled="disabled" value="' + the_row.average_weight	+ '" /></td>'
-		+ '<td ><input  class="jky-batch-requested-boxes"	text="text"								 disabled="disabled" value="' + the_row.requested_boxes	+ '" /></td>'
 		+ '<td ><input  class="jky-batch-requested-weight"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.requested_weight+ '" /></td>'
+		+ '<td ><input  class="jky-batch-requested-boxes"	text="text"								 disabled="disabled" value="' + the_row.requested_boxes	+ '" /></td>'
 		+ '<td class="jky-batch-labels-print"	>' + my_print + '</td>'
 		+ '<td ><input  class="jky-batch-checkout-weight"	text="text"								 disabled="disabled" value="' + the_row.checkout_weight	+ '" /></td>'
 		+ '<td ><input  class="jky-batch-checkout-boxes"	text="text"								 disabled="disabled" value="' + the_row.checkout_boxes	+ '" /></td>'
