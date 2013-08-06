@@ -7,6 +7,7 @@ var my_old_checkin_weight	= 0;
 var my_old_unit_price		= 0;
 var my_new_checkin_weight	= 0;
 var my_new_unit_price		= 0;
+var my_row_batch			= null;
 
 JKY.display_batches = function() {
 	my_checkout_id = JKY.row.id;
@@ -75,16 +76,31 @@ JKY.update_batch = function(id_name, the_id ) {
 	JKY.select_batch(the_id);
 	var my_tr = $(id_name).parent().parent();
 	var my_thread_id		= my_tr.find('.jky-thread-row-id'	).val();
+	var my_batchin_id		= my_tr.find('.jky-batchin-row-id'	).val();
 	var my_code				= my_tr.find('.jky-batch-code'		).val();
 	var my_batch			= my_tr.find('.jky-batch-number'	).val();
-	var my_average_weight	= parseFloat(my_tr.find('.jky-batch-average-weight'		).val());
-	var my_requested_boxes	= parseFloat(my_tr.find('.jky-batch-requested-boxes'	).val());
+//	var my_average_weight	= parseFloat(my_tr.find('.jky-batch-average-weight'	).val());
+//	var my_requested_boxes	= parseFloat(my_tr.find('.jky-batch-requested-boxes'	).val());
 	var my_requested_weight	= parseFloat(my_tr.find('.jky-batch-requested-weight'	).val());
+
+	var my_unit_price		= 0;
+	var my_average_weight	= 0;
+	var my_requested_boxes	= 0;
+	if (!isNaN(my_batchin_id)) {
+		my_row_batchin		= JKY.get_row('Batches', my_batchin_id);
+		my_unit_price		= my_row_batchin.unit_price;
+		my_average_weight	= my_row_batchin.average_weight;
+		my_requested_boxes	= Math.round(my_requested_weight / my_average_weight + 0.5);
+	}
+	my_tr.find('.jky-batch-average-weight'	).val(my_average_weight	);
+	my_tr.find('.jky-batch-requested-boxes'	).val(my_requested_boxes);
 
 	var my_set = ''
 		+          'thread_id =  ' + my_thread_id
+		+       ', batchin_id =  ' + my_batchin_id
 		+             ', code =\'' + my_code	+ '\''
 		+            ', batch =\'' + my_batch	+ '\''
+		+       ', unit_price =  ' + my_unit_price
 		+   ', average_weight =  ' + my_average_weight
 		+  ', requested_boxes =  ' + my_requested_boxes
 		+ ', requested_weight =  ' + my_requested_weight
@@ -163,7 +179,7 @@ JKY.select_batch_success = function(response) {
 JKY.update_checkout = function() {
 JKY.display_trace('update_checkout');
 	var my_delta_weight = (my_new_requested_weight - my_old_requested_weight);
-	var my_set = ' real_weight = real_weight + ' + my_delta_weight;
+	var my_set = ' requested_weight = requested_weight + ' + my_delta_weight;
 	var my_data =
 		{ method	: 'update'
 		, table		: 'CheckOuts'
@@ -181,16 +197,16 @@ JKY.display_trace('update_checkout_success');
 		, table		: 'CheckOuts'
 		, where		: 'CheckOuts.id = ' + my_checkout_id
 		};
-	JKY.ajax(true, my_data, JKY.display_checkout_real);
+	JKY.ajax(true, my_data, JKY.display_checkout_requested);
 }
 
-JKY.display_checkout_real = function(response) {
-JKY.display_trace('display_checkout_real');
+JKY.display_checkout_requested = function(response) {
+JKY.display_trace('display_checkout_requested');
 //	JKY.display_message(response.message)
-	var my_real_weight = parseFloat(response.row.real_weight);
-	var my_real_amount = parseFloat(response.row.real_amount);
-	JKY.set_value('jky-real-weight', my_real_weight);
-	JKY.set_value('jky-real-amount', my_real_amount);
+	var my_requested_weight = parseFloat(response.row.requested_weight);
+//	var my_requested_amount = parseFloat(response.row.requested_amount);
+	JKY.set_value('jky-requested-weight', my_requested_weight);
+//	JKY.set_value('jky-requested-amount', my_requested_amount);
 	JKY.set_calculated_color();
 }
 

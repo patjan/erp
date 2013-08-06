@@ -113,3 +113,10 @@ ALTER TABLE Requests	ADD COLUMN checkout_weight		DECIMAL(10,2)		DEFAULT 0	AFTER 
 ----- 2013/08/04
 ALTER TABLE ReqLines	ADD COLUMN batchin_id		BIGINT		DEFAULT NULL	AFTER thread_id;
 ALTER TABLE BatchOuts	ADD COLUMN batchin_id		BIGINT		DEFAULT NULL	AFTER thread_id;
+----- 2013/08/06
+ALTER TABLE CheckOuts		CHANGE	invoice_date	requested_date		DATE;
+ALTER TABLE CheckOuts		CHANGE	real_weight		requested_weight	DECIMAL(10,2);
+ALTER TABLE CheckOuts		CHANGE	real_amount		requested_amount	DECIMAL(10,2);
+ALTER TABLE CheckOuts		CHANGE	invoice_weight	checkout_weight		DECIMAL(10,2);
+ALTER TABLE CheckOuts		CHANGE	invoice_amount	checkout_amount		DECIMAL(10,2);
+

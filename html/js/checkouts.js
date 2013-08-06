@@ -58,15 +58,13 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-number"			>' + the_row.number			+ '</td>'
+		+  '<td class="jky-number"			>' + the_row.number				+ '</td>'
+		+  '<td class="jky-machine-name"	>' + the_row.machine_name		+ '</td>'
+		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name		+ '</td>'
+		+  '<td class="jky-requested-date"	>' + JKY.out_date(the_row.requested_date) 	+ '</td>'
+		+  '<td class="jky-requested-weight">' + the_row.requested_weight	+ '</td>'
 		+  '<td class="jky-checkout-time"	>' + JKY.short_date(the_row.checkout_at)	+ '</td>'
-		+  '<td class="jky-machine-name"	>' + the_row.machine_name	+ '</td>'
-		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name	+ '</td>'
-		+  '<td class="jky-nfe-dl"			>' + the_row.nfe_dl			+ '</td>'
-		+  '<td class="jky-nfe-tm"			>' + the_row.nfe_tm			+ '</td>'
-		+  '<td class="jky-invoice-date"	>' + JKY.out_date(the_row.invoice_date) 	+ '</td>'
-		+  '<td class="jky-invoice-weight"	>' + the_row.invoice_weight	+ '</td>'
-		+  '<td class="jky-invoice-amount"	>' + the_row.invoice_amount	+ '</td>'
+		+  '<td class="jky-checkout-weight"	>' + the_row.checkout_weight	+ '</td>'
 		;
 	return my_html;
 };
@@ -81,11 +79,11 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_option	('jky-supplier-name'	, the_row.supplier_id	);
 	JKY.set_value	('jky-nfe-dl'			, the_row.nfe_dl);
 	JKY.set_value	('jky-nfe-tm'			, the_row.nfe_tm);
-	JKY.set_date	('jky-invoice-date'		, JKY.out_date(the_row.invoice_date));
-	JKY.set_value	('jky-invoice-weight'	, the_row.invoice_weight);
-	JKY.set_value	('jky-invoice-amount'	, the_row.invoice_amount);
-	JKY.set_value	('jky-real-weight'		, the_row.real_weight);
-	JKY.set_value	('jky-real-amount'		, the_row.real_amount);
+	JKY.set_date	('jky-requested-date'	, JKY.out_date(the_row.requested_date));
+	JKY.set_value	('jky-requested-weight'	, the_row.requested_weight);
+//	JKY.set_value	('jky-requested-amount'	, the_row.requested_amount);
+	JKY.set_value	('jky-checkout-weight'	, the_row.checkout_weight);
+//	JKY.set_value	('jky-checkout-amount'	, the_row.checkout_amount);
 
 	JKY.set_calculated_color();
 	JKY.display_batches();
@@ -101,11 +99,11 @@ JKY.set_add_new_row = function() {
 	JKY.set_option	('jky-supplier-name'	, '');
 	JKY.set_value	('jky-nfe-dl'			, '');
 	JKY.set_value	('jky-nfe-tm'			, '');
-	JKY.set_date	('jky-invoice-date'		,  JKY.out_date(JKY.get_date()));
-	JKY.set_value	('jky-invoice-weight'	,  0);
-	JKY.set_value	('jky-invoice-amount'	,  0);
-	JKY.set_value	('jky-real-weight'		,  0);
-	JKY.set_value	('jky-real-amount'		,  0);
+	JKY.set_date	('jky-requested-date'		,  JKY.out_date(JKY.get_date()));
+	JKY.set_value	('jky-requested-weight'	,  0);
+//	JKY.set_value	('jky-requested-amount'	,  0);
+	JKY.set_value	('jky-checkout-weight'	,  0);
+//	JKY.set_value	('jky-checkout-amount'	,  0);
 }
 
 /**
@@ -118,14 +116,14 @@ JKY.get_form_set = function() {
 	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
 
 	var my_set = ''
-		+     'checkout_at=  ' + JKY.inp_time(JKY.get_value('jky-checkout-value'	))
-		+    ', machine_id=  ' + my_machine_id
-		+   ', supplier_id=  ' + my_supplier_id
-		+		 ', nfe_dl=\'' +			  JKY.get_value('jky-nfe-dl'			) + '\''
-		+		 ', nfe_tm=\'' +			  JKY.get_value('jky-nfe-tm'			) + '\''
-		+  ', invoice_date=  ' + JKY.inp_date(JKY.get_value('jky-invoice-value'		))
-		+', invoice_weight=  ' +			  JKY.get_value('jky-invoice-weight'	)
-		+', invoice_amount=  ' +			  JKY.get_value('jky-invoice-amount'	)
+		+       'checkout_at=  ' + JKY.inp_time(JKY.get_value('jky-checkout-value'	))
+		+      ', machine_id=  ' + my_machine_id
+		+     ', supplier_id=  ' + my_supplier_id
+		+          ', nfe_dl=\'' +				JKY.get_value('jky-nfe-dl'			) + '\''
+		+          ', nfe_tm=\'' +				JKY.get_value('jky-nfe-tm'			) + '\''
+		+  ', requested_date=  ' + JKY.inp_date(JKY.get_value('jky-requested-value'	))
+		+', requested_weight=  ' +				JKY.get_value('jky-requested-weight')
+//		+', requested_amount=  ' +				JKY.get_value('jky-requested-amount')
 		;
 	return my_set;
 };
@@ -143,10 +141,10 @@ JKY.process_delete = function(the_id, the_row) {
  *	set calculated color
  */
 JKY.set_calculated_color = function() {
-	var my_invoice_weight	= parseFloat(JKY.get_value('jky-invoice-weight'	));
-	var my_invoice_amount	= parseFloat(JKY.get_value('jky-invoice-amount'	));
-	var my_real_weight		= parseFloat(JKY.get_value('jky-real-weight'	));
-	var my_real_amount		= parseFloat(JKY.get_value('jky-real-amount'	));
-	JKY.set_css('jky-real-weight', 'color', (my_invoice_weight == my_real_weight) ? 'black' : 'red');
-	JKY.set_css('jky-real-amount', 'color', (my_invoice_amount == my_real_amount) ? 'black' : 'red');
+	var my_requested_weight	= parseFloat(JKY.get_value('jky-requested-weight'	));
+//	var my_requested_amount	= parseFloat(JKY.get_value('jky-requested-amount'	));
+	var my_checkout_weight	= parseFloat(JKY.get_value('jky-checkout-weight'	));
+//	var my_checkout_amount	= parseFloat(JKY.get_value('jky-checkout-amount'	));
+	JKY.set_css('jky-requested-weight', 'color', (my_requested_weight == my_checkout_weight) ? 'black' : 'red');
+//	JKY.set_css('jky-requested-amount', 'color', (my_requested_amount == my_checkout_amount) ? 'black' : 'red');
 }

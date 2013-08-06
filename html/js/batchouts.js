@@ -30,7 +30,7 @@ JKY.start_program = function() {
 JKY.set_all_events = function() {
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
 	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
-	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
+//	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 };
 
 /**
@@ -71,10 +71,10 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-code'					, the_row.code				);
 	JKY.set_value	('jky-batch'				, the_row.batch				);
 	JKY.set_value	('jky-requested-boxes'		, the_row.requested_boxes	);
-	JKY.set_value	('jky-checkout-boxes'		, the_row.checkou_boxes		);
+	JKY.set_value	('jky-checkout-boxes'		, the_row.checkout_boxes	);
 	JKY.set_value	('jky-unit-price'			, the_row.unit_price		);
 	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);
-	JKY.set_value	('jky-requested-weight'		, the_row.requestd_weight	);
+	JKY.set_value	('jky-requested-weight'		, the_row.requested_weight	);
 	JKY.set_value	('jky-checkout-weight'		, the_row.checkout_weight	);
 //	JKY.display_lines();
 };

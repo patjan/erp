@@ -13,11 +13,11 @@ CREATE TABLE IF NOT EXISTS CheckOuts
 , supplier_id		BIGINT				DEFAULT NULL
 , nfe_dl			VARCHAR(32)			DEFAULT NULL
 , nfe_tm			VARCHAR(32)			DEFAULT NULL
-, invoice_date		DATE				DEFAULT NULL
-, invoice_weight	DECIMAL(10,2)		DEFAULT 0
-, invoice_amount	DECIMAL(10,2)		DEFAULT 0
-, real_weight		DECIMAL(10,2)		DEFAULT 0
-, real_amount		DECIMAL(10,2)		DEFAULT 0
+, requested_date	DATE				DEFAULT NULL
+, checkout_weight	DECIMAL(10,2)		DEFAULT 0
+, checkout_amount	DECIMAL(10,2)		DEFAULT 0
+, requested_weight	DECIMAL(10,2)		DEFAULT 0
+, requested_amount	DECIMAL(10,2)		DEFAULT 0
 
 , PRIMARY KEY(id)
 , UNIQUE(number)
@@ -28,4 +28,9 @@ CREATE TABLE IF NOT EXISTS CheckOuts
 
 INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next CheckOut Number', value='100001', created_by=1, created_at=NOW();
 
-ALTER TABLE CheckOuts		CHANGE	checkout_id		supplier_id		BIGINT;
+ALTER TABLE CheckOuts		CHANGE	checkout_id		supplier_id			BIGINT;
+ALTER TABLE CheckOuts		CHANGE	invoice_date	requested_date		DATE;
+ALTER TABLE CheckOuts		CHANGE	real_weight		requested_weight	DECIMAL(10,2);
+ALTER TABLE CheckOuts		CHANGE	real_amount		requested_amount	DECIMAL(10,2);
+ALTER TABLE CheckOuts		CHANGE	invoice_weight	checkout_weight		DECIMAL(10,2);
+ALTER TABLE CheckOuts		CHANGE	invoice_amount	checkout_amount		DECIMAL(10,2);

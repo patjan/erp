@@ -142,17 +142,17 @@ JKY.generate_batch = function() {
 }
 
 JKY.insert_checkout = function() {
-	var my_invoice_date = JKY.row.expected_date;
-	if (my_invoice_date == null) {
-		my_invoice_date = JKY.get_date();
+	var my_requested_date = JKY.row.expected_date;
+	if (my_requested_date == null) {
+		my_requested_date = JKY.get_date();
 	}
 	var my_set = ''
-		+    '  machine_id=  ' + JKY.row.machine_id
-		+  ',  supplier_id=  ' + JKY.row.supplier_id
-		+        ', nfe_dl=\'' + '' + '\''
-		+        ', nfe_tm=\'' + '' + '\''
-		+  ', invoice_date=\'' + my_invoice_date + '\''
-		+', invoice_weight=  ' + JKY.row.requested_weight
+		+      '  machine_id=  ' + JKY.row.machine_id
+		+    ',  supplier_id=  ' + JKY.row.supplier_id
+		+          ', nfe_dl=\'' + '' + '\''
+		+          ', nfe_tm=\'' + '' + '\''
+		+  ', requested_date=\'' + my_requested_date + '\''
+		+', requested_weight=  ' + JKY.row.requested_weight
 		;
 	var my_data =
 		{ method	: 'insert'
@@ -164,7 +164,7 @@ JKY.insert_checkout = function() {
 
 JKY.insert_batch = function(response) {
 	var my_batch = JKY.get_row('Batches', JKY.row.batchin_id);
-	var my_requested_boxes = Math.round(JKY.row.requested_weight / my_batch.average_weight + .9);
+	var my_requested_boxes = Math.round(JKY.row.requested_weight / my_batch.average_weight + 0.5);
 	var my_set = ''
 		+     '  checkout_id=  ' + response.id
 		+       ', thread_id=  ' + JKY.row.thread_id

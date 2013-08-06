@@ -172,7 +172,7 @@ JKY.display_trace('update_incoming');
 						;
 	var my_set = ''
 		+  ' real_weight = real_weight + ' + my_delta_weight
-//		+ ', real_amount = real_amount + ' + Math.round(my_delta_amount * 100 + .5) / 100
+//		+ ', real_amount = real_amount + ' + Math.round(my_delta_amount * 100 + 0.5) / 100
 		+ ', real_amount = real_amount + ' + Math.round(my_delta_amount * 100) / 100
 		;
 	var my_data =
