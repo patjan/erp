@@ -140,6 +140,6 @@ JKY.set_calculated_color = function() {
 	var my_invoice_amount	= parseFloat(JKY.get_value('jky-invoice-amount'	));
 	var my_real_weight		= parseFloat(JKY.get_value('jky-real-weight'	));
 	var my_real_amount		= parseFloat(JKY.get_value('jky-real-amount'	));
-	JKY.set_css('jky-real-weight', 'color', (my_invoice_weight == my_real_weight) ? 'black' : 'red');
-	JKY.set_css('jky-real-amount', 'color', (my_invoice_amount == my_real_amount) ? 'black' : 'red');
+	JKY.set_css('jky-real-amount', 'color', (Math.abs(my_invoice_amount - my_real_amount) > 0.021) ? 'red' : 'black');
+	JKY.set_css('jky-real-weight', 'color', (Math.abs(my_invoice_weight - my_real_weight) > 0.021) ? 'red' : 'black');
 }
