@@ -48,7 +48,7 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-threads-checkouts');
 	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
-	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
+	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), true));
 //	JKY.set_html('jky-app-select-label', JKY.t('Type'));
 //	JKY.show('jky-app-select-line');
 };
