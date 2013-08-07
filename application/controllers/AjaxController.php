@@ -697,7 +697,10 @@ private function set_new_fields($table) {
 												. ',  Machines.name				AS  machine_name';
 	if ($table == 'BatchOuts'		)	$return = ',   Threads.name				AS	 thread_name'
 												. ',   Batches.batch			AS			batch_number'
-												. ', CheckOuts.number			AS checkout_number';
+												. ', CheckOuts.number			AS checkout_number'
+												. ', CheckOuts.requested_date	AS requested_date'
+												. ',  Supplier.nick_name		AS supplier_name'
+												. ',  Machines.name				AS  machine_name';
 	if ($table == 'ThreadForecast'	)	$return = ',  Contacts.nick_name		AS supplier_name'
 												. ',   Threads.thread_group		AS	 thread_group'
 												. ',   Threads.name				AS	 thread_name'
@@ -775,7 +778,9 @@ private function set_left_joins($table) {
 	if ($table == 'BatchOuts'		)	$return = '  LEFT JOIN   CheckOuts  			ON CheckOuts.id	=		 BatchOuts.checkout_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		 BatchOuts.thread_id'
 												. '  LEFT JOIN     Batches  			ON   Batches.id	=		 BatchOuts.batchin_id'
-												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=		 BatchOuts.req_line_id';
+												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=		 BatchOuts.req_line_id'
+												. '  LEFT JOIN    Machines				ON  Machines.id	=		 CheckOuts.machine_id'
+												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id';
 	if ($table == 'ThreadForecast'	)	$return = '  LEFT JOIN    Contacts  			ON  Contacts.id	=	ThreadForecast.supplier_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=	ThreadForecast.thread_id'
 												. '  LEFT JOIN	   Configs  			ON   Configs.name = Threads.thread_group AND Configs.group_set = "Thread Groups"';

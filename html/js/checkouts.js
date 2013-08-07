@@ -29,11 +29,11 @@ JKY.start_program = function() {
  */
 JKY.set_all_events = function() {
 	$('#jky-checkout-value'	).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-invoice-value'	).attr('data-format', JKY.Session.get_date		());
+	$('#jky-requested-value').attr('data-format', JKY.Session.get_date		());
 	$('#jky-checkout-time'	).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-invoice-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-requested-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-checkout-time'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-invoice-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+	$('#jky-requested-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-tab-batches'	).click (function() {JKY.display_batches	();});
 	$('#jky-batch-add-new'	).click (function() {JKY.insert_batch		();});

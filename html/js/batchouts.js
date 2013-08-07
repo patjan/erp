@@ -16,8 +16,8 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: ''
 		, filter		: ''
-		, sort_by		: 'code'
-		, sort_seq		: 'DESC'
+		, sort_by		: 'CheckOuts.requested_date'
+		, sort_seq		: 'ASC'
 		, focus			: 'jky-requested-weight'
 		, add_new		: 'display form'
 		});
@@ -51,15 +51,18 @@ JKY.set_initial_values = function() {
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-checkout-number"	>' + the_row.checkout_number	+ '</td>'
-		+  '<td class="jky-code"			>' + the_row.code				+ '</td>'
-		+  '<td class="jky-batch"			>' + the_row.batch				+ '</td>'
+//		+  '<td class="jky-code"			>' + the_row.code				+ '</td>'
+		+  '<td class="jky-requested-date"	>' + the_row.requested_date		+ '</td>'
+		+  '<td class="jky-machine-name"	>' + the_row.machine_name		+ '</td>'
+		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name		+ '</td>'
 		+  '<td class="jky-thread-name"		>' + the_row.thread_name		+ '</td>'
-		+  '<td class="jky-requested-boxes"	>' + the_row.requested_boxes	+ '</td>'
-		+  '<td class="jky-checkout-boxes"	>' + the_row.checkout_boxes		+ '</td>'
-		+  '<td class="jky-unit-price"		>' + the_row.unit_price			+ '</td>'
+		+  '<td class="jky-batch-number"	>' + the_row.batch_number		+ '</td>'
+//		+  '<td class="jky-unit-price"		>' + the_row.unit_price			+ '</td>'
 		+  '<td class="jky-average-weight"	>' + the_row.average_weight		+ '</td>'
 		+  '<td class="jky-requested-weight">' + the_row.requested_weight	+ '</td>'
+		+  '<td class="jky-requested-boxes"	>' + the_row.requested_boxes	+ '</td>'
 		+  '<td class="jky-checkout-weight"	>' + the_row.checkout_weight	+ '</td>'
+		+  '<td class="jky-checkout-boxes"	>' + the_row.checkout_boxes		+ '</td>'
 		;
 	return my_html;
 };

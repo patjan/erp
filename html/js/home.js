@@ -67,8 +67,8 @@ JKY.set_all_events_home = function(jky_program) {
 
 		$('#jky-boxes-info'				).click (function() {JKY.process_action('boxes_info'	);});
 		$('#jky-boxes-checkin'			).click (function() {JKY.process_action('boxes_checkin'	);});
-		$('#jky-boxes-checkout'			).click (function() {JKY.process_action('boxes_checkout');});
 		$('#jky-boxes-return'			).click (function() {JKY.process_action('boxes_return'	);});
+		$('#jky-boxes-checkout'			).click (function() {JKY.process_action('boxes_checkout');});
 		$('#jky-raws-info'				).click (function() {JKY.process_action('raws_info'		);});
 		$('#jky-fabrics-info'			).click (function() {JKY.process_action('fabrics_info'	);});
 
