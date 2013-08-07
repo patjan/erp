@@ -45,13 +45,17 @@ JKY.generate_row = function(the_row) {
 		+ "<input class='jky-batchin-row-batch jky-form-value' readonly='readonly' onclick='JKY.update_line(this, " + my_id + ")' value='" + the_row.batch_number + "' />"
 		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
+	var my_requested_date =	JKY.out_date(the_row.requested_date);
+	if (my_requested_date == '') {
+		my_requested_date = JKY.out_date(JKY.row.requested_date);
+	}
 	var my_html = ''
 		+ '<tr request_line_id=' + my_id + '>'
 		+ '<td class="jky-action"			>' + my_trash	+ '</td>'
 		+ '<td class="jky-line-thread"		>' + my_thread	+ '</td>'
 		+ '<td class="jky-line-batchin"		>' + my_batchin	+ '</td>'
 		+ '<td class="jky-line-value"		><input class="jky-line-requested-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.requested_weight) + '"						/></td>'
-		+ '<td class="jky-line-value"		><input class="jky-line-requested-date"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_date	(the_row.requested_date	 ) + '"						/></td>'
+		+ '<td class="jky-line-value"		><input class="jky-line-requested-date"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' +					  my_requested_date	   + '"						/></td>'
 		+ '<td class="jky-line-value"		><input class="jky-line-checkout-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.checkout_weight ) + '" disabled="disabled"	/></td>'
 		+ '<td class="jky-line-value"		><input class="jky-line-scheduled-at"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	 ) + '" disabled="disabled"	/></td>'
 		+ '</tr>'
@@ -70,10 +74,12 @@ JKY.update_line = function(id_name, the_id ) {
 
 	var my_set = ''
 		+         'thread_id = ' + my_thread_id
-		+      ', batchin_id = ' + my_batchin_id
 		+', requested_weight = ' + my_requested_weight
 		+  ', requested_date = ' + my_requested_date
 		;
+	if (!isNaN(my_batchin_id)) {
+		my_set += ', batchin_id = ' + my_batchin_id
+	}
 	var my_data =
 		{ method	: 'update'
 		, table		: 'ReqLines'
