@@ -18,7 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'CheckOuts.requested_date'
 		, sort_seq		: 'ASC'
-		, focus			: 'jky-requested-weight'
+		, focus			: 'jky-box-input-barcode'
 		, add_new		: 'display form'
 		});
 	JKY.App.init();
@@ -64,16 +64,30 @@ JKY.set_table_row = function(the_row) {
 	return my_html;
 };
 
-JKY.App.display_form = function(the_index) {
-	JKY.display_trace('my_display_form');
-//	if (my_skip_form) {
-//		my_skip_form = false;
-//		return;
-//	}
-	$(the_id).css('background-color', '#CCCCCC');
-}
+/**
+ *	set form row
+ */
+JKY.set_form_row = function(the_row) {
+	JKY.set_value	('jky-code'					, the_row.code				);
+	JKY.set_value	('jky-thread-name'			, the_row.thread_name		);
+	JKY.set_value	('jky-batch'				, the_row.batch_number		);
+	JKY.set_value	('jky-machine-name'			, the_row.machine_name		);
+	JKY.set_value	('jky-supplier-name'		, the_row.supplier_name		);
+	JKY.set_value	('jky-requested-date'		, the_row.requested_date	);
+	JKY.set_value	('jky-requested-weight'		, the_row.requested_weight	);
+	JKY.set_value	('jky-requested-boxes'		, the_row.requested_boxes	);
+	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);
+	JKY.set_value	('jky-checkout-weight'		, the_row.checkout_weight	);
+	JKY.set_value	('jky-checkout-boxes'		, the_row.checkout_boxes	);
+//	JKY.display_lines();
+};
 
 JKY.display_list = function() {
+	JKY.hide('jky-action-add-new');
+	JKY.hide('jky-action-export' );
+};
+
+JKY.display_form = function() {
 	JKY.hide('jky-action-add-new');
 	JKY.hide('jky-action-export' );
 };
@@ -115,30 +129,30 @@ JKY.process_barcode_success = function(response) {
 			}
 			JKY.sequence++;
 			var my_html = '<tr>'
-					+ '<td class="jky-box-checkbox"			>' +  my_checkbox				+ '</td>'
-					+ '<td class="jky-box-barcode"			>' +  my_row.barcode			+ '</td>'
-					+ '<td class="jky-box-sequence"			>' +  JKY.sequence				+ '</td>'
-					+ '<td class="jky-box-status"			>' +  JKY.t(my_row.status)		+ '</td>'
-					+ '<td class="jky-box-batch"			>' +  my_row.batch				+ '</td>'
-					+ '<td class="jky-box-number-of-boxes"	>' +  my_row.number_of_boxes	+ '</td>'
-					+ '<td class="jky-box-number-of-cones"	>' +  my_row.number_of_cones	+ '</td>'
-					+ '<td class="jky-box-average-weight"	>' +  my_row.average_weight		+ '</td>'
-					+ '<td class="jky-box-real-weight"		>' +  my_row.real_weight		+ '</td>'
-					+ '<td class="jky-box-checkin-location"	>' +  my_row.checkin_location	+ '</td>'
-					+ '<td class="jky-box-supplier-name"	>' +  my_row.supplier_name		+ '</td>'
-					+ '<td class="jky-box-thread-name"		>' +  my_row.thread_name		+ '</td>'
+					+ '<td class="jky-checkbox"			>' +  my_checkbox				+ '</td>'
+					+ '<td class="jky-barcode"			>' +  my_row.barcode			+ '</td>'
+					+ '<td class="jky-sequence"			>' +  JKY.sequence				+ '</td>'
+					+ '<td class="jky-status"			>' +  JKY.t(my_row.status)		+ '</td>'
+					+ '<td class="jky-thread-name"		>' +  my_row.thread_name		+ '</td>'
+					+ '<td class="jky-batch"			>' +  my_row.batch				+ '</td>'
+					+ '<td class="jky-number-of-boxes"	>' +  my_row.number_of_boxes	+ '</td>'
+					+ '<td class="jky-number-of-cones"	>' +  my_row.number_of_cones	+ '</td>'
+					+ '<td class="jky-average-weight"	>' +  my_row.average_weight		+ '</td>'
+					+ '<td class="jky-real-weight"		>' +  my_row.real_weight		+ '</td>'
+					+ '<td class="jky-checkin-location"	>' +  my_row.checkin_location	+ '</td>'
+					+ '<td class="jky-supplier-name"	>' +  my_row.supplier_name		+ '</td>'
 					+ '</tr>'
 					;
 			JKY.prepend_html('jky-box-table-body', my_html);
 			JKY.show('jky-action-clear'  );
 			JKY.show('jky-action-confirm');
-			JKY.set_html ('jky-input-message', '');
-			JKY.set_value('jky-input-barcode', '');
+			JKY.set_html ('jky-box-input-message', '');
+			JKY.set_value('jky-box-input-barcode', '');
 		}
 	}else{
 		JKY.play_beep();
-		JKY.set_html ('jky-input-message', JKY.t('not found'));
-		JKY.set_focus('jky-input-barcode');
+		JKY.set_html ('jky-box-input-message', JKY.t('not found'));
+		JKY.set_focus('jky-box-input-barcode');
 	}
 }
 
@@ -147,18 +161,18 @@ JKY.process_barcode_success = function(response) {
  */
 JKY.process_confirm_screen = function() {
 	JKY.display_trace('process_confirm_screen');
-	if ($('#jky-app-form').css('display') == 'block') {
-		JKY.confirm_row(JKY.row.id);
-	}else{
-		$('#jky-table-body .jky-checkbox input:checked').each(function() {
+//	if ($('#jky-app-form').css('display') == 'block') {
+//		JKY.confirm_row(JKY.row.id);
+//	}else{
+		$('#jky-box-table-body .jky-checkbox input:checked').each(function() {
 			JKY.confirm_row(this, $(this).attr('barcode'));
 		});
-	}
+//	}
 
-	if (JKY.get_html('jky-table-body') == '') {
+	if (JKY.get_html('jky-box-table-body') == '') {
 		JKY.process_clear_screen();
 	}
-	JKY.set_focus('jky-input-barcode');
+	JKY.set_focus('jky-box-input-barcode');
 }
 
 /**
@@ -167,10 +181,13 @@ JKY.process_confirm_screen = function() {
 JKY.confirm_row = function(the_id, the_barcode) {
 	JKY.display_trace('confirm_row');
 	JKY.display_message(JKY.t('Confirmed, barcode') + ': ' + the_barcode);
+	var my_location = (JKY.row.machine_name == null) ? JKY.row.supplier_name : JKY.row.machine_name;
 	var my_data =
-		{ method	: 'checkout'
-		, table		: 'Boxes'
-		, barcode	: the_barcode
+		{ method		: 'checkout'
+		, table			: 'Boxes'
+		, barcode		: the_barcode
+		, location		: my_location
+		, batchout_id	: JKY.row.id
 		};
 	JKY.ajax(false, my_data, JKY.confirm_row_success);
 	$(the_id).parent().parent().remove();
@@ -181,5 +198,8 @@ JKY.confirm_row = function(the_id, the_barcode) {
  */
 JKY.confirm_row_success = function(response) {
 	JKY.display_trace('confirm_row');
+	JKY.row = response.row;
+	JKY.set_value('jky-checkout-weight', JKY.row.checkout_weight);
+	JKY.set_value('jky-checkout-boxes' , JKY.row.checkout_boxes );
 }
 

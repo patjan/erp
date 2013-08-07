@@ -689,7 +689,7 @@ private function set_new_fields($table) {
 												. ',  Requests.supplier_id		AS			supplier_id'
 												. ',   Threads.name				AS			thread_name'
 												. ',   Batches.batch			AS			batch_number'
-												. ', BatchOuts.checkout_weight	AS			checkout_weight'
+//												. ', BatchOuts.checkout_weight	AS			checkout_weight'
 												. ', CheckOuts.checkout_at		AS			checkout_at'
 												. ',  Machines.name				AS			machine_name'
 												. ',  Supplier.nick_name		AS			supplier_name';
@@ -4113,14 +4113,16 @@ private function checkin($data) {
     }
 
 /*
- *   $.ajax({ method:'checkout', table:'Boxes', barcode:9...9};
+ *   $.ajax({ method:'checkout', table:'Boxes', barcode:9...9, location:'x...x'};
  *
  *   status: ok
  *  message: record updated
  */
 private function checkout($data) {
-//	$table	 = get_data($data, 'table'	);
-	$barcode = get_data($data, 'barcode');
+//	$table		= get_data($data, 'table'		);
+	$barcode	= get_data($data, 'barcode'		);
+	$location	= get_data($data, 'location'	);
+	$batchout_id= get_data($data, 'batchout_id'	);
 
 	$db  = Zend_Registry::get( 'db' );
 
@@ -4133,6 +4135,7 @@ private function checkout($data) {
 	     . '   SET ' . $updated
 		 . '     , checkout_by='  . get_session( 'user_id' )
 		 . '     , checkout_at="' . get_time() . '"'
+		 . '     , checkout_location="' . $location . '"'
 	     . ' WHERE barcode = ' . $barcode
 	     ;
 	$this->log_sql( 'Boxes', 'update', $sql );
@@ -4156,9 +4159,53 @@ private function checkout($data) {
 	$this->log_sql( 'Batches', 'update', $sql );
 	$db->query( $sql );
 
+	$sql = 'UPDATE BatchOuts'
+	     . '   SET checkout_boxes  = checkout_boxes  + 1'
+	     . '     , checkout_weight = checkout_weight + ' . $my_weight
+	     . ' WHERE id = ' . $batchout_id
+	     ;
+	$this->log_sql( 'BatchOuts', 'update', $sql );
+	$db->query( $sql );
+
+	$sql = 'SELECT BatchOuts.*'
+		 . '  FROM BatchOuts'
+		 . ' WHERE BatchOuts.id = ' . $batchout_id
+		 ;
+	$batchout = $db->fetchRow( $sql );
+	$my_amount = $my_weight * $batchout['unit_price'];
+
+	$sql = 'UPDATE CheckOuts'
+	     . '   SET checkout_weight = checkout_weight + ' . $my_weight
+		 . '     , checkout_amount = checkout_amount + ' . $my_amount
+	     . ' WHERE id = ' . $batchout['checkout_id']
+	     ;
+	$this->log_sql( 'CheckOuts', 'update', $sql );
+	$db->query( $sql );
+
+	$sql = 'UPDATE ReqLines'
+	     . '   SET checkout_weight = checkout_weight + ' . $my_weight
+	     . ' WHERE id = ' . $batchout['req_line_id']
+	     ;
+	$this->log_sql( 'ReqLines', 'update', $sql );
+	$db->query( $sql );
+
+	$sql = 'SELECT ReqLines.*'
+		 . '  FROM ReqLines'
+		 . ' WHERE ReqLines.id = ' . $batchout['req_line_id']
+		 ;
+	$reqline = $db->fetchRow( $sql );
+
+	$sql = 'UPDATE Requests'
+	     . '   SET checkout_weight = checkout_weight + ' . $my_weight
+	     . ' WHERE id = ' . $reqline['request_id']
+	     ;
+	$this->log_sql( 'Requests', 'update', $sql );
+	$db->query( $sql );
+
 	$return = array();
 	$return[ 'status'   ] = 'ok';
 	$return[ 'message'  ] = 'record updated';
+	$return[ 'row'		] = $batchout;
 	echo json_encode( $return );
     }
 

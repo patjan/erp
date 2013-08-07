@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+<TITLE>Test Cut Off</TITLE>
+<script src='lib/jquery-1.8.2.js' ></script>
+<script src='lib/jquery-barcode-2.0.2.min.js' ></script>
+</HEAD>
+
+<BODY>
+	<div id="jky-barcodes"></div>
+
+<script language="JavaScript">
+$(function() {
+	var my_from	= 1000000031;
+	var my_count= 10;
+
+	var my_html = '';
+	for(var i=0; i<my_count; i++) {
+		var my_barcode = my_from + i;
+		var my_id = 'jky-barcode-' + my_barcode;
+		my_html += '<div id="' + my_id + '">' + my_barcode + '</div>';
+	}
+	$('#jky-barcodes').html(my_html);
+
+	for(var i=0; i<my_count; i++) {
+		var my_barcode = my_from + i;
+		var my_id = 'jky-barcode-' + my_barcode;
+		$('#' + my_id).barcode(''+my_barcode, 'code39');
+	}
+
+
+});
+</script>
+</BODY>
+</HTML>
+
