@@ -39,8 +39,9 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-threads-batchouts');
 //	JKY.set_html('jky-app-select', JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
-//	JKY.set_html('jky-thread-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
-//	JKY.set_html('jky-payment-term', JKY.set_configs('Payment Terms', '', ''));
+	JKY.set_html('jky-thread-name'  , JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
+	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
+	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), true));
 //	JKY.set_html('jky-app-select-label', JKY.t('Type'));
 //	JKY.show('jky-app-select-line');
 };
@@ -72,13 +73,16 @@ JKY.set_table_row = function(the_row) {
  */
 JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-code'					, the_row.code				);
-	JKY.set_value	('jky-batch'				, the_row.batch				);
-	JKY.set_value	('jky-requested-boxes'		, the_row.requested_boxes	);
-	JKY.set_value	('jky-checkout-boxes'		, the_row.checkout_boxes	);
+	JKY.set_value	('jky-thread-name'			, the_row.thread_name		);
+	JKY.set_value	('jky-batch'				, the_row.batch_number		);
+	JKY.set_value	('jky-machine-name'			, the_row.machine_name		);
+	JKY.set_value	('jky-supplier-name'		, the_row.supplier_name		);
 	JKY.set_value	('jky-unit-price'			, the_row.unit_price		);
-	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);
 	JKY.set_value	('jky-requested-weight'		, the_row.requested_weight	);
+	JKY.set_value	('jky-requested-boxes'		, the_row.requested_boxes	);
+	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);
 	JKY.set_value	('jky-checkout-weight'		, the_row.checkout_weight	);
+	JKY.set_value	('jky-checkout-boxes'		, the_row.checkout_boxes	);
 //	JKY.display_lines();
 };
 
@@ -87,13 +91,16 @@ JKY.set_form_row = function(the_row) {
  */
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-code'					, '');
+	JKY.set_value	('jky-thread-name'			, '');
 	JKY.set_value	('jky-batch'				, '');
+	JKY.set_value	('jky-machine-name'			, '');
+	JKY.set_value	('jky-supplier-name'		, '');
+	JKY.set_value	('jky-requested-weight'		,  0);
 	JKY.set_value	('jky-requested-boxes'		, '');
-	JKY.set_value	('jky-checkout-boxes'		, '');
 	JKY.set_value	('jky-unit-price'			,  0);
 	JKY.set_value	('jky-average-weight'		,  0);
-	JKY.set_value	('jky-requested-weight'		,  0);
 	JKY.set_value	('jky-checkout-weight'		,  0);
+	JKY.set_value	('jky-checkout-boxes'		, '');
 }
 
 /**
@@ -106,12 +113,12 @@ JKY.get_form_set = function() {
 	var my_set = ''
 		+   'code=\''				+	JKY.get_value('jky-code'				) + '\''
 		+', batch=\''				+	JKY.get_value('jky-batch'				) + '\''
-		+', requested_boxes=  '		+	JKY.get_value('jky-requested-boxes'		)
-		+', checkout_boxes=  '		+	JKY.get_value('jky-checkout-boxes'		)
 		+', unit_price=  '			+	JKY.get_value('jky-unit-price'			)
-		+', average_weight=  '		+	JKY.get_value('jky-average-weight'		)
 		+', requested_weight= '		+	JKY.get_value('jky-requested-weight'	)
+		+', requested_boxes=  '		+	JKY.get_value('jky-requested-boxes'		)
+		+', average_weight=  '		+	JKY.get_value('jky-average-weight'		)
 		+', checkout_weight=  '		+	JKY.get_value('jky-checkout-weight'		)
+		+', checkout_boxes=  '		+	JKY.get_value('jky-checkout-boxes'		)
 		;
 	return my_set;
 };
