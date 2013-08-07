@@ -50,18 +50,18 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-code"			>' + the_row.code				+ '</td>'
-		+  '<td class="jky-batch"			>' + the_row.batch				+ '</td>'
-		+  '<td class="jky-labels-printed"	>' + the_row.labels_printed		+ '</td>'
-		+  '<td class="jky-received-boxes"	>' + the_row.received_boxes		+ '</td>'
-		+  '<td class="jky-checkin-boxes"	>' + the_row.checkin_boxes		+ '</td>'
-		+  '<td class="jky-number-of-cones"	>' + the_row.number_of_cones	+ '</td>'
-		+  '<td class="jky-unit-price"		>' + the_row.unit_price			+ '</td>'
-		+  '<td class="jky-average-weight"	>' + the_row.average_weight		+ '</td>'
-		+  '<td class="jky-received-weight"	>' + the_row.received_weight	+ '</td>'
-		+  '<td class="jky-checkin-weight"	>' + the_row.checkin_weight		+ '</td>'
-		+  '<td class="jky-returned-weight"	>' + the_row.returned_weight	+ '</td>'
-		+  '<td class="jky-checkout-weight"	>' + the_row.checkout_weight	+ '</td>'
+		+  '<td class="jky-code"			>' +				 the_row.code					+ '</td>'
+		+  '<td class="jky-batch"			>' +				 the_row.batch					+ '</td>'
+		+  '<td class="jky-labels-printed"	>' +				 the_row.labels_printed			+ '</td>'
+		+  '<td class="jky-received-boxes"	>' +				 the_row.received_boxes			+ '</td>'
+		+  '<td class="jky-checkin-boxes"	>' +				 the_row.checkin_boxes			+ '</td>'
+		+  '<td class="jky-number-of-cones"	>' +				 the_row.number_of_cones		+ '</td>'
+		+  '<td class="jky-unit-price"		>' +				 the_row.unit_price				+ '</td>'
+		+  '<td class="jky-average-weight"	>' +				 the_row.average_weight			+ '</td>'
+		+  '<td class="jky-received-weight"	>' +				 the_row.received_weight		+ '</td>'
+		+  '<td class="jky-checkin-weight"	>' +				 the_row.checkin_weight			+ '</td>'
+		+  '<td class="jky-returned-weight"	>' +				 the_row.returned_weight		+ '</td>'
+		+  '<td class="jky-checkout-weight"	>' +				 the_row.checkout_weight		+ '</td>'
 		;
 	return my_html;
 };

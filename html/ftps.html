@@ -55,19 +55,19 @@
 #jky-form-tabs thead	{font-weight:bold;}
 #jky-form-tabs tfoot	{font-weight:normal;}
 
-.jky-comp-value			{width:10%;		text-align:right ;}
-.jky-comp-label			{width:80%;		text-align:left  ;}
+.jky-comp-value			{width: 40px; text-align:right !important;}
+.jky-comp-label			{width:520px; text-align:left  !important;}
 .jky-comp-percent		{width: 40px;	text-align:right ; margin-right:0;}
 .jky-comp-material		{width:200px;}
-#jky-comp-total			{				text-align:right ;}
+#jky-comp-total			{width: 40px; text-align:right !important;}
 
-.jky-thread-value		{width:10%;		text-align:right ;}
-.jky-thread-label		{width:40%;		text-align:left  ;}
+.jky-thread-value		{width: 40px; text-align:right !important;}
+.jky-thread-label		{width:260px; text-align:left  ;}
 .jky-thread-label a 	{margin-left:-30px; padding:5px;}
 .jky-thread-percent		{width: 40px;	text-align:right ; margin-right:0;}
 .jky-thread-name		{width:270px;}
 .jky-thread-supplier	{width:270px;}
-#jky-thread-total		{				text-align:right;}
+#jky-thread-total		{width: 40px; text-align:right !important;}
 
 .jky-load-label-remarks	{font-weight:bold; text-align:right;}
 .jky-load-sequence		{width:10%; text-align:center;}
@@ -223,6 +223,7 @@
 					<thead>
 						<tr>
 							<td class='jky-action'></td>
+							<td class='jky-filler'></td>
 							<td class='jky-comp-value'><span>Percent </span></td>
 							<td class='jky-comp-label'><span>Material</span></td>
 						</tr>
@@ -230,7 +231,7 @@
 					<tbody id='jky-comp-body'></tbody>
 					<tfoot>
 						<tr>
-							<td    id='jky-comp-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td    id='jky-comp-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 							<td    id='jky-comp-total'></td>
 							<td class='jky-comp-label'><span>Total</span></td>
 						</tr>
@@ -243,6 +244,7 @@
 					<thead>
 						<tr>
 							<td class='jky-action'></td>
+							<td class='jky-filler'></td>
 							<td class='jky-thread-value'><span>Percent	</span></td>
 							<td class='jky-thread-label'><span>Thread	</span></td>
 							<td class='jky-thread-label'><span>Supplier	</span></td>
@@ -251,7 +253,7 @@
 					<tbody id='jky-thread-body'></tbody>
 					<tfoot>
 						<tr>
-							<td    id='jky-thread-add-new'   class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td    id='jky-thread-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 							<td    id='jky-thread-total'></td>
 							<td class='jky-thread-label'><span>Total</span></td>
 						</tr>
@@ -276,7 +278,7 @@
 					<tbody id='jky-load-body'></tbody>
 					<tfoot>
 						<tr>
-							<td    id='jky-load-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td id='jky-load-add-new' class='jky-action' colspan='3'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 						</tr>
 					</tfoot>
 				</table>

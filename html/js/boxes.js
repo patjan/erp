@@ -50,13 +50,13 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-batch"				>' + the_row.batch				+ '</td>'
-		+  '<td class="jky-barcode"				>' + the_row.barcode			+ '</td>'
-		+  '<td class="jky-average-weight"		>' + the_row.average_weight		+ '</td>'
-		+  '<td class="jky-real-weight"			>' + the_row.real_weight		+ '</td>'
-		+  '<td class="jky-checkin-location"	>' + the_row.checkin_location	+ '</td>'
-		+  '<td class="jky-checkout-location"	>' + the_row.checkout_location	+ '</td>'
-		+  '<td class="jky-returned-location"	>' + the_row.returned_location	+ '</td>'
+		+  '<td class="jky-batch"				>' +				 the_row.batch					+ '</td>'
+		+  '<td class="jky-barcode"				>' +				 the_row.barcode				+ '</td>'
+		+  '<td class="jky-average-weight"		>' +				 the_row.average_weight			+ '</td>'
+		+  '<td class="jky-real-weight"			>' +				 the_row.real_weight			+ '</td>'
+		+  '<td class="jky-checkin-location"	>' +				 the_row.checkin_location		+ '</td>'
+		+  '<td class="jky-checkout-location"	>' + JKY.fix_null	(the_row.checkout_location	)	+ '</td>'
+		+  '<td class="jky-returned-location"	>' + JKY.fix_null	(the_row.returned_location	)	+ '</td>'
 		;
 	return my_html;
 };

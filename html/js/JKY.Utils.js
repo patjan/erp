@@ -98,9 +98,9 @@ JKY.setTableWidthHeight = function(tableId, width, off_width, minHeight, offHeig
 	if (my_height < minHeight) {
 		my_height = minHeight;
 	}
-	$('#jky-app-table').css('width' , my_width );
+//	$('#jky-app-table').css('width' , my_width );
 //	$('#jky-app-table').css('height', my_height);
-	$('#jky-app-form' ).css('width' , my_width );
+//	$('#jky-app-form' ).css('width' , my_width );
 //	$('#jky-app-form' ).css('height', my_height);
 }
 
@@ -271,6 +271,20 @@ JKY.process_action = function(action) {
 	JKY.start_program(action);
 	JKY.visible('jky-application');
 //	});
+}
+
+/**
+ * fix null
+ * @param	the_string
+ * @return	&nbsp;
+ * @return	the_string
+ */
+JKY.fix_null = function(the_string){
+	if (the_string == null) {
+		return '&nbsp;'
+	}else{
+		return the_string;
+	}
 }
 
 /**

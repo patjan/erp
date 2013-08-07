@@ -101,10 +101,10 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-number"			>' + the_row.number			+ '</td>'
-		+  '<td class="jky-product"			>' + the_row.product		+ '</td>'
-		+  '<td class="jky-machine"			>' + the_row.machine		+ '</td>'
-		+  '<td class="jky-composition"		>' + the_row.composition	+ '</td>'
+		+  '<td class="jky-number"			>' +				 the_row.number				+ '</td>'
+		+  '<td class="jky-product"			>' + JKY.fix_null	(the_row.product		)	+ '</td>'
+		+  '<td class="jky-machine"			>' + JKY.fix_null	(the_row.machine		)	+ '</td>'
+		+  '<td class="jky-composition"		>' +				 the_row.composition		+ '</td>'
 		+  '</tr>'
 		;
 	return my_html;

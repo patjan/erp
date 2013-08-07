@@ -53,14 +53,14 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-purchase-number"	>' + the_row.purchase_number				+ '</td>'
-		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name					+ '</td>'
-		+  '<td class="jky-thread-name"		>' + the_row.thread_name					+ '</td>'
-		+  '<td class="jky-ordered-at"		>' + JKY.short_date(the_row.ordered_at   )	+ '</td>'
-		+  '<td class="jky-expected-date"	>' + JKY.out_date  (the_row.expected_date) 	+ '</td>'
-		+  '<td class="jky-scheduled-at"	>' + JKY.short_date(the_row.scheduled_at )	+ '</td>'
-		+  '<td class="jky-expected-weight"	>' + the_row.expected_weight				+ '</td>'
-		+  '<td class="jky-received-weight"	>' + the_row.received_weight				+ '</td>'
+		+  '<td class="jky-purchase-number"	>' +				 the_row.purchase_number		+ '</td>'
+		+  '<td class="jky-supplier-name"	>' +				 the_row.supplier_name			+ '</td>'
+		+  '<td class="jky-thread-name"		>' +				 the_row.thread_name			+ '</td>'
+		+  '<td class="jky-ordered-at"		>' + JKY.short_date	(the_row.ordered_at			)	+ '</td>'
+		+  '<td class="jky-expected-date"	>' + JKY.out_date	(the_row.expected_date		) 	+ '</td>'
+		+  '<td class="jky-scheduled-at"	>' + JKY.short_date	(the_row.scheduled_at		)	+ '</td>'
+		+  '<td class="jky-expected-weight"	>' +				 the_row.expected_weight		+ '</td>'
+		+  '<td class="jky-received-weight"	>' + JKY.fix_null	(the_row.received_weight	)	+ '</td>'
 		;
 	return my_html;
 };

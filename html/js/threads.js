@@ -42,11 +42,11 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-thread-name"		>' + the_row.name			+ '</td>'
-		+  '<td class="jky-ncm"				>' + the_row.ncm			+ '</td>'
-		+  '<td class="jky-thread-group"	>' + the_row.thread_group	+ '</td>'
-//		+  '<td class="jky-thread-color"	>' + the_row.thread_color	+ '</td>'
-		+  '<td class="jky-composition"		>' + the_row.composition	+ '</td>'
+		+  '<td class="jky-thread-name"		>' +				 the_row.name				+ '</td>'
+		+  '<td class="jky-ncm"				>' + JKY.fix_null	(the_row.ncm			)	+ '</td>'
+		+  '<td class="jky-thread-group"	>' +				 the_row.thread_group		+ '</td>'
+//		+  '<td class="jky-thread-color"		>' +				 the_row.thread_color		+ '</td>'
+		+  '<td class="jky-composition"		>' +				 the_row.composition		+ '</td>'
 		;
 	return my_html;
 };
