@@ -81,8 +81,8 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_date	('jky-invoice-date'		, JKY.out_date(the_row.invoice_date));
 	JKY.set_value	('jky-invoice-weight'	, the_row.invoice_weight);
 	JKY.set_value	('jky-invoice-amount'	, the_row.invoice_amount);
-	JKY.set_value	('jky-real-weight'		, the_row.real_weight);
-	JKY.set_value	('jky-real-amount'		, the_row.real_amount);
+	JKY.set_value	('jky-received-weight'	, the_row.received_weight);
+	JKY.set_value	('jky-received-amount'	, the_row.received_amount);
 
 	JKY.set_calculated_color();
 	JKY.display_batches();
@@ -100,8 +100,8 @@ JKY.set_add_new_row = function() {
 	JKY.set_date	('jky-invoice-date'		,  JKY.out_date(JKY.get_date()));
 	JKY.set_value	('jky-invoice-weight'	,  0);
 	JKY.set_value	('jky-invoice-amount'	,  0);
-	JKY.set_value	('jky-real-weight'		,  0);
-	JKY.set_value	('jky-real-amount'		,  0);
+	JKY.set_value	('jky-received-weight'	,  0);
+	JKY.set_value	('jky-received-amount'	,  0);
 }
 
 /**
@@ -138,8 +138,8 @@ JKY.process_delete = function(the_id, the_row) {
 JKY.set_calculated_color = function() {
 	var my_invoice_weight	= parseFloat(JKY.get_value('jky-invoice-weight'	));
 	var my_invoice_amount	= parseFloat(JKY.get_value('jky-invoice-amount'	));
-	var my_real_weight		= parseFloat(JKY.get_value('jky-real-weight'	));
-	var my_real_amount		= parseFloat(JKY.get_value('jky-real-amount'	));
-	JKY.set_css('jky-real-amount', 'color', (Math.abs(my_invoice_amount - my_real_amount) > 0.021) ? 'red' : 'black');
-	JKY.set_css('jky-real-weight', 'color', (Math.abs(my_invoice_weight - my_real_weight) > 0.021) ? 'red' : 'black');
+	var my_received_weight	= parseFloat(JKY.get_value('jky-received-weight'));
+	var my_received_amount	= parseFloat(JKY.get_value('jky-received-amount'));
+	JKY.set_css('jky-received-amount', 'color', (Math.abs(my_invoice_amount - my_received_amount) > 0.021) ? 'red' : 'black');
+	JKY.set_css('jky-received-weight', 'color', (Math.abs(my_invoice_weight - my_received_weight) > 0.021) ? 'red' : 'black');
 }

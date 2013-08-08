@@ -121,8 +121,8 @@ JKY.get_form_set = function() {
 //		+	 ', supplier_id=  ' + my_supplier_id
 //		+	   ', thread_id=  ' + my_thread_id
 //		+	  ', batchin_id=  ' + my_batchin_id
-		+	   ' ordered_at=  ' + JKY.inp_time (JKY.get_value('jky-ordered-value'	))
-		+ ', requested_date=  ' + JKY.inp_date (JKY.get_value('jky-requestd-value'	))
+//		+	   ' ordered_at=  ' + JKY.inp_time (JKY.get_value('jky-ordered-value'	))
+		+   'requested_date=  ' + JKY.inp_date (JKY.get_value('jky-requested-value'	))
 		+   ', scheduled_at=  ' + JKY.inp_time (JKY.get_value('jky-scheduled-value'	))
 		;
 	return my_set;

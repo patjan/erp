@@ -7,20 +7,25 @@
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-batch				{width: 60px; text-align:center !important;}
-.jky-barcode			{width:100px; text-align:center !important;}
-.jky-average-weight		{width: 60px; text-align:right  !important;}
-.jky-real-weight		{width: 60px; text-align:right  !important;}
-.jky-checkin-location	{width: 60px; text-align:center !important;}
-.jky-returned-location	{width: 60px; text-align:center !important;}
-.jky-checkout-location	{width: 60px; text-align:center !important;}
-.jky-returned-location	{width: 60px; text-align:center !important;}
+.jky-batch-number		{width: 40px; text-align:center !important;}
+.jky-barcode			{width: 80px; text-align:center !important;}
+.jky-status				{width: 60px; text-align:center !important;}
+.jky-number-of-boxes	{width: 40px; text-align:right  !important;}
+.jky-number-of-cones	{width: 40px; text-align:right  !important;}
+.jky-average-weight		{width: 40px; text-align:right  !important;}
+.jky-real-weight		{width: 40px; text-align:right  !important;}
+.jky-checkin-location	{width: 40px; text-align:center !important;}
+.jky-checkout-location	{width: 40px; text-align:center !important; text-transform:capitalize;}
 
-#jky-batch				{width: 60px; font-size:16px; font-weight:bold;}
-#jky-received-time		{width:150px;}
-#jky-invoice-weight		{width:160px;text-transform:capitalize;}
-#jky-invoice-amount		{width:110px;}
-#jky-payment-term		{width:120px;}
+#jky-batch-number		{width: 60px; font-size:16px; font-weight:bold;}
+#jky-barcode			{width: 80px;}
+#jky-status				{width: 80px;}
+#jky-number-of-boxes	{width: 40px;}
+#jky-number-of-cones	{width: 40px;}
+#jky-average-weight		{width: 60px;}
+#jky-real-weight		{width: 60px;}
+#jky-checkin-location	{width: 60px;}
+#jky-checkout-location	{width: 80px;text-transform:capitalize;}
 
 .jky-line-label			{font-weight:bold; text-align:right;}
 .jky-line-value  input	{width: 90%;	text-align:right ;}
@@ -37,13 +42,15 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-batch'				><span>		   Batch<br>Number			</span></th>
-			<th class='jky-barcode'				><span>		 Barcode					</span></th>
+			<th class='jky-batch-number'		><span>		   Batch<br>Number			</span></th>
+			<th class='jky-barcode'				><span>				<br>Barcode			</span></th>
+			<th class='jky-status'				><span>				<br>Status			</span></th>
+			<th class='jky-number-of-boxes'		><span>       Number<br>of Boxes		</span></th>
+			<th class='jky-number-of-cones'		><span>       Number<br>of Cones		</span></th>
 			<th class='jky-average-weight'		><span>      Average<br>Weight			</span></th>
 			<th class='jky-real-weight'			><span>		    Real<br>Weight			</span></th>
 			<th class='jky-checkin-location'	><span>	    Check In<br>Location		</span></th>
 			<th class='jky-checkout-location'	><span>	   Check Out<br>Location		</span></th>
-			<th class='jky-returned-location'	><span>		Returned<br>Location		</span></th>
 		</tr>
 	</thead>
 
@@ -59,13 +66,15 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Batch Number		</span>:</div><input  id='jky-batch'				class='jky-form-value'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Batch Number		</span>:</div><input  id='jky-batch-number'			class='jky-form-value'	/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Barcode			</span>:</div><input  id='jky-barcode'				class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Status				</span>:</div><input  id='jky-status'				class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Number Boxes		</span>:</div><input  id='jky-number-of-boxes'		class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Number Cones		</span>:</div><input  id='jky-number-of-cones'		class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Average Weight		</span>:</div><input  id='jky-average-weight'		class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Real Weight		</span>:</div><input  id='jky-real-weight'			class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Check In Location	</span>:</div><input  id='jky-checkin-location'		class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Location	</span>:</div><input  id='jky-checkout-location'	class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Returned Location	</span>:</div><input  id='jky-returned-location'	class='jky-form-value' /></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>

@@ -82,18 +82,24 @@ JKY.process_barcode_success = function(response) {
 			if ( my_row.status == 'Active') {
 				my_checkbox = '<input type="checkbox" onclick="JKY.Application.set_checkbox(this)" barcode=' + my_barcode + ' />';
 			}
+
+			var my_location = my_row.checkout_location;
+			if(!my_location) {
+				my_location = my_row.checkin_location;
+			}
+
 			JKY.sequence++;
 			var my_html = '<tr>'
 					+ '<td class="jky-checkbox"			>' +  my_checkbox				+ '</td>'
 					+ '<td class="jky-barcode"			>' +  my_row.barcode			+ '</td>'
 					+ '<td class="jky-sequence"			>' +  JKY.sequence				+ '</td>'
 					+ '<td class="jky-status"			>' +  JKY.t(my_row.status)		+ '</td>'
-					+ '<td class="jky-batch"			>' +  my_row.batch				+ '</td>'
+					+ '<td class="jky-batch-number"		>' +  my_row.batch_number		+ '</td>'
 					+ '<td class="jky-number-of-boxes"	>' +  my_row.number_of_boxes	+ '</td>'
 					+ '<td class="jky-number-of-cones"	>' +  my_row.number_of_cones	+ '</td>'
 					+ '<td class="jky-average-weight"	>' +  my_row.average_weight		+ '</td>'
 					+ '<td class="jky-real-weight"		>' +  my_row.real_weight		+ '</td>'
-					+ '<td class="jky-checkin-location"	>' +  my_row.checkin_location	+ '</td>'
+					+ '<td class="jky-location"			>' +  my_location				+ '</td>'
 					+ '<td class="jky-supplier-name"	>' +  my_row.supplier_name		+ '</td>'
 					+ '<td class="jky-thread-name"		>' +  my_row.thread_name		+ '</td>'
 					+ '</tr>'

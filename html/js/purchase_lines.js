@@ -40,12 +40,16 @@ JKY.generate_row = function(the_row) {
 		+ "<input class='jky-thread-row-name jky-form-value' readonly='readonly' onclick='JKY.update_line(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
 		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
+	var my_expected_date = JKY.out_date(the_row.expected_date);
+	if (my_expected_date == '') {
+		my_expected_date = JKY.out_date(JKY.row.expected_date);
+	}
 	var my_html = ''
 		+ '<tr purchase_line_id=' + my_id + '>'
 		+ '<td class="jky-action"			>' + my_trash + '</td>'
 		+ '<td class="jky-line-thread"		>' + my_line  + '</td>'
 		+ '<td class="jky-line-value"		><input class="jky-line-expected-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.expected_weight) + '"						/></td>'
-		+ '<td class="jky-line-value"		><input class="jky-line-expected-date"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_date	(the_row.expected_date	) + '"						/></td>'
+		+ '<td class="jky-line-value"		><input class="jky-line-expected-date"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' +					  my_expected_date	  + '"						/></td>'
 		+ '<td class="jky-line-value"		><input class="jky-line-received-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.received_weight) + '" disabled="disabled"	/></td>'
 		+ '<td class="jky-line-value"		><input class="jky-line-scheduled-at"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	) + '" disabled="disabled"	/></td>'
 		+ '</tr>'

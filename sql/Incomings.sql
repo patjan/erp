@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS Incomings
 , invoice_date		DATE				DEFAULT NULL
 , invoice_weight	DECIMAL(10,2)		DEFAULT 0
 , invoice_amount	DECIMAL(10,2)		DEFAULT 0
-, real_weight		DECIMAL(10,2)		DEFAULT 0
-, real_amount		DECIMAL(10,2)		DEFAULT 0
+, received_weight	DECIMAL(10,2)		DEFAULT 0
+, received_amount	DECIMAL(10,2)		DEFAULT 0
 
 , PRIMARY KEY(id)
 , UNIQUE(number)
@@ -29,3 +29,6 @@ INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, 
 ALTER TABLE Incomings	ADD		nfe_tm			VARCHAR(32)		DEFAULT NULL	AFTER supplier_id;
 ALTER TABLE Incomings	ADD		nfe_dl			VARCHAR(32)		DEFAULT NULL	AFTER supplier_id;
 ALTER TABLE Incomings	DROP	invoice_number;
+
+ALTER TABLE Incomings		CHANGE	real_weight 	received_weight		DECIMAL(10,2) 	DEFAULT 0;
+ALTER TABLE Incomings		CHANGE	real_amount		received_amount		DECIMAL(10,2) 	DEFAULT 0;

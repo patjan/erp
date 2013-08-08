@@ -51,6 +51,7 @@ JKY.BatchIn = function() {
 							+ parseFloat(my_row.returned_weight)
 							- parseFloat(my_row.checkout_weight)
 							;
+			my_balance = Math.round(my_balance * 100) / 100;
 			my_html += '<tr onclick="JKY.BatchIn.click_row(this, ' + my_row.id + ')">'
 					+  '<td class="jky-batchin-search-batch"		>' + my_row.batch			+ '</td>'
 					+  '<td class="jky-batchin-search-created-date"	>' + JKY.short_date(my_row.created_at) + '</td>'

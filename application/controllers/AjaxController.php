@@ -668,13 +668,13 @@ private function set_new_fields($table) {
 												. ', Purchases.ordered_at		AS			ordered_at'
 												. ', Purchases.supplier_id		AS			supplier_id'
 												. ',   Threads.name				AS			thread_name'
-												. ',   Batches.received_weight	AS			received_weight'
+//												. ',   Batches.received_weight	AS			received_weight'
 												. ', Incomings.received_at		AS			received_at'
 												. ',  Supplier.nick_name		AS			supplier_name';
 	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name		AS supplier_name';
 	if ($table == 'Batches'			)	$return = ',   Threads.name				AS			name'
 												. ', Incomings.number			AS			number';
-	if ($table == 'Boxes'			)	$return = ',   Batches.batch			AS			batch'
+	if ($table == 'Boxes'			)	$return = ',   Batches.batch			AS			batch_number'
 												. ',    Parent.barcode			AS			parent'
 												. ',   CheckIn.nick_name		AS			checkin'
 												. ',  CheckOut.nick_name		AS			checkout'
@@ -1168,8 +1168,8 @@ private function set_where($table, $filter) {
 			or	$name == 'invoice_date'
 			or	$name == 'invoice_weight'
 			or	$name == 'invoice_amount'
-			or	$name == 'real_weight'
-			or	$name == 'real_amount') {
+			or	$name == 'received_weight'
+			or	$name == 'received_amount') {
 				if ($value == '"%null%"') {
 					return ' AND Incomings.' . $name . ' IS NULL ';
 				}else{
@@ -1329,11 +1329,11 @@ private function set_where($table, $filter) {
 			or	$name == 'checkout_at'
 			or	$name == 'nfe_dl'
 			or	$name == 'nfe_tm'
-			or	$name == 'invoice_date'
-			or	$name == 'invoice_weight'
-			or	$name == 'invoice_amount'
-			or	$name == 'real_weight'
-			or	$name == 'real_amount') {
+			or	$name == 'requested_date'
+			or	$name == 'checkout_weight'
+			or	$name == 'checkout_amount'
+			or	$name == 'requested_weight'
+			or	$name == 'requested_amount') {
 				if ($value == '"%null%"') {
 					return ' AND CheckOuts.' . $name . ' IS NULL ';
 				}else{
@@ -1579,8 +1579,8 @@ private function set_where($table, $filter) {
 			. ' OR  Incomings.invoice_date		LIKE ' . $filter
 			. ' OR  Incomings.invoice_weight	LIKE ' . $filter
 			. ' OR  Incomings.invoice_amount	LIKE ' . $filter
-			. ' OR  Incomings.real_weight		LIKE ' . $filter
-			. ' OR  Incomings.real_amount		LIKE ' . $filter
+			. ' OR  Incomings.received_weight	LIKE ' . $filter
+			. ' OR  Incomings.received_amount	LIKE ' . $filter
 			. ' OR   Supplier.nick_name			LIKE ' . $filter
 			;
 		}
@@ -1615,15 +1615,15 @@ private function set_where($table, $filter) {
 			;
 		}
 
-	if ($table ==  'Purchases') {
-		$return = ' Purchases.number		LIKE ' . $filter
-			. ' OR  Purchases.source_doc	LIKE ' . $filter
-			. ' OR  Purchases.ordered_at	LIKE ' . $filter
-			. ' OR  Purchases.expected_date	LIKE ' . $filter
-			. ' OR  Purchases.scheduled_at	LIKE ' . $filter
-			. ' OR  Purchases.supplier_ref	LIKE ' . $filter
-			. ' OR  Purchases.payment_term	LIKE ' . $filter
-			. ' OR   Supplier.nick_name		LIKE ' . $filter
+	if ($table ==  'Requests') {
+		$return = ' Requests.number			LIKE ' . $filter
+			. ' OR  Requests.source_doc		LIKE ' . $filter
+			. ' OR  Requests.ordered_at		LIKE ' . $filter
+			. ' OR  Requests.requested_date	LIKE ' . $filter
+			. ' OR  Requests.scheduled_at	LIKE ' . $filter
+			. ' OR  Requests.supplier_ref	LIKE ' . $filter
+			. ' OR  Requests.payment_term	LIKE ' . $filter
+			. ' OR  Supplier.nick_name		LIKE ' . $filter
 			;
 		}
 
@@ -1645,11 +1645,11 @@ private function set_where($table, $filter) {
 			. ' OR  CheckOuts.checkout_at		LIKE ' . $filter
 			. ' OR  CheckOuts.nfe_dl			LIKE ' . $filter
 			. ' OR  CheckOuts.nfe_tm			LIKE ' . $filter
-			. ' OR  CheckOuts.invoice_date		LIKE ' . $filter
-			. ' OR  CheckOuts.invoice_weight	LIKE ' . $filter
-			. ' OR  CheckOuts.invoice_amount	LIKE ' . $filter
-			. ' OR  CheckOuts.real_weight		LIKE ' . $filter
-			. ' OR  CheckOuts.real_amount		LIKE ' . $filter
+			. ' OR  CheckOuts.requested_date	LIKE ' . $filter
+			. ' OR  CheckOuts.checkout_weight	LIKE ' . $filter
+			. ' OR  CheckOuts.checkout_amount	LIKE ' . $filter
+			. ' OR  CheckOuts.requested_weight	LIKE ' . $filter
+			. ' OR  CheckOuts.requested_amount	LIKE ' . $filter
 			. ' OR   Supplier.nick_name			LIKE ' . $filter
 			. ' OR   Machines.name				LIKE ' . $filter
 			;
@@ -3974,8 +3974,9 @@ private function echo_error( $message ) {
 //			system( '( tcp.exe ' . $ip_number . ' 9100 ' . $out_name . ' & ) > /dev/null');
 //			system( '( php ' . APPLICATION . 'GenerateHtml.php & ) > /dev/null' );
 
+if (ENVIRONMENT == 'production') {
 			exec( 'tcp.exe ' . $ip_number . ' 9100 ' . $out_name );
-
+}
 			$sql= 'UPDATE Boxes'
 				. '   SET is_printed = "Yes"'
 				. ' WHERE id = ' . $my_id
@@ -4013,6 +4014,7 @@ private function echo_error( $message ) {
 			. '  FROM PurchaseLines'
 			. '  LEFT JOIN Purchases ON Purchases.id = PurchaseLines.purchase_id'
 			. ' WHERE PurchaseLines.status = "Draft"'
+			. '   AND PurchaseLines.expected_weight > PurchaseLines.received_weight'
 			. ' GROUP BY thread_id, supplier_id, months'
 			. ';'
 
@@ -4182,25 +4184,27 @@ private function checkout($data) {
 	$this->log_sql( 'CheckOuts', 'update', $sql );
 	$db->query( $sql );
 
-	$sql = 'UPDATE ReqLines'
-	     . '   SET checkout_weight = checkout_weight + ' . $my_weight
-	     . ' WHERE id = ' . $batchout['req_line_id']
-	     ;
-	$this->log_sql( 'ReqLines', 'update', $sql );
-	$db->query( $sql );
+	if ($batchout['req_line_id']) {
+		$sql = 'UPDATE ReqLines'
+			 . '   SET checkout_weight = checkout_weight + ' . $my_weight
+			 . ' WHERE id = ' . $batchout['req_line_id']
+			 ;
+		$this->log_sql( 'ReqLines', 'update', $sql );
+		$db->query( $sql );
 
-	$sql = 'SELECT ReqLines.*'
-		 . '  FROM ReqLines'
-		 . ' WHERE ReqLines.id = ' . $batchout['req_line_id']
-		 ;
-	$reqline = $db->fetchRow( $sql );
+		$sql = 'SELECT ReqLines.*'
+			 . '  FROM ReqLines'
+			 . ' WHERE ReqLines.id = ' . $batchout['req_line_id']
+			 ;
+		$reqline = $db->fetchRow( $sql );
 
-	$sql = 'UPDATE Requests'
-	     . '   SET checkout_weight = checkout_weight + ' . $my_weight
-	     . ' WHERE id = ' . $reqline['request_id']
-	     ;
-	$this->log_sql( 'Requests', 'update', $sql );
-	$db->query( $sql );
+		$sql = 'UPDATE Requests'
+			 . '   SET checkout_weight = checkout_weight + ' . $my_weight
+			 . ' WHERE id = ' . $reqline['request_id']
+			 ;
+		$this->log_sql( 'Requests', 'update', $sql );
+		$db->query( $sql );
+	}
 
 	$return = array();
 	$return[ 'status'   ] = 'ok';
@@ -4223,17 +4227,17 @@ private function returned($data) {
 
 	$db  = Zend_Registry::get( 'db' );
 
-	$updated = '  updated_by='  . get_session( 'user_id' )
-			 . ', updated_at="' . get_time() . '"'
+	$updated = '  updated_by = ' . get_session( 'user_id' )
+			 . ', updated_at ="' . get_time() . '"'
 			 . ', status="Return"'
 			 ;
 
 	$sql = 'UPDATE Boxes'
 	     . '   SET ' . $updated
-		 . '     , returned_by='  . get_session( 'user_id' )
-		 . '     , returned_at="' . get_time() . '"'
-		 . '     , number_of_cones=' . $number_of_cones
-		 . '     , real_weight=' . $real_weight
+		 . '     , returned_by = '  . get_session( 'user_id' )
+		 . '     , returned_at ="' . get_time() . '"'
+		 . '     , number_of_cones = ' . $number_of_cones
+		 . '     , real_weight = ' . $real_weight
 	     . ' WHERE barcode = ' . $barcode
 	     ;
 	$this->log_sql( 'Boxes', 'update', $sql );

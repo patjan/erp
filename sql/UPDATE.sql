@@ -82,7 +82,6 @@ TRUNCATE TABLE 	BatchOuts		;
 TRUNCATE TABLE 	Boxes			;
 TRUNCATE TABLE 	CheckOuts		;
 TRUNCATE TABLE 	Incomings		;
-TRUNCATE TABLE 	PurchaseForecast;
 TRUNCATE TABLE 	PurchaseLines	;
 TRUNCATE TABLE 	Purchases		;
 TRUNCATE TABLE 	ReqLines		;
@@ -119,4 +118,11 @@ ALTER TABLE CheckOuts		CHANGE	real_weight		requested_weight	DECIMAL(10,2);
 ALTER TABLE CheckOuts		CHANGE	real_amount		requested_amount	DECIMAL(10,2);
 ALTER TABLE CheckOuts		CHANGE	invoice_weight	checkout_weight		DECIMAL(10,2);
 ALTER TABLE CheckOuts		CHANGE	invoice_amount	checkout_amount		DECIMAL(10,2);
-
+----- 2013/08/07
+ALTER TABLE Incomings		CHANGE	real_weight 	received_weight		DECIMAL(10,2) 	DEFAULT 0;
+ALTER TABLE Incomings		CHANGE	real_amount		received_amount		DECIMAL(10,2) 	DEFAULT 0;
+----- 2013/08/08
+ALTER TABLE CheckOuts		CHANGE	requested_weight	requested_weight	DECIMAL(10,2)	DEFAULT 0;
+ALTER TABLE CheckOuts		CHANGE	requested_amount	requested_amount	DECIMAL(10,2)	DEFAULT 0;
+ALTER TABLE CheckOuts		CHANGE	checkout_weight		checkout_weight		DECIMAL(10,2)	DEFAULT 0;
+ALTER TABLE CheckOuts		CHANGE	checkout_amount		checkout_amount		DECIMAL(10,2)	DEFAULT 0;

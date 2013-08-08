@@ -31,6 +31,7 @@ JKY.set_all_events = function() {
 	$('#jky-action-clear'			).click	(function() {JKY.process_clear_screen	();});
 	$('#jky-action-confirm'			).click	(function() {JKY.process_confirm_screen	();});
 	$('#jky-box-input-barcode'		).change(function() {JKY.process_input_barcode	();});
+	$('#jky-box-check-all'			).click (function() {JKY.set_all_box_check	(this);});
 };
 
 /**
@@ -82,6 +83,15 @@ JKY.set_form_row = function(the_row) {
 //	JKY.display_lines();
 };
 
+JKY.set_all_box_check = function(the_index) {
+	JKY.display_trace('set_all_box_check');
+	if ($(the_index).is(':checked')) {
+		$('#jky-box-table-body .jky-checkbox input').each(function() {$(this).attr('checked', 'checked');})
+	}else{
+		$('#jky-box-table-body .jky-checkbox input').each(function() {$(this).removeAttr('checked');})
+	}
+}
+
 JKY.display_list = function() {
 	JKY.hide('jky-action-add-new');
 	JKY.hide('jky-action-export' );
@@ -123,18 +133,31 @@ JKY.process_barcode_success = function(response) {
 			JKY.set_html ('jky-box-input-message', JKY.t('duplicate'));
 			JKY.set_focus('jky-box-input-barcode');
 		}else{
-			var my_checkbox = '';
-			if ( my_row.status == 'Check In' || my_row.status == 'Return') {
-				my_checkbox = '<input type="checkbox" onclick="JKY.Application.set_checkbox(this)" barcode=' + my_barcode + ' />';
+			var	my_checkbox = '<input type="checkbox" onclick="JKY.Application.set_checkbox(this)" barcode=' + my_barcode + ' />';
+			var my_status_class = '';
+			if (my_row.status != 'Check In' && my_row.status != 'Return') {
+				my_status_class = 'jky-error ';
+				my_checkbox = '';
 			}
+			var my_thread_class = '';
+			if (my_row.thread_name != JKY.row.thread_name) {
+				my_thread_class = 'jky-error ';
+				my_checkbox = '';
+			}
+			var my_batch_class = '';
+			if (my_row.batch_number != JKY.row.batch_number) {
+				my_batch_class = 'jky-error ';
+				my_checkbox = '';
+			}
+
 			JKY.sequence++;
 			var my_html = '<tr>'
 					+ '<td class="jky-checkbox"			>' +  my_checkbox				+ '</td>'
 					+ '<td class="jky-barcode"			>' +  my_row.barcode			+ '</td>'
 					+ '<td class="jky-sequence"			>' +  JKY.sequence				+ '</td>'
-					+ '<td class="jky-status"			>' +  JKY.t(my_row.status)		+ '</td>'
-					+ '<td class="jky-thread-name"		>' +  my_row.thread_name		+ '</td>'
-					+ '<td class="jky-batch"			>' +  my_row.batch				+ '</td>'
+					+ '<td class="' + my_status_class + 'jky-status"		>' +  JKY.t(my_row.status)		+ '</td>'
+					+ '<td class="' + my_thread_class + 'jky-thread-name"	>' +  my_row.thread_name		+ '</td>'
+					+ '<td class="' + my_batch_class  + 'jky-batch"			>' +  my_row.batch_number		+ '</td>'
 					+ '<td class="jky-number-of-boxes"	>' +  my_row.number_of_boxes	+ '</td>'
 					+ '<td class="jky-number-of-cones"	>' +  my_row.number_of_cones	+ '</td>'
 					+ '<td class="jky-average-weight"	>' +  my_row.average_weight		+ '</td>'
@@ -198,8 +221,7 @@ JKY.confirm_row = function(the_id, the_barcode) {
  */
 JKY.confirm_row_success = function(response) {
 	JKY.display_trace('confirm_row');
-	JKY.row = response.row;
-	JKY.set_value('jky-checkout-weight', JKY.row.checkout_weight);
-	JKY.set_value('jky-checkout-boxes' , JKY.row.checkout_boxes );
+	JKY.set_value('jky-checkout-weight', JKY.get_value_by_id('BatchOuts', 'checkout_weight', JKY.row.id));
+	JKY.set_value('jky-checkout-boxes' , JKY.get_value_by_id('BatchOuts', 'checkout_boxes' , JKY.row.id));
 }
 

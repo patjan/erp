@@ -239,6 +239,7 @@ li .arrow span {
 .jky-checkbox			{width: 25px; text-align:center !important;}
 .jky-checkin-location	{width: 50px; text-align:center !important;}
 .jky-checkout-number	{width: 50px; text-align:center !important;}
+.jky-error				{color:#CC0000;}
 .jky-filler				{width: 40px;}
 .jky-machine-name		{width: 70px; text-align:center !important; text-transform:capitalize;}
 .jky-not-found			{color:  red; text-align:center !important;}
