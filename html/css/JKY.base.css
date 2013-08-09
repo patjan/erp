@@ -233,28 +233,28 @@ li .arrow span {
 #jky-printable			{display:none}
 /* -------------------------------------------------------------------------- */
 .jky-action				{width: 20px; }
-.jky-average-weight		{width: 50px; text-align:right  !important;}
+.jky-average-weight		{width: 45px; text-align:right  !important;}
 .jky-barcode			{width: 90px; text-align:center !important;}
-.jky-batch-number		{width: 80px; text-align:center !important;}
+.jky-batch-number		{width: 60px; text-align:center !important;}
 .jky-checkbox			{width: 25px; text-align:center !important;}
 .jky-checkin-location	{width: 50px; text-align:center !important;}
-.jky-checkout-boxes		{width: 65px; text-align:right  !important;}
+.jky-checkout-boxes		{width: 50px; text-align:right  !important;}
 .jky-checkout-weight	{width: 65px; text-align:right  !important;}
-.jky-checkout-number	{width: 50px; text-align:center !important;}
+.jky-checkout-number	{width: 45px; text-align:center !important;}
 .jky-error				{color:#CC0000;}
 .jky-filler				{width: 40px;}
-.jky-machine-name		{width: 70px; text-align:center !important; text-transform:capitalize;}
+.jky-machine-name		{width: 60px; text-align:center !important; text-transform:capitalize;}
 .jky-not-found			{color:  red; text-align:center !important;}
 .jky-number-of-boxes	{width: 40px; text-align:center !important;}
 .jky-number-of-cones	{width: 40px; text-align:center !important;}
 .jky-real-weight		{width: 50px; text-align:right  !important;}
-.jky-requested-boxes	{width: 65px; text-align:right  !important;}
-.jky-requested-date		{width: 65px; text-align:center !important;}
+.jky-requested-boxes	{width: 50px; text-align:right  !important;}
+.jky-requested-date		{width: 60px; text-align:center !important;}
 .jky-requested-weight	{width: 65px; text-align:right  !important;}
 .jky-sequence			{width: 35px; text-align:center !important;}
 .jky-status				{width: 65px; text-align:center !important;}
-.jky-supplier-name		{width:120px; text-align:center !important; text-transform:capitalize;}
-.jky-thread-name		{width:220px; text-align:left   !important;}
+.jky-supplier-name		{width:100px; text-align:center !important; text-transform:capitalize;}
+.jky-thread-name		{width:200px; text-align:left   !important;}
 
 .jky-box-checkbox			{width: 30px; text-align:center;}
 .jky-box-barcode			{width: 90px; text-align:center !important;}
