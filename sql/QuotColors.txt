@@ -1,0 +1,24 @@
+DROP   TABLE IF     EXISTS QuotColors;
+CREATE TABLE IF NOT EXISTS QuotColors
+( id				BIGINT				NOT NULL AUTO_INCREMENT
+, created_by		BIGINT				DEFAULT NULL
+, created_at		DATETIME			DEFAULT NULL
+, updated_by		BIGINT				DEFAULT NULL
+, updated_at		DATETIME			DEFAULT NULL
+, status			VARCHAR(32)			DEFAULT 'Draft'
+
+, parent_id			BIGINT				DEFAULT NULL
+, color_id			BIGINT				DEFAULT NULL
+, color_group		INT					DEFAULT 0
+, quoted_pieces		INT					DEFAULT 0
+, fabric_price		DECIMAL(10,2)		DEFAULT 0
+, punho_price		DECIMAL(10,2)		DEFAULT 0
+, gola_price		DECIMAL(10,2)		DEFAULT 0
+, galao_price		DECIMAL(10,2)		DEFAULT 0
+
+, PRIMARY KEY(id)
+, KEY parent(parent_id	)
+, KEY color	(color_id	)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
+;
+
