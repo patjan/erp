@@ -31,6 +31,8 @@ JKY.set_all_events = function() {
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
 	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
 //	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
+
+	$('#jky-action-batch'	).click( function() {JKY.generate_batch();})
 };
 
 /**
@@ -59,9 +61,10 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-thread-name"		>' +				 the_row.thread_name			+ '</td>'
 		+  '<td class="jky-batch-number"	>' +				 the_row.batch_number			+ '</td>'
 //		+  '<td class="jky-unit-price"		>' +				 the_row.unit_price				+ '</td>'
-		+  '<td class="jky-average-weight"	>' +				 the_row.average_weight			+ '</td>'
+//		+  '<td class="jky-average-weight"	>' +				 the_row.average_weight			+ '</td>'
 		+  '<td class="jky-requested-weight">' +				 the_row.requested_weight		+ '</td>'
 		+  '<td class="jky-requested-boxes"	>' +				 the_row.requested_boxes		+ '</td>'
+		+  '<td class="jky-reserved-boxes"	>' +				 the_row.reserved_boxes			+ '</td>'
 		+  '<td class="jky-checkout-weight"	>' +				 the_row.checkout_weight		+ '</td>'
 		+  '<td class="jky-checkout-boxes"	>' +				 the_row.checkout_boxes			+ '</td>'
 		;
@@ -80,10 +83,20 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-unit-price'			, the_row.unit_price		);
 	JKY.set_value	('jky-requested-weight'		, the_row.requested_weight	);
 	JKY.set_value	('jky-requested-boxes'		, the_row.requested_boxes	);
+	JKY.set_value	('jky-reserved-boxes'		, the_row.reserved_boxes	);
 	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);
 	JKY.set_value	('jky-checkout-weight'		, the_row.checkout_weight	);
 	JKY.set_value	('jky-checkout-boxes'		, the_row.checkout_boxes	);
-//	JKY.display_lines();
+
+	if (parseInt(the_row.requested_boxes) > (parseInt(the_row.reserved_boxes) + parseInt(the_row.checkout_boxes))) {
+		JKY.show('jky-action-batch');
+		JKY.show('jky-action-delete');
+	}else{
+		JKY.hide('jky-action-batch');
+		JKY.hide('jky-action-delete');
+	}
+
+	JKY.display_lines();
 };
 
 /**
@@ -97,6 +110,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-supplier-name'		, '');
 	JKY.set_value	('jky-requested-weight'		,  0);
 	JKY.set_value	('jky-requested-boxes'		, '');
+	JKY.set_value	('jky-reserved-boxes'		, '');
 	JKY.set_value	('jky-unit-price'			,  0);
 	JKY.set_value	('jky-average-weight'		,  0);
 	JKY.set_value	('jky-checkout-weight'		,  0);
@@ -116,9 +130,52 @@ JKY.get_form_set = function() {
 		+', unit_price=  '			+	JKY.get_value('jky-unit-price'			)
 		+', requested_weight= '		+	JKY.get_value('jky-requested-weight'	)
 		+', requested_boxes=  '		+	JKY.get_value('jky-requested-boxes'		)
+		+', reserved_boxes=  '		+	JKY.get_value('jky-reserved-boxes'		)
 		+', average_weight=  '		+	JKY.get_value('jky-average-weight'		)
 		+', checkout_weight=  '		+	JKY.get_value('jky-checkout-weight'		)
 		+', checkout_boxes=  '		+	JKY.get_value('jky-checkout-boxes'		)
 		;
 	return my_set;
 };
+
+JKY.generate_batch = function() {
+	JKY.insert_batch_sets();
+}
+
+JKY.insert_batch_sets = function() {
+	var my_trs = $('#jky-boxes-body tr');
+	for(var i=0, max=my_trs.length; i<max; i++) {
+		var my_tr = my_trs[i];
+		var my_reserved_boxes = parseInt($(my_tr).find('.jky-reserved-boxes').val());
+		if (my_reserved_boxes > 0) {
+			var my_checkin_location	=				 $(my_tr).find('.jky-checkin-location'	).val() ;
+			var my_checkin_date		= JKY.inp_date	($(my_tr).find('.jky-checkin-date'		).val());
+			var my_checkin_weight	= parseFloat	($(my_tr).find('.jky-checkin-weight'	).val());
+			var my_checkin_boxes	= parseInt		($(my_tr).find('.jky-checkin-boxes'		).val());
+			var my_set = ''
+				+       ' batchout_id=  ' + JKY.row.id
+				+ ', checkin_location=\'' + my_checkin_locatio + '\''
+				+     ', checkin_date=  ' + my_checkin_date
+				+   ', checkin_weight=  ' + my_checkin_weight
+				+    ', checkin_boxes=  ' + my_checkin_boxes
+				+   ', reserved_boxes=  ' + my_reserved_boxes
+				;
+			var my_data =
+				{ method	: 'insert'
+				, table		: 'BatchSets'
+				, set		:  my_set
+				};
+			JKY.ajax(false, my_data);
+
+			my_data =
+				{ method	: 'update'
+				, table		: 'BatchOuts'
+				, set		: 'reserved_boxes = reserved_boxes + ' + my_reserved_boxes
+				, where		: 'Batchouts.id = ' + JKY.row.id
+				};
+			JKY.ajax(false, my_data);
+		}
+	}
+	JKY.display_message('Batch row generated');
+	JKY.Application.display_row();
+}

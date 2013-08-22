@@ -546,6 +546,19 @@ private function get_index($data) {
 	}
 	$where = $this->get_security($table, $where);
 
+	if ($table == 'CheckinLocations') {
+		$sql= 'SELECT Boxes.checkin_location	AS location'
+			. '	 , MIN(Boxes.checkin_at)		AS checkin_at'
+			. '	 , COUNT(*)						AS total_boxes'
+			. '	 , SUM(IF( Boxes.real_weight = 0, Boxes.average_weight, Boxes.real_weight))	AS total_weight'
+			. '  FROM Boxes'
+			. '  LEFT JOIN Batches	ON Batches.id = Boxes.batch_id'
+			. ' WHERE Boxes.status = "Check In"'
+			. '   AND Batches.thread_id = ' . $select
+			. ' GROUP BY Boxes.checkin_location'
+			. ' ORDER BY Boxes.checkin_location'
+			;
+	}else{
 	if ($table == 'FTP_Sets') {
 		$sql= 'SELECT Configs.id as setting, Configs.name, FTP_Sets.id, FTP_Sets.value'
 			. '  FROM Configs'
@@ -564,7 +577,7 @@ private function get_index($data) {
 			. $order_by
 			. $limit
 			;
-	}
+	}}
 $this->log_sql($table, 'get_index', $sql);
      $db   = Zend_Registry::get('db');
      $rows = $db->fetchAll($sql);
@@ -710,6 +723,15 @@ private function set_new_fields($table) {
 												. ', CheckOuts.requested_date	AS requested_date'
 												. ',  Supplier.nick_name		AS supplier_name'
 												. ',  Machines.name				AS  machine_name';
+	if ($table == 'BatchSets'		)	$return = ', BatchOuts.average_weight	AS	average_weight'
+												. ', BatchOuts.requested_weight	AS requested_weight'
+												. ', BatchOuts.checkout_weight	AS checkout_weight'
+												. ',   Threads.name				AS	 thread_name'
+												. ',   Batches.batch			AS    batch_number'
+												. ', CheckOuts.number			AS checkout_number'
+												. ', CheckOuts.requested_date	AS requested_date'
+												. ',  Supplier.nick_name		AS supplier_name'
+												. ',  Machines.name				AS  machine_name';
 	if ($table == 'ThreadForecast'	)	$return = ',  Contacts.nick_name		AS supplier_name'
 												. ',   Threads.thread_group		AS	 thread_group'
 												. ',   Threads.name				AS	 thread_name'
@@ -793,6 +815,13 @@ private function set_left_joins($table) {
 	if ($table == 'CheckOuts'		)	$return = '  LEFT JOIN    Machines				ON  Machines.id	=		 CheckOuts.machine_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id';
 	if ($table == 'BatchOuts'		)	$return = '  LEFT JOIN   CheckOuts  			ON CheckOuts.id	=		 BatchOuts.checkout_id'
+												. '  LEFT JOIN     Threads  			ON   Threads.id	=		 BatchOuts.thread_id'
+												. '  LEFT JOIN     Batches  			ON   Batches.id	=		 BatchOuts.batchin_id'
+												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=		 BatchOuts.req_line_id'
+												. '  LEFT JOIN    Machines				ON  Machines.id	=		 CheckOuts.machine_id'
+												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id';
+	if ($table == 'BatchSets'		)	$return = '  LEFT JOIN   BatchOuts				ON BatchOuts.id	=		 BatchSets.batchout_id'
+												. '  LEFT JOIN   CheckOuts  			ON CheckOuts.id	=		 BatchOuts.checkout_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		 BatchOuts.thread_id'
 												. '  LEFT JOIN     Batches  			ON   Batches.id	=		 BatchOuts.batchin_id'
 												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=		 BatchOuts.req_line_id'

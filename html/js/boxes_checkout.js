@@ -12,7 +12,7 @@ JKY.start_program = function() {
 	JKY.App.set(
 		{ object_name	: 'JKY.App'
 		, program_name	: 'Boxes Check Out'
-		, table_name	: 'BatchOuts'
+		, table_name	: 'BatchSets'
 		, specific		: ''
 		, select		: ''
 		, filter		: ''
@@ -56,10 +56,11 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-thread-name"		>' +				 the_row.thread_name			+ '</td>'
 		+  '<td class="jky-batch-number"	>' +				 the_row.batch_number			+ '</td>'
 //		+  '<td class="jky-unit-price"		>' +				 the_row.unit_price				+ '</td>'
-		+  '<td class="jky-average-weight"	>' +				 the_row.average_weight			+ '</td>'
-		+  '<td class="jky-requested-weight">' +				 the_row.requested_weight		+ '</td>'
-		+  '<td class="jky-requested-boxes"	>' +				 the_row.requested_boxes		+ '</td>'
-		+  '<td class="jky-checkout-weight"	>' +				 the_row.checkout_weight		+ '</td>'
+//		+  '<td class="jky-average-weight"	>' +				 the_row.average_weight			+ '</td>'
+//		+  '<td class="jky-requested-weight">' +				 the_row.requested_weight		+ '</td>'
+//		+  '<td class="jky-requested-boxes"	>' +				 the_row.requested_boxes		+ '</td>'
+		+  '<td class="jky-reserved-boxes"	>' +				 the_row.reserved_boxes			+ '</td>'
+//		+  '<td class="jky-checkout-weight"	>' +				 the_row.checkout_weight		+ '</td>'
 		+  '<td class="jky-checkout-boxes"	>' +				 the_row.checkout_boxes			+ '</td>'
 		;
 	return my_html;

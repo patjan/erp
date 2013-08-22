@@ -55,9 +55,10 @@
 			<th class='jky-thread-name'			><span>				<br>Thread		</span></th>
 			<th class='jky-batch-number'		><span>				<br>Batch		</span></th>
 <!--		<th class='jky-unit-price'			><span>         Unit<br>Price		</span></th>
--->			<th class='jky-average-weight'		><span>      Average<br>Weight		</span></th>
-			<th class='jky-requested-weight'	><span>    Requested<br>Weight		</span></th>
+			<th class='jky-average-weight'		><span>      Average<br>Weight		</span></th>
+-->			<th class='jky-requested-weight'	><span>    Requested<br>Weight		</span></th>
 			<th class='jky-requested-boxes'		><span>    Requested<br>Boxes		</span></th>
+			<th class='jky-reserved-boxes'		><span>     Reserved<br>Boxes		</span></th>
 			<th class='jky-checkout-weight'		><span>	   Check Out<br>Weight		</span></th>
 			<th class='jky-checkout-boxes'		><span>    Check Out<br>Boxes		</span></th>
 		</tr>
@@ -68,7 +69,10 @@
 
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
-		<div id='jky-form-actions'	></div>
+		<div id='jky-form-actions'	>
+			<button id='jky-action-complete'	class='btn btn-success' type='button' title="Click here to complete the batch"	><span>Complete</span></button>
+			<button id='jky-action-batch'		class='btn'				type='button' title="Click here to generate incoming batch"	><span>Generate Batch</span></button>
+		</div>
 		<ul  id='jky-form-status'	></ul>
 	</div>
 	<div class='jky-clear'></div>
@@ -86,6 +90,7 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span>      Unit Price</span>:</div><input  id='jky-unit-price'			type='text' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Requested Weight</span>:</div><input  id='jky-requested-weight'	type='text' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span> Requested Boxes</span>:</div><input  id='jky-requested-boxes'		type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Reserved Boxes</span>:</div><input  id='jky-reserved-boxes'		type='text' /></div>
 		</div>
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>  Average Weight</span>:</div><input  id='jky-average-weight'		type='text' /></div>
@@ -118,18 +123,14 @@
 					<thead>
 						<tr style='font-weight:bold;'>
 							<td class='jky-action'></td>
-							<td class='jky-boxes-batch-number'		><span>	   Batch<br>Number			</span></td>
-							<td	class='jky-barcode'					><span>				Barcode			</span></td>
-							<td	class='jky-number-of-boxes'			><span>	  Number<br>of Boxes		</span></td>
-							<td	class='jky-number-of-cones'			><span>	  Number<br>of Cones		</span></td>
-							<td class='jky-boxes-average-weight'	><span>	 Average<br>Weight			</span></td>
-							<td class='jky-boxes-requested-weight'	><span>Requested<br>Weight			</span></td>
-							<td class='jky-boxes-checkin-location'	><span> Check In<br>Location		</span></td>
-							<td class='jky-boxes-checkout-location'	><span>Check Out<br>Location		</span></td>
-							<td class='jky-boxes-returned-location'	><span>	Returned<br>Location		</span></td>
+							<td class='jky-boxes-location'	><span>	Check In<br>Location	</span></td>
+							<td	class='jky-boxes-date-in'	><span>	Check In<br>Date		</span></td>
+							<td class='jky-boxes-weight'	><span>	Check In<br>Weight		</span></td>
+							<td class='jky-boxes-checkin'	><span> Check In<br>Boxes		</span></td>
+							<td class='jky-boxes-reserved'	><span> Reserved<br>Boxes		</span></td>
 						</tr>
 					</thead>
-					<tbody id='jky-batch-body'></tbody>
+					<tbody id='jky-boxes-body'></tbody>
 					<tfoot>
 						<tr>
 							<td id='jky-batch-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
@@ -144,3 +145,4 @@
 
 <div id='jky-body-loaded'></div>
 <script src='js/batchouts.js'></script>
+<script src='js/checkin_locations.js'></script>
