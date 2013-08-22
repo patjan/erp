@@ -1,0 +1,82 @@
+<style>
+.jky-form-label			{width:110px;}
+.jky-form-value			{width:280px;}
+.jky-checkbox			{width: 30px; text-align:center;}
+.jky-status				{width:100px; text-align:center;}
+
+.jky-color-name			{width:120px; text-align:left  ;}
+.jky-color-type			{width: 80px; text-align:center;}
+
+#jky-status				{width:100px;}
+#jky-color-name		{width:300px; font-size:16px; font-weight:bold;}
+#jky-color-type			{width:200px;}
+</style>
+
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-color-name'		><span>Color Name		</span></th>
+			<th class='jky-color-type'		><span>Color Type		</span></th>
+			<th class='jky-status'			><span>Status			</span></th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+</table>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'	></div>
+		<ul  id='jky-form-status'	></ul>
+	</div>
+	<div class='jky-clear'></div>
+
+	<div id='jky-form-data'>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>           Status</span>:</div><select id='jky-status'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>        Color Name</span>:</div><input  id='jky-color-name'	class='jky-form-value'		placeholder='Name' 				/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>        Color Type</span>:</div><select id='jky-color-type'	></select></div>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+
+		<div class='jky-left'>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+		<div>
+			<div class='jky-form-label'></div>
+			<div class='jky-form-buttons'>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+				  <button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-tabs' class='tabbable'>
+		<ul class='nav nav-tabs' id='cd-ul-tabs'>
+			<li	id='jky-tab-notes'			class='active'	><a href='#jky-notes'				data-toggle='tab'><span>Notes			</span></a></li>
+		</ul>
+
+		<div class='tab-content'>
+
+			<div id='jky-notes' class='tab-pane'>
+				<div class='jky-left'>
+					<div class='jky-form-line'><div class='jky-form-label'><span>		Expected Date</span></div><div id='jky-expected-date'		class='jky-form-value'>02/01/2013	</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>	Invoicing Control</span></div><div id='jky-invoicing-control'	class='jky-form-value'>Based on 	</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>	 Invoice Received</span></div><div id='jky-invoice-received'	class='jky-form-value'>No			</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>		 Payment Term</span></div><div id='jky-payment-term'		class='jky-form-value'>				</div></div>
+					<div class='jky-form-line'><div class='jky-form-label'><span>	  Fiscal Position</span></div><div id='jky-fiscal-position'		class='jky-form-value'>				</div></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id='jky-form-footer'></div>
+</div>
+
+<div id='jky-body-loaded'></div>
+<script src='js/colors.js'></script>

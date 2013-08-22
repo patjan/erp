@@ -43,9 +43,10 @@ JKY.set_all_events_home = function(jky_program) {
 		$('#jky-copyright'		).click (function() {JKY.display_copyright	()		;});
 		$('#jky-contact-us'		).click (function() {JKY.display_contact_us	()		;});
 */
+		$('#jky-sales-products'			).click (function() {JKY.process_action('products'		);});
+		$('#jky-sales-colors'			).click (function() {JKY.process_action('colors'		);});
 		$('#jky-sales-customers'		).click (function() {JKY.process_action('customers'		);});
 		$('#jky-sales-quotations'		).click (function() {JKY.process_action('quotations'	);});
-		$('#jky-sales-products'			).click (function() {JKY.process_action('products'		);});
 
 		$('#jky-planning-threads'		).click (function() {JKY.process_action('threads'		);});
 		$('#jky-planning-machines'		).click (function() {JKY.process_action('machines'		);});
