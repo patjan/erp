@@ -12,15 +12,16 @@ CREATE TABLE IF NOT EXISTS FTPs
 , product_id		BIGINT				DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
 , collection		VARCHAR(32)			DEFAULT NULL
+, nick_name			VARCHAR(255)		DEFAULT NULL
 , diameter			INT(11)				DEFAULT 0		# Diametro (cm)
 , density			INT(11)				DEFAULT 0		# Finura
 , inputs			INT(11)				DEFAULT 0		# Alimentos
 , speed		   		INT(11)				DEFAULT 0		# RPM
 , turns		   		INT(11)				DEFAULT 0		# Voltas
-, weight	   		INT(11)				DEFAULT 0		# Gramatura
+, weight	   		INT(11)				DEFAULT 0		# Gramatura (gr)
 , width				INT(11)				DEFAULT 0		# Largura (cm)
 , peso				DECIMAL(5,2)		DEFAULT 0		# Peso da Peca (12.5) (Kg)
-, has_break			CHAR(3)				DEFAULT 'no'	# Tem falha
+, has_break			CHAR(3)				DEFAULT 'No'	# Tem falha
 , composition		VARCHAR(255)		DEFAULT ''		# Composicao: 96 Polyester, 4 Elastano
 , draw				VARCHAR(255)		DEFAULT NULL	# Desenho
 , photo				VARCHAR(255)		DEFAULT NULL	# Foto
@@ -42,3 +43,5 @@ ALTER TABLE FTPs		ADD		collection				VARCHAR(32) DEFAULT NULL	AFTER machine_id;
 ALTER TABLE FTPs		DROP	lanes;
 ALTER TABLE FTPs		DROP	elasticity;
 ALTER TABLE FTPs		DROP	needling;
+
+ALTER TABLE FTPs		ADD		nick_name				VARCHAR(255) DEFAULT NULL	AFTER collection;

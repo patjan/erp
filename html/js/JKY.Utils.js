@@ -2360,3 +2360,13 @@ JKY.play_beep = function() {
 	audio.src = "http://erp/img/beep-5.wav";
 	audio.play();
 }
+
+JKY.get_prev_dom = function(the_id, the_attr) {
+	var my_prev_id = the_id;
+	var my_line_id = null;
+	do {
+		my_prev_id = my_prev_id.prev();
+		my_line_id = my_prev_id.attr(the_attr);
+	} while(my_line_id == null);
+	return my_prev_id;
+}

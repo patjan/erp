@@ -69,9 +69,9 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-code'					, the_row.code				);
+	JKY.set_value	('jky-checkout-number'		, the_row.checkout_number	);
 	JKY.set_value	('jky-thread-name'			, the_row.thread_name		);
-	JKY.set_value	('jky-batch'				, the_row.batch_number		);
+	JKY.set_value	('jky-batch-number'			, the_row.batch_number		);
 	JKY.set_value	('jky-machine-name'			, the_row.machine_name		);
 	JKY.set_value	('jky-supplier-name'		, the_row.supplier_name		);
 	JKY.set_value	('jky-requested-date'		, the_row.requested_date	);

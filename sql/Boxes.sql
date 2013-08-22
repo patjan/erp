@@ -45,3 +45,27 @@ UPDATE Boxes	SET	average_weight = 30.94	WHERE batch_id = 8;
 ALTER TABLE Boxes		CHANGE	stocked_location	returned_location	CHAR(4) 	DEFAULT NULL;
 ALTER TABLE Boxes		CHANGE	stocked_by			returned_by			BIGINT		DEFAULT NULL;
 ALTER TABLE Boxes		CHANGE	stocked_at			returned_at			DATETIME	DEFAULT NULL;
+
+
+
+
+SELECT Boxes.checkin_location		AS location
+	 , MIN(Boxes.checkin_at)		AS checkin_at
+	 , COUNT(*)						AS total_boxes
+	 , SUM(IF( Boxes.real_weight = 0, Boxes.average_weight, Boxes.real_weight))	AS total_weight
+  FROM Boxes
+  LEFT JOIN Batches	ON Batches.id = Boxes.batch_id
+ WHERE Boxes.status = 'Check In'
+   AND Batches.thread_id = 112
+ GROUP BY Boxes.checkin_location
+ ORDER BY Boxes.checkin_location
+ 
+location 	thread_id 	checkin_at 				total_boxes 	total_weight
+1A23 		112 		2013-08-08 08:01:10 	6 				179.76
+2B23 		77 			2013-08-08 10:35:42 	5 				148.80
+3C34 		112 		2013-08-08 10:36:20 	10 				300.50
+
+location 	checkin_at 				total_boxes 	total_weight
+1A23 		2013-08-08 08:01:10 	6 				179.76
+3C34 		2013-08-08 10:36:20 	10 				300.50
+
