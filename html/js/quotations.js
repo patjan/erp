@@ -11,46 +11,16 @@ JKY.start_program = function() {
 	JKY.App = JKY.Application;
 	JKY.App.set(
 		{ object_name	: 'JKY.App'
-		, program_name	: 'FTPs'
-		, table_name	: 'FTPs'
+		, program_name	: 'Quotations'
+		, table_name	: 'Quotations'
 		, specific		: ''
 		, select		: ''
 		, filter		: ''
-		, sort_by		: 'number'
+		, sort_by		: 'quotation_number'
 		, sort_seq		: 'DESC'
 		, focus			: 'jky-diameter'
 		});
 	JKY.App.init();
-
-	JKY.Photo = JKY.Upload(
-		{ object_name	: 'JKY.Photo'
-		, table_name	: 'FTPs'
-		, directory		: 'ftp_photos'
-		, field_name	: 'photo'
-		, title			: 'Photo files'
-		, extensions	: 'jpg,gif,png'
-		, button_id		: 'jky-upload-photo'
-		, filename_id	: 'jky-upload-name'
-		, percent_id	: 'jky-upload-percent'
-		, progress_id	: 'jky-upload-progress'
-		, img_id		: 'jky-photo-img'
-		, download_id	: 'jky-download-photo'
-		});
-
-	JKY.Draw = JKY.Upload(
-		{ object_name	: 'JKY.Draw'
-		, table_name	: 'FTPs'
-		, directory		: 'ftp_draws'
-		, field_name	: 'draw'
-		, title			: 'Drawing files'
-		, extensions	: 'jpg,gif,pdf,png,xls,xml'
-		, button_id		: 'jky-upload-drawing'
-		, filename_id	: 'jky-upload-name'
-		, percent_id	: 'jky-upload-percent'
-		, progress_id	: 'jky-upload-progress'
-		, img_id		: 'jky-drawing-img'
-		, download_id	: 'jky-download-drawing'
-		});
 };
 
 
@@ -64,36 +34,42 @@ JKY.suppliers	= [];
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-start-value'		).attr('data-format', JKY.Session.get_date());
-	$('#jky-start-date'			).datetimepicker({language:JKY.Session.get_locale(), pickTime:false});
-	$('#jky-start-date'			).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+	$('#jky-quoted-value'	).attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-produced-value'	).attr('data-format', JKY.Session.get_date		());
+	$('#jky-delivered-value').attr('data-format', JKY.Session.get_date		());
+	$('#jky-quoted-date'	).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-produced-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-delivered-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-quoted-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+	$('#jky-produced-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+	$('#jky-delivered-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
-	$('#jky-tab-threads'		).click (function() {JKY.display_threads	();});
-	$('#jky-tab-loads'			).click (function() {JKY.display_loads		();});
-	$('#jky-tab-settings'		).click (function() {JKY.display_settings	();});
+	$('#jky-punho-name'			).click( function()	{JKY.Application.process_change_input(this);});
+	$('#jky-gola-name'			).click( function()	{JKY.Application.process_change_input(this);});
+	$('#jky-galao-name'			).click( function()	{JKY.Application.process_change_input(this);});
 
-	$('#jky-comp-add-new'		).click (function() {JKY.insert_composition	();});
-	$('#jky-thread-add-new'		).click (function() {JKY.insert_thread		();});
-	$('#jky-load-add-new'		).click (function() {JKY.insert_load		();});
+	$('#jky-lines-add-new'		).click (function()	{JKY.insert_line		();});
 
 	$('#jky-action-product'		).click (function() {JKY.display_product	();});
 	$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});
 	$('#jky-search-filter'		).KeyUpDelay(JKY.filter_product);
-	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data);
+	$('#jky-product-filter'		).KeyUpDelay(JKY.Product.load_data);
+	$('#jky-color-filter'		).KeyUpDelay(JKY.Color.load_data);
 }
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-		JKY.set_side_active('jky-production-ftps');
-		JKY.set_html('jky-machine', JKY.set_table_options('Machines', 'name', '', ''));
-		JKY.set_html('jky-collection', JKY.set_configs('Collections', '', ''));
-		JKY.show('jky-action-print');
-		JKY.materials	= JKY.get_configs	('Materials'	);
-		JKY.threads		= JKY.get_ids		('Threads'		);
-		JKY.settings	= JKY.get_configs	('Settings'		);
-		JKY.suppliers	= JKY.get_companies	('is_supplier'	);
+	JKY.set_side_active('jky-sales-quotations');
+	JKY.set_html('jky-customer-name', JKY.set_options_array('', JKY.get_companies('is_customer'), true));
+	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
+	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_supplier'), true));
+	JKY.show('jky-action-print');
+//	JKY.materials	= JKY.get_configs	('Materials'	);
+//	JKY.threads		= JKY.get_ids		('Threads'		);
+//	JKY.settings	= JKY.get_configs	('Settings'		);
+//	JKY.suppliers	= JKY.get_companies	('is_supplier'	);
 }
 
 /**
@@ -101,10 +77,16 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-number"			>' +				 the_row.number				+ '</td>'
-		+  '<td class="jky-product"			>' + JKY.fix_null	(the_row.product		)	+ '</td>'
-		+  '<td class="jky-machine"			>' + JKY.fix_null	(the_row.machine		)	+ '</td>'
-		+  '<td class="jky-composition"		>' +				 the_row.composition		+ '</td>'
+		+  '<td class="jky-quotation-number">' +				 the_row.quotation_number		+ '</td>'
+		+  '<td class="jky-customer-name"	>' + JKY.fix_null	(the_row.customer_name		)	+ '</td>'
+		+  '<td class="jky-machine-name"	>' + JKY.fix_null	(the_row.machine_name		)	+ '</td>'
+		+  '<td class="jky-dyer-name"		>' + JKY.fix_null	(the_row.dyer_name			)	+ '</td>'
+		+  '<td class="jky-quoted-date"		>' + JKY.short_date	(the_row.quoted_at			)	+ '</td>'
+		+  '<td class="jky-produced-date"	>' + JKY.out_date	(the_row.produced_date		)	+ '</td>'
+		+  '<td class="jky-delivered-date"	>' + JKY.out_date	(the_row.delivered_date		)	+ '</td>'
+		+  '<td class="jky-quoted-pieces"	>' +				 the_row.quoted_pieces			+ '</td>'
+		+  '<td class="jky-produced-pieces"	>' +				 the_row.produced_pieces		+ '</td>'
+		+  '<td class="jky-delivered-pieces">' +				 the_row.delivered_pieces		+ '</td>'
 		+  '</tr>'
 		;
 	return my_html;
@@ -114,91 +96,86 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-number'			, the_row.number		);
-	JKY.set_date	('jky-start-date'		, JKY.out_date(the_row.start_date));
-	JKY.set_value	('jky-product-id'		, the_row.product_id	);
-	JKY.set_value	('jky-product'			, the_row.product		);
-	JKY.set_value	('jky-composition'		, the_row.composition	);
-	JKY.set_option	('jky-machine'			, the_row.machine_id	);
-	JKY.set_value	('jky-collection'		, the_row.collection	);
-	JKY.set_value	('jky-nick-name'		, the_row.nick_name		);
+	JKY.set_value	('jky-quotation-number'	, the_row.quotation_number	);
+	JKY.set_date	('jky-quoted-date'		, JKY.out_time(the_row.quoted_at		));
+	JKY.set_date	('jky-produced-date'	, JKY.out_date(the_row.produced_date	));
+	JKY.set_date	('jky-delivered-date'	, JKY.out_date(the_row.delivered_date	));
+	JKY.set_option	('jky-customer-name'	, the_row.customer_id	);
+	JKY.set_option	('jky-machine-name'		, the_row.machine_id	);
+	JKY.set_option	('jky-dyer-name'		, the_row.dyer_id		);
 	JKY.set_value	('jky-diameter'			, the_row.diameter		);
-	JKY.set_value	('jky-density'			, the_row.density		);
-	JKY.set_value	('jky-inputs'			, the_row.inputs		);
-	JKY.set_value	('jky-turns'			, the_row.turns			);
 	JKY.set_value	('jky-weight'			, the_row.weight		);
 	JKY.set_value	('jky-width'			, the_row.width			);
-//	JKY.set_value	('jky-lanes'			, the_row.lanes			);
-//	JKY.set_value	('jky-elasticity'		, the_row.elasticity	);
-//	JKY.set_value	('jky-needling'			, the_row.needling		);
-	JKY.set_value	('jky-speed'			, the_row.speed			);
 	JKY.set_value	('jky-peso'				, the_row.peso			);
 	JKY.set_radio	('jky-has-break'		, the_row.has_break		);
-
-	JKY.Photo.set_row_id(the_row.id);
-	JKY.Draw .set_row_id(the_row.id);
-	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));
-	JKY.set_html('jky-download-drawing'	, JKY.Draw .out_photo(the_row.draw ));
-
-	JKY.set_html('jky-upload-name'		, '');
-	JKY.set_html('jky-upload-percent'	, '');
-	JKY.set_css ('jky-upload-progress'	, 'width', '0%');
-
-	JKY.display_composition();
-	JKY.display_threads();
-	JKY.display_loads();
-	JKY.display_settings();
+	JKY.set_value	('jky-punho-perc'		, the_row.punho_perc	);
+	JKY.set_value	('jky-gola-perc'		, the_row.gola_perc		);
+	JKY.set_value	('jky-galao-perc'		, the_row.galao_perc	);
+	JKY.set_value	('jky-punho-name'		, the_row.punho_name	);
+	JKY.set_value	('jky-gola-name'		, the_row.gola_name		);
+	JKY.set_value	('jky-galao-name'		, the_row.galao_name	);
+	JKY.display_lines();
 }
 
 /**
  *	set add new row
  */
 JKY.set_add_new_row = function() {
-	JKY.set_value	('jky-number'			,  JKY.t('New'));
-	JKY.set_date	('jky-start-date'		,  JKY.out_date(JKY.get_date()));
-	JKY.set_value	('jky-product-id'		,  0);
-	JKY.set_value	('jky-product'			, '');
-	JKY.set_value	('jky-composition'		, '');
-	JKY.set_option	('jky-machine'			,  null);
+	JKY.set_value	('jky-quotation-number'	,  JKY.t('New'));
+	JKY.set_date	('jky-quoted-date'		,  JKY.out_time(JKY.get_now ()));
+	JKY.set_date	('jky-produced-date'	, '');
+	JKY.set_date	('jky-delivered-date'	, '');
+	JKY.set_option	('jky-customer-name'	,  null);
+	JKY.set_option	('jky-machine-name'		,  null);
+	JKY.set_option	('jky-dyer-name'		,  null);
 	JKY.set_value	('jky-diameter'			, '');
-	JKY.set_value	('jky-density'			, '');
-	JKY.set_value	('jky-inputs'			, '');
-	JKY.set_value	('jky-turns'			, '');
 	JKY.set_value	('jky-weight'			, '');
 	JKY.set_value	('jky-width'			, '');
-//	JKY.set_value	('jky-lanes'			, '');
-//	JKY.set_value	('jky-elasticity'		, '');
-//	JKY.set_value	('jky-needling'			, '');
-	JKY.set_value	('jky-speed'			, '');
 	JKY.set_value	('jky-peso'				, '12.5');
 	JKY.set_radio	('jky-has-break'		, 'No');
+	JKY.set_value	('jky-punho-perc'		, '0');
+	JKY.set_value	('jky-gola-perc'		, '0');
+	JKY.set_value	('jky-galao-perc'		, '0');
+	JKY.set_value	('jky-punho-name'		, '');
+	JKY.set_value	('jky-gola-name'		, '');
+	JKY.set_value	('jky-galao-name'		, '');
 }
 
 /**
  *	get form set
  */
 JKY.get_form_set = function() {
-	var my_machine = JKY.get_value('jky-machine');
-	my_machine = (my_machine == '') ? 'null' : my_machine;
+	var my_customer_id	= JKY.get_value('jky-customer-name'	);
+		my_customer_id	= (my_customer_id	== '') ? 'null' : my_customer_id;
+	var my_machine_id	= JKY.get_value('jky-machine-name'	);
+		my_machine_id	= (my_machine_id	== '') ? 'null' : my_machine_id	;
+	var my_dyer_id		= JKY.get_value('jky-dyer-name'		);
+		my_dyer_id		= (my_dyer_id		== '') ? 'null' : my_dyer_id	;
+	var my_punho_id		= JKY.get_value('jky-punho-id'		);
+		my_punho_id		= (my_punho_id		== '') ? 'null' : my_punho_id	;
+	var my_gola_id		= JKY.get_value('jky-gola-id'		);
+		my_gola_id		= (my_gola_id		== '') ? 'null' : my_gola_id	;
+	var my_galao_id		= JKY.get_value('jky-galao-id'		);
+		my_galao_id		= (my_galao_id		== '') ? 'null' : my_galao_id	;
 
 	var my_set = ''
-		+      'product_id=  ' + JKY.get_value	('jky-product-id'		)
-		+    ', start_date=  ' + JKY.inp_date(JKY.get_value('jky-start-value'))
-		+    ', machine_id=  ' + my_machine
-		+    ', collection=\'' + JKY.get_value	('jky-collection'		) + '\''
-		+     ', nick_name=\'' + JKY.get_value	('jky-nick-name'		) + '\''
+		+     'customer_id=  ' + my_customer_id
+		+    ', machine_id=  ' + my_machine_id
+		+       ', dyer_id=  ' + my_dyer_id
+		+     ', quoted_at=  ' + JKY.inp_time(JKY.get_value('jky-quoted-value'		))
+		+ ', produced_date=  ' + JKY.inp_date(JKY.get_value('jky-produced-value'	))
+		+', delivered_date=  ' + JKY.inp_date(JKY.get_value('jky-delivered-value'	))
 		+      ', diameter=  ' + JKY.get_value	('jky-diameter'			)
-		+       ', density=  ' + JKY.get_value	('jky-density'			)
-		+        ', inputs=  ' + JKY.get_value	('jky-inputs'			)
-		+         ', turns=  ' + JKY.get_value	('jky-turns'			)
 		+        ', weight=  ' + JKY.get_value	('jky-weight'			)
 		+         ', width=  ' + JKY.get_value	('jky-width'			)
-//		+         ', lanes=  ' + JKY.get_value	('jky-lanes'			)
-//		+    ', elasticity=  ' + JKY.get_value	('jky-elasticity'		)
-//		+      ', needling=\'' + JKY.get_value	('jky-needling'			) + '\''
-		+         ', speed=  ' + JKY.get_value	('jky-speed'			)
 		+		   ', peso=  ' + JKY.get_value	('jky-peso'				)
 		+     ', has_break=\'' + JKY.get_checked('jky-has-break'		) + '\''
+		+	 ', punho_perc=  ' + JKY.get_value	('jky-punho-perc'		)
+		+	  ', gola_perc=  ' + JKY.get_value	('jky-gola-perc'		)
+		+	 ', galao_perc=  ' + JKY.get_value	('jky-galao-perc'		)
+		+	   ', punho_id=  ' + my_punho_id
+		+	    ', gola_id=  ' + my_gola_id
+		+	   ', galao_id=  ' + my_galao_id
 		;
 	return my_set;
 }

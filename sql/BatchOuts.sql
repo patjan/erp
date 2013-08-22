@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS BatchOuts
 , requested_weight	DECIMAL(10,2)		DEFAULT 0
 , average_weight	DECIMAL(10,2)		DEFAULT 0
 , requested_boxes	INT(11)				DEFAULT 0
+, reserved_boxes	INT(11)				DEFAULT 0
 , checkout_boxes	INT(11)				DEFAULT 0
 , checkout_weight	DECIMAL(10,2)		DEFAULT 0
 
@@ -27,3 +28,4 @@ CREATE TABLE IF NOT EXISTS BatchOuts
 ;
 
 ALTER TABLE BatchOuts	ADD COLUMN batchin_id		BIGINT		DEFAULT NULL	AFTER thread_id;
+ALTER TABLE BatchOuts	ADD COLUMN reserved_boxes	INT			DEFAULT 0		AFTER requested_boxes;

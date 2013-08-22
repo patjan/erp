@@ -42,11 +42,22 @@ JKY.Batch = function() {
 		if (my_labels_to_print > my_labels_unprinted) {
 			my_labels_to_print = my_labels_unprinted;
 		}
+		var my_average_weight = my_row.average_weight;
+
 		JKY.set_value('jky-boxes-received-boxes'	, my_received_boxes		);
 		JKY.set_value('jky-boxes-labels-printed'	, my_labels_printed		);
 		JKY.set_value('jky-boxes-labels-unprinted'	, my_labels_unprinted	);
 		JKY.set_value('jky-boxes-labels-to-print'	, my_labels_to_print	);
 		JKY.set_value('jky-boxes-location'			, '');
+		JKY.set_value('jky-boxes-average-weight'	, my_row.average_weight	);
+
+		if (my_average_weight < 20.00
+		||  my_average_weight > 40.00) {
+			JKY.set_css('jky-boxes-average-weight', 'color', '#CC0000');
+		}else{
+			JKY.set_css('jky-boxes-average-weight', 'color', '#51A351');
+		}
+
 		JKY.set_focus('jky-boxes-labels-to-print');
 		JKY.show_modal(my_layer);
 	}
@@ -56,7 +67,11 @@ JKY.Batch = function() {
 		var my_labels_unprinted	= parseFloat(JKY.get_value('jky-boxes-labels-unprinted'));
 		var my_labels_to_print	= parseFloat(JKY.get_value('jky-boxes-labels-to-print' ));
 		var my_location			= JKY.get_value('jky-boxes-location').toUpperCase();
-		if (my_labels_to_print <= 0 || my_location == '') {
+		if (isNaN(my_labels_to_print)
+		||  my_labels_to_print < 1
+		||	my_labels_to_print > 100
+		||  my_location == '') {
+			JKY.display_message(JKY.t('Info is invalid'));
 			JKY.set_focus('jky-boxes-labels-to-print');
 			return;
 		}

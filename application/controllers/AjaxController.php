@@ -14,8 +14,7 @@
  *	message = 'duplicate id'
  *
  */
-class	AjaxController
-extends	JKY_Controller {
+class	AjaxController	extends	JKY_Controller {
 
 public function init() {
 	$this->_helper->layout()->disableLayout();
@@ -547,6 +546,19 @@ private function get_index($data) {
 	}
 	$where = $this->get_security($table, $where);
 
+	if ($table == 'CheckinLocations') {
+		$sql= 'SELECT Boxes.checkin_location	AS location'
+			. '	 , MIN(Boxes.checkin_at)		AS checkin_at'
+			. '	 , COUNT(*)						AS total_boxes'
+			. '	 , SUM(IF( Boxes.real_weight = 0, Boxes.average_weight, Boxes.real_weight))	AS total_weight'
+			. '  FROM Boxes'
+			. '  LEFT JOIN Batches	ON Batches.id = Boxes.batch_id'
+			. ' WHERE Boxes.status = "Check In"'
+			. '   AND Batches.thread_id = ' . $select
+			. ' GROUP BY Boxes.checkin_location'
+			. ' ORDER BY Boxes.checkin_location'
+			;
+	}else{
 	if ($table == 'FTP_Sets') {
 		$sql= 'SELECT Configs.id as setting, Configs.name, FTP_Sets.id, FTP_Sets.value'
 			. '  FROM Configs'
@@ -565,7 +577,7 @@ private function get_index($data) {
 			. $order_by
 			. $limit
 			;
-	}
+	}}
 $this->log_sql($table, 'get_index', $sql);
      $db   = Zend_Registry::get('db');
      $rows = $db->fetchAll($sql);
@@ -632,6 +644,8 @@ private function set_select($table, $select) {
 	if ($table == 'Machines'		)	$return = ' AND       Machines.machine_brand    = "' . $select . '"';
 	if ($table == 'Products'		)	$return = ' AND       Products.product_type     = "' . $select . '"';
 	if ($table == 'PurchaseLines'	)	$return = ' AND  PurchaseLines.purchase_id		=  ' . $select;
+	if ($table == 'QuotLines'		)	$return = ' AND      QuotLines.quotation_id		=  ' . $select;
+	if ($table == 'QuotColor'		)	$return = ' AND     QuotColors.parent_id		=  ' . $select;
 	if ($table == 'History'			)	$return = ' AND        History.parent_name      = "' . $select . '"';
 	if ($table == 'Threads'			)	$return = ' AND        Threads.thread_group     = "' . $select . '"';
 	if ($table == 'ThreadForecast'	)	$return = ' AND		   Threads.thread_group     = "' . $select . '"';
@@ -671,6 +685,14 @@ private function set_new_fields($table) {
 //												. ',   Batches.received_weight	AS			received_weight'
 												. ', Incomings.received_at		AS			received_at'
 												. ',  Supplier.nick_name		AS			supplier_name';
+	if ($table == 'Quotations'		)	$return = ',  Customer.nick_name		AS customer_name'
+												. ',   Machine.name				AS 	machine_name'
+												. ',      Dyer.nick_name		AS	   dyer_name'
+												. ',     Punho.product_name		AS	  punho_name'
+												. ',      Gola.product_name		AS	   gola_name'
+												. ',     Galao.product_name		AS	  galao_name';
+	if ($table == 'QuotLines'		)	$return = ',   Product.product_name		AS	product_name';
+	if ($table == 'QuotColors'		)	$return = ',     Color.color_name		AS	  color_name';
 	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name		AS supplier_name';
 	if ($table == 'Batches'			)	$return = ',   Threads.name				AS			name'
 												. ', Incomings.number			AS			number';
@@ -697,6 +719,15 @@ private function set_new_fields($table) {
 												. ',  Machines.name				AS  machine_name';
 	if ($table == 'BatchOuts'		)	$return = ',   Threads.name				AS	 thread_name'
 												. ',   Batches.batch			AS			batch_number'
+												. ', CheckOuts.number			AS checkout_number'
+												. ', CheckOuts.requested_date	AS requested_date'
+												. ',  Supplier.nick_name		AS supplier_name'
+												. ',  Machines.name				AS  machine_name';
+	if ($table == 'BatchSets'		)	$return = ', BatchOuts.average_weight	AS	average_weight'
+												. ', BatchOuts.requested_weight	AS requested_weight'
+												. ', BatchOuts.checkout_weight	AS checkout_weight'
+												. ',   Threads.name				AS	 thread_name'
+												. ',   Batches.batch			AS    batch_number'
 												. ', CheckOuts.number			AS checkout_number'
 												. ', CheckOuts.requested_date	AS requested_date'
 												. ',  Supplier.nick_name		AS supplier_name'
@@ -752,6 +783,14 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN     Batches  			ON   Batches.id	=	 PurchaseLines.batch_id'
 												. '  LEFT JOIN   Incomings				ON Incomings.id	=		   Batches.incoming_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Purchases.supplier_id';
+	if ($table == 'Quotations'		)	$return = '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		Quotations.customer_id'
+												. '  LEFT JOIN    Machines AS Machine	ON   Machine.id	=		Quotations.machine_id'
+												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		Quotations.dyer_id'
+												. '  LEFT JOIN    Products AS Punho		ON     Punho.id	=		Quotations.punho_id'
+												. '  LEFT JOIN    Products AS Gola 		ON      Gola.id	=		Quotations.gola_id'
+												. '  LEFT JOIN    Products AS Galao		ON     Galao.id	=		Quotations.galao_id';
+	if ($table == 'QuotLines'		)	$return = '  LEFT JOIN    Products AS Product	ON   Product.id	=	     QuotLines.product_id';
+	if ($table == 'QuotColors'		)	$return = '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	    QuotColors.color_id';
 	if ($table == 'Incomings'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Incomings.supplier_id';
 	if ($table == 'Batches'			)	$return = '  LEFT JOIN   Incomings  			ON Incomings.id	=		   Batches.incoming_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		   Batches.thread_id'
@@ -776,6 +815,13 @@ private function set_left_joins($table) {
 	if ($table == 'CheckOuts'		)	$return = '  LEFT JOIN    Machines				ON  Machines.id	=		 CheckOuts.machine_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id';
 	if ($table == 'BatchOuts'		)	$return = '  LEFT JOIN   CheckOuts  			ON CheckOuts.id	=		 BatchOuts.checkout_id'
+												. '  LEFT JOIN     Threads  			ON   Threads.id	=		 BatchOuts.thread_id'
+												. '  LEFT JOIN     Batches  			ON   Batches.id	=		 BatchOuts.batchin_id'
+												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=		 BatchOuts.req_line_id'
+												. '  LEFT JOIN    Machines				ON  Machines.id	=		 CheckOuts.machine_id'
+												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id';
+	if ($table == 'BatchSets'		)	$return = '  LEFT JOIN   BatchOuts				ON BatchOuts.id	=		 BatchSets.batchout_id'
+												. '  LEFT JOIN   CheckOuts  			ON CheckOuts.id	=		 BatchOuts.checkout_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		 BatchOuts.thread_id'
 												. '  LEFT JOIN     Batches  			ON   Batches.id	=		 BatchOuts.batchin_id'
 												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=		 BatchOuts.req_line_id'
@@ -840,6 +886,19 @@ private function set_where($table, $filter) {
 					}else{
 						return ' AND   Contact.full_name   LIKE ' . $value;
 					}
+				}
+			}
+		}
+
+		if ($table == 'Colors') {
+			if ($name == 'color_code'
+			or	$name == 'color_type'
+			or	$name == 'color_name'
+			or	$name == 'value') {
+				if ($value == '"%null%"') {
+					return ' AND Colors.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Colors.' . $name . ' LIKE ' . $value;
 				}
 			}
 		}
@@ -1011,11 +1070,13 @@ private function set_where($table, $filter) {
 			or	$name == 'turns'
 			or	$name == 'weight'
 			or	$name == 'width'
-			or	$name == 'lanes'
-			or	$name == 'elasticity'
-			or	$name == 'needling'
+//			or	$name == 'lanes'
+//			or	$name == 'elasticity'
+//			or	$name == 'needling'
 			or	$name == 'peso'
-			or	$name == 'composition') {
+			or	$name == 'has_break'
+			or	$name == 'composition'
+			or	$name == 'nick_name') {
 				if ($value == '"%null%"') {
 					return ' AND FTPs.' . $name . ' IS NULL ';
 				}else{
@@ -1158,6 +1219,74 @@ private function set_where($table, $filter) {
 					}
 				}
 			}
+		}
+
+		if ($table == 'Quotations') {
+			if ($name == 'quotation_number'
+			or	$name == 'diameter'
+			or	$name == 'weight'
+			or	$name == 'width'
+			or	$name == 'peso'
+			or	$name == 'has_break'
+			or	$name == 'punho_perc'
+			or	$name == 'gola_perc'
+			or	$name == 'galao_perc'
+			or	$name == 'quoted_at'
+			or	$name == 'produced_date'
+			or	$name == 'delivered_date'
+			or	$name == 'quoted_pieces'
+			or	$name == 'produced_pieces'
+			or	$name == 'delivered_pieces'
+			or	$name == 'remarks') {
+				if ($value == '"%null%"') {
+					return ' AND FTPs.' . $name . ' IS NULL ';
+				}else{
+					return ' AND FTPs.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'customer_name') {
+					if ($value == '"%null%"') {
+						return ' AND Quotations.customer_id IS NULL';
+					}else{
+						return ' AND Contacts.nick_name LIKE ' . $value;
+					}
+			}else{
+				if ($name == 'machine_name') {
+					if ($value == '"%null%"') {
+						return ' AND Quotations.machine_id IS NULL';
+					}else{
+						return ' AND Machines.name LIKE ' . $value;
+					}
+			}else{
+				if ($name == 'dyer_name') {
+					if ($value == '"%null%"') {
+						return ' AND Quotations.dyer_id IS NULL';
+					}else{
+						return ' AND Contacts.name LIKE ' . $value;
+					}
+			}else{
+				if ($name == 'punho_name') {
+					if ($value == '"%null%"') {
+						return ' AND Quotations.punho_id IS NULL';
+					}else{
+						return ' AND Punho.product_name LIKE ' . $value;
+					}
+			}else{
+				if ($name == 'gola_name') {
+					if ($value == '"%null%"') {
+						return ' AND Quotations.gola_id IS NULL';
+					}else{
+						return ' AND Gola.product_name LIKE ' . $value;
+					}
+			}else{
+				if ($name == 'galao_name') {
+					if ($value == '"%null%"') {
+						return ' AND Quotations.galao_id IS NULL';
+					}else{
+						return ' AND Galao.product_name LIKE ' . $value;
+					}
+			}
+			}}}}}}
 		}
 
 		if ($table == 'Incomings') {
@@ -1430,6 +1559,13 @@ private function set_where($table, $filter) {
 				;
 	}
 
+	if ($table == 'Colors') {
+		$return = '		Colors.color_code				LIKE ' . $filter
+				. ' OR	Colors.color_type				LIKE ' . $filter
+				. ' OR	Colors.color_name				LIKE ' . $filter
+				;
+	}
+
 	if ($table == 'Controls') {
 		$return = '         Controls.sequence			LIKE ' . $filter
 				. ' OR      Controls.name				LIKE ' . $filter
@@ -1519,11 +1655,13 @@ private function set_where($table, $filter) {
 			. ' OR  FTPs.turns				LIKE ' . $filter
 			. ' OR  FTPs.weight				LIKE ' . $filter
 			. ' OR  FTPs.width				LIKE ' . $filter
-			. ' OR  FTPs.lanes				LIKE ' . $filter
-			. ' OR  FTPs.elasticity			LIKE ' . $filter
-			. ' OR  FTPs.needling			LIKE ' . $filter
+//			. ' OR  FTPs.lanes				LIKE ' . $filter
+//			. ' OR  FTPs.elasticity			LIKE ' . $filter
+//			. ' OR  FTPs.needling			LIKE ' . $filter
 			. ' OR  FTPs.peso				LIKE ' . $filter
+			. ' OR  FTPs.has_break			LIKE ' . $filter
 			. ' OR  FTPs.composition		LIKE ' . $filter
+			. ' OR  FTPs.nick_name			LIKE ' . $filter
 			. ' OR  Products.product_name	LIKE ' . $filter
 			. ' OR  Machines.name			LIKE ' . $filter
 			;
@@ -1568,6 +1706,28 @@ private function set_where($table, $filter) {
 			. ' OR		  Batches.received_weight	LIKE ' . $filter
 			. ' OR		Incomings.received_at		LIKE ' . $filter
 			. ' OR		 Supplier.nick_name			LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'Quotations') {
+		$return = ' Quotations.quotation_number	LIKE ' . $filter
+			. ' OR  Quotations.diameter			LIKE ' . $filter
+			. ' OR  Quotations.weight			LIKE ' . $filter
+			. ' OR  Quotations.width			LIKE ' . $filter
+			. ' OR  Quotations.peso				LIKE ' . $filter
+			. ' OR  Quotations.has_break		LIKE ' . $filter
+			. ' OR  Quotations.quoted_at		LIKE ' . $filter
+			. ' OR  Quotations.produced_date	LIKE ' . $filter
+			. ' OR  Quotations.delivered_date	LIKE ' . $filter
+			. ' OR  Quotations.quoted_pieces	LIKE ' . $filter
+			. ' OR  Quotations.produced_pieces	LIKE ' . $filter
+			. ' OR  Quotations.delivered_pieces	LIKE ' . $filter
+			. ' OR    Customer.nick_name		LIKE ' . $filter
+			. ' OR     Machine.name				LIKE ' . $filter
+			. ' OR        Dyer.nick_name		LIKE ' . $filter
+			. ' OR       Punho.product_name		LIKE ' . $filter
+			. ' OR        Gola.product_name		LIKE ' . $filter
+			. ' OR       Galao.product_name		LIKE ' . $filter
 			;
 		}
 
@@ -1894,6 +2054,12 @@ private function insert($data) {
 		$my_number = $this->get_next_number('Controls', 'Next Purchase Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', number= ' . $my_number;
+	}
+
+	if ($table == 'Quotations') {
+		$my_number = $this->get_next_number('Controls', 'Next Quotation Number');
+		$set .= ',     id= ' . $my_number;
+		$set .= ', quotation_number= ' . $my_number;
 	}
 
 	if ($table == 'Incomings') {
@@ -3908,55 +4074,64 @@ private function echo_error( $message ) {
 		$ip_number = '192.168.0.252';	//	printer for boxes labels
 		foreach($rows as $my_row) {
 			$my_id				= $my_row['id'				];
-			$my_checkin_at		= $my_row['checkin_at'		];
 			$my_average_weight	= $my_row['average_weight'	];
 			$my_real_weight		= $my_row['real_weight'		];
 			if ($my_real_weight == 0) {
 				$my_real_weight = $my_average_weight;
 			}
 
+			$my_thread_name		= $my_row['thread_name'		];
+			$my_thread_name1	= $my_row['thread_name'		];
+			$my_thread_name2	= '';
+			if (strlen($my_thread_name) > 28) {
+				$i = 28;
+				for(; $i>0; $i--) {
+					if ($my_thread_name[$i] == ' ') {
+						break;
+					}
+				}
+				if ($i == 0) {
+					$my_thread_name1 = substr($my_thread_name, 0, 28);
+					$my_thread_name2 = substr($my_thread_name, 28);
+				}else{
+					$my_thread_name1 = substr($my_thread_name, 0, $i);
+					$my_thread_name2 = substr($my_thread_name, $i+1);
+				}
+			}
+
 			$labels  =		'~NORMAL';
 			$labels .= NL . '~NORMAL';
 			$labels .= NL . '~PIOFF';
 			$labels .= NL . '~DELETE LOGO;*ALL';
-			$labels .= NL . '~PAPER;INTENSITY 6;MEDIA 1;FEED SHIFT 0;CUT 0;PAUSE 0;TYPE 0;LABELS 2;SPEED IPS 7;SLEW IPS 4';
-			$labels .= NL . '~CREATE;CXFIOS;283';
+			$labels .= NL . '~PAPER;INTENSITY 6;MEDIA 1;FEED SHIFT 0;CUT 0;PAUSE 0;TYPE 0;LABELS 2;SPEED IPS 6;SLEW IPS 4';
+			$labels .= NL . '~CREATE;CXFIOS;226';
 			$labels .= NL . 'SCALE;DOT;203;203';
 			$labels .= NL . '/PARTE FIXA';
 			$labels .= NL . 'ISET;0';
 			$labels .= NL . 'FONT;FACE 92250';
 			$labels .= NL . 'ALPHA';
-			$labels .= NL . 'INV;POINT;748;790;16;16;*NFe DL:*';
-			$labels .= NL . 'INV;POINT;748;333;16;16;*NFe TM:*';
-			$labels .= NL . 'INV;POINT;695;789;16;16;*DATA:*';
-			$labels .= NL . 'INV;POINT;695;333;16;16;*PESO:*';
-			$labels .= NL . 'INV;POINT;634;789;16;16;*COMP:*';
-			$labels .= NL . 'INV;POINT;574;788;16;16;*CONES:*';
-			$labels .= NL . 'INV;POINT;574;327;16;16;*LOTE:*';
-			$labels .= NL . 'INV;POINT;519;788;14;14;*FIO:*';
-			$labels .= NL . 'INV;POINT;445;789;22;22;*FORNEC:*';
-			$labels .= NL . 'INV;POINT;351;789;32;33;*ESTOCAGEM:*';
-			$labels .= NL . 'INV;POINT;269;788;22;22;*CAIXA:*';
+			$labels .= NL . 'INV;POINT;482;788;12;12;*FORNEC:*';
+			$labels .= NL . 'INV;POINT;428;788;12;12;*COMP:*';
+			$labels .= NL . 'INV;POINT;377;788;12;12;*PESO:*';
+			$labels .= NL . 'INV;POINT;324;788;12;12;*CONES:*';
+			$labels .= NL . 'INV;POINT;271;788;12;12;*LOTE:*';
 			$labels .= NL . 'STOP';
 			$labels .= NL . '/PARTE VARIAVEL';
 			$labels .= NL . 'ISET;0';
 			$labels .= NL . 'FONT;FACE 92250';
 			$labels .= NL . 'ALPHA';
-			$labels .= NL . 'INV;POINT;748;643;16;16;*' . $my_row['nfe_dl'			] . '*';
-			$labels .= NL . 'INV;POINT;748;175;16;16;*' . $my_row['nfe_tm'			] . '*';
-			$labels .= NL . 'INV;POINT;695;679;16;16;*' . $my_checkin_at			  . '*';
-			$labels .= NL . 'INV;POINT;695;216;16;16;*' . $my_real_weight			  . ' KG*';
-			$labels .= NL . 'INV;POINT;634;667;16;16;*' . $my_row['composition'		] . '*';
-			$labels .= NL . 'INV;POINT;574;647;16;16;*' . $my_row['number_of_cones'	] . '*';
-			$labels .= NL . 'INV;POINT;574;217;16;16;*' . $my_row['batch_number'	] . '*';
-			$labels .= NL . 'INV;POINT;519;713;14;14;*' . $my_row['thread_name'		] . '*';
-			$labels .= NL . 'INV;POINT;445;562;22;22;*' . $my_row['supplier_name'	] . '*';
-			$labels .= NL . 'INV;POINT;351;296;32;33;*' . $my_row['checkin_location'] . '*';
-			$labels .= NL . 'INV;POINT;269;616;22;22;*' . $my_row['number_of_boxes'	] . '*';
+			$labels .= NL . 'INV;POINT;597;788;16;16;*' . $my_thread_name1			  . '*';
+			$labels .= NL . 'INV;POINT;547;788;16;16;*' . $my_thread_name2			  . '*';
+			$labels .= NL . 'INV;POINT;482;600;22;22;*' . $my_row['supplier_name'	] . '*';
+			$labels .= NL . 'INV;POINT;428;667;16;16;*' . $my_row['composition'		] . '*';
+			$labels .= NL . 'INV;POINT;377;671;16;16;*' . $my_real_weight			  . ' KG*';
+			$labels .= NL . 'INV;POINT;324;647;16;16;*' . $my_row['number_of_cones'	] . '*';
+			$labels .= NL . 'INV;POINT;271;678;16;16;*' . $my_row['batch_number'	] . '*';
+			$labels .= NL . 'INV;POINT;271;296;32;33;*' . $my_row['checkin_location'] . '*';
 			$labels .= NL . 'STOP';
 			$labels .= NL . '/CODIGO DE BARRAS';
 			$labels .= NL . 'BARCODE';
-			$labels .= NL . 'C128C;INV;XRD7:7:14:14:21:21:28:28;H8;67;100';
+			$labels .= NL . 'C128C;INV;XRD7:7:14:14:21:21:28:28;H8;46;122';
 			$labels .= NL . '*' . $my_row['barcode'] . '*';
 			$labels .= NL . 'PDF;B';
 			$labels .= NL . 'STOP';

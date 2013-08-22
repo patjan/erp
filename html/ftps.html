@@ -25,6 +25,7 @@
 #jky-composition		{width:340px;}
 #jky-machine			{width:350px; text-transform:capitalize;}
 #jky-collection			{width:350px; text-transform:capitalize;}
+#jky-nick-name			{width:340px; text-transform:capitalize;}
 
 #jky-drawing			{float: left; margin:7px;}
 #jky-drawing-img		{width:120px; height:120px; border:4px ridge darkblue;}
@@ -43,7 +44,7 @@
 #jky-elasticity			{width: 40px;}
 #jky-needling			{width:130px;}
 #jky-peso				{width: 40px;}
-#jky-has-break			{width:130px;}
+#jky-has-break			{width:135px;}
 #jky-has-break span		{padding:0 10px 0 4px; vertical-align:bottom;}
 
 .jky-load-sequence		{width: 50px; text-align:center;}
@@ -136,7 +137,7 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>     FTP Number</span>:</div><input  id='jky-number'			class='jky-form-value'									readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>     FTP Number</span>:</div><input  id='jky-number'			class='jky-form-value'	readonly='readonly'	/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>     Start Date</span>:</div>
 				<div id="jky-start-date" class="input-append date"><input id='jky-start-value' type='text'><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
 			</div>
@@ -145,9 +146,10 @@
 				<input  id='jky-product' class='jky-form-value' placeholder='Product Name' readonly='readonly' />
 				<a id='jky-action-product'><i class='icon-share'></i></a>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>		Composition</span>:</div><input  id='jky-composition'	class='jky-form-value'									readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>		Composition</span>:</div><input  id='jky-composition'	class='jky-form-value'	readonly='readonly'	/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>			Machine</span>:</div><select id='jky-machine'	></select></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>	     Collection</span>:</div><select id='jky-collection'></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	      Nick Name</span>:</div><input  id='jky-nick-name'		class='jky-form-value optional'	/></div>
 			<div class='jky-form-line'>&nbsp;</div>
 		</div>
 		<div id='jky-app-upload' class='jky-left'>
@@ -186,7 +188,7 @@
 			<div class='jky-form-line-1'><div class='jky-form-label-1'><span>         Speed</span>:</div><input id='jky-speed'		class='jky-form-value-1'	/>(rpm)		</div>
 <!--		<div class='jky-form-line-3'><div class='jky-form-label-3'><span>         Elasticity</span>:</div><input id='jky-elasticity'		class='jky-form-value-3'	/>		</div>
 			<div class='jky-form-line-3'><div class='jky-form-label-3'><span>      Needling</span>:</div><input id='jky-needling'	class='jky-form-value-3'	/>			</div>
--->			<div class='jky-form-line-3'><div class='jky-form-label-3'><span>          Peso</span>:</div><input id='jky-peso'		class='jky-form-value-3'	/>(Kg)		</div>
+-->			<div class='jky-form-line-3'><div class='jky-form-label-3'><span>          Peso</span>:</div><input id='jky-peso'		class='jky-form-value-3'	/>(Kg/peça)	</div>
 			<div class='jky-form-line-3'>
 				<div class='jky-form-label-3'><span>Break</span>?</div>
 				<div id='jky-has-break' class='jky-form-value'>

@@ -10,9 +10,10 @@
 html	{height:100%}
 body	{height:100%; margin:0; padding:0; font-size:13px;}
 input	{height:22px; margin:0 5px 4px 0; padding:1px 4px; border:1px solid #cccccc; border-radius:3px;}
-select	{height:26px; margin-bottom:4px; border-radius:2px; padding:2px; color:black;}
+select	{height:26px; margin-bottom:2px; border-radius:2px; padding:2px; color:black;}
 option	{padding:2px 6px;}
-input.span2 {width:80px; padding:2px 4px;}
+input.span2			{width:80px; padding:2px 4px;}
+input.search-query	{margin-bottom:10px;}
 
 .btn			{padding:2px 10px;}
 .close			{color:#FFFFFF; opacity:0.8;}
@@ -37,6 +38,7 @@ input.span2 {width:80px; padding:2px 4px;}
 .left			{text-align:left  ;}
 .center			{text-align:center;}
 .right			{text-align:right ;}
+.hide			{display: none;}
 
 .jky-left		{float:left ;}
 .jky-right		{float:right;}
@@ -52,10 +54,10 @@ input.span2 {width:80px; padding:2px 4px;}
 }
 
 .jky-form-line			{clear:both; padding-top:2px;}
-.jky-form-label			{float:left; width:110px; margin:3px 7px; text-align:right; font-weight:bold;}
-.jky-form-label-1		{float:left; width:110px; margin:3px 7px; text-align:right; font-weight:bold;}
-.jky-form-label-2		{float:left; width:110px; margin:3px 7px; text-align:right; font-weight:bold;}
-.jky-form-label-3		{float:left; width:110px; margin:3px 7px; text-align:right; font-weight:bold;}
+.jky-form-label			{float:left; width:160px; margin:3px 7px; text-align:right; font-weight:bold;}
+.jky-form-label-1		{float:left; width:160px; margin:3px 7px; text-align:right; font-weight:bold;}
+.jky-form-label-2		{float:left; width:160px; margin:3px 7px; text-align:right; font-weight:bold;}
+.jky-form-label-3		{float:left; width:160px; margin:3px 7px; text-align:right; font-weight:bold;}
 .jky-form-value			{float:left; width:300px; margin-right:7px;}
 
 .jky-tab-label			{text-align:right; padding-right:10px; font-weight:bold;}
@@ -231,26 +233,45 @@ li .arrow span {
 #jky-search-table tbody tr	{height:30px;}
 
 #jky-printable			{display:none}
+
 /* -------------------------------------------------------------------------- */
 .jky-action				{width: 20px; }
 .jky-average-weight		{width: 45px; text-align:right  !important;}
 .jky-barcode			{width: 90px; text-align:center !important;}
 .jky-batch-number		{width: 60px; text-align:center !important;}
 .jky-checkbox			{width: 25px; text-align:center !important;}
+.jky-checkin-date		{width: 80px; text-align:center !important;}
 .jky-checkin-location	{width: 50px; text-align:center !important;}
+.jky-checkin-boxes		{width: 50px; text-align:right  !important;}
+.jky-checkin-weight		{width: 65px; text-align:right  !important;}
 .jky-checkout-boxes		{width: 50px; text-align:right  !important;}
 .jky-checkout-weight	{width: 65px; text-align:right  !important;}
 .jky-checkout-number	{width: 45px; text-align:center !important;}
+.jky-customer-name		{width:100px; text-align:center !important; text-transform:capitalize;}
+.jky-delivered-date		{width: 60px; text-align:center !important;}
+.jky-delivered-pieces	{width: 45px; text-align:right  !important;}
+.jky-dyer-name			{width:100px; text-align:center !important; text-transform:capitalize;}
 .jky-error				{color:#CC0000;}
+.jky-fabric-price		{width: 45px; text-align:right  !important;}
 .jky-filler				{width: 40px;}
-.jky-machine-name		{width: 60px; text-align:center !important; text-transform:capitalize;}
+.jky-galao-price		{width: 45px; text-align:right  !important;}
+.jky-gola-price			{width: 45px; text-align:right  !important;}
+.jky-machine-name		{width:100px; text-align:center !important; text-transform:capitalize;}
 .jky-not-found			{color:  red; text-align:center !important;}
 .jky-number-of-boxes	{width: 40px; text-align:center !important;}
 .jky-number-of-cones	{width: 40px; text-align:center !important;}
+.jky-product-name		{width:200px; text-align:right  !important;}
+.jky-produced-date		{width: 60px; text-align:center !important;}
+.jky-produced-pieces	{width: 45px; text-align:right  !important;}
+.jky-punho-price		{width: 45px; text-align:right  !important;}
+.jky-quotation-number	{width: 45px; text-align:center !important;}
+.jky-quoted-date		{width: 60px; text-align:center !important;}
+.jky-quoted-pieces		{width: 45px; text-align:right  !important;}
 .jky-real-weight		{width: 50px; text-align:right  !important;}
 .jky-requested-boxes	{width: 50px; text-align:right  !important;}
 .jky-requested-date		{width: 60px; text-align:center !important;}
 .jky-requested-weight	{width: 65px; text-align:right  !important;}
+.jky-reserved-boxes		{width: 50px; text-align:right  !important;}
 .jky-sequence			{width: 35px; text-align:center !important;}
 .jky-status				{width: 65px; text-align:center !important;}
 .jky-supplier-name		{width:100px; text-align:center !important; text-transform:capitalize;}
@@ -260,7 +281,7 @@ li .arrow span {
 .jky-box-barcode			{width: 90px; text-align:center !important;}
 .jky-box-sequence			{width: 35px; text-align:center !important;}
 .jky-box-status				{width: 65px; text-align:center !important;}
-.jky-box-batch				{width: 80px; text-align:center !important;}
+.jky-box-batch-number		{width: 80px; text-align:center !important;}
 .jky-box-number-of-boxes	{width: 40px; text-align:center !important;}
 .jky-box-number-of-cones	{width: 40px; text-align:center !important;}
 .jky-box-average-weight		{width: 50px; text-align:right  !important;}
@@ -268,4 +289,78 @@ li .arrow span {
 .jky-box-checkin-location	{width: 50px; text-align:center !important;}
 .jky-box-supplier-name		{width: 80px; text-align:left   !important;}
 .jky-box-thread-name		{width:220px; text-align:left   !important;}
+
+.jky-line					{background-color:#FFFFFF; width:100%;}
+.jky-line-product			{width:380px !important;}
+.jky-line-product input		{width:344px; text-align:left  ;}
+.jky-line-product a			{margin-left:-7px; padding:5px;}
+.jky-line-quoted-pieces		{width: 45px; text-align:right  !important;}
+.jky-line-color-name		{width:180px; text-align:center !important;}
+.jky-line-fabric-price		{width: 45px; text-align:right  !important;}
+.jky-line-punho-price		{width: 45px; text-align:right  !important;}
+.jky-line-gola-price		{width: 45px; text-align:right  !important;}
+.jky-line-galao-price		{width: 45px; text-align:right  !important;}
+
+.jky-boxes-location			{width: 50px; text-align:center !important;}
+.jky-boxes-date-in			{width: 75px; text-align:center !important;}
+.jky-boxes-weight			{width: 60px; text-align:right  !important;}
+.jky-boxes-checkin			{width: 60px; text-align:right  !important;}
+.jky-boxes-reserved			{width: 60px; text-align:right  !important;}
+
+.jky-add-color				{width:180px; text-align:left   !important;}
+.jky-color-pieces			{width: 45px; text-align:right  !important;}
+.jky-color-name				{width:180px}
+.jky-color-name input		{width:154px; text-align:left   !important; text-transform:capitalize;}
+.jky-color-name a			{margin-left:-7px; padding:5px;}
+.jky-color-value			{width: 45px; text-align:right  !important;}
+
+.jky-search-product-name	{width:270px; text-align:left   !important; text-transform:capitalize;}
+.jky-search-product-type	{width: 50px; text-align:center !important;}
+.jky-search-product-start	{width: 50px; text-align:center !important;}
+.jky-search-color-name		{width:319px; text-align:left   !important; text-transform:capitalize;}
+.jky-search-colro-type		{width: 50px; text-align:center !important;}
+
+/* -------------------------------------------------------------------------- */
+#jky-average-weight			{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-batch-number			{width: 75px; margin-bottom:4px;}
+#jky-box-input-barcode		{width: 80px; margin-bottom:4px; color:#CC0000;}
+#jky-box-input-message		{				  color:#CC0000; text-align:center; vertical-align:middle;}
+#jky-checkout-weight		{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-checkout-boxes			{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-checkout-number		{width: 50px; margin-bottom:4px; font-weight:bold;}
+#jky-customer-name			{								 text-align:left ; text-transform:capitalize;}
+#jky-delivered-value		{width: 75px; }
+#jky-delivered-pieces		{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-density				{width: 40px; text-align:right;}
+#jky-diameter				{width: 40px; text-align:right;}
+#jky-dyer-name				{								 text-align:left ; text-transform:capitalize;}
+#jky-galao-perc				{width: 17px; text-align:right;}
+#jky-gola-perc				{width: 17px; text-align:right;}
+#jky-inputs					{width: 40px; text-align:right;}
+#jky-machine-name			{								 text-align:left ; text-transform:capitalize;}
+#jky-peso					{width: 40px; text-align:right;}
+#jky-produced-value			{width: 75px; }
+#jky-produced-pieces		{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-punho-perc				{width: 17px; text-align:right;}
+#jky-quotation-number		{width: 60px; font-size:16px; font-weight:bold;}
+#jky-quoted-value			{width:120px; }
+#jky-quoted-pieces			{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-requested-date			{width: 75px; margin-bottom:4px;}
+#jky-requested-weight		{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-requested-boxes		{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-reserved-boxes			{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-speed					{width: 40px; text-align:right;}
+#jky-thread-name			{								 text-align:left ; text-transform:capitalize;}
+#jky-turns					{width: 40px; text-align:right;}
+#jky-weight					{width: 40px; text-align:right;}
+#jky-width					{width: 40px; text-align:right;}
+
+#jky-drawing				{float: left; margin:7px;}
+#jky-drawing-img			{width:120px; height:120px; border:4px ridge darkblue;}
+
+#jky-has-break				{width:135px;}
+#jky-has-break span			{padding:0 10px 0 4px; vertical-align:bottom;}
+
+#jky-photo					{float: left; margin:7px;}
+#jky-photo-img				{width:120px; height:120px; border:4px ridge black;}
 

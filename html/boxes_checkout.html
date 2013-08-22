@@ -1,31 +1,14 @@
-<style>
-.jky-form-line-1		{width:273px;}
-.jky-form-line-2		{width:290px;}
-.jky-form-label			{width:160px;}
-.jky-form-label-1		{width:100px;}
-.Xjky-form-value			{width: 90px;}
-.jky-form-value1		{width:240px;}
-
-#jky-box-input-barcode		{width: 80px; color:red;}
-#jky-box-input-message		{color:red;}
-</style>
-
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
 			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-checkout-number'		><span>	   Check Out<br>Number		</span></th>
-<!--		<th class='jky-code'				><span>	     Product<br>Code		</span></th>
--->			<th class='jky-requested-date'		><span>	   Requested<br>Date		</span></th>
+			<th class='jky-requested-date'		><span>	   Requested<br>Date		</span></th>
 			<th class='jky-machine-name'		><span>		 Machine<br>Name		</span></th>
 			<th class='jky-supplier-name'		><span>		Supplier<br>Name		</span></th>
 			<th class='jky-thread-name'			><span>				<br>Thread		</span></th>
 			<th class='jky-batch-number'		><span>				<br>Batch		</span></th>
-<!--		<th class='jky-unit-price'			><span>         Unit<br>Price		</span></th>
--->			<th class='jky-average-weight'		><span>      Average<br>Weight		</span></th>
-			<th class='jky-requested-weight'	><span>    Requested<br>Weight		</span></th>
-			<th class='jky-requested-boxes'		><span>    Requested<br>Boxes		</span></th>
-			<th class='jky-checkout-weight'		><span>	   Check Out<br>Weight		</span></th>
+			<th class='jky-reserved-boxes'		><span>     Reserved<br>Boxes		</span></th>
 			<th class='jky-checkout-boxes'		><span>    Check Out<br>Boxes		</span></th>
 		</tr>
 	</thead>
@@ -42,9 +25,9 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>            Code</span>:</div><input  id='jky-code'				type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Number</span>:</div><input  id='jky-checkout-number'		class='jky-form-value'	readonly='readonly' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>	  Thread Name</span>:</div><input  id='jky-thread-name'			class='jky-form-value'	readonly='readonly' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>    Batch Number</span>:</div><input  id='jky-batch'				class='jky-form-value'	readonly='readonly' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>    Batch Number</span>:</div><input  id='jky-batch-number'		class='jky-form-value'	readonly='readonly' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>    Machine Name</span>:</div><input  id='jky-machine-name'		class='jky-form-value'	readonly='readonly' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>	Supplier Name</span>:</div><input  id='jky-supplier-name'		class='jky-form-value'	readonly='readonly' /></div>
 		</div>
@@ -60,8 +43,8 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span> Check Out Boxes</span>:</div><input  id='jky-checkout-boxes'		type='text'	readonly='readonly'  /></div>
 		</div>
 		<div class='jky-clear'></div>
-		<br>
-<!--	<div>
+<!--	<br>
+		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
 				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
@@ -70,7 +53,8 @@
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>
 		</div>
--->		<div class='jky-clear'></div>
+		<div class='jky-clear'></div>
+-->
 	</div>
 
 	<table id='jky-box-table' class='table table-striped'>

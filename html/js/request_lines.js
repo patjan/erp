@@ -13,10 +13,10 @@ JKY.display_lines = function() {
 }
 
 JKY.generate_lines = function(response) {
-	var my_html		= '';
 	JKY.Request.set_requested(0);
 	JKY.Request.set_checkout (0);
-	var my_rows		= response.rows;
+	var my_html	= '';
+	var my_rows	= response.rows;
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];

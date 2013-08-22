@@ -100,6 +100,9 @@ UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND na
 ALTER TABLE Purchases	AUTO_INCREMENT	= 100001;
 UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next Purchase Number';
 
+ALTER TABLE Quotations	AUTO_INCREMENT	= 100001;
+UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next Quotation Number';
+
 ALTER TABLE Requests	AUTO_INCREMENT	= 100001;
 UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next Request Number'	;
 ----- 2013/08/01
@@ -126,3 +129,7 @@ ALTER TABLE CheckOuts		CHANGE	requested_weight	requested_weight	DECIMAL(10,2)	DE
 ALTER TABLE CheckOuts		CHANGE	requested_amount	requested_amount	DECIMAL(10,2)	DEFAULT 0;
 ALTER TABLE CheckOuts		CHANGE	checkout_weight		checkout_weight		DECIMAL(10,2)	DEFAULT 0;
 ALTER TABLE CheckOuts		CHANGE	checkout_amount		checkout_amount		DECIMAL(10,2)	DEFAULT 0;
+----- 2013/08/15
+ALTER TABLE FTPs		ADD		nick_name				VARCHAR(255) DEFAULT NULL	AFTER collection;
+----- 2013/08/22
+ALTER TABLE BatchOuts	ADD COLUMN reserved_boxes	INT			DEFAULT 0		AFTER requested_boxes;
