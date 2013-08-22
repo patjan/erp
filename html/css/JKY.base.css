@@ -42,7 +42,7 @@ input.span2 {width:80px; padding:2px 4px;}
 .jky-right		{float:right;}
 .jky-clear		{clear:both;}
 .jky-side-set	{margin:10px 0 0 10px; font-weight:bold; color:#7C7BAD;}
-.jky-side-item	{padding-left:20px;}
+.jky-side-item	{padding-left:20px; cursor:pointer;}
 .jky-side-item.active	{
 	background:#323232;
 	color:white !important;
