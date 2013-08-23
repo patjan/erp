@@ -120,7 +120,7 @@ if (my_first == true) {
 			JKY.hide('jky-app-navs'			);
 			JKY.hide('jky-app-add-new'		);
 			JKY.show('jky-app-counters'		);
-			JKY.show('jky-action-add-new'	);
+			JKY.enable_button('jky-action-add-new'	);
 			JKY.hide('jky-action-print'		);
 			JKY.hide('jky-action-clear'		);
 			JKY.hide('jky-action-confirm'	);
@@ -131,7 +131,7 @@ if (my_first == true) {
 			};
 			JKY.hide('jky-action-save'		);
 			JKY.hide('jky-action-copy'		);
-			JKY.hide('jky-action-delete'	);
+			JKY.disable_button('jky-action-delete'	);
 			JKY.hide('jky-action-cancel'	);
 			JKY.show('jky-app-table'		);
 			JKY.hide('jky-app-form'			);
@@ -193,11 +193,11 @@ if (my_first == true) {
 			JKY.show('jky-app-navs'			);
 			JKY.hide('jky-app-add-new'		);
 			JKY.show('jky-app-counters'		);
-			JKY.show('jky-action-add-new'	);
+			JKY.enable_button('jky-action-add-new'	);
 			JKY.hide('jky-action-print'		);
 			JKY.show('jky-action-save'		);
 			JKY.hide('jky-action-copy'		);
-			JKY.show('jky-action-delete'	);
+			JKY.enable_button('jky-action-delete'	);
 			JKY.show('jky-action-cancel'	);
 			JKY.hide('jky-app-table'		);
 			JKY.show('jky-app-form'			);
@@ -227,11 +227,11 @@ if (my_first == true) {
 			JKY.hide('jky-app-navs'			);
 			JKY.show('jky-app-add-new'		);
 			JKY.hide('jky-app-counters'		);
-			JKY.hide('jky-action-add-new'	);
+			JKY.disable_button('jky-action-add-new'	);
 			JKY.hide('jky-action-print'		);
 			JKY.show('jky-action-save'		);
 			JKY.hide('jky-action-copy'		);
-			JKY.hide('jky-action-delete'	);
+			JKY.disable_button('jky-action-delete'	);
 			JKY.show('jky-action-cancel'	);
 			JKY.hide('jky-app-table'		);
 			JKY.show('jky-app-form'			);

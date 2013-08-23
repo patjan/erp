@@ -42,7 +42,7 @@ JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-color-name"	>' + the_row.color_name + '</td>'
 		+  '<td class="jky-color-type"	>' + the_row.color_type + '</td>'
-		+  '<td class="jky-status"		>' +  the_row.status	+ '</td>'
+		+  '<td class="jky-status"		>' + the_row.status	+ '</td>'
 		;
 	return my_html;
 };

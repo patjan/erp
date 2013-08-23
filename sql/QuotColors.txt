@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS QuotColors
 
 , parent_id			BIGINT				DEFAULT NULL
 , color_id			BIGINT				DEFAULT NULL
-, color_group		INT					DEFAULT 0
+, color_group		VARCHAR(32)			DEFAULT NULL
 , quoted_pieces		INT					DEFAULT 0
 , fabric_price		DECIMAL(10,2)		DEFAULT 0
 , punho_price		DECIMAL(10,2)		DEFAULT 0
@@ -22,3 +22,4 @@ CREATE TABLE IF NOT EXISTS QuotColors
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
+ALTER TABLE QuotColors		CHANGE	color_group		color_group		VARCHAR(32)		DEFAULT NULL;

@@ -89,11 +89,11 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-checkout-boxes'		, the_row.checkout_boxes	);
 
 	if (parseInt(the_row.requested_boxes) > (parseInt(the_row.reserved_boxes) + parseInt(the_row.checkout_boxes))) {
-		JKY.show('jky-action-batch');
-		JKY.show('jky-action-delete');
+		JKY.enable_button ('jky-action-batch' );
+		JKY.enable_button ('jky-action-delete');
 	}else{
-		JKY.hide('jky-action-batch');
-		JKY.hide('jky-action-delete');
+		JKY.disable_button('jky-action-batch' );
+		JKY.disable_button('jky-action-delete');
 	}
 
 	JKY.display_lines();

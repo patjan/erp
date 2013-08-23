@@ -137,3 +137,5 @@ ALTER TABLE CheckOuts		CHANGE	checkout_amount		checkout_amount		DECIMAL(10,2)	DE
 ALTER TABLE FTPs		ADD		nick_name				VARCHAR(255) DEFAULT NULL	AFTER collection;
 ----- 2013/08/22
 ALTER TABLE BatchOuts	ADD COLUMN reserved_boxes	INT			DEFAULT 0		AFTER requested_boxes;
+----- 2013/08/23
+ALTER TABLE QuotColors		CHANGE	color_group			color_group			VARCHAR(32)		DEFAULT NULL;

@@ -1091,6 +1091,7 @@ JKY.hide_modal = function(id_name) {
  * enable button
  */
 JKY.enable_button = function(id_name) {
+	$('#' + id_name).show();
 	$('#' + id_name).removeAttr ('disabled');
 	$('#' + id_name).css('cursor', 'pointer');
 }
