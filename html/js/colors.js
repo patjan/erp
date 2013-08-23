@@ -51,18 +51,18 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
+	JKY.set_option	('jky-status'		, the_row.status		);
 	JKY.set_value	('jky-color-name'	, the_row.color_name	);
 	JKY.set_option	('jky-color-type'	, the_row.color_type	);
-	JKY.set_option	('jky-status'		, the_row.status		);
 };
 
 /**
  *	set add new row
  */
 JKY.set_add_new_row = function() {
-	JKY.set_value	('jky-color-name'	, '' );
-	JKY.set_option	('jky-color-type'	, '' );
-	JKY.set_option	('jky-status'		, 'Active');
+	JKY.set_option	('jky-status'			, 'Active');
+	JKY.set_value	('jky-color-name'		, '' );
+	JKY.set_option	('jky-color-type'		, '' );
 };
 
 /**
@@ -70,9 +70,9 @@ JKY.set_add_new_row = function() {
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-		+      'color_name=\'' + JKY.get_value	('jky-color-name'	) + '\''
-		+    ', color_type=\'' + JKY.get_value	('jky-color-type'	) + '\''
-		+        ', status=\'' + JKY.get_value	('jky-status'		) + '\''
+		+         ' status=\'' + JKY.get_value	('jky-status'			) + '\''
+		+    ', color_name=\'' + JKY.get_value	('jky-color-name'		) + '\''
+		+	 ', color_type=\'' + JKY.get_value	('jky-color-type'		) + '\''
 		;
 	return my_set;
 };
