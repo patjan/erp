@@ -3,6 +3,7 @@ var JKY = JKY || {};
 JKY.translations = 
 { "# of<br>Box":"# of<br>Box"
 , "# of<br>Cones":"# of<br>Cones"
+, "<br>Status":"<br>Status"
 , "123-456-7890":"123-456-7890"
 , "Account":"Account"
 , "Active":"Active"
@@ -88,6 +89,8 @@ JKY.translations =
 , "Code":"Code"
 , "Collection":"Collection"
 , "Color":"Color"
+, "Color Name":"Color Name"
+, "Color Type":"Color Type"
 , "Colors":"Colors"
 , "Companies":"Companies"
 , "Company":"Company"

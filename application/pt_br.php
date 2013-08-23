@@ -3,6 +3,7 @@
 $translations = array
 ( "# of<br>Box"=>"# da<br>Caixa"
 , "# of<br>Cones"=>"# de<br>Cones"
+, "<br>Status"=>"<br>Estado"
 , "123-456-7890"=>"12 3456.7890"
 , "Account"=>"Contas"
 , "Active"=>"Ativo"
@@ -88,6 +89,8 @@ $translations = array
 , "Code"=>"Codigo"
 , "Collection"=>"Coleção"
 , "Color"=>"Cor"
+, "Color Name"=>"Nome Cor"
+, "Color Type"=>"Tipo Cor"
 , "Colors"=>"Cores"
 , "Companies"=>"Companhias"
 , "Company"=>"Companhia"

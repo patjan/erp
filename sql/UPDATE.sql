@@ -79,11 +79,15 @@ ALTER TABLE Boxes		CHANGE	stocked_at			returned_at			DATETIME	DEFAULT NULL;
 ----- 2013/07/29
 TRUNCATE TABLE	Batches			;
 TRUNCATE TABLE 	BatchOuts		;
+TRUNCATE TABLE 	BatchSets		;
 TRUNCATE TABLE 	Boxes			;
 TRUNCATE TABLE 	CheckOuts		;
 TRUNCATE TABLE 	Incomings		;
 TRUNCATE TABLE 	PurchaseLines	;
 TRUNCATE TABLE 	Purchases		;
+TRUNCATE TABLE 	Quotations		;
+TRUNCATE TABLE 	QuotLines		;
+TRUNCATE TABLE 	QuotColors		;
 TRUNCATE TABLE 	ReqLines		;
 TRUNCATE TABLE 	Requests		;
 TRUNCATE TABLE 	ThreadForecast	;

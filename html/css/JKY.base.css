@@ -309,7 +309,7 @@ li .arrow span {
 
 .jky-add-color				{width:180px; text-align:left   !important;}
 .jky-color-pieces			{width: 45px; text-align:right  !important;}
-.jky-color-name				{width:180px}
+.jky-color-name				{width:180px; text-align:left   !important; text-transform:capitalize;}
 .jky-color-name input		{width:154px; text-align:left   !important; text-transform:capitalize;}
 .jky-color-name a			{margin-left:-7px; padding:5px;}
 .jky-color-value			{width: 45px; text-align:right  !important;}
@@ -328,6 +328,7 @@ li .arrow span {
 #jky-checkout-weight		{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-checkout-boxes			{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-checkout-number		{width: 50px; margin-bottom:4px; font-weight:bold;}
+#jky-color-name				{								 text-align:left   !important; text-transform:capitalize;}
 #jky-customer-name			{								 text-align:left ; text-transform:capitalize;}
 #jky-delivered-value		{width: 75px; }
 #jky-delivered-pieces		{width: 75px; margin-bottom:4px; text-align:right;}
@@ -345,6 +346,7 @@ li .arrow span {
 #jky-quotation-number		{width: 60px; font-size:16px; font-weight:bold;}
 #jky-quoted-value			{width:120px; }
 #jky-quoted-pieces			{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-real-weight			{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-requested-date			{width: 75px; margin-bottom:4px;}
 #jky-requested-weight		{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-requested-boxes		{width: 75px; margin-bottom:4px; text-align:right;}

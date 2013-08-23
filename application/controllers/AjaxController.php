@@ -623,6 +623,7 @@ private function set_select($table, $select) {
 
 	$return = '';
 	if ($table == 'Categories'		)	$return = ' AND         Parent.category      = "' . $select . '"';
+	if ($table == 'Colors'			)	$return = ' AND	        Colors.color_type    = "' . $select . '"';
 	if ($table == 'Controls'		)	$return = ' AND       Controls.group_set     = "' . $select . '"';
 	if ($table == 'Configs'			)	$return = ' AND        Configs.group_set     = "' . $select . '"';
 	if ($table == 'Companies'		)	$return = ' AND      Companies.status        = "' . $select . '"';
