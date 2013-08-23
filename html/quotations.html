@@ -10,10 +10,12 @@
 .jky-print-label3		{width:120px; text-align:right; font-weight:bold;}
 .jky-print-value		{width:200px;}
 .jky-print-head			{font-weight:bold;}
+.jky-remarks			{height:170px; width: 570px;}
 #jky-print-number		{font-size:20px; font-weight:bold;}
 #jky-print-product		{text-transform:capitalize;}
 #jky-print-machine		{text-transform:capitalize;}
 #jky-print-has-break	{font-weight:bold;}
+#jky-remarks			{height:170px; width: 570px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -152,15 +154,9 @@
 			</div>
 
 			<div id='jky-pane-remarks' class='tab-pane'>
-				<table class='table table-striped' >
-					<thead>
-						<tr>
-							<td class='jky-set-label'><span>Name </span></td>
-							<td class='jky-set-value'><span>Value</span></td>
-						</tr>
-					</thead>
-					<tbody id='jky-set-body'></tbody>
-					<tfoot></tfoot>
+					<div class='jky-form-line'><div class='jky-form-label'><span>		 Remarks</span>:</div>
+						<textarea id='jky-remarks' placeholder='Remarks'></textarea>
+					</div>
 				</table>
 			</div>
 		</div>
