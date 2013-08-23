@@ -7,7 +7,7 @@ JKY.display_lines = function() {
 	var my_data =
 		{ method	: 'get_index'
 		, table		: 'CheckinLocations'
-		, select	:  JKY.row.thread_id
+		, select	:  JKY.row.batchin_id
 		, order_by  : 'location'
 		};
 	JKY.ajax(false, my_data, JKY.generate_loads);

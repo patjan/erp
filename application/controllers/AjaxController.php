@@ -554,7 +554,7 @@ private function get_index($data) {
 			. '  FROM Boxes'
 			. '  LEFT JOIN Batches	ON Batches.id = Boxes.batch_id'
 			. ' WHERE Boxes.status = "Check In"'
-			. '   AND Batches.thread_id = ' . $select
+			. '   AND Batches.id = ' . $select
 			. ' GROUP BY Boxes.checkin_location'
 			. ' ORDER BY Boxes.checkin_location'
 			;
@@ -4299,7 +4299,7 @@ private function checkout($data) {
 //	$table		= get_data($data, 'table'		);
 	$barcode	= get_data($data, 'barcode'		);
 	$location	= get_data($data, 'location'	);
-	$batchout_id= get_data($data, 'batchout_id'	);
+	$batchset_id= get_data($data, 'batchset_id'	);
 
 	$db  = Zend_Registry::get( 'db' );
 
@@ -4336,17 +4336,32 @@ private function checkout($data) {
 	$this->log_sql( 'Batches', 'update', $sql );
 	$db->query( $sql );
 
+	$sql = 'UPDATE BatchSets'
+	     . '   SET reserved_boxes = reserved_boxes - 1'
+	     . '     , checkout_boxes = checkout_boxes + 1'
+	     . ' WHERE id = ' . $batchset_id
+	     ;
+	$this->log_sql( 'BatchSets', 'update', $sql );
+	$db->query( $sql );
+
+	$sql = 'SELECT BatchSets.*'
+		 . '  FROM BatchSets'
+		 . ' WHERE BatchSets.id = ' . $batchset_id
+		 ;
+	$batchset = $db->fetchRow( $sql );
+
 	$sql = 'UPDATE BatchOuts'
-	     . '   SET checkout_boxes  = checkout_boxes  + 1'
+	     . '   SET reserved_boxes  = reserved_boxes  - 1'
+	     . '     , checkout_boxes  = checkout_boxes  + 1'
 	     . '     , checkout_weight = checkout_weight + ' . $my_weight
-	     . ' WHERE id = ' . $batchout_id
+	     . ' WHERE id = ' . $batchset['batchout_id']
 	     ;
 	$this->log_sql( 'BatchOuts', 'update', $sql );
 	$db->query( $sql );
 
 	$sql = 'SELECT BatchOuts.*'
 		 . '  FROM BatchOuts'
-		 . ' WHERE BatchOuts.id = ' . $batchout_id
+		 . ' WHERE BatchOuts.id = ' . $batchset['batchout_id']
 		 ;
 	$batchout = $db->fetchRow( $sql );
 	$my_amount = $my_weight * $batchout['unit_price'];

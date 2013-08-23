@@ -59,6 +59,7 @@ JKY.set_table_row = function(the_row) {
 //		+  '<td class="jky-average-weight"	>' +				 the_row.average_weight			+ '</td>'
 //		+  '<td class="jky-requested-weight">' +				 the_row.requested_weight		+ '</td>'
 //		+  '<td class="jky-requested-boxes"	>' +				 the_row.requested_boxes		+ '</td>'
+		+  '<td class="jky-checkin-location">' +				 the_row.checkin_location		+ '</td>'
 		+  '<td class="jky-reserved-boxes"	>' +				 the_row.reserved_boxes			+ '</td>'
 //		+  '<td class="jky-checkout-weight"	>' +				 the_row.checkout_weight		+ '</td>'
 		+  '<td class="jky-checkout-boxes"	>' +				 the_row.checkout_boxes			+ '</td>'
@@ -73,11 +74,12 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-checkout-number'		, the_row.checkout_number	);
 	JKY.set_value	('jky-thread-name'			, the_row.thread_name		);
 	JKY.set_value	('jky-batch-number'			, the_row.batch_number		);
+	JKY.set_value	('jky-checkin-location'		, the_row.checkin_location	);
 	JKY.set_value	('jky-machine-name'			, the_row.machine_name		);
 	JKY.set_value	('jky-supplier-name'		, the_row.supplier_name		);
 	JKY.set_value	('jky-requested-date'		, the_row.requested_date	);
 	JKY.set_value	('jky-requested-weight'		, the_row.requested_weight	);
-	JKY.set_value	('jky-requested-boxes'		, the_row.requested_boxes	);
+	JKY.set_value	('jky-reserved-boxes'		, the_row.reserved_boxes	);
 	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);
 	JKY.set_value	('jky-checkout-weight'		, the_row.checkout_weight	);
 	JKY.set_value	('jky-checkout-boxes'		, the_row.checkout_boxes	);
@@ -150,20 +152,25 @@ JKY.process_barcode_success = function(response) {
 				my_batch_class = 'jky-error ';
 				my_checkbox = '';
 			}
+			var my_location_class = '';
+			if (my_row.checkin_location != JKY.row.checkin_location) {
+				my_location_class = 'jky-error ';
+				my_checkbox = '';
+			}
 
 			JKY.sequence++;
 			var my_html = '<tr>'
 					+ '<td class="jky-checkbox"			>' +  my_checkbox				+ '</td>'
 					+ '<td class="jky-barcode"			>' +  my_row.barcode			+ '</td>'
 					+ '<td class="jky-sequence"			>' +  JKY.sequence				+ '</td>'
-					+ '<td class="' + my_status_class + 'jky-status"		>' +  JKY.t(my_row.status)		+ '</td>'
-					+ '<td class="' + my_thread_class + 'jky-thread-name"	>' +  my_row.thread_name		+ '</td>'
-					+ '<td class="' + my_batch_class  + 'jky-batch"			>' +  my_row.batch_number		+ '</td>'
+					+ '<td class="' + my_status_class	+ 'jky-status"			>' +  JKY.t(my_row.status)		+ '</td>'
+					+ '<td class="' + my_thread_class	+ 'jky-thread-name"		>' +  my_row.thread_name		+ '</td>'
+					+ '<td class="' + my_batch_class	+ 'jky-batch"			>' +  my_row.batch_number		+ '</td>'
 					+ '<td class="jky-number-of-boxes"	>' +  my_row.number_of_boxes	+ '</td>'
 					+ '<td class="jky-number-of-cones"	>' +  my_row.number_of_cones	+ '</td>'
 					+ '<td class="jky-average-weight"	>' +  my_row.average_weight		+ '</td>'
 					+ '<td class="jky-real-weight"		>' +  my_row.real_weight		+ '</td>'
-					+ '<td class="jky-checkin-location"	>' +  my_row.checkin_location	+ '</td>'
+					+ '<td class="' + my_location_class + 'jky-checkin-location">' +  my_row.checkin_location	+ '</td>'
 					+ '<td class="jky-supplier-name"	>' +  my_row.supplier_name		+ '</td>'
 					+ '</tr>'
 					;
@@ -211,7 +218,7 @@ JKY.confirm_row = function(the_id, the_barcode) {
 		, table			: 'Boxes'
 		, barcode		: the_barcode
 		, location		: my_location
-		, batchout_id	: JKY.row.id
+		, batchset_id	: JKY.row.id
 		};
 	JKY.ajax(false, my_data, JKY.confirm_row_success);
 	$(the_id).parent().parent().remove();
@@ -222,7 +229,11 @@ JKY.confirm_row = function(the_id, the_barcode) {
  */
 JKY.confirm_row_success = function(response) {
 	JKY.display_trace('confirm_row');
-	JKY.set_value('jky-checkout-weight', JKY.get_value_by_id('BatchOuts', 'checkout_weight', JKY.row.id));
-	JKY.set_value('jky-checkout-boxes' , JKY.get_value_by_id('BatchOuts', 'checkout_boxes' , JKY.row.id));
+//	JKY.set_value('jky-checkout-weight', JKY.get_value_by_id('BatchOuts', 'checkout_weight', JKY.row.id));
+//	JKY.set_value('jky-checkout-boxes' , JKY.get_value_by_id('BatchOuts', 'checkout_boxes' , JKY.row.id));
+	var my_row = response.row;
+	JKY.set_value('jky-reserved-boxes' , my_row.reserved_boxes );
+	JKY.set_value('jky-checkout-weight', my_row.checkout_weight);
+	JKY.set_value('jky-checkout-boxes' , my_row.checkout_boxes );
 }
 

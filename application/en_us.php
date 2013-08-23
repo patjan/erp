@@ -349,6 +349,7 @@ $translations = array
 , "Requested<br>Weight"=>"Requested<br>Weight"
 , "Requests"=>"Requests"
 , "Reserved Boxes"=>"Reserved Boxes"
+, "Reserved<br>Boxes"=>"Reserved<br>Boxes"
 , "Reset Password"=>"Reset Password"
 , "Resolution"=>"Resolution"
 , "Retilinea"=>"Retilinea"
