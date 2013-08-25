@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS Products
 
 , product_name		VARCHAR(255)		DEFAULT NULL
 , product_type		VARCHAR(32)			DEFAULT 'Tubular'
-, start_date		DATE				DEFAULT null
+, start_date		DATE				DEFAULT NULL
 , photo				VARCHAR(255)		DEFAULT NULL
 
 , PRIMARY KEY(id)

@@ -1551,7 +1551,8 @@ private function set_where($table, $filter) {
 
 	}
 
-	$filter = '"%' . $filter . '%"';
+//	$filter = '"%' . $filter . '%"';
+	$filter = '"' . $filter . '%"';
 
 	if ($table == 'Categories') {
 		$return = '       Categories.sequence			LIKE ' . $filter

@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS Colors
 
 , PRIMARY KEY	(id)
 , UNIQUE		(color_code)
+, KEY type		(color_type)
 , KEY name		(color_name)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;

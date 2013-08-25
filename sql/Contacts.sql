@@ -12,6 +12,8 @@ CREATE TABLE IF NOT EXISTS Contacts
 , is_company		CHAR(3)				DEFAULT 'No'
 , is_customer		CHAR(3)				DEFAULT 'No'
 , is_supplier		CHAR(3)				DEFAULT 'No'
+, is_dyer			CHAR(3)				DEFAULT 'No'
+, is_partner		CHAR(3)				DEFAULT 'No'
 , is_taxable		CHAR(3)				DEFAULT 'Yes'
 , photo				VARCHAR(255)		DEFAULT NULL
 , nick_name			VARCHAR(255)		DEFAULT NULL
@@ -63,4 +65,7 @@ ALTER TABLE Contacts	ADD UNIQUE KEY	 nick_name	(nick_name);
 
 ALTER TABLE Contacts	CHANGE is_supplier	is_supplier	CHAR(3)			DEFAULT 'No';
 UPDATE		Contacts	SET is_supplier = 'No'		WHERE is_supplier = 'no';
+
+ALTER TABLE Contacts	ADD COLUMN is_partner    		CHAR(3)   		DEFAULT 'No'  AFTER is_supplier;
+ALTER TABLE Contacts	ADD COLUMN is_dyer	    		CHAR(3)   		DEFAULT 'No'  AFTER is_supplier;
 

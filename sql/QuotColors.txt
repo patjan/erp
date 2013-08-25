@@ -22,4 +22,5 @@ CREATE TABLE IF NOT EXISTS QuotColors
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
-ALTER TABLE QuotColors		CHANGE	color_group		color_group		VARCHAR(32)		DEFAULT NULL;
+ALTER TABLE QuotColors		CHANGE	color_group		color_type		VARCHAR(32)		DEFAULT NULL;
+UPDATE 		QuotColors 		SET QuotColors.color_type = (SELECT Colors.color_type FROM Colors WHERE Colors.id = QuotColors.color_id );
