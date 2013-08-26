@@ -114,7 +114,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-punho-name'		, the_row.punho_name	);
 	JKY.set_value	('jky-gola-name'		, the_row.gola_name		);
 	JKY.set_value	('jky-galao-name'		, the_row.galao_name	);
-	JKY.set_value	('jky-remarks'			, JKY.row.resolution	);
+	JKY.set_value	('jky-remarks'			, JKY.row.remarks		);
 	JKY.display_lines();
 }
 
@@ -178,7 +178,7 @@ JKY.get_form_set = function() {
 		+	   ', punho_id=  ' + my_punho_id
 		+	    ', gola_id=  ' + my_gola_id
 		+	   ', galao_id=  ' + my_galao_id
-		+		', remarks=\'' + JKY.get_value	('jky-remarks'		) + '\''
+		+		', remarks=\'' + JKY.get_value	('jky-remarks'			) + '\''
 		;
 	return my_set;
 }

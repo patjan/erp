@@ -606,6 +606,8 @@ private function set_specific($table, $specific, $specific_id) {
 //	if ($specific == 'parent_id')	$return .= ' AND Categories.parent_id = ' . get_session('parent_id');
 	if ($table == 'Contacts'		&& $specific == 'is_customer'	)	$return .= ' AND  Contacts.is_customer	= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	$return .= ' AND  Contacts.is_supplier	= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_dyer'		)	$return .= ' AND  Contacts.is_dyer		= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_partner'	)	$return .= ' AND  Contacts.is_partner	= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_company'	)	$return .= ' AND  Contacts.is_company	= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	$return .= ' AND  Contacts.is_company	= "No" ';
 	if ($table == 'Contacts'		&& $specific == 'company'		)	$return .= ' AND  Contacts.company_id	= ' . $specific_id;

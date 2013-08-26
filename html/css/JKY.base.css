@@ -224,7 +224,7 @@ li .arrow span {
 #jky-loading			{display:none; position:fixed; top:50%;left:50%; margin:-50px 0 0 -50px; overflow:auto; z-index:9999;}
 #jky-message			{display:none; position:absolute; top:auto; bottom:0; left:auto ; right:0; width:340px; z-index:2000;}
 #jky-trace				{display:none; position:absolute; top:auto; bottom:0; left:280px; right:0; width:340px; z-index:2000;}
-#jky-confirm			{display:none; position:absolite; top:auto; bottom:0; left:auto ; right:0; width:340px; z-index:2000;}
+#jky-confirm			{display:none; position:absolute; top:auto; bottom:0; left:auto ; right:0; width:340px; z-index:2000;}
 #jky-new-layer			{}
 #jky-export				{display:none;}
 
@@ -260,7 +260,7 @@ li .arrow span {
 .jky-not-found			{color:  red; text-align:center !important;}
 .jky-number-of-boxes	{width: 40px; text-align:center !important;}
 .jky-number-of-cones	{width: 40px; text-align:center !important;}
-.jky-product-name		{width:200px; text-align:right  !important;}
+.jky-product-name		{width:200px; text-align:left   !important;}
 .jky-produced-date		{width: 60px; text-align:center !important;}
 .jky-produced-pieces	{width: 45px; text-align:right  !important;}
 .jky-punho-price		{width: 45px; text-align:right  !important;}
