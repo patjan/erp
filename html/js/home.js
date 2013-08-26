@@ -78,6 +78,8 @@ JKY.set_all_events_home = function(jky_program) {
 		$('#jky-production-machines'	).click (function() {JKY.process_action('machines'		);});
 		$('#jky-production-products'	).click (function() {JKY.process_action('products'		);});
 		$('#jky-production-suppliers'	).click (function() {JKY.process_action('suppliers'		);});
+		$('#jky-production-dyers'		).click (function() {JKY.process_action('dyers'			);});
+		$('#jky-production-partners'	).click (function() {JKY.process_action('partners'		);});
 		$('#jky-production-ftps'		).click (function() {JKY.process_action('ftps'			);});
 
 		$('#jky-help-tickets'			).click (function() {JKY.process_action('tickets'		);});
