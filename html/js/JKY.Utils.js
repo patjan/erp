@@ -976,7 +976,7 @@ JKY.set_menu_active = function(id_name){
 JKY.set_side_active = function(id_name){
 	if ($('#' + id_name).parent().css('display') == 'none') {
 		return;
-	};
+	}
 	$('#jky-side-bar div').removeClass('active');
 	$('#' + id_name).addClass('active');
 }
@@ -1644,8 +1644,8 @@ JKY.set_buttons_control = function(admins, language, languages) {
 				+  '<a class="btn btn-large dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-tasks icon-white"></i>Admin</a>'
 				+  '<ul id="jky-control-admin" class="dropdown-menu">'
 				;
-		for(var i=0; i<admins.length; i++) {
-			var my_admin = admins[i];
+		for(var j=0; j<admins.length; j++) {
+			var my_admin = admins[j];
 			my_html += '<li><a onclick="JKY.display_trace(\'' + my_admin.label + '\')"><i class="icon-' + my_admin.icon + ' icon-white"></i> &nbsp;' + my_admin.label + '</a></li>';
 		}
 		my_html += '</ul></div>';

@@ -1,7 +1,12 @@
 <script>
 $('#jky-app-body').load('../JKY.Companies.html');
+
 JKY.start_program = function() {
 	JKY.Companies('Customers', 'is_customer');
+}
+
+JKY.set_side_bar = function() {
+	JKY.set_side_active('jky-sales-customers');
 }
 </script>
 <script src='js/JKY.Companies.js'></script>

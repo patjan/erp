@@ -1,7 +1,14 @@
 <script>
 $('#jky-app-body').load('../JKY.Companies.html');
+
 JKY.start_program = function() {
 	JKY.Companies('Suppliers', 'is_supplier');
+}
+
+JKY.set_side_bar = function() {
+	JKY.set_side_active('jky-planning-suppliers'	);
+	JKY.set_side_active('jky-threads-suppliers'		);
+	JKY.set_side_active('jky-production-suppliers'	);
 }
 </script>
 <script src='js/JKY.Companies.js'></script>

@@ -1,7 +1,12 @@
 <script>
 $('#jky-app-body').load('../JKY.Companies.html');
+
 JKY.start_program = function() {
 	JKY.Companies('Dyers', 'is_dyer');
+}
+
+JKY.set_side_bar = function() {
+	JKY.set_side_active('jky-production-dyers');
 }
 </script>
 <script src='js/JKY.Companies.js'></script>
