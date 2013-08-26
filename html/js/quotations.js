@@ -64,7 +64,7 @@ JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-sales-quotations');
 	JKY.set_html('jky-customer-name', JKY.set_options_array('', JKY.get_companies('is_customer'), true));
 	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
-	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_supplier'), true));
+	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_dyer'), true));
 	JKY.show('jky-action-print');
 //	JKY.materials	= JKY.get_configs	('Materials'	);
 //	JKY.threads		= JKY.get_ids		('Threads'		);
