@@ -689,6 +689,7 @@ private function set_new_fields($table) {
 	if ($table == 'OrdThreads'		)	$return = ',    Orderx.order_number		AS	  order_number'
 												. ',    Thread.name				AS	 thread_name'
 												. ',   BatchIn.batch			AS	  batch_number';
+	if ($table == 'Pieces'			)	$return = ',    Orderx.order_number		AS	  order_number';
 	if ($table == 'Purchases'		)	$return = ',  Supplier.nick_name		AS supplier_name';
 	if ($table == 'PurchaseLines'	)	$return = ', Purchases.number			AS			purchase_number'
 												. ', Purchases.ordered_at		AS			ordered_at'
@@ -796,6 +797,7 @@ private function set_left_joins($table) {
 	if ($table == 'OrdThreads'		)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		OrdThreads.order_id'
 												. '  LEFT JOIN     Threads AS Thread	ON    Thread.id	=		OrdThreads.thread_id'
 												. '  LEFT JOIN     Batches AS BatchIn	ON   BatchIn.id	=		OrdThreads.batchin_id';
+	if ($table == 'Pieces'			)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		    Pieces.order_id';
 	if ($table == 'Purchases'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Purchases.supplier_id';
 	if ($table == 'PurchaseLines'	)	$return = '  LEFT JOIN   Purchases  			ON Purchases.id	=	 PurchaseLines.purchase_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=	 PurchaseLines.thread_id'

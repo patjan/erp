@@ -52,19 +52,18 @@ my_generate_row = function(the_row) {
 	}
 	var my_html = ''
 		+ '<tr order_pieces_id=' + my_id + '>'
-		+ '<td class="jky-action"			>' + my_trash	+ '</td>'
+		+ '<td class="jky-action"			>' + my_trash		+ '</td>'
 		+ '<td class="jky-pieces-barcode"	>' + the_row.barcode+ '</td>'
 		+ '<td class="jky-pieces-status"	>' + the_row.status	+ '</td>'
-		+ '<td class="jky-pieces-value"		><input class="jky-pieces-number-of-pieces"				onchange="JKY.update_pieces(this, ' + my_id + ')" value="' +				 the_row.number_of_pieces	  + '"						/></td>'
-		+ '<td class="jky-pieces-value"		><input class="jky-pieces-checkin-weight"	text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.checkin_weight		) + '"						/></td>'
-		+ '<td class="jky-pieces-value"		><input class="jky-pieces-checkin-date"					onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.short_date	(the_row.checkout_at		) + '" disabled="disabled"	/></td>'
-		+ '<td class="jky-pieces-value"		><input class="jky-pieces-quality"			text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.quality			) + '" disabled="disabled"	/></td>'
-		+ '<td class="jky-pieces-value"		><input class="jky-pieces-remarks"			text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.remarks			) + '" disabled="disabled"	/></td>'
+		+ '<td class="jky-pieces-value"		><input class="jky-pieces-number-of-pieces"				onchange="JKY.update_pieces(this, ' + my_id + ')" value="' +				 the_row.number_of_pieces	 + '"						/></td>'
+		+ '<td class="jky-pieces-value"		><input class="jky-pieces-checkin-weight"	text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.checkin_weight		)+ '"						/></td>'
+		+ '<td class="jky-pieces-value"		><input class="jky-pieces-checkin-date"					onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.short_date	(the_row.checkout_at		)+ '" disabled="disabled"	/></td>'
+		+ '<td class="jky-pieces-value"		><input class="jky-pieces-quality"			text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' +				 the_row.quality			 + '" disabled="disabled"	/></td>'
+		+ '<td class="jky-pieces-value"		><input class="jky-pieces-remarks"			text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.fix_null	(the_row.remarks			)+ '" disabled="disabled"	/></td>'
 		+ '</tr>'
 		;
 	return my_html;
 }
-
 JKY.update_pieces = function(id_name, the_id ) {
 	var my_saved_requested = parseFloat(JKY.get_value_by_id('OrdThreads', 'requested_weight', the_id));
 

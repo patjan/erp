@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Pieces'
 		, table_name	: 'Pieces'
 		, specific		: ''
-		, select		: ''
+		, select		: 'All'
 		, filter		: ''
 		, sort_by		: 'barcode'
 		, sort_seq		: 'DESC'
