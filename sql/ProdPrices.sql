@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS ProdPrices
 , color_type		VARCHAR(32)			DEFAULT NULL
 , previous_date		DATE				DEFAULT NULL
 , previous_price	DECIMAL(10,2)		DEFAULT 0
-, current_date		DATE				DEFAULT NULL
-, current_price		DECIMAL(10,2)		DEFAULT 0
+, active_date		DATE				DEFAULT NULL
+, active_price		DECIMAL(10,2)		DEFAULT 0
 , next_date			DATE				DEFAULT NULL
 , next_price		DECIMAL(10,2)		DEFAULT 0
 
