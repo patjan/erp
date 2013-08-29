@@ -171,7 +171,7 @@ JKY.insert_batch_sets = function() {
 				{ method	: 'update'
 				, table		: 'BatchOuts'
 				, set		: 'reserved_boxes = reserved_boxes + ' + my_reserved_boxes
-				, where		: 'Batchouts.id = ' + JKY.row.id
+				, where		: 'BatchOuts.id = ' + JKY.row.id
 				};
 			JKY.ajax(false, my_data);
 		}

@@ -80,14 +80,14 @@ JKY.update_batch = function(id_name, the_id ) {
 	}
 
 	var my_set = ''
-		+            'thread_id	=  ' + my_thread_id
-		+               ', code	=\'' + my_code	+ '\''
-		+              ', batch	=\'' + my_batch	+ '\''
-		+     ', received_boxes	=  ' + my_received_boxes
-		+    ', received_weight	=  ' + my_received_weight
-		+    ', number_of_cones	=  ' + my_number_of_cones
-		+         ', unit_price	=  ' + my_unit_price
-		+     ', average_weight	=  ' + my_average_weight
+		+            'thread_id =  ' + my_thread_id
+		+               ', code =\'' + my_code	+ '\''
+		+              ', batch =\'' + my_batch	+ '\''
+		+     ', received_boxes =  ' + my_received_boxes
+		+    ', received_weight =  ' + my_received_weight
+		+    ', number_of_cones =  ' + my_number_of_cones
+		+         ', unit_price =  ' + my_unit_price
+		+     ', average_weight =  ' + my_average_weight
 		;
 	var my_data =
 		{ method	: 'update'

@@ -682,6 +682,16 @@ JKY.append_html = function(id_name, html){
 }
 
 /**
+ * append specific id with file content
+ * @param	id_name
+ * @param	file_name
+ */
+JKY.append_file = function(id_name, file_name){
+	$('body').append('<div id="' + id_name + '"></div>');
+	$('#' + id_name).load(file_name);
+}
+
+/**
  * prepend specific id with html content
  * @param	id_name
  * @param	html
@@ -1914,7 +1924,7 @@ JKY.set_configs = function(group_set, selected, initial) {
 		var my_name  = my_rows[i]['name' ];
 		var my_value = my_rows[i]['value'];
 //		if (my_value == '' || group_set == 'User Roles') {
-		if (my_value == '' || my_value == 'null' || group_set == 'User Roles') {
+		if (my_value == null || my_value == '' || my_value == 'null' || group_set == 'User Roles') {
 			my_value = my_name;
 		}
 		var my_selected = (my_name == selected) ? ' selected="selected"' : '';
@@ -1948,7 +1958,7 @@ JKY.set_controls = function(group_set, selected, initial) {
 		var my_name  = my_rows[i]['name' ];
 		var my_value = my_rows[i]['value'];
 //		if (my_value == '' || group_set == 'User Roles') {
-		if (my_value == '' || my_value == 'null' || group_set == 'User Roles') {
+		if (my_value == null || my_value == '' || my_value == 'null' || group_set == 'User Roles') {
 			my_value = my_name;
 		}
 		var my_selected = (my_name == selected) ? ' selected="selected"' : '';

@@ -2,12 +2,6 @@
 
 /**
  * JKY.Thread - process all changes during one transaction
- *				 control save into private array [my_appraisals]
- *
- * method:	display(the_id)
- * 			load_data()
- *			click_row(the_index, the_id)
- *			add_new()
  *
  * require:	JKY.Utils.js(JKY.display_confirm)
  *
@@ -54,7 +48,6 @@ JKY.Thread = function() {
 		JKY.set_html(my_search_body, my_html);
 		JKY.show_modal(my_layer);
 	}
-
 
 	function my_click_row(the_index, the_id) {
 		var my_name = $(the_index).find('.jky-thread-search-name').html();

@@ -1,0 +1,192 @@
+<style>
+.jky-form-line-1		{width:273px;}
+.jky-form-line-2		{width:290px;}
+.jky-form-label			{width:160px;}
+.jky-form-label-1		{width:100px;}
+.Xjky-form-value			{width:100px;}
+.jky-form-value1		{width:240px;}
+.jky-checkbox			{width: 30px; text-align:center;}
+
+.jky-thread-label			{font-weight:bold; text-align:right;}
+.jky-thread-value			{text-align:right !important;}
+.jky-thread-row-name		{width:270px; margin-right:5px;}
+.jky-thread-batchin			{width: 120px;}
+
+.jky-batchin-row-batch		{width: 90px; margin-right:5px;}
+
+.jky-batchin-search-balance		{text-align:right !important}
+.jky-batchin-search-checkin		{text-align:right !important}
+.jky-batchin-search-returned	{text-align:right !important}
+.jky-batchin-search-checkout	{text-align:right !important}
+
+#jky-thread-total-requested		{padding-right:15px; font-weight:bold; text-align:right;}
+#jky-thread-total-checkout		{padding-right:15px; font-weight:bold; text-align:right;}
+</style>
+
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-order-number'		><span>	   Order<br>Number		</span></th>
+			<th class='jky-customer-name'		><span> Customer				</span></th>
+			<th class='jky-machine-name'		><span>	 Machine				</span></th>
+			<th class='jky-partner-name'		><span>  Partner				</span></th>
+			<th class='jky-product-name'		><span>  Product				</span></th>
+			<th class='jky-ordered-date'		><span>	 Ordered<br>Date		</span></th>
+			<th class='jky-needed-date'			><span>   Needed<br>Date		</span></th>
+			<th class='jky-produced-date'		><span> Produced<br>Date		</span></th>
+			<th class='jky-ordered-pieces'		><span>  Ordered<br>Pieces		</span></th>
+			<th class='jky-rejected-pieces'		><span> Rejected<br>Pieces		</span></th>
+			<th class='jky-produced-pieces'		><span> Produced<br>Pieces		</span></th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+</table>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'	></div>
+		<ul  id='jky-form-status'	></ul>
+	</div>
+	<div class='jky-clear'></div>
+
+	<div id='jky-form-data'>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Order Number</span>:</div><input  id='jky-order-number'	class='jky-form-value'	readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>      Customer</span>:</div>
+				<input id='jky-customer-id'	 type='hidden'		 value='' />
+				<input id='jky-customer-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this);' />
+				<a href='#' onClick='JKY.Customer.display(this)'><i class='icon-share'></i></a>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>       Machine</span>:</div>
+				<input id='jky-machine-id'	 type='hidden'		 value='' />
+				<input id='jky-machine-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this);' />
+				<a href='#' onClick='JKY.Machine.display(this)'><i class='icon-share'></i></a>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>       Partner</span>:</div>
+				<input id='jky-partner-id'	 type='hidden'		 value='' />
+				<input id='jky-partner-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this);' />
+				<a href='#' onClick='JKY.Partner.display(this)'><i class='icon-share'></i></a>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>       Product</span>:</div>
+				<input id='jky-product-id'	 type='hidden'		 value='' />
+				<input id='jky-product-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this);' />
+				<a href='#' onClick='JKY.Product.display(this)'><i class='icon-share'></i></a>
+			</div>
+
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span> Ordered Date</span>:</div>
+				<div id="jky-ordered-date"	class="input-append date"><input id='jky-ordered-value'		type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>  Needed Date</span>:</div>
+				<div id="jky-needed-date"	class="input-append date"><input id='jky-needed-value'		type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Produced Date</span>:</div>
+				<div id="jky-produced-date"	class="input-append date"><input id='jky-produced-value'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+			</div>
+		</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Ordered Pieces</span>:</div><input  id='jky-ordered-pieces'	class='jky-form-value'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Rejected Pieces</span>:</div><input  id='jky-rejected-pieces'	class='jky-form-value'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Produced Pieces</span>:</div><input  id='jky-produced-pieces'	class='jky-form-value'	/></div>
+		</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Labels Printed</span>:</div><input  id='jky-labels-printed'	class='jky-form-value'	/></div>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+		<div>
+			<div class='jky-form-label'></div>
+			<div class='jky-form-buttons'>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+				  <button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-tabs' class='tabbable'>
+		<ul class='nav nav-tabs' id='cd-ul-tabs'>
+			<li	id='jky-tab-threads'	class='active'	><a href='#jky-pane-threads'	data-toggle='tab'><span>Threads	</span></a></li>
+			<li	id='jky-tab-pieces'						><a href='#jky-pane-pieces'		data-toggle='tab'><span>Pieces	</span></a></li>
+		</ul>
+
+		<div class='tab-content'>
+			<div id='jky-pane-threads' class='tab-pane active'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<th class='jky-action'></th>
+							<th class='jky-thread-name'		><span>   Thread			</span></th>
+							<th class='jky-thread-batchin'	><span>    Batch			</span></th>
+							<th class='jky-thread-value'	><span>   Needed<br>Date	</span></th>
+							<th class='jky-thread-value'	><span>Requested<br>Weight	</span></th>
+							<th class='jky-thread-value'	><span>Check Out<br>Date	</span></th>
+							<th class='jky-thread-value'	><span>Check Out<br>Weight	</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-thread-body'></tbody>
+					<tfoot>
+						<tr>
+							<td	   id='jky-thread-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td></td>
+							<td class='jky-thread-value'><span>Total</span></td>
+							<td    id='jky-thread-total-requested'></td>
+							<td></td>
+							<td    id='jky-thread-total-checkout'></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+			<div id='jky-pane-pieces' class='tab-pane'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<th class='jky-action'></th>
+							<th class='jky-pieces-name'				><span>   Thread			</span></th>
+							<th class='jky-pieces-batchin'			><span>    Batch			</span></th>
+							<th class='jky-pieces-needed-date'		><span>   Needed<br>Date	</span></th>
+							<th class='jky-pieces-checkout-date'	><span>Check Out<br>Date	</span></th>
+							<th class='jky-pieces-requested-weight'	><span>Requested<br>Weight	</span></th>
+							<th class='jky-pieces-checkout-weight'	><span>Check Out<br>Weight	</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-pieces-body'></tbody>
+					<tfoot>
+						<tr>
+							<td	   id='jky-pieces-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td class='jky-pieces-label'><span>Total</span></td>
+							<td    id='jky-pieces-total-ordered'></td>
+							<td></td>
+							<td    id='jky-pieces-total-checkout'></td>
+							<td></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id='jky-form-footer'></div>
+</div>
+
+<div id='jky-body-loaded'></div>
+<script src='js/orders.js'></script>
+<script src='js/JKY.Customer.js'></script>
+<script src='js/JKY.Machine.js'></script>
+<script src='js/JKY.Partner.js'></script>
+<script src='js/JKY.Product.js'></script>
+<script src='js/JKY.Thread.js'></script>
+<script src='js/JKY.BatchIn.js'></script>
+<script src='js/JKY.Pieces.js'></script>
+<script src='js/JKY.Order.js'></script>
+<script src='js/order_threads.js'></script>

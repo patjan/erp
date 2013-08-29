@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Boxes
 , checkin_location	CHAR(4)				DEFAULT NULL
 , checkin_by		BIGINT				DEFAULT NULL
 , checkin_at		DATETIME			DEFAULT NULL
-, checkout_location	VARCHAR(32)			DEFAULT NULL	# machine name or dyer name
+, checkout_location	VARCHAR(32)			DEFAULT NULL		# machine name or dyer name
 , checkout_by		BIGINT				DEFAULT NULL
 , checkout_at		DATETIME			DEFAULT NULL
 , returned_location	CHAR(4)				DEFAULT NULL

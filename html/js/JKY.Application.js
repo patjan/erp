@@ -128,7 +128,7 @@ if (my_first == true) {
 				JKY.show('jky-action-export');
 			}else{
 				JKY.hide('jky-action-export');
-			};
+			}
 			JKY.hide('jky-action-save'		);
 			JKY.hide('jky-action-copy'		);
 			JKY.disable_button('jky-action-delete'	);
@@ -330,7 +330,7 @@ if (my_first == true) {
 		JKY.display_trace('my_process_copy_success');
 		JKY.display_message(response.message);
 		my_display_list();
-	};
+	}
 
 	function my_process_delete() {
 			JKY.display_trace('my_process_delete');
@@ -371,8 +371,8 @@ if (my_first == true) {
 			$('#jky-table-body .jky-checkbox input:checked').each(function() {
 				my_print_row($(this).attr('row_id'));
 			});
-		};
-	};
+		}
+	}
 
 /**
  * process print
@@ -389,7 +389,7 @@ if (my_first == true) {
 			JKY.display_trace('my_process_export');
 			var my_sort_by = my_args.sort_by + ' ' + my_args.sort_seq;
 			JKY.run_export(my_args.table_name, my_args.select, my_args.filter, my_args.specific, my_sort_by);
-		};
+		}
 
 /**
  * process publish
@@ -397,7 +397,7 @@ if (my_first == true) {
 	function my_process_publish() {
 		JKY.display_trace('my_process_publish');
 		JKY.process_publish();
-	};
+	}
 
 /**
  * process change input

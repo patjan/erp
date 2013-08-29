@@ -66,7 +66,6 @@ JKY.BatchIn = function() {
 		JKY.show_modal(my_layer);
 	}
 
-
 	function my_click_row(the_index, the_id) {
 		var my_batch = $(the_index).find('.jky-batchin-search-batch').html();
 		var my_parent = $(my_the_id).parent();

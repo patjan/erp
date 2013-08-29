@@ -645,6 +645,7 @@ private function set_select($table, $select) {
 	if ($table == 'FTP_Threads'		)	$return = ' AND    FTP_Threads.ftp_id			=  ' . $select;
 	if ($table == 'FTP_Sets'		)	$return = ' AND       FTP_Sets.ftp_id			=  ' . $select;
 	if ($table == 'Machines'		)	$return = ' AND       Machines.machine_brand    = "' . $select . '"';
+	if ($table == 'OrdThreads'		)	$return = ' AND      OrdThreads.order_id		=  ' . $select;
 	if ($table == 'Products'		)	$return = ' AND       Products.product_type     = "' . $select . '"';
 	if ($table == 'PurchaseLines'	)	$return = ' AND  PurchaseLines.purchase_id		=  ' . $select;
 	if ($table == 'QuotLines'		)	$return = ' AND      QuotLines.quotation_id		=  ' . $select;
@@ -680,6 +681,13 @@ private function set_new_fields($table) {
 	if ($table == 'FTP_Sets'		)	$return = ',   Configs.sequence			AS			sequence'
 												. ',   Configs.name				AS			name';
 	if ($table == 'History'			)	$return = ',  Contacts.full_name		AS	created_name';
+	if ($table == 'Orders'			)	$return = ',  Customer.nick_name		AS customer_name'
+												. ',   Machine.name				AS  machine_name'
+												. ',   Partner.nick_name		AS  partner_name'
+												. ',   Product.product_name		AS  product_name';
+	if ($table == 'OrdThreads'		)	$return = ',    Orderx.order_number		AS	  order_number'
+												. ',    Thread.name				AS	 thread_name'
+												. ',   BatchIn.batch			AS	  batch_number';
 	if ($table == 'Purchases'		)	$return = ',  Supplier.nick_name		AS supplier_name';
 	if ($table == 'PurchaseLines'	)	$return = ', Purchases.number			AS			purchase_number'
 												. ', Purchases.ordered_at		AS			ordered_at'
@@ -780,6 +788,13 @@ private function set_left_joins($table) {
 	if ($table == 'FTP_Sets'		)	$return = '  LEFT JOIN     Configs  			ON   Configs.id	=		  FTP_Sets.setting_id';
 	if ($table == 'History'			)	$return = '  LEFT JOIN   JKY_Users AS Users		ON     Users.id =		   History.created_by'
 												. '  LEFT JOIN    Contacts				ON  Contacts.id =			 Users.contact_id';
+	if ($table == 'Orders'			)	$return = '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		    Orders.customer_id'
+												. '  LEFT JOIN    Machines AS Machine	ON   Machine.id	=		    Orders.machine_id'
+												. '  LEFT JOIN    Contacts AS Partner	ON   Partner.id	=		    Orders.partner_id'
+												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		    Orders.product_id';
+	if ($table == 'OrdThreads'		)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		OrdThreads.order_id'
+												. '  LEFT JOIN     Threads AS Thread	ON    Thread.id	=		OrdThreads.thread_id'
+												. '  LEFT JOIN     Batches AS BatchIn	ON   BatchIn.id	=		OrdThreads.batchin_id';
 	if ($table == 'Purchases'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Purchases.supplier_id';
 	if ($table == 'PurchaseLines'	)	$return = '  LEFT JOIN   Purchases  			ON Purchases.id	=	 PurchaseLines.purchase_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=	 PurchaseLines.thread_id'
@@ -1150,6 +1165,46 @@ private function set_where($table, $filter) {
 					return ' AND History.' . $name . ' LIKE ' . $value;
 				}
 			}
+		}
+
+		if ($table == 'Orders') {
+			if ($name == 'order_number'
+			or	$name == 'ordered_at'
+			or	$name == 'needed_at'
+			or	$name == 'produced_at'
+			or	$name == 'ordered_pieces'
+			or	$name == 'printed_pieces'
+			or	$name == 'rejected_pieces'
+			or	$name == 'produced_pieces') {
+				if ($name == 'customer_name') {
+					if ($value == '"%null%"') {
+						return ' AND Orders.customer_id IS NULL';
+					}else{
+						return ' AND Customer.nick_name LIKE ' . $value;
+					}
+			}else{
+				if ($name == 'machine_name') {
+					if ($value == '"%null%"') {
+						return ' AND Orders.machine_id IS NULL';
+					}else{
+						return ' AND Machine.name LIKE ' . $value;
+					}
+			}else{
+				if ($name == 'partner_name') {
+					if ($value == '"%null%"') {
+						return ' AND Orders.partner_id IS NULL';
+					}else{
+						return ' AND Partner.nick_name LIKE ' . $value;
+					}
+			}else{
+				if ($name == 'product_name') {
+					if ($value == '"%null%"') {
+						return ' AND Orders.product_id IS NULL';
+					}else{
+						return ' AND Product.product_name LIKE ' . $value;
+					}
+			}
+			}}}}
 		}
 
 		if ($table == 'Purchases') {
@@ -1688,6 +1743,22 @@ private function set_where($table, $filter) {
 			;
 		}
 
+	if ($table ==  'Orders') {
+		$return = ' Orders.order_number			LIKE ' . $filter
+			. ' OR  Orders.ordered_at			LIKE ' . $filter
+			. ' OR  Orders.needed_at			LIKE ' . $filter
+			. ' OR  Orders.produced_at			LIKE ' . $filter
+			. ' OR  Orders.ordered_pieces		LIKE ' . $filter
+			. ' OR  Orders.printed_pieces		LIKE ' . $filter
+			. ' OR  Orders.rejected_pieces		LIKE ' . $filter
+			. ' OR  Orders.produced_pieces		LIKE ' . $filter
+			. ' OR    Customer.nick_name		LIKE ' . $filter
+			. ' OR     Machine.name				LIKE ' . $filter
+			. ' OR     Partner.nick_name		LIKE ' . $filter
+			. ' OR     Product.product_name		LIKE ' . $filter
+			;
+		}
+
 	if ($table ==  'Purchases') {
 		$return = ' Purchases.number		LIKE ' . $filter
 			. ' OR  Purchases.source_doc	LIKE ' . $filter
@@ -2052,6 +2123,12 @@ private function insert($data) {
 		$my_number = $this->get_next_number('Controls', 'Next FTP Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', number= ' . $my_number;
+	}
+
+	if ($table == 'Orders') {
+		$my_number = $this->get_next_number('Controls', 'Next Order Number');
+		$set .= ',     id= ' . $my_number;
+		$set .= ', order_number= ' . $my_number;
 	}
 
 	if ($table == 'Purchases') {
@@ -4055,8 +4132,6 @@ private function echo_error( $message ) {
 	 *	return: [ x...x, ..., x...x ]
 	 */
 	private function print_labels($data) {
-		$table = get_data($data, 'table');
-
 		$sql= 'SELECT Boxes.*'
 			. '     , Batches.batch AS batch_number'
 			. '     , Threads.composition, Threads.name AS thread_name'
