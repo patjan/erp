@@ -19,3 +19,5 @@ CREATE TABLE IF NOT EXISTS BatchSets
 , KEY batchout	(batchout_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
+INSERT Controls SET group_set='User Resources'		, status='Active', sequence=  50, name='BatchSets', created_by=1, created_at=NOW();
+INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=  50, name='BatchSets', created_by=1, created_at=NOW();

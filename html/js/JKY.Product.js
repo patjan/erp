@@ -65,9 +65,20 @@ JKY.Product = function() {
 	function my_click_row(the_index, the_id) {
 		var my_name = $(the_index).find('.jky-search-product-name').html();
 		var my_parent = $(my_the_id).parent();
-		$(my_parent).find('.jky-product-row-id'  ).val(the_id );
-		$(my_parent).find('.jky-product-row-name').val(my_name);
-		$(my_parent).find('.jky-product-row-name').click();
+
+		var my_dom_id = $(my_parent).find('#jky-product-id');
+		if (my_dom_id.length == 0) {
+			my_dom_id = $(my_parent).find('.jky-product-row-id');
+		}
+		my_dom_id.val(the_id );
+
+		var my_dom_name = $(my_parent).find('#jky-product-name');
+		if (my_dom_name.length == 0) {
+			my_dom_name = $(my_parent).find('.jky-product-row-name');
+		}
+		my_dom_name.val(my_name);
+		my_dom_name.click();
+
 		JKY.hide_modal(my_layer);
 	}
 

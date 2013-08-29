@@ -81,6 +81,8 @@ JKY.set_all_events_home = function(jky_program) {
 		$('#jky-production-dyers'		).click (function() {JKY.process_action('dyers'			);});
 		$('#jky-production-partners'	).click (function() {JKY.process_action('partners'		);});
 		$('#jky-production-ftps'		).click (function() {JKY.process_action('ftps'			);});
+		$('#jky-production-orders'		).click (function() {JKY.process_action('orders'		);});
+		$('#jky-production-pieces'		).click (function() {JKY.process_action('pieces'		);});
 
 		$('#jky-help-tickets'			).click (function() {JKY.process_action('tickets'		);});
 
@@ -220,11 +222,11 @@ JKY.process_menu = function(menu) {
 		case 'jky-menu-sales'		: JKY.show('jky-side-sales'		); JKY.process_action('quotations'		); break;
 		case 'jky-menu-purchases'	: JKY.show('jky-side-purchases'	); JKY.process_action('purchases'		); break;
 		case 'jky-menu-planning'	: JKY.show('jky-side-planning'	); JKY.process_action('requests'		); break;
-		case 'jky-menu-threads'		: JKY.show('jky-side-threads'	); JKY.process_action('threadforecast'	); break;
+		case 'jky-menu-threads'		: JKY.show('jky-side-threads'	); JKY.process_action('purchases'		); break;
 		case 'jky-menu-boxes'		: JKY.show('jky-side-boxes'		); JKY.process_action('boxes_info'		); break;
 		case 'jky-menu-raws'		: JKY.show('jky-side-raws'		); JKY.process_action('raws_info'		); break;
 		case 'jky-menu-fabrics'		: JKY.show('jky-side-fabrics'	); JKY.process_action('fabrics_info'	); break;
-		case 'jky-menu-production'	: JKY.show('jky-side-production'); JKY.process_action('ftps'			); break;
+		case 'jky-menu-production'	: JKY.show('jky-side-production'); JKY.process_action('orders'			); break;
 		case 'jky-menu-help'		: JKY.show('jky-side-help'		); JKY.process_action('tickets'			); break;
 		case 'jky-menu-admin'		: JKY.show('jky-side-admin'		); JKY.process_action('contacts'		); break;
 		case 'jky-menu-support'		: JKY.show('jky-side-support'	); JKY.process_action('translations'	); break;

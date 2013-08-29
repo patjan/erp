@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS PurchaseMonthly
 , supplier_id 		BIGINT			DEFAULT NULL
 , months			INT(11)			DEFAULT 0
 , forecast_weight	DECIMAL(10,2)	DEFAULT 0
-)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
 DROP   TABLE IF     EXISTS ThreadJoined;
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS ThreadJoined
 , months			INT(11)			DEFAULT 0
 , current_balance	DECIMAL(10,2)	DEFAULT 0
 , forecast_weight	DECIMAL(10,2)	DEFAULT 0
-)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
 DROP   TABLE IF     EXISTS ThreadForecast;
