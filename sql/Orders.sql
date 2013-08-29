@@ -20,7 +20,6 @@ CREATE TABLE IF NOT EXISTS Orders
 , printed_pieces	INT					DEFAULT 0
 , rejected_pieces	INT					DEFAULT 0
 , produced_pieces	INT					DEFAULT 0
-, ordered_pieces	INT					DEFAULT 0
 
 , PRIMARY KEY	(id)
 , UNIQUE		(order_number)
