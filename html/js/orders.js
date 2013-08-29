@@ -112,6 +112,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-labels-printed'	,				 the_row.labels_printed		);
 
 	JKY.display_threads();
+	JKY.display_pieces();
 };
 
 /**

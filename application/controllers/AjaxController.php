@@ -645,7 +645,8 @@ private function set_select($table, $select) {
 	if ($table == 'FTP_Threads'		)	$return = ' AND    FTP_Threads.ftp_id			=  ' . $select;
 	if ($table == 'FTP_Sets'		)	$return = ' AND       FTP_Sets.ftp_id			=  ' . $select;
 	if ($table == 'Machines'		)	$return = ' AND       Machines.machine_brand    = "' . $select . '"';
-	if ($table == 'OrdThreads'		)	$return = ' AND      OrdThreads.order_id		=  ' . $select;
+	if ($table == 'OrdThreads'		)	$return = ' AND     OrdThreads.order_id			=  ' . $select;
+	if ($table == 'Pieces'			)	$return = ' AND         Pieces.order_id			=  ' . $select;
 	if ($table == 'Products'		)	$return = ' AND       Products.product_type     = "' . $select . '"';
 	if ($table == 'PurchaseLines'	)	$return = ' AND  PurchaseLines.purchase_id		=  ' . $select;
 	if ($table == 'QuotLines'		)	$return = ' AND      QuotLines.quotation_id		=  ' . $select;

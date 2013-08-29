@@ -98,7 +98,10 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span> Produced Pieces</span>:</div><input  id='jky-produced-pieces'	class='jky-form-value'	/></div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>  Labels Printed</span>:</div><input  id='jky-labels-printed'	class='jky-form-value'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Labels Printed</span>:</div>
+					<input  id='jky-labels-printed'	class='jky-form-value'	/>
+					<a onclick='JKY.Piece.display(this)'><i class='icon-print'></i></a>
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -153,12 +156,13 @@
 					<thead>
 						<tr>
 							<th class='jky-action'></th>
-							<th class='jky-pieces-name'				><span>   Thread			</span></th>
-							<th class='jky-pieces-batchin'			><span>    Batch			</span></th>
-							<th class='jky-pieces-needed-date'		><span>   Needed<br>Date	</span></th>
-							<th class='jky-pieces-checkout-date'	><span>Check Out<br>Date	</span></th>
-							<th class='jky-pieces-requested-weight'	><span>Requested<br>Weight	</span></th>
-							<th class='jky-pieces-checkout-weight'	><span>Check Out<br>Weight	</span></th>
+							<th class='jky-pieces-barcode'			><span>				Barcode	</span></th>
+							<th class='jky-pieces-status'			><span>				Status	</span></th>
+							<th class='jky-pieces-number-of-pieces'	><span>   Number<br>Pieces	</span></th>
+							<th class='jky-pieces-checkin-weight'	><span> Check In<br>Weight	</span></th>
+							<th class='jky-pieces-checkin-date'		><span> Check In<br>Date	</span></th>
+							<th class='jky-pieces-quality'			><span>				Quality	</span></th>
+							<th class='jky-pieces-remarks'			><span>				Remarks	</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-pieces-body'></tbody>
@@ -187,6 +191,6 @@
 <script src='js/JKY.Product.js'></script>
 <script src='js/JKY.Thread.js'></script>
 <script src='js/JKY.BatchIn.js'></script>
-<script src='js/JKY.Pieces.js'></script>
 <script src='js/JKY.Order.js'></script>
 <script src='js/order_threads.js'></script>
+<script src='js/order_pieces.js'></script>
