@@ -171,3 +171,8 @@ JKY.process_delete = function(the_id, the_row) {
 		};
 	JKY.ajax(true, my_data);
 };
+
+JKY.clear_produced_by = function(the_name) {
+	JKY.set_value('jky-' + the_name + '-id', null);
+	JKY.set_value('jky-' + the_name + '-name', '');
+}

@@ -158,11 +158,16 @@ JKY.process_barcode_success = function(response) {
 				my_checkbox = '';
 			}
 
-			JKY.sequence++;
+			var my_sequence = '';
+			if (my_checkbox != '') {
+				JKY.sequence++;
+				my_sequence = JKY.sequence;
+			}
+
 			var my_html = '<tr>'
 					+ '<td class="jky-checkbox"			>' +  my_checkbox				+ '</td>'
 					+ '<td class="jky-barcode"			>' +  my_row.barcode			+ '</td>'
-					+ '<td class="jky-sequence"			>' +  JKY.sequence				+ '</td>'
+					+ '<td class="jky-sequence"			>' +  my_sequence				+ '</td>'
 					+ '<td class="' + my_status_class	+ 'jky-status"			>' +  JKY.t(my_row.status)		+ '</td>'
 					+ '<td class="' + my_thread_class	+ 'jky-thread-name"		>' +  my_row.thread_name		+ '</td>'
 					+ '<td class="' + my_batch_class	+ 'jky-batch"			>' +  my_row.batch_number		+ '</td>'

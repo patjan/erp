@@ -2158,6 +2158,12 @@ private function insert($data) {
 		$set .= ', barcode= ' . $my_number;
 	}
 
+	if ($table == 'Pieces') {
+		$my_number = $this->get_next_number('Controls', 'Next Piece Number');
+		$set .= ',      id= ' . $my_number;
+		$set .= ', barcode= ' . $my_number;
+	}
+
 	if ($table == 'Requests') {
 		$my_number = $this->get_next_number('Controls', 'Next Request Number');
 		$set .= ',     id= ' . $my_number;

@@ -18,7 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'barcode'
 		, sort_seq		: 'DESC'
-		, focus			: 'jky-received-time'
+		, focus			: 'jky-barcode'
 		, add_new		: 'display form'
 		});
 	JKY.App.init();
@@ -54,11 +54,12 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-barcode"				>' +				 the_row.barcode				+ '</td>'
 		+  '<td class="jky-status"				>' +				 the_row.status					+ '</td>'
 		+  '<td class="jky-number-of-pieces"	>' +				 the_row.number_of_pieces		+ '</td>'
+		+  '<td class="jky-produced-by"			>' +				 the_row.produced_by			+ '</td>'
 		+  '<td class="jky-checkin-weight"		>' +				 the_row.checkin_weight			+ '</td>'
 		+  '<td class="jky-real-weight"			>' +				 the_row.real_weight			+ '</td>'
-		+  '<td class="jky-checkin-location"	>' +				 the_row.checkin_location		+ '</td>'
+		+  '<td class="jky-checkin-location"	>' + JKY.fix_null	(the_row.checkin_location	)	+ '</td>'
 		+  '<td class="jky-checkout-location"	>' + JKY.fix_null	(the_row.checkout_location	)	+ '</td>'
-		+  '<td class="jky-quality"				>' +				 the_row.quality				+ '</td>'
+		+  '<td class="jky-quality"				>' + JKY.fix_null	(the_row.quality			)	+ '</td>'
 		;
 	return my_html;
 };
@@ -67,15 +68,16 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-order-number'				, the_row.order_number			);
-	JKY.set_value	('jky-barcode'					, the_row.barcode				);
-	JKY.set_value	('jky-status'					, the_row.status				);
-	JKY.set_value	('jky-number-of-pieces'			, the_row.number_of_pieces		);
-	JKY.set_value	('jky-checkin-weight'			, the_row.checkin_weight		);
-	JKY.set_value	('jky-real-weight'				, the_row.real_weight			);
-	JKY.set_value	('jky-checkin-location'			, the_row.checkin_location		);
-	JKY.set_value	('jky-checkout-location'		, the_row.checkout_location		);
-	JKY.set_value	('jky-quality'					, the_row.quality				);
+	JKY.set_value	('jky-order-number'				, the_row.order_number		);
+	JKY.set_value	('jky-barcode'					, the_row.barcode			);
+	JKY.set_value	('jky-status'					, the_row.status			);
+	JKY.set_value	('jky-number-of-pieces'			, the_row.number_of_pieces	);
+	JKY.set_value	('jky-produced-by'				, the_row.produced_by		);
+	JKY.set_value	('jky-checkin-weight'			, the_row.checkin_weight	);
+	JKY.set_value	('jky-real-weight'				, the_row.real_weight		);
+	JKY.set_value	('jky-checkin-location'			, the_row.checkin_location	);
+	JKY.set_value	('jky-checkout-location'		, the_row.checkout_location	);
+	JKY.set_value	('jky-quality'					, the_row.quality			);
 //	JKY.display_lines();
 };
 
@@ -85,7 +87,9 @@ JKY.set_form_row = function(the_row) {
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-order-number'			, '');
 	JKY.set_value	('jky-barcode'				, '');
+	JKY.set_value	('jky-status'				, '');
 	JKY.set_value	('jky-number-of-pieces'		, '0');
+	JKY.set_value	('jky-produced-by'			, '');
 	JKY.set_value	('jky-checkin-weight'		,  0);
 	JKY.set_value	('jky-real-weight'			,  0);
 	JKY.set_value	('jky-checkin-location'		, '');
@@ -101,12 +105,14 @@ JKY.get_form_set = function() {
 //	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
 
 	var my_set = ''
-		+'	order_id='				+			  JKY.get_value('jky-order-number'			)
-		+', barcode=\''				+			  JKY.get_value('jky-barcode'				) + '\''
-		+', checkin_weight=  '		+			  JKY.get_value('jky-checkin-weight'		)
-		+', real_weight=  '			+			  JKY.get_value('jky-real-weight'			)
-		+', checkin_location=\''	+			  JKY.get_value('jky-checkin-location'		) + '\''
-		+', checkout_location=\''	+			  JKY.get_value('jky-checkout-location'		) + '\''
-		+', quality=\''				+			  JKY.get_value('jky-quality'				) + '\''
+		+            ' barcode=  ' + JKY.get_value('jky-barcode'			)
+		+            ', status=\'' + JKY.get_value('jky-status'				) + '\''
+		+  ', number_of_pieces=  ' + JKY.get_value('jky-number-of-pieces'	)
+		+       ', produced_by=\'' + JKY.get_value('jky-produced-by'		) + '\''
+		+    ', checkin_weight=  ' + JKY.get_value('jky-checkin-weight'		)
+		+       ', real_weight=  ' + JKY.get_value('jky-real-weight'		)
+		+  ', checkin_location=\'' + JKY.get_value('jky-checkin-location'	) + '\''
+		+ ', checkout_location=\'' + JKY.get_value('jky-checkout-location'	) + '\''
+		+           ', quality=\'' + JKY.get_value('jky-quality'			) + '\''
 	return my_set;
 };

@@ -61,12 +61,12 @@
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>       Machine</span>:</div>
 				<input id='jky-machine-id'	 type='hidden'		 value='' />
-				<input id='jky-machine-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this);' />
+				<input id='jky-machine-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this); JKY.clear_produced_by("partner");' />
 				<a href='#' onClick='JKY.Machine.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>       Partner</span>:</div>
 				<input id='jky-partner-id'	 type='hidden'		 value='' />
-				<input id='jky-partner-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this);' />
+				<input id='jky-partner-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this); JKY.clear_produced_by("machine");' />
 				<a href='#' onClick='JKY.Partner.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>       Product</span>:</div>
@@ -100,7 +100,7 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>  Labels Printed</span>:</div>
 					<input  id='jky-labels-printed'	class='jky-form-value' disabled="disabled" />
-					<a onclick='JKY.Pieces.display(this)'><i class='icon-print'></i></a>
+					<a onclick='JKY.Changes.can_leave(function() {JKY.Pieces.display(this)})'><i class='icon-print'></i></a>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -158,7 +158,8 @@
 							<th class='jky-action'></th>
 							<th class='jky-pieces-barcode'			><span>				Barcode		</span></th>
 							<th class='jky-pieces-status'			><span>				Status		</span></th>
-							<th class='jky-pieces-number-of-pieces'	><span>   Number<br>of Pieces	</span></th>
+							<th class='jky-pieces-number-of-pieces'	><span>   Number<br>Pieces		</span></th>
+							<th class='jky-pieces-produced-by'		><span> Produced<br>By			</span></th>
 							<th class='jky-pieces-checkin-weight'	><span> Check In<br>Weight		</span></th>
 							<th class='jky-pieces-checkin-date'		><span> Check In<br>Date		</span></th>
 							<th class='jky-pieces-quality'			><span>				Quality		</span></th>
@@ -192,13 +193,12 @@
 		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>  Ordered Pieces</span>:</div><input id='jky-pieces-ordered-pieces'	type='text' readonly='readonly' /></div>
 		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>  Labels Printed</span>:</div><input id='jky-pieces-labels-printed'	type='text' readonly='readonly' /></div>
 		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>Labels Unprinted</span>:</div><input id='jky-pieces-labels-unprinted'	type='text' readonly='readonly' /></div>
-		<div class='jky-pieces-line'><div class='jky-pieces-label'><span> Labels to Print</span>:</div><input id='jky-pieces-labels-to-print'	type='text'						/> (max: 100)</div>
-		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>        Location</span>:</div><input id='jky-pieces-location'			type='text'						/></div>
-		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>  Average Weight</span>:</div><input id='jky-pieces-average-weight'	type='text'	readonly='readonly'	/></div>
+		<div class='jky-pieces-line'><div class='jky-pieces-label'><span> Labels to Print</span>:</div><input id='jky-pieces-labels-to-print'	type='text'						/></div>
+		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>     Produced By</span>:</div><input id='jky-pieces-produced-by'		type='text'						/></div>
 	</div>
 	<div class='modal-footer'>
-		<button  id='jky-pieces-print'  class='btn btn-success'			type='button'><span>Print</span></button>
-		&nbsp;<a id='jky-pieces-cancel' class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
+		<button  id='jky-pieces-print'  class='btn btn-success'				type='button'><span>Print	</span></button>
+		&nbsp;<a id='jky-pieces-cancel' class='btn' data-dismiss='modal'	type='button'><span>Cancel	</span></a>
 	</div>
 </div>
 

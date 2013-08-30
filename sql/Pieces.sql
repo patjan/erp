@@ -14,18 +14,19 @@ CREATE TABLE IF NOT EXISTS Pieces
 , barcode			VARCHAR(32)			DEFAULT NULL
 , is_printed		CHAR(3)				DEFAULT 'No'
 , number_of_pieces	INT(11)				DEFAULT 0
+, produced_by		VARCHAR(32)			DEFAULT NULL		# machine | partner
 , checkin_weight	decimal(10,2)		DEFAULT 0
 , real_weight		decimal(10,2)		DEFAULT 0
-, checkin_location	VARCHAR(4)			DEFAULT NULL
+, checkin_location	VARCHAR(32)			DEFAULT NULL
 , checkin_by		BIGINT				DEFAULT NULL
 , checkin_at		DATETIME			DEFAULT NULL
 , checkout_location	VARCHAR(32)			DEFAULT NULL		# dyer name
 , checkout_by		BIGINT				DEFAULT NULL
 , checkout_at		DATETIME			DEFAULT NULL
-, returned_location	CHAR(4)				DEFAULT NULL
+, returned_location	VARCHAR(32)			DEFAULT NULL
 , returned_by		BIGINT				DEFAULT NULL
 , returned_at		DATETIME			DEFAULT NULL
-, quality			VARCHAR(32)			DEFAULT NULL		
+, quality			VARCHAR(32)			DEFAULT NULL
 , remarks			TEXT				DEFAULT NULL
 
 , PRIMARY KEY(id)
@@ -38,3 +39,6 @@ INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=  
 
 INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next Piece Number', value='1000000001', created_by=1, created_at=NOW();
 
+ALTER TABLE Pieces		CHANGE	checkin_location	checkin_location	VARCHAR(32)		DEFAULT NULL;
+ALTER TABLE Pieces		CHANGE	returned_location	returned_location	VARCHAR(32)		DEFAULT NULL;
+ALTER TABLE Pieces		ADD COLUMN		produced_by						VARCHAR(32)		DEFAULT NULL  AFTER number_of_pieces;

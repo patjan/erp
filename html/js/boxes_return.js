@@ -147,11 +147,16 @@ JKY.process_input_success = function(response) {
 				my_location = my_row.checkin_location;
 			}
 
-			JKY.sequence++;
+			var my_sequence = '';
+			if (my_checkbox != '') {
+				JKY.sequence++;
+				my_sequence = JKY.sequence;
+			}
+
 			var my_html = '<tr>'
 					+ '<td class="jky-checkbox"			>' +  my_checkbox				+ '</td>'
 					+ '<td class="jky-barcode"			>' +  my_row.barcode			+ '</td>'
-					+ '<td class="jky-sequence"			>' +  JKY.sequence				+ '</td>'
+					+ '<td class="jky-sequence"			>' +  my_sequence				+ '</td>'
 					+ '<td class="jky-status"			>' +  JKY.t(my_row.status)		+ '</td>'
 					+ '<td class="jky-batch-number"		>' +  my_row.batch_number		+ '</td>'
 					+ '<td class="jky-number-of-boxes"	>' +  my_row.number_of_boxes	+ '</td>'

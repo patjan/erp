@@ -92,7 +92,7 @@ TRUNCATE TABLE 	ReqLines		;
 TRUNCATE TABLE 	Requests		;
 TRUNCATE TABLE 	ThreadForecast	;
 
-ALTER TABLE Boxes		AUTO_INCREMENT	= 1000000001; 
+ALTER TABLE Boxes		AUTO_INCREMENT	= 1000000001;
 UPDATE		Controls	SET value		= 1000000001	WHERE group_set = 'System Numbers' AND name = 'Next Box Number'		;
 
 ALTER TABLE CheckOuts	AUTO_INCREMENT	= 100001;
@@ -144,3 +144,9 @@ ALTER TABLE QuotColors		CHANGE	color_group		color_type		VARCHAR(32)		DEFAULT NUL
 UPDATE 		QuotColors 		SET QuotColors.color_type = (SELECT Colors.color_type FROM Colors WHERE Colors.id = QuotColors.color_id );
 ALTER TABLE Contacts	ADD COLUMN is_partner    		CHAR(3)   		DEFAULT 'No'  AFTER is_supplier;
 ALTER TABLE Contacts	ADD COLUMN is_dyer	    		CHAR(3)   		DEFAULT 'No'  AFTER is_supplier;
+----- 2013/08/29
+ALTER TABLE Pieces		CHANGE	checkin_location	checkin_location	VARCHAR(32)		DEFAULT NULL;
+ALTER TABLE Pieces		CHANGE	returned_location	returned_location	VARCHAR(32)		DEFAULT NULL;
+ALTER TABLE Pieces		ADD COLUMN		produced_by						VARCHAR(32)		DEFAULT NULL  AFTER number_of_pieces;
+----- 2013/08/30
+ALTER TABLE Machines	ADD		lane_type			VARCHAR(32) 	DEFAULT NULL	AFTER lanes;

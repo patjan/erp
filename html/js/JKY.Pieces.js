@@ -11,6 +11,7 @@
 JKY.Pieces = function() {
 	var my_index		=  null;		//	external id that initiated the call
 	var my_the_id		=  null;
+	var my_id			=  null;
 	var my_layer		= 'jky-pieces-layer';
 	var my_row			=  null;
 
@@ -19,11 +20,11 @@ JKY.Pieces = function() {
 
 	function my_display(the_id) {
 		my_the_id = the_id;
-		JKY.set_focus(my_filter);
 		my_load_data(JKY.row.id);
 	}
 
 	function my_load_data(the_id) {
+		my_id = the_id;
 		var my_data =
 			{ method	: 'get_row'
 			, table		: 'Orders'
@@ -37,23 +38,20 @@ JKY.Pieces = function() {
 		my_ordered_pieces 	= parseFloat(my_row.ordered_pieces	);
 		my_labels_printed	= parseFloat(my_row.labels_printed	);
 		var my_labels_unprinted	= my_ordered_pieces - my_labels_printed;
-		var my_labels_to_print	= my_labels_unprinted;
-//		var my_average_weight = my_row.average_weight;
+		var my_labels_to_print	= my_labels_unprinted > 100 ? 100 : my_labels_unprinted;
+//		var my_machine_name = JKY.get_value('jky-machine-name');
+//		var my_partner_name = JKY.get_value('jky-partner-name');
+//		var my_produced_by	= my_machine_name == '' ? my_partner_name : my_machine_name;
+		var my_machine_name = my_row.machine_name;
+		var my_partner_name = my_row.partner_name;
+		var my_produced_by	= my_machine_name == null ? my_partner_name : my_machine_name;
 
 		JKY.set_value('jky-pieces-ordered-pieces'	, my_ordered_pieces		);
 		JKY.set_value('jky-pieces-labels-printed'	, my_labels_printed		);
 		JKY.set_value('jky-pieces-labels-unprinted'	, my_labels_unprinted	);
 		JKY.set_value('jky-pieces-labels-to-print'	, my_labels_to_print	);
-		JKY.set_value('jky-pieces-location'			, my_row.machine_name	);
-//		JKY.set_value('jky-pieces-average-weight'	, my_row.average_weight	);
-/*
-		if (my_average_weight < 20.00
-		||  my_average_weight > 40.00) {
-			JKY.set_css('jky-pieces-average-weight', 'color', '#CC0000');
-		}else{
-			JKY.set_css('jky-pieces-average-weight', 'color', '#51A351');
-		}
-*/
+		JKY.set_value('jky-pieces-produced-by'		, my_produced_by		);
+
 		JKY.set_focus('jky-pieces-labels-to-print');
 		JKY.show_modal(my_layer);
 	}
@@ -61,11 +59,11 @@ JKY.Pieces = function() {
 	function my_print() {
 		var my_labels_unprinted	= parseFloat(JKY.get_value('jky-pieces-labels-unprinted'));
 		var my_labels_to_print	= parseFloat(JKY.get_value('jky-pieces-labels-to-print' ));
-		var my_location			= JKY.get_value('jky-pieces-location').toUpperCase();
+		var my_produced_by		= JKY.get_value('jky-pieces-produced-by');
 		if (isNaN(my_labels_to_print)
 		||  my_labels_to_print < 1
 		||	my_labels_to_print > 100
-		||  my_location == '') {
+		||  my_produced_by == '') {
 			JKY.display_message(JKY.t('Info is invalid'));
 			JKY.set_focus('jky-pieces-labels-to-print');
 			return;
@@ -76,31 +74,48 @@ JKY.Pieces = function() {
 		var my_data = '';
 		for(var i=0; i<my_labels_to_print; i++) {
 			my_labels_printed ++;
-JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_received_pieces);
+JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_ordered_pieces);
 			var my_set = ''
-					+          ' batch_id =  ' + my_id
-					+  ', number_of_pieces =  ' + my_labels_printed
-					+  ', number_of_cones =  ' + my_row.number_of_cones
-					+   ', average_weight =  ' + my_row.average_weight
-					+ ', checkin_location =\'' + my_location + '\''
+					+          ' order_id =  ' + my_id
+					+ ', number_of_pieces =  ' + my_labels_printed
+					+      ', produced_by =\'' + my_produced_by + '\''
 					+       ', checkin_by =  ' + JKY.Session.get_value('user_id')
 					+       ', checkin_at =\'' + JKY.get_now() + '\''
 					;
 			my_data =
 				{ method	: 'insert'
-				, table		: 'Boxes'
+				, table		: 'Pieces'
 				, set		: my_set
 				}
 			JKY.ajax(false, my_data, my_insert_pieces_success);
 		}
 		my_data =
 			{ method	: 'update'
-			, table		: 'Batches'
+			, table		: 'Orders'
 			, set		: 'labels_printed = labels_printed + ' + my_labels_to_print
-			, where		: 'Batches.id=' + my_id
+			, where		: 'Orders.id=' + my_id
 			};
-//		JKY.ajax(false, my_data, my_update_data_success);
+		JKY.ajax(false, my_data, my_update_data_success);
 	}
+
+	function my_insert_pieces_success(response) {
+return;
+	}
+
+	function my_update_data_success(response) {
+		var my_data =
+			{ method	: 'print_labels'
+			, table		: 'Pieces'
+			}
+//		JKY.ajax(false, my_data, my_print_labels_success);
+//	}
+
+//	function my_print_labels_success(response) {
+		JKY.set_value('jky-labels-printed', my_labels_printed);
+		JKY.hide_modal(my_layer);
+		JKY.display_message(response.message);
+	}
+
 
 	return {
 		  display		: function(the_id)				{		my_display(the_id);}

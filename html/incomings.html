@@ -42,10 +42,6 @@
 
 #jky-batch-total			{				text-align:right;}
 
-#jky-boxes-layer		{width:350px; top:240px; left:920px;}
-.jky-boxes-line			{width:260px; font-weight:bold; text-align:right;}
-.jky-boxes-label		{width:160px; float:left; font-weight:bold; text-align:right;}
-.jky-boxes-line input	{width: 60px; margin-left:10px; text-align:right;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -164,7 +160,7 @@
 		</table>
 	</div>
 	<div class='modal-footer'>
-<!--	<button  id='jky-thread-add-new' class='btn btn-success'				type='button'><span>Add New</span></button>	-->
+<!--	<button  id='jky-thread-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>	-->
 		&nbsp;<a id='jky-thread-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
 	</div>
 </div>
@@ -178,9 +174,9 @@
 		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Received Boxes</span>:</div><input id='jky-boxes-received-boxes'	type='text' readonly='readonly' /></div>
 		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Labels Printed</span>:</div><input id='jky-boxes-labels-printed'	type='text' readonly='readonly' /></div>
 		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>Labels Unprinted</span>:</div><input id='jky-boxes-labels-unprinted'	type='text' readonly='readonly' /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span> Labels to Print</span>:</div><input id='jky-boxes-labels-to-print'	type='text'						 /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>        Location</span>:</div><input id='jky-boxes-location'			type='text'						 /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Average Weight</span>:</div><input id='jky-boxes-average-weight'	type='text'	readonly='readonly'	 /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span> Labels to Print</span>:</div><input id='jky-boxes-labels-to-print'	type='text'						/> (max: 100)</div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>        Location</span>:</div><input id='jky-boxes-location'			type='text'						/></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Average Weight</span>:</div><input id='jky-boxes-average-weight'	type='text'	readonly='readonly'	/></div>
 	</div>
 	<div class='modal-footer'>
 		<button  id='jky-boxes-print'  class='btn btn-success'			type='button'><span>Print</span></button>

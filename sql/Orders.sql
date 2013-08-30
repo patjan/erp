@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS Orders
 , partner_id		BIGINT				DEFAULT NULL
 , product_id		BIGINT				DEFAULT NULL
 , ftp_id			BIGINT				DEFAULT NULL
-, labels_printed	INT(11)				DEFAULT 0
+, labels_printed	INT					DEFAULT 0
 , ordered_at		DATETIME			DEFAULT NULL
 , needed_at			DATETIME			DEFAULT NULL
 , produced_at		DATETIME			DEFAULT NULL

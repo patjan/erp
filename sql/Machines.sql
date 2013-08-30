@@ -17,11 +17,14 @@ CREATE TABLE IF NOT EXISTS Machines
 , density			INT(11)				DEFAULT 0
 , inputs			INT(11)				DEFAULT 0
 , lanes				INT(11)				DEFAULT 0
-, purchase_date		DATE				DEFAULT null
-, repair_date		DATE				DEFAULT null
-, return_date		DATE				DEFAULT null
+, lane_type			VARCHAR(32)			DEFAULT NULL
+, purchase_date		DATE				DEFAULT NULL
+, repair_date		DATE				DEFAULT NULL
+, return_date		DATE				DEFAULT NULL
 
 , PRIMARY KEY(id)
 , UNIQUE(name)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
+
+ALTER TABLE Machines	ADD		lane_type			VARCHAR(32) 	DEFAULT NULL	AFTER lanes;

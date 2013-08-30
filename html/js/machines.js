@@ -65,7 +65,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-width"			>' +				 the_row.width				+ '</td>'
 		+  '<td class="jky-density"			>' +				 the_row.density			+ '</td>'
 		+  '<td class="jky-inputs"			>' +				 the_row.inputs				+ '</td>'
-		+  '<td class="jky-lanes"			>' +				 the_row.lanes				+ '</td>'
+		+  '<td class="jky-lane-type"		>' + JKY.fix_null	(the_row.lane_type		)	+ '</td>'
 		;
 	return my_html;
 };
@@ -83,7 +83,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-width'			, the_row.width			);
 	JKY.set_value	('jky-density'			, the_row.density		);
 	JKY.set_value	('jky-inputs'			, the_row.inputs		);
-	JKY.set_value	('jky-lanes'			, the_row.lanes			);
+	JKY.set_value	('jky-lane-type'		, the_row.lane_type		);
 	JKY.set_date	('jky-purchase-date'	, JKY.out_date(the_row.purchase_date));
 	JKY.set_date	('jky-repair-date'		, JKY.out_date(the_row.repair_date	));
 	JKY.set_date	('jky-return-date'		, JKY.out_date(the_row.return_date	));
@@ -103,7 +103,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-width'			, '0');
 	JKY.set_value	('jky-density'			, '0');
 	JKY.set_value	('jky-inputs'			, '0');
-	JKY.set_value	('jky-lanes'			, '0');
+	JKY.set_value	('jky-lane-type'		, '');
 	JKY.set_date	('jky-purchase-date'	, '' );
 	JKY.set_date	('jky-repair-date'		, '' );
 	JKY.set_date	('jky-return-date'		, '' );
@@ -123,7 +123,7 @@ JKY.get_form_set = function() {
 		+         ', width=\'' + JKY.get_value	('jky-width'			) + '\''
 		+       ', density=\'' + JKY.get_value	('jky-density'			) + '\''
 		+        ', inputs=\'' + JKY.get_value	('jky-inputs'			) + '\''
-		+	      ', lanes=\'' + JKY.get_value	('jky-lanes'			) + '\''
+		+	  ', lane_type=\'' + JKY.get_value	('jky-lane-type'		) + '\''
 		;
 	my_set += ', purchase_date = ' + JKY.inp_date(JKY.get_value('jky-purchase-value'));
 	my_set +=   ', repair_date = ' + JKY.inp_date(JKY.get_value('jky-repair-value'	));
