@@ -40,6 +40,8 @@ JKY.set_all_events = function() {
 
 	$('#jky-tab-threads'		).click (function() {JKY.display_threads();});
 	$('#jky-thread-add-new'		).click (function() {JKY.insert_thread	();});
+
+	$('#jky-pieces-print'		).click (function() {JKY.Pieces.print()});
 };
 
 /**

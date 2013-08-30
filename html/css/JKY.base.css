@@ -369,23 +369,23 @@ li .arrow span {
 #jky-galao-perc				{width: 17px; text-align:right;}
 #jky-gola-perc				{width: 17px; text-align:right;}
 #jky-inputs					{width: 40px; text-align:right;}
-#jky-labels-printed			{width: 65px; text-align:right;}
+#jky-labels-printed			{width: 40px; text-align:right;}
 #jky-machine-name			{width:300px;					 text-align:left ; text-transform:capitalize;}
 #jky-needed-value			{width:115px;}
 #jky-order-number			{width: 60px; font-size:16px; font-weight:bold;}
-#jky-ordered-pieces			{width: 65px; text-align:right;}
+#jky-ordered-pieces			{width: 40px; text-align:right;}
 #jky-ordered-value			{width:115px;}
 #jky-partner-name			{width:300px;					 text-align:left ; text-transform:capitalize;}
 #jky-peso					{width: 40px; text-align:right;}
 #jky-product-name			{width:300px;					 text-align:left ; text-transform:capitalize;}
 #jky-produced-value			{width:115px;}
-#jky-produced-pieces		{width: 65px; text-align:right;}
+#jky-produced-pieces		{width: 40px; text-align:right;}
 #jky-punho-perc				{width: 17px; text-align:right;}
 #jky-quotation-number		{width: 60px; font-size:16px; font-weight:bold;}
 #jky-quoted-value			{width:120px; }
 #jky-quoted-pieces			{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-real-weight			{width: 75px; margin-bottom:4px; text-align:right;}
-#jky-rejected-pieces		{width: 65px; text-align:right;}
+#jky-rejected-pieces		{width: 40px; text-align:right;}
 #jky-requested-date			{width: 75px; margin-bottom:4px;}
 #jky-requested-weight		{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-requested-boxes		{width: 75px; margin-bottom:4px; text-align:right;}
