@@ -93,7 +93,7 @@ TRUNCATE TABLE 	Requests		;
 TRUNCATE TABLE 	ThreadForecast	;
 
 ALTER TABLE Boxes		AUTO_INCREMENT	= 1000000001;
-UPDATE		Controls	SET value		= 1000000001	WHERE group_set = 'System Numbers' AND name = 'Next Box Number'		;
+UPDATE		Controls	SET value		= 1000000001	WHERE group_set = 'System Numbers' AND name = 'Next Box Number';
 
 ALTER TABLE CheckOuts	AUTO_INCREMENT	= 100001;
 UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next CheckOut Number';
@@ -108,7 +108,10 @@ ALTER TABLE Quotations	AUTO_INCREMENT	= 100001;
 UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next Quotation Number';
 
 ALTER TABLE Requests	AUTO_INCREMENT	= 100001;
-UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next Request Number'	;
+UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next Request Number';
+
+ALTER TABLE TDyerOrders	AUTO_INCREMENT	= 100001;
+UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next TDyerOrder Number';
 ----- 2013/08/01
 ALTER TABLE FTP_Loads		ADD COLUMN thread_id_4    			BIGINT   		DEFAULT NULL  AFTER thread_id_3;
 ----- 2013/08/03
@@ -150,3 +153,9 @@ ALTER TABLE Pieces		CHANGE	returned_location	returned_location	VARCHAR(32)		DEFA
 ALTER TABLE Pieces		ADD COLUMN		produced_by						VARCHAR(32)		DEFAULT NULL  AFTER number_of_pieces;
 ----- 2013/08/30
 ALTER TABLE Machines	ADD		lane_type			VARCHAR(32) 	DEFAULT NULL	AFTER lanes;
+----- 2013/08/31
+INSERT		Controls	SET sequence= 50, group_set = 'Ticket Categories', name = 'TDyers' ;
+INSERT		Controls	SET sequence= 50, group_set = 'Ticket Categories', name = 'TDyerThreads';
+INSERT		Controls	SET sequence= 50, group_set = 'Ticket Categories', name = 'TDyerColors' ;
+ALTER TABLE TDyers		AUTO_INCREMENT	= 100001;
+UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next TDyer Number';
