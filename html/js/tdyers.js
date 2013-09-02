@@ -51,6 +51,7 @@ JKY.set_all_events = function() {
 
 	$('#jky-action-product'		).click (function() {JKY.display_product	();});
 	$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});
+	$('#jky-save-remarks'		).click (function()	{JKY.save_remarks		();});
 	$('#jky-search-filter'		).KeyUpDelay(JKY.filter_product);
 }
 
@@ -326,4 +327,23 @@ JKY.print_row = function(the_id) {
 
 //	JKY.show('jky-printable');
 	$("#jky-printable").print();
+}
+
+JKY.save_remarks = function() {
+//	JKY.display_message('JKY.save_remarks');
+	var my_set  =   'remarks = \'' + JKY.get_value('jky-remarks') + '\''
+				;
+	var my_where = 'id = ' + JKY.row.id;
+	var my_data =
+		{ method: 'update'
+		, table : 'Quotations'
+		, set	: my_set
+		, where : my_where
+		};
+	JKY.ajax(true, my_data, JKY.save_remarks_success);
+}
+
+JKY.save_remarks_success = function(response) {
+//	JKY.display_trace('save_remarks_success');
+	JKY.display_message('Remarks saved, ' + response.message);
 }
