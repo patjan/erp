@@ -154,8 +154,13 @@ ALTER TABLE Pieces		ADD COLUMN		produced_by						VARCHAR(32)		DEFAULT NULL  AFTE
 ----- 2013/08/30
 ALTER TABLE Machines	ADD		lane_type			VARCHAR(32) 	DEFAULT NULL	AFTER lanes;
 ----- 2013/08/31
+INSERT		Controls	SET sequence= 50, group_set = 'User Resources', name = 'TDyers' ;
+INSERT		Controls	SET sequence= 50, group_set = 'User Resources', name = 'TDyerThreads';
+INSERT		Controls	SET sequence= 50, group_set = 'User Resources', name = 'TDyerColors' ;
+
 INSERT		Controls	SET sequence= 50, group_set = 'Ticket Categories', name = 'TDyers' ;
 INSERT		Controls	SET sequence= 50, group_set = 'Ticket Categories', name = 'TDyerThreads';
 INSERT		Controls	SET sequence= 50, group_set = 'Ticket Categories', name = 'TDyerColors' ;
+
 ALTER TABLE TDyers		AUTO_INCREMENT	= 100001;
 UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next TDyer Number';

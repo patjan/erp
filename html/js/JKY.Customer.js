@@ -57,7 +57,7 @@ JKY.Customer = function() {
 	}
 
 	function my_click_row(the_index, the_id) {
-		var my_name = $(the_index).find('.jky-search-customer-name').html();
+		var my_name   = $(the_index).find('.jky-search-customer-name').html();
 		var my_parent = $(my_the_id).parent();
 
 		var my_dom_id = $(my_parent).find('#jky-customer-id');

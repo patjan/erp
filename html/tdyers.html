@@ -1,0 +1,163 @@
+<style>
+
+#jky-form-tabs thead	{font-weight:bold;}
+#jky-form-tabs tfoot	{font-weight:normal;}
+
+#jky-printable			{font-size:90%; font-weight:normal;}
+.jky-print-label		{width:100px; text-align:right; font-weight:bold;}
+.jky-print-label1		{width: 80px; text-align:right; font-weight:bold;}
+.jky-print-label2		{width: 80px; text-align:right; font-weight:bold;}
+.jky-print-label3		{width:120px; text-align:right; font-weight:bold;}
+.jky-print-value		{width:200px;}
+.jky-print-head			{font-weight:bold;}
+.jky-remarks			{height:170px; width: 570px;}
+#jky-print-number		{font-size:20px; font-weight:bold;}
+#jky-print-product		{text-transform:capitalize;}
+#jky-print-machine		{text-transform:capitalize;}
+#jky-print-has-break	{font-weight:bold;}
+#jky-remarks			{height:170px; width: 570px;}
+</style>
+
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-tdyer-number'	><span>Thread Dyer<br>Number	</span></th>
+			<th class='jky-order-number'	><span>      Order<br>Number	</span></th>
+			<th class='jky-customer-name'	><span>               Customer	</span></th>
+			<th class='jky-dyer-name'		><span>               Dyer		</span></th>
+			<th class='jky-ordered-date'	><span>    Ordered<br>Date		</span></th>
+			<th class='jky-needed-date'		><span>     Needed<br>Date		</span></th>
+			<th class='jky-checkout-date'	><span>  Check Out<br>Date		</span></th>
+			<th class='jky-returned-date'	><span>   Returned<br>Date		</span></th>
+			<th class='jky-ordered-weight'	><span>    Ordered<br>Weight	</span></th>
+			<th class='jky-checkout-weight'	><span>  Check Out<br>Weight	</span></th>
+			<th class='jky-returned-weight'	><span>   Returned<br>Weight	</span></th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+</table>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'	></div>
+		<ul  id='jky-form-status'	></ul>
+	</div>
+	<div class='jky-clear'></div>
+
+	<div id='jky-form-data'>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Thread Dyer Number</span>:</div><input  id='jky-tdyer-number'	class='jky-form-value'	readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         Order</span>:</div>
+				<input id='jky-order-id'	 type='hidden'		value='' />
+				<input id='jky-order-number' readonly='readonly'	value='' onClick='JKY.Application.process_change_input(this);' />
+				<a href='#' onClick='JKY.Order.display(this)'><i class='icon-share'></i></a>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>      Customer</span>:</div>
+				<input id='jky-customer-id'	 type='hidden'		 value='' />
+				<input id='jky-customer-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this);' />
+				<a href='#' onClick='JKY.Customer.display(this)'><i class='icon-share'></i></a>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         Dyer</span>:</div>
+				<input id='jky-dyer-id'	 type='hidden'		 value='' />
+				<input id='jky-dyer-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this);' />
+				<a href='#' onClick='JKY.Dyer.display(this)'><i class='icon-share'></i></a>
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Ordered Date</span>:</div>
+				<div id="jky-ordered-date"	class="input-append date"><input id='jky-ordered-value'		type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Needed Date</span>:</div>
+				<div id="jky-needed-date"	class="input-append date"><input id='jky-needed-value'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Check Out Date</span>:</div>
+				<div id="jky-checkout-date"	class="input-append date"><input id='jky-checkout-value'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Returned Date</span>:</div>
+				<div id="jky-returned-date"	class="input-append date"><input id='jky-returned-value'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+			</div>
+		</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Ordered Weight</span>:</div><input id='jky-ordered-weight'	disabled='disabled' /></div>
+			<div class='jky-form-line'></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Weight</span>:</div><input id='jky-checkout-weight'	disabled='disabled' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Returned Weight</span>:</div><input id='jky-returned-weight'	disabled='disabled' /></div>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+
+		<div>
+			<div class='jky-form-label'></div>
+			<div class='jky-form-buttons'>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-tabs' class='tabbable'>
+		<ul class='nav nav-tabs' id='cd-ul-tabs'>
+			<li id='jky-tab-threads'	class='active'	><a href='#jky-pane-threads'	data-toggle='tab'><span>Threads	</span></a></li>
+			<li id='jky-tab-remarks'					><a href='#jky-pane-remarks'	data-toggle='tab'><span>Remarks	</span></a></li>
+		</ul>
+
+		<div class='tab-content'>
+			<div id='jky-pane-threads' class='tab-pane active'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<th class='jky-action'></th>
+							<th class='jky-thread-name'		><span>             Thread	</span></th>
+							<th class='jky-batch-number'	><span>             Batch	</span></th>
+							<th class='jky-color-name'		><span>             Color	</span></th>
+							<th class='jky-ordered-weight'	><span>  Ordered<br>Weight	</span></th>
+							<th class='jky-checkout-weight'	><span>Check Out<br>Weight	</span></th>
+							<th class='jky-needed-date'		><span>   Needed<br>Date	</span></th>
+							<th class='jky-checkout-date'	><span>Check Out<br>Date	</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-threads-body'></tbody>
+					<tfoot>
+						<tr>
+							<td id='jky-threads-add-new' class='jky-action' colspan='8'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td colspan='0'></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+			<div id='jky-pane-remarks' class='tab-pane'>
+					<div class='jky-form-line'><div class='jky-form-label'><span>		 Remarks</span>:</div>
+						<textarea id='jky-remarks' placeholder='Remarks'></textarea>
+					</div>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id='jky-form-footer'></div>
+</div>
+
+<div id='jky-body-loaded'></div>
+<div id='jky-printable'></div>
+
+<script src='js/tdyers.js'			></script>
+<script src='js/JKY.Order.js'		></script>
+<script src='js/JKY.Customer.js'	></script>
+<script src='js/JKY.Dyer.js'		></script>
+<script src='js/JKY.Thread.js'		></script>
+<script src='js/JKY.BatchIn.js'		></script>
+<script src='js/JKY.Color.js'		></script>
+<script src='js/tdyer_threads.js'	></script>
+<script src='js/tdyer_colors.js'	></script>

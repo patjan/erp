@@ -3,7 +3,6 @@
  */
 
 JKY.display_lines = function() {
-//	JKY.lines = JKY.line_ids(JKY.row.id);
 	var my_data =
 		{ method	: 'get_index'
 		, table		: 'QuotLines'
@@ -101,6 +100,12 @@ JKY.insert_line_success = function(response) {
 }
 
 JKY.delete_line = function(id_name, the_id) {
+	var my_count = JKY.get_count_by_id('QuotColors', the_id);
+	if (my_count > 0) {
+		JKY.display_message(JKY.t('Error, delete first all sub records'));
+		return;
+	}
+
 	var my_tr = $(id_name).parent().parent();
 	my_tr.remove();
 	var my_data =
@@ -109,14 +114,6 @@ JKY.delete_line = function(id_name, the_id) {
 		, where		: 'QuotLines.id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
-/*
-	var my_data =
-		{ method	: 'delete_many'
-		, table		: 'QuotColors'
-		, where		: 'QuotColors.parent_id = ' + the_id
-		};
-	JKY.ajax(true, my_data);
-*/
 }
 
 JKY.delete_line_success = function(response) {

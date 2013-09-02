@@ -1,5 +1,5 @@
 /*
- * display Order Threads -------------------------------------------------------------
+ * display Order Threads -------------------------------------------------------
  */
 
 JKY.display_threads = function() {
@@ -15,24 +15,24 @@ JKY.display_threads = function() {
 JKY.generate_threads = function(response) {
 	JKY.Order.set_requested(0);
 	JKY.Order.set_checkout (0);
-	var my_html	= '';
-	var my_rows	= response.rows;
+	var my_html  = '';
+	var my_rows  = response.rows;
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];
-			my_html += JKY.generate_row(my_row);
+			my_html += JKY.generate_thread(my_row);
 			JKY.Order.add_requested(my_row.requested_weight);
 			JKY.Order.add_checkout (my_row.checkout_weight );
 		}
 	}
-	JKY.set_html('jky-thread-body', my_html );
+	JKY.set_html('jky-threads-body', my_html);
 	JKY.update_total_weight();
 	if (my_rows == '') {
 		JKY.insert_thread();
 	}
 }
 
-JKY.generate_row = function(the_row) {
+JKY.generate_thread = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = (the_row.batch_id == null) ? '<a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_thread = ''
@@ -42,7 +42,7 @@ JKY.generate_row = function(the_row) {
 		;
 	var my_batchin = ''
 		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-row-batch' readonly='readonly' onclick='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batch_number + "' />"
+		+ "<input class='jky-batchin-row-number' readonly='readonly' onclick='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batch_number + "' />"
 		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_needed_at = JKY.out_date(the_row.needed_at);
@@ -119,8 +119,8 @@ JKY.insert_thread_success = function(response) {
 	my_row.checkout_weight	=  0;
 
 	var my_html = JKY.generate_row(my_row);
-	JKY.append_html('jky-thread-body', my_html);
-	var my_tr_id = $('#jky-thread-body tr[order_thread_id="' + response.id + '"]');
+	JKY.append_html('jky-threads-body', my_html);
+	var my_tr_id = $('#jky-threads-body tr[order_thread_id="' + response.id + '"]');
 	my_tr_id.find('.jky-thread-requested-weight').focus().select();
 }
 

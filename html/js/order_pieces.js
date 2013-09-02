@@ -43,7 +43,7 @@ my_generate_row = function(the_row) {
 		;
 	var my_batchin = ''
 		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-row-batch' readonly='readonly' onclick='JKY.update_pieces(this, " + my_id + ")' value='" + the_row.batch_number + "' />"
+		+ "<input class='jky-batchin-row-number' readonly='readonly' onclick='JKY.update_pieces(this, " + my_id + ")' value='" + the_row.batch_number + "' />"
 		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_needed_at = JKY.out_date(the_row.needed_at);

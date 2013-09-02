@@ -12,7 +12,7 @@
  * require:	JKY.Utils.js(JKY.display_confirm)
  *
  * 		$(my_parent).find('.jky-batchin-row-id'  ).val(the_id );
- *		$(my_parent).find('.jky-batchin-row-name').val(my_name);
+ *		$(my_parent).find('.jky-batchin-row-number').val(my_number);
  */
 JKY.BatchIn = function() {
 	var my_the_id		= null;		//	external id that initiated the call
@@ -67,11 +67,11 @@ JKY.BatchIn = function() {
 	}
 
 	function my_click_row(the_index, the_id) {
-		var my_batch = $(the_index).find('.jky-batchin-search-batch').html();
+		var my_batch = $(the_index).find('.jky-batchin-search-number').html();
 		var my_parent = $(my_the_id).parent();
 		$(my_parent).find('.jky-batchin-row-id'  ).val(the_id );
-		$(my_parent).find('.jky-batchin-row-batch').val(my_batch);
-		$(my_parent).find('.jky-batchin-row-batch').click();
+		$(my_parent).find('.jky-batchin-row-number').val(my_batch);
+		$(my_parent).find('.jky-batchin-row-number').click();
 		JKY.hide_modal(my_layer);
 	}
 

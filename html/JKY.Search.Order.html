@@ -1,0 +1,27 @@
+<!-- JKY.Search.Order.html -->
+
+<div id='jky-order-search' class='modal hide fade in'>
+	<div class='modal-header'>
+		<a class='close' data-dismiss='modal'>X</a>
+		<h3><span>Search</span>: <span>Order</span></h3>
+	</div>
+	<div class='modal-body'>
+		<div><input id='jky-order-filter' class='search-query' type='text' placeholder='Search' /></div>
+		<table id='jky-order-table' class='table table-striped'>
+			<thead>
+				<tr>
+					<th class='jky-search-order-number'		><span>   Order<br>Number	</span></th>
+					<th class='jky-search-customer-name'	><span>Customer<br>Name		</span></th>
+					<th class='jky-search-product-name'		><span> Product<br>Name		</span></th>
+					<th class='jky-search-ordered-date'		><span> Ordered<br>Date		</span></th>
+					<th class='jky-search-ordered-pieces'	><span> Ordered<br>Pieces	</span></th>
+				</tr>
+			</thead>
+			<tbody id='jky-order-search-body'></tbody>
+		</table>
+	</div>
+	<div class='modal-footer'>
+<!--	<a id='jky-order-add-new'	class='btn btn-success'				type='button'><span>Add New</span></a> &nbsp;	-->
+		<a id='jky-order-cancel'	class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
+	</div>
+</div>

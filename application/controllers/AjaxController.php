@@ -170,7 +170,7 @@ public function indexAction() {
 		case 'get_names'	: $this->get_names		($data); break;
 		case 'get_id'		: $this->get_id			($data); break;
 		case 'get_ids'		: $this->get_ids		($data); break;
-		case 'get_count'	: $this->get_count		(); break;
+		case 'get_count'	: $this->get_count		($data); break;
 		case 'get_value'	: $this->get_value		($data); break;
 		case 'get_row'		: $this->get_row		($data); break;
 		case 'get_rows'		: $this->get_rows		($data); break;
@@ -652,6 +652,8 @@ private function set_select($table, $select) {
 	if ($table == 'QuotLines'		)	$return = ' AND      QuotLines.quotation_id		=  ' . $select;
 	if ($table == 'QuotColor'		)	$return = ' AND     QuotColors.parent_id		=  ' . $select;
 	if ($table == 'History'			)	$return = ' AND        History.parent_name      = "' . $select . '"';
+	if ($table == 'TDyerThreads'	)	$return = ' AND   TDyerThreads.tdyer_id			=  ' . $select;
+	if ($table == 'TDyerColors'		)	$return = ' AND    TDyerColors.parent_id		=  ' . $select;
 	if ($table == 'Threads'			)	$return = ' AND        Threads.thread_group     = "' . $select . '"';
 	if ($table == 'ThreadForecast'	)	$return = ' AND		   Threads.thread_group     = "' . $select . '"';
 	if ($table == 'ReqLines'		)	$return = ' AND       ReqLines.request_id		=  ' . $select;
@@ -745,6 +747,12 @@ private function set_new_fields($table) {
 												. ', CheckOuts.requested_date	AS requested_date'
 												. ',  Supplier.nick_name		AS supplier_name'
 												. ',  Machines.name				AS  machine_name';
+	if ($table == 'TDyers'			)	$return = ',    Orderx.order_number		AS	  order_number'
+												. ',  Customer.nick_name		AS customer_name'
+												. ',      Dyer.nick_name		AS	   dyer_name';
+	if ($table == 'TDyerThreads'	)	$return = ',    Thread.name				AS	 thread_name'
+												. ',   BatchIn.batch			AS  batchin_number';
+	if ($table == 'TDyerColors'		)	$return = ',     Color.color_name		AS	  color_name';
 	if ($table == 'ThreadForecast'	)	$return = ',  Contacts.nick_name		AS supplier_name'
 												. ',   Threads.thread_group		AS	 thread_group'
 												. ',   Threads.name				AS	 thread_name'
@@ -848,6 +856,12 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=		 BatchOuts.req_line_id'
 												. '  LEFT JOIN    Machines				ON  Machines.id	=		 CheckOuts.machine_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id';
+	if ($table == 'TDyers'			)	$return = '  LEFT JOIN      Orders AS Orderx	ON    Orderx.id	=		    TDyers.order_id'
+												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		    TDyers.customer_id'
+												. '  LEFT JOIN    Contacts AS Dyer    	ON      Dyer.id	=		    TDyers.dyer_id';
+	if ($table == 'TDyerThreads'	)	$return = '  LEFT JOIN     Threads AS Thread	ON    Thread.id	=	  TDyerThreads.thread_id'
+												. '  LEFT JOIN     Batches AS BatchIn	ON   BatchIn.id	=	  TDyerThreads.batchin_id';
+	if ($table == 'TDyerColors'		)	$return = '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	   TDyerColors.color_id';
 	if ($table == 'ThreadForecast'	)	$return = '  LEFT JOIN    Contacts  			ON  Contacts.id	=	ThreadForecast.supplier_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=	ThreadForecast.thread_id'
 												. '  LEFT JOIN	   Configs  			ON   Configs.name = Threads.thread_group AND Configs.group_set = "Thread Groups"';
@@ -2174,6 +2188,12 @@ private function insert($data) {
 		$my_number = $this->get_next_number('Controls', 'Next CheckOut Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', number= ' . $my_number;
+	}
+
+	if ($table == 'TDyers') {
+		$my_number = $this->get_next_number('Controls', 'Next TDyer Number');
+		$set .= ',     id= ' . $my_number;
+		$set .= ', tdyer_number= ' . $my_number;
 	}
 
 	$sql= 'INSERT ' . $table

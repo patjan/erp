@@ -2347,6 +2347,41 @@ JKY.get_value_by_id = function(table, field, id) {
 	return my_value;
 }
 
+JKY.get_count_by_id = function(table, id) {
+	var my_count = 0;
+	var my_data =
+		{ method: 'get_count'
+		, table	: table
+		, where : 'parent_id = ' + id
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_count = response.count;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_count;
+}
+
 JKY.get_file_type = function(the_full_name) {
 	var my_names = the_full_name.split('.');
 	var my_length = my_names.length;

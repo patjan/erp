@@ -26,18 +26,18 @@
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-order-number'		><span>	   Order<br>Number		</span></th>
-			<th class='jky-customer-name'		><span> Customer				</span></th>
-			<th class='jky-machine-name'		><span>	 Machine				</span></th>
-			<th class='jky-partner-name'		><span>  Partner				</span></th>
-			<th class='jky-product-name'		><span>  Product				</span></th>
-			<th class='jky-ordered-date'		><span>	 Ordered<br>Date		</span></th>
-			<th class='jky-needed-date'			><span>   Needed<br>Date		</span></th>
-			<th class='jky-produced-date'		><span> Produced<br>Date		</span></th>
-			<th class='jky-ordered-pieces'		><span>  Ordered<br>Pieces		</span></th>
-			<th class='jky-rejected-pieces'		><span> Rejected<br>Pieces		</span></th>
-			<th class='jky-produced-pieces'		><span> Produced<br>Pieces		</span></th>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-order-number'	><span>      Order<br>Number	</span></th>
+			<th class='jky-customer-name'	><span>               Customer	</span></th>
+			<th class='jky-machine-name'	><span>               Machine	</span></th>
+			<th class='jky-partner-name'	><span>               Partner	</span></th>
+			<th class='jky-product-name'	><span>               Product	</span></th>
+			<th class='jky-ordered-date'	><span>    Ordered<br>Date		</span></th>
+			<th class='jky-needed-date'		><span>     Needed<br>Date		</span></th>
+			<th class='jky-produced-date'	><span>   Produced<br>Date		</span></th>
+			<th class='jky-ordered-pieces'	><span>    Ordered<br>Pieces	</span></th>
+			<th class='jky-rejected-pieces'	><span>   Rejected<br>Pieces	</span></th>
+			<th class='jky-produced-pieces'	><span>   Produced<br>Pieces	</span></th>
 		</tr>
 	</thead>
 
@@ -53,7 +53,7 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>  Order Number</span>:</div><input  id='jky-order-number'	class='jky-form-value'	readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Order Number</span>:</div><input  id='jky-order-number'	class='jky-form-value'	readonly='readonly'	/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>      Customer</span>:</div>
 				<input id='jky-customer-id'	 type='hidden'		 value='' />
 				<input id='jky-customer-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this);' />
@@ -74,18 +74,18 @@
 				<input id='jky-product-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this);' />
 				<a href='#' onClick='JKY.Product.display(this)'><i class='icon-share'></i></a>
 			</div>
-
 		</div>
 		<div class='jky-clear'></div>
 		<br>
+
 		<div class='jky-left'>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span> Ordered Date</span>:</div>
+				<div class='jky-form-label'><span>Ordered Date</span>:</div>
 				<div id="jky-ordered-date"	class="input-append date"><input id='jky-ordered-value'		type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
 			</div>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>  Needed Date</span>:</div>
-				<div id="jky-needed-date"	class="input-append date"><input id='jky-needed-value'		type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+				<div class='jky-form-label'><span>Needed Date</span>:</div>
+				<div id="jky-needed-date"	class="input-append date"><input id='jky-needed-value'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Produced Date</span>:</div>
@@ -105,11 +105,12 @@
 		</div>
 		<div class='jky-clear'></div>
 		<br>
+
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
 				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-				  <button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
 			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>
@@ -119,8 +120,8 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-threads'	class='active'	><a href='#jky-pane-threads'	data-toggle='tab'><span>Threads	</span></a></li>
-			<li	id='jky-tab-pieces'						><a href='#jky-pane-pieces'		data-toggle='tab'><span>Pieces	</span></a></li>
+			<li id='jky-tab-threads'	class='active'	><a href='#jky-pane-threads'	data-toggle='tab'><span>Threads	</span></a></li>
+			<li id='jky-tab-pieces'						><a href='#jky-pane-pieces'		data-toggle='tab'><span>Pieces	</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
@@ -137,10 +138,10 @@
 							<th class='jky-thread-value'	><span>Check Out<br>Weight	</span></th>
 						</tr>
 					</thead>
-					<tbody id='jky-thread-body'></tbody>
+					<tbody id='jky-threads-body'></tbody>
 					<tfoot>
 						<tr>
-							<td	   id='jky-thread-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td id='jky-thread-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 							<td></td>
 							<td class='jky-thread-value'><span>Total</span></td>
 							<td    id='jky-thread-total-requested'></td>

@@ -52,8 +52,19 @@ JKY.set_all_events_home = function(jky_program) {
 		$('#jky-planning-machines'		).click (function() {JKY.process_action('machines'		);});
 		$('#jky-planning-products'		).click (function() {JKY.process_action('products'		);});
 		$('#jky-planning-suppliers'		).click (function() {JKY.process_action('suppliers'		);});
+		$('#jky-planning-tdyers'		).click (function() {JKY.process_action('tdyers'		);});
 		$('#jky-planning-requests'		).click (function() {JKY.process_action('requests'		);});
 		$('#jky-planning-reqlines'		).click (function() {JKY.process_action('reqlines'		);});
+
+		$('#jky-production-threads'		).click (function() {JKY.process_action('threads'		);});
+		$('#jky-production-machines'	).click (function() {JKY.process_action('machines'		);});
+		$('#jky-production-products'	).click (function() {JKY.process_action('products'		);});
+		$('#jky-production-suppliers'	).click (function() {JKY.process_action('suppliers'		);});
+		$('#jky-production-dyers'		).click (function() {JKY.process_action('dyers'			);});
+		$('#jky-production-partners'	).click (function() {JKY.process_action('partners'		);});
+		$('#jky-production-ftps'		).click (function() {JKY.process_action('ftps'			);});
+		$('#jky-production-orders'		).click (function() {JKY.process_action('orders'		);});
+		$('#jky-production-pieces'		).click (function() {JKY.process_action('pieces'		);});
 
 		$('#jky-threads-threads'		).click (function() {JKY.process_action('threads'		);});
 		$('#jky-threads-suppliers'		).click (function() {JKY.process_action('suppliers'		);});
@@ -73,16 +84,6 @@ JKY.set_all_events_home = function(jky_program) {
 		$('#jky-boxes-checkout'			).click (function() {JKY.process_action('boxes_checkout');});
 		$('#jky-raws-info'				).click (function() {JKY.process_action('raws_info'		);});
 		$('#jky-fabrics-info'			).click (function() {JKY.process_action('fabrics_info'	);});
-
-		$('#jky-production-threads'		).click (function() {JKY.process_action('threads'		);});
-		$('#jky-production-machines'	).click (function() {JKY.process_action('machines'		);});
-		$('#jky-production-products'	).click (function() {JKY.process_action('products'		);});
-		$('#jky-production-suppliers'	).click (function() {JKY.process_action('suppliers'		);});
-		$('#jky-production-dyers'		).click (function() {JKY.process_action('dyers'			);});
-		$('#jky-production-partners'	).click (function() {JKY.process_action('partners'		);});
-		$('#jky-production-ftps'		).click (function() {JKY.process_action('ftps'			);});
-		$('#jky-production-orders'		).click (function() {JKY.process_action('orders'		);});
-		$('#jky-production-pieces'		).click (function() {JKY.process_action('pieces'		);});
 
 		$('#jky-help-tickets'			).click (function() {JKY.process_action('tickets'		);});
 
@@ -184,12 +185,13 @@ JKY.process_start_page = function() {
 	JKY.display_trace('process_start_page - '  + jky_program);
 	var my_menus =
 		[{id:'jky-menu-sales'		, icon:'plus', label:'Sales'		}
+		,{id:'jky-menu-planning'	, icon:'plus', label:'Planning'		}
+		,{id:'jky-menu-production'	, icon:'plus', label:'Production'	}
 //		,{id:'jky-menu-invoicing'	, icon:'plus', label:'Invoicing'	}
 //		,{id:'jky-menu-delivers'	, icon:'plus', label:'Delivers'		}
 //		,{id:'jky-menu-purchases'	, icon:'plus', label:'Purchases'	}
 //		,{id:'jky-menu-incomings'	, icon:'plus', label:'Incomings'	}
 //		,{id:'jky-menu-storage'		, icon:'plus', label:'Storage'		}
-		,{id:'jky-menu-planning'	, icon:'plus', label:'Planning'		}
 //		,{id:'jky-menu-revision'	, icon:'plus', label:'Revision'		}
 //		,{id:'jky-menu-inventory'	, icon:'plus', label:'Inventory'	}
 //		,{id:'jky-menu-payable'		, icon:'plus', label:'Payable'		}
@@ -199,7 +201,6 @@ JKY.process_start_page = function() {
 		,{id:'jky-menu-boxes'		, icon:'plus', label:'Boxes'		}
 //		,{id:'jky-menu-raws'		, icon:'plus', label:'Raws'			}
 //		,{id:'jky-menu-fabrics'		, icon:'plus', label:'Fabrics'		}
-		,{id:'jky-menu-production'	, icon:'plus', label:'Production'	}
 		,{id:'jky-menu-help'		, icon:'plus', label:'Help'			}
 		,{id:'jky-menu-admin'		, icon:'plus', label:'Admin'		}
 		,{id:'jky-menu-support'		, icon:'plus', label:'Support'		}
@@ -221,7 +222,7 @@ JKY.process_menu = function(menu) {
 	switch(menu) {
 		case 'jky-menu-sales'		: JKY.show('jky-side-sales'		); JKY.process_action('quotations'		); break;
 		case 'jky-menu-purchases'	: JKY.show('jky-side-purchases'	); JKY.process_action('purchases'		); break;
-		case 'jky-menu-planning'	: JKY.show('jky-side-planning'	); JKY.process_action('requests'		); break;
+		case 'jky-menu-planning'	: JKY.show('jky-side-planning'	); JKY.process_action('tdyers'			); break;
 		case 'jky-menu-threads'		: JKY.show('jky-side-threads'	); JKY.process_action('purchases'		); break;
 		case 'jky-menu-boxes'		: JKY.show('jky-side-boxes'		); JKY.process_action('boxes_info'		); break;
 		case 'jky-menu-raws'		: JKY.show('jky-side-raws'		); JKY.process_action('raws_info'		); break;
