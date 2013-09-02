@@ -47,9 +47,15 @@ JKY.Upload = function(the_args) {
 			if (my_extension == 'xls') {
 				my_html += '<img id="' + my_args.img_id + '" src="/img/xls.png" class="the_icon" />';
 			}else{
+			if (my_extension == 'xps') {
+				my_html += '<img id="' + my_args.img_id + '" src="/img/xps.png" class="the_icon" />';
+			}else{
+			if (my_extension == 'sql') {
+				my_html += '<img id="' + my_args.img_id + '" src="/img/sql.png" class="the_icon" />';
+			}else{
 				var my_time = my_names[1];
 				my_html += '<img id="' + my_args.img_id + '" src="/uploads/' + my_args.directory + '/' + my_row_id + '.' + my_extension + '?time=' + my_time + '" class="the_icon" />';
-			}}}
+			}}}}}
 			my_html += '</a>';
 		}
 		return my_html;
