@@ -53,7 +53,7 @@ JKY.BatchIn = function() {
 							;
 			my_balance = Math.round(my_balance * 100) / 100;
 			my_html += '<tr onclick="JKY.BatchIn.click_row(this, ' + my_row.id + ')">'
-					+  '<td class="jky-batchin-search-batch"		>' + my_row.batch			+ '</td>'
+					+  '<td class="jky-batchin-search-number"		>' + my_row.batch			+ '</td>'
 					+  '<td class="jky-batchin-search-created-date"	>' + JKY.short_date(my_row.created_at) + '</td>'
 					+  '<td class="jky-batchin-search-balance"		>' + my_balance				+ '</td>'
 					+  '<td class="jky-batchin-search-checkin"		>' + my_row.checkin_weight	+ '</td>'
@@ -69,7 +69,7 @@ JKY.BatchIn = function() {
 	function my_click_row(the_index, the_id) {
 		var my_batch = $(the_index).find('.jky-batchin-search-number').html();
 		var my_parent = $(my_the_id).parent();
-		$(my_parent).find('.jky-batchin-row-id'  ).val(the_id );
+		$(my_parent).find('.jky-batchin-row-id').val(the_id);
 		$(my_parent).find('.jky-batchin-row-number').val(my_batch);
 		$(my_parent).find('.jky-batchin-row-number').click();
 		JKY.hide_modal(my_layer);

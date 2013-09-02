@@ -10,12 +10,10 @@
 .jky-print-label3		{width:120px; text-align:right; font-weight:bold;}
 .jky-print-value		{width:200px;}
 .jky-print-head			{font-weight:bold;}
-.jky-remarks			{height:170px; width: 570px;}
 #jky-print-number		{font-size:20px; font-weight:bold;}
 #jky-print-product		{text-transform:capitalize;}
 #jky-print-machine		{text-transform:capitalize;}
 #jky-print-has-break	{font-weight:bold;}
-#jky-remarks			{height:170px; width: 570px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -48,18 +46,18 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Thread Dyer Number</span>:</div><input  id='jky-tdyer-number'	class='jky-form-value'	readonly='readonly'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>         Order</span>:</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Thread Dyer Number</span>:</div><input  id='jky-tdyer-number' class='jky-form-value' readonly='readonly' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Order</span>:</div>
 				<input id='jky-order-id'	 type='hidden'		value='' />
 				<input id='jky-order-number' readonly='readonly'	value='' onClick='JKY.Application.process_change_input(this);' />
 				<a href='#' onClick='JKY.Order.display(this)'><i class='icon-share'></i></a>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Customer</span>:</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Customer</span>:</div>
 				<input id='jky-customer-id'	 type='hidden'		 value='' />
 				<input id='jky-customer-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this);' />
 				<a href='#' onClick='JKY.Customer.display(this)'><i class='icon-share'></i></a>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>         Dyer</span>:</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Dyer</span>:</div>
 				<input id='jky-dyer-id'	 type='hidden'		 value='' />
 				<input id='jky-dyer-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this);' />
 				<a href='#' onClick='JKY.Dyer.display(this)'><i class='icon-share'></i></a>
@@ -88,7 +86,7 @@
 		</div>
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>  Ordered Weight</span>:</div><input id='jky-ordered-weight'	disabled='disabled' /></div>
-			<div class='jky-form-line'><input /></div>
+			<div class='jky-form-line'><div class='jky-empty'></div></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Weight</span>:</div><input id='jky-checkout-weight'	disabled='disabled' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span> Returned Weight</span>:</div><input id='jky-returned-weight'	disabled='disabled' /></div>
 		</div>
@@ -157,7 +155,7 @@
 <script src='js/JKY.Customer.js'	></script>
 <script src='js/JKY.Dyer.js'		></script>
 <script src='js/JKY.Thread.js'		></script>
-<script src='js/JKY.BatchIn.js'		></script>
+<!--script src='js/JKY.BatchIn.js'		></script-->
 <script src='js/JKY.Color.js'		></script>
 <script src='js/tdyer_threads.js'	></script>
 <script src='js/tdyer_colors.js'	></script>

@@ -10,12 +10,10 @@
 .jky-print-label3		{width:120px; text-align:right; font-weight:bold;}
 .jky-print-value		{width:200px;}
 .jky-print-head			{font-weight:bold;}
-.jky-remarks			{height:170px; width: 570px;}
 #jky-print-number		{font-size:20px; font-weight:bold;}
 #jky-print-product		{text-transform:capitalize;}
 #jky-print-machine		{text-transform:capitalize;}
 #jky-print-has-break	{font-weight:bold;}
-#jky-remarks			{width:570px; height:170px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -47,7 +45,7 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Quotation Number</span>:</div><input  id='jky-quotation-number'	class='jky-form-value'	readonly='readonly'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Quotation Number</span>:</div><input  id='jky-quotation-number' class='jky-form-value' readonly='readonly' /></div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Quoted Date</span>:</div>
 				<div id="jky-quoted-date"	class="input-append date"><input id='jky-quoted-value'		type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
@@ -125,7 +123,7 @@
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
 			<li id='jky-tab-lines'		class='active'	><a href='#jky-pane-lines'		data-toggle='tab'><span>Lines	</span></a></li>
-			<li	id='jky-tab-remarks'					><a href='#jky-pane-remarks'	data-toggle='tab'><span>Remarks	</span></a></li>
+			<li id='jky-tab-remarks'					><a href='#jky-pane-remarks'	data-toggle='tab'><span>Remarks	</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
@@ -133,14 +131,14 @@
 				<table class='table'>
 					<thead>
 						<tr>
-							<td class='jky-action'></td>
-							<td class='jky-line-product'		><span>			<br>Product	</span></td>
-							<td class='jky-line-quoted-pieces'	><span>   Quoted<br>Pieces	</span></td>
-							<td class='jky-line-color-name'		><span>			<br>Color	</span></td>
-							<td class='jky-line-fabric-price'	><span>   Fabric<br>$/Kg	</span></td>
-							<td class='jky-line-punho-price'	><span>	   Punho<br>$/Kg	</span></td>
-							<td class='jky-line-gola-price'		><span>     Gola<br>$/Kg	</span></td>
-							<td class='jky-line-galao-price'	><span>    Galao<br>$/Kg	</span></td>
+							<th class='jky-action'></th>
+							<th class='jky-product-name'	><span>             Product	</span></th>
+							<th class='jky-quoted-pieces'	><span>   Quoted<br>Pieces	</span></th>
+							<th class='jky-color-name'		><span>             Color	</span></th>
+							<th class='jky-fabric-price'	><span>   Fabric<br>$/Kg	</span></th>
+							<th class='jky-punho-price'		><span>	   Punho<br>$/Kg	</span></th>
+							<th class='jky-gola-price'		><span>     Gola<br>$/Kg	</span></th>
+							<th class='jky-galao-price'		><span>    Galao<br>$/Kg	</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-lines-body'></tbody>
