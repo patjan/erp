@@ -401,6 +401,7 @@ $translations = array
 , "Save Address"=>"Save Address"
 , "Save Company"=>"Save Company"
 , "Save Phones"=>"Save Phones"
+, "Save Remarks"=>"Save Remarks"
 , "saving them?"=>"saving them?"
 , "Scheduled Time"=>"Scheduled Time"
 , "Scheduled<br>Time"=>"Scheduled<br>Time"
