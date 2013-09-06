@@ -53,25 +53,28 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Order Number</span>:</div><input  id='jky-order-number'	class='jky-form-value'	readonly='readonly'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Customer</span>:</div>
-				<input id='jky-customer-id'	 type='hidden'		 value='' />
-				<input id='jky-customer-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this);' />
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Order Number</span>:</div>
+				<input  id='jky-order-number'	readonly='readonly'	/></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>      Customer</span>:</div>
+				<input id='jky-customer-id'		type='hidden'		value='' />
+				<input id='jky-customer-name'	readonly='readonly'	value='' />
 				<a href='#' onClick='JKY.Customer.display(this)'><i class='icon-share'></i></a>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>       Machine</span>:</div>
-				<input id='jky-machine-id'	 type='hidden'		 value='' />
-				<input id='jky-machine-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this); JKY.clear_produced_by("partner");' />
+			<div class='jky-form-line'><div class='jky-form-label'><span>Machine</span>:</div>
+				<input id='jky-machine-id'		type='hidden'		value='' />
+				<input id='jky-machine-name'	readonly='readonly'	value='' />
 				<a href='#' onClick='JKY.Machine.display(this)'><i class='icon-share'></i></a>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>       Partner</span>:</div>
-				<input id='jky-partner-id'	 type='hidden'		 value='' />
-				<input id='jky-partner-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this); JKY.clear_produced_by("machine");' />
+			<div class='jky-form-line'><div class='jky-form-label'><span>Partner</span>:</div>
+				<input id='jky-partner-id'		type='hidden'		value='' />
+				<input id='jky-partner-name'	readonly='readonly'	value='' />
 				<a href='#' onClick='JKY.Partner.display(this)'><i class='icon-share'></i></a>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>       Product</span>:</div>
-				<input id='jky-product-id'	 type='hidden'		 value='' />
-				<input id='jky-product-name' readonly='readonly' value='' onClick='JKY.Application.process_change_input(this);' />
+			<div class='jky-form-line'><div class='jky-form-label'><span>Product</span>:</div>
+				<input id='jky-product-id'		type='hidden'		value='' />
+				<input id='jky-product-name'	readonly='readonly'	value='' />
 				<a href='#' onClick='JKY.Product.display(this)'><i class='icon-share'></i></a>
 			</div>
 		</div>
@@ -81,15 +84,24 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Ordered Date</span>:</div>
-				<div id="jky-ordered-date"	class="input-append date"><input id='jky-ordered-value'		type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+				<div id="jky-ordered-date"	class="input-append date">
+					<input id='jky-ordered-value'		type="text" />
+					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Needed Date</span>:</div>
-				<div id="jky-needed-date"	class="input-append date"><input id='jky-needed-value'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+				<div id="jky-needed-date"	class="input-append date">
+					<input id='jky-needed-value'	type="text" />
+					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Produced Date</span>:</div>
-				<div id="jky-produced-date"	class="input-append date"><input id='jky-produced-value'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+				<div id="jky-produced-date"	class="input-append date">
+					<input id='jky-produced-value'	type="text" />
+					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+				</div>
 			</div>
 		</div>
 		<div class='jky-left'>
@@ -100,7 +112,7 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>  Labels Printed</span>:</div>
 					<input  id='jky-labels-printed'	class='jky-form-value' disabled="disabled" />
-					<a onclick='JKY.Changes.can_leave(function() {JKY.Pieces.display(this)})'><i class='icon-print'></i></a>
+					<a id='jky-pieces-display'><i class='icon-print'></i></a>
 			</div>
 		</div>
 		<div class='jky-clear'></div>

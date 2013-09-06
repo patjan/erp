@@ -19,6 +19,7 @@ JKY.start_program = function() {
 		, sort_by		: 'tdyer_number'
 		, sort_seq		: 'DESC'
 		, focus			: 'jky-ordered-value'
+		, add_new		: 'display form'
 		});
 	JKY.App.init();
 };
@@ -49,10 +50,12 @@ JKY.set_all_events = function() {
 
 	$('#jky-threads-add-new').click (function()	{JKY.insert_thread();});
 
-	$('#jky-action-product'		).click (function() {JKY.display_product	();});
-	$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});
+	$('#jky-action-generate').click( function() {JKY.generate_checkout();})
+
+//	$('#jky-action-product'		).click (function() {JKY.display_product	();});
+//	$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});
 	$('#jky-save-remarks'		).click (function()	{JKY.save_remarks		();});
-	$('#jky-search-filter'		).KeyUpDelay(JKY.filter_product);
+//	$('#jky-search-filter'		).KeyUpDelay(JKY.filter_product);
 }
 
 /**
@@ -165,8 +168,8 @@ JKY.get_form_set = function() {
 		+         ', dyer_id=  ' + my_dyer_id
 		+      ', ordered_at=  ' + JKY.inp_time(JKY.get_value('jky-ordered-value'	))
 		+       ', needed_at=  ' + JKY.inp_time(JKY.get_value('jky-needed-value'	))
-		+     ', checkout_at=  ' + JKY.inp_time(JKY.get_value('jky-checkout-value'))
-		+     ', returned_at=  ' + JKY.inp_time(JKY.get_value('jky-returned-value'))
+		+     ', checkout_at=  ' + JKY.inp_time(JKY.get_value('jky-checkout-value'	))
+		+     ', returned_at=  ' + JKY.inp_time(JKY.get_value('jky-returned-value'	))
 		+  ', ordered_weight=  ' + JKY.get_value	('jky-ordered-weight'	)
 		+ ', checkout_weight=  ' + JKY.get_value	('jky-checkout-weight'	)
 		+ ', returned_weight=  ' + JKY.get_value	('jky-returned-weight'	)
@@ -177,12 +180,12 @@ JKY.get_form_set = function() {
 
 JKY.display_list = function() {
 	JKY.show('jky-action-print');
-};
+}
 
 JKY.display_form = function() {
 	JKY.show('jky-action-print');
 	JKY.show('jky-action-copy');
-};
+}
 
 JKY.process_delete = function(the_id, the_row) {
 	var my_data =
@@ -205,7 +208,7 @@ JKY.process_delete = function(the_id, the_row) {
 		, where : 'ftp_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
-};
+}
 
 /**
  * print row
@@ -330,20 +333,91 @@ JKY.print_row = function(the_id) {
 }
 
 JKY.save_remarks = function() {
-//	JKY.display_message('JKY.save_remarks');
-	var my_set  =   'remarks = \'' + JKY.get_value('jky-remarks') + '\''
-				;
-	var my_where = 'id = ' + JKY.row.id;
+	var my_set	=   'remarks = \'' + JKY.get_value('jky-remarks') + '\'';
 	var my_data =
 		{ method: 'update'
-		, table : 'Quotations'
-		, set	: my_set
-		, where : my_where
+		, table : 'TDyers'
+		, set	:  my_set
+		, where : 'TDyers.id = ' + JKY.row.id
 		};
 	JKY.ajax(true, my_data, JKY.save_remarks_success);
 }
 
 JKY.save_remarks_success = function(response) {
-//	JKY.display_trace('save_remarks_success');
 	JKY.display_message('Remarks saved, ' + response.message);
+}
+
+/* -------------------------------------------------------------------------- */
+
+JKY.generate_checkout = function() {
+//alert('generate_checkout');
+	JKY.insert_checkout();
+}
+
+JKY.insert_checkout = function() {
+//alert('insert_checkout');
+	var my_requested_date = JKY.row.needed_date;
+	if (my_requested_date == null) {
+		my_requested_date = JKY.get_date();
+	}
+	var my_set = ''
+//		+          'order_id=  ' + JKY.row.order_id
+		+         '  dyer_id=  ' + JKY.row.dyer_id
+		+          ', nfe_dl=\'' + '' + '\''
+		+          ', nfe_tm=\'' + '' + '\''
+		+  ', requested_date=\'' + my_requested_date + '\''
+		+', requested_weight=  ' + JKY.row.ordered_weight
+		;
+	var my_data =
+		{ method	: 'insert'
+		, table		: 'CheckOuts'
+		, set		:  my_set
+		};
+	JKY.ajax(false, my_data, JKY.insert_batchout);
+}
+
+JKY.insert_batchout = function(response) {
+//alert('insert_batchout');
+	var my_rows = JKY.get_rows('TDyerThreads', JKY.row.id);
+	for(var i=0, max=my_rows.length; i<max; i++) {
+		JKY.row = my_rows[i];
+		var my_batch = JKY.get_row('Batches', JKY.row.batchin_id);
+		var my_weight= JKY.get_sum_by_id('TDyerColors', 'ordered_weight', JKY.row.batchin_id);
+		var my_requested_boxes = Math.round(my_weight / my_batch.average_weight + 0.5);
+		var my_set = ''
+			+     '  checkout_id=  ' + response.id
+			+       ', thread_id=  ' + JKY.row.thread_id
+			+      ', batchin_id=  ' + JKY.row.batchin_id
+			+     ', req_line_id=  ' + JKY.row.id
+			+            ', code=\'' + '' + '\''
+			+           ', batch=\'' + my_batch.number + '\''
+			+      ', unit_price=  ' + my_batch.unit_price
+			+  ', average_weight=  ' + my_batch.average_weight
+			+', requested_weight=  ' + my_weight
+			+ ', requested_boxes=  ' + my_requested_boxes
+			;
+		var my_data =
+			{ method	: 'insert'
+			, table		: 'BatchOuts'
+			, set		:  my_set
+			};
+		JKY.ajax(false, my_data, JKY.connect_batchout);
+	}
+}
+
+JKY.connect_batchout = function(response) {
+//alert('connect_batchout');
+	var my_data =
+		{ method	: 'update'
+		, table		: 'TdyerThreads'
+		, set		: 'batchout_id = ' + response.id
+		, where		: 'id = ' + JKY.row.id
+		};
+	JKY.ajax(false, my_data, JKY.refresh_form);
+}
+
+JKY.refresh_form = function(response) {
+//alert('refresh_form');
+	JKY.display_message('Check Out row generated: ' + JKY.row.id);
+	JKY.Application.display_row();
 }

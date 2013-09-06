@@ -32,19 +32,19 @@ JKY.generate_thread = function(the_row) {
 	var my_trash = (the_row.batch_id == null) ? '<a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-thread-row-name' readonly='readonly' onclick='JKY.update_thread(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
+		+ "<input class='jky-thread-row-name' readonly='readonly' onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
 		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_batchin = ''
 		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-row-number' readonly='readonly' onclick='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batchin_number + "' />"
+		+ "<input class='jky-batchin-row-number' readonly='readonly' onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batchin_number + "' />"
 		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
 		+ '<tr tdyer_thread_id=' + my_id + '>'
 		+ '<td class="jky-action"			>' + my_trash	+ '</td>'
-		+ '<td class="jky-thread-name"		>' + my_thread	+ '</td>'
-		+ '<td class="jky-thread-batchin"	>' + my_batchin	+ '</td>'
+		+ '<td class="jky-td-thread-name"	>' + my_thread	+ '</td>'
+		+ '<td class="jky-td-thread-batchin">' + my_batchin	+ '</td>'
 		+ '<td class="jky-add-color"><a class="btn btn-success" type="button" href="#" onclick="JKY.insert_color(this, ' + my_id + ')"><span>Add Color</span></a></td>'
 		+ '<td colspan="4"></td>'
 		+ '</tr>'
@@ -82,7 +82,7 @@ JKY.insert_thread = function() {
 	var my_data =
 		{ method	: 'insert'
 		, table		: 'TDyerThreads'
-		, set		: 'TDyerThreads.tdyer_id = ' + JKY.row.id
+		, set		: 'TDyerThreads.parent_id = ' + JKY.row.id
 		};
 	JKY.ajax(true, my_data, JKY.insert_thread_success);
 }

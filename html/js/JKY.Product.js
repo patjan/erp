@@ -77,7 +77,7 @@ JKY.Product = function() {
 			my_dom_name = $(my_parent).find('.jky-product-row-name');
 		}
 		my_dom_name.val(my_name);
-		my_dom_name.click();
+		my_dom_name.change();		//	to activate change event
 
 		JKY.hide_modal(my_layer);
 	}

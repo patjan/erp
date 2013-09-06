@@ -39,7 +39,7 @@ JKY.generate_line = function(the_row) {
 		+ '<tr class="jky-line" quot_line_id=' + my_id + '>'
 		+ '<td class="jky-action"		>' + my_trash	+ '</td>'
 		+ '<td class="jky-product-name"	>' + my_product	+ '</td>'
-		+ '<td class="jky-quoted-pieces"><input class="jky-quoted-pieces" disabled="disabled" value="' + the_row.quoted_pieces + '" /></td>'
+		+ '<td class="jky-color-pieces"><input class="jky-quoted-pieces" disabled="disabled" value="' + the_row.quoted_pieces + '" /></td>'
 		+ '<td class="jky-add-color"><a class="btn btn-success" type="button" href="#" onclick="JKY.insert_color(this, ' + my_id + ')"><span>Add Color</span></a></td>'
 		+ '<td colspan="4"></td>'
 		+ '</tr>'
@@ -81,21 +81,14 @@ JKY.insert_line = function() {
 }
 
 JKY.insert_line_success = function(response) {
-	var my_id = response.id;
-	var my_product = ''
-		+ "<input class='jky-product-row-id' type='hidden' value='' />"
-		+ "<input class='jky-product-row-name' readonly='readonly' onclick='JKY.update_line(this, " + my_id + ")' value='null' />"
-		+ "<a href='#' onClick='JKY.Product.display(this)'><i class='icon-share'></i></a>"
-		;
-	var my_html = ''
-		+ '<tr class="jky-line" quot_line_id=' + my_id + '>'
-		+ '<td class="jky-action"><a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-		+ '<td class="jky-product-name"	>' + my_product	+ '</td>'
-		+ '<td class="jky-quoted-pieces"><input class="jky-quoted-pieces" disabled="disabled" value="0" /></td>'
-		+ '<td class="jky-add-color"><a class="btn btn-success" type="button" href="#" onclick="JKY.insert_color(this, ' + my_id + ')"><span>Add Color</span></a></td>'
-		+ '<td colspan="4"></td>'
-		+ '</tr>'
-		;
+	var my_row = [];
+	my_row.id				= response.id;
+	my_row.order_id			= null;
+	my_row.product_id		= null;
+	my_row.product_name		= '';
+	my_row.quoted_pieces	= 0;
+
+	var my_html = JKY.generate_line(my_row);
 	JKY.append_html('jky-lines-body', my_html);
 }
 

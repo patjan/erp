@@ -19,6 +19,7 @@ JKY.start_program = function() {
 		, sort_by		: 'opened_at'
 		, sort_seq		: 'DESC'
 		, focus			: 'jky-description'
+		, add_new		: 'display form'
 		});
 	JKY.App.init();
 

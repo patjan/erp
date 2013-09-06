@@ -164,3 +164,9 @@ INSERT		Controls	SET sequence= 50, group_set = 'Ticket Categories', name = 'TDye
 
 ALTER TABLE TDyers		AUTO_INCREMENT	= 100001;
 UPDATE		Controls	SET value 		= 100001		WHERE group_set = 'System Numbers' AND name = 'Next TDyer Number';
+----- 2013/09/02
+ALTER TABLE TDyerThreads		CHANGE	tdyer_id		parent_id			BIGINT		DEFAULT NULL;
+ALTER TABLE TDyerThreads		ADD COLUMN batchout_id	BIGINT		DEFAULT NULL	AFTER batchin_id;
+ALTER TABLE CheckOuts			ADD COLUMN dyer_id		BIGINT		DEFAULT NULL	AFTER supplier_id;
+----- 2013/09/05
+ALTER TABLE CheckOuts		CHANGE	requested_date		requested_at		DATETIME	DEFAULT NULL;

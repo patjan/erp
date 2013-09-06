@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS CheckOuts
 , checkout_at		DATETIME			DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
 , supplier_id		BIGINT				DEFAULT NULL
+, dyer_id			BIGINT				DEFAULT NULL
 , nfe_dl			VARCHAR(32)			DEFAULT NULL
 , nfe_tm			VARCHAR(32)			DEFAULT NULL
 , requested_date	DATE				DEFAULT NULL
@@ -39,3 +40,7 @@ ALTER TABLE CheckOuts		CHANGE	requested_weight	requested_weight	DECIMAL(10,2)	DE
 ALTER TABLE CheckOuts		CHANGE	requested_amount	requested_amount	DECIMAL(10,2)	DEFAULT 0;
 ALTER TABLE CheckOuts		CHANGE	checkout_weight		checkout_weight		DECIMAL(10,2)	DEFAULT 0;
 ALTER TABLE CheckOuts		CHANGE	checkout_amount		checkout_amount		DECIMAL(10,2)	DEFAULT 0;
+
+ALTER TABLE CheckOuts		ADD COLUMN dyer_id		BIGINT		DEFAULT NULL	AFTER supplier_id;
+
+ALTER TABLE CheckOuts		CHANGE	requested_date		requested_at		DATETIME	DEFAULT NULL;

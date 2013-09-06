@@ -19,6 +19,7 @@ JKY.start_program = function() {
 		, sort_by		: 'thread_sequence ASC, thread_name'
 		, sort_seq		: 'ASC'
 		, focus			: 'jky-thread-name'
+		, add_new		: 'display form'
 		});
 	JKY.App.init();
 };

@@ -132,6 +132,7 @@ public function indexAction() {
 			case 'get_id'		: $required = 'View'	; break;
 			case 'get_ids'		: $required = 'View'	; break;
 			case 'get_count'	: $required = 'View'	; break;
+			case 'get_sum'		: $required = 'View'	; break;
 			case 'get_value'	: $required = 'View'	; break;
 			case 'get_row'		: $required = 'View'	; break;
 			case 'get_rows'		: $required = 'View'	; break;
@@ -171,6 +172,7 @@ public function indexAction() {
 		case 'get_id'		: $this->get_id			($data); break;
 		case 'get_ids'		: $this->get_ids		($data); break;
 		case 'get_count'	: $this->get_count		($data); break;
+		case 'get_sum'		: $this->get_sum		($data); break;
 		case 'get_value'	: $this->get_value		($data); break;
 		case 'get_row'		: $this->get_row		($data); break;
 		case 'get_rows'		: $this->get_rows		($data); break;
@@ -385,6 +387,34 @@ private function get_count($data) {
 	$return = array();
 	$return['status'] = 'ok';
 	$return['count'	] = $db->fetchOne($sql);
+	echo json_encode($return);
+}
+
+/**
+ *	$.ajax({ method: get_sum, table: x...x, field: x...x, where: x...x });
+ *
+ *	status: ok
+ *	count: 9...9
+ */
+private function get_sum($data) {
+	$table = get_data($data, 'table');
+	$field = get_data($data, 'field');
+	$where = get_data($data, 'where');
+
+	$where = $this->get_security($table, $where);
+	if ($where != '') {
+		$where = ' WHERE ' . $where;
+	}
+
+	$sql= 'SELECT SUM(' . $field . ') AS sum'
+		. '  FROM ' . $table
+		. $where
+		;
+
+	$db = Zend_Registry::get('db');
+	$return = array();
+	$return['status'] = 'ok';
+	$return['sum'	] = $db->fetchOne($sql);
 	echo json_encode($return);
 }
 
@@ -652,7 +682,7 @@ private function set_select($table, $select) {
 	if ($table == 'QuotLines'		)	$return = ' AND      QuotLines.quotation_id		=  ' . $select;
 	if ($table == 'QuotColor'		)	$return = ' AND     QuotColors.parent_id		=  ' . $select;
 	if ($table == 'History'			)	$return = ' AND        History.parent_name      = "' . $select . '"';
-	if ($table == 'TDyerThreads'	)	$return = ' AND   TDyerThreads.tdyer_id			=  ' . $select;
+	if ($table == 'TDyerThreads'	)	$return = ' AND   TDyerThreads.parent_id		=  ' . $select;
 	if ($table == 'TDyerColors'		)	$return = ' AND    TDyerColors.parent_id		=  ' . $select;
 	if ($table == 'Threads'			)	$return = ' AND        Threads.thread_group     = "' . $select . '"';
 	if ($table == 'ThreadForecast'	)	$return = ' AND		   Threads.thread_group     = "' . $select . '"';
@@ -730,12 +760,13 @@ private function set_new_fields($table) {
 												. ', CheckOuts.checkout_at		AS			checkout_at'
 												. ',  Machines.name				AS			machine_name'
 												. ',  Supplier.nick_name		AS			supplier_name';
-	if ($table == 'CheckOuts'		)	$return = ',  Supplier.nick_name		AS supplier_name'
-												. ',  Machines.name				AS  machine_name';
+	if ($table == 'CheckOuts'		)	$return = ',  Machines.name				AS  machine_name'
+												. ',  Supplier.nick_name		AS supplier_name'
+												. ',      Dyer.nick_name		AS     dyer_name';
 	if ($table == 'BatchOuts'		)	$return = ',   Threads.name				AS	 thread_name'
 												. ',   Batches.batch			AS			batch_number'
 												. ', CheckOuts.number			AS checkout_number'
-												. ', CheckOuts.requested_date	AS requested_date'
+												. ', CheckOuts.requested_at		AS requested_at'
 												. ',  Supplier.nick_name		AS supplier_name'
 												. ',  Machines.name				AS  machine_name';
 	if ($table == 'BatchSets'		)	$return = ', BatchOuts.average_weight	AS	average_weight'
@@ -744,7 +775,7 @@ private function set_new_fields($table) {
 												. ',   Threads.name				AS	 thread_name'
 												. ',   Batches.batch			AS    batch_number'
 												. ', CheckOuts.number			AS checkout_number'
-												. ', CheckOuts.requested_date	AS requested_date'
+												. ', CheckOuts.requested_at		AS requested_at'
 												. ',  Supplier.nick_name		AS supplier_name'
 												. ',  Machines.name				AS  machine_name';
 	if ($table == 'TDyers'			)	$return = ',    Orderx.order_number		AS	  order_number'
@@ -842,20 +873,23 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Machines				ON  Machines.id	=		  Requests.machine_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		  Requests.supplier_id';
 	if ($table == 'CheckOuts'		)	$return = '  LEFT JOIN    Machines				ON  Machines.id	=		 CheckOuts.machine_id'
-												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id';
+												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id'
+												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		 CheckOuts.dyer_id';
 	if ($table == 'BatchOuts'		)	$return = '  LEFT JOIN   CheckOuts  			ON CheckOuts.id	=		 BatchOuts.checkout_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		 BatchOuts.thread_id'
 												. '  LEFT JOIN     Batches  			ON   Batches.id	=		 BatchOuts.batchin_id'
 												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=		 BatchOuts.req_line_id'
 												. '  LEFT JOIN    Machines				ON  Machines.id	=		 CheckOuts.machine_id'
-												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id';
+												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id'
+												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		 CheckOuts.dyer_id';
 	if ($table == 'BatchSets'		)	$return = '  LEFT JOIN   BatchOuts				ON BatchOuts.id	=		 BatchSets.batchout_id'
 												. '  LEFT JOIN   CheckOuts  			ON CheckOuts.id	=		 BatchOuts.checkout_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		 BatchOuts.thread_id'
 												. '  LEFT JOIN     Batches  			ON   Batches.id	=		 BatchOuts.batchin_id'
 												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=		 BatchOuts.req_line_id'
 												. '  LEFT JOIN    Machines				ON  Machines.id	=		 CheckOuts.machine_id'
-												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id';
+												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id'
+												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		 CheckOuts.dyer_id';
 	if ($table == 'TDyers'			)	$return = '  LEFT JOIN      Orders AS Orderx	ON    Orderx.id	=		    TDyers.order_id'
 												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		    TDyers.customer_id'
 												. '  LEFT JOIN    Contacts AS Dyer    	ON      Dyer.id	=		    TDyers.dyer_id';
@@ -1533,7 +1567,7 @@ private function set_where($table, $filter) {
 			or	$name == 'checkout_at'
 			or	$name == 'nfe_dl'
 			or	$name == 'nfe_tm'
-			or	$name == 'requested_date'
+			or	$name == 'requested_at'
 			or	$name == 'checkout_weight'
 			or	$name == 'checkout_amount'
 			or	$name == 'requested_weight'
@@ -1551,11 +1585,18 @@ private function set_where($table, $filter) {
 						return ' AND Machines.name LIKE ' . $value;
 					}
 				}
-				if ($name == 'checkout_name') {
+				if ($name == 'supplier_name') {
 					if ($value == '"%null%"') {
 						return ' AND CheckOuts.supplier_id IS NULL';
 					}else{
 						return ' AND Supplier.nick_name LIKE ' . $value;
+					}
+				}
+				if ($name == 'dyer_name') {
+					if ($value == '"%null%"') {
+						return ' AND CheckOuts.dyer_id IS NULL';
+					}else{
+						return ' AND Dyer.nick_name LIKE ' . $value;
 					}
 				}
 			}
@@ -1897,13 +1938,14 @@ private function set_where($table, $filter) {
 			. ' OR  CheckOuts.checkout_at		LIKE ' . $filter
 			. ' OR  CheckOuts.nfe_dl			LIKE ' . $filter
 			. ' OR  CheckOuts.nfe_tm			LIKE ' . $filter
-			. ' OR  CheckOuts.requested_date	LIKE ' . $filter
+			. ' OR  CheckOuts.requested_at		LIKE ' . $filter
 			. ' OR  CheckOuts.checkout_weight	LIKE ' . $filter
 			. ' OR  CheckOuts.checkout_amount	LIKE ' . $filter
 			. ' OR  CheckOuts.requested_weight	LIKE ' . $filter
 			. ' OR  CheckOuts.requested_amount	LIKE ' . $filter
-			. ' OR   Supplier.nick_name			LIKE ' . $filter
 			. ' OR   Machines.name				LIKE ' . $filter
+			. ' OR   Supplier.nick_name			LIKE ' . $filter
+			. ' OR   Dyer.nick_name				LIKE ' . $filter
 			;
 		}
 

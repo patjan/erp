@@ -46,7 +46,7 @@ JKY.Cylinder = function() {
 		var my_name = $(the_index).find('.jky-cylinder-search-name').html();
 		var my_parent = $(my_the_id).parent();
 		$(my_parent).find('.jky-cylinder-row-name').val(my_name);
-		$(my_parent).find('.jky-cylinder-row-name').click();
+		$(my_parent).find('.jky-cylinder-row-name').change();		//	to activate change event
 		JKY.hide_modal(my_layer);
 	}
 

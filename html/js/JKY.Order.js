@@ -64,7 +64,7 @@ JKY.Order = function() {
 			my_dom_number = $(my_parent).find('.jky-order-row-number');
 		}
 		my_dom_number.val(my_number);
-		my_dom_number.click();
+		my_dom_number.change();		//	to activate change event
 
 		JKY.hide_modal(my_layer);
 	}

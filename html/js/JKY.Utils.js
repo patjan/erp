@@ -2382,6 +2382,42 @@ JKY.get_count_by_id = function(table, id) {
 	return my_count;
 }
 
+JKY.get_sum_by_id = function(table, field, id) {
+	var my_sum = 0;
+	var my_data =
+		{ method: 'get_sum'
+		, table	: table
+		, field	: field
+		, where : 'parent_id = ' + id
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_sum = response.sum;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_sum;
+}
+
 JKY.get_file_type = function(the_full_name) {
 	var my_names = the_full_name.split('.');
 	var my_length = my_names.length;

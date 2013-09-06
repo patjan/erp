@@ -7,9 +7,10 @@ CREATE TABLE IF NOT EXISTS TDyerThreads
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'
 
-, tdyer_id			BIGINT				DEFAULT NULL
+, parent_id			BIGINT				DEFAULT NULL
 , thread_id			BIGINT				DEFAULT NULL
 , batchin_id		BIGINT				DEFAULT NULL
+, batchout_id		BIGINT				DEFAULT NULL
 
 , PRIMARY KEY	(id)
 , KEY tdyer		(tdyer_id)
@@ -17,4 +18,7 @@ CREATE TABLE IF NOT EXISTS TDyerThreads
 , KEY batchin 	(batchin_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
+
+ALTER TABLE TDyerThreads		ADD COLUMN batchout_id	BIGINT		DEFAULT NULL	AFTER batchin_id;
+ALTER TABLE TDyerThreads		CHANGE	tdyer_id		parent_id			BIGINT		DEFAULT NULL;
 

@@ -41,7 +41,11 @@ JKY.set_all_events = function() {
 	$('#jky-tab-threads'		).click (function() {JKY.display_threads();});
 	$('#jky-thread-add-new'		).click (function() {JKY.insert_thread	();});
 
+	$('#jky-pieces-display'		).click (function() {JKY.Changes.can_leave(function() {JKY.Pieces.display(this)});});
 	$('#jky-pieces-print'		).click (function() {JKY.Pieces.print()});
+
+	$('#jky-machine-name'		).click (function() {JKY.clear_produced_by("partner");});
+	$('#jky-partner-name'		).click (function() {JKY.clear_produced_by("machine");});
 };
 
 /**

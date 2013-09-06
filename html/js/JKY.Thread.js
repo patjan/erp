@@ -54,7 +54,7 @@ JKY.Thread = function() {
 		var my_parent = $(my_the_id).parent();
 		$(my_parent).find('.jky-thread-row-id'  ).val(the_id );
 		$(my_parent).find('.jky-thread-row-name').val(my_name);
-		$(my_parent).find('.jky-thread-row-name').click();
+		$(my_parent).find('.jky-thread-row-name').change();		//	to activate change event
 		JKY.hide_modal(my_layer);
 	}
 

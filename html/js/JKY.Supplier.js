@@ -1,25 +1,25 @@
 "use strict";
 
 /**
- * JKY.Dyer - process al layer functions
+ * JKY.Supplier - process al layer functions
  *
  * require:	JKY.Utils.js(JKY.display_confirm)
  *
- * 		$(my_parent).find('.jky-dyer-row-id'  ).val(the_id );
- *		$(my_parent).find('.jky-dyer-row-name').val(my_name);
+ * 		$(my_parent).find('.jky-supplier-row-id'  ).val(the_id );
+ *		$(my_parent).find('.jky-supplier-row-name').val(my_name);
  */
-JKY.Dyer = function() {
+JKY.Supplier = function() {
 	var my_the_id		= null;				//	external id that initiated the call
-	var my_specific		= 'is_dyer';		//	selected dyer type: Punho, Gola, Galao
+	var my_specific		= 'is_supplier';	//	selected supplier type: Punho, Gola, Galao
 	var my_order_by		= 'nick_name';
-	var my_filter		= 'jky-dyer-filter';
-	var my_search_body	= 'jky-dyer-search-body';
-	var my_layer		= 'jky-dyer-search';
+	var my_filter		= 'jky-supplier-filter';
+	var my_search_body	= 'jky-supplier-search-body';
+	var my_layer		= 'jky-supplier-search';
 
 	function my_display(the_id, the_specific) {
 		my_the_id	= the_id;
 		if (typeof the_specific	== 'undefined') {
-			my_specific	= 'is_dyer';
+			my_specific	= 'is_supplier';
 		}else{
 			my_specific	= the_specific;
 		}
@@ -45,10 +45,10 @@ JKY.Dyer = function() {
 		var my_html = '';
 		for(var i=0; i<my_rows.length; i++) {
 			var my_row = my_rows[i];
-			my_html += '<tr onclick="JKY.Dyer.click_row(this, ' + my_row.id + ')">'
-					+  '<td class="jky-search-dyer-name"	>' +				 my_row.nick_name		+ '</td>'
-					+  '<td class="jky-search-dyer-phone"	>' + JKY.fix_null	(my_row.phone		)	+ '</td>'
-					+  '<td class="jky-search-dyer-email"	>' +				 my_row.email			+ '</td>'
+			my_html += '<tr onclick="JKY.Supplier.click_row(this, ' + my_row.id + ')">'
+					+  '<td class="jky-search-supplier-name"	>' +				 my_row.nick_name		+ '</td>'
+					+  '<td class="jky-search-supplier-phone"	>' + JKY.fix_null	(my_row.phone		)	+ '</td>'
+					+  '<td class="jky-search-supplier-email"	>' +				 my_row.email			+ '</td>'
 					+  '</tr>'
 					;
 		}
@@ -57,18 +57,18 @@ JKY.Dyer = function() {
 	}
 
 	function my_click_row(the_index, the_id) {
-		var my_name = $(the_index).find('.jky-search-dyer-name').html();
+		var my_name   = $(the_index).find('.jky-search-supplier-name').html();
 		var my_parent = $(my_the_id).parent();
 
-		var my_dom_id = $(my_parent).find('#jky-dyer-id');
+		var my_dom_id = $(my_parent).find('#jky-supplier-id');
 		if (my_dom_id.length == 0) {
-			my_dom_id = $(my_parent).find('.jky-dyer-row-id');
+			my_dom_id = $(my_parent).find('.jky-supplier-row-id');
 		}
 		my_dom_id.val(the_id );
 
-		var my_dom_name = $(my_parent).find('#jky-dyer-name');
+		var my_dom_name = $(my_parent).find('#jky-supplier-name');
 		if (my_dom_name.length == 0) {
-			my_dom_name = $(my_parent).find('.jky-dyer-row-name');
+			my_dom_name = $(my_parent).find('.jky-supplier-row-name');
 		}
 		my_dom_name.val(my_name);
 		my_dom_name.change();		//	to activate change event

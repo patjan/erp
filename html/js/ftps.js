@@ -19,6 +19,7 @@ JKY.start_program = function() {
 		, sort_by		: 'number'
 		, sort_seq		: 'DESC'
 		, focus			: 'jky-diameter'
+		, add_new		: 'display form'
 		});
 	JKY.App.init();
 
