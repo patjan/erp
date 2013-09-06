@@ -230,15 +230,11 @@ JKY.print_row = function(the_id) {
 		+ "<tr>"
 
 		+ "<td width=60%><table>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span> FTP Number</span>:</td><td id='jky-print-number'		class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>	   Product</span>:</td><td id='jky-print-product'		class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>Composition</span>:</td><td id='jky-print-composition'	class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>	   Machine</span>:</td><td id='jky-print-machine'		class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>	 Nick Name</span>:</td><td id='jky-print-nick-name'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>       Thread Dyer Number</span>:</td><td id='jky-print-tyder-number'	class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>					   Order</span>:</td><td id='jky-print-order-id'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>					Customer</span>:</td><td id='jky-print-customer-name'	class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>						Dyer</span>:</td><td id='jky-print-dyer-name'		class='jky-form-value'></td></tr>"
 		+ "</table></td>"
-
-		+ "<td id='jky-print-drawing' width=20%></td>"
-		+ "<td id='jky-print-photo'   width=20%></td>"
 
 		+ "</tr>"
 		+ "</table>"
@@ -247,86 +243,54 @@ JKY.print_row = function(the_id) {
 		+ "<div style='width:700px; border:1px solid black;'>"
 		+ "<table>"
 		+ "<tr>"
-		+ "<td class='jky-print-label1'><span>  Diameter</span>:</td><td id='jky-print-diameter'	class='jky-print-value'></td>"
-		+ "<td class='jky-print-label2'><span>     Turns</span>:</td><td id='jky-print-turns'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label1'><span>     Speed</span>:</td><td id='jky-print-speed'		class='jky-print-value'></td>"
-//		+ "<td class='jky-print-label3'><span>Elasticity</span>:</td><td id='jky-print-elasticity'	class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>			Ordered Date</span>:</td><td id='jky-print-ordered-at'			class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>		  Ordered Weight</span>:</td><td id='jky-print-ordered-weight'		class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
-		+ "<td class='jky-print-label1'><span>   Density</span>:</td><td id='jky-print-density'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label2'><span>    Weight</span>:</td><td id='jky-print-weight'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label3'><span>      Peso</span>:</td><td id='jky-print-peso'		class='jky-print-value'></td>"
-//		+ "<td class='jky-print-label3'><span>  Needling</span>:</td><td id='jky-print-needling'	class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>		 	 Needed Date</span>:</td><td id='jky-print-needed-at'			class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
-		+ "<td class='jky-print-label1'><span>    Inputs</span>:</td><td id='jky-print-inputs'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label2'><span>     Width</span>:</td><td id='jky-print-width'		class='jky-print-value'></td>"
-		+ "<td class='jky-print-label3'><span>     Break</span>?</td><td id='jky-print-has-break'	class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>		 Check Out Date</span>:</td><td id='jky-print-checkout-at'			class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>     Check Out Weight</span>:</td><td id='jky-print-checkout-weight'		class='jky-print-value'></td>"
 		+ "</tr>"
-//		+ "<tr>"
-//		+ "<td class='jky-print-label2'><span>     Lanes</span>:</td><td id='jky-print-lanes'		class='jky-print-value'></td>"
-//		+ "</tr>"
+		+ "<tr>"
+		+ "<td class='jky-print-label1'><span>		  Returned Date</span>:</td><td id='jky-print-returned-at'			class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>      Returned Weight</span>:</td><td id='jky-print-returned-weight'		class='jky-print-value'></td>"
+		+ "</tr>"
+		+ "<tr>"
+		+ "<td class='jky-print-label1'><span>			   Remarks</span>:</td><td id='jky-print-remarks'										></td>"
+		+ "</tr>"
 		+ "</table>"
 		+ "</div>"
 		+ "<br>"
 		+ "<table style='width:700px; border:1px solid black;'>"
-		+ "<thead><tr class='jky-print-head'><td><span>Threads</span></td><td><span>Percent</span></td><td><span>Thread</span></td><td><span>Supplier</span></td><tr><thead>"
+		+ "<thead><tr class='jky-print-head'><td><span>Threads</span></td><td><span>Batch</span></td><td><span>Color</span></td><td><span>Supplier</span></td><tr><thead>"
 		+ "<tbody id='jky-print-thread-body'></table>"
-		+ "</table>"
-		+ "<br>"
-		+ "<table style='width:700px; border:1px solid black;'>"
-		+ "<thead><tr class='jky-print-head'><td><span>Loads</span></td><td><span>From</span></td><td><span>Upto</span></td><td></td><tr><thead>"
-		+ "<tbody id='jky-print-load-body'></table>"
-		+ "</table>"
-		+ "<br>"
-		+ "<table style='width:700px; border:1px solid black;'>"
-		+ "<thead><tr class='jky-print-head'><td><span>Settings</span></td><td><span>Name</span></td><td><span>Value</span></td><td><span>Name</span></td><td><span>Value</span></td><tr><thead>"
-		+ "<tbody id='jky-print-setting-body'></table>"
 		+ "</table>"
 		;
 	JKY.set_html('jky-printable', my_html);
 	JKY.t_tag	('jky-printable', 'span');
 
-	JKY.set_html('jky-print-number'			, my_row.number			);
-	JKY.set_html('jky-print-start-date'		, my_row.start_date		);
-	JKY.set_html('jky-print-product'		, my_row.product		);
-	JKY.set_html('jky-print-composition'	, my_row.composition	);
-	JKY.set_html('jky-print-machine'		, my_row.machine		);
-	JKY.set_html('jky-print-collection'		, my_row.collections	);
-	JKY.set_html('jky-print-nick-name'		, my_row.nick_name		);
+	JKY.set_html('jky-print-tyder-number'				, my_row.tdyer_number					);
+	JKY.set_html('jky-print-order-id'					, my_row.order_id						);
+	JKY.set_html('jky-print-customer-name'				, my_row.customer_name					);
+	JKY.set_html('jky-print-dyer-name'					, my_row.dyer_name						);
 
-	if (JKY.is_empty(my_row.draw)) {
-		JKY.set_html('jky-print-drawing', '<img id="jky-drawing-img"  src="/img/placeholder.png" />');
-	}else{
-		my_names = my_row.draw.split(',');
-		my_extension = JKY.get_file_type(my_names[0]);
-		JKY.set_html('jky-print-drawing', '<img id="jky-drawing-img"  src="/uploads/ftp_draws/'  + my_row.id + '.' + my_extension  + '" />');
-	}
+	JKY.set_html('jky-print-ordered-at'					, my_row.ordered_at						);
+	JKY.set_html('jky-print-ordered-weight'				, my_row.ordered_weight					);
 
-	if (JKY.is_empty(my_row.photo)) {
-		JKY.set_html('jky-print-photo'	, '<img id="jky-photo-img"  src="/img/placeholder.png" />');
-	}else{
-		my_names = my_row.photo.split(',');
-		my_extension = JKY.get_file_type(my_names[0]);
-		JKY.set_html('jky-print-photo'	, '<img id="jky-photo-img"    src="/uploads/ftp_photos/' + my_row.id + '.' + my_extension + '" />');
-	}
+	JKY.set_html('jky-print-needed-at'					, my_row.needed_at						);
 
-	JKY.set_html('jky-print-diameter'		, my_row.diameter		+ ' (pol)'	);
-	JKY.set_html('jky-print-turns'			, my_row.turns						);
-	JKY.set_html('jky-print-speed'			, my_row.speed			+ ' (rpm)'	);
-//	JKY.set_html('jky-print-elasticity'		, my_row.elasticity					);
-	JKY.set_html('jky-print-density'		, my_row.density					);
-	JKY.set_html('jky-print-weight'			, my_row.weight			+ ' (gr)'	);
-	JKY.set_html('jky-print-peso'			, my_row.peso			+ ' (Kg)'	);
-//	JKY.set_html('jky-print-needling'		, my_row.needling					);
-	JKY.set_html('jky-print-inputs'			, my_row.inputs						);
-	JKY.set_html('jky-print-width'			, my_row.width			+ ' (cm)'	);
-//	JKY.set_html('jky-print-lanes'			, my_row.lanes						);
-	JKY.set_html('jky-print-has-break'		, JKY.t((my_row.has_break == 'No') ? 'Without' : 'With'));
+	JKY.set_html('jky-print-checkout-at'				, my_row.checkout_at					);
+	JKY.set_html('jky-print-checkout-weight'			, my_row.checkout_weight				);
+
+	JKY.set_html('jky-print-returned-at'				, my_row.returned_at					);
+	JKY.set_html('jky-print-returned-weight'			, my_row.returned_weight				);
+	JKY.set_html('jky-print-remarks'					, my_row.remarks						);
+
 
 	JKY.set_html('jky-print-thread-body'	, JKY.print_threads	(the_id));
-	JKY.set_html('jky-print-load-body'		, JKY.print_loads	(the_id));
-	JKY.set_html('jky-print-setting-body'	, JKY.print_settings(the_id));
+//	JKY.set_html('jky-print-remarks-body'	, JKY.print_remarks	(the_id));
 
 //	JKY.show('jky-printable');
 	$("#jky-printable").print();
