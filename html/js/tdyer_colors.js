@@ -12,7 +12,7 @@ JKY.generate_color = function(the_row) {
 		+ "<a href='#' onClick='JKY.Color.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
-		+ '<tr quot_color_id=' + my_id + '>'
+		+ '<tr color_id=' + my_id + '>'
 		+ '<td></td>'
 		+ '<td></td>'
 		+ '<td class="jky-action" style="text-align:right !important;">' + my_trash	+ '</td>'

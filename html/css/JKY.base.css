@@ -126,6 +126,7 @@ input.search-query	{margin-bottom:10px;}
 #jky-application tbody tr		{height:30px; border-bottom:1px solid #DDDDDD;}
 #jky-application thead th		{border:1px solid #999999;}
 #jky-form-tabs	 thead th		{border:0px solid #999999; Xtext-align:center !important;}
+#jky-form-tabs	 input		{margin-bottom:0;}
 #jky-application thead th:first-child	{border-left :0px}
 #jky-application thead th:last-child	{border-right:0px}
 #jky-application tbody td		{margin:2px; padding:4px 8px; vertical-align:middle;}
@@ -243,14 +244,15 @@ li .arrow span {
 
 /* -------------------------------------------------------------------------- */
 .jky-action				{width: 20px; }
-.jky-average-weight		{width: 50px; text-align:right  !important;}
+.jky-average-weight		{width: 55px; text-align:right  !important;}
 .jky-barcode			{width: 90px; text-align:center !important;}
+.jky-batch-code			{width: 80px; text-align:center !important;}
 .jky-batch-number		{width: 80px; text-align:center !important;}
 .jky-checkbox			{width: 25px; text-align:center !important;}
 .jky-checkin-date		{width: 60px; text-align:center !important;}
 .jky-checkin-location	{width: 50px; text-align:center !important;}
-.jky-checkin-boxes		{width: 50px; text-align:right  !important;}
-.jky-checkin-weight		{width: 50px; text-align:right  !important;}
+.jky-checkin-boxes		{width: 55px; text-align:right  !important;}
+.jky-checkin-weight		{width: 55px; text-align:right  !important;}
 .jky-checkout-boxes		{width: 50px; text-align:right  !important;}
 .jky-checkout-date		{width: 75px; text-align:center !important;}
 .jky-checkout-weight	{width: 60px; text-align:right  !important;}
@@ -268,7 +270,12 @@ li .arrow span {
 .jky-filler				{width: 40px;}
 .jky-galao-price		{width: 45px; text-align:right  !important;}
 .jky-gola-price			{width: 45px; text-align:right  !important;}
+.jky-incoming-number	{width: 60px; text-align:center !important;}
 .jky-inputs				{width: 40px; text-align:right  !important;}
+.jky-invoice-date		{width: 75px; text-align:center !important;}
+.jky-invoice-weight		{width: 60px; text-align:right  !important;}
+.jky-invoice-amount		{width: 60px; text-align:right  !important;}
+.jky-labels-printed		{width: 45px; text-align:right  !important; margin-right:4px;}
 .jky-lanes				{width: 40px; text-align:right  !important;}
 .jky-lane-type			{width:200px; text-align:left   !important;}
 .jky-machine-name		{width: 80px; text-align:center !important; text-transform:capitalize;}
@@ -276,56 +283,74 @@ li .arrow span {
 .jky-nfe-dl				{width: 60px; text-align:right  !important;}
 .jky-nfe-tm				{width: 60px; text-align:right  !important;}
 .jky-nick-name			{width:200px; text-align:left	!important; text-transform:capitalize;}
+.jky-nfe-dl				{width: 60px; text-align:center !important;}
+.jky-nfe-tm				{width: 60px; text-align:center !important;}
 .jky-not-found			{color:  red; text-align:center !important;}
-.jky-number-of-boxes	{width: 40px; text-align:center !important;}
-.jky-number-of-cones	{width: 40px; text-align:center !important;}
-.jky-number-of-pieces	{width: 40px; text-align:center !important;}
+.jky-number-of-boxes	{width: 50px; text-align:right  !important;}
+.jky-number-of-cones	{width: 45px; text-align:right  !important;}
+.jky-number-of-pieces	{width: 50px; text-align:right  !important;}
 .jky-order-number		{width: 50px; text-align:center !important;}
 .jky-ordered-date		{width: 60px; text-align:center !important;}
 .jky-ordered-pieces		{width: 50px; text-align:right  !important;}
 .jky-ordered-weight		{width: 60px; text-align:right  !important;}
 .jky-partner-name		{width: 80px; text-align:left	!important; text-transform:capitalize;}
+.jky-product-code		{width: 80px; text-align:center	!important;}
 .jky-product-name		{width:200px; text-align:left	!important; text-transform:capitalize;}
 .jky-produced-by		{width: 60px; text-align:center !important; text-transform:capitalize;}
 .jky-produced-date		{width: 60px; text-align:center !important;}
 .jky-produced-pieces	{width: 50px; text-align:right  !important;}
+.jky-purchase-number	{width: 50px; text-align:center !important;}
 .jky-punho-price		{width: 45px; text-align:right  !important;}
 .jky-quality			{width: 90px; text-align:center !important;}
 .jky-quotation-number	{width: 55px; text-align:center !important;}
 .jky-quoted-date		{width: 60px; text-align:center !important;}
 .jky-quoted-pieces		{width: 50px; text-align:right  !important;}
 .jky-real-weight		{width: 50px; text-align:right  !important;}
-.jky-received-weight	{width: 65px; text-align:right  !important;}
+.jky-received-boxes		{width: 55px; text-align:right  !important;}
+.jky-received-date		{width: 75px; text-align:center !important;}
+.jky-received-weight	{width: 60px; text-align:right  !important;}
 .jky-rejected-pieces	{width: 50px; text-align:right  !important;}
 .jky-remarks			{width:200px; text-align:center !important;}
+.jky-request-number		{width: 50px; text-align:center !important;}
 .jky-requested-boxes	{width: 50px; text-align:right  !important;}
-.jky-requested-date		{width: 60px; text-align:center !important;}
-.jky-requested-weight	{width: 50px; text-align:right  !important;}
+.jky-requested-date		{width: 75px; text-align:center !important;}
+.jky-requested-weight	{width: 60px; text-align:right  !important;}
 .jky-reserved-boxes		{width: 50px; text-align:right  !important;}
 .jky-returned-date		{width: 60px; text-align:center !important;}
-.jky-returned-weight	{width: 50px; text-align:right  !important;}
+.jky-returned-weight	{width: 55px; text-align:right  !important;}
 .jky-scheduled-date		{width: 75px; text-align:center !important;}
 .jky-sequence			{width: 35px; text-align:center !important;}
+.jky-source-doc			{width: 70px; text-align:center !important;}
 .jky-status				{width: 65px; text-align:center !important;}
 .jky-supplier-name		{width: 80px; text-align:center !important; text-transform:capitalize;}
+.jky-supplier-ref		{width: 70px; text-align:center !important;}
 .jky-thread-name		{width:200px; text-align:left   !important;}
 .jky-tdyer-number		{width: 50px; text-align:center !important;}
+.jky-unit-price			{width: 50px; text-align:center !important;}
 .jky-width				{width: 40px; text-align:right  !important;}
 
-.jky-td-thread-name			{width:230px; text-align:left   !important;}
+.jky-td-batch-boxes			{width: 60px; text-align:right  !important;}
+.jky-td-batch-value			{width: 60px; text-align:right  !important;}
+.jky-td-batch-weight		{width: 70px; text-align:right  !important;}
+.jky-td-batch-price			{width: 70px; text-align:right  !important;}
 .jky-td-batchin-number		{width:100px; text-align:center !important;}
-.jky-td-color-name			{width:180px; text-align:left   !important;}
-.jky-td-color-weight		{width: 70px; text-align:right  !important;}
 .jky-td-color-date			{width: 75px; text-align:center !important;}
+.jky-td-color-name			{width:180px; text-align:left   !important;}
+.jky-td-color-pieces		{width: 50px; text-align:right  !important;}
+.jky-td-color-price			{width: 50px; text-align:right  !important;}
+.jky-td-color-weight		{width: 70px; text-align:right  !important;}
 .jky-td-line-weight			{width: 70px; text-align:right  !important;}
 .jky-td-line-date			{width: 75px; text-align:center !important;}
-.jky-td-labels-printed		{width: 70px; text-align:center !important;}
-.jky-td-batch-value			{width: 60px; text-align:right  !important;}
+.jky-td-labels-printed		{width: 75px; text-align:center !important;}
+.jky-td-product-name		{width:280px; text-align:left   !important;}
+.jky-td-thread-name			{width:230px; text-align:left   !important;}
+.jky-td-thread-date			{width: 75px; text-align:center !important;}
+.jky-td-thread-weight		{width: 70px; text-align:right  !important;}
 
-.jky-thread-row-name		{width:200px; margin-right:5px; text-align:left   !important;}
+.jky-thread-row-name		{width:200px; margin-right:4px; text-align:left   !important;}
 .jky-batchin-row-number		{width: 70px; margin-right:4px; text-align:center !important;}
-.jky-color-row-name			{width:150px; margin-right:5px; text-align:left   !important; text-transform:capitalize;}
-.jky-product-row-name		{width:320px; margin-right:4px; text-align:left   !important;}
+.jky-color-row-name			{width:150px; margin-right:4px; text-align:left   !important; text-transform:capitalize;}
+.jky-product-row-name		{width:250px; margin-right:4px; text-align:left   !important;}
 
 .jky-box-checkbox			{width: 30px; text-align:center;}
 .jky-box-barcode			{width: 90px; text-align:center !important;}
@@ -363,7 +388,7 @@ li .arrow span {
 
 .jky-color-pieces			{width: 45px; text-align:right  !important;}
 .jky-color-name				{width:155px; text-align:left   !important; text-transform:capitalize;}
-.jky-color-name input		        {width:120px; text-align:left   !important; text-transform:capitalize;}
+.jky-color-name input		{width:120px; text-align:left   !important; text-transform:capitalize;}
 .jky-color-name a			{padding:5px;}
 .jky-color-weight			{	 width: 45px; text-align:right  !important;}
 .jky-color-date				{	 width: 75px; text-align:right  !important;}
@@ -400,14 +425,19 @@ li .arrow span {
 #jky-checkout-weight		{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-color-name				{width:380px; text-transform:capitalize;}
 #jky-customer-name			{width:300px;					 text-align:left ; text-transform:capitalize;}
-#jky-delivered-value		{width: 75px;}
+#jky-delivered-value		{width:115px;}
 #jky-delivered-pieces		{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-density				{width: 40px; text-align:right;}
 #jky-diameter				{width: 40px; text-align:right;}
 #jky-dyer-name				{width:300px;					 text-align:left ; text-transform:capitalize;}
+#jky-expected-value			{width: 75px;}
 #jky-galao-perc				{width: 17px; text-align:right;}
 #jky-gola-perc				{width: 17px; text-align:right;}
+#jky-incoming-number		{width: 60px; font-size:16px; font-weight:bold;}
 #jky-inputs					{width: 40px; text-align:right;}
+#jky-invoice-amount			{width:100px; text-align:right;}
+#jky-invoice-value			{width: 75px;}
+#jky-invoice-weight			{width:100px; text-align:right;}
 #jky-labels-printed			{width: 40px; text-align:right;}
 #jky-lane-type				{width:190px;}
 #jky-machine-name			{width:300px;					 text-align:left ; text-transform:capitalize;}
@@ -419,16 +449,21 @@ li .arrow span {
 #jky-ordered-value			{width:115px;}
 #jky-ordered-weight			{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-partner-name			{width:300px;					 text-align:left ; text-transform:capitalize;}
+#jky-payment-term			{width:110px;}
 #jky-peso					{width: 40px; text-align:right;}
 #jky-product-name			{width:300px;					 text-align:left ; text-transform:capitalize;}
 #jky-produced-by			{width:200px;}
 #jky-produced-value			{width:115px;}
 #jky-produced-pieces		{width: 40px; text-align:right;}
 #jky-punho-perc				{width: 17px; text-align:right;}
+#jky-purchase-number		{width: 60px; font-size:16px; font-weight:bold;}
 #jky-quotation-number		{width: 60px; font-size:16px; font-weight:bold;}
-#jky-quoted-value			{width:120px;}
+#jky-quoted-value			{width:115px;}
 #jky-quoted-pieces			{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-real-weight			{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-received-amount		{width:100px; text-align:right;}
+#jky-received-value			{width:120px;}
+#jky-received-weight		{width:100px; text-align:right;}
 #jky-rejected-pieces		{width: 40px; text-align:right;}
 #jky-remarks				{width:570px; height:170px;}
 #jky-requested-boxes		{width: 75px; margin-bottom:4px; text-align:right;}
@@ -438,8 +473,11 @@ li .arrow span {
 #jky-reserved-boxes			{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-returned-value			{width:115px;}
 #jky-returned-weight		{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-scheduled-value		{width:120px;}
+#jky-source-doc				{width:100px;}
 #jky-speed					{width: 40px; text-align:right;}
 #jky-supplier-name			{width:300px;					 text-align:left ; text-transform:capitalize;}
+#jky-supplier-ref		{width:100px;}
 #jky-tdyer-number			{width: 60px; font-size:16px; font-weight:bold;}
 #jky-thread-name			{								 text-align:left ; text-transform:capitalize;}
 #jky-turns					{width: 40px; text-align:right;}

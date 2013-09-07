@@ -35,7 +35,7 @@ JKY.generate_batches = function(response) {
 		}
 	}
 	JKY.set_html('jky-batch-total', my_total);
-	JKY.set_html('jky-batch-body' , my_html );
+	JKY.set_html('jky-batches-body' , my_html );
 	if (my_rows == '') {
 		JKY.insert_batch();
 	}
@@ -53,19 +53,17 @@ JKY.generate_row = function(the_row) {
 		+ "<input class='jky-batchin-row-number' readonly='readonly' onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.batch_number + "' />"
 		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
-	var my_print = (the_row.received_boxes == the_row.labels_printed) ? '' : '<a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
 	var my_html = ''
 		+ '<tr batch_id=' + my_id + '>'
 		+ '<td class="jky-action"><a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-		+ '<td ><input  class="jky-batch-code"				text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.code			+ '" /></td>'
-		+ '<td class="jky-thread-row-name"		>' + my_thread	+ '</td>'
-		+ '<td class="jky-line-batchin"			>' + my_batchin	+ '</td>'
-		+ '<td ><input  class="jky-batch-average-weight"	text="text"								 disabled="disabled" value="' + the_row.average_weight	+ '" /></td>'
-		+ '<td ><input  class="jky-batch-requested-weight"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.requested_weight+ '" /></td>'
-		+ '<td ><input  class="jky-batch-requested-boxes"	text="text"								 disabled="disabled" value="' + the_row.requested_boxes	+ '" /></td>'
-		+ '<td class="jky-batch-labels-print"	>' + my_print + '</td>'
-		+ '<td ><input  class="jky-batch-checkout-weight"	text="text"								 disabled="disabled" value="' + the_row.checkout_weight	+ '" /></td>'
-		+ '<td ><input  class="jky-batch-checkout-boxes"	text="text"								 disabled="disabled" value="' + the_row.checkout_boxes	+ '" /></td>'
+		+ '<td ><input class="jky-batch-code" text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.code			+ '" /></td>'
+		+ '<td class="jky-td-thread-name"	>' + my_thread	+ '</td>'
+		+ '<td class="jky-td-batchin-number">' + my_batchin	+ '</td>'
+		+ '<td class="jky-td-weight"		><input  class="jky-batch-average-weight"	disabled="disabled" value="' + the_row.average_weight	+ '" /></td>'
+		+ '<td class="jky-td-weight"		><input  class="jky-batch-requested-weight"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.requested_weight + '" /></td>'
+		+ '<td class="jky-td-weight"		><input  class="jky-batch-checkout-weight"	disabled="disabled" value="' + the_row.checkout_weight	+ '" /></td>'
+		+ '<td class="jky-td-boxes"			><input  class="jky-batch-requested-boxes"	disabled="disabled" value="' + the_row.requested_boxes	+ '" /></td>'
+		+ '<td class="jky-td-boxes"			><input  class="jky-batch-checkout-boxes"	disabled="disabled" value="' + the_row.checkout_boxes	+ '" /></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -79,9 +77,9 @@ JKY.update_batch = function(id_name, the_id ) {
 	var my_batchin_id		= my_tr.find('.jky-batchin-row-id'	).val();
 	var my_code				= my_tr.find('.jky-batch-code'		).val();
 	var my_batch			= my_tr.find('.jky-batch-number'	).val();
-//	var my_average_weight	= parseFloat(my_tr.find('.jky-batch-average-weight'	).val());
-//	var my_requested_boxes	= parseFloat(my_tr.find('.jky-batch-requested-boxes'	).val());
-	var my_requested_weight	= parseFloat(my_tr.find('.jky-batch-requested-weight'	).val());
+//	var my_average_weight	= parseFloat(my_tr.find('.jky-average-weight'	).val());
+//	var my_requested_boxes	= parseFloat(my_tr.find('.jky-requested-boxes'	).val());
+	var my_requested_weight	= parseFloat(my_tr.find('.jky-requested-weight'	).val());
 
 	var my_unit_price		= 0;
 	var my_average_weight	= 0;
@@ -143,7 +141,7 @@ JKY.insert_batch_success = function(response) {
 	my_row.checkout_weight	= 0;
 
 	var my_html = JKY.generate_row(my_row);
-	JKY.append_html('jky-batch-body', my_html);
+	JKY.append_html('jky-batches-body', my_html);
 }
 
 JKY.delete_batch = function(id_name, the_id) {

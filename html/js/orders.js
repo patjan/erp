@@ -44,8 +44,8 @@ JKY.set_all_events = function() {
 	$('#jky-pieces-display'		).click (function() {JKY.Changes.can_leave(function() {JKY.Pieces.display(this)});});
 	$('#jky-pieces-print'		).click (function() {JKY.Pieces.print()});
 
-	$('#jky-machine-name'		).click (function() {JKY.clear_produced_by("partner");});
-	$('#jky-partner-name'		).click (function() {JKY.clear_produced_by("machine");});
+	$('#jky-machine-name'		).change(function() {JKY.clear_produced_by("machine");});
+	$('#jky-partner-name'		).change(function() {JKY.clear_produced_by("partner");});
 };
 
 /**
@@ -177,6 +177,12 @@ JKY.process_delete = function(the_id, the_row) {
 };
 
 JKY.clear_produced_by = function(the_name) {
-	JKY.set_value('jky-' + the_name + '-id', null);
-	JKY.set_value('jky-' + the_name + '-name', '');
+	if (the_name != 'machine') {
+		JKY.set_value('jky-machine-id', null);
+		JKY.set_value('jky-machine-name', '');
+	}
+	if (the_name != 'partner') {
+		JKY.set_value('jky-partner-id', null);
+		JKY.set_value('jky-partner-name', '');
+	}
 }

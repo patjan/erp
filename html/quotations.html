@@ -22,7 +22,7 @@
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-quotation-number'><span>  Quotation<br>Number	</span></th>
 			<th class='jky-customer-name'	><span>               Customer	</span></th>
-			<th class='jky-machine-name'	><span>                Machine	</span></th>
+			<th class='jky-machine-name'	><span>               Machine	</span></th>
 			<th class='jky-dyer-name'		><span>               Dyer		</span></th>
 			<th class='jky-quoted-date'		><span>     Quoted<br>Date		</span></th>
 			<th class='jky-produced-date'	><span>   Produced<br>Date		</span></th>
@@ -47,25 +47,26 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Quotation Number</span>:</div>
-				<input  id='jky-quotation-number' class='jky-form-value' readonly='readonly' /></div>
+				<input  id='jky-quotation-number' class='jky-form-value' readonly='readonly' />
+			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Quoted Date</span>:</div>
-				<div id="jky-quoted-date"		class="input-append date">
-					<input id='jky-quoted-value'		type="text" />
+				<div id="jky-quoted-date" class="input-append date">
+					<input id='jky-quoted-value' type="text" />
 					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Produced Date</span>:</div>
-				<div id="jky-produced-date"		class="input-append date">
-					<input id='jky-produced-value'	type="text" />
+				<div id="jky-produced-date" class="input-append date">
+					<input id='jky-produced-value' type="text" />
 					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Delivered Date</span>:</div>
-				<div id="jky-delivered-date"	class="input-append date">
-					<input id='jky-delivered-value'	type="text" />
+				<div id="jky-delivered-date" class="input-append date">
+					<input id='jky-delivered-value' type="text" />
 					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
 				</div>
 			</div>
@@ -74,10 +75,10 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span>          Dyer</span>:</div><select id='jky-dyer-name'		class='optional'></select></div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Diameter</span>:</div><input id='jky-diameter'	class='jky-form-value-1'	/>(pol)		</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>        Weight</span>:</div><input id='jky-weight'		class='jky-form-value-2'	/>(gr)		</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>         Width</span>:</div><input id='jky-width'		class='jky-form-value-2'	/>(cm)		</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>          Peso</span>:</div><input id='jky-peso'		class='jky-form-value-3'	/>(Kg/peça)	</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>      Diameter</span>:</div><input id='jky-diameter'	class='jky-form-value-1'	/> (pol)	</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>        Weight</span>:</div><input id='jky-weight'		class='jky-form-value-2'	/> (gr)		</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>         Width</span>:</div><input id='jky-width'		class='jky-form-value-2'	/> (cm)		</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>          Peso</span>:</div><input id='jky-peso'		class='jky-form-value-3'	/> (Kg/peça)</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Break</span>?</div>
 				<div id='jky-has-break' class='jky-form-value'>
@@ -143,13 +144,13 @@
 					<thead>
 						<tr>
 							<th class='jky-action'></th>
-							<th class='jky-product-name'	><span>             Product	</span></th>
-							<th class='jky-quoted-pieces'	><span>   Quoted<br>Pieces	</span></th>
-							<th class='jky-color-name'		><span>             Color	</span></th>
-							<th class='jky-fabric-price'	><span>   Fabric<br>$/Kg	</span></th>
-							<th class='jky-punho-price'		><span>	   Punho<br>$/Kg	</span></th>
-							<th class='jky-gola-price'		><span>     Gola<br>$/Kg	</span></th>
-							<th class='jky-galao-price'		><span>    Galao<br>$/Kg	</span></th>
+							<th class='jky-td-product-name'	><span>             Product	</span></th>
+							<th class='jky-td-color-pieces'	><span>   Quoted<br>Pieces	</span></th>
+							<th class='jky-td-color-name'	><span>             Color	</span></th>
+							<th class='jky-td-color-price'	><span>   Fabric<br>$/Kg	</span></th>
+							<th class='jky-td-color-price'	><span>	   Punho<br>$/Kg	</span></th>
+							<th class='jky-td-color-price'	><span>     Gola<br>$/Kg	</span></th>
+							<th class='jky-td-color-price'	><span>    Galao<br>$/Kg	</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-lines-body'></tbody>

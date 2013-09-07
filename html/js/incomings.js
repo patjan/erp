@@ -16,7 +16,7 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: ''
 		, filter		: ''
-		, sort_by		: 'number'
+		, sort_by		: 'incoming_number'
 		, sort_seq		: 'DESC'
 		, focus			: 'jky-supplier-name'
 		, add_new		: 'display form'
@@ -57,14 +57,14 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-number"			>' + the_row.number			+ '</td>'
-		+  '<td class="jky-received-time"	>' + JKY.short_date(the_row.received_at)	+ '</td>'
-		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name	+ '</td>'
-		+  '<td class="jky-nfe-dl"			>' + the_row.nfe_dl			+ '</td>'
-		+  '<td class="jky-nfe-tm"			>' + the_row.nfe_tm			+ '</td>'
-		+  '<td class="jky-invoice-date"	>' + JKY.out_date(the_row.invoice_date) 	+ '</td>'
-		+  '<td class="jky-invoice-weight"	>' + the_row.invoice_weight	+ '</td>'
-		+  '<td class="jky-invoice-amount"	>' + the_row.invoice_amount	+ '</td>'
+		+  '<td class="jky-incoming-number"	>' +				 the_row.incoming_number	+ '</td>'
+		+  '<td class="jky-supplier-name"	>' +				 the_row.supplier_name		+ '</td>'
+		+  '<td class="jky-nfe-dl"			>' + JKY.fix_null	(the_row.nfe_dl			)	+ '</td>'
+		+  '<td class="jky-nfe-tm"			>' + JKY.fix_null	(the_row.nfe_tm			)	+ '</td>'
+		+  '<td class="jky-invoice-date"	>' + JKY.out_date	(the_row.invoice_date	) 	+ '</td>'
+		+  '<td class="jky-received-date"	>' + JKY.short_date	(the_row.received_at	)	+ '</td>'
+		+  '<td class="jky-invoice-weight"	>' +				 the_row.invoice_weight		+ '</td>'
+		+  '<td class="jky-received-weight"	>' +				 the_row.received_weight	+ '</td>'
 		;
 	return my_html;
 };
@@ -73,16 +73,16 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-number'			, the_row.number		);
-	JKY.set_date	('jky-received-time'	, JKY.out_time(the_row.received_at));
-	JKY.set_option	('jky-supplier-name'	, the_row.supplier_id	);
-	JKY.set_value	('jky-nfe-dl'			, the_row.nfe_dl);
-	JKY.set_value	('jky-nfe-tm'			, the_row.nfe_tm);
-	JKY.set_date	('jky-invoice-date'		, JKY.out_date(the_row.invoice_date));
-	JKY.set_value	('jky-invoice-weight'	, the_row.invoice_weight);
-	JKY.set_value	('jky-invoice-amount'	, the_row.invoice_amount);
-	JKY.set_value	('jky-received-weight'	, the_row.received_weight);
-	JKY.set_value	('jky-received-amount'	, the_row.received_amount);
+	JKY.set_value	('jky-incoming-number'	,				 the_row.incoming_number	);
+	JKY.set_date	('jky-received-date'	, JKY.out_time	(the_row.received_at		));
+	JKY.set_option	('jky-supplier-name'	,				 the_row.supplier_id		);
+	JKY.set_value	('jky-nfe-dl'			,				 the_row.nfe_dl				);
+	JKY.set_value	('jky-nfe-tm'			,				 the_row.nfe_tm				);
+	JKY.set_date	('jky-invoice-date'		, JKY.out_date	(the_row.invoice_date		));
+	JKY.set_value	('jky-invoice-weight'	,				 the_row.invoice_weight		);
+	JKY.set_value	('jky-invoice-amount'	,				 the_row.invoice_amount		);
+	JKY.set_value	('jky-received-weight'	,				 the_row.received_weight	);
+	JKY.set_value	('jky-received-amount'	,				 the_row.received_amount	);
 
 	JKY.set_calculated_color();
 	JKY.display_batches();
@@ -92,8 +92,8 @@ JKY.set_form_row = function(the_row) {
  *	set add new row
  */
 JKY.set_add_new_row = function() {
-	JKY.set_value	('jky-number'			,  JKY.t('New'));
-	JKY.set_date	('jky-received-time'	,  JKY.out_time(JKY.get_now()));
+	JKY.set_value	('jky-incoming-number'	,  JKY.t('New'));
+	JKY.set_date	('jky-received-date'	,  JKY.out_time(JKY.get_now()));
 	JKY.set_option	('jky-supplier-name'	, '');
 	JKY.set_value	('jky-nfe-dl'			, '');
 	JKY.set_value	('jky-nfe-tm'			, '');

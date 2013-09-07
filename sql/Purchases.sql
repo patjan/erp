@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS Purchases
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Draft'
 
-, number			VARCHAR(32)			DEFAULT NULL
+, purchase_number	VARCHAR(32)			DEFAULT NULL
 , source_doc		VARCHAR(32)			DEFAULT NULL
 , ordered_at		DATETIME			DEFAULT NULL
 , expected_date		DATE				DEFAULT NULL
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS Purchases
 , payment_term      VARCHAR(255)		DEFAULT NULL
 
 , PRIMARY KEY(id)
-, UNIQUE(number)
+, UNIQUE(purchase_number)
 , KEY supplier(supplier_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
 ;
@@ -28,3 +28,5 @@ INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, 
 
 ALTER TABLE Purchases	ADD COLUMN received_weight		DECIMAL(10,2)		DEFAULT 0	AFTER scheduled_at;
 ALTER TABLE Purchases	ADD COLUMN expected_weight		DECIMAL(10,2)		DEFAULT 0	AFTER scheduled_at;
+ALTER TABLE Purchases		CHANGE	number				purchase_number		VARCHAR(32)	DEFAULT NULL;
+

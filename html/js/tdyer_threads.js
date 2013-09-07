@@ -45,7 +45,7 @@ JKY.generate_thread = function(the_row) {
 		+ '<td class="jky-action"			>' + my_trash	+ '</td>'
 		+ '<td class="jky-td-thread-name"	>' + my_thread	+ '</td>'
 		+ '<td class="jky-td-thread-batchin">' + my_batchin	+ '</td>'
-		+ '<td class="jky-add-color"><a class="btn btn-success" type="button" href="#" onclick="JKY.insert_color(this, ' + my_id + ')"><span>Add Color</span></a></td>'
+		+ '<td class="jky-td-color-name"><a class="btn btn-success" type="button" href="#" onclick="JKY.insert_color(this, ' + my_id + ')"><span>Add Color</span></a></td>'
 		+ '<td colspan="4"></td>'
 		+ '</tr>'
 		;

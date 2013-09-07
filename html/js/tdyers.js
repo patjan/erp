@@ -49,7 +49,6 @@ JKY.set_all_events = function() {
 	$('#jky-returned-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-threads-add-new').click (function()	{JKY.insert_thread();});
-
 	$('#jky-action-generate').click( function() {JKY.generate_checkout();})
 
 //	$('#jky-action-product'		).click (function() {JKY.display_product	();});
@@ -112,6 +111,19 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
+		if (the_row.status == 'Draft') {
+		JKY.enable_button ('jky-action-generate');
+		JKY.enable_button ('jky-action-delete'  );
+	}else{
+		JKY.disable_button('jky-action-generate');
+		JKY.disable_button('jky-action-delete'  );
+	}
+	if (the_row.status == 'Active') {
+		JKY.enable_button ('jky-action-close');
+	}else{
+		JKY.disable_button('jky-action-close');
+	}
+
 	JKY.set_value	('jky-tdyer-number'		, the_row.tdyer_number	);
 	JKY.set_value	('jky-order-id'			, the_row.order_id		);
 	JKY.set_value	('jky-order-number'		, the_row.order_number	);
@@ -231,9 +243,9 @@ JKY.print_row = function(the_id) {
 
 		+ "<td width=60%><table>"
 		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>       Thread Dyer Number</span>:</td><td id='jky-print-tyder-number'	class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>					   Order</span>:</td><td id='jky-print-order-id'		class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>					Customer</span>:</td><td id='jky-print-customer-name'	class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>						Dyer</span>:</td><td id='jky-print-dyer-name'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>                    Order</span>:</td><td id='jky-print-order-id'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>                 Customer</span>:</td><td id='jky-print-customer-name'	class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>                     Dyer</span>:</td><td id='jky-print-dyer-name'		class='jky-form-value'></td></tr>"
 		+ "</table></td>"
 
 		+ "</tr>"
@@ -243,22 +255,22 @@ JKY.print_row = function(the_id) {
 		+ "<div style='width:700px; border:1px solid black;'>"
 		+ "<table>"
 		+ "<tr>"
-		+ "<td class='jky-print-label1'><span>			Ordered Date</span>:</td><td id='jky-print-ordered-at'			class='jky-print-value'></td>"
-		+ "<td class='jky-print-label1'><span>		  Ordered Weight</span>:</td><td id='jky-print-ordered-weight'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>          Ordered Date</span>:</td><td id='jky-print-ordered-at'			class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>        Ordered Weight</span>:</td><td id='jky-print-ordered-weight'		class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
-		+ "<td class='jky-print-label1'><span>		 	 Needed Date</span>:</td><td id='jky-print-needed-at'			class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>           Needed Date</span>:</td><td id='jky-print-needed-at'			class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
-		+ "<td class='jky-print-label1'><span>		 Check Out Date</span>:</td><td id='jky-print-checkout-at'			class='jky-print-value'></td>"
-		+ "<td class='jky-print-label1'><span>     Check Out Weight</span>:</td><td id='jky-print-checkout-weight'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>        Check Out Date</span>:</td><td id='jky-print-checkout-at'			class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>      Check Out Weight</span>:</td><td id='jky-print-checkout-weight'		class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
-		+ "<td class='jky-print-label1'><span>		  Returned Date</span>:</td><td id='jky-print-returned-at'			class='jky-print-value'></td>"
-		+ "<td class='jky-print-label1'><span>      Returned Weight</span>:</td><td id='jky-print-returned-weight'		class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>         Returned Date</span>:</td><td id='jky-print-returned-at'			class='jky-print-value'></td>"
+		+ "<td class='jky-print-label1'><span>       Returned Weight</span>:</td><td id='jky-print-returned-weight'		class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
-		+ "<td class='jky-print-label1'><span>			   Remarks</span>:</td><td id='jky-print-remarks'										></td>"
+		+ "<td class='jky-print-label1'><span>               Remarks</span>:</td><td id='jky-print-remarks'										></td>"
 		+ "</tr>"
 		+ "</table>"
 		+ "</div>"
@@ -314,22 +326,30 @@ JKY.save_remarks_success = function(response) {
 /* -------------------------------------------------------------------------- */
 
 JKY.generate_checkout = function() {
-//alert('generate_checkout');
-	JKY.insert_checkout();
+	JKY.active_tdyer();
+}
+
+JKY.active_tdyer = function(response) {
+	var my_data =
+		{ method	: 'update'
+		, table		: 'TDyers'
+		, set		: 'status = \'Active\''
+		, where		: 'id = ' + JKY.row.id
+		};
+	JKY.ajax(false, my_data, JKY.insert_checkout);
 }
 
 JKY.insert_checkout = function() {
-//alert('insert_checkout');
-	var my_requested_date = JKY.row.needed_date;
+	var my_requested_date = JKY.row.needed_at;
 	if (my_requested_date == null) {
 		my_requested_date = JKY.get_date();
 	}
 	var my_set = ''
 //		+          'order_id=  ' + JKY.row.order_id
-		+         '  dyer_id=  ' + JKY.row.dyer_id
+		+           'dyer_id=  ' + JKY.row.dyer_id
 		+          ', nfe_dl=\'' + '' + '\''
 		+          ', nfe_tm=\'' + '' + '\''
-		+  ', requested_date=\'' + my_requested_date + '\''
+		+    ', requested_at=\'' + my_requested_date + '\''
 		+', requested_weight=  ' + JKY.row.ordered_weight
 		;
 	var my_data =
@@ -341,7 +361,6 @@ JKY.insert_checkout = function() {
 }
 
 JKY.insert_batchout = function(response) {
-//alert('insert_batchout');
 	var my_rows = JKY.get_rows('TDyerThreads', JKY.row.id);
 	for(var i=0, max=my_rows.length; i<max; i++) {
 		JKY.row = my_rows[i];
@@ -370,7 +389,6 @@ JKY.insert_batchout = function(response) {
 }
 
 JKY.connect_batchout = function(response) {
-//alert('connect_batchout');
 	var my_data =
 		{ method	: 'update'
 		, table		: 'TdyerThreads'
@@ -381,7 +399,6 @@ JKY.connect_batchout = function(response) {
 }
 
 JKY.refresh_form = function(response) {
-//alert('refresh_form');
 	JKY.display_message('Check Out row generated: ' + JKY.row.id);
 	JKY.Application.display_row();
 }

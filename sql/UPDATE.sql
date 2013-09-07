@@ -170,3 +170,7 @@ ALTER TABLE TDyerThreads		ADD COLUMN batchout_id	BIGINT		DEFAULT NULL	AFTER batc
 ALTER TABLE CheckOuts			ADD COLUMN dyer_id		BIGINT		DEFAULT NULL	AFTER supplier_id;
 ----- 2013/09/05
 ALTER TABLE CheckOuts		CHANGE	requested_date		requested_at		DATETIME	DEFAULT NULL;
+ALTER TABLE Purchases		CHANGE	number				purchase_number		VARCHAR(32)	DEFAULT NULL;
+ALTER TABLE Incomings		CHANGE	number				incoming_number		VARCHAR(32)	DEFAULT NULL;
+ALTER TABLE PurchaseLines	CHANGE	purchase_id			parent_id			BIGINT		DEFAULT NULL;
+ALTER TABLE TDyers			CHANGE	status				status				VARCHAR(32)	DEFAULT 'Draft';

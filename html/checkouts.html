@@ -61,7 +61,7 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Check Out Number</span>:</div>
-				<input  id='jky-checkout-number'			class='jky-form-value'	readonly='readonly'	/>
+				<input  id='jky-checkout-number' class='jky-form-value'	readonly='readonly'	/>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Machine</span>:</div>
@@ -137,18 +137,17 @@
 					<thead>
 						<tr>
 							<th class='jky-action'></th>
-							<th class='jky-batch-code'				><span>	 Product<br>Code		</span></th>
-							<th	class='jky-thread-row-name'			><span>			    Thread Name	</span></th>
-							<th class='jky-line-batchin'			><span>			    Batch		</span></th>
-							<th class='jky-batch-average-weight'	><span>	 Average<br>Weight		</span></th>
-							<th class='jky-batch-requested-weight'	><span>Requested<br>Weight		</span></th>
-							<th class='jky-batch-requested-boxes'	><span>Requested<br>Boxes		</span></th>
-							<th class='jky-batch-labels-print'		><span>							</span></th>
-							<th class='jky-batch-checkout-weight'	><span>Check Out<br>Weight		</span></th>
-							<th class='jky-batch-checkout-boxes'	><span>Check Out<br>Boxes		</span></th>
+							<th class='jky-batch-code'			><span>	 Product<br>Code		</span></th>
+							<th	class='jky-td-thread-name'		><span>			    Thread Name	</span></th>
+							<th class='jky-td-batchin-number'	><span>			    Batch		</span></th>
+							<th class='jky-td-weight'			><span>	 Average<br>Weight		</span></th>
+							<th class='jky-td-weight'			><span>Requested<br>Weight		</span></th>
+							<th class='jky-td-weight'			><span>Check Out<br>Weight		</span></th>
+							<th class='jky-td-boxes'			><span>Requested<br>Boxes		</span></th>
+							<th class='jky-td-boxes'			><span>Check Out<br>Boxes		</span></th>
 						</tr>
 					</thead>
-					<tbody id='jky-batch-body'></tbody>
+					<tbody id='jky-batches-body'></tbody>
 					<tfoot>
 						<tr>
 							<td id='jky-batch-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
@@ -232,7 +231,7 @@
 </div>
 
 <div id='jky-body-loaded'></div>
-8<script src='js/checkouts.js'		></script>
+<script src='js/checkouts.js'		></script>
 <script src='js/JKY.Machine.js'		></script>
 <script src='js/JKY.Supplier.js'	></script>
 <script src='js/JKY.Dyer.js'		></script>

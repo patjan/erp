@@ -9,18 +9,6 @@
 
 .jky-number				{width: 60px; text-align:center;}
 .jky-thread-name		{width: 8%; text-align:center;}
-.jky-code				{width: 60px; text-align:right !important;}
-.jky-batch				{width: 60px; text-align:right !important;}
-.jky-received-boxes		{width: 50px; text-align:right !important;}
-.jky-labels-printed		{width: 50px; text-align:right !important;}
-.jky-checkin-boxes		{width: 50px; text-align:right !important;}
-.jky-number-of-cones	{width: 40px; text-align:right !important;}
-.jky-unit-price			{width: 50px; text-align:right !important;}
-.jky-average-weight		{width: 60px; text-align:right !important;}
-.jky-received-weight	{width: 60px; text-align:right !important;}
-.jky-checkin-weight		{width: 60px; text-align:right !important;}
-.jky-returned-weight	{width: 60px; text-align:right !important;}
-.jky-checkout-weight	{width: 60px; text-align:right !important;}
 
 #jky-number				{width: 60px; font-size:16px; font-weight:bold;}
 #jky-received-time		{width:150px;}
@@ -43,10 +31,10 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-code'				><span>	   Product<br>Code			</span></th>
-			<th class='jky-batch'				><span>      Batch<br>Code			</span></th>
-			<th class='jky-labels-printed'		><span>	    Labels<br>Printed		</span></th>
+			<th class='jky-product-code'		><span>	   Product<br>Code			</span></th>
+			<th class='jky-batch-code'			><span>      Batch<br>Code			</span></th>
 			<th class='jky-received-boxes'		><span>	  Received<br>Boxes			</span></th>
+			<th class='jky-labels-printed'		><span>	    Labels<br>Printed		</span></th>
 			<th class='jky-checkin-boxes'		><span>	  Check In<br>Boxes			</span></th>
 			<th class='jky-number-of-cones'		><span>	    Number<br>Cones			</span></th>
 			<th class='jky-unit-price'			><span>		  Unit<br>Price			</span></th>
@@ -70,8 +58,8 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>            Code</span>:</div><input  id='jky-code'			type='text' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>           Batch</span>:</div><input  id='jky-batch'			type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>            Code</span>:</div><input  id='jky-product-code'	type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>           Batch</span>:</div><input  id='jky-batch-code'		type='text' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>  Labels Printed</span>:</div><input  id='jky-labels-printed'	type='text' /></div>
 		</div>
 		<div class='jky-clear'></div>

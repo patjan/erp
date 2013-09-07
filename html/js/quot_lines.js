@@ -38,9 +38,9 @@ JKY.generate_line = function(the_row) {
 	var my_html = ''
 		+ '<tr class="jky-line" quot_line_id=' + my_id + '>'
 		+ '<td class="jky-action"		>' + my_trash	+ '</td>'
-		+ '<td class="jky-product-name"	>' + my_product	+ '</td>'
-		+ '<td class="jky-color-pieces"><input class="jky-quoted-pieces" disabled="disabled" value="' + the_row.quoted_pieces + '" /></td>'
-		+ '<td class="jky-add-color"><a class="btn btn-success" type="button" href="#" onclick="JKY.insert_color(this, ' + my_id + ')"><span>Add Color</span></a></td>'
+		+ '<td class="jky-td-product-name"	>' + my_product	+ '</td>'
+		+ '<td class="jky-td-color-pieces"	><input class="jky-quoted-pieces" disabled="disabled" value="' + the_row.quoted_pieces + '" /></td>'
+		+ '<td class="jky-td-color-name"	><a class="btn btn-success" type="button" href="#" onclick="JKY.insert_color(this, ' + my_id + ')"><span>Add Color</span></a></td>'
 		+ '<td colspan="4"></td>'
 		+ '</tr>'
 		;

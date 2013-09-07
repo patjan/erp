@@ -52,12 +52,12 @@ JKY.generate_thread = function(the_row) {
 	var my_html = ''
 		+ '<tr order_thread_id=' + my_id + '>'
 		+ '<td class="jky-action"			>' + my_trash	+ '</td>'
-		+ '<td class="jky-thread-name"		>' + my_thread	+ '</td>'
-		+ '<td class="jky-thread-batchin"	>' + my_batchin	+ '</td>'
-		+ '<td class="jky-thread-value"		><input class="jky-thread-needed-date"					onchange="JKY.update_thread(this, ' + my_id + ')" value="' +						 my_needed_at	   + '"						/></td>'
-		+ '<td class="jky-thread-value"		><input class="jky-thread-requested-weight" text="text"	onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.requested_weight) + '"						/></td>'
-		+ '<td class="jky-thread-value"		><input class="jky-thread-checkout-date"				onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.short_date	(the_row.checkout_at	 ) + '" disabled="disabled"	/></td>'
-		+ '<td class="jky-thread-value"		><input class="jky-thread-checkout-weight" text="text"	onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.checkout_weight ) + '" disabled="disabled"	/></td>'
+		+ '<td class="jky-td-thread-name"		>' + my_thread	+ '</td>'
+		+ '<td class="jky-td-batchin-number"	>' + my_batchin	+ '</td>'
+		+ '<td class="jky-td-thread-date"		><input class="jky-needed-date"			onchange="JKY.update_thread(this, ' + my_id + ')" value="' +						 my_needed_at	   + '"						/></td>'
+		+ '<td class="jky-td-thread-date"		><input class="jky-checkout-date"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.short_date	(the_row.checkout_at	 ) + '" disabled="disabled"	/></td>'
+		+ '<td class="jky-td-thread-weight"		><input class="jky-requested-weight"	onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.requested_weight) + '"						/></td>'
+		+ '<td class="jky-td-thread-weight"		><input class="jky-checkout-weight"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.checkout_weight ) + '" disabled="disabled"	/></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -69,8 +69,8 @@ JKY.update_thread = function(id_name, the_id ) {
 	var my_tr = $(id_name).parent().parent();
 	var my_thread_id		= my_tr.find('.jky-thread-row-id').val();
 	var my_batchin_id		= my_tr.find('.jky-batchin-row-id').val();
-	var my_needed_at		= JKY.inp_date	(my_tr.find('.jky-thread-needed-date'		).val());
-	var my_requested_weight	= parseFloat	(my_tr.find('.jky-thread-requested-weight'	).val());
+	var my_needed_at		= JKY.inp_date	(my_tr.find('.jky-needed-date'		).val());
+	var my_requested_weight	= parseFloat	(my_tr.find('.jky-requested-weight'	).val());
 
 	var my_set = ''
 		+         'thread_id = ' + my_thread_id

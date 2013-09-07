@@ -16,7 +16,7 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: ''
 		, filter		: ''
-		, sort_by		: 'CheckOuts.requested_date'
+		, sort_by		: 'CheckOuts.requested_at'
 		, sort_seq		: 'ASC'
 		, focus			: 'jky-box-input-barcode'
 		, add_new		: 'display form'
@@ -50,7 +50,7 @@ JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-checkout-number"	>' +				 the_row.checkout_number		+ '</td>'
 //		+  '<td class="jky-code"				>' +				 the_row.code					+ '</td>'
-		+  '<td class="jky-requested-date"	>' + JKY.out_date	(the_row.requested_date		)	+ '</td>'
+		+  '<td class="jky-requested-date"	>' + JKY.out_date	(the_row.requested_at		)	+ '</td>'
 		+  '<td class="jky-machine-name"	>' + JKY.fix_null	(the_row.machine_name		)	+ '</td>'
 		+  '<td class="jky-supplier-name"	>' + JKY.fix_null	(the_row.supplier_name		)	+ '</td>'
 		+  '<td class="jky-thread-name"		>' +				 the_row.thread_name			+ '</td>'
@@ -77,7 +77,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-checkin-location'		, the_row.checkin_location	);
 	JKY.set_value	('jky-machine-name'			, the_row.machine_name		);
 	JKY.set_value	('jky-supplier-name'		, the_row.supplier_name		);
-	JKY.set_value	('jky-requested-date'		, the_row.requested_date	);
+	JKY.set_value	('jky-requested-date'		, the_row.requested_at		);
 	JKY.set_value	('jky-requested-weight'		, the_row.requested_weight	);
 	JKY.set_value	('jky-reserved-boxes'		, the_row.reserved_boxes	);
 	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);

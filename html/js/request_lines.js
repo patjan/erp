@@ -25,7 +25,7 @@ JKY.generate_lines = function(response) {
 			JKY.Request.add_checkout (my_row.checkout_weight );
 		}
 	}
-	JKY.set_html('jky-line-body', my_html );
+	JKY.set_html('jky-lines-body', my_html );
 	JKY.update_total_weight();
 	if (my_rows == '') {
 		JKY.insert_line();
@@ -52,12 +52,12 @@ JKY.generate_row = function(the_row) {
 	var my_html = ''
 		+ '<tr request_line_id=' + my_id + '>'
 		+ '<td class="jky-action"			>' + my_trash	+ '</td>'
-		+ '<td class="jky-line-thread"		>' + my_thread	+ '</td>'
-		+ '<td class="jky-line-batchin"		>' + my_batchin	+ '</td>'
-		+ '<td class="jky-line-value"		><input class="jky-line-requested-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.requested_weight) + '"						/></td>'
-		+ '<td class="jky-line-value"		><input class="jky-line-requested-date"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' +					  my_requested_date	   + '"						/></td>'
-		+ '<td class="jky-line-value"		><input class="jky-line-checkout-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.checkout_weight ) + '" disabled="disabled"	/></td>'
-		+ '<td class="jky-line-value"		><input class="jky-line-scheduled-at"					onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	 ) + '" disabled="disabled"	/></td>'
+		+ '<td class="jky-td-thread-name"	>' + my_thread	+ '</td>'
+		+ '<td class="jky-td-batchin-number">' + my_batchin	+ '</td>'
+		+ '<td class="jky-td-line-weight"	><input class="jky-requested-weight"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.requested_weight) + '"						/></td>'
+		+ '<td class="jky-td-line-date"		><input class="jky-requested-date"		onchange="JKY.update_line(this, ' + my_id + ')"	value="' +					  my_requested_date	   + '"						/></td>'
+		+ '<td class="jky-td-line-weight"	><input class="jky-checkout-weight"		onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.checkout_weight ) + '" disabled="disabled"	/></td>'
+		+ '<td class="jky-td-line-date"		><input class="jky-scheduled-date"		onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	 ) + '" disabled="disabled"	/></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -69,8 +69,8 @@ JKY.update_line = function(id_name, the_id ) {
 	var my_tr = $(id_name).parent().parent();
 	var my_thread_id		= my_tr.find('.jky-thread-row-id').val();
 	var my_batchin_id		= my_tr.find('.jky-batchin-row-id').val();
-	var my_requested_weight	= parseFloat(my_tr.find('.jky-line-requested-weight'	).val());
-	var my_requested_date	= JKY.inp_date(my_tr.find('.jky-line-requested-date'	).val());
+	var my_requested_weight	= parseFloat  (my_tr.find('.jky-requested-weight'	).val());
+	var my_requested_date	= JKY.inp_date(my_tr.find('.jky-requested-date'		).val());
 
 	var my_set = ''
 		+         'thread_id = ' + my_thread_id
@@ -116,7 +116,7 @@ JKY.insert_line_success = function(response) {
 	my_row.scheduled_at		= null;
 
 	var my_html = JKY.generate_row(my_row);
-	JKY.append_html('jky-line-body', my_html);
+	JKY.append_html('jky-lines-body', my_html);
 }
 
 JKY.delete_line = function(id_name, the_id) {

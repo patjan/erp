@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS TDyers
 , created_at		DATETIME			DEFAULT NULL
 , updated_by		BIGINT				DEFAULT NULL
 , updated_at		DATETIME			DEFAULT NULL
-, status			VARCHAR(32)			DEFAULT 'Active'
+, status			VARCHAR(32)			DEFAULT 'Draft'
 
 , tdyer_number		VARCHAR(32)			DEFAULT NULL
 , order_id			BIGINT				DEFAULT NULL
@@ -27,3 +27,5 @@ CREATE TABLE IF NOT EXISTS TDyers
 , KEY dyer			(dyer_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
 ;
+
+ALTER TABLE TDyers			CHANGE	status				status				VARCHAR(32)	DEFAULT 'Draft';

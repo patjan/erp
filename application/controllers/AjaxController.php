@@ -678,7 +678,7 @@ private function set_select($table, $select) {
 	if ($table == 'OrdThreads'		)	$return = ' AND     OrdThreads.order_id			=  ' . $select;
 	if ($table == 'Pieces'			)	$return = ' AND         Pieces.order_id			=  ' . $select;
 	if ($table == 'Products'		)	$return = ' AND       Products.product_type     = "' . $select . '"';
-	if ($table == 'PurchaseLines'	)	$return = ' AND  PurchaseLines.purchase_id		=  ' . $select;
+	if ($table == 'PurchaseLines'	)	$return = ' AND  PurchaseLines.parent_id		=  ' . $select;
 	if ($table == 'QuotLines'		)	$return = ' AND      QuotLines.quotation_id		=  ' . $select;
 	if ($table == 'QuotColor'		)	$return = ' AND     QuotColors.parent_id		=  ' . $select;
 	if ($table == 'History'			)	$return = ' AND        History.parent_name      = "' . $select . '"';
@@ -723,7 +723,7 @@ private function set_new_fields($table) {
 												. ',   BatchIn.batch			AS	  batch_number';
 	if ($table == 'Pieces'			)	$return = ',    Orderx.order_number		AS	  order_number';
 	if ($table == 'Purchases'		)	$return = ',  Supplier.nick_name		AS supplier_name';
-	if ($table == 'PurchaseLines'	)	$return = ', Purchases.number			AS			purchase_number'
+	if ($table == 'PurchaseLines'	)	$return = ', Purchases.purchase_number	AS			purchase_number'
 												. ', Purchases.ordered_at		AS			ordered_at'
 												. ', Purchases.supplier_id		AS			supplier_id'
 												. ',   Threads.name				AS			thread_name'
@@ -740,7 +740,7 @@ private function set_new_fields($table) {
 	if ($table == 'QuotColors'		)	$return = ',     Color.color_name		AS	  color_name';
 	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name		AS supplier_name';
 	if ($table == 'Batches'			)	$return = ',   Threads.name				AS			name'
-												. ', Incomings.number			AS			number';
+												. ', Incomings.incoming_number	AS incoming_number';
 	if ($table == 'Boxes'			)	$return = ',   Batches.batch			AS			batch_number'
 												. ',    Parent.barcode			AS			parent'
 												. ',   CheckIn.nick_name		AS			checkin'
@@ -838,7 +838,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN     Batches AS BatchIn	ON   BatchIn.id	=		OrdThreads.batchin_id';
 	if ($table == 'Pieces'			)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		    Pieces.order_id';
 	if ($table == 'Purchases'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Purchases.supplier_id';
-	if ($table == 'PurchaseLines'	)	$return = '  LEFT JOIN   Purchases  			ON Purchases.id	=	 PurchaseLines.purchase_id'
+	if ($table == 'PurchaseLines'	)	$return = '  LEFT JOIN   Purchases  			ON Purchases.id	=	 PurchaseLines.parent_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=	 PurchaseLines.thread_id'
 												. '  LEFT JOIN     Batches  			ON   Batches.id	=	 PurchaseLines.batch_id'
 												. '  LEFT JOIN   Incomings				ON Incomings.id	=		   Batches.incoming_id'
@@ -1259,7 +1259,7 @@ private function set_where($table, $filter) {
 		}
 
 		if ($table == 'Purchases') {
-			if ($name == 'number'
+			if ($name == 'purchase_number'
 			or	$name == 'source_doc'
 			or	$name == 'ordered_at'
 			or	$name == 'expected_date'
@@ -1294,7 +1294,7 @@ private function set_where($table, $filter) {
 			}else{
 				if ($name == 'purchase') {
 					if ($value == '"%null%"') {
-						return ' AND PurchaseLines.purchase_id IS NULL';
+						return ' AND PurchaseLines.parent_id IS NULL';
 					}else{
 						return ' AND Purchases.number LIKE ' . $value;
 					}
@@ -1399,7 +1399,7 @@ private function set_where($table, $filter) {
 		}
 
 		if ($table == 'Incomings') {
-			if ($name == 'number'
+			if ($name == 'incoming_number'
 			or	$name == 'received_at'
 			or	$name == 'nfe_dl'
 			or	$name == 'nfe_tm'
@@ -1818,14 +1818,14 @@ private function set_where($table, $filter) {
 		}
 
 	if ($table ==  'Purchases') {
-		$return = ' Purchases.number		LIKE ' . $filter
-			. ' OR  Purchases.source_doc	LIKE ' . $filter
-			. ' OR  Purchases.ordered_at	LIKE ' . $filter
-			. ' OR  Purchases.expected_date	LIKE ' . $filter
-			. ' OR  Purchases.scheduled_at	LIKE ' . $filter
-			. ' OR  Purchases.supplier_ref	LIKE ' . $filter
-			. ' OR  Purchases.payment_term	LIKE ' . $filter
-			. ' OR   Supplier.nick_name		LIKE ' . $filter
+		$return = ' Purchases.purchase_number	LIKE ' . $filter
+			. ' OR  Purchases.source_doc		LIKE ' . $filter
+			. ' OR  Purchases.ordered_at		LIKE ' . $filter
+			. ' OR  Purchases.expected_date		LIKE ' . $filter
+			. ' OR  Purchases.scheduled_at		LIKE ' . $filter
+			. ' OR  Purchases.supplier_ref		LIKE ' . $filter
+			. ' OR  Purchases.payment_term		LIKE ' . $filter
+			. ' OR   Supplier.nick_name			LIKE ' . $filter
 			;
 		}
 
@@ -1833,7 +1833,7 @@ private function set_where($table, $filter) {
 		$return = ' PurchaseLines.expected_date		LIKE ' . $filter
 			. ' OR  PurchaseLines.scheduled_at		LIKE ' . $filter
 			. ' OR  PurchaseLines.expected_weight	LIKE ' . $filter
-			. ' OR      Purchases.number			LIKE ' . $filter
+			. ' OR      Purchases.purchase_number	LIKE ' . $filter
 			. ' OR		Purchases.ordered_at		LIKE ' . $filter
 			. ' OR		  Threads.name				LIKE ' . $filter
 			. ' OR		  Batches.received_weight	LIKE ' . $filter
@@ -1865,7 +1865,7 @@ private function set_where($table, $filter) {
 		}
 
 	if ($table ==  'Incomings') {
-		$return = ' Incomings.number			LIKE ' . $filter
+		$return = ' Incomings.incoming_number	LIKE ' . $filter
 			. ' OR  Incomings.received_at		LIKE ' . $filter
 			. ' OR  Incomings.nfe_dl			LIKE ' . $filter
 			. ' OR  Incomings.nfe_tm			LIKE ' . $filter
@@ -1892,7 +1892,7 @@ private function set_where($table, $filter) {
 			. ' OR    Batches.returned_weight	LIKE ' . $filter
 			. ' OR    Batches.checkout_weight	LIKE ' . $filter
 			. ' OR    Threads.name				LIKE ' . $filter
-			. ' OR	Incomings.number			LIKE ' . $filter
+			. ' OR	Incomings.incoming_number	LIKE ' . $filter
 			;
 		}
 
@@ -1945,7 +1945,7 @@ private function set_where($table, $filter) {
 			. ' OR  CheckOuts.requested_amount	LIKE ' . $filter
 			. ' OR   Machines.name				LIKE ' . $filter
 			. ' OR   Supplier.nick_name			LIKE ' . $filter
-			. ' OR   Dyer.nick_name				LIKE ' . $filter
+			. ' OR       Dyer.nick_name			LIKE ' . $filter
 			;
 		}
 
@@ -2193,7 +2193,7 @@ private function insert($data) {
 	if ($table == 'Purchases') {
 		$my_number = $this->get_next_number('Controls', 'Next Purchase Number');
 		$set .= ',     id= ' . $my_number;
-		$set .= ', number= ' . $my_number;
+		$set .= ', purchase_number= ' . $my_number;
 	}
 
 	if ($table == 'Quotations') {
@@ -2205,7 +2205,7 @@ private function insert($data) {
 	if ($table == 'Incomings') {
 		$my_number = $this->get_next_number('Controls', 'Next Incoming Number');
 		$set .= ',     id= ' . $my_number;
-		$set .= ', number= ' . $my_number;
+		$set .= ', incoming_number= ' . $my_number;
 	}
 
 	if ($table == 'Boxes') {
@@ -4337,7 +4337,7 @@ if (ENVIRONMENT == 'production') {
 			. '	    , 12 * (YEAR(PurchaseLines.expected_date) - YEAR(@cut_off_date)) + (MONTH(PurchaseLines.expected_date) - MONTH(@cut_off_date)) AS months'
 			. '	    , SUM(PurchaseLines.expected_weight - PurchaseLines.received_weight) AS forecast_weight'
 			. '  FROM PurchaseLines'
-			. '  LEFT JOIN Purchases ON Purchases.id = PurchaseLines.purchase_id'
+			. '  LEFT JOIN Purchases ON Purchases.id = PurchaseLines.parent_id'
 			. ' WHERE PurchaseLines.status = "Draft"'
 			. '   AND PurchaseLines.expected_weight > PurchaseLines.received_weight'
 			. ' GROUP BY thread_id, supplier_id, months'

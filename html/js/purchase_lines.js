@@ -37,7 +37,7 @@ JKY.generate_row = function(the_row) {
 	var my_trash = (the_row.batch_id == null) ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_line = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-thread-row-name' readonly='readonly' onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
+		+ "<input class='jky-thread-row-name' readonly='readonly' onchange='JKY.update_line(this, " + my_id + ")' value='" + JKY.fix_null(the_row.thread_name) + "' />"
 		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_expected_date = JKY.out_date(the_row.expected_date);
@@ -90,7 +90,7 @@ JKY.insert_line = function() {
 	var my_data =
 		{ method	: 'insert'
 		, table		: 'PurchaseLines'
-		, set		: 'PurchaseLines.purchase_id = ' + JKY.row.id
+		, set		: 'PurchaseLines.parent_id = ' + JKY.row.id
 		};
 	JKY.ajax(true, my_data, JKY.insert_line_success);
 }

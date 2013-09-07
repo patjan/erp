@@ -7,13 +7,6 @@
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-.jky-thread-label			{font-weight:bold; text-align:right;}
-.jky-thread-value			{text-align:right !important;}
-.jky-thread-row-name		{width:270px; margin-right:5px;}
-.jky-thread-batchin			{width: 120px;}
-
-.jky-batchin-row-batch		{width: 90px; margin-right:5px;}
-
 .jky-batchin-search-balance		{text-align:right !important}
 .jky-batchin-search-checkin		{text-align:right !important}
 .jky-batchin-search-returned	{text-align:right !important}
@@ -57,7 +50,7 @@
 				<div class='jky-form-label'><span>Order Number</span>:</div>
 				<input  id='jky-order-number'	readonly='readonly'	/></div>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>      Customer</span>:</div>
+				<div class='jky-form-label'><span>Customer</span>:</div>
 				<input id='jky-customer-id'		type='hidden'		value='' />
 				<input id='jky-customer-name'	readonly='readonly'	value='' />
 				<a href='#' onClick='JKY.Customer.display(this)'><i class='icon-share'></i></a>
@@ -84,22 +77,22 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Ordered Date</span>:</div>
-				<div id="jky-ordered-date"	class="input-append date">
-					<input id='jky-ordered-value'		type="text" />
+				<div id="jky-ordered-date" class="input-append date">
+					<input id='jky-ordered-value' type="text" />
 					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Needed Date</span>:</div>
-				<div id="jky-needed-date"	class="input-append date">
-					<input id='jky-needed-value'	type="text" />
+				<div id="jky-needed-date" class="input-append date">
+					<input id='jky-needed-value' type="text" />
 					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Produced Date</span>:</div>
-				<div id="jky-produced-date"	class="input-append date">
-					<input id='jky-produced-value'	type="text" />
+				<div id="jky-produced-date" class="input-append date">
+					<input id='jky-produced-value' type="text" />
 					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
 				</div>
 			</div>
@@ -142,12 +135,12 @@
 					<thead>
 						<tr>
 							<th class='jky-action'></th>
-							<th class='jky-thread-name'		><span>   Thread			</span></th>
-							<th class='jky-thread-batchin'	><span>    Batch			</span></th>
-							<th class='jky-thread-value'	><span>   Needed<br>Date	</span></th>
-							<th class='jky-thread-value'	><span>Requested<br>Weight	</span></th>
-							<th class='jky-thread-value'	><span>Check Out<br>Date	</span></th>
-							<th class='jky-thread-value'	><span>Check Out<br>Weight	</span></th>
+							<th class='jky-td-thread-name'		><span>             Thread	</span></th>
+							<th class='jky-td-batchin-number'	><span>             Batch	</span></th>
+							<th class='jky-td-thread-date'		><span>   Needed<br>Date	</span></th>
+							<th class='jky-td-thread-date'		><span>Check Out<br>Date	</span></th>
+							<th class='jky-td-thread-weight'	><span>Requested<br>Weight	</span></th>
+							<th class='jky-td-thread-weight'	><span>Check Out<br>Weight	</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-threads-body'></tbody>

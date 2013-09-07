@@ -223,7 +223,8 @@ return;
 	}
 
 	function my_print_labels_success(response) {
-		$(my_index).parent().parent().find('.jky-batch-labels-printed' ).val(my_labels_printed);
+		$(my_index).parent().parent().find('.jky-action' ).html('');
+		$(my_index).parent().parent().find('.jky-labels-printed' ).val(my_labels_printed);
 		JKY.hide_modal(my_layer);
 		JKY.display_message(response.message);
 	}

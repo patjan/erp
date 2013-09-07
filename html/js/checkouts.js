@@ -40,6 +40,11 @@ JKY.set_all_events = function() {
 	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 
 	$('#jky-boxes-print'	).click (function() {JKY.Batch.print()});
+
+
+	$('#jky-machine-name'	).change(function() {JKY.clear_produced_by("machine"	);});
+	$('#jky-supplier-name'	).change(function() {JKY.clear_produced_by("supplier"	);});
+	$('#jky-dyer-name'		).change(function() {JKY.clear_produced_by("dyer"		);});
 }
 
 /**
@@ -157,6 +162,21 @@ JKY.process_delete = function(the_id, the_row) {
 	JKY.ajax(true, my_data);
 }
 
+JKY.clear_produced_by = function(the_name) {
+	if (the_name != 'machine') {
+		JKY.set_value('jky-machine-id', null);
+		JKY.set_value('jky-machine-name', '');
+	}
+	if (the_name != 'supplier') {
+		JKY.set_value('jky-supplier-id', null);
+		JKY.set_value('jky-supplier-name', '');
+	}
+	if (the_name != 'dyer') {
+		JKY.set_value('jky-dyer-id', null);
+		JKY.set_value('jky-dyer-name', '');
+	}
+}
+
 /**
  *	set calculated color
  */
@@ -168,4 +188,5 @@ JKY.set_calculated_color = function() {
 	JKY.set_css('jky-requested-weight', 'color', (my_requested_weight == my_checkout_weight) ? 'black' : 'red');
 //	JKY.set_css('jky-requested-amount', 'color', (my_requested_amount == my_checkout_amount) ? 'black' : 'red');
 }
+
 

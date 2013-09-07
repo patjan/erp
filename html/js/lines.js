@@ -123,7 +123,7 @@ JKY.process_delete = function(the_id, the_row) {
 	var my_data =
 		{ method: 'delete_many'
 		, table : 'PurchaseLines'
-		, where : 'purchase_id = ' + the_id
+		, where : 'parent_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
 };
