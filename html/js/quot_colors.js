@@ -183,9 +183,9 @@ JKY.print_colors = function(the_id) {
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'
-		, table		: 'QuotLines'
+		, table		: 'QuotColors'
 		, select	:  the_id
-		, order_by  : 'QuotLines.id'
+		, order_by  : 'QuotColors.id'
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);
@@ -199,22 +199,16 @@ JKY.print_colors = function(the_id) {
 				if (response.status == 'ok') {
 					var my_rows = response.rows;
 					for(var i in my_rows) {
-						var my_row			= my_rows[i];
-						var my_color_id		= my_row.color_id;
-
+						var my_row = my_rows[i];
 						my_html  += ''
 							+ '<tr>'
 							+ '<td></td>'
-							+ '<td>Fio 1 = ' + JKY.get_name(my_color_id, JKY.colors) + '</td>'
-							+ '</tr>'
-							;
-						if (my_thread_id_2) {my_html += '<tr><td colspan="3"></td><td>Fio 2 = ' + JKY.get_name(my_thread_id_2, JKY.colors) + '</td></tr>';}
-						if (my_thread_id_3) {my_html += '<tr><td colspan="3"></td><td>Fio 3 = ' + JKY.get_name(my_thread_id_3, JKY.colors) + '</td></tr>';}
-						if (my_thread_id_4) {my_html += '<tr><td colspan="3"></td><td>Fio 4 = ' + JKY.get_name(my_thread_id_4, JKY.colors) + '</td></tr>';}
-						my_html  += ''
-							+ '<tr>'
-							+ '<td colspan=3></td>'
-							+ '<td><b>' + JKY.nl2br(my_remarks) + '</b></td>'
+							+ '<td>' + my_row.quoted_pieces + '</td>'
+							+ '<td>' + my_row.color_name	+ '</td>'
+							+ '<td>' + my_row.fabric_price	+ '</td>'
+							+ '<td>' + my_row.punho_price	+ '</td>'
+							+ '<td>' + my_row.gola_price	+ '</td>'
+							+ '<td>' + my_row.galao_price	+ '</td>'
 							+ '</tr>'
 							;
 					}

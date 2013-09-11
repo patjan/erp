@@ -45,25 +45,25 @@ JKY.generate_row = function(the_row) {
 	var my_id = the_row.id;
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-thread-row-name' readonly='readonly' onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
+		+ "<input class='jky-thread-row-name' readonly='readonly' onchange='JKY.update_batch(this, " + my_id + ")' value='" + JKY.fix_null(the_row.thread_name) + "' />"
 		+ "<a class='jky-thread-row-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_batchin = ''
 		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-row-number' readonly='readonly' onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.batch_number + "' />"
+		+ "<input class='jky-batchin-row-number' readonly='readonly' onchange='JKY.update_batch(this, " + my_id + ")' value='" + JKY.fix_null(the_row.batch_number) + "' />"
 		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
 		+ '<tr batch_id=' + my_id + '>'
-		+ '<td class="jky-action"><a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-		+ '<td ><input class="jky-batch-code" text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.code			+ '" /></td>'
+		+ '<td class="jky-action"			><a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
+		+ '<td class="jky-td-code"			><input class="jky-product-code" text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.code)+ '" /></td>'
 		+ '<td class="jky-td-thread-name"	>' + my_thread	+ '</td>'
 		+ '<td class="jky-td-batchin-number">' + my_batchin	+ '</td>'
-		+ '<td class="jky-td-weight"		><input  class="jky-batch-average-weight"	disabled="disabled" value="' + the_row.average_weight	+ '" /></td>'
-		+ '<td class="jky-td-weight"		><input  class="jky-batch-requested-weight"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.requested_weight + '" /></td>'
-		+ '<td class="jky-td-weight"		><input  class="jky-batch-checkout-weight"	disabled="disabled" value="' + the_row.checkout_weight	+ '" /></td>'
-		+ '<td class="jky-td-boxes"			><input  class="jky-batch-requested-boxes"	disabled="disabled" value="' + the_row.requested_boxes	+ '" /></td>'
-		+ '<td class="jky-td-boxes"			><input  class="jky-batch-checkout-boxes"	disabled="disabled" value="' + the_row.checkout_boxes	+ '" /></td>'
+		+ '<td class="jky-td-weight"		><input  class="jky-average-weight"		disabled="disabled" value="' + the_row.average_weight	+ '" /></td>'
+		+ '<td class="jky-td-weight"		><input  class="jky-requested-weight"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.requested_weight + '" /></td>'
+		+ '<td class="jky-td-weight"		><input  class="jky-checkout-weight"	disabled="disabled" value="' + the_row.checkout_weight	+ '" /></td>'
+		+ '<td class="jky-td-boxes"			><input  class="jky-requested-boxes"	disabled="disabled" value="' + the_row.requested_boxes	+ '" /></td>'
+		+ '<td class="jky-td-boxes"			><input  class="jky-checkout-boxes"		disabled="disabled" value="' + the_row.checkout_boxes	+ '" /></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -75,8 +75,8 @@ JKY.update_batch = function(id_name, the_id ) {
 	var my_tr = $(id_name).parent().parent();
 	var my_thread_id		= my_tr.find('.jky-thread-row-id'	).val();
 	var my_batchin_id		= my_tr.find('.jky-batchin-row-id'	).val();
-	var my_code				= my_tr.find('.jky-batch-code'		).val();
-	var my_batch			= my_tr.find('.jky-batch-number'	).val();
+	var my_product_code		= my_tr.find('.jky-product-code'	).val();
+//	var my_batch			= my_tr.find('.jky-batch-number'	).val();
 //	var my_average_weight	= parseFloat(my_tr.find('.jky-average-weight'	).val());
 //	var my_requested_boxes	= parseFloat(my_tr.find('.jky-requested-boxes'	).val());
 	var my_requested_weight	= parseFloat(my_tr.find('.jky-requested-weight'	).val());
@@ -90,14 +90,14 @@ JKY.update_batch = function(id_name, the_id ) {
 		my_average_weight	= my_row_batchin.average_weight;
 		my_requested_boxes	= Math.round(my_requested_weight / my_average_weight + 0.5);
 	}
-	my_tr.find('.jky-batch-average-weight'	).val(my_average_weight	);
-	my_tr.find('.jky-batch-requested-boxes'	).val(my_requested_boxes);
+	my_tr.find('.jky-average-weight' ).val(my_average_weight );
+	my_tr.find('.jky-requested-boxes').val(my_requested_boxes);
 
 	var my_set = ''
 		+          'thread_id =  ' + my_thread_id
 		+       ', batchin_id =  ' + my_batchin_id
-		+             ', code =\'' + my_code	+ '\''
-		+            ', batch =\'' + my_batch	+ '\''
+		+             ', code =\'' + my_product_code	+ '\''
+//		+            ', batch =\'' + my_batch_code		+ '\''
 		+       ', unit_price =  ' + my_unit_price
 		+   ', average_weight =  ' + my_average_weight
 		+  ', requested_boxes =  ' + my_requested_boxes

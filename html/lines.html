@@ -43,10 +43,11 @@
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-purchase-number'	><span>	Purchase<br>Number		</span></th>
-			<th class='jky-supplier-name'	><span>	Supplier<br>Name		</span></th>
-			<th class='jky-thread-name'		><span>	  Thread<br>Name		</span></th>
+			<th class='jky-supplier-name'	><span>	            Supplier	</span></th>
+			<th class='jky-thread-name'		><span>	            Thread		</span></th>
 			<th class='jky-ordered-date'	><span>	 Ordered<br>Date		</span></th>
 			<th class='jky-expected-date'	><span>	Expected<br>Date		</span></th>
+			<th class='jky-received-date'	><span>	Received<br>Date		</span></th>
 			<th class='jky-scheduled-date'	><span>Scheduled<br>Date		</span></th>
 			<th class='jky-expected-weight'	><span>	Expected<br>Weight		</span></th>
 			<th class='jky-received-weight'	><span>	Received<br>Weight		</span></th>
@@ -58,10 +59,7 @@
 
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
-		<div id='jky-form-actions'	>
-			<button id='jky-action-complete'	class='btn btn-success' type='button' title="Click here to complete the batch"	><span>Complete</span></button>
-			<button id='jky-action-batch'		class='btn'				type='button' title="Click here to generate incoming batch"	><span>Generate Batch</span></button>
-		</div>
+		<div id='jky-form-actions'	></div>
 		<ul  id='jky-form-status'	></ul>
 	</div>
 	<div class='jky-clear'></div>
@@ -70,8 +68,15 @@
 		<div class='jky-form-line'><div class='jky-form-label'><span>	Purchase Number</span>:</div><input  id='jky-purchase-number'	class='jky-form-value'	readonly='readonly' /></div>
 		<div class='jky-form-line'><div class='jky-form-label'><span>	       Supplier</span>:</div><input  id='jky-supplier-name'		class='jky-form-value'	readonly='readonly' /></div>
 		<div class='jky-form-line'><div class='jky-form-label'><span>	         Thread</span>:</div><input  id='jky-thread-name'		class='jky-form-value'	readonly='readonly' /></div>
-		<div class='jky-form-line'><div class='jky-form-label'><span>      Ordered Date</span>:</div><input  id='jky-ordered-at'		class='jky-form-value'	readonly='readonly' /></div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>      Ordered Date</span>:</div>
+			<div id="jky-ordered-date" class="input-append date">
+				<input id='jky-ordered-value' type="text" />
+				<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+			</div>
+		</div>
 		<div class='jky-clear'></div>
+
 		<div class='jky-left'>
 			<div class='jky-form-line-1'>
 				<div class='jky-form-label'><span> Expected Date</span>:</div>
@@ -81,20 +86,29 @@
 				</div>
 			</div>
 			<div class='jky-form-line-1'>
-				<div class='jky-form-label'><span>Expected Weight</span>:</div>
-				<input  id='jky-expected-weight' class='jky-form-value' />
+				<div class='jky-form-label'><span> Received Date</span>:</div>
+				<div id="jky-received-date" class="input-append date">
+					<input id='jky-received-value' type="text" />
+					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+				</div>
 			</div>
 			<div class='jky-form-line-1'>
 				<div class='jky-form-label'><span>Scheduled Date</span>:</div>
-				<div id="jky-scheduled-at" class="input-append date">
+				<div id="jky-scheduled-date" class="input-append date">
 					<input id='jky-scheduled-value' type="text" />
 					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
 				</div>
 			</div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line-2'><div class='jky-form-label'><span>  Received Date</span>:</div><input  id="jky-received-at"		class='jky-form-value' disabled='disabled' /></div>
-			<div class='jky-form-line-2'><div class='jky-form-label'><span>Received Weight</span>:</div><input  id='jky-received-weight'	class='jky-form-value' disabled='disabled' /></div>
+			<div class='jky-form-line-2'>
+				<div class='jky-form-label'><span>Expected Weight</span>:</div>
+				<input  id='jky-expected-weight' class='jky-form-value' />
+			</div>
+			<div class='jky-form-line-2'>
+				<div class='jky-form-label'><span>Received Weight</span>:</div>
+				<input  id='jky-received-weight'	class='jky-form-value' disabled='disabled' />
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>

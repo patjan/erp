@@ -25,7 +25,7 @@ JKY.generate_lines = function(response) {
 			JKY.Purchase.add_received(my_row.received_weight);
 		}
 	}
-	JKY.set_html('jky-line-body', my_html );
+	JKY.set_html('jky-lines-body', my_html );
 	JKY.update_total_weight();
 	if (my_rows == '') {
 		JKY.insert_line();
@@ -48,10 +48,10 @@ JKY.generate_row = function(the_row) {
 		+ '<tr purchase_line_id=' + my_id + '>'
 		+ '<td class="jky-action"			>' + my_trash + '</td>'
 		+ '<td class="jky-td-thread-name"	>' + my_line  + '</td>'
-		+ '<td class="jky-td-line-weight"	><input class="jky-expected-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.expected_weight) + '"						/></td>'
-		+ '<td class="jky-td-line-date"		><input class="jky-expected-date"				onchange="JKY.update_line(this, ' + my_id + ')"	value="' +					  my_expected_date	  + '"						/></td>'
-		+ '<td class="jky-td-line-weight"	><input class="jky-received-weight" text="text"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.received_weight) + '" disabled="disabled"	/></td>'
-		+ '<td class="jky-td-line-date"		><input class="jky-scheduled-date"				onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	) + '" disabled="disabled"	/></td>'
+		+ '<td class="jky-td-line-weight"	><input class="jky-expected-weight" onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.expected_weight  ) + '"						/></td>'
+		+ '<td class="jky-td-line-weight"	><input class="jky-received-weight" onchange="JKY.update_line(this, ' + my_id + ')" value="' +				 the_row.received_weight	+ '" disabled="disabled"	/></td>'
+		+ '<td class="jky-td-line-date"		><input class="jky-expected-date"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' +					  my_expected_date		+ '"						/></td>'
+		+ '<td class="jky-td-line-date"		><input class="jky-scheduled-date"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	  ) + '" disabled="disabled"	/></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -62,7 +62,7 @@ JKY.update_line = function(id_name, the_id ) {
 
 	var my_tr = $(id_name).parent().parent();
 	var my_thread_id		= my_tr.find('.jky-thread-row-id').val();
-	var my_expected_weight	= parseFloat(my_tr.find('.jky-expected-weight'	).val());
+	var my_expected_weight	= parseFloat  (my_tr.find('.jky-expected-weight').val());
 	var my_expected_date	= JKY.inp_date(my_tr.find('.jky-expected-date'	).val());
 
 	var my_set = ''
@@ -106,7 +106,7 @@ JKY.insert_line_success = function(response) {
 	my_row.scheduled_at		= null;
 
 	var my_html = JKY.generate_row(my_row);
-	JKY.append_html('jky-line-body', my_html);
+	JKY.append_html('jky-lines-body', my_html);
 }
 
 JKY.delete_line = function(id_name, the_id) {
@@ -125,8 +125,8 @@ JKY.delete_line_success = function(response) {
 }
 
 JKY.update_total_weight = function() {
-	JKY.set_html('jky-line-total-expected', JKY.Purchase.get_expected());
-	JKY.set_html('jky-line-total-received', JKY.Purchase.get_received());
+	JKY.set_value('jky-total-expected', JKY.Purchase.get_expected());
+	JKY.set_value('jky-total-received', JKY.Purchase.get_received());
 	JKY.Purchase.update_expected_weight(JKY.row.id);
 }
 

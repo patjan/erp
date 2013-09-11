@@ -28,11 +28,9 @@
 			<th class='jky-source-doc'		><span>   Source<br>Document</span></th>
 			<th class='jky-ordered-date'	><span>  Ordered<br>Date	</span></th>
 			<th class='jky-expected-date'	><span> Expected<br>Date	</span></th>
-			<th class='jky-scheduled-date'	><span>Scheduled<br>Date	</span></th>
 			<th class='jky-expected-weight'	><span> Expected<br>Weight	</span></th>
 			<th class='jky-received-weight'	><span> Received<br>Weight	</span></th>
 			<th class='jky-supplier-name'	><span>             Supplier</span></th>
-			<th class='jky-supplier-ref'	><span> Supplier<br>Document</span></th>
 		</tr>
 	</thead>
 
@@ -41,11 +39,11 @@
 
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
-		<div id='jky-form-actions'	>
-			<button id='jky-action-generate'	class='btn'	type='button' disabled='disabled' title="Click here to generate check out"	><span>Generate Check Out	</span></button>
-			<button id='jky-action-close'		class='btn' type='button' disabled='disabled' title="Click here to close this order"	><span>Close Order			</span></button>
+		<div id='jky-form-actions'>
+			<button id='jky-action-generate'	class='btn'	type='button' title="Click here to generate check out"	><span>Generate Check Out	</span></button>
+			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this order"	><span>Close Order			</span></button>
 		</div>
-		<ul  id='jky-form-status'	></ul>
+		<ul  id='jky-form-status'></ul>
 	</div>
 	<div class='jky-clear'></div>
 
@@ -105,19 +103,21 @@
 							<th class='jky-action'></th>
 							<th class='jky-td-thread-name'	><span>   Thread			</span></th>
 							<th class='jky-td-line-weight'	><span> Expected<br>Weight	</span></th>
-							<th class='jky-td-line-date'	><span> Expected<br>Date	</span></th>
 							<th class='jky-td-line-weight'	><span> Received<br>Weight	</span></th>
+							<th class='jky-td-line-date'	><span> Expected<br>Date	</span></th>
 							<th class='jky-td-line-date'	><span>Scheduled<br>Date	</span></th>
 						</tr>
 					</thead>
-					<tbody id='jky-line-body'></tbody>
+					<tbody id='jky-lines-body'></tbody>
 					<tfoot>
 						<tr>
-							<td	   id='jky-line-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
-<!--						<td class='jky-line-label'><span>Total</span></td>
--->							<td    id='jky-line-total-expected'></td>
+							<td colspan='2'>
+								<button id='jky-line-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
+							</td>
+<!--						<td class='jky-line-label'><span>Total</span></td>	-->
+							<td class='jky-td-line-weight'><input id='jky-total-expected' value='' disabled='disabled' /></td>
+							<td class='jky-td-line-weight'><input id='jky-total-received' value='' disabled='disabled' /></td>
 							<td></td>
-							<td    id='jky-line-total-received'></td>
 							<td></td>
 						</tr>
 					</tfoot>

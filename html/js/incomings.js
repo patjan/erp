@@ -56,6 +56,10 @@ JKY.set_initial_values = function() {
  *	set table row
  */
 JKY.set_table_row = function(the_row) {
+	var my_invoice_weight	= parseFloat(the_row.invoice_weight	);
+	var my_received_weight	= parseFloat(the_row.received_weight);
+	var my_class = (my_invoice_weight == my_received_weight) ? '' : ' jky-error';
+
 	var my_html = ''
 		+  '<td class="jky-incoming-number"	>' +				 the_row.incoming_number	+ '</td>'
 		+  '<td class="jky-supplier-name"	>' +				 the_row.supplier_name		+ '</td>'
@@ -64,7 +68,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-invoice-date"	>' + JKY.out_date	(the_row.invoice_date	) 	+ '</td>'
 		+  '<td class="jky-received-date"	>' + JKY.short_date	(the_row.received_at	)	+ '</td>'
 		+  '<td class="jky-invoice-weight"	>' +				 the_row.invoice_weight		+ '</td>'
-		+  '<td class="jky-received-weight"	>' +				 the_row.received_weight	+ '</td>'
+		+  '<td class="jky-received-weight' + my_class + '"	>' + the_row.received_weight	+ '</td>'
 		;
 	return my_html;
 };

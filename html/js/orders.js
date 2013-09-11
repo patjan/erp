@@ -55,11 +55,12 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-customer', '../JKY.Search.Customer.html');
 	JKY.append_file('jky-load-machine' , '../JKY.Search.Machine.html' );
 	JKY.append_file('jky-load-partner' , '../JKY.Search.Partner.html' );
-	JKY.append_file('jky-load-product' , '../JKY.Search.Product.html' );
+//	JKY.append_file('jky-load-product' , '../JKY.Search.Product.html' );
+	JKY.append_file('jky-load-ftp'     , '../JKY.Search.FTP.html'     );
 	JKY.append_file('jky-load-thread'  , '../JKY.Search.Thread.html'  );
 	JKY.append_file('jky-load-batchin' , '../JKY.Search.BatchIn.html' );
 
-	JKY.set_side_active('jky-production-orders');
+	JKY.set_side_active('jky-planning-orders');
 	JKY.set_html('jky-customer-name', JKY.set_options_array('', JKY.get_companies('is_customer'), true));
 	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
 	JKY.set_html('jky-partner-name' , JKY.set_options_array('', JKY.get_companies('is_partner'), true));
@@ -71,7 +72,8 @@ JKY.set_initial_values = function() {
 	$('#jky-customer-filter'	).KeyUpDelay(JKY.Customer.load_data);
 	$('#jky-machine-filter'		).KeyUpDelay(JKY.Machine.load_data );
 	$('#jky-partner-filter'		).KeyUpDelay(JKY.Partner.load_data );
-	$('#jky-product-filter'		).KeyUpDelay(JKY.Product.load_data );
+//	$('#jky-product-filter'		).KeyUpDelay(JKY.Product.load_data );
+	$('#jky-ftp-filter'  		).KeyUpDelay(JKY.FTP.load_data     );
 	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data  );
 	$('#jky-batchin-filter'		).KeyUpDelay(JKY.BatchIn.load_data );
 };
@@ -85,7 +87,8 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-customer-name"	>' + JKY.fix_null	(the_row.customer_name		)	+ '</td>'
 		+  '<td class="jky-machine-name"	>' + JKY.fix_null	(the_row.machine_name		)	+ '</td>'
 		+  '<td class="jky-partner-name"	>' + JKY.fix_null	(the_row.partner_name		)	+ '</td>'
-		+  '<td class="jky-product-name"	>' + JKY.fix_null	(the_row.product_name		)	+ '</td>'
+//		+  '<td class="jky-product-name"	>' + JKY.fix_null	(the_row.product_name		)	+ '</td>'
+		+  '<td class="jky-ftp-number"		>' + JKY.fix_null	(the_row.ftp_number			)	+ '</td>'
 		+  '<td class="jky-ordered-date"	>' + JKY.short_date	(the_row.ordered_at			)	+ '</td>'
 		+  '<td class="jky-needed-date"		>' + JKY.short_date	(the_row.needed_at			)	+ '</td>'
 		+  '<td class="jky-produced-date"	>' + JKY.short_date	(the_row.produced_at		)	+ '</td>'
@@ -107,7 +110,10 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-machine-name'		,				 the_row.machine_name		);
 	JKY.set_value	('jky-partner-id'		,				 the_row.partner_id			);
 	JKY.set_value	('jky-partner-name'		,				 the_row.partner_name		);
-	JKY.set_value	('jky-product-id'		,				 the_row.product_id			);
+//	JKY.set_value	('jky-product-id'		,				 the_row.product_id			);
+//	JKY.set_value	('jky-product-name'		,				 the_row.product_name		);
+	JKY.set_value	('jky-ftp-id'			,				 the_row.ftp_id				);
+	JKY.set_value	('jky-ftp-number'		,				 the_row.ftp_number			);
 	JKY.set_value	('jky-product-name'		,				 the_row.product_name		);
 	JKY.set_date	('jky-ordered-date'		, JKY.out_time	(the_row.ordered_at			));
 	JKY.set_date	('jky-needed-date'		, JKY.out_time	(the_row.needed_at			));
@@ -145,17 +151,20 @@ JKY.get_form_set = function() {
 	var my_customer_id	= JKY.get_value('jky-customer-id'	);
 	var my_machine_id	= JKY.get_value('jky-machine-id'	);
 	var my_partner_id	= JKY.get_value('jky-partner-id'	);
-	var my_product_id	= JKY.get_value('jky-product-id'	);
+//	var my_product_id	= JKY.get_value('jky-product-id'	);
+	var my_ftp_id		= JKY.get_value('jky-ftp-id'		);
 	my_customer_id	= (my_customer_id == '') ? 'null' : my_customer_id;
 	my_machine_id	= (my_machine_id  == '') ? 'null' : my_machine_id ;
 	my_partner_id	= (my_partner_id  == '') ? 'null' : my_partner_id ;
-	my_product_id	= (my_product_id  == '') ? 'null' : my_product_id ;
+//	my_product_id	= (my_product_id  == '') ? 'null' : my_product_id ;
+	my_ftp_id		= (my_ftp_id	  == '') ? 'null' : my_ftp_id     ;
 
 	var my_set = ''
 		+       'customer_id=  ' + my_customer_id
 		+      ', machine_id=  ' + my_machine_id
 		+      ', partner_id=  ' + my_partner_id
-		+      ', product_id=  ' + my_product_id
+//		+      ', product_id=  ' + my_product_id
+		+          ', ftp_id=  ' + my_ftp_id
 		+      ', ordered_at=  ' + JKY.inp_time	(JKY.get_value('jky-ordered-value'	))
 		+       ', needed_at=  ' + JKY.inp_time	(JKY.get_value('jky-needed-value'	))
 		+     ', produced_at=  ' + JKY.inp_time	(JKY.get_value('jky-produced-value'	))

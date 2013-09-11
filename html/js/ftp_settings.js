@@ -72,6 +72,59 @@ JKY.update_settings_success = function(response) {
 //	JKY.display_message(response.message)
 }
 
+JKY.copy_settings = function(the_source, the_id) {
+	var my_html  = '';
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'FTP_Sets'
+		, select	:  the_source
+		, order_by  : 'FTP_Sets.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					var my_rows = response.rows;
+					for(var i in my_rows) {
+						var my_row	= my_rows[i];
+						if (my_row.value == 'null') {
+							continue;
+						}
+						var my_set	=   '     ftp_id =  ' + the_id
+									+ ',  setting_id =  ' + my_row.setting
+									+ ',       value =\'' + my_row.value + '\''
+									;
+						var	my_data =
+							{ method	: 'insert'
+							, table		: 'FTP_Sets'
+							, set		:  my_set
+							};
+						JKY.ajax(true, my_data);
+					}
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		}
+	)
+	return my_html;
+}
+
+JKY.delete_settings = function(the_id) {
+	var my_data =
+		{ method: 'delete_many'
+		, table : 'FTP_Sets'
+		, where : 'ftp_id = ' + the_id
+		};
+	JKY.ajax(true, my_data);
+}
+
 JKY.print_settings = function(the_id) {
 	var my_html  = '';
 	var my_data =

@@ -25,7 +25,7 @@ JKY.generate_cylinders = function(response) {
 
 			var my_cylinder = ''
 //				+ "<input class='jky-thread-row-id' type='hidden' value=" + my_thread_id + " />"
-				+ "<input class='jky-cylinder-row-name jky-form-value' readonly='readonly' onchange='JKY.update_name(this, " + my_id + ")' value='" + my_name + "' />"
+				+ "<input class='jky-cylinder-row-name' readonly='readonly' onchange='JKY.update_name(this, " + my_id + ")' value='" + my_name + "' />"
 				+ "<a href='#' onClick='JKY.Cylinder.display(this)'><i class='icon-share'></i></a>"
 				;
 

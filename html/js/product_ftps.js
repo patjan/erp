@@ -32,9 +32,9 @@ JKY.generate_row = function(the_row) {
 	var my_html  = ''
 		+ '<tr ftp_id=' + my_id + '>'
 		+ '<td class="jky-action">' + my_trash + '</td>'
-		+ '<td class="jky-ftp-number"		>' + the_row.number		+ '</td>'
-		+ '<td class="jky-ftp-composition"	>' + the_row.composition+ '</td>'
-		+ '<td class="jky-ftp-machine"		>' + the_row.machine	+ '</td>'
+		+ '<td class="jky-ftp-number"		>' + the_row.ftp_number		+ '</td>'
+		+ '<td class="jky-ftp-composition"	>' + the_row.composition	+ '</td>'
+		+ '<td class="jky-ftp-machine"		>' + the_row.machine_name	+ '</td>'
 		+ '</tr>'
 		;
 	return my_html;

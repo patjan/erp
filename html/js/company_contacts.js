@@ -52,7 +52,7 @@ JKY.generate_row = function(the_row) {
 /*
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + my_thread_id + " />"
-		+ "<input class='jky-thread-row-name jky-form-value' readonly='readonly' onclick='JKY.update_thread(this, " + my_id + ")' value='" + my_name + "' />"
+		+ "<input class='jky-thread-row-name' readonly='readonly' onchange='JKY.update_thread(this, " + my_id + ")' value='" + my_name + "' />"
 		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 */

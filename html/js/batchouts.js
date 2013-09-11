@@ -63,9 +63,9 @@ JKY.set_table_row = function(the_row) {
 //		+  '<td class="jky-unit-price"		>' +				 the_row.unit_price				+ '</td>'
 //		+  '<td class="jky-average-weight"	>' +				 the_row.average_weight			+ '</td>'
 		+  '<td class="jky-requested-weight">' +				 the_row.requested_weight		+ '</td>'
+		+  '<td class="jky-checkout-weight"	>' +				 the_row.checkout_weight		+ '</td>'
 		+  '<td class="jky-requested-boxes"	>' +				 the_row.requested_boxes		+ '</td>'
 		+  '<td class="jky-reserved-boxes"	>' +				 the_row.reserved_boxes			+ '</td>'
-		+  '<td class="jky-checkout-weight"	>' +				 the_row.checkout_weight		+ '</td>'
 		+  '<td class="jky-checkout-boxes"	>' +				 the_row.checkout_boxes			+ '</td>'
 		;
 	return my_html;
@@ -75,9 +75,9 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-code'					, the_row.code				);
+	JKY.set_value	('jky-product-code'			, the_row.code				);
 	JKY.set_value	('jky-thread-name'			, the_row.thread_name		);
-	JKY.set_value	('jky-batch'				, the_row.batch_number		);
+	JKY.set_value	('jky-batch-number'			, the_row.batch_number		);
 	JKY.set_value	('jky-machine-name'			, the_row.machine_name		);
 	JKY.set_value	('jky-supplier-name'		, the_row.supplier_name		);
 	JKY.set_value	('jky-unit-price'			, the_row.unit_price		);
@@ -103,9 +103,9 @@ JKY.set_form_row = function(the_row) {
  *	set add new row
  */
 JKY.set_add_new_row = function() {
-	JKY.set_value	('jky-code'					, '');
+	JKY.set_value	('jky-product-code'			, '');
 	JKY.set_value	('jky-thread-name'			, '');
-	JKY.set_value	('jky-batch'				, '');
+	JKY.set_value	('jky-batch-number'			, '');
 	JKY.set_value	('jky-machine-name'			, '');
 	JKY.set_value	('jky-supplier-name'		, '');
 	JKY.set_value	('jky-requested-weight'		,  0);
@@ -125,8 +125,8 @@ JKY.get_form_set = function() {
 //	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
 
 	var my_set = ''
-		+   'code=\''				+	JKY.get_value('jky-code'				) + '\''
-		+', batch=\''				+	JKY.get_value('jky-batch'				) + '\''
+		+   'code=\''				+	JKY.get_value('jky-product-code'		) + '\''
+		+', batch=\''				+	JKY.get_value('jky-batch-number'		) + '\''
 		+', unit_price=  '			+	JKY.get_value('jky-unit-price'			)
 		+', requested_weight= '		+	JKY.get_value('jky-requested-weight'	)
 		+', requested_boxes=  '		+	JKY.get_value('jky-requested-boxes'		)
@@ -137,6 +137,8 @@ JKY.get_form_set = function() {
 		;
 	return my_set;
 };
+
+/* -------------------------------------------------------------------------- */
 
 JKY.generate_batch = function() {
 	JKY.insert_batch_sets();

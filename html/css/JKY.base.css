@@ -45,6 +45,7 @@ input.search-query	{margin-bottom:10px;}
 .jky-left		{float:left ;}
 .jky-right		{float:right;}
 .jky-clear		{clear:both;}
+.jky-bold		{font-weight:bold;}
 .jky-side-set	{margin:10px 0 0 10px; font-weight:bold; color:#7C7BAD;}
 .jky-side-item	{padding-left:20px; cursor:pointer;}
 .jky-side-item.active	{
@@ -241,24 +242,25 @@ li .arrow span {
 #jky-printable			{display:none}
 
 
-
 /* -------------------------------------------------------------------------- */
 .jky-action				{width: 20px; }
-.jky-average-weight		{width: 55px; text-align:right  !important;}
+.jky-average-weight		{width: 75px; text-align:right  !important;}
 .jky-barcode			{width: 90px; text-align:center !important;}
 .jky-batch-code			{width: 80px; text-align:center !important;}
 .jky-batch-number		{width: 80px; text-align:center !important;}
 .jky-checkbox			{width: 25px; text-align:center !important;}
-.jky-checkin-date		{width: 60px; text-align:center !important;}
+.jky-checkin-date		{width: 75px; text-align:center !important;}
 .jky-checkin-location	{width: 50px; text-align:center !important;}
 .jky-checkin-boxes		{width: 55px; text-align:right  !important;}
-.jky-checkin-weight		{width: 55px; text-align:right  !important;}
+.jky-checkin-weight		{width: 75px; text-align:right  !important;}
 .jky-checkout-boxes		{width: 50px; text-align:right  !important;}
 .jky-checkout-date		{width: 75px; text-align:center !important;}
-.jky-checkout-weight	{width: 60px; text-align:right  !important;}
+.jky-checkout-weight	{width: 75px; text-align:right  !important;}
 .jky-checkout-number	{width: 50px; text-align:center !important;}
+.jky-color-name			{width:200px; text-align:left	!important; text-transform:capitalize;}
+.jky-composition		{width:150px; text-align:center !important;}
 .jky-customer-name		{width: 80px; text-align:center	!important; text-transform:capitalize;}
-.jky-delivered-date		{width: 60px; text-align:center !important;}
+.jky-delivered-date		{width: 75x; text-align:center !important;}
 .jky-delivered-pieces	{width: 50px; text-align:right  !important;}
 .jky-density			{width: 40px; text-align:right  !important;}
 .jky-diameter			{width: 40px; text-align:right  !important;}
@@ -275,6 +277,7 @@ li .arrow span {
 .jky-invoice-date		{width: 75px; text-align:center !important;}
 .jky-invoice-weight		{width: 60px; text-align:right  !important;}
 .jky-invoice-amount		{width: 60px; text-align:right  !important;}
+.jky-ftp-number			{width: 60px; text-align:center !important;}
 .jky-labels-printed		{width: 45px; text-align:right  !important; margin-right:4px;}
 .jky-lanes				{width: 40px; text-align:right  !important;}
 .jky-lane-type			{width:200px; text-align:left   !important;}
@@ -290,33 +293,33 @@ li .arrow span {
 .jky-number-of-cones	{width: 45px; text-align:right  !important;}
 .jky-number-of-pieces	{width: 50px; text-align:right  !important;}
 .jky-order-number		{width: 50px; text-align:center !important;}
-.jky-ordered-date		{width: 60px; text-align:center !important;}
+.jky-ordered-date		{width: 75px; text-align:center !important;}
 .jky-ordered-pieces		{width: 50px; text-align:right  !important;}
 .jky-ordered-weight		{width: 60px; text-align:right  !important;}
 .jky-partner-name		{width: 80px; text-align:left	!important; text-transform:capitalize;}
 .jky-product-code		{width: 80px; text-align:center	!important;}
 .jky-product-name		{width:200px; text-align:left	!important; text-transform:capitalize;}
 .jky-produced-by		{width: 60px; text-align:center !important; text-transform:capitalize;}
-.jky-produced-date		{width: 60px; text-align:center !important;}
+.jky-produced-date		{width: 75px; text-align:center !important;}
 .jky-produced-pieces	{width: 50px; text-align:right  !important;}
 .jky-purchase-number	{width: 50px; text-align:center !important;}
 .jky-punho-price		{width: 45px; text-align:right  !important;}
 .jky-quality			{width: 90px; text-align:center !important;}
 .jky-quotation-number	{width: 55px; text-align:center !important;}
-.jky-quoted-date		{width: 60px; text-align:center !important;}
+.jky-quoted-date		{width: 75px; text-align:center !important;}
 .jky-quoted-pieces		{width: 50px; text-align:right  !important;}
 .jky-real-weight		{width: 50px; text-align:right  !important;}
 .jky-received-boxes		{width: 55px; text-align:right  !important;}
 .jky-received-date		{width: 75px; text-align:center !important;}
-.jky-received-weight	{width: 60px; text-align:right  !important;}
+.jky-received-weight	{width: 65px; text-align:right  !important;}
 .jky-rejected-pieces	{width: 50px; text-align:right  !important;}
 .jky-remarks			{width:200px; text-align:center !important;}
 .jky-request-number		{width: 50px; text-align:center !important;}
 .jky-requested-boxes	{width: 50px; text-align:right  !important;}
 .jky-requested-date		{width: 75px; text-align:center !important;}
-.jky-requested-weight	{width: 60px; text-align:right  !important;}
+.jky-requested-weight	{width: 70px; text-align:right  !important;}
 .jky-reserved-boxes		{width: 50px; text-align:right  !important;}
-.jky-returned-date		{width: 60px; text-align:center !important;}
+.jky-returned-date		{width: 75px; text-align:center !important;}
 .jky-returned-weight	{width: 55px; text-align:right  !important;}
 .jky-scheduled-date		{width: 75px; text-align:center !important;}
 .jky-sequence			{width: 35px; text-align:center !important;}
@@ -326,8 +329,15 @@ li .arrow span {
 .jky-supplier-ref		{width: 70px; text-align:center !important;}
 .jky-thread-name		{width:200px; text-align:left   !important;}
 .jky-tdyer-number		{width: 50px; text-align:center !important;}
-.jky-unit-price			{width: 50px; text-align:center !important;}
+.jky-unit-price			{width: 50px; text-align:right  !important;}
 .jky-width				{width: 40px; text-align:right  !important;}
+
+.jky-td-boxes			{width: 65px; text-align:right  !important;}
+.jky-td-code			{width:100px; text-align:center !important;}
+.jky-td-weight			{width: 70px; text-align:right  !important;}
+
+
+
 
 .jky-td-batch-boxes			{width: 60px; text-align:right  !important;}
 .jky-td-batch-value			{width: 60px; text-align:right  !important;}
@@ -381,25 +391,25 @@ li .arrow span {
 .jky-thread-reserved		{width: 60px; text-align:right  !important;}
 .jky-thread-weight			{width: 60px; text-align:right  !important;}
 
-.jky-thread-needed-date		{width: 80px; text-align:right  !important;}
+.jky-thread-needed-date		{width: 75px; text-align:right  !important;}
 .jky-thread-requested-weight{width: 80px; text-align:right  !important;}
-.jky-thread-checkout-date	{width: 80px; text-align:right  !important;}
+.jky-thread-checkout-date	{width: 75px; text-align:right  !important;}
 .jky-thread-checkout-weight	{width: 80px; text-align:right  !important;}
 
 .jky-color-pieces			{width: 45px; text-align:right  !important;}
 .jky-color-name				{width:155px; text-align:left   !important; text-transform:capitalize;}
-.jky-color-name input		{width:120px; text-align:left   !important; text-transform:capitalize;}
+.jky-color-name input			{width:120px; text-align:left   !important; text-transform:capitalize;}
 .jky-color-name a			{padding:5px;}
-.jky-color-weight			{	 width: 45px; text-align:right  !important;}
-.jky-color-date				{	 width: 75px; text-align:right  !important;}
-.jky-color-type				{min-width:100px; text-align:left   !important;}
+.jky-color-weight			{width: 45px; text-align:right  !important;}
+.jky-color-date				{width: 75px; text-align:right  !important;}
+.jky-color-type				{width:100px; text-align:left   !important;}
 
 .jky-pieces-barcode			{width: 90px; text-align:center !important;}
 .jky-pieces-status			{width: 65px; text-align:center !important;}
 .jky-pieces-number-of-pieces{width: 40px; text-align:center !important;}
 .jky-pieces-produced-by		{width: 60px; text-align:center !important; text-transform:capitalize;}
 .jky-pieces-checkin-weight	{width: 65px; text-align:right  !important;}
-.jky-pieces-checkin-date	{width: 80px; text-align:center !important;}
+.jky-pieces-checkin-date	{width: 75px; text-align:center !important;}
 .jky-pieces-quality			{width: 90px; text-align:center !important;}
 .jky-pieces-remarks			{width:200px; text-align:center !important;}
 
@@ -416,14 +426,22 @@ li .arrow span {
 
 /* -------------------------------------------------------------------------- */
 #jky-average-weight			{width: 75px; margin-bottom:4px; text-align:right;}
-#jky-batch-number			{width: 75px; margin-bottom:4px;}
-#jky-box-input-barcode		{width: 80px; margin-bottom:4px; color:#CC0000;}
+#jky-barcode				{width: 85px;}
+#jky-batch-code				{width: 75px; margin-bottom:4px;}
+#jky-batch-number			{width: 85px; margin-bottom:4px;}
+#jky-box-input-barcode		{width: 85px; margin-bottom:4px; color:#CC0000;}
 #jky-box-input-message		{				  color:#CC0000; text-align:center; vertical-align:middle;}
+#jky-checkin-boxes			{width: 40px; margin-bottom:4px; text-align:right;}
+#jky-checkin-location		{width: 75px; margin-bottom:4px;}
+#jky-checkin-weight			{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-checkout-boxes			{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-checkout-location		{width: 75px; margin-bottom:4px; text-transform:capitalize;}
 #jky-checkout-number		{width: 60px; font-weight:bold;}
 #jky-checkout-value			{width:115px; text-align:right;}
 #jky-checkout-weight		{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-collection				{width:350px; text-transform:capitalize;}
 #jky-color-name				{width:380px; text-transform:capitalize;}
+#jky-composition			{width:340px;}
 #jky-customer-name			{width:300px;					 text-align:left ; text-transform:capitalize;}
 #jky-delivered-value		{width:115px;}
 #jky-delivered-pieces		{width: 75px; margin-bottom:4px; text-align:right;}
@@ -431,17 +449,23 @@ li .arrow span {
 #jky-diameter				{width: 40px; text-align:right;}
 #jky-dyer-name				{width:300px;					 text-align:left ; text-transform:capitalize;}
 #jky-expected-value			{width: 75px;}
+#jky-ftp-number				{width: 60px; font-size:16px; font-weight:bold;}
 #jky-galao-perc				{width: 17px; text-align:right;}
 #jky-gola-perc				{width: 17px; text-align:right;}
+#jky-has-break				{width:135px;}
+#jky-has-break span			{padding:0 10px 0 4px; vertical-align:bottom;}
 #jky-incoming-number		{width: 60px; font-size:16px; font-weight:bold;}
 #jky-inputs					{width: 40px; text-align:right;}
 #jky-invoice-amount			{width:100px; text-align:right;}
 #jky-invoice-value			{width: 75px;}
-#jky-invoice-weight			{width:100px; text-align:right;}
-#jky-labels-printed			{width: 40px; text-align:right;}
+#jky-invoice-weight			{width: 75px; text-align:right;}
+#jky-labels-printed			{width: 40px; margin-bottom:4px; text-align:right;}
 #jky-lane-type				{width:190px;}
 #jky-machine-name			{width:300px;					 text-align:left ; text-transform:capitalize;}
 #jky-needed-value			{width:115px;}
+#jky-nick-name				{width:340px; text-transform:capitalize;}
+#jky-number-of-boxes		{width: 40px; margin-bottom:4px; text-align:right;}
+#jky-number-of-cones		{width: 40px; margin-bottom:4px; text-align:right;}
 #jky-nfe-dl					{width:100px;}
 #jky-nfe-tm					{width:100px;}
 #jky-order-number			{width: 60px;}
@@ -451,6 +475,7 @@ li .arrow span {
 #jky-partner-name			{width:300px;					 text-align:left ; text-transform:capitalize;}
 #jky-payment-term			{width:110px;}
 #jky-peso					{width: 40px; text-align:right;}
+#jky-product-code			{width: 75px; margin-bottom:4px;}
 #jky-product-name			{width:300px;					 text-align:left ; text-transform:capitalize;}
 #jky-produced-by			{width:200px;}
 #jky-produced-value			{width:115px;}
@@ -462,10 +487,12 @@ li .arrow span {
 #jky-quoted-pieces			{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-real-weight			{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-received-amount		{width:100px; text-align:right;}
+#jky-received-boxes			{width: 40px; margin-bottom:4px; text-align:right;}
 #jky-received-value			{width:120px;}
-#jky-received-weight		{width:100px; text-align:right;}
+#jky-received-weight		{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-rejected-pieces		{width: 40px; text-align:right;}
 #jky-remarks				{width:570px; height:170px;}
+#jky-received-value			{width:120px;}
 #jky-requested-boxes		{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-requested-date			{width: 75px; margin-bottom:4px;}
 #jky-requested-weight		{width: 75px; margin-bottom:4px; text-align:right;}
@@ -476,11 +503,16 @@ li .arrow span {
 #jky-scheduled-value		{width:120px;}
 #jky-source-doc				{width:100px;}
 #jky-speed					{width: 40px; text-align:right;}
+#jky-start-value			{width: 75px;}
+#jky-status					{width: 85px;}
 #jky-supplier-name			{width:300px;					 text-align:left ; text-transform:capitalize;}
-#jky-supplier-ref		{width:100px;}
+#jky-supplier-ref			{width:100px;}
 #jky-tdyer-number			{width: 60px; font-size:16px; font-weight:bold;}
 #jky-thread-name			{								 text-align:left ; text-transform:capitalize;}
+#jky-total-expected			{width: 65px; margin-bottom:4px; text-align:right;}
+#jky-total-received			{width: 65px; margin-bottom:4px; text-align:right;}
 #jky-turns					{width: 40px; text-align:right;}
+#jky-unit-price				{width: 40px; margin-bottom:4px; text-align:right;}
 #jky-weight					{width: 40px; text-align:right;}
 #jky-width					{width: 40px; text-align:right;}
 

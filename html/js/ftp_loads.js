@@ -115,6 +115,61 @@ JKY.insert_load_success = function(response) {
 	JKY.append_html('jky-load-body', my_html);
 }
 
+JKY.copy_loads = function(the_source, the_id) {
+	var my_html  = '';
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'FTP_Loads'
+		, select	:  the_source
+		, order_by  : 'FTP_Loads.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					var my_rows = response.rows;
+					for(var i in my_rows) {
+						var my_row	= my_rows[i];
+						var my_set	=   '     ftp_id =  ' + the_id
+									+ ',  input_from =  ' + my_row.input_from
+									+ ',  input_upto =  ' + my_row.input_upto
+									+ ', thread_id_1 =  ' + my_row.thread_id_1
+									+ ', thread_id_2 =  ' + my_row.thread_id_2
+									+ ', thread_id_3 =  ' + my_row.thread_id_3
+									+ ', thread_id_4 =  ' + my_row.thread_id_4
+									+ ', remarks     =\'' + my_row.remarks + '\''
+									;
+						var	my_data =
+							{ method	: 'insert'
+							, table		: 'FTP_Loads'
+							, set		:  my_set
+							};
+						JKY.ajax(true, my_data);
+					}
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		}
+	)
+	return my_html;
+}
+
+JKY.delete_loads = function(the_id) {
+	var my_data =
+		{ method: 'delete_many'
+		, table : 'FTP_Loads'
+		, where : 'ftp_id = ' + the_id
+		};
+	JKY.ajax(true, my_data);
+}
+
 JKY.delete_load = function(id_name, the_id) {
 	var my_tr = $(id_name).parent().parent();
 	my_tr.next().remove();

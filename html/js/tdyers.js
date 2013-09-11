@@ -391,7 +391,7 @@ JKY.insert_batchout = function(response) {
 JKY.connect_batchout = function(response) {
 	var my_data =
 		{ method	: 'update'
-		, table		: 'TdyerThreads'
+		, table		: 'TDyerThreads'
 		, set		: 'batchout_id = ' + response.id
 		, where		: 'id = ' + JKY.row.id
 		};

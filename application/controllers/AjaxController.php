@@ -146,6 +146,7 @@ public function indexAction() {
 			case 'insert'		: $required = 'Insert'	; break;
 			case 'update'		: $required = 'Update'	; break;
 			case 'replace'		: $required = 'Update'	; break;
+			case 'copy'			: $required = 'Update'	; break;
 			case 'delete'		: $required = 'Delete'	; break;
 			case 'delete_many'	: $required = 'Delete'	; break;
 			case 'combine'		: $required = 'Combine'	; break;
@@ -183,6 +184,7 @@ public function indexAction() {
 		case 'insert'		: $this->insert			($data); break;
 		case 'update'		: $this->update			($data); break;
 		case 'replace'		: $this->replace		($data); break;
+		case 'copy'			: $this->copy			($data); break;
 		case 'delete'		: $this->delete			($data); break;
 		case 'delete_many'	: $this->delete_many	($data); break;
 		case 'combine'		: $this->combine		(); break;
@@ -550,15 +552,8 @@ private function get_index($data) {
 	$order_by	= get_data($data, 'order_by');
 
 	$where = '';
-
-	if ($specific != '') {
-		$where .= $this->set_specific($table, $specific, get_data($data, 'specific_id'));
-	}
-
-	if ($select != 'All') {
-		$where .= $this->set_select($table, $select);
-	}
-
+	$where .= $this->set_specific($table, $specific, get_data($data, 'specific_id'));
+	$where .= $this->set_select($table, $select);
 	if ($filter != '') {
 		$filters = explode(' and ', $filter);
 		foreach($filters as $filter)
@@ -628,6 +623,8 @@ $this->log_sql($table, 'get_index', $sql);
 }
 
 private function set_specific($table, $specific, $specific_id) {
+	if ($specific == '')	return '';
+
 	$return = '';
 	if ($table == 'Groups'			&& $specific == 'event_id'	)		$return .= ' AND    Groups.event_id		= ' . get_session('event_id');
 	if ($table == 'Services'		&& $specific == 'event_id'	)		$return .= ' AND  Services.event_id		= ' . get_session('event_id');
@@ -645,29 +642,33 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'Batches'			&& $specific == 'incoming'		)	$return .= ' AND   Batches.incoming_id	= ' . $specific_id;
 	if ($table == 'Batches'			&& $specific == 'thread'		)	$return .= ' AND   Batches.thread_id	= ' . $specific_id;
 	if ($table == 'BatchOuts'		&& $specific == 'checkout'		)	$return .= ' AND BatchOuts.checkout_id	= ' . $specific_id;
+//	if ($table == 'Purchases'		&& $specific == 'status'		)	$return .= ' AND Purchases.status IN ("Draft", "Active")';
 
 	return $return;
 }
 
 private function set_select($table, $select) {
-//	if ($select == '*' or $select == 'All')		return '';
-	if ($select == 'All')		return '';
+	if ($table == 'Purchases' && $select == 'Draft + Active') {
+		return ' AND  Purchases.status IN ("Draft", "Active")';
+	}
+
+	if ($select == 'All')	return '';
 
 	$return = '';
-	if ($table == 'Categories'		)	$return = ' AND         Parent.category      = "' . $select . '"';
-	if ($table == 'Colors'			)	$return = ' AND         Colors.color_type    = "' . $select . '"';
-	if ($table == 'Controls'		)	$return = ' AND       Controls.group_set     = "' . $select . '"';
-	if ($table == 'Configs'			)	$return = ' AND        Configs.group_set     = "' . $select . '"';
-	if ($table == 'Companies'		)	$return = ' AND      Companies.status        = "' . $select . '"';
-	if ($table == 'Events'			)	$return = ' AND         Events.status        = "' . $select . '"';
-	if ($table == 'Groups'			)	$return = ' AND         Groups.status        = "' . $select . '"';
-	if ($table == 'Permissions'		)	$return = ' AND    Permissions.user_role     = "' . $select . '"';
-	if ($table == 'Services'		)	$return = ' AND         Groups.id            = "' . $select . '"';
-	if ($table == 'Settings'		)	$return = ' AND       Settings.setting_set   = "' . $select . '"';
-	if ($table == 'Summary'			)	$return = ' AND        Summary.group_by      = "' . $select . '"';
-	if ($table == 'Templates'		)	$return = ' AND      Templates.template_type = "' . $select . '"';
-	if ($table == 'Tickets'			)	$return = ' AND        Tickets.status        = "' . $select . '"';
-	if ($table == 'Translations'	)	$return = ' AND   Translations.status        = "' . $select . '"';
+	if ($table == 'Categories'		)	$return = ' AND         Parent.category			= "' . $select . '"';
+	if ($table == 'Colors'			)	$return = ' AND         Colors.color_type		= "' . $select . '"';
+	if ($table == 'Controls'		)	$return = ' AND       Controls.group_set		= "' . $select . '"';
+	if ($table == 'Configs'			)	$return = ' AND        Configs.group_set		= "' . $select . '"';
+	if ($table == 'Companies'		)	$return = ' AND      Companies.status			= "' . $select . '"';
+	if ($table == 'Events'			)	$return = ' AND         Events.status			= "' . $select . '"';
+	if ($table == 'Groups'			)	$return = ' AND         Groups.status			= "' . $select . '"';
+	if ($table == 'Permissions'		)	$return = ' AND    Permissions.user_role		= "' . $select . '"';
+	if ($table == 'Services'		)	$return = ' AND         Groups.id				= "' . $select . '"';
+	if ($table == 'Settings'		)	$return = ' AND       Settings.setting_set		= "' . $select . '"';
+	if ($table == 'Summary'			)	$return = ' AND        Summary.group_by			= "' . $select . '"';
+	if ($table == 'Templates'		)	$return = ' AND      Templates.template_type	= "' . $select . '"';
+	if ($table == 'Tickets'			)	$return = ' AND        Tickets.status			= "' . $select . '"';
+	if ($table == 'Translations'	)	$return = ' AND   Translations.status			= "' . $select . '"';
 
 	if ($table == 'Contacts'		)	$return = ' AND      JKY_Users.user_role		= "' . $select . '"';
 	if ($table == 'Cylinders'		)	$return = ' AND      Cylinders.machine_id		=  ' . $select;
@@ -678,9 +679,10 @@ private function set_select($table, $select) {
 	if ($table == 'OrdThreads'		)	$return = ' AND     OrdThreads.order_id			=  ' . $select;
 	if ($table == 'Pieces'			)	$return = ' AND         Pieces.order_id			=  ' . $select;
 	if ($table == 'Products'		)	$return = ' AND       Products.product_type     = "' . $select . '"';
+	if ($table == 'Purchases'		)	$return = ' AND      Purchases.status			= "' . $select . '"';
 	if ($table == 'PurchaseLines'	)	$return = ' AND  PurchaseLines.parent_id		=  ' . $select;
 	if ($table == 'QuotLines'		)	$return = ' AND      QuotLines.quotation_id		=  ' . $select;
-	if ($table == 'QuotColor'		)	$return = ' AND     QuotColors.parent_id		=  ' . $select;
+	if ($table == 'QuotColors'		)	$return = ' AND     QuotColors.parent_id		=  ' . $select;
 	if ($table == 'History'			)	$return = ' AND        History.parent_name      = "' . $select . '"';
 	if ($table == 'TDyerThreads'	)	$return = ' AND   TDyerThreads.parent_id		=  ' . $select;
 	if ($table == 'TDyerColors'		)	$return = ' AND    TDyerColors.parent_id		=  ' . $select;
@@ -704,11 +706,12 @@ private function set_new_fields($table) {
 												. ', JKY_Users.user_name		AS     user_name'
 												. ', JKY_Users.user_role		AS     user_role'
 												. ', Companies.full_name		AS  company_name';
-	if ($table == 'FTPs'			)	$return = ',  Products.product_name		AS			product'
-												. ',  Machines.name				AS			machine';
+	if ($table == 'FTPs'			)	$return = ',  Products.product_name		AS	product_name'
+												. ',  Machines.name				AS	machine_name';
 	if ($table == 'FTP_Loads'		)	$return = ',   Thread1.name				AS   thread_name_1'
 												. ',   Thread2.name				AS   thread_name_2'
-												. ',   Thread3.name				AS   thread_name_3';
+												. ',   Thread3.name				AS   thread_name_3'
+												. ',   Thread4.name				AS   thread_name_4';
 	if ($table == 'FTP_Threads'		)	$return = ',   Threads.name				AS			name'
 												. ',  Supplier.nick_name		AS			supplier';
 	if ($table == 'FTP_Sets'		)	$return = ',   Configs.sequence			AS			sequence'
@@ -717,6 +720,7 @@ private function set_new_fields($table) {
 	if ($table == 'Orders'			)	$return = ',  Customer.nick_name		AS customer_name'
 												. ',   Machine.name				AS  machine_name'
 												. ',   Partner.nick_name		AS  partner_name'
+												. ',       FTP.ftp_number		AS      ftp_number'
 												. ',   Product.product_name		AS  product_name';
 	if ($table == 'OrdThreads'		)	$return = ',    Orderx.order_number		AS	  order_number'
 												. ',    Thread.name				AS	 thread_name'
@@ -823,7 +827,8 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Machines				ON  Machines.id	=			 FTPs.machine_id';
 	if ($table == 'FTP_Loads'		)	$return = '  LEFT JOIN     Threads AS Thread1	ON   Thread1.id	=	    FTP_Loads.thread_id_1'
 												. '  LEFT JOIN     Threads AS Thread2	ON   Thread2.id	=	    FTP_Loads.thread_id_2'
-												. '  LEFT JOIN     Threads AS Thread3	ON   Thread3.id	=		FTP_Loads.thread_id_3';
+												. '  LEFT JOIN     Threads AS Thread3	ON   Thread3.id	=		FTP_Loads.thread_id_3'
+												. '  LEFT JOIN     Threads AS Thread4	ON   Thread4.id	=		FTP_Loads.thread_id_4';
 	if ($table == 'FTP_Threads'		)	$return = '  LEFT JOIN     Threads  			ON   Threads.id	=	  FTP_Threads.thread_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=	  FTP_Threads.supplier_id';
 	if ($table == 'FTP_Sets'		)	$return = '  LEFT JOIN     Configs  			ON   Configs.id	=		  FTP_Sets.setting_id';
@@ -832,7 +837,8 @@ private function set_left_joins($table) {
 	if ($table == 'Orders'			)	$return = '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		    Orders.customer_id'
 												. '  LEFT JOIN    Machines AS Machine	ON   Machine.id	=		    Orders.machine_id'
 												. '  LEFT JOIN    Contacts AS Partner	ON   Partner.id	=		    Orders.partner_id'
-												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		    Orders.product_id';
+												. '  LEFT JOIN        FTPs AS FTP		ON       FTP.id	=		    Orders.ftp_id'
+												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		       FTP.product_id';
 	if ($table == 'OrdThreads'		)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		OrdThreads.order_id'
 												. '  LEFT JOIN     Threads AS Thread	ON    Thread.id	=		OrdThreads.thread_id'
 												. '  LEFT JOIN     Batches AS BatchIn	ON   BatchIn.id	=		OrdThreads.batchin_id';
@@ -1131,7 +1137,7 @@ private function set_where($table, $filter) {
 		}
 
 		if ($table == 'FTPs') {
-			if ($name == 'number'
+			if ($name == 'ftp_number'
 			or	$name == 'diameter'
 			or	$name == 'density'
 			or	$name == 'inputs'
@@ -1247,12 +1253,20 @@ private function set_where($table, $filter) {
 					}else{
 						return ' AND Partner.nick_name LIKE ' . $value;
 					}
-			}else{
+/*			}else{
 				if ($name == 'product_name') {
 					if ($value == '"%null%"') {
 						return ' AND Orders.product_id IS NULL';
 					}else{
 						return ' AND Product.product_name LIKE ' . $value;
+					}
+			}
+*/			}else{
+				if ($name == 'ftp_number') {
+					if ($value == '"%null%"') {
+						return ' AND Orders.ftp_id IS NULL';
+					}else{
+						return ' AND FTP.ftp_number LIKE ' . $value;
 					}
 			}
 			}}}}
@@ -1348,9 +1362,9 @@ private function set_where($table, $filter) {
 			or	$name == 'delivered_pieces'
 			or	$name == 'remarks') {
 				if ($value == '"%null%"') {
-					return ' AND FTPs.' . $name . ' IS NULL ';
+					return ' AND Quotations.' . $name . ' IS NULL ';
 				}else{
-					return ' AND FTPs.' . $name . ' LIKE ' . $value;
+					return ' AND Quotations.' . $name . ' LIKE ' . $value;
 				}
 			}else{
 				if ($name == 'customer_name') {
@@ -1764,7 +1778,7 @@ private function set_where($table, $filter) {
 		}
 
 	if ($table ==  'FTPs') {
-		$return = ' FTPs.number				LIKE ' . $filter
+		$return = ' FTPs.ftp_number			LIKE ' . $filter
 			. ' OR  FTPs.diameter			LIKE ' . $filter
 			. ' OR  FTPs.density			LIKE ' . $filter
 			. ' OR  FTPs.inputs				LIKE ' . $filter
@@ -1813,7 +1827,8 @@ private function set_where($table, $filter) {
 			. ' OR    Customer.nick_name		LIKE ' . $filter
 			. ' OR     Machine.name				LIKE ' . $filter
 			. ' OR     Partner.nick_name		LIKE ' . $filter
-			. ' OR     Product.product_name		LIKE ' . $filter
+//			. ' OR     Product.product_name		LIKE ' . $filter
+			. ' OR         FTP.ftp_number		LIKE ' . $filter
 			;
 		}
 
@@ -2181,7 +2196,7 @@ private function insert($data) {
 	if ($table == 'FTPs') {
 		$my_number = $this->get_next_number('Controls', 'Next FTP Number');
 		$set .= ',     id= ' . $my_number;
-		$set .= ', number= ' . $my_number;
+		$set .= ', ftp_number= ' . $my_number;
 	}
 
 	if ($table == 'Orders') {
@@ -2382,6 +2397,46 @@ private function replace($data) {
 		$return['status' ] = 'error';
 		$return['message'] = $exp->getMessage();
 	}
+	echo json_encode($return);
+}
+
+/*
+ *	$.ajax({ method: copy, folder: x...x, from: x...x, to: x...x });
+ *
+ *	 status: ok
+ *	 copied: 9...9
+ */
+private function copy($data) {
+	$folder	= get_data($data, 'folder'	);
+	$from	= get_data($data, 'from'	);
+	$to		= get_data($data, 'to'		);
+
+	if ($folder != 'ftp_draws'
+	&&  $folder != 'ftp_photos') {
+		$this->echo_error('folder undefined');
+		return;
+	}
+
+	if ($from == '' || $to == '') {
+		$this->echo_error('missing [where] statement');
+		return;
+	}
+
+	$directory	= DOCUMENT_ROOT . 'uploads/' . $folder . '/';
+	$source		= $directory . $from . '.*';
+	$copied		= 0;
+	foreach(glob($source) as $filename) {
+//		echo $filename . ", size: " . filesize($filename) . "\n";
+		$ext	= get_file_ext($filename);
+		$dest	= $directory . $to . '.' . $ext;
+		if (copy($filename, $dest)) {
+			$copied ++;
+		}
+	}
+
+	$return = array();
+	$return['status'] = 'ok';
+	$return['copied'] = $copied;
 	echo json_encode($return);
 }
 

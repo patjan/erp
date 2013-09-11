@@ -36,6 +36,7 @@ define( 'SERVER_BASE'         , '../'                       );
 define( 'APPLICATION'         , '../application/'           );
 define( 'LIBRARY'             , '/../library/'              );
 define( 'DELIVERY_BASE'       , 'C:/htdocs/erp/'			);		//	on linux, it must be [../]
+define( 'DOCUMENT_ROOT'       , 'C:/htdocs/erp/html/'		);		//	on linux, it must be [../html/]
 define( 'START_ASSET'         , 'start/'     );
 define( 'END_ASSET'           , 'end/'       );
 define( 'IMAGES'              , 'images/layout/'            );
@@ -61,7 +62,7 @@ define( 'TRUST_CUSTID'        , '848620'                    );
 define( 'TRUST_PASSWORD'      , 'commerce6'                 );
 define( 'TRUST_VAULT_PASSWORD', 'commerce7'                 );
 
-define( 'DB_HOST'             , 'internal-db.s122232.gridserver.com'                  );
+define( 'DB_HOST'             , 'internal-db.s122232.gridserver.com'    );
 define( 'DB_USER'             , 'db122232_pat_jan'          );
 define( 'DB_PASS'             , 'brazil.18781'              );
 define( 'DB_NAME'             , 'db122232_erp'              );

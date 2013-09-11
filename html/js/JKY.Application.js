@@ -329,6 +329,7 @@ if (my_first == true) {
 	function my_process_copy_success(response) {
 		JKY.display_trace('my_process_copy_success');
 		JKY.display_message(response.message);
+		JKY.process_copy   (response.id, JKY.row);
 		my_display_list();
 	}
 

@@ -50,8 +50,8 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-product-code"	>' +				 the_row.code					+ '</td>'
-		+  '<td class="jky-batch-code"		>' +				 the_row.batch					+ '</td>'
+		+  '<td class="jky-product-code"	>' + JKY.fix_null	(the_row.code				)	+ '</td>'
+		+  '<td class="jky-batch-code"		>' + JKY.fix_null	(the_row.batch				)	+ '</td>'
 		+  '<td class="jky-received-boxes"	>' +				 the_row.received_boxes			+ '</td>'
 		+  '<td class="jky-labels-printed"	>' +				 the_row.labels_printed			+ '</td>'
 		+  '<td class="jky-checkin-boxes"	>' +				 the_row.checkin_boxes			+ '</td>'

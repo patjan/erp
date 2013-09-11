@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS FTPs
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'
 
-, number			VARCHAR(32)			DEFAULT NULL
+, ftp_number		VARCHAR(32)			DEFAULT NULL
 , start_date		DATE				DEFAULT NULL
 , product_id		BIGINT				DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS FTPs
 , photo				VARCHAR(255)		DEFAULT NULL	# Foto
 
 , PRIMARY KEY(id)
-, UNIQUE(number)
+, UNIQUE(ftp_number)
 , KEY product(product_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
 ;
@@ -44,4 +44,6 @@ ALTER TABLE FTPs		DROP	lanes;
 ALTER TABLE FTPs		DROP	elasticity;
 ALTER TABLE FTPs		DROP	needling;
 
-ALTER TABLE FTPs		ADD		nick_name				VARCHAR(255) DEFAULT NULL	AFTER collection;
+ALTER TABLE FTPs		ADD		nick_name				VARCHAR(255)	DEFAULT NULL	AFTER collection;
+
+ALTER TABLE FTPs			CHANGE	number				ftp_number			VARCHAR(32) DEFAULT NULL;

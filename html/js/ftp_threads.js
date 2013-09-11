@@ -49,10 +49,10 @@ JKY.generate_row = function(the_row) {
 		+ '<tr ftp_thread_id=' + my_id + '>'
 		+ '<td class="jky-action"><a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
 		+ '<td class="jky-filler">&nbsp;</div>'
-		+ '<td class="jky-thread-value"		><input  class="jky-thread-percent" text="text" onchange="JKY.update_thread(this, ' + my_id + ')" value="' + my_percent + '" /></td>'
-//				+ '<td class="jky-thread-label"		><select class="jky-thread-name"				onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_name		  , JKY.threads	 , true) + '</select></td>'
+		+ '<td class="jky-thread-value"		><input  class="jky-thread-percent"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + my_percent + '" /></td>'
+//		+ '<td class="jky-thread-label"		><select class="jky-thread-name"		onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_name		  , JKY.threads	 , true) + '</select></td>'
 		+ '<td class="jky-thread-label"		>' + my_thread + '</td>'
-		+ '<td class="jky-thread-label"		><select class="jky-thread-supplier"			onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_supplier_id, JKY.suppliers, true) + '</select></td>'
+		+ '<td class="jky-thread-label"		><select class="jky-thread-supplier"	onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_supplier_id, JKY.suppliers, true) + '</select></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -101,6 +101,57 @@ JKY.insert_thread_success = function(response) {
 
 	var my_html = JKY.generate_row(my_row);
 	JKY.append_html('jky-thread-body', my_html);
+}
+
+JKY.copy_threads = function(the_source, the_id) {
+	var my_html  = '';
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'FTP_Threads'
+		, select	:  the_source
+		, order_by  : 'FTP_Threads.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					var my_rows = response.rows;
+					for(var i in my_rows) {
+						var my_row	= my_rows[i];
+						var my_set	=   '     ftp_id = ' + the_id
+									+ ',   thread_id = ' + my_row.thread_id
+									+ ', supplier_id = ' + my_row.supplier_id
+									+ ',     percent = ' + my_row.percent
+									;
+						var	my_data =
+							{ method	: 'insert'
+							, table		: 'FTP_Threads'
+							, set		:  my_set
+							};
+						JKY.ajax(true, my_data);
+					}
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		}
+	)
+	return my_html;
+}
+
+JKY.delete_threads = function(the_id) {
+	var my_data =
+		{ method: 'delete_many'
+		, table : 'FTP_Threads'
+		, where : 'ftp_id = ' + the_id
+		};
+	JKY.ajax(true, my_data);
 }
 
 JKY.delete_thread = function(id_name, the_id) {

@@ -85,8 +85,8 @@ JKY.update_batch = function(id_name, the_id ) {
 		+               ', code =\'' + my_code	+ '\''
 		+              ', batch =\'' + my_batch	+ '\''
 		+     ', received_boxes =  ' + my_received_boxes
-		+    ', received_weight =  ' + my_received_weight
 		+    ', number_of_cones =  ' + my_number_of_cones
+		+    ', received_weight =  ' + my_received_weight
 		+         ', unit_price =  ' + my_unit_price
 		+     ', average_weight =  ' + my_average_weight
 		;
@@ -123,8 +123,9 @@ JKY.insert_batch_success = function(response) {
 	my_row.batch			= '';
 	my_row.thread_id		= null;
 	my_row.received_boxes	= 0;
-	my_row.received_weight	= 0;
+	my_row.labels_printed	= 0;
 	my_row.number_of_cones	= 0;
+	my_row.received_weight	= 0;
 	my_row.unit_price		= 0;
 
 	var my_html = JKY.generate_row(my_row);

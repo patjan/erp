@@ -1,16 +1,6 @@
 <style>
-.jky-form-line-1		{width:273px;}
-.jky-form-line-2		{width:290px;}
-.jky-form-label			{width:160px;}
-.jky-form-label-1		{width:100px;}
-.jky-form-value			{width:100px;}
-.jky-form-value1		{width:240px;}
-.jky-checkbox			{width: 30px; text-align:center;}
-
-
-
-#jky-batch-total			{				text-align:right;}
-
+#jky-invoice-weight		{width:100px;}
+#jky-received-weight	{width:100px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -18,7 +8,7 @@
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-incoming-number'	><span>	Incoming<br>Number	</span></th>
-			<th class='jky-supplier-name'	><span> Supplier<br>Name	</span></th>
+			<th class='jky-supplier-name'	><span>             Supplier</span></th>
 			<th class='jky-nfe-dl'			><span>			<br>NFe DL	</span></th>
 			<th class='jky-nfe-tm'			><span>			<br>NFe TM	</span></th>
 			<th class='jky-invoice-date'	><span>  Invoice<br>Date	</span></th>
@@ -50,23 +40,27 @@
 
 		<div class='jky-left'>
 			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Received Date</span>:</div>
+				<div id="jky-received-date" class="input-append date">
+					<input id='jky-received-value' data-format="dd-MM-yyyy hh:mm:ss" type="text" />
+					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+				</div>
+			</div>
+			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Invoice Date</span>:</div>
 				<div id="jky-invoice-date" class="input-append date">
 					<input id='jky-invoice-value' data-format="dd-MM-yyyy" type="text" />
 					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
 				</div>
 			</div>
+		</div>
+		<div class='jky-clear'></div>
+
+		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Amount</span>:</div><input  id='jky-invoice-amount'	class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Weight</span>:</div><input  id='jky-invoice-weight'	class='jky-form-value' /></div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Received Date</span>:</div>
-				<div id="jky-received-time" class="input-append date">
-					<input id='jky-received-value' data-format="dd-MM-yyyy hh:mm:ss" type="text" />
-					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
-				</div>
-			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Received Amount</span>:</div><input  id='jky-received-amount'	class='jky-form-value' disabled='disabled' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Received Weight</span>:</div><input  id='jky-received-weight'	class='jky-form-value' disabled='disabled' /></div>
 		</div>
@@ -152,7 +146,7 @@
 		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Received Boxes</span>:</div><input id='jky-boxes-received-boxes'	type='text' readonly='readonly' /></div>
 		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Labels Printed</span>:</div><input id='jky-boxes-labels-printed'	type='text' readonly='readonly' /></div>
 		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>Labels Unprinted</span>:</div><input id='jky-boxes-labels-unprinted'	type='text' readonly='readonly' /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span> Labels to Print</span>:</div><input id='jky-boxes-labels-to-print'	type='text'						/> (max: 100)</div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span> Labels to Print</span>:</div><input id='jky-boxes-labels-to-print'	type='text'						/></div>
 		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>        Location</span>:</div><input id='jky-boxes-location'			type='text'						/></div>
 		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Average Weight</span>:</div><input id='jky-boxes-average-weight'	type='text'	readonly='readonly'	/></div>
 	</div>

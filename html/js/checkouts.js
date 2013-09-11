@@ -182,11 +182,8 @@ JKY.clear_produced_by = function(the_name) {
  */
 JKY.set_calculated_color = function() {
 	var my_requested_weight	= parseFloat(JKY.get_value('jky-requested-weight'	));
-//	var my_requested_amount	= parseFloat(JKY.get_value('jky-requested-amount'	));
 	var my_checkout_weight	= parseFloat(JKY.get_value('jky-checkout-weight'	));
-//	var my_checkout_amount	= parseFloat(JKY.get_value('jky-checkout-amount'	));
-	JKY.set_css('jky-requested-weight', 'color', (my_requested_weight == my_checkout_weight) ? 'black' : 'red');
-//	JKY.set_css('jky-requested-amount', 'color', (my_requested_amount == my_checkout_amount) ? 'black' : 'red');
+	JKY.set_css('jky-checkout-weight', 'color', (my_requested_weight > my_checkout_weight) ? 'red' : 'black');
 }
 
 

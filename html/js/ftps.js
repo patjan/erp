@@ -16,7 +16,7 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: ''
 		, filter		: ''
-		, sort_by		: 'number'
+		, sort_by		: 'ftp_number'
 		, sort_seq		: 'DESC'
 		, focus			: 'jky-diameter'
 		, add_new		: 'display form'
@@ -77,24 +77,31 @@ JKY.set_all_events = function() {
 	$('#jky-thread-add-new'		).click (function() {JKY.insert_thread		();});
 	$('#jky-load-add-new'		).click (function() {JKY.insert_load		();});
 
-	$('#jky-action-product'		).click (function() {JKY.display_product	();});
-	$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});
-	$('#jky-search-filter'		).KeyUpDelay(JKY.filter_product);
-	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data);
+//	$('#jky-action-product'		).click (function() {JKY.display_product	();});
+	$('#jky-action-product'		).click (function() {JKY.Product.display(this);});
+//	$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});
+//	$('#jky-search-filter'		).KeyUpDelay(JKY.filter_product);
+//	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data);
 }
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-		JKY.set_side_active('jky-production-ftps');
-		JKY.set_html('jky-machine', JKY.set_table_options('Machines', 'name', '', ''));
-		JKY.set_html('jky-collection', JKY.set_configs('Collections', '', ''));
-		JKY.show('jky-action-print');
-		JKY.materials	= JKY.get_configs	('Materials'	);
-		JKY.threads		= JKY.get_ids		('Threads'		);
-		JKY.settings	= JKY.get_configs	('Settings'		);
-		JKY.suppliers	= JKY.get_companies	('is_supplier'	);
+	JKY.append_file('jky-load-product'	, '../JKY.Search.Product.html'	);
+	JKY.append_file('jky-load-thread'	, '../JKY.Search.Thread	.html'	);
+
+	JKY.set_side_active('jky-production-ftps');
+	JKY.set_html('jky-machine-name', JKY.set_table_options('Machines', 'name', '', ''));
+	JKY.set_html('jky-collection', JKY.set_configs('Collections', '', ''));
+	JKY.show('jky-action-print');
+	JKY.materials	= JKY.get_configs	('Materials'	);
+	JKY.threads		= JKY.get_ids		('Threads'		);
+	JKY.settings	= JKY.get_configs	('Settings'		);
+	JKY.suppliers	= JKY.get_companies	('is_supplier'	);
+
+	$('#jky-product-filter'		).KeyUpDelay(JKY.Product.load_data	);
+	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data	);
 }
 
 /**
@@ -102,9 +109,9 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-number"			>' +				 the_row.number				+ '</td>'
-		+  '<td class="jky-product"			>' + JKY.fix_null	(the_row.product		)	+ '</td>'
-		+  '<td class="jky-machine"			>' + JKY.fix_null	(the_row.machine		)	+ '</td>'
+		+  '<td class="jky-ftp-number"		>' +				 the_row.ftp_number			+ '</td>'
+		+  '<td class="jky-product-name"	>' + JKY.fix_null	(the_row.product_name	)	+ '</td>'
+		+  '<td class="jky-machine-name"	>' + JKY.fix_null	(the_row.machine_name	)	+ '</td>'
 		+  '<td class="jky-composition"		>' +				 the_row.composition		+ '</td>'
 		+  '</tr>'
 		;
@@ -115,12 +122,12 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-number'			, the_row.number		);
+	JKY.set_value	('jky-ftp-number'		, the_row.ftp_number	);
 	JKY.set_date	('jky-start-date'		, JKY.out_date(the_row.start_date));
 	JKY.set_value	('jky-product-id'		, the_row.product_id	);
-	JKY.set_value	('jky-product'			, the_row.product		);
+	JKY.set_value	('jky-product-name'		, the_row.product_name	);
 	JKY.set_value	('jky-composition'		, the_row.composition	);
-	JKY.set_option	('jky-machine'			, the_row.machine_id	);
+	JKY.set_option	('jky-machine-name'		, the_row.machine_id	);
 	JKY.set_value	('jky-collection'		, the_row.collection	);
 	JKY.set_value	('jky-nick-name'		, the_row.nick_name		);
 	JKY.set_value	('jky-diameter'			, the_row.diameter		);
@@ -155,12 +162,12 @@ JKY.set_form_row = function(the_row) {
  *	set add new row
  */
 JKY.set_add_new_row = function() {
-	JKY.set_value	('jky-number'			,  JKY.t('New'));
+	JKY.set_value	('jky-ftp-number'		,  JKY.t('New'));
 	JKY.set_date	('jky-start-date'		,  JKY.out_date(JKY.get_date()));
 	JKY.set_value	('jky-product-id'		,  0);
-	JKY.set_value	('jky-product'			, '');
+	JKY.set_value	('jky-product-name'		, '');
 	JKY.set_value	('jky-composition'		, '');
-	JKY.set_option	('jky-machine'			,  null);
+	JKY.set_option	('jky-machine-name'		,  null);
 	JKY.set_value	('jky-diameter'			, '');
 	JKY.set_value	('jky-density'			, '');
 	JKY.set_value	('jky-inputs'			, '');
@@ -179,13 +186,13 @@ JKY.set_add_new_row = function() {
  *	get form set
  */
 JKY.get_form_set = function() {
-	var my_machine = JKY.get_value('jky-machine');
-	my_machine = (my_machine == '') ? 'null' : my_machine;
+	var my_machine_id = JKY.get_value('jky-machine-name');
+	my_machine_id = (my_machine_id == '') ? 'null' : my_machine_id;
 
 	var my_set = ''
 		+      'product_id=  ' + JKY.get_value	('jky-product-id'		)
 		+    ', start_date=  ' + JKY.inp_date(JKY.get_value('jky-start-value'))
-		+    ', machine_id=  ' + my_machine
+		+    ', machine_id=  ' + my_machine_id
 		+    ', collection=\'' + JKY.get_value	('jky-collection'		) + '\''
 		+     ', nick_name=\'' + JKY.get_value	('jky-nick-name'		) + '\''
 		+      ', diameter=  ' + JKY.get_value	('jky-diameter'			)
@@ -213,27 +220,33 @@ JKY.display_form = function() {
 	JKY.show('jky-action-copy');
 };
 
+JKY.process_copy = function(the_id, the_row) {
+	var my_set	= 'composition =\'' + the_row.composition	+ '\'';
+	if (the_row.draw != null) {
+		my_set += ', draw =\'' + the_row.draw + '\'';
+	}
+	if (the_row.photo != null) {
+		my_set += ', photo =\'' + the_row.photo + '\'';
+	}
+	var my_data = {method:'update', table:'FTPs', set:my_set, where:'id = ' + the_id};
+	JKY.ajax(true, my_data);
+
+	my_data = {method:'copy', table:'FTPs', folder:'ftp_draws' , from:the_row.id, to:the_id};
+	JKY.ajax(true, my_data);
+
+	my_data = {method:'copy', table:'FTPs', folder:'ftp_photos', from:the_row.id, to:the_id};
+	JKY.ajax(true, my_data);
+
+	JKY.copy_threads	(the_row.id, the_id);
+	JKY.copy_loads		(the_row.id, the_id);
+	JKY.copy_settings	(the_row.id, the_id);
+
+}
+
 JKY.process_delete = function(the_id, the_row) {
-	var my_data =
-		{ method: 'delete_many'
-		, table : 'FTP_Sets'
-		, where : 'ftp_id = ' + the_id
-		};
-	JKY.ajax(true, my_data);
-
-	my_data =
-		{ method: 'delete_many'
-		, table : 'FTP_Loads'
-		, where : 'ftp_id = ' + the_id
-		};
-	JKY.ajax(true, my_data);
-
-	my_data =
-		{ method: 'delete_many'
-		, table : 'FTP_Threads'
-		, where : 'ftp_id = ' + the_id
-		};
-	JKY.ajax(true, my_data);
+	JKY.delete_threads	(the_id);
+	JKY.delete_loads	(the_id);
+	JKY.delete_settings	(the_id);
 };
 
 /**
@@ -256,10 +269,10 @@ JKY.print_row = function(the_id) {
 		+ "<tr>"
 
 		+ "<td width=60%><table>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span> FTP Number</span>:</td><td id='jky-print-number'		class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>	   Product</span>:</td><td id='jky-print-product'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span> FTP Number</span>:</td><td id='jky-print-ftp-number'	class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>	   Product</span>:</td><td id='jky-print-product-name'	class='jky-form-value'></td></tr>"
 		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>Composition</span>:</td><td id='jky-print-composition'	class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>	   Machine</span>:</td><td id='jky-print-machine'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>	   Machine</span>:</td><td id='jky-print-machine-name'	class='jky-form-value'></td></tr>"
 		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>	 Nick Name</span>:</td><td id='jky-print-nick-name'		class='jky-form-value'></td></tr>"
 		+ "</table></td>"
 
@@ -313,11 +326,11 @@ JKY.print_row = function(the_id) {
 	JKY.set_html('jky-printable', my_html);
 	JKY.t_tag	('jky-printable', 'span');
 
-	JKY.set_html('jky-print-number'			, my_row.number			);
+	JKY.set_html('jky-print-ftp-number'		, my_row.ftp_number		);
 	JKY.set_html('jky-print-start-date'		, my_row.start_date		);
-	JKY.set_html('jky-print-product'		, my_row.product		);
+	JKY.set_html('jky-print-product-name'	, my_row.product_name	);
 	JKY.set_html('jky-print-composition'	, my_row.composition	);
-	JKY.set_html('jky-print-machine'		, my_row.machine		);
+	JKY.set_html('jky-print-machine-name'	, my_row.machine_name	);
 	JKY.set_html('jky-print-collection'		, my_row.collections	);
 	JKY.set_html('jky-print-nick-name'		, my_row.nick_name		);
 

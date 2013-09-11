@@ -845,15 +845,14 @@ JKY.set_option = function(id_name, value){
 //	JKY.set_options(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
 //	----------------------------------------------------------------------------
 JKY.set_options = function( ) {
-     options   = '';
-     set_value = arguments[0];
+     var my_options = '';
 
-     for( var i=1; i<arguments.length; i++ ) {
-          value = arguments[i];
-          selected = (value == set_value) ? ' selected="selected"' : '';
-          options += '<option value="' + value + '"' + selected + '>' + value + '</option>';
+     for( var i=1, max=arguments.length; i<max; i++ ) {
+          var my_value = arguments[i];
+          var my_selected = (my_value == arguments[0]) ? ' selected="selected"' : '';
+          my_options += '<option value="' + my_value + '"' + my_selected + '>' + JKY.t(my_value) + '</option>';
      }
-     return options;
+     return my_options;
 }
 
 //	JKY.set_options_array(20, array, true)

@@ -14,7 +14,7 @@ JKY.display_lines = function() {
 }
 
 JKY.generate_loads = function(response) {
-	var my_boxes_requested = parseInt(JKY.row.requested_boxes);
+	var my_boxes_requested = parseInt(JKY.row.requested_boxes) - parseInt(JKY.row.checkout_boxes);
 	var my_html  = '';
 	var my_rows  = response.rows;
 	if (my_rows != '') {
