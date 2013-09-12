@@ -29,7 +29,7 @@ JKY.start_program = function() {
  */
 JKY.set_all_events = function() {
 	$('#jky-created-date').attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-created-date').on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-created-date').on('changeDate', function()	{JKY.Application.process_change_input(this);});
 };
 
 /**

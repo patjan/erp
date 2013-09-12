@@ -41,13 +41,13 @@ JKY.set_all_events = function() {
 	$('#jky-quoted-date'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-produced-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-delivered-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
-	$('#jky-quoted-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-produced-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-delivered-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-quoted-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-produced-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-delivered-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
-	$('#jky-punho-name'			).click( function()	{JKY.Application.process_change_input(this);});
-	$('#jky-gola-name'			).click( function()	{JKY.Application.process_change_input(this);});
-	$('#jky-galao-name'			).click( function()	{JKY.Application.process_change_input(this);});
+	$('#jky-punho-name'			).change( function()	{JKY.Application.process_change_input(this);});
+	$('#jky-gola-name'			).change( function()	{JKY.Application.process_change_input(this);});
+	$('#jky-galao-name'			).change( function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-lines-add-new'		).click (function()	{JKY.insert_line		();});
 

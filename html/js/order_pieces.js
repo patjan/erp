@@ -9,10 +9,10 @@ JKY.display_pieces = function() {
 		, select	:  JKY.row.id
 		, order_by  : 'Pieces.number_of_pieces DESC'
 		};
-	JKY.ajax(false, my_data, my_generate_pieces);
+	JKY.ajax(false, my_data, JKY.generate_pieces);
 }
 
-my_generate_pieces = function(response) {
+JKY.generate_pieces = function(response) {
 //	JKY.Order.set_requested(0);
 //	JKY.Order.set_checkout (0);
 	var my_html	= '';
@@ -20,7 +20,7 @@ my_generate_pieces = function(response) {
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];
-			my_html += my_generate_row(my_row);
+			my_html += JKY.generate_piece(my_row);
 //			JKY.Order.add_requested(my_row.requested_weight);
 //			JKY.Order.add_checkout (my_row.checkout_weight );
 		}
@@ -32,7 +32,7 @@ my_generate_pieces = function(response) {
 //	}
 }
 
-my_generate_row = function(the_row) {
+JKY.generate_piece = function(the_row) {
 	var my_id = the_row.id;
 //	var my_trash = (the_row.batch_id == null) ? '<a onclick="JKY.delete_pieces(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_trash = '';
@@ -66,7 +66,7 @@ my_generate_row = function(the_row) {
 	return my_html;
 }
 JKY.update_pieces = function(id_name, the_id ) {
-	var my_saved_requested = parseFloat(JKY.get_value_by_id('OrdThreads', 'requested_weight', the_id));
+	var my_saved_requested = parseFloat(JKY.get_value_by_id('Pieces', 'requested_weight', the_id));
 
 	var my_tr = $(id_name).parent().parent();
 	var my_pieces_id		= my_tr.find('.jky-pieces-row-id').val();
@@ -84,9 +84,9 @@ JKY.update_pieces = function(id_name, the_id ) {
 	}
 	var my_data =
 		{ method	: 'update'
-		, table		: 'OrdThreads'
+		, table		: 'Pieces'
 		, set		:  my_set
-		, where		: 'OrdThreads.id = ' + the_id
+		, where		: 'Pieces.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, JKY.update_pieces_success);
 
@@ -101,8 +101,8 @@ JKY.update_pieces_success = function(response) {
 JKY.insert_pieces = function() {
 	var my_data =
 		{ method	: 'insert'
-		, table		: 'OrdThreads'
-		, set		: 'OrdThreads.order_id = ' + JKY.row.id
+		, table		: 'Pieces'
+		, set		: 'Pieces.order_id = ' + JKY.row.id
 		};
 	JKY.ajax(true, my_data, JKY.insert_pieces_success);
 }
@@ -120,7 +120,7 @@ JKY.insert_pieces_success = function(response) {
 	my_row.requested_weight	=  0;
 	my_row.checkout_weight	=  0;
 
-	var my_html = JKY.generate_row(my_row);
+	var my_html = JKY.generate_piece(my_row);
 	JKY.append_html('jky-pieces-body', my_html);
 	var my_tr_id = $('#jky-pieces-body tr[order_pieces_id="' + response.id + '"]');
 	my_tr_id.find('.jky-pieces-requested-weight').focus().select();
@@ -130,8 +130,8 @@ JKY.delete_pieces = function(id_name, the_id) {
 	$(id_name).parent().parent().remove();
 	var my_data =
 		{ method	: 'delete'
-		, table		: 'OrdThreads'
-		, where		: 'OrdThreads.id = ' + the_id
+		, table		: 'Pieces'
+		, where		: 'Pieces.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, JKY.delete_pieces_success);
 }

@@ -44,10 +44,6 @@ if (my_first == true) {
 				$('#jky-action-cancel'		).click (function() {JKY.Changes.can_leave(function() { my_process_cancel		();})});
 				$('#jky-check-all'			).click (function() {									my_set_all_check	(this);});
 
-				$('#jky-form-data       input[id]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
-				$('#jky-form-data     input[name]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
-				$('#jky-form-data      select[id]').each (function() {$(this).change(function()		{my_process_change_input(this);});});
-				$('#jky-form-data    textarea[id]').each (function() {$(this).change(function()		{my_process_change_input(this);});});
 				JKY.set_all_events();	// from caller
 			}else{
 				setTimeout(function() {my_set_all_events();}, 100);
@@ -69,6 +65,26 @@ if (my_first == true) {
 			JKY.show('jky-app-header');
 			JKY.hide('jky-action-publish');
 			JKY.set_initial_values();
+
+//			$('#jky-form-data       input[id]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
+//			$('#jky-form-data     input[name]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
+//			$('#jky-form-data      select[id]').each (function() {$(this).change(function()		{my_process_change_input(this);});});
+//			$('#jky-form-data    textarea[id]').each (function() {$(this).change(function()		{my_process_change_input(this);});});
+
+			$('#jky-form-data       input[id]').each (function() {$(this).keyup (function(event)		{my_process_keyup_input (this, event, true	);});});
+			$('#jky-form-data     input[name]').each (function() {$(this).keyup (function(event)		{my_process_keyup_input (this, event, true	);});});
+			$('#jky-form-data    textarea[id]').each (function() {$(this).keyup (function(event)		{my_process_keyup_input (this, event, false	);});});
+
+			$('#jky-form-data       input[id]').each (function() {$(this).change(function()				{my_process_change_input(this);});});
+			$('#jky-form-data     input[name]').each (function() {$(this).change(function()				{my_process_change_input(this);});});
+			$('#jky-form-data      select[id]').each (function() {$(this).change(function()				{my_process_change_input(this);});});
+			$('#jky-form-data           .date').each (function() {$(this).on('changeDate', function()	{my_process_change_input(this);});});
+
+			$('#jky-form-data       input[id]').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
+			$('#jky-form-data     input[name]').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
+			$('#jky-form-data    textarea[id]').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
+			$('#jky-form-data      select[id]').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
+			$('#jky-form-data           .date').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
 			JKY.Changes.reset();
 		}else{
 			setTimeout(function() {my_set_initial_values();}, 100);
@@ -401,37 +417,43 @@ if (my_first == true) {
 	}
 
 /**
- * process change input
+ * process keup input
  */
-	function my_process_change_input(the_id) {
-		var my_id = $(the_id).attr('id');
-		JKY.display_trace('my_process_change_input: ' + my_id);
-		JKY.Changes.increment();
-		if (my_id == 'jky-is-company') {
-			my_process_is_company(the_id);
-		}else{
-			JKY.Validation.is_invalid(JKY.row, my_id);
+	function my_process_keyup_input(the_id, the_event, the_enter) {
+//JKY.set_html('jky-event-which', the_event.keyCode);
+		if (the_enter && the_event.which == 13) {
+//			not able to simulate tab to focus on next field
+//			$(the_id).trigger({type:'keypress', which:9});
+			return;
+		}
+//JKY.set_html('jky-event-which', the_event.keyCode);
+		if (the_event.which ==   8									//	backspace
+		||  the_event.which ==  13									//	enter
+		||  the_event.which ==  32									//	space
+		||  the_event.which ==  46									//	delete
+		|| (the_event.which >=  48 && the_event.which <=  90)		//	0 - Z
+		|| (the_event.which >=  96 && the_event.which <= 111)		//	0 - /
+		|| (the_event.which >= 160 && the_event.which <= 222)) {	//	^ - "
+			JKY.Changes.increment();
 		}
 	}
 
 /**
- * only used on [Customers, Suppliers, Companies]
+ * process change input
  */
-	function my_process_is_company(the_id) {
-		JKY.display_trace('my_process_is_company');
-		if ($(the_id).is(':checked')) {
-			JKY.invisible	('jky-company');
-			JKY.hide		('jky-position-line'	);
-			JKY.show		('jky-website-line'		);
-			JKY.set_html	('jky-cnpj-label','CNPJ');
-			JKY.set_html	('jky-ie-label'  ,'IE'	);
-		}else{
-			JKY.visible		('jky-company');
-			JKY.show		('jky-position-line'	);
-			JKY.hide		('jky-website-line'		);
-			JKY.set_html	('jky-cnpj-label','CPF'	);
-			JKY.set_html	('jky-ie-label'  ,'RG'	);
-		}
+	function my_process_change_input(the_id, the_event) {
+		var my_id = $(the_id).attr('id');
+		JKY.display_trace('my_process_change_input: ' + my_id);
+		JKY.Changes.increment();
+	}
+
+/**
+ * process verify input
+ */
+	function my_process_verify_input(the_id) {
+		var my_id = $(the_id).attr('id');
+		JKY.display_trace('my_process_verify_input: ' + my_id);
+		JKY.Validation.is_invalid(JKY.row, my_id);
 	}
 
 	function my_set(the_args) {
@@ -463,7 +485,7 @@ if (my_first == true) {
 		, display_form			:	function(the_index)		{		my_display_form(the_index)		;}
 		, display_row			:	function(the_index)		{		my_display_row (the_index)		;}
 		, set_checkbox			:	function(the_index)		{		my_set_checkbox(the_index)		;}
-		, process_is_company	:	function(the_id)		{		my_process_is_company(the_id)	;}
+		, Xprocess_is_company	:	function(the_id)		{		Xmy_process_is_company(the_id)	;}
 		, process_change_input	:	function(the_id)		{		my_process_change_input(the_id) ;}
 	};
 }();

@@ -34,15 +34,16 @@ JKY.set_all_events = function() {
 	$('#jky-ordered-date'		).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-needed-date'		).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-produced-date'		).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-ordered-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-needed-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-produced-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-ordered-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-needed-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-produced-date'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
-	$('#jky-tab-threads'		).click (function() {JKY.display_threads();});
-	$('#jky-thread-add-new'		).click (function() {JKY.insert_thread	();});
+//	$('#jky-tab-threads'		).click (function() {JKY.display_threads();});
+	$('#jky-threads-add-new'	).click (function() {JKY.insert_thread	();});
+//	$('#jky-pieces-add-new'		).click (function() {JKY.insert_pieces	();});
 
 	$('#jky-pieces-display'		).click (function() {JKY.Changes.can_leave(function() {JKY.Pieces.display(this)});});
-	$('#jky-pieces-print'		).click (function() {JKY.Pieces.print()});
+	$('#jky-pieces-print'		).click (function() {JKY.Pieces.print(); JKY.display_pieces();});
 
 	$('#jky-machine-name'		).change(function() {JKY.clear_produced_by("machine");});
 	$('#jky-partner-name'		).change(function() {JKY.clear_produced_by("partner");});

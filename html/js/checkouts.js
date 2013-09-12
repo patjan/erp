@@ -32,15 +32,13 @@ JKY.set_all_events = function() {
 	$('#jky-checkout-value'	).attr('data-format', JKY.Session.get_date_time	());
 	$('#jky-requested-date'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-checkout-date'	).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-requested-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-checkout-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-requested-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-checkout-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-tab-batches'	).click (function() {JKY.display_batches	();});
 	$('#jky-batch-add-new'	).click (function() {JKY.insert_batch		();});
-	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 
 	$('#jky-boxes-print'	).click (function() {JKY.Batch.print()});
-
 
 	$('#jky-machine-name'	).change(function() {JKY.clear_produced_by("machine"	);});
 	$('#jky-supplier-name'	).change(function() {JKY.clear_produced_by("supplier"	);});
@@ -54,15 +52,21 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-machine'	, '../JKY.Search.Machine.html'	);
 	JKY.append_file('jky-load-supplier'	, '../JKY.Search.Supplier.html'	);
 	JKY.append_file('jky-load-dyer'		, '../JKY.Search.Dyer.html'		);
+	JKY.append_file('jky-load-thread'	, '../JKY.Search.Thread.html'	);
+	JKY.append_file('jky-load-batchin'	, '../JKY.Search.BatchIn.html'	);
+
 	JKY.set_side_active('jky-threads-checkouts');
 	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
 	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), true));
 	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_dyer'), true));
 //	JKY.set_html('jky-app-select-label', JKY.t('Type'));
 //	JKY.show('jky-app-select-line');
+
 	$('#jky-machine-filter'		).KeyUpDelay(JKY.Machine.load_data	);
 	$('#jky-supplier-filter'	).KeyUpDelay(JKY.Supplier.load_data	);
 	$('#jky-dyer-filter'		).KeyUpDelay(JKY.Dyer.load_data		);
+	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data	);
+	$('#jky-batchin-filter'		).KeyUpDelay(JKY.BatchIn.load_data	);
 }
 
 /**

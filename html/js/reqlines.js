@@ -32,8 +32,8 @@ JKY.set_all_events = function() {
 	$('#jky-scheduled-value').attr('data-format', JKY.Session.get_date_time	());
 	$('#jky-requested-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-scheduled-at'	).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-requested-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-scheduled-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-requested-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-scheduled-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-action-batch'	).click( function() {JKY.generate_batch();})
 };

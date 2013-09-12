@@ -274,20 +274,6 @@ JKY.process_action = function(action) {
 }
 
 /**
- * fix null
- * @param	the_string
- * @return	&nbsp;
- * @return	the_string
- */
-JKY.fix_null = function(the_string){
-	if (the_string == null) {
-		return '&nbsp;'
-	}else{
-		return the_string;
-	}
-}
-
-/**
  * fix flag
  * @param	flag_value
  * @param	true_value
@@ -362,17 +348,16 @@ JKY.fix_name = function(trailer, first_name, last_name){
 }
 
 /**
- * fix null value
- * replace 'undefined' with '&nbsp;'
- * @param	string_value
+ * fix null
+ * @param	the_string
  * @return	&nbsp;
- * @return	string_value
+ * @return	the_string
  */
-JKY.fix_null = function(string_value){
-	if (string_value) {
-		return string_value;
+JKY.fix_null = function(the_string){
+	if (the_string == null || the_string == 'null') {
+		return '&nbsp;'
 	}else{
-		return '&nbsp;';
+		return the_string;
 	}
 }
 

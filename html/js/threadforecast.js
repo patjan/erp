@@ -30,7 +30,7 @@ JKY.start_program = function() {
 JKY.set_all_events = function() {
 	$('#jky-reference-value').attr('data-format', JKY.Session.get_date());
 	$('#jky-reference-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
-	$('#jky-reference-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-reference-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-action-refresh'	).click (function() {JKY.process_refresh();});
 };

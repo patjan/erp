@@ -40,14 +40,14 @@ JKY.generate_contacts = function(response) {
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];
-			my_html += JKY.generate_row(my_row);
+			my_html += JKY.generate_contact(my_row);
 
 		}
 	}
 	JKY.set_html('jky-contacts-body', my_html);
 }
 
-JKY.generate_row = function(the_row) {
+JKY.generate_contact = function(the_row) {
 	var my_id = the_row.id;
 /*
 	var my_thread = ''

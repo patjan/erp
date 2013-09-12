@@ -19,7 +19,7 @@ JKY.generate_threads = function(response) {
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];
-			my_html += JKY.generate_row(my_row);
+			my_html += JKY.generate_thread(my_row);
 
 			var my_percent		= parseFloat(my_row.percent);
 			my_total += my_percent;
@@ -32,7 +32,7 @@ JKY.generate_threads = function(response) {
 	}
 }
 
-JKY.generate_row = function(the_row) {
+JKY.generate_thread = function(the_row) {
 	var my_id				=			 the_row.id;
 	var my_thread_id		=			 the_row.thread_id;
 	var my_name				=			 the_row.name;
@@ -99,7 +99,7 @@ JKY.insert_thread_success = function(response) {
 	my_row.name				= '';
 	my_row.supplier			= '';
 
-	var my_html = JKY.generate_row(my_row);
+	var my_html = JKY.generate_thread(my_row);
 	JKY.append_html('jky-thread-body', my_html);
 }
 

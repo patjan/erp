@@ -34,9 +34,6 @@ JKY.set_all_events = function() {
 	$('#jky-ordered-at'		).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-requested-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-scheduled-at'	).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-ordered-at'		).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-requested-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-scheduled-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
 	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
@@ -132,4 +129,3 @@ JKY.process_delete = function(the_id, the_row) {
 		};
 	JKY.ajax(true, my_data);
 };
-

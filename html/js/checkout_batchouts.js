@@ -28,7 +28,7 @@ JKY.generate_batches = function(response) {
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];
-			my_html += JKY.generate_row(my_row);
+			my_html += JKY.generate_batch(my_row);
 
 			var my_percent = parseFloat(my_row.percent);
 			my_total += my_percent;
@@ -41,7 +41,7 @@ JKY.generate_batches = function(response) {
 	}
 }
 
-JKY.generate_row = function(the_row) {
+JKY.generate_batch = function(the_row) {
 	var my_id = the_row.id;
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
@@ -140,7 +140,7 @@ JKY.insert_batch_success = function(response) {
 	my_row.checkout_boxes	= 0;
 	my_row.checkout_weight	= 0;
 
-	var my_html = JKY.generate_row(my_row);
+	var my_html = JKY.generate_batch(my_row);
 	JKY.append_html('jky-batches-body', my_html);
 }
 

@@ -43,10 +43,10 @@ JKY.set_all_events = function() {
 	$('#jky-needed-date'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-checkout-date'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-returned-date'	).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-ordered-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-needed-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-checkout-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-returned-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-ordered-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-needed-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-checkout-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
+//	$('#jky-returned-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-threads-add-new').click (function()	{JKY.insert_thread();});
 	$('#jky-action-generate').click( function() {JKY.generate_checkout();})
@@ -324,7 +324,6 @@ JKY.save_remarks_success = function(response) {
 }
 
 /* -------------------------------------------------------------------------- */
-
 JKY.generate_checkout = function() {
 	JKY.active_tdyer();
 }

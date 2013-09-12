@@ -19,13 +19,13 @@ JKY.generate_ftps = function(response) {
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row	= my_rows[i];
-			my_html += JKY.generate_row(my_row);
+			my_html += JKY.generate_ftp(my_row);
 		}
 	}
 	JKY.set_html('jky-ftp-body' , my_html);
 }
 
-JKY.generate_row = function(the_row) {
+JKY.generate_ftp = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = (false) ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 

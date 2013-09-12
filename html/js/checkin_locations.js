@@ -10,10 +10,10 @@ JKY.display_lines = function() {
 		, select	:  JKY.row.batchin_id
 		, order_by  : 'location'
 		};
-	JKY.ajax(false, my_data, JKY.generate_loads);
+	JKY.ajax(false, my_data, JKY.generate_boxes);
 }
 
-JKY.generate_loads = function(response) {
+JKY.generate_boxes = function(response) {
 	var my_boxes_requested = parseInt(JKY.row.requested_boxes) - parseInt(JKY.row.checkout_boxes);
 	var my_html  = '';
 	var my_rows  = response.rows;
@@ -32,11 +32,11 @@ JKY.generate_loads = function(response) {
 			my_html  += ''
 				+ '<tr>'
 				+ '<td class="jky-action"></td>'
-				+ '<td class="jky-boxes-location"	><input  class="jky-checkin-location"	type="text"	value="' +				my_row.location		+ '" readonly="readonly"  /></td>'
-				+ '<td class="jky-boxes-date-in"	><input  class="jky-checkin-date"		type="text"	value="' + JKY.out_date(my_row.checkin_at)	+ '" readonly="readonly"  /></td>'
-				+ '<td class="jky-boxes-weight"		><input  class="jky-checkin-weight"		type="text"	value="' +				my_row.total_weight	+ '" readonly="readonly"  /></td>'
-				+ '<td class="jky-boxes-checkin"	><input  class="jky-checkin-boxes"		type="text"	value="' +				my_boxes_checkin	+ '" readonly="readonly"  /></td>'
-				+ '<td class="jky-boxes-reserved"	><input  class="jky-reserved-boxes"		type="text"	value="' +				my_boxes_reserved	+ '" /></td>'
+				+ '<td class="jky-boxes-location"	><input  class="jky-checkin-location"	value="' +				my_row.location		+ '" readonly="readonly"	/></td>'
+				+ '<td class="jky-boxes-date-in"	><input  class="jky-checkin-date"		value="' + JKY.out_date(my_row.checkin_at)	+ '" readonly="readonly"	/></td>'
+				+ '<td class="jky-boxes-weight"		><input  class="jky-checkin-weight"		value="' +				my_row.total_weight	+ '" readonly="readonly"	/></td>'
+				+ '<td class="jky-boxes-checkin"	><input  class="jky-checkin-boxes"		value="' +				my_boxes_checkin	+ '" readonly="readonly"	/></td>'
+				+ '<td class="jky-boxes-reserved"	><input  class="jky-reserved-boxes"		value="' +				my_boxes_reserved	+ '"						/></td>'
 				+ '</tr>'
 				;
 		}
@@ -47,7 +47,7 @@ JKY.generate_loads = function(response) {
 	}
 }
 
-JKY.update_load = function(id_name, the_id) {
+JKY.Xupdate_boxes = function(id_name, the_id) {
 	var my_tr = $(id_name).parent().parent();
 	if ($(id_name).attr('class') == 'jky-load-remarks') {
 		my_tr = my_tr.prev();
@@ -70,18 +70,18 @@ JKY.update_load = function(id_name, the_id) {
 		;
 	var my_data =
 		{ method	: 'update'
-		, table		: 'FTP_Loads'
+		, table		: 'CheckinLocations'
 		, set		:  my_set
-		, where		: 'FTP_Loads.id = ' + the_id
+		, where		: 'CheckinLocations.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, JKY.update_load_success);
 }
 
-JKY.update_load_success = function(response) {
+JKY.Xupdate_load_success = function(response) {
 //	JKY.display_message(response.message)
 }
 
-JKY.insert_load = function() {
+JKY.Xinsert_load = function() {
 	var my_data =
 		{ method	: 'insert'
 		, table		: 'FTP_Loads'
@@ -90,7 +90,7 @@ JKY.insert_load = function() {
 	JKY.ajax(true, my_data, JKY.insert_load_success);
 }
 
-JKY.insert_load_success = function(response) {
+JKY.Xinsert_load_success = function(response) {
 	var my_id = response.id;
 	var my_input_from	=  0;
 	var my_input_upto	=  0;
@@ -118,7 +118,7 @@ JKY.insert_load_success = function(response) {
 	JKY.append_html('jky-load-body', my_html);
 }
 
-JKY.delete_load = function(id_name, the_id) {
+JKY.Xdelete_load = function(id_name, the_id) {
 	var my_tr = $(id_name).parent().parent();
 	my_tr.next().remove();
 	my_tr.remove();
@@ -130,12 +130,12 @@ JKY.delete_load = function(id_name, the_id) {
 	JKY.ajax(true, my_data, JKY.delete_load_success);
 }
 
-JKY.delete_load_success = function(response) {
+JKY.Xdelete_load_success = function(response) {
 //	JKY.display_message(response.message)
 	JKY.verify_total_percent();
 }
 
-JKY.load_ids = function(the_id) {
+JKY.Xload_ids = function(the_id) {
 	var my_rows = [];
 	var my_data =
 		{ method	: 'get_index'

@@ -23,6 +23,7 @@ JKY.Changes = function() {
 			JKY.disable_button('jky-action-save'	);
 //			JKY.disable_button('jky-action-cancel'	);
 		}else{
+//JKY.set_html('jky-event-which', my_changes);
 			JKY.enable_button('jky-action-save'		);
 //			JKY.enable_button('jky-action-cancel'	);
 		}
@@ -56,7 +57,8 @@ JKY.Changes = function() {
 
 			var my_header = JKY.t('Leaving');
 			var my_body   = ''
-				+ JKY.t('This page has') + ' <b>' + my_changes + '</b> ' + JKY.t('unsaved change(s).')
+//				+ JKY.t('This page has') + ' <b>' + my_changes + '</b> ' + JKY.t('unsaved change(s).')
+				+ JKY.t('This page has') + ' ' + JKY.t('unsaved change(s).')
 				+ ' <br>' + JKY.t('Do you want to leave to new page')
 				+ ' <br> <b>' + JKY.t('without') + '</b> ' + JKY.t('saving them?')
 				;
@@ -79,7 +81,7 @@ JKY.Changes = function() {
 		, increment		: function()	{if (my_track)	{my_changes += 1; my_set_button_save();}}
 		, decrement		: function()	{if (my_track)	{my_changes -= 1; my_set_button_save();}}
 
-		, track			: function(the_flag)		{		my_track = the_flag;}  
+		, track			: function(the_flag)		{		my_track = the_flag;}
 		, can_leave		: function(the_function)	{return my_can_leave(the_function);}
 	};
 }();

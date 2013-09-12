@@ -118,10 +118,10 @@ JKY.insert_thread_success = function(response) {
 	my_row.requested_weight	=  0;
 	my_row.checkout_weight	=  0;
 
-	var my_html = JKY.generate_row(my_row);
+	var my_html = JKY.generate_thread(my_row);
 	JKY.append_html('jky-threads-body', my_html);
 	var my_tr_id = $('#jky-threads-body tr[order_thread_id="' + response.id + '"]');
-	my_tr_id.find('.jky-thread-requested-weight').focus().select();
+	my_tr_id.find('.jky-requested-weight').focus().select();
 }
 
 JKY.delete_thread = function(id_name, the_id) {
@@ -140,8 +140,8 @@ JKY.delete_thread_success = function(response) {
 }
 
 JKY.update_total_weight = function() {
-	JKY.set_html('jky-thread-total-requested', JKY.Order.get_requested());
-	JKY.set_html('jky-thread-total-checkout' , JKY.Order.get_checkout ());
+	JKY.set_html('jky-threads-total-requested', JKY.Order.get_requested());
+	JKY.set_html('jky-threads-total-checkout' , JKY.Order.get_checkout ());
 //	JKY.Order.update_requested_weight(JKY.row.id);
 }
 

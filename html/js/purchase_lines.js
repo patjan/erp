@@ -13,14 +13,14 @@ JKY.display_lines = function() {
 }
 
 JKY.generate_lines = function(response) {
-	var my_html		= '';
+	var my_html	= '';
 	JKY.Purchase.set_expected(0);
 	JKY.Purchase.set_received(0);
-	var my_rows		= response.rows;
+	var my_rows	= response.rows;
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];
-			my_html += JKY.generate_row(my_row);
+			my_html += JKY.generate_line(my_row);
 			JKY.Purchase.add_expected(my_row.expected_weight);
 			JKY.Purchase.add_received(my_row.received_weight);
 		}
@@ -32,7 +32,7 @@ JKY.generate_lines = function(response) {
 	}
 }
 
-JKY.generate_row = function(the_row) {
+JKY.generate_line = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = (the_row.batch_id == null) ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_line = ''

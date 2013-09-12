@@ -28,8 +28,8 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
-	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
+//	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
+//	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
 //	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 };
 

@@ -56,6 +56,7 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-contact-tag'		, JKY.set_configs ('Customer Tags'	, '', ''));
 	JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
 	JKY.set_html('jky-country'			, JKY.set_configs ('Countries'		, '', ''));
+	$('#jky-is-company'		).click (function() {JKY.process_is_company		(this);});
 };
 
 /**
@@ -85,7 +86,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-ie'				, the_row.ie			);
 	JKY.set_value	('jky-position'			, the_row.position		);
 	JKY.set_value	('jky-email'			, the_row.email			);
-	setTimeout(function() {JKY.Application.process_is_company($('#jky-is-company'));}, 100);
+	setTimeout(function() {JKY.process_is_company($('#jky-is-company'));}, 100);
 
 	JKY.Photo.set_row_id(the_row.id);
 	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));
@@ -112,7 +113,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-ie'				, '');
 	JKY.set_value	('jky-position'			, '');
 	JKY.set_value	('jky-email'			, '');
-	setTimeout(function() {JKY.Application.process_is_company($('#jky-is-company'));}, 100);
+	setTimeout(function() {JKY.process_is_company($('#jky-is-company'));}, 100);
 };
 
 /**
@@ -137,3 +138,24 @@ JKY.get_form_set = function() {
 JKY.display_form = function() {
 	JKY.hide('jky-action-delete');
 };
+
+/**
+ * only used on [Customers, Suppliers, Dyers, Partners]
+ */
+JKY.process_is_company = function(the_id) {
+	JKY.display_trace('my_process_is_company');
+	if ($(the_id).is(':checked')) {
+		JKY.invisible	('jky-company');
+		JKY.hide		('jky-position-line'	);
+		JKY.show		('jky-website-line'		);
+		JKY.set_html	('jky-cnpj-label','CNPJ');
+		JKY.set_html	('jky-ie-label'  ,'IE'	);
+	}else{
+		JKY.visible		('jky-company');
+		JKY.show		('jky-position-line'	);
+		JKY.hide		('jky-website-line'		);
+		JKY.set_html	('jky-cnpj-label','CPF'	);
+		JKY.set_html	('jky-ie-label'  ,'RG'	);
+	}
+};
+
