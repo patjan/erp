@@ -105,7 +105,7 @@ JKY.insert_line_success = function(response) {
 	my_row.received_weight	=  0;
 	my_row.scheduled_at		= null;
 
-	var my_html = JKY.generate_row(my_row);
+	var my_html = JKY.generate_line(my_row);
 	JKY.append_html('jky-lines-body', my_html);
 }
 

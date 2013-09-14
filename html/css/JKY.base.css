@@ -178,8 +178,8 @@ input.search-query	{margin-bottom:10px;}
     border-bottom: 1px solid #CACACA;
     height:34px;
 }
-#jky-form-actions		{float:left; margin:4px 10px;}
-#jky-form-status		{float:right; margin-right:22px; border-left:1px solid #CACACA;}
+#jky-form-actions		{float:left ; margin:4px 10px;}
+#jky-form-status		{float:right; margin:4px 10px;}
 #jky-form-status li		{
     background-color: #EDEDED;
     display: inline-block;
@@ -292,6 +292,7 @@ li .arrow span {
 .jky-number-of-boxes	{width: 50px; text-align:right  !important;}
 .jky-number-of-cones	{width: 45px; text-align:right  !important;}
 .jky-number-of-pieces	{width: 50px; text-align:right  !important;}
+.jky-ok					{color:#4C4C4C;}
 .jky-order-number		{width: 50px; text-align:center !important;}
 .jky-ordered-date		{width: 75px; text-align:center !important;}
 .jky-ordered-pieces		{width: 50px; text-align:right  !important;}

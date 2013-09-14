@@ -38,7 +38,7 @@ JKY.set_all_events = function() {
 //	$('#jky-tab-lines'			).click (function() {JKY.display_lines		();});
 	$('#jky-line-add-new'		).click (function() {JKY.insert_line		();});
 
-	$('#jky-action-generate'	).click( function() {JKY.generate_puchase	();});
+	$('#jky-action-generate'	).click( function() {JKY.generate_purchase	();});
 	$('#jky-action-close'		).click( function() {JKY.close_order		();});
 
 	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data);
@@ -94,6 +94,7 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_button('jky-action-close');
 	}
 
+	JKY.set_html	('jky-status'			, JKY.t			(the_row.status				));
 	JKY.set_value	('jky-purchase-number'	,				 the_row.purchase_number	);
 	JKY.set_value	('jky-source-doc'		,				 the_row.source_doc			);
 	JKY.set_date	('jky-ordered-date'		, JKY.out_time	(the_row.ordered_at			));

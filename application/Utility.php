@@ -3002,6 +3002,20 @@ function get_control_value( $control_set, $name ) {
 }
 
 # -------------------------------------------------------------------------
+#    get config value
+# -------------------------------------------------------------------------
+function get_config_value( $group_set, $name ) {
+     $sql = 'SELECT value'
+          . '  FROM Configs'
+          . ' WHERE company_id =  ' . get_session( 'control_company', COMPANY_ID )
+          . '   AND group_set = "' . $group_set . '"'
+          . '   AND name = "' . $name . '"'
+          ;
+     $db  = Zend_Registry::get( 'db' );
+     return $db->fetchOne( $sql );
+}
+
+# -------------------------------------------------------------------------
 #    get control value from root company
 # -------------------------------------------------------------------------
 function get_root_value( $control_set, $name ) {

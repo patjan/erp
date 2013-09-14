@@ -49,12 +49,18 @@ JKY.set_initial_values = function() {
  *	set table row
  */
 JKY.set_table_row = function(the_row) {
+	var my_received_boxes	= parseInt(the_row.received_boxes);
+	var my_labels_printed	= parseInt(the_row.labels_printed);
+	var my_checkin_boxes	= parseInt(the_row.checkin_boxes );
+	var my_labels_color		= (my_labels_printed < my_received_boxes) ? 'jky-error' : 'jky-ok';
+	var my_checkin_color	= (my_checkin_boxes  < my_received_boxes) ? 'jky-error' : 'jky-ok';
+
 	var my_html = ''
 		+  '<td class="jky-product-code"	>' + JKY.fix_null	(the_row.code				)	+ '</td>'
 		+  '<td class="jky-batch-code"		>' + JKY.fix_null	(the_row.batch				)	+ '</td>'
 		+  '<td class="jky-received-boxes"	>' +				 the_row.received_boxes			+ '</td>'
-		+  '<td class="jky-labels-printed"	>' +				 the_row.labels_printed			+ '</td>'
-		+  '<td class="jky-checkin-boxes"	>' +				 the_row.checkin_boxes			+ '</td>'
+		+  '<td class="jky-labels-printed ' + my_labels_color  + '"	>' + the_row.labels_printed	+ '</td>'
+		+  '<td class="jky-checkin-boxes  ' + my_checkin_color + '"	>' + the_row.checkin_boxes	+ '</td>'
 		+  '<td class="jky-number-of-cones"	>' +				 the_row.number_of_cones		+ '</td>'
 		+  '<td class="jky-unit-price"		>' +				 the_row.unit_price				+ '</td>'
 		+  '<td class="jky-average-weight"	>' +				 the_row.average_weight			+ '</td>'

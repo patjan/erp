@@ -96,6 +96,7 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_button('jky-action-delete');
 	}
 
+	JKY.set_calculated_color();
 	JKY.display_lines();
 };
 
@@ -138,8 +139,16 @@ JKY.get_form_set = function() {
 	return my_set;
 };
 
-/* -------------------------------------------------------------------------- */
+/**
+ *	set calculated color
+ */
+JKY.set_calculated_color = function() {
+	var my_requested_weight	= parseFloat(JKY.get_value('jky-requested-weight'	));
+	var my_checkout_weight	= parseFloat(JKY.get_value('jky-checkout-weight'	));
+	JKY.set_css('jky-checkout-weight', 'color', ((my_requested_weight - my_checkout_weight) > 0.001) ? 'red' : 'black');
+}
 
+/* -------------------------------------------------------------------------- */
 JKY.generate_batch = function() {
 	JKY.insert_batch_sets();
 }

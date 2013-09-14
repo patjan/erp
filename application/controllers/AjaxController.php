@@ -4258,6 +4258,7 @@ private function echo_error( $message ) {
 	 *	return: [ x...x, ..., x...x ]
 	 */
 	private function print_labels($data) {
+
 		$sql= 'SELECT Boxes.*'
 			. '     , Batches.batch AS batch_number'
 			. '     , Threads.composition, Threads.name AS thread_name'
@@ -4274,9 +4275,9 @@ private function echo_error( $message ) {
 		$db   = Zend_Registry::get('db');
 		$rows = $db->fetchAll($sql);
 
-		$count = 0;
+		$count		= 0;
 		$folder		= 'boxes/';
-		$ip_number = '192.168.0.252';	//	printer for boxes labels
+		$ip_number	= get_config_value('System Controls', 'IP DL Printer Barcode Boxes');
 		foreach($rows as $my_row) {
 			$my_id				= $my_row['id'				];
 			$my_average_weight	= $my_row['average_weight'	];
@@ -4351,10 +4352,9 @@ private function echo_error( $message ) {
 			fwrite( $out_file, NL );
 			fclose( $out_file );
 
+if (ENVIRONMENT == 'production') {
 //			system( '( tcp.exe ' . $ip_number . ' 9100 ' . $out_name . ' & ) > /dev/null');
 //			system( '( php ' . APPLICATION . 'GenerateHtml.php & ) > /dev/null' );
-
-if (ENVIRONMENT == 'production') {
 			exec( 'tcp.exe ' . $ip_number . ' 9100 ' . $out_name );
 }
 			$sql= 'UPDATE Boxes'

@@ -43,9 +43,12 @@
 			<button id='jky-action-generate'	class='btn'	type='button' title="Click here to generate check out"	><span>Generate Check Out	</span></button>
 			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this order"	><span>Close Order			</span></button>
 		</div>
-		<ul  id='jky-form-status'></ul>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled='disabled'><span id='jky-status'></span></button>
+		</div>
+		<div class='jky-clear'></div>
 	</div>
-	<div class='jky-clear'></div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
@@ -153,7 +156,7 @@
 </div>
 
 <div id='jky-body-loaded'></div>
-<script src='js/purchases.js'></script>
-<script src='js/JKY.Thread.js'></script>
-<script src='js/JKY.Purchase.js'></script>
-<script src='js/purchase_lines.js'></script>
+<script src='js/purchases.js'		></script>
+<script src='js/JKY.Thread.js'		></script>
+<script src='js/JKY.Purchase.js'	></script>
+<script src='js/purchase_lines.js'	></script>
