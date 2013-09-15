@@ -73,7 +73,9 @@ JKY.set_form_row = function(the_row) {
 		}
 		my_html += '<div class="jky-form-line">'
 				+  '<div class="jky-form-label">' + my_language + ':</div>'
-				+  '<div class="jky-form-value"><input id="' + my_locale + '" value="' + my_sentence + '" /></div>'
+				+  '<div class="jky-form-value">'
+				+  '<input id="' + my_locale + '" value="' + my_sentence + '" onkeyup="JKY.Changes.increment();" />'
+				+  '</div>'
 				+  '</div>'
 				;
 	}
@@ -154,6 +156,7 @@ JKY.process_delete = function(the_id, the_row) {
 		};
 	JKY.ajax(false, my_data, JKY.process_delete_success);
 }
+
 /**
  * process publish
  */

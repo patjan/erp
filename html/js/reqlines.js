@@ -35,7 +35,7 @@ JKY.set_all_events = function() {
 //	$('#jky-requested-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 //	$('#jky-scheduled-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
-	$('#jky-action-batch'	).click( function() {JKY.generate_batch();})
+	$('#jky-action-generate'	).click( function() {JKY.generate_batch();})
 };
 
 /**

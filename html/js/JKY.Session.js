@@ -102,13 +102,14 @@ JKY.display_trace('my_process_count_down');
 			clearTimeout(my_count_down_event);
 		}
 //		this line is only QA
-//		JKY.set_html('header-logo', '<span style="font-size:64px;">' + my_count_down + '</span>');
+//		JKY.set_html('jky-company-logo', '<span style="font-size:64px;">' + my_count_down + '</span>');
 		JKY.set_html('jky-count-down', my_count_down);
 		my_count_down_event = setTimeout(function() {
 			my_count_down -= 1;
 			if (my_count_down <= 0) {
 				JKY.set_html('jky-count-down', my_count_down);
 				my_process_timeout();
+				clearTimeout(my_session_event);
 			}else{
 				my_process_count_down();
 			};
@@ -117,11 +118,11 @@ JKY.display_trace('my_process_count_down');
 
 	var my_keep_in_session = function() {
 JKY.display_trace('my_keep_in_session');
-		clearTimeout(my_count_down_event);
 //		my_reset_timeout();			//	not needed because ajax will reset timeout
 
 //		extra ajax call to reset session timeout on Apache
 		my_load_values();
+		clearTimeout(my_count_down_event);
 	};
 
 	var my_process_timeout = function() {
@@ -133,9 +134,9 @@ JKY.display_trace('my_process_timeout');
 		}else{
 			var my_log_out = $('#jky-menu-logoff');
 			if (my_log_out) {
-				clearTimeout(my_session_event);
 				my_log_out.click();		//	this will work on [Log Off] anchor
 //				window.location = my_log_out.attr('onclick');
+				clearTimeout(my_session_event);
 			};
 		};
 	};
