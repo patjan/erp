@@ -4601,6 +4601,28 @@ private function checkout($data) {
 		$db->query( $sql );
 	}
 
+	if ($batchout['tdyer_thread_id']) {
+		$sql = 'UPDATE TDyerThreads'
+			 . '   SET checkout_weight = checkout_weight + ' . $my_weight
+			 . ' WHERE id = ' . $batchout['tdyer_thread_id']
+			 ;
+		$this->log_sql( 'TDyerThreads', 'update', $sql );
+		$db->query( $sql );
+
+		$sql = 'SELECT TDyerThreads.*'
+			 . '  FROM TDyerThreads'
+			 . ' WHERE TDyerThreads.id = ' . $batchout['tdyer_thread_id']
+			 ;
+		$tdyer_thread = $db->fetchRow( $sql );
+
+		$sql = 'UPDATE TDyers'
+			 . '   SET checkout_weight = checkout_weight + ' . $my_weight
+			 . ' WHERE id = ' . $tdyer_thread['parent_id']
+			 ;
+		$this->log_sql( 'TDyers', 'update', $sql );
+		$db->query( $sql );
+	}
+
 	$return = array();
 	$return[ 'status'   ] = 'ok';
 	$return[ 'message'  ] = 'record updated';

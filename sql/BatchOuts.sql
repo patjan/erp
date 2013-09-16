@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS BatchOuts
 , thread_id			BIGINT				DEFAULT NULL
 , batchin_id		BIGINT				DEFAULT NULL
 , req_line_id		BIGINT				DEFAULT NULL
+, tdyer_thread_id	BIGINT				DEFAULT NULL
 , code				VARCHAR(32)			DEFAULT NULL
 , batch				VARCHAR(32)			DEFAULT NULL
 , unit_price		DECIMAL(10,2)		DEFAULT 0
@@ -27,5 +28,7 @@ CREATE TABLE IF NOT EXISTS BatchOuts
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
-ALTER TABLE BatchOuts	ADD COLUMN batchin_id		BIGINT		DEFAULT NULL	AFTER thread_id;
-ALTER TABLE BatchOuts	ADD COLUMN reserved_boxes	INT			DEFAULT 0		AFTER requested_boxes;
+ALTER TABLE BatchOuts		ADD COLUMN batchin_id		BIGINT		DEFAULT NULL	AFTER thread_id;
+ALTER TABLE BatchOuts		ADD COLUMN reserved_boxes	INT			DEFAULT 0		AFTER requested_boxes;
+
+ALTER TABLE BatchOuts		ADD COLUMN tdyer_thread_id	BIGINT		DEFAULT NULL	AFTER req_line_id;

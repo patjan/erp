@@ -176,3 +176,8 @@ ALTER TABLE PurchaseLines	CHANGE	purchase_id			parent_id			BIGINT		DEFAULT NULL;
 ALTER TABLE TDyers			CHANGE	status				status				VARCHAR(32)	DEFAULT 'Draft';
 /* -- 2013/09/09	*/
 ALTER TABLE FTPs			CHANGE	number				ftp_number			VARCHAR(32) DEFAULT NULL;
+/* -- 2013/09/16	*/
+ALTER TABLE BatchOuts		ADD COLUMN tdyer_thread_id	BIGINT		DEFAULT NULL	AFTER req_line_id;
+ALTER TABLE TDyerThreads	ADD COLUMN returned_weight		DECIMAL(10,2)	DEFAULT 0		AFTER batchout_id;
+ALTER TABLE TDyerThreads	ADD COLUMN checkout_weight		DECIMAL(10,2)	DEFAULT 0		AFTER batchout_id;
+ALTER TABLE TDyerThreads	ADD COLUMN ordered_weight		DECIMAL(10,2)	DEFAULT 0		AFTER batchout_id;
