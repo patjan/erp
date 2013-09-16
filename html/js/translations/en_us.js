@@ -91,6 +91,7 @@ JKY.translations =
 , "Click here to reset the password":"Click here to reset the password"
 , "Click here to save all changes":"Click here to save all changes"
 , "Close Order":"Close Order"
+, "Close Request":"Close Request"
 , "Closed":"Closed"
 , "CNPJ":"CNPJ"
 , "CNPJ or CPF":"CNPJ or CPF"

@@ -32,29 +32,29 @@ JKY.Upload = function(the_args) {
 	var my_out_photo = function(the_photo) {
 		var my_html = '';
 		if (the_photo == null) {
-			my_html = '<img id="' + my_args.img_id + '" src="/img/placeholder.png" class="the_icon" />';
+			my_html = '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/placeholder.png" />';
 		}else{
 //			the_photo = file_name,file_time,file_size
 			var my_names = the_photo.split(',');
 			var my_extension = JKY.get_file_type(my_names[0]);
 			my_html = '<a href="' + 'jky_download.php?file_name=' + my_args.directory + '/' + my_row_id + '.' + my_extension + '">'
 			if (my_extension == 'pdf') {
-				my_html += '<img id="' + my_args.img_id + '" src="/img/pdf.png" class="the_icon" />';
+				my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/pdf.png" />';
 			}else{
 			if (my_extension == 'xml') {
-				my_html += '<img id="' + my_args.img_id + '" src="/img/xml.png" class="the_icon" />';
+				my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/xml.png" />';
 			}else{
 			if (my_extension == 'xls') {
-				my_html += '<img id="' + my_args.img_id + '" src="/img/xls.png" class="the_icon" />';
+				my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/xls.png" />';
 			}else{
 			if (my_extension == 'xps') {
-				my_html += '<img id="' + my_args.img_id + '" src="/img/xps.png" class="the_icon" />';
+				my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/xps.png" />';
 			}else{
 			if (my_extension == 'sql') {
-				my_html += '<img id="' + my_args.img_id + '" src="/img/sql.png" class="the_icon" />';
+				my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/sql.png" />';
 			}else{
 				var my_time = my_names[1];
-				my_html += '<img id="' + my_args.img_id + '" src="/uploads/' + my_args.directory + '/' + my_row_id + '.' + my_extension + '?time=' + my_time + '" class="the_icon" />';
+				my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/uploads/' + my_args.directory + '/' + my_row_id + '.' + my_extension + '?time=' + my_time + '" />';
 			}}}}}
 			my_html += '</a>';
 		}

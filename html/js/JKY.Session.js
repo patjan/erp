@@ -42,7 +42,7 @@ JKY.Session = function() {
 			url		: JKY.AJAX_URL + 'POST' ,
 			asycn	: true,
 			success	: function(response) {
-				if (response.status === 'ok') {
+				if (response.status == 'ok') {
 					my_rows = response.data;
 				}else{
 					JKY.display_message(response.message);
