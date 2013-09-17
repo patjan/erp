@@ -648,8 +648,17 @@ private function set_specific($table, $specific, $specific_id) {
 }
 
 private function set_select($table, $select) {
-	if ($table == 'Purchases' && $select == 'Draft + Active') {
-		return ' AND  Purchases.status IN ("Draft", "Active")';
+	if ($table == 'BatchOuts'	&& $select == 'Draft + Active') {
+		return ' AND  BatchOuts	.status IN   ("Draft","Active")';
+	}
+	if ($table == 'Orders'		&& $select == 'Draft + Active') {
+		return ' AND  Orders	.status IN   ("Draft","Active")';
+	}
+	if ($table == 'Purchases'	&& $select == 'Draft + Active') {
+		return ' AND  Purchases	.status IN   ("Draft","Active")';
+	}
+	if ($table == 'TDyers'		&& $select == 'Draft + Active') {
+		return ' AND  TDyers	.status IN   ("Draft","Active")';
 	}
 
 	if ($select == 'All')	return '';
@@ -670,13 +679,15 @@ private function set_select($table, $select) {
 	if ($table == 'Tickets'			)	$return = ' AND        Tickets.status			= "' . $select . '"';
 	if ($table == 'Translations'	)	$return = ' AND   Translations.status			= "' . $select . '"';
 
+	if ($table == 'BatchOuts'		)	$return = ' AND      BatchOuts.status			= "' . $select . '"';
 	if ($table == 'Contacts'		)	$return = ' AND      JKY_Users.user_role		= "' . $select . '"';
 	if ($table == 'Cylinders'		)	$return = ' AND      Cylinders.machine_id		=  ' . $select;
 	if ($table == 'FTP_Loads'		)	$return = ' AND      FTP_Loads.ftp_id			=  ' . $select;
 	if ($table == 'FTP_Threads'		)	$return = ' AND    FTP_Threads.ftp_id			=  ' . $select;
 	if ($table == 'FTP_Sets'		)	$return = ' AND       FTP_Sets.ftp_id			=  ' . $select;
 	if ($table == 'Machines'		)	$return = ' AND       Machines.machine_brand    = "' . $select . '"';
-	if ($table == 'OrdThreads'		)	$return = ' AND     OrdThreads.order_id			=  ' . $select;
+	if ($table == 'Orders'			)	$return = ' AND         Orders.status			= "' . $select . '"';
+	if ($table == 'OrdThreads'		)	$return = ' AND     OrdThreads.parent_id		=  ' . $select;
 	if ($table == 'Pieces'			)	$return = ' AND         Pieces.order_id			=  ' . $select;
 	if ($table == 'Products'		)	$return = ' AND       Products.product_type     = "' . $select . '"';
 	if ($table == 'Purchases'		)	$return = ' AND      Purchases.status			= "' . $select . '"';
@@ -684,6 +695,7 @@ private function set_select($table, $select) {
 	if ($table == 'QuotLines'		)	$return = ' AND      QuotLines.quotation_id		=  ' . $select;
 	if ($table == 'QuotColors'		)	$return = ' AND     QuotColors.parent_id		=  ' . $select;
 	if ($table == 'History'			)	$return = ' AND        History.parent_name      = "' . $select . '"';
+	if ($table == 'TDyers'			)	$return = ' AND         TDyers.status			= "' . $select . '"';
 	if ($table == 'TDyerThreads'	)	$return = ' AND   TDyerThreads.parent_id		=  ' . $select;
 	if ($table == 'TDyerColors'		)	$return = ' AND    TDyerColors.parent_id		=  ' . $select;
 	if ($table == 'Threads'			)	$return = ' AND        Threads.thread_group     = "' . $select . '"';
@@ -839,7 +851,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Contacts AS Partner	ON   Partner.id	=		    Orders.partner_id'
 												. '  LEFT JOIN        FTPs AS FTP		ON       FTP.id	=		    Orders.ftp_id'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		       FTP.product_id';
-	if ($table == 'OrdThreads'		)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		OrdThreads.order_id'
+	if ($table == 'OrdThreads'		)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		OrdThreads.parent_id'
 												. '  LEFT JOIN     Threads AS Thread	ON    Thread.id	=		OrdThreads.thread_id'
 												. '  LEFT JOIN     Batches AS BatchIn	ON   BatchIn.id	=		OrdThreads.batchin_id';
 	if ($table == 'Pieces'			)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		    Pieces.order_id';
@@ -4620,6 +4632,28 @@ private function checkout($data) {
 			 . ' WHERE id = ' . $tdyer_thread['parent_id']
 			 ;
 		$this->log_sql( 'TDyers', 'update', $sql );
+		$db->query( $sql );
+	}
+
+	if ($batchout['order_thread_id']) {
+		$sql = 'UPDATE OrdThreads'
+			 . '   SET checkout_weight = checkout_weight + ' . $my_weight
+			 . ' WHERE id = ' . $batchout['order_thread_id']
+			 ;
+		$this->log_sql( 'OrdThreads', 'update', $sql );
+		$db->query( $sql );
+
+		$sql = 'SELECT OrdThreads.*'
+			 . '  FROM OrdThreads'
+			 . ' WHERE OrdThreads.id = ' . $batchout['order_thread_id']
+			 ;
+		$order_thread = $db->fetchRow( $sql );
+
+		$sql = 'UPDATE Orders'
+			 . '   SET checkout_weight = checkout_weight + ' . $my_weight
+			 . ' WHERE id = ' . $order_thread['parent_id']
+			 ;
+		$this->log_sql( 'Orders', 'update', $sql );
 		$db->query( $sql );
 	}
 

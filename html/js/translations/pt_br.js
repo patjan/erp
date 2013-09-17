@@ -477,6 +477,7 @@ JKY.translations =
 , "ThreadForecast":"Previsão do Fio"
 , "Threads":"Fios"
 , "Tickets":"Reportes"
+, "time":"hora"
 , "To re-enter again, just click on [Log In] button":"Para re-entrar, basta clicar no botão [Entrar]"
 , "Total":"Total"
 , "Total percent is not 100.":"Total não é 100 por cento."

@@ -5,13 +5,14 @@ CREATE TABLE IF NOT EXISTS BatchOuts
 , created_at		DATETIME			DEFAULT NULL
 , updated_by		BIGINT				DEFAULT NULL
 , updated_at		DATETIME			DEFAULT NULL
-, status			VARCHAR(32)			DEFAULT 'Active'
+, status			VARCHAR(32)			DEFAULT 'Draft'
 
 , checkout_id		BIGINT				DEFAULT NULL
 , thread_id			BIGINT				DEFAULT NULL
 , batchin_id		BIGINT				DEFAULT NULL
 , req_line_id		BIGINT				DEFAULT NULL
 , tdyer_thread_id	BIGINT				DEFAULT NULL
+, order_thread_id	BIGINT				DEFAULT NULL
 , code				VARCHAR(32)			DEFAULT NULL
 , batch				VARCHAR(32)			DEFAULT NULL
 , unit_price		DECIMAL(10,2)		DEFAULT 0
@@ -32,3 +33,6 @@ ALTER TABLE BatchOuts		ADD COLUMN batchin_id		BIGINT		DEFAULT NULL	AFTER thread_
 ALTER TABLE BatchOuts		ADD COLUMN reserved_boxes	INT			DEFAULT 0		AFTER requested_boxes;
 
 ALTER TABLE BatchOuts		ADD COLUMN tdyer_thread_id	BIGINT		DEFAULT NULL	AFTER req_line_id;
+ALTER TABLE BatchOuts		ADD COLUMN order_thread_id	BIGINT		DEFAULT NULL	AFTER tdyer_thread_id;
+
+ALTER TABLE BatchOuts		CHANGE	status			status			VARCHAR(32)		DEFAULT 'Draft';

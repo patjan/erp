@@ -20,6 +20,10 @@ CREATE TABLE IF NOT EXISTS Orders
 , ordered_pieces	INT					DEFAULT 0
 , rejected_pieces	INT					DEFAULT 0
 , produced_pieces	INT					DEFAULT 0
+, ordered_weight	DECIMAL(10,2)		DEFAULT 0
+, checkout_weight	DECIMAL(10,2)		DEFAULT 0
+, returned_weight	DECIMAL(10,2)		DEFAULT 0
+
 
 , PRIMARY KEY	(id)
 , UNIQUE		(order_number)
@@ -33,3 +37,7 @@ INSERT Controls SET group_set='User Resources'		, status='Active', sequence=  50
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=  50, name='Orders', created_by=1, created_at=NOW();
 
 INSERT Controls SET group_set='System Numbers'		, status='Active', sequence=  50, name='Next Order Number', value='100001', created_by=1, created_at=NOW();
+
+ALTER TABLE Orders			ADD COLUMN returned_weight	DECIMAL(10,2)	DEFAULT 0		AFTER produced_pieces;
+ALTER TABLE Orders			ADD COLUMN checkout_weight	DECIMAL(10,2)	DEFAULT 0		AFTER produced_pieces;
+ALTER TABLE Orders			ADD COLUMN ordered_weight	DECIMAL(10,2)	DEFAULT 0		AFTER produced_pieces;

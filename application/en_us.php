@@ -477,6 +477,7 @@ $translations = array
 , "ThreadForecast"=>"ThreadForecast"
 , "Threads"=>"Threads"
 , "Tickets"=>"Tickets"
+, "time"=>"time"
 , "To re-enter again, just click on [Log In] button"=>"To re-enter again, just click on [Log In] button"
 , "Total"=>"Total"
 , "Total percent is not 100."=>"Total percent is not 100."

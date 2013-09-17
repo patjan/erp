@@ -29,7 +29,7 @@ JKY.generate_threads = function(response) {
 
 JKY.generate_thread = function(the_row) {
 	var my_id = the_row.id;
-	var my_trash = (the_row.batch_id == null) ? '<a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_trash = (the_row.batchout_id == null) ? '<a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
 		+ "<input class='jky-thread-row-name' readonly='readonly' onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.thread_name + "' />"

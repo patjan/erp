@@ -11,6 +11,9 @@ CREATE TABLE IF NOT EXISTS TDyerThreads
 , thread_id			BIGINT				DEFAULT NULL
 , batchin_id		BIGINT				DEFAULT NULL
 , batchout_id		BIGINT				DEFAULT NULL
+, ordered_weight	DECIMAL(10,2)		DEFAULT 0
+, checkout_weight	DECIMAL(10,2)		DEFAULT 0
+, returned_weight	DECIMAL(10,2)		DEFAULT 0
 
 , PRIMARY KEY	(id)
 , KEY tdyer		(tdyer_id)
@@ -19,6 +22,9 @@ CREATE TABLE IF NOT EXISTS TDyerThreads
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
-ALTER TABLE TDyerThreads		ADD COLUMN batchout_id	BIGINT		DEFAULT NULL	AFTER batchin_id;
-ALTER TABLE TDyerThreads		CHANGE	tdyer_id		parent_id			BIGINT		DEFAULT NULL;
+ALTER TABLE TDyerThreads	ADD COLUMN batchout_id			BIGINT			DEFAULT NULL	AFTER batchin_id;
+ALTER TABLE TDyerThreads	CHANGE	tdyer_id	parent_id	BIGINT			DEFAULT NULL;
 
+ALTER TABLE TDyerThreads	ADD COLUMN returned_weight		DECIMAL(10,2)	DEFAULT 0		AFTER batchout_id;
+ALTER TABLE TDyerThreads	ADD COLUMN checkout_weight		DECIMAL(10,2)	DEFAULT 0		AFTER batchout_id;
+ALTER TABLE TDyerThreads	ADD COLUMN ordered_weight		DECIMAL(10,2)	DEFAULT 0		AFTER batchout_id;

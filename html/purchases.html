@@ -7,8 +7,6 @@
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
-
-
 .jky-line-label			{font-weight:bold; text-align:right;}
 .jky-line-value  input	{width: 90%;	text-align:right ;}
 .jky-line-thread input	{width:275px;	text-align:left  ;}
@@ -24,13 +22,13 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-purchase-number'	><span> Purchase<br>Number	</span></th>
-			<th class='jky-source-doc'		><span>   Source<br>Document</span></th>
-			<th class='jky-ordered-date'	><span>  Ordered<br>Date	</span></th>
-			<th class='jky-expected-date'	><span> Expected<br>Date	</span></th>
-			<th class='jky-expected-weight'	><span> Expected<br>Weight	</span></th>
-			<th class='jky-received-weight'	><span> Received<br>Weight	</span></th>
-			<th class='jky-supplier-name'	><span>             Supplier</span></th>
+			<th class='jky-purchase-number'	><span>   Purchase<br>Number	</span></th>
+			<th class='jky-source-doc'		><span>     Source<br>Document	</span></th>
+			<th class='jky-ordered-date'	><span>    Ordered<br>Date		</span></th>
+			<th class='jky-expected-date'	><span>   Expected<br>Date		</span></th>
+			<th class='jky-expected-weight'	><span>   Expected<br>Weight	</span></th>
+			<th class='jky-received-weight'	><span>   Received<br>Weight	</span></th>
+			<th class='jky-supplier-name'	><span>               Supplier	</span></th>
 		</tr>
 	</thead>
 
@@ -52,8 +50,14 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>  Purchase Number</span>:</div><input  id='jky-purchase-number'	class='jky-form-value'	readonly='readonly'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>  Source Document</span>:</div><input  id='jky-source-doc'			class='jky-form-value' /></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Purchase Number</span>:</div>
+				<input  id='jky-purchase-number' class='jky-form-value' readonly='readonly' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Source Document</span>:</div>
+				<input  id='jky-source-doc'			class='jky-form-value' />
+			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Ordered Date</span>:</div>
 				<div id="jky-ordered-date" class="input-append date">
@@ -81,11 +85,12 @@
 		</div>
 		<div class='jky-clear'></div>
 		<br>
+
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
 				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-				  <button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
 			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>
@@ -104,18 +109,18 @@
 					<thead>
 						<tr>
 							<th class='jky-action'></th>
-							<th class='jky-td-thread-name'	><span>   Thread			</span></th>
-							<th class='jky-td-line-weight'	><span> Expected<br>Weight	</span></th>
-							<th class='jky-td-line-weight'	><span> Received<br>Weight	</span></th>
-							<th class='jky-td-line-date'	><span> Expected<br>Date	</span></th>
-							<th class='jky-td-line-date'	><span>Scheduled<br>Date	</span></th>
+							<th class='jky-td-thread-name'		><span>             Thread	</span></th>
+							<th class='jky-td-line-weight'		><span> Expected<br>Weight	</span></th>
+							<th class='jky-td-line-weight'		><span> Received<br>Weight	</span></th>
+							<th class='jky-td-line-date'		><span> Expected<br>Date	</span></th>
+							<th class='jky-td-line-date'		><span>Scheduled<br>Date	</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-lines-body'></tbody>
 					<tfoot>
 						<tr>
 							<td colspan='2'>
-								<button id='jky-line-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
+								<button id='jky-lines-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
 							</td>
 <!--						<td class='jky-line-label'><span>Total</span></td>	-->
 							<td class='jky-td-line-weight'><input id='jky-total-expected' value='' disabled='disabled' /></td>

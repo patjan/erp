@@ -28,21 +28,19 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-ordered-value'		).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-expected-value'		).attr('data-format', JKY.Session.get_date		());
-	$('#jky-scheduled-value'	).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-ordered-date'		).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-expected-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
-	$('#jky-scheduled-date'		).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-ordered-value'	).attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-expected-value'	).attr('data-format', JKY.Session.get_date		());
+	$('#jky-scheduled-value').attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-ordered-date'	).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-expected-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-scheduled-date'	).datetimepicker({language: JKY.Session.get_locale()});
 
-//	$('#jky-tab-lines'			).click (function() {JKY.display_lines		();});
-	$('#jky-line-add-new'		).click (function() {JKY.insert_line		();});
+	$('#jky-lines-add-new'	).click (function() {JKY.insert_line		();});
+	$('#jky-action-generate').click( function() {JKY.generate_purchase	();});
+	$('#jky-action-close'	).click( function() {JKY.close_order		();});
 
-	$('#jky-action-generate'	).click( function() {JKY.generate_purchase	();});
-	$('#jky-action-close'		).click( function() {JKY.close_order		();});
-
-	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data);
-};
+	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
+}
 
 /**
  *	set initial values (run only once per load)
@@ -54,15 +52,14 @@ JKY.set_initial_values = function() {
 //	JKY.set_html('jky-payment-term'	, JKY.set_configs('Payment Terms', '', ''));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show('jky-app-select-line');
-};
+}
 
 /**
  *	set table row
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-purchase-number"	>' +				 the_row.purchase_number
-		+ '</td>'
+		+  '<td class="jky-purchase-number"	>' +				 the_row.purchase_number		+ '</td>'
 		+  '<td class="jky-source-doc"		>' +				 the_row.source_doc				+ '</td>'
 		+  '<td class="jky-ordered-date"	>' + JKY.short_date	(the_row.ordered_at			)	+ '</td>'
 		+  '<td class="jky-expected-date"	>' + JKY.out_date	(the_row.expected_date		)	+ '</td>'
@@ -73,7 +70,7 @@ JKY.set_table_row = function(the_row) {
 //		+  '<td class="jky-supplier-ref"	>' +				 the_row.supplier_ref			+ '</td>'
 		;
 	return my_html;
-};
+}
 
 /**
  *	set form row
@@ -82,11 +79,11 @@ JKY.set_form_row = function(the_row) {
 	if (the_row.status == 'Draft') {
 		JKY.enable_button ('jky-action-generate');
 		JKY.enable_button ('jky-action-delete'  );
-		JKY.enable_button ('jky-line-add-new'   );
+		JKY.enable_button ('jky-lines-add-new'	);
 	}else{
 		JKY.disable_button('jky-action-generate');
 		JKY.disable_button('jky-action-delete'  );
-		JKY.disable_button('jky-line-add-new'   );
+		JKY.disable_button('jky-lines-add-new'	);
 	}
 	if (the_row.status == 'Active') {
 		JKY.enable_button ('jky-action-close');
@@ -94,31 +91,30 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_button('jky-action-close');
 	}
 
-	JKY.set_html	('jky-status'			, JKY.t			(the_row.status				));
-	JKY.set_value	('jky-purchase-number'	,				 the_row.purchase_number	);
-	JKY.set_value	('jky-source-doc'		,				 the_row.source_doc			);
-	JKY.set_date	('jky-ordered-date'		, JKY.out_time	(the_row.ordered_at			));
-	JKY.set_date	('jky-expected-date'	, JKY.out_date	(the_row.expected_date		));
-//	JKY.set_date	('jky-scheduled-date'	, JKY.out_time	(the_row.scheduled_at		));
-	JKY.set_option	('jky-supplier-name'	,				 the_row.supplier_id		);
-//	JKY.set_value	('jky-supplier-ref'		,				 the_row.supplier_ref		);
-//	JKY.set_option	('jky-payment-term'		,				 the_row.payment_term		);
-
+	JKY.set_html	('jky-status'			, JKY.t			(the_row.status			));
+	JKY.set_value	('jky-purchase-number'	,				 the_row.purchase_number);
+	JKY.set_value	('jky-source-doc'		,				 the_row.source_doc		);
+	JKY.set_date	('jky-ordered-date'		, JKY.out_time	(the_row.ordered_at		));
+	JKY.set_date	('jky-expected-date'	, JKY.out_date	(the_row.expected_date	));
+//	JKY.set_date	('jky-scheduled-date'	, JKY.out_time	(the_row.scheduled_at	));
+	JKY.set_option	('jky-supplier-name'	,				 the_row.supplier_id	);
+//	JKY.set_value	('jky-supplier-ref'		,				 the_row.supplier_ref	);
+//	JKY.set_option	('jky-payment-term'		,				 the_row.payment_term	);
 	JKY.display_lines();
-};
+}
 
 /**
  *	set add new row
  */
 JKY.set_add_new_row = function() {
 	JKY.disable_button('jky-action-generate');
-	JKY.disable_button('jky-action-delete'  );
-	JKY.disable_button('jky-action-close');
+	JKY.disable_button('jky-action-delete'	);
+	JKY.disable_button('jky-action-close'	);
 
-	JKY.set_value	('jky-purchase-number'	,  JKY.t('New'));
+	JKY.set_value	('jky-purchase-number'	, JKY.t('New'));
 	JKY.set_value	('jky-source-doc'		, '');
-	JKY.set_date	('jky-ordered-date'		,  JKY.out_time(JKY.get_now ()));
-//	JKY.set_date	('jky-expected-date'	,  JKY.out_date(JKY.get_date()));
+	JKY.set_date	('jky-ordered-date'		, JKY.out_time(JKY.get_now ()));
+//	JKY.set_date	('jky-expected-date'	, JKY.out_date(JKY.get_date()));
 	JKY.set_date	('jky-scheduled-date'	, '');
 	JKY.set_option	('jky-supplier-name'	, '');
 //	JKY.set_value	('jky-supplier-ref'		, '');
@@ -133,16 +129,16 @@ JKY.get_form_set = function() {
 	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
 
 	var my_set = ''
-		+      'source_doc=\'' + JKY.get_value	('jky-source-doc'		) + '\''
-		+    ', ordered_at=  ' + JKY.inp_time(JKY.get_value('jky-ordered-value'		))
-		+ ', expected_date=  ' + JKY.inp_date(JKY.get_value('jky-expected-value'	))
-//		+  ', scheduled_at=  ' + JKY.inp_time(JKY.get_value('jky-scheduled-value'	))
-		+   ', supplier_id=  ' + my_supplier_id
-//		+  ', supplier_ref=\'' + JKY.get_value	('jky-supplier-ref'		) + '\''
-//		+  ', payment_term=\'' + JKY.get_value	('jky-payment-term'		) + '\''
+		+      '  source_doc=\'' + JKY.get_value	('jky-source-doc'		) + '\''
+		+      ', ordered_at=  ' + JKY.inp_time(JKY.get_value('jky-ordered-value'	))
+		+   ', expected_date=  ' + JKY.inp_date(JKY.get_value('jky-expected-value'	))
+//		+    ', scheduled_at=  ' + JKY.inp_time(JKY.get_value('jky-scheduled-value'	))
+		+     ', supplier_id=  ' + my_supplier_id
+//		+    ', supplier_ref=\'' + JKY.get_value	('jky-supplier-ref'		) + '\''
+//		+    ', payment_term=\'' + JKY.get_value	('jky-payment-term'		) + '\''
 		;
 	return my_set;
-};
+}
 
 JKY.process_delete = function(the_id, the_row) {
 	var my_data =
@@ -151,7 +147,7 @@ JKY.process_delete = function(the_id, the_row) {
 		, where : 'parent_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
-};
+}
 
 /* -------------------------------------------------------------------------- */
 JKY.generate_purchase = function() {
@@ -192,7 +188,7 @@ JKY.insert_batchin = function(response) {
 	for(var i=0, max=my_rows.length; i<max; i++) {
 		JKY.row = my_rows[i];
 		var my_set = ''
-			+       'incoming_id=  ' + response.id
+			+     '  incoming_id=  ' + response.id
 			+       ', thread_id=  ' + JKY.row.thread_id
 			+', purchase_line_id=  ' + JKY.row.id
 			;

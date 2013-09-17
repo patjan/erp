@@ -26,7 +26,7 @@ JKY.generate_pieces = function(response) {
 		}
 	}
 	JKY.set_html('jky-pieces-body', my_html );
-//	JKY.update_total_weight();
+//	JKY.update_pieces_weight();
 //	if (my_rows == '') {
 //		JKY.insert_pieces();
 //	}
@@ -95,7 +95,7 @@ JKY.update_pieces = function(id_name, the_id ) {
 
 JKY.update_pieces_success = function(response) {
 //	JKY.display_message(response.message)
-	JKY.update_total_weight();
+//	JKY.update_pieces_weight();
 }
 
 JKY.insert_pieces = function() {
@@ -138,10 +138,10 @@ JKY.delete_pieces = function(id_name, the_id) {
 
 JKY.delete_pieces_success = function(response) {
 //	JKY.display_message(response.message)
-//	JKY.update_total_weight();
+//	JKY.update_pieces_weight();
 }
 
-JKY.update_total_weight = function() {
+JKY.update_pieces_weight = function() {
 	JKY.set_html('jky-pieces-total-requested', JKY.Order.get_requested());
 	JKY.set_html('jky-pieces-total-checkout' , JKY.Order.get_checkout ());
 //	JKY.Order.update_requested_weight(JKY.row.id);
