@@ -40,35 +40,38 @@
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'>
-			<button id='jky-action-generate'	class='btn'	type='button' disabled='disabled' title="Click here to generate check out"	><span>Generate Check Out	</span></button>
-			<button id='jky-action-close'		class='btn' type='button' disabled='disabled' title="Click here to close this order"	><span>Close Order			</span></button>
+			<button id='jky-action-generate'	class='btn'	type='button' title="Click here to generate check out"	><span>Generate Check Out	</span></button>
+			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this order"	><span>Close Order			</span></button>
 		</div>
-		<ul  id='jky-form-status'></ul>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled='disabled'><span id='jky-status'></span></button>
+		</div>
+		<div class='jky-clear'></div>
 	</div>
-	<div class='jky-clear'></div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Thread Dyer Number</span>:</div>
-				<input  id='jky-tdyer-number' class='jky-form-value' readonly='readonly' />
+				<input  id='jky-tdyer-number'	readonly='readonly' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Order</span>:</div>
-				<input id='jky-order-id'		type='hidden'		value='' />
-				<input id='jky-order-number'	readonly='readonly'	value='' />
+				<input  id='jky-order-id'		type='hidden'		value='' />
+				<input  id='jky-order-number'	readonly='readonly'	value='' />
 				<a href='#' onClick='JKY.Order.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Customer</span>:</div>
-				<input id='jky-customer-id'		type='hidden'		value='' />
-				<input id='jky-customer-name'	readonly='readonly'	value='' />
+				<input  id='jky-customer-id'	type='hidden'		value='' />
+				<input  id='jky-customer-name'	readonly='readonly'	value='' />
 				<a href='#' onClick='JKY.Customer.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Dyer</span>:</div>
-				<input id='jky-dyer-id'			type='hidden'		value='' />
-				<input id='jky-dyer-name'		readonly='readonly'	value='' />
+				<input  id='jky-dyer-id'			type='hidden'		value='' />
+				<input  id='jky-dyer-name'		readonly='readonly'	value='' />
 				<a href='#' onClick='JKY.Dyer.display(this)'><i class='icon-share'></i></a>
 			</div>
 		</div>
@@ -78,7 +81,8 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Ordered Date</span>:</div>
-				<div id="jky-ordered-date"	class="input-append date"><input id='jky-ordered-value'		type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+				<div id="jky-ordered-date"	class="input-append date">
+				<input id='jky-ordered-value'		type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Needed Date</span>:</div>
@@ -90,7 +94,10 @@
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Returned Date</span>:</div>
-				<div id="jky-returned-date"	class="input-append date"><input id='jky-returned-value'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+				<div id="jky-returned-date"	class="input-append date">
+					<input id='jky-returned-value' type="text" />
+					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+				</div>
 			</div>
 		</div>
 		<div class='jky-left'>
@@ -138,7 +145,9 @@
 					<tbody id='jky-threads-body'></tbody>
 					<tfoot>
 						<tr>
-							<td id='jky-threads-add-new' class='jky-action' colspan='8'><a class='btn btn-success' type='button' href='#'><span>Add Thread</span></a></td>
+							<td colspan='8'>
+								<button id='jky-threads-add-new' class='btn btn-success' type='button'><span>Add Thread</span></button>
+							</td>
 						</tr>
 					</tfoot>
 				</table>

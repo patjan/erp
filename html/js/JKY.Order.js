@@ -11,7 +11,7 @@ JKY.Order = function() {
 	var my_search_body	= 'jky-order-search-body';
 	var my_layer		= 'jky-order-search';
 
-	var my_requested	= 0;
+	var my_ordered		= 0;
 	var my_checkout		= 0;
 
 	function my_display(the_id) {
@@ -73,10 +73,10 @@ JKY.Order = function() {
 		JKY.display_message('add_new');
 	}
 
-	function my_add_requested(the_weight) {
+	function my_add_ordered(the_weight) {
 		if (the_weight != null) {
-			my_requested += parseFloat(the_weight);
-			my_requested  = Math.round(my_requested);
+			my_ordered += parseFloat(the_weight);
+			my_ordered  = Math.round(my_ordered);
 		}
 	}
 
@@ -87,12 +87,12 @@ JKY.Order = function() {
 		}
 	}
 
-	function my_update_requested_weight(the_id) {
+	function my_update_ordered_weight(the_id) {
 		var my_data =
 			{ method	: 'update'
 			, table		: 'Orders'
 			, where		: 'id =' + the_id
-			, set		: 'requested_weight=' + my_requested
+			, set		: 'ordered_weight =' + my_ordered
 			};
 		JKY.ajax(true, my_data);
 	}
@@ -102,7 +102,7 @@ JKY.Order = function() {
 			{ method	: 'update'
 			, table		: 'Orders'
 			, where		: 'id =' + the_id
-			, set		: 'checkout_weight=' + my_checkout
+			, set		: 'checkout_weight =' + my_checkout
 			};
 		JKY.ajax(true, my_data);
 	}
@@ -116,16 +116,16 @@ JKY.Order = function() {
 		, click_row		: function(the_index, the_id)	{		my_click_row(the_index, the_id);}
 		, add_new		: function()					{		my_add_new();}
 
-		, set_requested	: function(the_amount)	{my_requested = the_amount;}
+		, set_ordered	: function(the_amount)	{my_ordered   = the_amount;}
 		, set_checkout	: function(the_amount)	{my_checkout  = the_amount;}
 
-		, add_requested	: function(the_weight)	{my_add_requested(the_weight);}
-		, add_checkout	: function(the_weight)	{my_add_checkout (the_weight);}
+		, add_ordered	: function(the_weight)	{my_add_ordered (the_weight);}
+		, add_checkout	: function(the_weight)	{my_add_checkout(the_weight);}
 
-		, get_requested	: function()			{return my_requested;}
-		, get_checkout	: function()			{return my_checkout ;}
+		, get_ordered	: function()			{return my_ordered ;}
+		, get_checkout	: function()			{return my_checkout;}
 
-		, update_requested_weight: function(the_id)		{my_update_requested_weight(the_id);}
-		, update_checkout_weight : function(the_id)		{my_update_checkout_weight (the_id);}
+		, update_ordered_weight  : function(the_id)		{my_update_ordered_weight (the_id);}
+		, update_checkout_weight : function(the_id)		{my_update_checkout_weight(the_id);}
 	};
 }();

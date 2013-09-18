@@ -10,9 +10,10 @@ CREATE TABLE IF NOT EXISTS OrdThreads
 , order_id			BIGINT				DEFAULT NULL
 , thread_id			BIGINT				DEFAULT NULL
 , batchin_id		BIGINT				DEFAULT NULL
+, batchout_id		BIGINT				DEFAULT NULL
 , needed_at			DATETIME			DEFAULT NULL
 , checkout_at		DATETIME			DEFAULT NULL
-, requested_weight	DECIMAL(10,2)		DEFAULT 0
+, ordered_weight	DECIMAL(10,2)		DEFAULT 0
 , checkout_weight	DECIMAL(10,2)		DEFAULT 0
 
 , PRIMARY KEY	(id)
@@ -23,3 +24,8 @@ CREATE TABLE IF NOT EXISTS OrdThreads
 INSERT Controls SET group_set='User Resources'		, status='Active', sequence=  50, name='OrdThreads', created_by=1, created_at=NOW();
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=  50, name='OrdThreads', created_by=1, created_at=NOW();
 
+ALTER TABLE OrdThreads		ADD COLUMN batchout_id	BIGINT		DEFAULT NULL	AFTER batchin_id;
+
+ALTER TABLE OrdThreads		CHANGE	requested_weight	ordered_weight	DECIMAL(10,2)	DEFAULT 0;
+
+ALTER TABLE OrdThreads		CHANGE	order_id			parent_id		BIGINT			DEFAULT NULL;

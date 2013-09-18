@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'BatchOuts'
 		, table_name	: 'BatchOuts'
 		, specific		: ''
-		, select		: ''
+		, select		: 'Draft + Active'
 		, filter		: ''
 		, sort_by		: 'CheckOuts.requested_at'
 		, sort_seq		: 'ASC'
@@ -32,21 +32,23 @@ JKY.set_all_events = function() {
 //	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
 //	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 
-	$('#jky-action-batch'	).click( function() {JKY.generate_batch();})
-};
+	$('#jky-action-generate'	).click( function() {JKY.generate_checkout	();});
+	$('#jky-action-close'		).click( function() {JKY.close_order		();});
+}
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-threads-batchouts');
+	JKY.set_html('jky-app-select'	, JKY.set_options('Draft + Active', 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 //	JKY.set_html('jky-app-select', JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
 //	JKY.set_html('jky-thread-name'  , JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
 //	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
 //	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), true));
-//	JKY.set_html('jky-app-select-label', JKY.t('Type'));
-//	JKY.show('jky-app-select-line');
-};
+	JKY.set_html('jky-app-select-label', JKY.t('Status'));
+	JKY.show('jky-app-select-line');
+}
 
 /**
  *	set table row
@@ -54,7 +56,7 @@ JKY.set_initial_values = function() {
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-checkout-number"	>' +				 the_row.checkout_number		+ '</td>'
-//		+  '<td class="jky-code"				>' +				 the_row.code					+ '</td>'
+//		+  '<td class="jky-code"			>' +				 the_row.code					+ '</td>'
 		+  '<td class="jky-requested-date"	>' + JKY.short_date	(the_row.requested_at		)	+ '</td>'
 		+  '<td class="jky-machine-name"	>' + JKY.fix_null	(the_row.machine_name		)	+ '</td>'
 		+  '<td class="jky-supplier-name"	>' + JKY.fix_null	(the_row.supplier_name		)	+ '</td>'
@@ -75,34 +77,55 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-product-code'			, the_row.code				);
-	JKY.set_value	('jky-thread-name'			, the_row.thread_name		);
-	JKY.set_value	('jky-batch-number'			, the_row.batch_number		);
-	JKY.set_value	('jky-machine-name'			, the_row.machine_name		);
-	JKY.set_value	('jky-supplier-name'		, the_row.supplier_name		);
-	JKY.set_value	('jky-unit-price'			, the_row.unit_price		);
-	JKY.set_value	('jky-requested-weight'		, the_row.requested_weight	);
-	JKY.set_value	('jky-requested-boxes'		, the_row.requested_boxes	);
-	JKY.set_value	('jky-reserved-boxes'		, the_row.reserved_boxes	);
-	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);
-	JKY.set_value	('jky-checkout-weight'		, the_row.checkout_weight	);
-	JKY.set_value	('jky-checkout-boxes'		, the_row.checkout_boxes	);
+	var my_requested_boxes	= parseInt(the_row.requested_boxes	);
+	var my_reserved_boxes	= parseInt(the_row.reserved_boxes	);
+	var my_checkout_boxes	= parseInt(the_row.checkout_boxes	);
 
-	if (parseInt(the_row.requested_boxes) > (parseInt(the_row.reserved_boxes) + parseInt(the_row.checkout_boxes))) {
-		JKY.enable_button ('jky-action-batch' );
+	if (the_row.status == 'Draft'
+	&&  my_reserved_boxes > 0 ) {
+		JKY.enable_button ('jky-action-generate');
+	}else{
+		JKY.disable_button('jky-action-generate');
+	}
+	if (the_row.status == 'Active') {
+		JKY.enable_button ('jky-action-close');
+	}else{
+		JKY.disable_button('jky-action-close');
+	}
+	if (the_row.status == 'Draft') {
 		JKY.enable_button ('jky-action-delete');
 	}else{
-		JKY.disable_button('jky-action-batch' );
 		JKY.disable_button('jky-action-delete');
 	}
 
-	JKY.display_lines();
-};
+	JKY.set_html	('jky-status'			, JKY.t(the_row.status));
+	JKY.set_value	('jky-product-code'		, the_row.code				);
+	JKY.set_value	('jky-thread-name'		, the_row.thread_name		);
+	JKY.set_value	('jky-batch-number'		, the_row.batch_number		);
+	JKY.set_value	('jky-machine-name'		, the_row.machine_name		);
+	JKY.set_value	('jky-supplier-name'	, the_row.supplier_name		);
+	JKY.set_value	('jky-unit-price'		, the_row.unit_price		);
+	JKY.set_value	('jky-requested-weight'	, the_row.requested_weight	);
+	JKY.set_value	('jky-requested-boxes'	, the_row.requested_boxes	);
+	JKY.set_value	('jky-reserved-boxes'	, the_row.reserved_boxes	);
+	JKY.set_value	('jky-average-weight'	, the_row.average_weight	);
+	JKY.set_value	('jky-checkout-weight'	, the_row.checkout_weight	);
+	JKY.set_value	('jky-checkout-boxes'	, the_row.checkout_boxes	);
+	JKY.set_calculated_color();
+
+	if (the_row.batchin_id) {
+		JKY.display_lines();
+	}
+}
 
 /**
  *	set add new row
  */
 JKY.set_add_new_row = function() {
+	JKY.disable_button('jky-action-generate');
+	JKY.disable_button('jky-action-delete'	);
+	JKY.disable_button('jky-action-close'	);
+
 	JKY.set_value	('jky-product-code'			, '');
 	JKY.set_value	('jky-thread-name'			, '');
 	JKY.set_value	('jky-batch-number'			, '');
@@ -125,23 +148,48 @@ JKY.get_form_set = function() {
 //	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
 
 	var my_set = ''
-		+   'code=\''				+	JKY.get_value('jky-product-code'		) + '\''
-		+', batch=\''				+	JKY.get_value('jky-batch-number'		) + '\''
-		+', unit_price=  '			+	JKY.get_value('jky-unit-price'			)
-		+', requested_weight= '		+	JKY.get_value('jky-requested-weight'	)
-		+', requested_boxes=  '		+	JKY.get_value('jky-requested-boxes'		)
-		+', reserved_boxes=  '		+	JKY.get_value('jky-reserved-boxes'		)
-		+', average_weight=  '		+	JKY.get_value('jky-average-weight'		)
-		+', checkout_weight=  '		+	JKY.get_value('jky-checkout-weight'		)
-		+', checkout_boxes=  '		+	JKY.get_value('jky-checkout-boxes'		)
+		+            '  code=\'' + JKY.get_value('jky-product-code'		) + '\''
+		+'           , batch=\'' + JKY.get_value('jky-batch-number'		) + '\''
+		+'      , unit_price=  ' + JKY.get_value('jky-unit-price'		)
+		+', requested_weight=  ' + JKY.get_value('jky-requested-weight'	)
+		+' , requested_boxes=  ' + JKY.get_value('jky-requested-boxes'	)
+		+'  , reserved_boxes=  ' + JKY.get_value('jky-reserved-boxes'	)
+		+'  , average_weight=  ' + JKY.get_value('jky-average-weight'	)
+		+' , checkout_weight=  ' + JKY.get_value('jky-checkout-weight'	)
+		+'  , checkout_boxes=  ' + JKY.get_value('jky-checkout-boxes'	)
 		;
 	return my_set;
-};
+}
+
+/**
+ *	set calculated color
+ */
+JKY.set_calculated_color = function() {
+	var my_requested_weight	= parseFloat(JKY.get_value('jky-requested-weight'	));
+	var my_checkout_weight	= parseFloat(JKY.get_value('jky-checkout-weight'	));
+	JKY.set_css('jky-checkout-weight', 'color', ((my_requested_weight - my_checkout_weight) > 0.001) ? 'red' : 'black');
+
+	var my_requested_boxes	= parseInt(JKY.get_value('jky-requested-boxes'	));
+	var my_checkout_boxes	= parseInt(JKY.get_value('jky-checkout-boxes'	));
+	JKY.set_css('jky-checkout-boxes', 'color', (my_requested_boxes > my_checkout_boxes) ? 'red' : 'black');
+
+	var my_reserved_boxes	= parseInt(JKY.get_value('jky-reserved-boxes'	));
+	JKY.set_css('jky-reserved-boxes', 'color', (my_reserved_boxes < 0) ? 'red' : 'black');
+}
 
 /* -------------------------------------------------------------------------- */
+JKY.generate_checkout = function() {
+	JKY.activete_batchout();
+}
 
-JKY.generate_batch = function() {
-	JKY.insert_batch_sets();
+JKY.active_batchout = function(response) {
+	var my_data =
+		{ method	: 'update'
+		, table		: 'BatchOuts'
+		, set		: 'status = \'Active\''
+		, where		: 'id = ' + JKY.row.id
+		};
+	JKY.ajax(false, my_data, JKY.insert_batch_sets);
 }
 
 JKY.insert_batch_sets = function() {
@@ -180,4 +228,15 @@ JKY.insert_batch_sets = function() {
 	}
 	JKY.display_message('Batch row generated');
 	JKY.Application.display_row();
+}
+
+/* -------------------------------------------------------------------------- */
+JKY.close_order = function(response) {
+	var my_data =
+		{ method	: 'update'
+		, table		: 'BatchOuts'
+		, set		: 'status = \'Closed\''
+		, where		: 'id = ' + JKY.row.id
+		};
+	JKY.ajax(false, my_data, JKY.Application.display_list);
 }

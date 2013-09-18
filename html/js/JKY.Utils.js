@@ -2168,7 +2168,8 @@ JKY.process_log_off = function() {
 JKY.process_log_off_success = function() {
 //	JKY.process_action('login');
 //	JKY.hide('jky-wrapper');
-	window.location = 'home.html';
+//	window.location = 'home.html';
+	JKY.process_action('logoff');
 }
 
 /**

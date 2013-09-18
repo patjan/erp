@@ -52,7 +52,7 @@ JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-batch-number"		>' +				 the_row.batch_number			+ '</td>'
 		+  '<td class="jky-barcode"				>' +				 the_row.barcode				+ '</td>'
-		+  '<td class="jky-status"				>' +				 the_row.status					+ '</td>'
+		+  '<td class="jky-status"				>' + JKY.t			(the_row.status				)	+ '</td>'
 		+  '<td class="jky-number-of-boxes"		>' +				 the_row.number_of_boxes		+ '</td>'
 		+  '<td class="jky-number-of-cones"		>' +				 the_row.number_of_cones		+ '</td>'
 		+  '<td class="jky-average-weight"		>' +				 the_row.average_weight			+ '</td>'
@@ -67,15 +67,15 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-batch-number'				, the_row.batch_number			);
-	JKY.set_value	('jky-barcode'					, the_row.barcode				);
-	JKY.set_value	('jky-status'					, the_row.status				);
-	JKY.set_value	('jky-number-of-boxes'			, the_row.number_of_boxes		);
-	JKY.set_value	('jky-number-of-cones'			, the_row.number_of_cones		);
-	JKY.set_value	('jky-average-weight'			, the_row.average_weight		);
-	JKY.set_value	('jky-real-weight'				, the_row.real_weight			);
-	JKY.set_value	('jky-checkin-location'			, the_row.checkin_location		);
-	JKY.set_value	('jky-checkout-location'		, the_row.checkout_location		);
+	JKY.set_value	('jky-batch-number'				,			 the_row.batch_number		);
+	JKY.set_value	('jky-barcode'					,			 the_row.barcode			);
+	JKY.set_value	('jky-status'					, JKY.t		(the_row.status				));
+	JKY.set_value	('jky-number-of-boxes'			,			 the_row.number_of_boxes	);
+	JKY.set_value	('jky-number-of-cones'			,			 the_row.number_of_cones	);
+	JKY.set_value	('jky-average-weight'			,			 the_row.average_weight		);
+	JKY.set_value	('jky-real-weight'				,			 the_row.real_weight		);
+	JKY.set_value	('jky-checkin-location'			,			 the_row.checkin_location	);
+	JKY.set_value	('jky-checkout-location'		,			 the_row.checkout_location	);
 //	JKY.display_lines();
 };
 

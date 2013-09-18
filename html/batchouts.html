@@ -24,21 +24,21 @@
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-checkout-number'		><span>	   Check Out<br>Number		</span></th>
-<!--		<th class='jky-code'				><span>	     Product<br>Code		</span></th>
--->			<th class='jky-requested-date'		><span>	   Requested<br>Date		</span></th>
-			<th class='jky-machine-name'		><span>	                Machine		</span></th>
-			<th class='jky-supplier-name'		><span>                 Supplier	</span></th>
-			<th class='jky-thread-name'			><span>                 Thread		</span></th>
-			<th class='jky-batch-number'		><span>                 Batch		</span></th>
-<!--		<th class='jky-unit-price'			><span>         Unit<br>Price		</span></th>
-			<th class='jky-average-weight'		><span>      Average<br>Weight		</span></th>
--->			<th class='jky-requested-weight'	><span>    Requested<br>Weight		</span></th>
-			<th class='jky-checkout-weight'		><span>	   Check Out<br>Weight		</span></th>
-			<th class='jky-requested-boxes'		><span>    Requested<br>Boxes		</span></th>
-			<th class='jky-reserved-boxes'		><span>     Reserved<br>Boxes		</span></th>
-			<th class='jky-checkout-boxes'		><span>    Check Out<br>Boxes		</span></th>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-checkout-number'	><span>  Check Out<br>Number	</span></th>
+<!--		<th class='jky-code'			><span>    Product<br>Code		</span></th>
+-->			<th class='jky-requested-date'	><span>  Requested<br>Date		</span></th>
+			<th class='jky-machine-name'	><span>               Machine	</span></th>
+			<th class='jky-supplier-name'	><span>               Supplier	</span></th>
+			<th class='jky-thread-name'		><span>               Thread	</span></th>
+			<th class='jky-batch-number'	><span>               Batch		</span></th>
+<!--		<th class='jky-unit-price'		><span>       Unit<br>Price		</span></th>
+			<th class='jky-average-weight'	><span>    Average<br>Weight	</span></th>
+-->			<th class='jky-requested-weight'><span>  Requested<br>Weight	</span></th>
+			<th class='jky-checkout-weight'	><span>  Check Out<br>Weight	</span></th>
+			<th class='jky-requested-boxes'	><span>  Requested<br>Boxes		</span></th>
+			<th class='jky-reserved-boxes'	><span>   Reserved<br>Boxes		</span></th>
+			<th class='jky-checkout-boxes'	><span>  Check Out<br>Boxes		</span></th>
 		</tr>
 	</thead>
 
@@ -47,13 +47,16 @@
 
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
-		<div id='jky-form-actions'	>
-			<button id='jky-action-batch'		class='btn'				type='button' title="Click here to generate check out"	><span>Generate Check Out	</span></button>
-			<button id='jky-action-complete'	class='btn btn-success' type='button' title="Click here to close this order"	><span>Close Order			</span></button>
+		<div id='jky-form-actions'>
+			<button id='jky-action-generate'	class='btn' type='button' title="Click here to generate check out"	><span>Generate Check Out	</span></button>
+			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this order"	><span>Close Order			</span></button>
 		</div>
-		<ul  id='jky-form-status'	></ul>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled='disabled'><span id='jky-status'></span></button>
+		</div>
+		<div class='jky-clear'></div>
 	</div>
-	<div class='jky-clear'></div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
@@ -81,7 +84,7 @@
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
 				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-				  <button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
 			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>
@@ -95,7 +98,6 @@
 		</ul>
 
 		<div class='tab-content'>
-
 			<div id='jky-pane-boxes' class='tab-pane active'>
 				<table class='table table-striped' >
 					<thead>
@@ -109,7 +111,7 @@
 						</tr>
 					</thead>
 					<tbody id='jky-boxes-body'></tbody>
-<!--					<tfoot>
+<!--				<tfoot>
 						<tr>
 							<td id='jky-batch-add-new' class='jky-action' colspan='2'>
 								<a class='btn btn-success' type='button' href='#'><span>Add New</span></a>
@@ -124,5 +126,5 @@
 </div>
 
 <div id='jky-body-loaded'></div>
-<script src='js/batchouts.js'></script>
+<script src='js/batchouts.js'		></script>
 <script src='js/checkin_locations.js'></script>

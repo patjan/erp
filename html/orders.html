@@ -3,7 +3,7 @@
 .jky-form-line-2		{width:290px;}
 .jky-form-label			{width:160px;}
 .jky-form-label-1		{width:100px;}
-.Xjky-form-value			{width:100px;}
+.Xjky-form-value		{width:100px;}
 .jky-form-value1		{width:240px;}
 .jky-checkbox			{width: 30px; text-align:center;}
 
@@ -12,8 +12,8 @@
 .jky-batchin-search-returned	{text-align:right !important}
 .jky-batchin-search-checkout	{text-align:right !important}
 
-#jky-threads-total-requested		{padding-right:15px; font-weight:bold; text-align:right;}
-#jky-threads-total-checkout		{padding-right:15px; font-weight:bold; text-align:right;}
+#jky-threads-total-ordered		{width:75px; font-weight:bold; text-align:right;}
+#jky-threads-total-checkout		{width:75px; font-weight:bold; text-align:right;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -40,45 +40,53 @@
 
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
-		<div id='jky-form-actions'	></div>
-		<ul  id='jky-form-status'	></ul>
+		<div id='jky-form-actions'>
+			<button id='jky-action-generate'	class='btn'	type='button' title="Click here to generate check out"	><span>Generate Check Out	</span></button>
+			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this order"	><span>Close Order			</span></button>
+		</div>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled='disabled'><span id='jky-status'></span></button>
+		</div>
+		<div class='jky-clear'></div>
 	</div>
-	<div class='jky-clear'></div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Order Number</span>:</div>
-				<input  id='jky-order-number'	readonly='readonly'	/></div>
+				<input  id='jky-order-number'	readonly='readonly'	value='' />
+			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Customer</span>:</div>
-				<input id='jky-customer-id'		type='hidden'		value='' />
-				<input id='jky-customer-name'	readonly='readonly'	value='' />
+				<input  id='jky-customer-id'	type='hidden'		value='' />
+				<input  id='jky-customer-name'	readonly='readonly'	value='' />
 				<a href='#' onClick='JKY.Customer.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Machine</span>:</div>
-				<input id='jky-machine-id'		type='hidden'		value='' />
-				<input id='jky-machine-name'	readonly='readonly'	value='' />
+				<input  id='jky-machine-id'		type='hidden'		value='' />
+				<input  id='jky-machine-name'	readonly='readonly'	value='' />
 				<a href='#' onClick='JKY.Machine.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Partner</span>:</div>
-				<input id='jky-partner-id'		type='hidden'		value='' />
-				<input id='jky-partner-name'	readonly='readonly'	value='' />
+				<input  id='jky-partner-id'		type='hidden'		value='' />
+				<input  id='jky-partner-name'	readonly='readonly'	value='' />
 				<a href='#' onClick='JKY.Partner.display(this)'><i class='icon-share'></i></a>
 			</div>
 <!--			<div class='jky-form-line'><div class='jky-form-label'><span>Product</span>:</div>
-				<input id='jky-product-id'		type='hidden'		value='' />
-				<input id='jky-product-name'	readonly='readonly'	value='' />
+				<input  id='jky-product-id'		type='hidden'		value='' />
+				<input  id='jky-product-name'	readonly='readonly'	value='' />
 				<a href='#' onClick='JKY.Product.display(this)'><i class='icon-share'></i></a>
 			</div>
 -->			<div class='jky-form-line'><div class='jky-form-label'><span>FTP</span>:</div>
-				<input id='jky-ftp-id'			type='hidden'		value='' />
-				<input id='jky-ftp-number'		readonly='readonly'	value='' />
+				<input  id='jky-ftp-id'			type='hidden'		value='' />
+				<input  id='jky-ftp-number'		readonly='readonly'	value='' />
 				<a href='#' onClick='JKY.FTP.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Product</span>:</div>
-				<input id='jky-product-name'	readonly='readonly'	value='' />
+				<input  id='jky-product-id'		type='hidden'		value='' />
+				<input  id='jky-product-name'	readonly='readonly'	value='' />
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -113,7 +121,7 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span> Produced Pieces</span>:</div><input  id='jky-produced-pieces'	class='jky-form-value'	/></div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>  Labels Printed</span>:</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Labels Printed</span>:</div>
 					<input  id='jky-labels-printed'	class='jky-form-value' disabled="disabled" />
 					<a id='jky-pieces-display'><i class='icon-print'></i></a>
 			</div>
@@ -149,19 +157,21 @@
 							<th class='jky-td-batchin-number'	><span>             Batch	</span></th>
 							<th class='jky-td-thread-date'		><span>   Needed<br>Date	</span></th>
 							<th class='jky-td-thread-date'		><span>Check Out<br>Date	</span></th>
-							<th class='jky-td-thread-weight'	><span>Requested<br>Weight	</span></th>
+							<th class='jky-td-thread-weight'	><span>  Ordered<br>Weight	</span></th>
 							<th class='jky-td-thread-weight'	><span>Check Out<br>Weight	</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-threads-body'></tbody>
 					<tfoot>
 						<tr>
-							<td id='jky-threads-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td class='jky-action' colspan='2'>
+								<a id='jky-threads-add-new' class='btn btn-success' type='button' href='#'><span>Add New</span></a>
+							</td>
 							<td></td>
-							<td class='jky-threads-value'><span>Total</span></td>
-							<td    id='jky-threads-total-requested'></td>
 							<td></td>
-							<td    id='jky-threads-total-checkout'></td>
+							<td class='jky-bold center'><span>Total</span></td>
+							<td class='jky-td-thread-weight'><input id='jky-threads-total-ordered'  value='' /></td>
+							<td class='jky-td-thread-weight'><input id='jky-threads-total-checkout' value='' /></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -187,9 +197,9 @@
 						<tr>
 							<td	   id='jky-pieces-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
 							<td class='jky-pieces-label'><span>Total</span></td>
-							<td    id='jky-pieces-total-ordered'></td>
+							<td><input id='jky-pieces-total-ordered'  class='jky-ordered-weight' value='' /></td>
 							<td></td>
-							<td    id='jky-pieces-total-checkout'></td>
+							<td><input id='jky-pieces-total-checkout' class='jky-ordered-weight' value='' /></td>
 							<td></td>
 						</tr>
 					</tfoot>
@@ -219,15 +229,15 @@
 </div>
 
 <div id='jky-body-loaded'></div>
-<script src='js/orders.js'></script>
-<script src='js/JKY.Customer.js'></script>
-<script src='js/JKY.Machine.js'></script>
-<script src='js/JKY.Partner.js'></script>
-<!--script src='js/JKY.Product.js'></script-->
-<script src='js/JKY.FTP.js'></script>
-<script src='js/JKY.Thread.js'></script>
-<script src='js/JKY.BatchIn.js'></script>
-<script src='js/JKY.Order.js'></script>
-<script src='js/JKY.Pieces.js'></script>
-<script src='js/order_threads.js'></script>
-<script src='js/order_pieces.js'></script>
+<script src='js/orders.js'			></script>
+<script src='js/JKY.Customer.js'	></script>
+<script src='js/JKY.Machine.js'		></script>
+<script src='js/JKY.Partner.js'		></script>
+<!--script src='js/JKY.Product.js'		></script-->
+<script src='js/JKY.FTP.js'			></script>
+<script src='js/JKY.Thread.js'		></script>
+<script src='js/JKY.BatchIn.js'		></script>
+<script src='js/JKY.Order.js'		></script>
+<script src='js/JKY.Pieces.js'		></script>
+<script src='js/order_threads.js'	></script>
+<script src='js/order_pieces.js'	></script>

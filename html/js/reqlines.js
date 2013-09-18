@@ -16,7 +16,7 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: 'All'
 		, filter		: ''
-		, sort_by		: 'requested_date'
+		, sort_by		: 'requested_at'
 		, sort_seq		: 'ASC'
 		, focus			: 'jky-scheduled-value'
 		, add_new		: 'display form'
@@ -35,7 +35,7 @@ JKY.set_all_events = function() {
 //	$('#jky-requested-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 //	$('#jky-scheduled-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
-	$('#jky-action-batch'	).click( function() {JKY.generate_batch();})
+	$('#jky-action-generate'	).click( function() {JKY.generate_batch();})
 };
 
 /**
@@ -60,7 +60,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-thread-name"		>' +				 the_row.thread_name			+ '</td>'
 		+  '<td class="jky-batch-number"	>' +				 the_row.batch_number			+ '</td>'
 		+  '<td class="jky-ordered-at"		>' + JKY.short_date	(the_row.ordered_at			)	+ '</td>'
-		+  '<td class="jky-requested-date"	>' + JKY.out_date	(the_row.requested_date		)	+ '</td>'
+		+  '<td class="jky-requested-date"	>' + JKY.out_date	(the_row.requested_at		)	+ '</td>'
 		+  '<td class="jky-scheduled-at"	>' + JKY.short_date	(the_row.scheduled_at		)	+ '</td>'
 		+  '<td class="jky-requested-weight">' +				 the_row.requested_weight		+ '</td>'
 		+  '<td class="jky-checkout-weight"	>' + JKY.fix_null	(the_row.checkout_weight	)	+ '</td>'
@@ -78,7 +78,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-thread-name'		, the_row.thread_name				);
 	JKY.set_value	('jky-batch-number'		, the_row.batch_number				);
 	JKY.set_value	('jky-ordered-at'		, JKY.out_time(the_row.ordered_at	));
-	JKY.set_date	('jky-requested-date'	, JKY.out_date(the_row.requested_date));
+	JKY.set_date	('jky-requested-date'	, JKY.out_date(the_row.requested_at	));
 	JKY.set_value	('jky-requested-weight'	, the_row.requested_weight			);
 	JKY.set_date	('jky-scheduled-at'		, JKY.out_time(the_row.scheduled_at	));
 	JKY.set_value	('jky-checkout-at'		, JKY.out_time(the_row.checkout_at	));
@@ -151,7 +151,7 @@ JKY.insert_checkout = function() {
 		+    ',  supplier_id=  ' + JKY.row.supplier_id
 		+          ', nfe_dl=\'' + '' + '\''
 		+          ', nfe_tm=\'' + '' + '\''
-		+  ', requested_date=\'' + my_requested_date + '\''
+		+    ', requested_at=\'' + my_requested_date + '\''
 		+', requested_weight=  ' + JKY.row.requested_weight
 		;
 	var my_data =
