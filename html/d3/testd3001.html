@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="../lib/d3.js"					type="text/javascript"></script>
+	<script src="../lib/jquery-1.8.2.min.js" 	type="text/javascript"></script>
+</head>
+
+<body>
+	<P>Paragraph 1</P>
+	<P>Paragraph 2</P>
+	<P>Paragraph 3</P>
+	<script>
+var paragraphs = document.getElementsByTagName("p");
+for (var i = 0; i < paragraphs.length; i++) {
+  var paragraph = paragraphs.item(i);
+  paragraph.style.setProperty("color", "white", null);
+}	</script>
+</body>
+</html>

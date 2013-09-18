@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="../lib/jquery-1.8.2.min.js" 	type="text/javascript"></script>
+</head>
+
+<body>
+	<P>Paragraph 1</P>
+	<P>Paragraph 2</P>
+	<P>Paragraph 3</P>
+	<script>
+d3.selectAll("p").style("color", function() {
+  return "hsl(" + Math.random() * 360 + ",100%,50%)";
+});
+d3.selectAll("p").style("background-color", function() {
+  return "hsl(" + Math.random() * 360 + ",100%,50%)";
+});
+	</script>
+</body>
+</html>
