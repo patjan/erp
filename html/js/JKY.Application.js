@@ -18,6 +18,16 @@ JKY.Application = function() {
 	JKY.rows		= [];
 	JKY.row 		= null;		// null=Add New
 
+	JKY.checkout	= JKY.checkout	|| [];
+	JKY.incoming	= JKY.incoming	|| [];
+	JKY.planning	= JKY.planning	|| [];
+	JKY.purchase	= JKY.purchase	|| [];
+
+	JKY.checkout.select = JKY.checkout.select ||         'Active';
+	JKY.incoming.select = JKY.incoming.select ||		 'Active';
+	JKY.planning.select = JKY.planning.select || 'Draft + Active';
+	JKY.purchase.select = JKY.purchase.select || 'Draft + Active';
+
 /**
  *	set all events (run only once per load)
  */
@@ -95,6 +105,18 @@ if (my_first == true) {
 			my_args.select = JKY.get_value('jky-app-select');
 			JKY.display_trace('my_change_select: ' + my_args.select);
 			my_display_list();
+
+			switch(my_args.program_name) {
+				case 'Batches'			:	JKY.incoming.select = my_args.select; break;
+				case 'BatchOuts'		:	JKY.checkout.select = my_args.select; break;
+//				case 'Boxes'			:	JKY.incoming.select = my_args.select; break;
+				case 'CheckOuts'		:	JKY.checkout.select = my_args.select; break;
+				case 'Incomings'		:	JKY.incoming.select = my_args.select; break;
+				case 'Orders'			:	JKY.planning.select = my_args.select; break;
+				case 'Purchases'		:	JKY.purchase.select = my_args.select; break;
+				case 'Purchase Lines'	:	JKY.purchase.select = my_args.select; break;
+				case 'Thread Dyers'		:	JKY.planning.select = my_args.select; break;
+			}
 		}
 
 	function my_change_filter(){
@@ -400,6 +422,19 @@ if (my_first == true) {
 	}
 
 /**
+ * process close
+ */
+	function my_close_row(the_id) {
+		var my_data =
+			{ method	: 'update'
+			, table		:  my_args.table_name
+			, set		: 'status = \'Closed\''
+			, where		: 'id = ' + the_id
+			};
+		JKY.ajax(false, my_data, my_display_list);
+	}
+
+/**
  * process export
  */
 	function my_process_export() {
@@ -481,10 +516,11 @@ if (my_first == true) {
 		, get					:	function(the_property)	{return my_get(the_property)			;}
 		, init					:	function()				{		my_init()						;}
 
-		, display_list			:	function()				{		my_display_list()				;}
-		, display_form			:	function(the_index)		{		my_display_form(the_index)		;}
-		, display_row			:	function(the_index)		{		my_display_row (the_index)		;}
-		, set_checkbox			:	function(the_index)		{		my_set_checkbox(the_index)		;}
+		, display_list			:	function()				{		my_display_list	()				;}
+		, display_form			:	function(the_index)		{		my_display_form	(the_index)		;}
+		, display_row			:	function(the_index)		{		my_display_row	(the_index)		;}
+		, close_row				:	function(the_index)		{		my_close_row	(the_index)		;}
+		, set_checkbox			:	function(the_index)		{		my_set_checkbox	(the_index)		;}
 		, Xprocess_is_company	:	function(the_id)		{		Xmy_process_is_company(the_id)	;}
 		, process_change_input	:	function(the_id)		{		my_process_change_input(the_id) ;}
 	};

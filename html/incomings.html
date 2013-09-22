@@ -23,8 +23,14 @@
 
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
-		<div id='jky-form-actions'	></div>
-		<ul  id='jky-form-status'	></ul>
+		<div id='jky-form-actions'>
+<!--		<button id='jky-action-generate'	class='btn'	type='button' title="Click here to generate check out"	><span>Generate Check Out	</span></button>	-->
+			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this incoming"	><span>Close Incoming		</span></button>
+		</div>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled='disabled'><span id='jky-status'></span></button>
+		</div>
 	</div>
 	<div class='jky-clear'></div>
 
@@ -103,7 +109,9 @@
 					<tbody id='jky-batches-body'></tbody>
 					<tfoot>
 						<tr>
-							<td id='jky-batch-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td class='jky-action' colspan='2'>
+								<a id='jky-batches-add-new' class='btn btn-success' type='button' href='#'><span>Add New</span></a>
+							</td>
 						</tr>
 					</tfoot>
 				</table>

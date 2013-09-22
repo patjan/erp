@@ -3795,4 +3795,20 @@ function revert_entities($string) {
 	return $string;
 }
 
+function get_next_number($table, $name ) {
+	$db = Zend_Registry::get( 'db' );
+	$sql= 'SELECT value'
+		. '  FROM ' . $table
+		. ' WHERE name = "' . $name . '"'
+		;
+	$my_number = $db->fetchOne($sql);
+	$my_next   = (int)$my_number + 1;
+	$sql= 'UPDATE ' . $table
+		. '   SET value = "' . $my_next . '"'
+		. ' WHERE name  = "' . $name . '"'
+		;
+	$db->query($sql);
+	return $my_number;
+}
+
 ?>

@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * lines.js
+ * purc_lines.js
  */
 
 /**
@@ -11,10 +11,10 @@ JKY.start_program = function() {
 	JKY.App = JKY.Application;
 	JKY.App.set(
 		{ object_name	: 'JKY.App'
-		, program_name	: 'Lines'
+		, program_name	: 'Purchase Lines'
 		, table_name	: 'PurchaseLines'
 		, specific		: ''
-		, select		: 'All'
+		, select		: JKY.purchase.select
 		, filter		: ''
 		, sort_by		: 'expected_date'
 		, sort_seq		: 'ASC'
@@ -49,9 +49,9 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-threads-lines');
-//	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
-//	JKY.set_html('jky-app-select-label', JKY.t('Type'));
-//	JKY.show('jky-app-select-line');
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.purchase.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
+	JKY.set_html('jky-app-select-label', JKY.t('Status'));
+	JKY.show	('jky-app-select-line');
 };
 
 /**

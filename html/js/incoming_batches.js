@@ -13,6 +13,7 @@ JKY.display_batches = function() {
 		, table			: 'Batches'
 		, specific		: 'incoming'
 		, specific_id	:  JKY.row.id
+		, select		: 'All'
 		, order_by		: 'Batches.batch'
 		};
 	JKY.ajax(false, my_data, JKY.generate_batches);

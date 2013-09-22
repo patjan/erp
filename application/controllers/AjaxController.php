@@ -95,7 +95,7 @@ public function indexAction() {
 
 			case 'send_email'		: $this->send_email		(); return;
 			case 'send_receipt'		: $this->send_receipt	(); return;
-			case 'print_labels'		: $this->print_labels	($data); return;
+			case 'print_labels'		: echo json_encode(JKY_print_labels($data)); return;
 			case 'refresh'			: $this->refresh		($data); return;
 		}
 
@@ -147,6 +147,7 @@ public function indexAction() {
 			case 'update'		: $required = 'Update'	; break;
 			case 'replace'		: $required = 'Update'	; break;
 			case 'copy'			: $required = 'Update'	; break;
+			case 'generate'		: $required = 'Update'	; break;
 			case 'delete'		: $required = 'Delete'	; break;
 			case 'delete_many'	: $required = 'Delete'	; break;
 			case 'combine'		: $required = 'Combine'	; break;
@@ -185,6 +186,9 @@ public function indexAction() {
 		case 'update'		: $this->update			($data); break;
 		case 'replace'		: $this->replace		($data); break;
 		case 'copy'			: $this->copy			($data); break;
+
+		case 'generate'		: echo json_encode(JKY_generate($data)); return;
+
 		case 'delete'		: $this->delete			($data); break;
 		case 'delete_many'	: $this->delete_many	($data); break;
 		case 'combine'		: $this->combine		(); break;
@@ -625,84 +629,71 @@ $this->log_sql($table, 'get_index', $sql);
 private function set_specific($table, $specific, $specific_id) {
 	if ($specific == '')	return '';
 
-	$return = '';
-	if ($table == 'Groups'			&& $specific == 'event_id'	)		$return .= ' AND    Groups.event_id		= ' . get_session('event_id');
-	if ($table == 'Services'		&& $specific == 'event_id'	)		$return .= ' AND  Services.event_id		= ' . get_session('event_id');
-	if ($table == 'Services'		&& $specific == 'fee_amount')       $return .= ' AND  Services.fee_amount > 0';
-	if ($table == 'Translations'	&& $specific == 'locale'	)		$return .= ' AND Translations.locale	= "en_US"';
-//	if ($specific == 'parent_id')	$return .= ' AND Categories.parent_id = ' . get_session('parent_id');
-	if ($table == 'Contacts'		&& $specific == 'is_customer'	)	$return .= ' AND  Contacts.is_customer	= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	$return .= ' AND  Contacts.is_supplier	= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_dyer'		)	$return .= ' AND  Contacts.is_dyer		= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_partner'	)	$return .= ' AND  Contacts.is_partner	= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_company'	)	$return .= ' AND  Contacts.is_company	= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	$return .= ' AND  Contacts.is_company	= "No" ';
-	if ($table == 'Contacts'		&& $specific == 'company'		)	$return .= ' AND  Contacts.company_id	= ' . $specific_id;
-	if ($table == 'FTPs'			&& $specific == 'product'		)	$return .= ' AND      FTPs.product_id	= ' . $specific_id;
-	if ($table == 'Batches'			&& $specific == 'incoming'		)	$return .= ' AND   Batches.incoming_id	= ' . $specific_id;
-	if ($table == 'Batches'			&& $specific == 'thread'		)	$return .= ' AND   Batches.thread_id	= ' . $specific_id;
-	if ($table == 'BatchOuts'		&& $specific == 'checkout'		)	$return .= ' AND BatchOuts.checkout_id	= ' . $specific_id;
-//	if ($table == 'Purchases'		&& $specific == 'status'		)	$return .= ' AND Purchases.status IN ("Draft", "Active")';
+	if ($table == 'Contacts'		&& $specific == 'is_customer'	)	return ' AND      Contacts.is_customer	= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	return ' AND      Contacts.is_supplier	= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_dyer'		)	return ' AND      Contacts.is_dyer		= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_partner'	)	return ' AND      Contacts.is_partner	= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_company'	)	return ' AND      Contacts.is_company	= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	return ' AND      Contacts.is_company	= "No" ';
+	if ($table == 'Contacts'		&& $specific == 'company'		)	return ' AND      Contacts.company_id	= ' . $specific_id;
+	if ($table == 'Batches'			&& $specific == 'incoming'		)	return ' AND       Batches.incoming_id	= ' . $specific_id;
+	if ($table == 'Batches'			&& $specific == 'thread'		)	return ' AND       Batches.thread_id	= ' . $specific_id;
+	if ($table == 'BatchOuts'		&& $specific == 'checkout'		)	return ' AND     BatchOuts.checkout_id	= ' . $specific_id;
+	if ($table == 'FTPs'			&& $specific == 'product'		)	return ' AND          FTPs.product_id	= ' . $specific_id;
+	if ($table == 'PurchaseLines'	&& $specific == 'parent'		)	return ' AND PurchaseLines.parent_id	= ' . $specific_id;
+	if ($table == 'Translations'	&& $specific == 'locale'		)	return ' AND  Translations.locale		= "en_US"';
 
-	return $return;
+	return '';
 }
 
 private function set_select($table, $select) {
-	if ($table == 'BatchOuts'	&& $select == 'Draft + Active') {
-		return ' AND  BatchOuts	.status IN   ("Draft","Active")';
-	}
-	if ($table == 'Orders'		&& $select == 'Draft + Active') {
-		return ' AND  Orders	.status IN   ("Draft","Active")';
-	}
-	if ($table == 'Purchases'	&& $select == 'Draft + Active') {
-		return ' AND  Purchases	.status IN   ("Draft","Active")';
-	}
-	if ($table == 'TDyers'		&& $select == 'Draft + Active') {
-		return ' AND  TDyers	.status IN   ("Draft","Active")';
-	}
-
 	if ($select == 'All')	return '';
 
-	$return = '';
-	if ($table == 'Categories'		)	$return = ' AND         Parent.category			= "' . $select . '"';
-	if ($table == 'Colors'			)	$return = ' AND         Colors.color_type		= "' . $select . '"';
-	if ($table == 'Controls'		)	$return = ' AND       Controls.group_set		= "' . $select . '"';
-	if ($table == 'Configs'			)	$return = ' AND        Configs.group_set		= "' . $select . '"';
-	if ($table == 'Companies'		)	$return = ' AND      Companies.status			= "' . $select . '"';
-	if ($table == 'Events'			)	$return = ' AND         Events.status			= "' . $select . '"';
-	if ($table == 'Groups'			)	$return = ' AND         Groups.status			= "' . $select . '"';
-	if ($table == 'Permissions'		)	$return = ' AND    Permissions.user_role		= "' . $select . '"';
-	if ($table == 'Services'		)	$return = ' AND         Groups.id				= "' . $select . '"';
-	if ($table == 'Settings'		)	$return = ' AND       Settings.setting_set		= "' . $select . '"';
-	if ($table == 'Summary'			)	$return = ' AND        Summary.group_by			= "' . $select . '"';
-	if ($table == 'Templates'		)	$return = ' AND      Templates.template_type	= "' . $select . '"';
-	if ($table == 'Tickets'			)	$return = ' AND        Tickets.status			= "' . $select . '"';
-	if ($table == 'Translations'	)	$return = ' AND   Translations.status			= "' . $select . '"';
+	if ($select == 'Draft + Active') {
+		switch($table) {
+			case 'BatchOuts'		: return ' AND  BatchOuts	.status IN   ("Draft","Active")';
+			case 'Orders'			: return ' AND  Orders		.status IN   ("Draft","Active")';
+			case 'Purchases'		: return ' AND  Purchases	.status IN   ("Draft","Active")';
+			case 'PurchaseLines'	: return ' AND  Purchases	.status IN   ("Draft","Active")';
+			case 'TDyers'			: return ' AND  TDyers		.status IN   ("Draft","Active")';
+		}
+	}
 
-	if ($table == 'BatchOuts'		)	$return = ' AND      BatchOuts.status			= "' . $select . '"';
-	if ($table == 'Contacts'		)	$return = ' AND      JKY_Users.user_role		= "' . $select . '"';
-	if ($table == 'Cylinders'		)	$return = ' AND      Cylinders.machine_id		=  ' . $select;
-	if ($table == 'FTP_Loads'		)	$return = ' AND      FTP_Loads.ftp_id			=  ' . $select;
-	if ($table == 'FTP_Threads'		)	$return = ' AND    FTP_Threads.ftp_id			=  ' . $select;
-	if ($table == 'FTP_Sets'		)	$return = ' AND       FTP_Sets.ftp_id			=  ' . $select;
-	if ($table == 'Machines'		)	$return = ' AND       Machines.machine_brand    = "' . $select . '"';
-	if ($table == 'Orders'			)	$return = ' AND         Orders.status			= "' . $select . '"';
-	if ($table == 'OrdThreads'		)	$return = ' AND     OrdThreads.parent_id		=  ' . $select;
-	if ($table == 'Pieces'			)	$return = ' AND         Pieces.order_id			=  ' . $select;
-	if ($table == 'Products'		)	$return = ' AND       Products.product_type     = "' . $select . '"';
-	if ($table == 'Purchases'		)	$return = ' AND      Purchases.status			= "' . $select . '"';
-	if ($table == 'PurchaseLines'	)	$return = ' AND  PurchaseLines.parent_id		=  ' . $select;
-	if ($table == 'QuotLines'		)	$return = ' AND      QuotLines.quotation_id		=  ' . $select;
-	if ($table == 'QuotColors'		)	$return = ' AND     QuotColors.parent_id		=  ' . $select;
-	if ($table == 'History'			)	$return = ' AND        History.parent_name      = "' . $select . '"';
-	if ($table == 'TDyers'			)	$return = ' AND         TDyers.status			= "' . $select . '"';
-	if ($table == 'TDyerThreads'	)	$return = ' AND   TDyerThreads.parent_id		=  ' . $select;
-	if ($table == 'TDyerColors'		)	$return = ' AND    TDyerColors.parent_id		=  ' . $select;
-	if ($table == 'Threads'			)	$return = ' AND        Threads.thread_group     = "' . $select . '"';
-	if ($table == 'ThreadForecast'	)	$return = ' AND		   Threads.thread_group     = "' . $select . '"';
-	if ($table == 'ReqLines'		)	$return = ' AND       ReqLines.request_id		=  ' . $select;
-
-	return $return;
+	switch($table) {
+		case 'Batches'			: return ' AND      Incomings.status		= "' . $select . '"';
+		case 'BatchOuts'		: return ' AND      BatchOuts.status		= "' . $select . '"';
+//		case 'Categories'		: return ' AND         Parent.category		= "' . $select . '"';
+		case 'Colors'			: return ' AND         Colors.color_type	= "' . $select . '"';
+		case 'Configs'			: return ' AND        Configs.group_set		= "' . $select . '"';
+		case 'Contacts'			: return ' AND      JKY_Users.user_role		= "' . $select . '"';
+		case 'Controls'			: return ' AND       Controls.group_set		= "' . $select . '"';
+		case 'Cylinders'		: return ' AND      Cylinders.machine_id	=  ' . $select;
+		case 'FTP_Loads'		: return ' AND      FTP_Loads.ftp_id		=  ' . $select;
+		case 'FTP_Threads'		: return ' AND    FTP_Threads.ftp_id		=  ' . $select;
+		case 'FTP_Sets'			: return ' AND       FTP_Sets.ftp_id		=  ' . $select;
+		case 'History'			: return ' AND        History.parent_name	= "' . $select . '"';
+		case 'Incomings'		: return ' AND      Incomings.status		= "' . $select . '"';
+		case 'Machines'			: return ' AND       Machines.machine_brand	= "' . $select . '"';
+		case 'Orders'			: return ' AND         Orders.status		= "' . $select . '"';
+		case 'OrdThreads'		: return ' AND     OrdThreads.parent_id		=  ' . $select;
+		case 'Permissions'		: return ' AND    Permissions.user_role		= "' . $select . '"';
+		case 'Pieces'			: return ' AND         Pieces.order_id		=  ' . $select;
+		case 'Products'			: return ' AND       Products.product_type	= "' . $select . '"';
+		case 'Purchases'		: return ' AND      Purchases.status		= "' . $select . '"';
+		case 'PurchaseLines'	: return ' AND		Purchases.status		= "' . $select . '"';
+		case 'QuotLines'		: return ' AND      QuotLines.quotation_id	=  ' . $select;
+		case 'QuotColors'		: return ' AND     QuotColors.parent_id		=  ' . $select;
+		case 'ReqLines'			: return ' AND       ReqLines.request_id	=  ' . $select;
+		case 'TDyers'			: return ' AND         TDyers.status		= "' . $select . '"';
+		case 'TDyerColors'		: return ' AND    TDyerColors.parent_id		=  ' . $select;
+		case 'TDyerThreads'		: return ' AND   TDyerThreads.parent_id		=  ' . $select;
+		case 'Templates'		: return ' AND      Templates.template_type	= "' . $select . '"';
+		case 'ThreadForecast'	: return ' AND		   Threads.thread_group	= "' . $select . '"';
+		case 'Threads'			: return ' AND        Threads.thread_group	= "' . $select . '"';
+		case 'Tickets'			: return ' AND        Tickets.status		= "' . $select . '"';
+		case 'Translations'		: return ' AND   Translations.status		= "' . $select . '"';
+	}
+	return '';
 }
 
 private function set_new_fields($table) {
@@ -2206,61 +2197,61 @@ private function insert($data) {
 	}
 
 	if ($table == 'FTPs') {
-		$my_number = $this->get_next_number('Controls', 'Next FTP Number');
+		$my_number = get_next_number('Controls', 'Next FTP Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', ftp_number= ' . $my_number;
 	}
 
 	if ($table == 'Orders') {
-		$my_number = $this->get_next_number('Controls', 'Next Order Number');
+		$my_number = get_next_number('Controls', 'Next Order Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', order_number= ' . $my_number;
 	}
 
 	if ($table == 'Purchases') {
-		$my_number = $this->get_next_number('Controls', 'Next Purchase Number');
+		$my_number = get_next_number('Controls', 'Next Purchase Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', purchase_number= ' . $my_number;
 	}
 
 	if ($table == 'Quotations') {
-		$my_number = $this->get_next_number('Controls', 'Next Quotation Number');
+		$my_number = get_next_number('Controls', 'Next Quotation Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', quotation_number= ' . $my_number;
 	}
 
 	if ($table == 'Incomings') {
-		$my_number = $this->get_next_number('Controls', 'Next Incoming Number');
+		$my_number = get_next_number('Controls', 'Next Incoming Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', incoming_number= ' . $my_number;
 	}
 
 	if ($table == 'Boxes') {
-		$my_number = $this->get_next_number('Controls', 'Next Box Number');
+		$my_number = get_next_number('Controls', 'Next Box Number');
 		$set .= ',      id= ' . $my_number;
 		$set .= ', barcode= ' . $my_number;
 	}
 
 	if ($table == 'Pieces') {
-		$my_number = $this->get_next_number('Controls', 'Next Piece Number');
+		$my_number = get_next_number('Controls', 'Next Piece Number');
 		$set .= ',      id= ' . $my_number;
 		$set .= ', barcode= ' . $my_number;
 	}
 
 	if ($table == 'Requests') {
-		$my_number = $this->get_next_number('Controls', 'Next Request Number');
+		$my_number = get_next_number('Controls', 'Next Request Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', number= ' . $my_number;
 	}
 
 	if ($table == 'CheckOuts') {
-		$my_number = $this->get_next_number('Controls', 'Next CheckOut Number');
+		$my_number = get_next_number('Controls', 'Next CheckOut Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', number= ' . $my_number;
 	}
 
 	if ($table == 'TDyers') {
-		$my_number = $this->get_next_number('Controls', 'Next TDyer Number');
+		$my_number = get_next_number('Controls', 'Next TDyer Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', tdyer_number= ' . $my_number;
 	}
@@ -3951,22 +3942,6 @@ private function send_email() {
 
 //   ---------------------------------------------------------------------------
 
-private function get_next_number($table, $name ) {
-	$db = Zend_Registry::get( 'db' );
-	$sql= 'SELECT value'
-		. '  FROM ' . $table
-		. ' WHERE name = "' . $name . '"'
-		;
-	$my_number = $db->fetchOne($sql);
-	$my_next   = (int)$my_number + 1;
-	$sql= 'UPDATE ' . $table
-		. '   SET value = "' . $my_next . '"'
-		. ' WHERE name  = "' . $name . '"'
-		;
-	$db->query($sql);
-	return $my_number;
-}
-
 private function get_last_id( $table, $where='1' ) {
      $sql = 'SELECT id'
 	  . '  FROM ' . $table
@@ -4263,125 +4238,6 @@ private function echo_error( $message ) {
 	$return[ 'status'   ] = 'ok';
 	echo json_encode( $return );
     }
-
-	/**
-	 *	$.ajax({ method: print_labels, table: x...x, key: x...x });
-	 *
-	 *	return: [ x...x, ..., x...x ]
-	 */
-	private function print_labels($data) {
-
-		$sql= 'SELECT Boxes.*'
-			. '     , Batches.batch AS batch_number'
-			. '     , Threads.composition, Threads.name AS thread_name'
-			. '     , Incomings.nfe_dl, Incomings.nfe_tm'
-			. '     , Contacts.nick_name AS supplier_name'
-			. '  FROM Boxes'
-			. '  LEFT JOIN Batches		ON Batches.id   = Boxes.batch_id'
-			. '  LEFT JOIN Threads		ON Threads.id   = Batches.thread_id'
-			. '  LEFT JOIN Incomings	ON Incomings.id = Batches.incoming_id'
-			. '  LEFT JOIN Contacts		ON Contacts.id  = Incomings.supplier_id'
-			. ' WHERE Boxes.is_printed = "No"'
-			. ' ORDER BY Boxes.barcode ASC'
-			;
-		$db   = Zend_Registry::get('db');
-		$rows = $db->fetchAll($sql);
-
-		$count		= 0;
-		$folder		= 'boxes/';
-		$ip_number	= get_config_value('System Controls', 'IP DL Printer Barcode Boxes');
-		foreach($rows as $my_row) {
-			$my_id				= $my_row['id'				];
-			$my_average_weight	= $my_row['average_weight'	];
-			$my_real_weight		= $my_row['real_weight'		];
-			if ($my_real_weight == 0) {
-				$my_real_weight = $my_average_weight;
-			}
-
-			$my_thread_name		= $my_row['thread_name'		];
-			$my_thread_name1	= $my_row['thread_name'		];
-			$my_thread_name2	= '';
-			if (strlen($my_thread_name) > 28) {
-				$i = 28;
-				for(; $i>0; $i--) {
-					if ($my_thread_name[$i] == ' ') {
-						break;
-					}
-				}
-				if ($i == 0) {
-					$my_thread_name1 = substr($my_thread_name, 0, 28);
-					$my_thread_name2 = substr($my_thread_name, 28);
-				}else{
-					$my_thread_name1 = substr($my_thread_name, 0, $i);
-					$my_thread_name2 = substr($my_thread_name, $i+1);
-				}
-			}
-
-			$labels  =		'~NORMAL';
-			$labels .= NL . '~NORMAL';
-			$labels .= NL . '~PIOFF';
-			$labels .= NL . '~DELETE LOGO;*ALL';
-			$labels .= NL . '~PAPER;INTENSITY 6;MEDIA 1;FEED SHIFT 0;CUT 0;PAUSE 0;TYPE 0;LABELS 2;SPEED IPS 6;SLEW IPS 4';
-			$labels .= NL . '~CREATE;CXFIOS;226';
-			$labels .= NL . 'SCALE;DOT;203;203';
-			$labels .= NL . '/PARTE FIXA';
-			$labels .= NL . 'ISET;0';
-			$labels .= NL . 'FONT;FACE 92250';
-			$labels .= NL . 'ALPHA';
-			$labels .= NL . 'INV;POINT;482;788;12;12;*FORNEC:*';
-			$labels .= NL . 'INV;POINT;428;788;12;12;*COMP:*';
-			$labels .= NL . 'INV;POINT;377;788;12;12;*PESO:*';
-			$labels .= NL . 'INV;POINT;324;788;12;12;*CONES:*';
-			$labels .= NL . 'INV;POINT;271;788;12;12;*LOTE:*';
-			$labels .= NL . 'STOP';
-			$labels .= NL . '/PARTE VARIAVEL';
-			$labels .= NL . 'ISET;0';
-			$labels .= NL . 'FONT;FACE 92250';
-			$labels .= NL . 'ALPHA';
-			$labels .= NL . 'INV;POINT;597;788;16;16;*' . $my_thread_name1			  . '*';
-			$labels .= NL . 'INV;POINT;547;788;16;16;*' . $my_thread_name2			  . '*';
-			$labels .= NL . 'INV;POINT;482;600;22;22;*' . $my_row['supplier_name'	] . '*';
-			$labels .= NL . 'INV;POINT;428;667;16;16;*' . $my_row['composition'		] . '*';
-			$labels .= NL . 'INV;POINT;377;671;16;16;*' . $my_real_weight			  . ' KG*';
-			$labels .= NL . 'INV;POINT;324;647;16;16;*' . $my_row['number_of_cones'	] . '*';
-			$labels .= NL . 'INV;POINT;271;678;16;16;*' . $my_row['batch_number'	] . '*';
-			$labels .= NL . 'INV;POINT;271;296;32;33;*' . $my_row['checkin_location'] . '*';
-			$labels .= NL . 'STOP';
-			$labels .= NL . '/CODIGO DE BARRAS';
-			$labels .= NL . 'BARCODE';
-			$labels .= NL . 'C128C;INV;XRD7:7:14:14:21:21:28:28;H8;46;122';
-			$labels .= NL . '*' . $my_row['barcode'] . '*';
-			$labels .= NL . 'PDF;B';
-			$labels .= NL . 'STOP';
-			$labels .= NL . '/FIM DO PROGRAMA';
-			$labels .= NL . 'END';
-			$labels .= NL . '~EXECUTE;CXFIOS;1';
-			$labels .= NL . '~NORMAL';
-
-			$out_name = $folder . $my_id . '.txt';
-			$out_file = fopen( $out_name, 'w' ) or die( 'cannot open ' . $out_name );
-			fwrite( $out_file, $labels );
-			fwrite( $out_file, NL );
-			fclose( $out_file );
-
-if (ENVIRONMENT == 'production') {
-//			system( '( tcp.exe ' . $ip_number . ' 9100 ' . $out_name . ' & ) > /dev/null');
-//			system( '( php ' . APPLICATION . 'GenerateHtml.php & ) > /dev/null' );
-			exec( 'tcp.exe ' . $ip_number . ' 9100 ' . $out_name );
-}
-			$sql= 'UPDATE Boxes'
-				. '   SET is_printed = "Yes"'
-				. ' WHERE id = ' . $my_id
-				;
-			$db->query($sql);
-			$count++;
-		}
-
-		$return = array();
-		$return[ 'status' ] = 'ok';
-		$return[ 'message'] = 'Labels printed: ' . $count;
-		echo json_encode( $return );
-	}
 
 	/**
 	 *	$.ajax({ method: refresh, table: x...x, reference_date: yyy-mm-dd });

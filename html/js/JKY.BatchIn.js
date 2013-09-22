@@ -35,6 +35,7 @@ JKY.BatchIn = function() {
 			, table			: 'Batches'
 			, specific		: 'thread'
 			, specific_id	:  my_thread_id
+			, select		: 'All'
 			, filter		:  JKY.get_value(my_filter)
 			, display		: '10'
 			, order_by		:  my_order_by

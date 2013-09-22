@@ -60,6 +60,7 @@ JKY.Pieces = function() {
 		var my_labels_unprinted	= parseFloat(JKY.get_value('jky-pieces-labels-unprinted'));
 		var my_labels_to_print	= parseFloat(JKY.get_value('jky-pieces-labels-to-print' ));
 		var my_produced_by		= JKY.get_value('jky-pieces-produced-by');
+		var my_product_name		= JKY.get_value('jky-product-name');
 		if (isNaN(my_labels_to_print)
 		||  my_labels_to_print < 1
 		||	my_labels_to_print > 100
@@ -78,7 +79,8 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_ordered_
 			var my_set = ''
 					+          ' order_id =  ' + my_id
 					+ ', number_of_pieces =  ' + my_labels_printed
-					+      ', produced_by =\'' + my_produced_by + '\''
+					+      ', produced_by =\'' + my_produced_by  + '\''
+					+     ', product_name =\'' + my_product_name + '\''
 					+       ', checkin_by =  ' + JKY.Session.get_value('user_id')
 					+       ', checkin_at =\'' + JKY.get_now() + '\''
 					;
@@ -99,7 +101,7 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_ordered_
 	}
 
 	function my_insert_pieces_success(response) {
-return;
+		return;
 	}
 
 	function my_update_data_success(response) {
@@ -107,15 +109,14 @@ return;
 			{ method	: 'print_labels'
 			, table		: 'Pieces'
 			}
-//		JKY.ajax(false, my_data, my_print_labels_success);
-//	}
+		JKY.ajax(false, my_data, my_print_labels_success);
+	}
 
-//	function my_print_labels_success(response) {
+	function my_print_labels_success(response) {
 		JKY.set_value('jky-labels-printed', my_labels_printed);
 		JKY.hide_modal(my_layer);
 		JKY.display_message(response.message);
 	}
-
 
 	return {
 		  display		: function(the_id)				{		my_display(the_id);}

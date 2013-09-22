@@ -1168,8 +1168,8 @@ JKY.display_confirm = function(function_yes, function_no, header, body, label_ye
 	}
 	$('#jky-confirm-header'	).html(header	);
 	$('#jky-confirm-body'	).html(body		);
-	$('#jky-confirm-yes'	).html(label_yes);
-	$('#jky-confirm-no'		).html(label_no	);
+	$('#jky-confirm-yes'	).html(JKY.t(label_yes	));
+	$('#jky-confirm-no'		).html(JKY.t(label_no	));
 	$('#jky-confirm').on('hidden', function() {JKY.click_confirm('No');});
 	$('#jky-confirm').modal('show');
 }

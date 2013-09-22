@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS Orders
 , created_at		DATETIME			DEFAULT NULL
 , updated_by		BIGINT				DEFAULT NULL
 , updated_at		DATETIME			DEFAULT NULL
-, status			VARCHAR(32)			DEFAULT 'Active'
+, status			VARCHAR(32)			DEFAULT 'Draft'
 
 , order_number		VARCHAR(32)			DEFAULT NULL
 , customer_id		BIGINT				DEFAULT NULL
@@ -41,3 +41,5 @@ INSERT Controls SET group_set='System Numbers'		, status='Active', sequence=  50
 ALTER TABLE Orders			ADD COLUMN returned_weight	DECIMAL(10,2)	DEFAULT 0		AFTER produced_pieces;
 ALTER TABLE Orders			ADD COLUMN checkout_weight	DECIMAL(10,2)	DEFAULT 0		AFTER produced_pieces;
 ALTER TABLE Orders			ADD COLUMN ordered_weight	DECIMAL(10,2)	DEFAULT 0		AFTER produced_pieces;
+ALTER TABLE Orders			CHANGE	status			status			VARCHAR(32)		DEFAULT 'Draft';
+

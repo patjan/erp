@@ -11,7 +11,7 @@ var jky_focus		= 'jky-profile-user-name';
  */
 JKY.display_profile = function() {
 	JKY.display_trace('display_profile');
-	if (JKY.is_loaded('jky-profile')) {
+	if (JKY.is_loaded ('jky-profile')) {
 		JKY.show_modal('jky-profile');
 	}else{
 		setTimeout(function() {JKY.display_profile();}, 100);
@@ -33,7 +33,6 @@ JKY.set_all_events_profile = function(jky_program) {
 		$('#jky-new-layer select[id]').each(function() {
 			$(this).change(function() {JKY.process_change_input	(this);});
 		});
-		
 	}else{
 		setTimeout(function() {JKY.set_all_events_profile();}, 100);
 	}

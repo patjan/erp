@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Incomings'
 		, table_name	: 'Incomings'
 		, specific		: ''
-		, select		: ''
+		, select		: JKY.incoming.select
 		, filter		: ''
 		, sort_by		: 'incoming_number'
 		, sort_seq		: 'DESC'
@@ -35,8 +35,8 @@ JKY.set_all_events = function() {
 	$('#jky-received-time'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 	$('#jky-invoice-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
-	$('#jky-tab-batches'	).click (function() {JKY.display_batches	();});
-	$('#jky-batch-add-new'	).click (function() {JKY.insert_batch		();});
+	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
+	$('#jky-batches-add-new').click (function() {JKY.insert_batch		();});
 	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 
 	$('#jky-boxes-print'	).click (function() {JKY.Batch.print()});
@@ -47,9 +47,10 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-threads-incomings');
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.incoming.select, 'All', 'Active', 'Closed'));
+	JKY.set_html('jky-app-select-label', JKY.t('Status'));
+	JKY.show	('jky-app-select-line');
 	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
-//	JKY.set_html('jky-app-select-label', JKY.t('Type'));
-//	JKY.show('jky-app-select-line');
 };
 
 /**
@@ -77,6 +78,17 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
+	if (the_row.status == 'Active') {
+		JKY.enable_button ('jky-action-close'	);
+		JKY.enable_button ('jky-action-delete'  );
+		JKY.enable_button ('jky-batches-add-new');
+	}else{
+		JKY.disable_button('jky-action-close'	);
+		JKY.disable_button('jky-action-delete'  );
+		JKY.disable_button('jky-batches-add-new');
+	}
+
+	JKY.set_html	('jky-status'			, JKY.t			(the_row.status				));
 	JKY.set_value	('jky-incoming-number'	,				 the_row.incoming_number	);
 	JKY.set_date	('jky-received-date'	, JKY.out_time	(the_row.received_at		));
 	JKY.set_option	('jky-supplier-name'	,				 the_row.supplier_id		);
