@@ -33,7 +33,7 @@ JKY.Validation = function() {
 		my_error += my_validate_name	('jky-machine-name'	, 'Machine Name', 'Machines'	, 'name'		);
 		my_error += my_validate_name	('jky-product-name'	, 'Product Name', 'Products'	, 'product_name');
 
-		my_error += my_validate_required		('jky-contact-company'	, 'Company'		);
+//		my_error += my_validate_required		('jky-contact-company'	, 'Company'		);
 		my_error += my_validate_required		('jky-first-name'		, 'First Name'	);
 		my_error += my_validate_required		('jky-last-name'		, 'Last Name'	);
 /*

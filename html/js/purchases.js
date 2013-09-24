@@ -35,9 +35,9 @@ JKY.set_all_events = function() {
 	$('#jky-expected-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-scheduled-date'	).datetimepicker({language: JKY.Session.get_locale()});
 
-	$('#jky-lines-add-new'	).click (function() {JKY.insert_line		();});
 	$('#jky-action-generate').click( function() {JKY.generate_purchase	();});
-	$('#jky-action-close'	).click( function() {JKY.close_order		();});
+	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
+	$('#jky-lines-add-new'	).click (function() {JKY.insert_line		();});
 
 	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 }
@@ -86,9 +86,9 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_button('jky-lines-add-new'	);
 	}
 	if (the_row.status == 'Active') {
-		JKY.enable_button ('jky-action-close');
+		JKY.enable_button ('jky-action-close'	);
 	}else{
-		JKY.disable_button('jky-action-close');
+		JKY.disable_button('jky-action-close'	);
 	}
 
 	JKY.set_html	('jky-status'			, JKY.t			(the_row.status			));
@@ -111,10 +111,10 @@ JKY.set_add_new_row = function() {
 	JKY.disable_button('jky-action-delete'	);
 	JKY.disable_button('jky-action-close'	);
 
-	JKY.set_value	('jky-purchase-number'	, JKY.t('New'));
+	JKY.set_value	('jky-purchase-number'	,  JKY.t('New'));
 	JKY.set_value	('jky-source-doc'		, '');
-	JKY.set_date	('jky-ordered-date'		, JKY.out_time(JKY.get_now ()));
-//	JKY.set_date	('jky-expected-date'	, JKY.out_date(JKY.get_date()));
+	JKY.set_date	('jky-ordered-date'		,  JKY.out_time(JKY.get_now ()));
+//	JKY.set_date	('jky-expected-date'	,  JKY.out_date(JKY.get_date()));
 	JKY.set_date	('jky-scheduled-date'	, '');
 	JKY.set_option	('jky-supplier-name'	, '');
 //	JKY.set_value	('jky-supplier-ref'		, '');
@@ -155,22 +155,11 @@ JKY.generate_purchase = function() {
 		{ method	: 'generate'
 		, table		: 'Purchases'
 		, id		: JKY.row.id
-		};
+		}
 	JKY.ajax(false, my_data, JKY.refresh_form);
 }
 
 JKY.refresh_form = function(response) {
 	JKY.display_message('Batch In row generated: ' + JKY.row.id);
 	JKY.App.display_row();
-}
-
-/* -------------------------------------------------------------------------- */
-JKY.close_order = function(response) {
-	var my_data =
-		{ method	: 'update'
-		, table		: 'Purchases'
-		, set		: 'status = \'Closed\''
-		, where		: 'id = ' + JKY.row.id
-		};
-	JKY.ajax(false, my_data, JKY.App.display_list);
 }

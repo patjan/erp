@@ -23,7 +23,7 @@ JKY.Application = function() {
 	JKY.planning	= JKY.planning	|| [];
 	JKY.purchase	= JKY.purchase	|| [];
 
-	JKY.checkout.select = JKY.checkout.select ||         'Active';
+	JKY.checkout.select = JKY.checkout.select || 'Draft + Active';
 	JKY.incoming.select = JKY.incoming.select ||		 'Active';
 	JKY.planning.select = JKY.planning.select || 'Draft + Active';
 	JKY.purchase.select = JKY.purchase.select || 'Draft + Active';
@@ -432,6 +432,7 @@ if (my_first == true) {
 			, where		: 'id = ' + the_id
 			};
 		JKY.ajax(false, my_data, my_display_list);
+		JKY.display_message('record (' + the_id + ') closed')
 	}
 
 /**

@@ -5,17 +5,12 @@
 .jky-form-label-1		{width:100px;}
 .jky-form-value			{width:100px;}
 .jky-form-value1		{width:240px;}
-.jky-checkbox			{width: 30px; text-align:center;}
-
 .jky-line-label			{font-weight:bold; text-align:right;}
 .jky-line-value  input	{width: 90%;	text-align:right ;}
 .jky-line-thread input	{width:275px;	text-align:left  ;}
 .jky-line-thread a		{margin-left:-30px; padding:5px;}
 .jky-line-thread a		{margin-left:-30px; padding:5px;}
 .jky-line-name			{width:280px;}
-
-#jky-line-total-expected{padding-right:15px; font-weight:bold; text-align:right;}
-#jky-line-total-received{padding-right:15px; font-weight:bold; text-align:right;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -100,7 +95,7 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-lines'			class='active'	><a href='#jky-pane-lines'			data-toggle='tab'><span>Lines			</span></a></li>
+			<li	id='jky-tab-lines'		class='active'	><a href='#jky-pane-lines'		data-toggle='tab'><span>Lines	</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
@@ -125,8 +120,6 @@
 <!--						<td class='jky-line-label'><span>Total</span></td>	-->
 							<td class='jky-td-line-weight'><input id='jky-total-expected' value='' disabled='disabled' /></td>
 							<td class='jky-td-line-weight'><input id='jky-total-received' value='' disabled='disabled' /></td>
-							<td></td>
-							<td></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -155,8 +148,8 @@
 		</table>
 	</div>
 	<div class='modal-footer'>
-<!--	<button  id='jky-thread-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>
--->		&nbsp;<a id='jky-thread-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
+<!--		  <button id='jky-thread-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>	-->
+		&nbsp;<button id='jky-thread-cancel'  class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></button>
 	</div>
 </div>
 

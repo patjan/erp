@@ -53,16 +53,22 @@
 
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
-		<div id='jky-form-actions'></div>
-		<ul  id='jky-form-status'></ul>
+		<div id='jky-form-actions'>
+<!--		<button id='jky-action-generate'	class='btn'	type='button' title="Click here to generate incoming"	><span>Generate Incoming	</span></button>	-->
+			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this order"	><span>Close Order			</span></button>
+		</div>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled='disabled'><span id='jky-status'></span></button>
+		</div>
+		<div class='jky-clear'></div>
 	</div>
-	<div class='jky-clear'></div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Check Out Number</span>:</div>
-				<input  id='jky-checkout-number' class='jky-form-value'	readonly='readonly'	/>
+				<input  id='jky-checkout-number' class='jky-form-value'	readonly='readonly' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Machine</span>:</div>
@@ -91,6 +97,8 @@
 				<input  id='jky-nfe-tm' class='jky-form-value' />
 			</div>
 			<div class='jky-clear'></div>
+			<br>
+
 			<div class='jky-left'>
 				<div class='jky-form-line-1'>
 					<div class='jky-form-label'><span>Requested Date</span>:</div>
@@ -138,14 +146,14 @@
 					<thead>
 						<tr>
 							<th class='jky-action'></th>
-							<th class='jky-td-code'				><span>	 Product<br>Code		</span></th>
-							<th	class='jky-td-thread-name'		><span>			    Thread Name	</span></th>
-							<th class='jky-td-batchin-number'	><span>			    Batch		</span></th>
-							<th class='jky-td-weight'			><span>	 Average<br>Weight		</span></th>
-							<th class='jky-td-weight'			><span>Requested<br>Weight		</span></th>
-							<th class='jky-td-weight'			><span>Check Out<br>Weight		</span></th>
-							<th class='jky-td-boxes'			><span>Requested<br>Boxes		</span></th>
-							<th class='jky-td-boxes'			><span>Check Out<br>Boxes		</span></th>
+							<th class='jky-td-code'				><span>	 Product<br>Code	</span></th>
+							<th	class='jky-td-thread-name'		><span>             Thread	</span></th>
+							<th class='jky-td-batchin-number'	><span>             Batch	</span></th>
+							<th class='jky-td-weight'			><span>	 Average<br>Weight	</span></th>
+							<th class='jky-td-weight'			><span>Requested<br>Weight	</span></th>
+							<th class='jky-td-weight'			><span>Check Out<br>Weight	</span></th>
+							<th class='jky-td-boxes'			><span>Requested<br>Boxes	</span></th>
+							<th class='jky-td-boxes'			><span>Check Out<br>Boxes	</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-batches-body'></tbody>
@@ -175,8 +183,8 @@
 		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Average Weight</span>:</div><input id='jky-boxes-average_weight'	type='text'	readonly='readonly'	 /></div>
 	</div>
 	<div class='modal-footer'>
-		<button  id='jky-boxes-print'  class='btn btn-success'			type='button'><span>Print</span></button>
-		&nbsp;<a id='jky-boxes-cancel' class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
+			  <button id='jky-boxes-print'    class='btn btn-success'			type='button'><span>Print  </span></button>
+		&nbsp;<button id='jky-boxes-cancel'   class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></button>
 	</div>
 </div>
 

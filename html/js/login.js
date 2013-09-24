@@ -38,7 +38,7 @@ JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values - ' + jky_program);
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_html('jky-log-in-logo', '<img src="/img/' + JKY.Session.get_value('company_logo') + '" />');
-		if (JKY.Session.get_value('company_name') == 'JKY Software') {
+		if (JKY.Session.get_value('environment') == 'development') {
 			$('#jky-log-in-user-name').val('patjan');
 			$('#jky-log-in-password' ).val('brazil');
 		}else{

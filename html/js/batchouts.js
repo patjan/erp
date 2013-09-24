@@ -32,8 +32,8 @@ JKY.set_all_events = function() {
 //	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
 //	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 
-	$('#jky-action-generate'	).click( function() {JKY.generate_checkout	();});
-	$('#jky-action-close'		).click( function() {JKY.close_order		();});
+	$('#jky-action-generate').click( function() {JKY.generate_checkout();});
+	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
 }
 
 /**
@@ -41,7 +41,7 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-threads-batchouts');
-	JKY.set_html('jky-app-select', JKY.set_options(JKY.checkout.select, 'All', 'Active', 'Closed'));
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.checkout.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
 //	JKY.set_html('jky-app-select', JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
@@ -81,21 +81,17 @@ JKY.set_form_row = function(the_row) {
 	var my_reserved_boxes	= parseInt(the_row.reserved_boxes	);
 	var my_checkout_boxes	= parseInt(the_row.checkout_boxes	);
 
-	if (the_row.status == 'Draft'
-	&&  my_reserved_boxes > 0 ) {
+	if (the_row.status == 'Draft') {
 		JKY.enable_button ('jky-action-generate');
+		JKY.enable_button ('jky-action-delete'  );
 	}else{
 		JKY.disable_button('jky-action-generate');
+		JKY.disable_button('jky-action-delete'  );
 	}
 	if (the_row.status == 'Active') {
-		JKY.enable_button ('jky-action-close');
+		JKY.enable_button ('jky-action-close'	);
 	}else{
-		JKY.disable_button('jky-action-close');
-	}
-	if (the_row.status == 'Draft') {
-		JKY.enable_button ('jky-action-delete');
-	}else{
-		JKY.disable_button('jky-action-delete');
+		JKY.disable_button('jky-action-close'	);
 	}
 
 	JKY.set_html	('jky-status'			, JKY.t(the_row.status));
@@ -114,7 +110,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_calculated_color();
 
 	if (the_row.batchin_id) {
-		JKY.display_lines();
+		JKY.display_boxes();
 	}
 }
 
@@ -179,10 +175,10 @@ JKY.set_calculated_color = function() {
 
 /* -------------------------------------------------------------------------- */
 JKY.generate_checkout = function() {
-	JKY.activete_batchout();
+	JKY.activate_batchout();
 }
 
-JKY.active_batchout = function(response) {
+JKY.activate_batchout = function(response) {
 	var my_data =
 		{ method	: 'update'
 		, table		: 'BatchOuts'
@@ -230,13 +226,3 @@ JKY.insert_batch_sets = function() {
 	JKY.Application.display_row();
 }
 
-/* -------------------------------------------------------------------------- */
-JKY.close_order = function(response) {
-	var my_data =
-		{ method	: 'update'
-		, table		: 'BatchOuts'
-		, set		: 'status = \'Closed\''
-		, where		: 'id = ' + JKY.row.id
-		};
-	JKY.ajax(false, my_data, JKY.Application.display_list);
-}

@@ -34,6 +34,7 @@ public function init() {
 		set_permissions('Support');
 	}
 
+	if (!is_session('environment'		))		set_session('environment'		, ENVIRONMENT			);
 	if (!is_session('control_company'	))		set_session('control_company'	, COMPANY_ID			);
 	if (!is_session('user_time'			))		set_session('user_time'			, date( 'Y-m-d H:i:s')	);
 	if (!is_session('user_role'			))		set_session('user_role'			, 'visitor'				);
@@ -652,6 +653,7 @@ private function set_select($table, $select) {
 	if ($select == 'Draft + Active') {
 		switch($table) {
 			case 'BatchOuts'		: return ' AND  BatchOuts	.status IN   ("Draft","Active")';
+			case 'CheckOuts'		: return ' AND  CheckOuts	.status IN   ("Draft","Active")';
 			case 'Orders'			: return ' AND  Orders		.status IN   ("Draft","Active")';
 			case 'Purchases'		: return ' AND  Purchases	.status IN   ("Draft","Active")';
 			case 'PurchaseLines'	: return ' AND  Purchases	.status IN   ("Draft","Active")';
@@ -663,6 +665,7 @@ private function set_select($table, $select) {
 		case 'Batches'			: return ' AND      Incomings.status		= "' . $select . '"';
 		case 'BatchOuts'		: return ' AND      BatchOuts.status		= "' . $select . '"';
 //		case 'Categories'		: return ' AND         Parent.category		= "' . $select . '"';
+		case 'CheckOuts'		: return ' AND      CheckOuts.status		= "' . $select . '"';
 		case 'Colors'			: return ' AND         Colors.color_type	= "' . $select . '"';
 		case 'Configs'			: return ' AND        Configs.group_set		= "' . $select . '"';
 		case 'Contacts'			: return ' AND      JKY_Users.user_role		= "' . $select . '"';
@@ -2180,14 +2183,16 @@ private function insert($data) {
 		}
 	}
 
-//	if ($table == 'Templates') {
-//		$set .= ',     company_id= ' . get_session('control_company', COMPANY_ID);
-//	}
+	if ($table == 'Boxes') {
+		$my_number = get_next_number('Controls', 'Next Box Number');
+		$set .= ',      id= ' . $my_number;
+		$set .= ', barcode= ' . $my_number;
+	}
 
-	if ($table == 'Tickets') {
-		$set .= ',     company_id= ' . get_session('control_company', COMPANY_ID);
-		$set .= ',      opened_by= ' . get_session('user_id');
-		$set .= ',      opened_at="' . get_time() . '"';
+	if ($table == 'CheckOuts') {
+		$my_number = get_next_number('Controls', 'Next CheckOut Number');
+		$set .= ',     id= ' . $my_number;
+		$set .= ', number= ' . $my_number;
 	}
 
 	if ($table == 'Contacts') {
@@ -2200,6 +2205,12 @@ private function insert($data) {
 		$my_number = get_next_number('Controls', 'Next FTP Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', ftp_number= ' . $my_number;
+	}
+
+	if ($table == 'Incomings') {
+		$my_number = get_next_number('Controls', 'Next Incoming Number');
+		$set .= ',     id= ' . $my_number;
+		$set .= ', incoming_number= ' . $my_number;
 	}
 
 	if ($table == 'Orders') {
@@ -2220,18 +2231,6 @@ private function insert($data) {
 		$set .= ', quotation_number= ' . $my_number;
 	}
 
-	if ($table == 'Incomings') {
-		$my_number = get_next_number('Controls', 'Next Incoming Number');
-		$set .= ',     id= ' . $my_number;
-		$set .= ', incoming_number= ' . $my_number;
-	}
-
-	if ($table == 'Boxes') {
-		$my_number = get_next_number('Controls', 'Next Box Number');
-		$set .= ',      id= ' . $my_number;
-		$set .= ', barcode= ' . $my_number;
-	}
-
 	if ($table == 'Pieces') {
 		$my_number = get_next_number('Controls', 'Next Piece Number');
 		$set .= ',      id= ' . $my_number;
@@ -2244,16 +2243,20 @@ private function insert($data) {
 		$set .= ', number= ' . $my_number;
 	}
 
-	if ($table == 'CheckOuts') {
-		$my_number = get_next_number('Controls', 'Next CheckOut Number');
-		$set .= ',     id= ' . $my_number;
-		$set .= ', number= ' . $my_number;
-	}
-
 	if ($table == 'TDyers') {
 		$my_number = get_next_number('Controls', 'Next TDyer Number');
 		$set .= ',     id= ' . $my_number;
 		$set .= ', tdyer_number= ' . $my_number;
+}
+
+//	if ($table == 'Templates') {
+//		$set .= ',     company_id= ' . get_session('control_company', COMPANY_ID);
+//	}
+
+	if ($table == 'Tickets') {
+		$set .= ',     company_id= ' . get_session('control_company', COMPANY_ID);
+		$set .= ',      opened_by= ' . get_session('user_id');
+		$set .= ',      opened_at="' . get_time() . '"';
 	}
 
 	$sql= 'INSERT ' . $table
@@ -2942,6 +2945,7 @@ private function get_session() {
 	if (is_session('user_key'		))   $data['user_key'		] = fetch_session( 'user_key'	);
 
 	if (is_session('language'		))   $data['language'		] =   get_session('language'	);
+	if (is_session('environment'	))   $data['environment'	] =   get_session('environment'	);
 	if (is_session('control_company'))   $data['control_company'] =   get_session('control_company', COMPANY_ID);
 	if (is_session('company_name'	))   $data['company_name'	] =   get_session('company_name');
 	if (is_session('company_logo'	))   $data['company_logo'	] =   get_session('company_logo');

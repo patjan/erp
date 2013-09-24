@@ -7,14 +7,14 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-incoming-number'	><span>	Incoming<br>Number	</span></th>
-			<th class='jky-supplier-name'	><span>             Supplier</span></th>
-			<th class='jky-nfe-dl'			><span>			<br>NFe DL	</span></th>
-			<th class='jky-nfe-tm'			><span>			<br>NFe TM	</span></th>
-			<th class='jky-invoice-date'	><span>  Invoice<br>Date	</span></th>
-			<th class='jky-received-date'	><span> Received<br>Date	</span></th>
-			<th class='jky-invoice-weight'	><span>  Invoice<br>Weight	</span></th>
-			<th class='jky-received-weight'	><span> Received<br>Weight	</span></th>
+			<th class='jky-incoming-number'	><span>   Incoming<br>Number	</span></th>
+			<th class='jky-supplier-name'	><span>               Supplier	</span></th>
+			<th class='jky-nfe-dl'			><span>           <br>NFe DL	</span></th>
+			<th class='jky-nfe-tm'			><span>           <br>NFe TM	</span></th>
+			<th class='jky-invoice-date'	><span>    Invoice<br>Date		</span></th>
+			<th class='jky-received-date'	><span>   Received<br>Date		</span></th>
+			<th class='jky-invoice-weight'	><span>    Invoice<br>Weight	</span></th>
+			<th class='jky-received-weight'	><span>   Received<br>Weight	</span></th>
 		</tr>
 	</thead>
 
@@ -31,15 +31,27 @@
 			<span>Status</span>:
 			<button class='btn' type='button' disabled='disabled'><span id='jky-status'></span></button>
 		</div>
+		<div class='jky-clear'></div>
 	</div>
-	<div class='jky-clear'></div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Incoming Number</span>:</div><input  id='jky-incoming-number' class='jky-form-value'	readonly='readonly'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>       Supplier</span>:</div><select id='jky-supplier-name'></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>         NFe DL</span>:</div><input  id='jky-nfe-dl' class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>         NFe TM</span>:</div><input  id='jky-nfe-tm' class='jky-form-value' /></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Incoming Number</span>:</div>
+				<input  id='jky-incoming-number' class='jky-form-value'	readonly='readonly'	/>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Supplier</span>:</div>
+				<select id='jky-supplier-name'></select>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>NFe DL</span>:</div>
+				<input  id='jky-nfe-dl' class='jky-form-value' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>NFe TM</span>:</div>
+				<input  id='jky-nfe-tm' class='jky-form-value' />
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -72,6 +84,7 @@
 		</div>
 		<div class='jky-clear'></div>
 		<br>
+
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
@@ -81,36 +94,35 @@
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>
 		</div>
+		<div class='jky-clear'></div>
 	</div>
-	<div class='jky-clear'></div>
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-batches'			class='active'	><a href='#jky-pane-batches'			data-toggle='tab'><span>Batches			</span></a></li>
+			<li	id='jky-tab-batches'		class='active'	><a href='#jky-pane-batches'		data-toggle='tab'><span>Batches			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
-
 			<div id='jky-pane-batches' class='tab-pane active'>
 				<table class='table table-striped' >
 					<thead>
-						<tr style='font-weight:bold;'>
-							<td class='jky-action'></td>
-							<td class='jky-batch-code'			><span>  Product<br>Code	</span></td>
-							<td class='jky-batch-number'		><span>    Batch<br>Number	</span></td>
-							<td	class='jky-td-thread-name'		><span>			    Thread	</span></td>
-							<td class='jky-td-batch-boxes'		><span> Received<br>Boxes	</span></td>
-							<td class='jky-td-labels-printed'	><span>   Labels<br>Printed	</span></td>
-							<td class='jky-td-batch-boxes'		><span>   Number<br>Cones	</span></td>
-							<td class='jky-td-batch-weight'		><span> Received<br>Weight	</span></td>
-							<td class='jky-td-batch-price'		><span>     Unit<br>Price	</span></td>
+						<tr>
+							<th class='jky-action'></th>
+							<th class='jky-batch-code'			><span>  Product<br>Code	</span></th>
+							<th class='jky-batch-number'		><span>    Batch<br>Number	</span></th>
+							<th class='jky-td-thread-name'		><span>             Thread	</span></th>
+							<th class='jky-td-batch-boxes'		><span> Received<br>Boxes	</span></th>
+							<th class='jky-td-labels-printed'	><span>   Labels<br>Printed	</span></th>
+							<th class='jky-td-batch-boxes'		><span>   Number<br>Cones	</span></th>
+							<th class='jky-td-batch-weight'		><span> Received<br>Weight	</span></th>
+							<th class='jky-td-batch-price'		><span>     Unit<br>Price	</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-batches-body'></tbody>
 					<tfoot>
 						<tr>
-							<td class='jky-action' colspan='2'>
-								<a id='jky-batches-add-new' class='btn btn-success' type='button' href='#'><span>Add New</span></a>
+							<td colspan='2'>
+								<button id='jky-batches-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
 							</td>
 						</tr>
 					</tfoot>
@@ -140,8 +152,8 @@
 		</table>
 	</div>
 	<div class='modal-footer'>
-<!--	<button  id='jky-thread-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>	-->
-		&nbsp;<a id='jky-thread-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
+<!--		  <button id='jky-thread-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>	-->
+		&nbsp;<button id='jky-thread-cancel'  class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></button>
 	</div>
 </div>
 
@@ -165,7 +177,7 @@
 </div>
 
 <div id='jky-body-loaded'></div>
-<script src='js/incomings.js'></script>
-<script src='js/JKY.Thread.js'></script>
-<script src='js/JKY.Batch.js'></script>
+<script src='js/incomings.js'		></script>
+<script src='js/JKY.Thread.js'		></script>
+<script src='js/JKY.Batch.js'		></script>
 <script src='js/incoming_batches.js'></script>
