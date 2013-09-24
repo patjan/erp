@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Thread Dyers'
 		, table_name	: 'TDyers'
 		, specific		: ''
-		, select		: 'Draft + Active'
+		, select		: JKY.planning.select
 		, filter		: ''
 		, sort_by		: 'tdyer_number'
 		, sort_seq		: 'DESC'
@@ -23,12 +23,6 @@ JKY.start_program = function() {
 		});
 	JKY.App.init();
 };
-
-JKY.materials	= [];
-JKY.threads		= [];
-JKY.loads		= [];
-JKY.settings	= [];
-JKY.suppliers	= [];
 
 /**
  *	set all events (run only once per load)
@@ -65,17 +59,9 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-color'	, '../JKY.Search.Color.html'	);
 
 	JKY.set_side_active('jky-planning-tdyers');
-	JKY.set_html('jky-app-select'	, JKY.set_options('Draft + Active', 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
-//	JKY.set_html('jky-ordered-name' , JKY.set_table_options('Machines', 'name', '', ''));
-//	JKY.set_html('jky-customer-name', JKY.set_options_array('', JKY.get_companies('is_customer'), true));
-//	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_dyer'), true));
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.planning.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
-	JKY.show('jky-app-select-line');
-//	JKY.show('jky-action-print');
-//	JKY.materials	= JKY.get_configs	('Materials'	);
-//	JKY.threads		= JKY.get_ids		('Threads'		);
-//	JKY.settings	= JKY.get_configs	('Settings'		);
-//	JKY.suppliers	= JKY.get_companies	('is_supplier'	);
+	JKY.show	('jky-app-select-line');
 
 	$('#jky-order-filter'		).KeyUpDelay(JKY.Order.load_data	);
 	$('#jky-customer-filter'	).KeyUpDelay(JKY.Customer.load_data	);
@@ -408,10 +394,10 @@ JKY.refresh_form = function(response) {
 }
 
 /* -------------------------------------------------------------------------- */
-JKY.close_order = function(response) {
+JKY.close_row = function(the_table) {
 	var my_data =
 		{ method	: 'update'
-		, table		: 'TDyers'
+		, table		:  the_table
 		, set		: 'status = \'Closed\''
 		, where		: 'id = ' + JKY.row.id
 		};

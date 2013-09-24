@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Batches'
 		, table_name	: 'Batches'
 		, specific		: ''
-		, select		: ''
+		, select		: JKY.incoming.select
 		, filter		: ''
 		, sort_by		: 'code'
 		, sort_seq		: 'DESC'
@@ -38,11 +38,12 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-threads-batches');
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.incoming.select, 'All', 'Active', 'Closed'));
+	JKY.set_html('jky-app-select-label', JKY.t('Status'));
+	JKY.show	('jky-app-select-line');
 //	JKY.set_html('jky-app-select', JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
 //	JKY.set_html('jky-thread-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
 //	JKY.set_html('jky-payment-term', JKY.set_configs('Payment Terms', '', ''));
-//	JKY.set_html('jky-app-select-label', JKY.t('Type'));
-//	JKY.show('jky-app-select-line');
 };
 
 /**

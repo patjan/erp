@@ -86,13 +86,16 @@ JKY.display_trace('my_display_count_down');
 				(  my_process_timeout
 				,  my_keep_in_session
 				, 'Time Out'
-				, 'You have been inactive for too long. '
-				+ '<br>The system will <b>log-out</b> automatically in '
-				+ '<span id="jky-count-down" style="padding-left:10px; font-size:24px; font-weight:bold;"></span> seconds.'
-				+ '<br><br>Do you want to <b>continue</b> working in this session?'
+				, '<span>You have been inactive for too long</span>.'
+				+ '<br>'
+				+ '<span>The system will <b>log-out</b> automatically in</span>'
+				+ '<span id="jky-count-down" style="padding-left:10px; font-size:24px; font-weight:bold;"></span> <span>seconds</span>.'
+				+ '<br><br>'
+				+ '<span>Do you want to <b>continue</b> working in this session</span>?'
 				, 'Log Off'
 				, 'Continue'
 				);
+		JKY.t_tag('jky-confirm', 'span');
 		my_process_count_down();
 	};
 

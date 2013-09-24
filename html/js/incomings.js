@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Incomings'
 		, table_name	: 'Incomings'
 		, specific		: ''
-		, select		: ''
+		, select		: JKY.incoming.select
 		, filter		: ''
 		, sort_by		: 'incoming_number'
 		, sort_seq		: 'DESC'
@@ -35,21 +35,22 @@ JKY.set_all_events = function() {
 	$('#jky-received-time'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 	$('#jky-invoice-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
-	$('#jky-tab-batches'	).click (function() {JKY.display_batches	();});
-	$('#jky-batch-add-new'	).click (function() {JKY.insert_batch		();});
+	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
+	$('#jky-batches-add-new').click (function() {JKY.insert_batch		();});
 	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 
 	$('#jky-boxes-print'	).click (function() {JKY.Batch.print()});
-};
+}
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-threads-incomings');
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.incoming.select, 'All', 'Active', 'Closed'));
+	JKY.set_html('jky-app-select-label', JKY.t('Status'));
+	JKY.show	('jky-app-select-line');
 	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
-//	JKY.set_html('jky-app-select-label', JKY.t('Type'));
-//	JKY.show('jky-app-select-line');
 };
 
 /**
@@ -71,31 +72,45 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-received-weight' + my_class + '"	>' + the_row.received_weight	+ '</td>'
 		;
 	return my_html;
-};
+}
 
 /**
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-incoming-number'	,				 the_row.incoming_number	);
-	JKY.set_date	('jky-received-date'	, JKY.out_time	(the_row.received_at		));
-	JKY.set_option	('jky-supplier-name'	,				 the_row.supplier_id		);
-	JKY.set_value	('jky-nfe-dl'			,				 the_row.nfe_dl				);
-	JKY.set_value	('jky-nfe-tm'			,				 the_row.nfe_tm				);
-	JKY.set_date	('jky-invoice-date'		, JKY.out_date	(the_row.invoice_date		));
-	JKY.set_value	('jky-invoice-weight'	,				 the_row.invoice_weight		);
-	JKY.set_value	('jky-invoice-amount'	,				 the_row.invoice_amount		);
-	JKY.set_value	('jky-received-weight'	,				 the_row.received_weight	);
-	JKY.set_value	('jky-received-amount'	,				 the_row.received_amount	);
+	if (the_row.status == 'Active') {
+		JKY.enable_button ('jky-action-close'	);
+		JKY.enable_button ('jky-action-delete'  );
+		JKY.enable_button ('jky-batches-add-new');
+	}else{
+		JKY.disable_button('jky-action-close'	);
+		JKY.disable_button('jky-action-delete'  );
+		JKY.disable_button('jky-batches-add-new');
+	}
+
+	JKY.set_html	('jky-status'			, JKY.t			(the_row.status			));
+	JKY.set_value	('jky-incoming-number'	,				 the_row.incoming_number);
+	JKY.set_date	('jky-received-date'	, JKY.out_time	(the_row.received_at	));
+	JKY.set_option	('jky-supplier-name'	,				 the_row.supplier_id	);
+	JKY.set_value	('jky-nfe-dl'			,				 the_row.nfe_dl			);
+	JKY.set_value	('jky-nfe-tm'			,				 the_row.nfe_tm			);
+	JKY.set_date	('jky-invoice-date'		, JKY.out_date	(the_row.invoice_date	));
+	JKY.set_value	('jky-invoice-weight'	,				 the_row.invoice_weight	);
+	JKY.set_value	('jky-invoice-amount'	,				 the_row.invoice_amount	);
+	JKY.set_value	('jky-received-weight'	,				 the_row.received_weight);
+	JKY.set_value	('jky-received-amount'	,				 the_row.received_amount);
 
 	JKY.set_calculated_color();
 	JKY.display_batches();
-};
+}
 
 /**
  *	set add new row
  */
 JKY.set_add_new_row = function() {
+	JKY.disable_button('jky-action-delete'	);
+	JKY.disable_button('jky-action-close'	);
+
 	JKY.set_value	('jky-incoming-number'	,  JKY.t('New'));
 	JKY.set_date	('jky-received-date'	,  JKY.out_time(JKY.get_now()));
 	JKY.set_option	('jky-supplier-name'	, '');
@@ -125,7 +140,7 @@ JKY.get_form_set = function() {
 		+', invoice_amount=  ' +			  JKY.get_value('jky-invoice-amount'	)
 		;
 	return my_set;
-};
+}
 
 JKY.process_delete = function(the_id, the_row) {
 	var my_data =
@@ -134,7 +149,7 @@ JKY.process_delete = function(the_id, the_row) {
 		, where : 'incoming_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
-};
+}
 
 /**
  *	set calculated color

@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Orders'
 		, table_name	: 'Orders'
 		, specific		: ''
-		, select		: 'Draft + Active'
+		, select		: JKY.planning.select
 		, filter		: ''
 		, sort_by		: 'order_number'
 		, sort_seq		: 'DESC'
@@ -35,9 +35,9 @@ JKY.set_all_events = function() {
 	$('#jky-needed-date'		).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-produced-date'		).datetimepicker({language: JKY.Session.get_locale()});
 
-	$('#jky-threads-add-new'	).click (function() {JKY.insert_thread		();});
 	$('#jky-action-generate'	).click( function() {JKY.generate_checkout	();});
 	$('#jky-action-close'		).click( function() {JKY.close_order		();});
+	$('#jky-threads-add-new'	).click (function() {JKY.insert_thread		();});
 
 	$('#jky-pieces-display'		).click (function() {JKY.Changes.can_leave(function() {JKY.Pieces.display(this)});});
 	$('#jky-pieces-print'		).click (function() {JKY.Pieces.print(); JKY.display_pieces();});
@@ -59,11 +59,9 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-batchin'	, '../JKY.Search.BatchIn.html'	);
 
 	JKY.set_side_active('jky-planning-orders');
-	JKY.set_html('jky-customer-name', JKY.set_options_array('', JKY.get_companies('is_customer'), true));
-	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
-	JKY.set_html('jky-partner-name' , JKY.set_options_array('', JKY.get_companies('is_partner'), true));
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.planning.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
-	JKY.show('jky-app-select-line');
+	JKY.show	('jky-app-select-line');
 
 	$('#jky-customer-filter'	).KeyUpDelay(JKY.Customer.load_data	);
 	$('#jky-machine-filter'		).KeyUpDelay(JKY.Machine.load_data	);
@@ -204,7 +202,7 @@ JKY.process_delete = function(the_id, the_row) {
 	var my_data =
 		{ method: 'delete_many'
 		, table : 'OrdThreads'
-		, where : 'order_id = ' + the_id
+		, where : 'parent_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
 }
@@ -241,7 +239,6 @@ JKY.insert_checkout = function() {
 		my_needed_date = JKY.get_date();
 	}
 	var my_set = ''
-//		+          'order_id=  ' + JKY.row.order_id
 		+        'machine_id=  ' + JKY.row.machine_id
 		+    ', requested_at=\'' + my_needed_date + '\''
 		+', requested_weight=  ' + JKY.row.ordered_weight

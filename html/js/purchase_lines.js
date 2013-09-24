@@ -4,10 +4,12 @@
 
 JKY.display_lines = function() {
 	var my_data =
-		{ method	: 'get_index'
-		, table		: 'PurchaseLines'
-		, select	:  JKY.row.id
-		, order_by  : 'PurchaseLines.id'
+		{ method		: 'get_index'
+		, table			: 'PurchaseLines'
+		, specific		: 'parent'
+		, specific_id	:  JKY.row.id
+		, select		: 'All'
+		, order_by		: 'PurchaseLines.id'
 		};
 	JKY.ajax(false, my_data, JKY.generate_lines);
 }

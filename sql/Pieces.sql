@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS Pieces
 , is_printed		CHAR(3)				DEFAULT 'No'
 , number_of_pieces	INT(11)				DEFAULT 0
 , produced_by		VARCHAR(32)			DEFAULT NULL		# machine | partner
+, product_name		VARCHAR(255)		DEFAULT NULL
 , checkin_weight	decimal(10,2)		DEFAULT 0
 , real_weight		decimal(10,2)		DEFAULT 0
 , checkin_location	VARCHAR(32)			DEFAULT NULL
@@ -42,3 +43,5 @@ INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, 
 ALTER TABLE Pieces		CHANGE	checkin_location	checkin_location	VARCHAR(32)		DEFAULT NULL;
 ALTER TABLE Pieces		CHANGE	returned_location	returned_location	VARCHAR(32)		DEFAULT NULL;
 ALTER TABLE Pieces		ADD COLUMN		produced_by						VARCHAR(32)		DEFAULT NULL  AFTER number_of_pieces;
+
+ALTER TABLE Pieces		ADD COLUMN		product_name					VARCHAR(255)	DEFAULT NULL  AFTER produced_by;

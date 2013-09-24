@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Purchases'
 		, table_name	: 'Purchases'
 		, specific		: ''
-		, select		: 'Draft + Active'
+		, select		: JKY.purchase.select
 		, filter		: ''
 		, sort_by		: 'purchase_number'
 		, sort_seq		: 'DESC'
@@ -35,9 +35,9 @@ JKY.set_all_events = function() {
 	$('#jky-expected-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-scheduled-date'	).datetimepicker({language: JKY.Session.get_locale()});
 
-	$('#jky-lines-add-new'	).click (function() {JKY.insert_line		();});
 	$('#jky-action-generate').click( function() {JKY.generate_purchase	();});
-	$('#jky-action-close'	).click( function() {JKY.close_order		();});
+	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
+	$('#jky-lines-add-new'	).click (function() {JKY.insert_line		();});
 
 	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 }
@@ -47,11 +47,11 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-threads-purchases');
-	JKY.set_html('jky-app-select'	, JKY.set_options('Draft + Active', 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.purchase.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
+	JKY.set_html('jky-app-select-label', JKY.t('Status'));
+	JKY.show	('jky-app-select-line');
 	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
 //	JKY.set_html('jky-payment-term'	, JKY.set_configs('Payment Terms', '', ''));
-	JKY.set_html('jky-app-select-label', JKY.t('Status'));
-	JKY.show('jky-app-select-line');
 }
 
 /**
@@ -86,9 +86,9 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_button('jky-lines-add-new'	);
 	}
 	if (the_row.status == 'Active') {
-		JKY.enable_button ('jky-action-close');
+		JKY.enable_button ('jky-action-close'	);
 	}else{
-		JKY.disable_button('jky-action-close');
+		JKY.disable_button('jky-action-close'	);
 	}
 
 	JKY.set_html	('jky-status'			, JKY.t			(the_row.status			));
@@ -111,10 +111,10 @@ JKY.set_add_new_row = function() {
 	JKY.disable_button('jky-action-delete'	);
 	JKY.disable_button('jky-action-close'	);
 
-	JKY.set_value	('jky-purchase-number'	, JKY.t('New'));
+	JKY.set_value	('jky-purchase-number'	,  JKY.t('New'));
 	JKY.set_value	('jky-source-doc'		, '');
-	JKY.set_date	('jky-ordered-date'		, JKY.out_time(JKY.get_now ()));
-//	JKY.set_date	('jky-expected-date'	, JKY.out_date(JKY.get_date()));
+	JKY.set_date	('jky-ordered-date'		,  JKY.out_time(JKY.get_now ()));
+//	JKY.set_date	('jky-expected-date'	,  JKY.out_date(JKY.get_date()));
 	JKY.set_date	('jky-scheduled-date'	, '');
 	JKY.set_option	('jky-supplier-name'	, '');
 //	JKY.set_value	('jky-supplier-ref'		, '');
@@ -151,78 +151,15 @@ JKY.process_delete = function(the_id, the_row) {
 
 /* -------------------------------------------------------------------------- */
 JKY.generate_purchase = function() {
-	JKY.active_purchase();
-}
-
-JKY.active_purchase = function(response) {
 	var my_data =
-		{ method	: 'update'
+		{ method	: 'generate'
 		, table		: 'Purchases'
-		, set		: 'status = \'Active\''
-		, where		: 'id = ' + JKY.row.id
-		};
-	JKY.ajax(false, my_data, JKY.insert_incoming);
-}
-
-JKY.insert_incoming = function() {
-	var my_invoice_date = JKY.row.expected_date;
-	if (my_invoice_date == null) {
-		my_invoice_date = JKY.get_date();
-	}
-	var my_set = ''
-//		+          'order_id=  ' + JKY.row.order_id
-		+       'supplier_id=  ' + JKY.row.supplier_id
-		+    ', invoice_date=\'' + my_invoice_date + '\''
-		+  ', invoice_weight=  ' + JKY.row.expected_weight
-		;
-	var my_data =
-		{ method	: 'insert'
-		, table		: 'Incomings'
-		, set		:  my_set
-		};
-	JKY.ajax(false, my_data, JKY.insert_batchin);
-}
-
-JKY.insert_batchin = function(response) {
-	var my_rows = JKY.get_rows('PurchaseLines', JKY.row.id);
-	for(var i=0, max=my_rows.length; i<max; i++) {
-		JKY.row = my_rows[i];
-		var my_set = ''
-			+     '  incoming_id=  ' + response.id
-			+       ', thread_id=  ' + JKY.row.thread_id
-			+', purchase_line_id=  ' + JKY.row.id
-			;
-		var my_data =
-			{ method	: 'insert'
-			, table		: 'Batches'
-			, set		:  my_set
-			};
-		JKY.ajax(false, my_data, JKY.connect_purchaseline);
-	}
-}
-
-JKY.connect_purchaseline = function(response) {
-	var my_data =
-		{ method	: 'update'
-		, table		: 'PurchaseLines'
-		, set		: 'batch_id = ' + response.id
-		, where		: 'id = ' + JKY.row.id
-		};
+		, id		: JKY.row.id
+		}
 	JKY.ajax(false, my_data, JKY.refresh_form);
 }
 
 JKY.refresh_form = function(response) {
 	JKY.display_message('Batch In row generated: ' + JKY.row.id);
-	JKY.Application.display_row();
-}
-
-/* -------------------------------------------------------------------------- */
-JKY.close_order = function(response) {
-	var my_data =
-		{ method	: 'update'
-		, table		: 'Purchases'
-		, set		: 'status = \'Closed\''
-		, where		: 'id = ' + JKY.row.id
-		};
-	JKY.ajax(false, my_data, JKY.Application.display_list);
+	JKY.App.display_row();
 }

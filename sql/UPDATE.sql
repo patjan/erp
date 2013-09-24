@@ -185,9 +185,12 @@ ALTER TABLE BatchOuts		ADD COLUMN order_thread_id	BIGINT			DEFAULT NULL	AFTER td
 
 ALTER TABLE OrdThreads		ADD COLUMN batchout_id		BIGINT			DEFAULT NULL	AFTER batchin_id;
 ALTER TABLE OrdThreads		CHANGE	requested_weight	ordered_weight	DECIMAL(10,2)	DEFAULT 0;
+ALTER TABLE OrdThreads		CHANGE	order_id			parent_id		BIGINT			DEFAULT NULL;
 
 ALTER TABLE Orders			ADD COLUMN returned_weight	DECIMAL(10,2)	DEFAULT 0		AFTER produced_pieces;
 ALTER TABLE Orders			ADD COLUMN checkout_weight	DECIMAL(10,2)	DEFAULT 0		AFTER produced_pieces;
 ALTER TABLE Orders			ADD COLUMN ordered_weight	DECIMAL(10,2)	DEFAULT 0		AFTER produced_pieces;
+ALTER TABLE Orders			CHANGE	status			status			VARCHAR(32)		DEFAULT 'Draft';
 /* -- 2013/09/17	*/
 ALTER TABLE BatchOuts		CHANGE	status			status			VARCHAR(32)		DEFAULT 'Draft';
+ALTER TABLE Pieces			ADD COLUMN		product_name			VARCHAR(255)	DEFAULT NULL  AFTER produced_by;

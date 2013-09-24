@@ -1,8 +1,8 @@
 /*
- * display Lines -------------------------------------------------------------
+ * display Boxes -------------------------------------------------------------
  */
 
-JKY.display_lines = function() {
+JKY.display_boxes = function() {
 //	JKY.loads = JKY.load_ids(JKY.row.id);
 	var my_data =
 		{ method	: 'get_index'
@@ -22,21 +22,23 @@ JKY.generate_boxes = function(response) {
 			var my_row = my_rows[i];
 			var my_boxes_checkin   = parseInt(my_row.total_boxes);
 			var my_boxes_reserved  = 0;
+/*
 			if (my_boxes_requested > my_boxes_checkin) {
 				my_boxes_reserved  = my_boxes_checkin;
 			}else{
 				my_boxes_reserved  = my_boxes_requested;
 			}
+*/
 			my_boxes_requested -= my_boxes_reserved;
 
 			my_html  += ''
 				+ '<tr>'
 				+ '<td class="jky-action"></td>'
-				+ '<td class="jky-boxes-location"	><input  class="jky-checkin-location"	value="' +				my_row.location		+ '" readonly="readonly"	/></td>'
-				+ '<td class="jky-boxes-date-in"	><input  class="jky-checkin-date"		value="' + JKY.out_date(my_row.checkin_at)	+ '" readonly="readonly"	/></td>'
-				+ '<td class="jky-boxes-weight"		><input  class="jky-checkin-weight"		value="' +				my_row.total_weight	+ '" readonly="readonly"	/></td>'
-				+ '<td class="jky-boxes-checkin"	><input  class="jky-checkin-boxes"		value="' +				my_boxes_checkin	+ '" readonly="readonly"	/></td>'
-				+ '<td class="jky-boxes-reserved"	><input  class="jky-reserved-boxes"		value="' +				my_boxes_reserved	+ '"						/></td>'
+				+ '<td class="jky-boxes-location"	><input class="jky-checkin-location"	value="' +				my_row.location		+ '" readonly="readonly"	/></td>'
+				+ '<td class="jky-boxes-date-in"	><input class="jky-checkin-date"		value="' + JKY.out_date(my_row.checkin_at)	+ '" readonly="readonly"	/></td>'
+				+ '<td class="jky-boxes-weight"		><input class="jky-checkin-weight"		value="' +				my_row.total_weight	+ '" readonly="readonly"	/></td>'
+				+ '<td class="jky-boxes-checkin"	><input class="jky-checkin-boxes"		value="' +				my_boxes_checkin	+ '" readonly="readonly"	/></td>'
+				+ '<td class="jky-boxes-reserved"	><input class="jky-reserved-boxes"		value="' +				my_boxes_reserved	+ '" onchange="JKY.update_boxes(this, ' + my_boxes_reserved + ')"	/></td>'
 				+ '</tr>'
 				;
 		}
@@ -47,34 +49,11 @@ JKY.generate_boxes = function(response) {
 	}
 }
 
-JKY.Xupdate_boxes = function(id_name, the_id) {
-	var my_tr = $(id_name).parent().parent();
-	if ($(id_name).attr('class') == 'jky-load-remarks') {
-		my_tr = my_tr.prev();
-	}
-	var my_input_from	= parseFloat(my_tr.find('td .jky-load-input-from').val());
-	var my_input_upto	= parseFloat(my_tr.find('td .jky-load-input-upto').val());
-	var my_thread_id_1	= my_tr.find('td .jky-load-thread-name-1').val();
-	var my_thread_id_2	= my_tr.find('td .jky-load-thread-name-2').val();
-	var my_thread_id_3	= my_tr.find('td .jky-load-thread-name-3').val();
-	var my_thread_id_4	= my_tr.find('td .jky-load-thread-name-4').val();
-	var my_remarks		= my_tr.next().find('td .jky-load-remarks').val();
-	var my_set = ''
-		+       'input_from =  ' + my_input_from
-		+     ', input_upto =  ' + my_input_upto
-		+    ', thread_id_1 =  ' + my_thread_id_1
-		+    ', thread_id_2 =  ' + my_thread_id_2
-		+    ', thread_id_3 =  ' + my_thread_id_3
-		+    ', thread_id_4 =  ' + my_thread_id_4
-		+        ', remarks =\'' + my_remarks + '\''
-		;
-	var my_data =
-		{ method	: 'update'
-		, table		: 'CheckinLocations'
-		, set		:  my_set
-		, where		: 'CheckinLocations.id = ' + the_id
-		};
-	JKY.ajax(true, my_data, JKY.update_load_success);
+JKY.update_boxes = function(the_id, the_boxes_reserved) {
+	var my_boxes_reserved = parseInt($(the_id).val());
+	var my_reserved_boxes = parseInt(JKY.get_value('jky-reserved-boxes'));
+	my_reserved_boxes += (my_boxes_reserved - the_boxes_reserved);
+	JKY.set_value('jky-reserved-boxes', my_reserved_boxes);
 }
 
 JKY.Xupdate_load_success = function(response) {

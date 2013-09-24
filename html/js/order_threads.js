@@ -101,7 +101,7 @@ JKY.insert_thread = function() {
 	var my_data =
 		{ method	: 'insert'
 		, table		: 'OrdThreads'
-		, set		: 'OrdThreads.order_id = ' + JKY.row.id
+		, set		: 'OrdThreads.parent_id = ' + JKY.row.id
 		};
 	JKY.ajax(true, my_data, JKY.insert_thread_success);
 }
