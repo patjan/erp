@@ -16,18 +16,23 @@ CREATE TABLE IF NOT EXISTS Pieces
 , number_of_pieces	INT(11)				DEFAULT 0
 , produced_by		VARCHAR(32)			DEFAULT NULL		# machine | partner
 , product_name		VARCHAR(255)		DEFAULT NULL
-, checkin_weight	decimal(10,2)		DEFAULT 0
-, real_weight		decimal(10,2)		DEFAULT 0
-, checkin_location	VARCHAR(32)			DEFAULT NULL
-, checkin_by		BIGINT				DEFAULT NULL
-, checkin_at		DATETIME			DEFAULT NULL
-, checkout_location	VARCHAR(32)			DEFAULT NULL		# dyer name
+
+, inspected_by		BIGINT				DEFAULT NULL
+, weighted_by		BIGINT				DEFAULT NULL
 , checkout_by		BIGINT				DEFAULT NULL
-, checkout_at		DATETIME			DEFAULT NULL
-, returned_location	VARCHAR(32)			DEFAULT NULL
 , returned_by		BIGINT				DEFAULT NULL
+
+, checkin_location	VARCHAR(32)			DEFAULT NULL
+, checkout_location	VARCHAR(32)			DEFAULT NULL		# dyer name
+, returned_location	VARCHAR(32)			DEFAULT NULL
+
+, checkin_at		DATETIME			DEFAULT NULL
+, checkout_at		DATETIME			DEFAULT NULL
 , returned_at		DATETIME			DEFAULT NULL
-, quality			VARCHAR(32)			DEFAULT NULL
+
+, checkin_weight	decimal(10,2)		DEFAULT 0
+, retuned_weight	decimal(10,2)		DEFAULT 0
+
 , remarks			TEXT				DEFAULT NULL
 
 , PRIMARY KEY(id)
@@ -40,8 +45,9 @@ INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=  
 
 INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next Piece Number', value='1000000001', created_by=1, created_at=NOW();
 
-ALTER TABLE Pieces		CHANGE	checkin_location	checkin_location	VARCHAR(32)		DEFAULT NULL;
-ALTER TABLE Pieces		CHANGE	returned_location	returned_location	VARCHAR(32)		DEFAULT NULL;
-ALTER TABLE Pieces		ADD COLUMN		produced_by						VARCHAR(32)		DEFAULT NULL  AFTER number_of_pieces;
+ALTER TABLE Pieces			ADD COLUMN		product_name			VARCHAR(255)	DEFAULT NULL  AFTER produced_by;
 
-ALTER TABLE Pieces		ADD COLUMN		product_name					VARCHAR(255)	DEFAULT NULL  AFTER produced_by;
+ALTER TABLE Pieces			DROP	quality;
+ALTER TABLE Pieces			CHANGE	real_weight		returned_weight	DECIMAL(10,2)	DEFAULT 0;
+ALTER TABLE Pieces			CHANGE	checkin_by		inspected_by	BIGINT			DEFAULT NULL;
+ALTER TABLE Pieces			ADD COLUMN				weighed_by		BIGINT			DEFAULT NULL	AFTER inspected_by;

@@ -119,10 +119,14 @@ function JKY_print_boxes($data) {
 		fwrite( $out_file, NL );
 		fclose( $out_file );
 
+		$command = 'tcp.exe ' . $ip_number . ' ' . $out_name;
 if (ENVIRONMENT == 'production') {
-//		system( '( tcp.exe ' . $ip_number . ' 9100 ' . $out_name . ' & ) > /dev/null');
+//		system( '(' . $command . ' & ) > /dev/null');
 //		system( '( php ' . APPLICATION . 'GenerateHtml.php & ) > /dev/null' );
-		exec( 'tcp.exe ' . $ip_number . ' 9100 ' . $out_name );
+		exec($command);
+}
+if (ENVIRONMENT == 'development') {
+		log_sql('Print_Labels', 'Boxes', $command);
 }
 		$sql= 'UPDATE Boxes'
 			. '   SET is_printed = "Yes"'
@@ -212,9 +216,9 @@ function JKY_print_pieces($data) {
 		fclose( $out_file );
 
 if (ENVIRONMENT == 'production') {
-//			system( '( tcp.exe ' . $ip_number . ' 9100 ' . $out_name . ' & ) > /dev/null');
+//			system( '( tcp.exe ' . $ip_number . $out_name . ' & ) > /dev/null');
 //			system( '( php ' . APPLICATION . 'GenerateHtml.php & ) > /dev/null' );
-		exec( 'tcp.exe ' . $ip_number . ' 9100 ' . $out_name );
+		exec( 'tcp.exe ' . $ip_number . $out_name );
 }
 		$sql= 'UPDATE Pieces'
 			. '   SET is_printed = "Yes"'

@@ -2965,8 +2965,8 @@ function get_user_email( $id ) {
 function set_control_value( $control_set, $name, $value ) {
      $sql = 'UPDATE Controls'
           . '   SET control_value = "' . $value . '"'
-          . ' WHERE company_id   =  ' . get_session( 'control_company', COMPANY_ID )
-          . '   AND control_set  = "' . $control_set . '"'
+//        . ' WHERE company_id   =  ' . get_session( 'control_company', COMPANY_ID )
+          . ' WHERE control_set  = "' . $control_set . '"'
           . '   AND control_name = "' . $name . '"'
           ;
      $db  = Zend_Registry::get( 'db' );
@@ -2979,8 +2979,8 @@ function set_control_value( $control_set, $name, $value ) {
 function get_control_id( $control_set, $name ) {
      $sql = 'SELECT id'
           . '  FROM Controls'
-          . ' WHERE company_id   =  ' . get_session( 'control_company', COMPANY_ID )
-          . '   AND control_set  = "' . $control_set . '"'
+//        . ' WHERE company_id   =  ' . get_session( 'control_company', COMPANY_ID )
+          . ' WHERE control_set  = "' . $control_set . '"'
           . '   AND control_name = "' . $name . '"'
           ;
      $db  = Zend_Registry::get( 'db' );
@@ -2993,8 +2993,8 @@ function get_control_id( $control_set, $name ) {
 function get_control_value( $control_set, $name ) {
      $sql = 'SELECT control_value'
           . '  FROM Controls'
-          . ' WHERE company_id   =  ' . get_session( 'control_company', COMPANY_ID )
-          . '   AND control_set  = "' . $control_set . '"'
+//        . ' WHERE company_id   =  ' . get_session( 'control_company', COMPANY_ID )
+          . ' WHERE control_set  = "' . $control_set . '"'
           . '   AND control_name = "' . $name . '"'
           ;
      $db  = Zend_Registry::get( 'db' );
@@ -3007,10 +3007,11 @@ function get_control_value( $control_set, $name ) {
 function get_config_value( $group_set, $name ) {
      $sql = 'SELECT value'
           . '  FROM Configs'
-          . ' WHERE company_id =  ' . get_session( 'control_company', COMPANY_ID )
-          . '   AND group_set = "' . $group_set . '"'
+//        . ' WHERE company_id =  ' . get_session( 'control_company', COMPANY_ID )
+          . ' WHERE group_set = "' . $group_set . '"'
           . '   AND name = "' . $name . '"'
           ;
+//log_sql('get_config_value', 'SELECT', $sql);
      $db  = Zend_Registry::get( 'db' );
      return $db->fetchOne( $sql );
 }
@@ -3021,8 +3022,8 @@ function get_config_value( $group_set, $name ) {
 function get_root_value( $control_set, $name ) {
      $sql = 'SELECT control_value'
           . '  FROM Controls'
-          . ' WHERE company_id   =  ' . COMPANY_ID
-          . '   AND control_set  = "' . $control_set . '"'
+//        . ' WHERE company_id   =  ' . COMPANY_ID
+          . ' WHERE control_set  = "' . $control_set . '"'
           . '   AND control_name = "' . $name . '"'
           ;
      $db  = Zend_Registry::get( 'db' );
@@ -3055,8 +3056,8 @@ function get_control_name( $control_set, $value ) {
 
      $sql = 'SELECT control_name'
           . '  FROM Controls'
-          . ' WHERE company_id    =  ' . get_session( 'control_company', COMPANY_ID )
-          . '   AND control_set   = "' . $control_set . '"'
+//        . ' WHERE company_id    =  ' . get_session( 'control_company', COMPANY_ID )
+          . ' WHERE control_set   = "' . $control_set . '"'
           . '   AND control_value = "' . $value . '"'
           ;
      $db  = Zend_Registry::get( 'db' );
@@ -3073,8 +3074,8 @@ function get_control_options( $control_set, $name, $value, $initial='', $and='' 
 
      $sql = 'SELECT control_name, control_value'
           . '  FROM Controls'
-          . ' WHERE company_id  =  ' . get_session( 'control_company', COMPANY_ID )
-          . '   AND control_set = "' . $control_set . '" '
+//        . ' WHERE company_id  =  ' . get_session( 'control_company', COMPANY_ID )
+          . ' WHERE control_set = "' . $control_set . '" '
           . '   AND status = "A"'
           . $and
           . ' ORDER BY ' . $order;
@@ -3107,8 +3108,8 @@ function get_control_names( $control_set, $name, $value, $initial='', $and='' ) 
 
      $sql = 'SELECT name, value'
           . '  FROM Controls'
-          . ' WHERE company_id  =  ' . get_session( 'control_company', COMPANY_ID )
-          . '   AND control_set = "' . $control_set . '" '
+//        . ' WHERE company_id  =  ' . get_session( 'control_company', COMPANY_ID )
+          . ' WHERE control_set = "' . $control_set . '" '
           . '   AND status = "A"'
           . $and
           . ' ORDER BY ' . $order;
@@ -3135,8 +3136,8 @@ function get_control_names( $control_set, $name, $value, $initial='', $and='' ) 
 function get_control_rows( $control_set ) {
      $sql = 'SELECT *'
           . '  FROM Controls'
-          . ' WHERE company_id  =  ' . get_session( 'control_company', COMPANY_ID )
-          . '   AND control_set = "' . $control_set . '"'
+//        . ' WHERE company_id  =  ' . get_session( 'control_company', COMPANY_ID )
+          . ' WHERE control_set = "' . $control_set . '"'
           . '   AND status = "Active"'
           . ' ORDER BY sequence'
           ;
@@ -3150,8 +3151,8 @@ function get_control_rows( $control_set ) {
 function get_control_next( $name ) {
      $sql = 'SELECT *'
           . '  FROM Controls'
-          . ' WHERE company_id   =  ' . get_session( 'control_company', COMPANY_ID )
-          . '   AND control_name = "' . $name . '"'
+//        . ' WHERE company_id   =  ' . get_session( 'control_company', COMPANY_ID )
+          . ' WHERE control_name = "' . $name . '"'
           ;
      $db  = Zend_Registry::get( 'db' );
      $row = $db->fetchRow( $sql );
@@ -3424,8 +3425,8 @@ function get_user_type() {
 function get_swf_id( $name ) {
      $sql = 'SELECT id'
           . '  FROM Swfs'
-          . ' WHERE company_id = ' . get_session( 'control_company', COMPANY_ID )
-          . '   AND name = "' . $name . '"'
+//        . ' WHERE company_id = ' . get_session( 'control_company', COMPANY_ID )
+          . ' WHERE name = "' . $name . '"'
           ;
      $db  = Zend_Registry::get( 'db' );
      return $db->fetchOne( $sql );
