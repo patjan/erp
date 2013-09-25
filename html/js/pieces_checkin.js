@@ -11,13 +11,14 @@ JKY.start_program = function() {
 	JKY.App = JKY.Application;
 	JKY.App.set(
 		{ object_name	: 'JKY.App'
-		, program_name	: 'Boxes Check In'
-		, table_name	: ''
+		, program_name	: 'Pieces Check In'
+		, table_name	: 'Pieces'
 		, specific		: ''
 		, select		: ''
 		, filter		: ''
-		, sort_by		: ''
-		, sort_seq		: ''
+		, display		: 10
+		, sort_by		: 'Pieces.checkin_at'
+		, sort_seq		: 'DESC'
 		, focus			: ''
 		, add_new		: ''
 		});
