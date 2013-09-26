@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="../lib/jquery-1.8.2.min.js" 	type="text/javascript"></script>
+</head>
+
+<body>
+	<h1>Heading 1</h1>
+	<P>Paragraph 1</P>
+	<P>Paragraph 2</P>
+	<P>Paragraph 3</P>
+	<script>
+d3.select("body").selectAll("p")
+    .data([4, 8, 15, 16, 23, 42])
+  .enter().append("p")
+    .text(function(d) { return "I’m number " + d + "!"; });
+// Update…
+var p = d3.select("body").selectAll("p")
+    .data([4, 8, 15, 16, 23, 42])
+    .text(String);
+
+// Enter…
+p.enter().append("p")
+    .text(String);
+
+// Exit…
+p.exit().remove();
+	</script>
+</body>
+</html>
