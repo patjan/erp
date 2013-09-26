@@ -330,6 +330,7 @@ JKY.translations =
 , "Phones":"Telefones"
 , "Piece":"Peça"
 , "Pieces":"Peças"
+, "Pieces Check In":"Peças Entrada"
 , "Planning":"Planejamento"
 , "Please, fill in all information":"Por favor, preencha todas as informações"
 , "Position":"Posição"

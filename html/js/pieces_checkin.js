@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Pieces Check In'
 		, table_name	: 'Pieces'
 		, specific		: ''
-		, select		: ''
+		, select		: 'All'
 		, filter		: ''
 		, display		: 10
 		, sort_by		: 'Pieces.checkin_at'

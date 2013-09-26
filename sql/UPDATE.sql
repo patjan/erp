@@ -194,3 +194,8 @@ ALTER TABLE Orders			CHANGE	status			status			VARCHAR(32)		DEFAULT 'Draft';
 /* -- 2013/09/17	*/
 ALTER TABLE BatchOuts		CHANGE	status			status			VARCHAR(32)		DEFAULT 'Draft';
 ALTER TABLE Pieces			ADD COLUMN		product_name			VARCHAR(255)	DEFAULT NULL  AFTER produced_by;
+/* -- 2013/09/25	*/
+ALTER TABLE Pieces			DROP	quality;
+ALTER TABLE Pieces			CHANGE	real_weight		returned_weight	DECIMAL(10,2)	DEFAULT 0;
+ALTER TABLE Pieces			CHANGE	checkin_by		inspected_by	BIGINT			DEFAULT NULL;
+ALTER TABLE Pieces			ADD COLUMN				weighed_by		BIGINT			DEFAULT NULL	AFTER inspected_by;
