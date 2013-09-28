@@ -46,7 +46,7 @@
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
-			<button class='btn' type='button' disabled='disabled'><span id='jky-status'></span></button>
+			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -55,38 +55,38 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Order Number</span>:</div>
-				<input  id='jky-order-number'	readonly='readonly'	value='' />
+				<input  id='jky-order-number'	disabled	value='' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Customer</span>:</div>
 				<input  id='jky-customer-id'	type='hidden'		value='' />
-				<input  id='jky-customer-name'	readonly='readonly'	value='' />
+				<input  id='jky-customer-name'	disabled	value='' />
 				<a href='#' onClick='JKY.Customer.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Machine</span>:</div>
 				<input  id='jky-machine-id'		type='hidden'		value='' />
-				<input  id='jky-machine-name'	readonly='readonly'	value='' />
+				<input  id='jky-machine-name'	disabled	value='' />
 				<a href='#' onClick='JKY.Machine.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Partner</span>:</div>
 				<input  id='jky-partner-id'		type='hidden'		value='' />
-				<input  id='jky-partner-name'	readonly='readonly'	value='' />
+				<input  id='jky-partner-name'	disabled	value='' />
 				<a href='#' onClick='JKY.Partner.display(this)'><i class='icon-share'></i></a>
 			</div>
 <!--			<div class='jky-form-line'><div class='jky-form-label'><span>Product</span>:</div>
 				<input  id='jky-product-id'		type='hidden'		value='' />
-				<input  id='jky-product-name'	readonly='readonly'	value='' />
+				<input  id='jky-product-name'	disabled	value='' />
 				<a href='#' onClick='JKY.Product.display(this)'><i class='icon-share'></i></a>
 			</div>
 -->			<div class='jky-form-line'><div class='jky-form-label'><span>FTP</span>:</div>
 				<input  id='jky-ftp-id'			type='hidden'		value='' />
-				<input  id='jky-ftp-number'		readonly='readonly'	value='' />
+				<input  id='jky-ftp-number'		disabled	value='' />
 				<a href='#' onClick='JKY.FTP.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Product</span>:</div>
 				<input  id='jky-product-id'		type='hidden'		value='' />
-				<input  id='jky-product-name'	readonly='readonly'	value='' />
+				<input  id='jky-product-name'	disabled	value='' />
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -122,7 +122,7 @@
 		</div>
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Labels Printed</span>:</div>
-					<input  id='jky-labels-printed'	class='jky-form-value' disabled="disabled" />
+					<input  id='jky-labels-printed'	class='jky-form-value' disabled />
 					<a id='jky-pieces-display'><i class='icon-print'></i></a>
 			</div>
 		</div>
@@ -216,9 +216,9 @@
 		<h3><span>Print</span>: <span>Labels</span></h3>
 	</div>
 	<div class='modal-body'>
-		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>  Ordered Pieces</span>:</div><input id='jky-pieces-ordered-pieces'	type='text' readonly='readonly' /></div>
-		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>  Labels Printed</span>:</div><input id='jky-pieces-labels-printed'	type='text' readonly='readonly' /></div>
-		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>Labels Unprinted</span>:</div><input id='jky-pieces-labels-unprinted'	type='text' readonly='readonly' /></div>
+		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>  Ordered Pieces</span>:</div><input id='jky-pieces-ordered-pieces'	type='text' disabled /></div>
+		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>  Labels Printed</span>:</div><input id='jky-pieces-labels-printed'	type='text' disabled /></div>
+		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>Labels Unprinted</span>:</div><input id='jky-pieces-labels-unprinted'	type='text' disabled /></div>
 		<div class='jky-pieces-line'><div class='jky-pieces-label'><span> Labels to Print</span>:</div><input id='jky-pieces-labels-to-print'	type='text'						/></div>
 		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>     Produced By</span>:</div><input id='jky-pieces-produced-by'		type='text'						/></div>
 	</div>

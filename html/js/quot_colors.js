@@ -8,7 +8,7 @@ JKY.generate_color = function(the_row) {
 	var my_trash = '<a onclick="JKY.delete_color(this, ' + my_id + ')"><i class="icon-trash"></i></a>';
 	var my_color = ''
 		+ "<input class='jky-color-row-id' type='hidden' value=" + the_row.color_id + " />"
-		+ "<input class='jky-color-row-name' readonly='readonly' onchange='JKY.update_color(this, " + my_id + ")' value='" + the_row.color_name + "' />"
+		+ "<input class='jky-color-row-name' disabled onchange='JKY.update_color(this, " + my_id + ")' value='" + the_row.color_name + "' />"
 		+ "<a href='#' onClick='JKY.Color.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''

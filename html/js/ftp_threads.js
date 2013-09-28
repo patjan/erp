@@ -41,7 +41,7 @@ JKY.generate_thread = function(the_row) {
 
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + my_thread_id + " />"
-		+ "<input class='jky-thread-row-name' readonly='readonly' onchange='JKY.update_thread(this, " + my_id + ")' value='" + my_name + "' />"
+		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + my_name + "' />"
 		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 

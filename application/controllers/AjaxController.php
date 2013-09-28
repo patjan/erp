@@ -701,103 +701,105 @@ private function set_select($table, $select) {
 
 private function set_new_fields($table) {
 	$return = '';
-	if ($table == 'Categories'		)	$return = ',    Parent.category			AS   parent_name';
-	if ($table == 'Companies'		)	$return = ',   Contact.full_name		AS  contact_name';
-	if ($table == 'Templates'		)	$return = ',   Created.full_name		AS  created_name';
-	if ($table == 'Tickets'			)	$return = ',    Opened.full_name		AS   opened_name'
-												. ',    Closed.full_name		AS   closed_name'
-												. ',  Assigned.full_name		AS assigned_name';
+	if ($table == 'Categories'		)	$return = ',    Parent.category			AS    parent_name';
+	if ($table == 'Companies'		)	$return = ',   Contact.full_name		AS   contact_name';
+	if ($table == 'Templates'		)	$return = ',   Created.full_name		AS   created_name';
+	if ($table == 'Tickets'			)	$return = ',    Opened.full_name		AS    opened_name'
+												. ',    Closed.full_name		AS    closed_name'
+												. ',  Assigned.full_name		AS  assigned_name';
 
-	if ($table == 'Contacts'		)	$return = ', JKY_Users.id				AS     user_id'
-												. ', JKY_Users.user_name		AS     user_name'
-												. ', JKY_Users.user_role		AS     user_role'
-												. ', Companies.full_name		AS  company_name';
-	if ($table == 'FTPs'			)	$return = ',  Products.product_name		AS	product_name'
-												. ',  Machines.name				AS	machine_name';
-	if ($table == 'FTP_Loads'		)	$return = ',   Thread1.name				AS   thread_name_1'
-												. ',   Thread2.name				AS   thread_name_2'
-												. ',   Thread3.name				AS   thread_name_3'
-												. ',   Thread4.name				AS   thread_name_4';
-	if ($table == 'FTP_Threads'		)	$return = ',   Threads.name				AS			name'
-												. ',  Supplier.nick_name		AS			supplier';
-	if ($table == 'FTP_Sets'		)	$return = ',   Configs.sequence			AS			sequence'
-												. ',   Configs.name				AS			name';
-	if ($table == 'History'			)	$return = ',  Contacts.full_name		AS	created_name';
-	if ($table == 'Orders'			)	$return = ',  Customer.nick_name		AS customer_name'
-												. ',   Machine.name				AS  machine_name'
-												. ',   Partner.nick_name		AS  partner_name'
-												. ',       FTP.ftp_number		AS      ftp_number'
-												. ',   Product.product_name		AS  product_name';
-	if ($table == 'OrdThreads'		)	$return = ',    Orderx.order_number		AS	  order_number'
-												. ',    Thread.name				AS	 thread_name'
-												. ',   BatchIn.batch			AS	  batch_number';
-	if ($table == 'Pieces'			)	$return = ',    Orderx.order_number		AS	  order_number';
-	if ($table == 'Purchases'		)	$return = ',  Supplier.nick_name		AS supplier_name';
-	if ($table == 'PurchaseLines'	)	$return = ', Purchases.purchase_number	AS			purchase_number'
-												. ', Purchases.ordered_at		AS			ordered_at'
-												. ', Purchases.supplier_id		AS			supplier_id'
-												. ',   Threads.name				AS			thread_name'
-//												. ',   Batches.received_weight	AS			received_weight'
-												. ', Incomings.received_at		AS			received_at'
-												. ',  Supplier.nick_name		AS			supplier_name';
-	if ($table == 'Quotations'		)	$return = ',  Customer.nick_name		AS customer_name'
-												. ',   Machine.name				AS 	machine_name'
-												. ',      Dyer.nick_name		AS	   dyer_name'
-												. ',     Punho.product_name		AS	  punho_name'
-												. ',      Gola.product_name		AS	   gola_name'
-												. ',     Galao.product_name		AS	  galao_name';
-	if ($table == 'QuotLines'		)	$return = ',   Product.product_name		AS	product_name';
-	if ($table == 'QuotColors'		)	$return = ',     Color.color_name		AS	  color_name';
-	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name		AS supplier_name';
-	if ($table == 'Batches'			)	$return = ',   Threads.name				AS			name'
-												. ', Incomings.incoming_number	AS incoming_number';
-	if ($table == 'Boxes'			)	$return = ',   Batches.batch			AS			batch_number'
-												. ',    Parent.barcode			AS			parent'
-												. ',   CheckIn.nick_name		AS			checkin'
-												. ',  CheckOut.nick_name		AS			checkout'
-												. ',  Returned.nick_name		AS			returned'
-												. ',   Threads.name				AS			thread_name'
-												. ',  Supplier.nick_name		AS			supplier_name';
-	if ($table == 'Requests'		)	$return = ',  Machines.name				AS  machine_name'
-												. ',  Supplier.nick_name		AS supplier_name';
-	if ($table == 'ReqLines'		)	$return = ',  Requests.number			AS			request_number'
-												. ',  Requests.ordered_at		AS			ordered_at'
-												. ',  Requests.machine_id		AS			machine_id'
-												. ',  Requests.supplier_id		AS			supplier_id'
-												. ',   Threads.name				AS			thread_name'
-												. ',   Batches.batch			AS			batch_number'
-//												. ', BatchOuts.checkout_weight	AS			checkout_weight'
-												. ', CheckOuts.checkout_at		AS			checkout_at'
-												. ',  Machines.name				AS			machine_name'
-												. ',  Supplier.nick_name		AS			supplier_name';
-	if ($table == 'CheckOuts'		)	$return = ',  Machines.name				AS  machine_name'
-												. ',  Supplier.nick_name		AS supplier_name'
-												. ',      Dyer.nick_name		AS     dyer_name';
-	if ($table == 'BatchOuts'		)	$return = ',   Threads.name				AS	 thread_name'
-												. ',   Batches.batch			AS			batch_number'
-												. ', CheckOuts.number			AS checkout_number'
+	if ($table == 'Contacts'		)	$return = ', JKY_Users.id				AS      user_id'
+												. ', JKY_Users.user_name		AS      user_name'
+												. ', JKY_Users.user_role		AS      user_role'
+												. ', Companies.full_name		AS   company_name';
+	if ($table == 'FTPs'			)	$return = ',  Products.product_name		AS   product_name'
+												. ',  Machines.name				AS   machine_name';
+	if ($table == 'FTP_Loads'		)	$return = ',   Thread1.name				AS    thread_name_1'
+												. ',   Thread2.name				AS    thread_name_2'
+												. ',   Thread3.name				AS    thread_name_3'
+												. ',   Thread4.name				AS    thread_name_4';
+	if ($table == 'FTP_Threads'		)	$return = ',   Threads.name				AS           name'
+												. ',  Supplier.nick_name		AS           supplier';
+	if ($table == 'FTP_Sets'		)	$return = ',   Configs.sequence			AS           sequence'
+												. ',   Configs.name				AS           name';
+	if ($table == 'History'			)	$return = ',  Contacts.full_name		AS   created_name';
+	if ($table == 'Orders'			)	$return = ',  Customer.nick_name		AS  customer_name'
+												. ',   Machine.name				AS   machine_name'
+												. ',   Partner.nick_name		AS   partner_name'
+												. ',       FTP.ftp_number		AS       ftp_number'
+												. ',   Product.product_name		AS   product_name';
+	if ($table == 'OrdThreads'		)	$return = ',    Orderx.order_number		AS 	   order_number'
+												. ',    Thread.name				AS    thread_name'
+												. ',   BatchIn.batch			AS     batch_number';
+	if ($table == 'Pieces'			)	$return = ',    Orderx.order_number		AS     order_number'
+												. ', Inspected.nick_name		AS inspected_name'
+												. ',   Weighed.nick_name		AS   weighed_name';
+	if ($table == 'Purchases'		)	$return = ',  Supplier.nick_name		AS  supplier_name';
+	if ($table == 'PurchaseLines'	)	$return = ', Purchases.purchase_number	AS  purchase_number'
+												. ', Purchases.ordered_at		AS   ordered_at'
+												. ', Purchases.supplier_id		AS  supplier_id'
+												. ',   Threads.name				AS    thread_name'
+//												. ',   Batches.received_weight	AS  received_weight'
+												. ', Incomings.received_at		AS  received_at'
+												. ',  Supplier.nick_name		AS  supplier_name';
+	if ($table == 'Quotations'		)	$return = ',  Customer.nick_name		AS  customer_name'
+												. ',   Machine.name				AS   machine_name'
+												. ',      Dyer.nick_name		AS      dyer_name'
+												. ',     Punho.product_name		AS     punho_name'
+												. ',      Gola.product_name		AS      gola_name'
+												. ',     Galao.product_name		AS     galao_name';
+	if ($table == 'QuotLines'		)	$return = ',   Product.product_name		AS   product_name';
+	if ($table == 'QuotColors'		)	$return = ',     Color.color_name		AS     color_name';
+	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name		AS  supplier_name';
+	if ($table == 'Batches'			)	$return = ',   Threads.name				AS           name'
+												. ', Incomings.incoming_number	AS  incoming_number';
+	if ($table == 'Boxes'			)	$return = ',   Batches.batch			AS     batch_number'
+												. ',    Parent.barcode			AS           parent'
+												. ',   CheckIn.nick_name		AS           checkin'
+												. ',  CheckOut.nick_name		AS           checkout'
+												. ',  Returned.nick_name		AS           returned'
+												. ',   Threads.name				AS    thread_name'
+												. ',  Supplier.nick_name		AS  supplier_name';
+	if ($table == 'Requests'		)	$return = ',  Machines.name				AS   machine_name'
+												. ',  Supplier.nick_name		AS  supplier_name';
+	if ($table == 'ReqLines'		)	$return = ',  Requests.number			AS   request_number'
+												. ',  Requests.ordered_at		AS   ordered_at'
+												. ',  Requests.machine_id		AS   machine_id'
+												. ',  Requests.supplier_id		AS  supplier_id'
+												. ',   Threads.name				AS    thread_name'
+												. ',   Batches.batch			AS     batch_number'
+//												. ', BatchOuts.checkout_weight	AS  checkout_weight'
+												. ', CheckOuts.checkout_at		AS  checkout_at'
+												. ',  Machines.name				AS   machine_name'
+												. ',  Supplier.nick_name		AS  supplier_name';
+	if ($table == 'CheckOuts'		)	$return = ',  Machines.name				AS   machine_name'
+												. ',  Supplier.nick_name		AS  supplier_name'
+												. ',      Dyer.nick_name		AS      dyer_name';
+	if ($table == 'BatchOuts'		)	$return = ',   Threads.name				AS	  thread_name'
+												. ',   Batches.batch			AS     batch_number'
+												. ', CheckOuts.number			AS  checkout_number'
 												. ', CheckOuts.requested_at		AS requested_at'
-												. ',  Supplier.nick_name		AS supplier_name'
-												. ',  Machines.name				AS  machine_name';
-	if ($table == 'BatchSets'		)	$return = ', BatchOuts.average_weight	AS	average_weight'
+												. ',  Supplier.nick_name		AS  supplier_name'
+												. ',  Machines.name				AS   machine_name';
+	if ($table == 'BatchSets'		)	$return = ', BatchOuts.average_weight	AS   average_weight'
 												. ', BatchOuts.requested_weight	AS requested_weight'
-												. ', BatchOuts.checkout_weight	AS checkout_weight'
-												. ',   Threads.name				AS	 thread_name'
-												. ',   Batches.batch			AS    batch_number'
-												. ', CheckOuts.number			AS checkout_number'
+												. ', BatchOuts.checkout_weight	AS  checkout_weight'
+												. ',   Threads.name				AS    thread_name'
+												. ',   Batches.batch			AS     batch_number'
+												. ', CheckOuts.number			AS  checkout_number'
 												. ', CheckOuts.requested_at		AS requested_at'
-												. ',  Supplier.nick_name		AS supplier_name'
-												. ',  Machines.name				AS  machine_name';
-	if ($table == 'TDyers'			)	$return = ',    Orderx.order_number		AS	  order_number'
-												. ',  Customer.nick_name		AS customer_name'
-												. ',      Dyer.nick_name		AS	   dyer_name';
-	if ($table == 'TDyerThreads'	)	$return = ',    Thread.name				AS	 thread_name'
-												. ',   BatchIn.batch			AS  batchin_number';
-	if ($table == 'TDyerColors'		)	$return = ',     Color.color_name		AS	  color_name';
-	if ($table == 'ThreadForecast'	)	$return = ',  Contacts.nick_name		AS supplier_name'
-												. ',   Threads.thread_group		AS	 thread_group'
-												. ',   Threads.name				AS	 thread_name'
-												. ',   Configs.sequence			AS   thread_sequence';
+												. ',  Supplier.nick_name		AS  supplier_name'
+												. ',  Machines.name				AS   machine_name';
+	if ($table == 'TDyers'			)	$return = ',    Orderx.order_number		AS	   order_number'
+												. ',  Customer.nick_name		AS  customer_name'
+												. ',      Dyer.nick_name		AS      dyer_name';
+	if ($table == 'TDyerThreads'	)	$return = ',    Thread.name				AS    thread_name'
+												. ',   BatchIn.batch			AS   batchin_number';
+	if ($table == 'TDyerColors'		)	$return = ',     Color.color_name		AS     color_name';
+	if ($table == 'ThreadForecast'	)	$return = ',  Contacts.nick_name		AS  supplier_name'
+												. ',   Threads.thread_group		AS    thread_group'
+												. ',   Threads.name				AS    thread_name'
+												. ',   Configs.sequence			AS    thread_sequence';
 
 //	special code to append fields from Contacts to Services table
 	if (get_request('method') == 'export') {
@@ -848,7 +850,9 @@ private function set_left_joins($table) {
 	if ($table == 'OrdThreads'		)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		OrdThreads.parent_id'
 												. '  LEFT JOIN     Threads AS Thread	ON    Thread.id	=		OrdThreads.thread_id'
 												. '  LEFT JOIN     Batches AS BatchIn	ON   BatchIn.id	=		OrdThreads.batchin_id';
-	if ($table == 'Pieces'			)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		    Pieces.order_id';
+	if ($table == 'Pieces'			)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		    Pieces.order_id'
+												. '  LEFT JOIN    Contacts AS Inspected	ON Inspected.id	=		    Pieces.inspected_by'
+												. '  LEFT JOIN    Contacts AS Weighed	ON   Weighed.id	=		    Pieces.weighed_by';
 	if ($table == 'Purchases'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Purchases.supplier_id';
 	if ($table == 'PurchaseLines'	)	$return = '  LEFT JOIN   Purchases  			ON Purchases.id	=	 PurchaseLines.parent_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=	 PurchaseLines.thread_id'
@@ -1276,6 +1280,30 @@ private function set_where($table, $filter) {
 					}
 			}
 			}}}}
+		}
+
+		if ($table == 'Pieces') {
+			if ($name == 'barcode'
+			or	$name == 'source_doc'
+			or	$name == 'ordered_at'
+			or	$name == 'expected_date'
+			or	$name == 'scheduled_at'
+			or	$name == 'supplier_ref'
+			or	$name == 'payment_term') {
+				if ($value == '"%null%"') {
+					return ' AND Purchases.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Purchases.' . $name . ' LIKE ' . $value;
+				}
+			}else{
+				if ($name == 'supplier_name') {
+					if ($value == '"%null%"') {
+						return ' AND Purchases.supplier_id IS NULL';
+					}else{
+						return ' AND Supplier.nick_name LIKE ' . $value;
+					}
+				}
+			}
 		}
 
 		if ($table == 'Purchases') {

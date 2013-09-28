@@ -953,7 +953,7 @@ JKY.set_menu_active = function(id_name){
 	JKY.hide('jky-side-planning'	);
 	JKY.hide('jky-side-threads'		);
 	JKY.hide('jky-side-boxes'		);
-	JKY.hide('jky-side-qc'			);
+//	JKY.hide('jky-side-qc'			);
 	JKY.hide('jky-side-pieces'		);
 	JKY.hide('jky-side-fabrics'		);
 	JKY.hide('jky-side-production'	);

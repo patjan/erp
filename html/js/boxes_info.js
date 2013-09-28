@@ -75,7 +75,7 @@ JKY.process_barcode_success = function(response) {
 			JKY.set_html ('jky-input-message', JKY.t('duplicate'));
 			JKY.set_focus('jky-input-barcode');
 		}else{
-			var my_checkbox = '<input type="checkbox" onclick="JKY.Application.set_checkbox(this)" barcode=' + my_barcode + ' />';
+			var my_checkbox = '<input type="checkbox" onclick="JKY.App.set_checkbox(this)" barcode=' + my_barcode + ' />';
 			var my_location = my_row.checkout_location;
 			if(!my_location) {
 				my_location = my_row.checkin_location;

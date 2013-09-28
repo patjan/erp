@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+<TITLE>Test Cut Off</TITLE>
+<script src='lib/jquery-1.8.2.js' ></script>
+<script src='lib/jquery-barcode-2.0.2.min.js' ></script>
+</HEAD>
+
+<BODY>
+	<div id="jky-barcodes"></div>
+
+<script language="JavaScript">
+$(function() {
+	var my_html = '';
+
+	var my_barcode = 'pat';
+	var my_id = 'jky-barcode-' + my_barcode;
+	my_html += '<div id="' + my_id + '">' + my_barcode + '</div>';
+
+	var my_barcode = 'joel';
+	var my_id = 'jky-barcode-' + my_barcode;
+	my_html += '<div id="' + my_id + '">' + my_barcode + '</div>';
+
+	var my_barcode = 'Boa';
+	var my_id = 'jky-barcode-' + my_barcode;
+	my_html += '<div id="' + my_id + '">' + my_barcode + '</div>';
+
+	var my_barcode = '12.56';
+	var my_id = 'jky-barcode-weight';
+	my_html += '<div id="' + my_id + '">' + my_barcode + '</div>';
+
+	var my_barcode = '1A23';
+	var my_id = 'jky-barcode-' + my_barcode;
+	my_html += '<div id="' + my_id + '">' + my_barcode + '</div>';
+
+	var my_barcode = 'Save';
+	var my_id = 'jky-barcode-' + my_barcode;
+	my_html += '<div id="' + my_id + '">' + my_barcode + '</div>';
+
+	var my_barcode = 'Clear';
+	var my_id = 'jky-barcode-' + my_barcode;
+	my_html += '<div id="' + my_id + '">' + my_barcode + '</div>';
+
+	$('#jky-barcodes').html(my_html);
+
+	var my_barcode = 'pat';
+	var my_id = 'jky-barcode-' + my_barcode;
+	$('#' + my_id).barcode(''+my_barcode, 'code128');
+
+	var my_barcode = 'joel';
+	var my_id = 'jky-barcode-' + my_barcode;
+	$('#' + my_id).barcode(''+my_barcode, 'code128');
+
+	var my_barcode = 'Boa';
+	var my_id = 'jky-barcode-' + my_barcode;
+	$('#' + my_id).barcode(''+my_barcode, 'code128');
+
+	var my_barcode = '12.56';
+	var my_id = 'jky-barcode-weight';
+	$('#' + my_id).barcode(''+my_barcode, 'code128');
+
+	var my_barcode = '1A23';
+	var my_id = 'jky-barcode-' + my_barcode;
+	$('#' + my_id).barcode(''+my_barcode, 'code128');
+
+	var my_barcode = 'Save';
+	var my_id = 'jky-barcode-' + my_barcode;
+	$('#' + my_id).barcode(my_barcode, 'code128');
+
+	var my_barcode = 'Clear';
+	var my_id = 'jky-barcode-' + my_barcode;
+	$('#' + my_id).barcode(''+my_barcode, 'code128');
+
+});
+</script>
+</BODY>
+</HTML>
+

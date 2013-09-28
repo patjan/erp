@@ -55,8 +55,8 @@ JKY.set_all_events_home = function(jky_program) {
 		$('#jky-planning-tdyers'		).click (function() {JKY.process_action('tdyers'			);});
 		$('#jky-planning-orders'		).click (function() {JKY.process_action('orders'			);});
 		$('#jky-planning-pieces'		).click (function() {JKY.process_action('pieces'			);});
-		$('#jky-planning-requests'		).click (function() {JKY.process_action('requests'			);});
-		$('#jky-planning-reqlines'		).click (function() {JKY.process_action('reqlines'			);});
+//		$('#jky-planning-requests'		).click (function() {JKY.process_action('requests'			);});
+//		$('#jky-planning-reqlines'		).click (function() {JKY.process_action('reqlines'			);});
 
 		$('#jky-production-threads'		).click (function() {JKY.process_action('threads'			);});
 		$('#jky-production-machines'	).click (function() {JKY.process_action('machines'			);});

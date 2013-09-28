@@ -186,7 +186,7 @@ function JKY_print_pieces($data) {
 		$labels .= NL . 'ALPHA';
 		$labels .= NL . 'INV;POINT;268;791;12;12;*CM*';
 		$labels .= NL . 'INV;POINT;268;280;12;12;*Data:*';
-		$labels .= NL . 'INV;POINT;226;791;12;12;*Estocagem:*';
+//		$labels .= NL . 'INV;POINT;226;791;12;12;*Estocagem:*';
 		$labels .= NL . 'STOP';
 		$labels .= NL . '/PARTE VARIAVEL';
 		$labels .= NL . 'ISET;0';
@@ -215,10 +215,14 @@ function JKY_print_pieces($data) {
 		fwrite( $out_file, NL );
 		fclose( $out_file );
 
+		$command = 'tcp.exe ' . $ip_number . ' ' . $out_name;
 if (ENVIRONMENT == 'production') {
-//			system( '( tcp.exe ' . $ip_number . $out_name . ' & ) > /dev/null');
-//			system( '( php ' . APPLICATION . 'GenerateHtml.php & ) > /dev/null' );
-		exec( 'tcp.exe ' . $ip_number . $out_name );
+//		system( '(' . $command . ' & ) > /dev/null');
+//		system( '( php ' . APPLICATION . 'GenerateHtml.php & ) > /dev/null' );
+		exec($command);
+}
+if (ENVIRONMENT == 'development') {
+		log_sql('Print_Labels', 'Pieces', $command);
 }
 		$sql= 'UPDATE Pieces'
 			. '   SET is_printed = "Yes"'

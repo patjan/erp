@@ -39,7 +39,7 @@ JKY.generate_line = function(the_row) {
 	var my_trash = (the_row.batch_id == null) ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_line = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-thread-row-name' readonly='readonly' onchange='JKY.update_line(this, " + my_id + ")' value='" + JKY.fix_null(the_row.thread_name) + "' />"
+		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + JKY.fix_null(the_row.thread_name) + "' />"
 		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_expected_date = JKY.out_date(the_row.expected_date);
@@ -51,9 +51,9 @@ JKY.generate_line = function(the_row) {
 		+ '<td class="jky-action"			>' + my_trash + '</td>'
 		+ '<td class="jky-td-thread-name"	>' + my_line  + '</td>'
 		+ '<td class="jky-td-line-weight"	><input class="jky-expected-weight" onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.expected_weight  ) + '"						/></td>'
-		+ '<td class="jky-td-line-weight"	><input class="jky-received-weight" onchange="JKY.update_line(this, ' + my_id + ')" value="' +				 the_row.received_weight	+ '" disabled="disabled"	/></td>'
+		+ '<td class="jky-td-line-weight"	><input class="jky-received-weight" onchange="JKY.update_line(this, ' + my_id + ')" value="' +				 the_row.received_weight	+ '" disabled	/></td>'
 		+ '<td class="jky-td-line-date"		><input class="jky-expected-date"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' +					  my_expected_date		+ '"						/></td>'
-		+ '<td class="jky-td-line-date"		><input class="jky-scheduled-date"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	  ) + '" disabled="disabled"	/></td>'
+		+ '<td class="jky-td-line-date"		><input class="jky-scheduled-date"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	  ) + '" disabled	/></td>'
 		+ '</tr>'
 		;
 	return my_html;

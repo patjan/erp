@@ -219,7 +219,6 @@ li .arrow span {
 
 #jky-form-data	{margin:10px 0; padding:10px 0;}
 #jky-form-title	{padding:10px;}
-#jky-form-action{font-size:20px; font-weight:bold;}
 #jky-form-id	{font-size:20px; font-weight:bold; padding-top:10px;}
 
 #jky-profile input	{width:200px;}
@@ -276,6 +275,7 @@ li .arrow span {
 .jky-galao-price		{width: 45px; text-align:right  !important;}
 .jky-gola-price			{width: 45px; text-align:right  !important;}
 .jky-incoming-number	{width: 60px; text-align:center !important;}
+.jky-inspected-by		{width:120px;}
 .jky-inputs				{width: 40px; text-align:right  !important;}
 .jky-invoice-date		{width: 75px; text-align:center !important;}
 .jky-invoice-weight		{width: 75px; text-align:right  !important;}
@@ -334,6 +334,7 @@ li .arrow span {
 .jky-thread-name		{width:200px; text-align:left   !important;}
 .jky-tdyer-number		{width: 50px; text-align:center !important;}
 .jky-unit-price			{width: 50px; text-align:right  !important;}
+.jky-weighed-by			{width:120px;}
 .jky-width				{width: 40px; text-align:right  !important;}
 
 .jky-td-boxes			{width: 65px; text-align:right  !important;}
@@ -450,12 +451,15 @@ li .arrow span {
 #jky-diameter				{width: 40px;					 text-align:right;}
 #jky-dyer-name				{width:300px;					 text-align:left ;	text-transform:capitalize;}
 #jky-expected-value			{width: 75px;}
+#jky-form-action			{width: 40px;}
 #jky-ftp-number				{width: 60px;										font-size:16px; font-weight:bold;}
 #jky-galao-perc				{width: 17px;					 text-align:right;}
 #jky-gola-perc				{width: 17px;					 text-align:right;}
 #jky-has-break				{width:135px;}
 #jky-has-break span			{padding:0 10px 0 4px; vertical-align:bottom;}
 #jky-incoming-number		{width: 60px;										font-size:16px; font-weight:bold;}
+#jky-inspected-by			{width:130px;}
+#jky-inspected-name			{width:400px;}
 #jky-inputs					{width: 40px;					 text-align:right;}
 #jky-invoice-amount			{width:100px;					 text-align:right;}
 #jky-invoice-value			{width: 75px;}
@@ -514,6 +518,8 @@ li .arrow span {
 #jky-total-received			{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-turns					{width: 40px;					 text-align:right;}
 #jky-unit-price				{width: 40px; margin-bottom:4px; text-align:right;}
+#jky-weighed-by				{width:130px;}
+#jky-weighed-name			{width:400px;}
 #jky-weight					{width: 40px;					 text-align:right;}
 #jky-width					{width: 40px;					 text-align:right;}
 

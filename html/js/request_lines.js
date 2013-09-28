@@ -37,12 +37,12 @@ JKY.generate_row = function(the_row) {
 	var my_trash = (the_row.batch_id == null) ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-thread-row-name' readonly='readonly' onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
+		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
 		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_batchin = ''
 		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-row-number' readonly='readonly' onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.batch_number + "' />"
+		+ "<input class='jky-batchin-row-number' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.batch_number + "' />"
 		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_requested_date =	JKY.out_date(the_row.requested_date);
@@ -56,8 +56,8 @@ JKY.generate_row = function(the_row) {
 		+ '<td class="jky-td-batchin-number">' + my_batchin	+ '</td>'
 		+ '<td class="jky-td-line-weight"	><input class="jky-requested-weight"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.requested_weight) + '"						/></td>'
 		+ '<td class="jky-td-line-date"		><input class="jky-requested-date"		onchange="JKY.update_line(this, ' + my_id + ')"	value="' +					  my_requested_date	   + '"						/></td>'
-		+ '<td class="jky-td-line-weight"	><input class="jky-checkout-weight"		onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.checkout_weight ) + '" disabled="disabled"	/></td>'
-		+ '<td class="jky-td-line-date"		><input class="jky-scheduled-date"		onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	 ) + '" disabled="disabled"	/></td>'
+		+ '<td class="jky-td-line-weight"	><input class="jky-checkout-weight"		onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.checkout_weight ) + '" disabled	/></td>'
+		+ '<td class="jky-td-line-date"		><input class="jky-scheduled-date"		onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	 ) + '" disabled	/></td>'
 		+ '</tr>'
 		;
 	return my_html;

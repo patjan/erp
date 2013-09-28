@@ -96,7 +96,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-position'			, the_row.position		);
 	JKY.set_value	('jky-email'			, the_row.email			);
 //	JKY.disable_button('jky-is-company');
-//	setTimeout(function() {JKY.Application.process_is_company($('#jky-is-company'));}, 100);
+//	setTimeout(function() {JKY.App.process_is_company($('#jky-is-company'));}, 100);
 
 	JKY.Photo.set_row_id(the_row.id);
 	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));
@@ -127,7 +127,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-email'			, '');
 
 //	JKY.disable_button('jky-is-company');
-//	setTimeout(function() {JKY.Application.process_is_company($('#jky-is-company'));}, 100);
+//	setTimeout(function() {JKY.App.process_is_company($('#jky-is-company'));}, 100);
 };
 
 /**

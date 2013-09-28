@@ -44,7 +44,7 @@ JKY.generate_batch = function(the_row) {
 	var my_trash = (the_row.labels_printed == 0) ? '<a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-thread-row-name' readonly='readonly' onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.name + "' />"
+		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.name + "' />"
 		+ "<a class='jky-thread-row-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 //	var my_print = (the_row.labels_printed >= the_row.received_boxes) ? '' : '<a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
@@ -56,7 +56,7 @@ JKY.generate_batch = function(the_row) {
 		+ '<td ><input  class="jky-batch-number"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.batch	) + '" /></td>'
 		+ '<td class="jky-td-thread-name"	>' + my_thread + '</td>'
 		+ '<td class="jky-td-batch-boxes"	><input  class="jky-received-boxes"		onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.received_boxes	+ '" /></td>'
-		+ '<td class="jky-td-labels-printed"><input  class="jky-labels-printed"									 disabled="disabled" value="' + the_row.labels_printed	+ '" />' + my_print + '</td>'
+		+ '<td class="jky-td-labels-printed"><input  class="jky-labels-printed"									 disabled value="' + the_row.labels_printed	+ '" />' + my_print + '</td>'
 		+ '<td class="jky-td-batch-boxes"	><input  class="jky-number-of-cones"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.number_of_cones	+ '" /></td>'
 		+ '<td class="jky-td-batch-weight"	><input  class="jky-received-weight"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.received_weight	+ '" /></td>'
 		+ '<td class="jky-td-batch-price"	><input  class="jky-unit-price"			onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.unit_price		+ '" /></td>'

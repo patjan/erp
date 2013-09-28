@@ -80,7 +80,7 @@ JKY.process_barcode_success = function(response) {
 		}else{
 			var my_checkbox = '';
 			if ( my_row.status == 'Active') {
-				my_checkbox = '<input type="checkbox" onclick="JKY.Application.set_checkbox(this)" barcode=' + my_barcode + ' />';
+				my_checkbox = '<input type="checkbox" onclick="JKY.App.set_checkbox(this)" barcode=' + my_barcode + ' />';
 			}
 
 			var my_location = my_row.checkout_location;

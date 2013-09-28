@@ -45,7 +45,7 @@
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
-			<button class='btn' type='button' disabled='disabled'><span id='jky-status'></span></button>
+			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -54,24 +54,24 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Thread Dyer Number</span>:</div>
-				<input  id='jky-tdyer-number'	readonly='readonly' />
+				<input  id='jky-tdyer-number'	disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Order</span>:</div>
 				<input  id='jky-order-id'		type='hidden'		value='' />
-				<input  id='jky-order-number'	readonly='readonly'	value='' />
+				<input  id='jky-order-number'	disabled	value='' />
 				<a href='#' onClick='JKY.Order.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Customer</span>:</div>
 				<input  id='jky-customer-id'	type='hidden'		value='' />
-				<input  id='jky-customer-name'	readonly='readonly'	value='' />
+				<input  id='jky-customer-name'	disabled	value='' />
 				<a href='#' onClick='JKY.Customer.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Dyer</span>:</div>
 				<input  id='jky-dyer-id'			type='hidden'		value='' />
-				<input  id='jky-dyer-name'		readonly='readonly'	value='' />
+				<input  id='jky-dyer-name'		disabled	value='' />
 				<a href='#' onClick='JKY.Dyer.display(this)'><i class='icon-share'></i></a>
 			</div>
 		</div>
@@ -101,10 +101,10 @@
 			</div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>  Ordered Weight</span>:</div><input id='jky-ordered-weight'	disabled='disabled' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Ordered Weight</span>:</div><input id='jky-ordered-weight'	disabled /></div>
 			<div class='jky-form-line'><div class='jky-empty'></div></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Weight</span>:</div><input id='jky-checkout-weight'	disabled='disabled' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span> Returned Weight</span>:</div><input id='jky-returned-weight'	disabled='disabled' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Weight</span>:</div><input id='jky-checkout-weight'	disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Returned Weight</span>:</div><input id='jky-returned-weight'	disabled /></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>

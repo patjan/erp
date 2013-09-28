@@ -57,10 +57,10 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-number-of-pieces"	>' +				 the_row.number_of_pieces		+ '</td>'
 		+  '<td class="jky-produced-by"			>' +				 the_row.produced_by			+ '</td>'
 		+  '<td class="jky-checkin-weight"		>' +				 the_row.checkin_weight			+ '</td>'
-		+  '<td class="jky-real-weight"			>' +				 the_row.real_weight			+ '</td>'
+		+  '<td class="jky-returned-weight"		>' +				 the_row.returned_weight		+ '</td>'
 		+  '<td class="jky-checkin-location"	>' + JKY.fix_null	(the_row.checkin_location	)	+ '</td>'
 		+  '<td class="jky-checkout-location"	>' + JKY.fix_null	(the_row.checkout_location	)	+ '</td>'
-		+  '<td class="jky-quality"				>' + JKY.fix_null	(the_row.quality			)	+ '</td>'
+		+  '<td class="jky-remarks"				>' + JKY.fix_null	(the_row.remarks			)	+ '</td>'
 		;
 	return my_html;
 };
@@ -75,10 +75,10 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-number-of-pieces'			, the_row.number_of_pieces	);
 	JKY.set_value	('jky-produced-by'				, the_row.produced_by		);
 	JKY.set_value	('jky-checkin-weight'			, the_row.checkin_weight	);
-	JKY.set_value	('jky-real-weight'				, the_row.real_weight		);
+	JKY.set_value	('jky-returned-weight'			, the_row.returned_weight	);
 	JKY.set_value	('jky-checkin-location'			, the_row.checkin_location	);
 	JKY.set_value	('jky-checkout-location'		, the_row.checkout_location	);
-	JKY.set_value	('jky-quality'					, the_row.quality			);
+	JKY.set_value	('jky-remarks'					, the_row.remarks			);
 //	JKY.display_lines();
 };
 
@@ -92,10 +92,10 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-number-of-pieces'		, '0');
 	JKY.set_value	('jky-produced-by'			, '');
 	JKY.set_value	('jky-checkin-weight'		,  0);
-	JKY.set_value	('jky-real-weight'			,  0);
+	JKY.set_value	('jky-returned-weight'		,  0);
 	JKY.set_value	('jky-checkin-location'		, '');
 	JKY.set_value	('jky-checkout-location'	, '');
-	JKY.set_value	('jky-quality'				, '');
+	JKY.set_value	('jky-remarks'				, '');
 }
 
 /**
@@ -111,9 +111,9 @@ JKY.get_form_set = function() {
 		+  ', number_of_pieces=  ' + JKY.get_value('jky-number-of-pieces'	)
 		+       ', produced_by=\'' + JKY.get_value('jky-produced-by'		) + '\''
 		+    ', checkin_weight=  ' + JKY.get_value('jky-checkin-weight'		)
-		+       ', real_weight=  ' + JKY.get_value('jky-real-weight'		)
+		+   ', returned_weight=  ' + JKY.get_value('jky-returned-weight'	)
 		+  ', checkin_location=\'' + JKY.get_value('jky-checkin-location'	) + '\''
 		+ ', checkout_location=\'' + JKY.get_value('jky-checkout-location'	) + '\''
-		+           ', quality=\'' + JKY.get_value('jky-quality'			) + '\''
+		+           ', remarks=\'' + JKY.get_value('jky-remarks'			) + '\''
 	return my_set;
 };

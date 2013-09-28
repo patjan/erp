@@ -191,6 +191,7 @@ if (my_first == true) {
 				, specific	: my_args.specific
 				, select	: my_args.select
 				, filter	: my_args.filter
+				, display	: my_args.display
 				, order_by	: my_args.sort_by + ' ' + my_args.sort_seq
 				};
 			JKY.ajax(false, my_data, my_process_load_success);
@@ -460,6 +461,7 @@ if (my_first == true) {
 		if (the_enter && the_event.which == 13) {
 //			not able to simulate tab to focus on next field
 //			$(the_id).trigger({type:'keypress', which:9});
+//			$(the_id).next("input, textarea").focus();
 			return;
 		}
 //JKY.set_html('jky-event-which', the_event.keyCode);

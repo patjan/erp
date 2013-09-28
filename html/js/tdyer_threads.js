@@ -32,12 +32,12 @@ JKY.generate_thread = function(the_row) {
 	var my_trash = (the_row.batchout_id == null) ? '<a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-thread-row-name' readonly='readonly' onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
+		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
 		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_batchin = ''
 		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-row-number' readonly='readonly' onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batchin_number + "' />"
+		+ "<input class='jky-batchin-row-number' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batchin_number + "' />"
 		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''

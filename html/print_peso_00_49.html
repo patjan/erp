@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+<TITLE>Lista de Pesos</TITLE>
+<script src='lib/jquery-1.8.2.js' ></script>
+<script src='lib/jquery-barcode-2.0.2.min.js' ></script>
+
+<style>
+.column		{float:left;}
+.label		{width:165px; height:40px; margin-right:10px;}
+.line		{clear:both;}
+.name		{float:right; font-size:120%;}
+.barcode	{float:left;}
+</style>
+
+<script>
+$(function() {
+	var my_index = 1;
+	$('.label').each(function() {
+		var my_label = $(this).html().trim();
+		$(this).html('');
+
+		var my_html = ''
+					+ '<div class="line">'
+					+ '<div class="barcode"><span id="my-' + my_index + '">' + my_label + '</span></div>'
+					+ '<div class="name">' + my_label + '</div>'
+					+ '</div>'
+					;
+		$(this).append(my_html);
+
+		var my_id = $('#my-' + my_index);
+		$(my_id).barcode( my_label, 'code128');
+		my_index++;
+	})
+});
+</script>
+</HEAD>
+
+<BODY>
+	<h1>Lista de Pesos</h1>
+	<br />
+	<div class="column">
+		<div class="label">12.00</div>
+		<div class="label">12.01</div>
+		<div class="label">12.02</div>
+		<div class="label">12.03</div>
+		<div class="label">12.04</div>
+		<div class="label">12.05</div>
+		<div class="label">12.06</div>
+		<div class="label">12.07</div>
+		<div class="label">12.08</div>
+		<div class="label">12.09</div>
+	</div>
+
+	<div class="column">
+		<div class="label">12.10</div>
+		<div class="label">12.11</div>
+		<div class="label">12.12</div>
+		<div class="label">12.13</div>
+		<div class="label">12.14</div>
+		<div class="label">12.15</div>
+		<div class="label">12.16</div>
+		<div class="label">12.17</div>
+		<div class="label">12.18</div>
+		<div class="label">12.19</div>
+	</div>
+
+	<div class="column">
+		<div class="label">12.20</div>
+		<div class="label">12.21</div>
+		<div class="label">12.22</div>
+		<div class="label">12.23</div>
+		<div class="label">12.24</div>
+		<div class="label">12.25</div>
+		<div class="label">12.26</div>
+		<div class="label">12.27</div>
+		<div class="label">12.28</div>
+		<div class="label">12.29</div>
+	</div>
+
+	<div class="column">
+		<div class="label">12.30</div>
+		<div class="label">12.31</div>
+		<div class="label">12.32</div>
+		<div class="label">12.33</div>
+		<div class="label">12.34</div>
+		<div class="label">12.35</div>
+		<div class="label">12.36</div>
+		<div class="label">12.37</div>
+		<div class="label">12.38</div>
+		<div class="label">12.39</div>
+	</div>
+
+	<div class="column">
+		<div class="label">12.40</div>
+		<div class="label">12.41</div>
+		<div class="label">12.42</div>
+		<div class="label">12.43</div>
+		<div class="label">12.44</div>
+		<div class="label">12.45</div>
+		<div class="label">12.46</div>
+		<div class="label">12.47</div>
+		<div class="label">12.48</div>
+		<div class="label">12.49</div>
+	</div>
+
+</BODY>
+</HTML>
+

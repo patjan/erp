@@ -44,10 +44,6 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.checkout.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
-//	JKY.set_html('jky-app-select', JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
-//	JKY.set_html('jky-thread-name'  , JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
-//	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
-//	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), true));
 }
 
 /**
@@ -223,6 +219,6 @@ JKY.insert_batch_sets = function() {
 		}
 	}
 	JKY.display_message('Batch row generated');
-	JKY.Application.display_row();
+	JKY.App.display_row();
 }
 

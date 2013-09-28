@@ -42,7 +42,7 @@ JKY.Validation = function() {
 		my_error += my_validate_numeric			('jky-ie'				, 'IE or RG'	);
 */
 
-		if (JKY.Application.get('program_name') == 'FTPs') {
+		if (JKY.App.get('program_name') == 'FTPs') {
 			my_error += my_validate_numeric		('jky-diameter'			, 'Diameter'	);
 			my_error += my_validate_numeric		('jky-density'			, 'Density'		);
 			my_error += my_validate_numeric		('jky-inputs'			, 'Inputs'		);
@@ -102,9 +102,9 @@ JKY.Validation = function() {
 
 		if (my_is_loaded(the_dom_id)) {
 /**
- * skip the validation for input with attr = readonly
+ * skip the validation for input with attr = disabled
  */
-			if (JKY.has_attr(the_dom_id, 'readonly')) {
+			if (JKY.has_attr(the_dom_id, 'disabled')) {
 				return '';
 			}
 			var my_value = JKY.get_value(the_dom_id);

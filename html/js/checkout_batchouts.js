@@ -47,12 +47,12 @@ JKY.generate_batch = function(the_row) {
 	var my_trash = (the_row.status == 'Draft') ? '<a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-thread-row-name' readonly='readonly' onchange='JKY.update_batch(this, " + my_id + ")' value='" + JKY.fix_null(the_row.thread_name) + "' />"
+		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + JKY.fix_null(the_row.thread_name) + "' />"
 		+ "<a class='jky-thread-row-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_batchin = ''
 		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-row-number' readonly='readonly' onchange='JKY.update_batch(this, " + my_id + ")' value='" + JKY.fix_null(the_row.batch_number) + "' />"
+		+ "<input class='jky-batchin-row-number' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + JKY.fix_null(the_row.batch_number) + "' />"
 		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
@@ -61,11 +61,11 @@ JKY.generate_batch = function(the_row) {
 		+ '<td class="jky-td-code"				><input class="jky-product-code" text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.code)+ '" /></td>'
 		+ '<td class="jky-td-thread-name"		>' + my_thread	+ '</td>'
 		+ '<td class="jky-td-batchin-number"	>' + my_batchin	+ '</td>'
-		+ '<td class="jky-td-weight"			><input  class="jky-average-weight"		disabled="disabled" value="' + the_row.average_weight	+ '" /></td>'
+		+ '<td class="jky-td-weight"			><input  class="jky-average-weight"		disabled value="' + the_row.average_weight	+ '" /></td>'
 		+ '<td class="jky-td-weight"			><input  class="jky-requested-weight"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.requested_weight + '" /></td>'
-		+ '<td class="jky-td-weight"			><input  class="jky-checkout-weight"	disabled="disabled" value="' + the_row.checkout_weight	+ '" /></td>'
-		+ '<td class="jky-td-boxes"				><input  class="jky-requested-boxes"	disabled="disabled" value="' + the_row.requested_boxes	+ '" /></td>'
-		+ '<td class="jky-td-boxes"				><input  class="jky-checkout-boxes"		disabled="disabled" value="' + the_row.checkout_boxes	+ '" /></td>'
+		+ '<td class="jky-td-weight"			><input  class="jky-checkout-weight"	disabled value="' + the_row.checkout_weight	+ '" /></td>'
+		+ '<td class="jky-td-boxes"				><input  class="jky-requested-boxes"	disabled value="' + the_row.requested_boxes	+ '" /></td>'
+		+ '<td class="jky-td-boxes"				><input  class="jky-checkout-boxes"		disabled value="' + the_row.checkout_boxes	+ '" /></td>'
 		+ '</tr>'
 		;
 	return my_html;

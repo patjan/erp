@@ -1,38 +1,24 @@
 <style>
-.jky-form-label			{width:110px;}
-.jky-form-value			{width:280px;}
-.jky-checkbox			{width: 30px; text-align:center;}
-
-.jky-barcode			{width:120px; text-align:left  ;}
-.jky-inspected-by		{width: 80px; text-align:center;}
-.jky-weighed-by			{width: 80px; text-align:center;}
-.jky-checkin-date		{width: 80px; text-align:center;}
-.jky-checkin-location	{width: 80px; text-align:center;}
-.jky-checkin-weight		{width: 80px; text-align:center;}
-.jky-remarks			{width: 80px; text-align:center;}
-
-#jky-barcode			{width:190px; font-size:16px; font-weight:bold;}
-#jky-inspector			{width:190px;}
-#jky-weigher			{width:190px;}
-#jky-product-name		{width:190px;}
-#jky-inspector-name		{width:190px;}
-#jky-weigher-name		{width:200px;}
-#jky-remarks			{width:200px;}
-#jky-weight				{width:200px;}
-#jky-location			{width:200px;}
+.jky-product-name		{width:120px;}
+.jky-checkin-location	{width: 55px;}
+.jky-checkin-weight		{width: 55px;}
+#jky-remarks			{width:400px; height:22px;}
+#jky-checkin-weight		{width: 40px;}
+#jky-checkin-location	{width: 40px;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
 			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-barcode'				><span>Barcode							</span></th>
-			<th class='jky-inspected-by'		><span>Inspected	<br>By				</span></th>
-			<th class='jky-weighed-by'			><span>Weighed		<br>By				</span></th>
-			<th class='jky-checkin-date'		><span>Check In		<br>By				</span></th>
-			<th class='jky-checkin-location'	><span>Check In		<br>Location		</span></th>
-			<th class='jky-checkin-weight'		><span>Check In		<br>Weight			</span></th>
-			<th class='jky-remarks'				><span>Remarks							</span></th>
+			<th class='jky-barcode'				><span>Barcode			</span></th>
+			<th class='jky-product-name'		><span>Product			</span></th>
+			<th class='jky-inspected-by'		><span>Inspected		</span></th>
+			<th class='jky-weighed-by'			><span>Weighed			</span></th>
+			<th class='jky-checkin-date'		><span>Check In Date	</span></th>
+			<th class='jky-checkin-location'	><span>Check In Location</span></th>
+			<th class='jky-checkin-weight'		><span>Check In Weight	</span></th>
+			<th class='jky-remarks'				><span>Remarks			</span></th>
 		</tr>
 	</thead>
 
@@ -47,37 +33,57 @@
 	<div class='jky-clear'></div>
 
 	<div id='jky-form-data'>
-		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>         Barcode:</span>:</div><input  id='jky-barcode'				class='jky-form-value'		placeholder='Barcode' 				/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>       Inspector:</span>:</div><input  id='jky-inspector'				class='jky-form-value'		placeholder='Insepctor'				/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>		  Weigher:</span>:</div><input  id='jky-weigher'				class='jky-form-value'		placeholder='Weigher'				/></div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Barcode</span>:</div>
+			<input  id='jky-barcode'			placeholder='Barcode' 		/>
+			<input  id='jky-product-name'		placeholder='Product Name' 	disabled	/>
 		</div>
-		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>         Product Name:</span>:</div><input  id='jky-product-name'		class='jky-form-value'		placeholder='product Name' 				/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>       Inspector Name:</span>:</div><input  id='jky-inspector-name'	class='jky-form-value'		placeholder='Insepctor Name'			/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>		  Weigher Name:</span>:</div><input  id='jky-weigher-name'		class='jky-form-value'		placeholder='Weigher Name'				/></div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Inspected</span>:</div>
+			<input  id='jky-inspected-by'		type='hidden'				/>
+			<input  id='jky-inspected-name'		placeholder='Inspected'		/>
 		</div>
-		<div class='jky-clear'></div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Weighed</span>:</div>
+			<input  id='jky-weighed-by'			type='hidden'				/>
+			<input  id='jky-weighed-name'		placeholder='Weighed'		/>
+		</div>
 		<br>
-
-		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Remarks:</span>:</div><input  id='jky-remarks'	class='jky-form-value'		placeholder='Remarks' 				/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>       Weight:</span>:</div><input  id='jky-weight'	class='jky-form-value'		placeholder='Weight'				/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>     Location:</span>:</div><input  id='jky-location'	class='jky-form-value'		placeholder='Location'				/></div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Remarks</span>:</div>
+			<input  id='jky-remarks'			placeholder='Remarks' 		/>
 		</div>
-		<div class='jky-clear'></div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Check In Weight</span>:</div>
+			<input  id='jky-checkin-weight'		/> (12.00 - 12.99)
+		</div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Check In Location</span>:</div>
+			<input  id='jky-checkin-location'	/> (format: 9A99)
+		</div>
 		<br>
-		<div>
-			<div class='jky-form-label'></div>
-			<div class='jky-form-buttons'>
-				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-				  <button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
-			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
-			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
-			</div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Action</span>:</div>
+			<input  id='jky-form-action'		/> (<span>Save</span> | <span>Clear</span>)
 		</div>
-		<div class='jky-clear'></div>
 	</div>
+
+	<table id='jky-pieces-table' class='table table-striped'>
+		<thead>
+			<tr>
+				<th class='jky-barcode'				><span>Barcode	</span></th>
+				<th class='jky-product-name'		><span>Product	</span></th>
+				<th class='jky-inspected-by'		><span>Inspected</span></th>
+				<th class='jky-weighed-by'			><span>Weighed	</span></th>
+				<th class='jky-checkin-date'		><span>Date		</span></th>
+				<th class='jky-checkin-location'	><span>Location	</span></th>
+				<th class='jky-checkin-weight'		><span>Weight	</span></th>
+				<th class='jky-remarks'				><span>Remarks	</span></th>
+			</tr>
+		</thead>
+
+		<tbody id='jky-pieces-table-body'></tbody>
+	</table>
 
 	<div id='jky-form-footer'></div>
 </div>

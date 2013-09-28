@@ -292,7 +292,7 @@ JKY.connect_batchout = function(response) {
 
 JKY.refresh_form = function(response) {
 	JKY.display_message('Check Out row generated: ' + JKY.row.id);
-	JKY.Application.display_row();
+	JKY.App.display_row();
 }
 
 /* -------------------------------------------------------------------------- */
@@ -303,5 +303,5 @@ JKY.close_order = function(response) {
 		, set		: 'status = \'Closed\''
 		, where		: 'id = ' + JKY.row.id
 		};
-	JKY.ajax(false, my_data, JKY.Application.display_list);
+	JKY.ajax(false, my_data, JKY.App.display_list);
 }

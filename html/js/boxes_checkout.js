@@ -28,10 +28,10 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-action-clear'			).click	(function() {JKY.process_clear_screen	();});
-	$('#jky-action-confirm'			).click	(function() {JKY.process_confirm_screen	();});
-	$('#jky-box-input-barcode'		).change(function() {JKY.process_input_barcode	();});
-	$('#jky-box-check-all'			).click (function() {JKY.set_all_box_check	(this);});
+	$('#jky-action-clear'		).click	(function() {JKY.process_clear_screen	();});
+	$('#jky-action-confirm'		).click	(function() {JKY.process_confirm_screen	();});
+	$('#jky-box-input-barcode'	).change(function() {JKY.process_input_barcode	();});
+	$('#jky-box-check-all'		).click (function() {JKY.set_all_box_check	(this);});
 };
 
 /**
@@ -83,7 +83,6 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);
 	JKY.set_value	('jky-checkout-weight'		, the_row.checkout_weight	);
 	JKY.set_value	('jky-checkout-boxes'		, the_row.checkout_boxes	);
-//	JKY.display_lines();
 };
 
 JKY.set_all_box_check = function(the_index) {
@@ -93,7 +92,7 @@ JKY.set_all_box_check = function(the_index) {
 	}else{
 		$('#jky-box-table-body .jky-checkbox input').each(function() {$(this).removeAttr('checked');})
 	}
-}
+};
 
 JKY.display_list = function() {
 	JKY.hide('jky-action-add-new');
@@ -136,7 +135,7 @@ JKY.process_barcode_success = function(response) {
 			JKY.set_html ('jky-box-input-message', JKY.t('duplicate'));
 			JKY.set_focus('jky-box-input-barcode');
 		}else{
-			var	my_checkbox = '<input type="checkbox" onclick="JKY.Application.set_checkbox(this)" barcode=' + my_barcode + ' />';
+			var	my_checkbox = '<input type="checkbox" onclick="JKY.App.set_checkbox(this)" barcode=' + my_barcode + ' />';
 			var my_status_class = '';
 			if (my_row.status != 'Check In' && my_row.status != 'Return') {
 				my_status_class = 'jky-error ';

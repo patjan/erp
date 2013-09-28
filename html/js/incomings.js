@@ -32,8 +32,6 @@ JKY.set_all_events = function() {
 	$('#jky-invoice-value'	).attr('data-format', JKY.Session.get_date		());
 	$('#jky-received-time'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-invoice-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
-	$('#jky-received-time'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-	$('#jky-invoice-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-batches-add-new').click (function() {JKY.insert_batch		();});

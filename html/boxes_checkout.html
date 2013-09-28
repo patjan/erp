@@ -26,23 +26,23 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Number</span>:</div><input  id='jky-checkout-number'		class='jky-form-value'	readonly='readonly' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>	  Thread Name</span>:</div><input  id='jky-thread-name'			class='jky-form-value'	readonly='readonly' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>    Batch Number</span>:</div><input  id='jky-batch-number'		class='jky-form-value'	readonly='readonly' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>        Location</span>:</div><input  id='jky-checkin-location'	class='jky-form-value'	readonly='readonly' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>    Machine Name</span>:</div><input  id='jky-machine-name'		class='jky-form-value'	readonly='readonly' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>	Supplier Name</span>:</div><input  id='jky-supplier-name'		class='jky-form-value'	readonly='readonly' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Number</span>:</div><input  id='jky-checkout-number'		class='jky-form-value'	disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	  Thread Name</span>:</div><input  id='jky-thread-name'			class='jky-form-value'	disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>    Batch Number</span>:</div><input  id='jky-batch-number'		class='jky-form-value'	disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>        Location</span>:</div><input  id='jky-checkin-location'	class='jky-form-value'	disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>    Machine Name</span>:</div><input  id='jky-machine-name'		class='jky-form-value'	disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	Supplier Name</span>:</div><input  id='jky-supplier-name'		class='jky-form-value'	disabled /></div>
 		</div>
 		<div class='jky-clear'></div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>  Requested Date</span>:</div><input  id='jky-requested-date'		type='text'	readonly='readonly'  /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Requested Weight</span>:</div><input  id='jky-requested-weight'	type='text'	readonly='readonly'  /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>  Reserved Boxes</span>:</div><input  id='jky-reserved-boxes'		type='text'	readonly='readonly'  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Requested Date</span>:</div><input  id='jky-requested-date'		type='text'	disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Requested Weight</span>:</div><input  id='jky-requested-weight'	type='text'	disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Reserved Boxes</span>:</div><input  id='jky-reserved-boxes'		type='text'	disabled  /></div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>  Average Weight</span>:</div><input  id='jky-average-weight'		type='text'	readonly='readonly'  /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Weight</span>:</div><input  id='jky-checkout-weight'		type='text'	readonly='readonly'  /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span> Check Out Boxes</span>:</div><input  id='jky-checkout-boxes'		type='text'	readonly='readonly'  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Average Weight</span>:</div><input  id='jky-average-weight'		type='text'	disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Weight</span>:</div><input  id='jky-checkout-weight'		type='text'	disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Check Out Boxes</span>:</div><input  id='jky-checkout-boxes'		type='text'	disabled  /></div>
 		</div>
 		<div class='jky-clear'></div>
 <!--	<br>
@@ -63,17 +63,17 @@
 		<thead>
 			<tr>
 				<th class='jky-checkbox'			><input id='jky-box-check-all' type='checkbox' title="Click here to check all records" /></th>
-				<th class='jky-barcode'				><span>					Barcode			</span></th>
-				<th class='jky-sequence'			><span>					Seq				</span></th>
-				<th class='jky-status'				><span>					Status			</span></th>
-				<th class='jky-thread-name'			><span>					Thread Name		</span></th>
-				<th class='jky-batch-number'		><span>		   Batch<br>Number			</span></th>
-				<th class='jky-number-of-boxes'		><span>			# of<br>Box				</span></th>
-				<th class='jky-number-of-cones'		><span>		    # of<br>Cones			</span></th>
-				<th class='jky-average-weight'		><span>      Average<br>Weight			</span></th>
-				<th class='jky-real-weight'			><span>		    Real<br>Weight			</span></th>
-				<th class='jky-checkin-location'	><span>	    Check In<br>Location		</span></th>
-				<th class='jky-supplier-name'		><span>		Supplier<br>Name			</span></th>
+				<th class='jky-barcode'				><span>                 Barcode		</span></th>
+				<th class='jky-sequence'			><span>                 Seq			</span></th>
+				<th class='jky-status'				><span>                 Status		</span></th>
+				<th class='jky-thread-name'			><span>	                Thread		</span></th>
+				<th class='jky-batch-number'		><span>        Batch<br>Number		</span></th>
+				<th class='jky-number-of-boxes'		><span>         # of<br>Box			</span></th>
+				<th class='jky-number-of-cones'		><span>         # of<br>Cones		</span></th>
+				<th class='jky-average-weight'		><span>      Average<br>Weight		</span></th>
+				<th class='jky-real-weight'			><span>         Real<br>Weight		</span></th>
+				<th class='jky-checkin-location'	><span>     Check In<br>Location	</span></th>
+				<th class='jky-supplier-name'		><span>     Supplier<br>Name		</span></th>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>

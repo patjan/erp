@@ -59,7 +59,7 @@
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
-			<button class='btn' type='button' disabled='disabled'><span id='jky-status'></span></button>
+			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -68,24 +68,24 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Check Out Number</span>:</div>
-				<input  id='jky-checkout-number' class='jky-form-value'	readonly='readonly' />
+				<input  id='jky-checkout-number' class='jky-form-value'	disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Machine</span>:</div>
-				<input id='jky-machine-id'		type='hidden'		value='' />
-				<input id='jky-machine-name'	readonly='readonly'	value='' />
+				<input id='jky-machine-id'		type='hidden'	value='' />
+				<input id='jky-machine-name'	disabled		value='' />
 				<a href='#' onClick='JKY.Machine.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Supplier</span>:</div>
-				<input id='jky-supplier-id'		type='hidden'		value='' />
-				<input id='jky-supplier-name'	readonly='readonly'	value='' />
+				<input id='jky-supplier-id'		type='hidden'	value='' />
+				<input id='jky-supplier-name'	disabled		value='' />
 				<a href='#' onClick='JKY.Supplier.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Dyer</span>:</div>
-				<input id='jky-dyer-id'			type='hidden'		value='' />
-				<input id='jky-dyer-name'		readonly='readonly'	value='' />
+				<input id='jky-dyer-id'			type='hidden'	value='' />
+				<input id='jky-dyer-name'		disabled		value='' />
 				<a href='#' onClick='JKY.Dyer.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
@@ -116,8 +116,8 @@
 				</div>
 			</div>
 			<div class='jky-left'>
-				<div class='jky-form-line-2'><div class='jky-form-label'><span>Requested Weight	</span>:</div><input  id='jky-requested-weight'	class='jky-form-value' readonly='readonly' /></div>
-				<div class='jky-form-line-2'><div class='jky-form-label'><span>Check Out Weight	</span>:</div><input  id='jky-checkout-weight'	class='jky-form-value' readonly='readonly' /></div>
+				<div class='jky-form-line-2'><div class='jky-form-label'><span>Requested Weight	</span>:</div><input  id='jky-requested-weight'	class='jky-form-value' disabled /></div>
+				<div class='jky-form-line-2'><div class='jky-form-label'><span>Check Out Weight	</span>:</div><input  id='jky-checkout-weight'	class='jky-form-value' disabled /></div>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -168,26 +168,26 @@
 	</div>
 	<div id='jky-form-footer'></div>
 </div>
-
+<!--
 <div id='jky-boxes-layer' class='modal hide fade in'>
 	<div class='modal-header'>
 		<a class='close' data-dismiss='modal'>X</a>
 		<h3><span>Print</span>: <span>Labels</span></h3>
 	</div>
 	<div class='modal-body'>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Check In Boxes</span>:</div><input id='jky-boxes-checkin-boxes'	type='text' readonly='readonly' /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Labels Printed</span>:</div><input id='jky-boxes-labels-printed'	type='text' readonly='readonly' /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>Labels Unprinted</span>:</div><input id='jky-boxes-labels-unprinted'	type='text' readonly='readonly' /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span> Labels to Print</span>:</div><input id='jky-boxes-labels-to-print'	type='text'						 /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>        Location</span>:</div><input id='jky-boxes-location'			type='text'						 /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Average Weight</span>:</div><input id='jky-boxes-average_weight'	type='text'	readonly='readonly'	 /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Check In Boxes</span>:</div><input id='jky-boxes-checkin-boxes'	type='text' disabled /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Labels Printed</span>:</div><input id='jky-boxes-labels-printed'	type='text' disabled /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>Labels Unprinted</span>:</div><input id='jky-boxes-labels-unprinted'	type='text' disabled /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span> Labels to Print</span>:</div><input id='jky-boxes-labels-to-print'	type='text'			 /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>        Location</span>:</div><input id='jky-boxes-location'			type='text'			 /></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Average Weight</span>:</div><input id='jky-boxes-average_weight'	type='text'	disabled /></div>
 	</div>
 	<div class='modal-footer'>
 			  <button id='jky-boxes-print'    class='btn btn-success'			type='button'><span>Print  </span></button>
 		&nbsp;<button id='jky-boxes-cancel'   class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></button>
 	</div>
 </div>
-
+-->
 <div id='jky-body-loaded'></div>
 <script src='js/checkouts.js'		></script>
 <script src='js/JKY.Machine.js'		></script>

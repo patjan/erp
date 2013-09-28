@@ -29,7 +29,7 @@
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
-			<button class='btn' type='button' disabled='disabled'><span id='jky-status'></span></button>
+			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -38,7 +38,7 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Incoming Number</span>:</div>
-				<input  id='jky-incoming-number' class='jky-form-value'	readonly='readonly'	/>
+				<input  id='jky-incoming-number' class='jky-form-value'	disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Supplier</span>:</div>
@@ -79,8 +79,8 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Weight</span>:</div><input  id='jky-invoice-weight'	class='jky-form-value' /></div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Received Amount</span>:</div><input  id='jky-received-amount'	class='jky-form-value' disabled='disabled' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Received Weight</span>:</div><input  id='jky-received-weight'	class='jky-form-value' disabled='disabled' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Received Amount</span>:</div><input  id='jky-received-amount'	class='jky-form-value' disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Received Weight</span>:</div><input  id='jky-received-weight'	class='jky-form-value' disabled /></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -163,12 +163,12 @@
 		<h3><span>Print</span>: <span>Labels</span></h3>
 	</div>
 	<div class='modal-body'>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Received Boxes</span>:</div><input id='jky-boxes-received-boxes'	type='text' readonly='readonly' /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Labels Printed</span>:</div><input id='jky-boxes-labels-printed'	type='text' readonly='readonly' /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>Labels Unprinted</span>:</div><input id='jky-boxes-labels-unprinted'	type='text' readonly='readonly' /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span> Labels to Print</span>:</div><input id='jky-boxes-labels-to-print'	type='text'						/></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>        Location</span>:</div><input id='jky-boxes-location'			type='text'						/></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Average Weight</span>:</div><input id='jky-boxes-average-weight'	type='text'	readonly='readonly'	/></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Received Boxes</span>:</div><input id='jky-boxes-received-boxes'	type='text' disabled	/></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Labels Printed</span>:</div><input id='jky-boxes-labels-printed'	type='text' disabled	/></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>Labels Unprinted</span>:</div><input id='jky-boxes-labels-unprinted'	type='text' disabled	/></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span> Labels to Print</span>:</div><input id='jky-boxes-labels-to-print'	type='text'				/></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>        Location</span>:</div><input id='jky-boxes-location'			type='text'				/></div>
+		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Average Weight</span>:</div><input id='jky-boxes-average-weight'	type='text'	disabled	/></div>
 	</div>
 	<div class='modal-footer'>
 		<button  id='jky-boxes-print'  class='btn btn-success'			type='button'><span>Print</span></button>

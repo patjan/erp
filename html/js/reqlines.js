@@ -32,8 +32,6 @@ JKY.set_all_events = function() {
 	$('#jky-scheduled-value').attr('data-format', JKY.Session.get_date_time	());
 	$('#jky-requested-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-scheduled-at'	).datetimepicker({language: JKY.Session.get_locale()});
-//	$('#jky-requested-date'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
-//	$('#jky-scheduled-at'	).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-action-generate'	).click( function() {JKY.generate_batch();})
 };
@@ -197,5 +195,5 @@ JKY.connect_batch = function(response) {
 
 JKY.refresh_form = function(response) {
 	JKY.display_message('Batch row generated');
-	JKY.Application.display_row();
+	JKY.App.display_row();
 }

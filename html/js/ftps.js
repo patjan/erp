@@ -67,7 +67,6 @@ JKY.suppliers	= [];
 JKY.set_all_events = function() {
 	$('#jky-start-value'		).attr('data-format', JKY.Session.get_date());
 	$('#jky-start-date'			).datetimepicker({language:JKY.Session.get_locale(), pickTime:false});
-	$('#jky-start-date'			).on('changeDate', function()	{JKY.Application.process_change_input(this);});
 
 	$('#jky-tab-threads'		).click (function() {JKY.display_threads	();});
 	$('#jky-tab-loads'			).click (function() {JKY.display_loads		();});

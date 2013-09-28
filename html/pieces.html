@@ -12,20 +12,20 @@
 .jky-status				{width: 60px; text-align:center !important;}
 .jky-number-of-pieces	{width: 40px; text-align:right  !important;}
 .jky-checkin-weight		{width: 40px; text-align:right  !important;}
-.jky-real-weight		{width: 40px; text-align:right  !important;}
+.jky-returned-weight	{width: 40px; text-align:right  !important;}
 .jky-checkin-location	{width: 40px; text-align:center !important;}
 .jky-checkout-location	{width: 40px; text-align:center !important; text-transform:capitalize;}
-.jky-quality			{width: 40px; text-align:center !important;}
+.jky-remarks			{width:120px; text-align:left	!important;}
 
 #jky-order-number		{width: 60px; font-size:16px; font-weight:bold;}
 #jky-barcode			{width: 80px;}
 #jky-status				{width: 80px;}
 #jky-number-of-pieces	{width: 40px;}
 #jky-checkin-weight		{width: 40px;}
-#jky-real-weight		{width: 60px;}
+#jky-returned-weight	{width: 40px;}
 #jky-checkin-location	{width: 60px;}
 #jky-checkout-location	{width: 80px;text-transform:capitalize;}
-#jky-quality			{width: 60px;}
+#jky-remarks			{width:400px; height:22px;}
 
 .jky-line-label			{font-weight:bold; text-align:right;}
 .jky-line-value  input	{width: 90%;	text-align:right ;}
@@ -48,10 +48,10 @@
 			<th class='jky-number-of-pieces'	><span>       Number<br>Pieces			</span></th>
 			<th class='jky-produced-by'			><span>     Produced<br>By				</span></th>
 			<th class='jky-checkin-weight'		><span>     Check In<br>Weight			</span></th>
-			<th class='jky-real-weight'			><span>		    Real<br>Weight			</span></th>
+			<th class='jky-returned-weight'		><span>		Returned<br>Weight			</span></th>
 			<th class='jky-checkin-location'	><span>	    Check In<br>Location		</span></th>
 			<th class='jky-checkout-location'	><span>	   Check Out<br>Location		</span></th>
-			<th class='jky-quality'				><span>	     Quality					</span></th>
+			<th class='jky-remarks'				><span>	                Remarks			</span></th>
 		</tr>
 	</thead>
 
@@ -73,10 +73,10 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span>Number Pieces		</span>:</div><input  id='jky-number-of-pieces'		class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Produced By		</span>:</div><input  id='jky-produced-by'			class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Check In Weight	</span>:</div><input  id='jky-checkin-weight'		class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Real Weight		</span>:</div><input  id='jky-real-weight'			class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Returned Weight	</span>:</div><input  id='jky-returned-weight'		class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Check In Location	</span>:</div><input  id='jky-checkin-location'		class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Location	</span>:</div><input  id='jky-checkout-location'	class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Quality			</span>:</div><input  id='jky-quality'				class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Remarks			</span>:</div><input  id='jky-remarks'				class='jky-form-value' /></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
