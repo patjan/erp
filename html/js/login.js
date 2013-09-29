@@ -41,6 +41,7 @@ JKY.set_initial_values = function() {
 		if (JKY.Session.get_value('environment') == 'development') {
 			$('#jky-log-in-user-name').val('patjan');
 			$('#jky-log-in-password' ).val('brazil');
+			setTimeout(function() {$('#jky-button-log-in').click();}, 500);
 		}else{
 			$('#jky-log-in-user-name').val('');
 			$('#jky-log-in-password' ).val('');

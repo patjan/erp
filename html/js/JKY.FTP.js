@@ -35,12 +35,14 @@ JKY.FTP = function() {
 
 	function my_load_data() {
 		var my_data =
-			{ method	: 'get_index'
-			, table		: 'FTPs'
-			, select	:  my_the_type
-			, filter	:  JKY.get_value(my_filter)
-			, display	: '10'
-			, order_by	:  my_order_by
+			{ method		: 'get_index'
+			, table			: 'FTPs'
+			, specific		: 'product'
+			, specific_id	:  my_the_id
+			, select		:  my_the_type
+			, filter		:  JKY.get_value(my_filter)
+			, display		: '10'
+			, order_by		:  my_order_by
 			};
 		JKY.ajax(false, my_data, my_load_data_success);
 	}
@@ -63,11 +65,12 @@ JKY.FTP = function() {
 
 
 	function my_click_row(the_index, the_id) {
-		var my_product	= $(the_index).find('.jky-search-product-name').html();
-		var my_number	= $(the_index).find('.jky-search-ftp-number'  ).html();
-		var my_parent	= $(my_the_id).parent();
+		var my_product		= $(the_index).find('.jky-search-product-name').html();
+		var my_number		= $(the_index).find('.jky-search-ftp-number'  ).html();
+		var my_parent		= $(my_the_id).parent();
 
-		var my_dom_id = $(my_parent).find('#jky-ftp-id');
+//		var my_dom_id = $(my_parent).find('#jky-ftp-id');
+		var my_dom_id = $('#jky-ftp-id');
 		if (my_dom_id.length == 0) {
 			my_dom_id = $(my_parent).find('.jky-ftp-row-id');
 		}
@@ -75,7 +78,8 @@ JKY.FTP = function() {
 
 		JKY.set_value('jky-product-name', my_product);
 
-		var my_dom_number = $(my_parent).find('#jky-ftp-number');
+//		var my_dom_number = $(my_parent).find('#jky-ftp-number');
+		var my_dom_number = $('#jky-ftp-number');
 		if (my_dom_number.length == 0) {
 			my_dom_number = $(my_parent).find('.jky-ftp-row-number');
 		}

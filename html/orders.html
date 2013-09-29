@@ -22,9 +22,9 @@
 			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-order-number'	><span>      Order<br>Number	</span></th>
 			<th class='jky-customer-name'	><span>               Customer	</span></th>
-			<th class='jky-machine-name'	><span>               Machine	</span></th>
-			<th class='jky-partner-name'	><span>               Partner	</span></th>
-<!--		<th class='jky-product-name'	><span>               Product	</span></th>	-->
+			<th class='jky-product-name'	><span>               Product	</span></th>
+<!--		<th class='jky-machine-name'	><span>               Machine	</span></th>	-->
+<!--		<th class='jky-partner-name'	><span>               Partner	</span></th>	-->
 			<th class='jky-ftp-number'		><span>               FTP		</span></th>
 			<th class='jky-ordered-date'	><span>    Ordered<br>Date		</span></th>
 			<th class='jky-needed-date'		><span>     Needed<br>Date		</span></th>
@@ -55,38 +55,33 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Order Number</span>:</div>
-				<input  id='jky-order-number'	disabled	value='' />
+				<input  id='jky-order-number'	disabled		value='' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Customer</span>:</div>
-				<input  id='jky-customer-id'	type='hidden'		value='' />
-				<input  id='jky-customer-name'	disabled	value='' />
+				<input  id='jky-customer-id'	type='hidden'	value='' />
+				<input  id='jky-customer-name'	disabled		value='' />
 				<a href='#' onClick='JKY.Customer.display(this)'><i class='icon-share'></i></a>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Machine</span>:</div>
-				<input  id='jky-machine-id'		type='hidden'		value='' />
-				<input  id='jky-machine-name'	disabled	value='' />
-				<a href='#' onClick='JKY.Machine.display(this)'><i class='icon-share'></i></a>
-			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Partner</span>:</div>
-				<input  id='jky-partner-id'		type='hidden'		value='' />
-				<input  id='jky-partner-name'	disabled	value='' />
-				<a href='#' onClick='JKY.Partner.display(this)'><i class='icon-share'></i></a>
-			</div>
-<!--			<div class='jky-form-line'><div class='jky-form-label'><span>Product</span>:</div>
-				<input  id='jky-product-id'		type='hidden'		value='' />
-				<input  id='jky-product-name'	disabled	value='' />
+			<div class='jky-form-line'><div class='jky-form-label'><span>Product</span>:</div>
+				<input  id='jky-product-id'		type='hidden'	value='' />
+				<input  id='jky-product-name'	disabled		value='' />
 				<a href='#' onClick='JKY.Product.display(this)'><i class='icon-share'></i></a>
 			</div>
--->			<div class='jky-form-line'><div class='jky-form-label'><span>FTP</span>:</div>
-				<input  id='jky-ftp-id'			type='hidden'		value='' />
-				<input  id='jky-ftp-number'		disabled	value='' />
-				<a href='#' onClick='JKY.FTP.display(this)'><i class='icon-share'></i></a>
+			<div class='jky-form-line'><div class='jky-form-label'><span>FTP</span>:</div>
+				<input  id='jky-ftp-id'			type='hidden'	value='' />
+				<input  id='jky-ftp-number'		disabled		value='' />
+				<a href='#' onClick='JKY.FTP.display(JKY.get_value("jky-product-id"))'><i class='icon-share'></i></a>
 			</div>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Product</span>:</div>
-				<input  id='jky-product-id'		type='hidden'		value='' />
-				<input  id='jky-product-name'	disabled	value='' />
+			<div class='jky-form-line'><div class='jky-form-label'><span>Machine</span>:</div>
+				<input  id='jky-machine-id'		type='hidden'	value='' />
+				<input  id='jky-machine-name'	disabled		value='' />
+<!--			<a href='#' onClick='JKY.Machine.display(this)'><i class='icon-share'></i></a>	-->
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Partner</span>:</div>
+				<input  id='jky-partner-id'		type='hidden'	value='' />
+				<input  id='jky-partner-name'	disabled		value='' />
+<!--			<a href='#' onClick='JKY.Partner.display(this)'><i class='icon-share'></i></a>	-->
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -231,10 +226,12 @@
 <div id='jky-body-loaded'></div>
 <script src='js/orders.js'			></script>
 <script src='js/JKY.Customer.js'	></script>
+<script src='js/JKY.Product.js'		></script>
+<script src='js/JKY.FTP.js'			></script>
+<!--
 <script src='js/JKY.Machine.js'		></script>
 <script src='js/JKY.Partner.js'		></script>
-<!--script src='js/JKY.Product.js'		></script-->
-<script src='js/JKY.FTP.js'			></script>
+-->
 <script src='js/JKY.Thread.js'		></script>
 <script src='js/JKY.BatchIn.js'		></script>
 <script src='js/JKY.Order.js'		></script>
