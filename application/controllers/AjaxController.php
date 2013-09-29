@@ -640,6 +640,7 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'Batches'			&& $specific == 'incoming'		)	return ' AND       Batches.incoming_id	= ' . $specific_id;
 	if ($table == 'Batches'			&& $specific == 'thread'		)	return ' AND       Batches.thread_id	= ' . $specific_id;
 	if ($table == 'BatchOuts'		&& $specific == 'checkout'		)	return ' AND     BatchOuts.checkout_id	= ' . $specific_id;
+	if ($table == 'Boxes'			&& $specific == 'batch'			)	return ' AND         Boxes.batch_id		= ' . $specific_id;
 	if ($table == 'FTPs'			&& $specific == 'product'		)	return ' AND          FTPs.product_id	= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'parent'		)	return ' AND PurchaseLines.parent_id	= ' . $specific_id;
 	if ($table == 'Translations'	&& $specific == 'locale'		)	return ' AND  Translations.locale		= "en_US"';
