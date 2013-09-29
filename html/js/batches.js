@@ -86,7 +86,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-checkin-weight'		, the_row.checkin_weight	);
 	JKY.set_value	('jky-returned-weight'		, the_row.returned_weight	);
 	JKY.set_value	('jky-checkout-weight'		, the_row.checkout_weight	);
-//	JKY.display_lines();
+	JKY.display_boxes();
 };
 
 /**

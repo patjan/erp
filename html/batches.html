@@ -100,35 +100,27 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-lines'			class='active'	><a href='#jky-pane-lines'			data-toggle='tab'><span>Incoming Lines			</span></a></li>
+			<li	id='jky-tab-boxes'			class='active'	><a href='#jky-pane-boxes'			data-toggle='tab'><span>Boxes			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
-			<div id='jky-pane-lines' class='tab-pane active'>
+			<div id='jky-pane-boxes' class='tab-pane active'>
 				<table class='table table-striped' >
 					<thead>
 						<tr>
 							<th class='jky-action'></th>
-							<th class='jky-line-name'					><span>	            Name			</span></th>
-							<th class='jky-line-barcode'				><span>	            Barcode			</span></th>
-							<th class='jky-line-number-of-boxes'		><span>	  Number<br>Boxes			</span></th>
-							<th class='jky-line-number-of-cones'		><span>	  Number<br>Cones			</span></th>
-							<th class='jky-line-average-weight'			><span>  Average<br>Weight			</span></th>
-							<th class='jky-line-real-weight'			><span>		Real<br>Weight			</span></th>
-							<th class='jky-line-checkin-location'		><span> Check In<br>Location		</span></th>
-							<th class='jky-line-checkout-location'		><span>Check Out<br>Location		</span></th>
-							<th class='jky-line-returned-loaction'		><span> Returned<br>Location		</span></th>
+							<th class='jky-boxes-batch-number'			><span>	            Batch Number	</span></th>
+							<th class='jky-boxes-barcode'				><span>	            Barcode			</span></th>
+							<th class='jky-boxes-number-of-boxes'		><span>	  Number<br>Boxes			</span></th>
+							<th class='jky-boxes-number-of-cones'		><span>	  Number<br>Cones			</span></th>
+							<th class='jky-boxes-average-weight'		><span>  Average<br>Weight			</span></th>
+							<th class='jky-boxes-real-weight'			><span>		Real<br>Weight			</span></th>
+							<th class='jky-boxes-checkin-location'		><span> Check In<br>Location		</span></th>
+							<th class='jky-boxes-checkout-location'		><span>Check Out<br>Location		</span></th>
 						</tr>
 					</thead>
-					<tbody id='jky-line-body'></tbody>
+					<tbody id='jky-boxes-body'></tbody>
 					<tfoot>
-						<tr>
-							<td	   id='jky-line-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
-							<td    id='jky-line-total-requested'></td>
-							<td></td>
-							<td    id='jky-line-total-checkout'></td>
-							<td></td>
-						</tr>
 					</tfoot>
 				</table>
 			</div>
@@ -144,3 +136,4 @@
 
 <div id='jky-body-loaded'></div>
 <script src='js/batches.js'			></script>
+<script src='js/batchin_boxes.js'			></script>
