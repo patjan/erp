@@ -51,7 +51,7 @@ JKY.generate_box = function(the_row) {
 		+ '<td ><input  class="jky-boxes-barcode"			disabled value="' + JKY.fix_null(the_row.barcode			)	+ '" /></td>'
 		+ '<td ><input  class="jky-boxes-number-of-boxes"	disabled value="' + JKY.fix_null(the_row.number_of_boxes	)	+ '" /></td>'
 		+ '<td ><input  class="jky-boxes-number-of-cones"	disabled value="' + JKY.fix_null(the_row.number_of_cones	)	+ '" /></td>'
-		+ '<td ><input  class="jky-boxes-average-weight"	disabled value="' + JKY.fix_null(the_row.avearge_weight		)	+ '" /></td>'
+		+ '<td ><input  class="jky-boxes-average-weight"	disabled value="' + JKY.fix_null(the_row.average_weight		)	+ '" /></td>'
 		+ '<td ><input  class="jky-boxes-real-weight"		disabled value="' + JKY.fix_null(the_row.real_weight		)	+ '" /></td>'
 		+ '<td ><input  class="jky-boxes-checkin-location"	disabled value="' + JKY.fix_null(the_row.checkin_location	)	+ '" /></td>'
 		+ '<td ><input  class="jky-boxes-checkout-location"	disabled value="' + JKY.fix_null(the_row.checkout_location	)	+ '" /></td>'
