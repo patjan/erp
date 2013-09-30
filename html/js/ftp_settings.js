@@ -41,7 +41,7 @@ JKY.generate_settings = function(response) {
 }
 
 JKY.insert_setting = function(index, setting) {
-	var my_set  = 'ftp_id = ' + JKY.row.id + ', setting_id = ' + setting + ',value = \'' + $(index).val() + '\'';
+	var my_set  = 'parent_id = ' + JKY.row.id + ', setting_id = ' + setting + ',value = \'' + $(index).val() + '\'';
 	var my_data =
 		{ method	: 'insert'
 		, table		: 'FTP_Sets'
@@ -58,7 +58,7 @@ JKY.insert_settings_success = function(response) {
 }
 
 JKY.update_setting = function(index, setting, id) {
-	var my_set  = 'ftp_id = ' + JKY.row.id + ', setting_id = ' + setting + ',value = \'' + $(index).val() + '\'';
+	var my_set  = 'parent_id = ' + JKY.row.id + ', setting_id = ' + setting + ',value = \'' + $(index).val() + '\'';
 	var my_data =
 		{ method	: 'update'
 		, table		: 'FTP_Sets'
@@ -94,7 +94,7 @@ JKY.copy_settings = function(the_source, the_id) {
 					for(var i in my_rows) {
 						var my_row = my_rows[i];
 						if (my_row.value) {
-							var my_set	=   '     ftp_id =  ' + the_id
+							var my_set	=   '  parent_id =  ' + the_id
 										+ ',  setting_id =  ' + my_row.setting
 										+ ',       value =\'' + my_row.value + '\''
 										;
@@ -119,7 +119,7 @@ JKY.delete_settings = function(the_id) {
 	var my_data =
 		{ method: 'delete_many'
 		, table : 'FTP_Sets'
-		, where : 'ftp_id = ' + the_id
+		, where : 'parent_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
 }

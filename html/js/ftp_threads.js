@@ -86,7 +86,7 @@ JKY.insert_thread = function() {
 	var my_data =
 		{ method	: 'insert'
 		, table		: 'FTP_Threads'
-		, set		: 'FTP_Threads.ftp_id = ' + JKY.row.id
+		, set		: 'FTP_Threads.parent_id = ' + JKY.row.id
 		};
 	JKY.ajax(true, my_data, JKY.insert_thread_success);
 }
@@ -124,7 +124,7 @@ JKY.copy_threads = function(the_source, the_id) {
 					var my_rows = response.rows;
 					for(var i in my_rows) {
 						var my_row	= my_rows[i];
-						var my_set	=   '     ftp_id = ' + the_id
+						var my_set	=   '  parent_id = ' + the_id
 									+ ',   thread_id = ' + my_row.thread_id
 									+ ', supplier_id = ' + my_row.supplier_id
 									+ ',     percent = ' + my_row.percent
@@ -149,7 +149,7 @@ JKY.delete_threads = function(the_id) {
 	var my_data =
 		{ method: 'delete_many'
 		, table : 'FTP_Threads'
-		, where : 'ftp_id = ' + the_id
+		, where : 'parent_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
 }

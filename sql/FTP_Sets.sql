@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS FTP_Sets
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'
 
-, ftp_id			BIGINT				DEFAULT NULL
+, parent_id			BIGINT				DEFAULT NULL
 , setting_id		BIGINT				DEFAULT NULL
 , value				VARCHAR(32)			DEFAULT NULL
 
@@ -30,3 +30,5 @@ CREATE TABLE IF NOT EXISTS FTP_Sets
 , frontura			INT(11)				DEFAULT 0
 , puxador			INT(11)				DEFAULT 0
 */
+
+ALTER TABLE FTP_Sets		CHANGE	ftp_id		parent_id		BIGINT			DEFAULT NULL;

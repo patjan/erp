@@ -37,14 +37,15 @@ JKY.set_all_events = function() {
 
 	$('#jky-action-generate'	).click( function() {JKY.generate_checkout	();});
 	$('#jky-action-close'		).click( function() {JKY.close_order		();});
-	$('#jky-threads-add-new'	).click (function() {JKY.insert_thread		();});
+//	$('#jky-threads-add-new'	).click (function() {JKY.insert_thread		();});
 
 	$('#jky-pieces-display'		).click (function() {JKY.Changes.can_leave(function() {JKY.Pieces.display(this)});});
 	$('#jky-pieces-print'		).click (function() {JKY.Pieces.print(); JKY.display_pieces();});
 
-	$('#jky-ftp-number'			).change(function() {JKY.set_machine_partner();});
-//	$('#jky-machine-name'		).change(function() {JKY.clear_produced_by("machine");});
-//	$('#jky-partner-name'		).change(function() {JKY.clear_produced_by("partner");});
+	$('#jky-product-name'		).change(function() {JKY.process_change_product		();});
+	$('#jky-ftp-number'			).change(function() {JKY.process_change_ftp			();});
+	$('#jky-machine-name'		).change(function() {JKY.clear_produced_by ("machine");});
+	$('#jky-partner-name'		).change(function() {JKY.clear_produced_by ("partner");});
 };
 
 /**
@@ -55,7 +56,7 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-product'	, '../JKY.Search.Product.html'	);
 	JKY.append_file('jky-load-ftp'		, '../JKY.Search.FTP.html'		);
 //	JKY.append_file('jky-load-machine'	, '../JKY.Search.Machine.html'	);
-//	JKY.append_file('jky-load-partner'	, '../JKY.Search.Partner.html'	);
+	JKY.append_file('jky-load-partner'	, '../JKY.Search.Partner.html'	);
 	JKY.append_file('jky-load-thread'	, '../JKY.Search.Thread.html'	);
 	JKY.append_file('jky-load-batchin'	, '../JKY.Search.BatchIn.html'	);
 
@@ -63,13 +64,13 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.planning.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
+	JKY.hide	('jky-threads-add-new');
 
 	$('#jky-customer-filter'	).KeyUpDelay(JKY.Customer.load_data	);
 	$('#jky-product-filter'		).KeyUpDelay(JKY.Product.load_data	);
-//	$('#jky-ftp-filter'  		).KeyUpDelay(JKY.FTP.load_data		);
 	$('#jky-ftp-filter'  		).KeyUpDelay(JKY.FTP.load_data		);
 //	$('#jky-machine-filter'		).KeyUpDelay(JKY.Machine.load_data	);
-//	$('#jky-partner-filter'		).KeyUpDelay(JKY.Partner.load_data	);
+	$('#jky-partner-filter'		).KeyUpDelay(JKY.Partner.load_data	);
 	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data	);
 	$('#jky-batchin-filter'		).KeyUpDelay(JKY.BatchIn.load_data	);
 }
@@ -102,11 +103,11 @@ JKY.set_form_row = function(the_row) {
 	if (the_row.status == 'Draft') {
 		JKY.enable_button ('jky-action-generate');
 		JKY.enable_button ('jky-action-delete'  );
-		JKY.enable_button ('jky-threads-add-new');
+//		JKY.enable_button ('jky-threads-add-new');
 	}else{
 		JKY.disable_button('jky-action-generate');
 		JKY.disable_button('jky-action-delete'  );
-		JKY.disable_button('jky-threads-add-new');
+//		JKY.disable_button('jky-threads-add-new');
 	}
 	if (the_row.status == 'Active') {
 		JKY.enable_button ('jky-action-close');
@@ -207,25 +208,6 @@ JKY.process_delete = function(the_id, the_row) {
 		, where : 'parent_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
-}
-
-JKY.set_machine_partner = function() {
-alert('set_machine_partner');
-	JKY.set_value('jky-machine-name', '');
-	JKY.set_value('jky-partner-name', '');
-}
-
-
-
-JKY.clear_produced_by = function(the_name) {
-	if (the_name != 'machine') {
-		JKY.set_value('jky-machine-id', null);
-		JKY.set_value('jky-machine-name', '');
-	}
-	if (the_name != 'partner') {
-		JKY.set_value('jky-partner-id', null);
-		JKY.set_value('jky-partner-name', '');
-	}
 }
 
 /* -------------------------------------------------------------------------- */

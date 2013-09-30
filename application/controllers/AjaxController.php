@@ -672,9 +672,9 @@ private function set_select($table, $select) {
 		case 'Contacts'			: return ' AND      JKY_Users.user_role		= "' . $select . '"';
 		case 'Controls'			: return ' AND       Controls.group_set		= "' . $select . '"';
 		case 'Cylinders'		: return ' AND      Cylinders.machine_id	=  ' . $select;
-		case 'FTP_Loads'		: return ' AND      FTP_Loads.ftp_id		=  ' . $select;
-		case 'FTP_Threads'		: return ' AND    FTP_Threads.ftp_id		=  ' . $select;
-		case 'FTP_Sets'			: return ' AND       FTP_Sets.ftp_id		=  ' . $select;
+		case 'FTP_Loads'		: return ' AND      FTP_Loads.parent_id		=  ' . $select;
+		case 'FTP_Threads'		: return ' AND    FTP_Threads.parent_id		=  ' . $select;
+		case 'FTP_Sets'			: return ' AND       FTP_Sets.parent_id		=  ' . $select;
 		case 'History'			: return ' AND        History.parent_name	= "' . $select . '"';
 		case 'Incomings'		: return ' AND      Incomings.status		= "' . $select . '"';
 		case 'Machines'			: return ' AND       Machines.machine_brand	= "' . $select . '"';

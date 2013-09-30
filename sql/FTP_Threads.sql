@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS FTP_Threads
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'
 
-, ftp_id			BIGINT				DEFAULT NULL
+, parent_id			BIGINT				DEFAULT NULL
 , thread_id			BIGINT				DEFAULT NULL
 , supplier_id		BIGINT				DEFAULT NULL
 
@@ -19,3 +19,5 @@ CREATE TABLE IF NOT EXISTS FTP_Threads
 ;
 
 ALTER TABLE FTP_Threads		ADD COLUMN supplier_id		BIGINT		DEFAULT NULL	AFTER thread_id;
+
+ALTER TABLE FTP_Threads		CHANGE	ftp_id		parent_id		BIGINT			DEFAULT NULL;

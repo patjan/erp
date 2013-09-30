@@ -65,7 +65,6 @@ JKY.FTP = function() {
 
 
 	function my_click_row(the_index, the_id) {
-		var my_product		= $(the_index).find('.jky-search-product-name').html();
 		var my_number		= $(the_index).find('.jky-search-ftp-number'  ).html();
 		var my_parent		= $(my_the_id).parent();
 
@@ -75,8 +74,6 @@ JKY.FTP = function() {
 			my_dom_id = $(my_parent).find('.jky-ftp-row-id');
 		}
 		my_dom_id.val(the_id );
-
-		JKY.set_value('jky-product-name', my_product);
 
 //		var my_dom_number = $(my_parent).find('#jky-ftp-number');
 		var my_dom_number = $('#jky-ftp-number');

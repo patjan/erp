@@ -28,7 +28,7 @@ JKY.generate_threads = function(response) {
 	JKY.set_html('jky-threads-body', my_html);
 	JKY.update_thread_weight();
 	if (my_rows == '') {
-		JKY.insert_thread();
+//		JKY.insert_thread();
 	}
 }
 

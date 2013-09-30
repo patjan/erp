@@ -82,7 +82,7 @@ JKY.insert_load = function() {
 	var my_data =
 		{ method	: 'insert'
 		, table		: 'FTP_Loads'
-		, set		: 'FTP_Loads.ftp_id = ' + JKY.row.id
+		, set		: 'FTP_Loads.parent_id = ' + JKY.row.id
 		};
 	JKY.ajax(true, my_data, JKY.insert_load_success);
 }
@@ -136,7 +136,7 @@ JKY.copy_loads = function(the_source, the_id) {
 					var my_rows = response.rows;
 					for(var i in my_rows) {
 						var my_row	= my_rows[i];
-						var my_set	=   '     ftp_id =  ' + the_id
+						var my_set	=   '  parent_id =  ' + the_id
 									+ ',  input_from =  ' + my_row.input_from
 									+ ',  input_upto =  ' + my_row.input_upto
 									+ ', thread_id_1 =  ' + my_row.thread_id_1
@@ -165,7 +165,7 @@ JKY.delete_loads = function(the_id) {
 	var my_data =
 		{ method: 'delete_many'
 		, table : 'FTP_Loads'
-		, where : 'ftp_id = ' + the_id
+		, where : 'parent_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
 }

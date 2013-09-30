@@ -64,7 +64,7 @@ JKY.Xinsert_load = function() {
 	var my_data =
 		{ method	: 'insert'
 		, table		: 'FTP_Loads'
-		, set		: 'FTP_Loads.ftp_id = ' + JKY.row.id
+		, set		: 'FTP_Loads.parent_id = ' + JKY.row.id
 		};
 	JKY.ajax(true, my_data, JKY.insert_load_success);
 }
