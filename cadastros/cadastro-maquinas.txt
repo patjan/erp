@@ -1,5 +1,0 @@
-- Cadatro de maquinas
-	- maquina-id
-	- maquina-nome
-	- maquina-tipo
-	- maquina-descricao
