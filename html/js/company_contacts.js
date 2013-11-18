@@ -148,6 +148,7 @@ JKY.save_address = function() {
 JKY.save_address_success = function(response) {
 //	JKY.display_trace('save_address_success');
 	JKY.display_message('Address saved, ' + response.message);
+	JKY.row = JKY.get_row('Contacts', JKY.row.id);
 }
 
 JKY.save_phones = function() {
@@ -169,4 +170,5 @@ JKY.save_phones = function() {
 JKY.save_phones_success = function(response) {
 //	JKY.display_trace('save_phones_success');
 	JKY.display_message('Phones saved, ' + response.message);
+	JKY.row = JKY.get_row('Contacts', JKY.row.id);
 }

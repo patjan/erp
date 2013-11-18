@@ -11,7 +11,7 @@ error_reporting( E_ALL );
 ini_set( 'display_startup_errors'  , 'on' );
 ini_set( 'display_errors'          , 'on' );
 
-date_default_timezone_set( 'America/Los_Angeles' );
+date_default_timezone_set( 'America/Sao_Paulo' );
 
 //   Define path to application directory
 defined( 'APPLICATION_PATH' ) or define( 'APPLICATION_PATH', realpath( dirname( __FILE__ )));

@@ -1,0 +1,26 @@
+Começamos o projeto no Grupo Tecno Malhas (empresa com 26 anos no ramo têxtil)
+sabendo que havia uma grande falha de comunicação e rastreabilidade entre
+os setores de compra, estocagem, tingimento e vendas da empresa.
+
+Isso gerava um gargalo enorme na produção pois só atuávamos no dia seguintes,
+as vezes dois dias depois sobre problemas comuns como falta ou excesso
+de produção de um determinado produto, falhas na produção, rastreabilidade, etc.
+
+Junto a Genoa, conhecemos o equipamento Printronix T2N que se mostrou robusto
+e feito realmente para chão de fábrica.
+
+O equipamento ficou conosco em teste por 3 meses para desenvolvimento da ferramenta e código de barras
+para todos os setores da empresa.
+
+Foi quando escolhemos apenas 25 máquinas para iniciarmos nosso projeto piloto e 
+tivemos a grande notícia de que com um dia de atividade subimos nesses equipamentos 16,5% de produtividade.
+
+Com 15 dias de uso, atingimos nosso patamar real de capacidade produtiva, 
+algo em torno de 38% a 39% a mais do que produzíamos diariamente. 
+
+Estamos agora expandindo o projeto para o restante da fábrica e loja, 
+onde prevemos que com o crescimento visto no projeto piloto e a agilidade criada 
+poderemos atender um número 20% maior de clientes ainda no primeiro ano de projeto
+e redução de 10% do quadro de funcionários.
+
+Esses funcionários, ao invés de reduzirmos, iremos fazer uma reciclagem e aumentar nossa área fabril.

@@ -1,0 +1,45 @@
+Microsoft Windows [versão 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation. Todos os direitos reservados.
+
+C:\Windows\system32>cd /htdcos/erp/application
+O sistema não pode encontrar o caminho especificado.
+
+C:\Windows\system32>cd /htdocs/erp/application
+
+C:\htdocs\erp\application>php SynDB.php
+
+Warning: PDO::__construct(): [2002] Uma tentativa de conexÒo falhou porque o componente conectado nÒo respondeu
+corretamente ap¾s um perÝodo de tempo ou a conexÒo  (trying to connect via tcp://172.248.88.107:3306) 
+in C:\Program Files\Zend\ZendServer\share\ZendFramework\library\Zend\Db\Adapter\Pdo\Abstract.php on line 129
+
+Warning: PDO::__construct(): [2002] Nenhuma conexÒo p¶de ser feita porque a mßquina de destino as recusou ativamente.
+(trying to connect via tcp://external-db.s122232.gridserver.com:3306) 
+in C:\Program Files\Zend\ZendServer\share\ZendFramework\library\Zend\Db\Adapter\Pdo\Abstract.php on line 129
+
+C:\htdocs\erp\application>
+
+
+2013-10-24 07:14:20.615463 
+2013-10-24 07:14:20.615814 start of program
+2013-10-24 07:14:20.625400 error, database not connected: SQLSTATE[42000] [1049] Unknown database 'erpx'
+2013-10-24 07:14:20.625687 end of program
+2013-10-24 07:14:48.007501 
+2013-10-24 07:14:48.007842 start of program
+2013-10-24 07:14:48.017513 error, database not connected: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)
+2013-10-24 07:14:48.017815 end of program
+2013-10-24 07:15:07.169527 
+2013-10-24 07:15:07.169853 start of program
+2013-10-24 07:15:07.179453 error, database not connected: SQLSTATE[28000] [1045] Access denied for user 'rootx'@'localhost' (using password: YES)
+2013-10-24 07:15:07.179727 end of program
+2013-10-24 07:15:26.020554 
+2013-10-24 07:15:26.020903 start of program
+2013-10-24 07:15:30.941575 error, database not connected: SQLSTATE[HY000] [2002] php_network_getaddresses: gethostbyname failed. errno=2
+2013-10-24 07:15:30.942053 end of program
+2013-10-24 07:12:52.910339 
+2013-10-24 07:12:52.910710 start of program
+2013-10-24 07:12:53.923085 error, database not connected: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+2013-10-24 07:12:53.923577 end of program
+2013-10-24 07:18:41.859829 
+2013-10-24 07:18:41.860202 start of program
+2013-10-24 07:18:41.870677 error, no reply from main server
+2013-10-24 07:18:41.870950 end of program

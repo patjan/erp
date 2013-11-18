@@ -13,6 +13,11 @@ JKY.display_threads = function() {
 }
 
 JKY.generate_threads = function(response) {
+	if (response.rows.length == 0) {
+		JKY.insert_thread();
+		JKY.display_threads();		//	***** recursive looping
+		return;
+	}
 	JKY.Order.set_ordered (0);
 	JKY.Order.set_checkout(0);
 	var my_html  = '';
@@ -27,19 +32,17 @@ JKY.generate_threads = function(response) {
 	}
 	JKY.set_html('jky-threads-body', my_html);
 	JKY.update_thread_weight();
-	if (my_rows == '') {
-//		JKY.insert_thread();
-	}
 }
 
 JKY.generate_thread = function(the_row) {
 	JKY.display_trace('JKY.generate_thread: ' + the_row.id);
 	var my_id = the_row.id;
-	var my_trash = (the_row.batchout_id == null) ? '<a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+//	var my_trash = (the_row.batchout_id == null) ? '<a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_trash = '';
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
 		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
-		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
+//		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_batchin = ''
 		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
@@ -98,31 +101,20 @@ JKY.update_thread_success = function(response) {
 }
 
 JKY.insert_thread = function() {
-	var my_data =
-		{ method	: 'insert'
-		, table		: 'OrdThreads'
-		, set		: 'OrdThreads.parent_id = ' + JKY.row.id
-		};
-	JKY.ajax(true, my_data, JKY.insert_thread_success);
-}
-
-JKY.insert_thread_success = function(response) {
-	var my_row = [];
-	my_row.id				= response.id;
-	my_row.order_number		= response.id;
-	my_row.thread_id		= null;
-	my_row.thread_name		= '';
-	my_row.batchin_id		= null;
-	my_row.batchin_number	= '';
-	my_row.needed_at		= null;
-	my_row.checkout_at		= null;
-	my_row.ordered_weight	=  0;
-	my_row.checkout_weight	=  0;
-
-	var my_html = JKY.generate_thread(my_row);
-	JKY.append_html('jky-threads-body', my_html);
-	var my_tr_id = $('#jky-threads-body tr[order_thread_id="' + response.id + '"]');
-	my_tr_id.find('.jky-ordered-weight').focus().select();
+	var my_rows = JKY.get_rows('FTP_Threads', JKY.row.ftp_id);
+	for(var i=0, max=my_rows.length; i<max; i++) {
+		var my_row = my_rows[i];
+		var my_set	= ''
+					+ '  parent_id = ' + JKY.row.id
+					+ ', thread_id = ' + my_row.thread_id
+					;
+		var my_data =
+			{ method	: 'insert'
+			, table		: 'OrdThreads'
+			, set		:  my_set
+			};
+		JKY.ajax(false, my_data);
+	}
 }
 
 JKY.delete_thread = function(id_name, the_id) {

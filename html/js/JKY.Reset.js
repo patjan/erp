@@ -19,5 +19,7 @@ JKY.process_update		= function(the_id, the_row)	{};
 JKY.process_copy		= function(the_id, the_row)	{};
 JKY.process_delete		= function(the_id, the_row)	{};
 JKY.process_publish		= function()				{};
+JKY.process_validation	= function()				{return '';};
 JKY.print_row			= function(the_id)			{};
+
 </script>

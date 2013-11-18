@@ -1,3 +1,8 @@
+GRANT ALL PRIVILEGES ON erp.* TO 'root'@'%' IDENTIFIED BY 'brazil18781';
+
+FLUSH PRIVILEGES;
+CREATE USER 'root'@'%' IDENTIFIED BY 'brazil18781';
+
 UPDATE Controls SET status = 'Active' WHERE status = 'active';
 
 UPDATE Controls SET company_id='3';

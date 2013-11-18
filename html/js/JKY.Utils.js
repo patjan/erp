@@ -217,7 +217,7 @@ JKY.t = function(the_text) {
 	if (typeof my_result == 'undefined') {
 
 if (JKY.Session.get_value('user_name') == 'patjan') {
-	alert('the_text: ' + the_text);
+	alert('JKY.t the_text: ' + the_text);
 }
 
 		my_result = '';
@@ -238,8 +238,11 @@ if (JKY.Session.get_value('user_name') == 'patjan') {
 
 JKY.t_tag = function(the_id, the_tag) {
 	$('#' + the_id + ' ' + the_tag).each(function() {
-		var my_text = $(this).html().trim();
-		$(this).html(JKY.t(my_text));
+//		only translate span without id
+		if (!$(this).attr('id')) {
+			var my_text = $(this).html().trim();
+			$(this).html(JKY.t(my_text));
+		}
 	});
 }
 
@@ -355,7 +358,7 @@ JKY.fix_name = function(trailer, first_name, last_name){
  */
 JKY.fix_null = function(the_string){
 	if (the_string == null || the_string == 'null') {
-		return '&nbsp;'
+		return ''
 	}else{
 		return the_string;
 	}
@@ -736,9 +739,12 @@ JKY.remove_attr = function(the_id, the_attr){
  * @return	value
  */
 JKY.get_value = function(the_id){
-	var my_value = $('#' + the_id).val().trim();
-//	return (my_value == '') ? null : my_value;
-	return my_value;
+	var my_value = $('#' + the_id).val();
+	if (my_value) {
+		return my_value.trim();
+	}else{
+		return '';
+	}
 }
 
 /**
@@ -772,11 +778,13 @@ JKY.get_yes_no = function(id_name){
  */
 JKY.set_yes = function(id_name, value){
 	var my_id = $('#' + id_name);
-	my_id.removeAttr('checked');
+//	my_id.removeAttr('checked');		//	jquery 1.8.2
+	my_id.prop('checked', false);		//	jquery 2.0.3
 	if (value == 'Yes') {
 		JKY.Changes.track(false);
-//		$('#' + id_name).attr('checked', true);		//	after jquery 1.8.1 stopped work
-		my_id.click();
+//		$('#' + id_name).attr('checked', true);		//	jquery 1.8.1
+//		my_id.click();								//	jquery 1.8.2
+		my_id.prop('checked', true);				//	jquery 2.0.3
 		JKY.Changes.track(true);
 	}
 }
@@ -786,7 +794,7 @@ JKY.set_yes = function(id_name, value){
  * @param	the_id
  * @return	value
  */
-JKY.get_selected_text = function(the_id){
+JKY.Xget_selected_text = function(the_id){
 	var my_value = $('#' + the_id + ' option:selected').text();
 	return my_value;
 }
@@ -795,7 +803,7 @@ JKY.get_selected_text = function(the_id){
  * @param	id_name
  * @param	value
  */
-JKY.set_check = function(id_name, value){
+JKY.Xset_check = function(id_name, value){
 	$('#' + id_name).removeAttr('checked');
 //	var my_command = "$('#" + id_name + " :checkbox[value=" + value + "]').attr('checked', 'checked');";
 	var my_command = "$('#" + id_name + " :checkbox[value=" + value + "]').attr('checked', true);";
@@ -808,9 +816,10 @@ JKY.set_check = function(id_name, value){
  * @param	value
  */
 JKY.set_radio = function(id_name, value){
-	$('#' + id_name).removeAttr('checked');
-//	var my_command = "$('#" + id_name + " :radio[value=" + value + "]').attr('checked', 'checked');";
-	var my_command = "$('#" + id_name + " :radio[value=" + value + "]').attr('checked', true);";
+//	$('#' + id_name + ' input').filter(':checkbox').prop('checked', false);		//	jquery 1.8.2
+	$('#' + id_name + ' input').prop('checked', false);							//	jquery 2.0.3
+//	var my_command = "$('#" + id_name + " :radio[value=" + value + "]').attr('checked', true);";	//	jquery 1.8.2
+	var my_command = "$('#" + id_name + " :radio[value=" + value + "]').prop('checked', true);";	//	jquery 2.0.3
 	setTimeout(my_command, 100);
 }
 
@@ -820,10 +829,12 @@ JKY.set_radio = function(id_name, value){
  * @param	value
  */
 JKY.set_option = function(id_name, value){
-	$('#' + id_name + ' option:selected').removeAttr('selected');
+//	$('#' + id_name + ' option:selected').removeAttr('selected');		//	jquery 1.8.2
+	$('#' + id_name + ' option').prop('selected', false);				//	jquery 2.0.3
 	if (value) {
-		var my_command = "$('#" + id_name + " option[ value=\"" + value + "\" ]').attr('selected', 'selected');";
-		setTimeout(my_command, 100);
+//		var my_command = "$('#" + id_name + " option[ value=\"" + value + "\" ]').attr('selected', 'selected');";	//	jquery 1.8.2
+//		setTimeout(my_command, 100);																				//	jquery 1.8.2
+		$('#' + id_name + ' option[ value="' + value + '" ]').prop('selected', 'selected');							//	jquery 2.0.3
 	}
 }
 
@@ -932,7 +943,7 @@ JKY.set_radios_array = function(the_name, the_array) {
 
 //	JKY.set_checks('...', ..., '...')
 //	----------------------------------------------------------------------------
-JKY.set_checks = function() {
+JKY.Xset_checks = function() {
      checks    = '';
      set_id    = arguments[0];
 

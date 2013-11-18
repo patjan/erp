@@ -36,5 +36,5 @@ CREATE TABLE IF NOT EXISTS Quotations
 , KEY customer 	(customer_id)
 , KEY machine 	(machine_id)
 , KEY dyer		(dyer_id)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;

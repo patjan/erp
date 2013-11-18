@@ -1,0 +1,46 @@
+Questions:
+
+08/31	- ordem de producao - identifica por: FTP ou Produto ? FTP
+08/31	- confirmar Ordens de Tingimento de Fios ? Vendas
+08/31	- pode juntar Galao na Gola ? Nao
+08/31	- confirmar Cores de Tingimentos
+08/31	- confirmar Cores de Tecidos: Branco e Preto ?
+08/31	- confirmar table de precos de tecidos
+08/31	- separar Tinturarias de Fios e de Pecas ?
+
+
+gerar excel de cores para Marcelo
+tm e dl
+clientes
+precos
+
+
+09/08	- Apelido dos Clientes estao em Uppercase
+09/08	- Nome    dos Clientes estao em Uppercase (somente Abbr)
+09/08	- Rua     dos Clientes estao em Uppercase
+09/08	- Cidade  dos Clientes estao em Uppercase
+09/08	- Tinturaria CREAORA   esta  em Uppercase
+09/08	- mais de celular separar com espaco e nao usar /
+09/08	- telefone nao usar (19)
+09/08	- email por dept ??? producao@dlmalhas.com.br
+
+
+09/22	- porque na etiqueta de pecas, precisa da Estocagem ?
+			a Estocagem so e' definido na hora QC.
+09/24	- qdo tempo precisa para fazer a inspecao de uma peca ?
+09/24	- qdo tempo precisa para fazer a pesagem  de uma peca e escrever o codigo de barra ?
+09/24	- QC inspecao - um PC ? so supervisor login
+09/24	- QC pesagem  - im PC ? so supervisor login
+09/24	- QC estocagem, como o supervisor define o mapemento do cru ?
+			por qualidade D3 ?
+			por maquina ?
+			por producto ?
+			mais de uma localizacao ?
+			capacidade por localizacao ?
+cada operador carrega um cartao de identificacao com:
+	codigo de barra (CPF)
+	nome completo
+	foto
+ou colocar uma lista de operadores com codigo de barra (CPF)
+
+			

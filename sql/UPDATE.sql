@@ -200,7 +200,15 @@ ALTER TABLE Pieces			CHANGE	real_weight		returned_weight	DECIMAL(10,2)	DEFAULT 0
 ALTER TABLE Pieces			CHANGE	checkin_by		inspected_by	BIGINT			DEFAULT NULL;
 ALTER TABLE Pieces			ADD COLUMN				weighed_by		BIGINT			DEFAULT NULL	AFTER inspected_by;
 /* -- 2013/09/29	*/
-ALTER TABLE FTP_Loads		CHANGE	ftp_id		parent_id		BIGINT			DEFAULT NULL;
-ALTER TABLE FTP_Sets		CHANGE	ftp_id		parent_id		BIGINT			DEFAULT NULL;
-ALTER TABLE FTP_Threads		CHANGE	ftp_id		parent_id		BIGINT			DEFAULT NULL;
-
+ALTER TABLE FTP_Loads		CHANGE	ftp_id			parent_id		BIGINT			DEFAULT NULL;
+ALTER TABLE FTP_Sets		CHANGE	ftp_id			parent_id		BIGINT			DEFAULT NULL;
+ALTER TABLE FTP_Threads		CHANGE	ftp_id			parent_id		BIGINT			DEFAULT NULL;
+/* -- 2013/10/16	*/
+ALTER TABLE History			CHANGE	created_by		updated_by		BIGINT			DEFAULT NULL;
+ALTER TABLE History			CHANGE	created_at		updated_at		DATETIME		DEFAULT NULL;
+ALTER TABLE CheckOuts		ADD COLUMN partner_id		BIGINT		DEFAULT NULL	AFTER machine_id;
+/* -- 2013/11/04	*/
+ALTER TABLE Changes			CHANGE	servers			servers			VARCHAR(32)		DEFAULT '';
+/* -- 2013/11/17	*/
+ALTER TABLE Orders			ADD COLUMN ops_printed		INT				DEFAULT 0		AFTER labels_printed;
+ALTER TABLE Orders			ADD COLUMN ftps_printed		INT				DEFAULT 0		AFTER labels_printed;

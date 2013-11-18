@@ -1,0 +1,14 @@
+INSERT INTO `Batches` (`id`, `created_by`, `created_at`, `updated_by`, `updated_at`, `status`, `incoming_id`, `thread_id`, `purchase_line_id`, `code`, `batch`, `received_boxes`, `checkin_boxes`, `returned_boxes`, `checkout_boxes`, `labels_printed`, `number_of_cones`, `unit_price`, `average_weight`, `received_weight`, `checkin_weight`, `returned_weight`, `leftover_weight`, `checkout_weight`, `used_weight`) VALUES
+(2000000005, NULL, NULL, 100003, '2013-11-06 04:44:18', 'Active', 200005, 200299, 2000000024, ' ', '1', 217, NULL, NULL, NULL, NULL, 12, '14.00', '24.58', '5333.53', '0.00', '0.00', '0.00', '0.00', '0.00'),
+(2000000006, NULL, NULL, 100003, '2013-11-06 09:43:27', 'Active', 200006, 200013, 2000000001, ' ', '10 ', 371, NULL, NULL, NULL, NULL, 12, '10.90', '27.00', '10017.00', '0.00', '0.00', '0.00', '0.00', '0.00'),
+(2000000007, NULL, NULL, 100003, '2013-11-06 09:46:37', 'Active', 200007, 200317, 2000000025, ' ', 'A60029 ', 8, NULL, NULL, NULL, NULL, 12, '6.79', '36.00', '288.00', '0.00', '0.00', '0.00', '0.00', '0.00');
+
+INSERT INTO `Incomings` (`id`, `created_by`, `created_at`, `updated_by`, `updated_at`, `status`, `incoming_number`, `received_at`, `supplier_id`, `nfe_dl`, `nfe_tm`, `invoice_date`, `invoice_weight`, `invoice_amount`, `received_weight`, `received_amount`) VALUES
+(200005, NULL, NULL, 100003, '2013-11-06 04:44:18', 'Active', '200005', '2013-11-05 10:41:00', 100103, '1209', '764', '2013-10-31', '5333.53', '74669.42', '5333.53', '74669.42'),
+(200006, NULL, NULL, 100003, '2013-11-06 09:43:30', 'Active', '200006', '2013-11-05 15:42:00', 100051, '60656', '60655', '2013-11-04', '10017.00', '109185.30', '10017.00', '109185.30'),
+(200007, NULL, NULL, 100003, '2013-11-06 09:46:37', 'Active', '200007', '2013-11-05 15:45:00', 100033, '81994', '81993', '2013-10-24', '288.00', '1955.52', '288.00', '1955.52');
+
+INSERT INTO `Threads` (`id`, `created_at`, `created_by`, `updated_at`, `updated_by`, `status`, `ncm`, `name`, `thread_group`, `composition`) VALUES
+(200138, NULL, NULL, '2013-11-06 10:34:34', 100003, 'Active', NULL, '40/1 PP', 'PES-Text/Fiado', '100% PES'),
+(200139, NULL, NULL, '2013-11-06 10:34:51', 100003, 'Active', NULL, '40/1 PP Flame', 'PES-Text/Fiado', '100% PES'),
+(200308, '2013-10-17 12:48:17', 3, '2013-11-06 04:11:55', 100003, 'Active', NULL, '08/1 pA card oE', 'PA-Card/Pent', '75% CO 25% PES'),

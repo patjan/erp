@@ -15,6 +15,8 @@ JKY.start_program = function(action) {
 	JKY.Session.load_values();
 	JKY.set_all_events();
 	JKY.set_initial_values();
+//	this is needed to avoid another Session timeout
+	JKY.Session.clear_timeout();
 }
 
 /**

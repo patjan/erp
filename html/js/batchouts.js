@@ -171,17 +171,7 @@ JKY.set_calculated_color = function() {
 
 /* -------------------------------------------------------------------------- */
 JKY.generate_checkout = function() {
-	JKY.activate_batchout();
-}
-
-JKY.activate_batchout = function(response) {
-	var my_data =
-		{ method	: 'update'
-		, table		: 'BatchOuts'
-		, set		: 'status = \'Active\''
-		, where		: 'id = ' + JKY.row.id
-		};
-	JKY.ajax(false, my_data, JKY.insert_batch_sets);
+	JKY.insert_batch_sets();
 }
 
 JKY.insert_batch_sets = function() {
@@ -218,7 +208,17 @@ JKY.insert_batch_sets = function() {
 			JKY.ajax(false, my_data);
 		}
 	}
-	JKY.display_message('Batch row generated');
-	JKY.App.display_row();
+
+	var my_data =
+		{ method	: 'update'
+		, table		: 'BatchOuts'
+		, set		: 'status = \'Active\''
+		, where		: 'id = ' + JKY.row.id
+		};
+	JKY.ajax(false, my_data, JKY.refresh_form);
 }
 
+JKY.refresh_form = function(response) {
+	JKY.display_message('Batch row generated: ' + JKY.row.id);
+	JKY.App.display_row();
+}

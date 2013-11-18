@@ -1,0 +1,2436 @@
+2013-11-09 12:50:03.787286 
+2013-11-09 12:50:03.792286 start of program
+2013-11-09 12:50:03.807286 number: 2, host: 177.33.255.216
+2013-11-09 12:50:03.927287 OK, Server Host 2 connected.
+2013-11-09 12:50:03.987287 Changes has 65 records
+2013-11-09 12:50:03.987287 Changes: 1000000098, PurchaseLines: 2000000026
+2013-11-09 12:50:04.012287 Update
+2013-11-09 12:50:04.182287 my_sql: REPLACE INTO PurchaseLines SET id = 2000000026, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:33:35", status = "Draft", parent_id = 200011, thread_id = 200309, batch_id = null, expected_date = "2013-11-18", scheduled_at = null, expected_weight = 2000.00, received_weight = 0.00 ;
+2013-11-09 12:50:04.182287 Changes: 1000000097, Purchases: 200011
+2013-11-09 12:50:04.207287 Update
+2013-11-09 12:50:04.292287 my_sql: REPLACE INTO Purchases SET id = 200011, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:33:46", status = "Draft", purchase_number = 200011, source_doc = "System_05_11", ordered_at = "2013-11-06 14:32:00", expected_date = "2013-11-18", scheduled_at = null, expected_weight = 2000.00, received_weight = 0.00, supplier_id = 100034, supplier_ref = null, payment_term = null ;
+2013-11-09 12:50:04.292287 Changes: 1000000096, Batches: 2000000005
+2013-11-09 12:50:04.317287 Update
+2013-11-09 12:50:04.527287 my_sql: REPLACE INTO Batches SET id = 2000000005, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:44:18", status = "Active", incoming_id = 200005, thread_id = 200299, purchase_line_id = 2000000024, code = " ", batch = 01, received_boxes = 217, checkin_boxes = 0, returned_boxes = 0, checkout_boxes = 0, labels_printed = 0, number_of_cones = 12, unit_price = 14.00, average_weight = 24.58, received_weight = 5333.53, checkin_weight = 0.00, returned_weight = 0.00, leftover_weight = 0.00, checkout_weight = 0.00, used_weight = 0.00 ;
+2013-11-09 12:50:04.532287 Changes: 1000000095, Incomings: 200005
+2013-11-09 12:50:04.552288 Update
+2013-11-09 12:50:04.642288 my_sql: REPLACE INTO Incomings SET id = 200005, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:44:18", status = "Active", incoming_number = 200005, received_at = "2013-11-05 10:41:00", supplier_id = 100103, nfe_dl = 1209, nfe_tm = 764, invoice_date = "2013-10-31", invoice_weight = 5333.53, invoice_amount = 74669.42, received_weight = 5333.53, received_amount = 74669.42 ;
+2013-11-09 12:50:04.647288 Changes: 1000000094, PurchaseLines: 2000000025
+2013-11-09 12:50:04.677288 Update
+2013-11-09 12:50:04.732288 my_sql: REPLACE INTO PurchaseLines SET id = 2000000025, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 09:46:37", status = "Draft", parent_id = 200010, thread_id = 200317, batch_id = 2000000007, expected_date = "2013-11-05", scheduled_at = null, expected_weight = 250.00, received_weight = 288.00 ;
+2013-11-09 12:50:04.732288 Changes: 1000000093, Purchases: 200010
+2013-11-09 12:50:04.772288 Update
+2013-11-09 12:50:04.857288 my_sql: REPLACE INTO Purchases SET id = 200010, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 09:46:37", status = "Active", purchase_number = 200010, source_doc = "System_04_11", ordered_at = "2013-11-01 10:37:00", expected_date = "2013-11-05", scheduled_at = null, expected_weight = 250.00, received_weight = 288.00, supplier_id = 100033, supplier_ref = null, payment_term = null ;
+2013-11-09 12:50:04.862288 Changes: 1000000092, Threads: 200317
+2013-11-09 12:50:04.882288 Update
+2013-11-09 12:50:04.917288 my_sql: REPLACE INTO Threads SET id = 200317, created_at = null, created_by = null, updated_at = "2013-11-06 04:36:34", updated_by = 100003, status = "Active", ncm = 54023310, name = "Pes 2x 300/96", thread_group = "PES-Text/Fiado", composition = "100% PES" ;
+2013-11-09 12:50:04.917288 Changes: 1000000091, PurchaseLines: 2000000024
+2013-11-09 12:50:04.952288 Update
+2013-11-09 12:50:05.007288 my_sql: REPLACE INTO PurchaseLines SET id = 2000000024, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:44:18", status = "Draft", parent_id = 200009, thread_id = 200299, batch_id = 2000000005, expected_date = "2013-11-12", scheduled_at = null, expected_weight = 12000.00, received_weight = 5333.53 ;
+2013-11-09 12:50:05.007288 Changes: 1000000090, PurchaseLines: 2000000023
+2013-11-09 12:50:05.027288 Update
+2013-11-09 12:50:05.087288 my_sql: REPLACE INTO PurchaseLines SET id = 2000000023, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:33:14", status = "Draft", parent_id = 200009, thread_id = 200310, batch_id = 2000000004, expected_date = "2013-11-12", scheduled_at = null, expected_weight = 300.00, received_weight = 0.00 ;
+2013-11-09 12:50:05.087288 Changes: 1000000089, PurchaseLines: 2000000022
+2013-11-09 12:50:05.107288 Update
+2013-11-09 12:50:05.162288 my_sql: REPLACE INTO PurchaseLines SET id = 2000000022, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:32:59", status = "Draft", parent_id = 200009, thread_id = 200303, batch_id = 2000000003, expected_date = "2013-11-12", scheduled_at = null, expected_weight = 300.00, received_weight = 0.00 ;
+2013-11-09 12:50:05.167288 Changes: 1000000088, PurchaseLines: 2000000021
+2013-11-09 12:50:05.187288 Update
+2013-11-09 12:50:05.242288 my_sql: REPLACE INTO PurchaseLines SET id = 2000000021, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:32:31", status = "Draft", parent_id = 200009, thread_id = 200302, batch_id = 2000000002, expected_date = "2013-11-12", scheduled_at = null, expected_weight = 300.00, received_weight = 0.00 ;
+2013-11-09 12:50:05.247288 Changes: 1000000087, PurchaseLines: 2000000020
+2013-11-09 12:50:05.267289 Update
+2013-11-09 12:50:05.327289 my_sql: REPLACE INTO PurchaseLines SET id = 2000000020, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:32:16", status = "Draft", parent_id = 200009, thread_id = 200300, batch_id = 2000000001, expected_date = "2013-11-12", scheduled_at = null, expected_weight = 300.00, received_weight = 0.00 ;
+2013-11-09 12:50:05.327289 Changes: 1000000086, Purchases: 200009
+2013-11-09 12:50:05.347289 Insert
+2013-11-09 12:50:05.432289 my_sql: REPLACE INTO Purchases SET id = 200009, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:45:01", status = "Active", purchase_number = 200009, source_doc = "San_06_10", ordered_at = "2013-10-08 14:15:00", expected_date = "2013-11-12", scheduled_at = null, expected_weight = 13200.00, received_weight = 5333.53, supplier_id = 100103, supplier_ref = null, payment_term = null ;
+2013-11-09 12:50:05.432289 Changes: 1000000085, PurchaseLines: 2000000019
+2013-11-09 12:50:05.452289 Update
+2013-11-09 12:50:05.512289 my_sql: REPLACE INTO PurchaseLines SET id = 2000000019, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:30:12", status = "Draft", parent_id = 200008, thread_id = 200128, batch_id = null, expected_date = "2013-11-14", scheduled_at = null, expected_weight = 10000.00, received_weight = 0.00 ;
+2013-11-09 12:50:05.512289 Changes: 1000000084, Purchases: 200008
+2013-11-09 12:50:05.532289 Update
+2013-11-09 12:50:05.617289 my_sql: REPLACE INTO Purchases SET id = 200008, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:30:12", status = "Draft", purchase_number = 200008, source_doc = "System_03_11", ordered_at = "2013-11-06 10:29:00", expected_date = "2013-11-14", scheduled_at = null, expected_weight = 10000.00, received_weight = 0.00, supplier_id = 100039, supplier_ref = null, payment_term = null ;
+2013-11-09 12:50:05.622289 Changes: 1000000083, PurchaseLines: 2000000018
+2013-11-09 12:50:05.662289 Update
+2013-11-09 12:50:05.717289 my_sql: REPLACE INTO PurchaseLines SET id = 2000000018, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:28:58", status = "Draft", parent_id = 200007, thread_id = 200122, batch_id = null, expected_date = "2013-11-06", scheduled_at = null, expected_weight = 4000.00, received_weight = 0.00 ;
+2013-11-09 12:50:05.717289 Changes: 1000000082, Purchases: 200007
+2013-11-09 12:50:05.752289 Update
+2013-11-09 12:50:05.837289 my_sql: REPLACE INTO Purchases SET id = 200007, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:28:58", status = "Draft", purchase_number = 200007, source_doc = "System_02_11", ordered_at = "2013-11-06 10:27:00", expected_date = "2013-11-06", scheduled_at = null, expected_weight = 4000.00, received_weight = 0.00, supplier_id = 100039, supplier_ref = null, payment_term = null ;
+2013-11-09 12:50:05.837289 Changes: 1000000081, PurchaseLines: 2000000017
+2013-11-09 12:50:05.872289 Update
+2013-11-09 12:50:05.932289 my_sql: REPLACE INTO PurchaseLines SET id = 2000000017, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:27:13", status = "Draft", parent_id = 200006, thread_id = 200126, batch_id = null, expected_date = "2013-11-14", scheduled_at = null, expected_weight = 6000.00, received_weight = 0.00 ;
+2013-11-09 12:50:05.932289 Changes: 1000000080, PurchaseLines: 2000000016
+2013-11-09 12:50:05.957289 Update
+2013-11-09 12:50:06.017290 my_sql: REPLACE INTO PurchaseLines SET id = 2000000016, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:27:09", status = "Draft", parent_id = 200006, thread_id = 200126, batch_id = null, expected_date = "2013-11-13", scheduled_at = null, expected_weight = 6000.00, received_weight = 0.00 ;
+2013-11-09 12:50:06.017290 Changes: 1000000079, PurchaseLines: 2000000015
+2013-11-09 12:50:06.042290 Update
+2013-11-09 12:50:06.097290 my_sql: REPLACE INTO PurchaseLines SET id = 2000000015, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:27:06", status = "Draft", parent_id = 200006, thread_id = 200126, batch_id = null, expected_date = "2013-11-13", scheduled_at = null, expected_weight = 6000.00, received_weight = 0.00 ;
+2013-11-09 12:50:06.097290 Changes: 1000000078, PurchaseLines: 2000000014
+2013-11-09 12:50:06.122290 Update
+2013-11-09 12:50:06.177290 my_sql: REPLACE INTO PurchaseLines SET id = 2000000014, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:26:56", status = "Draft", parent_id = 200006, thread_id = 200126, batch_id = null, expected_date = "2013-11-12", scheduled_at = null, expected_weight = 6000.00, received_weight = 0.00 ;
+2013-11-09 12:50:06.182290 Changes: 1000000077, PurchaseLines: 2000000013
+2013-11-09 12:50:06.202290 Update
+2013-11-09 12:50:06.262290 my_sql: REPLACE INTO PurchaseLines SET id = 2000000013, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:26:52", status = "Draft", parent_id = 200006, thread_id = 200293, batch_id = null, expected_date = "2013-11-12", scheduled_at = null, expected_weight = 6000.00, received_weight = 0.00 ;
+2013-11-09 12:50:06.262290 Changes: 1000000076, Purchases: 200006
+2013-11-09 12:50:06.297290 Update
+2013-11-09 12:50:06.387290 my_sql: REPLACE INTO Purchases SET id = 200006, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:27:13", status = "Draft", purchase_number = 200006, source_doc = "San_05_10", ordered_at = "2013-10-22 10:50:00", expected_date = "2013-11-11", scheduled_at = null, expected_weight = 30000.00, received_weight = 0.00, supplier_id = 100041, supplier_ref = null, payment_term = null ;
+2013-11-09 12:50:06.387290 Changes: 1000000075, PurchaseLines: 2000000012
+2013-11-09 12:50:06.412290 Update
+2013-11-09 12:50:06.467290 my_sql: REPLACE INTO PurchaseLines SET id = 2000000012, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:21:26", status = "Draft", parent_id = 200005, thread_id = 200128, batch_id = null, expected_date = "2013-11-21", scheduled_at = null, expected_weight = 10000.00, received_weight = 0.00 ;
+2013-11-09 12:50:06.467290 Changes: 1000000074, PurchaseLines: 2000000011
+2013-11-09 12:50:06.492290 Update
+2013-11-09 12:50:06.547290 my_sql: REPLACE INTO PurchaseLines SET id = 2000000011, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:21:12", status = "Draft", parent_id = 200005, thread_id = 200128, batch_id = null, expected_date = "2013-11-14", scheduled_at = null, expected_weight = 10000.00, received_weight = 0.00 ;
+2013-11-09 12:50:06.552290 Changes: 1000000073, PurchaseLines: 2000000010
+2013-11-09 12:50:06.622290 Update
+2013-11-09 12:50:06.692291 my_sql: REPLACE INTO PurchaseLines SET id = 2000000010, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:20:38", status = "Draft", parent_id = 200005, thread_id = 200128, batch_id = null, expected_date = "2013-11-07", scheduled_at = null, expected_weight = 10000.00, received_weight = 0.00 ;
+2013-11-09 12:50:06.692291 Changes: 1000000072, PurchaseLines: 2000000009
+2013-11-09 12:50:06.717291 Update
+2013-11-09 12:50:06.772291 my_sql: REPLACE INTO PurchaseLines SET id = 2000000009, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:18:37", status = "Draft", parent_id = 200005, thread_id = 200116, batch_id = null, expected_date = "2013-11-13", scheduled_at = null, expected_weight = 5000.00, received_weight = 0.00 ;
+2013-11-09 12:50:06.772291 Changes: 1000000071, PurchaseLines: 2000000008
+2013-11-09 12:50:06.792291 Update
+2013-11-09 12:50:06.852291 my_sql: REPLACE INTO PurchaseLines SET id = 2000000008, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:18:18", status = "Draft", parent_id = 200005, thread_id = 200116, batch_id = null, expected_date = "2013-11-06", scheduled_at = null, expected_weight = 5000.00, received_weight = 0.00 ;
+2013-11-09 12:50:06.852291 Changes: 1000000070, Purchases: 200005
+2013-11-09 12:50:06.877291 Update
+2013-11-09 12:50:06.962291 my_sql: REPLACE INTO Purchases SET id = 200005, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:21:27", status = "Draft", purchase_number = 200005, source_doc = "San_04_10", ordered_at = "2013-10-08 14:00:00", expected_date = "2013-11-06", scheduled_at = null, expected_weight = 40000.00, received_weight = 0.00, supplier_id = 100044, supplier_ref = null, payment_term = null ;
+2013-11-09 12:50:06.967291 Changes: 1000000069, PurchaseLines: 2000000007
+2013-11-09 12:50:06.982291 Update
+2013-11-09 12:50:07.042291 my_sql: REPLACE INTO PurchaseLines SET id = 2000000007, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:15:51", status = "Draft", parent_id = 200004, thread_id = 200109, batch_id = null, expected_date = "2013-11-08", scheduled_at = null, expected_weight = 5000.00, received_weight = 0.00 ;
+2013-11-09 12:50:07.042291 Changes: 1000000068, Purchases: 200004
+2013-11-09 12:50:07.067291 Update
+2013-11-09 12:50:07.147291 my_sql: REPLACE INTO Purchases SET id = 200004, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:15:51", status = "Draft", purchase_number = 200004, source_doc = "San_03_10", ordered_at = "2013-10-11 14:05:00", expected_date = "2013-11-08", scheduled_at = null, expected_weight = 5000.00, received_weight = 0.00, supplier_id = 100046, supplier_ref = null, payment_term = null ;
+2013-11-09 12:50:07.152291 Changes: 1000000067, PurchaseLines: 2000000006
+2013-11-09 12:50:07.182291 Update
+2013-11-09 12:50:07.262291 my_sql: REPLACE INTO PurchaseLines SET id = 2000000006, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:13:40", status = "Draft", parent_id = 200003, thread_id = 200308, batch_id = null, expected_date = "2013-11-04", scheduled_at = null, expected_weight = 500.00, received_weight = 0.00 ;
+2013-11-09 12:50:07.262291 Changes: 1000000066, Purchases: 200003
+2013-11-09 12:50:07.287291 Update
+2013-11-09 12:50:07.367291 my_sql: REPLACE INTO Purchases SET id = 200003, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:13:40", status = "Draft", purchase_number = 200003, source_doc = "San_02_10", ordered_at = "2013-11-17 11:59:00", expected_date = "2013-11-04", scheduled_at = null, expected_weight = 500.00, received_weight = 0.00, supplier_id = 100104, supplier_ref = null, payment_term = null ;
+2013-11-09 12:50:07.372291 Changes: 1000000065, Threads: 200308
+2013-11-09 12:50:07.392291 Update
+2013-11-09 12:50:07.432292 my_sql: REPLACE INTO Threads SET id = 200308, created_at = "2013-10-17 12:48:17", created_by = 3, updated_at = "2013-11-06 04:11:55", updated_by = 100003, status = "Active", ncm = "", name = "08/1 pA card oE", thread_group = "PA-Card/Pent", composition = "75% CO 25% PES" ;
+2013-11-09 12:50:07.437292 Changes: 1000000064, PurchaseLines: 2000000005
+2013-11-09 12:50:07.467292 Update
+2013-11-09 12:50:07.522292 my_sql: REPLACE INTO PurchaseLines SET id = 2000000005, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:09:16", status = "Draft", parent_id = 200002, thread_id = 200018, batch_id = null, expected_date = "2013-11-12", scheduled_at = null, expected_weight = 10000.00, received_weight = 0.00 ;
+2013-11-09 12:50:07.522292 Changes: 1000000056, Contacts: 100082
+2013-11-09 12:50:07.567292 Update
+2013-11-09 12:50:08.132293 my_sql: REPLACE INTO Contacts SET id = 100082, created_at = "2013-08-27 14:47:24", created_by = 3, updated_at = "2013-11-06 03:57:13", updated_by = 100003, status = "Active", company_id = null, support_id = null, is_company = "No", is_customer = "No", is_supplier = "No", is_dyer = "No", is_partner = "No", is_taxable = "Yes", photo = null, nick_name = "Alex", first_name = "Alexandre", last_name = "Malveira de Aquino", full_name = "Alexandre Malveira de Aquino", tags = null, position = null, phone = null, mobile = "11-77318183", fax = null, email = "alex@dlmalhas.com.br", website = null, street1 = null, street2 = null, city = null, state = null, zip = null, country = null, language = "Portuguese", time_zone = -3, cnpj = null, ie = null, start_dt = null, end_dt = null, credit_limit = 0.00, total_purchased = 0.00, total_refunded = 0.00, total_invoiced = 0.00, total_paid = 0.00 ;
+2013-11-09 12:50:08.142293 Changes: 1000000057, JKY_Users: 100039
+2013-11-09 12:50:08.167293 Update
+2013-11-09 12:50:08.232293 my_sql: REPLACE INTO JKY_Users SET id = 100039, created_by = 3, created_at = "2013-08-27 14:47:24", updated_by = 100003, updated_at = "2013-11-06 03:57:15", status = "Active", contact_id = 100082, start_date = null, end_date = null, user_name = "Alex", user_type = "User", user_role = "Admin", user_key = null, password = "fb6b2fc2845b274e9de9896d1636a02d" ;
+2013-11-09 12:50:08.237293 Changes: 1000000058, Purchases: 200001
+2013-11-09 12:50:08.262293 Insert
+2013-11-09 12:50:08.357293 my_sql: REPLACE INTO Purchases SET id = 200001, created_by = null, created_at = null, updated_by = 100001, updated_at = "2013-11-07 20:42:08", status = "Active", purchase_number = 200001, source_doc = "System_01_11", ordered_at = "2013-11-01 10:03:00", expected_date = "2013-11-05", scheduled_at = null, expected_weight = 10000.00, received_weight = 10017.00, supplier_id = 100051, supplier_ref = null, payment_term = null ;
+2013-11-09 12:50:08.362293 Changes: 1000000059, PurchaseLines: 2000000001
+2013-11-09 12:50:08.387293 Update
+2013-11-09 12:50:08.447293 my_sql: REPLACE INTO PurchaseLines SET id = 2000000001, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 09:43:27", status = "Draft", parent_id = 200001, thread_id = 200013, batch_id = 2000000006, expected_date = "2013-11-05", scheduled_at = null, expected_weight = 10000.00, received_weight = 10017.00 ;
+2013-11-09 12:50:08.452293 Changes: 1000000060, PurchaseLines: 2000000002
+2013-11-09 12:50:08.472293 Nothing
+2013-11-09 12:50:08.477293 Changes: 1000000061, Purchases: 200002
+2013-11-09 12:50:08.502293 Update
+2013-11-09 12:50:08.608293 my_sql: REPLACE INTO Purchases SET id = 200002, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:13:54", status = "Draft", purchase_number = 200002, source_doc = "San_01_10", ordered_at = "2013-10-08 13:56:00", expected_date = "2013-11-08", scheduled_at = null, expected_weight = 30000.00, received_weight = 0.00, supplier_id = 100051, supplier_ref = null, payment_term = null ;
+2013-11-09 12:50:08.613293 Changes: 1000000062, PurchaseLines: 2000000003
+2013-11-09 12:50:08.643293 Update
+2013-11-09 12:50:08.728293 my_sql: REPLACE INTO PurchaseLines SET id = 2000000003, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:08:02", status = "Draft", parent_id = 200002, thread_id = 200018, batch_id = null, expected_date = "2013-11-08", scheduled_at = null, expected_weight = 10000.00, received_weight = 0.00 ;
+2013-11-09 12:50:08.728293 Changes: 1000000063, PurchaseLines: 2000000004
+2013-11-09 12:50:08.753293 Update
+2013-11-09 12:50:08.808294 my_sql: REPLACE INTO PurchaseLines SET id = 2000000004, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 04:09:02", status = "Draft", parent_id = 200002, thread_id = 200018, batch_id = null, expected_date = "2013-11-11", scheduled_at = null, expected_weight = 10000.00, received_weight = 0.00 ;
+2013-11-09 12:50:08.808294 Changes: 1000000099, Purchases: 200012
+2013-11-09 12:50:08.833294 Update
+2013-11-09 12:50:08.918294 my_sql: REPLACE INTO Purchases SET id = 200012, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:36:03", status = "Draft", purchase_number = 200012, source_doc = "System_06_11", ordered_at = "2013-11-06 14:33:00", expected_date = "2013-11-18", scheduled_at = null, expected_weight = 1240.00, received_weight = 0.00, supplier_id = 100042, supplier_ref = null, payment_term = null ;
+2013-11-09 12:50:08.918294 Changes: 1000000100, PurchaseLines: 2000000027
+2013-11-09 12:50:08.948294 Update
+2013-11-09 12:50:09.023294 my_sql: REPLACE INTO PurchaseLines SET id = 2000000027, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:35:02", status = "Draft", parent_id = 200012, thread_id = 200298, batch_id = null, expected_date = "2013-11-18", scheduled_at = null, expected_weight = 240.00, received_weight = 0.00 ;
+2013-11-09 12:50:09.028294 Changes: 1000000101, PurchaseLines: 2000000028
+2013-11-09 12:50:09.068294 Update
+2013-11-09 12:50:09.138294 my_sql: REPLACE INTO PurchaseLines SET id = 2000000028, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:35:55", status = "Draft", parent_id = 200012, thread_id = 200028, batch_id = null, expected_date = "2013-11-18", scheduled_at = null, expected_weight = 1000.00, received_weight = 0.00 ;
+2013-11-09 12:50:09.138294 Changes: 1000000102, Purchases: 200013
+2013-11-09 12:50:09.173294 Update
+2013-11-09 12:50:09.258294 my_sql: REPLACE INTO Purchases SET id = 200013, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:37:17", status = "Draft", purchase_number = 200013, source_doc = "System_07_11", ordered_at = "2013-11-06 14:36:00", expected_date = "2013-11-22", scheduled_at = null, expected_weight = 5000.00, received_weight = 0.00, supplier_id = 100039, supplier_ref = null, payment_term = null ;
+2013-11-09 12:50:09.263294 Changes: 1000000103, PurchaseLines: 2000000029
+2013-11-09 12:50:09.293294 Update
+2013-11-09 12:50:09.348294 my_sql: REPLACE INTO PurchaseLines SET id = 2000000029, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:37:07", status = "Draft", parent_id = 200013, thread_id = 200082, batch_id = null, expected_date = "2013-11-22", scheduled_at = null, expected_weight = 5000.00, received_weight = 0.00 ;
+2013-11-09 12:50:09.353294 Changes: 1000000104, Purchases: 200014
+2013-11-09 12:50:09.378294 Update
+2013-11-09 12:50:09.458294 my_sql: REPLACE INTO Purchases SET id = 200014, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:46:20", status = "Draft", purchase_number = 200014, source_doc = "System_08_11", ordered_at = "2013-11-06 14:37:00", expected_date = "2013-11-30", scheduled_at = null, expected_weight = 1750.00, received_weight = 0.00, supplier_id = 100075, supplier_ref = null, payment_term = null ;
+2013-11-09 12:50:09.463294 Changes: 1000000105, PurchaseLines: 2000000030
+2013-11-09 12:50:09.498294 Update
+2013-11-09 12:50:09.573295 my_sql: REPLACE INTO PurchaseLines SET id = 2000000030, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:43:45", status = "Draft", parent_id = 200014, thread_id = 200188, batch_id = null, expected_date = "2013-11-30", scheduled_at = null, expected_weight = 250.00, received_weight = 0.00 ;
+2013-11-09 12:50:09.573295 Changes: 1000000106, PurchaseLines: 2000000031
+2013-11-09 12:50:09.598295 Update
+2013-11-09 12:50:09.658295 my_sql: REPLACE INTO PurchaseLines SET id = 2000000031, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:44:11", status = "Draft", parent_id = 200014, thread_id = 200192, batch_id = null, expected_date = "2013-11-30", scheduled_at = null, expected_weight = 520.00, received_weight = 0.00 ;
+2013-11-09 12:50:09.658295 Changes: 1000000107, PurchaseLines: 2000000032
+2013-11-09 12:50:09.678295 Update
+2013-11-09 12:50:09.738295 my_sql: REPLACE INTO PurchaseLines SET id = 2000000032, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:44:31", status = "Draft", parent_id = 200014, thread_id = 200194, batch_id = null, expected_date = "2013-11-30", scheduled_at = null, expected_weight = 130.00, received_weight = 0.00 ;
+2013-11-09 12:50:09.743295 Changes: 1000000108, PurchaseLines: 2000000033
+2013-11-09 12:50:09.773295 Update
+2013-11-09 12:50:09.828295 my_sql: REPLACE INTO PurchaseLines SET id = 2000000033, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:45:08", status = "Draft", parent_id = 200014, thread_id = 200196, batch_id = null, expected_date = "2013-11-30", scheduled_at = null, expected_weight = 130.00, received_weight = 0.00 ;
+2013-11-09 12:50:09.833295 Changes: 1000000109, PurchaseLines: 2000000034
+2013-11-09 12:50:09.868295 Update
+2013-11-09 12:50:09.928295 my_sql: REPLACE INTO PurchaseLines SET id = 2000000034, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:45:32", status = "Draft", parent_id = 200014, thread_id = 200199, batch_id = null, expected_date = "2013-11-30", scheduled_at = null, expected_weight = 460.00, received_weight = 0.00 ;
+2013-11-09 12:50:09.928295 Changes: 1000000110, PurchaseLines: 2000000035
+2013-11-09 12:50:09.948295 Update
+2013-11-09 12:50:10.008295 my_sql: REPLACE INTO PurchaseLines SET id = 2000000035, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:45:54", status = "Draft", parent_id = 200014, thread_id = 200200, batch_id = null, expected_date = "2013-11-30", scheduled_at = null, expected_weight = 130.00, received_weight = 0.00 ;
+2013-11-09 12:50:10.008295 Changes: 1000000111, PurchaseLines: 2000000036
+2013-11-09 12:50:10.028295 Update
+2013-11-09 12:50:10.083295 my_sql: REPLACE INTO PurchaseLines SET id = 2000000036, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 08:46:20", status = "Draft", parent_id = 200014, thread_id = 200206, batch_id = null, expected_date = "2013-11-30", scheduled_at = null, expected_weight = 130.00, received_weight = 0.00 ;
+2013-11-09 12:50:10.088295 Changes: 1000000112, Batches: 2000000006
+2013-11-09 12:50:10.108295 Update
+2013-11-09 12:50:10.318296 my_sql: REPLACE INTO Batches SET id = 2000000006, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 09:43:27", status = "Active", incoming_id = 200006, thread_id = 200013, purchase_line_id = 2000000001, code = " ", batch = "10 ", received_boxes = 371, checkin_boxes = 0, returned_boxes = 0, checkout_boxes = 0, labels_printed = 0, number_of_cones = 12, unit_price = 10.90, average_weight = 27.00, received_weight = 10017.00, checkin_weight = 0.00, returned_weight = 0.00, leftover_weight = 0.00, checkout_weight = 0.00, used_weight = 0.00 ;
+2013-11-09 12:50:10.318296 Changes: 1000000113, Incomings: 200006
+2013-11-09 12:50:10.353296 Update
+2013-11-09 12:50:10.443296 my_sql: REPLACE INTO Incomings SET id = 200006, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 09:43:30", status = "Active", incoming_number = 200006, received_at = "2013-11-05 15:42:00", supplier_id = 100051, nfe_dl = 60656, nfe_tm = 60655, invoice_date = "2013-11-04", invoice_weight = 10017.00, invoice_amount = 109185.30, received_weight = 10017.00, received_amount = 109185.30 ;
+2013-11-09 12:50:10.443296 Changes: 1000000114, Incomings: 200007
+2013-11-09 12:50:10.468296 Update
+2013-11-09 12:50:10.563296 my_sql: REPLACE INTO Incomings SET id = 200007, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 09:46:37", status = "Active", incoming_number = 200007, received_at = "2013-11-05 15:45:00", supplier_id = 100033, nfe_dl = 81994, nfe_tm = 81993, invoice_date = "2013-10-24", invoice_weight = 288.00, invoice_amount = 1955.52, received_weight = 288.00, received_amount = 1955.52 ;
+2013-11-09 12:50:10.563296 Changes: 1000000115, Batches: 2000000007
+2013-11-09 12:50:10.613296 Update
+2013-11-09 12:50:10.833296 my_sql: REPLACE INTO Batches SET id = 2000000007, created_by = null, created_at = null, updated_by = 100003, updated_at = "2013-11-06 09:46:37", status = "Active", incoming_id = 200007, thread_id = 200317, purchase_line_id = 2000000025, code = " ", batch = "A60029 ", received_boxes = 8, checkin_boxes = 0, returned_boxes = 0, checkout_boxes = 0, labels_printed = 0, number_of_cones = 12, unit_price = 6.79, average_weight = 36.00, received_weight = 288.00, checkin_weight = 0.00, returned_weight = 0.00, leftover_weight = 0.00, checkout_weight = 0.00, used_weight = 0.00 ;
+2013-11-09 12:50:10.833296 Changes: 1000000116, Threads: 200012
+2013-11-09 12:50:10.853296 Nothing
+2013-11-09 12:50:10.853296 Changes: 1000000117, Threads: 200015
+2013-11-09 12:50:10.878296 Nothing
+2013-11-09 12:50:10.883296 Changes: 1000000118, Threads: 200019
+2013-11-09 12:50:10.903296 Nothing
+2013-11-09 12:50:10.908296 Changes: 1000000119, Threads: 200138
+2013-11-09 12:50:10.933296 Update
+2013-11-09 12:50:11.003297 my_sql: REPLACE INTO Threads SET id = 200138, created_at = null, created_by = null, updated_at = "2013-11-06 10:34:34", updated_by = 100003, status = "Active", ncm = "", name = "40/1 PP", thread_group = "PES-Text/Fiado", composition = "100% PES" ;
+2013-11-09 12:50:11.008297 Changes: 1000000120, Threads: 200139
+2013-11-09 12:50:11.033297 Update
+2013-11-09 12:50:11.073297 my_sql: REPLACE INTO Threads SET id = 200139, created_at = null, created_by = null, updated_at = "2013-11-06 10:34:51", updated_by = 100003, status = "Active", ncm = "", name = "40/1 PP Flame", thread_group = "PES-Text/Fiado", composition = "100% PES" ;
+2013-11-09 12:50:11.138297 end of program
+2013-11-09 12:53:54.733615 
+2013-11-09 12:53:54.738615 start of program
+2013-11-09 12:53:54.753615 number: 2, host: 177.33.255.216
+2013-11-09 12:53:54.818615 OK, Server Host 2 connected.
+2013-11-09 12:53:54.853615 Changes has 0 records
+2013-11-09 12:53:54.858615 end of program
+2013-11-09 14:01:16.453396 
+2013-11-09 14:01:16.463396 start of program
+2013-11-09 14:01:16.478396 number: 2, host: 177.33.255.216
+2013-11-09 14:01:16.548396 OK, Server Host 2 connected.
+2013-11-09 14:01:16.578396 Changes has 0 records
+2013-11-09 14:01:16.578396 end of program
+2013-11-09 14:06:16.336822 
+2013-11-09 14:06:16.336822 start of program
+2013-11-09 14:06:16.361823 number: 2, host: 177.33.255.216
+2013-11-09 14:06:16.421823 OK, Server Host 2 connected.
+2013-11-09 14:06:16.451823 Changes has 0 records
+2013-11-09 14:06:16.451823 end of program
+2013-11-09 14:11:16.338250 
+2013-11-09 14:11:16.343250 start of program
+2013-11-09 14:11:16.358250 number: 2, host: 177.33.255.216
+2013-11-09 14:11:16.423250 OK, Server Host 2 connected.
+2013-11-09 14:11:16.443250 Changes has 0 records
+2013-11-09 14:11:16.448250 end of program
+2013-11-09 14:16:16.314676 
+2013-11-09 14:16:16.314676 start of program
+2013-11-09 14:16:16.334676 number: 2, host: 177.33.255.216
+2013-11-09 14:16:16.394676 OK, Server Host 2 connected.
+2013-11-09 14:16:16.414676 Changes has 0 records
+2013-11-09 14:16:16.414676 end of program
+2013-11-09 14:21:16.304099 
+2013-11-09 14:21:16.314100 start of program
+2013-11-09 14:21:16.324100 number: 2, host: 177.33.255.216
+2013-11-09 14:21:16.404100 OK, Server Host 2 connected.
+2013-11-09 14:21:16.444100 Changes has 0 records
+2013-11-09 14:21:16.444100 end of program
+2013-11-09 14:26:16.320526 
+2013-11-09 14:26:16.320526 start of program
+2013-11-09 14:26:16.335526 number: 2, host: 177.33.255.216
+2013-11-09 14:26:16.435526 OK, Server Host 2 connected.
+2013-11-09 14:26:16.460526 Changes has 0 records
+2013-11-09 14:26:16.460526 end of program
+2013-11-09 14:31:16.315247 
+2013-11-09 14:31:16.325247 start of program
+2013-11-09 14:31:16.335247 number: 2, host: 177.33.255.216
+2013-11-09 14:31:16.385247 OK, Server Host 2 connected.
+2013-11-09 14:31:16.405248 Changes has 0 records
+2013-11-09 14:31:16.415248 end of program
+2013-11-09 14:36:16.315671 
+2013-11-09 14:36:16.325671 start of program
+2013-11-09 14:36:16.335671 number: 2, host: 177.33.255.216
+2013-11-09 14:36:16.395671 OK, Server Host 2 connected.
+2013-11-09 14:36:16.415671 Changes has 0 records
+2013-11-09 14:36:16.415671 end of program
+2013-11-09 14:41:16.315094 
+2013-11-09 14:41:16.325094 start of program
+2013-11-09 14:41:16.345094 number: 2, host: 177.33.255.216
+2013-11-09 14:41:16.395094 OK, Server Host 2 connected.
+2013-11-09 14:41:16.415094 Changes has 0 records
+2013-11-09 14:41:16.425094 end of program
+2013-11-09 14:46:16.308518 
+2013-11-09 14:46:16.318518 start of program
+2013-11-09 14:46:16.328518 number: 2, host: 177.33.255.216
+2013-11-09 14:46:16.388518 OK, Server Host 2 connected.
+2013-11-09 14:46:16.418518 Changes has 3 records
+2013-11-09 14:46:16.418518 Changes: 1000000121, Contacts: 100004
+2013-11-09 14:46:16.458518 Update
+2013-11-09 14:46:16.458518 my_sql: REPLACE INTO Contacts SET id = 100004, created_at = null, created_by = null, updated_at = "2013-11-09 08:44:17", updated_by = 100001, status = "Active", company_id = null, support_id = null, is_company = "No", is_customer = "No", is_supplier = "No", is_dyer = "No", is_partner = "No", is_taxable = "Yes", photo = "patjan.jpg,2013-06-22 21:44:39,423406", nick_name = "Pat", first_name = "Pat", last_name = "Jan", full_name = "Pat Jan", tags = null, position = "Web Developer", phone = "null", mobile = "714-801-5753", fax = "null", email = "pat_jan@hotmail.com", website = "www.jkysoftware.com", street1 = "18781 Deep Well Rd", street2 = "null", city = "Santa Ana", state = "CA", zip = 92705, country = "US", language = "Portuguese", time_zone = -8, cnpj = null, ie = null, start_dt = null, end_dt = null, credit_limit = 0.00, total_purchased = 0.00, total_refunded = 0.00, total_invoiced = 0.00, total_paid = 0.00 ;
+2013-11-09 14:46:16.468518 Changes: 1000000122, History: 2000013505
+2013-11-09 14:46:16.488518 Insert
+2013-11-09 14:46:16.498518 my_sql: REPLACE INTO History SET id = 2000013505, updated_by = 100001, updated_at = "2013-11-09 08:44:17", parent_name = "Contacts", parent_id = 100004, method = "update", history = "mobile:714-801-5752=>714-801-5753" ;
+2013-11-09 14:46:16.498518 Changes: 1000000123, JKY_Users: 100001
+2013-11-09 14:46:16.528518 Update
+2013-11-09 14:46:16.528518 my_sql: REPLACE INTO JKY_Users SET id = 100001, created_by = null, created_at = null, updated_by = 100001, updated_at = "2013-11-09 08:44:18", status = "Active", contact_id = 100004, start_date = "2012-09-24", end_date = null, user_name = "patjan", user_type = "Support", user_role = "Support", user_key = "6e5fa4d9c48ca921c0a2ce1e64c9ae6f", password = "6e5fa4d9c48ca921c0a2ce1e64c9ae6f" ;
+2013-11-09 14:46:16.548518 end of program
+2013-11-09 14:51:16.318941 
+2013-11-09 14:51:16.318941 start of program
+2013-11-09 14:51:16.338941 number: 2, host: 177.33.255.216
+2013-11-09 14:51:16.398941 OK, Server Host 2 connected.
+2013-11-09 14:51:16.418941 Changes has 3 records
+2013-11-09 14:51:16.418941 Changes: 1000000121, Contacts: 100004
+2013-11-09 14:51:16.448941 Update
+2013-11-09 14:51:16.448941 my_sql: REPLACE INTO Contacts SET id = 100004, created_at = null, created_by = null, updated_at = "2013-11-09 08:44:17", updated_by = 100001, status = "Active", company_id = null, support_id = null, is_company = "No", is_customer = "No", is_supplier = "No", is_dyer = "No", is_partner = "No", is_taxable = "Yes", photo = "patjan.jpg,2013-06-22 21:44:39,423406", nick_name = "Pat", first_name = "Pat", last_name = "Jan", full_name = "Pat Jan", tags = null, position = "Web Developer", phone = "null", mobile = "714-801-5753", fax = "null", email = "pat_jan@hotmail.com", website = "www.jkysoftware.com", street1 = "18781 Deep Well Rd", street2 = "null", city = "Santa Ana", state = "CA", zip = 92705, country = "US", language = "Portuguese", time_zone = -8, cnpj = null, ie = null, start_dt = null, end_dt = null, credit_limit = 0.00, total_purchased = 0.00, total_refunded = 0.00, total_invoiced = 0.00, total_paid = 0.00 ;
+2013-11-09 14:51:16.448941 Changes: 1000000122, History: 2000013505
+2013-11-09 14:51:16.478941 Update
+2013-11-09 14:51:16.478941 my_sql: REPLACE INTO History SET id = 2000013505, updated_by = 100001, updated_at = "2013-11-09 08:44:17", parent_name = "Contacts", parent_id = 100004, method = "update", history = "mobile:714-801-5752=>714-801-5753" ;
+2013-11-09 14:51:16.488941 Changes: 1000000123, JKY_Users: 100001
+2013-11-09 14:51:16.508941 Update
+2013-11-09 14:51:16.508941 my_sql: REPLACE INTO JKY_Users SET id = 100001, created_by = null, created_at = null, updated_by = 100001, updated_at = "2013-11-09 08:44:18", status = "Active", contact_id = 100004, start_date = "2012-09-24", end_date = null, user_name = "patjan", user_type = "Support", user_role = "Support", user_key = "6e5fa4d9c48ca921c0a2ce1e64c9ae6f", password = "6e5fa4d9c48ca921c0a2ce1e64c9ae6f" ;
+2013-11-09 14:51:16.538941 end of program
+2013-11-09 14:56:16.309364 
+2013-11-09 14:56:16.309364 start of program
+2013-11-09 14:56:16.319364 number: 2, host: 177.33.255.216
+2013-11-09 14:56:16.379364 OK, Server Host 2 connected.
+2013-11-09 14:56:16.399364 Changes has 3 records
+2013-11-09 14:56:16.409364 Changes: 1000000121, Contacts: 100004
+2013-11-09 14:56:16.439364 Update
+2013-11-09 14:56:16.439364 my_sql: REPLACE INTO Contacts SET id = 100004, created_at = null, created_by = null, updated_at = "2013-11-09 08:44:17", updated_by = 100001, status = "Active", company_id = null, support_id = null, is_company = "No", is_customer = "No", is_supplier = "No", is_dyer = "No", is_partner = "No", is_taxable = "Yes", photo = "patjan.jpg,2013-06-22 21:44:39,423406", nick_name = "Pat", first_name = "Pat", last_name = "Jan", full_name = "Pat Jan", tags = null, position = "Web Developer", phone = "null", mobile = "714-801-5753", fax = "null", email = "pat_jan@hotmail.com", website = "www.jkysoftware.com", street1 = "18781 Deep Well Rd", street2 = "null", city = "Santa Ana", state = "CA", zip = 92705, country = "US", language = "Portuguese", time_zone = -8, cnpj = null, ie = null, start_dt = null, end_dt = null, credit_limit = 0.00, total_purchased = 0.00, total_refunded = 0.00, total_invoiced = 0.00, total_paid = 0.00 ;
+2013-11-09 14:56:16.449364 Changes: 1000000122, History: 2000013505
+2013-11-09 14:56:16.469364 Update
+2013-11-09 14:56:16.469364 my_sql: REPLACE INTO History SET id = 2000013505, updated_by = 100001, updated_at = "2013-11-09 08:44:17", parent_name = "Contacts", parent_id = 100004, method = "update", history = "mobile:714-801-5752=>714-801-5753" ;
+2013-11-09 14:56:16.479364 Changes: 1000000123, JKY_Users: 100001
+2013-11-09 14:56:16.509365 Update
+2013-11-09 14:56:16.509365 my_sql: REPLACE INTO JKY_Users SET id = 100001, created_by = null, created_at = null, updated_by = 100001, updated_at = "2013-11-09 08:44:18", status = "Active", contact_id = 100004, start_date = "2012-09-24", end_date = null, user_name = "patjan", user_type = "Support", user_role = "Support", user_key = "6e5fa4d9c48ca921c0a2ce1e64c9ae6f", password = "6e5fa4d9c48ca921c0a2ce1e64c9ae6f" ;
+2013-11-09 14:56:16.529365 end of program
+2013-11-09 15:01:16.344790 
+2013-11-09 15:01:16.349790 start of program
+2013-11-09 15:01:16.364790 number: 2, host: 177.33.255.216
+2013-11-09 15:01:16.434790 OK, Server Host 2 connected.
+2013-11-09 15:01:16.459790 Changes has 3 records
+2013-11-09 15:01:16.464790 Changes: 1000000121, Contacts: 100004
+2013-11-09 15:01:16.494790 Update
+2013-11-09 15:01:16.494790 my_sql: REPLACE INTO Contacts SET id = 100004, created_at = null, created_by = null, updated_at = "2013-11-09 08:44:17", updated_by = 100001, status = "Active", company_id = null, support_id = null, is_company = "No", is_customer = "No", is_supplier = "No", is_dyer = "No", is_partner = "No", is_taxable = "Yes", photo = "patjan.jpg,2013-06-22 21:44:39,423406", nick_name = "Pat", first_name = "Pat", last_name = "Jan", full_name = "Pat Jan", tags = null, position = "Web Developer", phone = "null", mobile = "714-801-5753", fax = "null", email = "pat_jan@hotmail.com", website = "www.jkysoftware.com", street1 = "18781 Deep Well Rd", street2 = "null", city = "Santa Ana", state = "CA", zip = 92705, country = "US", language = "Portuguese", time_zone = -8, cnpj = null, ie = null, start_dt = null, end_dt = null, credit_limit = 0.00, total_purchased = 0.00, total_refunded = 0.00, total_invoiced = 0.00, total_paid = 0.00 ;
+2013-11-09 15:01:16.499790 Changes: 1000000122, History: 2000013505
+2013-11-09 15:01:16.524790 Update
+2013-11-09 15:01:16.529790 my_sql: REPLACE INTO History SET id = 2000013505, updated_by = 100001, updated_at = "2013-11-09 08:44:17", parent_name = "Contacts", parent_id = 100004, method = "update", history = "mobile:714-801-5752=>714-801-5753" ;
+2013-11-09 15:01:16.534790 Changes: 1000000123, JKY_Users: 100001
+2013-11-09 15:01:16.554790 Update
+2013-11-09 15:01:16.559790 my_sql: REPLACE INTO JKY_Users SET id = 100001, created_by = null, created_at = null, updated_by = 100001, updated_at = "2013-11-09 08:44:18", status = "Active", contact_id = 100004, start_date = "2012-09-24", end_date = null, user_name = "patjan", user_type = "Support", user_role = "Support", user_key = "6e5fa4d9c48ca921c0a2ce1e64c9ae6f", password = "6e5fa4d9c48ca921c0a2ce1e64c9ae6f" ;
+2013-11-09 15:01:16.589790 end of program
+2013-11-09 15:05:16.338132 
+2013-11-09 15:05:16.343132 start of program
+2013-11-09 15:05:16.358132 number: 2, host: 177.33.255.216
+2013-11-09 15:05:16.413132 OK, Server Host 2 connected.
+2013-11-09 15:05:16.438132 Changes has 0 records
+2013-11-09 15:05:16.438132 end of program
+2013-11-09 15:07:16.318302 
+2013-11-09 15:07:16.323302 start of program
+2013-11-09 15:07:16.338302 number: 2, host: 177.33.255.216
+2013-11-09 15:07:16.418303 OK, Server Host 2 connected.
+2013-11-09 15:07:16.443303 Changes has 0 records
+2013-11-09 15:07:16.448303 end of program
+2013-11-09 15:09:16.331473 
+2013-11-09 15:09:16.336473 start of program
+2013-11-09 15:09:16.351473 number: 2, host: 177.33.255.216
+2013-11-09 15:09:16.411473 OK, Server Host 2 connected.
+2013-11-09 15:09:16.436473 Changes has 0 records
+2013-11-09 15:09:16.441473 end of program
+2013-11-09 15:11:16.325644 
+2013-11-09 15:11:16.330644 start of program
+2013-11-09 15:11:16.345644 number: 2, host: 177.33.255.216
+2013-11-09 15:11:37.423674 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:11:37.428674 end of program
+2013-11-09 15:13:16.353815 
+2013-11-09 15:13:16.358815 start of program
+2013-11-09 15:13:16.373815 number: 2, host: 177.33.255.216
+2013-11-09 15:13:16.433815 OK, Server Host 2 connected.
+2013-11-09 15:13:16.453815 Changes has 0 records
+2013-11-09 15:13:16.453815 end of program
+2013-11-09 15:15:16.341985 
+2013-11-09 15:15:16.341985 start of program
+2013-11-09 15:15:16.356985 number: 2, host: 177.33.255.216
+2013-11-09 15:15:16.411985 OK, Server Host 2 connected.
+2013-11-09 15:15:16.436985 Changes has 0 records
+2013-11-09 15:15:16.436985 end of program
+2013-11-09 15:17:16.328156 
+2013-11-09 15:17:16.333156 start of program
+2013-11-09 15:17:16.353156 number: 2, host: 177.33.255.216
+2013-11-09 15:17:16.428156 OK, Server Host 2 connected.
+2013-11-09 15:17:16.453156 Changes has 0 records
+2013-11-09 15:17:16.458156 end of program
+2013-11-09 15:19:16.324326 
+2013-11-09 15:19:16.324326 start of program
+2013-11-09 15:19:16.339326 number: 2, host: 177.33.255.216
+2013-11-09 15:19:16.424326 OK, Server Host 2 connected.
+2013-11-09 15:19:16.444326 Changes has 0 records
+2013-11-09 15:19:16.449326 end of program
+2013-11-09 15:21:16.324497 
+2013-11-09 15:21:16.329497 start of program
+2013-11-09 15:21:16.344497 number: 2, host: 177.33.255.216
+2013-11-09 15:21:16.399497 OK, Server Host 2 connected.
+2013-11-09 15:21:16.419497 Changes has 0 records
+2013-11-09 15:21:16.424497 end of program
+2013-11-09 15:23:16.316667 
+2013-11-09 15:23:16.316667 start of program
+2013-11-09 15:23:16.336667 number: 2, host: 177.33.255.216
+2013-11-09 15:23:16.396667 OK, Server Host 2 connected.
+2013-11-09 15:23:16.426667 Changes has 0 records
+2013-11-09 15:23:16.436667 end of program
+2013-11-09 15:25:16.310836 
+2013-11-09 15:25:16.320836 start of program
+2013-11-09 15:25:16.330836 number: 2, host: 177.33.255.216
+2013-11-09 15:25:16.410836 OK, Server Host 2 connected.
+2013-11-09 15:25:16.430836 Changes has 0 records
+2013-11-09 15:25:16.440836 end of program
+2013-11-09 15:27:16.315005 
+2013-11-09 15:27:16.315005 start of program
+2013-11-09 15:27:16.325005 number: 2, host: 177.33.255.216
+2013-11-09 15:27:37.339035 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:27:37.339035 end of program
+2013-11-09 15:29:16.301175 
+2013-11-09 15:29:16.311175 start of program
+2013-11-09 15:29:16.321175 number: 2, host: 177.33.255.216
+2013-11-09 15:29:37.335204 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:29:37.335204 end of program
+2013-11-09 15:31:16.317344 
+2013-11-09 15:31:16.327344 start of program
+2013-11-09 15:31:16.337344 number: 2, host: 177.33.255.216
+2013-11-09 15:31:37.341374 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:31:37.341374 end of program
+2013-11-09 15:33:16.321513 
+2013-11-09 15:33:16.321513 start of program
+2013-11-09 15:33:16.341514 number: 2, host: 177.33.255.216
+2013-11-09 15:33:37.343543 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:33:37.348543 end of program
+2013-11-09 15:35:16.338684 
+2013-11-09 15:35:16.338684 start of program
+2013-11-09 15:35:16.353684 number: 2, host: 177.33.255.216
+2013-11-09 15:37:16.290854 
+2013-11-09 15:37:16.290854 start of program
+2013-11-09 15:37:16.310854 number: 2, host: 177.33.255.216
+2013-11-09 15:37:37.314884 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:37:37.314884 end of program
+2013-11-09 15:39:16.295023 
+2013-11-09 15:39:16.295023 start of program
+2013-11-09 15:39:16.315023 number: 2, host: 177.33.255.216
+2013-11-09 15:39:37.329053 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:39:37.329053 end of program
+2013-11-09 15:41:16.309193 
+2013-11-09 15:41:16.319193 start of program
+2013-11-09 15:41:16.329193 number: 2, host: 177.33.255.216
+2013-11-09 15:41:37.343222 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:41:37.343222 end of program
+2013-11-09 15:43:16.302362 
+2013-11-09 15:43:16.302362 start of program
+2013-11-09 15:43:16.322362 number: 2, host: 177.33.255.216
+2013-11-09 15:43:37.327392 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:43:37.327392 end of program
+2013-11-09 15:45:16.316531 
+2013-11-09 15:45:16.316531 start of program
+2013-11-09 15:45:16.326531 number: 2, host: 177.33.255.216
+2013-11-09 15:45:37.351561 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:45:37.351561 end of program
+2013-11-09 15:47:16.300701 
+2013-11-09 15:47:16.310701 start of program
+2013-11-09 15:47:16.320701 number: 2, host: 177.33.255.216
+2013-11-09 15:47:37.334730 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:47:37.334730 end of program
+2013-11-09 15:49:16.287870 
+2013-11-09 15:49:16.297870 start of program
+2013-11-09 15:49:16.307870 number: 2, host: 177.33.255.216
+2013-11-09 15:49:37.332900 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:49:37.332900 end of program
+2013-11-09 15:51:16.303039 
+2013-11-09 15:51:16.313039 start of program
+2013-11-09 15:51:16.323039 number: 2, host: 177.33.255.216
+2013-11-09 15:51:37.337069 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:51:37.337069 end of program
+2013-11-09 15:53:16.317209 
+2013-11-09 15:53:16.317209 start of program
+2013-11-09 15:53:16.337209 number: 2, host: 177.33.255.216
+2013-11-09 15:53:37.331238 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:53:37.331238 end of program
+2013-11-09 15:55:16.311378 
+2013-11-09 15:55:16.321378 start of program
+2013-11-09 15:55:16.331378 number: 2, host: 177.33.255.216
+2013-11-09 15:55:37.335408 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:55:37.335408 end of program
+2013-11-09 15:57:16.305547 
+2013-11-09 15:57:16.305547 start of program
+2013-11-09 15:57:16.325547 number: 2, host: 177.33.255.216
+2013-11-09 15:57:37.339577 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:57:37.339577 end of program
+2013-11-09 15:59:16.319717 
+2013-11-09 15:59:16.329717 start of program
+2013-11-09 15:59:16.339717 number: 2, host: 177.33.255.216
+2013-11-09 15:59:37.343746 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 15:59:37.343746 end of program
+2013-11-09 16:01:16.313886 
+2013-11-09 16:01:16.313886 start of program
+2013-11-09 16:01:16.333886 number: 2, host: 177.33.255.216
+2013-11-09 16:01:37.337916 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:01:37.337916 end of program
+2013-11-09 16:03:16.317055 
+2013-11-09 16:03:16.317055 start of program
+2013-11-09 16:03:16.337055 number: 2, host: 177.33.255.216
+2013-11-09 16:03:37.342085 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:03:37.342085 end of program
+2013-11-09 16:05:16.311225 
+2013-11-09 16:05:16.311225 start of program
+2013-11-09 16:05:16.331225 number: 2, host: 177.33.255.216
+2013-11-09 16:05:37.336254 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:05:37.336254 end of program
+2013-11-09 16:07:16.305394 
+2013-11-09 16:07:16.305394 start of program
+2013-11-09 16:07:16.325394 number: 2, host: 177.33.255.216
+2013-11-09 16:07:37.339424 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:07:37.339424 end of program
+2013-11-09 16:09:16.311564 
+2013-11-09 16:09:16.321564 start of program
+2013-11-09 16:09:16.331564 number: 2, host: 177.33.255.216
+2013-11-09 16:09:37.335593 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:09:37.335593 end of program
+2013-11-09 16:11:16.315733 
+2013-11-09 16:11:16.315733 start of program
+2013-11-09 16:11:16.335733 number: 2, host: 177.33.255.216
+2013-11-09 16:11:37.339763 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:11:37.339763 end of program
+2013-11-09 16:13:16.319902 
+2013-11-09 16:13:16.319902 start of program
+2013-11-09 16:13:16.329902 number: 2, host: 177.33.255.216
+2013-11-09 16:13:37.343932 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:13:37.343932 end of program
+2013-11-09 16:15:16.325072 
+2013-11-09 16:15:16.335072 start of program
+2013-11-09 16:15:16.345072 number: 2, host: 177.33.255.216
+2013-11-09 16:15:37.359101 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:15:37.359101 end of program
+2013-11-09 16:17:16.320241 
+2013-11-09 16:17:16.320241 start of program
+2013-11-09 16:17:16.330241 number: 2, host: 177.33.255.216
+2013-11-09 16:17:37.344271 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:17:37.344271 end of program
+2013-11-09 16:19:16.314410 
+2013-11-09 16:19:16.314410 start of program
+2013-11-09 16:19:16.334410 number: 2, host: 177.33.255.216
+2013-11-09 16:19:37.348440 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:19:37.348440 end of program
+2013-11-09 16:21:16.319580 
+2013-11-09 16:21:16.319580 start of program
+2013-11-09 16:21:16.339580 number: 2, host: 177.33.255.216
+2013-11-09 16:21:37.343609 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:21:37.343609 end of program
+2013-11-09 16:23:16.312749 
+2013-11-09 16:23:16.312749 start of program
+2013-11-09 16:23:16.322749 number: 2, host: 177.33.255.216
+2013-11-09 16:23:37.337779 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:23:37.337779 end of program
+2013-11-09 16:25:16.306918 
+2013-11-09 16:25:16.306918 start of program
+2013-11-09 16:25:16.326918 number: 2, host: 177.33.255.216
+2013-11-09 16:25:37.331948 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:25:37.331948 end of program
+2013-11-09 16:27:16.291088 
+2013-11-09 16:27:16.301088 start of program
+2013-11-09 16:27:16.311088 number: 2, host: 177.33.255.216
+2013-11-09 16:27:37.315117 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:27:37.315117 end of program
+2013-11-09 16:29:16.317257 
+2013-11-09 16:29:16.317257 start of program
+2013-11-09 16:29:16.337257 number: 2, host: 177.33.255.216
+2013-11-09 16:29:37.341287 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:29:37.341287 end of program
+2013-11-09 16:31:16.321426 
+2013-11-09 16:31:16.321426 start of program
+2013-11-09 16:31:16.341427 number: 2, host: 177.33.255.216
+2013-11-09 16:31:37.345456 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:31:37.345456 end of program
+2013-11-09 16:33:16.295596 
+2013-11-09 16:33:16.305596 start of program
+2013-11-09 16:33:16.315596 number: 2, host: 177.33.255.216
+2013-11-09 16:33:37.319625 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:33:37.319625 end of program
+2013-11-09 16:35:16.319765 
+2013-11-09 16:35:16.319765 start of program
+2013-11-09 16:35:16.329765 number: 2, host: 177.33.255.216
+2013-11-09 16:35:37.343795 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:35:37.343795 end of program
+2013-11-09 16:37:16.313934 
+2013-11-09 16:37:16.313934 start of program
+2013-11-09 16:37:16.333935 number: 2, host: 177.33.255.216
+2013-11-09 16:37:37.347964 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:37:37.347964 end of program
+2013-11-09 16:39:16.308104 
+2013-11-09 16:39:16.308104 start of program
+2013-11-09 16:39:16.328104 number: 2, host: 177.33.255.216
+2013-11-09 16:39:37.332133 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:39:37.332133 end of program
+2013-11-09 16:41:16.312273 
+2013-11-09 16:41:16.312273 start of program
+2013-11-09 16:41:16.332273 number: 2, host: 177.33.255.216
+2013-11-09 16:41:37.346303 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:41:37.346303 end of program
+2013-11-09 16:43:16.315442 
+2013-11-09 16:43:16.315442 start of program
+2013-11-09 16:43:16.335442 number: 2, host: 177.33.255.216
+2013-11-09 16:43:37.340472 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:43:37.340472 end of program
+2013-11-09 16:45:16.310612 
+2013-11-09 16:45:16.320612 start of program
+2013-11-09 16:45:16.330612 number: 2, host: 177.33.255.216
+2013-11-09 16:45:37.335642 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:45:37.335642 end of program
+2013-11-09 16:47:16.315781 
+2013-11-09 16:47:16.315781 start of program
+2013-11-09 16:47:16.345781 number: 2, host: 177.33.255.216
+2013-11-09 16:47:37.339811 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:47:37.339811 end of program
+2013-11-09 16:49:16.321951 
+2013-11-09 16:49:16.321951 start of program
+2013-11-09 16:49:16.331951 number: 2, host: 177.33.255.216
+2013-11-09 16:49:37.335980 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:49:37.335980 end of program
+2013-11-09 16:51:16.306120 
+2013-11-09 16:51:16.306120 start of program
+2013-11-09 16:51:16.326120 number: 2, host: 177.33.255.216
+2013-11-09 16:51:37.330150 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:51:37.330150 end of program
+2013-11-09 16:53:16.311289 
+2013-11-09 16:53:16.321289 start of program
+2013-11-09 16:53:16.341289 number: 2, host: 177.33.255.216
+2013-11-09 16:53:37.335319 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:53:37.335319 end of program
+2013-11-09 16:55:16.305459 
+2013-11-09 16:55:16.305459 start of program
+2013-11-09 16:55:16.325459 number: 2, host: 177.33.255.216
+2013-11-09 16:55:37.329488 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:55:37.329488 end of program
+2013-11-09 16:57:16.309628 
+2013-11-09 16:57:16.309628 start of program
+2013-11-09 16:57:16.329628 number: 2, host: 177.33.255.216
+2013-11-09 16:57:37.343658 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:57:37.343658 end of program
+2013-11-09 16:59:16.303797 
+2013-11-09 16:59:16.303797 start of program
+2013-11-09 16:59:16.323797 number: 2, host: 177.33.255.216
+2013-11-09 16:59:37.327827 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 16:59:37.327827 end of program
+2013-11-09 17:01:16.307967 
+2013-11-09 17:01:16.307967 start of program
+2013-11-09 17:01:16.317967 number: 2, host: 177.33.255.216
+2013-11-09 17:01:37.331996 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:01:37.331996 end of program
+2013-11-09 17:03:16.311136 
+2013-11-09 17:03:16.311136 start of program
+2013-11-09 17:03:16.331136 number: 2, host: 177.33.255.216
+2013-11-09 17:03:37.336166 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:03:37.336166 end of program
+2013-11-09 17:05:16.315305 
+2013-11-09 17:05:16.315305 start of program
+2013-11-09 17:05:16.325305 number: 2, host: 177.33.255.216
+2013-11-09 17:05:37.350335 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:05:37.350335 end of program
+2013-11-09 17:07:16.309475 
+2013-11-09 17:07:16.309475 start of program
+2013-11-09 17:07:16.329475 number: 2, host: 177.33.255.216
+2013-11-09 17:07:37.343504 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:07:37.343504 end of program
+2013-11-09 17:09:16.316644 
+2013-11-09 17:09:16.316644 start of program
+2013-11-09 17:09:16.336644 number: 2, host: 177.33.255.216
+2013-11-09 17:09:37.340674 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:09:37.340674 end of program
+2013-11-09 17:11:16.311814 
+2013-11-09 17:11:16.311814 start of program
+2013-11-09 17:11:16.321814 number: 2, host: 177.33.255.216
+2013-11-09 17:11:37.345843 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:11:37.345843 end of program
+2013-11-09 17:13:16.305983 
+2013-11-09 17:13:16.305983 start of program
+2013-11-09 17:13:16.325983 number: 2, host: 177.33.255.216
+2013-11-09 17:13:37.331013 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:13:37.331013 end of program
+2013-11-09 17:15:16.311152 
+2013-11-09 17:15:16.311152 start of program
+2013-11-09 17:15:16.331152 number: 2, host: 177.33.255.216
+2013-11-09 17:15:37.325182 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:15:37.325182 end of program
+2013-11-09 17:17:16.316322 
+2013-11-09 17:17:16.316322 start of program
+2013-11-09 17:17:16.326322 number: 2, host: 177.33.255.216
+2013-11-09 17:17:37.340351 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:17:37.340351 end of program
+2013-11-09 17:19:16.310491 
+2013-11-09 17:19:16.310491 start of program
+2013-11-09 17:19:16.330491 number: 2, host: 177.33.255.216
+2013-11-09 17:19:37.334521 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:19:37.334521 end of program
+2013-11-09 17:21:16.314660 
+2013-11-09 17:21:16.314660 start of program
+2013-11-09 17:21:16.324660 number: 2, host: 177.33.255.216
+2013-11-09 17:21:37.348690 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:21:37.348690 end of program
+2013-11-09 17:23:16.307830 
+2013-11-09 17:23:16.307830 start of program
+2013-11-09 17:23:16.327830 number: 2, host: 177.33.255.216
+2013-11-09 17:23:37.342859 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:23:37.342859 end of program
+2013-11-09 17:25:16.311999 
+2013-11-09 17:25:16.311999 start of program
+2013-11-09 17:25:16.331999 number: 2, host: 177.33.255.216
+2013-11-09 17:25:37.337029 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:25:37.337029 end of program
+2013-11-09 17:27:16.307168 
+2013-11-09 17:27:16.307168 start of program
+2013-11-09 17:27:16.327168 number: 2, host: 177.33.255.216
+2013-11-09 17:27:37.342198 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:27:37.342198 end of program
+2013-11-09 17:29:16.304338 
+2013-11-09 17:29:16.304338 start of program
+2013-11-09 17:29:16.324338 number: 2, host: 177.33.255.216
+2013-11-09 17:29:37.328368 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:29:37.328368 end of program
+2013-11-09 17:31:16.318507 
+2013-11-09 17:31:16.318507 start of program
+2013-11-09 17:31:16.338507 number: 2, host: 177.33.255.216
+2013-11-09 17:31:37.352537 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:31:37.352537 end of program
+2013-11-09 17:33:16.303677 
+2013-11-09 17:33:16.303677 start of program
+2013-11-09 17:33:16.333677 number: 2, host: 177.33.255.216
+2013-11-09 17:33:37.337706 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:33:37.337706 end of program
+2013-11-09 17:35:16.308846 
+2013-11-09 17:35:16.318846 start of program
+2013-11-09 17:35:16.328846 number: 2, host: 177.33.255.216
+2013-11-09 17:35:37.342876 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:35:37.342876 end of program
+2013-11-09 17:37:16.313015 
+2013-11-09 17:37:16.313015 start of program
+2013-11-09 17:37:16.333015 number: 2, host: 177.33.255.216
+2013-11-09 17:37:37.347045 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:37:37.347045 end of program
+2013-11-09 17:39:16.327185 
+2013-11-09 17:39:16.327185 start of program
+2013-11-09 17:39:16.337185 number: 2, host: 177.33.255.216
+2013-11-09 17:39:37.351214 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:39:37.351214 end of program
+2013-11-09 17:41:16.311354 
+2013-11-09 17:41:16.321354 start of program
+2013-11-09 17:41:16.331354 number: 2, host: 177.33.255.216
+2013-11-09 17:41:37.345384 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:41:37.345384 end of program
+2013-11-09 17:43:16.314523 
+2013-11-09 17:43:16.314523 start of program
+2013-11-09 17:43:16.334523 number: 2, host: 177.33.255.216
+2013-11-09 17:43:37.349553 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:43:37.349553 end of program
+2013-11-09 17:45:16.318693 
+2013-11-09 17:45:16.328693 start of program
+2013-11-09 17:45:16.338693 number: 2, host: 177.33.255.216
+2013-11-09 17:45:37.342722 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:45:37.342722 end of program
+2013-11-09 17:47:16.302862 
+2013-11-09 17:47:16.302862 start of program
+2013-11-09 17:47:16.322862 number: 2, host: 177.33.255.216
+2013-11-09 17:47:37.326892 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:47:37.326892 end of program
+2013-11-09 17:49:16.310032 
+2013-11-09 17:49:16.310032 start of program
+2013-11-09 17:49:16.330032 number: 2, host: 177.33.255.216
+2013-11-09 17:49:37.334061 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:49:37.334061 end of program
+2013-11-09 17:51:16.294201 
+2013-11-09 17:51:16.294201 start of program
+2013-11-09 17:51:16.314201 number: 2, host: 177.33.255.216
+2013-11-09 17:51:37.328231 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:51:37.328231 end of program
+2013-11-09 17:53:17.098371 
+2013-11-09 17:53:17.098371 start of program
+2013-11-09 17:53:17.178371 number: 2, host: 177.33.255.216
+2013-11-09 17:53:38.202401 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:53:38.212401 end of program
+2013-11-09 17:55:16.302540 
+2013-11-09 17:55:16.302540 start of program
+2013-11-09 17:55:16.322540 number: 2, host: 177.33.255.216
+2013-11-09 17:55:37.326569 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:55:37.326569 end of program
+2013-11-09 17:57:16.316709 
+2013-11-09 17:57:16.316709 start of program
+2013-11-09 17:57:16.336709 number: 2, host: 177.33.255.216
+2013-11-09 17:57:37.340739 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:57:37.340739 end of program
+2013-11-09 17:59:16.310878 
+2013-11-09 17:59:16.310878 start of program
+2013-11-09 17:59:16.330878 number: 2, host: 177.33.255.216
+2013-11-09 17:59:37.334908 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 17:59:37.334908 end of program
+2013-11-09 18:01:16.294048 
+2013-11-09 18:01:16.304048 start of program
+2013-11-09 18:01:16.315048 number: 2, host: 177.33.255.216
+2013-11-09 18:01:37.329077 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:01:37.329077 end of program
+2013-11-09 18:03:16.318217 
+2013-11-09 18:03:16.318217 start of program
+2013-11-09 18:03:16.328217 number: 2, host: 177.33.255.216
+2013-11-09 18:03:37.353247 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:03:37.353247 end of program
+2013-11-09 18:05:16.293386 
+2013-11-09 18:05:16.303386 start of program
+2013-11-09 18:05:16.313386 number: 2, host: 177.33.255.216
+2013-11-09 18:05:37.317416 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:05:37.317416 end of program
+2013-11-09 18:07:16.308556 
+2013-11-09 18:07:16.308556 start of program
+2013-11-09 18:07:16.328556 number: 2, host: 177.33.255.216
+2013-11-09 18:07:37.332585 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:07:37.332585 end of program
+2013-11-09 18:09:16.315725 
+2013-11-09 18:09:16.325725 start of program
+2013-11-09 18:09:16.335725 number: 2, host: 177.33.255.216
+2013-11-09 18:09:37.339755 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:09:37.339755 end of program
+2013-11-09 18:11:16.300895 
+2013-11-09 18:11:16.300895 start of program
+2013-11-09 18:11:16.320895 number: 2, host: 177.33.255.216
+2013-11-09 18:11:37.334924 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:11:37.334924 end of program
+2013-11-09 18:13:16.326064 
+2013-11-09 18:13:16.326064 start of program
+2013-11-09 18:13:16.346064 number: 2, host: 177.33.255.216
+2013-11-09 18:13:37.350094 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:13:37.350094 end of program
+2013-11-09 18:15:16.320233 
+2013-11-09 18:15:16.320233 start of program
+2013-11-09 18:15:16.340233 number: 2, host: 177.33.255.216
+2013-11-09 18:15:37.344263 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:15:37.344263 end of program
+2013-11-09 18:17:16.304403 
+2013-11-09 18:17:16.304403 start of program
+2013-11-09 18:17:16.324403 number: 2, host: 177.33.255.216
+2013-11-09 18:17:37.338432 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:17:37.338432 end of program
+2013-11-09 18:19:16.318572 
+2013-11-09 18:19:16.318572 start of program
+2013-11-09 18:19:16.338572 number: 2, host: 177.33.255.216
+2013-11-09 18:19:37.342602 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:19:37.342602 end of program
+2013-11-09 18:21:16.301741 
+2013-11-09 18:21:16.311741 start of program
+2013-11-09 18:21:16.321741 number: 2, host: 177.33.255.216
+2013-11-09 18:21:37.336771 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:21:37.336771 end of program
+2013-11-09 18:23:16.305911 
+2013-11-09 18:23:16.305911 start of program
+2013-11-09 18:23:16.325911 number: 2, host: 177.33.255.216
+2013-11-09 18:23:37.330940 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:23:37.330940 end of program
+2013-11-09 18:25:16.320080 
+2013-11-09 18:25:16.320080 start of program
+2013-11-09 18:25:16.330080 number: 2, host: 177.33.255.216
+2013-11-09 18:25:37.344110 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:25:37.344110 end of program
+2013-11-09 18:27:16.324249 
+2013-11-09 18:27:16.324249 start of program
+2013-11-09 18:27:16.334249 number: 2, host: 177.33.255.216
+2013-11-09 18:27:37.348279 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:27:37.348279 end of program
+2013-11-09 18:29:16.310419 
+2013-11-09 18:29:16.320419 start of program
+2013-11-09 18:29:16.340419 number: 2, host: 177.33.255.216
+2013-11-09 18:29:37.344448 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:29:37.344448 end of program
+2013-11-09 18:31:16.314588 
+2013-11-09 18:31:16.314588 start of program
+2013-11-09 18:31:16.334588 number: 2, host: 177.33.255.216
+2013-11-09 18:31:37.338618 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:31:37.338618 end of program
+2013-11-09 18:33:16.318757 
+2013-11-09 18:33:16.318757 start of program
+2013-11-09 18:33:16.348757 number: 2, host: 177.33.255.216
+2013-11-09 18:33:37.352787 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:33:37.352787 end of program
+2013-11-09 18:35:16.312927 
+2013-11-09 18:35:16.312927 start of program
+2013-11-09 18:35:16.332927 number: 2, host: 177.33.255.216
+2013-11-09 18:35:37.336956 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:35:37.336956 end of program
+2013-11-09 18:37:16.318096 
+2013-11-09 18:37:16.328096 start of program
+2013-11-09 18:37:16.338096 number: 2, host: 177.33.255.216
+2013-11-09 18:37:37.342126 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:37:37.342126 end of program
+2013-11-09 18:39:16.312266 
+2013-11-09 18:39:16.322266 start of program
+2013-11-09 18:39:16.332266 number: 2, host: 177.33.255.216
+2013-11-09 18:39:37.346295 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:39:37.346295 end of program
+2013-11-09 18:41:16.305435 
+2013-11-09 18:41:16.305435 start of program
+2013-11-09 18:41:16.325435 number: 2, host: 177.33.255.216
+2013-11-09 18:41:37.330464 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:41:37.330464 end of program
+2013-11-09 18:43:16.320604 
+2013-11-09 18:43:16.320604 start of program
+2013-11-09 18:43:16.330604 number: 2, host: 177.33.255.216
+2013-11-09 18:43:37.345634 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:43:37.345634 end of program
+2013-11-09 18:45:16.285774 
+2013-11-09 18:45:16.295774 start of program
+2013-11-09 18:45:16.305774 number: 2, host: 177.33.255.216
+2013-11-09 18:45:37.309803 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:45:37.309803 end of program
+2013-11-09 18:47:16.319943 
+2013-11-09 18:47:16.319943 start of program
+2013-11-09 18:47:16.329943 number: 2, host: 177.33.255.216
+2013-11-09 18:47:37.343973 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:47:37.343973 end of program
+2013-11-09 18:49:16.305112 
+2013-11-09 18:49:16.305112 start of program
+2013-11-09 18:49:16.325112 number: 2, host: 177.33.255.216
+2013-11-09 18:49:37.339142 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:49:37.339142 end of program
+2013-11-09 18:51:16.309282 
+2013-11-09 18:51:16.319282 start of program
+2013-11-09 18:51:16.329282 number: 2, host: 177.33.255.216
+2013-11-09 18:51:37.333311 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:51:37.333311 end of program
+2013-11-09 18:53:16.293451 
+2013-11-09 18:53:16.293451 start of program
+2013-11-09 18:53:16.313451 number: 2, host: 177.33.255.216
+2013-11-09 18:53:37.327481 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:53:37.327481 end of program
+2013-11-09 18:55:16.307620 
+2013-11-09 18:55:16.307620 start of program
+2013-11-09 18:55:16.337620 number: 2, host: 177.33.255.216
+2013-11-09 18:55:37.341650 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:55:37.341650 end of program
+2013-11-09 18:57:16.321790 
+2013-11-09 18:57:16.326790 start of program
+2013-11-09 18:57:16.346790 number: 2, host: 177.33.255.216
+2013-11-09 18:57:37.352820 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:57:37.357820 end of program
+2013-11-09 18:59:16.334961 
+2013-11-09 18:59:16.339961 start of program
+2013-11-09 18:59:16.354961 number: 2, host: 177.33.255.216
+2013-11-09 18:59:37.362991 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 18:59:37.367991 end of program
+2013-11-09 19:01:16.309131 
+2013-11-09 19:01:16.319131 start of program
+2013-11-09 19:01:16.329131 number: 2, host: 177.33.255.216
+2013-11-09 19:01:37.333160 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:01:37.333160 end of program
+2013-11-09 19:03:16.312300 
+2013-11-09 19:03:16.312300 start of program
+2013-11-09 19:03:16.332300 number: 2, host: 177.33.255.216
+2013-11-09 19:03:37.337330 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:03:37.337330 end of program
+2013-11-09 19:05:16.306469 
+2013-11-09 19:05:16.306469 start of program
+2013-11-09 19:05:16.326469 number: 2, host: 177.33.255.216
+2013-11-09 19:05:37.340499 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:05:37.340499 end of program
+2013-11-09 19:07:16.310638 
+2013-11-09 19:07:16.320638 start of program
+2013-11-09 19:07:16.330639 number: 2, host: 177.33.255.216
+2013-11-09 19:07:37.344668 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:07:37.344668 end of program
+2013-11-09 19:09:16.327808 
+2013-11-09 19:09:16.327808 start of program
+2013-11-09 19:09:16.347808 number: 2, host: 177.33.255.216
+2013-11-09 19:09:37.351838 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:09:37.351838 end of program
+2013-11-09 19:11:16.301977 
+2013-11-09 19:11:16.311977 start of program
+2013-11-09 19:11:16.321977 number: 2, host: 177.33.255.216
+2013-11-09 19:11:37.336007 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:11:37.336007 end of program
+2013-11-09 19:13:16.317147 
+2013-11-09 19:13:16.317147 start of program
+2013-11-09 19:13:16.337147 number: 2, host: 177.33.255.216
+2013-11-09 19:13:37.341176 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:13:37.341176 end of program
+2013-11-09 19:15:16.312316 
+2013-11-09 19:15:16.312316 start of program
+2013-11-09 19:15:16.332316 number: 2, host: 177.33.255.216
+2013-11-09 19:15:37.346346 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:15:37.346346 end of program
+2013-11-09 19:17:16.316485 
+2013-11-09 19:17:16.316485 start of program
+2013-11-09 19:17:16.336485 number: 2, host: 177.33.255.216
+2013-11-09 19:17:37.350515 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:17:37.350515 end of program
+2013-11-09 19:19:16.310655 
+2013-11-09 19:19:16.310655 start of program
+2013-11-09 19:19:16.330655 number: 2, host: 177.33.255.216
+2013-11-09 19:19:37.344684 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:19:37.344684 end of program
+2013-11-09 19:21:16.315824 
+2013-11-09 19:21:16.325824 start of program
+2013-11-09 19:21:16.335824 number: 2, host: 177.33.255.216
+2013-11-09 19:21:37.339854 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:21:37.339854 end of program
+2013-11-09 19:23:16.319994 
+2013-11-09 19:23:16.319994 start of program
+2013-11-09 19:23:16.329994 number: 2, host: 177.33.255.216
+2013-11-09 19:23:37.335023 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:23:37.335023 end of program
+2013-11-09 19:25:16.304163 
+2013-11-09 19:25:16.304163 start of program
+2013-11-09 19:25:16.324163 number: 2, host: 177.33.255.216
+2013-11-09 19:25:37.328193 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:25:37.328193 end of program
+2013-11-09 19:27:16.308332 
+2013-11-09 19:27:16.308332 start of program
+2013-11-09 19:27:16.328332 number: 2, host: 177.33.255.216
+2013-11-09 19:27:37.332362 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:27:37.332362 end of program
+2013-11-09 19:29:16.314502 
+2013-11-09 19:29:16.314502 start of program
+2013-11-09 19:29:16.334502 number: 2, host: 177.33.255.216
+2013-11-09 19:29:37.338531 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:29:37.338531 end of program
+2013-11-09 19:31:16.318671 
+2013-11-09 19:31:16.318671 start of program
+2013-11-09 19:31:16.338671 number: 2, host: 177.33.255.216
+2013-11-09 19:31:37.342701 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:31:37.342701 end of program
+2013-11-09 19:33:16.302840 
+2013-11-09 19:33:16.312840 start of program
+2013-11-09 19:33:16.322840 number: 2, host: 177.33.255.216
+2013-11-09 19:33:37.336870 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:33:37.336870 end of program
+2013-11-09 19:35:16.317010 
+2013-11-09 19:35:16.327010 start of program
+2013-11-09 19:35:16.337010 number: 2, host: 177.33.255.216
+2013-11-09 19:35:37.351039 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:35:37.351039 end of program
+2013-11-09 19:37:16.311179 
+2013-11-09 19:37:16.321179 start of program
+2013-11-09 19:37:16.331179 number: 2, host: 177.33.255.216
+2013-11-09 19:37:37.345209 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:37:37.345209 end of program
+2013-11-09 19:39:16.315348 
+2013-11-09 19:39:16.315348 start of program
+2013-11-09 19:39:16.325348 number: 2, host: 177.33.255.216
+2013-11-09 19:39:37.339378 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:39:37.339378 end of program
+2013-11-09 19:41:16.318518 
+2013-11-09 19:41:16.328518 start of program
+2013-11-09 19:41:16.338518 number: 2, host: 177.33.255.216
+2013-11-09 19:41:37.343547 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:41:37.343547 end of program
+2013-11-09 19:43:16.302687 
+2013-11-09 19:43:16.302687 start of program
+2013-11-09 19:43:16.322687 number: 2, host: 177.33.255.216
+2013-11-09 19:43:37.327717 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:43:37.327717 end of program
+2013-11-09 19:45:16.316856 
+2013-11-09 19:45:16.316856 start of program
+2013-11-09 19:45:16.336856 number: 2, host: 177.33.255.216
+2013-11-09 19:45:37.350886 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:45:37.350886 end of program
+2013-11-09 19:47:16.312026 
+2013-11-09 19:47:16.312026 start of program
+2013-11-09 19:47:16.332026 number: 2, host: 177.33.255.216
+2013-11-09 19:47:37.346055 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:47:37.346055 end of program
+2013-11-09 19:49:16.318195 
+2013-11-09 19:49:16.318195 start of program
+2013-11-09 19:49:16.338195 number: 2, host: 177.33.255.216
+2013-11-09 19:49:37.353225 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:49:37.353225 end of program
+2013-11-09 19:51:16.303365 
+2013-11-09 19:51:16.303365 start of program
+2013-11-09 19:51:16.323365 number: 2, host: 177.33.255.216
+2013-11-09 19:51:37.327394 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:51:37.327394 end of program
+2013-11-09 19:53:16.317534 
+2013-11-09 19:53:16.317534 start of program
+2013-11-09 19:53:16.337534 number: 2, host: 177.33.255.216
+2013-11-09 19:53:37.341564 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:53:37.341564 end of program
+2013-11-09 19:55:16.302703 
+2013-11-09 19:55:16.302703 start of program
+2013-11-09 19:55:16.312703 number: 2, host: 177.33.255.216
+2013-11-09 19:55:37.336733 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:55:37.336733 end of program
+2013-11-09 19:57:16.306873 
+2013-11-09 19:57:16.316873 start of program
+2013-11-09 19:57:16.326873 number: 2, host: 177.33.255.216
+2013-11-09 19:57:37.340902 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:57:37.340902 end of program
+2013-11-09 19:59:16.321042 
+2013-11-09 19:59:16.321042 start of program
+2013-11-09 19:59:16.331042 number: 2, host: 177.33.255.216
+2013-11-09 19:59:37.335072 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 19:59:37.335072 end of program
+2013-11-09 20:01:16.305211 
+2013-11-09 20:01:16.305211 start of program
+2013-11-09 20:01:16.325211 number: 2, host: 177.33.255.216
+2013-11-09 20:01:37.330241 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:01:37.330241 end of program
+2013-11-09 20:03:16.309381 
+2013-11-09 20:03:16.319381 start of program
+2013-11-09 20:03:16.329381 number: 2, host: 177.33.255.216
+2013-11-09 20:03:37.344410 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:03:37.344410 end of program
+2013-11-09 20:05:16.313550 
+2013-11-09 20:05:16.313550 start of program
+2013-11-09 20:05:16.333550 number: 2, host: 177.33.255.216
+2013-11-09 20:05:37.337580 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:05:37.337580 end of program
+2013-11-09 20:07:16.307719 
+2013-11-09 20:07:16.307719 start of program
+2013-11-09 20:07:16.327719 number: 2, host: 177.33.255.216
+2013-11-09 20:07:37.321749 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:07:37.321749 end of program
+2013-11-09 20:09:16.313889 
+2013-11-09 20:09:16.313889 start of program
+2013-11-09 20:09:16.333889 number: 2, host: 177.33.255.216
+2013-11-09 20:09:37.347918 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:09:37.347918 end of program
+2013-11-09 20:11:16.309058 
+2013-11-09 20:11:16.319058 start of program
+2013-11-09 20:11:16.329058 number: 2, host: 177.33.255.216
+2013-11-09 20:11:37.343088 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:11:37.343088 end of program
+2013-11-09 20:13:16.313228 
+2013-11-09 20:13:16.313228 start of program
+2013-11-09 20:13:16.333228 number: 2, host: 177.33.255.216
+2013-11-09 20:13:37.337257 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:13:37.337257 end of program
+2013-11-09 20:15:16.307397 
+2013-11-09 20:15:16.307397 start of program
+2013-11-09 20:15:16.327397 number: 2, host: 177.33.255.216
+2013-11-09 20:15:37.331426 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:15:37.331426 end of program
+2013-11-09 20:17:16.312566 
+2013-11-09 20:17:16.322566 start of program
+2013-11-09 20:17:16.332566 number: 2, host: 177.33.255.216
+2013-11-09 20:17:37.346596 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:17:37.346596 end of program
+2013-11-09 20:19:16.297736 
+2013-11-09 20:19:16.307736 start of program
+2013-11-09 20:19:16.327736 number: 2, host: 177.33.255.216
+2013-11-09 20:19:37.321765 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:19:37.321765 end of program
+2013-11-09 20:21:16.300905 
+2013-11-09 20:21:16.300905 start of program
+2013-11-09 20:21:16.320905 number: 2, host: 177.33.255.216
+2013-11-09 20:21:37.326935 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:21:37.326935 end of program
+2013-11-09 20:23:16.316074 
+2013-11-09 20:23:16.316074 start of program
+2013-11-09 20:23:16.336074 number: 2, host: 177.33.255.216
+2013-11-09 20:23:37.341104 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:23:37.341104 end of program
+2013-11-09 20:25:16.310244 
+2013-11-09 20:25:16.310244 start of program
+2013-11-09 20:25:16.320244 number: 2, host: 177.33.255.216
+2013-11-09 20:25:37.344273 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:25:37.344273 end of program
+2013-11-09 20:27:16.314413 
+2013-11-09 20:27:16.314413 start of program
+2013-11-09 20:27:16.334413 number: 2, host: 177.33.255.216
+2013-11-09 20:27:37.348443 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:27:37.348443 end of program
+2013-11-09 20:29:16.321583 
+2013-11-09 20:29:16.321583 start of program
+2013-11-09 20:29:16.331583 number: 2, host: 177.33.255.216
+2013-11-09 20:29:37.345612 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:29:37.345612 end of program
+2013-11-09 20:31:16.315752 
+2013-11-09 20:31:16.315752 start of program
+2013-11-09 20:31:16.335752 number: 2, host: 177.33.255.216
+2013-11-09 20:31:37.339782 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:31:37.339782 end of program
+2013-11-09 20:33:16.319921 
+2013-11-09 20:33:16.319921 start of program
+2013-11-09 20:33:16.339921 number: 2, host: 177.33.255.216
+2013-11-09 20:33:37.343951 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:33:37.343951 end of program
+2013-11-09 20:35:16.324091 
+2013-11-09 20:35:16.324091 start of program
+2013-11-09 20:35:16.344091 number: 2, host: 177.33.255.216
+2013-11-09 20:35:37.348120 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:35:37.348120 end of program
+2013-11-09 20:37:16.318260 
+2013-11-09 20:37:16.318260 start of program
+2013-11-09 20:37:16.338260 number: 2, host: 177.33.255.216
+2013-11-09 20:37:37.352290 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:37:37.352290 end of program
+2013-11-09 20:39:16.312429 
+2013-11-09 20:39:16.312429 start of program
+2013-11-09 20:39:16.332429 number: 2, host: 177.33.255.216
+2013-11-09 20:39:37.346459 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:39:37.346459 end of program
+2013-11-09 20:41:16.315598 
+2013-11-09 20:41:16.315598 start of program
+2013-11-09 20:41:16.335599 number: 2, host: 177.33.255.216
+2013-11-09 20:41:37.340628 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:41:37.340628 end of program
+2013-11-09 20:43:16.319768 
+2013-11-09 20:43:16.319768 start of program
+2013-11-09 20:43:16.339768 number: 2, host: 177.33.255.216
+2013-11-09 20:43:37.334798 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:43:37.334798 end of program
+2013-11-09 20:45:16.333937 
+2013-11-09 20:45:16.333937 start of program
+2013-11-09 20:45:16.353937 number: 2, host: 177.33.255.216
+2013-11-09 20:45:37.347967 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:45:37.347967 end of program
+2013-11-09 20:47:16.318107 
+2013-11-09 20:47:16.318107 start of program
+2013-11-09 20:47:16.338107 number: 2, host: 177.33.255.216
+2013-11-09 20:47:37.342136 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:47:37.342136 end of program
+2013-11-09 20:49:16.314276 
+2013-11-09 20:49:16.314276 start of program
+2013-11-09 20:49:16.334276 number: 2, host: 177.33.255.216
+2013-11-09 20:49:37.338306 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:49:37.338306 end of program
+2013-11-09 20:51:16.309445 
+2013-11-09 20:51:16.309445 start of program
+2013-11-09 20:51:16.329445 number: 2, host: 177.33.255.216
+2013-11-09 20:51:37.333475 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:51:37.333475 end of program
+2013-11-09 20:53:16.323615 
+2013-11-09 20:53:16.323615 start of program
+2013-11-09 20:53:16.333615 number: 2, host: 177.33.255.216
+2013-11-09 20:53:37.348644 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:53:37.348644 end of program
+2013-11-09 20:55:16.318784 
+2013-11-09 20:55:16.318784 start of program
+2013-11-09 20:55:16.338784 number: 2, host: 177.33.255.216
+2013-11-09 20:55:37.352814 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:55:37.352814 end of program
+2013-11-09 20:57:16.312953 
+2013-11-09 20:57:16.312953 start of program
+2013-11-09 20:57:16.332953 number: 2, host: 177.33.255.216
+2013-11-09 20:57:37.326983 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:57:37.326983 end of program
+2013-11-09 20:59:16.318123 
+2013-11-09 20:59:16.328123 start of program
+2013-11-09 20:59:16.338123 number: 2, host: 177.33.255.216
+2013-11-09 20:59:37.342152 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 20:59:37.342152 end of program
+2013-11-09 21:01:16.311292 
+2013-11-09 21:01:16.311292 start of program
+2013-11-09 21:01:16.331292 number: 2, host: 177.33.255.216
+2013-11-09 21:01:37.336322 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:01:37.336322 end of program
+2013-11-09 21:03:16.315461 
+2013-11-09 21:03:16.315461 start of program
+2013-11-09 21:03:16.335461 number: 2, host: 177.33.255.216
+2013-11-09 21:03:37.340491 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:03:37.340491 end of program
+2013-11-09 21:05:16.320631 
+2013-11-09 21:05:16.320631 start of program
+2013-11-09 21:05:16.330631 number: 2, host: 177.33.255.216
+2013-11-09 21:05:37.334660 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:05:37.334660 end of program
+2013-11-09 21:07:16.304800 
+2013-11-09 21:07:16.304800 start of program
+2013-11-09 21:07:16.324800 number: 2, host: 177.33.255.216
+2013-11-09 21:07:37.338830 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:07:37.338830 end of program
+2013-11-09 21:09:16.310970 
+2013-11-09 21:09:16.320970 start of program
+2013-11-09 21:09:16.330970 number: 2, host: 177.33.255.216
+2013-11-09 21:09:37.344999 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:09:37.344999 end of program
+2013-11-09 21:11:16.315139 
+2013-11-09 21:11:16.315139 start of program
+2013-11-09 21:11:16.335139 number: 2, host: 177.33.255.216
+2013-11-09 21:11:37.339169 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:11:37.339169 end of program
+2013-11-09 21:13:16.319308 
+2013-11-09 21:13:16.319308 start of program
+2013-11-09 21:13:16.329308 number: 2, host: 177.33.255.216
+2013-11-09 21:13:37.343338 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:13:37.343338 end of program
+2013-11-09 21:15:16.313478 
+2013-11-09 21:15:16.323478 start of program
+2013-11-09 21:15:16.333478 number: 2, host: 177.33.255.216
+2013-11-09 21:15:37.337507 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:15:37.337507 end of program
+2013-11-09 21:17:16.307647 
+2013-11-09 21:17:16.317647 start of program
+2013-11-09 21:17:16.327647 number: 2, host: 177.33.255.216
+2013-11-09 21:17:37.341677 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:17:37.341677 end of program
+2013-11-09 21:19:16.311816 
+2013-11-09 21:19:16.321816 start of program
+2013-11-09 21:19:16.331816 number: 2, host: 177.33.255.216
+2013-11-09 21:19:37.345846 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:19:37.345846 end of program
+2013-11-09 21:21:16.314986 
+2013-11-09 21:21:16.314986 start of program
+2013-11-09 21:21:16.334986 number: 2, host: 177.33.255.216
+2013-11-09 21:21:37.330015 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:21:37.330015 end of program
+2013-11-09 21:23:16.319155 
+2013-11-09 21:23:16.319155 start of program
+2013-11-09 21:23:16.339155 number: 2, host: 177.33.255.216
+2013-11-09 21:23:37.344185 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:23:37.344185 end of program
+2013-11-09 21:25:16.313324 
+2013-11-09 21:25:16.313324 start of program
+2013-11-09 21:25:16.333324 number: 2, host: 177.33.255.216
+2013-11-09 21:25:37.347354 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:25:37.347354 end of program
+2013-11-09 21:27:16.307494 
+2013-11-09 21:27:16.307494 start of program
+2013-11-09 21:27:16.327494 number: 2, host: 177.33.255.216
+2013-11-09 21:27:37.341523 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:27:37.341523 end of program
+2013-11-09 21:29:16.304663 
+2013-11-09 21:29:16.304663 start of program
+2013-11-09 21:29:16.324663 number: 2, host: 177.33.255.216
+2013-11-09 21:29:37.328693 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:29:37.328693 end of program
+2013-11-09 21:31:16.318832 
+2013-11-09 21:31:16.318832 start of program
+2013-11-09 21:31:16.338832 number: 2, host: 177.33.255.216
+2013-11-09 21:31:37.342862 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:31:37.342862 end of program
+2013-11-09 21:33:16.314002 
+2013-11-09 21:33:16.314002 start of program
+2013-11-09 21:33:16.334002 number: 2, host: 177.33.255.216
+2013-11-09 21:33:37.348032 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:33:37.348032 end of program
+2013-11-09 21:35:16.318171 
+2013-11-09 21:35:16.318171 start of program
+2013-11-09 21:35:16.338171 number: 2, host: 177.33.255.216
+2013-11-09 21:35:37.342201 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:35:37.342201 end of program
+2013-11-09 21:37:16.313341 
+2013-11-09 21:37:16.313341 start of program
+2013-11-09 21:37:16.333341 number: 2, host: 177.33.255.216
+2013-11-09 21:37:37.347370 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:37:37.347370 end of program
+2013-11-09 21:39:16.318510 
+2013-11-09 21:39:16.318510 start of program
+2013-11-09 21:39:16.338510 number: 2, host: 177.33.255.216
+2013-11-09 21:39:37.352540 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:39:37.352540 end of program
+2013-11-09 21:41:16.321679 
+2013-11-09 21:41:16.321679 start of program
+2013-11-09 21:41:16.331679 number: 2, host: 177.33.255.216
+2013-11-09 21:41:37.346709 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:41:37.346709 end of program
+2013-11-09 21:43:16.315849 
+2013-11-09 21:43:16.315849 start of program
+2013-11-09 21:43:16.335849 number: 2, host: 177.33.255.216
+2013-11-09 21:43:37.341878 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:43:37.341878 end of program
+2013-11-09 21:45:16.311018 
+2013-11-09 21:45:16.321018 start of program
+2013-11-09 21:45:16.331018 number: 2, host: 177.33.255.216
+2013-11-09 21:45:37.335048 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:45:37.335048 end of program
+2013-11-09 21:47:16.305187 
+2013-11-09 21:47:16.305187 start of program
+2013-11-09 21:47:16.325187 number: 2, host: 177.33.255.216
+2013-11-09 21:47:37.339217 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:47:37.339217 end of program
+2013-11-09 21:49:16.321357 
+2013-11-09 21:49:16.321357 start of program
+2013-11-09 21:49:16.341357 number: 2, host: 177.33.255.216
+2013-11-09 21:49:37.335386 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:49:37.335386 end of program
+2013-11-09 21:51:16.315526 
+2013-11-09 21:51:16.315526 start of program
+2013-11-09 21:51:16.335526 number: 2, host: 177.33.255.216
+2013-11-09 21:51:37.349556 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:51:37.349556 end of program
+2013-11-09 21:53:16.319695 
+2013-11-09 21:53:16.319695 start of program
+2013-11-09 21:53:16.339696 number: 2, host: 177.33.255.216
+2013-11-09 21:53:37.343725 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:53:37.343725 end of program
+2013-11-09 21:55:16.313865 
+2013-11-09 21:55:16.313865 start of program
+2013-11-09 21:55:16.333865 number: 2, host: 177.33.255.216
+2013-11-09 21:55:37.357894 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:55:37.357894 end of program
+2013-11-09 21:57:16.318034 
+2013-11-09 21:57:16.318034 start of program
+2013-11-09 21:57:16.338034 number: 2, host: 177.33.255.216
+2013-11-09 21:57:37.342064 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:57:37.342064 end of program
+2013-11-09 21:59:16.312203 
+2013-11-09 21:59:16.312203 start of program
+2013-11-09 21:59:16.332204 number: 2, host: 177.33.255.216
+2013-11-09 21:59:37.346233 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 21:59:37.346233 end of program
+2013-11-09 22:01:16.305373 
+2013-11-09 22:01:16.305373 start of program
+2013-11-09 22:01:16.325373 number: 2, host: 177.33.255.216
+2013-11-09 22:01:37.330402 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:01:37.330402 end of program
+2013-11-09 22:03:16.319542 
+2013-11-09 22:03:16.319542 start of program
+2013-11-09 22:03:16.329542 number: 2, host: 177.33.255.216
+2013-11-09 22:03:37.354572 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:03:37.354572 end of program
+2013-11-09 22:05:16.313711 
+2013-11-09 22:05:16.313711 start of program
+2013-11-09 22:05:16.333711 number: 2, host: 177.33.255.216
+2013-11-09 22:05:37.327741 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:05:37.327741 end of program
+2013-11-09 22:07:16.317881 
+2013-11-09 22:07:16.327881 start of program
+2013-11-09 22:07:16.337881 number: 2, host: 177.33.255.216
+2013-11-09 22:07:37.351910 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:07:37.351910 end of program
+2013-11-09 22:09:16.305050 
+2013-11-09 22:09:16.305050 start of program
+2013-11-09 22:09:16.325050 number: 2, host: 177.33.255.216
+2013-11-09 22:09:37.349080 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:09:37.349080 end of program
+2013-11-09 22:11:16.299220 
+2013-11-09 22:11:16.309220 start of program
+2013-11-09 22:11:16.319220 number: 2, host: 177.33.255.216
+2013-11-09 22:11:37.323249 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:11:37.323249 end of program
+2013-11-09 22:13:16.314389 
+2013-11-09 22:13:16.324389 start of program
+2013-11-09 22:13:16.334389 number: 2, host: 177.33.255.216
+2013-11-09 22:13:37.338419 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:13:37.338419 end of program
+2013-11-09 22:15:16.308558 
+2013-11-09 22:15:16.308558 start of program
+2013-11-09 22:15:16.328558 number: 2, host: 177.33.255.216
+2013-11-09 22:15:37.342588 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:15:37.342588 end of program
+2013-11-09 22:17:16.303728 
+2013-11-09 22:17:16.313728 start of program
+2013-11-09 22:17:16.323728 number: 2, host: 177.33.255.216
+2013-11-09 22:17:37.337757 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:17:37.337757 end of program
+2013-11-09 22:19:16.317897 
+2013-11-09 22:19:16.317897 start of program
+2013-11-09 22:19:16.337897 number: 2, host: 177.33.255.216
+2013-11-09 22:19:37.331927 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:19:37.331927 end of program
+2013-11-09 22:21:16.302066 
+2013-11-09 22:21:16.302066 start of program
+2013-11-09 22:21:16.322066 number: 2, host: 177.33.255.216
+2013-11-09 22:21:37.327096 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:21:37.327096 end of program
+2013-11-09 22:23:16.316236 
+2013-11-09 22:23:16.316236 start of program
+2013-11-09 22:23:16.336236 number: 2, host: 177.33.255.216
+2013-11-09 22:23:37.351266 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:23:37.351266 end of program
+2013-11-09 22:25:16.300405 
+2013-11-09 22:25:16.310405 start of program
+2013-11-09 22:25:16.320405 number: 2, host: 177.33.255.216
+2013-11-09 22:25:37.344435 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:25:37.344435 end of program
+2013-11-09 22:27:16.304574 
+2013-11-09 22:27:16.304574 start of program
+2013-11-09 22:27:16.314574 number: 2, host: 177.33.255.216
+2013-11-09 22:27:37.328604 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:27:37.328604 end of program
+2013-11-09 22:29:16.310744 
+2013-11-09 22:29:16.310744 start of program
+2013-11-09 22:29:16.320744 number: 2, host: 177.33.255.216
+2013-11-09 22:29:37.334774 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:29:37.334774 end of program
+2013-11-09 22:31:16.314913 
+2013-11-09 22:31:16.314913 start of program
+2013-11-09 22:31:16.334913 number: 2, host: 177.33.255.216
+2013-11-09 22:31:37.348943 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:31:37.348943 end of program
+2013-11-09 22:33:16.319083 
+2013-11-09 22:33:16.319083 start of program
+2013-11-09 22:33:16.339083 number: 2, host: 177.33.255.216
+2013-11-09 22:33:37.333112 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:33:37.333112 end of program
+2013-11-09 22:35:16.303252 
+2013-11-09 22:35:16.303252 start of program
+2013-11-09 22:35:16.323252 number: 2, host: 177.33.255.216
+2013-11-09 22:35:37.327282 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:35:37.327282 end of program
+2013-11-09 22:37:16.307421 
+2013-11-09 22:37:16.307421 start of program
+2013-11-09 22:37:16.327421 number: 2, host: 177.33.255.216
+2013-11-09 22:37:37.341451 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:37:37.341451 end of program
+2013-11-09 22:39:16.301591 
+2013-11-09 22:39:16.311591 start of program
+2013-11-09 22:39:16.321591 number: 2, host: 177.33.255.216
+2013-11-09 22:39:37.335620 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:39:37.335620 end of program
+2013-11-09 22:41:16.304760 
+2013-11-09 22:41:16.304760 start of program
+2013-11-09 22:41:16.324760 number: 2, host: 177.33.255.216
+2013-11-09 22:41:37.329790 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:41:37.329790 end of program
+2013-11-09 22:43:16.309929 
+2013-11-09 22:43:16.309929 start of program
+2013-11-09 22:43:16.329929 number: 2, host: 177.33.255.216
+2013-11-09 22:43:37.324959 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:43:37.324959 end of program
+2013-11-09 22:45:16.295099 
+2013-11-09 22:45:16.295099 start of program
+2013-11-09 22:45:16.315099 number: 2, host: 177.33.255.216
+2013-11-09 22:45:37.319128 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:45:37.319128 end of program
+2013-11-09 22:47:16.309268 
+2013-11-09 22:47:16.309268 start of program
+2013-11-09 22:47:16.329268 number: 2, host: 177.33.255.216
+2013-11-09 22:47:37.343298 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:47:37.343298 end of program
+2013-11-09 22:49:16.316438 
+2013-11-09 22:49:16.326438 start of program
+2013-11-09 22:49:16.336438 number: 2, host: 177.33.255.216
+2013-11-09 22:49:37.350467 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:49:37.350467 end of program
+2013-11-09 22:51:16.310607 
+2013-11-09 22:51:16.310607 start of program
+2013-11-09 22:51:16.320607 number: 2, host: 177.33.255.216
+2013-11-09 22:51:37.324636 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:51:37.324636 end of program
+2013-11-09 22:53:16.315776 
+2013-11-09 22:53:16.315776 start of program
+2013-11-09 22:53:16.335776 number: 2, host: 177.33.255.216
+2013-11-09 22:53:37.339806 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:53:37.339806 end of program
+2013-11-09 22:55:16.309946 
+2013-11-09 22:55:16.319946 start of program
+2013-11-09 22:55:16.329946 number: 2, host: 177.33.255.216
+2013-11-09 22:55:37.333975 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:55:37.333975 end of program
+2013-11-09 22:57:16.314115 
+2013-11-09 22:57:16.314115 start of program
+2013-11-09 22:57:16.334115 number: 2, host: 177.33.255.216
+2013-11-09 22:57:37.348145 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:57:37.348145 end of program
+2013-11-09 22:59:16.318284 
+2013-11-09 22:59:16.318284 start of program
+2013-11-09 22:59:16.338284 number: 2, host: 177.33.255.216
+2013-11-09 22:59:37.362314 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 22:59:37.362314 end of program
+2013-11-09 23:01:16.311454 
+2013-11-09 23:01:16.321454 start of program
+2013-11-09 23:01:16.331454 number: 2, host: 177.33.255.216
+2013-11-09 23:01:37.336483 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:01:37.336483 end of program
+2013-11-09 23:03:16.305623 
+2013-11-09 23:03:16.315623 start of program
+2013-11-09 23:03:16.325623 number: 2, host: 177.33.255.216
+2013-11-09 23:03:37.340653 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:03:37.340653 end of program
+2013-11-09 23:05:16.319792 
+2013-11-09 23:05:16.319792 start of program
+2013-11-09 23:05:16.329792 number: 2, host: 177.33.255.216
+2013-11-09 23:05:37.343822 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:05:37.343822 end of program
+2013-11-09 23:07:16.313962 
+2013-11-09 23:07:16.313962 start of program
+2013-11-09 23:07:16.333962 number: 2, host: 177.33.255.216
+2013-11-09 23:07:37.347991 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:07:37.347991 end of program
+2013-11-09 23:09:16.291131 
+2013-11-09 23:09:16.291131 start of program
+2013-11-09 23:09:16.301131 number: 2, host: 177.33.255.216
+2013-11-09 23:09:37.315161 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:09:37.315161 end of program
+2013-11-09 23:11:16.305300 
+2013-11-09 23:11:16.305300 start of program
+2013-11-09 23:11:16.325300 number: 2, host: 177.33.255.216
+2013-11-09 23:11:37.349330 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:11:37.349330 end of program
+2013-11-09 23:13:16.319470 
+2013-11-09 23:13:16.319470 start of program
+2013-11-09 23:13:16.329470 number: 2, host: 177.33.255.216
+2013-11-09 23:13:37.343499 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:13:37.343499 end of program
+2013-11-09 23:15:16.313639 
+2013-11-09 23:15:16.313639 start of program
+2013-11-09 23:15:16.343639 number: 2, host: 177.33.255.216
+2013-11-09 23:15:37.347669 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:15:37.347669 end of program
+2013-11-09 23:17:16.308808 
+2013-11-09 23:17:16.308808 start of program
+2013-11-09 23:17:16.328809 number: 2, host: 177.33.255.216
+2013-11-09 23:17:37.322838 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:17:37.322838 end of program
+2013-11-09 23:19:16.312978 
+2013-11-09 23:19:16.312978 start of program
+2013-11-09 23:19:16.332978 number: 2, host: 177.33.255.216
+2013-11-09 23:19:37.337007 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:19:37.337007 end of program
+2013-11-09 23:21:16.316147 
+2013-11-09 23:21:16.316147 start of program
+2013-11-09 23:21:16.326147 number: 2, host: 177.33.255.216
+2013-11-09 23:21:37.351177 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:21:37.351177 end of program
+2013-11-09 23:23:16.310316 
+2013-11-09 23:23:16.320316 start of program
+2013-11-09 23:23:16.330316 number: 2, host: 177.33.255.216
+2013-11-09 23:23:37.345346 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:23:37.345346 end of program
+2013-11-09 23:25:16.315486 
+2013-11-09 23:25:16.315486 start of program
+2013-11-09 23:25:16.335486 number: 2, host: 177.33.255.216
+2013-11-09 23:25:37.339515 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:25:37.339515 end of program
+2013-11-09 23:27:16.319655 
+2013-11-09 23:27:16.319655 start of program
+2013-11-09 23:27:16.329655 number: 2, host: 177.33.255.216
+2013-11-09 23:27:37.333685 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:27:37.333685 end of program
+2013-11-09 23:29:16.315825 
+2013-11-09 23:29:16.315825 start of program
+2013-11-09 23:29:16.335825 number: 2, host: 177.33.255.216
+2013-11-09 23:29:37.339854 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:29:37.339854 end of program
+2013-11-09 23:31:16.309994 
+2013-11-09 23:31:16.309994 start of program
+2013-11-09 23:31:16.329994 number: 2, host: 177.33.255.216
+2013-11-09 23:31:37.334024 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:31:37.334024 end of program
+2013-11-09 23:33:16.304163 
+2013-11-09 23:33:16.304163 start of program
+2013-11-09 23:33:16.324163 number: 2, host: 177.33.255.216
+2013-11-09 23:33:37.318193 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:33:37.318193 end of program
+2013-11-09 23:35:16.318333 
+2013-11-09 23:35:16.328333 start of program
+2013-11-09 23:35:16.338333 number: 2, host: 177.33.255.216
+2013-11-09 23:35:37.342362 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:35:37.342362 end of program
+2013-11-09 23:37:16.312502 
+2013-11-09 23:37:16.312502 start of program
+2013-11-09 23:37:16.332502 number: 2, host: 177.33.255.216
+2013-11-09 23:37:37.346532 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:37:37.346532 end of program
+2013-11-09 23:39:16.326671 
+2013-11-09 23:39:16.336671 start of program
+2013-11-09 23:39:16.346671 number: 2, host: 177.33.255.216
+2013-11-09 23:39:37.360701 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:39:37.360701 end of program
+2013-11-09 23:41:16.309841 
+2013-11-09 23:41:16.309841 start of program
+2013-11-09 23:41:16.329841 number: 2, host: 177.33.255.216
+2013-11-09 23:41:37.344870 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:41:37.344870 end of program
+2013-11-09 23:43:16.304010 
+2013-11-09 23:43:16.304010 start of program
+2013-11-09 23:43:16.324010 number: 2, host: 177.33.255.216
+2013-11-09 23:43:37.328040 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:43:37.328040 end of program
+2013-11-09 23:45:16.318179 
+2013-11-09 23:45:16.318179 start of program
+2013-11-09 23:45:16.338179 number: 2, host: 177.33.255.216
+2013-11-09 23:45:37.342209 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:45:37.342209 end of program
+2013-11-09 23:47:16.303349 
+2013-11-09 23:47:16.303349 start of program
+2013-11-09 23:47:16.323349 number: 2, host: 177.33.255.216
+2013-11-09 23:47:37.337378 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:47:37.337378 end of program
+2013-11-09 23:49:16.311518 
+2013-11-09 23:49:16.321518 start of program
+2013-11-09 23:49:16.331518 number: 2, host: 177.33.255.216
+2013-11-09 23:49:37.345548 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:49:37.345548 end of program
+2013-11-09 23:51:16.315688 
+2013-11-09 23:51:16.315688 start of program
+2013-11-09 23:51:16.335688 number: 2, host: 177.33.255.216
+2013-11-09 23:51:37.339717 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:51:37.339717 end of program
+2013-11-09 23:53:16.309857 
+2013-11-09 23:53:16.309857 start of program
+2013-11-09 23:53:16.329857 number: 2, host: 177.33.255.216
+2013-11-09 23:53:37.333887 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:53:37.333887 end of program
+2013-11-09 23:55:16.294026 
+2013-11-09 23:55:16.304026 start of program
+2013-11-09 23:55:16.314026 number: 2, host: 177.33.255.216
+2013-11-09 23:55:37.318056 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:55:37.318056 end of program
+2013-11-09 23:57:16.318196 
+2013-11-09 23:57:16.318196 start of program
+2013-11-09 23:57:16.338196 number: 2, host: 177.33.255.216
+2013-11-09 23:57:37.352225 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:57:37.352225 end of program
+2013-11-09 23:59:16.301365 
+2013-11-09 23:59:16.301365 start of program
+2013-11-09 23:59:16.322365 number: 2, host: 177.33.255.216
+2013-11-09 23:59:37.336395 error, Server Host 2 not connected: SQLSTATE[HY000] [2002] Uma tentativa de conexão falhou porque o componente conectado não respondeu
+corretamente após um período de tempo ou a conexão estabelecida falhou
+porque o host conectado não respondeu.
+
+2013-11-09 23:59:37.336395 end of program

@@ -47,6 +47,11 @@ JKY.generate_batch = function(the_row) {
 		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.name + "' />"
 		+ "<a class='jky-thread-row-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
+	var my_purline = ''
+		+ "<input class='jky-purline-row-id' type='hidden' value=" + the_row.purchase_line_id + " />"
+		+ "<input class='jky-purline-row-number' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.purchase_number + "' />"
+		+ "<a class='jky-purline-row-icon href='#' onClick='JKY.PurLine.display(this, " + JKY.row.supplier_id + ")'><i class='icon-th'></i></a>"
+		;
 //	var my_print = (the_row.labels_printed >= the_row.received_boxes) ? '' : '<a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
 	var my_print = '<a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
 	var my_html = ''
@@ -54,7 +59,8 @@ JKY.generate_batch = function(the_row) {
 		+ '<td class="jky-action"			>' + my_trash + '</td>'
 		+ '<td ><input  class="jky-batch-code"		text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.code	) + '" /></td>'
 		+ '<td ><input  class="jky-batch-number"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.batch	) + '" /></td>'
-		+ '<td class="jky-td-thread-name"	>' + my_thread + '</td>'
+		+ '<td class="jky-td-thread-name"		>' + my_thread  + '</td>'
+		+ '<td class="jky-td-purchase-number"	>' + my_purline + '</td>'
 		+ '<td class="jky-td-batch-boxes"	><input  class="jky-received-boxes"		onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.received_boxes	+ '" /></td>'
 		+ '<td class="jky-td-labels-printed"><input  class="jky-labels-printed"									 disabled value="' + the_row.labels_printed	+ '" />' + my_print + '</td>'
 		+ '<td class="jky-td-batch-boxes"	><input  class="jky-number-of-cones"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.number_of_cones	+ '" /></td>'
@@ -70,6 +76,7 @@ JKY.update_batch = function(id_name, the_id ) {
 	JKY.select_batch(the_id);
 	var my_tr = $(id_name).parent().parent();
 	var my_thread_id		= my_tr.find('.jky-thread-row-id'	).val();
+	var my_purline_id		= my_tr.find('.jky-purline-row-id'	).val();
 	var my_code				= my_tr.find('.jky-batch-code'		).val();
 	var my_batch			= my_tr.find('.jky-batch-number'	).val();
 	var my_received_boxes	= parseFloat(my_tr.find('.jky-received-boxes'	).val());
@@ -83,6 +90,7 @@ JKY.update_batch = function(id_name, the_id ) {
 
 	var my_set = ''
 		+            'thread_id =  ' + my_thread_id
+		+   ', purchase_line_id =  ' + my_purline_id
 		+               ', code =\'' + my_code	+ '\''
 		+              ', batch =\'' + my_batch	+ '\''
 		+     ', received_boxes =  ' + my_received_boxes

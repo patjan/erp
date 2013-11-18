@@ -128,6 +128,6 @@ JKY.process_delete = function(the_id, the_row) {
 JKY.refresh_select = function() {
 	var my_select = JKY.App.get('select');
 	if (my_select == 'Root') {
-		JKY.set_html('jky-app-select', JKY.set_configs('Root', my_select, ''));
+		JKY.set_html('jky-app-select', JKY.set_configs('Root', my_select));
 	}
 };

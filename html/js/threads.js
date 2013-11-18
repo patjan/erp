@@ -79,7 +79,7 @@ JKY.set_add_new_row = function() {
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-		+            'ncm=\'' + JKY.get_value	('jky-ncm'				) + '\''
+		+             'ncm=\'' + JKY.get_value	('jky-ncm'				) + '\''
 		+          ', name=\'' + JKY.get_value	('jky-thread-name'		) + '\''
 		+  ', thread_group=\'' + JKY.get_value	('jky-thread-groups'	) + '\''
 //		+  ', thread_color=\'' + JKY.get_value	('jky-thread-color'		) + '\''

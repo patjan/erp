@@ -219,6 +219,22 @@ JKY.display_form = function() {
 	JKY.show('jky-action-copy');
 };
 
+JKY.process_validation = function() {
+	var my_error = '';
+	my_error += JKY.Validation.is_numeric	('jky-diameter'			, 'Diameter'	);
+	my_error += JKY.Validation.is_numeric	('jky-density'			, 'Density'		);
+	my_error += JKY.Validation.is_numeric	('jky-inputs'			, 'Inputs'		);
+	my_error += JKY.Validation.is_numeric	('jky-turns'			, 'Turns'		);
+	my_error += JKY.Validation.is_numeric	('jky-weight'			, 'Weight'		);
+	my_error += JKY.Validation.is_numeric	('jky-width'			, 'Width'		);
+	my_error += JKY.Validation.is_numeric	('jky-speed'			, 'Speed'		);
+//	my_error += JKY.Validation.is_numeric	('jky-lanes'			, 'Lanes'		);
+//	my_error += JKY.Validation.is_numeric	('jky-elasticity'		, 'Elasticity'	);
+//	my_error += JKY.Validation.is_required	('jky-needling'			, 'Needling'	);
+	my_error += JKY.Validation.is_numeric	('jky-peso'				, 'Peso'		);
+	return my_error;
+}
+
 JKY.process_copy = function(the_id, the_row) {
 	var my_set	= 'composition =\'' + the_row.composition	+ '\'';
 	if (the_row.draw != null) {

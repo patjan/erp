@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS FTPs
 , PRIMARY KEY(id)
 , UNIQUE(ftp_number)
 , KEY product(product_id)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
 INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next FTP Number', value='100001', created_by=1, created_at=NOW();

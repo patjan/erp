@@ -118,7 +118,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-email'			, '');
 	JKY.set_option	('jky-company-name'		, '');
 	JKY.set_value	('jky-user-name'		, '');
-	JKY.set_value	('jky-user-role'		, '');
+	JKY.set_value	('jky-user-role'		, 'Visitor');
 	JKY.set_value	('jky-street1'			, '');
 	JKY.set_value	('jky-street2'			, '');
 	JKY.set_value	('jky-city'				, '');

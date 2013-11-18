@@ -14,6 +14,26 @@
 
 #jky-threads-total-ordered		{width:75px; font-weight:bold; text-align:right;}
 #jky-threads-total-checkout		{width:75px; font-weight:bold; text-align:right;}
+
+.jky-product-name		{width:140px;}
+
+#jky-printable			{font-size:90%; font-weight:normal;}
+.jky-print-label		{width:100px; text-align:right; font-weight:bold;}
+.jky-print-label1		{width: 80px; text-align:right; font-weight:bold;}
+.jky-print-label2		{width: 80px; text-align:right; font-weight:bold;}
+.jky-print-label3		{width:120px; text-align:right; font-weight:bold;}
+.jky-print-value		{width:200px;}
+.jky-print-head			{font-weight:bold;}
+#jky-print-number		{font-size:20px; font-weight:bold;}
+#jky-print-product-name	{text-transform:capitalize;}
+#jky-print-machine-name	{text-transform:capitalize;}
+#jky-print-has-break	{font-weight:bold;}
+
+.jky-print-sequence		{width: 80px; text-align:center; font-weight:bold; border:1px solid black;}
+.jky-print-barcode		{width:100px; text-align:center; font-weight:bold; border:1px solid black;}
+.jky-print-time			{width: 80px; text-align:center; font-weight:bold; border:1px solid black;}
+.jky-print-name			{width:200px; text-align:center; font-weight:bold; border:1px solid black;}
+.jky-print-remarks		{width:200px; text-align:center; font-weight:bold; border:1px solid black;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -23,9 +43,8 @@
 			<th class='jky-order-number'	><span>      Order<br>Number	</span></th>
 			<th class='jky-customer-name'	><span>               Customer	</span></th>
 			<th class='jky-product-name'	><span>               Product	</span></th>
-<!--		<th class='jky-machine-name'	><span>               Machine	</span></th>	-->
-<!--		<th class='jky-partner-name'	><span>               Partner	</span></th>	-->
 			<th class='jky-ftp-number'		><span>               FTP		</span></th>
+			<th class='jky-machine-name'	><span>    Machine<br>Partner	</span></th>
 			<th class='jky-ordered-date'	><span>    Ordered<br>Date		</span></th>
 			<th class='jky-needed-date'		><span>     Needed<br>Date		</span></th>
 			<th class='jky-produced-date'	><span>   Produced<br>Date		</span></th>
@@ -119,6 +138,14 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span>Labels Printed</span>:</div>
 					<input  id='jky-labels-printed'	class='jky-form-value' disabled />
 					<a id='jky-pieces-display'><i class='icon-print'></i></a>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>FTPs Printed</span>:</div>
+					<input  id='jky-ftps-printed'	class='jky-form-value' disabled />
+					<a id='jky-print-ftp'	><i class='icon-print'></i></a>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>OPs Printed</span>:</div>
+					<input  id='jky-ops-printed'		class='jky-form-value' disabled />
+					<a id='jky-print-op'	><i class='icon-print'></i></a>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -214,8 +241,8 @@
 		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>  Ordered Pieces</span>:</div><input id='jky-pieces-ordered-pieces'	type='text' disabled /></div>
 		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>  Labels Printed</span>:</div><input id='jky-pieces-labels-printed'	type='text' disabled /></div>
 		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>Labels Unprinted</span>:</div><input id='jky-pieces-labels-unprinted'	type='text' disabled /></div>
-		<div class='jky-pieces-line'><div class='jky-pieces-label'><span> Labels to Print</span>:</div><input id='jky-pieces-labels-to-print'	type='text'						/></div>
-		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>     Produced By</span>:</div><input id='jky-pieces-produced-by'		type='text'						/></div>
+		<div class='jky-pieces-line'><div class='jky-pieces-label'><span> Labels to Print</span>:</div><input id='jky-pieces-labels-to-print'	type='text'			 /></div>
+		<div class='jky-pieces-line'><div class='jky-pieces-label'><span>     Produced By</span>:</div><input id='jky-pieces-produced-by'		type='text'			 /></div>
 	</div>
 	<div class='modal-footer'>
 		<button  id='jky-pieces-print'  class='btn btn-success'				type='button'><span>Print	</span></button>
@@ -224,6 +251,8 @@
 </div>
 
 <div id='jky-body-loaded'></div>
+<div id='jky-printable'></div>
+
 <script src='js/orders.js'			></script>
 <script src='js/JKY.Customer.js'	></script>
 <script src='js/JKY.Product.js'		></script>
@@ -234,6 +263,12 @@
 <script src='js/JKY.BatchIn.js'		></script>
 <script src='js/JKY.Order.js'		></script>
 <script src='js/JKY.Pieces.js'		></script>
+
+<script src='js/ftp_threads.js'		></script>
+<script src='js/ftp_loads.js'		></script>
+<script src='js/ftp_settings.js'	></script>
+
 <script src='js/order_threads.js'	></script>
 <script src='js/order_pieces.js'	></script>
 <script src='js/order_extra.js'		></script>
+

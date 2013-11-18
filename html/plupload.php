@@ -12,7 +12,7 @@ ini_set( 'display_startup_errors'  , 'on'    );
 ini_set( 'display_errors'          , 'on'    );
 //ini_set( 'memory_limit'            , '2048M' );        //  512M is good for 160M
 
-date_default_timezone_set( 'America/Los_Angeles' );
+date_default_timezone_set( 'America/Sao_Paulo' );
 
 //   Define path to application directory
 defined( 'APPLICATION_PATH' ) or define( 'APPLICATION_PATH', realpath( dirname( __FILE__ )));

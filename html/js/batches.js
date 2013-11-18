@@ -54,7 +54,6 @@ JKY.set_table_row = function(the_row) {
 	var my_checkin_color	= (my_checkin_boxes  < my_received_boxes) ? 'jky-error' : 'jky-ok';
 
 	var my_html = ''
-		+  '<td class="jky-product-code"	>' + JKY.fix_null	(the_row.code				)	+ '</td>'
 		+  '<td class="jky-batch-code"		>' + JKY.fix_null	(the_row.batch				)	+ '</td>'
 		+  '<td class="jky-received-boxes"	>' +				 the_row.received_boxes			+ '</td>'
 		+  '<td class="jky-labels-printed ' + my_labels_color  + '"	>' + the_row.labels_printed	+ '</td>'

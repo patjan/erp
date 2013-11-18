@@ -311,80 +311,16 @@ JKY.save_remarks = function() {
 
 JKY.save_remarks_success = function(response) {
 	JKY.display_message('Remarks saved, ' + response.message);
+	JKY.row = JKY.get_row('TDyers', JKY.row.id);
 }
 
 /* -------------------------------------------------------------------------- */
 JKY.generate_checkout = function() {
-	JKY.active_tdyer();
-}
-
-JKY.active_tdyer = function(response) {
 	var my_data =
-		{ method	: 'update'
+		{ method	: 'generate'
 		, table		: 'TDyers'
-		, set		: 'status = \'Active\''
-		, where		: 'id = ' + JKY.row.id
-		};
-	JKY.ajax(false, my_data, JKY.insert_checkout);
-}
-
-JKY.insert_checkout = function() {
-	var my_needed_date = JKY.row.needed_at;
-	if (my_needed_date == null) {
-		my_needed_date = JKY.get_date();
-	}
-	var my_set = ''
-//		+          'order_id=  ' + JKY.row.order_id
-		+           'dyer_id=  ' + JKY.row.dyer_id
-		+          ', nfe_dl=\'' + '' + '\''
-		+          ', nfe_tm=\'' + '' + '\''
-		+    ', requested_at=\'' + my_needed_date + '\''
-		+', requested_weight=  ' + JKY.row.ordered_weight
-		;
-	var my_data =
-		{ method	: 'insert'
-		, table		: 'CheckOuts'
-		, set		:  my_set
-		};
-	JKY.ajax(false, my_data, JKY.insert_batchout);
-}
-
-JKY.insert_batchout = function(response) {
-	var my_rows = JKY.get_rows('TDyerThreads', JKY.row.id);
-	for(var i=0, max=my_rows.length; i<max; i++) {
-		JKY.row = my_rows[i];
-		var my_batch = JKY.get_row('Batches', JKY.row.batchin_id);
-		var my_ordered_weight = JKY.get_sum_by_id('TDyerColors', 'ordered_weight', JKY.row.batchin_id);
-		var my_ordered_boxes  = Math.round(my_ordered_weight / my_batch.average_weight + 0.5);
-		var my_set = ''
-			+     '  checkout_id=  ' + response.id
-			+       ', thread_id=  ' + JKY.row.thread_id
-			+      ', batchin_id=  ' + JKY.row.batchin_id
-//			+     ', req_line_id=  ' + JKY.row.id
-			+ ', tdyer_thread_id=  ' + JKY.row.id
-			+            ', code=\'' + '' + '\''
-			+           ', batch=\'' + my_batch.number + '\''
-			+      ', unit_price=  ' + my_batch.unit_price
-			+  ', average_weight=  ' + my_batch.average_weight
-			+', requested_weight=  ' + my_ordered_weight
-			+ ', requested_boxes=  ' + my_ordered_boxes
-			;
-		var my_data =
-			{ method	: 'insert'
-			, table		: 'BatchOuts'
-			, set		:  my_set
-			};
-		JKY.ajax(false, my_data, JKY.connect_batchout);
-	}
-}
-
-JKY.connect_batchout = function(response) {
-	var my_data =
-		{ method	: 'update'
-		, table		: 'TDyerThreads'
-		, set		: 'batchout_id = ' + response.id
-		, where		: 'id = ' + JKY.row.id
-		};
+		, id		:  JKY.row.id
+		}
 	JKY.ajax(false, my_data, JKY.refresh_form);
 }
 

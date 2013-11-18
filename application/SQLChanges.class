@@ -1,0 +1,78 @@
+<?php
+//	Class	SQLChanges
+//	Author	Pat Jan
+//	Version	3.0.0
+
+class SQLChanges extends Tables
+{
+
+function SQLChanges( $Id = null )
+{
+	$this->SetTable( 'SQLChanges', $Id );
+}
+
+function GroupByTableName()
+{
+
+//	Acumular Qtde, Max, Min
+//	por Tipo de Tabela
+
+	$SQL = 'SELECT TableName'
+		. ', COUNT( TableName ) AS Qtde'
+		. ', MIN  ( TableId   ) AS MinId'
+		. ', MAX  ( TableId   ) AS MaxId'
+		. '  FROM SQLChanges'
+		. ' GROUP BY TableName'
+		. ' ORDER BY TableName'
+		;
+	$this->Select = mysql_query( $SQL );
+	if( $this->Select )
+		return mysql_num_rows( $this->Select );
+	else return 0;
+}
+
+function UpdateRecord( $TableId, $TableName, $Updated )
+{
+	$SQL = 'UPDATE ' . $this->GetTableName( 'Update' )
+		. '  SET Updated = "' . $Updated . '"'
+		. ', UserId  = ' . GetUserId()
+		. ', TableId = ' . $TableId
+		. ', TableName = "' . $TableName . '"'
+		. ' WHERE Id = ' . $this->Id
+		;
+	$this->Result = mysql_query( $SQL );
+//	LogSQL( $this->Result, $SQL );
+//	$this->SelectRecord( $this->Id );
+//	$this->RecordChange();
+}
+
+function InsertRecord( $TableId, $TableName, $Updated )
+{
+	$SQL = 'INSERT ' . $this->GetTableName( 'Insert' )
+		. '  SET Id = null'
+		. ', Created = "' . $Updated . '"'
+		. ', Updated = "' . $Updated . '"'
+		. ', UserId  = ' . GetUserId()
+		. ', TableId = ' . $TableId
+		. ', TableName = "' . $TableName . '"'
+		;	
+	$this->Result = mysql_query( $SQL );
+//	LogSQL( $this->Result, $SQL );
+//	$this->SelectRecord( mysql_insert_id() );
+//	$this->RecordChange();
+}
+
+function DeleteRecord()
+{
+ 	$SQL = 'DELETE FROM ' . $this->GetTableName( 'Delete' )
+		. ' WHERE Id = ' . $this->Id
+		;
+	$this->Result = mysql_query( $SQL );
+//	LogSQL( $this->Result, $SQL );
+//	$this->RecordChange();
+//	$this->Record = null;
+//	$this->Id = null;
+}
+
+} //class
+?>

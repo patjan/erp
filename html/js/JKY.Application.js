@@ -73,7 +73,9 @@ if (my_first == true) {
 			my_display_list();
 //			my_display_form(1);
 			JKY.show('jky-app-header');
-			JKY.hide('jky-action-publish');
+			JKY.hide('jky-action-publish'	);
+			JKY.show('jky-action-list'		);
+			JKY.show('jky-action-form'		);
 			JKY.set_initial_values();
 
 //			$('#jky-form-data       input[id]').each (function() {$(this).change(function() 	{my_process_change_input(this);});});
@@ -90,11 +92,18 @@ if (my_first == true) {
 			$('#jky-form-data      select[id]').each (function() {$(this).change(function()				{my_process_change_input(this);});});
 			$('#jky-form-data           .date').each (function() {$(this).on('changeDate', function()	{my_process_change_input(this);});});
 
-			$('#jky-form-data       input[id]').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
-			$('#jky-form-data     input[name]').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
-			$('#jky-form-data    textarea[id]').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
-			$('#jky-form-data      select[id]').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
-			$('#jky-form-data           .date').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
+//			do not use blur, it will break [click] from jky-action-...
+//			$('#jky-form-data       input[id]').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
+//			$('#jky-form-data     input[name]').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
+//			$('#jky-form-data    textarea[id]').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
+//			$('#jky-form-data      select[id]').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
+//			$('#jky-form-data           .date').each (function() {$(this).on('blur', function()		{my_process_verify_input (this);});});
+
+			$('#jky-form-data       input[id]').each (function() {$(this).change(function()		{my_process_verify_input (this);});});
+			$('#jky-form-data     input[name]').each (function() {$(this).change(function()		{my_process_verify_input (this);});});
+			$('#jky-form-data    textarea[id]').each (function() {$(this).change(function()		{my_process_verify_input (this);});});
+			$('#jky-form-data      select[id]').each (function() {$(this).change(function()		{my_process_verify_input (this);});});
+			$('#jky-form-data           .date').each (function() {$(this).change(function()		{my_process_verify_input (this);});});
 			JKY.Changes.reset();
 		}else{
 			setTimeout(function() {my_set_initial_values();}, 100);
@@ -304,10 +313,10 @@ if (my_first == true) {
 			JKY.display_trace('my_process_insert');
 
 			var my_set = '';
-			if (my_args.program_name == 'Customers'	) {my_set = ', is_customer	= \'Yes\'';}
-			if (my_args.program_name == 'Suppliers'	) {my_set = ', is_supplier	= \'Yes\'';}
-			if (my_args.program_name == 'Dyers'		) {my_set = ', is_dyer		= \'Yes\'';}
-			if (my_args.program_name == 'Partners'	) {my_set = ', is_partner	= \'Yes\'';}
+			if (my_args.program_name == 'Customers'	) {my_set = ', is_customer  = \'Yes\'';}
+			if (my_args.program_name == 'Suppliers'	) {my_set = ', is_supplier  = \'Yes\'';}
+			if (my_args.program_name == 'Dyers'		) {my_set = ', is_dyer      = \'Yes\'';}
+			if (my_args.program_name == 'Partners'	) {my_set = ', is_partner   = \'Yes\'';}
 			var my_data =
 				{ method: 'insert'
 				, table :  my_args.table_name

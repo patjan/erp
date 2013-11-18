@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS CheckOuts
 , number			VARCHAR(32)			DEFAULT NULL
 , checkout_at		DATETIME			DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
+, partner_id		BIGINT				DEFAULT NULL
 , supplier_id		BIGINT				DEFAULT NULL
 , dyer_id			BIGINT				DEFAULT NULL
 , nfe_dl			VARCHAR(32)			DEFAULT NULL
@@ -24,7 +25,7 @@ CREATE TABLE IF NOT EXISTS CheckOuts
 , UNIQUE(number)
 , KEY machine	(machine_id)
 , KEY supplier	(supplier_id)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
 INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next CheckOut Number', value='100001', created_by=1, created_at=NOW();
@@ -41,6 +42,8 @@ ALTER TABLE CheckOuts		CHANGE	requested_amount	requested_amount	DECIMAL(10,2)	DE
 ALTER TABLE CheckOuts		CHANGE	checkout_weight		checkout_weight		DECIMAL(10,2)	DEFAULT 0;
 ALTER TABLE CheckOuts		CHANGE	checkout_amount		checkout_amount		DECIMAL(10,2)	DEFAULT 0;
 
-ALTER TABLE CheckOuts		ADD COLUMN dyer_id		BIGINT		DEFAULT NULL	AFTER supplier_id;
+ALTER TABLE CheckOuts		ADD COLUMN dyer_id			BIGINT		DEFAULT NULL	AFTER supplier_id;
 
 ALTER TABLE CheckOuts		CHANGE	requested_date		requested_at		DATETIME	DEFAULT NULL;
+
+ALTER TABLE CheckOuts		ADD COLUMN partner_id		BIGINT		DEFAULT NULL	AFTER machine_id;

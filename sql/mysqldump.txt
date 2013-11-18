@@ -1,0 +1,15 @@
+mysqldump -u [username] -p [database_name] > [dumpfilename.sql] 
+
+mysqldump -u root -pbrazil18781 erp > erp-20131014.sql
+
+
+
+mysqldump --extended-insert=FALSE -u root -pbrazil18781 erp Configs         > Configs.sql
+mysqldump --extended-insert=FALSE -u root -pbrazil18781 erp Contacts        > Contacts.sql
+mysqldump --extended-insert=FALSE -u root -pbrazil18781 erp Controls        > Controls.sql
+mysqldump --extended-insert=FALSE -u root -pbrazil18781 erp History         > History.sql
+mysqldump --extended-insert=FALSE -u root -pbrazil18781 erp JKY_Users       > JKY_Users.sql
+mysqldump --extended-insert=FALSE -u root -pbrazil18781 erp Permissions     > Permissions.sql
+mysqldump --extended-insert=FALSE -u root -pbrazil18781 erp Templates       > Templates.sql
+mysqldump --extended-insert=FALSE -u root -pbrazil18781 erp Tickets         > Tickets.sql
+mysqldump --extended-insert=FALSE -u root -pbrazil18781 erp Translations    > Translations.sql

@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS TDyers
 , KEY order_id 		(order_id)
 , KEY customer_id 	(customer_id)
 , KEY dyer			(dyer_id)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
 ALTER TABLE TDyers			CHANGE	status				status				VARCHAR(32)	DEFAULT 'Draft';

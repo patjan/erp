@@ -35,7 +35,6 @@ JKY.set_all_events = function() {
 
 	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-batches-add-new').click (function() {JKY.insert_batch		();});
-	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 
 	$('#jky-boxes-print'	).click (function() {JKY.Batch.print()});
 }
@@ -44,11 +43,17 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
+	JKY.append_file('jky-load-thread'	, '../JKY.Search.Thread.html'	);
+	JKY.append_file('jky-load-purline'	, '../JKY.Search.PurLine.html'	);
+
 	JKY.set_side_active('jky-threads-incomings');
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.incoming.select, 'All', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
 	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
+
+	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
+	$('#jky-purline-filter'	).KeyUpDelay(JKY.PurLine.load_data);
 };
 
 /**

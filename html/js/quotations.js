@@ -18,7 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'quotation_number'
 		, sort_seq		: 'DESC'
-		, focus			: 'jky-diameter'
+		, focus			: 'jky-weight'
 		, add_new		: 'display form'
 		});
 	JKY.App.init();
@@ -106,7 +106,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_option	('jky-customer-name'	, the_row.customer_id	);
 	JKY.set_option	('jky-machine-name'		, the_row.machine_id	);
 	JKY.set_option	('jky-dyer-name'		, the_row.dyer_id		);
-	JKY.set_value	('jky-diameter'			, the_row.diameter		);
+//	JKY.set_value	('jky-diameter'			, the_row.diameter		);
 	JKY.set_value	('jky-weight'			, the_row.weight		);
 	JKY.set_value	('jky-width'			, the_row.width			);
 	JKY.set_value	('jky-peso'				, the_row.peso			);
@@ -132,7 +132,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_option	('jky-customer-name'	,  null);
 	JKY.set_option	('jky-machine-name'		,  null);
 	JKY.set_option	('jky-dyer-name'		,  null);
-	JKY.set_value	('jky-diameter'			, '');
+//	JKY.set_value	('jky-diameter'			, '');
 	JKY.set_value	('jky-weight'			, '');
 	JKY.set_value	('jky-width'			, '');
 	JKY.set_value	('jky-peso'				, '12.5');
@@ -170,7 +170,7 @@ JKY.get_form_set = function() {
 		+       ', quoted_at=  ' + JKY.inp_time(JKY.get_value('jky-quoted-value'	))
 		+   ', produced_date=  ' + JKY.inp_date(JKY.get_value('jky-produced-value'	))
 		+  ', delivered_date=  ' + JKY.inp_date(JKY.get_value('jky-delivered-value'	))
-		+        ', diameter=  ' + JKY.get_value	('jky-diameter'		)
+//		+        ', diameter=  ' + JKY.get_value	('jky-diameter'		)
 		+          ', weight=  ' + JKY.get_value	('jky-weight'		)
 		+           ', width=  ' + JKY.get_value	('jky-width'		)
 		+            ', peso=  ' + JKY.get_value	('jky-peso'			)
@@ -264,7 +264,7 @@ JKY.print_row = function(the_id) {
 
 		+ "<div style='width:700px; border:1px solid black;'>"
 		+ "<table>"
-		+ "<tr><td class='jky-print-label'><span>  Diameter</span>:</td><td id='jky-print-diameter'		class='jky-print-value'></td></tr>"
+//		+ "<tr><td class='jky-print-label'><span>  Diameter</span>:</td><td id='jky-print-diameter'		class='jky-print-value'></td></tr>"
 		+ "<tr><td class='jky-print-label'><span>    Weight</span>:</td><td id='jky-print-weight'		class='jky-print-value'></td></tr>"
 		+ "<tr><td class='jky-print-label'><span>     Width</span>:</td><td id='jky-print-width'		class='jky-print-value'></td></tr>"
 		+ "<tr><td class='jky-print-label'><span>      Peso</span>:</td><td id='jky-print-peso'			class='jky-print-value'></td></tr>"
@@ -302,7 +302,7 @@ JKY.print_row = function(the_id) {
 	JKY.set_html('jky-print-galao-perc'			, my_row.galao_perc			);
 	JKY.set_html('jky-print-galao-name'			, my_row.galao_name			);
 
-	JKY.set_html('jky-print-diameter'			, my_row.diameter		+ ' (pol)'	);
+//	JKY.set_html('jky-print-diameter'			, my_row.diameter		+ ' (pol)'	);
 	JKY.set_html('jky-print-weight'				, my_row.weight			+ ' (gr)'	);
 	JKY.set_html('jky-print-width'				, my_row.width			+ ' (cm)'	);
 	JKY.set_html('jky-print-peso'				, my_row.peso			+ ' (Kg)'	);
@@ -327,4 +327,5 @@ JKY.save_remarks = function() {
 
 JKY.save_remarks_success = function(response) {
 	JKY.display_message('Remarks saved, ' + response.message);
+	JKY.row = JKY.get_row('Quotations', JKY.row.id);
 }

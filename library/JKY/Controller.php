@@ -55,11 +55,11 @@ public function init( $table='', $class='', $min_level=0, $per_page=0 ) {
 
      logger( $contr );
 
-//   set control_company from url's request 
+//   set control_company from url's request
      if(   is_request( 'control_company' ))
           set_session( 'control_company', get_request('control_company' ));
 
-//   set control_company from url's subdomain          
+//   set control_company from url's subdomain
 /*
      if( !is_session( 'control_company' )) {
           $http_host = $_SERVER[ 'HTTP_HOST' ];
@@ -82,10 +82,10 @@ public function init( $table='', $class='', $min_level=0, $per_page=0 ) {
 
 //        memorize return_login ( entry point of the system )
 #          if( ! is_session( 'return_login' ))
-#               set_session( 'return_login', get_session( 'contr' ) . '/' . get_session( 'action' )); 
-          if(  $contr == 'orderstt2' and $action == 'show'     and is_request( 'id' ))     set_session( 'return_login', $contr . '/' . $action . '?id=' . get_request( 'id' )); 
-          if(  $contr == 'transvn'   and $action == 'response' and is_request( 'id' ))     set_session( 'return_login', $contr . '/' . $action . '?id=' . get_request( 'id' ) . '&updated_at=' . get_request( 'updated_at' )); 
-          if(  $contr == 'feesvn'    and $action == 'show'     and is_request( 'id' ))     set_session( 'return_login', $contr . '/' . $action . '?id=' . get_request( 'id' )); 
+#               set_session( 'return_login', get_session( 'contr' ) . '/' . get_session( 'action' ));
+          if(  $contr == 'orderstt2' and $action == 'show'     and is_request( 'id' ))     set_session( 'return_login', $contr . '/' . $action . '?id=' . get_request( 'id' ));
+          if(  $contr == 'transvn'   and $action == 'response' and is_request( 'id' ))     set_session( 'return_login', $contr . '/' . $action . '?id=' . get_request( 'id' ) . '&updated_at=' . get_request( 'updated_at' ));
+          if(  $contr == 'feesvn'    and $action == 'show'     and is_request( 'id' ))     set_session( 'return_login', $contr . '/' . $action . '?id=' . get_request( 'id' ));
 
 //        required login
           if( !is_logged())
@@ -103,13 +103,13 @@ public function init( $table='', $class='', $min_level=0, $per_page=0 ) {
 
      if(  is_request( 'search' )) {
           $search = get_request( 'search' );
-          set_claxx( 'search', $search );      //   save [search] for returned page      
+          set_claxx( 'search', $search );      //   save [search] for returned page
           set_claxx( 'page'  , '1'     );      //   always starts from page 1
      }
 
      if(  is_request( 's_tags' )) {
           $s_tags = get_request( 's_tags' );
-          set_claxx( 's_tags', $s_tags );      //   save [s_tags] for returned page      
+          set_claxx( 's_tags', $s_tags );      //   save [s_tags] for returned page
           set_claxx( 'page'  , '1'     );      //   always starts from page 1
      }
 }
@@ -149,7 +149,7 @@ public function indexAction() {
 # -------------------------------------------------------------------------
 #    set page control & current_page
 # -------------------------------------------------------------------------
-function set_page_control( $count, $per_page ) {
+public function set_page_control( $count, $per_page ) {
      $class_page    = is_claxx( 'page' ) ? get_claxx( 'page' ) : 1;
      $pages         = ceil( $count / $per_page );
      $current_page  = is_request( 'page' ) ? get_request( 'page' ) : $class_page;
@@ -163,13 +163,13 @@ function set_page_control( $count, $per_page ) {
           $this->view->first   = $current_page == 1      ? null: get_session( 'action' ) . '?page=1';
           $this->view->previous= $current_page == 1      ? null: get_session( 'action' ) . '?page=' . ( $current_page - 1 );
           $this->view->next    = $current_page == $pages ? null: get_session( 'action' ) . '?page=' . ( $current_page + 1 );
-          $this->view->page_of = $current_page . ' of ' . $pages;          
+          $this->view->page_of = $current_page . ' of ' . $pages;
      }
      return $first_row;
 }
-     
+
 #    ----------------------------------------------------------------------
-#    set order 
+#    set order
 #    ----------------------------------------------------------------------
 public function set_order() {
      $names = func_get_args();
@@ -185,7 +185,7 @@ public function set_order() {
      if(  $order_seq == '' )                      $order_seq = 'ASC';
      set_session( 'order_seq', $order_seq );
      set_claxx( 'seq', $order_seq );
-     
+
      return $order_field . ' ' . $order_seq;
 }
 

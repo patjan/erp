@@ -111,6 +111,7 @@
 							<th class='jky-batch-code'			><span>  Product<br>Code	</span></th>
 							<th class='jky-batch-number'		><span>    Batch<br>Number	</span></th>
 							<th class='jky-td-thread-name'		><span>             Thread	</span></th>
+							<th class='jky-td-purchase-number'	><span>             Purchase</span></th>
 							<th class='jky-td-batch-boxes'		><span> Received<br>Boxes	</span></th>
 							<th class='jky-td-labels-printed'	><span>   Labels<br>Printed	</span></th>
 							<th class='jky-td-batch-boxes'		><span>   Number<br>Cones	</span></th>
@@ -131,30 +132,6 @@
 		</div>
 	</div>
 	<div id='jky-form-footer'></div>
-</div>
-
-<div id='jky-thread-search' class='modal hide fade in'>
-	<div class='modal-header'>
-		<a class='close' data-dismiss='modal'>X</a>
-		<h3><span>Search</span>: <span>Thread</span></h3>
-	</div>
-	<div class='modal-body'>
-		<div><input id='jky-thread-filter' class='search-query' type='text' placeholder='Search' /></div>
-		<table id='jky-thread-table' class='table table-striped'>
-			<thead>
-				<tr>
-					<th class='jky-thread-header-name'			><span>Name			</span></th>
-					<th class='jky-thread-header-group'			><span>Group		</span></th>
-					<th class='jky-thread-header-composition'	><span>Composition	</span></th>
-				</tr>
-			</thead>
-			<tbody id='jky-thread-search-body'></tbody>
-		</table>
-	</div>
-	<div class='modal-footer'>
-<!--		  <button id='jky-thread-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>	-->
-		&nbsp;<button id='jky-thread-cancel'  class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></button>
-	</div>
 </div>
 
 <div id='jky-boxes-layer' class='modal hide fade in'>
@@ -179,5 +156,6 @@
 <div id='jky-body-loaded'></div>
 <script src='js/incomings.js'		></script>
 <script src='js/JKY.Thread.js'		></script>
+<script src='js/JKY.PurLine.js'		></script>
 <script src='js/JKY.Batch.js'		></script>
 <script src='js/incoming_batches.js'></script>

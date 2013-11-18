@@ -1,0 +1,864 @@
+2013-11-17 00:01:01.294989 
+2013-11-17 00:01:01.294989 start of program
+2013-11-17 00:01:02.035990 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 00:01:02.035990 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 00:01:02.035990 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 00:01:02.045991 end of program
+2013-11-17 00:11:01.299836 
+2013-11-17 00:11:01.299836 start of program
+2013-11-17 00:11:02.029837 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 00:11:02.039837 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 00:11:02.039837 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 00:11:02.039837 end of program
+2013-11-17 00:21:01.291683 
+2013-11-17 00:21:01.291683 start of program
+2013-11-17 00:21:01.881684 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 00:21:01.891684 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 00:21:01.891684 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 00:21:01.891684 end of program
+2013-11-17 00:31:01.295530 
+2013-11-17 00:31:01.295530 start of program
+2013-11-17 00:31:02.125531 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 00:31:02.135531 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 00:31:02.135531 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 00:31:02.135531 end of program
+2013-11-17 00:41:01.295377 
+2013-11-17 00:41:01.305377 start of program
+2013-11-17 00:41:01.965378 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 00:41:01.965378 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 00:41:01.975378 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 00:41:01.975378 end of program
+2013-11-17 00:51:01.303224 
+2013-11-17 00:51:01.303224 start of program
+2013-11-17 00:51:02.353225 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 00:51:02.363225 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 00:51:02.363225 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 00:51:02.373225 end of program
+2013-11-17 01:01:01.296005 
+2013-11-17 01:01:01.296005 start of program
+2013-11-17 01:01:02.166007 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 01:01:02.176007 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 01:01:02.176007 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 01:01:02.176007 end of program
+2013-11-17 01:11:01.307852 
+2013-11-17 01:11:01.307852 start of program
+2013-11-17 01:11:02.567854 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 01:11:02.567854 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 01:11:02.567854 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 01:11:02.577854 end of program
+2013-11-17 01:21:01.301699 
+2013-11-17 01:21:01.301699 start of program
+2013-11-17 01:21:02.081700 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 01:21:02.091700 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 01:21:02.091700 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 01:21:02.101700 end of program
+2013-11-17 01:31:01.294546 
+2013-11-17 01:31:01.294546 start of program
+2013-11-17 01:31:02.014547 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 01:31:02.014547 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 01:31:02.024547 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 01:31:02.024547 end of program
+2013-11-17 01:41:01.295392 
+2013-11-17 01:41:01.295392 start of program
+2013-11-17 01:41:02.165394 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 01:41:02.165394 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 01:41:02.165394 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 01:41:02.175394 end of program
+2013-11-17 01:51:01.308239 
+2013-11-17 01:51:01.308239 start of program
+2013-11-17 01:51:02.088240 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 01:51:02.098240 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 01:51:02.098240 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 01:51:02.108240 end of program
+2013-11-17 02:01:01.318483 
+2013-11-17 02:01:01.318483 start of program
+2013-11-17 02:01:02.099484 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 02:01:02.099484 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 02:01:02.099484 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 02:01:02.099484 end of program
+2013-11-17 02:11:01.292330 
+2013-11-17 02:11:01.292330 start of program
+2013-11-17 02:11:02.212331 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 02:11:02.222331 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 02:11:02.222331 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 02:11:02.232331 end of program
+2013-11-17 02:21:01.285176 
+2013-11-17 02:21:01.285176 start of program
+2013-11-17 02:21:01.886177 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 02:21:01.896177 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 02:21:01.896177 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 02:21:01.906177 end of program
+2013-11-17 02:31:01.298023 
+2013-11-17 02:31:01.298023 start of program
+2013-11-17 02:31:01.988024 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 02:31:01.998024 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 02:31:01.998024 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 02:31:02.008024 end of program
+2013-11-17 02:41:01.297870 
+2013-11-17 02:41:01.297870 start of program
+2013-11-17 02:41:02.098871 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 02:41:02.098871 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 02:41:02.108871 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 02:41:02.108871 end of program
+2013-11-17 02:51:01.301717 
+2013-11-17 02:51:01.311717 start of program
+2013-11-17 02:51:02.101718 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 02:51:02.111718 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 02:51:02.111718 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 02:51:02.121718 end of program
+2013-11-17 03:01:01.282563 
+2013-11-17 03:01:01.282563 start of program
+2013-11-17 03:01:02.203565 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 03:01:02.203565 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 03:01:02.213565 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 03:01:02.213565 end of program
+2013-11-17 03:11:01.295410 
+2013-11-17 03:11:01.295410 start of program
+2013-11-17 03:11:02.015411 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 03:11:02.015411 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 03:11:02.025411 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 03:11:02.025411 end of program
+2013-11-17 03:21:01.295257 
+2013-11-17 03:21:01.295257 start of program
+2013-11-17 03:21:02.016258 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 03:21:02.016258 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 03:21:02.026258 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 03:21:02.026258 end of program
+2013-11-17 03:31:01.293104 
+2013-11-17 03:31:01.293104 start of program
+2013-11-17 03:31:02.123105 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 03:31:02.123105 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 03:31:02.133105 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 03:31:02.143105 end of program
+2013-11-17 03:41:01.296951 
+2013-11-17 03:41:01.296951 start of program
+2013-11-17 03:41:02.217952 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 03:41:02.217952 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 03:41:02.227952 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 03:41:02.227952 end of program
+2013-11-17 03:51:01.291798 
+2013-11-17 03:51:01.291798 start of program
+2013-11-17 03:51:02.241799 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 03:51:02.251799 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 03:51:02.251799 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 03:51:02.261799 end of program
+2013-11-17 04:01:01.293645 
+2013-11-17 04:01:01.293645 start of program
+2013-11-17 04:01:02.004646 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 04:01:02.004646 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 04:01:02.014646 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 04:01:02.024646 end of program
+2013-11-17 04:11:01.298491 
+2013-11-17 04:11:01.298491 start of program
+2013-11-17 04:11:02.168493 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 04:11:02.168493 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 04:11:02.178493 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 04:11:02.178493 end of program
+2013-11-17 04:21:01.298338 
+2013-11-17 04:21:01.298338 start of program
+2013-11-17 04:21:02.019339 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 04:21:02.029339 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 04:21:02.029339 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 04:21:02.039339 end of program
+2013-11-17 04:31:01.294185 
+2013-11-17 04:31:01.294185 start of program
+2013-11-17 04:31:02.014186 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 04:31:02.024186 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 04:31:02.024186 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 04:31:02.034186 end of program
+2013-11-17 04:41:01.308032 
+2013-11-17 04:41:01.308032 start of program
+2013-11-17 04:41:02.129033 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 04:41:02.139033 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 04:41:02.139033 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 04:41:02.149033 end of program
+2013-11-17 04:51:01.300879 
+2013-11-17 04:51:01.300879 start of program
+2013-11-17 04:51:02.160880 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 04:51:02.170880 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 04:51:02.170880 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 04:51:02.180880 end of program
+2013-11-17 05:01:01.290725 
+2013-11-17 05:01:01.290725 start of program
+2013-11-17 05:01:02.141727 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 05:01:02.151727 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 05:01:02.161727 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 05:01:02.161727 end of program
+2013-11-17 05:11:01.285572 
+2013-11-17 05:11:01.285572 start of program
+2013-11-17 05:11:01.935573 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 05:11:01.935573 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 05:11:01.945573 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 05:11:01.945573 end of program
+2013-11-17 05:21:01.297419 
+2013-11-17 05:21:01.297419 start of program
+2013-11-17 05:21:01.948420 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 05:21:01.948420 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 05:21:01.958420 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 05:21:01.968420 end of program
+2013-11-17 05:31:01.301266 
+2013-11-17 05:31:01.301266 start of program
+2013-11-17 05:31:01.951267 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 05:31:01.961267 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 05:31:01.971267 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 05:31:01.971267 end of program
+2013-11-17 05:41:01.293113 
+2013-11-17 05:41:01.293113 start of program
+2013-11-17 05:41:02.014114 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 05:41:02.024114 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 05:41:02.034114 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 05:41:02.034114 end of program
+2013-11-17 05:51:01.298960 
+2013-11-17 05:51:01.298960 start of program
+2013-11-17 05:51:02.068961 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 05:51:02.088961 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 05:51:02.088961 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 05:51:02.098961 end of program
+2013-11-17 06:01:01.300806 
+2013-11-17 06:01:01.300806 start of program
+2013-11-17 06:01:02.191808 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 06:01:02.201808 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 06:01:02.201808 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 06:01:02.211808 end of program
+2013-11-17 06:11:01.293653 
+2013-11-17 06:11:01.293653 start of program
+2013-11-17 06:11:02.493655 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 06:11:02.503655 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 06:11:02.503655 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 06:11:02.513655 end of program
+2013-11-17 06:21:01.285500 
+2013-11-17 06:21:01.285500 start of program
+2013-11-17 06:21:02.036501 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 06:21:02.046501 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 06:21:02.046501 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 06:21:02.056501 end of program
+2013-11-17 06:31:01.300347 
+2013-11-17 06:31:01.300347 start of program
+2013-11-17 06:31:02.040348 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 06:31:02.050348 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 06:31:02.050348 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 06:31:02.060348 end of program
+2013-11-17 06:41:01.300194 
+2013-11-17 06:41:01.300194 start of program
+2013-11-17 06:41:02.021195 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 06:41:02.031195 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 06:41:02.031195 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 06:41:02.041195 end of program
+2013-11-17 06:51:01.293040 
+2013-11-17 06:51:01.293040 start of program
+2013-11-17 06:51:02.063041 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 06:51:02.073041 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 06:51:02.083041 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 06:51:02.083041 end of program
+2013-11-17 07:01:01.303887 
+2013-11-17 07:01:01.313887 start of program
+2013-11-17 07:01:02.084888 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 07:01:02.094888 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 07:01:02.104888 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 07:01:02.104888 end of program
+2013-11-17 07:11:01.299734 
+2013-11-17 07:11:01.299734 start of program
+2013-11-17 07:11:02.299735 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 07:11:02.309735 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 07:11:02.319735 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 07:11:02.319735 end of program
+2013-11-17 07:21:01.311581 
+2013-11-17 07:21:01.311581 start of program
+2013-11-17 07:21:02.062582 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 07:21:02.062582 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 07:21:02.072582 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 07:21:02.082582 end of program
+2013-11-17 07:31:01.285428 
+2013-11-17 07:31:01.285428 start of program
+2013-11-17 07:31:02.055429 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 07:31:02.065429 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 07:31:02.075429 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 07:31:02.075429 end of program
+2013-11-17 07:41:01.297274 
+2013-11-17 07:41:01.307274 start of program
+2013-11-17 07:41:02.037275 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 07:41:02.037275 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 07:41:02.047275 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 07:41:02.057275 end of program
+2013-11-17 07:51:01.292121 
+2013-11-17 07:51:01.292121 start of program
+2013-11-17 07:51:02.562123 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 07:51:02.562123 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 07:51:02.572123 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 07:51:02.582123 end of program
+2013-11-17 08:01:01.291968 
+2013-11-17 08:01:01.291968 start of program
+2013-11-17 08:01:02.041969 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 08:01:02.051969 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 08:01:02.061969 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 08:01:02.061969 end of program
+2013-11-17 08:11:01.304815 
+2013-11-17 08:11:01.304815 start of program
+2013-11-17 08:11:02.094816 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 08:11:02.094816 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 08:11:02.104816 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 08:11:02.114816 end of program
+2013-11-17 08:21:01.296661 
+2013-11-17 08:21:01.296661 start of program
+2013-11-17 08:21:01.976662 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 08:21:01.986662 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 08:21:01.996662 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 08:21:01.996662 end of program
+2013-11-17 08:31:01.289508 
+2013-11-17 08:31:01.289508 start of program
+2013-11-17 08:31:02.099509 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 08:31:02.109509 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 08:31:02.119509 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 08:31:02.119509 end of program
+2013-11-17 08:41:01.300355 
+2013-11-17 08:41:01.300355 start of program
+2013-11-17 08:41:02.040356 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 08:41:02.050356 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 08:41:02.060356 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 08:41:02.070356 end of program
+2013-11-17 08:51:01.295202 
+2013-11-17 08:51:01.305202 start of program
+2013-11-17 08:51:02.125203 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 08:51:02.135203 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 08:51:02.145203 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 08:51:02.145203 end of program
+2013-11-17 09:01:01.297049 
+2013-11-17 09:01:01.307049 start of program
+2013-11-17 09:01:02.037050 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 09:01:02.047050 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 09:01:02.057050 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 09:01:02.067050 end of program
+2013-11-17 09:11:01.310896 
+2013-11-17 09:11:01.310896 start of program
+2013-11-17 09:11:02.050897 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 09:11:02.060897 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 09:11:02.060897 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 09:11:02.070897 end of program
+2013-11-17 09:21:01.303742 
+2013-11-17 09:21:01.303742 start of program
+2013-11-17 09:21:02.123743 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 09:21:02.133743 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 09:21:02.143744 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 09:21:02.143744 end of program
+2013-11-17 09:31:01.296589 
+2013-11-17 09:31:01.296589 start of program
+2013-11-17 09:31:02.206590 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 09:31:02.216590 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 09:31:02.226590 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 09:31:02.236590 end of program
+2013-11-17 09:41:01.288436 
+2013-11-17 09:41:01.288436 start of program
+2013-11-17 09:41:02.048437 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 09:41:02.058437 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 09:41:02.058437 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 09:41:02.068437 end of program
+2013-11-17 09:51:01.292283 
+2013-11-17 09:51:01.292283 start of program
+2013-11-17 09:51:02.022284 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 09:51:02.032284 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 09:51:02.042284 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 09:51:02.052284 end of program
+2013-11-17 10:01:01.302129 
+2013-11-17 10:01:01.302129 start of program
+2013-11-17 10:01:02.142131 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 10:01:02.152131 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 10:01:02.162131 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 10:01:02.172131 end of program
+2013-11-17 10:11:01.297976 
+2013-11-17 10:11:01.297976 start of program
+2013-11-17 10:11:02.147978 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 10:11:02.157978 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 10:11:02.167978 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 10:11:02.177978 end of program
+2013-11-17 10:21:01.308823 
+2013-11-17 10:21:01.308823 start of program
+2013-11-17 10:21:02.068824 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 10:21:02.078824 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 10:21:02.088824 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 10:21:02.088824 end of program
+2013-11-17 10:31:01.301670 
+2013-11-17 10:31:01.301670 start of program
+2013-11-17 10:31:02.061671 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 10:31:02.061671 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 10:31:02.071671 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 10:31:02.081671 end of program
+2013-11-17 10:41:01.294517 
+2013-11-17 10:41:01.294517 start of program
+2013-11-17 10:41:02.054518 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 10:41:02.054518 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 10:41:02.064518 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 10:41:02.074518 end of program
+2013-11-17 10:51:01.287363 
+2013-11-17 10:51:01.297363 start of program
+2013-11-17 10:51:02.047365 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 10:51:02.047365 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 10:51:02.057365 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 10:51:02.067365 end of program
+2013-11-17 11:01:01.307210 
+2013-11-17 11:01:01.307210 start of program
+2013-11-17 11:01:02.177211 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 11:01:02.187211 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 11:01:02.197211 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 11:01:02.197211 end of program
+2013-11-17 11:11:01.294057 
+2013-11-17 11:11:01.294057 start of program
+2013-11-17 11:11:01.974058 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 11:11:01.984058 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 11:11:01.984058 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 11:11:02.004058 end of program
+2013-11-17 11:21:01.294904 
+2013-11-17 11:21:01.304904 start of program
+2013-11-17 11:21:02.074905 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 11:21:02.084905 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 11:21:02.094905 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 11:21:02.094905 end of program
+2013-11-17 11:31:01.306751 
+2013-11-17 11:31:01.306751 start of program
+2013-11-17 11:31:02.126752 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 11:31:02.126752 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 11:31:02.136752 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 11:31:02.146752 end of program
+2013-11-17 11:41:01.296597 
+2013-11-17 11:41:01.296597 start of program
+2013-11-17 11:41:02.456599 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 11:41:02.466599 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 11:41:02.476599 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 11:41:02.476599 end of program
+2013-11-17 11:51:01.291444 
+2013-11-17 11:51:01.291444 start of program
+2013-11-17 11:51:02.311446 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 11:51:02.321446 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 11:51:02.331446 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 11:51:02.331446 end of program
+2013-11-17 12:01:01.292291 
+2013-11-17 12:01:01.292291 start of program
+2013-11-17 12:01:02.182292 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 12:01:02.192292 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 12:01:02.202292 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 12:01:02.202292 end of program
+2013-11-17 12:11:01.306138 
+2013-11-17 12:11:01.306138 start of program
+2013-11-17 12:11:02.096139 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 12:11:02.106139 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 12:11:02.116139 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 12:11:02.116139 end of program
+2013-11-17 12:21:01.298984 
+2013-11-17 12:21:01.308985 start of program
+2013-11-17 12:21:02.028986 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 12:21:02.038986 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 12:21:02.048986 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 12:21:02.058986 end of program
+2013-11-17 12:31:01.302831 
+2013-11-17 12:31:01.312831 start of program
+2013-11-17 12:31:02.062832 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 12:31:02.072832 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 12:31:02.082832 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 12:31:02.092832 end of program
+2013-11-17 12:41:01.292678 
+2013-11-17 12:41:01.302678 start of program
+2013-11-17 12:41:02.222679 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 12:41:02.232679 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 12:41:02.232679 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 12:41:02.242679 end of program
+2013-11-17 12:51:01.297525 
+2013-11-17 12:51:01.307525 start of program
+2013-11-17 12:51:02.687527 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 12:51:02.697527 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 12:51:02.697527 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 12:51:02.707527 end of program
+2013-11-17 13:01:01.819372 
+2013-11-17 13:01:01.819372 start of program
+2013-11-17 13:01:02.709374 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 13:01:02.720374 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 13:01:02.730374 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 13:01:02.740374 end of program
+2013-11-17 13:11:01.402219 
+2013-11-17 13:11:01.412219 start of program
+2013-11-17 13:11:02.242220 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 13:11:02.252220 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 13:11:02.262220 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 13:11:02.262220 end of program
+2013-11-17 13:21:01.403065 
+2013-11-17 13:21:01.403065 start of program
+2013-11-17 13:21:02.173066 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 13:21:02.183066 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 13:21:02.183066 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 13:21:02.193066 end of program
+2013-11-17 13:31:01.408912 
+2013-11-17 13:31:01.408912 start of program
+2013-11-17 13:31:02.188913 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 13:31:02.198913 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 13:31:02.198913 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 13:31:02.208913 end of program
+2013-11-17 13:41:01.400759 
+2013-11-17 13:41:01.400759 start of program
+2013-11-17 13:41:02.190760 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 13:41:02.190760 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 13:41:02.200760 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 13:41:02.210760 end of program
+2013-11-17 13:51:01.404606 
+2013-11-17 13:51:01.414606 start of program
+2013-11-17 13:51:02.184607 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 13:51:02.194607 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 13:51:02.194607 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 13:51:02.204607 end of program
+2013-11-17 14:01:01.404453 
+2013-11-17 14:01:01.414453 start of program
+2013-11-17 14:01:02.194454 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 14:01:02.204454 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 14:01:02.214454 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 14:01:02.224454 end of program
+2013-11-17 14:11:01.400300 
+2013-11-17 14:11:01.400300 start of program
+2013-11-17 14:11:02.120301 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 14:11:02.120301 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 14:11:02.130301 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 14:11:02.140301 end of program
+2013-11-17 14:21:01.401146 
+2013-11-17 14:21:01.411146 start of program
+2013-11-17 14:21:02.211147 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 14:21:02.211147 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 14:21:02.221147 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 14:21:02.231147 end of program
+2013-11-17 14:31:01.425825 
+2013-11-17 14:31:01.430825 start of program
+2013-11-17 14:31:02.275827 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 14:31:02.285827 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 14:31:02.290827 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 14:31:02.300827 end of program
+2013-11-17 14:41:01.314382 
+2013-11-17 14:41:01.319382 start of program
+2013-11-17 14:41:02.056383 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 14:41:02.066383 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 14:41:02.076383 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 14:41:02.091383 end of program
+2013-11-17 14:51:01.293232 
+2013-11-17 14:51:01.293232 start of program
+2013-11-17 14:51:02.133233 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 14:51:02.143233 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 14:51:02.153233 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 14:51:02.163233 end of program
+2013-11-17 15:01:01.306079 
+2013-11-17 15:01:01.306079 start of program
+2013-11-17 15:01:02.557080 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 15:01:02.567080 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 15:01:02.577080 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 15:01:02.577080 end of program
+2013-11-17 15:11:01.298925 
+2013-11-17 15:11:01.298925 start of program
+2013-11-17 15:11:02.248927 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 15:11:02.258927 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 15:11:02.268927 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 15:11:02.278927 end of program
+2013-11-17 15:21:01.288772 
+2013-11-17 15:21:01.288772 start of program
+2013-11-17 15:21:01.919773 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 15:21:01.929773 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 15:21:01.939773 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 15:21:01.949773 end of program
+2013-11-17 15:31:01.292619 
+2013-11-17 15:31:01.302619 start of program
+2013-11-17 15:31:02.362620 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 15:31:02.372620 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 15:31:02.382620 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 15:31:02.392620 end of program
+2013-11-17 15:41:01.295466 
+2013-11-17 15:41:01.305466 start of program
+2013-11-17 15:41:02.236467 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 15:41:02.246467 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 15:41:02.266467 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 15:41:02.276467 end of program
+2013-11-17 15:51:01.299312 
+2013-11-17 15:51:01.299312 start of program
+2013-11-17 15:51:02.239314 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 15:51:02.249314 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 15:51:02.249314 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 15:51:02.269314 end of program
+2013-11-17 16:01:01.309159 
+2013-11-17 16:01:01.319159 start of program
+2013-11-17 16:01:02.070160 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 16:01:02.090160 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 16:01:02.100160 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 16:01:02.130160 end of program
+2013-11-17 16:11:01.304006 
+2013-11-17 16:11:01.324006 start of program
+2013-11-17 16:11:02.244007 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 16:11:02.294007 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 16:11:02.304007 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 16:11:02.304007 end of program
+2013-11-17 16:21:01.295853 
+2013-11-17 16:21:01.305853 start of program
+2013-11-17 16:21:02.016854 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 16:21:02.036854 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 16:21:02.046854 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 16:21:02.056854 end of program
+2013-11-17 16:31:01.288700 
+2013-11-17 16:31:01.298700 start of program
+2013-11-17 16:31:02.068701 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 16:31:02.078701 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 16:31:02.088701 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 16:31:02.098701 end of program
+2013-11-17 16:41:01.307546 
+2013-11-17 16:41:01.317546 start of program
+2013-11-17 16:41:02.188547 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 16:41:02.198548 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 16:41:02.208548 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 16:41:02.218548 end of program
+2013-11-17 16:51:01.302393 
+2013-11-17 16:51:01.302393 start of program
+2013-11-17 16:51:02.082394 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 16:51:02.102394 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 16:51:02.112394 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 16:51:02.122394 end of program
+2013-11-17 17:01:01.295240 
+2013-11-17 17:01:01.305240 start of program
+2013-11-17 17:01:02.026241 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 17:01:02.036241 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 17:01:02.056241 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 17:01:02.066241 end of program
+2013-11-17 17:11:01.309087 
+2013-11-17 17:11:01.309087 start of program
+2013-11-17 17:11:02.329088 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 17:11:02.339088 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 17:11:02.349088 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 17:11:02.369088 end of program
+2013-11-17 17:21:01.298933 
+2013-11-17 17:21:01.308933 start of program
+2013-11-17 17:21:02.109935 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 17:21:02.119935 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 17:21:02.129935 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 17:21:02.139935 end of program
+2013-11-17 17:31:01.291780 
+2013-11-17 17:31:01.301780 start of program
+2013-11-17 17:31:02.081781 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 17:31:02.091781 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 17:31:02.101781 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 17:31:02.101781 end of program
+2013-11-17 17:41:01.293627 
+2013-11-17 17:41:01.293627 start of program
+2013-11-17 17:41:02.044628 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 17:41:02.044628 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 17:41:02.054628 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 17:41:02.054628 end of program
+2013-11-17 17:51:01.307474 
+2013-11-17 17:51:01.307474 start of program
+2013-11-17 17:51:02.087475 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 17:51:02.097475 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 17:51:02.097475 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 17:51:02.107475 end of program
+2013-11-17 18:01:01.297320 
+2013-11-17 18:01:01.297320 start of program
+2013-11-17 18:01:02.208322 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 18:01:02.218322 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 18:01:02.218322 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 18:01:02.228322 end of program
+2013-11-17 18:11:01.293167 
+2013-11-17 18:11:01.293167 start of program
+2013-11-17 18:11:02.083169 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 18:11:02.083169 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 18:11:02.093169 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 18:11:02.103169 end of program
+2013-11-17 18:21:01.294014 
+2013-11-17 18:21:01.294014 start of program
+2013-11-17 18:21:02.054015 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 18:21:02.064015 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 18:21:02.064015 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 18:21:02.075015 end of program
+2013-11-17 18:31:01.296861 
+2013-11-17 18:31:01.296861 start of program
+2013-11-17 18:31:02.406862 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 18:31:02.416863 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 18:31:02.416863 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 18:31:02.426863 end of program
+2013-11-17 18:41:01.298708 
+2013-11-17 18:41:01.298708 start of program
+2013-11-17 18:41:02.299709 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 18:41:02.309709 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 18:41:02.319709 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 18:41:02.319709 end of program
+2013-11-17 18:51:01.295555 
+2013-11-17 18:51:01.295555 start of program
+2013-11-17 18:51:02.275556 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 18:51:02.285556 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 18:51:02.295556 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 18:51:02.295556 end of program
+2013-11-17 19:01:01.305401 
+2013-11-17 19:01:01.305401 start of program
+2013-11-17 19:01:02.176403 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 19:01:02.176403 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 19:01:02.186403 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 19:01:02.196403 end of program
+2013-11-17 19:11:01.300248 
+2013-11-17 19:11:01.300248 start of program
+2013-11-17 19:11:02.210250 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 19:11:02.220250 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 19:11:02.230250 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 19:11:02.230250 end of program
+2013-11-17 19:21:01.292095 
+2013-11-17 19:21:01.302095 start of program
+2013-11-17 19:21:02.253096 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 19:21:02.263096 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 19:21:02.263096 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 19:21:02.273096 end of program
+2013-11-17 19:31:01.306942 
+2013-11-17 19:31:01.306942 start of program
+2013-11-17 19:31:02.156943 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 19:31:02.166943 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 19:31:02.176943 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 19:31:02.176943 end of program
+2013-11-17 19:41:01.296789 
+2013-11-17 19:41:01.296789 start of program
+2013-11-17 19:41:02.537790 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 19:41:02.537790 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 19:41:02.547790 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 19:41:02.557790 end of program
+2013-11-17 19:51:01.299635 
+2013-11-17 19:51:01.299635 start of program
+2013-11-17 19:51:02.799638 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 19:51:02.809638 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 19:51:02.819638 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 19:51:02.819638 end of program
+2013-11-17 20:01:01.302482 
+2013-11-17 20:01:01.302482 start of program
+2013-11-17 20:01:02.343484 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 20:01:02.353484 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 20:01:02.353484 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 20:01:02.363484 end of program
+2013-11-17 20:11:01.306329 
+2013-11-17 20:11:01.306329 start of program
+2013-11-17 20:11:02.166330 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 20:11:02.176330 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 20:11:02.186330 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 20:11:02.186330 end of program
+2013-11-17 20:21:01.296176 
+2013-11-17 20:21:01.306176 start of program
+2013-11-17 20:21:02.036177 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 20:21:02.046177 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 20:21:02.056177 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 20:21:02.066177 end of program
+2013-11-17 20:31:01.303023 
+2013-11-17 20:31:01.313023 start of program
+2013-11-17 20:31:02.123024 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 20:31:02.133024 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 20:31:02.143024 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 20:31:02.153024 end of program
+2013-11-17 20:41:01.292869 
+2013-11-17 20:41:01.302869 start of program
+2013-11-17 20:41:02.272871 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 20:41:02.292871 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 20:41:02.302871 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 20:41:02.313871 end of program
+2013-11-17 20:51:01.297716 
+2013-11-17 20:51:01.307716 start of program
+2013-11-17 20:51:02.127717 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 20:51:02.137717 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 20:51:02.147717 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 20:51:02.167718 end of program
+2013-11-17 21:01:01.299563 
+2013-11-17 21:01:01.309563 start of program
+2013-11-17 21:01:02.279564 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 21:01:02.289564 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 21:01:02.309564 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 21:01:02.319564 end of program
+2013-11-17 21:11:01.292410 
+2013-11-17 21:11:01.302410 start of program
+2013-11-17 21:11:02.172411 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 21:11:02.192411 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 21:11:02.202411 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 21:11:02.212411 end of program
+2013-11-17 21:21:01.302256 
+2013-11-17 21:21:01.302256 start of program
+2013-11-17 21:21:02.202258 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 21:21:02.212258 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 21:21:02.222258 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 21:21:02.232258 end of program
+2013-11-17 21:31:01.298103 
+2013-11-17 21:31:01.308103 start of program
+2013-11-17 21:31:02.098105 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 21:31:02.108105 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 21:31:02.128105 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 21:31:02.138105 end of program
+2013-11-17 21:41:01.308950 
+2013-11-17 21:41:01.318950 start of program
+2013-11-17 21:41:02.168951 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 21:41:02.188951 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 21:41:02.198951 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 21:41:02.218951 end of program
+2013-11-17 21:51:01.282797 
+2013-11-17 21:51:01.292797 start of program
+2013-11-17 21:51:02.212798 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 21:51:02.222798 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 21:51:02.232798 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 21:51:02.242798 end of program
+2013-11-17 22:01:01.293644 
+2013-11-17 22:01:01.303644 start of program
+2013-11-17 22:01:02.063645 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 22:01:02.083645 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 22:01:02.093645 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 22:01:02.103645 end of program
+2013-11-17 22:11:01.298491 
+2013-11-17 22:11:01.308491 start of program
+2013-11-17 22:11:02.068492 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 22:11:02.078492 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 22:11:02.098492 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 22:11:02.118492 end of program
+2013-11-17 22:21:01.308337 
+2013-11-17 22:21:01.318337 start of program
+2013-11-17 22:21:02.208339 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 22:21:02.218339 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 22:21:02.238339 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 22:21:02.248339 end of program
+2013-11-17 22:31:01.286184 
+2013-11-17 22:31:01.296184 start of program
+2013-11-17 22:31:02.066185 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 22:31:02.086185 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 22:31:02.096185 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 22:31:02.106185 end of program
+2013-11-17 22:41:01.296031 
+2013-11-17 22:41:01.306031 start of program
+2013-11-17 22:41:02.086032 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 22:41:02.106032 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 22:41:02.116032 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 22:41:02.126032 end of program
+2013-11-17 22:51:01.308878 
+2013-11-17 22:51:01.318878 start of program
+2013-11-17 22:51:02.128879 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 22:51:02.148879 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 22:51:02.158879 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 22:51:02.168879 end of program
+2013-11-17 23:01:01.301725 
+2013-11-17 23:01:01.311725 start of program
+2013-11-17 23:01:02.341726 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 23:01:02.361726 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 23:01:02.371726 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 23:01:02.391726 end of program
+2013-11-17 23:11:01.294571 
+2013-11-17 23:11:01.304571 start of program
+2013-11-17 23:11:02.184573 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 23:11:02.194573 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 23:11:02.214573 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 23:11:02.234573 end of program
+2013-11-17 23:21:01.296418 
+2013-11-17 23:21:01.306418 start of program
+2013-11-17 23:21:02.426420 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 23:21:02.446420 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 23:21:02.456420 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 23:21:02.466420 end of program
+2013-11-17 23:31:01.291265 
+2013-11-17 23:31:01.301265 start of program
+2013-11-17 23:31:02.081266 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 23:31:02.101266 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 23:31:02.121266 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 23:31:02.131266 end of program
+2013-11-17 23:41:01.302112 
+2013-11-17 23:41:01.312112 start of program
+2013-11-17 23:41:02.052113 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 23:41:02.062113 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 23:41:02.082113 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 23:41:02.092113 end of program
+2013-11-17 23:51:01.297959 
+2013-11-17 23:51:01.307959 start of program
+2013-11-17 23:51:02.007960 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-11-17 23:51:02.027960 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-11-17 23:51:02.047960 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-11-17 23:51:02.067960 end of program

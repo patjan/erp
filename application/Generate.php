@@ -11,7 +11,9 @@ function JKY_generate($data) {
 
 	$count = 0;
 	switch($table) {
-		case 'Purchases'	: $count = JKY_generate_purchases($id); break;
+		case 'Orders'		: $count = JKY_generate_order	($id); break;
+		case 'Purchases'	: $count = JKY_generate_purchase($id); break;
+		case 'TDyers'		: $count = JKY_generate_tdyer	($id); break;
 	}
 
 	$return = array();
@@ -25,7 +27,93 @@ function JKY_generate($data) {
 	return $return;
 }
 
-function JKY_generate_purchases($the_id) {
+function JKY_generate_order($the_id) {
+	$db = Zend_Registry::get('db');
+
+	$sql= 'SELECT *'
+		. '  FROM Orders'
+		. ' WHERE id = ' . $the_id
+		;
+	$my_order = $db->fetchRow($sql);
+
+	$my_needed_date = $my_order['needed_at'];
+	if ($my_needed_date == null) {
+		$my_needed_date = get_time();
+	}
+
+	$my_checkout_id = get_next_id('CheckOuts');
+	$sql= 'INSERT CheckOuts'
+		. '   SET          id='  . $my_checkout_id
+		. ',       updated_by='  . get_session('user_id')
+		. ',       updated_at="' . get_time() . '"'
+		. ',           number='  . $my_checkout_id
+		. ',     requested_at="' . $my_needed_date . '"'
+		. ', requested_weight='  . $my_order['ordered_weight']
+		;
+	if( $my_order['machine_id']) {
+		$sql .= ', machine_id='  . $my_order['machine_id'];
+	}
+	if( $my_order['partner_id']) {
+		$sql .= ', partner_id='  . $my_order['partner_id'];
+	}
+
+log_sql('CheckOuts', 'INSERT', $sql);
+	$db->query($sql);
+	insert_changes($db, 'CheckOuts', $my_checkout_id);
+
+	$sql= 'SELECT *'
+		. '  FROM OrdThreads'
+		. ' WHERE parent_id = ' . $the_id
+		;
+	$my_rows = $db->fetchAll($sql);
+
+	$my_count = 0;
+	foreach($my_rows as $my_row) {
+		$my_batch = db_get_row('Batches', 'id=' . $my_row['batchin_id']);
+		$my_ordered_weight = $my_row['ordered_weight'];
+		$my_ordered_boxes  = ceil((float)$my_ordered_weight / (float)$my_batch['average_weight']);
+		$my_batchout_id = get_next_id('BatchOuts');
+		$sql= 'INSERT BatchOuts'
+			. '   SET          id='  . $my_batchout_id
+			. ',      checkout_id='  . $my_checkout_id
+			. ',        thread_id='  . $my_row['thread_id']
+			. ',       batchin_id='  . $my_row['batchin_id']
+//			. ',      req_line_id='  . $my_row['id']
+			. ',  order_thread_id='  . $my_row['id']
+//			. ',             code="' . '' . '"'
+			. ',            batch="' . $my_batch['batch'] . '"'
+			. ',       unit_price='  . $my_batch['unit_price']
+			. ',   average_weight='  . $my_batch['average_weight']
+			. ', requested_weight='  . $my_ordered_weight
+			. ',  requested_boxes='  . $my_ordered_boxes
+			;
+log_sql('BatchOuts', 'INSERT', $sql);
+		$db->query($sql);
+		insert_changes($db, 'BatchOuts', $my_batchout_id);
+
+		$sql= 'UPDATE OrdThreads'
+			. '   SET batchout_id = ' . $my_batchout_id
+			. ' WHERE id = ' . $my_row['id']
+			;
+log_sql('OrdThreads', 'UPDATE', $sql);
+		$db->query($sql);
+		insert_changes($db, 'OrdThreads', $my_row['id']);
+
+		$my_count++;
+	}
+
+	$sql= 'UPDATE Orders'
+		. '   SET status = "Active"'
+		. ' WHERE id = ' . $the_id
+		;
+log_sql('Orders', 'UPDATE', $sql);
+	$db->query($sql);
+	insert_changes($db, 'Orders', $the_id);
+
+	return $my_count;
+}
+
+function JKY_generate_purchase($the_id) {
 	$db = Zend_Registry::get('db');
 
 	$sql= 'SELECT *'
@@ -42,24 +130,28 @@ function JKY_generate_purchases($the_id) {
 
 	$my_count = 0;
 	foreach($my_rows as $my_row) {
+		$my_incoming_id = get_next_id('Incomings');
 		$sql= 'INSERT Incomings'
-			. '   SET incoming_number =  ' . get_next_number('Controls', 'Next Incoming Number')
-			. '     ,     supplier_id =  ' . $my_purchase['supplier_id']
-			. '     ,    invoice_date = "' . $my_row['expected_date'] . '"'
-			. '     ,  invoice_weight =  ' . $my_row['expected_weight']
+			. '   SET         id =  ' . $my_incoming_id
+			. ', incoming_number =  ' . $my_incoming_id
+			. ',     supplier_id =  ' . $my_purchase['supplier_id']
+			. ',    invoice_date = "' . $my_row['expected_date'] . '"'
+			. ',  invoice_weight =  ' . $my_row['expected_weight']
 			;
 log_sql('Incomings', 'INSERT', $sql);
 		$db->query($sql);
-		$my_incoming_id = $db->lastInsertId();
+		insert_changes($db, 'Incomings', $my_incoming_id);
 
+		$my_batchin_id = get_next_id('Batches');
 		$sql= 'INSERT Batches'
-			. '   SET      incoming_id =  ' . $my_incoming_id
-			. '     ,        thread_id =  ' . $my_row['thread_id']
-			. '     , purchase_line_id =  ' . $my_row['id']
+			. '   SET          id =  ' . $my_batchin_id
+			. ',      incoming_id =  ' . $my_incoming_id
+			. ',        thread_id =  ' . $my_row['thread_id']
+			. ', purchase_line_id =  ' . $my_row['id']
 			;
 log_sql('Batches', 'INSERT', $sql);
 		$db->query($sql);
-		$my_batchin_id = $db->lastInsertId();
+		insert_changes($db, 'Batches', $my_batchin_id);
 
 		$sql= 'UPDATE PurchaseLines'
 			. '   SET batch_id =  ' . $my_batchin_id
@@ -67,6 +159,7 @@ log_sql('Batches', 'INSERT', $sql);
 			;
 log_sql('PurchaseLines', 'UPDATE', $sql);
 		$db->query($sql);
+		insert_changes($db, 'PurchaseLines', $my_row['id']);
 
 		$my_count++;
 	}
@@ -77,6 +170,87 @@ log_sql('PurchaseLines', 'UPDATE', $sql);
 		;
 log_sql('Purchases', 'UPDATE', $sql);
 	$db->query($sql);
+	insert_changes($db, 'Purchases', $the_id);
+
+	return $my_count;
+}
+
+function JKY_generate_tdyer($the_id) {
+	$db = Zend_Registry::get('db');
+
+	$sql= 'SELECT *'
+		. '  FROM TDyers'
+		. ' WHERE id = ' . $the_id
+		;
+	$my_tdyer = $db->fetchRow($sql);
+
+	$my_needed_date = $my_tdyer['needed_at'];
+	if ($my_needed_date == null) {
+		$my_needed_date = get_time();
+	}
+
+	$my_checkout_id = get_next_id('CheckOuts');
+	$sql= 'INSERT CheckOuts'
+		. '   SET          id='  . $my_checkout_id
+		. ',       updated_by='  . get_session('user_id')
+		. ',       updated_at="' . get_time() . '"'
+		. ',           number='  . $my_checkout_id
+		. ',          dyer_id='  . $my_tdyer['dyer_id']
+		. ',     requested_at="' . $my_needed_date . '"'
+		. ', requested_weight='  . $my_tdyer['ordered_weight']
+		;
+log_sql('CheckOuts', 'INSERT', $sql);
+	$db->query($sql);
+	insert_changes($db, 'CheckOuts', $my_checkout_id);
+
+	$sql= 'SELECT *'
+		. '  FROM TDyerThreads'
+		. ' WHERE parent_id=' . $the_id
+		;
+	$my_rows = $db->fetchAll($sql);
+
+	$my_count = 0;
+	foreach($my_rows as $my_row) {
+		$my_batch = db_get_row('Batches', 'id=' . $my_row['batchin_id']);
+		$my_ordered_weight = db_get_sum('TDyerColors', 'ordered_weight', 'parent_id=' . $my_row['id']);
+		$my_ordered_boxes  = ceil((float)$my_ordered_weight / (float)$my_batch['average_weight']);
+		$my_batchout_id = get_next_id('BatchOuts');
+		$sql= 'INSERT BatchOuts'
+			. '   SET          id='  . $my_batchout_id
+			. ',      checkout_id='  . $my_checkout_id
+			. ',        thread_id='  . $my_row['thread_id']
+			. ',       batchin_id='  . $my_row['batchin_id']
+//			. ',      req_line_id='  . $my_row['id']
+			. ',  tdyer_thread_id='  . $my_row['id']
+//			. ',             code="' . '' . '"'
+			. ',            batch="' . $my_batch['batch'] . '"'
+			. ',       unit_price='  . $my_batch['unit_price']
+			. ',   average_weight='  . $my_batch['average_weight']
+			. ', requested_weight='  . $my_ordered_weight
+			. ',  requested_boxes='  . $my_ordered_boxes
+			;
+log_sql('BatchOuts', 'INSERT', $sql);
+		$db->query($sql);
+		insert_changes($db, 'BatchOuts', $my_batchout_id);
+
+		$sql= 'UPDATE TDyerThreads'
+			. '   SET batchout_id = ' . $my_batchout_id
+			. ' WHERE id = ' . $my_row['id']
+			;
+log_sql('TDyerThreads', 'UPDATE', $sql);
+		$db->query($sql);
+		insert_changes($db, 'TDyerThreads', $my_row['id']);
+
+		$my_count++;
+	}
+
+	$sql= 'UPDATE TDyers'
+		. '   SET status = "Active"'
+		. ' WHERE id = ' . $the_id
+		;
+log_sql('TDyers', 'UPDATE', $sql);
+	$db->query($sql);
+	insert_changes($db, 'TDyers', $the_id);
 
 	return $my_count;
 }

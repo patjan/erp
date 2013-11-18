@@ -25,12 +25,18 @@ define( 'POS_LOGIN_EXTERNAL'  , 'home'                      );
 define( 'MODEL'               , 'Model_'                    );        //   ZF 1.10 must be Model_
 define( 'INDEX'               , '/'                         );        //   windows must be '/'
 define( 'APP_PATH'            ,  dirname( __FILE__ )        );
-define( 'COMPANY_ID'          , '1'							);
+define( 'COMPANY_ID'          , '100001'					);
 define( 'COMPANY_NAME'        , 'JKY Software'				);
 define( 'COMPANY_LOGO'        , 'JKY-Software.png'			);
 define( 'LOCALE'	          , 'en_US'						);		//	en_US, pt_BR
 define( 'WEB_SITE'            , 'http://im4/'               );
 define( 'DOMAIN_NAME'         , 'pat'                       );
+define( 'SERVER_NUMBER'       , '8'							);		//	1 = TM, 2 = DL, 8 = JKY, 9 = HQ
+																	//	*****************************************
+																	//	very important to adjust by number of server
+																	//	n = (number of servers - 1) * 2
+																	//	*****************************************
+define( 'SERVERS_LENGTH'      ,  4							);		//	0 = created, 2 = 1 updated, 4 = 2 updated
 define( 'SERVER_NAME'         , 'http://erp/'				);
 define( 'SERVER_BASE'         , '../'                       );
 define( 'APPLICATION'         , '../application/'           );
@@ -62,10 +68,10 @@ define( 'TRUST_CUSTID'        , '848620'                    );
 define( 'TRUST_PASSWORD'      , 'commerce6'                 );
 define( 'TRUST_VAULT_PASSWORD', 'commerce7'                 );
 
-define( 'DB_HOST'             , 'internal-db.s122232.gridserver.com'    );
-define( 'DB_USER'             , 'db122232_pat_jan'          );
-define( 'DB_PASS'             , 'brazil.18781'              );
-define( 'DB_NAME'             , 'db122232_erp'              );
+define( 'DB_HOST'             , 'localhost'					);
+define( 'DB_USER'             , 'root'						);
+define( 'DB_PASS'             , 'brazil18781'				);
+define( 'DB_NAME'             , 'erp'						);
 
 define( 'DATE_FORMAT'         , 'mm-dd-yyyy'                );
 define( 'DECIMAL_POINT'       , '.'                         );

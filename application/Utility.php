@@ -2667,9 +2667,9 @@ function get_time() {
 }
 
 function get_now() {
-     return date( 'Y-m-d H:i:s.u' );              //   added PHP 5.2.2
-//     $milliSec = explode( ' ', microtime());
-//     return date( 'Y-m-d H:i:s' ) . substr( $milliSec[ 0 ], 1, 4 );
+//     return date( 'Y-m-d H:i:s.u' );              //   added PHP 5.2.2
+     $milliSec = explode( ' ', microtime());
+     return date( 'Y-m-d H:i:s' ) . substr( $milliSec[ 0 ], 1, 7 );
 }
 
 function get_ip() {
@@ -2962,12 +2962,12 @@ function get_user_email( $id ) {
 # -------------------------------------------------------------------------
 #    set control value
 # -------------------------------------------------------------------------
-function set_control_value( $control_set, $name, $value ) {
+function set_control_value($group_set, $name, $value) {
      $sql = 'UPDATE Controls'
-          . '   SET control_value = "' . $value . '"'
+          . '   SET value = "' . $value . '"'
 //        . ' WHERE company_id   =  ' . get_session( 'control_company', COMPANY_ID )
-          . ' WHERE control_set  = "' . $control_set . '"'
-          . '   AND control_name = "' . $name . '"'
+          . ' WHERE group_set  = "' . $group_set . '"'
+          . '   AND name = "' . $name . '"'
           ;
      $db  = Zend_Registry::get( 'db' );
      $db->query( $sql );
@@ -2990,12 +2990,12 @@ function get_control_id( $control_set, $name ) {
 # -------------------------------------------------------------------------
 #    get control value
 # -------------------------------------------------------------------------
-function get_control_value( $control_set, $name ) {
-     $sql = 'SELECT control_value'
+function get_control_value($group_set, $name) {
+     $sql = 'SELECT value'
           . '  FROM Controls'
 //        . ' WHERE company_id   =  ' . get_session( 'control_company', COMPANY_ID )
-          . ' WHERE control_set  = "' . $control_set . '"'
-          . '   AND control_name = "' . $name . '"'
+          . ' WHERE group_set  = "' . $group_set . '"'
+          . '   AND name = "' . $name . '"'
           ;
      $db  = Zend_Registry::get( 'db' );
      return $db->fetchOne( $sql );
@@ -3686,6 +3686,15 @@ function db_get_rows( $table, $where ) {
      return $db->fetchAll( $sql );
 }
 
+function db_get_sum( $table, $field, $where ) {
+	$sql= 'SELECT SUM(' . $field . ') AS sum'
+		. '  FROM ' . $table
+		. ' WHERE ' . $where
+		;
+	$db = Zend_Registry::get('db');
+	return $db->fetchOne( $sql );
+}
+
 //   Meta DB functions ---------------------------------------------------------
 
 function meta_replace( $table, $parent_id, $meta_name, $meta_value ) {
@@ -3796,8 +3805,8 @@ function revert_entities($string) {
 	return $string;
 }
 
-function get_next_number($table, $name ) {
-	$db = Zend_Registry::get( 'db' );
+function Xget_next_number($table, $name ) {
+	$db = Zend_Registry::get('db');
 	$sql= 'SELECT value'
 		. '  FROM ' . $table
 		. ' WHERE name = "' . $name . '"'
@@ -3810,6 +3819,45 @@ function get_next_number($table, $name ) {
 		;
 	$db->query($sql);
 	return $my_number;
+}
+
+function get_next_id($table) {
+	$db = Zend_Registry::get('db');
+	$sql= 'SELECT next_id, id_size'
+		. '  FROM NextIds'
+		. ' WHERE table_name = "' . $table . '"'
+		;
+	$my_row = $db->fetchRow($sql);
+	$sql= 'UPDATE NextIds'
+		. '   SET next_id = next_id + 1'
+		. ' WHERE table_name  = "' . $table . '"'
+		;
+	$db->query($sql);
+	return SERVER_NUMBER . str_pad($my_row['next_id'], $my_row['id_size'], '0', STR_PAD_LEFT);
+}
+
+function insert_changes($the_db, $the_table_name, $the_table_id) {
+	$sql= 'SELECT id'
+		. '  FROM Changes'
+		. ' WHERE table_name ="' . $the_table_name . '"'
+		. '   AND table_id =' . $the_table_id
+		;
+	$my_id = $the_db->fetchOne($sql);
+
+	if ($my_id) {
+		$sql= 'UPDATE Changes'
+			. '   SET created_at ="' . get_now() . '"'
+			. ', servers = ""'
+			. ' WHERE id =' . $my_id
+			;
+	}else{
+		$sql= 'INSERT Changes'
+			. '   SET created_at ="' . get_now() . '"'
+			. ', table_name ="' . $the_table_name . '"'
+			. ', table_id =' . $the_table_id
+			;
+	}
+	$the_db->query($sql);
 }
 
 ?>

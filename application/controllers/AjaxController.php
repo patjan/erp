@@ -643,6 +643,7 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'Boxes'			&& $specific == 'batch'			)	return ' AND         Boxes.batch_id		= ' . $specific_id;
 	if ($table == 'FTPs'			&& $specific == 'product'		)	return ' AND          FTPs.product_id	= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'parent'		)	return ' AND PurchaseLines.parent_id	= ' . $specific_id;
+	if ($table == 'PurchaseLines'	&& $specific == 'supplier'		)	return ' AND     Purchases.supplier_id	= ' . $specific_id;
 	if ($table == 'Translations'	&& $specific == 'locale'		)	return ' AND  Translations.locale		= "en_US"';
 
 	return '';
@@ -704,7 +705,7 @@ private function set_new_fields($table) {
 	$return = '';
 	if ($table == 'Categories'		)	$return = ',    Parent.category			AS    parent_name';
 	if ($table == 'Companies'		)	$return = ',   Contact.full_name		AS   contact_name';
-	if ($table == 'Templates'		)	$return = ',   Created.full_name		AS   created_name';
+	if ($table == 'Templates'		)	$return = ',   Updated.full_name		AS   updated_name';
 	if ($table == 'Tickets'			)	$return = ',    Opened.full_name		AS    opened_name'
 												. ',    Closed.full_name		AS    closed_name'
 												. ',  Assigned.full_name		AS  assigned_name';
@@ -723,7 +724,7 @@ private function set_new_fields($table) {
 												. ',  Supplier.nick_name		AS           supplier';
 	if ($table == 'FTP_Sets'		)	$return = ',   Configs.sequence			AS           sequence'
 												. ',   Configs.name				AS           name';
-	if ($table == 'History'			)	$return = ',  Contacts.full_name		AS   created_name';
+	if ($table == 'History'			)	$return = ',  Contacts.full_name		AS   updated_name';
 	if ($table == 'Orders'			)	$return = ',  Customer.nick_name		AS  customer_name'
 												. ',   Machine.name				AS   machine_name'
 												. ',   Partner.nick_name		AS   partner_name'
@@ -753,7 +754,8 @@ private function set_new_fields($table) {
 	if ($table == 'QuotColors'		)	$return = ',     Color.color_name		AS     color_name';
 	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name		AS  supplier_name';
 	if ($table == 'Batches'			)	$return = ',   Threads.name				AS           name'
-												. ', Incomings.incoming_number	AS  incoming_number';
+												. ', Incomings.incoming_number	AS  incoming_number'
+												. ', Purchases.purchase_number	AS  purchase_number';
 	if ($table == 'Boxes'			)	$return = ',   Batches.batch			AS     batch_number'
 												. ',    Parent.barcode			AS           parent'
 												. ',   CheckIn.nick_name		AS           checkin'
@@ -821,7 +823,7 @@ private function set_left_joins($table) {
 	$return = '';
 	if ($table == 'Categories'		)	$return = '  LEFT JOIN  Categories AS Parent	ON    Parent.id	=	   Categories.parent_id';
 	if ($table == 'Companies'		)	$return = '  LEFT JOIN    Contacts AS Contact	ON   Contact.id	=		Companies.contact_id';
-	if ($table == 'Templates'		)	$return = '  LEFT JOIN    Contacts AS Created	ON   Created.id	=		Templates.created_by';
+	if ($table == 'Templates'		)	$return = '  LEFT JOIN    Contacts AS Updated	ON   Updated.id	=		Templates.updated_by';
 	if ($table == 'Tickets'			)	$return = '  LEFT JOIN   JKY_Users AS User_Op	ON   User_Op.id	=		  Tickets.opened_by'
 												. '  LEFT JOIN   JKY_Users AS User_As	ON   User_As.id	=		  Tickets.assigned_to'
 												. '  LEFT JOIN   JKY_Users AS User_Cl	ON   User_Cl.id	=		  Tickets.closed_by'
@@ -841,7 +843,7 @@ private function set_left_joins($table) {
 	if ($table == 'FTP_Threads'		)	$return = '  LEFT JOIN     Threads  			ON   Threads.id	=	  FTP_Threads.thread_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=	  FTP_Threads.supplier_id';
 	if ($table == 'FTP_Sets'		)	$return = '  LEFT JOIN     Configs  			ON   Configs.id	=		  FTP_Sets.setting_id';
-	if ($table == 'History'			)	$return = '  LEFT JOIN   JKY_Users AS Users		ON     Users.id =		   History.created_by'
+	if ($table == 'History'			)	$return = '  LEFT JOIN   JKY_Users AS Users		ON     Users.id =		   History.updated_by'
 												. '  LEFT JOIN    Contacts				ON  Contacts.id =			 Users.contact_id';
 	if ($table == 'Orders'			)	$return = '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		    Orders.customer_id'
 												. '  LEFT JOIN    Machines AS Machine	ON   Machine.id	=		    Orders.machine_id'
@@ -871,7 +873,8 @@ private function set_left_joins($table) {
 	if ($table == 'Incomings'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Incomings.supplier_id';
 	if ($table == 'Batches'			)	$return = '  LEFT JOIN   Incomings  			ON Incomings.id	=		   Batches.incoming_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		   Batches.thread_id'
-												. '  LEFT JOIN PurchaseLines AS PLines  ON    PLines.id	=		   Batches.purchase_line_id';
+												. '  LEFT JOIN PurchaseLines AS PLines  ON    PLines.id	=		   Batches.purchase_line_id'
+												. '  LEFT JOIN   Purchases				ON Purchases.id	=		    PLines.parent_id';
 	if ($table == 'Boxes'			)	$return = '  LEFT JOIN     Batches  			ON   Batches.id	=		     Boxes.batch_id'
 												. '  LEFT JOIN       Boxes AS Parent	ON    Parent.id	=		     Boxes.parent_id'
 												. '  LEFT JOIN    Contacts AS CheckIn	ON   CheckIn.id	=			 Boxes.checkin_by'
@@ -1061,7 +1064,7 @@ private function set_where($table, $filter) {
 		}
 
 		if ($table == 'Templates') {
-			if ($name == 'created_at'
+			if ($name == 'updated_at'
 			or	$name == 'template_name'
 			or	$name == 'template_type'
 			or	$name == 'template_subject'
@@ -1075,11 +1078,11 @@ private function set_where($table, $filter) {
 					return ' AND Templates.' . $name . ' LIKE ' . $value;
 				}
 			}else{
-				if ($name == 'created_by') {
+				if ($name == 'updated_by') {
 					if ($value == '"%null%"') {
-						return ' AND Templates.created_by  IS NULL';
+						return ' AND Templates.updated_by  IS NULL';
 					}else{
-						return ' AND   Created.full_name   LIKE ' . $value;
+						return ' AND   Updated.full_name   LIKE ' . $value;
 					}
 				}
 			}
@@ -1221,8 +1224,8 @@ private function set_where($table, $filter) {
 		}
 
 		if ($table == 'History') {
-			if ($name == 'created_at'
-			or	$name == 'created_by'
+			if ($name == 'updated_at'
+			or	$name == 'updated_by'
 			or	$name == 'parent_name'
 			or	$name == 'parent_id'
 			or	$name == 'method'
@@ -1240,8 +1243,8 @@ private function set_where($table, $filter) {
 			or	$name == 'ordered_at'
 			or	$name == 'needed_at'
 			or	$name == 'produced_at'
+			or	$name == 'labels_printed'
 			or	$name == 'ordered_pieces'
-			or	$name == 'printed_pieces'
 			or	$name == 'rejected_pieces'
 			or	$name == 'produced_pieces') {
 				if ($name == 'customer_name') {
@@ -1249,6 +1252,20 @@ private function set_where($table, $filter) {
 						return ' AND Orders.customer_id IS NULL';
 					}else{
 						return ' AND Customer.nick_name LIKE ' . $value;
+					}
+			}else{
+				if ($name == 'product_name') {
+					if ($value == '"%null%"') {
+						return ' AND Orders.product_id IS NULL';
+					}else{
+						return ' AND Product.product_name LIKE ' . $value;
+					}
+			}else{
+				if ($name == 'ftp_number') {
+					if ($value == '"%null%"') {
+						return ' AND Orders.ftp_id IS NULL';
+					}else{
+						return ' AND FTP.ftp_number LIKE ' . $value;
 					}
 			}else{
 				if ($name == 'machine_name') {
@@ -1264,44 +1281,40 @@ private function set_where($table, $filter) {
 					}else{
 						return ' AND Partner.nick_name LIKE ' . $value;
 					}
-/*			}else{
-				if ($name == 'product_name') {
-					if ($value == '"%null%"') {
-						return ' AND Orders.product_id IS NULL';
-					}else{
-						return ' AND Product.product_name LIKE ' . $value;
-					}
-			}
-*/			}else{
-				if ($name == 'ftp_number') {
-					if ($value == '"%null%"') {
-						return ' AND Orders.ftp_id IS NULL';
-					}else{
-						return ' AND FTP.ftp_number LIKE ' . $value;
-					}
-			}
-			}}}}
+				}
+			}}}}}
 		}
 
 		if ($table == 'Pieces') {
 			if ($name == 'barcode'
-			or	$name == 'source_doc'
-			or	$name == 'ordered_at'
-			or	$name == 'expected_date'
-			or	$name == 'scheduled_at'
-			or	$name == 'supplier_ref'
-			or	$name == 'payment_term') {
+			or	$name == 'product_name'
+			or	$name == 'checkin_at'
+			or	$name == 'returned_at'
+			or	$name == 'checkout_at'
+			or	$name == 'checkin_location'
+			or	$name == 'returned_location'
+			or	$name == 'checkout_location'
+			or	$name == 'checkin_weight'
+			or	$name == 'returned_weight'
+			or	$name == 'remarks') {
 				if ($value == '"%null%"') {
-					return ' AND Purchases.' . $name . ' IS NULL ';
+					return ' AND Pieces.' . $name . ' IS NULL ';
 				}else{
-					return ' AND Purchases.' . $name . ' LIKE ' . $value;
+					return ' AND Pieces.' . $name . ' LIKE ' . $value;
 				}
 			}else{
-				if ($name == 'supplier_name') {
+				if ($name == 'inspected') {
 					if ($value == '"%null%"') {
-						return ' AND Purchases.supplier_id IS NULL';
+						return ' AND Pieces.inspected_by IS NULL';
 					}else{
-						return ' AND Supplier.nick_name LIKE ' . $value;
+						return ' AND Inspected.nick_name LIKE ' . $value;
+					}
+				}
+				if ($name == 'weighed') {
+					if ($value == '"%null%"') {
+						return ' AND Pieces.weighed_by IS NULL';
+					}else{
+						return ' AND Weighed.nick_name LIKE ' . $value;
 					}
 				}
 			}
@@ -1768,7 +1781,7 @@ private function set_where($table, $filter) {
 	}
 
 	if ($table == 'Templates') {
-		$return = '        Templates.created_at			LIKE ' . $filter
+		$return = '        Templates.updated_at			LIKE ' . $filter
 				. ' or     Templates.template_name		LIKE ' . $filter
 				. ' or     Templates.template_type		LIKE ' . $filter
 				. ' or     Templates.template_subject	LIKE ' . $filter
@@ -1789,8 +1802,7 @@ private function set_where($table, $filter) {
 	}
 
 	if ($table == 'Translations') {
-		$return = '     Translations.created_at			LIKE ' . $filter
-				. ' OR  Translations.updated_at			LIKE ' . $filter
+		$return = '     Translations.updated_at			LIKE ' . $filter
 				. ' OR  Translations.sentence			LIKE ' . $filter
 				;
 }
@@ -1855,15 +1867,32 @@ private function set_where($table, $filter) {
 			. ' OR  Orders.ordered_at			LIKE ' . $filter
 			. ' OR  Orders.needed_at			LIKE ' . $filter
 			. ' OR  Orders.produced_at			LIKE ' . $filter
+			. ' OR  Orders.labels_printed		LIKE ' . $filter
 			. ' OR  Orders.ordered_pieces		LIKE ' . $filter
-			. ' OR  Orders.printed_pieces		LIKE ' . $filter
 			. ' OR  Orders.rejected_pieces		LIKE ' . $filter
 			. ' OR  Orders.produced_pieces		LIKE ' . $filter
 			. ' OR    Customer.nick_name		LIKE ' . $filter
+			. ' OR     Product.product_name		LIKE ' . $filter
+			. ' OR         FTP.ftp_number		LIKE ' . $filter
 			. ' OR     Machine.name				LIKE ' . $filter
 			. ' OR     Partner.nick_name		LIKE ' . $filter
-//			. ' OR     Product.product_name		LIKE ' . $filter
-			. ' OR         FTP.ftp_number		LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'Pieces') {
+		$return = ' Pieces.barcode				LIKE ' . $filter
+			. ' OR  Pieces.product_name			LIKE ' . $filter
+			. ' OR  Pieces.checkin_at			LIKE ' . $filter
+			. ' OR  Pieces.returned_at			LIKE ' . $filter
+			. ' OR  Pieces.checkout_at			LIKE ' . $filter
+			. ' OR  Pieces.checkin_location		LIKE ' . $filter
+			. ' OR  Pieces.returned_location	LIKE ' . $filter
+			. ' OR  Pieces.checkout_location	LIKE ' . $filter
+			. ' OR  Pieces.checkin_weight		LIKE ' . $filter
+			. ' OR  Pieces.returned_weight		LIKE ' . $filter
+			. ' OR  Pieces.remarks				LIKE ' . $filter
+			. ' OR    Inspected.nick_name		LIKE ' . $filter
+			. ' OR      Weighed.nick_name		LIKE ' . $filter
 			;
 		}
 
@@ -2021,8 +2050,8 @@ private function set_where($table, $filter) {
 		}
 
 	if ($table ==  'History') {
-		$return = ' History.created_at		LIKE ' . $filter
-			. ' OR	History.created_by		LIKE ' . $filter
+		$return = ' History.updated_at		LIKE ' . $filter
+			. ' OR	History.updated_by		LIKE ' . $filter
 			. ' OR	History.parent_name		LIKE ' . $filter
 			. ' OR	History.parent_id		LIKE ' . $filter
 			. ' OR	History.method			LIKE ' . $filter
@@ -2056,14 +2085,14 @@ private function set_where($table, $filter) {
  *			]
  */
 private function get_comments() {
-	$table	= get_request('table'	);
-	$id		= get_request('id'		);
+	$table		= get_request('table'	);
+	$parent_id	= get_request('id'		);
 
 	$user_id	= get_session('user_id'  );
 	$user_role	= get_session('user_role');
-	if (strpos($user_role, 'staff'	)
-	or	strpos($user_role, 'admin'	)
-	or	strpos($user_role, 'support')) {
+	if (strpos($user_role, 'Staff'	)
+	or	strpos($user_role, 'Admin'	)
+	or	strpos($user_role, 'Support')) {
 		$staff = 'true' ;
 	}else{
 		$staff = 'false';
@@ -2072,11 +2101,11 @@ private function get_comments() {
 	$sql= 'SELECT *'
 		. '  FROM Comments'
 		. ' WHERE parent_name = "' . $table . '"'
-		. '   AND parent_id   =  ' . $id
-		. '   AND ( status IS NULL'
-		. '    OR ( status = "private" AND created_by = ' . $user_id . ' )'
-		. '    OR ( status = "staff"   AND ' . $staff . ' ) )'
-		. ' ORDER BY created_at'
+		. '   AND parent_id   =  ' . $parent_id
+		. '   AND ( status = "Active" )'
+		. '    OR ( status = "Private" AND updated_by = ' . $user_id . ' )'
+		. '    OR ( status = "Staff"   AND ' . $staff . ' ) )'
+		. ' ORDER BY updated_at'
 		;
 //$this->log_sql($table, 'get_comments', $sql);
 	$db = Zend_Registry::get('db');
@@ -2096,20 +2125,25 @@ private function get_comments() {
  *			]
  */
 private function add_comment() {
-	$table	= get_request('table'	);
-	$id		= get_request('id'		);
-	$comment= get_request('comment'	);
+	$table		= get_request('table'	);
+	$parent_id	= get_request('id'		);
+	$comment	= get_request('comment'	);
 
-	$sql = 'INSERT INTO Comments'
-		. '   SET created_by  =  ' . get_session('user_id')
-		. '     , created_at  =  NOW()'
-		. '     , created_name= "' . get_session('full_name') . '"'
-		. '     , parent_name = "' . $table . '"'
-		. '     , parent_id   =  ' . $id
-		. '     , comment     = "' . $comment . '"'
+	$my_id = get_next_id('Comments');
+	$sql= 'INSERT INTO Comments'
+		. '   SET       id='  . $my_id
+		. ',    updated_by='  . get_session('user_id')
+		. ',    updated_at="' . get_time() . '"'
+		. ',   parent_name="' . $table . '"'
+		. ',     parent_id='  . $parent_id
+		. ',  created_name="' . get_session('full_name' ) . '"'
+		. ', created_email="' . get_session('user_email') . '"'
+		. ',       comment="' . $comment . '"'
 		;
 //$this->log_sql($table, 'add_comment', $sql);
 	$db = Zend_Registry::get('db');
+	insert_changes($db, 'Comments', $my_id);
+
 	$return = array();
 	$return['status'] = 'ok';
 	$return['id'	] = $db->query($sql);
@@ -2135,7 +2169,7 @@ private function get_columns($data) {
 	if ($table == 'Services'	)	{	$col['Field'] =     'full_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col;
 										$col['Field'] =        'avatar' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col;
 										$col['Field'] =    'group_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col; }
-	if ($table == 'Templates'	)	{	$col['Field'] =  'created_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col; }
+	if ($table == 'Templates'	)	{	$col['Field'] =  'updated_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col; }
 	if ($table == 'Tickets'		)	{	$col['Field'] =   'opened_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col;
 										$col['Field'] =   'closed_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col;
 										$col['Field'] = 'assigned_name' ; $col['Type'] = 'varchar(255)'  ; $extra[] = $col; }
@@ -2179,8 +2213,23 @@ private function insert($data) {
 		return;
 	}
 
-	$set .= ', created_by='  . get_session('user_id');
-	$set .= ', created_at="' . get_time() . '"';
+	$my_id = get_next_id($table);
+	$set .= ', id=' . $my_id;
+	$set .= ', updated_by='  . get_session('user_id');
+	$set .= ', updated_at="' . get_time() . '"';
+
+	switch($table) {
+		case('Boxes'		)	: $set .=          ', barcode = ' . $my_id; break;
+		case('CheckOuts'	)	: $set .=           ', number = ' . $my_id; break;
+		case('FTPs'			)	: $set .=       ', ftp_number = ' . $my_id; break;
+		case('Incomings'	)	: $set .=  ', incoming_number = ' . $my_id; break;
+		case('Orders'		)	: $set .=     ', order_number = ' . $my_id; break;
+		case('Purchases'	)	: $set .=  ', purchase_number = ' . $my_id; break;
+		case('Quotations'	)	: $set .= ', quotation_number = ' . $my_id; break;
+		case('Pieces'		)	: $set .=          ', barcode = ' . $my_id; break;
+		case('Requests'		)	: $set .=           ', number = ' . $my_id; break;
+		case('TDyers'		)	: $set .=     ', tdyer_number = ' . $my_id; break;
+	}
 
 	if ($table == 'Categories') {
 		$set .= ',     company_id= ' . get_session('company_id');
@@ -2191,101 +2240,15 @@ private function insert($data) {
 		$set .= ', company_number= ' . $this->getUniqueNumber($table, 'company_number');
 	}
 
-	if ($table == 'Services') {
-		$sets  = explode(',', $set);
-		$names = explode('=', $sets[0]); $user_id  = $names[1];
-		$names = explode('=', $sets[1]); $event_id = $names[1];
-
-		$sql = 'SELECT next_number FROM Events WHERE id = ' . $event_id;
-		$helper_number = $db->fetchOne($sql);
-		$sql = 'UPDATE Events SET next_number = next_number + 1 WHERE id = ' . $event_id;
-		$db->query($sql);
-		$set .= ', helper_number= ' . $helper_number;
-
-		$sql = 'SELECT birth_date FROM Contacts  WHERE id = ' .  $user_id;
-		$birth_date = $db->fetchOne($sql);
-		$sql = 'SELECT start_date FROM Events WHERE id = ' . $event_id;
-		$start_date = $db->fetchOne($sql);
-		if ($birth_date) {
-			$diff = abs(strtotime($start_date) - strtotime($birth_date));
-			$set .= ', helper_age= ' . floor($diff / (365.25*60*60*24));
-		}
-	}
-
-	if ($table == 'Boxes') {
-		$my_number = get_next_number('Controls', 'Next Box Number');
-		$set .= ',      id= ' . $my_number;
-		$set .= ', barcode= ' . $my_number;
-	}
-
-	if ($table == 'CheckOuts') {
-		$my_number = get_next_number('Controls', 'Next CheckOut Number');
-		$set .= ',     id= ' . $my_number;
-		$set .= ', number= ' . $my_number;
-	}
-
-	if ($table == 'Contacts') {
-//		$set .= ',     company_id= ' . get_session('company_id', COMPANY_ID);
-//		$set .= ',        user_id= ' . $this->insert_user_jky();
-//		$set .= ',    user_number= ' . $this->getUniqueNumber($table, 'user_number');
-	}
-
-	if ($table == 'FTPs') {
-		$my_number = get_next_number('Controls', 'Next FTP Number');
-		$set .= ',     id= ' . $my_number;
-		$set .= ', ftp_number= ' . $my_number;
-	}
-
-	if ($table == 'Incomings') {
-		$my_number = get_next_number('Controls', 'Next Incoming Number');
-		$set .= ',     id= ' . $my_number;
-		$set .= ', incoming_number= ' . $my_number;
-	}
-
-	if ($table == 'Orders') {
-		$my_number = get_next_number('Controls', 'Next Order Number');
-		$set .= ',     id= ' . $my_number;
-		$set .= ', order_number= ' . $my_number;
-	}
-
-	if ($table == 'Purchases') {
-		$my_number = get_next_number('Controls', 'Next Purchase Number');
-		$set .= ',     id= ' . $my_number;
-		$set .= ', purchase_number= ' . $my_number;
-	}
-
-	if ($table == 'Quotations') {
-		$my_number = get_next_number('Controls', 'Next Quotation Number');
-		$set .= ',     id= ' . $my_number;
-		$set .= ', quotation_number= ' . $my_number;
-	}
-
-	if ($table == 'Pieces') {
-		$my_number = get_next_number('Controls', 'Next Piece Number');
-		$set .= ',      id= ' . $my_number;
-		$set .= ', barcode= ' . $my_number;
-	}
-
-	if ($table == 'Requests') {
-		$my_number = get_next_number('Controls', 'Next Request Number');
-		$set .= ',     id= ' . $my_number;
-		$set .= ', number= ' . $my_number;
-	}
-
-	if ($table == 'TDyers') {
-		$my_number = get_next_number('Controls', 'Next TDyer Number');
-		$set .= ',     id= ' . $my_number;
-		$set .= ', tdyer_number= ' . $my_number;
-}
-
-//	if ($table == 'Templates') {
-//		$set .= ',     company_id= ' . get_session('control_company', COMPANY_ID);
-//	}
-
 	if ($table == 'Tickets') {
 		$set .= ',     company_id= ' . get_session('control_company', COMPANY_ID);
 		$set .= ',      opened_by= ' . get_session('user_id');
 		$set .= ',      opened_at="' . get_time() . '"';
+	}
+
+	if ($table == 'JKY_Users') {
+		$set .= ',     start_date="' . get_time() . '"';
+		$set .= ',       user_key="' . MD5(date('Y-m-d H:i:s')) . '"';
 	}
 
 	$sql= 'INSERT ' . $table
@@ -2295,13 +2258,13 @@ private function insert($data) {
 	$return = array();
 	try {
 		$db->query($sql);
-		$id = $db->lastInsertId();
-		$this->log_sql($table, $id, $sql);
-		$new = db_get_row($table, 'id = ' . $id);
-		$this->history_log('insert', $table, $id, $new, null);
+		insert_changes($db, $table, $my_id);
+		$this->log_sql($table, $my_id, $sql);
+		$new = db_get_row($table, 'id = ' . $my_id);
+		$this->history_log('insert', $table, $my_id, $new, null);
 		$return['status' ] = 'ok';
-		$return['message'] = 'new record (' . $id . ') added';
-		$return['id'     ] = $id;
+		$return['message'] = 'new record (' . $my_id . ') added';
+		$return['id'     ] = $my_id;
 	} catch(Exception $exp) {
 		$this->log_sql($table, null, $exp->getMessage());
 		$return['status' ] = 'error';
@@ -2311,13 +2274,16 @@ private function insert($data) {
 }
 
 private function insert_user_jky() {
-	$sql = 'INSERT JKY_Users'
-		. '   SET password = "' . MD5(date('Y-m-d H:i:s')) . '"'
-		. '     , user_key = "' . MD5(date('Y-m-d H:i:s')) . '"'
+	$my_id = get_next_id('JKY_Users');
+	$sql= 'INSERT JKY_Users'
+		. '   SET  id='  . $my_id
+		. ', password="' . MD5(date('Y-m-d H:i:s')) . '"'
+		. ', user_key="' . MD5(date('Y-m-d H:i:s')) . '"'
 		;
 	$db  = Zend_Registry::get('db');
 	$db->query($sql);
-	return $db->lastInsertId();
+	insert_changes($db, 'JKY_Users', $my_id);
+	return $my_id;
 }
 
 /**
@@ -2341,30 +2307,31 @@ private function update($data) {
 		return;
 	}
 
-	$id = $this->get_only_id($table, $where);
-	if (!$id) {
+	$my_id = $this->get_only_id($table, $where);
+	if (!$my_id) {
 		$this->echo_error('record not found');
 		return;
 	}
 
-	$old = db_get_row($table, 'id = ' . $id);
+	$old = db_get_row($table, 'id = ' . $my_id);
 
 	$set .= ', updated_by='  . get_session('user_id');
 	$set .= ', updated_at="' . get_time() . '"';
 	$sql= 'UPDATE ' . $table
 		. '   SET ' . str_replace("*#", "&", $set)
-		. ' WHERE id = ' . $id
+		. ' WHERE id = ' . $my_id
 		;
-	$this->log_sql($table, $id, $sql);
+	$this->log_sql($table, $my_id, $sql);
 	$return = array();
 	try {
 		$db = Zend_Registry::get('db');
 		$db->query($sql);
-		$new = db_get_row($table, 'id = ' . $id);
-		$this->history_log('update', $table, $id, $new, $old);
+		insert_changes($db, $table, $my_id);
+		$new = db_get_row($table, 'id = ' . $my_id);
+		$this->history_log('update', $table, $my_id, $new, $old);
 		$return['status' ] = 'ok';
-		$return['message'] = 'record (' . $id . ') updated';
-		$return['id'     ] = $id;
+		$return['message'] = 'record (' . $my_id . ') updated';
+		$return['id'     ] = $my_id;
 	} catch(Exception $exp) {
 		$this->log_sql($table, null, $exp->getMessage());
 		$return['status' ] = 'error';
@@ -2374,12 +2341,14 @@ private function update($data) {
 }
 
 private function update_user_jky($id, $set) {
+	$my_id = $id;
 	$sql = 'UPDATE JKY_Users'
 		. '   SET ' . str_replace("*#", "&", $set)
-		. ' WHERE id = ' . $id
+		. ' WHERE id = ' . $my_id
 		;
 	$db = Zend_Registry::get('db');
 	$db->query($sql);
+	insert_changes($db, 'JKY_Users', $my_id);
 }
 
 /*
@@ -2403,30 +2372,31 @@ private function replace($data) {
 		return;
 	}
 
-	$id = $this->get_only_id($table, $where);
+	$my_id = $this->get_only_id($table, $where);
 
-	if (!$id) {
+	if (!$my_id) {
 		$old = null;
 	}else{
-		$old = db_get_row($table, 'id = ' . $id);
+		$old = db_get_row($table, 'id = ' . $my_id);
 	}
 
 	$set .= ', updated_by='  . get_session('user_id');
 	$set .= ', updated_at="' . get_time() . '"';
 	$sql= 'REPLACE ' . $table
 		. '   SET ' . str_replace("*#", "&", $set)
-		. ' WHERE id = ' . $id
+		. ' WHERE id = ' . $my_id
 		;
-	$this->log_sql($table, $id, $sql);
+	$this->log_sql($table, $my_id, $sql);
 	$return = array();
 	try {
 		$db = Zend_Registry::get('db');
 		$db->query($sql);
-		$new = db_get_row($table, 'id = ' . $id);
-		$this->history_log('replace', $table, $id, $new, $old);
+		insert_changes($db, $table, $my_id);
+		$new = db_get_row($table, 'id = ' . $my_id);
+		$this->history_log('replace', $table, $my_id, $new, $old);
 		$return['status' ] = 'ok';
-		$return['message'] = 'record (' . $id . ') replaced';
-		$return['id'     ] = $id;
+		$return['message'] = 'record (' . $my_id . ') replaced';
+		$return['id'     ] = $my_id;
 	} catch(Exception $exp) {
 		$this->log_sql($table, null, $exp->getMessage());
 		$return['status' ] = 'error';
@@ -2493,24 +2463,26 @@ private function delete($data) {
 	$return = array();
 	$return['status'] = 'ok';
 
-	$id = $this->get_only_id($table, $where);
-	if ($id) {
+	$my_id = $this->get_only_id($table, $where);
+	if ($my_id) {
 		if ($table == 'Contacts') {
-			$this->delete_jky_user($id);
+			$this->delete_jky_user($my_id);
 		}
 
-		$new = db_get_row($table, 'id = ' . $id);
-		$this->history_log('delete', $table, $id, $new, null);
+		$new = db_get_row($table, 'id = ' . $my_id);
+		$this->history_log('delete', $table, $my_id, $new, null);
 
 		$sql= 'DELETE'
 			. '  FROM ' . $table
-			. ' WHERE id = ' . $id
+			. ' WHERE id = ' . $my_id
 			;
-		$this->log_sql($table, $id, $sql);
+		$this->log_sql($table, $my_id, $sql);
 		$db = Zend_Registry::get('db');
 		$db->query($sql);
-		$return['message'] = 'record (' . $id . ') deleted';
-		$return['id'     ] = $id;
+		insert_changes($db, $table, $my_id);
+
+		$return['message'] = 'record (' . $my_id . ') deleted';
+		$return['id'     ] = $my_id;
 	}else{
 		$return['message'] = 'record already deleted';
 	}
@@ -2518,12 +2490,14 @@ private function delete($data) {
 }
 
 private function delete_jky_user($id) {
+	$my_id = $id;
 	$sql= 'DELETE'
 		. '  FROM JKY_Users'
-		. ' WHERE id = ' . $id
+		. ' WHERE id = ' . $my_id
 		;
 	$db = Zend_Registry::get('db');
 	$db->query($sql);
+	insert_changes($db, 'JKY_Users', $my_id);
 }
 
 /*
@@ -2550,9 +2524,6 @@ $this->log_sql($table, 'delete_many', $where);
 		;
 $this->log_sql($table, 'delete_many', $sql);
 	$rows = $db->fetchAll($sql);
-	foreach($rows as $row) {
-		$this->history_log('delete', $table, $row['id'], $row, null);
-	}
 
 	$return = array();
 	$return['status'] = 'ok';
@@ -2563,6 +2534,11 @@ $this->log_sql($table, 'delete_many', $sql);
 		;
 	$this->log_sql($table, 'delete_many', $sql);
 	$result = $db->query($sql);
+
+	foreach($rows as $row) {
+		$this->history_log('delete', $table, $row['id'], $row, null);
+		insert_changes($db, $table, $row['id']);
+	}
 
 	$return['message'] = 'record count (' . $result->rowCount() . ') deleted';
 	echo json_encode($return);
@@ -2624,63 +2600,51 @@ private function combine() {
 	$set .= replace( $s, $t, 'all_gifts'    , '' );
 	$set .= replace( $s, $t, 'other_gifts'  , '' );
 
-	  if(  $set != '' ) {
-	       $sql = 'UPDATE Contacts'
-		    . '   SET ' . substr( $set, 2 )
-		    . ' WHERE id = ' . $target
-		    ;
-	       $this->log_sql( $table, $target, $sql );
-	       $db->query( $sql );
-	  }
+	if ($set != '') {
+		$sql= 'UPDATE Contacts'
+			. '   SET ' . substr( $set, 2 )
+			. ' WHERE id = ' . $target
+			;
+		$this->log_sql( $table, $target, $sql );
+		$db->query( $sql );
+//		insert_changes($db, 'Contacts', $target);
+	}
 
-	  $db->query( 'UPDATE Categories     SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Categories     SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
 
-	  $db->query( 'UPDATE Comments       SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Comments       SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
 	  $db->query( 'UPDATE Comments       SET    parent_id = ' . $target . ' WHERE   parent_id = ' . $source . ' AND parent_name = "Contacts"' );
 
-	  $db->query( 'UPDATE Companies      SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Companies      SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
 	  $db->query( 'UPDATE Companies      SET    member_id = ' . $target . ' WHERE   member_id = ' . $source );
 	  $db->query( 'UPDATE Companies      SET     owner_id = ' . $target . ' WHERE    owner_id = ' . $source );
 	  $db->query( 'UPDATE Companies      SET   contact_id = ' . $target . ' WHERE  contact_id = ' . $source );
 	  $db->query( 'UPDATE Companies      SET   support_id = ' . $target . ' WHERE  support_id = ' . $source );
 
-	  $db->query( 'UPDATE Controls       SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Controls       SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
 
-	  $db->query( 'UPDATE Configs        SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Configs        SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
 
-	  $db->query( 'UPDATE Events         SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Events         SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
 
-	  $db->query( 'UPDATE Groups         SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Groups         SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
 	  $db->query( 'UPDATE Groups         SET    leader_id = ' . $target . ' WHERE   leader_id = ' . $source );
 
-	  $db->query( 'UPDATE Permissions    SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Permissions    SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
 
-	  $db->query( 'UPDATE Services       SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Services       SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
 	  $db->query( 'UPDATE Services       SET      user_id = ' . $target . ' WHERE     user_id = ' . $source );      //   duplicates same event_id
 	  $db->query( 'UPDATE Services       SET  assigned_by = ' . $target . ' WHERE assigned_by = ' . $source );
 
-	  $db->query( 'UPDATE Settings       SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Settings       SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
 
-	  $db->query( 'UPDATE Templates      SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Templates      SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
 
-	  $db->query( 'UPDATE Tickets        SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Tickets        SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
 	  $db->query( 'UPDATE Tickets        SET    opened_by = ' . $target . ' WHERE   opened_by = ' . $source );
 	  $db->query( 'UPDATE Tickets        SET  assigned_to = ' . $target . ' WHERE assigned_to = ' . $source );
 	  $db->query( 'UPDATE Tickets        SET    closed_by = ' . $target . ' WHERE   closed_by = ' . $source );
 
-	  $db->query( 'UPDATE Contacts       SET   created_by = ' . $target . ' WHERE  created_by = ' . $source );
 	  $db->query( 'UPDATE Contacts       SET   updated_by = ' . $target . ' WHERE  updated_by = ' . $source );
 	  $db->query( 'UPDATE Contacts       SET   support_id = ' . $target . ' WHERE  support_id = ' . $source );
 
@@ -3064,23 +3028,24 @@ private function get_contact_id() {
 		. ' WHERE full_name = "' . $contact_name . '"'
 		;
 	$db = Zend_Registry::get('db');
-	$id = $db->fetchOne($sql);
+	$my_id = $db->fetchOne($sql);
 
-	if (!$id) {
+	if (!$my_id) {
+		$my_id = $this->insert_user_jky();
 		$sql= 'INSERT INTO Contacts'
-			. '   SET          id= ' . $this->insert_user_jky()
-//			. '     , user_number= ' . $this->getUniqueNumber( 'Contacts', 'user_number' )
-			. '     ,   full_name="' . $contact_name . '"'
-			. '     ,   user_name="' . $contact_name . '"'
+			. '   SET     id='  . $my_id
+//			. ', user_number='  . $this->getUniqueNumber( 'Contacts', 'user_number' )
+			. ',   full_name="' . $contact_name . '"'
+			. ',   user_name="' . $contact_name . '"'
 			;
 		$db = Zend_Registry::get('db');
 		$db->query($sql);
-		$id = $db->lastInsertId();
+		insert_changes($db, 'Contacts', $my_id);
 	}
 
 	$return = array();
 	$return['status'] = 'ok';
-	$return['id'	] = $id;
+	$return['id'	] = $my_id;
 	echo json_encode($return);
 }
 
@@ -3519,6 +3484,7 @@ private function set_user_session($user_id) {
 	set_session('first_name'	, $contact['first_name'	]);
 	set_session('last_name'		, $contact['last_name'	]);
 	set_session('full_name'		, $contact['full_name'	]);
+	set_session('user_email'	, $contact['email'		]);
 
 	set_permissions($user['user_role']);
 }
@@ -3611,6 +3577,7 @@ private function reset($data) {
 		$db = Zend_Registry::get('db');
 		$db->query($sql);
 		$this->log_sql('reset', $user_id, $sql);
+		insert_changes($db, 'JKY_Users', $user_id);
 	}
 
 	$return = array();
@@ -3773,6 +3740,7 @@ private function profile($data) {
 			;
 		$this->log_sql('profile', null, $sql);
 		$db->query($sql);
+		insert_changes($db, 'Contacts', get_session('contact_id'));
 
 //		set_session('full_name', $full_name);
 
@@ -3782,6 +3750,7 @@ private function profile($data) {
 			;
 		$this->log_sql('profile', null, $sql);
 		$db->query($sql);
+		insert_changes($db, 'JKY_Users', get_session('user_id'));
 	}
 
 	$return = array();
@@ -3813,7 +3782,7 @@ private function sign_up() {
      if(  is_empty( $company_name )) {
 	  $company_id = COMPANY_ID;
      } else {
-	  $set = '  created_at     = "' . date( 'Y-m-d H:i:s' ) . '"'
+	  $set = '  updated_at     = "' . date( 'Y-m-d H:i:s' ) . '"'
 	       . ', parent_id      =  ' . get_session( 'control_company', COMPANY_ID )
 	       . ', company_name   = "' . $company_name     . '"'
 	       . ', start_date     = "' . date( 'Y-m-d' )   . '"'
@@ -3830,17 +3799,17 @@ private function sign_up() {
 
      $user_id = $this->insert_user_jky();
 
-     $set = '  id             =  ' . $user_id
-	  . ', created_at     = "' . date( 'Y-m-d H:i:s' ) . '"'
-	  . ', company_id     =  ' . $company_id
-	  . ', newsletter     = "' . $newsletter       . '"'
-	  . ', user_number    =  ' . $this->getUniqueNumber( 'Contacts', 'user_number' )
-	  . ', user_role      = "' . 'member'          . '"'
-	  . ', full_name      = "' . $user_name        . '"'
-	  . ', first_name     = "' . $user_name        . '"'
-	  . ', user_email     = "' . $email_address    . '"'
-	  . ', user_name      = "' . $user_name        . '"'
-	  . ', phone          = "' . $phone            . '"'
+     $set = '       id='  . $user_id
+	  . ',  updated_at="' . date( 'Y-m-d H:i:s' ) . '"'
+	  . ',  company_id='  . $company_id
+	  . ',  newsletter="' . $newsletter       . '"'
+	  . ', user_number='  . $this->getUniqueNumber( 'Contacts', 'user_number' )
+	  . ',   user_role="' . 'member'          . '"'
+	  . ',   full_name="' . $user_name        . '"'
+	  . ',  first_name="' . $user_name        . '"'
+	  . ',  user_email="' . $email_address    . '"'
+	  . ',   user_name="' . $user_name        . '"'
+	  . ',       phone="' . $phone            . '"'
 	  ;
      $sql = 'INSERT Contacts'
 	  . '   SET ' . $set
@@ -3882,8 +3851,8 @@ private function send_email() {
 
      $user     = db_get_row( 'Contacts' , 'id = ' . $user_id );
      $user_jky = db_get_row( 'JKY_Users', 'id = ' . $user_id );
-     $to_name  = $user[ 'full_name'     ];
-     $to_email = $user[ 'user_email'    ];
+     $to_name  = $user[ 'full_name'	];
+     $to_email = $user[ 'email'		];
      $cc_name  = '';
      $cc_email = '';
 
@@ -3900,9 +3869,9 @@ private function send_email() {
      $search[] = '+'               ; $replace[] = ' ';
      $search[] = '{SERVER_NAME}'   ; $replace[] = SERVER_NAME;
      $search[] = '{SUPPORT_NAME}'  ; $replace[] = $from_name;
-     $search[] = '{USER_EMAIL}'    ; $replace[] = $user     [ 'user_email' ];
-     $search[] = '{USER_NAME}'     ; $replace[] = $user     [ 'full_name'  ];
-     $search[] = '{USER_KEY}'      ; $replace[] = $user_jky [ 'user_key'   ];
+     $search[] = '{USER_EMAIL}'    ; $replace[] = $user     [ 'email'		];
+     $search[] = '{USER_NAME}'     ; $replace[] = $user     [ 'full_name'	];
+     $search[] = '{USER_KEY}'      ; $replace[] = $user_jky [ 'user_key'	];
 
      $subject  = str_replace( $search, $replace, $subject   );
      $body     = str_replace( $search, $replace, $body      );
@@ -3979,7 +3948,7 @@ private function get_last_id( $table, $where='1' ) {
      $sql = 'SELECT id'
 	  . '  FROM ' . $table
 	  . ' WHERE ' . $where
-	  . ' ORDER BY created_at DESC'
+	  . ' ORDER BY updated_at DESC'
 	  . ' LIMIT 0, 1'
 	  ;
      $db  = Zend_Registry::get( 'db' );
@@ -4005,7 +3974,7 @@ private function log_sql( $table, $id, $sql ) {
      fclose( $logFile );
 }
 
-    private function history_log($method, $table, $id, $new, $old) {
+private function history_log($method, $table, $parent_id, $new, $old) {
 	$history = '';
 	$first   = '';
 	foreach($new as $key=>$value) {
@@ -4023,18 +3992,21 @@ private function log_sql( $table, $id, $sql ) {
 	if (empty($history)) {
 	    return;
 	}
+	$my_id = get_next_id('History');
 	$sql= 'INSERT History'
-	    . '   SET created_by    = "' . get_session('user_id') . '"'
-	    . '     , created_at    =  ' . 'NOW()'
-	    . '     , parent_name   = "' . $table . '"'
-	    . '     , parent_id     =  ' . $id
-	    . '     , method       = "' . $method . '"'
-	    . '     , history       = "' . $history . '"'
+	    . '   SET     id='  . $my_id
+	    . ',  updated_by='  . get_session('user_id')
+		. ',  updated_at="' . get_time() . '"'
+	    . ', parent_name="' . $table . '"'
+	    . ',   parent_id='  . $parent_id
+	    . ',      method="' . $method . '"'
+	    . ',     history="' . $history . '"'
 	;
-//$this->log_sql('History', null, $sql);
+//$this->log_sql('History', $my_id, $sql);
 	$db  = Zend_Registry::get( 'db' );
 	$db->query( $sql );
-    }
+	insert_changes($db, 'History', $my_id);
+}
 
 private function getUniqueNumber( $table, $field ) {
      while ( true ) {
@@ -4063,7 +4035,7 @@ private function echo_error( $message ) {
  *   status: ok
  *  message: record updated
  */
-    private function set_amount() {
+private function set_amount() {
 	$table      = get_request('table'     );
 	$receive_id = get_request('receive_id');
 	$service_id = get_request('service_id');
@@ -4114,7 +4086,7 @@ private function echo_error( $message ) {
  *   status: ok
  *  message: record updated
  */
-    private function reset_amount() {
+private function reset_amount() {
 	$table      = get_request('table'     );
 	$receive_id = get_request('receive_id');
 	$service_id = get_request('service_id');
@@ -4164,7 +4136,7 @@ private function echo_error( $message ) {
  *
  *   status: ok
  */
-    private function Xrefresh() {
+private function Xrefresh() {
 /*
 	if (get_session('user_action') != 'All') {
 	    return;
@@ -4270,80 +4242,80 @@ private function echo_error( $message ) {
 	$return = array();
 	$return[ 'status'   ] = 'ok';
 	echo json_encode( $return );
-    }
+}
 
-	/**
-	 *	$.ajax({ method: refresh, table: x...x, reference_date: yyy-mm-dd });
-	 *
-	 *	return: [ x...x, ..., x...x ]
-	 */
-	private function refresh($data) {
-		$table			= get_data($data, 'table');
-		$reference_date = get_data($data, 'reference_date');
+/**
+ *	$.ajax({ method: refresh, table: x...x, reference_date: yyy-mm-dd });
+ *
+ *	return: [ x...x, ..., x...x ]
+ */
+private function refresh($data) {
+	$table			= get_data($data, 'table');
+	$reference_date = get_data($data, 'reference_date');
 
-		$sql= 'SET @cut_off_date = ' . $reference_date . ';'
+	$sql= 'SET @cut_off_date = ' . $reference_date . ';'
 
-			. 'TRUNCATE PurchaseMonthly;'
-			. 'TRUNCATE ThreadJoined;'
-			. 'TRUNCATE ThreadForecast;'
+		. 'TRUNCATE PurchaseMonthly;'
+		. 'TRUNCATE ThreadJoined;'
+		. 'TRUNCATE ThreadForecast;'
 
-			. 'INSERT PurchaseMonthly(thread_id, supplier_id, months, forecast_weight)'
-			. 'SELECT PurchaseLines.thread_id'
-			. '	    , Purchases.supplier_id'
-			. '	    , 12 * (YEAR(PurchaseLines.expected_date) - YEAR(@cut_off_date)) + (MONTH(PurchaseLines.expected_date) - MONTH(@cut_off_date)) AS months'
-			. '	    , SUM(PurchaseLines.expected_weight - PurchaseLines.received_weight) AS forecast_weight'
-			. '  FROM PurchaseLines'
-			. '  LEFT JOIN Purchases ON Purchases.id = PurchaseLines.parent_id'
-			. ' WHERE PurchaseLines.status = "Draft"'
-			. '   AND PurchaseLines.expected_weight > PurchaseLines.received_weight'
-			. ' GROUP BY thread_id, supplier_id, months'
-			. ';'
+		. 'INSERT PurchaseMonthly(thread_id, supplier_id, months, forecast_weight)'
+		. 'SELECT PurchaseLines.thread_id'
+		. '	    , Purchases.supplier_id'
+		. '	    , 12 * (YEAR(PurchaseLines.expected_date) - YEAR(@cut_off_date)) + (MONTH(PurchaseLines.expected_date) - MONTH(@cut_off_date)) AS months'
+		. '	    , SUM(PurchaseLines.expected_weight - PurchaseLines.received_weight) AS forecast_weight'
+		. '  FROM PurchaseLines'
+		. '  LEFT JOIN Purchases ON Purchases.id = PurchaseLines.parent_id'
+		. ' WHERE PurchaseLines.status = "Draft"'
+		. '   AND PurchaseLines.expected_weight > PurchaseLines.received_weight'
+		. ' GROUP BY thread_id, supplier_id, months'
+		. ';'
 
-			. 'INSERT ThreadJoined(thread_id, supplier_id, current_balance)'
-			. 'SELECT Batches.thread_id'
-			. '	    , Incomings.supplier_id'
-			. '	    , SUM(Batches.checkin_weight + Batches.returned_weight - Batches.checkout_weight) AS current_balance'
-			. '  FROM Batches'
-			. '  LEFT JOIN Incomings ON Incomings.id = Batches.incoming_id'
-			. ' WHERE Batches.status = "Active"'
-			. '   AND DATE(Incomings.received_at) <= @cut_off_date'
-			. ' GROUP BY thread_id, supplier_id'
-			. ';'
+		. 'INSERT ThreadJoined(thread_id, supplier_id, current_balance)'
+		. 'SELECT Batches.thread_id'
+		. '	    , Incomings.supplier_id'
+		. '	    , SUM(Batches.checkin_weight + Batches.returned_weight - Batches.checkout_weight) AS current_balance'
+		. '  FROM Batches'
+		. '  LEFT JOIN Incomings ON Incomings.id = Batches.incoming_id'
+		. ' WHERE Batches.status = "Active"'
+		. '   AND DATE(Incomings.received_at) <= @cut_off_date'
+		. ' GROUP BY thread_id, supplier_id'
+		. ';'
 
-			. 'INSERT ThreadJoined(thread_id, supplier_id, months, forecast_weight)'
-			. 'SELECT *'
-			. '  FROM PurchaseMonthly'
-			. ';'
+		. 'INSERT ThreadJoined(thread_id, supplier_id, months, forecast_weight)'
+		. 'SELECT *'
+		. '  FROM PurchaseMonthly'
+		. ';'
 
- 			. 'INSERT ThreadForecast(thread_id, supplier_id, current_balance, forecast_past, forecast_month_1, forecast_month_2, forecast_month_3, forecast_future)'
-			. 'SELECT thread_id'
-			. '	    , supplier_id'
-			. '	    , SUM(current_balance) AS current_balance'
-			. '	    , SUM(IF (months < 1, forecast_weight, 0)) AS forecast_past'
-			. '	    , SUM(IF (months = 1, forecast_weight, 0)) AS forecast_month_1'
-			. '	    , SUM(IF (months = 2, forecast_weight, 0)) AS forecast_month_2'
-			. '	    , SUM(IF (months = 3, forecast_weight, 0)) AS forecast_month_3'
-			. '	    , SUM(IF (months > 3, forecast_weight, 0)) AS forecast_future'
-			. '  FROM ThreadJoined'
-			. ' GROUP BY thread_id, supplier_id'
- 			. ';'
+		. 'INSERT ThreadForecast(thread_id, supplier_id, current_balance, forecast_past, forecast_month_1, forecast_month_2, forecast_month_3, forecast_future)'
+		. 'SELECT thread_id'
+		. '	    , supplier_id'
+		. '	    , SUM(current_balance) AS current_balance'
+		. '	    , SUM(IF (months < 1, forecast_weight, 0)) AS forecast_past'
+		. '	    , SUM(IF (months = 1, forecast_weight, 0)) AS forecast_month_1'
+		. '	    , SUM(IF (months = 2, forecast_weight, 0)) AS forecast_month_2'
+		. '	    , SUM(IF (months = 3, forecast_weight, 0)) AS forecast_month_3'
+		. '	    , SUM(IF (months > 3, forecast_weight, 0)) AS forecast_future'
+		. '  FROM ThreadJoined'
+		. ' GROUP BY thread_id, supplier_id'
+		. ';'
 
-			. 'UPDATE Configs'
-			. '   SET Configs.value = @cut_off_date'
-			. ' WHERE Configs.group_set = "System Controls"'
-			. '   AND Configs.name = "Reference Date"'
-			. ';'
+		. 'UPDATE Configs'
+		. '   SET Configs.value = @cut_off_date'
+		. ' WHERE Configs.group_set = "System Controls"'
+		. '   AND Configs.name = "Reference Date"'
+		. ';'
 
-			;
-		$this->log_sql( $table, 'refresh', $sql );
-		$db   = Zend_Registry::get('db');
-		$db->query($sql);
+		;
+	$this->log_sql( $table, 'refresh', $sql );
+	$db   = Zend_Registry::get('db');
+	$db->query($sql);
 
-		$return = array();
-		$return[ 'status' ] = 'ok';
-		$return[ 'message'] = 'Refreshed';
-		echo json_encode( $return );
-	}
+	$return = array();
+	$return[ 'status' ] = 'ok';
+	$return[ 'message'] = 'Refreshed';
+	echo json_encode( $return );
+}
 
 /*
  *   $.ajax({ method:'checkin', table:'Boxes', barcode:9...9};
@@ -4375,19 +4347,21 @@ private function checkin($data) {
 		 . '  FROM Boxes'
 		 . ' WHERE Boxes.barcode = \'' . $barcode . '\''
 		 ;
-	$boxes = $db->fetchRow( $sql );
+	$box = $db->fetchRow( $sql );
+	insert_changes($db, 'Boxes', $box['id']);
 
-	$average_weight = $boxes['average_weight'];
-	$real_weight	= $boxes['real_weight'	 ];
+	$average_weight = $box['average_weight'	];
+	$real_weight	= $box['real_weight'	];
 	$my_weight		= ($real_weight == 0) ? $average_weight : $real_weight;
 
 	$sql = 'UPDATE Batches'
 	     . '   SET checkin_boxes  = checkin_boxes  + 1'
 	     . '     , checkin_weight = checkin_weight + ' . $my_weight
-	     . ' WHERE id = ' . $boxes['batch_id']
+	     . ' WHERE id = ' . $box['batch_id']
 	     ;
 	$this->log_sql( 'Batches', 'update', $sql );
 	$db->query( $sql );
+	insert_changes($db, 'Batches', $box['batch_id']);
 
 	$return = array();
 	$return[ 'status'   ] = 'ok';
@@ -4428,19 +4402,21 @@ private function checkout($data) {
 		 . '  FROM Boxes'
 		 . ' WHERE Boxes.barcode = \'' . $barcode . '\''
 		 ;
-	$boxes = $db->fetchRow( $sql );
+	$box = $db->fetchRow( $sql );
+	insert_changes($db, 'Boxes', $box['id']);
 
-	$average_weight = $boxes['average_weight'];
-	$real_weight	= $boxes['real_weight'	 ];
+	$average_weight = $box['average_weight'	];
+	$real_weight	= $box['real_weight'	];
 	$my_weight		= ($real_weight == 0) ? $average_weight : $real_weight;
 
 	$sql = 'UPDATE Batches'
 	     . '   SET checkout_boxes  = checkout_boxes  + 1'
 	     . '     , checkout_weight = checkout_weight + ' . $my_weight
-	     . ' WHERE id = ' . $boxes['batch_id']
+	     . ' WHERE id = ' . $box['batch_id']
 	     ;
 	$this->log_sql( 'Batches', 'update', $sql );
 	$db->query( $sql );
+	insert_changes($db, 'Batches', $box['batch_id']);
 
 	$sql = 'UPDATE BatchSets'
 	     . '   SET reserved_boxes = reserved_boxes - 1'
@@ -4449,6 +4425,7 @@ private function checkout($data) {
 	     ;
 	$this->log_sql( 'BatchSets', 'update', $sql );
 	$db->query( $sql );
+	insert_changes($db, 'BatchSets', $batchset_id);
 
 	$sql = 'SELECT BatchSets.*'
 		 . '  FROM BatchSets'
@@ -4464,6 +4441,7 @@ private function checkout($data) {
 	     ;
 	$this->log_sql( 'BatchOuts', 'update', $sql );
 	$db->query( $sql );
+	insert_changes($db, 'BatchOuts', $batchset['batchout_id']);
 
 	$sql = 'SELECT BatchOuts.*'
 		 . '  FROM BatchOuts'
@@ -4479,6 +4457,7 @@ private function checkout($data) {
 	     ;
 	$this->log_sql( 'CheckOuts', 'update', $sql );
 	$db->query( $sql );
+	insert_changes($db, 'CheckOuts', $batchout['checkout_id']);
 
 	if ($batchout['req_line_id']) {
 		$sql = 'UPDATE ReqLines'
@@ -4487,6 +4466,7 @@ private function checkout($data) {
 			 ;
 		$this->log_sql( 'ReqLines', 'update', $sql );
 		$db->query( $sql );
+		insert_changes($db, 'ReqLines', $batchout['req_line_id']);
 
 		$sql = 'SELECT ReqLines.*'
 			 . '  FROM ReqLines'
@@ -4500,6 +4480,7 @@ private function checkout($data) {
 			 ;
 		$this->log_sql( 'Requests', 'update', $sql );
 		$db->query( $sql );
+		insert_changes($db, 'Requests', $reqline['request_id']);
 	}
 
 	if ($batchout['tdyer_thread_id']) {
@@ -4509,6 +4490,7 @@ private function checkout($data) {
 			 ;
 		$this->log_sql( 'TDyerThreads', 'update', $sql );
 		$db->query( $sql );
+		insert_changes($db, 'TDyerThreads', $batchout['tdyer_thread_id']);
 
 		$sql = 'SELECT TDyerThreads.*'
 			 . '  FROM TDyerThreads'
@@ -4522,6 +4504,7 @@ private function checkout($data) {
 			 ;
 		$this->log_sql( 'TDyers', 'update', $sql );
 		$db->query( $sql );
+		insert_changes($db, 'TDyers', $tdyer_thread['parent_id']);
 	}
 
 	if ($batchout['order_thread_id']) {
@@ -4531,6 +4514,7 @@ private function checkout($data) {
 			 ;
 		$this->log_sql( 'OrdThreads', 'update', $sql );
 		$db->query( $sql );
+		insert_changes($db, 'OrdThreads', $batchout['order_thread_id']);
 
 		$sql = 'SELECT OrdThreads.*'
 			 . '  FROM OrdThreads'
@@ -4544,6 +4528,7 @@ private function checkout($data) {
 			 ;
 		$this->log_sql( 'Orders', 'update', $sql );
 		$db->query( $sql );
+		insert_changes($db, 'Orders', $order_thread['parent_id']);
 	}
 
 	$return = array();
@@ -4587,19 +4572,21 @@ private function returned($data) {
 		 . '  FROM Boxes'
 		 . ' WHERE Boxes.barcode = \'' . $barcode . '\''
 		 ;
-	$boxes = $db->fetchRow( $sql );
+	$box = $db->fetchRow( $sql );
+	insert_changes($db, 'Boxes', $box['id']);
 
-	$average_weight = $boxes['average_weight'];
-	$real_weight	= $boxes['real_weight'	 ];
+	$average_weight = $box['average_weight'	];
+	$real_weight	= $box['real_weight'	];
 	$my_weight		= ($real_weight == 0) ? $average_weight : $real_weight;
 
 	$sql = 'UPDATE Batches'
 	     . '   SET returned_boxes  = returned_boxes  + 1'
 	     . '     , returned_weight = returned_weight + ' . $my_weight
-	     . ' WHERE id = ' . $boxes['batch_id']
+	     . ' WHERE id = ' . $box['batch_id']
 	     ;
 	$this->log_sql( 'Batches', 'update', $sql );
 	$db->query( $sql );
+	insert_changes($db, 'Batches', $box['batch_id']);
 
 	$return = array();
 	$return[ 'status'   ] = 'ok';

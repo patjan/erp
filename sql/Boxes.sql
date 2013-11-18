@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS Boxes
 , PRIMARY KEY(id)
 , KEY barcode	(barcode)
 , KEY batch		(batch_id)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100000001
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next Box Number', value='1000000001', created_by=1, created_at=NOW();
 
@@ -46,7 +46,7 @@ ALTER TABLE Boxes		CHANGE	stocked_location	returned_location	CHAR(4) 	DEFAULT NU
 ALTER TABLE Boxes		CHANGE	stocked_by			returned_by			BIGINT		DEFAULT NULL;
 ALTER TABLE Boxes		CHANGE	stocked_at			returned_at			DATETIME	DEFAULT NULL;
 
-
+http://erp:8100/index.php/ajax?data={"method":"print_labels","table":"Boxes"}
 
 
 SELECT Boxes.checkin_location		AS location

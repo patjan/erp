@@ -62,11 +62,17 @@ JKY.Session = function() {
 		return '';
 	};
 
+	var my_clear_timeout = function() {
+		if (my_session_event) {
+			clearTimeout(my_session_event);
+		}
+	}
+
 	var my_reset_timeout = function(the_call_back) {
 		if(!JKY.Session.has('user_id')) {
 			return;
 		}
-JKY.display_trace('my_reset_timeout: ' + (my_session_time - my_recover_time));
+//JKY.display_trace('my_reset_timeout: ' + (my_session_time - my_recover_time));
 		if (typeof(the_call_back) == 'function') {
 			my_call_back = the_call_back;
 		}
@@ -81,7 +87,7 @@ JKY.display_trace('my_reset_timeout: ' + (my_session_time - my_recover_time));
 	};
 
 	var my_display_count_down = function() {
-JKY.display_trace('my_display_count_down');
+//JKY.display_trace('my_display_count_down');
 		JKY.display_confirm
 				(  my_process_timeout
 				,  my_keep_in_session
@@ -100,7 +106,7 @@ JKY.display_trace('my_display_count_down');
 	};
 
 	var my_process_count_down = function() {
-JKY.display_trace('my_process_count_down');
+//JKY.display_trace('my_process_count_down');
 		if (my_count_down_event) {
 			clearTimeout(my_count_down_event);
 		}
@@ -120,7 +126,7 @@ JKY.display_trace('my_process_count_down');
 	};
 
 	var my_keep_in_session = function() {
-JKY.display_trace('my_keep_in_session');
+//JKY.display_trace('my_keep_in_session');
 //		my_reset_timeout();			//	not needed because ajax will reset timeout
 
 //		extra ajax call to reset session timeout on Apache
@@ -129,7 +135,7 @@ JKY.display_trace('my_keep_in_session');
 	};
 
 	var my_process_timeout = function() {
-JKY.display_trace('my_process_timeout');
+//JKY.display_trace('my_process_timeout');
 		clearTimeout(my_count_down_event);
 		JKY.hide_modal('jky-confirm');
 		if (typeof(my_call_back) == 'function') {
@@ -171,6 +177,8 @@ JKY.display_trace('my_process_timeout');
 		, set_call_back		: function(the_call_back)		{		my_call_back	= the_call_back		;}
 		, get_session_time	: function()					{return	my_session_time						;}
 		, get_recover_time	: function()					{return	my_recover_time						;}
+
+		, clear_timeout		: function()					{		my_clear_timeout()					;}
 		, reset_timeout		: function(the_call_back)		{		my_reset_timeout(the_call_back)		;}
 	};
 }();

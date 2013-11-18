@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS Orders
 , product_id		BIGINT				DEFAULT NULL
 , ftp_id			BIGINT				DEFAULT NULL
 , labels_printed	INT					DEFAULT 0
+, fpts_printed		INT					DEFAULT 0
+, ops_printed		INT					DEFAULT 0
 , ordered_at		DATETIME			DEFAULT NULL
 , needed_at			DATETIME			DEFAULT NULL
 , produced_at		DATETIME			DEFAULT NULL
@@ -31,7 +33,7 @@ CREATE TABLE IF NOT EXISTS Orders
 , KEY machine 	(machine_id)
 , KEY partner	(partner_id)
 , KEY product	(product_id)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=100001
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 INSERT Controls SET group_set='User Resources'		, status='Active', sequence=  50, name='Orders', created_by=1, created_at=NOW();
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=  50, name='Orders', created_by=1, created_at=NOW();
@@ -43,3 +45,5 @@ ALTER TABLE Orders			ADD COLUMN checkout_weight	DECIMAL(10,2)	DEFAULT 0		AFTER p
 ALTER TABLE Orders			ADD COLUMN ordered_weight	DECIMAL(10,2)	DEFAULT 0		AFTER produced_pieces;
 ALTER TABLE Orders			CHANGE	status			status			VARCHAR(32)		DEFAULT 'Draft';
 
+ALTER TABLE Orders			ADD COLUMN ops_printed		INT				DEFAULT 0		AFTER labels_printed;
+ALTER TABLE Orders			ADD COLUMN ftps_printed		INT				DEFAULT 0		AFTER labels_printed;

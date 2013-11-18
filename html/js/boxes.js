@@ -41,6 +41,8 @@ JKY.set_initial_values = function() {
 //	JKY.set_html('jky-app-select', JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
 //	JKY.set_html('jky-app-select-label', JKY.t('Type'));
 //	JKY.show('jky-app-select-line');
+	JKY.hide('jky-action-add-new');
+	JKY.hide('jky-action-form');
 };
 
 /**

@@ -53,8 +53,8 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select'		, JKY.set_controls('Ticket Status Codes', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
 	JKY.set_html('jky-category'			, JKY.set_controls('Ticket Categories', '', ''));
-	JKY.set_html('jky-app-select-label', JKY.t('Status'));
-	JKY.set_value ('jky-app-filter', JKY.App.get('filter'));
+	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
+	JKY.set_value ('jky-app-filter'		, JKY.App.get('filter'));
 	JKY.show('jky-app-select-line');
 };
 
@@ -63,11 +63,11 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-opened-at"		>' + the_row.opened_at		+ '</td>'
-		+  '<td class="jky-worked-hour"		>' + the_row.worked_hour	+ '</td>'
-		+  '<td class="jky-priority"		>' + the_row.priority		+ '</td>'
-		+  '<td class="jky-category"		>' + the_row.category		+ '</td>'
-		+  '<td class="jky-description"		>' + the_row.description	+ '</td>'
+		+  '<td class="jky-opened-at"		>' +		 the_row.opened_at		+ '</td>'
+		+  '<td class="jky-worked-hour"		>' +		 the_row.worked_hour	+ '</td>'
+		+  '<td class="jky-priority"		>' + 	(the_row.priority	)	+ '</td>'
+		+  '<td class="jky-category"		>' +	(the_row.category	)	+ '</td>'
+		+  '<td class="jky-description"		>' +		 the_row.description	+ '</td>'
 		;
 	return my_html;
 };
@@ -76,18 +76,18 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-status'			, JKY.row.status);
-	JKY.set_value	('jky-opened-at'		, JKY.short_date(JKY.row.opened_at));
-	JKY.set_value	('jky-opened-by'		, JKY.row.opened_name	);
-	JKY.set_value	('jky-assigned-at'		, JKY.short_date(JKY.row.assigned_at));
-	JKY.set_value	('jky-assigned-to'		, JKY.row.assigned_name	);
-	JKY.set_value	('jky-closed-at'		, JKY.short_date(JKY.row.closed_at));
-	JKY.set_value	('jky-closed-by'		, JKY.row.closed_name	);
-	JKY.set_value	('jky-worked-hour'		, JKY.row.worked_hour	);
-	JKY.set_value	('jky-priority'			, JKY.row.priority		);
-	JKY.set_value	('jky-category'			, JKY.row.category		);
-	JKY.set_value	('jky-description'		, JKY.row.description	);
-	JKY.set_value	('jky-resolution'		, JKY.row.resolution	);
+	JKY.set_value	('jky-status'			,				 the_row.status			);
+	JKY.set_value	('jky-opened-at'		, JKY.short_date(the_row.opened_at	)	);
+	JKY.set_value	('jky-opened-by'		,				 the_row.opened_name	);
+	JKY.set_value	('jky-assigned-at'		, JKY.short_date(the_row.assigned_at)	);
+	JKY.set_value	('jky-assigned-to'		,				 the_row.assigned_name	);
+	JKY.set_value	('jky-closed-at'		, JKY.short_date(the_row.closed_at	)	);
+	JKY.set_value	('jky-closed-by'		,				 the_row.closed_name	);
+	JKY.set_value	('jky-worked-hour'		,				 the_row.worked_hour	);
+	JKY.set_value	('jky-priority'			, 			(the_row.priority	)	);
+	JKY.set_value	('jky-category'			, 			(the_row.category	)	);
+	JKY.set_value	('jky-description'		,				 the_row.description	);
+	JKY.set_value	('jky-resolution'		,				 the_row.resolution		);
 
 	JKY.Photo.set_row_id(the_row.id);
 	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));
