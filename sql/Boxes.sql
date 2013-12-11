@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS Boxes
 , number_of_cones	INT(11)				DEFAULT 0
 , average_weight	DECIMAL(10,2)		DEFAULT 0
 , real_weight		DECIMAL(10,2)		DEFAULT 0
+
 , checkin_location	CHAR(4)				DEFAULT NULL
 , checkin_by		BIGINT				DEFAULT NULL
 , checkin_at		DATETIME			DEFAULT NULL

@@ -964,7 +964,7 @@ JKY.set_menu_active = function(id_name){
 	JKY.hide('jky-side-planning'	);
 	JKY.hide('jky-side-threads'		);
 	JKY.hide('jky-side-boxes'		);
-//	JKY.hide('jky-side-qc'			);
+	JKY.hide('jky-side-dyers'		);
 	JKY.hide('jky-side-pieces'		);
 	JKY.hide('jky-side-fabrics'		);
 	JKY.hide('jky-side-production'	);
@@ -1577,7 +1577,7 @@ JKY.is_permitted = function(the_menu_id) {
 		case('jky-menu-production'	)	:	my_resource = 'Menu-Production'	; break;
 		case('jky-menu-threads'		)	:	my_resource = 'Menu-Threads'	; break;
 		case('jky-menu-boxes'		)	:	my_resource = 'Menu-Boxes'		; break;
-//		case('jky-menu-qc'			)	:	my_resource = 'Menu-QC'			; break;
+		case('jky-menu-dyers'		)	:	my_resource = 'Menu-Dyers'		; break;
 		case('jky-menu-pieces'		)	:	my_resource = 'Menu-Pieces'		; break;
 		case('jky-menu-fabrics'		)	:	my_resource = 'Menu-Fabrics'	; break;
 		case('jky-menu-help'		)	:	my_resource = 'Menu-Help'		; break;
@@ -2436,4 +2436,13 @@ JKY.get_prev_dom = function(the_id, the_attr) {
 		my_line_id = my_prev_id.attr(the_attr);
 	} while(my_line_id == null);
 	return my_prev_id;
+}
+
+JKY.set_decimal = function(the_number, the_decimal) {
+	var my_string  = the_number.toString(10, 2);
+	var my_numbers = my_string.split('.');
+	var my_integer = my_numbers[0];
+	var my_decimal = my_numbers[1];
+	if (typeof my_decimal == 'undefined')	my_decimal = '00';
+	return my_integer + '.' + my_decimal;
 }

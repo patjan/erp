@@ -35,9 +35,9 @@ JKY.set_all_events = function() {
 	$('#jky-needed-date'		).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-produced-date'		).datetimepicker({language: JKY.Session.get_locale()});
 
-	$('#jky-action-generate'	).click( function() {JKY.generate_checkout	();});
-	$('#jky-action-close'		).click( function() {JKY.close_order		();});
-//	$('#jky-threads-add-new'	).click (function() {JKY.insert_thread		();});
+	$('#jky-action-generate'	).click( function() {JKY.generate_checkout		();});
+	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
+//	$('#jky-threads-add-new'	).click (function() {JKY.insert_thread			();});
 
 	$('#jky-pieces-display'		).click (function() {JKY.Changes.can_leave(function() {JKY.Pieces.display(this)});});
 	$('#jky-pieces-print'		).click (function() {JKY.Pieces.print_label	(); JKY.display_pieces();});
@@ -98,6 +98,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-ordered-pieces"	>' +				 the_row.ordered_pieces			+ '</td>'
 		+  '<td class="jky-rejected-pieces"	>' +				 the_row.rejected_pieces		+ '</td>'
 		+  '<td class="jky-produced-pieces"	>' +				 the_row.produced_pieces		+ '</td>'
+		+  '<td class="jky-quoted-weight"	>' +				 the_row.quoted_weight			+ '</td>'
 		;
 	return my_html;
 }
@@ -133,18 +134,29 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-machine-name'		,				 the_row.machine_name		);
 	JKY.set_value	('jky-partner-id'		,				 the_row.partner_id			);
 	JKY.set_value	('jky-partner-name'		,				 the_row.partner_name		);
+	JKY.set_value	('jky-quotation-number'	,				 the_row.quotation_number	);
 	JKY.set_date	('jky-ordered-date'		, JKY.out_time	(the_row.ordered_at			));
 	JKY.set_date	('jky-needed-date'		, JKY.out_time	(the_row.needed_at			));
 	JKY.set_date	('jky-produced-date'	, JKY.out_time	(the_row.produced_at		));
+	JKY.set_value	('jky-quoted-pieces'	,				 the_row.quoted_pieces		);
 	JKY.set_value	('jky-ordered-pieces'	,				 the_row.ordered_pieces		);
 	JKY.set_value	('jky-rejected-pieces'	,				 the_row.rejected_pieces	);
 	JKY.set_value	('jky-produced-pieces'	,				 the_row.produced_pieces	);
+	JKY.set_value	('jky-quoted-weight'	,				 the_row.quoted_weight		);
+	JKY.set_value	('jky-ordered-weight'	,				 the_row.ordered_weight		);
+	JKY.set_value	('jky-checkout-weight'	,				 the_row.checkout_weight	);
+	JKY.set_value	('jky-returned-weight'	,				 the_row.returned_weight	);
 	JKY.set_value	('jky-labels-printed'	,				 the_row.labels_printed		);
 	JKY.set_value	('jky-ftps-printed'		,				 the_row.ftps_printed		);
 	JKY.set_value	('jky-ops-printed'		,				 the_row.ops_printed		);
 
-	JKY.display_threads();
-	JKY.display_pieces();
+	if (the_row.ftp_id) {
+		JKY.display_threads();
+		JKY.display_pieces();
+	}else{
+		JKY.set_html('jky-threads-body', '');
+		JKY.set_html('jky-pieces-body' , '');
+	}
 }
 
 /**
@@ -155,7 +167,7 @@ JKY.set_add_new_row = function() {
 	JKY.disable_button('jky-action-delete'	);
 	JKY.disable_button('jky-action-close'	);
 
-	JKY.set_value	('jky-order-number'		, JKY.t('New'));
+	JKY.set_value	('jky-order-number'		,  JKY.t('New'));
 	JKY.set_value	('jky-customer-id'		, '');
 	JKY.set_value	('jky-customer-name'	, '');
 	JKY.set_value	('jky-product-id'		, '');
@@ -166,12 +178,15 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-machine-name'		, '');
 	JKY.set_value	('jky-partner-id'		, '');
 	JKY.set_value	('jky-partner-name'		, '');
-	JKY.set_date	('jky-ordered-date'		, JKY.out_time(JKY.get_now()));
-	JKY.set_date	('jky-needed-date'		, JKY.out_time(JKY.get_now()));
+	JKY.set_date	('jky-ordered-date'		,  JKY.out_time(JKY.get_now()));
+	JKY.set_date	('jky-needed-date'		,  JKY.out_time(JKY.get_now()));
 	JKY.set_date	('jky-produced-date'	, '');
 	JKY.set_value	('jky-ordered-pieces'	, 0);
 	JKY.set_value	('jky-rejected-pieces'	, 0);
 	JKY.set_value	('jky-produced-pieces'	, 0);
+	JKY.set_value	('jky-ordered-weight'	, 0);
+	JKY.set_value	('jky-checkout-weight'	, 0);
+	JKY.set_value	('jky-returned-weight'	, 0);
 	JKY.set_value	('jky-labels-printed'	, 0);
 	JKY.set_value	('jky-ftps-printed'		, 0);
 	JKY.set_value	('jky-ops-printed'		, 0);
@@ -187,10 +202,10 @@ JKY.get_form_set = function() {
 	var my_machine_id	= JKY.get_value('jky-machine-id'	);
 	var my_partner_id	= JKY.get_value('jky-partner-id'	);
 		my_customer_id	= (my_customer_id	== '') ? 'null' : my_customer_id;
-		my_machine_id	= (my_machine_id	== '') ? 'null' : my_machine_id ;
-		my_partner_id	= (my_partner_id	== '') ? 'null' : my_partner_id ;
-		my_product_id	= (my_product_id	== '') ? 'null' : my_product_id ;
-		my_ftp_id		= (my_ftp_id		== '') ? 'null' : my_ftp_id     ;
+		my_machine_id	= (my_machine_id	== '') ? 'null' : my_machine_id	;
+		my_partner_id	= (my_partner_id	== '') ? 'null' : my_partner_id	;
+		my_product_id	= (my_product_id	== '') ? 'null' : my_product_id	;
+		my_ftp_id		= (my_ftp_id		== '') ? 'null' : my_ftp_id		;
 
 	var my_set = ''
 		+     '  customer_id=  ' + my_customer_id
@@ -204,6 +219,9 @@ JKY.get_form_set = function() {
 		+  ', ordered_pieces=  ' +				JKY.get_value('jky-ordered-pieces'	)
 		+ ', rejected_pieces=  ' +				JKY.get_value('jky-rejected-pieces'	)
 		+ ', produced_pieces=  ' +				JKY.get_value('jky-produced-pieces'	)
+		+  ', ordered_weight=  ' +				JKY.get_value('jky-ordered-weight'	)
+		+ ', checkout_weight=  ' +				JKY.get_value('jky-checkout-weight'	)
+		+ ', returned_weight=  ' +				JKY.get_value('jky-returned-weight'	)
 		+  ', labels_printed=  ' +				JKY.get_value('jky-labels-printed'	)
 		+    ', ftps_printed=  ' +				JKY.get_value('jky-ftps-printed'	)
 		+     ', ops_printed=  ' +				JKY.get_value('jky-ops-printed'		)
@@ -240,7 +258,7 @@ JKY.process_delete = function(the_id, the_row) {
 JKY.generate_checkout = function() {
 	var my_data =
 		{ method	: 'generate'
-		, table		: 'Orders'
+		, table		: 'CheckOut'
 		, id		:  JKY.row.id
 		}
 	JKY.ajax(false, my_data, JKY.refresh_form);
@@ -249,15 +267,4 @@ JKY.generate_checkout = function() {
 JKY.refresh_form = function(response) {
 	JKY.display_message('Check Out row generated: ' + JKY.row.id);
 	JKY.App.display_row();
-}
-
-/* -------------------------------------------------------------------------- */
-JKY.close_order = function(response) {
-	var my_data =
-		{ method	: 'update'
-		, table		: 'Orders'
-		, set		: 'status = \'Closed\''
-		, where		: 'id = ' + JKY.row.id
-		};
-	JKY.ajax(false, my_data, JKY.App.display_list);
 }

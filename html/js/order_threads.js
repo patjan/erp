@@ -13,13 +13,12 @@ JKY.display_threads = function() {
 }
 
 JKY.generate_threads = function(response) {
+	JKY.Order.set_ordered (0);
+	JKY.Order.set_checkout(0);
 	if (response.rows.length == 0) {
 		JKY.insert_thread();
 		JKY.display_threads();		//	***** recursive looping
-		return;
 	}
-	JKY.Order.set_ordered (0);
-	JKY.Order.set_checkout(0);
 	var my_html  = '';
 	var my_rows  = response.rows;
 	if (my_rows != '') {
@@ -133,8 +132,10 @@ JKY.delete_thread_success = function(response) {
 }
 
 JKY.update_thread_weight = function() {
-	JKY.set_value('jky-threads-total-ordered' , JKY.Order.get_ordered ());
-	JKY.set_value('jky-threads-total-checkout', JKY.Order.get_checkout());
+	var my_ordered = JKY.set_decimal(JKY.Order.get_ordered(), 2);
+	JKY.set_value('jky-ordered-weight'			, my_ordered);
+	JKY.set_value('jky-threads-total-ordered'	, my_ordered);
+	JKY.set_value('jky-threads-total-checkout'	, JKY.Order.get_checkout());
 //	JKY.Order.update_ordered_weight(JKY.row.id);
 
 	var my_data =

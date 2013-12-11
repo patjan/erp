@@ -11,9 +11,10 @@ function JKY_generate($data) {
 
 	$count = 0;
 	switch($table) {
-		case 'Orders'		: $count = JKY_generate_order	($id); break;
-		case 'Purchases'	: $count = JKY_generate_purchase($id); break;
-		case 'TDyers'		: $count = JKY_generate_tdyer	($id); break;
+		case 'CheckOut'		: $count = JKY_generate_checkout($id); break;
+		case 'Order'		: $count = JKY_generate_order	($id); break;
+		case 'Purchase'		: $count = JKY_generate_purchase($id); break;
+		case 'TDyer'		: $count = JKY_generate_tdyer	($id); break;
 	}
 
 	$return = array();
@@ -22,12 +23,18 @@ function JKY_generate($data) {
 		$return[ 'count'  ] = $count;
 	}else{
 		$return[ 'status' ] = 'error';
-		$return[ 'message'] = 'Labels printed: ' . $count;
+		$return[ 'message'] = 'records generated: ' . $count;
 	}
 	return $return;
 }
 
-function JKY_generate_order($the_id) {
+/**
+ *	generate CheckOut from Planning Orders
+ *
+ * @param	int		order_id
+ * @return	int		count of CheckOuts generated
+ */
+function JKY_generate_checkout($the_id) {
 	$db = Zend_Registry::get('db');
 
 	$sql= 'SELECT *'
@@ -36,9 +43,24 @@ function JKY_generate_order($the_id) {
 		;
 	$my_order = $db->fetchRow($sql);
 
-	$my_needed_date = $my_order['needed_at'];
-	if ($my_needed_date == null) {
-		$my_needed_date = get_time();
+	$sql= 'SELECT *'
+		. '  FROM OrdThreads'
+		. ' WHERE parent_id = ' . $the_id
+		;
+	$my_rows = $db->fetchAll($sql);
+
+	$my_count = 0;
+	foreach($my_rows as $my_row) {
+		if ($my_row['batchin_id'] == 'NULL') {
+			$my_count ++;
+		}
+	}
+	if ($my_count > 0) {
+	}
+
+	$my_needed_at = $my_order['needed_at'];
+	if ($my_needed_at == null) {
+		$my_needed_at = get_time();
 	}
 
 	$my_checkout_id = get_next_id('CheckOuts');
@@ -47,7 +69,7 @@ function JKY_generate_order($the_id) {
 		. ',       updated_by='  . get_session('user_id')
 		. ',       updated_at="' . get_time() . '"'
 		. ',           number='  . $my_checkout_id
-		. ',     requested_at="' . $my_needed_date . '"'
+		. ',     requested_at="' . $my_needed_at . '"'
 		. ', requested_weight='  . $my_order['ordered_weight']
 		;
 	if( $my_order['machine_id']) {
@@ -60,12 +82,6 @@ function JKY_generate_order($the_id) {
 log_sql('CheckOuts', 'INSERT', $sql);
 	$db->query($sql);
 	insert_changes($db, 'CheckOuts', $my_checkout_id);
-
-	$sql= 'SELECT *'
-		. '  FROM OrdThreads'
-		. ' WHERE parent_id = ' . $the_id
-		;
-	$my_rows = $db->fetchAll($sql);
 
 	$my_count = 0;
 	foreach($my_rows as $my_row) {
@@ -109,6 +125,101 @@ log_sql('OrdThreads', 'UPDATE', $sql);
 log_sql('Orders', 'UPDATE', $sql);
 	$db->query($sql);
 	insert_changes($db, 'Orders', $the_id);
+
+	return $my_count;
+}
+
+/**
+ *	generate Order from Sales Quotations
+ *
+ * @param	int		quotation_id
+ * @return	int		count of Orders generated
+ */
+function JKY_generate_order($the_id) {
+	$db = Zend_Registry::get('db');
+
+	function generate_sub_order($the_db, $the_quotation, $the_quot_line_id, $the_needed_at, $the_quoted_pieces, $the_quoted_weight, $the_product_id, $the_product_perc) {
+		if ($the_product_id && $the_product_perc > 0) {
+			$my_order_id = get_next_id('Orders');
+			$sql= 'INSERT Orders'
+				. '   SET          id='  . $my_order_id
+				. ',       updated_by='  . get_session('user_id')
+				. ',       updated_at="' . get_now() . '"'
+				. ',     order_number="' . $my_order_id . '"'
+				. ',      customer_id='  . $the_quotation['customer_id']
+				. ',       machine_id='  . $the_quotation['machine_id']
+				. ',     quot_line_id='  . $the_quot_line_id
+				. ', quotation_number="' . $the_quotation['quotation_number'] . '"'
+				. ',       product_id='  . $the_product_id
+				. ',       ordered_at="' . $the_quotation['quoted_at'] . '"'
+				. ',        needed_at="' . $the_needed_at . '"'
+				. ',    quoted_pieces='  . $the_quoted_pieces
+				. ',   ordered_pieces='  . $the_quoted_pieces
+				. ',    quoted_weight='  . $the_quoted_weight * $the_product_perc / 100;
+				;
+log_sql('Orders', 'INSERT', $sql);
+			$the_db->query($sql);
+			insert_changes($the_db, 'Orders', $my_order_id);
+		}
+	}
+	
+	$sql= 'SELECT *'
+		. '  FROM Quotations'
+		. ' WHERE id = ' . $the_id
+		;
+	$my_quotation = $db->fetchRow($sql);
+
+	$my_needed_at = $my_quotation['needed_at'];
+	if ($my_needed_at == null) {
+		$my_needed_at = get_time();
+	}
+
+	$sql= 'SELECT *'
+		. '  FROM QuotLines'
+		. ' WHERE quotation_id = ' . $the_id
+		;
+	$my_rows = $db->fetchAll($sql);
+
+	$my_count = 0;
+	foreach($my_rows as $my_row) {
+		$my_quot_line_id	= $my_row['id'];
+		$my_quoted_pieces	= (float)$my_row['quoted_pieces'];
+		$my_quoted_weight	= $my_quoted_pieces * (float)$my_quotation['peso'];
+		$my_order_id = get_next_id('Orders');
+		$sql= 'INSERT Orders'
+			. '   SET          id='  . $my_order_id
+			. ',       updated_by='  . get_session('user_id')
+			. ',       updated_at="' . get_now() . '"'
+			. ',     order_number="' . $my_order_id . '"'
+			. ',      customer_id='  . $my_quotation['customer_id']
+			. ',       machine_id='  . $my_quotation['machine_id']
+			. ',     quot_line_id='  . $my_quot_line_id
+			. ', quotation_number="' . $my_quotation['quotation_number'] . '"'
+			. ',       product_id='  . $my_row['product_id']
+			. ',       ordered_at="' . $my_quotation['quoted_at'] . '"'
+			. ',        needed_at="' . $my_needed_at . '"'
+			. ',    quoted_pieces='  . $my_quoted_pieces
+			. ',   ordered_pieces='  . $my_quoted_pieces
+			. ',    quoted_weight='  . $my_quoted_weight
+			;
+log_sql('Orders', 'INSERT', $sql);
+		$db->query($sql);
+		insert_changes($db, 'Orders', $my_order_id);
+		
+		$my_count++;
+
+		generate_sub_order($db, $my_quotation, $my_quot_line_id, $my_needed_at, $my_quoted_pieces, $my_quoted_weight, $my_quotation['punho_id'], $my_quotation['punho_perc']);
+		generate_sub_order($db, $my_quotation, $my_quot_line_id, $my_needed_at, $my_quoted_pieces, $my_quoted_weight, $my_quotation[ 'gola_id'], $my_quotation[ 'gola_perc']);
+		generate_sub_order($db, $my_quotation, $my_quot_line_id, $my_needed_at, $my_quoted_pieces, $my_quoted_weight, $my_quotation['galao_id'], $my_quotation['galao_perc']);
+	}
+
+	$sql= 'UPDATE Quotations'
+		. '   SET status = "Active"'
+		. ' WHERE id = ' . $the_id
+		;
+log_sql('Quotations', 'UPDATE', $sql);
+	$db->query($sql);
+	insert_changes($db, 'Quotations', $the_id);
 
 	return $my_count;
 }

@@ -67,6 +67,7 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
+	JKY.set_value	('jky-status'			, the_row.status			);
 	JKY.set_value	('jky-barcode'			, the_row.barcode			);
 	JKY.set_value	('jky-inspected-by'		, the_row.inspected_by		);
 	JKY.set_value	('jky-inspected-name'	, the_row.inspected_name	);
@@ -91,6 +92,7 @@ JKY.display_form = function() {
 };
 
 JKY.process_clear_screen = function() {
+	JKY.set_value('jky-status'			, '');
 	JKY.set_value('jky-barcode'			, '');
 	JKY.set_value('jky-product-name'	, '');
 	JKY.set_value('jky-inspected-by'	, '');
@@ -138,16 +140,23 @@ JKY.process_barcode = function() {
 JKY.process_barcode_success = function(response) {
 	var my_row  = response.row;
 	if (my_row) {
-		JKY.set_value('jky-product-name'	, my_row.product_name		);
-		JKY.set_value('jky-inspected-by'	, my_row.inspected_by		);
-		JKY.set_value('jky-inspected-name'	, my_row.inspected_name		);
-		JKY.set_value('jky-weighed-by'		, my_row.weighed_by			);
-		JKY.set_value('jky-weighed-name'	, my_row.weighed_name		);
-		JKY.set_value('jky-remarks'			, my_row.remarks			);
-		JKY.set_value('jky-checkin-weight'	, my_row.checkin_weight		);
-		JKY.set_value('jky-checkin-location', my_row.checkin_location	);
-		JKY.set_value('jky-form-action'		, '');
-		JKY.set_focus('jky-inspected-name');
+		if (my_row.status == 'Active') {
+			JKY.set_value('jky-status'			, my_row.status				);
+			JKY.set_value('jky-product-name'	, my_row.product_name		);
+			JKY.set_value('jky-inspected-by'	, my_row.inspected_by		);
+			JKY.set_value('jky-inspected-name'	, my_row.inspected_name		);
+			JKY.set_value('jky-weighed-by'		, my_row.weighed_by			);
+			JKY.set_value('jky-weighed-name'	, my_row.weighed_name		);
+			JKY.set_value('jky-remarks'			, my_row.remarks			);
+			JKY.set_value('jky-checkin-weight'	, my_row.checkin_weight		);
+			JKY.set_value('jky-checkin-location', my_row.checkin_location	);
+			JKY.set_value('jky-form-action'		, '');
+			JKY.set_focus('jky-inspected-name');
+		}else{
+			JKY.play_beep();
+			JKY.display_message(JKY.set_is_invalid('Barcode'));
+			JKY.set_focus('jky-barcode');
+		}
 	}else{
 		JKY.play_beep();
 		JKY.display_message(JKY.set_not_found('Barcode'));
@@ -163,6 +172,7 @@ JKY.process_form_action = function() {
 	}
 
 	if (my_form_action == 'Save'  || my_form_action == 'Salvar') {
+		var my_status			= JKY.get_value('jky-status'			);
 		var my_barcode			= JKY.get_value('jky-barcode'			);
 		var my_inspected_name	= JKY.get_value('jky-inspected-name'	);
 		var my_weighed_name		= JKY.get_value('jky-weighed-name'		);
@@ -170,35 +180,31 @@ JKY.process_form_action = function() {
 		var my_checkin_weight	= JKY.get_value('jky-checkin-weight'	);
 		var my_checkin_location	= JKY.get_value('jky-checkin-location'	);
 
+		var my_inspected_by		= JKY.get_id('Contacts', 'nick_name = \'' + my_inspected_name	+ '\'');
+		var my_weighed_by		= JKY.get_id('Contacts', 'nick_name = \'' + my_weighed_name		+ '\'');
+
 		var my_error = '';
+		if (my_status	  != 'Active' )		my_error += JKY.set_is_invalid ('Status'	);
 		if (my_barcode			== '' )		my_error += JKY.set_is_required('Barcode'	);
-		if (my_inspected_name	== '' )		my_error += JKY.set_is_required('Inspected'	);
-		if (my_weighed_name		== '' )		my_error += JKY.set_is_required('Weighed'	);
+		if (my_inspected_by		== '' )		my_error += JKY.set_is_required('Inspected'	);
+		if (my_weighed_by		== '' )		my_error += JKY.set_is_required('Weighed'	);
 		if (my_remarks			== '' )		my_error += JKY.set_is_required('Remarks'	);
 		if (my_checkin_weight	== '' )		my_error += JKY.set_is_required('Weight'	);
 		if (my_checkin_location	== '' )		my_error += JKY.set_is_required('Location'	);
 
 		if (JKY.is_empty(my_error)) {
-			var my_inspected_by = JKY.get_id('Contacts', 'nick_name =\'' + my_inspected_name + '\'');
-			var my_weighed_by	= JKY.get_id('Contacts', 'nick_name =\'' + my_weighed_name	 + '\'');
-
-			var my_set = ''
-				+          '  barcode=\'' + my_barcode			+ '\''
-				+     ', inspected_by=  ' + my_inspected_by
-				+       ', weighed_by=  ' + my_weighed_by
-				+          ', remarks=\'' + my_remarks			+ '\''
-				+   ', checkin_weight=  ' + my_checkin_weight
-				+ ', checkin_location=\'' + my_checkin_location + '\''
-				+       ', checkin_at=\'' + JKY.get_now()		+ '\''
-				;
-			var my_where = 'Pieces.barcode =\'' + my_barcode + '\''
+			JKY.display_message(JKY.t('Confirmed, barcode') + ': ' + my_barcode);
 			var my_data =
-				{ method: 'update'
-				, table : 'Pieces'
-				, set	:  my_set
-				, where :  my_where
+				{ method			: 'checkin'
+				, table				: 'Pieces'
+				, barcode			: my_barcode
+				, inspected_by		: my_inspected_by
+				, weighed_by		: my_weighed_by
+				, remarks			: my_remarks
+				, checkin_weight	: my_checkin_weight
+				, checkin_location	: my_checkin_location
 				};
-			JKY.ajax(false, my_data, JKY.update_piece_success);
+			JKY.ajax(false, my_data, JKY.checkin_piece_success);
 			JKY.process_clear_screen();
 		}else{
 			JKY.set_value('jky-form-action', '');
@@ -209,7 +215,7 @@ JKY.process_form_action = function() {
 	}
 }
 
-JKY.update_piece_success = function() {
+JKY.checkin_piece_success = function() {
 	var my_barcode	= JKY.get_value('jky-barcode');
 	var my_where	= 'Pieces.barcode =\'' + my_barcode + '\'';
 	var my_id	= JKY.get_id ('Pieces', my_where);

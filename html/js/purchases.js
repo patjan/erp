@@ -28,18 +28,18 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-ordered-value'	).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-expected-value'	).attr('data-format', JKY.Session.get_date		());
-	$('#jky-scheduled-value').attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-ordered-date'	).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-expected-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
-	$('#jky-scheduled-date'	).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-ordered-value'		).attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-expected-value'		).attr('data-format', JKY.Session.get_date		());
+	$('#jky-scheduled-value'	).attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-ordered-date'		).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-expected-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-scheduled-date'		).datetimepicker({language: JKY.Session.get_locale()});
 
-	$('#jky-action-generate').click( function() {JKY.generate_purchase	();});
-	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
-	$('#jky-lines-add-new'	).click (function() {JKY.insert_line		();});
+	$('#jky-action-generate'	).click( function() {JKY.generate_purchase		();});
+	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
+	$('#jky-lines-add-new'		).click (function() {JKY.insert_line			();});
 
-	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
+	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data);
 }
 
 /**
@@ -153,13 +153,13 @@ JKY.process_delete = function(the_id, the_row) {
 JKY.generate_purchase = function() {
 	var my_data =
 		{ method	: 'generate'
-		, table		: 'Purchases'
+		, table		: 'Purchase'
 		, id		: JKY.row.id
 		}
 	JKY.ajax(false, my_data, JKY.refresh_form);
 }
 
 JKY.refresh_form = function(response) {
-	JKY.display_message('Batch In row generated: ' + JKY.row.id);
+	JKY.display_message('Purchase row generated: ' + JKY.row.id);
 	JKY.App.display_row();
 }

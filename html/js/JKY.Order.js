@@ -76,7 +76,7 @@ JKY.Order = function() {
 	function my_add_ordered(the_weight) {
 		if (the_weight != null) {
 			my_ordered += parseFloat(the_weight);
-			my_ordered  = Math.round(my_ordered);
+			my_ordered  = Math.round(my_ordered * 100) / 100;
 		}
 	}
 

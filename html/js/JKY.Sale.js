@@ -1,21 +1,22 @@
 "use strict";
 
 /**
- * JKY.Order - process all changes during one transaction
+ * JKY.Sale - process all changes during one transaction
  */
-JKY.Order = function() {
+JKY.Sale = function() {
 	var my_the_id		= null;		//	external id that initiated the call
-	var my_thread_id	= null;		//	external id that initiated the call
-	var my_order_by		= 'order_number';
-	var my_filter		= 'jky-order-filter';
-	var my_search_body	= 'jky-order-search-body';
-	var my_layer		= 'jky-order-search';
+	var my_color_id		= null;		//	external id that initiated the call
+	var my_order_by		= 'quotation_number';
+	var my_filter		= 'jky-sale-filter';
+	var my_search_body	= 'jky-sale-search-body';
+	var my_layer		= 'jky-sale-search';
 
-	var my_ordered		= 0;
+	var my_sold			= 0;
 	var my_checkout		= 0;
 
-	function my_display(the_id) {
-		my_the_id = the_id;
+	function my_display(the_id, the_color_id) {
+		my_the_id	= the_id;
+		my_color_id	= the_color_id;
 		JKY.set_focus(my_filter);
 		my_load_data();
 	}
@@ -23,7 +24,10 @@ JKY.Order = function() {
 	function my_load_data() {
 		var my_data =
 			{ method		: 'get_index'
-			, table			: 'Orders'
+			, table			: 'QuotColors'
+			, specific		: 'color'
+			, specific_id	:  my_color_id
+			, select		: 'All'
 			, filter		:  JKY.get_value(my_filter)
 			, display		: '10'
 			, order_by		:  my_order_by
@@ -36,12 +40,12 @@ JKY.Order = function() {
 		var my_html = '';
 		for(var i=0; i<my_rows.length; i++) {
 			var my_row = my_rows[i];
-			my_html += '<tr onclick="JKY.Order.click_row(this, ' + my_row.id + ')">'
-					+  '<td class="jky-search-order-number"		>' +				 my_row.order_number	+ '</td>'
+			my_html += '<tr onclick="JKY.Sale.click_row(this, ' + my_row.id + ')">'
+					+  '<td class="jky-search-sale-number"		>' +				 my_row.sale_number		+ '</td>'
 					+  '<td class="jky-search-customer-name"	>' +				 my_row.customer_name	+ '</td>'
 					+  '<td class="jky-search-product-name"		>' +				 my_row.product_name	+ '</td>'
-					+  '<td class="jky-search-ordered-date"		>' + JKY.short_date	(my_row.ordered_at	  ) + '</td>'
-					+  '<td class="jky-search-ordered-pieces"	>' +				 my_row.ordered_pieces	+ '</td>'
+					+  '<td class="jky-search-sold-date"		>' + JKY.short_date	(my_row.sold_at		  ) + '</td>'
+					+  '<td class="jky-search-sold-pieces"		>' +				 my_row.sold_pieces		+ '</td>'
 					+  '</tr>'
 					;
 		}
@@ -50,22 +54,49 @@ JKY.Order = function() {
 	}
 
 	function my_click_row(the_index, the_id) {
-		var my_number = $(the_index).find('.jky-search-order-number').html();
-		var my_parent = $(my_the_id).parent();
+		var my_sale_number	= $(the_index).find('.jky-search-sale-number'	).html();
+		var my_customer_name= $(the_index).find('.jky-search-customer-name'	).html();
+		var my_product_name	= $(the_index).find('.jky-search-product-name'	).html();
+		var my_sold_pieces	= $(the_index).find('.jky-search-sold-pieces'	).html();
+		var my_parent = $(my_the_id).parent().parent();
 
-		var my_dom_id = $(my_parent).find('#jky-order-id');
+		var my_dom_id = $(my_parent).find('#jky-sale-color-id');
 		if (my_dom_id.length == 0) {
-			my_dom_id = $(my_parent).find('.jky-order-row-id');
+			my_dom_id = $(my_parent).find('.jky-row-sale-color-id');
 		}
-		my_dom_id.val(the_id );
+		my_dom_id.val(the_id);
 
-		var my_dom_number = $(my_parent).find('#jky-order-number');
+		var my_dom_number = $(my_parent).find('#jky-sale-number');
 		if (my_dom_number.length == 0) {
-			my_dom_number = $(my_parent).find('.jky-order-row-number');
+			my_dom_number = $(my_parent).find('.jky-row-sale-number');
 		}
-		my_dom_number.val(my_number);
-		my_dom_number.change();		//	to activate change event
+		my_dom_number.val(my_sale_number);
 
+		var my_dom_customer = $(my_parent).find('#jky-customer-name');
+		if (my_dom_customer.length == 0) {
+			my_dom_customer = $(my_parent).find('.jky-customer-name');
+		}
+		my_dom_customer.val(my_customer_name);
+
+		var my_dom_product = $(my_parent).find('#jky-product-name');
+		if (my_dom_product.length == 0) {
+			my_dom_product = $(my_parent).find('.jky-product-name');
+		}
+		my_dom_product.val(my_product_name);
+
+		var my_dom_sold = $(my_parent).find('#jky-sold-pieces');
+		if (my_dom_sold.length == 0) {
+			my_dom_sold = $(my_parent).find('.jky-sold-pieces');
+		}
+		my_dom_sold.val(my_sold_pieces);
+
+		var my_dom_requested = $(my_parent).find('#jky-requested-pieces');
+		if (my_dom_requested.length == 0) {
+			my_dom_requested = $(my_parent).find('.jky-requested-pieces');
+		}
+		my_dom_requested.val(my_sold_pieces);
+
+		my_dom_number.change();		//	to activate change event
 		JKY.hide_modal(my_layer);
 	}
 
@@ -73,10 +104,10 @@ JKY.Order = function() {
 		JKY.display_message('add_new');
 	}
 
-	function my_add_ordered(the_weight) {
+	function my_add_sold(the_weight) {
 		if (the_weight != null) {
-			my_ordered += parseFloat(the_weight);
-			my_ordered  = Math.round(my_ordered);
+			my_sold += parseFloat(the_weight);
+			my_sold  = Math.round(my_sold * 100) / 100;
 		}
 	}
 
@@ -87,12 +118,12 @@ JKY.Order = function() {
 		}
 	}
 
-	function my_update_ordered_weight(the_id) {
+	function my_update_sold_weight(the_id) {
 		var my_data =
 			{ method	: 'update'
-			, table		: 'Orders'
+			, table		: 'LoadSales'
 			, where		: 'id =' + the_id
-			, set		: 'ordered_weight =' + my_ordered
+			, set		: 'sold_weight =' + my_sold
 			};
 		JKY.ajax(true, my_data);
 	}
@@ -100,7 +131,7 @@ JKY.Order = function() {
 	function my_update_checkout_weight(the_id) {
 		var my_data =
 			{ method	: 'update'
-			, table		: 'Orders'
+			, table		: 'Sales'
 			, where		: 'id =' + the_id
 			, set		: 'checkout_weight =' + my_checkout
 			};
@@ -111,21 +142,22 @@ JKY.Order = function() {
 	});
 
 	return {
-		  display		: function(the_id)				{		my_display(the_id);}
-		, load_data		: function()					{		my_load_data();}
-		, click_row		: function(the_index, the_id)	{		my_click_row(the_index, the_id);}
-		, add_new		: function()					{		my_add_new();}
+		  display		: function(the_id, the_color_id){my_display(the_id, the_color_id);}
+		, load_data		: function()					{my_load_data();}
+		, click_row		: function(the_index, the_id)	{my_click_row(the_index, the_id);}
+		, add_new		: function()					{my_add_new();}
 
-		, set_ordered	: function(the_amount)	{my_ordered   = the_amount;}
-		, set_checkout	: function(the_amount)	{my_checkout  = the_amount;}
+		, set_color_id	: function(the_color_id)		{my_color_id	= the_color_id;}
+		, set_sold		: function(the_amount)			{my_sold		= the_amount;}
+		, set_checkout	: function(the_amount)			{my_checkout	= the_amount;}
 
-		, add_ordered	: function(the_weight)	{my_add_ordered (the_weight);}
-		, add_checkout	: function(the_weight)	{my_add_checkout(the_weight);}
+		, add_sold		: function(the_weight)			{my_add_sold	(the_weight);}
+		, add_checkout	: function(the_weight)			{my_add_checkout(the_weight);}
 
-		, get_ordered	: function()			{return my_ordered ;}
-		, get_checkout	: function()			{return my_checkout;}
+		, get_sold		: function()			{return my_sold		;}
+		, get_checkout	: function()			{return my_checkout	;}
 
-		, update_ordered_weight  : function(the_id)		{my_update_ordered_weight (the_id);}
-		, update_checkout_weight : function(the_id)		{my_update_checkout_weight(the_id);}
+		, update_sold_weight	: function(the_id)		{my_update_sold_weight		(the_id);}
+		, update_checkout_weight: function(the_id)		{my_update_checkout_weight	(the_id);}
 	};
 }();

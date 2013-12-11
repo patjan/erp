@@ -215,7 +215,7 @@ JKY.confirm_row = function(the_id, the_barcode) {
 	var my_real_weight		= $(my_parent).find('.jky-real-weight'		).html();
 
 	var my_data =
-		{ method			: 'returned'
+		{ method			: 'return'
 		, table				: 'Boxes'
 		, barcode			: my_barcode
 		, number_of_cones	: my_number_of_cones

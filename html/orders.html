@@ -1,6 +1,6 @@
 <style>
 .jky-form-line-1		{width:273px;}
-.jky-form-line-2		{width:290px;}
+.jky-form-line-4		{width:200px;}
 .jky-form-label			{width:160px;}
 .jky-form-label-1		{width:100px;}
 .Xjky-form-value		{width:100px;}
@@ -51,6 +51,7 @@
 			<th class='jky-ordered-pieces'	><span>    Ordered<br>Pieces	</span></th>
 			<th class='jky-rejected-pieces'	><span>   Rejected<br>Pieces	</span></th>
 			<th class='jky-produced-pieces'	><span>   Produced<br>Pieces	</span></th>
+			<th class='jky-quoted-weight'	><span>     Quoted<br>Weight	</span></th>
 		</tr>
 	</thead>
 
@@ -108,6 +109,10 @@
 
 		<div class='jky-left'>
 			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Quotation Number</span>:</div>
+				<input id='jky-quotation-number' class='jky-form-value'	disabled />
+			</div>
+			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Ordered Date</span>:</div>
 				<div id="jky-ordered-date" class="input-append date">
 					<input id='jky-ordered-value' type="text" />
@@ -130,11 +135,19 @@
 			</div>
 		</div>
 		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>   Quoted Pieces</span>:</div><input  id='jky-quoted-pieces'	class='jky-form-value'	disabled /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>  Ordered Pieces</span>:</div><input  id='jky-ordered-pieces'	class='jky-form-value'	/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span> Rejected Pieces</span>:</div><input  id='jky-rejected-pieces'	class='jky-form-value'	/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span> Produced Pieces</span>:</div><input  id='jky-produced-pieces'	class='jky-form-value'	/></div>
 		</div>
 		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>   Quoted Weight</span>:</div><input  id='jky-quoted-weight'	class='jky-form-value'	disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Ordered Weight</span>:</div><input  id='jky-ordered-weight'	class='jky-form-value'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Weight</span>:</div><input  id='jky-checkout-weight'	class='jky-form-value'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Returned Weight</span>:</div><input  id='jky-returned-weight'	class='jky-form-value'	/></div>
+		</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'>&nbsp;</div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Labels Printed</span>:</div>
 					<input  id='jky-labels-printed'	class='jky-form-value' disabled />
 					<a id='jky-pieces-display'><i class='icon-print'></i></a>
@@ -192,8 +205,8 @@
 							<td></td>
 							<td></td>
 							<td class='jky-bold center'><span>Total</span></td>
-							<td class='jky-td-thread-weight'><input id='jky-threads-total-ordered'  value='' /></td>
-							<td class='jky-td-thread-weight'><input id='jky-threads-total-checkout' value='' /></td>
+							<td class='jky-td-thread-weight'><input id='jky-threads-total-ordered'  value='' disabled /></td>
+							<td class='jky-td-thread-weight'><input id='jky-threads-total-checkout' value='' disabled /></td>
 						</tr>
 					</tfoot>
 				</table>

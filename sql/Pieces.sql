@@ -30,8 +30,8 @@ CREATE TABLE IF NOT EXISTS Pieces
 , checkout_at		DATETIME			DEFAULT NULL
 , returned_at		DATETIME			DEFAULT NULL
 
-, checkin_weight	decimal(10,2)		DEFAULT 0
-, retuned_weight	decimal(10,2)		DEFAULT 0
+, checkin_weight	DECIMAL(10,2)		DEFAULT 0
+, retuned_weight	DECIMAL(10,2)		DEFAULT 0
 
 , remarks			TEXT				DEFAULT NULL
 

@@ -20,13 +20,17 @@ JKY.Application = function() {
 
 	JKY.checkout	= JKY.checkout	|| [];
 	JKY.incoming	= JKY.incoming	|| [];
+	JKY.loadout		= JKY.laodout	|| [];
 	JKY.planning	= JKY.planning	|| [];
 	JKY.purchase	= JKY.purchase	|| [];
+	JKY.sales		= JKY.sales		|| [];
 
-	JKY.checkout.select = JKY.checkout.select || 'Draft + Active';
-	JKY.incoming.select = JKY.incoming.select ||		 'Active';
-	JKY.planning.select = JKY.planning.select || 'Draft + Active';
-	JKY.purchase.select = JKY.purchase.select || 'Draft + Active';
+	JKY.checkout.select = JKY.checkout.select	||	'Draft + Active';
+	JKY.incoming.select = JKY.incoming.select	||			'Active';
+	JKY.loadout.select	= JKY.loadout.select	||	'Draft + Active';
+	JKY.planning.select = JKY.planning.select	||	'Draft + Active';
+	JKY.purchase.select = JKY.purchase.select	||	'Draft + Active';
+	JKY.sales.select	= JKY.sales.select		||	'Draft + Active';
 
 /**
  *	set all events (run only once per load)
@@ -124,6 +128,7 @@ if (my_first == true) {
 				case 'Orders'			:	JKY.planning.select = my_args.select; break;
 				case 'Purchases'		:	JKY.purchase.select = my_args.select; break;
 				case 'Purchase Lines'	:	JKY.purchase.select = my_args.select; break;
+				case 'Quotations'		:	JKY.sales.select	= my_args.select; break;
 				case 'Thread Dyers'		:	JKY.planning.select = my_args.select; break;
 			}
 		}

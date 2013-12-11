@@ -13,15 +13,19 @@ CREATE TABLE IF NOT EXISTS Orders
 , partner_id		BIGINT				DEFAULT NULL
 , product_id		BIGINT				DEFAULT NULL
 , ftp_id			BIGINT				DEFAULT NULL
+, quot_line_id		BIGINT				DEFAULT NULL
+, quotation_number	VARCHAR(32)			DEFAULT NULL
 , labels_printed	INT					DEFAULT 0
 , fpts_printed		INT					DEFAULT 0
 , ops_printed		INT					DEFAULT 0
 , ordered_at		DATETIME			DEFAULT NULL
 , needed_at			DATETIME			DEFAULT NULL
 , produced_at		DATETIME			DEFAULT NULL
+, quoted_pieces		INT					DEFAULT 0
 , ordered_pieces	INT					DEFAULT 0
 , rejected_pieces	INT					DEFAULT 0
 , produced_pieces	INT					DEFAULT 0
+, quoted_weight		DECIMAL(10,2)		DEFAULT 0
 , ordered_weight	DECIMAL(10,2)		DEFAULT 0
 , checkout_weight	DECIMAL(10,2)		DEFAULT 0
 , returned_weight	DECIMAL(10,2)		DEFAULT 0
@@ -47,3 +51,8 @@ ALTER TABLE Orders			CHANGE	status			status			VARCHAR(32)		DEFAULT 'Draft';
 
 ALTER TABLE Orders			ADD COLUMN ops_printed		INT				DEFAULT 0		AFTER labels_printed;
 ALTER TABLE Orders			ADD COLUMN ftps_printed		INT				DEFAULT 0		AFTER labels_printed;
+
+ALTER TABLE Orders			ADD COLUMN quot_line_id		BIGINT			DEFAULT NULL	AFTER ftp_id;
+ALTER TABLE Orders			ADD COLUMN quotation_number VARCHAR(32)		DEFAULT NULL	AFTER quot_line_id;
+ALTER TABLE Orders			ADD COLUMN quoted_pieces	INT				DEFAULT 0		AFTER produced_at;
+ALTER TABLE Orders			ADD COLUMN quoted_weight	DECIMAL(10,2)	DEFAULT 0		AFTER produced_pieces;

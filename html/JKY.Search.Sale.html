@@ -1,27 +1,30 @@
-<!-- JKY.Search.Order.html -->
+<!-- JKY.Search.Sale.html -->
 
-<div id='jky-order-search' class='modal hide fade in'>
+<div id='jky-sale-search' class='modal hide fade in'>
 	<div class='modal-header'>
 		<a class='close' data-dismiss='modal'>X</a>
-		<h3><span>Search</span>: <span>Order</span></h3>
+		<h3><span>Search</span>: <span>Sale</span></h3>
 	</div>
 	<div class='modal-body'>
-		<div><input id='jky-order-filter' class='search-query' type='text' placeholder='Search' /></div>
-		<table id='jky-order-table' class='table table-striped'>
+		<div>
+			<input id='jky-sale-filter' class='search-query' type='text' placeholder='Search' />
+			<div class='jky-right'><span class='jky-bold'>Color</span>: <span id='jky-search-color-name'>Branco</span></div>
+		</div>
+		<table id='jky-sale-table' class='table table-striped'>
 			<thead>
 				<tr>
-					<th class='jky-search-order-number'		><span>   Order<br>Number	</span></th>
+					<th class='jky-search-sale-number'		><span>   Sale<br>Number	</span></th>
 					<th class='jky-search-customer-name'	><span>Customer<br>Name		</span></th>
 					<th class='jky-search-product-name'		><span> Product<br>Name		</span></th>
-					<th class='jky-search-ordered-date'		><span> Ordered<br>Date		</span></th>
-					<th class='jky-search-ordered-pieces'	><span> Ordered<br>Pieces	</span></th>
+					<th class='jky-search-sold-date'		><span>   Sold<br>Date		</span></th>
+					<th class='jky-search-sold-pieces'		><span>   Sold<br>Pieces	</span></th>
 				</tr>
 			</thead>
-			<tbody id='jky-order-search-body'></tbody>
+			<tbody id='jky-sale-search-body'></tbody>
 		</table>
 	</div>
 	<div class='modal-footer'>
-<!--	<a id='jky-order-add-new'	class='btn btn-success'				type='button'><span>Add New</span></a> &nbsp;	-->
-		<a id='jky-order-cancel'	class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
+<!--	<a id='jky-sale-add-new'	class='btn btn-success'				type='button'><span>Add New</span></a> &nbsp;	-->
+		<a id='jky-sale-cancel'	class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
 	</div>
 </div>

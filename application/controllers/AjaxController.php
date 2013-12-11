@@ -148,16 +148,16 @@ public function indexAction() {
 			case 'update'		: $required = 'Update'	; break;
 			case 'replace'		: $required = 'Update'	; break;
 			case 'copy'			: $required = 'Update'	; break;
-			case 'generate'		: $required = 'Update'	; break;
 			case 'delete'		: $required = 'Delete'	; break;
 			case 'delete_many'	: $required = 'Delete'	; break;
 			case 'combine'		: $required = 'Combine'	; break;
 			case 'publish'		: $required = 'Publish'	; break;
 			case 'export'		: $required = 'Export'	; break;
 
+			case 'generate'		: $required = 'Update'	; break;
 			case 'checkin'		: $required = 'Update'	; break;
 			case 'checkout'		: $required = 'Update'	; break;
-			case 'returned'		: $required = 'Update'	; break;
+			case 'return'		: $required = 'Update'	; break;
 
 			default				: $this->echo_error('method name [' . $method . '] is undefined'); return;
 		}
@@ -188,8 +188,6 @@ public function indexAction() {
 		case 'replace'		: $this->replace		($data); break;
 		case 'copy'			: $this->copy			($data); break;
 
-		case 'generate'		: echo json_encode(JKY_generate($data)); return;
-
 		case 'delete'		: $this->delete			($data); break;
 		case 'delete_many'	: $this->delete_many	($data); break;
 		case 'combine'		: $this->combine		(); break;
@@ -197,9 +195,10 @@ public function indexAction() {
 		case 'export'		: $this->get_index		($data); break;
 		case 'Xrefresh'		: $this->Xrefresh		(); break;
 
-		case 'checkin'		: $this->checkin		($data); break;
-		case 'checkout'		: $this->checkout		($data); break;
-		case 'returned'		: $this->returned		($data); break;
+		case 'generate'		: echo json_encode(JKY_generate	($data)); return;
+		case 'checkin'		: echo json_encode(JKY_checkin	($data)); return;
+		case 'checkout'		: echo json_encode(JKY_checkout	($data)); return;
+		case 'return'		: echo json_encode(JKY_return	($data)); return;
 
 		case 'set_amount'	: $this->set_amount		(); break;
 		case 'reset_amount'	: $this->reset_amount	(); break;
@@ -642,8 +641,10 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'BatchOuts'		&& $specific == 'checkout'		)	return ' AND     BatchOuts.checkout_id	= ' . $specific_id;
 	if ($table == 'Boxes'			&& $specific == 'batch'			)	return ' AND         Boxes.batch_id		= ' . $specific_id;
 	if ($table == 'FTPs'			&& $specific == 'product'		)	return ' AND          FTPs.product_id	= ' . $specific_id;
+	if ($table == 'LoadSales'		&& $specific == 'loadout'		)	return ' AND     LoadSales.loadout_id	= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'parent'		)	return ' AND PurchaseLines.parent_id	= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'supplier'		)	return ' AND     Purchases.supplier_id	= ' . $specific_id;
+	if ($table == 'QuotColors'		&& $specific == 'color'			)	return ' AND    QuotColors.color_id		= ' . $specific_id;
 	if ($table == 'Translations'	&& $specific == 'locale'		)	return ' AND  Translations.locale		= "en_US"';
 
 	return '';
@@ -656,9 +657,11 @@ private function set_select($table, $select) {
 		switch($table) {
 			case 'BatchOuts'		: return ' AND  BatchOuts	.status IN   ("Draft","Active")';
 			case 'CheckOuts'		: return ' AND  CheckOuts	.status IN   ("Draft","Active")';
+			case 'LoadOuts'			: return ' AND  LoadOuts	.status IN   ("Draft","Active")';
 			case 'Orders'			: return ' AND  Orders		.status IN   ("Draft","Active")';
 			case 'Purchases'		: return ' AND  Purchases	.status IN   ("Draft","Active")';
 			case 'PurchaseLines'	: return ' AND  Purchases	.status IN   ("Draft","Active")';
+			case 'Quotations'		: return ' AND  Quotations	.status IN   ("Draft","Active")';
 			case 'TDyers'			: return ' AND  TDyers		.status IN   ("Draft","Active")';
 		}
 	}
@@ -678,6 +681,8 @@ private function set_select($table, $select) {
 		case 'FTP_Sets'			: return ' AND       FTP_Sets.parent_id		=  ' . $select;
 		case 'History'			: return ' AND        History.parent_name	= "' . $select . '"';
 		case 'Incomings'		: return ' AND      Incomings.status		= "' . $select . '"';
+		case 'LoadOuts'			: return ' AND       LoadOuts.status		= "' . $select . '"';
+		case 'LoadSales'		: return ' AND      LoadSales.status		= "' . $select . '"';
 		case 'Machines'			: return ' AND       Machines.machine_brand	= "' . $select . '"';
 		case 'Orders'			: return ' AND         Orders.status		= "' . $select . '"';
 		case 'OrdThreads'		: return ' AND     OrdThreads.parent_id		=  ' . $select;
@@ -686,6 +691,7 @@ private function set_select($table, $select) {
 		case 'Products'			: return ' AND       Products.product_type	= "' . $select . '"';
 		case 'Purchases'		: return ' AND      Purchases.status		= "' . $select . '"';
 		case 'PurchaseLines'	: return ' AND		Purchases.status		= "' . $select . '"';
+		case 'Quotations'		: return ' AND     Quotations.status		= "' . $select . '"';
 		case 'QuotLines'		: return ' AND      QuotLines.quotation_id	=  ' . $select;
 		case 'QuotColors'		: return ' AND     QuotColors.parent_id		=  ' . $select;
 		case 'ReqLines'			: return ' AND       ReqLines.request_id	=  ' . $select;
@@ -725,6 +731,13 @@ private function set_new_fields($table) {
 	if ($table == 'FTP_Sets'		)	$return = ',   Configs.sequence			AS           sequence'
 												. ',   Configs.name				AS           name';
 	if ($table == 'History'			)	$return = ',  Contacts.full_name		AS   updated_name';
+	if ($table == 'LoadOuts'		)	$return = ',      Dyer.nick_name		AS      dyer_name'
+												. ',     Color.color_name		AS     color_name';
+	if ($table == 'LoadSales'		)	$return = ',   LoadOut.load_number		AS      load_number'
+												. ',      Sale.quotation_number	AS      sale_number'
+												. ',  Customer.nick_name		AS  customer_name'
+												. ',   Product.product_name		AS   product_name'
+												. ', SaleColor.quoted_pieces	AS      sold_pieces';
 	if ($table == 'Orders'			)	$return = ',  Customer.nick_name		AS  customer_name'
 												. ',   Machine.name				AS   machine_name'
 												. ',   Partner.nick_name		AS   partner_name'
@@ -735,7 +748,8 @@ private function set_new_fields($table) {
 												. ',   BatchIn.batch			AS     batch_number';
 	if ($table == 'Pieces'			)	$return = ',    Orderx.order_number		AS     order_number'
 												. ', Inspected.nick_name		AS inspected_name'
-												. ',   Weighed.nick_name		AS   weighed_name';
+												. ',   Weighed.nick_name		AS   weighed_name'
+												. ',   Product.product_name		AS   product_name';
 	if ($table == 'Purchases'		)	$return = ',  Supplier.nick_name		AS  supplier_name';
 	if ($table == 'PurchaseLines'	)	$return = ', Purchases.purchase_number	AS  purchase_number'
 												. ', Purchases.ordered_at		AS   ordered_at'
@@ -751,7 +765,12 @@ private function set_new_fields($table) {
 												. ',      Gola.product_name		AS      gola_name'
 												. ',     Galao.product_name		AS     galao_name';
 	if ($table == 'QuotLines'		)	$return = ',   Product.product_name		AS   product_name';
-	if ($table == 'QuotColors'		)	$return = ',     Color.color_name		AS     color_name';
+	if ($table == 'QuotColors'		)	$return = ',QuotColors.quoted_pieces	AS      sold_pieces'
+												. ',     Color.color_name		AS     color_name'
+												. ',      Sale.quotation_number	AS      sale_number'
+												. ',      Sale.quoted_at		AS      sold_at'
+												. ',   Product.product_name		AS   product_name'
+												. ',  Customer.nick_name		AS  customer_name';
 	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name		AS  supplier_name';
 	if ($table == 'Batches'			)	$return = ',   Threads.name				AS           name'
 												. ', Incomings.incoming_number	AS  incoming_number'
@@ -845,17 +864,26 @@ private function set_left_joins($table) {
 	if ($table == 'FTP_Sets'		)	$return = '  LEFT JOIN     Configs  			ON   Configs.id	=		  FTP_Sets.setting_id';
 	if ($table == 'History'			)	$return = '  LEFT JOIN   JKY_Users AS Users		ON     Users.id =		   History.updated_by'
 												. '  LEFT JOIN    Contacts				ON  Contacts.id =			 Users.contact_id';
+	if ($table == 'LoadOuts'		)	$return = '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		  LoadOuts.dyer_id'
+												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		  LoadOuts.color_id';
+	if ($table == 'LoadSales'		)	$return = '  LEFT JOIN    LoadOuts AS LoadOut	ON   LoadOut.id	=		 LoadSales.loadout_id'
+												. '  LEFT JOIN  QuotColors AS SaleColor	ON SaleColor.id	=		 LoadSales.sale_color_id'
+												. '  LEFT JOIN   QuotLines AS SaleLine	ON  SaleLine.id	=		 SaleColor.parent_id'
+												. '  LEFT JOIN  Quotations AS Sale		ON      Sale.id	=		  SaleLine.quotation_id'
+												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleLine.product_id'
+												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id';
 	if ($table == 'Orders'			)	$return = '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		    Orders.customer_id'
 												. '  LEFT JOIN    Machines AS Machine	ON   Machine.id	=		    Orders.machine_id'
 												. '  LEFT JOIN    Contacts AS Partner	ON   Partner.id	=		    Orders.partner_id'
-												. '  LEFT JOIN        FTPs AS FTP		ON       FTP.id	=		    Orders.ftp_id'
-												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		       FTP.product_id';
+												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		    Orders.product_id'
+												. '  LEFT JOIN        FTPs AS FTP		ON       FTP.id	=		    Orders.ftp_id';
 	if ($table == 'OrdThreads'		)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		OrdThreads.parent_id'
 												. '  LEFT JOIN     Threads AS Thread	ON    Thread.id	=		OrdThreads.thread_id'
 												. '  LEFT JOIN     Batches AS BatchIn	ON   BatchIn.id	=		OrdThreads.batchin_id';
 	if ($table == 'Pieces'			)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		    Pieces.order_id'
 												. '  LEFT JOIN    Contacts AS Inspected	ON Inspected.id	=		    Pieces.inspected_by'
-												. '  LEFT JOIN    Contacts AS Weighed	ON   Weighed.id	=		    Pieces.weighed_by';
+												. '  LEFT JOIN    Contacts AS Weighed	ON   Weighed.id	=		    Pieces.weighed_by'
+												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		    Orderx.product_id';
 	if ($table == 'Purchases'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Purchases.supplier_id';
 	if ($table == 'PurchaseLines'	)	$return = '  LEFT JOIN   Purchases  			ON Purchases.id	=	 PurchaseLines.parent_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=	 PurchaseLines.thread_id'
@@ -869,7 +897,11 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Products AS Gola 		ON      Gola.id	=		Quotations.gola_id'
 												. '  LEFT JOIN    Products AS Galao		ON     Galao.id	=		Quotations.galao_id';
 	if ($table == 'QuotLines'		)	$return = '  LEFT JOIN    Products AS Product	ON   Product.id	=	     QuotLines.product_id';
-	if ($table == 'QuotColors'		)	$return = '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	    QuotColors.color_id';
+	if ($table == 'QuotColors'		)	$return = '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	    QuotColors.color_id'
+												. '  LEFT JOIN   QuotLines AS SaleLine	ON  SaleLine.id	=		QuotColors.parent_id'
+												. '  LEFT JOIN  Quotations AS Sale		ON      Sale.id	=		  SaleLine.quotation_id'
+												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleLine.product_id'
+												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id';
 	if ($table == 'Incomings'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Incomings.supplier_id';
 	if ($table == 'Batches'			)	$return = '  LEFT JOIN   Incomings  			ON Incomings.id	=		   Batches.incoming_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		   Batches.thread_id'
@@ -1186,6 +1218,34 @@ private function set_where($table, $filter) {
 						return ' AND Machines.name LIKE ' . $value;
 					}
 				}
+			}}
+		}
+
+		if ($table == 'LoadOuts') {
+			if ($name == 'load_number'
+			or	$name == 'requested_at'
+			or	$name == 'requested_pieces'
+			or	$name == 'requested_weight'
+			or	$name == 'loadout_at'
+			or	$name == 'loadout_pieces'
+			or	$name == 'loadout_weight'
+			or	$name == 'returned_at'
+			or	$name == 'returned_pieces'
+			or	$name == 'returned_weight') {
+				if ($name == 'dyer_name') {
+					if ($value == '"%null%"') {
+						return ' AND LoadOuts.dyer_id IS NULL';
+					}else{
+						return ' AND Dyer.dyer_name LIKE ' . $value;
+					}
+				}
+			}else{
+				if ($name == 'color_name') {
+					if ($value == '"%null%"') {
+						return ' AND LoadOuts.color_id IS NULL';
+					}else{
+						return ' AND Color.color_name LIKE ' . $value;
+					}
 			}}
 		}
 
@@ -1845,6 +1905,22 @@ private function set_where($table, $filter) {
 			;
 		}
 
+	if ($table ==  'LoadOuts') {
+		$return = ' LoadOuts.load_number		LIKE ' . $filter
+			. ' OR  LoadOuts.requested_at		LIKE ' . $filter
+			. ' OR  LoadOuts.requested_pieces	LIKE ' . $filter
+			. ' OR  LoadOuts.requested_weight	LIKE ' . $filter
+			. ' OR  LoadOuts.loadout_at			LIKE ' . $filter
+			. ' OR  LoadOuts.loadout_pieces		LIKE ' . $filter
+			. ' OR  LoadOuts.loadout_weight		LIKE ' . $filter
+			. ' OR  LoadOuts.returned_at		LIKE ' . $filter
+			. ' OR  LoadOuts.returned_pieces	LIKE ' . $filter
+			. ' OR  LoadOuts.returned_weight	LIKE ' . $filter
+			. ' OR      Dyer.dyer_name			LIKE ' . $filter
+			. ' OR     Color.color_name			LIKE ' . $filter
+			;
+		}
+
 	if ($table ==  'Machines') {
 		$return = ' Machines.name			LIKE ' . $filter
 			. ' OR  Machines.machine_type	LIKE ' . $filter
@@ -2223,6 +2299,7 @@ private function insert($data) {
 		case('CheckOuts'	)	: $set .=           ', number = ' . $my_id; break;
 		case('FTPs'			)	: $set .=       ', ftp_number = ' . $my_id; break;
 		case('Incomings'	)	: $set .=  ', incoming_number = ' . $my_id; break;
+		case('LoadOuts'		)	: $set .=      ', load_number = ' . $my_id; break;
 		case('Orders'		)	: $set .=     ', order_number = ' . $my_id; break;
 		case('Purchases'	)	: $set .=  ', purchase_number = ' . $my_id; break;
 		case('Quotations'	)	: $set .= ', quotation_number = ' . $my_id; break;
@@ -4317,282 +4394,6 @@ private function refresh($data) {
 	echo json_encode( $return );
 }
 
-/*
- *   $.ajax({ method:'checkin', table:'Boxes', barcode:9...9};
- *
- *   status: ok
- *  message: record updated
- */
-private function checkin($data) {
-//	$table	 = get_data($data, 'table'	);
-	$barcode = get_data($data, 'barcode');
-
-	$db  = Zend_Registry::get( 'db' );
-
-	$updated = '  updated_by='  . get_session( 'user_id' )
-			 . ', updated_at="' . get_time() . '"'
-			 . ', status="Check In"'
-			 ;
-
-	$sql = 'UPDATE Boxes'
-	     . '   SET ' . $updated
-		 . '     , checkin_by='  . get_session( 'user_id' )
-		 . '     , checkin_at="' . get_time() . '"'
-	     . ' WHERE barcode = ' . $barcode
-	     ;
-	$this->log_sql( 'Boxes', 'update', $sql );
-	$db->query( $sql );
-
-	$sql = 'SELECT Boxes.*'
-		 . '  FROM Boxes'
-		 . ' WHERE Boxes.barcode = \'' . $barcode . '\''
-		 ;
-	$box = $db->fetchRow( $sql );
-	insert_changes($db, 'Boxes', $box['id']);
-
-	$average_weight = $box['average_weight'	];
-	$real_weight	= $box['real_weight'	];
-	$my_weight		= ($real_weight == 0) ? $average_weight : $real_weight;
-
-	$sql = 'UPDATE Batches'
-	     . '   SET checkin_boxes  = checkin_boxes  + 1'
-	     . '     , checkin_weight = checkin_weight + ' . $my_weight
-	     . ' WHERE id = ' . $box['batch_id']
-	     ;
-	$this->log_sql( 'Batches', 'update', $sql );
-	$db->query( $sql );
-	insert_changes($db, 'Batches', $box['batch_id']);
-
-	$return = array();
-	$return[ 'status'   ] = 'ok';
-	$return[ 'message'  ] = 'record updated';
-	echo json_encode( $return );
-    }
-
-/*
- *   $.ajax({ method:'checkout', table:'Boxes', barcode:9...9, location:'x...x'};
- *
- *   status: ok
- *  message: record updated
- */
-private function checkout($data) {
-//	$table		= get_data($data, 'table'		);
-	$barcode	= get_data($data, 'barcode'		);
-	$location	= get_data($data, 'location'	);
-	$batchset_id= get_data($data, 'batchset_id'	);
-
-	$db  = Zend_Registry::get( 'db' );
-
-	$updated = '  updated_by='  . get_session( 'user_id' )
-			 . ', updated_at="' . get_time() . '"'
-			 . ', status="Check Out"'
-			 ;
-
-	$sql = 'UPDATE Boxes'
-	     . '   SET ' . $updated
-		 . '     , checkout_by='  . get_session( 'user_id' )
-		 . '     , checkout_at="' . get_time() . '"'
-		 . '     , checkout_location="' . $location . '"'
-	     . ' WHERE barcode = ' . $barcode
-	     ;
-	$this->log_sql( 'Boxes', 'update', $sql );
-	$db->query( $sql );
-
-	$sql = 'SELECT Boxes.*'
-		 . '  FROM Boxes'
-		 . ' WHERE Boxes.barcode = \'' . $barcode . '\''
-		 ;
-	$box = $db->fetchRow( $sql );
-	insert_changes($db, 'Boxes', $box['id']);
-
-	$average_weight = $box['average_weight'	];
-	$real_weight	= $box['real_weight'	];
-	$my_weight		= ($real_weight == 0) ? $average_weight : $real_weight;
-
-	$sql = 'UPDATE Batches'
-	     . '   SET checkout_boxes  = checkout_boxes  + 1'
-	     . '     , checkout_weight = checkout_weight + ' . $my_weight
-	     . ' WHERE id = ' . $box['batch_id']
-	     ;
-	$this->log_sql( 'Batches', 'update', $sql );
-	$db->query( $sql );
-	insert_changes($db, 'Batches', $box['batch_id']);
-
-	$sql = 'UPDATE BatchSets'
-	     . '   SET reserved_boxes = reserved_boxes - 1'
-	     . '     , checkout_boxes = checkout_boxes + 1'
-	     . ' WHERE id = ' . $batchset_id
-	     ;
-	$this->log_sql( 'BatchSets', 'update', $sql );
-	$db->query( $sql );
-	insert_changes($db, 'BatchSets', $batchset_id);
-
-	$sql = 'SELECT BatchSets.*'
-		 . '  FROM BatchSets'
-		 . ' WHERE BatchSets.id = ' . $batchset_id
-		 ;
-	$batchset = $db->fetchRow( $sql );
-
-	$sql = 'UPDATE BatchOuts'
-	     . '   SET reserved_boxes  = reserved_boxes  - 1'
-	     . '     , checkout_boxes  = checkout_boxes  + 1'
-	     . '     , checkout_weight = checkout_weight + ' . $my_weight
-	     . ' WHERE id = ' . $batchset['batchout_id']
-	     ;
-	$this->log_sql( 'BatchOuts', 'update', $sql );
-	$db->query( $sql );
-	insert_changes($db, 'BatchOuts', $batchset['batchout_id']);
-
-	$sql = 'SELECT BatchOuts.*'
-		 . '  FROM BatchOuts'
-		 . ' WHERE BatchOuts.id = ' . $batchset['batchout_id']
-		 ;
-	$batchout = $db->fetchRow( $sql );
-	$my_amount = $my_weight * $batchout['unit_price'];
-
-	$sql = 'UPDATE CheckOuts'
-	     . '   SET checkout_weight = checkout_weight + ' . $my_weight
-		 . '     , checkout_amount = checkout_amount + ' . $my_amount
-	     . ' WHERE id = ' . $batchout['checkout_id']
-	     ;
-	$this->log_sql( 'CheckOuts', 'update', $sql );
-	$db->query( $sql );
-	insert_changes($db, 'CheckOuts', $batchout['checkout_id']);
-
-	if ($batchout['req_line_id']) {
-		$sql = 'UPDATE ReqLines'
-			 . '   SET checkout_weight = checkout_weight + ' . $my_weight
-			 . ' WHERE id = ' . $batchout['req_line_id']
-			 ;
-		$this->log_sql( 'ReqLines', 'update', $sql );
-		$db->query( $sql );
-		insert_changes($db, 'ReqLines', $batchout['req_line_id']);
-
-		$sql = 'SELECT ReqLines.*'
-			 . '  FROM ReqLines'
-			 . ' WHERE ReqLines.id = ' . $batchout['req_line_id']
-			 ;
-		$reqline = $db->fetchRow( $sql );
-
-		$sql = 'UPDATE Requests'
-			 . '   SET checkout_weight = checkout_weight + ' . $my_weight
-			 . ' WHERE id = ' . $reqline['request_id']
-			 ;
-		$this->log_sql( 'Requests', 'update', $sql );
-		$db->query( $sql );
-		insert_changes($db, 'Requests', $reqline['request_id']);
-	}
-
-	if ($batchout['tdyer_thread_id']) {
-		$sql = 'UPDATE TDyerThreads'
-			 . '   SET checkout_weight = checkout_weight + ' . $my_weight
-			 . ' WHERE id = ' . $batchout['tdyer_thread_id']
-			 ;
-		$this->log_sql( 'TDyerThreads', 'update', $sql );
-		$db->query( $sql );
-		insert_changes($db, 'TDyerThreads', $batchout['tdyer_thread_id']);
-
-		$sql = 'SELECT TDyerThreads.*'
-			 . '  FROM TDyerThreads'
-			 . ' WHERE TDyerThreads.id = ' . $batchout['tdyer_thread_id']
-			 ;
-		$tdyer_thread = $db->fetchRow( $sql );
-
-		$sql = 'UPDATE TDyers'
-			 . '   SET checkout_weight = checkout_weight + ' . $my_weight
-			 . ' WHERE id = ' . $tdyer_thread['parent_id']
-			 ;
-		$this->log_sql( 'TDyers', 'update', $sql );
-		$db->query( $sql );
-		insert_changes($db, 'TDyers', $tdyer_thread['parent_id']);
-	}
-
-	if ($batchout['order_thread_id']) {
-		$sql = 'UPDATE OrdThreads'
-			 . '   SET checkout_weight = checkout_weight + ' . $my_weight
-			 . ' WHERE id = ' . $batchout['order_thread_id']
-			 ;
-		$this->log_sql( 'OrdThreads', 'update', $sql );
-		$db->query( $sql );
-		insert_changes($db, 'OrdThreads', $batchout['order_thread_id']);
-
-		$sql = 'SELECT OrdThreads.*'
-			 . '  FROM OrdThreads'
-			 . ' WHERE OrdThreads.id = ' . $batchout['order_thread_id']
-			 ;
-		$order_thread = $db->fetchRow( $sql );
-
-		$sql = 'UPDATE Orders'
-			 . '   SET checkout_weight = checkout_weight + ' . $my_weight
-			 . ' WHERE id = ' . $order_thread['parent_id']
-			 ;
-		$this->log_sql( 'Orders', 'update', $sql );
-		$db->query( $sql );
-		insert_changes($db, 'Orders', $order_thread['parent_id']);
-	}
-
-	$return = array();
-	$return[ 'status'   ] = 'ok';
-	$return[ 'message'  ] = 'record updated';
-	$return[ 'row'		] = $batchout;
-	echo json_encode( $return );
-    }
-
-/*
- *   $.ajax({ method:'return', table:'Boxes', barcode:9...9};
- *
- *   status: ok
- *  message: record updated
- */
-private function returned($data) {
-//	$table	 = get_data($data, 'table'	);
-	$barcode		= get_data($data, 'barcode'			);
-	$number_of_cones= get_data($data, 'number_of_cones'	);
-	$real_weight	= get_data($data, 'real_weight'		);
-
-	$db  = Zend_Registry::get( 'db' );
-
-	$updated = '  updated_by = ' . get_session( 'user_id' )
-			 . ', updated_at ="' . get_time() . '"'
-			 . ', status="Return"'
-			 ;
-
-	$sql = 'UPDATE Boxes'
-	     . '   SET ' . $updated
-		 . '     , returned_by = '  . get_session( 'user_id' )
-		 . '     , returned_at ="' . get_time() . '"'
-		 . '     , number_of_cones = ' . $number_of_cones
-		 . '     , real_weight = ' . $real_weight
-	     . ' WHERE barcode = ' . $barcode
-	     ;
-	$this->log_sql( 'Boxes', 'update', $sql );
-	$db->query( $sql );
-
-	$sql = 'SELECT Boxes.*'
-		 . '  FROM Boxes'
-		 . ' WHERE Boxes.barcode = \'' . $barcode . '\''
-		 ;
-	$box = $db->fetchRow( $sql );
-	insert_changes($db, 'Boxes', $box['id']);
-
-	$average_weight = $box['average_weight'	];
-	$real_weight	= $box['real_weight'	];
-	$my_weight		= ($real_weight == 0) ? $average_weight : $real_weight;
-
-	$sql = 'UPDATE Batches'
-	     . '   SET returned_boxes  = returned_boxes  + 1'
-	     . '     , returned_weight = returned_weight + ' . $my_weight
-	     . ' WHERE id = ' . $box['batch_id']
-	     ;
-	$this->log_sql( 'Batches', 'update', $sql );
-	$db->query( $sql );
-	insert_changes($db, 'Batches', $box['batch_id']);
-
-	$return = array();
-	$return[ 'status'   ] = 'ok';
-	$return[ 'message'  ] = 'record updated';
-	echo json_encode( $return );
-    }
 }
 
 ?>

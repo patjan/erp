@@ -1,19 +1,19 @@
 <style>
+#jky-form-tabs thead		{font-weight:bold;}
+#jky-form-tabs tfoot		{font-weight:normal;}
 
-#jky-form-tabs thead	{font-weight:bold;}
-#jky-form-tabs tfoot	{font-weight:normal;}
-
-#jky-printable			{font-size:90%; font-weight:normal;}
-.jky-print-label		{width:160px; text-align:right; font-weight:bold;}
-.jky-print-label1		{width: 80px; text-align:right; font-weight:bold;}
-.jky-print-label2		{width: 80px; text-align:right; font-weight:bold;}
-.jky-print-label3		{width:120px; text-align:right; font-weight:bold;}
-.jky-print-value		{width:200px;}
-.jky-print-head			{font-weight:bold;}
-#jky-print-number		{font-size:20px; font-weight:bold;}
-#jky-print-product		{text-transform:capitalize;}
-#jky-print-machine		{text-transform:capitalize;}
-#jky-print-has-break	{font-weight:bold;}
+#jky-printable				{font-size:90%; font-weight:normal;}
+.jky-print-label			{width:160px; text-align:right; font-weight:bold;}
+.jky-print-label1			{width: 80px; text-align:right; font-weight:bold;}
+.jky-print-label2			{width: 80px; text-align:right; font-weight:bold;}
+.jky-print-label3			{width:120px; text-align:right; font-weight:bold;}
+.jky-print-value			{width:200px;}
+.jky-print-head				{font-weight:bold;}
+#jky-print-quotation-number	{font-size:20px; font-weight:bold;}
+#jky-print-customer-name	{text-transform:capitalize;}
+#jky-print-machine-name		{text-transform:capitalize;}
+#jky-print-dyer-name		{text-transform:capitalize;}
+#jky-print-has-break		{font-weight:bold;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -38,10 +38,16 @@
 
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
-		<div id='jky-form-actions'	></div>
-		<ul  id='jky-form-status'	></ul>
+		<div id='jky-form-actions'>
+			<button id='jky-action-generate'	class='btn'	type='button' title="Click here to generate planning order"	><span>Generate Order	</span></button>
+			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this quotation"	><span>Close Quotation	</span></button>
+		</div>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+		</div>
+		<div class='jky-clear'></div>
 	</div>
-	<div class='jky-clear'></div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>

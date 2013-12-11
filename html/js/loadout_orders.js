@@ -1,84 +1,78 @@
 /*
- * display Batches -------------------------------------------------------------
+ * display Orders --------------------------------------------------------------
  */
 
-var my_checkout_id			= 0;
+var my_loadout_id			= 0;
 var my_old_checkin_weight	= 0;
 var my_old_unit_price		= 0;
 var my_new_checkin_weight	= 0;
 var my_new_unit_price		= 0;
-var my_row_batch			= null;
+var my_row_order				= null;
 
-JKY.display_batches = function() {
-	my_checkout_id = JKY.row.id;
+JKY.display_orders = function() {
+	my_loadout_id = JKY.row.id;
 	var my_data =
 		{ method		: 'get_index'
-		, table			: 'BatchOuts'
-		, specific		: 'checkout'
+		, table			: 'LoadOrders'
+		, specific		: 'loadout'
 		, specific_id	:  JKY.row.id
 		, select		: 'All'
-		, order_by		: 'BatchOuts.batch'
+		, order_by		: 'LoadOut.load_number'
 		};
-	JKY.ajax(false, my_data, JKY.generate_batches);
+	JKY.ajax(false, my_data, JKY.generate_orders);
 }
 
-JKY.generate_batches = function(response) {
+JKY.generate_orders = function(response) {
 	var my_html		= '';
 	var my_total	=  0;
 	var my_rows		= response.rows;
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];
-			my_html += JKY.generate_batch(my_row);
+			my_html += JKY.generate_order(my_row);
 
 			var my_percent = parseFloat(my_row.percent);
 			my_total += my_percent;
 		}
 	}
-	JKY.set_html('jky-batch-total', my_total);
-	JKY.set_html('jky-batches-body' , my_html );
+	JKY.set_html('jky-order-total', my_total);
+	JKY.set_html('jky-orders-body', my_html);
 	if (my_rows == '') {
-		JKY.insert_batch();
+		JKY.insert_order();
 	}
 }
 
-JKY.generate_batch = function(the_row) {
+JKY.generate_order = function(the_row) {
 	var my_id = the_row.id;
-	var my_trash = (the_row.status == 'Draft') ? '<a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
-	var my_thread = ''
-		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + JKY.fix_null(the_row.thread_name) + "' />"
-		+ "<a class='jky-thread-row-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
-		;
-	var my_batchin = ''
-		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-row-number' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + JKY.fix_null(the_row.batch_number) + "' />"
-		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
+	var my_trash = (the_row.status == 'Draft') ? '<a onclick="JKY.delete_order(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_order = ''
+		+ "<input class='jky-row-order-id' type='hidden' value=" + the_row.order_id + " />"
+		+ "<input class='jky-row-order-number' disabled onchange='JKY.update_order(this, " + my_id + ")' value='" + JKY.fix_null(the_row.order_number) + "' />"
+		+ "<a href='#' onClick='JKY.Order.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
-		+ '<tr batch_id=' + my_id + '>'
+		+ '<tr order_id=' + my_id + '>'
 		+ '<td class="jky-action"				>' + my_trash	+ '</td>'
-		+ '<td class="jky-td-code"				><input class="jky-product-code" text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.code)+ '" /></td>'
-		+ '<td class="jky-td-thread-name"		>' + my_thread	+ '</td>'
-		+ '<td class="jky-td-batchin-number"	>' + my_batchin	+ '</td>'
-		+ '<td class="jky-td-weight"			><input  class="jky-average-weight"		disabled value="' + the_row.average_weight	+ '" /></td>'
-		+ '<td class="jky-td-weight"			><input  class="jky-requested-weight"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.requested_weight + '" /></td>'
-		+ '<td class="jky-td-weight"			><input  class="jky-checkout-weight"	disabled value="' + the_row.checkout_weight	+ '" /></td>'
-		+ '<td class="jky-td-boxes"				><input  class="jky-requested-boxes"	disabled value="' + the_row.requested_boxes	+ '" /></td>'
-		+ '<td class="jky-td-boxes"				><input  class="jky-checkout-boxes"		disabled value="' + the_row.checkout_boxes	+ '" /></td>'
+		+ '<td class="jky-td-order-number"		>' + my_order	+ '</td>'
+		+ '<td class="jky-td-customer-name"		><input  class="jky-customer-name"		disabled value="' + JKY.fix_null	(the_row.customer_name	)	+ '" /></td>'
+		+ '<td class="jky-td-product-name"		><input  class="jky-product-name"		disabled value="' + JKY.fix_null	(the_row.product_name	)	+ '" /></td>'
+		+ '<td class="jky-td-pieces"			><input  class="jky-ordered-pieces"		disabled value="' + JKY.fix_null	(the_row.ordered_pieces	)	+ '" /></td>'
+		+ '<td class="jky-td-pieces"			><input  class="jky-produced-pieces"	disabled value="' + JKY.fix_null	(the_row.produced_pieces)	+ '" /></td>'
+		+ '<td class="jky-td-pieces"			><input  class="jky-loadout-pieces"		disabled value="' +					 the_row.loadout_pieces		+ '" /></td>'
+		+ '<td class="jky-td-pieces"			><input  class="jky-requested-pieces"	onchange="JKY.update_order(this, ' + my_id + ')"  value="' + the_row.requested_pieces + '" /></td>'
 		+ '</tr>'
 		;
 	return my_html;
 }
 
-JKY.update_batch = function(id_name, the_id ) {
-	JKY.display_trace('update_batch');
-	JKY.select_batch(the_id);
+JKY.update_order = function(id_name, the_id ) {
+	JKY.display_trace('update_order');
+	JKY.select_order(the_id);
 	var my_tr = $(id_name).parent().parent();
-	var my_thread_id		= my_tr.find('.jky-thread-row-id'	).val();
-	var my_batchin_id		= my_tr.find('.jky-batchin-row-id'	).val();
+	var my_order_line_id	= my_tr.find('.jky-thread-row-id'	).val();
+	var my_orderin_id		= my_tr.find('.jky-orderin-row-id'	).val();
 	var my_product_code		= my_tr.find('.jky-product-code'	).val();
-//	var my_batch			= my_tr.find('.jky-batch-number'	).val();
+//	var my_order			= my_tr.find('.jky-order-number'	).val();
 //	var my_average_weight	= parseFloat(my_tr.find('.jky-average-weight'	).val());
 //	var my_requested_boxes	= parseFloat(my_tr.find('.jky-requested-boxes'	).val());
 	var my_requested_weight	= parseFloat(my_tr.find('.jky-requested-weight'	).val());
@@ -86,20 +80,20 @@ JKY.update_batch = function(id_name, the_id ) {
 	var my_unit_price		= 0;
 	var my_average_weight	= 0;
 	var my_requested_boxes	= 0;
-	if (!isNaN(my_batchin_id)) {
-		my_row_batchin		= JKY.get_row('Batches', my_batchin_id);
-		my_unit_price		= my_row_batchin.unit_price;
-		my_average_weight	= my_row_batchin.average_weight;
+	if (!isNaN(my_orderin_id)) {
+		my_row_orderin		= JKY.get_row('Sales', my_orderin_id);
+		my_unit_price		= my_row_orderin.unit_price;
+		my_average_weight	= my_row_orderin.average_weight;
 		my_requested_boxes	= Math.round(my_requested_weight / my_average_weight + 0.5);
 	}
 	my_tr.find('.jky-average-weight' ).val(my_average_weight );
 	my_tr.find('.jky-requested-boxes').val(my_requested_boxes);
 
 	var my_set = ''
-		+          'thread_id =  ' + my_thread_id
-		+       ', batchin_id =  ' + my_batchin_id
+		+      'order_line_id =  ' + my_order_line_id
+		+       ', orderin_id =  ' + my_orderin_id
 		+             ', code =\'' + my_product_code	+ '\''
-//		+            ', batch =\'' + my_batch_code		+ '\''
+//		+           ', orders =\'' + my_orders_code		+ '\''
 		+       ', unit_price =  ' + my_unit_price
 		+   ', average_weight =  ' + my_average_weight
 		+  ', requested_boxes =  ' + my_requested_boxes
@@ -107,72 +101,68 @@ JKY.update_batch = function(id_name, the_id ) {
 		;
 	var my_data =
 		{ method	: 'update'
-		, table		: 'BatchOuts'
+		, table		: 'LoadSales'
 		, set		:  my_set
-		, where		: 'BatchOuts.id = ' + the_id
+		, where		: 'LoadSales.id = ' + the_id
 		};
 	my_new_requested_weight = my_requested_weight;
-	JKY.ajax(true, my_data, JKY.update_batch_success);
+	JKY.ajax(true, my_data, JKY.update_order_success);
 }
 
-JKY.update_batch_success = function(response) {
-JKY.display_trace('update_batch_success');
+JKY.update_order_success = function(response) {
+JKY.display_trace('update_order_success');
 //	JKY.display_message(response.message)
 	JKY.update_checkout();
 }
 
-JKY.insert_batch = function() {
+JKY.insert_order = function() {
 	var my_data =
 		{ method	: 'insert'
-		, table		: 'BatchOuts'
-		, set		: 'BatchOuts.checkout_id = ' + JKY.row.id
+		, table		: 'LoadOrders'
+		, set		: 'LoadOrders.loadout_id = ' + JKY.row.id
 		};
-	JKY.ajax(true, my_data, JKY.insert_batch_success);
+	JKY.ajax(true, my_data, JKY.insert_order_success);
 }
 
-JKY.insert_batch_success = function(response) {
+JKY.insert_order_success = function(response) {
 	var my_row = [];
 	my_row.id				= response.id;
-	my_row.code				= '';
-	my_row.batch			= '';
-	my_row.thread_id		= null;
-	my_row.average_weight	= 0;
-	my_row.requested_boxes	= 0;
-	my_row.requested_weight	= 0;
-	my_row.checkout_boxes	= 0;
-	my_row.checkout_weight	= 0;
+	my_row.order_line_id	= null;
+	my_row.requested_pieces	= 0;
+	my_row.loadout_pieces	= 0;
+	my_row.returned_pieces	= 0;
 
-	var my_html = JKY.generate_batch(my_row);
-	JKY.append_html('jky-batches-body', my_html);
+	var my_html = JKY.generate_order(my_row);
+	JKY.append_html('jky-orders-body', my_html);
 }
 
-JKY.delete_batch = function(id_name, the_id) {
-	JKY.select_batch(the_id);
+JKY.delete_order = function(id_name, the_id) {
+	JKY.select_order(the_id);
 	$(id_name).parent().parent().remove();
 	var my_data =
 		{ method	: 'delete'
-		, table		: 'BatchOuts'
-		, where		: 'BatchOuts.id = ' + the_id
+		, table		: 'LoadSales'
+		, where		: 'LoadSales.id = ' + the_id
 		};
 	my_new_requested_weight = 0;
-	JKY.ajax(true, my_data, JKY.delete_batch_success);
+	JKY.ajax(true, my_data, JKY.delete_order_success);
 }
 
-JKY.delete_batch_success = function(response) {
+JKY.delete_order_success = function(response) {
 //	JKY.display_message(response.message)
 	JKY.update_checkout();
 }
 
-JKY.select_batch = function(the_id) {
+JKY.select_order = function(the_id) {
 	var my_data =
 		{ method	: 'get_row'
-		, table		: 'BatchOuts'
-		, where		: 'BatchOuts.id = ' + the_id
+		, table		: 'LoadSales'
+		, where		: 'LoadSales.id = ' + the_id
 		};
-	JKY.ajax(false, my_data, JKY.select_batch_success);
+	JKY.ajax(false, my_data, JKY.select_order_success);
 }
 
-JKY.select_batch_success = function(response) {
+JKY.select_order_success = function(response) {
 	my_old_requested_weight = parseFloat(response.row.requested_weight);
 }
 
@@ -184,7 +174,7 @@ JKY.display_trace('update_checkout');
 		{ method	: 'update'
 		, table		: 'CheckOuts'
 		, set		: my_set
-		, where		: 'CheckOuts.id = ' + my_checkout_id
+		, where		: 'CheckOuts.id = ' + my_loadout_id
 		};
 	JKY.ajax(false, my_data, JKY.update_checkout_success);
 }
@@ -195,7 +185,7 @@ JKY.display_trace('update_checkout_success');
 	var my_data =
 		{ method	: 'get_row'
 		, table		: 'CheckOuts'
-		, where		: 'CheckOuts.id = ' + my_checkout_id
+		, where		: 'CheckOuts.id = ' + my_loadout_id
 		};
 	JKY.ajax(true, my_data, JKY.display_checkout_requested);
 }
@@ -210,13 +200,13 @@ JKY.display_trace('display_checkout_requested');
 	JKY.set_calculated_color();
 }
 
-JKY.print_batches = function(the_id) {
+JKY.print_orders = function(the_id) {
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'
-		, table		: 'BatchOuts'
+		, table		: 'LoadOrders'
 		, select	:  the_id
-		, order_by  : 'BatchOuts.id'
+		, order_by  : 'LoadSales.id'
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);

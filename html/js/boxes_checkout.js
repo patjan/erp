@@ -235,9 +235,9 @@ JKY.confirm_row_success = function(response) {
 	JKY.display_trace('confirm_row');
 //	JKY.set_value('jky-checkout-weight', JKY.get_value_by_id('BatchOuts', 'checkout_weight', JKY.row.id));
 //	JKY.set_value('jky-checkout-boxes' , JKY.get_value_by_id('BatchOuts', 'checkout_boxes' , JKY.row.id));
-	var my_row = response.row;
-	JKY.set_value('jky-reserved-boxes' , my_row.reserved_boxes );
-	JKY.set_value('jky-checkout-weight', my_row.checkout_weight);
-	JKY.set_value('jky-checkout-boxes' , my_row.checkout_boxes );
+	JKY.row = JKY.get_row(my_args.table_name, JKY.row.id);
+	JKY.set_value('jky-reserved-boxes' , JKY.row.reserved_boxes );
+	JKY.set_value('jky-checkout-weight', JKY.row.checkout_weight);
+	JKY.set_value('jky-checkout-boxes' , JKY.row.checkout_boxes );
 }
 

@@ -37,9 +37,9 @@ JKY.set_all_events = function() {
 	$('#jky-checkout-date'		).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-returned-date'		).datetimepicker({language: JKY.Session.get_locale()});
 
-	$('#jky-threads-add-new'	).click (function() {JKY.insert_thread		();});
-	$('#jky-action-generate'	).click( function() {JKY.generate_checkout	();});
-	$('#jky-action-close'		).click( function() {JKY.close_order		();});
+	$('#jky-threads-add-new'	).click (function() {JKY.insert_thread			();});
+	$('#jky-action-generate'	).click( function() {JKY.generate_tdyer			();});
+	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 
 //	$('#jky-action-product'		).click (function() {JKY.display_product	();});
 //	$('#jky-search-add-new'		).click (function() {JKY.add_new_product	();});
@@ -315,10 +315,10 @@ JKY.save_remarks_success = function(response) {
 }
 
 /* -------------------------------------------------------------------------- */
-JKY.generate_checkout = function() {
+JKY.generate_tdyer = function() {
 	var my_data =
 		{ method	: 'generate'
-		, table		: 'TDyers'
+		, table		: 'TDyer'
 		, id		:  JKY.row.id
 		}
 	JKY.ajax(false, my_data, JKY.refresh_form);
@@ -327,15 +327,4 @@ JKY.generate_checkout = function() {
 JKY.refresh_form = function(response) {
 	JKY.display_message('Check Out row generated: ' + JKY.row.id);
 	JKY.App.display_row();
-}
-
-/* -------------------------------------------------------------------------- */
-JKY.close_row = function(the_table) {
-	var my_data =
-		{ method	: 'update'
-		, table		:  the_table
-		, set		: 'status = \'Closed\''
-		, where		: 'id = ' + JKY.row.id
-		};
-	JKY.ajax(false, my_data, JKY.App.display_list);
 }

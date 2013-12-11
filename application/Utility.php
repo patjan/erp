@@ -2960,6 +2960,15 @@ function get_user_email( $id ) {
 }
 
 # -------------------------------------------------------------------------
+#    get updated_by and updated_at
+# -------------------------------------------------------------------------
+function get_updated() {
+	return ' updated_by='  . get_session('user_id')
+		. ', updated_at="' . get_time() . '"'
+		;
+}
+
+# -------------------------------------------------------------------------
 #    set control value
 # -------------------------------------------------------------------------
 function set_control_value($group_set, $name, $value) {

@@ -1,3 +1,7 @@
+mysql_real_escape_string($_POST['username'])
+
+
+
 GRANT ALL PRIVILEGES ON erp.* TO 'root'@'%' IDENTIFIED BY 'brazil18781';
 
 FLUSH PRIVILEGES;

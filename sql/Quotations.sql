@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS Quotations
 , galao_id			BIGINT				DEFAULT NULL
 , galao_perc		INTEGER				DEFAULT 0
 , quoted_at			DATETIME			DEFAULT NULL
+, needed_at			DATETIME			DEFAULT NULL
 , produced_date		DATE				DEFAULT NULL
 , delivered_date	DATE				DEFAULT NULL
 , quoted_pieces		INT					DEFAULT 0
@@ -38,3 +39,6 @@ CREATE TABLE IF NOT EXISTS Quotations
 , KEY dyer		(dyer_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
+
+ALTER TABLE Quotations		ADD COLUMN needed_at		DATETIME		DEFAULT NULL	AFTER quoted_at;
+

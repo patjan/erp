@@ -212,3 +212,12 @@ ALTER TABLE Changes			CHANGE	servers			servers			VARCHAR(32)		DEFAULT '';
 /* -- 2013/11/17	*/
 ALTER TABLE Orders			ADD COLUMN ops_printed		INT				DEFAULT 0		AFTER labels_printed;
 ALTER TABLE Orders			ADD COLUMN ftps_printed		INT				DEFAULT 0		AFTER labels_printed;
+/* -- 2013/11/20	*/
+ALTER TABLE Quotations		ADD COLUMN needed_at		DATETIME		DEFAULT NULL	AFTER quoted_at;
+ALTER TABLE Orders			ADD COLUMN quot_line_id		BIGINT			DEFAULT NULL	AFTER ftp_id;
+/* -- 2013/11/29	*/
+ALTER TABLE Orders			ADD COLUMN quotation_number VARCHAR(32)		DEFAULT NULL	AFTER quot_line_id;
+ALTER TABLE Orders			ADD COLUMN quoted_pieces	INT				DEFAULT 0		AFTER produced_at;
+ALTER TABLE Orders			ADD COLUMN quoted_weight	DECIMAL(10,2)	DEFAULT 0		AFTER produced_pieces;
+/* -- 2013/12/05	*/
+ALTER TABLE CheckOuts		CHANGE	status				VARCHAR(32)			DEFAULT 'Draft';

@@ -84,9 +84,17 @@ JKY.set_all_events_home = function(jky_program) {
 		$('#jky-boxes-checkout'			).click (function() {JKY.process_action('boxes_checkout'	);});
 		$('#jky-boxes-info'				).click (function() {JKY.process_action('boxes_info'		);});
 
-//		$('#jky-qc-inspection'			).click (function() {JKY.process_action('inspection'		);});
-//		$('#jky-qc-weighing'			).click (function() {JKY.process_action('weighing'			);});
-//		$('#jky-qc-info'				).click (function() {JKY.process_action('qc_info'			);});
+		$('#jky-dyers-pieces'			).click (function() {JKY.process_action('pieces'			);});
+		$('#jky-dyers-dyers'			).click (function() {JKY.process_action('dyers'				);});
+		$('#jky-dyers-machines'			).click (function() {JKY.process_action('machines'			);});
+		$('#jky-dyers-purchases'		).click (function() {JKY.process_action('purchases'			);});
+		$('#jky-dyers-purc-lines'		).click (function() {JKY.process_action('purc_lines'		);});
+		$('#jky-dyers-incomings'		).click (function() {JKY.process_action('incomings'			);});
+		$('#jky-dyers-batches'			).click (function() {JKY.process_action('batches'			);});
+		$('#jky-dyers-loadouts'			).click (function() {JKY.process_action('loadouts'			);});
+		$('#jky-dyers-batchouts'		).click (function() {JKY.process_action('batchouts'			);});
+		$('#jky-dyers-boxes'			).click (function() {JKY.process_action('boxes'				);});
+		$('#jky-dyers-forecast'			).click (function() {JKY.process_action('dyerforecast'		);});
 
 		$('#jky-pieces-checkin'			).click (function() {JKY.process_action('pieces_checkin'	);});
 		$('#jky-fabrics-info'			).click (function() {JKY.process_action('fabrics_info'		);});
@@ -205,7 +213,7 @@ JKY.process_start_page = function() {
 
 		,{id:'jky-menu-threads'		, icon:'plus', label:'Threads'		}
 		,{id:'jky-menu-boxes'		, icon:'plus', label:'Boxes'		}
-//		,{id:'jky-menu-qc'			, icon:'plus', label:'QC'			}
+		,{id:'jky-menu-dyers'		, icon:'plus', label:'Dyers'		}
 		,{id:'jky-menu-pieces'		, icon:'plus', label:'Pieces'		}
 //		,{id:'jky-menu-fabrics'		, icon:'plus', label:'Fabrics'		}
 		,{id:'jky-menu-help'		, icon:'plus', label:'Help'			}
@@ -232,7 +240,7 @@ JKY.process_menu = function(menu) {
 		case 'jky-menu-planning'	: JKY.show('jky-side-planning'	); JKY.process_action('orders'			); break;
 		case 'jky-menu-threads'		: JKY.show('jky-side-threads'	); JKY.process_action('purchases'		); break;
 		case 'jky-menu-boxes'		: JKY.show('jky-side-boxes'		); JKY.process_action('boxes_checkin'	); break;
-//		case 'jky-menu-qc'			: JKY.show('jky-side-qc'		); JKY.process_action('inspection'		); break;
+		case 'jky-menu-dyers'		: JKY.show('jky-side-dyers'		); JKY.process_action('loadouts'		); break;
 		case 'jky-menu-pieces'		: JKY.show('jky-side-pieces'	); JKY.process_action('pieces_checkin'	); break;
 		case 'jky-menu-fabrics'		: JKY.show('jky-side-fabrics'	); JKY.process_action('fabrics_checkin'	); break;
 		case 'jky-menu-production'	: JKY.show('jky-side-production'); JKY.process_action('ftps'			); break;

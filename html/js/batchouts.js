@@ -175,6 +175,7 @@ JKY.generate_checkout = function() {
 }
 
 JKY.insert_batch_sets = function() {
+	var my_data;
 	var my_trs = $('#jky-boxes-body tr');
 	for(var i=0, max=my_trs.length; i<max; i++) {
 		var my_tr = my_trs[i];
@@ -192,7 +193,7 @@ JKY.insert_batch_sets = function() {
 				+    ', checkin_boxes=  ' + my_checkin_boxes
 				+   ', reserved_boxes=  ' + my_reserved_boxes
 				;
-			var my_data =
+			my_data =
 				{ method	: 'insert'
 				, table		: 'BatchSets'
 				, set		:  my_set
@@ -209,7 +210,7 @@ JKY.insert_batch_sets = function() {
 		}
 	}
 
-	var my_data =
+	my_data =
 		{ method	: 'update'
 		, table		: 'BatchOuts'
 		, set		: 'status = \'Active\''
