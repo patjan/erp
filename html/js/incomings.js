@@ -54,6 +54,11 @@ JKY.set_initial_values = function() {
 
 	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 	$('#jky-purline-filter'	).KeyUpDelay(JKY.PurLine.load_data);
+
+	$('#jky-invoice-amount'	).ForceNumericOnly();
+	$('#jky-invoice-weight'	).ForceNumericOnly();
+	$('#jky-received-amount').ForceNumericOnly();
+	$('#jky-received-weight').ForceNumericOnly();
 };
 
 /**

@@ -46,6 +46,12 @@ JKY.set_all_events = function() {
 	$('#jky-action-sale'		).click( function() {JKY.generate_sale			();});
 	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 
+	$('#jky-punho-percent'		).change( function()	{JKY.zero_value(this, 'jky-punho-units'		);});
+	$('#jky-gola-percent'		).change( function()	{JKY.zero_value(this, 'jky-gola-units'		);});
+	$('#jky-galao-percent'		).change( function()	{JKY.zero_value(this, 'jky-galao-units'		);});
+	$('#jky-punho-units'		).change( function()	{JKY.zero_value(this, 'jky-punho-percent'	);});
+	$('#jky-gola-units'			).change( function()	{JKY.zero_value(this, 'jky-gola-percent'	);});
+	$('#jky-galao-units'		).change( function()	{JKY.zero_value(this, 'jky-galao-percent'	);});
 	$('#jky-punho-name'			).change( function()	{JKY.App.process_change_input(this);});
 	$('#jky-gola-name'			).change( function()	{JKY.App.process_change_input(this);});
 	$('#jky-galao-name'			).change( function()	{JKY.App.process_change_input(this);});
@@ -80,6 +86,18 @@ JKY.set_initial_values = function() {
 //	JKY.suppliers	= JKY.get_companies	('is_supplier'	);
 	$('#jky-product-filter'		).KeyUpDelay(JKY.Product.load_data	);
 	$('#jky-color-filter'		).KeyUpDelay(JKY.Color.load_data	);
+
+	$('#jky-weight'	).ForceIntegerOnly();
+	$('#jky-width'	).ForceIntegerOnly();
+	$('#jky-peso'	).ForceNumericOnly();
+
+	$('#jky-punho-percent'	).ForceIntegerOnly();
+	$('#jky-punho-units'	).ForceIntegerOnly();
+	$('#jky-gola-percent'	).ForceIntegerOnly();
+	$('#jky-gola-units'		).ForceIntegerOnly();
+	$('#jky-galao-percent'	).ForceIntegerOnly();
+	$('#jky-galao-units'	).ForceIntegerOnly();
+
 }
 
 /**
@@ -109,11 +127,11 @@ JKY.set_form_row = function(the_row) {
 	if (the_row.status == 'Draft') {
 		JKY.enable_button ('jky-action-generate');
 		JKY.enable_button ('jky-action-delete'  );
-//		JKY.enable_button ('jky-threads-add-new');
+		JKY.enable_button ('jky-lines-add-new'	);
 	}else{
 		JKY.disable_button('jky-action-generate');
 		JKY.disable_button('jky-action-delete'  );
-//		JKY.disable_button('jky-threads-add-new');
+		JKY.disable_button('jky-lines-add-new'	);
 	}
 	if (the_row.status == 'Active') {
 		JKY.enable_button ('jky-action-close');
@@ -134,9 +152,12 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-width'			,				 the_row.width				);
 	JKY.set_value	('jky-peso'				,				 the_row.peso				);
 	JKY.set_radio	('jky-has-break'		,				 the_row.has_break			);
-	JKY.set_value	('jky-punho-perc'		,				 the_row.punho_perc			);
-	JKY.set_value	('jky-gola-perc'		,				 the_row.gola_perc			);
-	JKY.set_value	('jky-galao-perc'		,				 the_row.galao_perc			);
+	JKY.set_value	('jky-punho-percent'	,				 the_row.punho_percent		);
+	JKY.set_value	('jky-gola-percent'		,				 the_row.gola_percent		);
+	JKY.set_value	('jky-galao-percent'	,				 the_row.galao_percent		);
+	JKY.set_value	('jky-punho-units'		,				 the_row.punho_units		);
+	JKY.set_value	('jky-gola-units'		,				 the_row.gola_units			);
+	JKY.set_value	('jky-galao-units'		,				 the_row.galao_units		);
 	JKY.set_value	('jky-punho-name'		,				 the_row.punho_name			);
 	JKY.set_value	('jky-gola-name'		,				 the_row.gola_name			);
 	JKY.set_value	('jky-galao-name'		,				 the_row.galao_name			);
@@ -159,14 +180,17 @@ JKY.set_add_new_row = function() {
 	JKY.set_option	('jky-customer-name'	,  null);
 	JKY.set_option	('jky-machine-name'		,  null);
 	JKY.set_option	('jky-dyer-name'		,  null);
-//	JKY.set_value	('jky-diameter'			, '');
-	JKY.set_value	('jky-weight'			, '');
-	JKY.set_value	('jky-width'			, '');
+//	JKY.set_value	('jky-diameter'			, '0');
+	JKY.set_value	('jky-weight'			, '0');
+	JKY.set_value	('jky-width'			, '0');
 	JKY.set_value	('jky-peso'				, '12.5');
 	JKY.set_radio	('jky-has-break'		, 'No');
-	JKY.set_value	('jky-punho-perc'		, '0');
-	JKY.set_value	('jky-gola-perc'		, '0');
-	JKY.set_value	('jky-galao-perc'		, '0');
+	JKY.set_value	('jky-punho-percent'	, '0');
+	JKY.set_value	('jky-gola-percent'		, '0');
+	JKY.set_value	('jky-galao-percent'	, '0');
+	JKY.set_value	('jky-punho-units'		, '0');
+	JKY.set_value	('jky-gola-units'		, '0');
+	JKY.set_value	('jky-galao-units'		, '0');
 	JKY.set_value	('jky-punho-name'		, '');
 	JKY.set_value	('jky-gola-name'		, '');
 	JKY.set_value	('jky-galao-name'		, '');
@@ -202,15 +226,23 @@ JKY.get_form_set = function() {
 		+           ', width=  ' +				JKY.get_value	('jky-width'			)
 		+            ', peso=  ' +				JKY.get_value	('jky-peso'				)
 		+       ', has_break=\'' +				JKY.get_checked	('jky-has-break'		) + '\''
-		+      ', punho_perc=  ' +				JKY.get_value	('jky-punho-perc'		)
-		+       ', gola_perc=  ' +				JKY.get_value	('jky-gola-perc'		)
-		+      ', galao_perc=  ' +				JKY.get_value	('jky-galao-perc'		)
+		+   ', punho_percent=  ' +				JKY.get_value	('jky-punho-percent'	)
+		+    ', gola_percent=  ' +				JKY.get_value	('jky-gola-percent'		)
+		+   ', galao_percent=  ' +				JKY.get_value	('jky-galao-percent'	)
+		+     ', punho_units=  ' +				JKY.get_value	('jky-punho-units'		)
+		+      ', gola_units=  ' +				JKY.get_value	('jky-gola-units'		)
+		+     ', galao_units=  ' +				JKY.get_value	('jky-galao-units'		)
 		+        ', punho_id=  ' +								 my_punho_id
 		+         ', gola_id=  ' +								 my_gola_id
 		+        ', galao_id=  ' +								 my_galao_id
 		+         ', remarks=\'' +				JKY.get_value	('jky-remarks'			) + '\''
 		;
 	return my_set;
+}
+
+JKY.zero_value = function(the_id, the_name) {
+	JKY.App.process_change_input(the_id);
+	$('#' + the_name).val('0');
 }
 
 JKY.display_list = function() {
@@ -240,6 +272,13 @@ JKY.process_delete = function(the_id, the_row) {
 
 /* -------------------------------------------------------------------------- */
 JKY.generate_order = function() {
+	var my_quoted_pieces = JKY.get_value_by_id('Quotations', 'quoted_pieces', JKY.row.id);
+	if (my_quoted_pieces <= 0) {
+		JKY.display_message('Order cannot be generated');
+		JKY.display_message('because there is not any Quoted Piece');
+		return;
+	}
+
 	var my_data =
 		{ method	: 'generate'
 		, table		: 'Order'
@@ -304,18 +343,21 @@ JKY.print_row = function(the_id) {
 		+ "<table>"
 		+ "<tr>"
 		+	"<td class='jky-print-label'><span>  Punho</span>:</td>"
-		+	"<td id='jky-print-punho-perc'	class='jky-print-value'></td>"
-		+	"<td id='jky-print-punho-name'	class='jky-print-value'></td>"
+		+	"<td id='jky-print-punho-percent'	class='jky-print-value'></td>"
+		+	"<td id='jky-print-punho-units'	class='jky-print-value'></td>"
+		+	"<td id='jky-print-punho-name'		class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
 		+	"<td class='jky-print-label'><span>   Gola</span>:</td>"
-		+	"<td id='jky-print-gola-perc'	class='jky-print-value'></td>"
-		+	"<td id='jky-print-gola-name'	class='jky-print-value'></td>"
+		+	"<td id='jky-print-gola-percent'	class='jky-print-value'></td>"
+		+	"<td id='jky-print-gola-units'		class='jky-print-value'></td>"
+		+	"<td id='jky-print-gola-name'		class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
 		+	"<td class='jky-print-label'><span>  Galao</span>:</td>"
-		+	"<td id='jky-print-galao-perc'	class='jky-print-value'></td>"
-		+	"<td id='jky-print-galao-name'	class='jky-print-value'></td>"
+		+	"<td id='jky-print-galao-percent'	class='jky-print-value'></td>"
+		+	"<td id='jky-print-galao-units'	class='jky-print-value'></td>"
+		+	"<td id='jky-print-galao-name'		class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "</table>"
 		+ "</div>"
@@ -354,11 +396,14 @@ JKY.print_row = function(the_id) {
 	JKY.set_html('jky-print-machine-name'		, my_row.machine_name		);
 	JKY.set_html('jky-print-dyer-name'			, my_row.dyer_name			);
 
-	JKY.set_html('jky-print-punho-perc'			, my_row.punho_perc			);
+	JKY.set_html('jky-print-punho-percent'		, my_row.punho_percent		);
+	JKY.set_html('jky-print-punho-units'		, my_row.punho_units		);
 	JKY.set_html('jky-print-punho-name'			, my_row.punho_name			);
-	JKY.set_html('jky-print-gola-perc'			, my_row.gola_perc			);
+	JKY.set_html('jky-print-gola-percent'		, my_row.gola_percent		);
+	JKY.set_html('jky-print-gola-units'			, my_row.gola_units			);
 	JKY.set_html('jky-print-gola-name'			, my_row.gola_name			);
-	JKY.set_html('jky-print-galao-perc'			, my_row.galao_perc			);
+	JKY.set_html('jky-print-galao-percent'		, my_row.galao_percent		);
+	JKY.set_html('jky-print-galao-units'		, my_row.galao_units		);
 	JKY.set_html('jky-print-galao-name'			, my_row.galao_name			);
 
 //	JKY.set_html('jky-print-diameter'			, my_row.diameter		+ ' (pol)'	);

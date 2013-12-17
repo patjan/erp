@@ -1,4 +1,13 @@
 <style>
+div.jky-quotation-percent	{float:left; width: 45px; margin-right:34px; text-align:right !important; font-weight:bold;}
+div.jky-quotation-units		{float:left; width: 45px; margin-right:38px; text-align:right !important; font-weight:bold;}
+div.jky-quotation-name		{float:left; width:200px; margin-right:38px; text-align:left  !important; font-weight:bold;}
+
+.jky-quotation-value		{width: 40px; margin-bottom:2px !important; margin-right:20px; padding:2px 6px !important; text-align:right;}
+#jky-punho-name				{width:250px; margin-bottom:2px !important; }
+#jky-gola-name				{width:250px; margin-bottom:2px !important; }
+#jky-galao-name				{width:250px; margin-bottom:2px !important; }
+
 #jky-form-tabs thead		{font-weight:bold;}
 #jky-form-tabs tfoot		{font-weight:normal;}
 
@@ -96,30 +105,35 @@
 		<div class='jky-clear'></div>
 		<br>
 
-		<div class='jky-form-line'>
-			<div class='jky-form-label'><span>Punho</span>:</div>
-			<div class='jky-left'><input id='jky-punho-perc' class='jky-form-value' />(%) &nbsp; &nbsp;</div>
-			<div class='jky-left jky-line-product'>
-				<input id='jky-punho-id'	class='jky-product-row-id'	 type='hidden'			value='' />
-				<input id='jky-punho-name'	class='jky-product-row-name' disabled	value='' />
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'></div>
+				<div class='jky-quotation-percent'	><span>Percent	</span></div>
+				<div class='jky-quotation-units'	><span>Units	</span></div>
+				<div class='jky-quotation-name'		><span>Name		</span></div>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Punho</span>:</div>
+				<input id='jky-punho-percent'	class='jky-quotation-value'	type='text' />
+				<input id='jky-punho-units'		class='jky-quotation-value'	type='text' />
+				<input id='jky-punho-id'		class='jky-product-row-id'	type='hidden'	value='' />
+				<input id='jky-punho-name'		class='jky-product-row-name'	disabled	value='' />
 				<a onclick='JKY.Product.display(this, "Punho")' href='#'><i class='icon-share'></i></a>
 			</div>
-		</div>
-		<div class='jky-form-line'>
-			<div class='jky-form-label'><span>Gola</span>:</div>
-			<div class='jky-left'><input id='jky-gola-perc' class='jky-form-value' />(%) &nbsp; &nbsp;</div>
-			<div class='jky-left jky-line-product'>
-				<input id='jky-gola-id'		class='jky-product-row-id'	 type='hidden'			value='' />
-				<input id='jky-gola-name'	class='jky-product-row-name' disabled	value='' />
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Gola</span>:</div>
+				<input id='jky-gola-percent'	class='jky-quotation-value'	type='text' />
+				<input id='jky-gola-units'		class='jky-quotation-value'	type='text' />
+				<input id='jky-gola-id'			class='jky-product-row-id'	type='hidden'	value='' />
+				<input id='jky-gola-name'		class='jky-product-row-name'	disabled	value='' />
 				<a onclick='JKY.Product.display(this, "Gola")' href='#'><i class='icon-share'></i></a>
 			</div>
-		</div>
-		<div class='jky-form-line'>
-			<div class='jky-form-label'><span>Galao</span>:</div>
-			<div class='jky-left'><input id='jky-galao-perc' class='jky-form-value' />(%) &nbsp; &nbsp;</div>
-			<div class='jky-left jky-line-product'>
-				<input id='jky-galao-id'	class='jky-product-row-id'	 type='hidden'			value='' />
-				<input id='jky-galao-name'	class='jky-product-row-name' disabled	value='' />
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Galao</span>:</div>
+				<input id='jky-galao-percent'	class='jky-quotation-value'	type='text' />
+				<input id='jky-galao-units'		class='jky-quotation-value'	type='text' />
+				<input id='jky-galao-id'		class='jky-product-row-id'	type='hidden'	value='' />
+				<input id='jky-galao-name'		class='jky-product-row-name'	disabled	value='' />
 				<a onclick='JKY.Product.display(this, "Galao")' href='#'><i class='icon-share'></i></a>
 			</div>
 		</div>
@@ -162,8 +176,9 @@
 					<tbody id='jky-lines-body'></tbody>
 					<tfoot>
 						<tr class='jky-line'>
-							<td id='jky-lines-add-new' class='jky-action' colspan='3'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
-							<td colspan='0'></td>
+							<td class='jky-action' colspan='8'>
+								<button id='jky-lines-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
+							</td>
 						</tr>
 					</tfoot>
 				</table>

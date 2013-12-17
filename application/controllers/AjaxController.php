@@ -107,109 +107,109 @@ public function indexAction() {
 			$user_action = get_user_action('All');
 		}
 
-	set_session('user_action', $user_action);
+		set_session('user_action', $user_action);
 
-	//	for undefined resource or denied user_action
-	if ($user_action == '' or $user_action == 'Denied') {
-		$this->echo_error('resource [' . $table . '] is denied with action: ' . $user_action);
-		return;
-	}
-
-	if ($user_action != 'All') {
-		switch ($method) {
-/*
-			case 'get_names'	: $required = 'View Insert Update Delete Export'; break;
-			case 'get_id'		: $required = 'View Insert Update Delete Export'; break;
-			case 'get_count'	: $required = 'View Insert Update Delete Export'; break;
-			case 'get_value'	: $required = 'View Insert Update Delete Export'; break;
-			case 'get_row'		: $required = 'View Insert Update Delete Export'; break;
-			case 'get_rows'		: $required = 'View Insert Update Delete Export'; break;
-
-			case 'get_index'	: $required = 'View Insert Update Delete Export'; break;
-			case 'get_comments'	: $required = 'View Insert Update Delete Export'; break;
-			case 'add_comment'	: $required = 'View Insert Update Delete Export'; break;
-*/
-			case 'get_names'	: $required = 'View'	; break;
-			case 'get_id'		: $required = 'View'	; break;
-			case 'get_ids'		: $required = 'View'	; break;
-			case 'get_count'	: $required = 'View'	; break;
-			case 'get_sum'		: $required = 'View'	; break;
-			case 'get_value'	: $required = 'View'	; break;
-			case 'get_row'		: $required = 'View'	; break;
-			case 'get_rows'		: $required = 'View'	; break;
-
-			case 'get_index'	: $required = 'View'	; break;
-			case 'get_comments'	: $required = 'View'	; break;
-			case 'add_comment'	: $required = 'View'	; break;		//	???? Update
-
-			case 'get_columns'	: $required = 'Export'	; break;
-
-			case 'insert'		: $required = 'Insert'	; break;
-			case 'update'		: $required = 'Update'	; break;
-			case 'replace'		: $required = 'Update'	; break;
-			case 'copy'			: $required = 'Update'	; break;
-			case 'delete'		: $required = 'Delete'	; break;
-			case 'delete_many'	: $required = 'Delete'	; break;
-			case 'combine'		: $required = 'Combine'	; break;
-			case 'publish'		: $required = 'Publish'	; break;
-			case 'export'		: $required = 'Export'	; break;
-
-			case 'generate'		: $required = 'Update'	; break;
-			case 'checkin'		: $required = 'Update'	; break;
-			case 'checkout'		: $required = 'Update'	; break;
-			case 'return'		: $required = 'Update'	; break;
-
-			default				: $this->echo_error('method name [' . $method . '] is undefined'); return;
+		//	for undefined resource or denied user_action
+		if ($user_action == '' or $user_action == 'Denied') {
+			$this->echo_error('resource [' . $table . '] is denied with action: ' . $user_action);
+			return;
 		}
 
-//		for undefined user_action
-//		if (strpos($required, $user_action) === false) {
+		if ($user_action != 'All') {
+			switch ($method) {
+/*
+				case 'get_names'	: $required = 'View Insert Update Delete Export'; break;
+				case 'get_id'		: $required = 'View Insert Update Delete Export'; break;
+				case 'get_count'	: $required = 'View Insert Update Delete Export'; break;
+				case 'get_value'	: $required = 'View Insert Update Delete Export'; break;
+				case 'get_row'		: $required = 'View Insert Update Delete Export'; break;
+				case 'get_rows'		: $required = 'View Insert Update Delete Export'; break;
+
+				case 'get_index'	: $required = 'View Insert Update Delete Export'; break;
+				case 'get_comments'	: $required = 'View Insert Update Delete Export'; break;
+				case 'add_comment'	: $required = 'View Insert Update Delete Export'; break;
+*/
+				case 'get_names'	: $required = 'View'	; break;
+				case 'get_id'		: $required = 'View'	; break;
+				case 'get_ids'		: $required = 'View'	; break;
+				case 'get_count'	: $required = 'View'	; break;
+				case 'get_sum'		: $required = 'View'	; break;
+				case 'get_value'	: $required = 'View'	; break;
+				case 'get_row'		: $required = 'View'	; break;
+				case 'get_rows'		: $required = 'View'	; break;
+
+				case 'get_index'	: $required = 'View'	; break;
+				case 'get_comments'	: $required = 'View'	; break;
+				case 'add_comment'	: $required = 'View'	; break;		//	???? Update
+
+				case 'get_columns'	: $required = 'Export'	; break;
+
+				case 'insert'		: $required = 'Insert'	; break;
+				case 'update'		: $required = 'Update'	; break;
+				case 'replace'		: $required = 'Update'	; break;
+				case 'copy'			: $required = 'Update'	; break;
+				case 'delete'		: $required = 'Delete'	; break;
+				case 'delete_many'	: $required = 'Delete'	; break;
+				case 'combine'		: $required = 'Combine'	; break;
+				case 'publish'		: $required = 'Publish'	; break;
+				case 'export'		: $required = 'Export'	; break;
+
+				case 'generate'		: $required = 'Update'	; break;
+				case 'checkin'		: $required = 'Update'	; break;
+				case 'checkout'		: $required = 'Update'	; break;
+				case 'return'		: $required = 'Update'	; break;
+
+				default				: $this->echo_error('method name [' . $method . '] is undefined'); return;
+			}
+
+//			for undefined user_action
+//			if (strpos($required, $user_action) === false) {
 			if ($required != 'View' and strpos($user_action, $required) === false) {
 				$this->echo_error('method name [' . $method . '] is denied, action: ' . $user_action . ', required: ' . $required);
 				return;
 			}
-	}
+		}
 
-	switch( $method ) {
-		case 'get_names'	: $this->get_names		($data); break;
-		case 'get_id'		: $this->get_id			($data); break;
-		case 'get_ids'		: $this->get_ids		($data); break;
-		case 'get_count'	: $this->get_count		($data); break;
-		case 'get_sum'		: $this->get_sum		($data); break;
-		case 'get_value'	: $this->get_value		($data); break;
-		case 'get_row'		: $this->get_row		($data); break;
-		case 'get_rows'		: $this->get_rows		($data); break;
-		case 'get_index'	: $this->get_index		($data); break;
-		case 'get_comments'	: $this->get_comments	(); break;
-		case 'add_comment'	: $this->add_comment	(); break;
-		case 'get_columns'	: $this->get_columns	($data); break;
-		case 'insert'		: $this->insert			($data); break;
-		case 'update'		: $this->update			($data); break;
-		case 'replace'		: $this->replace		($data); break;
-		case 'copy'			: $this->copy			($data); break;
+		switch( $method ) {
+			case 'get_names'	: $this->get_names		($data); break;
+			case 'get_id'		: $this->get_id			($data); break;
+			case 'get_ids'		: $this->get_ids		($data); break;
+			case 'get_count'	: $this->get_count		($data); break;
+			case 'get_sum'		: $this->get_sum		($data); break;
+			case 'get_value'	: $this->get_value		($data); break;
+			case 'get_row'		: $this->get_row		($data); break;
+			case 'get_rows'		: $this->get_rows		($data); break;
+			case 'get_index'	: $this->get_index		($data); break;
+			case 'get_comments'	: $this->get_comments	(); break;
+			case 'add_comment'	: $this->add_comment	(); break;
+			case 'get_columns'	: $this->get_columns	($data); break;
+			case 'insert'		: $this->insert			($data); break;
+			case 'update'		: $this->update			($data); break;
+			case 'replace'		: $this->replace		($data); break;
+			case 'copy'			: $this->copy			($data); break;
 
-		case 'delete'		: $this->delete			($data); break;
-		case 'delete_many'	: $this->delete_many	($data); break;
-		case 'combine'		: $this->combine		(); break;
-		case 'publish'		: $this->publish		($data); break;
-		case 'export'		: $this->get_index		($data); break;
-		case 'Xrefresh'		: $this->Xrefresh		(); break;
+			case 'delete'		: $this->delete			($data); break;
+			case 'delete_many'	: $this->delete_many	($data); break;
+			case 'combine'		: $this->combine		(); break;
+			case 'publish'		: $this->publish		($data); break;
+			case 'export'		: $this->get_index		($data); break;
+			case 'Xrefresh'		: $this->Xrefresh		(); break;
 
-		case 'generate'		: echo json_encode(JKY_generate	($data)); return;
-		case 'checkin'		: echo json_encode(JKY_checkin	($data)); return;
-		case 'checkout'		: echo json_encode(JKY_checkout	($data)); return;
-		case 'return'		: echo json_encode(JKY_return	($data)); return;
+			case 'generate'		: echo json_encode(JKY_generate	($data)); return;
+			case 'checkin'		: echo json_encode(JKY_checkin	($data)); return;
+			case 'checkout'		: echo json_encode(JKY_checkout	($data)); return;
+			case 'return'		: echo json_encode(JKY_return	($data)); return;
 
-		case 'set_amount'	: $this->set_amount		(); break;
-		case 'reset_amount'	: $this->reset_amount	(); break;
+			case 'set_amount'	: $this->set_amount		(); break;
+			case 'reset_amount'	: $this->reset_amount	(); break;
 
-		default				: $this->echo_error('method name [' . $method . '] is undefined'); return;
-	}
+			default				: $this->echo_error('method name [' . $method . '] is undefined'); return;
+		}
 
 //		process insert duplicate
 //		process limit number of rows
 
-	return;
+		return;
 
 	} catch(Exception $exp){
 //		if (get_session('user_level') == MINIMUM_TO_SUPPORT) {
@@ -579,13 +579,26 @@ private function get_index($data) {
 		$sql= 'SELECT Boxes.checkin_location	AS location'
 			. '	 , MIN(Boxes.checkin_at)		AS checkin_at'
 			. '	 , COUNT(*)						AS total_boxes'
-			. '	 , SUM(IF( Boxes.real_weight = 0, Boxes.average_weight, Boxes.real_weight))	AS total_weight'
+			. '	 , SUM(IF(Boxes.real_weight = 0, Boxes.average_weight, Boxes.real_weight))	AS total_weight'
 			. '  FROM Boxes'
 			. '  LEFT JOIN Batches	ON Batches.id = Boxes.batch_id'
 			. ' WHERE Boxes.status = "Check In"'
 			. '   AND Batches.id = ' . $select
 			. ' GROUP BY Boxes.checkin_location'
 			. ' ORDER BY Boxes.checkin_location'
+			;
+	}else{
+	if ($table == 'PieceLocations') {
+		$sql= 'SELECT Pieces.checkin_location	AS location'
+			. '	 , MIN(Pieces.checkin_at)		AS checkin_at'
+			. '	 , COUNT(*)						AS total_pieces'
+			. '	 , SUM(Pieces.checkin_weight)	AS total_weight'
+			. '  FROM Pieces'
+			. '  LEFT JOIN Orders ON Orders.id = Pieces.order_id'
+			. ' WHERE Pieces.status = "Check In"'
+			. '   AND Orders.product_id = ' . $select
+			. ' GROUP BY Pieces.checkin_location'
+			. ' ORDER BY Pieces.checkin_location'
 			;
 	}else{
 	if ($table == 'FTP_Sets') {
@@ -606,7 +619,7 @@ private function get_index($data) {
 			. $order_by
 			. $limit
 			;
-	}}
+	}}}
 $this->log_sql($table, 'get_index', $sql);
      $db   = Zend_Registry::get('db');
      $rows = $db->fetchAll($sql);
@@ -644,7 +657,8 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'LoadSales'		&& $specific == 'loadout'		)	return ' AND     LoadSales.loadout_id	= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'parent'		)	return ' AND PurchaseLines.parent_id	= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'supplier'		)	return ' AND     Purchases.supplier_id	= ' . $specific_id;
-	if ($table == 'QuotColors'		&& $specific == 'color'			)	return ' AND    QuotColors.color_id		= ' . $specific_id;
+	if ($table == 'QuotColors'		&& $specific == 'color'			)	return ' AND    QuotColors.color_id		= ' . $specific_id
+																			.  ' AND        Orderx.ftp_id IS NOT NULL';
 	if ($table == 'Translations'	&& $specific == 'locale'		)	return ' AND  Translations.locale		= "en_US"';
 
 	return '';
@@ -658,6 +672,7 @@ private function set_select($table, $select) {
 			case 'BatchOuts'		: return ' AND  BatchOuts	.status IN   ("Draft","Active")';
 			case 'CheckOuts'		: return ' AND  CheckOuts	.status IN   ("Draft","Active")';
 			case 'LoadOuts'			: return ' AND  LoadOuts	.status IN   ("Draft","Active")';
+			case 'LoadSales'		: return ' AND  LoadSales	.status IN   ("Draft","Active")';
 			case 'Orders'			: return ' AND  Orders		.status IN   ("Draft","Active")';
 			case 'Purchases'		: return ' AND  Purchases	.status IN   ("Draft","Active")';
 			case 'PurchaseLines'	: return ' AND  Purchases	.status IN   ("Draft","Active")';
@@ -733,9 +748,22 @@ private function set_new_fields($table) {
 	if ($table == 'History'			)	$return = ',  Contacts.full_name		AS   updated_name';
 	if ($table == 'LoadOuts'		)	$return = ',      Dyer.nick_name		AS      dyer_name'
 												. ',     Color.color_name		AS     color_name';
-	if ($table == 'LoadSales'		)	$return = ',   LoadOut.load_number		AS      load_number'
+	if ($table == 'LoadSales'		)	$return = ',   LoadOut.loadout_number	AS   loadout_number'
+												. ',   LoadOut.requested_at		AS requested_at'
+												. ',      Dyer.nick_name		AS      dyer_name'
+												. ',     Color.color_name		AS     color_name'
 												. ',      Sale.quotation_number	AS      sale_number'
 												. ',  Customer.nick_name		AS  customer_name'
+												. ',   Product.id				AS   product_id'
+												. ',   Product.product_name		AS   product_name'
+												. ', SaleColor.quoted_pieces	AS      sold_pieces';
+	if ($table == 'LoadSets'		)	$return = ',   LoadOut.loadout_number	AS   loadout_number'
+												. ',   LoadOut.requested_at		AS requested_at'
+												. ',      Dyer.nick_name		AS      dyer_name'
+												. ',     Color.color_name		AS     color_name'
+												. ',      Sale.quotation_number	AS      sale_number'
+												. ',  Customer.nick_name		AS  customer_name'
+												. ',   Product.id				AS   product_id'
 												. ',   Product.product_name		AS   product_name'
 												. ', SaleColor.quoted_pieces	AS      sold_pieces';
 	if ($table == 'Orders'			)	$return = ',  Customer.nick_name		AS  customer_name'
@@ -770,7 +798,8 @@ private function set_new_fields($table) {
 												. ',      Sale.quotation_number	AS      sale_number'
 												. ',      Sale.quoted_at		AS      sold_at'
 												. ',   Product.product_name		AS   product_name'
-												. ',  Customer.nick_name		AS  customer_name';
+												. ',  Customer.nick_name		AS  customer_name'
+												. ',       FTP.composition		AS			 composition';
 	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name		AS  supplier_name';
 	if ($table == 'Batches'			)	$return = ',   Threads.name				AS           name'
 												. ', Incomings.incoming_number	AS  incoming_number'
@@ -868,6 +897,17 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		  LoadOuts.color_id';
 	if ($table == 'LoadSales'		)	$return = '  LEFT JOIN    LoadOuts AS LoadOut	ON   LoadOut.id	=		 LoadSales.loadout_id'
 												. '  LEFT JOIN  QuotColors AS SaleColor	ON SaleColor.id	=		 LoadSales.sale_color_id'
+												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		   LoadOut.dyer_id'
+												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		   LoadOut.color_id'
+												. '  LEFT JOIN   QuotLines AS SaleLine	ON  SaleLine.id	=		 SaleColor.parent_id'
+												. '  LEFT JOIN  Quotations AS Sale		ON      Sale.id	=		  SaleLine.quotation_id'
+												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleLine.product_id'
+												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id';
+	if ($table == 'LoadSets'		)	$return = '  LEFT JOIN   LoadSales AS LoadSale	ON  LoadSale.id	=		  LoadSets.loadsale_id'
+												. '  LEFT JOIN    LoadOuts AS LoadOut	ON   LoadOut.id	=		  LoadSale.loadout_id'
+												. '  LEFT JOIN  QuotColors AS SaleColor	ON SaleColor.id	=		  LoadSale.sale_color_id'
+												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		   LoadOut.dyer_id'
+												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		   LoadOut.color_id'
 												. '  LEFT JOIN   QuotLines AS SaleLine	ON  SaleLine.id	=		 SaleColor.parent_id'
 												. '  LEFT JOIN  Quotations AS Sale		ON      Sale.id	=		  SaleLine.quotation_id'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleLine.product_id'
@@ -900,8 +940,10 @@ private function set_left_joins($table) {
 	if ($table == 'QuotColors'		)	$return = '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	    QuotColors.color_id'
 												. '  LEFT JOIN   QuotLines AS SaleLine	ON  SaleLine.id	=		QuotColors.parent_id'
 												. '  LEFT JOIN  Quotations AS Sale		ON      Sale.id	=		  SaleLine.quotation_id'
+												. '  LEFT JOIN      Orders AS Orderx	ON	  Orderx.id	=		  SaleLine.order_id'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleLine.product_id'
-												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id';
+												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id'
+												. '  LEFT JOIN        FTPs AS FTP		ON       FTP.id	=		    Orderx.ftp_id';
 	if ($table == 'Incomings'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Incomings.supplier_id';
 	if ($table == 'Batches'			)	$return = '  LEFT JOIN   Incomings  			ON Incomings.id	=		   Batches.incoming_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		   Batches.thread_id'
@@ -981,6 +1023,20 @@ private function set_where($table, $filter) {
 					}else{
 						return ' AND     Parent.category   LIKE ' . $value;
 					}
+				}
+			}
+		}
+
+		if ($table == 'BatchSets') {
+			if ($name == 'checkin_location'
+			or	$name == 'checkin_weight'
+			or	$name == 'checkin_boxes'
+			or	$name == 'reserved_boxes'
+			or	$name == 'checkout_boxes') {
+				if ($value == '"%null%"') {
+					return ' AND BatchSets.' . $name . ' IS NULL ';
+				}else{
+					return ' AND   Batches.' . $name . ' LIKE ' . $value;
 				}
 			}
 		}
@@ -1222,13 +1278,13 @@ private function set_where($table, $filter) {
 		}
 
 		if ($table == 'LoadOuts') {
-			if ($name == 'load_number'
+			if ($name == 'loadout_number'
 			or	$name == 'requested_at'
 			or	$name == 'requested_pieces'
 			or	$name == 'requested_weight'
-			or	$name == 'loadout_at'
-			or	$name == 'loadout_pieces'
-			or	$name == 'loadout_weight'
+			or	$name == 'checkout_at'
+			or	$name == 'checkout_pieces'
+			or	$name == 'checkout_weight'
 			or	$name == 'returned_at'
 			or	$name == 'returned_pieces'
 			or	$name == 'returned_weight') {
@@ -1236,7 +1292,7 @@ private function set_where($table, $filter) {
 					if ($value == '"%null%"') {
 						return ' AND LoadOuts.dyer_id IS NULL';
 					}else{
-						return ' AND Dyer.dyer_name LIKE ' . $value;
+						return ' AND Dyer.nick_name LIKE ' . $value;
 					}
 				}
 			}else{
@@ -1791,6 +1847,21 @@ private function set_where($table, $filter) {
 //	$filter = '"%' . $filter . '%"';
 	$filter = '"' . $filter . '%"';
 
+	if ($table == 'BatchSets') {
+		$return = '         BatchSets.checkin_location	LIKE ' . $filter
+				. ' OR      BatchSets.checkin_weight	LIKE ' . $filter
+				. ' OR      BatchSets.checkin_boxes		LIKE ' . $filter
+				. ' OR      BatchSets.reserved_boxes	LIKE ' . $filter
+				. ' OR      BatchSets.checkout_boxes	LIKE ' . $filter
+				. ' OR		CheckOuts.number			LIKE ' . $filter
+				. ' OR      CheckOuts.requested_at		LIKE ' . $filter
+				. ' OR       Machines.name				LIKE ' . $filter
+				. ' OR       Supplier.nick_name			LIKE ' . $filter
+				. ' OR        Threads.name				LIKE ' . $filter
+				. ' OR        Batches.batch				LIKE ' . $filter
+				;
+	}
+
 	if ($table == 'Categories') {
 		$return = '       Categories.sequence			LIKE ' . $filter
 				. ' OR    Categories.category			LIKE ' . $filter
@@ -1906,17 +1977,17 @@ private function set_where($table, $filter) {
 		}
 
 	if ($table ==  'LoadOuts') {
-		$return = ' LoadOuts.load_number		LIKE ' . $filter
+		$return = ' LoadOuts.loadout_number		LIKE ' . $filter
 			. ' OR  LoadOuts.requested_at		LIKE ' . $filter
 			. ' OR  LoadOuts.requested_pieces	LIKE ' . $filter
 			. ' OR  LoadOuts.requested_weight	LIKE ' . $filter
-			. ' OR  LoadOuts.loadout_at			LIKE ' . $filter
-			. ' OR  LoadOuts.loadout_pieces		LIKE ' . $filter
-			. ' OR  LoadOuts.loadout_weight		LIKE ' . $filter
+			. ' OR  LoadOuts.checkout_at		LIKE ' . $filter
+			. ' OR  LoadOuts.checkout_pieces	LIKE ' . $filter
+			. ' OR  LoadOuts.checkout_weight	LIKE ' . $filter
 			. ' OR  LoadOuts.returned_at		LIKE ' . $filter
 			. ' OR  LoadOuts.returned_pieces	LIKE ' . $filter
 			. ' OR  LoadOuts.returned_weight	LIKE ' . $filter
-			. ' OR      Dyer.dyer_name			LIKE ' . $filter
+			. ' OR      Dyer.nick_name			LIKE ' . $filter
 			. ' OR     Color.color_name			LIKE ' . $filter
 			;
 		}
@@ -2299,7 +2370,7 @@ private function insert($data) {
 		case('CheckOuts'	)	: $set .=           ', number = ' . $my_id; break;
 		case('FTPs'			)	: $set .=       ', ftp_number = ' . $my_id; break;
 		case('Incomings'	)	: $set .=  ', incoming_number = ' . $my_id; break;
-		case('LoadOuts'		)	: $set .=      ', load_number = ' . $my_id; break;
+		case('LoadOuts'		)	: $set .=   ', loadout_number = ' . $my_id; break;
 		case('Orders'		)	: $set .=     ', order_number = ' . $my_id; break;
 		case('Purchases'	)	: $set .=  ', purchase_number = ' . $my_id; break;
 		case('Quotations'	)	: $set .= ', quotation_number = ' . $my_id; break;

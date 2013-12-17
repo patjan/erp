@@ -18,11 +18,14 @@ CREATE TABLE IF NOT EXISTS Quotations
 , peso				DECIMAL(10,2)		DEFAULT 0		# Peso da Peca (12.5) (Kg)
 , has_break			CHAR(3)				DEFAULT 'No'	# Tem falha
 , punho_id			BIGINT				DEFAULT NULL
-, punho_perc		INTEGER				DEFAULT 0
+, punho_percent		INTEGER				DEFAULT 0
+, punho_units		INTEGER				DEFAULT 0		# per one quoted piece
 , gola_id			BIGINT				DEFAULT NULL
-, gola_perc			INTEGER				DEFAULT 0
+, gola_percent		INTEGER				DEFAULT 0
+, gola_units		INTEGER				DEFAULT 0		# per one quoted piece
 , galao_id			BIGINT				DEFAULT NULL
-, galao_perc		INTEGER				DEFAULT 0
+, galao_percent		INTEGER				DEFAULT 0
+, galao_units		INTEGER				DEFAULT 0		# per one quoted piece
 , quoted_at			DATETIME			DEFAULT NULL
 , needed_at			DATETIME			DEFAULT NULL
 , produced_date		DATE				DEFAULT NULL
@@ -42,3 +45,9 @@ CREATE TABLE IF NOT EXISTS Quotations
 
 ALTER TABLE Quotations		ADD COLUMN needed_at		DATETIME		DEFAULT NULL	AFTER quoted_at;
 
+ALTER TABLE Quotations		CHANGE	punho_perc			punho_percent	INTEGER			DEFAULT 0;
+ALTER TABLE Quotations		CHANGE	gola_perc			gola_percent	INTEGER			DEFAULT 0;
+ALTER TABLE Quotations		CHANGE	galao_perc			galao_percent	INTEGER			DEFAULT 0;
+ALTER TABLE Quotations		ADD COLUMN punho_units		INTEGER		DEFAULT 0	AFTER punho_percent;
+ALTER TABLE Quotations		ADD COLUMN gola_units		INTEGER		DEFAULT 0	AFTER gola_percent;
+ALTER TABLE Quotations		ADD COLUMN galao_units		INTEGER		DEFAULT 0	AFTER galao_percent;

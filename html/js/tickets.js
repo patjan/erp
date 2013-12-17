@@ -56,6 +56,8 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
 	JKY.set_value ('jky-app-filter'		, JKY.App.get('filter'));
 	JKY.show('jky-app-select-line');
+
+	$('#jky-worked-hour').ForceNumericOnly()
 };
 
 /**

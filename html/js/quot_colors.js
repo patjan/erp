@@ -4,8 +4,7 @@
 
 JKY.generate_color = function(the_row) {
 	var my_id = the_row.id;
-//	var my_trash = (the_row.order_id == null) ? '<a onclick="JKY.delete_color(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
-	var my_trash = '<a onclick="JKY.delete_color(this, ' + my_id + ')"><i class="icon-trash"></i></a>';
+	var my_trash = JKY.is_status('Draft') ? '<a onclick="JKY.delete_color(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_color = ''
 		+ "<input class='jky-color-row-id' type='hidden' value=" + the_row.color_id + " />"
 		+ "<input class='jky-color-row-name' disabled onchange='JKY.update_color(this, " + my_id + ")' value='" + the_row.color_name + "' />"
@@ -88,7 +87,14 @@ JKY.insert_color_success = function(response) {
 	my_row.galao_price		= 0;
 	var my_html = JKY.generate_color(my_row);
 	JKY.line_tr.after(my_html);
-	JKY.line_tr.next().find('.jky-quoted-pieces').focus().select();
+	var my_tr = JKY.line_tr.next();
+	my_tr.find('.jky-quoted-pieces'	).focus().select();
+	my_tr.find('.jky-quoted-pieces'	).ForceIntegerOnly();
+	my_tr.find('.jky-fabric-price'	).ForceNumericOnly();
+	my_tr.find('.jky-punho-price'	).ForceNumericOnly();
+	my_tr.find('.jky-gola-price'	).ForceNumericOnly();
+	my_tr.find('.jky-galao-price'	).ForceNumericOnly();
+
 }
 
 JKY.delete_color = function(id_name, the_id) {

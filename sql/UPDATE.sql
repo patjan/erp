@@ -219,5 +219,19 @@ ALTER TABLE Orders			ADD COLUMN quot_line_id		BIGINT			DEFAULT NULL	AFTER ftp_id
 ALTER TABLE Orders			ADD COLUMN quotation_number VARCHAR(32)		DEFAULT NULL	AFTER quot_line_id;
 ALTER TABLE Orders			ADD COLUMN quoted_pieces	INT				DEFAULT 0		AFTER produced_at;
 ALTER TABLE Orders			ADD COLUMN quoted_weight	DECIMAL(10,2)	DEFAULT 0		AFTER produced_pieces;
-/* -- 2013/12/05	*/
-ALTER TABLE CheckOuts		CHANGE	status				VARCHAR(32)			DEFAULT 'Draft';
+
+UPDATE	BatchSets	SET	checkin_location = UPPER(checkin_location);
+UPDATE	Boxes		SET	checkin_location = UPPER(checkin_location);
+UPDATE	LoadSets	SET	checkin_location = UPPER(checkin_location);
+UPDATE	Pieces		SET	checkin_location = UPPER(checkin_location);
+/* -- 2013/12/12	*/
+ALTER TABLE Orders			ADD COLUMN returned_pieces	INT				DEFAULT 0		AFTER produced_pieces;
+ALTER TABLE Orders			ADD COLUMN checkout_pieces	INT				DEFAULT 0		AFTER produced_pieces;
+/* -- 2013/12/14	*/
+ALTER TABLE Quotations		CHANGE	punho_perc			punho_percent	INTEGER			DEFAULT 0;
+ALTER TABLE Quotations		CHANGE	gola_perc			gola_percent	INTEGER			DEFAULT 0;
+ALTER TABLE Quotations		CHANGE	galao_perc			galao_percent	INTEGER			DEFAULT 0;
+ALTER TABLE Quotations		ADD COLUMN punho_units		INTEGER			DEFAULT 0		AFTER punho_percent;
+ALTER TABLE Quotations		ADD COLUMN gola_units		INTEGER			DEFAULT 0		AFTER gola_percent;
+ALTER TABLE Quotations		ADD COLUMN galao_units		INTEGER			DEFAULT 0		AFTER galao_percent;
+ALTER TABLE Orders			ADD COLUMN quoted_units		INT				DEFAULT 0		AFTER produced_at;

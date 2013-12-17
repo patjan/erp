@@ -70,3 +70,4 @@ location 	checkin_at 				total_boxes 	total_weight
 1A23 		2013-08-08 08:01:10 	6 				179.76
 3C34 		2013-08-08 10:36:20 	10 				300.50
 
+UPDATE	Boxes	SET	checkin_location = UPPER(checkin_location);

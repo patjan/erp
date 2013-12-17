@@ -17,7 +17,7 @@ JKY.display_orders = function() {
 		, specific		: 'loadout'
 		, specific_id	:  JKY.row.id
 		, select		: 'All'
-		, order_by		: 'LoadOut.load_number'
+		, order_by		: 'LoadOut.loadout_number'
 		};
 	JKY.ajax(false, my_data, JKY.generate_orders);
 }

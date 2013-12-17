@@ -67,6 +67,9 @@ JKY.set_initial_values = function() {
 	$('#jky-dyer-filter'		).KeyUpDelay(JKY.Dyer.load_data		);
 	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data	);
 	$('#jky-batchin-filter'		).KeyUpDelay(JKY.BatchIn.load_data	);
+
+	$('#jky-requested-weight').ForceNumericOnly();
+	$('#jky-checkout-weight' ).ForceNumericOnly();
 }
 
 /**

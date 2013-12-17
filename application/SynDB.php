@@ -28,7 +28,7 @@ error_reporting(E_ALL);		//	report errors
 
 ini_set('display_startup_errors', 'on');
 ini_set('display_errors'		, 'on');
-ini_set('include_path'			, '../library');
+//ini_set('include_path'			, '../library');
 
 date_default_timezone_set('America/Sao_Paulo');
 

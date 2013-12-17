@@ -9,8 +9,8 @@ div.jky-loadout-weight		{float:left; width:120px; text-align:right  !important; 
 .jky-row-sale-number		{width: 50px; margin-right:5px;}
 .jky-td-sale-number			{width:100px;}
 
-#jky-loadout-pieces			{width: 40px; margin-left:30px;	 text-align:right;}
-#jky-loadout-weight			{width: 75px; margin-left:30px;  text-align:right;}
+#jky-checkout-pieces		{width: 40px; margin-left:30px;	 text-align:right;}
+#jky-checkout-weight		{width: 75px; margin-left:30px;  text-align:right;}
 #jky-requested-pieces		{width: 40px; margin-left:30px;	 text-align:right;}
 #jky-requested-weight		{width: 75px; margin-left:30px;  text-align:right;}
 #jky-returned-pieces		{width: 40px; margin-left:30px;	 text-align:right;}
@@ -28,7 +28,7 @@ div.jky-loadout-weight		{float:left; width:120px; text-align:right  !important; 
 			<th class='jky-loadout-date'	><span>   Load Out<br>Date		</span></th>
 			<th class='jky-returned-date'	><span>   Returned<br>Date		</span></th>
 			<th class='jky-requested-pieces'><span>  Requested<br>Pieces	</span></th>
-			<th class='jky-loadout-pieces'	><span>   Load Out<br>Pieces	</span></th>
+			<th class='jky-checkout-pieces'	><span>  Check Out<br>Pieces	</span></th>
 			<th class='jky-returned-pieces'	><span>   Returned<br>Pieces	</span></th>
 		</tr>
 	</thead>
@@ -87,13 +87,13 @@ div.jky-loadout-weight		{float:left; width:120px; text-align:right  !important; 
 					<input  id='jky-requested-weight'	disabled />
 				</div>
 				<div class='jky-form-line'>
-					<div class='jky-form-label'><span>Load Out</span>:</div>
-					<div id='jky-loadout-date' class='input-append date'>
-						<input id='jky-loadout-value' type='text' />
+					<div class='jky-form-label'><span>Check Out</span>:</div>
+					<div id='jky-checkout-date' class='input-append date'>
+						<input id='jky-checkout-value' type='text' />
 						<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 					</div>
-					<input  id='jky-loadout-pieces'		disabled />
-					<input  id='jky-loadout-weight'		disabled />
+					<input  id='jky-checkout-pieces'	disabled />
+					<input  id='jky-checkout-weight'	disabled />
 				</div>
 				<div class='jky-form-line'>
 					<div class='jky-form-label'><span>Returned</span>:</div>
@@ -137,7 +137,7 @@ div.jky-loadout-weight		{float:left; width:120px; text-align:right  !important; 
 							<th	class='jky-td-customer-name'	><span>             Customer</span></th>
 							<th class='jky-td-product-name'		><span>             Product</span></th>
 							<th class='jky-td-pieces'			><span>     Sold<br>Pieces	</span></th>
-							<th class='jky-td-pieces'			><span> Load Out<br>Pieces	</span></th>
+							<th class='jky-td-pieces'			><span>Check Out<br>Pieces	</span></th>
 							<th class='jky-td-pieces'			><span>Requested<br>Pieces	</span></th>
 						</tr>
 					</thead>

@@ -28,6 +28,7 @@ JKY.generate_lines = function(response) {
 		}
 	}
 	JKY.set_html('jky-lines-body', my_html );
+	$('.jky-expected-weight').ForceIntegerOnly();
 	JKY.update_total_weight();
 	if (my_rows == '') {
 		JKY.insert_line();
@@ -36,7 +37,7 @@ JKY.generate_lines = function(response) {
 
 JKY.generate_line = function(the_row) {
 	var my_id = the_row.id;
-	var my_trash = (the_row.batch_id == null) ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_trash = JKY.is_status('Draft') ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_line = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
 		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + JKY.fix_null(the_row.thread_name) + "' />"

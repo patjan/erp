@@ -36,7 +36,8 @@ JKY.generate_batches = function(response) {
 		}
 	}
 	JKY.set_html('jky-batch-total', my_total);
-	JKY.set_html('jky-batches-body' , my_html );
+	JKY.set_html('jky-batches-body', my_html);
+	$('.jky-requested-weight').ForceNumericOnly();
 	if (my_rows == '') {
 		JKY.insert_batch();
 	}

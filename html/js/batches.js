@@ -41,6 +41,17 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.incoming.select, 'All', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
+
+	$('#jky-labels-printed'	).ForceIntegerOnly();
+	$('#jky-received-boxes'	).ForceIntegerOnly();
+	$('#jky-checkin-boxes'	).ForceIntegerOnly();
+	$('#jky-number-of-cones').ForceIntegerOnly();
+	$('#jky-unit-price'		).ForceNumericOnly();
+	$('#jky-average-weight'	).ForceNumericOnly();
+	$('#jky-received-weight').ForceNumericOnly();
+	$('#jky-checkin-weight'	).ForceNumericOnly();
+	$('#jky-returned-weight').ForceNumericOnly();
+	$('#jky-checkout-weight').ForceNumericOnly();
 };
 
 /**

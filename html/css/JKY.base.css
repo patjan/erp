@@ -56,7 +56,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 	color:green;
 }
 
-.jky-form-line			{clear:both; height:30px; padding-top:2px;}
+.jky-form-line			{clear:both; padding-top:2px;}
 .jky-form-label			{float:left; width:160px; margin:3px 7px; text-align:right; font-weight:bold;}
 .jky-form-label-1		{float:left; width:160px; margin:3px 7px; text-align:right; font-weight:bold;}
 .jky-form-label-2		{float:left; width:160px; margin:3px 7px; text-align:right; font-weight:bold;}
@@ -139,7 +139,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 9px rgba(0, 0, 0, 0.1);
 }
 #jky-app-breadcrumb		{float:left ; margin:12px 10px 8px 10px; height:24px; font-size:18px; font-weight:bold; vertical-align:middle;}
-#jky-app-select-line	{float:left ; margin: 5px  0px 8px 30px;}
+#jky-app-select-line	{float:left ; margin: 5px  0px 0px 30px;}
 #jky-app-select			{			  margin: 5px  7px 10px 0px; width:170px;  height:24px;}
 #jky-app-filter			{float:right; margin:10px; width:300px;  height:16px; border-radius:3px;}
 #jky-app-actions		{float:left ; margin: 6px 10px;}
@@ -243,6 +243,7 @@ li .arrow span {
 
 #jky-printable			{display:none}
 
+#jky-sale-search		{width:720px; height:500px;}
 
 /* -------------------------------------------------------------------------- */
 .jky-action				{width: 20px; }
@@ -254,9 +255,12 @@ li .arrow span {
 .jky-checkin-date		{width: 75px; text-align:center !important;}
 .jky-checkin-location	{width: 50px; text-align:center !important;}
 .jky-checkin-boxes		{width: 55px; text-align:right  !important;}
+.jky-checkin-pieces		{width: 50px; text-align:right  !important;}
 .jky-checkin-weight		{width: 75px; text-align:right  !important;}
 .jky-checkout-boxes		{width: 50px; text-align:right  !important;}
 .jky-checkout-date		{width: 75px; text-align:center !important;}
+.jky-checkout-location	{width: 50px; text-align:center !important;}
+.jky-checkout-pieces	{width: 50px; text-align:right  !important;}
 .jky-checkout-weight	{width: 75px; text-align:right  !important;}
 .jky-checkout-number	{width: 50px; text-align:center !important;}
 .jky-color-name			{width:200px; text-align:left	!important; text-transform:capitalize;}
@@ -286,7 +290,6 @@ li .arrow span {
 .jky-lane-type			{width:200px; text-align:left   !important;}
 .jky-loadout-date		{width: 75px; text-align:center !important;}
 .jky-loadout-number		{width: 80px; text-align:center !important;}
-.jky-loadout-pieces		{width: 50px; text-align:right  !important;}
 .jky-machine-name		{width: 80px; text-align:center !important; text-transform:capitalize;}
 .jky-needed-date		{width: 75px; text-align:center !important;}
 .jky-nfe-dl				{width: 60px; text-align:right  !important;}
@@ -328,9 +331,11 @@ li .arrow span {
 .jky-requested-pieces	{width: 50px; text-align:right  !important;}
 .jky-requested-weight	{width: 75px; text-align:right  !important;}
 .jky-reserved-boxes		{width: 50px; text-align:right  !important;}
+.jky-reserved-pieces	{width: 50px; text-align:right  !important;}
 .jky-returned-date		{width: 75px; text-align:center !important;}
 .jky-returned-pieces	{width: 50px; text-align:right  !important;}
 .jky-returned-weight	{width: 75px; text-align:right  !important;}
+.jky-sale-number		{width: 50px; text-align:center !important;}
 .jky-scheduled-date		{width: 75px; text-align:center !important;}
 .jky-sequence			{width: 35px; text-align:center !important;}
 .jky-sold-pieces		{width: 50px; text-align:right  !important;}
@@ -430,14 +435,11 @@ li .arrow span {
 .jky-search-machine-brand	{width: 50px; text-align:center !important;}
 .jky-search-ordered-date	{width: 80px; text-align:center !important;}
 .jky-search-ordered-pieces	{width: 55px; text-align:right  !important;}
-.jky-search-product-name	{width:270px; text-align:left   !important; text-transform:capitalize;}
+.jky-search-product-name	{width:420px; text-align:left   !important; text-transform:capitalize;}
 .jky-search-product-type	{width: 50px; text-align:center !important;}
 .jky-search-product-start	{width: 50px; text-align:center !important;}
 .jky-search-sold-date		{width: 50px; text-align:center !important;}
 .jky-search-sold-pieces		{width: 55px; text-align:right  !important;}
-
-td.jky-boxes-location		{text-transform:uppercase;}
-td.jky-checkin-location		{text-transform:uppercase;}
 
 /* -------------------------------------------------------------------------- */
 #jky-average-weight			{width: 75px; margin-bottom:4px; text-align:right;}
@@ -447,11 +449,12 @@ td.jky-checkin-location		{text-transform:uppercase;}
 #jky-box-input-barcode		{width: 85px; margin-bottom:4px;					color:#CC0000;}
 #jky-box-input-message		{								 text-align:center; color:#CC0000; vertical-align:middle;}
 #jky-checkin-boxes			{width: 40px; margin-bottom:4px; text-align:right;}
-#jky-checkin-location		{width: 75px; margin-bottom:4px; text-transform:uppercase;}
+#jky-checkin-location		{width: 75px; margin-bottom:4px;}
 #jky-checkin-weight			{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-checkout-boxes			{width: 75px; margin-bottom:4px; text-align:right;}
-#jky-checkout-location		{width: 75px; margin-bottom:4px; text-transform:uppercase;}
+#jky-checkout-location		{width: 75px; margin-bottom:4px;}
 #jky-checkout-number		{width: 60px; font-weight:bold;}
+#jky-checkout-pieces		{width: 40px;					 text-align:right;}
 #jky-checkout-value			{width:115px;					 text-align:right;}
 #jky-checkout-weight		{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-collection				{width:350px;										text-transform:capitalize;}
@@ -483,7 +486,6 @@ td.jky-checkin-location		{text-transform:uppercase;}
 #jky-lane-type				{width:190px;}
 #jky-loadout-date			{width:150px;}
 #jky-loadout-number			{width: 85px; margin-bottom:4px;}
-#jky-loadout-pieces			{width: 40px;					 text-align:right;}
 #jky-loadout-value			{width:115px;}
 #jky-loadout-weight			{width: 75px;					 text-align:right;}
 #jky-machine-name			{width:300px;					 text-align:left ;	text-transform:capitalize;}
@@ -501,6 +503,8 @@ td.jky-checkin-location		{text-transform:uppercase;}
 #jky-partner-name			{width:300px;					 text-align:left ;	text-transform:capitalize;}
 #jky-payment-term			{width:110px;}
 #jky-peso					{width: 40px;					 text-align:right;}
+#jky-piece-input-barcode	{width: 85px; margin-bottom:4px;					color:#CC0000;}
+#jky-piece-input-message	{								 text-align:center; color:#CC0000; vertical-align:middle;}
 #jky-product-code			{width: 75px; margin-bottom:4px;}
 #jky-product-name			{width:300px;					 text-align:left ;	text-transform:capitalize;}
 #jky-produced-by			{width:200px;}
@@ -511,6 +515,7 @@ td.jky-checkin-location		{text-transform:uppercase;}
 #jky-quotation-number		{width: 60px;										font-size:16px; font-weight:bold;}
 #jky-quoted-value			{width:115px;}
 #jky-quoted-pieces			{width: 40px;					 text-align:right;}
+#jky-quoted-units			{width: 40px;					 text-align:right;}
 #jky-quoted-weight			{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-real-weight			{width: 75px; margin-bottom:4px; text-align:right;}
 #jky-received-amount		{width:100px;					 text-align:right;}
@@ -526,10 +531,12 @@ td.jky-checkin-location		{text-transform:uppercase;}
 #jky-requested-value		{width:115px;}
 #jky-requested-weight		{width: 75px;					 text-align:right;}
 #jky-reserved-boxes			{width: 75px; margin-bottom:4px; text-align:right;}
+#jky-reserved-pieces		{width: 40px;					 text-align:right;}
 #jky-returned-date			{width:150px;}
 #jky-returned-pieces		{width: 40px;					 text-align:right;}
 #jky-returned-value			{width:115px;}
 #jky-returned-weight		{width: 75px;					 text-align:right;}
+#jky-sale-number			{width: 60px;}
 #jky-scheduled-value		{width:120px;}
 #jky-source-doc				{width:100px;}
 #jky-speed					{width: 40px;					 text-align:right;}
@@ -561,4 +568,4 @@ td.jky-checkin-location		{text-transform:uppercase;}
 .jky-pieces-line			{width:260px; text-align:right; font-weight:bold;}
 .jky-pieces-line input		{width: 60px; text-align:right;}
 .jky-pieces-label			{width:170px; float:left; margin-top:5px; font-weight:bold; text-align:right;}
-#jky-pieces-location		{text-transform:uppercase;}
+#jky-pieces-location		{text-transform:capitalize;}

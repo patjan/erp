@@ -316,6 +316,30 @@ JKY.save_remarks_success = function(response) {
 
 /* -------------------------------------------------------------------------- */
 JKY.generate_tdyer = function() {
+	var my_dyer_id = JKY.get_value_by_id('TDyers', 'dyer_id', JKY.row.id);
+	if (my_dyer_id == null) {
+		JKY.display_message('Check Out cannot be generated');
+		JKY.display_message('because Dyer is not selected');
+		return;
+	}
+
+	var my_ordered_weight = JKY.get_value_by_id('TDyers', 'ordered_weight', JKY.row.id);
+	if (my_ordered_weight <= 0) {
+		JKY.display_message('Check Out cannot be generated');
+		JKY.display_message('because there is not any Ordered Weight');
+		return;
+	}
+
+	var my_rows = JKY.get_rows('TDyerThreads', JKY.row.id);
+	for(var i=0, max=my_rows.length; i<max; i++) {
+		var my_row = my_rows[i];
+		if (my_row.batchin_id == null) {
+			JKY.display_message('Check Out cannot be generated');
+			JKY.display_message('because there is unselected Thread Batch');
+			return;
+		}
+	}
+
 	var my_data =
 		{ method	: 'generate'
 		, table		: 'TDyer'

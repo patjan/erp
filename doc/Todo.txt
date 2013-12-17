@@ -1,7 +1,122 @@
 Todo
 
+Bugs
+1.	loading.gif is not displaying on IE and CH
+2.	to immediately highlight clicked tab on menu or side-menu
+		not working on IE and CH
+		
 
 
+-------------------------------------------------------------------------------
+1. 2012-12-13	add Permissions to: Boxes, Pieces
+		
+
+2. program [Contacts] tab on Customers
+
+3. 2012-12-13	on [Color Types] of Configs, dropout [Branco] and [Preto]
+
+4. 2012-12-13	allow only digits on integer fields:	
+		diameter, density inputs, turns, weight, width, speed, peso, perc
+
+-----------------------------	Customers, Suppliers, Dyers, Partners
+1. add jky-app-select-line by Status: Active
+
+-----------------------------	Quotations
+1. 2013-12-14	disable [Generate Order] if [Quoted Pieces] = 0
+2. 2013-12-14	if Status != Draft, then on [Lines] tab disable all:
+		[Add New], [Delete] and [Quoted Pieces]
+
+3. on [Generate Order], transfer [Remarks] into [Orders] (not needed, link back to Quotation)
+4. program [Generate Sales]
+
+-----------------------------	TDyers
+1. 2013-12-14	disable [Generate Check Out], if any missing Dyer
+2. 2013-12-14	disable [Generate Check Out], if any [Ordered Weight] = 0
+3. 2013-12-14	disable [Generate Check Out], if any missing Thread Batch
+4. 2013-12-14	if Status != Draft, then on [Lines] tab disable all:
+		[Add New], [Delete] and [Quoted Pieces]
+
+-----------------------------	Orders
+1. 2013-12-14	disable [Generate Check Out], if any [Ordered Weight] = 0
+1. 2013-12-14	disable [Generate Check Out], if any missing Thread Batch
+2. 2013-12-14	drop out [Total] row of [Threads] tab
+3. drop out [Quality] col of [Pieces] tab
+4. decrease width of jky-form-line (4)
+5. add [Check Out Pieces] on form
+6. add [Produced Weight] on form
+
+-----------------------------	Pieces
+1. add jky-app-select-line by Status: Active (not All)
+
+-----------------------------	FTPs
+1. add jky-app-select-line by Collection: (last)
+
+-----------------------------	Threads
+1. program [Purchases] tab (display history)
+
+-----------------------------	Machines
+1. program [Repairs] tab (display history)
+
+-----------------------------	Customers, Suppliers, Dyers, Partners
+1. program [Orders] tab (display history)
+2. program [Invoices] tab (display history)
+3. program [Payments] tab (display history)
+
+-----------------------------	Purchases
+1. 2013-12-14	disable [Generate Check Out], if any missing Supplier
+2. 2013-12-14	disable [Generate Check Out], if any [Expected Weight] = 0
+3. 2013-12-14	disable [Generate Check Out], if any missing Thread
+
+-----------------------------	Batch Outs
+1. disable [Generate Check Out], if [Reserved Boxes] != [Requested Boxes]
+
+-----------------------------	Boxes
+1. add jky-app-select-line by Status: Active (not All)
+
+-----------------------------	Boxes Check Out
+1. add jky-app-select-line by Status: Active
+2. add [Close Request]
+3. display [Status]
+
+-----------------------------	Load Sales
+1. disable [Generate Load Out], if [Reserved Pieces] != [Requested Pieces]
+
+-----------------------------	Pieces Check Out
+1. add jky-app-select-line by Status: Active
+2. add [Close Request]
+3. display [Status]
+
+-----------------------------	Tickets
+1. Download [Photo] is not working
+
+-----------------------------	Templates
+1. drop out [Created By]
+
+-----------------------------	Translations
+1. drop out [Created At]
+
+
+
+
+Extras
+
+
+2. code link to redirect from one program to another program:
+	a. on [FTPs] tab of [Products] form, click on specific ftp to redirect into FTPs form view
+	
+3. change the scope of vertical scroll bar only inside of table body
+
+4. program D3 into management reports
+
+5. on [Colors], move [Status] field to form-control	
+
+6. modify all selects into new Search Layer:
+	[Customer] field of the [Quotations] form
+	
+7. on calendars, on click to exit the calendar back to form 	
+
+
+------------------------------------------------------------------------
 
 - IP fixo (telefonica) 30/5 mb R$270
 - Roteador (tecno)
@@ -87,3 +202,5 @@ Todo
 	- revisao
 	- rejeitar
 	- confirmar
+	
+--------------------------------------------------------------

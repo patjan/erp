@@ -22,6 +22,7 @@ JKY.generate_threads = function(response) {
 		}
 	}
 	JKY.set_html('jky-threads-body', my_html);
+	$('.jky-ordered-weight').ForceNumericOnly();
 	if (my_rows == '') {
 		JKY.insert_thread();
 	}
@@ -29,7 +30,7 @@ JKY.generate_threads = function(response) {
 
 JKY.generate_thread = function(the_row) {
 	var my_id = the_row.id;
-	var my_trash = (the_row.batchout_id == null) ? '<a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_trash = JKY.is_status('Draft') ? '<a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
 		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
@@ -40,12 +41,13 @@ JKY.generate_thread = function(the_row) {
 		+ "<input class='jky-batchin-row-number' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batchin_number + "' />"
 		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
+	var my_disabled = JKY.is_status('Draft') ? '' : ' disabled="disabled"';
 	var my_html = ''
 		+ '<tr tdyer_thread_id=' + my_id + '>'
 		+ '<td class="jky-action"			>' + my_trash	+ '</td>'
 		+ '<td class="jky-td-thread-name"	>' + my_thread	+ '</td>'
 		+ '<td class="jky-td-thread-batchin">' + my_batchin	+ '</td>'
-		+ '<td class="jky-td-color-name"><a class="btn btn-success" type="button" href="#" onclick="JKY.insert_color(this, ' + my_id + ')"><span>Add Color</span></a></td>'
+		+ '<td class="jky-td-color-name"><button class="btn btn-success" type="button" onclick="JKY.insert_color(this, ' + my_id + ')"' + my_disabled + '><span>Add Color</span></button></td>'
 		+ '<td colspan="4"></td>'
 		+ '</tr>'
 		;

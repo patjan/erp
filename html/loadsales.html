@@ -1,0 +1,123 @@
+<style>
+.jky-color-name			{width:100px;}
+.jky-product-name		{width:100px;}
+</style>
+
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-loadout-number'	><span>   Load Out<br>Number	</span></th>
+			<th class='jky-dyer-name'		><span>               Dyer		</span></th>
+			<th class='jky-color-name'		><span>               Color		</span></th>
+			<th class='jky-sale-number'		><span>       Sale<br>Number	</span></th>
+			<th class='jky-customer-name'	><span>               Customer	</span></th>
+			<th class='jky-product-name'	><span>               Product	</span></th>
+			<th class='jky-requested-date'	><span>  Requested<br>Date		</span></th>
+			<th class='jky-requested-pieces'><span>  Requested<br>Pieces	</span></th>
+			<th class='jky-reserved-pieces'	><span>   Reserved<br>Pieces	</span></th>
+			<th class='jky-checkout-pieces'	><span>  Check Out<br>Pieces	</span></th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+</table>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'>
+			<button id='jky-action-generate'	class='btn' type='button' title="Click here to generate load out"	><span>Generate Load Out	</span></button>
+			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this load"		><span>Close Load			</span></button>
+		</div>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-data'>
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Load Out Number</span>:</div>
+				<input  id='jky-loadout-number'	type='text'	readonly />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Dyer</span>:</div>
+				<input  id='jky-dyer-name'		class='jky-form-value'	readonly />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Color</span>:</div>
+				<input  id='jky-color-name'		class='jky-form-value'	readonly />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Sale Number</span>:</div>
+				<input  id='jky-sale-number'	class='jky-form-value'	readonly />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Customer</span>:</div>
+				<input  id='jky-customer-name'	class='jky-form-value'	readonly />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Product</span>:</div>
+				<input  id='jky-product-name'	class='jky-form-value'	readonly />
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Requested Pieces</span>:</div><input  id='jky-requested-pieces'	type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Reserved Pieces</span>:</div><input  id='jky-reserved-pieces'		type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Pieces</span>:</div><input  id='jky-checkout-pieces'		type='text'	readonly /></div>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+
+		<div>
+			<div class='jky-form-label'></div>
+			<div class='jky-form-buttons'>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-tabs' class='tabbable'>
+		<ul class='nav nav-tabs' id='cd-ul-tabs'>
+			<li	id='jky-tab-pieces'			class='active'	><a href='#jky-pane-pieces'			data-toggle='tab'><span>Pieces			</span></a></li>
+		</ul>
+
+		<div class='tab-content'>
+			<div id='jky-pane-pieces' class='tab-pane active'>
+				<table class='table table-striped' >
+					<thead>
+						<tr style='font-weight:bold;'>
+							<th class='jky-action'></td>
+							<th class='jky-pieces-location'	><span>	Check In<br>Location	</span></td>
+							<th	class='jky-pieces-date-in'	><span>	Check In<br>Date		</span></td>
+							<th class='jky-pieces-weight'	><span>	Check In<br>Weight		</span></td>
+							<th class='jky-pieces-checkin'	><span> Check In<br>Pieces		</span></td>
+							<th class='jky-pieces-reserved'	><span> Reserved<br>Pieces		</span></td>
+						</tr>
+					</thead>
+					<tbody id='jky-pieces-body'></tbody>
+<!--				<tfoot>
+						<tr>
+							<td id='jky-batch-add-new' class='jky-action' colspan='2'>
+								<a class='btn btn-success' type='button' href='#'><span>Add New</span></a>
+							</td>
+						</tr>
+					</tfoot>
+-->				</table>
+			</div>
+		</div>
+	</div>
+	<div id='jky-form-footer'></div>
+</div>
+
+<div id='jky-body-loaded'></div>
+<script src='js/loadsales.js'		></script>
+<script src='js/piece_locations.js'	></script>

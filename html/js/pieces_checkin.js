@@ -178,7 +178,7 @@ JKY.process_form_action = function() {
 		var my_weighed_name		= JKY.get_value('jky-weighed-name'		);
 		var my_remarks			= JKY.get_value('jky-remarks'			);
 		var my_checkin_weight	= JKY.get_value('jky-checkin-weight'	);
-		var my_checkin_location	= JKY.get_value('jky-checkin-location'	);
+		var my_checkin_location	= JKY.get_value('jky-checkin-location'	).toUpperCase();
 
 		var my_inspected_by		= JKY.get_id('Contacts', 'nick_name = \'' + my_inspected_name	+ '\'');
 		var my_weighed_by		= JKY.get_id('Contacts', 'nick_name = \'' + my_weighed_name		+ '\'');

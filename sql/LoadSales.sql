@@ -10,8 +10,10 @@ CREATE TABLE IF NOT EXISTS LoadSales
 , loadout_id		BIGINT				DEFAULT NULL
 , sale_color_id		BIGINT				DEFAULT NULL
 , requested_pieces	INT					DEFAULT 0
-, loadout_pieces	INT					DEFAULT 0
+, checkout_pieces	INT					DEFAULT 0
+, checkout_weight	DECIMAL(10,2)		DEFAULT 0
 , returned_pieces	INT					DEFAULT 0
+, returned_weight	DECIMAL(10,2)		DEFAULT 0
 
 , PRIMARY KEY(id)
 , KEY load_sale		(loadout_id, sale_color_id)

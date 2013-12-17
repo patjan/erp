@@ -14,7 +14,7 @@ JKY.display_sales = function() {
 		, specific		: 'loadout'
 		, specific_id	:  JKY.row.id
 		, select		: 'All'
-		, order_by		: 'LoadOut.load_number'
+		, order_by		: 'LoadOut.loadout_number'
 		};
 	JKY.ajax(false, my_data, JKY.generate_sales);
 }
@@ -34,6 +34,7 @@ JKY.generate_sales = function(response) {
 	}
 //	JKY.set_html('jky-sale-total', my_total);
 	JKY.set_html('jky-sales-body' , my_html);
+	$('.jky-requested-pieces').ForceIntegerOnly();
 	if (my_rows == '') {
 		JKY.insert_sale();
 	}
@@ -54,7 +55,7 @@ JKY.generate_sale = function(the_row) {
 		+ '<td class="jky-td-customer-name"		><input  class="jky-customer-name"		disabled value="' + JKY.fix_null	(the_row.customer_name	)	+ '" /></td>'
 		+ '<td class="jky-td-product-name"		><input  class="jky-product-name"		disabled value="' + JKY.fix_null	(the_row.product_name	)	+ '" /></td>'
 		+ '<td class="jky-td-pieces"			><input  class="jky-sold-pieces"		disabled value="' + JKY.fix_null	(the_row.sold_pieces	)	+ '" /></td>'
-		+ '<td class="jky-td-pieces"			><input  class="jky-loadout-pieces"		disabled value="' +	JKY.fix_null	(the_row.loadout_pieces	)	+ '" /></td>'
+		+ '<td class="jky-td-pieces"			><input  class="jky-checkout-pieces"	disabled value="' +	JKY.fix_null	(the_row.checkout_pieces)	+ '" /></td>'
 		+ '<td class="jky-td-pieces"			><input  class="jky-requested-pieces"	onchange="JKY.update_sale(this, ' + my_id + ')"  value="' + the_row.requested_pieces + '" /></td>'
 		+ '</tr>'
 		;
@@ -103,7 +104,7 @@ JKY.insert_sale_success = function(response) {
 	my_row.status			= 'Draft';
 	my_row.sale_color_id	= null;
 	my_row.requested_pieces	= 0;
-	my_row.loadout_pieces	= 0;
+	my_row.checkout_pieces	= 0;
 	my_row.returned_pieces	= 0;
 
 	var my_html = JKY.generate_sale(my_row);

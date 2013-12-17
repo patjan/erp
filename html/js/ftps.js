@@ -101,6 +101,15 @@ JKY.set_initial_values = function() {
 
 	$('#jky-product-filter'		).KeyUpDelay(JKY.Product.load_data	);
 	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data	);
+
+	$('#jky-diameter'	).ForceIntegerOnly();
+	$('#jky-density'	).ForceIntegerOnly();
+	$('#jky-inputs'		).ForceIntegerOnly();
+	$('#jky-turns'		).ForceIntegerOnly();
+	$('#jky-weight'		).ForceIntegerOnly();
+	$('#jky-width'		).ForceIntegerOnly();
+	$('#jky-speed'		).ForceIntegerOnly();
+	$('#jky-peso'		).ForceNumericOnly();
 }
 
 /**

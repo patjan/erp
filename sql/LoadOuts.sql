@@ -7,21 +7,21 @@ CREATE TABLE IF NOT EXISTS LoadOuts
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Draft'
 
-, load_number		VARCHAR(32)			DEFAULT NULL
+, loadout_number	VARCHAR(32)			DEFAULT NULL
 , dyer_id			BIGINT				DEFAULT NULL
 , color_id			BIGINT				DEFAULT NULL
 , requested_at		DATETIME			DEFAULT NULL
 , requested_pieces	INT					DEFAULT 0
 , requested_weight	DECIMAL(10,2)		DEFAULT 0
-, loadout_at		DATETIME			DEFAULT NULL
-, loadout_pieces	INT					DEFAULT 0
-, loadout_weight	DECIMAL(10,2)		DEFAULT 0
+, checkout_at		DATETIME			DEFAULT NULL
+, checkout_pieces	INT					DEFAULT 0
+, checkout_weight	DECIMAL(10,2)		DEFAULT 0
 , returned_at		DATETIME			DEFAULT NULL
 , returned_pieces	INT					DEFAULT 0
 , returned_weight	DECIMAL(10,2)		DEFAULT 0
 
 , PRIMARY KEY(id)
-, UNIQUE(load_number)
+, UNIQUE(loadout_number)
 , KEY dyer		(dyer_id)
 , KEY color		(color_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1

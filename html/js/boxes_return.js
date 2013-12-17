@@ -42,6 +42,9 @@ JKY.set_initial_values = function() {
 	JKY.set_css('jky-app-breadcrumb', 'color', '#996600');
 	JKY.set_side_active('jky-boxes-return');
 	JKY.process_clear_screen();
+
+	$('#jky-input-number-of-cones'	).ForceIntegerOnly();
+	$('#jky-input-real-weight'		).ForceNumericOnly();
 };
 
 JKY.display_list = function() {

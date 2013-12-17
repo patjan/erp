@@ -30,6 +30,7 @@ JKY.generate_threads = function(response) {
 		}
 	}
 	JKY.set_html('jky-threads-body', my_html);
+	$('.jky-ordered-weight').ForceNumericOnly();
 	JKY.update_thread_weight();
 }
 
@@ -134,8 +135,8 @@ JKY.delete_thread_success = function(response) {
 JKY.update_thread_weight = function() {
 	var my_ordered = JKY.set_decimal(JKY.Order.get_ordered(), 2);
 	JKY.set_value('jky-ordered-weight'			, my_ordered);
-	JKY.set_value('jky-threads-total-ordered'	, my_ordered);
-	JKY.set_value('jky-threads-total-checkout'	, JKY.Order.get_checkout());
+//	JKY.set_value('jky-threads-total-ordered'	, my_ordered);
+//	JKY.set_value('jky-threads-total-checkout'	, JKY.Order.get_checkout());
 //	JKY.Order.update_ordered_weight(JKY.row.id);
 
 	var my_data =

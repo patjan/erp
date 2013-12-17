@@ -66,7 +66,7 @@ JKY.Batch = function() {
 	function my_print() {
 		var my_labels_unprinted	= parseFloat(JKY.get_value('jky-boxes-labels-unprinted'));
 		var my_labels_to_print	= parseFloat(JKY.get_value('jky-boxes-labels-to-print' ));
-		var my_location			= JKY.get_value('jky-boxes-location').toUpperCase();
+		var my_location			= JKY.get_value('jky-boxes-location');
 		if (isNaN(my_labels_to_print)
 		||  my_labels_to_print < 1
 		||	my_labels_to_print > 100

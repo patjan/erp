@@ -12,8 +12,8 @@
 .jky-batchin-search-returned	{text-align:right !important}
 .jky-batchin-search-checkout	{text-align:right !important}
 
-#jky-threads-total-ordered		{width:75px; font-weight:bold; text-align:right;}
-#jky-threads-total-checkout		{width:75px; font-weight:bold; text-align:right;}
+#Xjky-threads-total-ordered		{width:75px; font-weight:bold; text-align:right;}
+#Xjky-threads-total-checkout		{width:75px; font-weight:bold; text-align:right;}
 
 .jky-product-name		{width:140px;}
 
@@ -147,7 +147,7 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span> Returned Weight</span>:</div><input  id='jky-returned-weight'	class='jky-form-value'	/></div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'>&nbsp;</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>    Quoted Units</span>:</div><input  id='jky-quoted-units'	class='jky-form-value'	disabled /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Labels Printed</span>:</div>
 					<input  id='jky-labels-printed'	class='jky-form-value' disabled />
 					<a id='jky-pieces-display'><i class='icon-print'></i></a>
@@ -197,10 +197,11 @@
 						</tr>
 					</thead>
 					<tbody id='jky-threads-body'></tbody>
+<!--
 					<tfoot>
 						<tr>
-							<td class='jky-action' colspan='2'>
-								<a id='jky-threads-add-new' class='btn btn-success' type='button' href='#'><span>Add New</span></a>
+							<td class='jky-action' colspan='7'>
+								<button id='jky-threads-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
 							</td>
 							<td></td>
 							<td></td>
@@ -209,6 +210,7 @@
 							<td class='jky-td-thread-weight'><input id='jky-threads-total-checkout' value='' disabled /></td>
 						</tr>
 					</tfoot>
+-->
 				</table>
 			</div>
 

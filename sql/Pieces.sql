@@ -51,3 +51,5 @@ ALTER TABLE Pieces			DROP	quality;
 ALTER TABLE Pieces			CHANGE	real_weight		returned_weight	DECIMAL(10,2)	DEFAULT 0;
 ALTER TABLE Pieces			CHANGE	checkin_by		inspected_by	BIGINT			DEFAULT NULL;
 ALTER TABLE Pieces			ADD COLUMN				weighed_by		BIGINT			DEFAULT NULL	AFTER inspected_by;
+
+UPDATE	Pieces	SET	checkin_location = UPPER(checkin_location);

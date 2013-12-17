@@ -26,6 +26,7 @@ JKY.display_composition = function() {
 	}
 	JKY.set_html('jky-comp-total', my_total);
 	JKY.set_html('jky-comp-body' , my_html );
+	$('.jky-comp-percent').ForceIntegerOnly();
 	if (my_rows == '') {
 		JKY.insert_composition();
 	}

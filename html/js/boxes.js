@@ -43,6 +43,11 @@ JKY.set_initial_values = function() {
 //	JKY.show('jky-app-select-line');
 	JKY.hide('jky-action-add-new');
 	JKY.hide('jky-action-form');
+
+	$('#jky-number-of-boxes').ForceIntegerOnly();
+	$('#jky-number-of-cones').ForceIntegerOnly();
+	$('#jky-average-weight' ).ForceNumericOnly();
+	$('#jky-real-weight'	).ForceNumericOnly();
 };
 
 /**
@@ -76,6 +81,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-real-weight'				,			 the_row.real_weight		);
 	JKY.set_value	('jky-checkin-location'			,			 the_row.checkin_location	);
 	JKY.set_value	('jky-checkout-location'		,			 the_row.checkout_location	);
+	JKY.set_value	('jky-returned-location'		,			 the_row.returned_location	);
 //	JKY.display_lines();
 };
 
@@ -89,7 +95,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-real-weight'			,  0);
 	JKY.set_value	('jky-checkin-location'		, '');
 	JKY.set_value	('jky-checkout-location'	, '');
-	JKY.set_value	('jky-stocked-location'		, '');
+	JKY.set_value	('jky-returned-location'	, '');
 }
 
 /**
@@ -100,12 +106,12 @@ JKY.get_form_set = function() {
 //	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
 
 	var my_set = ''
-		+'	batch_id='				+			  JKY.get_value('jky-batch-number'			)
-		+', barcode=\''				+			  JKY.get_value('jky-barcode'				) + '\''
-		+', average_weight=  '		+			  JKY.get_value('jky-average-weight'		)
-		+', real_weight=  '			+			  JKY.get_value('jky-real-weight'			)
-		+', checkin_location=\''	+			  JKY.get_value('jky-checkin-location'		) + '\''
-		+', checkout_location=\''	+			  JKY.get_value('jky-checkout-location'		) + '\''
-		+', returned_location=\''	+			  JKY.get_value('jky-returned-location'		) + '\''
+		+'	batch_id='				+ JKY.get_value('jky-batch-number'		)
+		+', barcode=\''				+ JKY.get_value('jky-barcode'			) + '\''
+		+', average_weight=  '		+ JKY.get_value('jky-average-weight'	)
+		+', real_weight=  '			+ JKY.get_value('jky-real-weight'		)
+		+', checkin_location=\''	+ JKY.get_value('jky-checkin-location'	).toUpperCase() + '\''
+		+', checkout_location=\''	+ JKY.get_value('jky-checkout-location'	).toUpperCase() + '\''
+		+', returned_location=\''	+ JKY.get_value('jky-returned-location'	).toUpperCase() + '\''
 	return my_set;
 };

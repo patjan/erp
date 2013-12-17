@@ -45,6 +45,9 @@ JKY.set_initial_values = function() {
 //	JKY.set_html('jky-payment-term', JKY.set_configs('Payment Terms', '', ''));
 //	JKY.set_html('jky-app-select-label', JKY.t('Type'));
 //	JKY.show('jky-app-select-line');
+
+	$('#jky-checkin-weight' ).ForceNumericOnly();
+	$('#jky-returned-weight').ForceNumericOnly();
 };
 
 /**
@@ -113,8 +116,8 @@ JKY.get_form_set = function() {
 		+       ', produced_by=\'' + JKY.get_value('jky-produced-by'		) + '\''
 		+    ', checkin_weight=  ' + JKY.get_value('jky-checkin-weight'		)
 		+   ', returned_weight=  ' + JKY.get_value('jky-returned-weight'	)
-		+  ', checkin_location=\'' + JKY.get_value('jky-checkin-location'	) + '\''
-		+ ', checkout_location=\'' + JKY.get_value('jky-checkout-location'	) + '\''
+		+  ', checkin_location=\'' + JKY.get_value('jky-checkin-location'	).toUpperCase() + '\''
+		+ ', checkout_location=\'' + JKY.get_value('jky-checkout-location'	).toUpperCase() + '\''
 		+           ', remarks=\'' + JKY.get_value('jky-remarks'			) + '\''
 	return my_set;
 };

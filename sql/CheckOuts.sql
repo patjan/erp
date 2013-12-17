@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS CheckOuts
 , created_at		DATETIME			DEFAULT NULL
 , updated_by		BIGINT				DEFAULT NULL
 , updated_at		DATETIME			DEFAULT NULL
-, status			VARCHAR(32)			DEFAULT 'Draft'
+, status			VARCHAR(32)			DEFAULT 'Active'
 
 , number			VARCHAR(32)			DEFAULT NULL
 , checkout_at		DATETIME			DEFAULT NULL
@@ -47,5 +47,3 @@ ALTER TABLE CheckOuts		ADD COLUMN dyer_id			BIGINT		DEFAULT NULL	AFTER supplier_
 ALTER TABLE CheckOuts		CHANGE	requested_date		requested_at		DATETIME	DEFAULT NULL;
 
 ALTER TABLE CheckOuts		ADD COLUMN partner_id		BIGINT		DEFAULT NULL	AFTER machine_id;
-
-ALTER TABLE CheckOuts		CHANGE	status				VARCHAR(32)			DEFAULT 'Draft';

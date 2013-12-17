@@ -267,12 +267,27 @@ JKY.t_button = function(the_id, the_attr) {
 JKY.process_action = function(action) {
 //	JKY.display_trace('process_action: ' + action);
 //	JKY.load_html('jky-body-content', action + '.html');
-	JKY.invisible('jky-application');
+
+//	highlight first side action
+//	because some action take long time to complete
+	JKY.set_side_active('jky-sales-'		+ action);
+	JKY.set_side_active('jky-planning-'		+ action);
+	JKY.set_side_active('jky-purchases-'	+ action);
+	JKY.set_side_active('jky-production-'	+ action);
+	JKY.set_side_active('jky-threads-'		+ action);
+	JKY.set_side_active('jky-boxes-'		+ action);
+	JKY.set_side_active('jky-dyers-'		+ action);
+	JKY.set_side_active('jky-pieces-'		+ action);
+	JKY.set_side_active('jky-help-'			+ action);
+	JKY.set_side_active('jky-admin-'		+ action);
+	JKY.set_side_active('jky-support-'		+ action);
+
+//	JKY.invisible('jky-application');
 //	JKY.load_html('jky-application', action + '.html');
 	JKY.load_html('jky-app-body', action + '.html');
 //	$.getScript(JKY.AJAX_APP + 'js/' + action + '.js', function() {
 	JKY.start_program(action);
-	JKY.visible('jky-application');
+//	JKY.visible('jky-application');
 //	});
 }
 
@@ -960,14 +975,14 @@ JKY.Xset_checks = function() {
  */
 JKY.set_menu_active = function(id_name){
 	JKY.hide('jky-side-sales'		);
-	JKY.hide('jky-side-purchases'	);
 	JKY.hide('jky-side-planning'	);
+	JKY.hide('jky-side-purchases'	);
+	JKY.hide('jky-side-production'	);
 	JKY.hide('jky-side-threads'		);
 	JKY.hide('jky-side-boxes'		);
 	JKY.hide('jky-side-dyers'		);
 	JKY.hide('jky-side-pieces'		);
 	JKY.hide('jky-side-fabrics'		);
-	JKY.hide('jky-side-production'	);
 	JKY.hide('jky-side-help'		);
 	JKY.hide('jky-side-admin'		);
 	JKY.hide('jky-side-support'		);
@@ -980,7 +995,8 @@ JKY.set_menu_active = function(id_name){
  * @param	id_name
  */
 JKY.set_side_active = function(id_name){
-	if ($('#' + id_name).parent().css('display') == 'none') {
+	if ($('#' + id_name).length == 0
+	||  $('#' + id_name).parent().css('display') == 'none') {
 		return;
 	}
 	$('#jky-side-bar div').removeClass('active');
@@ -1491,6 +1507,24 @@ JKY.is_date = function(date) {
      else return false;
 }
 
+/*
+ * if status match to value (english or translated)
+ *
+ * @param	value
+ *
+ * @return	true		(if value equal)
+ * @return	false		(if value not equal)
+ */
+JKY.is_status = function(the_status) {
+	var my_status = JKY.get_html('jky-status');
+	if (my_status == the_status
+	||  my_status == JKY.t(the_status)) {
+		return true;
+	}else{
+		return false;
+	}
+};
+
 //        JKY.str_replace
 //        ----------------------------------------------------------------------
 JKY.str_replace = function(search, replace, subject, count) {
@@ -1572,8 +1606,8 @@ JKY.is_permitted = function(the_menu_id) {
 	var my_resource = '';
 	switch(the_menu_id) {
 		case('jky-menu-sales'		)	:	my_resource = 'Menu-Sales'		; break;
-//		case('jky-menu-purchases'	)	:	my_resource = 'Menu-Purchases'	; break;
 		case('jky-menu-planning'	)	:	my_resource = 'Menu-Planning'	; break;
+//		case('jky-menu-purchases'	)	:	my_resource = 'Menu-Purchases'	; break;
 		case('jky-menu-production'	)	:	my_resource = 'Menu-Production'	; break;
 		case('jky-menu-threads'		)	:	my_resource = 'Menu-Threads'	; break;
 		case('jky-menu-boxes'		)	:	my_resource = 'Menu-Boxes'		; break;

@@ -16,7 +16,7 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: JKY.loadout.select
 		, filter		: ''
-		, sort_by		: 'load_number'
+		, sort_by		: 'loadout_number'
 		, sort_seq		: 'DESC'
 		, focus			: 'jky-dyer-name'
 		, add_new		: 'display form'
@@ -29,10 +29,10 @@ JKY.start_program = function() {
  */
 JKY.set_all_events = function() {
 	$('#jky-requested-value').attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-loadout-value'	).attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-checkout-value'	).attr('data-format', JKY.Session.get_date_time	());
 	$('#jky-returned-value'	).attr('data-format', JKY.Session.get_date_time	());
 	$('#jky-requested-date'	).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-loadout-date'	).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-checkout-date'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-returned-date'	).datetimepicker({language: JKY.Session.get_locale()});
 
 	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
@@ -67,14 +67,14 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-loadout-number"	>' +				 the_row.load_number			+ '</td>'
+		+  '<td class="jky-loadout-number"	>' +				 the_row.loadout_number			+ '</td>'
 		+  '<td class="jky-dyer-name"		>' + JKY.fix_null	(the_row.dyer_name			)	+ '</td>'
 		+  '<td class="jky-color-name"		>' + JKY.fix_null	(the_row.color_name			)	+ '</td>'
 		+  '<td class="jky-requested-date"	>' + JKY.short_date	(the_row.requested_at		)	+ '</td>'
 		+  '<td class="jky-loadout-date"	>' + JKY.short_date	(the_row.loadout_at			)	+ '</td>'
 		+  '<td class="jky-returned-date"	>' + JKY.short_date	(the_row.returned_at		)	+ '</td>'
 		+  '<td class="jky-requested-pieces">' +				 the_row.requested_pieces		+ '</td>'
-		+  '<td class="jky-loadout-pieces"	>' +				 the_row.loadout_pieces			+ '</td>'
+		+  '<td class="jky-checkout-pieces"	>' +				 the_row.checkout_pieces		+ '</td>'
 		+  '<td class="jky-returned-pieces"	>' +				 the_row.returned_pieces		+ '</td>'
 		;
 	return my_html;
@@ -100,7 +100,7 @@ JKY.set_form_row = function(the_row) {
 	}
 
 	JKY.set_html	('jky-status'			, JKY.t			(the_row.status			));
-	JKY.set_value	('jky-loadout-number'	,				 the_row.load_number	);
+	JKY.set_value	('jky-loadout-number'	,				 the_row.loadout_number	);
 	JKY.set_value	('jky-dyer-id'			,				 the_row.dyer_id		);
 	JKY.set_value	('jky-dyer-name'		,				 the_row.dyer_name		);
 	JKY.set_value	('jky-color-id'			,				 the_row.color_id		);
@@ -108,9 +108,9 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_date	('jky-requested-date'	, JKY.out_time	(the_row.requested_at		));
 	JKY.set_value	('jky-requested-pieces'	,				 the_row.requested_pieces	);
 	JKY.set_value	('jky-requested-weight'	,				 the_row.requested_weight	);
-	JKY.set_date	('jky-loadout-date'		, JKY.out_time	(the_row.loadout_at			));
-	JKY.set_value	('jky-loadout-pieces'	,				 the_row.loadout_pieces		);
-	JKY.set_value	('jky-loadout-weight'	,				 the_row.loadout_weight		);
+	JKY.set_date	('jky-checkout-date'	, JKY.out_time	(the_row.checkout_at		));
+	JKY.set_value	('jky-checkout-pieces'	,				 the_row.checkout_pieces	);
+	JKY.set_value	('jky-checkout-weight'	,				 the_row.checkout_weight	);
 	JKY.set_date	('jky-returned-date'	, JKY.out_time	(the_row.returned_at		));
 	JKY.set_value	('jky-returned-pieces'	,				 the_row.returned_pieces	);
 	JKY.set_value	('jky-returned-weight'	,				 the_row.returned_weight	);
@@ -134,9 +134,9 @@ JKY.set_add_new_row = function() {
 	JKY.set_date	('jky-requested-date'	,  JKY.out_time(JKY.get_now()));
 	JKY.set_value	('jky-requested-pieces'	,  0);
 	JKY.set_value	('jky-requested-weight'	,  0);
-	JKY.set_date	('jky-loadout-date'		, '');
-	JKY.set_value	('jky-loadout-pieces'	,  0);
-	JKY.set_value	('jky-loadout-weight'	,  0);
+	JKY.set_date	('jky-checkout-date'	, '');
+	JKY.set_value	('jky-checkout-pieces'	,  0);
+	JKY.set_value	('jky-checkout-weight'	,  0);
 	JKY.set_date	('jky-returned-date'	, '');
 	JKY.set_value	('jky-returned-pieces'	,  0);
 	JKY.set_value	('jky-returned-weight'	,  0);
@@ -157,9 +157,9 @@ JKY.get_form_set = function() {
 		+    ', requested_at=  ' + JKY.inp_time(JKY.get_value('jky-requested-value'	))
 		+', requested_pieces=  ' +				JKY.get_value('jky-requested-pieces')
 		+', requested_weight=  ' +				JKY.get_value('jky-requested-weight')
-		+      ', loadout_at=  ' + JKY.inp_time(JKY.get_value('jky-loadout-value'	))
-		+  ', loadout_pieces=  ' +				JKY.get_value('jky-loadout-pieces'	)
-		+  ', loadout_weight=  ' +				JKY.get_value('jky-loadout-weight'	)
+		+     ', checkout_at=  ' + JKY.inp_time(JKY.get_value('jky-checkout-value'	))
+		+ ', checkout_pieces=  ' +				JKY.get_value('jky-checkout-pieces'	)
+		+ ', checkout_weight=  ' +				JKY.get_value('jky-checkout-weight'	)
 		+     ', returned_at=  ' + JKY.inp_time(JKY.get_value('jky-returned-value'	))
 		+ ', returned_pieces=  ' +				JKY.get_value('jky-returned-pieces'	)
 		+ ', returned_weight=  ' +				JKY.get_value('jky-returned-weight'	)
@@ -185,6 +185,6 @@ JKY.get_color_id = function() {
  */
 JKY.set_calculated_color = function() {
 	var my_requested_weight	= parseFloat(JKY.get_value('jky-requested-weight'	));
-	var my_loadout_weight	= parseFloat(JKY.get_value('jky-loadout-weight'	));
-	JKY.set_css('jky-loadout-weight', 'color', (my_requested_weight > my_loadout_weight) ? 'red' : 'black');
+	var my_checkout_weight	= parseFloat(JKY.get_value('jky-checkout-weight'	));
+	JKY.set_css('jky-checkout-weight', 'color', (my_requested_weight > my_checkout_weight) ? 'red' : 'black');
 }

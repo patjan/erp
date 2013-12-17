@@ -45,11 +45,17 @@ JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-planning-machines');
 	JKY.set_side_active('jky-threads-machines');
 	JKY.set_side_active('jky-production-machines');
+	JKY.set_side_active('jky-dyers-machines');
 	JKY.set_html('jky-machine-family', JKY.set_configs('Machine Families', '', ''));
 	JKY.set_html('jky-machine-brand', JKY.set_configs('Machine Brands', JKY.App.get('select'), ''));
 	JKY.set_html('jky-app-select', JKY.set_configs('Machine Brands', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-app-select-label', JKY.t('Brand'));
 	JKY.show('jky-app-select-line');
+
+	$('#jky-diameter'	).ForceIntegerOnly();
+	$('#jky-width'		).ForceIntegerOnly();
+	$('#jky-density'	).ForceIntegerOnly();
+	$('#jky-inputs'		).ForceIntegerOnly();
 };
 
 /**

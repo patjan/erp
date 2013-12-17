@@ -85,18 +85,14 @@ JKY.set_all_events_home = function(jky_program) {
 		$('#jky-boxes-info'				).click (function() {JKY.process_action('boxes_info'		);});
 
 		$('#jky-dyers-pieces'			).click (function() {JKY.process_action('pieces'			);});
-		$('#jky-dyers-dyers'			).click (function() {JKY.process_action('dyers'				);});
 		$('#jky-dyers-machines'			).click (function() {JKY.process_action('machines'			);});
-		$('#jky-dyers-purchases'		).click (function() {JKY.process_action('purchases'			);});
-		$('#jky-dyers-purc-lines'		).click (function() {JKY.process_action('purc_lines'		);});
-		$('#jky-dyers-incomings'		).click (function() {JKY.process_action('incomings'			);});
-		$('#jky-dyers-batches'			).click (function() {JKY.process_action('batches'			);});
+		$('#jky-dyers-dyers'			).click (function() {JKY.process_action('dyers'				);});
 		$('#jky-dyers-loadouts'			).click (function() {JKY.process_action('loadouts'			);});
-		$('#jky-dyers-batchouts'		).click (function() {JKY.process_action('batchouts'			);});
-		$('#jky-dyers-boxes'			).click (function() {JKY.process_action('boxes'				);});
-		$('#jky-dyers-forecast'			).click (function() {JKY.process_action('dyerforecast'		);});
+		$('#jky-dyers-loadsales'		).click (function() {JKY.process_action('loadsales'			);});
 
 		$('#jky-pieces-checkin'			).click (function() {JKY.process_action('pieces_checkin'	);});
+		$('#jky-pieces-return'			).click (function() {JKY.process_action('pieces_return'		);});
+		$('#jky-pieces-checkout'		).click (function() {JKY.process_action('pieces_checkout'	);});
 		$('#jky-fabrics-info'			).click (function() {JKY.process_action('fabrics_info'		);});
 
 		$('#jky-help-tickets'			).click (function() {JKY.process_action('tickets'			);});
@@ -210,7 +206,6 @@ JKY.process_start_page = function() {
 //		,{id:'jky-menu-inventory'	, icon:'plus', label:'Inventory'	}
 //		,{id:'jky-menu-payable'		, icon:'plus', label:'Payable'		}
 //		,{id:'jky-menu-receivable'	, icon:'plus', label:'Receivable'	}
-
 		,{id:'jky-menu-threads'		, icon:'plus', label:'Threads'		}
 		,{id:'jky-menu-boxes'		, icon:'plus', label:'Boxes'		}
 		,{id:'jky-menu-dyers'		, icon:'plus', label:'Dyers'		}
@@ -223,11 +218,11 @@ JKY.process_start_page = function() {
 	JKY.set_buttons_menus(my_menus);
 	JKY.set_user_info(JKY.Session.get_value('full_name'));
 	var my_start_page = JKY.Session.get_value('start_page');
+	JKY.show('jky-side-bar');
 	JKY.process_menu('jky-menu-' + my_start_page);
 //	JKY.process_action(my_start_page);
 //	JKY.process_action('ftps');
 //	JKY.process_action('suppliers');
-	JKY.show('jky-side-bar');
 }
 
 /** ------------------------------------------------------------------------ **/
@@ -236,14 +231,14 @@ JKY.process_menu = function(menu) {
 	JKY.set_menu_active(menu);
 	switch(menu) {
 		case 'jky-menu-sales'		: JKY.show('jky-side-sales'		); JKY.process_action('quotations'		); break;
-		case 'jky-menu-purchases'	: JKY.show('jky-side-purchases'	); JKY.process_action('purchases'		); break;
 		case 'jky-menu-planning'	: JKY.show('jky-side-planning'	); JKY.process_action('orders'			); break;
+		case 'jky-menu-purchases'	: JKY.show('jky-side-purchases'	); JKY.process_action('purchases'		); break;
+		case 'jky-menu-production'	: JKY.show('jky-side-production'); JKY.process_action('ftps'			); break;
 		case 'jky-menu-threads'		: JKY.show('jky-side-threads'	); JKY.process_action('purchases'		); break;
 		case 'jky-menu-boxes'		: JKY.show('jky-side-boxes'		); JKY.process_action('boxes_checkin'	); break;
 		case 'jky-menu-dyers'		: JKY.show('jky-side-dyers'		); JKY.process_action('loadouts'		); break;
 		case 'jky-menu-pieces'		: JKY.show('jky-side-pieces'	); JKY.process_action('pieces_checkin'	); break;
 		case 'jky-menu-fabrics'		: JKY.show('jky-side-fabrics'	); JKY.process_action('fabrics_checkin'	); break;
-		case 'jky-menu-production'	: JKY.show('jky-side-production'); JKY.process_action('ftps'			); break;
 		case 'jky-menu-help'		: JKY.show('jky-side-help'		); JKY.process_action('tickets'			); break;
 		case 'jky-menu-admin'		: JKY.show('jky-side-admin'		); JKY.process_action('contacts'		); break;
 		case 'jky-menu-support'		: JKY.show('jky-side-support'	); JKY.process_action('translations'	); break;

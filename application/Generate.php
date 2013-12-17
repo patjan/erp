@@ -49,15 +49,6 @@ function JKY_generate_checkout($the_id) {
 		;
 	$my_rows = $db->fetchAll($sql);
 
-	$my_count = 0;
-	foreach($my_rows as $my_row) {
-		if ($my_row['batchin_id'] == 'NULL') {
-			$my_count ++;
-		}
-	}
-	if ($my_count > 0) {
-	}
-
 	$my_needed_at = $my_order['needed_at'];
 	if ($my_needed_at == null) {
 		$my_needed_at = get_time();
@@ -85,6 +76,7 @@ log_sql('CheckOuts', 'INSERT', $sql);
 
 	$my_count = 0;
 	foreach($my_rows as $my_row) {
+		$my_ord_thread_id	= $my_row['id'];
 		$my_batch = db_get_row('Batches', 'id=' . $my_row['batchin_id']);
 		$my_ordered_weight = $my_row['ordered_weight'];
 		$my_ordered_boxes  = ceil((float)$my_ordered_weight / (float)$my_batch['average_weight']);
@@ -94,9 +86,7 @@ log_sql('CheckOuts', 'INSERT', $sql);
 			. ',      checkout_id='  . $my_checkout_id
 			. ',        thread_id='  . $my_row['thread_id']
 			. ',       batchin_id='  . $my_row['batchin_id']
-//			. ',      req_line_id='  . $my_row['id']
-			. ',  order_thread_id='  . $my_row['id']
-//			. ',             code="' . '' . '"'
+			. ',  order_thread_id='  . $my_ord_thread_id
 			. ',            batch="' . $my_batch['batch'] . '"'
 			. ',       unit_price='  . $my_batch['unit_price']
 			. ',   average_weight='  . $my_batch['average_weight']
@@ -109,11 +99,11 @@ log_sql('BatchOuts', 'INSERT', $sql);
 
 		$sql= 'UPDATE OrdThreads'
 			. '   SET batchout_id = ' . $my_batchout_id
-			. ' WHERE id = ' . $my_row['id']
+			. ' WHERE id = ' . $my_ord_thread_id
 			;
 log_sql('OrdThreads', 'UPDATE', $sql);
 		$db->query($sql);
-		insert_changes($db, 'OrdThreads', $my_row['id']);
+		insert_changes($db, 'OrdThreads', $my_ord_thread_id);
 
 		$my_count++;
 	}
@@ -138,8 +128,9 @@ log_sql('Orders', 'UPDATE', $sql);
 function JKY_generate_order($the_id) {
 	$db = Zend_Registry::get('db');
 
-	function generate_sub_order($the_db, $the_quotation, $the_quot_line_id, $the_needed_at, $the_quoted_pieces, $the_quoted_weight, $the_product_id, $the_product_perc) {
-		if ($the_product_id && $the_product_perc > 0) {
+	function generate_sub_order($the_db, $the_quotation, $the_quot_line_id, $the_needed_at, $the_quoted_pieces, $the_quoted_weight, $the_product_id, $the_product_percent, $the_product_units) {
+		$my_order_id = null;
+		if ($the_product_id && ($the_product_percent > 0 || $the_product_units > 0)) {
 			$my_order_id = get_next_id('Orders');
 			$sql= 'INSERT Orders'
 				. '   SET          id='  . $my_order_id
@@ -155,14 +146,16 @@ function JKY_generate_order($the_id) {
 				. ',        needed_at="' . $the_needed_at . '"'
 				. ',    quoted_pieces='  . $the_quoted_pieces
 				. ',   ordered_pieces='  . $the_quoted_pieces
-				. ',    quoted_weight='  . $the_quoted_weight * $the_product_perc / 100;
+				. ',    quoted_weight='  . $the_quoted_weight * $the_product_percent / 100
+				. ',     quoted_units='  . $the_product_units
 				;
 log_sql('Orders', 'INSERT', $sql);
 			$the_db->query($sql);
 			insert_changes($the_db, 'Orders', $my_order_id);
 		}
+		return $my_order_id;
 	}
-	
+
 	$sql= 'SELECT *'
 		. '  FROM Quotations'
 		. ' WHERE id = ' . $the_id
@@ -185,32 +178,21 @@ log_sql('Orders', 'INSERT', $sql);
 		$my_quot_line_id	= $my_row['id'];
 		$my_quoted_pieces	= (float)$my_row['quoted_pieces'];
 		$my_quoted_weight	= $my_quoted_pieces * (float)$my_quotation['peso'];
-		$my_order_id = get_next_id('Orders');
-		$sql= 'INSERT Orders'
-			. '   SET          id='  . $my_order_id
-			. ',       updated_by='  . get_session('user_id')
-			. ',       updated_at="' . get_now() . '"'
-			. ',     order_number="' . $my_order_id . '"'
-			. ',      customer_id='  . $my_quotation['customer_id']
-			. ',       machine_id='  . $my_quotation['machine_id']
-			. ',     quot_line_id='  . $my_quot_line_id
-			. ', quotation_number="' . $my_quotation['quotation_number'] . '"'
-			. ',       product_id='  . $my_row['product_id']
-			. ',       ordered_at="' . $my_quotation['quoted_at'] . '"'
-			. ',        needed_at="' . $my_needed_at . '"'
-			. ',    quoted_pieces='  . $my_quoted_pieces
-			. ',   ordered_pieces='  . $my_quoted_pieces
-			. ',    quoted_weight='  . $my_quoted_weight
+
+		$my_order_id = generate_sub_order($db, $my_quotation, $my_quot_line_id, $my_needed_at, $my_quoted_pieces, $my_quoted_weight, $my_row['product_id'], 100, 0);
+		$sql= 'UPDATE QuotLines'
+			. '   SET order_id = ' . $my_order_id
+			. ' WHERE id = ' . $my_quot_line_id
 			;
-log_sql('Orders', 'INSERT', $sql);
+log_sql('QuotLines', 'UPDATE', $sql);
 		$db->query($sql);
-		insert_changes($db, 'Orders', $my_order_id);
-		
+		insert_changes($db, 'QuotLines', $my_quot_line_id);
+
 		$my_count++;
 
-		generate_sub_order($db, $my_quotation, $my_quot_line_id, $my_needed_at, $my_quoted_pieces, $my_quoted_weight, $my_quotation['punho_id'], $my_quotation['punho_perc']);
-		generate_sub_order($db, $my_quotation, $my_quot_line_id, $my_needed_at, $my_quoted_pieces, $my_quoted_weight, $my_quotation[ 'gola_id'], $my_quotation[ 'gola_perc']);
-		generate_sub_order($db, $my_quotation, $my_quot_line_id, $my_needed_at, $my_quoted_pieces, $my_quoted_weight, $my_quotation['galao_id'], $my_quotation['galao_perc']);
+		$my_my_order_id = generate_sub_order($db, $my_quotation, $my_quot_line_id, $my_needed_at, $my_quoted_pieces, $my_quoted_weight, $my_quotation['punho_id'], $my_quotation['punho_percent'], $my_quotation['punho_units']);
+		$my_my_order_id = generate_sub_order($db, $my_quotation, $my_quot_line_id, $my_needed_at, $my_quoted_pieces, $my_quoted_weight, $my_quotation[ 'gola_id'], $my_quotation[ 'gola_percent'], $my_quotation[ 'gola_units']);
+		$my_my_order_id = generate_sub_order($db, $my_quotation, $my_quot_line_id, $my_needed_at, $my_quoted_pieces, $my_quoted_weight, $my_quotation['galao_id'], $my_quotation['galao_percent'], $my_quotation['galao_units']);
 	}
 
 	$sql= 'UPDATE Quotations'

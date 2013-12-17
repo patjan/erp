@@ -75,6 +75,15 @@ JKY.set_initial_values = function() {
 	$('#jky-partner-filter'		).KeyUpDelay(JKY.Partner.load_data	);
 	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data	);
 	$('#jky-batchin-filter'		).KeyUpDelay(JKY.BatchIn.load_data	);
+
+	$('#jky-quoted-pieces'	).ForceIntegerOnly();
+	$('#jky-ordered-pieces'	).ForceIntegerOnly();
+	$('#jky-rejected-pieces').ForceIntegerOnly();
+	$('#jky-produced-pieces').ForceIntegerOnly();
+	$('#jky-quoted-weight'	).ForceNumericOnly();
+	$('#jky-ordered-weight'	).ForceNumericOnly();
+	$('#jky-rejected-weight').ForceNumericOnly();
+	$('#jky-produced-weight').ForceNumericOnly();
 }
 
 /**
@@ -146,6 +155,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-ordered-weight'	,				 the_row.ordered_weight		);
 	JKY.set_value	('jky-checkout-weight'	,				 the_row.checkout_weight	);
 	JKY.set_value	('jky-returned-weight'	,				 the_row.returned_weight	);
+	JKY.set_value	('jky-quoted-units'		,				 the_row.quoted_units		);
 	JKY.set_value	('jky-labels-printed'	,				 the_row.labels_printed		);
 	JKY.set_value	('jky-ftps-printed'		,				 the_row.ftps_printed		);
 	JKY.set_value	('jky-ops-printed'		,				 the_row.ops_printed		);
@@ -256,6 +266,23 @@ JKY.process_delete = function(the_id, the_row) {
 
 /* -------------------------------------------------------------------------- */
 JKY.generate_checkout = function() {
+	var my_ordered_weight = JKY.get_value_by_id('Orders', 'ordered_weight', JKY.row.id);
+	if (my_ordered_weight <= 0) {
+		JKY.display_message('Check Out cannot be generated');
+		JKY.display_message('because there is not any Ordered Weight');
+		return;
+	}
+
+	var my_rows = JKY.get_rows('OrdThreads', JKY.row.id);
+	for(var i=0, max=my_rows.length; i<max; i++) {
+		var my_row = my_rows[i];
+		if (my_row.batchin_id == null) {
+			JKY.display_message('Check Out cannot be generated');
+			JKY.display_message('because there is unselected Thread Batch');
+			return;
+		}
+	}
+
 	var my_data =
 		{ method	: 'generate'
 		, table		: 'CheckOut'

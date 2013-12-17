@@ -33,7 +33,11 @@ JKY.generate_batches = function(response) {
 		}
 	}
 	JKY.set_html('jky-batch-total', my_total);
-	JKY.set_html('jky-batches-body' , my_html );
+	JKY.set_html('jky-batches-body', my_html);
+	$('.jky-received-boxes'	).ForceIntegerOnly();
+	$('.jky-number-of-cones').ForceIntegerOnly();
+	$('.jky-received-weight').ForceNumericOnly();
+	$('.jky-unit-price'		).ForceNumericOnly();
 	if (my_rows == '') {
 		JKY.insert_batch();
 	}

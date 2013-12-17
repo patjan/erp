@@ -21,3 +21,5 @@ CREATE TABLE IF NOT EXISTS BatchSets
 ;
 INSERT Controls SET group_set='User Resources'		, status='Active', sequence=  50, name='BatchSets', created_by=1, created_at=NOW();
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=  50, name='BatchSets', created_by=1, created_at=NOW();
+
+UPDATE	BatchSets	SET	checkin_location = UPPER(checkin_location);

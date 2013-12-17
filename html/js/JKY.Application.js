@@ -125,6 +125,8 @@ if (my_first == true) {
 //				case 'Boxes'			:	JKY.incoming.select = my_args.select; break;
 				case 'CheckOuts'		:	JKY.checkout.select = my_args.select; break;
 				case 'Incomings'		:	JKY.incoming.select = my_args.select; break;
+				case 'LoadOuts'			:	JKY.loadout.select  = my_args.select; break;
+				case 'LoadSales'		:	JKY.loadout.select  = my_args.select; break;
 				case 'Orders'			:	JKY.planning.select = my_args.select; break;
 				case 'Purchases'		:	JKY.purchase.select = my_args.select; break;
 				case 'Purchase Lines'	:	JKY.purchase.select = my_args.select; break;

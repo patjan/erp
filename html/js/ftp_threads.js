@@ -27,6 +27,7 @@ JKY.generate_threads = function(response) {
 	}
 	JKY.set_html('jky-thread-total', my_total);
 	JKY.set_html('jky-thread-body' , my_html );
+	$('.jky-thread-percent').ForceIntegerOnly();
 	if (my_rows == '') {
 		JKY.insert_thread();
 	}

@@ -27,7 +27,7 @@ function JKY_checkout($data) {
 
 /**
  *	checkout Box from Boxes Check Out
- * 
+ *
  *	$.ajax({ method:'checkout', table:'Boxes', barcode:9...9};
  *
  *	@return	string	''
@@ -40,7 +40,7 @@ function JKY_checkout_box($the_data) {
 
 	$sql= 'UPDATE Boxes'
 		. '   SET ' . get_updated()
-		. ',            status="Check In"'
+		. ',            status="Check Out"'
 		. ',       checkout_by='  . get_session('user_id')
 		. ',       checkout_at="' . get_time() . '"'
 		. ', checkout_location="' . $my_location . '"'
@@ -145,7 +145,7 @@ function JKY_checkout_box($the_data) {
 		log_sql('OrdThreads', 'update', $sql);
 		$db->query($sql);
 		insert_changes($db, 'OrdThreads', $my_batchout['order_thread_id']);
-
+/*
 		$my_order_thread = db_get_row('OrdThreads', 'id=' . $my_batchout['order_thread_id']);
 
 		$sql= 'UPDATE Orders'
@@ -155,6 +155,7 @@ function JKY_checkout_box($the_data) {
 		log_sql('Orders', 'update', $sql);
 		$db->query($sql);
 		insert_changes($db, 'Orders', $my_order_thread['parent_id']);
+ */
 	}
 
 	return '';
@@ -162,51 +163,72 @@ function JKY_checkout_box($the_data) {
 
 /**
  *	checkout Piece from Pieces Check Out
- * 
+ *
  *	$.ajax({ method:'checkout', table:'Pieces', barcode:9...9, ...};
  *
  * @return	string	''
  */
 function JKY_checkout_piece($the_data) {
 	$db = Zend_Registry::get('db');
-	$my_barcode				= get_data($the_data, 'barcode'				);
-	$my_inspected_by		= get_data($the_data, 'inspected_by'		);
-	$my_weighed_by			= get_data($the_data, 'weighed_by'			);
-	$my_remarks				= get_data($the_data, 'remarks'				);
-	$my_checkout_weight		= get_data($the_data, 'checkout_weight'		);
-	$my_checkout_location	= get_data($the_data, 'checkout_location'	);
+	$my_barcode		= get_data($the_data, 'barcode'		);
+	$my_location	= get_data($the_data, 'location'	);
+	$my_loadset_id	= get_data($the_data, 'loadset_id'	);
 
 	$sql= 'UPDATE Pieces'
 		. '   SET ' . get_updated()
-		. ',           status="Check In"'
-//		. ',          barcode=\'' . $my_barcode			. '\''
-		. ',     inspected_by=  ' . $my_inspected_by
-		. ',       weighed_by=  ' . $my_weighed_by
-		. ',          remarks=\'' . $my_remarks			. '\''
-		. ',   checkout_weight=  ' . $my_checkout_weight
-		. ', checkout_location=\'' . $my_checkout_location. '\''
-		. ',       checkout_at=\'' . get_time()			. '\''
+		. ',           status="Check Out"'
+		. ',       checkout_by='  . get_session('user_id')
+		. ',       checkout_at="' . get_time() . '"'
+		. ', checkout_location="' . $my_location . '"'
 		. ' WHERE id =' . $my_barcode
 		;
 	log_sql('Pieces', 'update', $sql);
 	$db->query($sql);
 	insert_changes($db, 'Pieces', $my_barcode);
 
-	$my_order_id = get_table_value('Pieces', 'order_id', $my_barcode);
-	$my_set = ', produced_at=\'' . get_time() . '\''
-			. ', produced_pieces = produced_pieces + 1'
-			;
-	if ($my_remarks != 'boa') {
-		$my_set = ', rejected_pieces = rejected_pieces + 1';
-	}
-	$my_field_name	= $my_remarks == 'boa' ? 'produced_pieces' : 'rejected_pieces';
+	$my_piece = db_get_row('Pieces', 'id=' . $my_barcode);
+
 	$sql= 'UPDATE Orders'
-		. '   SET ' . get_updated() . $my_set
-		. ' WHERE id = ' . $my_order_id
-	     ;
+		. '   SET checkout_pieces = checkout_pieces + 1'
+		. '     , checkout_weight = checkout_weight + ' . $my_piece['checkin_weight']
+		. ' WHERE id = ' . $my_piece['order_id']
+		;
 	log_sql('Orders', 'update', $sql);
 	$db->query($sql);
-	insert_changes($db, 'Orders', $my_order_id);
+	insert_changes($db, 'Orders', $my_piece['order_id']);
+
+	$sql= 'UPDATE LoadSets'
+		. '   SET reserved_pieces = reserved_pieces - 1'
+		. '     , checkout_pieces = checkout_pieces + 1'
+		. ' WHERE id = ' . $my_loadset_id
+		;
+	log_sql('LoadSets', 'update', $sql);
+	$db->query($sql);
+	insert_changes($db, 'LoadSets', $my_loadset_id);
+
+	$my_loadset = db_get_row('LoadSets', 'id=' . $my_loadset_id);
+
+	$sql= 'UPDATE LoadSales'
+		. '   SET reserved_pieces = reserved_pieces - 1'
+		. '     , checkout_pieces = checkout_pieces + 1'
+		. '     , checkout_weight = checkout_weight + ' . $my_piece['checkin_weight']
+		. ' WHERE id = ' . $my_loadset['loadsale_id']
+		;
+	log_sql('LoadSales', 'update', $sql);
+	$db->query($sql);
+	insert_changes($db, 'LoadSales', $my_loadset['loadsale_id']);
+
+	$my_loadsale = db_get_row('LoadSales', 'id=' . $my_loadset['loadsale_id']);
+
+	$sql= 'UPDATE LoadOuts'
+		. '   SET checkout_at="' . get_time() . '"'
+		. '		, checkout_pieces = checkout_pieces + 1'
+		. '     , checkout_weight = checkout_weight + ' . $my_piece['checkin_weight']
+		. ' WHERE id = ' . $my_loadsale['loadout_id']
+		;
+	log_sql('LoadOuts', 'update', $sql);
+	$db->query($sql);
+	insert_changes($db, 'LoadOuts', $my_loadsale['loadout_id']);
 
 	return '';
 }

@@ -6,7 +6,7 @@
 JKY.Sale = function() {
 	var my_the_id		= null;		//	external id that initiated the call
 	var my_color_id		= null;		//	external id that initiated the call
-	var my_order_by		= 'quotation_number';
+	var my_order_by		= 'Sale.quotation_number';
 	var my_filter		= 'jky-sale-filter';
 	var my_search_body	= 'jky-sale-search-body';
 	var my_layer		= 'jky-sale-search';
@@ -44,6 +44,7 @@ JKY.Sale = function() {
 					+  '<td class="jky-search-sale-number"		>' +				 my_row.sale_number		+ '</td>'
 					+  '<td class="jky-search-customer-name"	>' +				 my_row.customer_name	+ '</td>'
 					+  '<td class="jky-search-product-name"		>' +				 my_row.product_name	+ '</td>'
+					+  '<td class="jky-search-composition"		>' +				 my_row.composition		+ '</td>'
 					+  '<td class="jky-search-sold-date"		>' + JKY.short_date	(my_row.sold_at		  ) + '</td>'
 					+  '<td class="jky-search-sold-pieces"		>' +				 my_row.sold_pieces		+ '</td>'
 					+  '</tr>'

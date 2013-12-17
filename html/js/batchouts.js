@@ -44,6 +44,14 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.checkout.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
+
+	$('#jky-unit-price'		 ).ForceNumericOnly();
+	$('#jky-requested-weight').ForceNumericOnly();
+	$('#jky-requested-boxes' ).ForceIntegerOnly();
+	$('#jky-reserved-boxes'  ).ForceIntegerOnly();
+	$('#jky-average-weight'  ).ForceNumericOnly();
+	$('#jky-checkout-weight' ).ForceNumericOnly();
+	$('#jky-checkout-boxes'  ).ForceIntegerOnly();
 }
 
 /**
@@ -181,7 +189,7 @@ JKY.insert_batch_sets = function() {
 		var my_tr = my_trs[i];
 		var my_reserved_boxes = parseInt($(my_tr).find('.jky-reserved-boxes').val());
 		if (my_reserved_boxes > 0) {
-			var my_checkin_location	=				 $(my_tr).find('.jky-checkin-location'	).val() ;
+			var my_checkin_location	=				 $(my_tr).find('.jky-checkin-location'	).val().toUpperCase();
 			var my_checkin_date		= JKY.inp_date	($(my_tr).find('.jky-checkin-date'		).val());
 			var my_checkin_weight	= parseFloat	($(my_tr).find('.jky-checkin-weight'	).val());
 			var my_checkin_boxes	= parseInt		($(my_tr).find('.jky-checkin-boxes'		).val());

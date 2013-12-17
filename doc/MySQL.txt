@@ -67,3 +67,7 @@ UPDATE Maquinas SET name = 'paquita4'	WHERE name = 'paquita 4';
 UPDATE Tickets	SET status = 'Open'		WHERE status = 'Active';
 
 UPDATE Products	SET start_date = NULL	WHERE start_date = '0000-00-00';
+
+SELECT checkin_location, COUNT(*)
+  FROM Boxes
+ GROUP by checkin_location
