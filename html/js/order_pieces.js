@@ -59,7 +59,6 @@ JKY.generate_piece = function(the_row) {
 		+ '<td><input class="jky-pieces-produced-by"		text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' +				 the_row.produced_by		 + '"						/></td>'
 		+ '<td><input class="jky-pieces-checkin-weight"		text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.checkin_weight		)+ '"						/></td>'
 		+ '<td><input class="jky-pieces-checkin-date"					onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.short_date	(the_row.checkin_at			)+ '" disabled	/></td>'
-		+ '<td><input class="jky-pieces-quality"			text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.fix_null	(the_row.quality			)+ '" disabled	/></td>'
 		+ '<td><input class="jky-pieces-remarks"			text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.fix_null	(the_row.remarks			)+ '" disabled	/></td>'
 		+ '</tr>'
 		;

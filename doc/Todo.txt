@@ -5,11 +5,11 @@ Bugs
 2.	to immediately highlight clicked tab on menu or side-menu
 		not working on IE and CH
 		
-
-
 -------------------------------------------------------------------------------
+Json interface ERP to NFe
+
+
 1. 2012-12-13	add Permissions to: Boxes, Pieces
-		
 
 2. program [Contacts] tab on Customers
 
@@ -20,13 +20,16 @@ Bugs
 
 -----------------------------	Customers, Suppliers, Dyers, Partners
 1. add jky-app-select-line by Status: Active
+1. program [Orders	] tab (display history)
+2. program [Invoices] tab (display history)
+3. program [Payments] tab (display history)
 
 -----------------------------	Quotations
 1. 2013-12-14	disable [Generate Order] if [Quoted Pieces] = 0
 2. 2013-12-14	if Status != Draft, then on [Lines] tab disable all:
 		[Add New], [Delete] and [Quoted Pieces]
 
-3. on [Generate Order], transfer [Remarks] into [Orders] (not needed, link back to Quotation)
+3. not needed	on [Generate Order], transfer [Remarks] into [Orders] (link back to Quotation)
 4. program [Generate Sales]
 
 -----------------------------	TDyers
@@ -40,7 +43,7 @@ Bugs
 1. 2013-12-14	disable [Generate Check Out], if any [Ordered Weight] = 0
 1. 2013-12-14	disable [Generate Check Out], if any missing Thread Batch
 2. 2013-12-14	drop out [Total] row of [Threads] tab
-3. drop out [Quality] col of [Pieces] tab
+3. 2013-12-17	drop out [Quality] col of [Pieces] tab
 4. decrease width of jky-form-line (4)
 5. add [Check Out Pieces] on form
 6. add [Produced Weight] on form
@@ -57,18 +60,13 @@ Bugs
 -----------------------------	Machines
 1. program [Repairs] tab (display history)
 
------------------------------	Customers, Suppliers, Dyers, Partners
-1. program [Orders] tab (display history)
-2. program [Invoices] tab (display history)
-3. program [Payments] tab (display history)
-
 -----------------------------	Purchases
 1. 2013-12-14	disable [Generate Check Out], if any missing Supplier
 2. 2013-12-14	disable [Generate Check Out], if any [Expected Weight] = 0
 3. 2013-12-14	disable [Generate Check Out], if any missing Thread
 
 -----------------------------	Batch Outs
-1. disable [Generate Check Out], if [Reserved Boxes] != [Requested Boxes]
+1. 2013-12-16	disable [Generate Check Out], if [Reserved Boxes] != [Requested Boxes]
 
 -----------------------------	Boxes
 1. add jky-app-select-line by Status: Active (not All)
@@ -79,15 +77,12 @@ Bugs
 3. display [Status]
 
 -----------------------------	Load Sales
-1. disable [Generate Load Out], if [Reserved Pieces] != [Requested Pieces]
+1. 2013-12-16	disable [Generate Load Out], if [Reserved Pieces] != [Requested Pieces]
 
 -----------------------------	Pieces Check Out
 1. add jky-app-select-line by Status: Active
 2. add [Close Request]
 3. display [Status]
-
------------------------------	Tickets
-1. Download [Photo] is not working
 
 -----------------------------	Templates
 1. drop out [Created By]

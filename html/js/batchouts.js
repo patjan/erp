@@ -179,6 +179,14 @@ JKY.set_calculated_color = function() {
 
 /* -------------------------------------------------------------------------- */
 JKY.generate_checkout = function() {
+	var my_requested_boxes = JKY.get_value('jky-requested-boxes');
+	var my_reserved_boxes  = JKY.get_value('jky-reserved-boxes' );
+	if (my_requested_boxes !=  my_reserved_boxes) {
+		JKY.display_message('Check Out cannot be generated');
+		JKY.display_message('because Resersed Boxes is not equal to Requested Boxes');
+		return;
+	}
+
 	JKY.insert_batch_sets();
 }
 

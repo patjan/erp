@@ -363,7 +363,7 @@ li .arrow span {
 .jky-td-color-pieces		{width: 50px; text-align:right  !important;}
 .jky-td-color-price			{width: 50px; text-align:right  !important;}
 .jky-td-color-weight		{width: 75px; text-align:right  !important;}
-.jky-td-customer-name		{width:100px; text-align:left   !important; text-transform:capitalize;}
+.jky-td-customer-name		{width:100px; text-align:center !important; text-transform:capitalize;}
 .jky-td-line-weight			{width: 75px; text-align:right  !important;}
 .jky-td-line-date			{width: 75px; text-align:center !important;}
 .jky-td-labels-printed		{width: 75px; text-align:center !important;}

@@ -74,9 +74,14 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-customer-name'		, the_row.customer_name		);
 	JKY.set_value	('jky-product-name'			, the_row.product_name		);
 	JKY.set_value	('jky-checkin-location'		, the_row.checkin_location	);
+	JKY.set_value	('jky-customer-name'		, the_row.customer_name		);
+	JKY.set_value	('jky-product_name'			, the_row.product_name		);
 	JKY.set_value	('jky-requested-date'		, the_row.requested_at		);
+
 	JKY.set_value	('jky-reserved-pieces'		, the_row.reserved_pieces	);
-	JKY.set_value	('jky-loadout-pieces'		, the_row.loadout_pieces	);
+
+	JKY.set_value	('jky-checkout-weight'		, the_row.checkout_weight	);
+	JKY.set_value	('jky-checkout-pieces'		, the_row.checkout_pieces	);
 };
 
 JKY.set_all_piece_check = function(the_index) {

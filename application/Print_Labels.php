@@ -53,8 +53,8 @@ function JKY_print_boxes($data) {
 			$my_real_weight = $my_average_weight;
 		}
 
-		$my_thread_name		= $my_row['thread_name'		];
-		$my_thread_name1	= $my_row['thread_name'		];
+		$my_thread_name		= ucwords($my_row['thread_name']);
+		$my_thread_name1	= ucwords($my_row['thread_name']);
 		$my_thread_name2	= '';
 		if (strlen($my_thread_name) > 28) {
 			$i = 28;
@@ -154,8 +154,8 @@ function JKY_print_pieces($data) {
 		$my_id				=		  $my_row['id'			];
 		$my_produced_by		= ucwords($my_row['produced_by'	]);
 
-		$my_product_name	= $my_row['product_name'	];
-		$my_product_name1	= $my_row['product_name'	];
+		$my_product_name	= ucwords($my_row['product_name']);
+		$my_product_name1	= ucwords($my_row['product_name']);
 		$my_product_name2	= '';
 		if (strlen($my_product_name) > 28) {
 			$i = 28;
