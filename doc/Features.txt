@@ -1,0 +1,64 @@
+Features (2013-12-17)
+
+- Central collection of business knowledge
+- Protected access to data,
+	individual access level by user role and user resource
+- Faster and accurate communication of information
+- One information is entered only once,
+	no delay and no duplicated data-entry
+- Faster, easier and modern application in Web 2
+- Responsive design (small screen on tablets or iPad)
+- Data backup in several independent servers (automatically)
+- Logoff automatically after inactive 30 minutes
+
+
+- Easy to learn, customized system
+- Easy to navigate by menu, side-menu and buttons
+- Easy to operate by visual status and icons
+- Easy to configure by administrator (Configs)
+- Easy to manage (Controls, several access level) 
+- Easy to upload and download: photo, doc, excel, ...
+- Easy to export file (only Support Role)
+- Easy to print barcodes by IP printers
+- Easy to read and process barcode
+
+
+- Selected: status or type or All
+- Filtered: general or detail field 
+- Sortable table: ascending or descending
+- View formats:
+	- List View
+	- Form View
+	- Graphic View
+- Searchable table (real time and dynamic lookup)
+- Process buttons [Generate] enable by Status
+
+
+- Smart date and time fields
+- Smart integer fields
+- Smart numeric fields
+
+
+- Intranet and internet access
+- Multiple independent servers (with or without internet connection)
+- Database is synchronized automatically (with internet connection)
+- Work with dynamic or static IP address (automatically update)
+- Maintain History automatically (who, where, what)
+- Maintain one central server 
+- Multiple language per server (real time translation)
+- Multiple date format (real time translation)
+
+
+- Modules:
+	- Sales
+	- Planning
+	- Production
+	- Threads
+	- Boxes
+	- Dyers
+	- Pieces
+	- Help
+	- Admin
+	- Support
+
+
