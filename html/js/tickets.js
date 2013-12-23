@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Tickets'
 		, table_name	: 'Tickets'
 		, specific		: ''
-		, select		: 'Open'
+		, select		: ''
 		, filter		: ''
 		, sort_by		: 'opened_at'
 		, sort_seq		: 'DESC'
@@ -50,12 +50,15 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-help-tickets');
-	JKY.set_html('jky-app-select'		, JKY.set_controls('Ticket Status Codes', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
 	JKY.set_html('jky-category'			, JKY.set_controls('Ticket Categories', '', ''));
-	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
 	JKY.set_value ('jky-app-filter'		, JKY.App.get('filter'));
+	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Open', 'Closed'));
+	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
 	JKY.show('jky-app-select-line');
+//	select the first option as default
+	$('#jky-app-select option').eq(1).prop('selected', true);
+	$('#jky-app-select').change();
 
 	$('#jky-worked-hour').ForceNumericOnly()
 };
@@ -78,16 +81,16 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-status'			,				 the_row.status			);
-	JKY.set_value	('jky-opened-at'		, JKY.short_date(the_row.opened_at	)	);
+	JKY.set_html	('jky-status'			, JKY.t			(the_row.status			));
+	JKY.set_value	('jky-opened-at'		, JKY.short_date(the_row.opened_at		));
 	JKY.set_value	('jky-opened-by'		,				 the_row.opened_name	);
-	JKY.set_value	('jky-assigned-at'		, JKY.short_date(the_row.assigned_at)	);
+	JKY.set_value	('jky-assigned-at'		, JKY.short_date(the_row.assigned_at	));
 	JKY.set_value	('jky-assigned-to'		,				 the_row.assigned_name	);
-	JKY.set_value	('jky-closed-at'		, JKY.short_date(the_row.closed_at	)	);
+	JKY.set_value	('jky-closed-at'		, JKY.short_date(the_row.closed_at		));
 	JKY.set_value	('jky-closed-by'		,				 the_row.closed_name	);
 	JKY.set_value	('jky-worked-hour'		,				 the_row.worked_hour	);
-	JKY.set_value	('jky-priority'			, 			(the_row.priority	)	);
-	JKY.set_value	('jky-category'			, 			(the_row.category	)	);
+	JKY.set_value	('jky-priority'			,				 the_row.priority		);
+	JKY.set_value	('jky-category'			,				 the_row.category		);
 	JKY.set_value	('jky-description'		,				 the_row.description	);
 	JKY.set_value	('jky-resolution'		,				 the_row.resolution		);
 

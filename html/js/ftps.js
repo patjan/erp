@@ -93,6 +93,13 @@ JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-production-ftps');
 	JKY.set_html('jky-machine-name', JKY.set_table_options('Machines', 'name', '', ''));
 	JKY.set_html('jky-collection', JKY.set_configs('Collections', '', ''));
+	JKY.set_html('jky-app-select', JKY.set_configs('Collections', JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-app-select-label', JKY.t('Collection'));
+	JKY.show('jky-app-select-line');
+//	select the first option as default
+	$('#jky-app-select option').eq(1).prop('selected', true);
+	$('#jky-app-select').change();
+
 	JKY.show('jky-action-print');
 	JKY.materials	= JKY.get_configs	('Materials'	);
 	JKY.threads		= JKY.get_ids		('Threads'		);

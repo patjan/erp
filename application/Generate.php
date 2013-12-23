@@ -169,7 +169,7 @@ log_sql('Orders', 'INSERT', $sql);
 
 	$sql= 'SELECT *'
 		. '  FROM QuotLines'
-		. ' WHERE quotation_id = ' . $the_id
+		. ' WHERE parent_id = ' . $the_id
 		;
 	$my_rows = $db->fetchAll($sql);
 

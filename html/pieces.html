@@ -59,7 +59,11 @@
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'	></div>
-		<ul  id='jky-form-status'	></ul>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+		</div>
+
 	</div>
 	<div class='jky-clear'></div>
 
@@ -67,7 +71,6 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Order Number		</span>:</div><input  id='jky-order-number'			class='jky-form-value'	/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Barcode			</span>:</div><input  id='jky-barcode'				class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Status				</span>:</div><input  id='jky-status'				class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Number Pieces		</span>:</div><input  id='jky-number-of-pieces'		class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Produced By		</span>:</div><input  id='jky-produced-by'			class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Check In Weight	</span>:</div><input  id='jky-checkin-weight'		class='jky-form-value' /></div>
@@ -82,7 +85,7 @@
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
 				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-				  <button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
 			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>

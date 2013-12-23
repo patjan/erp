@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Machines'
 		, table_name	: 'Machines'
 		, specific		: ''
-		, select		: 'All'
+		, select		: ''
 		, filter		: ''
 		, sort_by		: 'name'
 		, sort_seq		: 'ASC'
@@ -35,7 +35,7 @@ JKY.set_all_events = function() {
 	$('#jky-repair-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime:false});
 	$('#jky-return-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime:false});
 
-	$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
+	$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder();});
 };
 
 /**
@@ -46,11 +46,14 @@ JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-threads-machines');
 	JKY.set_side_active('jky-production-machines');
 	JKY.set_side_active('jky-dyers-machines');
-	JKY.set_html('jky-machine-family', JKY.set_configs('Machine Families', '', ''));
-	JKY.set_html('jky-machine-brand', JKY.set_configs('Machine Brands', JKY.App.get('select'), ''));
-	JKY.set_html('jky-app-select', JKY.set_configs('Machine Brands', JKY.App.get('select'), 'All'));
-	JKY.set_html('jky-app-select-label', JKY.t('Brand'));
+	JKY.set_html('jky-machine-family'	, JKY.set_configs('Machine Families', '', ''));
+	JKY.set_html('jky-machine-brand'	, JKY.set_configs('Machine Brands', JKY.App.get('select'), ''));
+	JKY.set_html('jky-app-select'		, JKY.set_configs('Machine Brands', JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-app-select-label'	, JKY.t('Brand'));
 	JKY.show('jky-app-select-line');
+//	select the first option as default
+	$('#jky-app-select option').eq(1).prop('selected', true);
+	$('#jky-app-select').change();
 
 	$('#jky-diameter'	).ForceIntegerOnly();
 	$('#jky-width'		).ForceIntegerOnly();

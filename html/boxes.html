@@ -32,15 +32,15 @@
 	<thead>
 		<tr>
 			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-batch-number'		><span>		   Batch<br>Number			</span></th>
-			<th class='jky-barcode'				><span>					Barcode			</span></th>
-			<th class='jky-status'				><span>					Status			</span></th>
+			<th class='jky-batch-number'		><span>        Batch<br>Number			</span></th>
+			<th class='jky-barcode'				><span>                 Barcode			</span></th>
+			<th class='jky-status'				><span>                 Status			</span></th>
 			<th class='jky-number-of-boxes'		><span>       Number<br>Boxes			</span></th>
 			<th class='jky-number-of-cones'		><span>       Number<br>Cones			</span></th>
 			<th class='jky-average-weight'		><span>      Average<br>Weight			</span></th>
-			<th class='jky-real-weight'			><span>		    Real<br>Weight			</span></th>
-			<th class='jky-checkin-location'	><span>	    Check In<br>Location		</span></th>
-			<th class='jky-checkout-location'	><span>	   Check Out<br>Location		</span></th>
+			<th class='jky-real-weight'			><span>         Real<br>Weight			</span></th>
+			<th class='jky-checkin-location'	><span>     Check In<br>Location		</span></th>
+			<th class='jky-checkout-location'	><span>    Check Out<br>Location		</span></th>
 		</tr>
 	</thead>
 
@@ -50,7 +50,11 @@
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'	></div>
-		<ul  id='jky-form-status'	></ul>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+		</div>
+
 	</div>
 	<div class='jky-clear'></div>
 
@@ -58,7 +62,6 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Batch Number		</span>:</div><input  id='jky-batch-number'			class='jky-form-value'	/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Barcode			</span>:</div><input  id='jky-barcode'				class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Status				</span>:</div><input  id='jky-status'				class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Number Boxes		</span>:</div><input  id='jky-number-of-boxes'		class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Number Cones		</span>:</div><input  id='jky-number-of-cones'		class='jky-form-value' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Average Weight		</span>:</div><input  id='jky-average-weight'		class='jky-form-value' /></div>
@@ -72,7 +75,7 @@
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
 				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-				  <button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
 			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>

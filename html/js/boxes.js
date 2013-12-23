@@ -38,9 +38,13 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-threads-boxes');
-//	JKY.set_html('jky-app-select', JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
-//	JKY.set_html('jky-app-select-label', JKY.t('Type'));
-//	JKY.show('jky-app-select-line');
+	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Check In', 'Check Out', 'Return'));
+	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
+	JKY.show('jky-app-select-line');
+//	select the first option as default
+	$('#jky-app-select option').eq(1).prop('selected', true);
+	$('#jky-app-select').change();
+
 	JKY.hide('jky-action-add-new');
 	JKY.hide('jky-action-form');
 
@@ -72,16 +76,16 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-batch-number'				,			 the_row.batch_number		);
-	JKY.set_value	('jky-barcode'					,			 the_row.barcode			);
-	JKY.set_value	('jky-status'					, JKY.t		(the_row.status				));
-	JKY.set_value	('jky-number-of-boxes'			,			 the_row.number_of_boxes	);
-	JKY.set_value	('jky-number-of-cones'			,			 the_row.number_of_cones	);
-	JKY.set_value	('jky-average-weight'			,			 the_row.average_weight		);
-	JKY.set_value	('jky-real-weight'				,			 the_row.real_weight		);
-	JKY.set_value	('jky-checkin-location'			,			 the_row.checkin_location	);
-	JKY.set_value	('jky-checkout-location'		,			 the_row.checkout_location	);
-	JKY.set_value	('jky-returned-location'		,			 the_row.returned_location	);
+	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
+	JKY.set_value	('jky-batch-number'			, the_row.batch_number		);
+	JKY.set_value	('jky-barcode'				, the_row.barcode			);
+	JKY.set_value	('jky-number-of-boxes'		, the_row.number_of_boxes	);
+	JKY.set_value	('jky-number-of-cones'		, the_row.number_of_cones	);
+	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);
+	JKY.set_value	('jky-real-weight'			, the_row.real_weight		);
+	JKY.set_value	('jky-checkin-location'		, the_row.checkin_location	);
+	JKY.set_value	('jky-checkout-location'	, the_row.checkout_location	);
+	JKY.set_value	('jky-returned-location'	, the_row.returned_location	);
 //	JKY.display_lines();
 };
 

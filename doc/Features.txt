@@ -15,8 +15,14 @@ Features (2013-12-17)
 - Easy to learn, customized system
 - Easy to navigate by menu, side-menu and buttons
 - Easy to operate by visual status and icons
-- Easy to configure by administrator (Configs)
-- Easy to manage (Controls, several access level) 
+	- Calendar pick
+	- Protected numeric
+	- Check for duplicates
+	- Dynamic lookup
+	- Change Status
+	
+- Easy to configure by Administrator (Configs)
+- Easy to manage by Support (Controls, several access level) 
 - Easy to upload and download: photo, doc, excel, ...
 - Easy to export file (only Support Role)
 - Easy to print barcodes by IP printers
@@ -51,14 +57,63 @@ Features (2013-12-17)
 
 - Modules:
 	- Sales
+		- Quotations
+		- Sale Orders
 	- Planning
+		- Threads Dyers
+		- Planning Orders
+		- Pieces
 	- Production
+		- FTPs
 	- Threads
+		- Purchase Orders
+		- Purchase Lines
+		- Incoming Purchases
+		- Incoming Batches
+		- Check Out Orders
+		- Check Out Batches
+		- Incoming Boxes
+		- Forecast
 	- Boxes
+		- Check In
+		- Return
+		- Check Out
 	- Dyers
+		- Aggregate Load Outs
+		- Load Out Sales
 	- Pieces
+		- Check In
+		- Return
+		- Check Out
 	- Help
+		- Tckets
 	- Admin
+		- Configs
+		- Contacts
+		- Companies
+		- History
 	- Support
+		- Controls
+		- Permissions
+		- Templates
+		- Translations
 
+- Files:
+	- Contacts:
+		- Customers
+		- Suppliers
+		- Partners
+		- Dyers
+	- Products
+	- Colors
+	- Threads
+	- Machines
+	
+	
+	
+- Config:
+	- Color Types
 
+- Extras:
+	- Notes
+	

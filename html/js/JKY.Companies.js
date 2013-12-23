@@ -10,7 +10,7 @@ JKY.Companies = function(the_program_name, the_specific) {
 		, program_name	:  the_program_name
 		, table_name	: 'Contacts'
 		, specific		:  the_specific
-		, select		: 'All'
+		, select		: ''
 		, filter		: ''
 		, sort_by		: 'nick_name'
 		, sort_seq		: 'ASC'
@@ -56,6 +56,13 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-contact-tag'		, JKY.set_configs ('Customer Tags'	, '', ''));
 	JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
 	JKY.set_html('jky-country'			, JKY.set_configs ('Countries'		, '', ''));
+	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Inactive'));
+	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
+	JKY.show('jky-app-select-line');
+//	select the first option as default
+	$('#jky-app-select option').eq(1).prop('selected', true);
+	$('#jky-app-select').change();
+
 	$('#jky-is-company'		).click (function() {JKY.process_is_company		(this);});
 };
 
@@ -76,14 +83,15 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
+	JKY.set_html	('jky-status'			, JKY.t			(the_row.status			));
 	JKY.set_value	('jky-nick-name'		, the_row.nick_name		);
 	JKY.set_value	('jky-full-name'		, the_row.full_name		);
 	JKY.set_yes		('jky-is-company'		, the_row.is_company	);
 	JKY.set_option	('jky-contact-company'	, the_row.company_id	);
 	JKY.set_option	('jky-contact-tag'		, the_row.tags			);
-	JKY.set_value	('jky-website'			, the_row.website		);
 	JKY.set_value	('jky-cnpj'				, the_row.cnpj			);
 	JKY.set_value	('jky-ie'				, the_row.ie			);
+	JKY.set_value	('jky-website'			, the_row.website		);
 	JKY.set_value	('jky-position'			, the_row.position		);
 	JKY.set_value	('jky-email'			, the_row.email			);
 	setTimeout(function() {JKY.process_is_company($('#jky-is-company'));}, 100);
@@ -108,9 +116,9 @@ JKY.set_add_new_row = function() {
 	JKY.set_yes		('jky-is-company'		, 'No');
 	JKY.set_option	('jky-contact-company'	, '');
 	JKY.set_option	('jky-contact-tag'		, '');
-	JKY.set_value	('jky-website'			, '');
 	JKY.set_value	('jky-cnpj'				, '');
 	JKY.set_value	('jky-ie'				, '');
+	JKY.set_value	('jky-website'			, '');
 	JKY.set_value	('jky-position'			, '');
 	JKY.set_value	('jky-email'			, '');
 	setTimeout(function() {JKY.process_is_company($('#jky-is-company'));}, 100);

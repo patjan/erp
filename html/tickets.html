@@ -4,7 +4,6 @@
 .jky-checkbox			{width: 30px; text-align:center;}
 
 .jky-app-label			{float:left; margin:14px 0 0 14px; font-weight:bold;}
-#jky-app-select			{width: 80px;}
 
 .jky-opened-by			{width: 70px; text-align:center;}
 .jky-opened-at			{width:110px; text-align:center;}
@@ -47,14 +46,18 @@
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'	></div>
-		<ul  id='jky-form-status'	></ul>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+		</div>
+
 	</div>
 	<div class='jky-clear'></div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>        Opened</span>:</div>
+				<div class='jky-form-label'><span>          Open</span>:</div>
 				<div class='jky-form-value'>
 					<input id='jky-opened-at' disabled />
 					<input id='jky-opened-by' disabled />

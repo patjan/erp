@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Pieces'
 		, table_name	: 'Pieces'
 		, specific		: ''
-		, select		: 'All'
+		, select		: ''
 		, filter		: ''
 		, sort_by		: 'barcode'
 		, sort_seq		: 'DESC'
@@ -40,11 +40,12 @@ JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-planning-pieces');
 	JKY.set_side_active('jky-production-pieces');
 	JKY.set_side_active('jky-dyers-pieces');
-//	JKY.set_html('jky-app-select', JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
-//	JKY.set_html('jky-thread-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
-//	JKY.set_html('jky-payment-term', JKY.set_configs('Payment Terms', '', ''));
-//	JKY.set_html('jky-app-select-label', JKY.t('Type'));
-//	JKY.show('jky-app-select-line');
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Check In', 'Check Out', 'Return'));
+	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
+	JKY.show('jky-app-select-line');
+//	select the first option as default
+	$('#jky-app-select option').eq(1).prop('selected', true);
+	$('#jky-app-select').change();
 
 	$('#jky-checkin-weight' ).ForceNumericOnly();
 	$('#jky-returned-weight').ForceNumericOnly();
@@ -57,7 +58,7 @@ JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-order-number"		>' +				 the_row.order_number			+ '</td>'
 		+  '<td class="jky-barcode"				>' +				 the_row.barcode				+ '</td>'
-		+  '<td class="jky-status"				>' +				 the_row.status					+ '</td>'
+		+  '<td class="jky-status"				>' + JKY.t			(the_row.status				)	+ '</td>'
 		+  '<td class="jky-number-of-pieces"	>' +				 the_row.number_of_pieces		+ '</td>'
 		+  '<td class="jky-produced-by"			>' +				 the_row.produced_by			+ '</td>'
 		+  '<td class="jky-checkin-weight"		>' +				 the_row.checkin_weight			+ '</td>'
@@ -73,16 +74,16 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-order-number'				, the_row.order_number		);
-	JKY.set_value	('jky-barcode'					, the_row.barcode			);
-	JKY.set_value	('jky-status'					, the_row.status			);
-	JKY.set_value	('jky-number-of-pieces'			, the_row.number_of_pieces	);
-	JKY.set_value	('jky-produced-by'				, the_row.produced_by		);
-	JKY.set_value	('jky-checkin-weight'			, the_row.checkin_weight	);
-	JKY.set_value	('jky-returned-weight'			, the_row.returned_weight	);
-	JKY.set_value	('jky-checkin-location'			, the_row.checkin_location	);
-	JKY.set_value	('jky-checkout-location'		, the_row.checkout_location	);
-	JKY.set_value	('jky-remarks'					, the_row.remarks			);
+	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
+	JKY.set_value	('jky-order-number'			, the_row.order_number		);
+	JKY.set_value	('jky-barcode'				, the_row.barcode			);
+	JKY.set_value	('jky-number-of-pieces'		, the_row.number_of_pieces	);
+	JKY.set_value	('jky-produced-by'			, the_row.produced_by		);
+	JKY.set_value	('jky-checkin-weight'		, the_row.checkin_weight	);
+	JKY.set_value	('jky-returned-weight'		, the_row.returned_weight	);
+	JKY.set_value	('jky-checkin-location'		, the_row.checkin_location	);
+	JKY.set_value	('jky-checkout-location'	, the_row.checkout_location	);
+	JKY.set_value	('jky-remarks'				, the_row.remarks			);
 //	JKY.display_lines();
 };
 

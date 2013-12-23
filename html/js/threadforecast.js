@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'ThreadForecast'
 		, table_name	: 'ThreadForecast'
 		, specific		: ''
-		, select		: 'All'
+		, select		: ''
 		, filter		: ''
 		, sort_by		: 'thread_sequence ASC, thread_name'
 		, sort_seq		: 'ASC'
@@ -43,9 +43,13 @@ JKY.set_initial_values = function() {
 //	JKY.set_html('jky-thread-groups'	, JKY.set_configs('Thread Groups', '', ''));
 	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-app-select-label', JKY.t('Group'));
+	JKY.show('jky-app-select-line');
+//	select the first option as default
+	$('#jky-app-select option').eq(1).prop('selected', true);
+	$('#jky-app-select').change();
+
 	JKY.hide('jky-action-add-new');
 	JKY.show('jky-action-print');
-	JKY.show('jky-app-select-line');
 	JKY.set_date('jky-reference-date', JKY.out_time(JKY.get_config_value('System Controls', 'Reference Date')));
 };
 

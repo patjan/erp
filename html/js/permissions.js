@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Permissions'
 		, table_name	: 'Permissions'
 		, specific		: ''
-		, select		: 'All'
+		, select		: ''
 		, filter		: ''
 		, sort_by		: 'user_resource'
 		, sort_seq		: 'ASC'
@@ -41,6 +41,9 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select'		, JKY.set_controls('User Roles'		, JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-app-select-label', JKY.t('User Role'));
 	JKY.show('jky-app-select-line');
+//	select the last option type as default
+	$('#jky-app-select option:last-child').prop('selected', true);
+	$('#jky-app-select').change();
 };
 
 /**

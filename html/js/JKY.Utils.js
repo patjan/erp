@@ -82,37 +82,43 @@ JKY.Xbinding_on_resize = function() {
  * @param	offHeight
  */
 JKY.setTableWidthHeight = function(tableId, width, off_width, minHeight, offHeight) {
-	/*
-	 * jquery 1.7.x the function .height() was working for all 4 browsers (IE,FF,CH,SF)
-	 * but on 1.8.x it was working only on IE
-	 */
+/**
+ * jquery 1.7.x the function .height() was working for all 4 browsers (IE,FF,CH,SF)
+ * but on 1.8.x it was working only on IE
+ */
 	var my_width  = $(window).width ();
 	var my_height = $(window).height();
 	if (!JKY.is_browser('msie')) {
 		my_width  = document.body[ "clientWidth"  ];
 		my_height = document.body[ "clientHeight" ];
 	}
+/*
 	my_width  -= off_width;
 	my_height -= offHeight;
 
 	if (my_height < minHeight) {
 		my_height = minHeight;
 	}
+*/
 //	$('#jky-app-table').css('width' , my_width );
 //	$('#jky-app-table').css('height', my_height);
 //	$('#jky-app-form' ).css('width' , my_width );
 //	$('#jky-app-form' ).css('height', my_height);
+
+//JKY.display_message('Width: ' + my_width + ', Height: ' + my_height);
+//$('#jky-table-body').css('width' , my_width -202);
+//$('#jky-table-body').css('height', my_height-197);
 }
 
 /**
  * re direct
- * @param	program_name
+ * @param	the_program
  */
-JKY.re_direct = function(program_name) {
-	if (typeof program_name == 'undefined') {
+JKY.re_direct = function(the_program) {
+	if (typeof the_program == 'undefined') {
 		location = '/home';
 	}else{
-		location = '/' + program_name;
+		location = '/' + the_program;
 	}
 }
 

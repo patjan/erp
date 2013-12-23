@@ -149,11 +149,13 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_date	('jky-produced-date'	, JKY.out_time	(the_row.produced_at		));
 	JKY.set_value	('jky-quoted-pieces'	,				 the_row.quoted_pieces		);
 	JKY.set_value	('jky-ordered-pieces'	,				 the_row.ordered_pieces		);
-	JKY.set_value	('jky-rejected-pieces'	,				 the_row.rejected_pieces	);
+	JKY.set_value	('jky-checkout-pieces'	,				 the_row.checkout_pieces	);
 	JKY.set_value	('jky-produced-pieces'	,				 the_row.produced_pieces	);
+	JKY.set_value	('jky-rejected-pieces'	,				 the_row.rejected_pieces	);
 	JKY.set_value	('jky-quoted-weight'	,				 the_row.quoted_weight		);
 	JKY.set_value	('jky-ordered-weight'	,				 the_row.ordered_weight		);
 	JKY.set_value	('jky-checkout-weight'	,				 the_row.checkout_weight	);
+	JKY.set_value	('jky-produced-weight'	,				 the_row.produced_weight	);
 	JKY.set_value	('jky-returned-weight'	,				 the_row.returned_weight	);
 	JKY.set_value	('jky-quoted-units'		,				 the_row.quoted_units		);
 	JKY.set_value	('jky-labels-printed'	,				 the_row.labels_printed		);
@@ -192,11 +194,13 @@ JKY.set_add_new_row = function() {
 	JKY.set_date	('jky-needed-date'		,  JKY.out_time(JKY.get_now()));
 	JKY.set_date	('jky-produced-date'	, '');
 	JKY.set_value	('jky-ordered-pieces'	, 0);
-	JKY.set_value	('jky-rejected-pieces'	, 0);
+	JKY.set_value	('jky-checkout-pieces'	, 0);
 	JKY.set_value	('jky-produced-pieces'	, 0);
+	JKY.set_value	('jky-rejected-pieces'	, 0);
 	JKY.set_value	('jky-ordered-weight'	, 0);
 	JKY.set_value	('jky-checkout-weight'	, 0);
 	JKY.set_value	('jky-returned-weight'	, 0);
+	JKY.set_value	('jky-produced-weight'	, 0);
 	JKY.set_value	('jky-labels-printed'	, 0);
 	JKY.set_value	('jky-ftps-printed'		, 0);
 	JKY.set_value	('jky-ops-printed'		, 0);
@@ -227,10 +231,12 @@ JKY.get_form_set = function() {
 		+       ', needed_at=  ' + JKY.inp_time(JKY.get_value('jky-needed-value'	))
 		+     ', produced_at=  ' + JKY.inp_time(JKY.get_value('jky-produced-value'	))
 		+  ', ordered_pieces=  ' +				JKY.get_value('jky-ordered-pieces'	)
-		+ ', rejected_pieces=  ' +				JKY.get_value('jky-rejected-pieces'	)
+		+ ', checkout_pieces=  ' +				JKY.get_value('jky-checkout-pieces'	)
 		+ ', produced_pieces=  ' +				JKY.get_value('jky-produced-pieces'	)
+		+ ', rejected_pieces=  ' +				JKY.get_value('jky-rejected-pieces'	)
 		+  ', ordered_weight=  ' +				JKY.get_value('jky-ordered-weight'	)
 		+ ', checkout_weight=  ' +				JKY.get_value('jky-checkout-weight'	)
+		+ ', produced_weight=  ' +				JKY.get_value('jky-produced-weight'	)
 		+ ', returned_weight=  ' +				JKY.get_value('jky-returned-weight'	)
 		+  ', labels_printed=  ' +				JKY.get_value('jky-labels-printed'	)
 		+    ', ftps_printed=  ' +				JKY.get_value('jky-ftps-printed'	)

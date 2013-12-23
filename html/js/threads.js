@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Threads'
 		, table_name	: 'Threads'
 		, specific		: ''
-		, select		: 'All'
+		, select		: ''
 		, filter		: ''
 		, sort_by		: 'name'
 		, sort_seq		: 'ASC'
@@ -36,6 +36,10 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-app-select-label', JKY.t('Group'));
 	JKY.show('jky-app-select-line');
+//	select the first option as default
+	$('#jky-app-select option').eq(1).prop('selected', true);
+	$('#jky-app-select').change();
+
 };
 
 /**

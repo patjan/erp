@@ -73,12 +73,12 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-color'	, '../JKY.Search.Color.html'	);
 
 	JKY.set_side_active('jky-sales-quotations');
-	JKY.set_html('jky-app-select', JKY.set_options(JKY.sales.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
+	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
+	JKY.set_html('jky-customer-name', JKY.set_options_array('', JKY.get_companies('is_customer'), true));
+	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_dyer'), true));
+	JKY.set_html('jky-app-select'	, JKY.set_options(JKY.sales.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
-	JKY.set_html('jky-customer-name', JKY.set_options_array('', JKY.get_companies('is_customer'), true));
-	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
-	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_dyer'), true));
 	JKY.show('jky-action-print');
 //	JKY.materials	= JKY.get_configs	('Materials'	);
 //	JKY.threads		= JKY.get_ids		('Threads'		);
@@ -255,12 +255,17 @@ JKY.display_form = function() {
 }
 
 JKY.process_delete = function(the_id, the_row) {
-	var my_data =
-		{ method: 'delete_many'
-		, table : 'QuotColors'
-		, where : 'parent_id = ' + the_id
-		};
-	JKY.ajax(true, my_data);
+	var my_data = '';
+	var my_rows = JKY.get_rows('QuotLines', the_id);
+
+	for(var i in my_rows) {
+		my_data =
+			{ method: 'delete_many'
+			, table : 'QuotColors'
+			, where : 'parent_id = ' + my_rows[i].id
+			};
+		JKY.ajax(true, my_data);
+	}
 
 	my_data =
 		{ method: 'delete_many'

@@ -217,7 +217,7 @@ if (my_first == true) {
 			JKY.display_trace('my_process_load_success');
 			JKY.rows	= response.rows;
 			my_count	= JKY.rows.length;
-			my_index	= 1;
+			my_index	= my_count > 0 ? 1 : 0;
 			var my_html = '';
 			for(var i=0; i<my_count; i++) {
 				var my_row = JKY.rows[i];
@@ -439,6 +439,21 @@ if (my_first == true) {
 	}
 
 /**
+ * change status
+ */
+	function my_change_status(the_id) {
+		var my_status = JKY.is_status('Active') ? 'Inactive' : 'Active';
+		var my_data =
+			{ method	: 'update'
+			, table		:  my_args.table_name
+			, set		: 'status = \'' + my_status + '\''
+			, where		: 'id = ' + the_id
+			};
+		JKY.ajax(false, my_data, my_display_list);
+		JKY.display_message('record (' + the_id + ') changed')
+	}
+
+/**
  * process close
  */
 	function my_close_row(the_id) {
@@ -538,6 +553,7 @@ if (my_first == true) {
 		, display_list			:	function()				{		my_display_list	()				;}
 		, display_form			:	function(the_index)		{		my_display_form	(the_index)		;}
 		, display_row			:	function(the_index)		{		my_display_row	(the_index)		;}
+		, change_status			:	function(the_index)		{		my_change_status(the_index)		;}
 		, close_row				:	function(the_index)		{		my_close_row	(the_index)		;}
 		, set_checkbox			:	function(the_index)		{		my_set_checkbox	(the_index)		;}
 		, Xprocess_is_company	:	function(the_id)		{		Xmy_process_is_company(the_id)	;}

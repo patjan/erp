@@ -81,7 +81,7 @@ JKY.insert_line = function() {
 	var my_data =
 		{ method	: 'insert'
 		, table		: 'QuotLines'
-		, set		: 'QuotLines.quotation_id = ' + JKY.row.id
+		, set		: 'QuotLines.parent_id = ' + JKY.row.id
 		};
 	JKY.ajax(true, my_data, JKY.insert_line_success);
 }

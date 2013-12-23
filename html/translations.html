@@ -6,7 +6,6 @@
 
 .jky-status				{width: 80px; text-align:center;}
 .jky-sentence			{width:300px; text-align:left  ;}
-.jky-created-at			{width:100px; text-align:center;}
 .jky-updated-at			{width:100px; text-align:center;}
 
 #jky-status				{width:100px;}
@@ -15,11 +14,10 @@
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-sentence'		><span>Sentence			</span></th>
-			<th class='jky-created-at'		><span>Created At		</span></th>
-			<th class='jky-updated-at'		><span>Updated At		</span></th>
-			<th class='jky-status'			><span>Status			</span></th>
+			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-sentence'			><span>                 Sentence		</span></th>
+			<th class='jky-updated-at'			><span>                 Updated At		</span></th>
+			<th class='jky-status'				><span>                 Status			</span></th>
 		</tr>
 	</thead>
 
@@ -28,8 +26,12 @@
 
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
-		<div id='jky-form-actions'	></div>
-		<ul  id='jky-form-status'	></ul>
+		<div id='jky-form-actions'></div>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+		</div>
+
 	</div>
 	<div class='jky-clear'></div>
 
@@ -43,7 +45,7 @@
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
 				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-				  <button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
 			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>

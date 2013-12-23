@@ -557,7 +557,7 @@ private function get_index($data) {
 
 	$where = '';
 	$where .= $this->set_specific($table, $specific, get_data($data, 'specific_id'));
-	$where .= $this->set_select($table, $select);
+	$where .= $this->set_select  ($table, $specific, $select);
 	if ($filter != '') {
 		$filters = explode(' and ', $filter);
 		foreach($filters as $filter)
@@ -655,6 +655,7 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'Boxes'			&& $specific == 'batch'			)	return ' AND         Boxes.batch_id		= ' . $specific_id;
 	if ($table == 'FTPs'			&& $specific == 'product'		)	return ' AND          FTPs.product_id	= ' . $specific_id;
 	if ($table == 'LoadSales'		&& $specific == 'loadout'		)	return ' AND     LoadSales.loadout_id	= ' . $specific_id;
+	if ($table == 'Pieces'			&& $specific == 'order'			)	return ' AND         Pieces.order_id	= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'parent'		)	return ' AND PurchaseLines.parent_id	= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'supplier'		)	return ' AND     Purchases.supplier_id	= ' . $specific_id;
 	if ($table == 'QuotColors'		&& $specific == 'color'			)	return ' AND    QuotColors.color_id		= ' . $specific_id
@@ -664,7 +665,7 @@ private function set_specific($table, $specific, $specific_id) {
 	return '';
 }
 
-private function set_select($table, $select) {
+private function set_select($table, $specific, $select) {
 	if ($select == 'All')	return '';
 
 	if ($select == 'Draft + Active') {
@@ -681,16 +682,23 @@ private function set_select($table, $select) {
 		}
 	}
 
+	if ($table == 'Contacts' && $specific == 'is_contact') {
+		return ' AND JKY_Users.user_role = "' . $select . '"';
+	}
+
 	switch($table) {
 		case 'Batches'			: return ' AND      Incomings.status		= "' . $select . '"';
 		case 'BatchOuts'		: return ' AND      BatchOuts.status		= "' . $select . '"';
+		case 'BatchSets'		: return ' AND      BatchSets.status		= "' . $select . '"';
+		case 'Boxes'			: return ' AND          Boxes.status		= "' . $select . '"';
 //		case 'Categories'		: return ' AND         Parent.category		= "' . $select . '"';
 		case 'CheckOuts'		: return ' AND      CheckOuts.status		= "' . $select . '"';
 		case 'Colors'			: return ' AND         Colors.color_type	= "' . $select . '"';
 		case 'Configs'			: return ' AND        Configs.group_set		= "' . $select . '"';
-		case 'Contacts'			: return ' AND      JKY_Users.user_role		= "' . $select . '"';
+		case 'Contacts'			: return ' AND       Contacts.status		= "' . $select . '"';
 		case 'Controls'			: return ' AND       Controls.group_set		= "' . $select . '"';
 		case 'Cylinders'		: return ' AND      Cylinders.machine_id	=  ' . $select;
+		case 'FTPs'				: return ' AND           FTPs.collection	= "' . $select . '"';
 		case 'FTP_Loads'		: return ' AND      FTP_Loads.parent_id		=  ' . $select;
 		case 'FTP_Threads'		: return ' AND    FTP_Threads.parent_id		=  ' . $select;
 		case 'FTP_Sets'			: return ' AND       FTP_Sets.parent_id		=  ' . $select;
@@ -698,23 +706,24 @@ private function set_select($table, $select) {
 		case 'Incomings'		: return ' AND      Incomings.status		= "' . $select . '"';
 		case 'LoadOuts'			: return ' AND       LoadOuts.status		= "' . $select . '"';
 		case 'LoadSales'		: return ' AND      LoadSales.status		= "' . $select . '"';
+		case 'LoadSets'			: return ' AND       LoadSets.status		= "' . $select . '"';
 		case 'Machines'			: return ' AND       Machines.machine_brand	= "' . $select . '"';
 		case 'Orders'			: return ' AND         Orders.status		= "' . $select . '"';
 		case 'OrdThreads'		: return ' AND     OrdThreads.parent_id		=  ' . $select;
 		case 'Permissions'		: return ' AND    Permissions.user_role		= "' . $select . '"';
-		case 'Pieces'			: return ' AND         Pieces.order_id		=  ' . $select;
+		case 'Pieces'			: return ' AND         Pieces.status		= "' . $select . '"';
 		case 'Products'			: return ' AND       Products.product_type	= "' . $select . '"';
 		case 'Purchases'		: return ' AND      Purchases.status		= "' . $select . '"';
-		case 'PurchaseLines'	: return ' AND		Purchases.status		= "' . $select . '"';
+		case 'PurchaseLines'	: return ' AND      Purchases.status		= "' . $select . '"';
 		case 'Quotations'		: return ' AND     Quotations.status		= "' . $select . '"';
-		case 'QuotLines'		: return ' AND      QuotLines.quotation_id	=  ' . $select;
+		case 'QuotLines'		: return ' AND      QuotLines.parent_id		=  ' . $select;
 		case 'QuotColors'		: return ' AND     QuotColors.parent_id		=  ' . $select;
 		case 'ReqLines'			: return ' AND       ReqLines.request_id	=  ' . $select;
 		case 'TDyers'			: return ' AND         TDyers.status		= "' . $select . '"';
 		case 'TDyerColors'		: return ' AND    TDyerColors.parent_id		=  ' . $select;
 		case 'TDyerThreads'		: return ' AND   TDyerThreads.parent_id		=  ' . $select;
 		case 'Templates'		: return ' AND      Templates.template_type	= "' . $select . '"';
-		case 'ThreadForecast'	: return ' AND		   Threads.thread_group	= "' . $select . '"';
+		case 'ThreadForecast'	: return ' AND        Threads.thread_group	= "' . $select . '"';
 		case 'Threads'			: return ' AND        Threads.thread_group	= "' . $select . '"';
 		case 'Tickets'			: return ' AND        Tickets.status		= "' . $select . '"';
 		case 'Translations'		: return ' AND   Translations.status		= "' . $select . '"';
@@ -900,7 +909,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		   LoadOut.dyer_id'
 												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		   LoadOut.color_id'
 												. '  LEFT JOIN   QuotLines AS SaleLine	ON  SaleLine.id	=		 SaleColor.parent_id'
-												. '  LEFT JOIN  Quotations AS Sale		ON      Sale.id	=		  SaleLine.quotation_id'
+												. '  LEFT JOIN  Quotations AS Sale		ON      Sale.id	=		  SaleLine.parent_id'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleLine.product_id'
 												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id';
 	if ($table == 'LoadSets'		)	$return = '  LEFT JOIN   LoadSales AS LoadSale	ON  LoadSale.id	=		  LoadSets.loadsale_id'
@@ -909,7 +918,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		   LoadOut.dyer_id'
 												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		   LoadOut.color_id'
 												. '  LEFT JOIN   QuotLines AS SaleLine	ON  SaleLine.id	=		 SaleColor.parent_id'
-												. '  LEFT JOIN  Quotations AS Sale		ON      Sale.id	=		  SaleLine.quotation_id'
+												. '  LEFT JOIN  Quotations AS Sale		ON      Sale.id	=		  SaleLine.parent_id'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleLine.product_id'
 												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id';
 	if ($table == 'Orders'			)	$return = '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		    Orders.customer_id'
@@ -939,7 +948,7 @@ private function set_left_joins($table) {
 	if ($table == 'QuotLines'		)	$return = '  LEFT JOIN    Products AS Product	ON   Product.id	=	     QuotLines.product_id';
 	if ($table == 'QuotColors'		)	$return = '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	    QuotColors.color_id'
 												. '  LEFT JOIN   QuotLines AS SaleLine	ON  SaleLine.id	=		QuotColors.parent_id'
-												. '  LEFT JOIN  Quotations AS Sale		ON      Sale.id	=		  SaleLine.quotation_id'
+												. '  LEFT JOIN  Quotations AS Sale		ON      Sale.id	=		  SaleLine.parent_id'
 												. '  LEFT JOIN      Orders AS Orderx	ON	  Orderx.id	=		  SaleLine.order_id'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleLine.product_id'
 												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id'

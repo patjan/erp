@@ -30,6 +30,7 @@ JKY.start_program = function() {
 JKY.set_all_events = function() {
 	$('#jky-action-clear'		).click	(function() {JKY.process_clear_screen	();});
 	$('#jky-action-confirm'		).click	(function() {JKY.process_confirm_screen	();});
+	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-box-input-barcode'	).change(function() {JKY.process_input_barcode	();});
 	$('#jky-box-check-all'		).click (function() {JKY.set_all_box_check	(this);});
 };
@@ -40,6 +41,13 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_css('jky-app-breadcrumb', 'color', '#CC0000');
 	JKY.set_side_active('jky-boxes-checkout');
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Closed'));
+	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
+	JKY.show('jky-app-select-line');
+//	select the first option as default
+	$('#jky-app-select option').eq(1).prop('selected', true);
+	$('#jky-app-select').change();
+
 	JKY.process_clear_screen();
 };
 
@@ -71,6 +79,7 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
+	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
 	JKY.set_value	('jky-checkout-number'		, the_row.checkout_number	);
 	JKY.set_value	('jky-thread-name'			, the_row.thread_name		);
 	JKY.set_value	('jky-batch-number'			, the_row.batch_number		);

@@ -14,9 +14,9 @@ JKY.start_program = function() {
 		, program_name	: 'Templates'
 		, table_name	: 'Templates'
 		, specific		: ''
-		, select		: 'All'
+		, select		: ''
 		, filter		: ''
-		, sort_by		: 'created_at'
+		, sort_by		: 'updated_at'
 		, sort_seq		: 'ASC'
 		, focus			: 'jky-priority'
 		, add_new		: 'display form'
@@ -28,7 +28,7 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-created-date').attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-updated-date').attr('data-format', JKY.Session.get_date_time	());
 };
 
 /**
@@ -38,8 +38,11 @@ JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-support-templates');
 	JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
 	JKY.set_html('jky-app-select'		, JKY.set_controls('Template Types', JKY.App.get('select'), 'All'));
-	JKY.set_html('jky-app-select-label', JKY.t('Template Types'));
+	JKY.set_html('jky-app-select-label', JKY.t('Type'));
 	JKY.show('jky-app-select-line');
+//	select the first option as default
+	$('#jky-app-select option').eq(1).prop('selected', true);
+	$('#jky-app-select').change();
 };
 
 /**
@@ -47,7 +50,7 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-created-at"		>' + JKY.short_date(the_row.created_date   )	+ '</td>'
+		+  '<td class="jky-updated-at"		>' + JKY.short_date(the_row.updated_date   )	+ '</td>'
 		+  '<td class="jky-opened-by"		>' + the_row.opened_name						+ '</td>'
 		+  '<td class="jky-priority"		>' + the_row.priority							+ '</td>'
 		+  '<td class="jky-description"		>' + the_row.description						+ '</td>'
@@ -61,7 +64,7 @@ JKY.set_table_row = function(the_row) {
  */
 JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-opened-by'		, the_row.opened_name	);
-	JKY.set_value	('jky-created-value'	, JKY.out_time(the_row.created_date	));
+	JKY.set_value	('jky-updated-value'	, JKY.out_time(the_row.updated_date	));
 	JKY.set_value	('jky-priority'			, the_row.priority		);
 	JKY.set_value	('jky-description'		, the_row.description	);
 	JKY.set_value	('jky-resolution'		, the_row.resolution	);
@@ -72,7 +75,7 @@ JKY.set_form_row = function(the_row) {
  */
 JKY.set_add_new_row = function() {
 	JKY.set_option	('jky-status'			, 'Active');
-	JKY.set_date	('jky-created-date'		,  JKY.out_time(JKY.get_now ()));
+	JKY.set_date	('jky-updated-date'		,  JKY.out_time(JKY.get_now ()));
 };
 
 /**

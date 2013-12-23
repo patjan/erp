@@ -235,3 +235,7 @@ ALTER TABLE Quotations		ADD COLUMN punho_units		INTEGER			DEFAULT 0		AFTER punho
 ALTER TABLE Quotations		ADD COLUMN gola_units		INTEGER			DEFAULT 0		AFTER gola_percent;
 ALTER TABLE Quotations		ADD COLUMN galao_units		INTEGER			DEFAULT 0		AFTER galao_percent;
 ALTER TABLE Orders			ADD COLUMN quoted_units		INT				DEFAULT 0		AFTER produced_at;
+/* -- 2013/12/18	*/
+ALTER TABLE QuotLines		CHANGE	quotation_id	parent_id		BIGINT			DEFAULT NULL;
+/* -- 2013/12/22	*/
+ALTER TABLE Orders			ADD COLUMN produced_weight	DECIMAL(10,2)	DEFAULT 0		AFTER ordered_weight;

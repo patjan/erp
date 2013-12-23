@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Companies'
 		, table_name	: 'Contacts'
 		, specific		: 'is_company'
-		, select		: 'All'
+		, select		: ''
 		, filter		: ''
 		, sort_by		: 'nick_name'
 		, sort_seq		: 'ASC'
@@ -43,6 +43,7 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
+	$('#jky-action-change'	).click( function() {JKY.App.change_status(JKY.row.id);});
 	$('#jky-tab-address'	).click (function() {JKY.display_address (JKY.row	 );});
 	$('#jky-tab-phones'		).click (function() {JKY.display_phones	 (JKY.row	 );});
 	$('#jky-tab-contacts'	).click (function() {JKY.display_contacts(JKY.row.id );});
@@ -60,6 +61,12 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-contact-tag'		, JKY.set_configs ('Customer Tags'	, '', ''));
 	JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
 	JKY.set_html('jky-country'			, JKY.set_configs ('Countries'		, '', ''));
+	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Inactive'));
+	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
+	JKY.show('jky-app-select-line');
+//	select the first option as default
+	$('#jky-app-select option').eq(1).prop('selected', true);
+	$('#jky-app-select').change();
 };
 
 /**
@@ -67,7 +74,7 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-nick-name"		>' +				 the_row.nick_name		+ '</td>'
+		+  '<td class="jky-nick-name"		>' + JKY.fix_null	(the_row.nick_name	)	+ '</td>'
 		+  '<td class="jky-is-customer"		>' +				 the_row.is_customer	+ '</td>'
 		+  '<td class="jky-is-supplier"		>' +				 the_row.is_supplier	+ '</td>'
 		+  '<td class="jky-is-dyer"			>' +				 the_row.is_dyer		+ '</td>'
@@ -83,18 +90,18 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-nick-name'		, the_row.nick_name		);
-	JKY.set_value	('jky-full-name'		, the_row.full_name		);
-	JKY.set_yes		('jky-is-customer'		, the_row.is_customer	);
-	JKY.set_yes		('jky-is-supplier'		, the_row.is_supplier	);
-	JKY.set_yes		('jky-is-dyer'			, the_row.is_dyer		);
-	JKY.set_yes		('jky-is-partner'		, the_row.is_partner	);
-	JKY.set_option	('jky-contact-tag'		, the_row.tags			);
-	JKY.set_value	('jky-website'			, the_row.website		);
-	JKY.set_value	('jky-cnpj'				, the_row.cnpj			);
-	JKY.set_value	('jky-ie'				, the_row.ie			);
-	JKY.set_value	('jky-position'			, the_row.position		);
-	JKY.set_value	('jky-email'			, the_row.email			);
+	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
+	JKY.set_value	('jky-nick-name'			, the_row.nick_name			);
+	JKY.set_value	('jky-full-name'			, the_row.full_name			);
+	JKY.set_yes		('jky-is-customer'			, the_row.is_customer		);
+	JKY.set_yes		('jky-is-supplier'			, the_row.is_supplier		);
+	JKY.set_yes		('jky-is-dyer'				, the_row.is_dyer			);
+	JKY.set_yes		('jky-is-partner'			, the_row.is_partner		);
+	JKY.set_option	('jky-contact-tag'			, the_row.tags				);
+	JKY.set_value	('jky-cnpj'					, the_row.cnpj				);
+	JKY.set_value	('jky-ie'					, the_row.ie				);
+	JKY.set_value	('jky-website'				, the_row.website			);
+	JKY.set_value	('jky-email'				, the_row.email				);
 //	JKY.disable_button('jky-is-company');
 //	setTimeout(function() {JKY.App.process_is_company($('#jky-is-company'));}, 100);
 
@@ -120,10 +127,9 @@ JKY.set_add_new_row = function() {
 	JKY.set_yes		('jky-is-dyer'			, 'No');
 	JKY.set_yes		('jky-is-partner'		, 'No');
 	JKY.set_option	('jky-contact-tag'		, '');
-	JKY.set_value	('jky-website'			, '');
 	JKY.set_value	('jky-cnpj'				, '');
 	JKY.set_value	('jky-ie'				, '');
-	JKY.set_value	('jky-position'			, '');
+	JKY.set_value	('jky-website'			, '');
 	JKY.set_value	('jky-email'			, '');
 
 //	JKY.disable_button('jky-is-company');
@@ -146,7 +152,6 @@ JKY.get_form_set = function() {
 		+          ', cnpj=\'' + JKY.get_value	('jky-cnpj'				) + '\''
 		+            ', ie=\'' + JKY.get_value	('jky-ie'				) + '\''
 		+       ', website=\'' + JKY.get_value	('jky-website'			) + '\''
-		+      ', position=\'' + JKY.get_value	('jky-position'			) + '\''
 		+         ', email=\'' + JKY.get_value	('jky-email'			) + '\''
 		;
 	return my_set;

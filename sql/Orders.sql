@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS Orders
 , returned_pieces	INT					DEFAULT 0
 , quoted_weight		DECIMAL(10,2)		DEFAULT 0
 , ordered_weight	DECIMAL(10,2)		DEFAULT 0
+, produced_weight	DECIMAL(10,2)		DEFAULT 0
 , checkout_weight	DECIMAL(10,2)		DEFAULT 0
 , returned_weight	DECIMAL(10,2)		DEFAULT 0
 
@@ -64,3 +65,4 @@ ALTER TABLE Orders			ADD COLUMN returned_pieces	INT				DEFAULT 0		AFTER produced
 ALTER TABLE Orders			ADD COLUMN checkout_pieces	INT				DEFAULT 0		AFTER produced_pieces;
 
 ALTER TABLE Orders			ADD COLUMN quoted_units		INT				DEFAULT 0		AFTER produced_at;
+ALTER TABLE Orders			ADD COLUMN produced_weight	DECIMAL(10,2)	DEFAULT 0		AFTER ordered_weight;

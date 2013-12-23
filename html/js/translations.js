@@ -17,7 +17,7 @@ JKY.start_program = function() {
 		, program_name	: 'Translations'
 		, table_name	: 'Translations'
 		, specific		: 'locale'
-		, select		: 'Active'
+		, select		: ''
 		, filter		: ''
 		, sort_by		: 'sentence'
 		, sort_seq		: 'ASC'
@@ -28,12 +28,26 @@ JKY.start_program = function() {
 };
 
 /**
+ *	set all events (run only once per load)
+ */
+JKY.set_all_events = function() {
+//	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
+//	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
+//	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
+};
+
+/**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-support-translations');
-	JKY.set_html('jky-status', JKY.set_controls('Status Codes', 'Active', ''));
-	JKY.set_html('jky-app-select-label', JKY.t('Status'));
+	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Inactive'));
+	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
+	JKY.show('jky-app-select-line');
+//	select the first option as default
+	$('#jky-app-select option').eq(1).prop('selected', true);
+	$('#jky-app-select').change();
+
 	JKY.show('jky-action-publish');
 	JKY.languages = JKY.get_controls('Languages');
 };
@@ -44,17 +58,17 @@ JKY.set_initial_values = function() {
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-sentence"		>' + 				the_row.sentence		+ '</td>'
-		+  '<td class="jky-created-at"		>' + JKY.short_date(the_row.created_at)		+ '</td>'
 		+  '<td class="jky-updated-at"		>' + JKY.short_date(the_row.updated_at)		+ '</td>'
 		+  '<td class="jky-status"			>' + 				the_row.status			+ '</td>'
 		;
 	return my_html;
-}
+};
 
 /**
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
+	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
 	var my_rows = JKY.get_rows(JKY.App.get('table_name'), the_row.id);
 	var my_html = '';
 	for(var l=0; l<JKY.languages.length; l++) {
@@ -81,7 +95,7 @@ JKY.set_form_row = function(the_row) {
 	}
 	JKY.set_html('jky-locales', my_html);
 	$('#jky-form-data input[id]').each (function() {$(this).change(function() 	{JKY.App.process_change_input(this);});});
-}
+};
 
 /**
  *	set add new row

@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Products'
 		, table_name	: 'Products'
 		, specific		: ''
-		, select		: 'All'
+		, select		: ''
 		, filter		: ''
 		, sort_by		: 'product_name'
 		, sort_seq		: 'ASC'
@@ -43,6 +43,7 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
+	$('#jky-action-change'		).click( function() {JKY.App.change_status(JKY.row.id);});
 	$('#jky-start-value'		).attr('data-format', JKY.Session.get_date());
 	$('#jky-start-date'			).datetimepicker({language:JKY.Session.get_locale(), pickTime:false});
 
@@ -57,10 +58,13 @@ JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-sales-products');
 	JKY.set_side_active('jky-planning-products');
 	JKY.set_side_active('jky-production-products');
-	JKY.set_html('jky-app-select'  , JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
-	JKY.set_html('jky-product-type', JKY.set_radios_array('jky-product-type', JKY.get_configs('Product Types')));
-	JKY.set_html('jky-app-select-label', JKY.t('Type'));
+	JKY.set_html('jky-product-type'		, JKY.set_radios_array('jky-product-type', JKY.get_configs('Product Types')));
+	JKY.set_html('jky-app-select'		, JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-app-select-label'	, JKY.t('Type'));
 	JKY.show('jky-app-select-line');
+//	select the last option type as default
+	$('#jky-app-select option:last-child').prop('selected', true);
+	$('#jky-app-select').change();
 };
 
 /**
@@ -71,6 +75,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-product-name"	>' + the_row.product_name	+ '</td>'
 		+  '<td class="jky-product-type"	>' + the_row.product_type	+ '</td>'
 		+  '<td class="jky-start-date"		>' + JKY.out_date(the_row.start_date)	+ '</td>'
+		+  '<td class="jky-status"			>' + the_row.status			+ '</td>'
 		;
 	return my_html;
 };
@@ -79,9 +84,10 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-product-name'		, the_row.product_name	);
-	JKY.set_radio	('jky-product-type'		, the_row.product_type	);
-	JKY.set_date	('jky-start-date'		, JKY.out_date(the_row.start_date));
+	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
+	JKY.set_value	('jky-product-name'			, the_row.product_name	);
+	JKY.set_radio	('jky-product-type'			, the_row.product_type	);
+	JKY.set_date	('jky-start-date'			, JKY.out_date(the_row.start_date));
 
 	JKY.Photo.set_row_id(the_row.id);
 	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));

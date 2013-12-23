@@ -4,10 +4,12 @@
 
 JKY.display_pieces = function() {
 	var my_data =
-		{ method	: 'get_index'
-		, table		: 'Pieces'
-		, select	:  JKY.row.id
-		, order_by  : 'Pieces.number_of_pieces DESC'
+		{ method		: 'get_index'
+		, table			: 'Pieces'
+		, specific		: 'order'
+		, specific_id	:  JKY.row.id
+		, select		: 'All'
+		, order_by		: 'Pieces.number_of_pieces DESC'
 		};
 	JKY.ajax(false, my_data, JKY.generate_pieces);
 }
@@ -54,7 +56,7 @@ JKY.generate_piece = function(the_row) {
 		+ '<tr order_pieces_id=' + my_id + '>'
 		+ '<td class="jky-action"			>' + my_trash		+ '</td>'
 		+ '<td class="jky-pieces-barcode"	>' + the_row.barcode+ '</td>'
-		+ '<td class="jky-pieces-status"	>' + the_row.status	+ '</td>'
+		+ '<td class="jky-pieces-status"	>' + JKY.t(the_row.status) + '</td>'
 		+ '<td><input class="jky-pieces-number-of-pieces"				onchange="JKY.update_pieces(this, ' + my_id + ')" value="' +				 the_row.number_of_pieces	 + '"						/></td>'
 		+ '<td><input class="jky-pieces-produced-by"		text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' +				 the_row.produced_by		 + '"						/></td>'
 		+ '<td><input class="jky-pieces-checkin-weight"		text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.checkin_weight		)+ '"						/></td>'
@@ -149,10 +151,12 @@ JKY.update_pieces_weight = function() {
 JKY.print_pieces = function(the_id) {
 	var my_html  = '';
 	var my_data =
-		{ method	: 'get_index'
-		, table		: 'Pieces'
-		, select	:  the_id
-		, order_by  : 'Pieces.id'
+		{ method		: 'get_index'
+		, table			: 'Pieces'
+		, specific		: 'order'
+		, specific_id	:  the_id
+		, select		: 'All'
+		, order_by		: 'Pieces.id'
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);

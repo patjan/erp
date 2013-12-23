@@ -26,7 +26,6 @@
 #jky-photo-img			{width:120px; height:120px; border:4px ridge black;}
 
 #jky-website			{width:270px;}
-#jky-position			{width:270px;}
 #jky-email				{width:270px;}
 
 #jky-street1			{width:270px;}
@@ -61,22 +60,28 @@
 
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
-		<div id='jky-form-actions'	></div>
-		<ul  id='jky-form-status'	></ul>
+		<div id='jky-form-actions'>
+			<button id='jky-action-change'		class='btn' type='button' title="Click here to change the status"		><span>Change Status			</span></button>
+		</div>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+		</div>
+
 	</div>
 	<div class='jky-clear'></div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div					class='jky-form-line'><div class='jky-form-label'><span>				Nick Name</span>:</div><input  id='jky-nick-name'	class='jky-form-value' placeholder='Nick Name' /></div>
-			<div					class='jky-form-line'><div class='jky-form-label'><span>				Full Name</span>:</div><input  id='jky-full-name'	class='jky-form-value' placeholder='Full Name' /></div>
-			<div					class='jky-form-line'><div class='jky-form-label'></div><input  id='jky-is-customer' type='checkbox' value='Yes' /> (<span>Is a Customer</span> ?)</div>
-			<div					class='jky-form-line'><div class='jky-form-label'></div><input  id='jky-is-supplier' type='checkbox' value='Yes' /> (<span>Is a Supplier</span> ?)</div>
-			<div					class='jky-form-line'><div class='jky-form-label'></div><input  id='jky-is-dyer'	 type='checkbox' value='Yes' /> (<span>Is a Dyer    </span> ?)</div>
-			<div					class='jky-form-line'><div class='jky-form-label'></div><input  id='jky-is-partner'  type='checkbox' value='Yes' /> (<span>Is a Partner </span> ?)</div>
-			<div					class='jky-form-line'><div class='jky-form-label'><span>				      Tag</span>:</div><select id='jky-contact-tag'		></select></div>
-			<div					class='jky-form-line'><div class='jky-form-label'><span id='jky-cnpj-label'	>CNPJ</span>:</div><input  id='jky-cnpj'		class='jky-form-value' /></div>
-			<div					class='jky-form-line'><div class='jky-form-label'><span id='jky-ie-label'	>  IE</span>:</div><input  id='jky-ie'			class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>				Nick Name</span>:</div><input  id='jky-nick-name'	class='jky-form-value' placeholder='Nick Name' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>				Full Name</span>:</div><input  id='jky-full-name'	class='jky-form-value' placeholder='Full Name' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'></div><input  id='jky-is-customer'	type='checkbox' value='Yes' /> (<span>Is a Customer</span> ?)</div>
+			<div class='jky-form-line'><div class='jky-form-label'></div><input  id='jky-is-supplier'	type='checkbox' value='Yes' /> (<span>Is a Supplier</span> ?)</div>
+			<div class='jky-form-line'><div class='jky-form-label'></div><input  id='jky-is-dyer'		type='checkbox' value='Yes' /> (<span>Is a Dyer    </span> ?)</div>
+			<div class='jky-form-line'><div class='jky-form-label'></div><input  id='jky-is-partner'	type='checkbox' value='Yes' /> (<span>Is a Partner </span> ?)</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>				      Tag</span>:</div><select id='jky-contact-tag'		></select></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span id='jky-cnpj-label'>CNPJ</span>:</div><input  id='jky-cnpj'		class='jky-form-value' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span id='jky-ie-label'	>  IE</span>:</div><input  id='jky-ie'			class='jky-form-value' /></div>
 			<div class='jky-form-line'>&nbsp;</div>
 		</div>
 		<div id='jky-app-upload' class='jky-left'>
@@ -99,9 +104,8 @@
 		<div class='jky-clear'></div>
 
 		<div class='jky-left'>
-			<div id='jky-website-line'  class='jky-form-line'><div class='jky-form-label'><span> Website</span>:</div><input id='jky-website'	class='jky-form-value'	placeholder='www.jkysoftware.com'	/></div>
-			<div id='jky-position-line' class='jky-form-line'><div class='jky-form-label'><span>Position</span>:</div><input id='jky-position'	class='jky-form-value'	placeholder='Purchase Director'		/></div>
-			<div						class='jky-form-line'><div class='jky-form-label'><span>   Email</span>:</div><input id='jky-email'		class='jky-form-value'	placeholder='company@email.com'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Website</span>:</div><input id='jky-website'	class='jky-form-value'	placeholder='www.jkysoftware.com'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>   Email</span>:</div><input id='jky-email'		class='jky-form-value'	placeholder='company@email.com'		/></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -126,31 +130,27 @@
 
 		<div class='tab-content'>
 			<div id='jky-pane-address' class='tab-pane active'>
-				<div class='jky-left'>
-						<br>
-						<div class='jky-form-line'><div class='jky-form-label'><span>    Street</span>: </div><input id='jky-street1' class='jky-form-value' placeholder='Street'	/></div>
-						<div class='jky-form-line'><div class='jky-form-label'>							</div><input id='jky-street2' class='jky-form-value'						/></div>
-						<div class='jky-form-line'><div class='jky-form-label'><span>     City</span>:	</div>
-							<input	id='jky-city'		class='jky-form-value' placeholder='City'/>
-							<input	id='jky-zip'		class='jky-form-value' placeholder='Zip' />
-							<select id='jky-state'	></select>
-						</div>
-						<div class='jky-form-line'><div class='jky-form-label'><span>   Country</span>:	</div><select id='jky-country'></select></div>
-						<br>
-						<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-address' class='btn btn-success' type='button'><span>Save Address</span></button></div>
+				<br>
+				<div class='jky-form-line'><div class='jky-form-label'><span> Street</span>: </div><input id='jky-street1' class='jky-form-value' placeholder='Street'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'>						 </div><input id='jky-street2' class='jky-form-value' placeholder=''		/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>   City</span>: </div>
+					<input	id='jky-city'		class='jky-form-value' placeholder='City'/>
+					<input	id='jky-zip'		class='jky-form-value' placeholder='Zip' />
+					<select id='jky-state'	></select>
 				</div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>   Country</span>:	</div><select id='jky-country'></select></div>
+				<br>
+				<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-address' class='btn btn-success' type='button'><span>Save Address</span></button></div>
 			</div>
 
 			<div id='jky-pane-phones' class='tab-pane'>
-				<div class='jky-left'>
-					<br>
-					<div class='jky-form-line'><div class='jky-form-label'><span> Phone</span>:	</div><input  id='jky-phone'	class='jky-form-value' placeholder='123-456-7890'	/></div>
-					<div class='jky-form-line'><div class='jky-form-label'><span>Mobile</span>:	</div><input  id='jky-mobile'	class='jky-form-value' placeholder='123-456-7890'	/></div>
-					<div class='jky-form-line'><div class='jky-form-label'><span>   Fax</span>:	</div><input  id='jky-fax'		class='jky-form-value' placeholder='123-456-7890'	/></div>
-					<br>
-					<br>
-					<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-phones'	class='btn btn-success' type='button'><span>Save Phones</span></button></div>
-				</div>
+				<br>
+				<div class='jky-form-line'><div class='jky-form-label'><span> Phone</span>:	</div><input  id='jky-phone'	class='jky-form-value' placeholder='123-456-7890'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Mobile</span>:	</div><input  id='jky-mobile'	class='jky-form-value' placeholder='123-456-7890'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>   Fax</span>:	</div><input  id='jky-fax'		class='jky-form-value' placeholder='123-456-7890'	/></div>
+				<br>
+				<br>
+				<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-phones'	class='btn btn-success' type='button'><span>Save Phones</span></button></div>
 			</div>
 
 			<table id='jky-pane-contacts' class='tab-pane table table-striped'>

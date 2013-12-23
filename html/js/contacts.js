@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Contacts'
 		, table_name	: 'Contacts'
 		, specific		: 'is_contact'
-		, select		: 'All'
+		, select		: ''
 		, filter		: ''
 		, sort_by		: 'full_name'
 		, sort_seq		: 'ASC'
@@ -43,8 +43,9 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-action-reset').click(function()	{JKY.reset_user  ();});
-	$('#jky-save-address').click(function()	{JKY.save_address();});
+	$('#jky-action-change'	).click( function() {JKY.App.change_status(JKY.row.id);});
+	$('#jky-action-reset'	).click(function()	{JKY.reset_user					();});
+	$('#jky-save-address'	).click(function()	{JKY.save_address				();});
 };
 
 /**
@@ -58,6 +59,9 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select'		, JKY.set_controls('User Roles', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('User Role'));
 	JKY.show('jky-app-select-line');
+//	select the last option type as default
+	$('#jky-app-select option:last-child').prop('selected', true);
+	$('#jky-app-select').change();
 };
 
 /**
@@ -66,7 +70,7 @@ JKY.set_initial_values = function() {
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-nick-name"		>' + JKY.fix_null	(the_row.nick_name	)	+ '</td>'
-		+  '<td class="jky-mobile"			>' +				 the_row.mobile			+ '</td>'
+		+  '<td class="jky-mobile"			>' + JKY.fix_null	(the_row.mobile		)	+ '</td>'
 		+  '<td class="jky-email"			>' +				 the_row.email			+ '</td>'
 		+  '<td class="jky-user-name"		>' + JKY.fix_null	(the_row.user_name	)	+ '</td>'
 		+  '<td class="jky-user-role"		>' + JKY.fix_null	(the_row.user_role	)	+ '</td>'
@@ -78,21 +82,23 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-nick-name'		, the_row.nick_name		);
-	JKY.set_value	('jky-first-name'		, the_row.first_name	);
-	JKY.set_value	('jky-last-name'		, the_row.last_name		);
-	JKY.set_value	('jky-mobile'			, the_row.mobile		);
-	JKY.set_value	('jky-email'			, the_row.email			);
-	JKY.set_option	('jky-company-name'		, the_row.company_name	);
-	JKY.set_value	('jky-user-name'		, the_row.user_name		);
-	JKY.set_value	('jky-user-role'		, the_row.user_role		);
-	JKY.set_value	('jky-street1'			, the_row.street1		);
-	JKY.set_value	('jky-street2'			, the_row.street2		);
-	JKY.set_value	('jky-city'				, the_row.city			);
-	JKY.set_value	('jky-zip'				, the_row.zip			);
-	JKY.set_option	('jky-state'			, the_row.state			);
-	JKY.set_option	('jky-country'			, the_row.country		);
-	JKY.set_value	('jky-website'			, the_row.website		);
+	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
+	JKY.set_value	('jky-nick-name'			, the_row.nick_name			);
+	JKY.set_value	('jky-first-name'			, the_row.first_name		);
+	JKY.set_value	('jky-last-name'			, the_row.last_name			);
+	JKY.set_value	('jky-mobile'				, the_row.mobile			);
+	JKY.set_value	('jky-position'				, the_row.position			);
+	JKY.set_value	('jky-email'				, the_row.email				);
+	JKY.set_option	('jky-company-name'			, the_row.company_name		);
+	JKY.set_value	('jky-user-name'			, the_row.user_name			);
+	JKY.set_value	('jky-user-role'			, the_row.user_role			);
+	JKY.set_value	('jky-street1'				, the_row.street1			);
+	JKY.set_value	('jky-street2'				, the_row.street2			);
+	JKY.set_value	('jky-city'					, the_row.city				);
+	JKY.set_value	('jky-zip'					, the_row.zip				);
+	JKY.set_option	('jky-state'				, the_row.state				);
+	JKY.set_option	('jky-country'				, the_row.country			);
+	JKY.set_value	('jky-website'				, the_row.website			);
 
 	JKY.Photo.set_row_id(the_row.id);
 	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));
@@ -115,6 +121,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-first-name'		, '');
 	JKY.set_value	('jky-last-name'		, '');
 	JKY.set_value	('jky-mobile'			, '');
+	JKY.set_value	('jky-position'			, '');
 	JKY.set_value	('jky-email'			, '');
 	JKY.set_option	('jky-company-name'		, '');
 	JKY.set_value	('jky-user-name'		, '');
@@ -137,6 +144,7 @@ JKY.get_form_set = function() {
 		+    ', first_name=\'' + JKY.get_value	('jky-first-name'		) + '\''
 		+     ', last_name=\'' + JKY.get_value	('jky-last-name'		) + '\''
 		+        ', mobile=\'' + JKY.get_value	('jky-mobile'			) + '\''
+		+      ', position=\'' + JKY.get_value	('jky-position'			) + '\''
 		+         ', email=\'' + JKY.get_value	('jky-email'			) + '\''
 		+     ', full_name=\'' + JKY.get_value	('jky-first-name') + ' ' + JKY.get_value('jky-last-name') +'\''
 		;

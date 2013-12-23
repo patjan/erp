@@ -30,6 +30,7 @@ JKY.start_program = function() {
 JKY.set_all_events = function() {
 	$('#jky-action-clear'		).click	(function() {JKY.process_clear_screen	();});
 	$('#jky-action-confirm'		).click	(function() {JKY.process_confirm_screen	();});
+	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-piece-input-barcode').change(function() {JKY.process_input_barcode	();});
 	$('#jky-piece-check-all'	).click (function() {JKY.set_all_piece_check	(this);});
 };
@@ -40,6 +41,13 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_css('jky-app-breadcrumb', 'color', '#CC0000');
 	JKY.set_side_active('jky-pieces-checkout');
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Closed'));
+	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
+	JKY.show('jky-app-select-line');
+//	select the first option as default
+	$('#jky-app-select option').eq(1).prop('selected', true);
+	$('#jky-app-select').change();
+
 	JKY.process_clear_screen();
 };
 
@@ -67,6 +75,7 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
+	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
 	JKY.set_value	('jky-loadout-number'		, the_row.loadout_number	);
 	JKY.set_value	('jky-dyer-name'			, the_row.dyer_name			);
 	JKY.set_value	('jky-color-name'			, the_row.color_name		);
@@ -107,9 +116,9 @@ JKY.process_clear_screen = function() {
 	JKY.hide('jky-action-clear'  );
 	JKY.hide('jky-action-confirm');
 	JKY.remove_attr('jky-piece-check-all', 'checked');
-	JKY.set_html ('jky-piece-table-body'	 , '');
-	JKY.set_html ('jky-piece-input-message', '');
-	JKY.set_value('jky-piece-input-barcode', '');
+	JKY.set_html ('jky-piece-table-body'	, '');
+	JKY.set_html ('jky-piece-input-message'	, '');
+	JKY.set_value('jky-piece-input-barcode'	, '');
 	JKY.set_focus('jky-piece-input-barcode');
 	JKY.sequence = 0;
 }
@@ -219,7 +228,7 @@ JKY.confirm_row = function(the_id, the_barcode) {
 JKY.confirm_row_success = function(response) {
 	JKY.display_trace('confirm_row');
 //	JKY.set_value('jky-checkout-weight', JKY.get_value_by_id('BatchOuts', 'checkout_weight', JKY.row.id));
-//	JKY.set_value('jky-checkout-pieces' , JKY.get_value_by_id('BatchOuts', 'checkout_pieces' , JKY.row.id));
+//	JKY.set_value('jky-checkout-pieces', JKY.get_value_by_id('BatchOuts', 'checkout_pieces', JKY.row.id));
 	JKY.row = JKY.get_row(my_args.table_name, JKY.row.id);
 	JKY.set_value('jky-reserved-pieces' , JKY.row.reserved_pieces );
 	JKY.set_value('jky-checkout-weight', JKY.row.checkout_weight);

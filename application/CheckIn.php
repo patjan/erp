@@ -27,7 +27,7 @@ function JKY_checkin($data) {
 
 /**
  *	checkin Box from Boxes Check In
- * 
+ *
  *	$.ajax({ method:'checkin', table:'Boxes', barcode:9...9};
  *
  * @return	string	''
@@ -66,7 +66,7 @@ function JKY_checkin_box($the_data) {
 
 /**
  *	checkin Piece from Pieces Check In
- * 
+ *
  *	$.ajax({ method:'checkin', table:'Pieces', barcode:9...9, ...};
  *
  * @return	string	''
@@ -97,13 +97,11 @@ function JKY_checkin_piece($the_data) {
 	insert_changes($db, 'Pieces', $my_barcode);
 
 	$my_order_id = get_table_value('Pieces', 'order_id', $my_barcode);
-	$my_set = ', produced_at=\'' . get_time() . '\''
-			. ', produced_pieces = produced_pieces + 1'
-			;
 //	if (lowercase($my_remarks) == 'boa') {
 	if ($my_remarks == 'boa') {
 		$my_set = ', produced_at=\'' . get_time() . '\''
 				. ', produced_pieces = produced_pieces + 1'
+				. ', produced_weight = produced_weight + ' . $my_checkin_weight
 				;
 	}else{
 		$my_set = ', rejected_pieces = rejected_pieces + 1';
