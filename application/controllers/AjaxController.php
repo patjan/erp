@@ -1,4 +1,10 @@
 <?
+require_once   'Buscar_CEP.php';
+require_once      'CheckIn.php';
+require_once     'CheckOut.php';
+require_once     'Generate.php';
+require_once 'Print_Labels.php';
+require_once       'Return.php';
 /**
  *	Process all [Ajax] functions
  *	This controller will be used to interface client to mysql using Ajax
@@ -96,8 +102,9 @@ public function indexAction() {
 
 			case 'send_email'		: $this->send_email		(); return;
 			case 'send_receipt'		: $this->send_receipt	(); return;
-			case 'print_labels'		: echo json_encode(JKY_print_labels($data)); return;
+			case 'print_labels'		: echo json_encode(JKY_print_labels	($data)); return;
 			case 'refresh'			: $this->refresh		($data); return;
+			case 'buscar_cep'		: echo json_encode(JKY_buscar_cep	($data)); return;
 		}
 
 //		$table = get_request('table');

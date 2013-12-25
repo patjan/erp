@@ -1,0 +1,188 @@
+url	123.123.123.123:8200/ERP
+	?tok=123456789-123456789-123456789
+	&data=
+	{ "method":"add_new"
+	, "dest":
+	, products:
+		{[ n:1, ... ]
+		,[			]
+		}
+	}
+
+	POST
+
+http://nfe-tm/ERP
+http://nfe-tm/ERP?data={}	
+http://nfe-tm/ERP?data={"method":"xxx"}	
+http://nfe-tm/ERP?data={"method":"add_new"}
+http://nfe-tm/ERP?data={"method":"add_new", "customer": {"name":"CS INDUSTRIA E COMERCIO DE CONFECCOES LTDA","cnpj":"09.612.835/0001-77","ie":"148200205113"},"order": {"number":"123456"},"shipping":{"name":"O PROPRIO"},"items":[{"product_code":"791","product_name":"New PLM CO","color":"CP","cfop":"1201","quantity":"66.98","unit_price":"22.75","total_price":"1523.80","ipi":"0.00"},{"product_code":"791","product_name":"New PLM CO","color":"CP","cfop":"1201","quantity":"66.98","unit_price":"22.75","total_price":"1523.80","ipi":"0.00"}]}
+
+{"method":"add_new"}
+
+{   "method":"add_new"
+, "customer":{"name":"CS INDUSTRIA E COMERCIO DE CONFECCOES LTDA", "cnpj":"09.612.835/0001-77", "ie":"148200205113"}
+,    "order":{"number":"123456"}
+, "shipping":{"name":"O PROPRIO"}
+,    "items":
+	[{"product_code":"791","product_name":"New PLM CO","color":"CP","cfop":"1201","quantity":"66.98","unit_price":"22.75","total_price":"1523.80","ipi":"0.00"}
+	,{"product_code":"791","product_name":"New PLM CO","color":"CP","cfop":"1201","quantity":"66.98","unit_price":"22.75","total_price":"1523.80","ipi":"0.00"}
+	]
+}
+
+{"status":"ok"
+,"count":4
+,"customer":{"name":"CS INDUSTRIA E COMERCIO DE CONFECCOES LTDA","cnpj":"09.612.835\/0001-77","ie":"148200205113"}
+,"order":{"number":"123456"}
+,"shipping":{"name":"O PROPRIO"}
+,"items":
+	[{"product_code":"791","product_name":"New PLM CO","color":"CP","cfop":"1201","quantity":"66.98","unit_price":"22.75","total_price":"1523.80","ipi":"0.00"}
+	,{"product_code":"791","product_name":"New PLM CO","color":"CP","cfop":"1201","quantity":"66.98","unit_price":"22.75","total_price":"1523.80","ipi":"0.00"}
+	]
+}
+
+
+
+
+{"method":"get_session"
+}
+
+{"method":"get_companies"
+,"specific":"is_dyer"
+}
+	
+{"method":"get_options"
+,"table":"Colors"
+,"field":"color_name"
+,"selected":""
+,"initial":""
+}
+
+	
+{"status":"ok"
+,"data":
+	{"today_date":"2013-12-22"
+	,"environment":"development"
+	,"control_company":"100001"
+	,"company_name":"JKY Software"
+	,"company_logo":"JKY-Software.png"
+	,"locale":"en_US"
+	,"contact_id":"100004"
+	,"full_name":"Pat Jan"
+	,"user_name":"patjan"
+	,"user_role":"Support"
+	,"user_time":"2013-12-22 22:31:09"
+	,"user_id":"100001"
+	,"permissions":
+		[{"user_resource":"All","user_action":"All"}
+		]
+	,"start_page":"dyers"
+	}
+}	
+	
+{"status":"ok"
+,"rows":
+	[{"id":"200001","created_at":null					,"created_by":null	,"updated_at":"2013-11-15 11:04:18","updated_by":"100003","status":"Active","company_id":null,"support_id":null,"is_company":"Yes","is_customer":"No","is_supplier":"No" ,"is_dyer":"Yes","is_partner":"No","is_taxable":"Yes","photo":null,"nick_name":"A2"		,"first_name":null,"last_name":null,"full_name":"Favo Malhas Ltda"			,"tags":""			,"position":"","phone":null	,"mobile":null	,"fax":null	,"email":"","website":"","street1":null	,"street2":null	,"city":null,"state":null,"zip":null,"country":null,"language":"Portuguese","time_zone":"-3","cnpj":"","ie":"","start_dt":null,"end_dt":null,"credit_limit":"0.00","total_purchased":"0.00","total_refunded":"0.00","total_invoiced":"0.00","total_paid":"0.00"}
+	,{"id":"100078","created_at":"2013-07-15 06:27:17"	,"created_by":"1"	,"updated_at":"2013-08-27 06:18:08","updated_by":"100003","status":"Active","company_id":null,"support_id":null,"is_company":"Yes","is_customer":"No","is_supplier":"Yes","is_dyer":"Yes","is_partner":"No","is_taxable":"Yes","photo":null,"nick_name":"Biselli"	,"first_name":null,"last_name":null,"full_name":"Tinturaria Textil Biselli"	,"tags":"Tinturaria","position":"","phone":null	,"mobile":null	,"fax":null	,"email":"","website":"","street1":null	,"street2":null	,"city":null,"state":null,"zip":null,"country":null,"language":"Portuguese","time_zone":"-3","cnpj":"","ie":"","start_dt":null,"end_dt":null,"credit_limit":"0.00","total_purchased":"0.00","total_refunded":"0.00","total_invoiced":"0.00","total_paid":"0.00"}
+	,{"id":"100075","created_at":"2013-07-03 06:56:25"	,"created_by":"3"	,"updated_at":"2013-08-27 06:18:59","updated_by":"100003","status":"Active","company_id":null,"support_id":null,"is_company":"Yes","is_customer":"No","is_supplier":"Yes","is_dyer":"Yes","is_partner":"No","is_taxable":"Yes","photo":null,"nick_name":"Leao"		,"first_name":null,"last_name":null,"full_name":"Leao e Jetex"				,"tags":""			,"position":"","phone":""	,"mobile":""	,"fax":""	,"email":"","website":"","street1":""	,"street2":""	,"city":""	,"state":"SP","zip":""	,"country":"BR","language":"Portuguese","time_zone":"-3","cnpj":"","ie":"","start_dt":null,"end_dt":null,"credit_limit":"0.00","total_purchased":"0.00","total_refunded":"0.00","total_invoiced":"0.00","total_paid":"0.00"}
+	]
+}
+
+ide
+     return tag_nl( 'ide', ''
+          , tag( 'cUF'        , $cUF         )
+          . tag( 'cNF'        , $cNF         )
+          . tag( 'natOp'      , $natOp       )
+          . tag( 'indPag'     , $indPag      )
+          . tag( 'mod'        , $mod         )
+          . tag( 'serie'      , $serie       )
+          . tag( 'nNF'        , $nNF         )
+          . tag( 'dEmi'       , $dEmi        )
+          . tag( 'dSaiEnt'    , $dSaiEnt     )
+          . tag( 'tpNF'       , $tpNF        )
+          . tag( 'cMunFG'     , $cMunFG      )
+          . tag( 'tpImp'      , $tpImp       )
+          . tag( 'tpEmis'     , $tpEmis      )
+          . tag( 'cDV'        , $cDV         )
+          . tag( 'tpAmb'      , $tpAmb       )
+          . tag( 'finNFe'     , $finNFe      )
+          . tag( 'procEmi'    , $procEmi     )
+          . tag( 'verProc'    , $verProc     )
+          . $extra
+
+emit
+     return tag_nl( 'emit', ''
+          , tag( 'CNPJ'       , $CNPJ        )
+          . tag( 'xNome'      , $xNome       )
+          . tag_nl( 'enderEmit', ''
+          , tag( 'xLgr'       , $xLgr        )
+          . tag( 'nro'        , $nro         )
+          . ( $xCpl == '' ? '' : tag( 'xCpl', $xCpl ))
+          . tag( 'xBairro'    , $xBairro     )
+          . tag( 'cMun'       , $cMun        )
+          . tag( 'xMun'       , $xMun        )
+          . tag( 'UF'         , $UF          )
+          . tag( 'CEP'        , $CEP         )
+          . tag( 'cPais'      , $cPais       )
+          . tag( 'xPais'      , $xPais       )
+          . ( $fone == '' ? '' : tag( 'fone', $fone ))
+          )
+          . tag( 'IE'         , $IE          )
+          . tag( 'IM'         , $IM          )
+          . tag( 'CNAE'       , $CNAE        )
+          . tag( 'CRT'        , $CRT         )
+
+dest
+     return tag_nl( 'dest', ''
+          , ( $pessoa == 'J' ? tag( 'CNPJ', $CNPJ ) : tag( 'CPF', $CNPJ ))
+          . tag( 'xNome'      , $xNome       )
+          . tag_nl( 'enderDest', ''
+          , tag( 'xLgr'       , $xLgr        )
+          . tag( 'nro'        , $nro         )
+          . ( $xCpl == '' ? '' : tag( 'xCpl', $xCpl ))
+          . tag( 'xBairro'    , $xBairro     )
+          . tag( 'cMun'       , $cMun        )
+          . tag( 'xMun'       , $xMun        )
+          . tag( 'UF'         , $UF          )
+          . tag( 'CEP'        , $CEP         )
+          . tag( 'cPais'      , $cPais       )
+          . tag( 'xPais'      , $xPais       )
+          . ( $fone  == '' ? '' : tag( 'fone' , $fone  ))
+          )
+//        . ( $pessoa == 'J' ? tag( 'IE', $IE ) : tag( 'RG'   , $IE    ))
+          . ( $pessoa == 'J' ? tag( 'IE', $IE ) : tag( 'IE'   , ''     ))
+          . ( $email  == ''  ? ''               : tag( 'email', $email ))
+
+items
+
+total
+	return tag_nl( 'total', '', tag_nl( 'ICMSTot', ''
+          , tag( 'vBC'        , format_dollar( $vBC         ))
+          . tag( 'vICMS'      , format_dollar( $vICMS       ))
+          . tag( 'vBCST'      , format_dollar( $vBCST       ))
+          . tag( 'vST'        , format_dollar( $vST         ))
+          . tag( 'vProd'      , format_dollar( $vProd       ))
+          . tag( 'vFrete'     , format_dollar( $vFrete      ))
+          . tag( 'vSeg'       , format_dollar( $vSeg        ))
+          . tag( 'vDesc'      , format_dollar( $vDesc       ))
+          . tag( 'vII'        , format_dollar( $vII         ))
+          . tag( 'vIPI'       , format_dollar( $vIPI        ))
+          . tag( 'vPIS'       , format_dollar( $vPIS        ))
+          . tag( 'vCOFINS'    , format_dollar( $vCOFINS     ))
+          . tag( 'vOutro'     , format_dollar( $vOutro      ))
+          . tag( 'vNF'        , format_dollar( $vNF         ))
+          . $vTotTrib
+
+transp
+     return tag_nl( 'transp', ''
+          , tag( 'modFrete'   , $modFrete    )
+          . $transporta
+          . tag_nl( 'vol', ''
+          ,                       tag( 'qVol' , $qVol  )
+          .                       tag( 'esp'  , $esp   )
+          . ( $marca == '' ? '' : tag( 'marca', $marca ))
+          . ( $pesoL == 0  ? '' : tag( 'pesoL', $pesoL ))
+          . ( $pesoL == 0  ? '' : tag( 'pesoB', $pesoL ))
+
+infAdic
+     return tag_nl( 'infAdic', ''
+          , tag( 'infCpl'     , $infCpl      )

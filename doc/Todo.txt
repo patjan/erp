@@ -6,7 +6,9 @@ Bugs
 		not working on IE and CH
 		
 -------------------------------------------------------------------------------
-Json interface ERP to NFe
+3.	program ERPController.php
+4.	program ERP_add_new.PHP
+5.	Json interface ERP to NFe
 
 
 1. 2012-12-13	add Permissions to: Boxes, Pieces

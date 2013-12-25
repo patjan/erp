@@ -27,12 +27,16 @@ CREATE TABLE IF NOT EXISTS Contacts
 , fax				VARCHAR(255)		DEFAULT NULL
 , email				VARCHAR(255)		DEFAULT NULL
 , website			VARCHAR(255)		DEFAULT NULL
-, street1			VARCHAR(255)		DEFAULT NULL
-, street2			VARCHAR(255)		DEFAULT NULL
-, city				VARCHAR(255)		DEFAULT NULL
-, state				VARCHAR(255)		DEFAULT NULL
-, zip				VARCHAR(255)		DEFAULT NULL
-, country			VARCHAR(255)		DEFAULT NULL
+, st_number			VARCHAR(255)		DEFAULT NULL	# numero
+, st_cpl			VARCHAR(255)		DEFAULT NULL	# complemento
+, street1			VARCHAR(255)		DEFAULT NULL	# rua
+, street2			VARCHAR(255)		DEFAULT NULL	# bairro
+, city				VARCHAR(255)		DEFAULT NULL	# cidade
+, state				VARCHAR(255)		DEFAULT NULL	# estado
+, zip				VARCHAR(255)		DEFAULT NULL	# cep
+, country			VARCHAR(255)		DEFAULT NULL	# pais
+, district			VARCHAR(255)		DEFAULT NULL	# municipio
+
 , language			VARCHAR(255)		DEFAULT 'Portuguese'
 , time_zone			VARCHAR(255)		DEFAULT '-3'
 , cnpj				VARCHAR(255)		DEFAULT NULL
@@ -60,7 +64,7 @@ ALTER TABLE Contacts	ADD COLUMN is_customer    		CHAR(3)   		DEFAULT 'No'  AFTER
 ALTER TABLE Contacts	CHANGE job_position	position	VARCHAR(255)	DEFAULT NULL;
 ALTER TABLE Contacts	ADD COLUMN is_supplier    		CHAR(3)   		DEFAULT 'No'  AFTER is_customer;
 
-ALTER TABLE Contacts	ADD COLUMN nick_name				VARCHAR(255)	DEFAULT NULL  AFTER photo;
+ALTER TABLE Contacts	ADD COLUMN nick_name			VARCHAR(255)	DEFAULT NULL  AFTER photo;
 ALTER TABLE Contacts	ADD UNIQUE KEY	 nick_name	(nick_name);
 
 ALTER TABLE Contacts	CHANGE is_supplier	is_supplier	CHAR(3)			DEFAULT 'No';
@@ -69,3 +73,6 @@ UPDATE		Contacts	SET is_supplier = 'No'		WHERE is_supplier = 'no';
 ALTER TABLE Contacts	ADD COLUMN is_partner    		CHAR(3)   		DEFAULT 'No'  AFTER is_supplier;
 ALTER TABLE Contacts	ADD COLUMN is_dyer	    		CHAR(3)   		DEFAULT 'No'  AFTER is_supplier;
 
+ALTER TABLE Contacts	ADD COLUMN st_cpl				VARCHAR(255)	DEFAULT NULL  AFTER website;
+ALTER TABLE Contacts	ADD COLUMN st_number			VARCHAR(255)	DEFAULT NULL  AFTER website;
+ALTER TABLE Contacts	ADD COLUMN district				VARCHAR(255)	DEFAULT NULL  AFTER country;

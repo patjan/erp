@@ -3,11 +3,14 @@
  */
 JKY.display_address = function(the_row) {
 	JKY.set_value	('jky-street1'	, the_row.street1	);
+	JKY.set_value	('jky-st-number', the_row.st_number	);
+	JKY.set_value	('jky-st-cpl'	, the_row.st_cpl	);
 	JKY.set_value	('jky-street2'	, the_row.street2	);
 	JKY.set_value	('jky-city'		, the_row.city		);
 	JKY.set_value	('jky-zip'		, the_row.zip		);
 	JKY.set_option	('jky-state'	, the_row.state		);
 	JKY.set_option	('jky-country'	, the_row.country	);
+	JKY.set_value	('jky-district'	, the_row.district	);
 }
 
 /*
@@ -126,14 +129,43 @@ JKY.verify_input = function() {
 	}
 }
 
+JKY.buscar_cep = function(the_id) {
+	JKY.show('jky-loading');
+	var my_data =
+		{ method	: 'buscar_cep'
+		, zip		: JKY.get_value('jky-zip'		)
+		, state		: JKY.get_value('jky-state'		)
+		, city		: JKY.get_value('jky-city'		)
+		, street2	: JKY.get_value('jky-street2'	)
+		, street1	: JKY.get_value('jky-street1'	)
+		, district	: JKY.get_value('jky-district'	)
+		, country	: JKY.get_value('jky-country'	)
+		};
+	JKY.ajax(false, my_data, JKY.buscar_cep_success);
+}
+
+JKY.buscar_cep_success = function(the_row) {
+	JKY.set_value	('jky-street1'	, the_row.street1	);
+	JKY.set_value	('jky-street2'	, the_row.street2	);
+	JKY.set_value	('jky-city'		, the_row.city		);
+	JKY.set_value	('jky-zip'		, the_row.zip		);
+	JKY.set_option	('jky-state'	, the_row.state		);
+	JKY.set_option	('jky-country'	, the_row.country	);
+	JKY.set_value	('jky-district'	, the_row.district	);
+	JKY.hide('jky-loading');
+}
+
 JKY.save_address = function() {
 //	JKY.display_message('JKY.save_address');
-	var my_set  =   'street1 = \'' + JKY.get_value('jky-street1') + '\''
-				+ ', street2 = \'' + JKY.get_value('jky-street2') + '\''
-				+    ', city = \'' + JKY.get_value('jky-city'	) + '\''
-				+   ', state = \'' + JKY.get_value('jky-state'	) + '\''
-				+     ', zip = \'' + JKY.get_value('jky-zip'	) + '\''
-				+ ', country = \'' + JKY.get_value('jky-country') + '\''
+	var my_set  =     'street1 = \'' + JKY.get_value('jky-street1'	) + '\''
+				+ ', st_number = \'' + JKY.get_value('jky-st-number') + '\''
+				+    ', st_cpl = \'' + JKY.get_value('jky-st-cpl'	) + '\''
+				+   ', street2 = \'' + JKY.get_value('jky-street2'	) + '\''
+				+      ', city = \'' + JKY.get_value('jky-city'		) + '\''
+				+     ', state = \'' + JKY.get_value('jky-state'	) + '\''
+				+       ', zip = \'' + JKY.get_value('jky-zip'		) + '\''
+				+   ', country = \'' + JKY.get_value('jky-country'	) + '\''
+				+  ', district = \'' + JKY.get_value('jky-district'	) + '\''
 				;
 	var my_where = 'id = ' + JKY.row.id;
 	var my_data =

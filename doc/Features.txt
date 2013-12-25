@@ -44,7 +44,6 @@ Features (2013-12-17)
 - Smart integer fields
 - Smart numeric fields
 
-
 - Intranet and internet access
 - Multiple independent servers (with or without internet connection)
 - Database is synchronized automatically (with internet connection)
@@ -54,6 +53,9 @@ Features (2013-12-17)
 - Multiple language per server (real time translation)
 - Multiple date format (real time translation)
 
+- Integrated with www.buscarcep.com.br
+- Integrated with Printonix
+- Integrated with Barcode Scanner
 
 - Modules:
 	- Sales

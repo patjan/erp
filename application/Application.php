@@ -2,11 +2,6 @@
 require_once 'Constant.php';
 require_once  'Utility.php';
 require_once 'Specific.php';
-require_once 'Generate.php';
-require_once  'CheckIn.php';
-require_once 'CheckOut.php';
-require_once   'Return.php';
-require_once 'Print_Labels.php';
 
 //   report errors
 error_reporting( E_ALL );

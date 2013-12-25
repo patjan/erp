@@ -1,0 +1,20 @@
+Process Flow - 2013-12-23
+
+
+Sales		Quotations			-	Generate many Orders
+
+
+Planning	Thread Dyers		-	Generate many Check Out Batches
+
+			Orders				-	Generate many Check Out Batches
+									Generate many Active Pieces (labels)
+				
+
+Threads		Purchase Orders		-	Generate many Incoming Purchases
+
+			Incoming Purchases	-	Generate many Active Boxes (labels)
+
+			Check Out Batches	-	Generate many Box Check Outs
+
+			
+Dyers		Load Out Sales		-	Generate many Load Outs

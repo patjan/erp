@@ -48,6 +48,7 @@ JKY.set_all_events = function() {
 	$('#jky-tab-phones'		).click (function() {JKY.display_phones	 (JKY.row	 );});
 	$('#jky-tab-contacts'	).click (function() {JKY.display_contacts(JKY.row.id );});
 
+	$('#jky-zip'			).change(function() {JKY.buscar_cep				(this);});
 	$('#jky-save-address'	).click (function() {JKY.save_address				();});
 	$('#jky-save-phones'	).click (function() {JKY.save_phones				();});
 };

@@ -179,12 +179,15 @@ JKY.reset_user_success = function(response) {
 
 JKY.save_address = function() {
 //	JKY.display_message('JKY.save_address');
-	var my_set  =   'street1 = \'' + JKY.get_value('jky-street1') + '\''
-				+ ', street2 = \'' + JKY.get_value('jky-street2') + '\''
-				+    ', city = \'' + JKY.get_value('jky-city'	) + '\''
-				+   ', state = \'' + JKY.get_value('jky-state'	) + '\''
-				+     ', zip = \'' + JKY.get_value('jky-zip'	) + '\''
-				+ ', country = \'' + JKY.get_value('jky-country') + '\''
+	var my_set  =     'street1 = \'' + JKY.get_value('jky-street1'	) + '\''
+				+ ', st_number = \'' + JKY.get_value('jky-st-number') + '\''
+				+    ', st_cpl = \'' + JKY.get_value('jky-st-cpl'	) + '\''
+				+   ', street2 = \'' + JKY.get_value('jky-street2'	) + '\''
+				+      ', city = \'' + JKY.get_value('jky-city'		) + '\''
+				+     ', state = \'' + JKY.get_value('jky-state'	) + '\''
+				+       ', zip = \'' + JKY.get_value('jky-zip'		) + '\''
+				+   ', country = \'' + JKY.get_value('jky-country'	) + '\''
+				+  ', district = \'' + JKY.get_value('jky-district'	) + '\''
 				;
 	var my_where = 'id = ' + JKY.row.id;
 	var my_data =

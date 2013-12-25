@@ -25,11 +25,14 @@
 #jky-email				{width:270px;}
 
 #jky-street1			{width:270px;}
+#jky-st-number			{width: 90px;}
+#jky-st-cpl				{width: 90px;}
 #jky-street2			{width:270px;}
 #jky-city				{width:125px;}
 #jky-zip				{width: 70px;}
 #jky-state				{width: 50px;}
 #jky-country			{width:280px;}
+#jky-district			{width: 90px;}
 
 #jky-phone				{width:200px;}
 #jky-mobile				{width:200px;}
@@ -120,14 +123,18 @@
 		<div class='tab-content'>
 			<div id='jky-pane-address' class='tab-pane active'>
 				<br>
-				<div class='jky-form-line'><div class='jky-form-label'><span> Street</span>: </div><input id='jky-street1' class='jky-form-value' placeholder='Street'	/></div>
-				<div class='jky-form-line'><div class='jky-form-label'>						 </div><input id='jky-street2' class='jky-form-value' placeholder=''		/></div>
-				<div class='jky-form-line'><div class='jky-form-label'><span>   City</span>: </div>
+				<div class='jky-form-line'><div class='jky-form-label'><span> Street1</span>: </div><input id='jky-street1'		class='jky-form-value' /></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>  Number</span>: </div><input id='jky-st-number'	class='jky-form-value' /></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>     Cpl</span>: </div><input id='jky-st-cpl'		class='jky-form-value' /></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span> Street2</span>: </div><input id='jky-street2'		class='jky-form-value' /></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>    City</span>: </div>
 					<input	id='jky-city'		class='jky-form-value' placeholder='City'/>
 					<input	id='jky-zip'		class='jky-form-value' placeholder='Zip' />
 					<select id='jky-state'	></select>
 				</div>
-				<div class='jky-form-line'><div class='jky-form-label'><span>   Country</span>:	</div><select id='jky-country'></select></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span> Country</span>: </div><select id='jky-country'></select></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>District</span>: </div><input  id='jky-district'	class='jky-form-value' /></div>
+				<br>
 				<br>
 				<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-address' class='btn btn-success' type='button'><span>Save Address</span></button></div>
 			</div>

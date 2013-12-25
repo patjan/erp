@@ -1,0 +1,43 @@
+Pat, o cadastro de clientes, em vendas, precisa de mais informaçoes. No caso desse print estou passando a Tela Principal onde o campo que esta marcado como p pode ser TC (Tipo de Cliente) e ficar com numeraçao de 1 a 10 para escolha.
+Check Box chamado CF (custo financeiro) sim ou nao. Temos um custo básico, que pdoemos colocar no admin, que é de 3% ao mês. Se for marcado não, indiferente da condiçao de pagamento ele ignora os 3% ao mês. Se marcar Sim, abre uma caixa para preenchimento numero 99,99, sempre ao mês. Se nao tiver nada marcado, assume o default do sistema (3% ao mês), caso tenha algo marcado (Exemplo: 2,00) assume 2% ao mês. Continuarei num segundo Report com mesma imagem.
+
+Check box para DM(duplicata). Iremos gerar a duplicata direto do sistema, os bancos mandam os arquivos de como podemos fazer isso, e o Unidanfe também faz a impressão. Caso sim, junto com o romaneio, ja faz as duplicatas de acordo com valor das parcelas e datas.
+Como para escolha de condicao de pagamento (CP) precisamos criar no admin, ou entao um cadastro em planejamento, para condicao de pagamento. EX: a vista, 10 dias, 15/30/45, 20/40, 30, 30/45/60, etc
+Campo chamado de CS para colocarmos o limite do cliente (Esse campo é interessante ter esse nome de cs pois em caso de fiscalizacao podemos falar que é capital social). o Campo é numero até sei digitos mais 2 de virgula 999.999,99 e o ideal é que, a medida que o cliente for comprandoe não tiver passado a data do pagamento ainda, seja indicado na tela se ele esta ultrapassando o limite dele ou nao.
+
+http://www.buscarcep.com.br/?&chave=146RwGh.Q3UM1x2871JTmxKemqLfYX/&formato=xml&cep=03127-060
+
+<webservicecep>
+<quantidade>1</quantidade>
+<retorno>
+<cep>03127060</cep>
+<uf>SP</uf>
+<cidade>São Paulo</cidade>
+<bairro>Vila Prudente</bairro>
+<tipo_logradouro>Rua</tipo_logradouro>
+<logradouro>Baceúnas</logradouro>
+<data>2013-11-28 07:43:52</data>
+<resultado>1</resultado>
+<resultado_txt>sucesso. cep encontrado local</resultado_txt>
+<limite_buscas>10</limite_buscas>
+<ibge_uf>35</ibge_uf>
+<ibge_municipio>355030</ibge_municipio>
+<ibge_municipio_verificador>3550308</ibge_municipio_verificador>
+</retorno>
+</webservicecep>
+
+http://www.buscarcep.com.br/?&chave=146RwGh.Q3UM1x2871JTmxKemqLfYX/&formato=string&cep=03127-060
+
+&cep=03127060
+&uf=SP
+&cidade=São Paulo
+&bairro=Vila Prudente
+&tipo_logradouro=Rua
+&logradouro=Baceúnas
+&data=2013-11-28 07:43:52
+&resultado=1
+&resultado_txt=sucesso. cep encontrado local
+&limite_buscas=10
+&ibge_uf=35
+&ibge_municipio=355030
+&ibge_municipio_verificador=3550308

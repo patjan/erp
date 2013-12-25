@@ -43,9 +43,11 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-action-change'	).click( function() {JKY.App.change_status(JKY.row.id);});
-	$('#jky-action-reset'	).click(function()	{JKY.reset_user					();});
-	$('#jky-save-address'	).click(function()	{JKY.save_address				();});
+	$('#jky-action-change'	).click (function() {JKY.App.change_status(JKY.row.id);});
+	$('#jky-action-reset'	).click (function()	{JKY.reset_user					();});
+
+	$('#jky-zip'			).change(function() {JKY.buscar_cep				(this);});
+	$('#jky-save-address'	).click (function()	{JKY.save_address				();});
 };
 
 /**
@@ -93,12 +95,14 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-user-name'			, the_row.user_name			);
 	JKY.set_value	('jky-user-role'			, the_row.user_role			);
 	JKY.set_value	('jky-street1'				, the_row.street1			);
+	JKY.set_value	('jky-st-number'			, the_row.st_number			);
+	JKY.set_value	('jky-st-cpl'				, the_row.st_cpl			);
 	JKY.set_value	('jky-street2'				, the_row.street2			);
 	JKY.set_value	('jky-city'					, the_row.city				);
 	JKY.set_value	('jky-zip'					, the_row.zip				);
 	JKY.set_option	('jky-state'				, the_row.state				);
 	JKY.set_option	('jky-country'				, the_row.country			);
-	JKY.set_value	('jky-website'				, the_row.website			);
+	JKY.set_value	('jky-district'				, the_row.district			);
 
 	JKY.Photo.set_row_id(the_row.id);
 	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));
@@ -127,12 +131,14 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-user-name'		, '');
 	JKY.set_value	('jky-user-role'		, 'Visitor');
 	JKY.set_value	('jky-street1'			, '');
+	JKY.set_value	('jky-st-number'		, '');
+	JKY.set_value	('jky-st-cpl'			, '');
 	JKY.set_value	('jky-street2'			, '');
 	JKY.set_value	('jky-city'				, '');
 	JKY.set_value	('jky-zip'				, '');
 	JKY.set_option	('jky-state'			, 'SP');
 	JKY.set_option	('jky-country'			, 'BR');
-	JKY.set_value	('jky-website'			, '');
+	JKY.set_value	('jky-district'			, '');
 };
 
 /**
@@ -162,3 +168,29 @@ JKY.process_update = function(the_id, the_row) {
 JKY.process_delete = function(the_id, the_row) {
 	JKY.delete_user(the_id, the_row.user_id);
 };
+
+JKY.buscar_cep = function(the_id) {
+	JKY.show('jky-loading');
+	var my_data =
+		{ method	: 'buscar_cep'
+		, zip		: JKY.get_value('jky-zip'		)
+		, state		: JKY.get_value('jky-state'		)
+		, city		: JKY.get_value('jky-city'		)
+		, street2	: JKY.get_value('jky-street2'	)
+		, street1	: JKY.get_value('jky-street1'	)
+		, district	: JKY.get_value('jky-district'	)
+		, country	: JKY.get_value('jky-country'	)
+		};
+	JKY.ajax(false, my_data, JKY.buscar_cep_success);
+}
+
+JKY.buscar_cep_success = function(the_row) {
+	JKY.set_value	('jky-street1'	, the_row.street1	);
+	JKY.set_value	('jky-street2'	, the_row.street2	);
+	JKY.set_value	('jky-city'		, the_row.city		);
+	JKY.set_value	('jky-zip'		, the_row.zip		);
+	JKY.set_option	('jky-state'	, the_row.state		);
+	JKY.set_option	('jky-country'	, the_row.country	);
+	JKY.set_value	('jky-district'	, the_row.district	);
+	JKY.hide('jky-loading');
+}

@@ -1,0 +1,35 @@
+SELECT expected_date, sum(expected_weight)
+  FROM PurchaseLines
+  GROUP BY expected_date
+  
+  
+expected_date 	sum(expected_weight)
+2013-11-04 	500.00
+2013-11-05 	10250.00
+2013-11-06 	9000.00
+2013-11-07 	10000.00
+2013-11-08 	15000.00
+2013-11-11 	10000.00
+2013-11-12 	35200.00
+2013-11-13 	17000.00
+2013-11-14 	26000.00
+2013-11-15 	230.00
+2013-11-18 	5240.00
+2013-11-21 	10000.00
+2013-11-22 	5000.00
+2013-11-30 	1750.00
+2013-12-04 	2000.00
+
+
+SELECT date(received_at), sum(received_weight)
+  FROM Incomings
+  GROUP BY date(received_at)
+  
+date(received_at) 	sum(received_weight)
+2013-11-05 	15638.53
+2013-11-08 	26392.02
+2013-11-11 	10761.91
+2013-11-12 	12179.39
+2013-11-13 	2000.09
+2013-11-14 	17485.07
+2013-11-15 	132.90

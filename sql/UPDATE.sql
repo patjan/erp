@@ -239,3 +239,7 @@ ALTER TABLE Orders			ADD COLUMN quoted_units		INT				DEFAULT 0		AFTER produced_a
 ALTER TABLE QuotLines		CHANGE	quotation_id	parent_id		BIGINT			DEFAULT NULL;
 /* -- 2013/12/22	*/
 ALTER TABLE Orders			ADD COLUMN produced_weight	DECIMAL(10,2)	DEFAULT 0		AFTER ordered_weight;
+/* -- 2013/12/23	*/
+ALTER TABLE Contacts	ADD COLUMN st_cpl				VARCHAR(255)	DEFAULT NULL  AFTER website;
+ALTER TABLE Contacts	ADD COLUMN st_number			VARCHAR(255)	DEFAULT NULL  AFTER website;
+ALTER TABLE Contacts	ADD COLUMN district				VARCHAR(255)	DEFAULT NULL  AFTER country;
