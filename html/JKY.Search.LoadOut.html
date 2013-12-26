@@ -1,0 +1,32 @@
+<!-- JKY.Search.LoadOut.html -->
+<style>
+	.jky-search-color-name		{width:150px;}
+</style>
+<div id='jky-loadout-search' class='modal hide fade in'>
+	<div class='modal-header'>
+		<a class='close' data-dismiss='modal'>X</a>
+		<h3><span>Search</span>: <span>LoadOut</span></h3>
+	</div>
+	<div class='modal-body'>
+		<div>
+			<input id='jky-loadout-filter' class='search-query' type='text' placeholder='Search' />
+			<div class='jky-right'><span class='jky-bold'>Dyer</span>: <span id='jky-search-dyer-name'></span></div>
+		</div>
+		<table id='jky-loadout-table' class='table table-striped'>
+			<thead>
+				<tr>
+					<th class='jky-search-loadout-number'	><span>  LoadOut<br>Number	</span></th>
+					<th class='jky-search-color-name'		><span>             Color	</span></th>
+					<th class='jky-search-requested-date'	><span>Requested<br>Date	</span></th>
+					<th class='jky-search-requested-pieces'	><span>Requested<br>Pieces	</span></th>
+					<th class='jky-search-checkout-pieces'	><span>Check Out<br>Pieces	</span></th>
+				</tr>
+			</thead>
+			<tbody id='jky-loadout-search-body'></tbody>
+		</table>
+	</div>
+	<div class='modal-footer'>
+<!--	<a id='jky-loadout-add-new'	class='btn btn-success'				type='button'><span>Add New</span></a> &nbsp;	-->
+		<a id='jky-loadout-cancel'	class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
+	</div>
+</div>

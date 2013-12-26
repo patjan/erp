@@ -68,10 +68,11 @@ JKY.set_initial_values = function() {
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-loadout-number"	>' +				 the_row.loadout_number			+ '</td>'
+		+  '<td class="jky-shipdyer-number"	>' + JKY.fix_null	(the_row.shipdyer_id		)	+ '</td>'
 		+  '<td class="jky-dyer-name"		>' + JKY.fix_null	(the_row.dyer_name			)	+ '</td>'
 		+  '<td class="jky-color-name"		>' + JKY.fix_null	(the_row.color_name			)	+ '</td>'
 		+  '<td class="jky-requested-date"	>' + JKY.short_date	(the_row.requested_at		)	+ '</td>'
-		+  '<td class="jky-loadout-date"	>' + JKY.short_date	(the_row.loadout_at			)	+ '</td>'
+		+  '<td class="jky-checkout-date"	>' + JKY.short_date	(the_row.checkout_at		)	+ '</td>'
 		+  '<td class="jky-returned-date"	>' + JKY.short_date	(the_row.returned_at		)	+ '</td>'
 		+  '<td class="jky-requested-pieces">' +				 the_row.requested_pieces		+ '</td>'
 		+  '<td class="jky-checkout-pieces"	>' +				 the_row.checkout_pieces		+ '</td>'
@@ -178,6 +179,10 @@ JKY.process_delete = function(the_id, the_row) {
 
 JKY.get_color_id = function() {
 	return JKY.get_value('jky-color-id');
+}
+
+JKY.get_color_name = function() {
+	return JKY.get_value('jky-color-name');
 }
 
 /**

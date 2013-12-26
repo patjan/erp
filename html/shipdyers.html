@@ -1,0 +1,173 @@
+<style>
+.jky-row-loadout-number		{width: 80px; margin-right:5px;}
+.jky-td-loadout-number		{width:110px;}
+.jky-td-color-name			{width:300px;}
+.jky-td-pieces				{text-align:right !important;}
+
+.jky-color-name				{width:280px;}
+.jky-shipdyer-number		{width: 70px; text-align:center !important;}
+.jky-invoice-number			{width: 70px; text-align:center !important;}
+.jky-dyer-name				{width:100px; text-align:center !important; text-transform:capitalize;}
+.jky-transport-name			{width:100px; text-align:center !important; text-transform:capitalize;}
+.jky-shipped-date			{width: 60px; text-align:center !important;}
+.jky-delivered-date			{width: 60px; text-align:center !important;}
+.jky-batch-code				{width: 70px; text-align:center !important;}
+.jky-quantity				{width: 70px; text-align:right !important;}
+.jky-gross-weight			{width: 70px; text-align:right !important;}
+.jky-net-weight				{width: 70px; text-align:right !important;}
+
+#jky-shipdyer-number		{width: 80px;}
+#jky-invoice-number			{width: 80px;}
+#jky-dyer-name				{width:300px; text-transform:capitalize;}
+#jky-transport-name			{width:300px; text-transform:capitalize;}
+#jky-truck-license			{width: 80px;}
+#jky-unit-name				{width: 80px;}
+#jky-brand-name				{width: 80px;}
+#jky-batch-code				{width: 80px;}
+#jky-quantity				{width: 80px; text-align:right;}
+#jky-gross-weight			{width: 80px; text-align:right;}
+#jky-net-weight				{width: 80px; text-align:right;}
+</style>
+
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-shipdyer-number'	><span>  Ship Dyer<br>Number	</span></th>
+			<th class='jky-invoice-number'	><span>    Invoice<br>Number	</span></th>
+			<th class='jky-dyer-name'		><span>               Dyer		</span></th>
+			<th class='jky-transport-name'	><span>               Transport	</span></th>
+			<th class='jky-shipped-date'	><span>    Shipped<br>Date		</span></th>
+			<th class='jky-delivered-date'	><span>  Delivered<br>Date		</span></th>
+			<th class='jky-batch-code'		><span>	              Batch		</span></th>
+			<th class='jky-quantity'		><span>               Quantity 	</span></th>
+			<th class='jky-gross-weight'	><span>      Gross<br>Weight	</span></th>
+			<th class='jky-net-weight'		><span>        Net<br>Weight	</span></th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+</table>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'>
+			<button id='jky-action-generate'	class='btn'	type='button' title="Click here to generate invoice"	><span>Generate Invoice	</span></button>
+			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this shipment"	><span>Close Shipment	</span></button>
+		</div>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-data'>
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Ship Dyer Number</span>:</div>
+				<input  id='jky-shipdyer-number' class='jky-form-value'	disabled />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Invoice Number</span>:</div>
+				<input  id='jky-invoice-number' class='jky-form-value'	disabled />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Dyer</span>:</div>
+				<input id='jky-dyer-id'			type='hidden'	value='' />
+				<input id='jky-dyer-name'		disabled		value='' />
+				<a href='#' onClick='JKY.Dyer.display(this)'><i class='icon-share'></i></a>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Transport</span>:</div>
+				<input id='jky-transport-id'	type='hidden'	value='' />
+				<input id='jky-transport-name'	disabled		value='' />
+				<a href='#' onClick='JKY.Transport.display(this)'><i class='icon-share'></i></a>
+			</div>
+			<br>
+
+			<div class='jky-left'>
+				<div class='jky-form-line'>
+					<div class='jky-form-label'><span>Truck License</span>:</div>
+					<input id='jky-truck-license' class='jky-form-value' />
+				</div>
+				<div class='jky-form-line'>
+					<div class='jky-form-label'><span>Shipped Date</span>:</div>
+					<div id="jky-shipped-date" class="input-append date">
+						<input id='jky-shipped-value' type="text" />
+						<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+					</div>
+				</div>
+				<div class='jky-form-line'>
+					<div class='jky-form-label'><span>Delivered Date</span>:</div>
+					<div id="jky-delivered-date" class="input-append date">
+						<input id='jky-delivered-value' type="text" />
+						<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+					</div>
+				</div>
+			</div>
+			<div class='jky-left'>
+				<div class='jky-form-line'><div class='jky-form-label'><span>        Unit</span>:</div><input  id='jky-unit-name'		class='jky-form-value'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>       Brand</span>:</div><input  id='jky-brand-name'		class='jky-form-value'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>       Batch</span>:</div><input  id='jky-batch-code'		class='jky-form-value'	/></div>
+			</div>
+			<div class='jky-left'>
+				<div class='jky-form-line'><div class='jky-form-label'><span>    Quantity</span>:</div><input  id='jky-quantity'		class='jky-form-value'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Gross Weight</span>:</div><input  id='jky-gross-weight'	class='jky-form-value'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>  Net Weight</span>:</div><input  id='jky-net-weight'		class='jky-form-value'	/></div>
+			</div>
+
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+
+		<div>
+			<div class='jky-form-label'></div>
+			<div class='jky-form-buttons'>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-tabs' class='tabbable'>
+		<ul class='nav nav-tabs' id='cd-ul-tabs'>
+			<li	id='jky-tab-loadouts'	class='active'	><a href='#jky-pane-loadouts'	data-toggle='tab'><span>LoadOuts	</span></a></li>
+			<li id='jky-tab-remarks'					><a href='#jky-pane-remarks'	data-toggle='tab'><span>Remarks		</span></a></li>
+		</ul>
+
+		<div class='tab-content'>
+			<div id='jky-pane-loadouts' class='tab-pane active'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<th class='jky-action'></th>
+							<th class='jky-td-loadout-number'	><span>	Load Out<br>Number	</span></th>
+							<th	class='jky-td-color-name'		><span>             Color	</span></th>
+							<th class='jky-td-requested-date'	><span>Requested<br>Date	</span></th>
+							<th class='jky-td-checkout-date'	><span>Check Out<br>Date	</span></th>
+							<th class='jky-td-pieces'			><span>Requested<br>Pieces	</span></th>
+							<th class='jky-td-pieces'			><span>Check Out<br>Pieces	</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-loadouts-body'></tbody>
+					<tfoot>
+						<tr>
+							<td id='jky-loadout-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id='jky-form-footer'></div>
+</div>
+<div id='jky-body-loaded'></div>
+<script src='js/shipdyers.js'		></script>
+<script src='js/JKY.Dyer.js'		></script>
+<script src='js/JKY.Transport.js'	></script>
+<script src='js/JKY.LoadOut.js'		></script>
+<script src='js/ship_loadouts.js'	></script>

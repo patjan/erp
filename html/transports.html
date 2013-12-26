@@ -1,0 +1,14 @@
+<script src='js/JKY.Companies.js'></script>
+<script src='js/company_contacts.js'></script>
+
+<script>
+$('#jky-app-body').load('../JKY.Companies.html');
+
+JKY.start_program = function() {
+	JKY.Companies('Transports', 'is_transport');
+}
+
+JKY.set_side_bar = function() {
+	JKY.set_side_active('jky-dyers-transports');
+}
+</script>

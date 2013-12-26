@@ -1,76 +1,76 @@
 /*
- * display Sales -------------------------------------------------------------
+ * display Load Outs -------------------------------------------------------------
  */
 
-var my_loadout_id			= 0;
+var my_shipdyer_id			= 0;
 var my_old_requested_pieces	= 0;
 var my_new_requested_pieces	= 0;
 
-JKY.display_sales = function() {
-	my_loadout_id = JKY.row.id;
+JKY.display_loadouts = function() {
+	my_shipdyer_id = JKY.row.id;
 	var my_data =
 		{ method		: 'get_index'
-		, table			: 'LoadSales'
-		, specific		: 'loadout'
+		, table			: 'LoadOuts'
+		, specific		: 'shipdyer'
 		, specific_id	:  JKY.row.id
 		, select		: 'All'
-		, order_by		: 'LoadOut.loadout_number'
+		, order_by		: 'LoadOuts.loadout_number'
 		};
-	JKY.ajax(false, my_data, JKY.generate_sales);
+	JKY.ajax(false, my_data, JKY.generate_loadouts);
 }
 
-JKY.generate_sales = function(response) {
+JKY.generate_loadouts = function(response) {
 	var my_html		= '';
 //	var my_total	=  0;
 	var my_rows		= response.rows;
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];
-			my_html += JKY.generate_sale(my_row);
+			my_html += JKY.generate_loadout(my_row);
 
 //			var my_percent = parseFloat(my_row.percent);
 //			my_total += my_percent;
 		}
 	}
-//	JKY.set_html('jky-sale-total', my_total);
-	JKY.set_html('jky-sales-body' , my_html);
-	$('.jky-requested-pieces').ForceIntegerOnly();
+//	JKY.set_html('jky-loadout-total', my_total);
+	JKY.set_html('jky-loadouts-body' , my_html);
+//	$('.jky-requested-pieces').ForceIntegerOnly();
 	if (my_rows == '') {
-		JKY.insert_sale();
+//		JKY.insert_loadout();
 	}
 }
 
-JKY.generate_sale = function(the_row) {
+JKY.generate_loadout = function(the_row) {
 	var my_id = the_row.id;
-	var my_trash = (the_row.status == 'Draft') ? '<a onclick="JKY.delete_sale(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
-	var my_sale = ''
-		+ "<input class='jky-row-sale-color-id' type='hidden' value=" + the_row.sale_color_id + " />"
-		+ "<input class='jky-row-sale-number' disabled onchange='JKY.update_sale(this, " + my_id + ")' value='" + JKY.fix_null(the_row.sale_number) + "' />"
-		+ "<a href='#' onClick='JKY.Sale.display(this, JKY.get_color_id(), JKY.get_color_name())'><i class='icon-share'></i></a>"
+	var my_trash = (the_row.status == 'Draft') ? '<a onclick="JKY.delete_loadout(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_loadout = ''
+		+ "<input class='jky-row-loadout-color-id' type='hidden' value=" + the_row.loadout_color_id + " />"
+		+ "<input class='jky-row-loadout-number' disabled onchange='JKY.update_loadout(this, " + my_id + ")' value='" + JKY.fix_null(the_row.loadout_number) + "' />"
+		+ "<a href='#' onClick='JKY.LoadOut.display(this, JKY.get_dyer_id(), JKY.get_dyer_name())'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
-		+ '<tr sale_id=' + my_id + '>'
+		+ '<tr loadout_id=' + my_id + '>'
 		+ '<td class="jky-action"				>' + my_trash	+ '</td>'
-		+ '<td class="jky-td-sale-number"		>' + my_sale	+ '</td>'
-		+ '<td class="jky-td-customer-name"		><input  class="jky-customer-name"		disabled value="' + JKY.fix_null	(the_row.customer_name	)	+ '" /></td>'
-		+ '<td class="jky-td-product-name"		><input  class="jky-product-name"		disabled value="' + JKY.fix_null	(the_row.product_name	)	+ '" /></td>'
-		+ '<td class="jky-td-pieces"			><input  class="jky-sold-pieces"		disabled value="' + JKY.fix_null	(the_row.sold_pieces	)	+ '" /></td>'
-		+ '<td class="jky-td-pieces"			><input  class="jky-checkout-pieces"	disabled value="' +	JKY.fix_null	(the_row.checkout_pieces)	+ '" /></td>'
-		+ '<td class="jky-td-pieces"			><input  class="jky-requested-pieces"	onchange="JKY.update_sale(this, ' + my_id + ')"  value="' + the_row.requested_pieces + '" /></td>'
+		+ '<td class="jky-td-loadout-number"		>' + my_loadout	+ '</td>'
+		+ '<td class="jky-td-color-name"		><input  class="jky-color-name"			disabled value="' + JKY.fix_null	(the_row.color_name			) + '" /></td>'
+		+ '<td class="jky-td-requested-date"	><input  class="jky-requested-date"		disabled value="' + JKY.short_date	(the_row.requested_at		) + '" /></td>'
+		+ '<td class="jky-td-checkout-date"		><input  class="jky-checkout-date"		disabled value="' + JKY.short_date	(the_row.checkout_at		) + '" /></td>'
+		+ '<td class="jky-td-pieces"			><input  class="jky-requested-pieces"	disabled value="' + JKY.fix_null	(the_row.requested_pieces	) + '" /></td>'
+		+ '<td class="jky-td-pieces"			><input  class="jky-checkout-pieces"	disabled value="' +	JKY.fix_null	(the_row.checkout_pieces	) + '" /></td>'
 		+ '</tr>'
 		;
 	return my_html;
 }
 
-JKY.update_sale = function(id_name, the_id) {
-	JKY.display_trace('update_sale');
-	JKY.select_sale(the_id);
+JKY.update_loadout = function(id_name, the_id) {
+	JKY.display_trace('update_loadout');
+	JKY.select_loadout(the_id);
 	var my_tr = $(id_name).parent().parent();
-	var my_sale_color_id	= my_tr.find('.jky-row-sale-color-id'	).val();
+	var my_loadout_color_id	= my_tr.find('.jky-row-loadout-color-id'	).val();
 	var my_requested_pieces	= parseFloat(my_tr.find('.jky-requested-pieces'	).val());
 
 	var my_set = ''
-		+      'sale_color_id =  ' + my_sale_color_id
+		+      'loadout_color_id =  ' + my_loadout_color_id
 		+ ', requested_pieces =  ' + my_requested_pieces
 		;
 	var my_data =
@@ -80,65 +80,66 @@ JKY.update_sale = function(id_name, the_id) {
 		, where		: 'LoadSales.id = ' + the_id
 		};
 	my_new_requested_pieces = my_requested_pieces;
-	JKY.ajax(true, my_data, JKY.update_sale_success);
+	JKY.ajax(true, my_data, JKY.update_loadout_success);
 }
 
-JKY.update_sale_success = function(response) {
-JKY.display_trace('update_sale_success');
+JKY.update_loadout_success = function(response) {
+JKY.display_trace('update_loadout_success');
 //	JKY.display_message(response.message)
 	JKY.update_loadout();
 }
 
-JKY.insert_sale = function() {
+JKY.insert_loadout = function() {
 	var my_data =
 		{ method	: 'insert'
 		, table		: 'LoadSales'
-		, set		: 'LoadSales.loadout_id = ' + JKY.row.id
+		, set		: 'LoadSales.shipdyer_id = ' + JKY.row.id
 		};
-	JKY.ajax(true, my_data, JKY.insert_sale_success);
+	JKY.ajax(true, my_data, JKY.insert_loadout_success);
 }
 
-JKY.insert_sale_success = function(response) {
+JKY.insert_loadout_success = function(response) {
 	var my_row = [];
 	my_row.id				= response.id;
 	my_row.status			= 'Draft';
-	my_row.sale_color_id	= null;
+	my_row.loadout_color_id	= null;
 	my_row.requested_pieces	= 0;
 	my_row.checkout_pieces	= 0;
 	my_row.returned_pieces	= 0;
 
-	var my_html = JKY.generate_sale(my_row);
-	JKY.append_html('jky-sales-body', my_html);
-	$('#jky-sales-body tr:last a[onclick*="display"]').click();
+	var my_html = JKY.generate_loadout(my_row);
+	JKY.append_html('jky-loadouts-body', my_html);
+	$('#jky-loadouts-body tr:last a[onclick*="display"]').click();
 }
 
-JKY.delete_sale = function(id_name, the_id) {
-	JKY.select_sale(the_id);
+JKY.delete_loadout = function(id_name, the_id) {
+	JKY.select_loadout(the_id);
 	$(id_name).parent().parent().remove();
 	var my_data =
-		{ method	: 'delete'
-		, table		: 'LoadSales'
-		, where		: 'LoadSales.id = ' + the_id
+		{ method	: 'update'
+		, table		: 'LoadOuts'
+		, where		: 'LoadOuts.id = ' + the_id
+		, set		: 'LoadOuts.shipdyer_id = NULL'
 		};
 	my_new_requested_pieces = 0;
-	JKY.ajax(true, my_data, JKY.delete_sale_success);
+	JKY.ajax(true, my_data, JKY.delete_loadout_success);
 }
 
-JKY.delete_sale_success = function(response) {
+JKY.delete_loadout_success = function(response) {
 //	JKY.display_message(response.message)
-	JKY.update_loadout();
+//	JKY.update_loadout();
 }
 
-JKY.select_sale = function(the_id) {
+JKY.select_loadout = function(the_id) {
 	var my_data =
 		{ method	: 'get_row'
 		, table		: 'LoadSales'
 		, where		: 'LoadSales.id = ' + the_id
 		};
-	JKY.ajax(false, my_data, JKY.select_sale_success);
+	JKY.ajax(false, my_data, JKY.select_loadout_success);
 }
 
-JKY.select_sale_success = function(response) {
+JKY.select_loadout_success = function(response) {
 	my_old_requested_pieces = parseFloat(response.row.requested_pieces);
 }
 
@@ -150,7 +151,7 @@ JKY.display_trace('update_loadout');
 		{ method	: 'update'
 		, table		: 'LoadOuts'
 		, set		: my_set
-		, where		: 'LoadOuts.id = ' + my_loadout_id
+		, where		: 'LoadOuts.id = ' + my_shipdyer_id
 		};
 	JKY.ajax(false, my_data, JKY.update_loadout_success);
 }
@@ -160,7 +161,7 @@ JKY.display_trace('update_loadout_success');
 	var my_data =
 		{ method	: 'get_row'
 		, table		: 'LoadOuts'
-		, where		: 'LoadOuts.id = ' + my_loadout_id
+		, where		: 'LoadOuts.id = ' + my_shipdyer_id
 		};
 	JKY.ajax(true, my_data, JKY.display_loadout_requested);
 }
@@ -174,7 +175,7 @@ JKY.display_trace('display_loadout_requested');
 //	JKY.set_calculated_color();
 }
 
-JKY.print_sales = function(the_id) {
+JKY.print_loadouts = function(the_id) {
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'

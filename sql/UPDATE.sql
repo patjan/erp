@@ -243,3 +243,6 @@ ALTER TABLE Orders			ADD COLUMN produced_weight	DECIMAL(10,2)	DEFAULT 0		AFTER o
 ALTER TABLE Contacts	ADD COLUMN st_cpl				VARCHAR(255)	DEFAULT NULL  AFTER website;
 ALTER TABLE Contacts	ADD COLUMN st_number			VARCHAR(255)	DEFAULT NULL  AFTER website;
 ALTER TABLE Contacts	ADD COLUMN district				VARCHAR(255)	DEFAULT NULL  AFTER country;
+/* -- 2013/12/25	*/
+ALTER TABLE Contacts	ADD COLUMN is_transport    		CHAR(3)   		DEFAULT 'No'	AFTER is_partner;
+ALTER TABLE LoadOuts	ADD COLUMN shipdyer_id			BIGINT			DEFAULT NULL	AFTER color_id;

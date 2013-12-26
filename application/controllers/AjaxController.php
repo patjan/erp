@@ -653,6 +653,7 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	return ' AND      Contacts.is_supplier	= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_dyer'		)	return ' AND      Contacts.is_dyer		= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_partner'	)	return ' AND      Contacts.is_partner	= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_transport'	)	return ' AND      Contacts.is_transport	= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_company'	)	return ' AND      Contacts.is_company	= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	return ' AND      Contacts.is_company	= "No" ';
 	if ($table == 'Contacts'		&& $specific == 'company'		)	return ' AND      Contacts.company_id	= ' . $specific_id;
@@ -661,6 +662,9 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'BatchOuts'		&& $specific == 'checkout'		)	return ' AND     BatchOuts.checkout_id	= ' . $specific_id;
 	if ($table == 'Boxes'			&& $specific == 'batch'			)	return ' AND         Boxes.batch_id		= ' . $specific_id;
 	if ($table == 'FTPs'			&& $specific == 'product'		)	return ' AND          FTPs.product_id	= ' . $specific_id;
+	if ($table == 'LoadOuts'		&& $specific == 'dyer'			)	return ' AND      LoadOuts.dyer_id		= ' . $specific_id
+																			.  ' AND      LoadOuts.shipdyer_id IS NULL';
+	if ($table == 'LoadOuts'		&& $specific == 'shipdyer'		)	return ' AND      LoadOuts.shipdyer_id	= ' . $specific_id;
 	if ($table == 'LoadSales'		&& $specific == 'loadout'		)	return ' AND     LoadSales.loadout_id	= ' . $specific_id;
 	if ($table == 'Pieces'			&& $specific == 'order'			)	return ' AND         Pieces.order_id	= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'parent'		)	return ' AND PurchaseLines.parent_id	= ' . $specific_id;
@@ -684,6 +688,7 @@ private function set_select($table, $specific, $select) {
 			case 'Orders'			: return ' AND  Orders		.status IN   ("Draft","Active")';
 			case 'Purchases'		: return ' AND  Purchases	.status IN   ("Draft","Active")';
 			case 'PurchaseLines'	: return ' AND  Purchases	.status IN   ("Draft","Active")';
+			case 'ShipDyers'		: return ' AND  ShipDyers	.status IN   ("Draft","Active")';
 			case 'Quotations'		: return ' AND  Quotations	.status IN   ("Draft","Active")';
 			case 'TDyers'			: return ' AND  TDyers		.status IN   ("Draft","Active")';
 		}
@@ -726,6 +731,7 @@ private function set_select($table, $specific, $select) {
 		case 'QuotLines'		: return ' AND      QuotLines.parent_id		=  ' . $select;
 		case 'QuotColors'		: return ' AND     QuotColors.parent_id		=  ' . $select;
 		case 'ReqLines'			: return ' AND       ReqLines.request_id	=  ' . $select;
+		case 'ShipDyers'		: return ' AND      ShipDyers.status		= "' . $select . '"';
 		case 'TDyers'			: return ' AND         TDyers.status		= "' . $select . '"';
 		case 'TDyerColors'		: return ' AND    TDyerColors.parent_id		=  ' . $select;
 		case 'TDyerThreads'		: return ' AND   TDyerThreads.parent_id		=  ' . $select;
@@ -816,6 +822,8 @@ private function set_new_fields($table) {
 												. ',   Product.product_name		AS   product_name'
 												. ',  Customer.nick_name		AS  customer_name'
 												. ',       FTP.composition		AS			 composition';
+	if ($table == 'ShipDyers'		)	$return = ',      Dyer.nick_name		AS      dyer_name'
+												. ', Transport.nick_name		AS transport_name';
 	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name		AS  supplier_name';
 	if ($table == 'Batches'			)	$return = ',   Threads.name				AS           name'
 												. ', Incomings.incoming_number	AS  incoming_number'
@@ -960,6 +968,8 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleLine.product_id'
 												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id'
 												. '  LEFT JOIN        FTPs AS FTP		ON       FTP.id	=		    Orderx.ftp_id';
+	if ($table == 'ShipDyers'		)	$return = '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		 ShipDyers.dyer_id'
+												. '  LEFT JOIN    Contacts AS Transport	ON Transport.id	=		 ShipDyers.transport_id';
 	if ($table == 'Incomings'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Incomings.supplier_id';
 	if ($table == 'Batches'			)	$return = '  LEFT JOIN   Incomings  			ON Incomings.id	=		   Batches.incoming_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		   Batches.thread_id'
@@ -1592,6 +1602,35 @@ private function set_where($table, $filter) {
 			}}}}}}
 		}
 
+		if ($table == 'ShipDyers') {
+			if ($name == 'shipdyer_number'
+			or	$name == 'invoice_number'
+			or	$name == 'truck_license'
+			or	$name == 'shipped_at'
+			or	$name == 'delivered_at'
+			or	$name == 'unit_name'
+			or	$name == 'brand_name'
+			or	$name == 'batch_code'
+			or	$name == 'quantity'
+			or	$name == 'gross_weight'
+			or	$name == 'net_weight') {
+				if ($name == 'dyer_name') {
+					if ($value == '"%null%"') {
+						return ' AND ShipDyers.dyer_id IS NULL';
+					}else{
+						return ' AND Dyer.nick_name LIKE ' . $value;
+					}
+				}
+			}else{
+				if ($name == 'transport_name') {
+					if ($value == '"%null%"') {
+						return ' AND ShipDyers.transport_id IS NULL';
+					}else{
+						return ' AND Transport.nick_name LIKE ' . $value;
+					}
+			}}
+		}
+
 		if ($table == 'Incomings') {
 			if ($name == 'incoming_number'
 			or	$name == 'received_at'
@@ -2106,6 +2145,23 @@ private function set_where($table, $filter) {
 			;
 		}
 
+	if ($table ==  'ShipDyers') {
+		$return = ' ShipDyers.shipdyer_number	LIKE ' . $filter
+			. ' OR  ShipDyers.invoice_number	LIKE ' . $filter
+			. ' OR  ShipDyers.truck_license		LIKE ' . $filter
+			. ' OR  ShipDyers.shipped_at		LIKE ' . $filter
+			. ' OR  ShipDyers.delivered_at		LIKE ' . $filter
+			. ' OR  ShipDyers.unit_name			LIKE ' . $filter
+			. ' OR  ShipDyers.brand_name		LIKE ' . $filter
+			. ' OR  ShipDyers.batch_code		LIKE ' . $filter
+			. ' OR  ShipDyers.quantity			LIKE ' . $filter
+			. ' OR  ShipDyers.gross_weight		LIKE ' . $filter
+			. ' OR  ShipDyers.net_weight		LIKE ' . $filter
+			. ' OR      Dyer.nick_name			LIKE ' . $filter
+			. ' OR Transport.nick_name			LIKE ' . $filter
+			;
+		}
+
 	if ($table ==  'Incomings') {
 		$return = ' Incomings.incoming_number	LIKE ' . $filter
 			. ' OR  Incomings.received_at		LIKE ' . $filter
@@ -2392,6 +2448,7 @@ private function insert($data) {
 		case('Quotations'	)	: $set .= ', quotation_number = ' . $my_id; break;
 		case('Pieces'		)	: $set .=          ', barcode = ' . $my_id; break;
 		case('Requests'		)	: $set .=           ', number = ' . $my_id; break;
+		case('ShipDyers'	)	: $set .=  ', shipdyer_number = ' . $my_id; break;
 		case('TDyers'		)	: $set .=     ', tdyer_number = ' . $my_id; break;
 	}
 

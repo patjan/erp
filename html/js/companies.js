@@ -80,6 +80,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-is-supplier"		>' +				 the_row.is_supplier	+ '</td>'
 		+  '<td class="jky-is-dyer"			>' +				 the_row.is_dyer		+ '</td>'
 		+  '<td class="jky-is-partner"		>' +				 the_row.is_partner		+ '</td>'
+		+  '<td class="jky-is-transport"	>' +				 the_row.is_transport	+ '</td>'
 		+  '<td class="jky-phone"			>' + JKY.fix_null	(the_row.phone		)	+ '</td>'
 		+  '<td class="jky-mobile"			>' + JKY.fix_null	(the_row.mobile		)	+ '</td>'
 		+  '<td class="jky-email"			>' +				 the_row.email			+ '</td>'
@@ -98,6 +99,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_yes		('jky-is-supplier'			, the_row.is_supplier		);
 	JKY.set_yes		('jky-is-dyer'				, the_row.is_dyer			);
 	JKY.set_yes		('jky-is-partner'			, the_row.is_partner		);
+	JKY.set_yes		('jky-is-transport'			, the_row.is_transport		);
 	JKY.set_option	('jky-contact-tag'			, the_row.tags				);
 	JKY.set_value	('jky-cnpj'					, the_row.cnpj				);
 	JKY.set_value	('jky-ie'					, the_row.ie				);
@@ -127,6 +129,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_yes		('jky-is-supplier'		, 'No');
 	JKY.set_yes		('jky-is-dyer'			, 'No');
 	JKY.set_yes		('jky-is-partner'		, 'No');
+	JKY.set_yes		('jky-is-transport'		, 'No');
 	JKY.set_option	('jky-contact-tag'		, '');
 	JKY.set_value	('jky-cnpj'				, '');
 	JKY.set_value	('jky-ie'				, '');
@@ -149,6 +152,7 @@ JKY.get_form_set = function() {
 		+   ', is_supplier=\'' + JKY.get_yes_no	('jky-is-supplier'		) + '\''
 		+       ', is_dyer=\'' + JKY.get_yes_no	('jky-is-dyer'			) + '\''
 		+    ', is_partner=\'' + JKY.get_yes_no	('jky-is-partner'		) + '\''
+		+  ', is_transport=\'' + JKY.get_yes_no	('jky-is-transport'		) + '\''
 		+          ', tags=\'' + JKY.get_value	('jky-contact-tag'		) + '\''
 		+          ', cnpj=\'' + JKY.get_value	('jky-cnpj'				) + '\''
 		+            ', ie=\'' + JKY.get_value	('jky-ie'				) + '\''

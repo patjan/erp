@@ -24,6 +24,7 @@ JKY.Application = function() {
 	JKY.planning	= JKY.planning	|| [];
 	JKY.purchase	= JKY.purchase	|| [];
 	JKY.sales		= JKY.sales		|| [];
+	JKY.shipdyer	= JKY.shipdyer	|| [];
 
 	JKY.checkout.select = JKY.checkout.select	||	'Draft + Active';
 	JKY.incoming.select = JKY.incoming.select	||			'Active';
@@ -31,6 +32,7 @@ JKY.Application = function() {
 	JKY.planning.select = JKY.planning.select	||	'Draft + Active';
 	JKY.purchase.select = JKY.purchase.select	||	'Draft + Active';
 	JKY.sales.select	= JKY.sales.select		||	'Draft + Active';
+	JKY.shipdyer.select	= JKY.shipdyer.select	||	'Draft + Active';
 
 /**
  *	set all events (run only once per load)
@@ -324,6 +326,7 @@ if (my_first == true) {
 			if (my_args.program_name == 'Suppliers'	) {my_set = ', is_supplier  = \'Yes\'';}
 			if (my_args.program_name == 'Dyers'		) {my_set = ', is_dyer      = \'Yes\'';}
 			if (my_args.program_name == 'Partners'	) {my_set = ', is_partner   = \'Yes\'';}
+			if (my_args.program_name == 'Transports') {my_set = ', is_transport = \'Yes\'';}
 			var my_data =
 				{ method: 'insert'
 				, table :  my_args.table_name

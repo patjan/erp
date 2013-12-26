@@ -14,9 +14,10 @@ JKY.Sale = function() {
 	var my_sold			= 0;
 	var my_checkout		= 0;
 
-	function my_display(the_id, the_color_id) {
+	function my_display(the_id, the_color_id, the_color_name) {
 		my_the_id	= the_id;
 		my_color_id	= the_color_id;
+		JKY.set_html('jky-search-color-name', the_color_name);
 		JKY.set_focus(my_filter);
 		my_load_data();
 	}
@@ -143,7 +144,7 @@ JKY.Sale = function() {
 	});
 
 	return {
-		  display		: function(the_id, the_color_id){my_display(the_id, the_color_id);}
+		  display		: function(the_id, the_color_id, the_color_name)	{my_display(the_id, the_color_id, the_color_name);}
 		, load_data		: function()					{my_load_data();}
 		, click_row		: function(the_index, the_id)	{my_click_row(the_index, the_id);}
 		, add_new		: function()					{my_add_new();}

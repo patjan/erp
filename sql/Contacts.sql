@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS Contacts
 , is_supplier		CHAR(3)				DEFAULT 'No'
 , is_dyer			CHAR(3)				DEFAULT 'No'
 , is_partner		CHAR(3)				DEFAULT 'No'
+, is_transport		CHAR(3)				DEFAULT 'No'
 , is_taxable		CHAR(3)				DEFAULT 'Yes'
 , photo				VARCHAR(255)		DEFAULT NULL
 , nick_name			VARCHAR(255)		DEFAULT NULL
@@ -76,3 +77,5 @@ ALTER TABLE Contacts	ADD COLUMN is_dyer	    		CHAR(3)   		DEFAULT 'No'  AFTER is
 ALTER TABLE Contacts	ADD COLUMN st_cpl				VARCHAR(255)	DEFAULT NULL  AFTER website;
 ALTER TABLE Contacts	ADD COLUMN st_number			VARCHAR(255)	DEFAULT NULL  AFTER website;
 ALTER TABLE Contacts	ADD COLUMN district				VARCHAR(255)	DEFAULT NULL  AFTER country;
+
+ALTER TABLE Contacts	ADD COLUMN is_transport    		CHAR(3)   		DEFAULT 'No'  AFTER is_partner;

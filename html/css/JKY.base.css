@@ -140,7 +140,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 }
 #jky-app-breadcrumb		{float:left ; margin:12px 10px 8px 10px; height:24px; font-size:18px; font-weight:bold; vertical-align:middle;}
 #jky-app-select-line	{float:left ; margin:10px  0px 0px 30px; font-size:14px;}
-#jky-app-select			{						   width:170px; height:24px;}
+#jky-app-select			{						   width:170px; }
 #jky-app-filter			{float:right; margin:10px; width:300px; height:16px; border-radius:3px;}
 #jky-app-actions		{float:left ; margin: 6px 10px;}
 #jky-app-actions a		{vertical-align:bottom;}
@@ -339,6 +339,7 @@ li .arrow span {
 .jky-sale-number		{width: 50px; text-align:center !important;}
 .jky-scheduled-date		{width: 75px; text-align:center !important;}
 .jky-sequence			{width: 35px; text-align:center !important;}
+.jky-shipdyer-number	{width: 80px; text-align:center !important;}
 .jky-sold-pieces		{width: 50px; text-align:right  !important;}
 .jky-source-doc			{width: 70px; text-align:center !important;}
 .jky-status				{width: 65px; text-align:center !important;}
@@ -429,6 +430,7 @@ li .arrow span {
 .jky-pieces-quality			{width: 90px; text-align:center !important;}
 .jky-pieces-remarks			{width:200px; text-align:center !important;}
 
+.jky-search-checkout-pieces	{width: 65px; text-align:right  !important;}
 .jky-search-color-name		{width:319px; text-align:left   !important; text-transform:capitalize;}
 .jky-search-color-type		{width: 50px; text-align:center !important;}
 .jky-search-machine-name	{width:270px; text-align:left   !important; text-transform:capitalize;}
@@ -439,8 +441,11 @@ li .arrow span {
 .jky-search-product-name	{width:420px; text-align:left   !important; text-transform:capitalize;}
 .jky-search-product-type	{width: 50px; text-align:center !important;}
 .jky-search-product-start	{width: 50px; text-align:center !important;}
+.jky-search-requested-date	{width: 65px; text-align:center !important;}
+.jky-search-requested-pieces{width: 65px; text-align:right  !important;}
 .jky-search-sold-date		{width: 50px; text-align:center !important;}
 .jky-search-sold-pieces		{width: 55px; text-align:right  !important;}
+.jky-search-transport-name	{width:270px; text-align:left   !important; text-transform:capitalize;}
 
 /* -------------------------------------------------------------------------- */
 #jky-average-weight			{width: 75px; margin-bottom:4px; text-align:right;}
@@ -540,6 +545,7 @@ li .arrow span {
 #jky-returned-weight		{width: 75px;					 text-align:right;}
 #jky-sale-number			{width: 60px;}
 #jky-scheduled-value		{width:120px;}
+#jky-shipped-value			{width:115px;}
 #jky-source-doc				{width:100px;}
 #jky-speed					{width: 40px;					 text-align:right;}
 #jky-start-value			{width: 75px;}
@@ -560,6 +566,8 @@ li .arrow span {
 #jky-drawing				{float: left; margin:7px;}
 #jky-photo					{float: left; margin:7px;}
 
+#jky-search-color-name		{text-transform:capitalize;}
+#jky-search-dyer-name		{text-transform:capitalize;}
 /* -------------------------------------------------------------------------- */
 #jky-boxes-layer			{width:350px; top:240px; left:920px;}
 .jky-boxes-line				{width:260px; text-align:right; font-weight:bold;}

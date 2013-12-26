@@ -29,6 +29,9 @@ CREATE TABLE IF NOT EXISTS NextIds
 	INSERT INTO NextIds VALUES (NULL, 'History'			, NULL, 9);
 	INSERT INTO NextIds VALUES (NULL, 'Incomings'		, NULL, 5);
 	INSERT INTO NextIds VALUES (NULL, 'JKY_Users'		, NULL, 5);
+	INSERT INTO NextIds VALUES (NULL, 'LoadOuts'		, NULL, 9);
+	INSERT INTO NextIds VALUES (NULL, 'LoadSales'		, NULL, 9);
+	INSERT INTO NextIds VALUES (NULL, 'LoadSets'		, NULL, 9);
 	INSERT INTO NextIds VALUES (NULL, 'Machines'		, NULL, 5);
 	INSERT INTO NextIds VALUES (NULL, 'Orders'			, NULL, 5);
 	INSERT INTO NextIds VALUES (NULL, 'OrdThreads'		, NULL, 9);
@@ -43,6 +46,7 @@ CREATE TABLE IF NOT EXISTS NextIds
 	INSERT INTO NextIds VALUES (NULL, 'QuotLines'		, NULL, 9);
 	INSERT INTO NextIds VALUES (NULL, 'ReqLines'		, NULL, 9);
 	INSERT INTO NextIds VALUES (NULL, 'Requests'		, NULL, 5);
+	INSERT INTO NextIds VALUES (NULL, 'ShipDyers'		, NULL, 9);
 	INSERT INTO NextIds VALUES (NULL, 'TDyerColors'		, NULL, 9);
 	INSERT INTO NextIds VALUES (NULL, 'TDyers'			, NULL, 5);
 	INSERT INTO NextIds VALUES (NULL, 'TDyerThreads'	, NULL, 9);
