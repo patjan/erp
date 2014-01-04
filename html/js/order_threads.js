@@ -1,13 +1,13 @@
 /*
- * display Order Threads -------------------------------------------------------
+ * display Order Threads	----------------------------------------------------
  */
 
 JKY.display_threads = function() {
 	var my_data =
-		{ method	: 'get_index'
-		, table		: 'OrdThreads'
-		, select	:  JKY.row.id
-		, order_by  : 'OrdThreads.created_at DESC'
+		{ method		: 'get_index'
+		, table			: 'OrdThreads'
+		, select		:  JKY.row.id
+		, order_by  	: 'OrdThreads.created_at DESC'
 		};
 	JKY.ajax(false, my_data, JKY.generate_threads);
 }
@@ -35,19 +35,18 @@ JKY.generate_threads = function(response) {
 }
 
 JKY.generate_thread = function(the_row) {
-	JKY.display_trace('JKY.generate_thread: ' + the_row.id);
 	var my_id = the_row.id;
 //	var my_trash = (the_row.batchout_id == null) ? '<a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_trash = '';
 	var my_thread = ''
-		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
-//		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
+		+ "<input class='jky-thread-id' type='hidden' value=" + the_row.thread_id + " />"
+		+ "<input class='jky-thread-name' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
+//		+ " <a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_batchin = ''
-		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-row-number' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batch_number + "' />"
-		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
+		+ "<input class='jky-batchin-id' type='hidden' value=" + the_row.batchin_id + " />"
+		+ "<input class='jky-batchin-number' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batch_code + "' />"
+		+ " <a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_needed_at = JKY.out_date(the_row.needed_at);
 	if (my_needed_at == '') {
@@ -55,13 +54,13 @@ JKY.generate_thread = function(the_row) {
 	}
 	var my_html = ''
 		+ '<tr order_thread_id=' + my_id + '>'
-		+ '<td class="jky-action"				>' + my_trash	+ '</td>'
-		+ '<td class="jky-td-thread-name"		>' + my_thread	+ '</td>'
-		+ '<td class="jky-td-batchin-number"	>' + my_batchin	+ '</td>'
-		+ '<td class="jky-td-thread-date"		><input class="jky-needed-date"			onchange="JKY.update_thread(this, ' + my_id + ')" value="' +						 my_needed_at	   + '"						/></td>'
-		+ '<td class="jky-td-thread-date"		><input class="jky-checkout-date"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.short_date	(the_row.checkout_at	 ) + '" disabled	/></td>'
-		+ '<td class="jky-td-thread-weight"		><input class="jky-ordered-weight"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.ordered_weight  ) + '"						/></td>'
-		+ '<td class="jky-td-thread-weight"		><input class="jky-checkout-weight"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.checkout_weight ) + '" disabled	/></td>'
+		+ '<td class="jky-td-action"	>' + my_trash	+ '</td>'
+		+ '<td class="jky-td-text-w"	>' + my_thread	+ '</td>'
+		+ '<td class="jky-td-key"		>' + my_batchin	+ '</td>'
+		+ '<td class="jky-td-date"		><input class="jky-needed-date"			onchange="JKY.update_thread(this, ' + my_id + ')" value="' +						 my_needed_at	   + '"				/></td>'
+		+ '<td class="jky-td-date"		><input class="jky-checkout-date"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.short_date	(the_row.checkout_at	 ) + '" disabled	/></td>'
+		+ '<td class="jky-td-weight"	><input class="jky-ordered-weight"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.ordered_weight  ) + '"				/></td>'
+		+ '<td class="jky-td-weight"	><input class="jky-checkout-weight"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.checkout_weight ) + '" disabled	/></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -71,17 +70,17 @@ JKY.update_thread = function(id_name, the_id ) {
 	var my_saved_ordered = parseFloat(JKY.get_value_by_id('OrdThreads', 'ordered_weight', the_id));
 
 	var my_tr = $(id_name).parent().parent();
-	var my_thread_id		= my_tr.find('.jky-thread-row-id').val();
-	var my_batchin_id		= my_tr.find('.jky-batchin-row-id').val();
-	var my_needed_at		= JKY.inp_date	(my_tr.find('.jky-needed-date'		).val());
-	var my_ordered_weight	= parseFloat	(my_tr.find('.jky-ordered-weight'	).val());
+	var my_thread_id		=					 my_tr.find('.jky-thread-id'		).val();
+	var my_batchin_id		=					 my_tr.find('.jky-batchin-id'		).val();
+	var my_needed_at		= JKY.inp_date_value(my_tr.find('.jky-needed-date'		).val());
+	var my_ordered_weight	= parseFloat		(my_tr.find('.jky-ordered-weight'	).val());
 
 	JKY.Order.add_ordered(my_ordered_weight - my_saved_ordered);
 
 	var my_set = ''
-		+         'thread_id = ' + my_thread_id
-		+       ', needed_at = ' + my_needed_at
-		+  ', ordered_weight = ' + my_ordered_weight
+		+         'thread_id =  ' + my_thread_id
+		+       ', needed_at =  ' + my_needed_at
+		+  ', ordered_weight =  ' + my_ordered_weight
 		;
 	if (!isNaN(my_batchin_id)) {
 		my_set += ', batchin_id = ' + my_batchin_id

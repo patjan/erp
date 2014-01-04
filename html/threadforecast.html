@@ -1,44 +1,29 @@
-<style>
-.jky-form-label			{width:185px;}
-.jky-form-value			{width:280px;}
-.jky-checkbox			{width: 30px; text-align:center;}
-
-.jky-thread-group		{width:100px; text-align:left  !important;}
-.jky-thread-name		{width:150px; text-align:left  !important;}
-.jky-supplier-name		{width:100px; text-align:left  !important;}
-.jky-current-balance	{width: 70px; text-align:right !important;}
-.jky-forecast-past		{width: 70px; text-align:right !important;}
-.jky-forecast-month-1	{width: 70px; text-align:right !important;}
-.jky-forecast-month-2	{width: 70px; text-align:right !important;}
-.jky-forecast-month-3	{width: 70px; text-align:right !important;}
-.jky-forecast-future	{width: 70px; text-align:right !important;}
-
-#jky-reference-value	{width: 75px;}
-</style>
-
 <div id='jky-form-control'>
 	<div id='jky-form-actions'	>
 		<button id='jky-action-refresh'		class='btn btn-success' type='button' title="Click here to refresh the info"		><span>Refresh</span></button>
 	</div>
 	<div style='padding-top:5px;'>
 		<div class='jky-form-label'><span>Reference Date</span>:</div>
-		<div id="jky-reference-date"	class="input-append date"><input id='jky-reference-value'	type="text" /><span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span></div>
+		<div id='jky-reference-date' class='input-append date'>
+			<input class='jky-form-date' type='text' />
+			<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
+		</div>
 	</div>
 </div>
 
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-thread-group'	><span>  Thread<br>Group	</span></th>
-			<th class='jky-thread-name'		><span>  Thread<br>Name		</span></th>
-			<th class='jky-supplier-name'	><span>Supplier<br>Name		</span></th>
-			<th class='jky-current-balance'	><span> Current<br>Balance	</span></th>
-			<th class='jky-forecast-past'	><span>Forecast<br>Past		</span></th>
-			<th class='jky-forecast-month-1'><span>Forecast<br>Month 1	</span></th>
-			<th class='jky-forecast-month-2'><span>Forecast<br>Month 2	</span></th>
-			<th class='jky-forecast-month-3'><span>Forecast<br>Month 3	</span></th>
-			<th class='jky-forecast-future'	><span>Forecast<br>Future	</span></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-name-s'	><span>  Thread<br>Group	</span></th>
+			<th class='jky-td-name-l'	><span>  Thread				</span></th>
+			<th class='jky-td-name-s'	><span>Supplier				</span></th>
+			<th class='jky-td-weight'	><span> Current<br>Balance	</span></th>
+			<th class='jky-td-weight'	><span>Forecast<br>Past		</span></th>
+			<th class='jky-td-weight'	><span>Forecast<br>Month 1	</span></th>
+			<th class='jky-td-weight'	><span>Forecast<br>Month 2	</span></th>
+			<th class='jky-td-weight'	><span>Forecast<br>Month 3	</span></th>
+			<th class='jky-td-weight'	><span>Forecast<br>Future	</span></th>
 		</tr>
 	</thead>
 
@@ -48,25 +33,41 @@
 <div id='jky-app-form'>
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input  id='jky-thread-name'	class='jky-form-value'		placeholder='Name' 				/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>              NCM</span>:</div><input  id='jky-ncm'			class='jky-form-value'		placeholder='NCM' 				/></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Thread Name</span>:</div>
+				<input  id='jky-thread-name' class='jky-form-name jky-form-key' placeholder='Thread Name' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>NCM</span>:</div>
+				<input  id='jky-ncm' class='jky-form-name' placeholder='NCM' />
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
 
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Thread Group</span>:</div><select id='jky-thread-groups'	></select></div>
-<!--		<div class='jky-form-line'><div class='jky-form-label'><span>      Thread Color</span>:</div><input  id='jky-thread-color'	class='jky-form-value'		/></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Thread Group</span>:</div>
+				<select id='jky-thread-groups'></select>
+			</div>
+<!--		<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Thread Color</span>:</div>
+				<input id='jky-thread-color' class='jky-form-value' />
+			</div>
 -->
-			<div class='jky-form-line'><div class='jky-form-label'><span>       Composition</span>:</div><select id='jky-compositions'	></select></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Composition</span>:</div>
+				<select id='jky-compositions'></select>
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
+
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
 				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-				  <button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
 			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>
@@ -83,11 +84,6 @@
 
 			<div id='jky-notes' class='tab-pane'>
 				<div class='jky-left'>
-					<div class='jky-form-line'><div class='jky-form-label'><span>		Expected Date</span></div><div id='jky-expected-date'		class='jky-form-value'>02/01/2013	</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'><span>	Invoicing Control</span></div><div id='jky-invoicing-control'	class='jky-form-value'>Based on 	</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'><span>	 Invoice Received</span></div><div id='jky-invoice-received'	class='jky-form-value'>No			</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'><span>		 Payment Term</span></div><div id='jky-payment-term'		class='jky-form-value'>				</div></div>
-					<div class='jky-form-line'><div class='jky-form-label'><span>	  Fiscal Position</span></div><div id='jky-fiscal-position'		class='jky-form-value'>				</div></div>
 				</div>
 			</div>
 		</div>

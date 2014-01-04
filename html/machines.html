@@ -1,54 +1,14 @@
-<style>
-.jky-form-line-1		{width:273px;}
-.jky-form-line-2		{width:500px;}
-.jky-form-label			{width:160px;}
-.jky-form-label-1		{width:100px;}
-.jky-form-value			{width:100px;}
-.jky-form-value1		{width:240px;}
-.jky-checkbox			{width: 30px; text-align:center;}
-
-.jky-app-label			{float:left; margin:14px 0 0 14px; font-weight:bold;}
-
-.jky-machine-name		{width: 80px; text-transform:capitalize;}
-.jky-machine-brand		{width: 80px; text-align:right;}
-
-#jky-machine-name		{width:100px; font-size:16px; font-weight:bold; text-transform:capitalize;}
-#jky-machine-type		{width:230px;}
-#jky-machine-type span	{padding:4px 20px 0 4px; vertical-align:bottom;}
-#jky-machine-family		{width:200px;}
-#jky-machine-brand		{width:200px;}
-#jky-serial-number		{width:190px;}
-
-#jky-diameter			{width: 40px;}
-#jky-width				{width: 40px;}
-#jky-density			{width: 40px;}
-#jky-inputs				{width: 40px;}
-#jky-lanes				{width: 40px;}
-
-#jky-purchase-value		{width: 75px; text-align:center !important;}
-#jky-repair-value		{width: 75px; text-align:center !important;}
-#jky-return-value		{width: 75px; text-align:center !important;}
-
-.jky-cylinder-value		{width: 5%;		text-align:center;}
-.jky-cylinder-label		{width:80%;		text-align:left  ;}
-.jky-cylinder-label a 	{margin-left:-30px; padding:5px;}
-.jky-cylinder-current	{width: 40px;	text-align:right ; margin-right:0;}
-.jky-cylinder-row-name	{width:400px;}
-#jky-cylinder-total		{				text-align:right;}
-
-</style>
-
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-machine-name'	><span>			    Machine		</span></th>
-			<th class='jky-machine-brand'	><span>  Machine<br>Brand		</span></th>
-			<th class='jky-diameter'		><span>             Diameter	</span></th>
-			<th class='jky-width'			><span>             Width		</span></th>
-			<th class='jky-density'			><span>             Density		</span></th>
-			<th class='jky-inputs'			><span>             Inputs		</span></th>
-			<th class='jky-lane-type'		><span>             Lane Type	</span></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-name-s'	><span>    Machine				</span></th>
+			<th class='jky-td-name-s'	><span>    Machine<br>Brand		</span></th>
+			<th class='jky-td-integer'	><span>   Diameter				</span></th>
+			<th class='jky-td-integer'	><span>      Width				</span></th>
+			<th class='jky-td-integer'	><span>    Density				</span></th>
+			<th class='jky-td-integer'	><span>     Inputs				</span></th>
+			<th class='jky-td-name-l'	><span>       Lane Type			</span></th>
 		</tr>
 	</thead>
 
@@ -57,60 +17,92 @@
 
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
-		<div id='jky-form-actions'	></div>
-		<ul  id='jky-form-status'	></ul>
+		<div id='jky-form-actions'>
+		</div>
+		<div id='jky-form-status'>
+		</div>
+		<div class='jky-clear'></div>
 	</div>
-	<div class='jky-clear'></div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>             Name</span>:</div><input  id='jky-machine-name'	class='jky-form-value'		placeholder='Name'				/></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Machine</span>:</div>
+				<input id='jky-machine-name' class='jky-form-name jky-form-key' placeholder='Machine Name' />
+			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Machine Type</span>:</div>
-				<div id='jky-machine-type' class='jky-form-value'>
+				<div id='jky-machine-type' class='jky-left'>
 					<input type='radio' name='jky-machine-type' value='Circular'  /><span>Circular </span>
 					<input type='radio' name='jky-machine-type' value='Retilinea' /><span>Retilinea</span>
 				</div>
 			</div>
-
-			<div class='jky-form-line'><div class='jky-form-label'><span>   Machine Family</span>:</div><select id='jky-machine-family'	></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>    Machine Brand</span>:</div><select id='jky-machine-brand'	></select></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>    Serial Number</span>:</div><input  id='jky-serial-number'	placeholder='Serial Number'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>        Lane Type</span>:</div><input  id='jky-lane-type'		placeholder='Lane Type'		/></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Machine Family</span>:</div>
+				<select id='jky-machine-family'></select>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Machine Brand</span>:</div>
+				<select id='jky-machine-brand'></select>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Serial Number</span>:</div>
+				<input id='jky-serial-number' class='jky-form-name-l' placeholder='Serial Number' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Lane Type</span>:</div>
+				<input  id='jky-lane-type' class='jky-form-name-l' placeholder='Lane Type' />
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
 
 		<div class='jky-left'>
-			<div class='jky-form-line-1'><div class='jky-form-label'><span>          Diameter</span>:</div><input id='jky-diameter'		class='jky-form-value'		/></div>
-			<div class='jky-form-line-1'><div class='jky-form-label'><span>             Width</span>:</div><input id='jky-width'		class='jky-form-value'		/></div>
-			<div class='jky-form-line-1'><div class='jky-form-label'><span>           Density</span>:</div><input id='jky-density'		class='jky-form-value'		/></div>
-			<div class='jky-form-line-1'><div class='jky-form-label'><span>            Inputs</span>:</div><input id='jky-inputs'		class='jky-form-value'		/></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Diameter</span>:</div>
+				<input id='jky-diameter' class='jky-form-integer' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Width</span>:</div>
+				<input id='jky-width' class='jky-form-integer' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Density</span>:</div>
+				<input id='jky-density' class='jky-form-integer' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Inputs</span>:</div>
+				<input id='jky-inputs' class='jky-form-integer' />
+			</div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line-2'><div class='jky-form-label'><span> Purchased Date</span>:</div>
+			<div class='jky-form-line-2'><div class='jky-form-label'><span>Purchase Date</span>:</div>
 				<div id='jky-purchase-date' class='input-append date'>
-					<input id='jky-purchase-value' type='text'><span class='add-on'><i class='icon-th'></i></span>
+					<input class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
-			<div class='jky-form-line-2'><div class='jky-form-label'><span> Last Repair Date</span>:</div>
+			<div class='jky-form-line-2'><div class='jky-form-label'><span>Last Repair Date</span>:</div>
 				<div id='jky-repair-date' class='input-append date'>
-					<input id='jky-repair-value' type='text'><span class='add-on'><i class='icon-th'></i></span>
+					<input class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
-			<div class='jky-form-line-2'><div class='jky-form-label'><span> Last Return Date</span>:</div>
+			<div class='jky-form-line-2'><div class='jky-form-label'><span>Last Return Date</span>:</div>
 				<div id='jky-return-date' class='input-append date'>
-					<input id='jky-return-value' type='text'><span class='add-on'><i class='icon-th'></i></span>
+					<input class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
+
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
 				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-				  <button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
 			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>
@@ -120,20 +112,20 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-cylinders'		class='active'	><a href='#jky-pane-cylinders'		data-toggle='tab'><span>Cylinders		</span></a></li>
+			<li	id='jky-tab-cylinders'		class='active'	><a href='#jky-pane-cylinders'			data-toggle='tab'><span>Cylinders		</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
-			<div id='jky-pane-cylinders'	class='tab-pane active'>
+			<div id='jky-pane-cylinders' class='tab-pane active'>
 				<table class='table table-striped' >
 					<thead>
 						<tr>
-							<td class='jky-action'></td>
-							<td class='jky-cylinder-value'><span>Current</span></td>
-							<td class='jky-cylinder-label'><span>Name	</span></td>
+							<th class='jky-td-action'	></th>
+							<th class='jky-td-radio'	><span>Current	</span></th>
+							<th class='jky-td-text-l'	><span>Name	</span></th>
 						</tr>
 					</thead>
-					<tbody id='jky-cylinder-body'></tbody>
+					<tbody id='jky-cylinders-body'></tbody>
 					<tfoot>
 						<tr>
 							<td id='jky-cylinder-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
@@ -141,35 +133,13 @@
 					</tfoot>
 				</table>
 			</div>
-
 		</div>
 	</div>
 	<div id='jky-form-footer'></div>
 </div>
 
-<div id='jky-cylinder-search' class='modal hide fade in'>
-	<div class='modal-header'>
-		<a class='close' data-dismiss='modal'>X</a>
-		<h3><span>Search</span>: <span>Cylinder</span></h3>
-	</div>
-	<div class='modal-body'>
-		<div><input id='jky-cylinder-filter' class='search-query' type='text' placeholder='Search' /></div>
-		<table id='jky-cylinder-table' class='table table-striped'>
-			<thead>
-				<tr>
-					<th class='jky-cylinder-header-name'><span>Name</span></th>
-				</tr>
-			</thead>
-			<tbody id='jky-cylinder-search-body'></tbody>
-		</table>
-	</div>
-	<div class='modal-footer'>
-<!--	<button  id='jky-cylinder-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>
--->		&nbsp;<a id='jky-cylinder-cancel'	 class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></a>
-	</div>
-</div>
-
 <div id='jky-body-loaded'></div>
+
 <script src='js/machines.js'></script>
 <script src='js/JKY.Cylinder.js'></script>
 <script src='js/cylinders.js'></script>

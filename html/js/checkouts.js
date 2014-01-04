@@ -28,8 +28,8 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-requested-value').attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-checkout-value'	).attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-requested-date	input').attr('data-format', JKY.Session.get_date_time());
+	$('#jky-checkout-date	input').attr('data-format', JKY.Session.get_date_time());
 	$('#jky-requested-date'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-checkout-date'	).datetimepicker({language: JKY.Session.get_locale()});
 
@@ -77,14 +77,14 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-checkout-number"	>' +				 the_row.number					+ '</td>'
-		+  '<td class="jky-machine-name"	>' + JKY.fix_null	(the_row.machine_name		)	+ '</td>'
-		+  '<td class="jky-supplier-name"	>' + JKY.fix_null	(the_row.supplier_name		)	+ '</td>'
-		+  '<td class="jky-dyer-name"		>' + JKY.fix_null	(the_row.dyer_name			)	+ '</td>'
-		+  '<td class="jky-requested-date"	>' + JKY.short_date	(the_row.requested_at		)	+ '</td>'
-		+  '<td class="jky-requested-weight">' +				 the_row.requested_weight		+ '</td>'
-		+  '<td class="jky-checkout-date"	>' + JKY.short_date	(the_row.checkout_at		)	+ '</td>'
-		+  '<td class="jky-checkout-weight"	>' + JKY.fix_null	(the_row.checkout_weight	)	+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.number					+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.machine_name		)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.supplier_name		)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.dyer_name			)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.requested_at		)	+ '</td>'
+		+  '<td class="jky-td-weight"	>' +				 the_row.requested_weight		+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.checkout_at		)	+ '</td>'
+		+  '<td class="jky-td-weight"	>' + JKY.fix_null	(the_row.checkout_weight	)	+ '</td>'
 		;
 	return my_html;
 }
@@ -168,12 +168,12 @@ JKY.get_form_set = function() {
 		+      '  machine_id=  ' + my_machine_id
 		+     ', supplier_id=  ' + my_supplier_id
 		+         ', dyer_id=  ' + my_dyer_id
-		+          ', nfe_dl=\'' +				JKY.get_value('jky-nfe-dl'			) + '\''
-		+          ', nfe_tm=\'' +				JKY.get_value('jky-nfe-tm'			) + '\''
-		+    ', requested_at=  ' + JKY.inp_time(JKY.get_value('jky-requested-value'	))
-		+     ', checkout_at=  ' + JKY.inp_time(JKY.get_value('jky-checkout-value'	))
-//		+', requested_weight=  ' +				JKY.get_value('jky-requested-weight')
-//		+', requested_amount=  ' +				JKY.get_value('jky-requested-amount')
+		+          ', nfe_dl=\'' + JKY.get_value('jky-nfe-dl'			) + '\''
+		+          ', nfe_tm=\'' + JKY.get_value('jky-nfe-tm'			) + '\''
+		+    ', requested_at=  ' + JKY.inp_time	('jky-requested-date'	)
+		+     ', checkout_at=  ' + JKY.inp_time ('jky-checkout-date'	)
+//		+', requested_weight=  ' + JKY.get_value('jky-requested-weight'	)
+//		+', requested_amount=  ' + JKY.get_value('jky-requested-amount'	)
 		;
 	return my_set;
 }

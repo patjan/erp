@@ -46,17 +46,17 @@ JKY.generate_loadout = function(the_row) {
 	var my_loadout = ''
 		+ "<input class='jky-row-loadout-color-id' type='hidden' value=" + the_row.loadout_color_id + " />"
 		+ "<input class='jky-row-loadout-number' disabled onchange='JKY.update_loadout(this, " + my_id + ")' value='" + JKY.fix_null(the_row.loadout_number) + "' />"
-		+ "<a href='#' onClick='JKY.LoadOut.display(this, JKY.get_dyer_id(), JKY.get_dyer_name())'><i class='icon-share'></i></a>"
+		+ " <a href='#' onClick='JKY.LoadOut.display(this, JKY.get_dyer_id(), JKY.get_dyer_name())'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
 		+ '<tr loadout_id=' + my_id + '>'
-		+ '<td class="jky-action"				>' + my_trash	+ '</td>'
-		+ '<td class="jky-td-loadout-number"		>' + my_loadout	+ '</td>'
-		+ '<td class="jky-td-color-name"		><input  class="jky-color-name"			disabled value="' + JKY.fix_null	(the_row.color_name			) + '" /></td>'
-		+ '<td class="jky-td-requested-date"	><input  class="jky-requested-date"		disabled value="' + JKY.short_date	(the_row.requested_at		) + '" /></td>'
-		+ '<td class="jky-td-checkout-date"		><input  class="jky-checkout-date"		disabled value="' + JKY.short_date	(the_row.checkout_at		) + '" /></td>'
-		+ '<td class="jky-td-pieces"			><input  class="jky-requested-pieces"	disabled value="' + JKY.fix_null	(the_row.requested_pieces	) + '" /></td>'
-		+ '<td class="jky-td-pieces"			><input  class="jky-checkout-pieces"	disabled value="' +	JKY.fix_null	(the_row.checkout_pieces	) + '" /></td>'
+		+ '<td class="jky-td-action"	>' + my_trash	+ '</td>'
+		+ '<td class="jky-td-key-m"		>' + my_loadout	+ '</td>'
+		+ '<td class="jky-td-text-l"	><input	disabled value="' + JKY.fix_null	(the_row.color_name			) + '" /></td>'
+		+ '<td class="jky-td-date"		><input disabled value="' + JKY.short_date	(the_row.requested_at		) + '" /></td>'
+		+ '<td class="jky-td-date"		><input disabled value="' + JKY.short_date	(the_row.checkout_at		) + '" /></td>'
+		+ '<td class="jky-td-pieces"	><input disabled value="' + JKY.fix_null	(the_row.requested_pieces	) + '" /></td>'
+		+ '<td class="jky-td-pieces"	><input disabled value="' +	JKY.fix_null	(the_row.checkout_pieces	) + '" /></td>'
 		+ '</tr>'
 		;
 	return my_html;

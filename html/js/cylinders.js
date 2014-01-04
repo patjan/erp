@@ -21,7 +21,7 @@ JKY.generate_cylinders = function(response) {
 			my_html += JKY.generate_cylinder(my_row);
 		}
 	}
-	JKY.set_html('jky-cylinder-body' , my_html );
+	JKY.set_html('jky-cylinders-body' , my_html );
 	if (my_rows == '') {
 		JKY.insert_cylinder();
 	}
@@ -34,17 +34,17 @@ JKY.generate_cylinder = function(the_row) {
 	var my_checked	= my_current == 'Yes' ? ' checked="checked"' : '';
 
 	var my_cylinder = ''
-//		+ "<input class='jky-thread-row-id' type='hidden' value=" + my_thread_id + " />"
-		+ "<input class='jky-cylinder-row-name' disabled onchange='JKY.update_name(this, " + my_id + ")' value='" + my_name + "' />"
-		+ "<a href='#' onClick='JKY.Cylinder.display(this)'><i class='icon-share'></i></a>"
+//		+ "<input class='jky-thread-id' type='hidden' value=" + my_thread_id + " />"
+		+ "<input class='jky-cylinder-name' disabled onchange='JKY.update_name(this, " + my_id + ")' value='" + my_name + "' />"
+		+ " <a href='#' onClick='JKY.Cylinder.display(this)'><i class='icon-share'></i></a>"
 		;
 
 	var my_html = ''
 		+ '<tr cylinder_id=' + my_id + '>'
-		+ '<td class="jky-action"><a onclick="JKY.delete_cylinder(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-		+ '<td class="jky-cylinder-value"><input name="jky-cylinder-current" type="radio" onchange="JKY.set_current(this, ' + my_id + ')"'		 + my_checked + ' /></td>'
-//		+ '<td class="jky-cylinder-label"><input class="jky-cylinder-name"   text="text"  onchange="JKY.update_name(this, ' + my_id + ')" value="'	+ my_name + '" /></td>'
-		+ '<td class="jky-cylinder-label">' + my_cylinder + '</td>'
+		+ '<td class="jky-td-action"	><a onclick="JKY.delete_cylinder(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
+		+ '<td class="jky-td-radio"		><input name="jky-cylinder-current" type="radio" onchange="JKY.set_current(this, ' + my_id + ')"'			+ my_checked + '  /></td>'
+//		+ '<td class="jky-td-name-w"	><input class="jky-cylinder-name"   text="text"  onchange="JKY.update_name(this, ' + my_id + ')" value="'	+ my_name	 + '" /></td>'
+		+ '<td class="jky-td-name-w"	>' + my_cylinder + '</td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -81,7 +81,9 @@ JKY.unset_current = function(id_name, the_id ) {
 }
 
 JKY.unset_current_success = function(response) {
-	JKY.display_message(response.message)
+	if (response.message != 'record not found') {
+		JKY.display_message(response.message)
+	}
 }
 
 JKY.update_name = function(id_name, the_id ) {
@@ -118,7 +120,7 @@ JKY.insert_cylinder_success = function(response) {
 	my_row.checked	= '';
 
 	var	my_html = JKY.generate_cylinder(my_row);
-	JKY.append_html('jky-cylinder-body', my_html);
+	JKY.append_html('jky-cylinders-body', my_html);
 }
 
 JKY.delete_cylinder = function(id_name, the_id) {

@@ -11,8 +11,8 @@
  *
  * require:	JKY.Utils.js(JKY.display_confirm)
  *
- * 		$(my_parent).find('.jky-cylinder-row-id'  ).val(the_id );
- *		$(my_parent).find('.jky-cylinder-row-name').val(my_name);
+ * 		$(my_parent).find('.jky-cylinder-id'  ).val(the_id );
+ *		$(my_parent).find('.jky-cylinder-name').val(my_name);
  */
 JKY.Cylinder = function() {
 	var my_data			= null;
@@ -33,7 +33,7 @@ JKY.Cylinder = function() {
 		for(var i=0, max=my_data.length; i<max; i++) {
 			var my_row = my_data[i];
 			my_html += '<tr onclick="JKY.Cylinder.click_row(this)">'
-					+  '<td class="jky-cylinder-search-name">' + my_row.name + '</td>'
+					+  '<td class="jky-search-cylinder-name">' + my_row.name + '</td>'
 					+  '</tr>'
 					;
 		}
@@ -43,10 +43,10 @@ JKY.Cylinder = function() {
 
 
 	function my_click_row(the_index) {
-		var my_name = $(the_index).find('.jky-cylinder-search-name').html();
+		var my_name = $(the_index).find('.jky-search-cylinder-name').html();
 		var my_parent = $(my_the_id).parent();
-		$(my_parent).find('.jky-cylinder-row-name').val(my_name);
-		$(my_parent).find('.jky-cylinder-row-name').change();		//	to activate change event
+		$(my_parent).find('.jky-cylinder-name').val(my_name);
+		$(my_parent).find('.jky-cylinder-name').change();		//	to activate change event
 		JKY.hide_modal(my_layer);
 	}
 

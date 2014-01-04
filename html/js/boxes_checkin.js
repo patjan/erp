@@ -95,18 +95,18 @@ JKY.process_barcode_success = function(response) {
 			}
 
 			var my_html = '<tr>'
-					+ '<td class="jky-checkbox"			>' +  my_checkbox				+ '</td>'
-					+ '<td class="jky-barcode"			>' +  my_row.barcode			+ '</td>'
-					+ '<td class="jky-sequence"			>' +  my_sequence				+ '</td>'
-					+ '<td class="jky-status"			>' +  JKY.t(my_row.status)		+ '</td>'
-					+ '<td class="jky-batch-number"		>' +  my_row.batch_number		+ '</td>'
-					+ '<td class="jky-number-of-boxes"	>' +  my_row.number_of_boxes	+ '</td>'
-					+ '<td class="jky-number-of-cones"	>' +  my_row.number_of_cones	+ '</td>'
-					+ '<td class="jky-average-weight"	>' +  my_row.average_weight		+ '</td>'
-					+ '<td class="jky-real-weight"		>' +  my_row.real_weight		+ '</td>'
-					+ '<td class="jky-location"			>' +  my_location				+ '</td>'
-					+ '<td class="jky-supplier-name"	>' +  my_row.supplier_name		+ '</td>'
-					+ '<td class="jky-thread-name"		>' +  my_row.thread_name		+ '</td>'
+					+ '<td class="jky-td-checkbox"	>' +  my_checkbox				+ '</td>'
+					+ '<td class="jky-td-barcode"	>' +  my_row.barcode			+ '</td>'
+					+ '<td class="jky-td-input"		>' +  my_sequence				+ '</td>'
+					+ '<td class="jky-td-status"	>' +  JKY.t(my_row.status)		+ '</td>'
+					+ '<td class="jky-td-code"		>' +  my_row.batch_code			+ '</td>'
+					+ '<td class="jky-td-integer"	>' +  my_row.number_of_boxes	+ '</td>'
+					+ '<td class="jky-td-integer"	>' +  my_row.number_of_cones	+ '</td>'
+					+ '<td class="jky-td-weight"	>' +  my_row.average_weight		+ '</td>'
+					+ '<td class="jky-td-weight"	>' +  my_row.real_weight		+ '</td>'
+					+ '<td class="jky-td-location"	>' +  my_location				+ '</td>'
+					+ '<td class="jky-td-name-s"	>' +  my_row.supplier_name		+ '</td>'
+					+ '<td class="jky-td-thread"	>' +  my_row.thread_name		+ '</td>'
 					+ '</tr>'
 					;
 			JKY.prepend_html('jky-table-body', my_html);
@@ -118,8 +118,8 @@ JKY.process_barcode_success = function(response) {
 	}else{
 		JKY.play_beep();
 		JKY.set_html ('jky-input-message', JKY.t('not found'));
-		JKY.set_focus('jky-input-barcode');
 	}
+	JKY.set_focus('jky-input-barcode');
 }
 
 /**
@@ -130,7 +130,7 @@ JKY.process_confirm_screen = function() {
 	if ($('#jky-app-form').css('display') == 'block') {
 		JKY.confirm_row(JKY.row.id);
 	}else{
-		$('#jky-table-body .jky-checkbox input:checked').each(function() {
+		$('#jky-table-body .jky-td-checkbox input:checked').each(function() {
 			JKY.confirm_row(this, $(this).attr('barcode'));
 		});
 	}

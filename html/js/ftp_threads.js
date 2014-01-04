@@ -25,8 +25,8 @@ JKY.generate_threads = function(response) {
 			my_total += my_percent;
 		}
 	}
-	JKY.set_html('jky-thread-total', my_total);
-	JKY.set_html('jky-thread-body' , my_html );
+	JKY.set_value('jky-thread-total', my_total);
+	JKY.set_html('jky-threads-body' , my_html );
 	$('.jky-thread-percent').ForceIntegerOnly();
 	if (my_rows == '') {
 		JKY.insert_thread();
@@ -43,17 +43,16 @@ JKY.generate_thread = function(the_row) {
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + my_thread_id + " />"
 		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + my_name + "' />"
-		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
+		+ " <a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 
 	var my_html = ''
 		+ '<tr ftp_thread_id=' + my_id + '>'
-		+ '<td class="jky-action"><a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-		+ '<td class="jky-filler">&nbsp;</div>'
-		+ '<td class="jky-thread-value"		><input  class="jky-thread-percent"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + my_percent + '" /></td>'
-//		+ '<td class="jky-thread-label"		><select class="jky-thread-name"		onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_name		  , JKY.threads	 , true) + '</select></td>'
-		+ '<td class="jky-thread-label"		>' + my_thread + '</td>'
-		+ '<td class="jky-thread-label"		><select class="jky-thread-supplier"	onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_supplier_id, JKY.suppliers, true) + '</select></td>'
+		+ '<td class="jky-td-action"	><a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
+		+ '<td class="jky-td-filler"	>&nbsp;</div>'
+		+ '<td class="jky-td-percent"	><input  class="jky-thread-percent"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + my_percent + '" /></td>'
+		+ '<td class="jky-td-key-w"		>' + my_thread + '</td>'
+		+ '<td							><select class="jky-thread-supplier"	onchange="JKY.update_thread(this, ' + my_id + ')">' + JKY.set_options_array(my_supplier_id, JKY.suppliers, true) + '</select></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -101,7 +100,7 @@ JKY.insert_thread_success = function(response) {
 	my_row.supplier			= '';
 
 	var my_html = JKY.generate_thread(my_row);
-	JKY.append_html('jky-thread-body', my_html);
+	JKY.append_html('jky-threads-body', my_html);
 }
 
 JKY.copy_threads = function(the_source, the_id) {
@@ -172,8 +171,8 @@ JKY.delete_thread_success = function(response) {
 
 JKY.verify_total_percent = function() {
 	var my_total = 0;
-	$('#jky-thread-body tr').each(function() {
-		var my_percent  = parseFloat($(this).find('.jky-thread-percent' ).val());
+	$('#jky-threads-body tr').each(function() {
+		var my_percent = parseFloat($(this).find('.jky-thread-percent').val());
 		my_total += my_percent
 	})
 	JKY.set_html('jky-thread-total', my_total);

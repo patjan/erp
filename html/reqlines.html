@@ -1,58 +1,15 @@
-<style>
-.jky-form-line-1		{width:360px;}
-.jky-form-line-2		{width:360px;}
-.jky-form-label			{width:160px;}
-.jky-form-label-1		{width:100px;}
-.jky-form-value			{width:100px;}
-.jky-form-value1		{width:240px;}
-.jky-checkbox			{width: 30px; text-align:center;}
-
-.jky-request-number		{width: 60px; text-align:center !important;}
-.jky-machine-name		{width: 75px; text-align:left	!important; text-transform:capitalize;}
-.jky-supplier-name		{width: 75px; text-align:left	!important;}
-.jky-thread-name		{width:150px; text-align:left	!important;}
-.jky-batch-number		{width: 50px; text-align:left	!important;}
-.jky-ordered-at			{width: 65px; text-align:center !important;}
-.jky-requested-date		{width: 65px; text-align:center !important;}
-.jky-scheduled-at		{width: 65px; text-align:center !important;}
-.jky-checkout-at		{width: 75px; text-align:center !important;}
-.jky-requested-weight	{width: 70px; text-align:right	!important;}
-.jky-checkout-weight	{width: 70px; text-align:right	!important;}
-
-#jky-request-number		{width: 60px; font-size:16px; font-weight:bold;}
-#jky-machine-name		{width:260px; text-transform:capitalize;}
-#jky-supplier-name		{width:260px;}
-#jky-thread-name		{width:260px;}
-#jky-batch-number		{width: 75px;}
-#jky-ordered-at			{width:120px;}
-#jky-requested-value	{width: 75px;}
-#jky-requested-weight	{width: 80px; text-align:right;}
-#jky-scheduled-value	{width:120px;}
-#jky-checkout-at		{width:120px;}
-#jky-checkout-weight	{width: 80px; text-align:right;}
-
-.jky-line-label			{font-weight:bold; text-align:right;}
-.jky-line-value  input	{width: 90%;	text-align:right ;}
-.jky-line-thread input	{width:275px;	text-align:left  ;}
-.jky-line-thread a		{margin-left:-30px; padding:5px;}
-.jky-line-percent		{width: 40px;	text-align:right ; margin-right:0;}
-.jky-line-name			{width:280px;}
-#jky-line-total-expected{padding-right:15px; font-weight:bold; text-align:right;}
-#jky-line-total-received{padding-right:15px; font-weight:bold; text-align:right;}
-</style>
-
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-request-number'	><span>	 Request<br>Number		</span></th>
 			<th class='jky-machine-name'	><span>	 Machine<br>Name		</span></th>
 			<th class='jky-supplier-name'	><span>	Supplier<br>Name		</span></th>
 			<th class='jky-thread-name'		><span>	  Thread<br>Name		</span></th>
 			<th class='jky-batch-number'	><span>	   Batch<br>Number		</span></th>
-			<th class='jky-ordered-at'		><span>	 Ordered<br>Date		</span></th>
+			<th class='jky-ordered-date'	><span>	 Ordered<br>Date		</span></th>
 			<th class='jky-requested-date'	><span>Requested<br>Date		</span></th>
-			<th class='jky-scheduled-at'	><span>Scheduled<br>Date		</span></th>
+			<th class='jky-scheduled-date'	><span>Scheduled<br>Date		</span></th>
 			<th class='jky-requested-weight'><span>Requested<br>Weight		</span></th>
 			<th class='jky-checkout-weight'	><span>Check Out<br>Weight		</span></th>
 		</tr>
@@ -82,9 +39,9 @@
 		<div class='jky-left'>
 			<div class='jky-form-line-1'>
 				<div class='jky-form-label'><span>Requested Date</span>:</div>
-				<div id="jky-requested-date" class="input-append date">
-					<input id='jky-requested-value' type="text" />
-					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+				<div id='jky-requested-date' class='input-append date'>
+					<input class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line-1'>
@@ -93,14 +50,14 @@
 			</div>
 			<div class='jky-form-line-1'>
 				<div class='jky-form-label'><span>Scheduled Date</span>:</div>
-				<div id="jky-scheduled-at" class="input-append date">
-					<input id='jky-scheduled-value' type="text" />
-					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+				<div id='jky-scheduled-date' class='input-append date'>
+					<input class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line-2'><div class='jky-form-label'><span>  Check Out Date</span>:</div><input  id='jky-checkout-at'		class='jky-form-value' disabled /></div>
+			<div class='jky-form-line-2'><div class='jky-form-label'><span>  Check Out Date</span>:</div><input  id='jky-checkout-date'		class='jky-form-value' disabled /></div>
 			<div class='jky-form-line-2'><div class='jky-form-label'><span>Check Out Weight</span>:</div><input  id='jky-checkout-weight'	class='jky-form-value' disabled /></div>
 		</div>
 		<div class='jky-clear'></div>
@@ -116,39 +73,7 @@
 		</div>
 		<div class='jky-clear'></div>
 	</div>
-<!--
-	<div id='jky-form-tabs' class='tabbable'>
-		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-lines'			class='active'	><a href='#jky-pane-lines'			data-toggle='tab'><span>Lines			</span></a></li>
-		</ul>
 
-		<div class='tab-content'>
-			<div id='jky-pane-lines' class='tab-pane active'>
-				<table class='table table-striped' >
-					<thead>
-						<tr>
-							<th class='jky-action'></th>
-							<th class='jky-line-name'				><span>   Thread			</span></th>
-							<th class='jky-line-expected-weight'	><span> Expected<br>Weight	</span></th>
-							<th class='jky-line-received-weight'	><span> Received<br>Weight	</span></th>
-							<th class='jky-line-expected-date'		><span> Expected<br>Date	</span></th>
-							<th class='jky-line-scheduled-at'		><span>Scheduled<br>Time	</span></th>
-						</tr>
-					</thead>
-					<tbody id='jky-line-body'></tbody>
-					<tfoot>
-						<tr>
-							<td	   id='jky-line-add-new' class='jky-action'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
-							<td class='jky-line-label'><span>Total</span></td>
-							<td    id='jky-line-total-expected'></td>
-							<td    id='jky-line-total-received'></td>
-						</tr>
-					</tfoot>
-				</table>
-			</div>
-		</div>
-	</div>
--->
 	<div id='jky-form-footer'></div>
 </div>
 
@@ -177,6 +102,7 @@
 </div>
 
 <div id='jky-body-loaded'></div>
+
 <script src='js/reqlines.js'></script>
 <script src='js/JKY.Thread.js'></script>
 <script src='js/request_lines.js'></script>

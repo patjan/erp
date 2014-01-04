@@ -49,27 +49,27 @@ JKY.generate_batch = function(the_row) {
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
 		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.name + "' />"
-		+ "<a class='jky-thread-row-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
+		+ " <a class='jky-thread-row-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_purline = ''
 		+ "<input class='jky-purline-row-id' type='hidden' value=" + the_row.purchase_line_id + " />"
 		+ "<input class='jky-purline-row-number' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.purchase_number + "' />"
-		+ "<a class='jky-purline-row-icon href='#' onClick='JKY.PurLine.display(this, " + JKY.row.supplier_id + ")'><i class='icon-th'></i></a>"
+		+ " <a class='jky-purline-row-icon href='#' onClick='JKY.PurLine.display(this, " + JKY.row.supplier_id + ")'><i class='icon-th'></i></a>"
 		;
 //	var my_print = (the_row.labels_printed >= the_row.received_boxes) ? '' : '<a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
-	var my_print = '<a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
+	var my_print = ' <a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
 	var my_html = ''
 		+ '<tr batch_id=' + my_id + '>'
-		+ '<td class="jky-action"			>' + my_trash + '</td>'
-		+ '<td ><input  class="jky-batch-code"		text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.code	) + '" /></td>'
-		+ '<td ><input  class="jky-batch-number"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.batch	) + '" /></td>'
-		+ '<td class="jky-td-thread-name"		>' + my_thread  + '</td>'
-		+ '<td class="jky-td-purchase-number"	>' + my_purline + '</td>'
-		+ '<td class="jky-td-batch-boxes"	><input  class="jky-received-boxes"		onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.received_boxes	+ '" /></td>'
-		+ '<td class="jky-td-labels-printed"><input  class="jky-labels-printed"									 disabled value="' + the_row.labels_printed	+ '" />' + my_print + '</td>'
-		+ '<td class="jky-td-batch-boxes"	><input  class="jky-number-of-cones"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.number_of_cones	+ '" /></td>'
-		+ '<td class="jky-td-batch-weight"	><input  class="jky-received-weight"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.received_weight	+ '" /></td>'
-		+ '<td class="jky-td-batch-price"	><input  class="jky-unit-price"			onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.unit_price		+ '" /></td>'
+		+ '<td class="jky-td-action"	>' + my_trash + '</td>'
+		+ '<td class="jky-td-code"		><input  class="jky-batch-code"		text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.code	) + '" /></td>'
+		+ '<td class="jky-td-number"	><input  class="jky-batch-number"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.batch	) + '" /></td>'
+		+ '<td class="jky-td-thread"	>' + my_thread  + '</td>'
+		+ '<td class="jky-td-key"		>' + my_purline + '</td>'
+		+ '<td class="jky-td-boxes"		><input  class="jky-received-boxes"		onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.received_boxes	+ '" /></td>'
+		+ '<td class="jky-td-key-s"		><input  class="jky-labels-printed"									 disabled value="' + the_row.labels_printed	+ '" />' + my_print + '</td>'
+		+ '<td class="jky-td-integer"	><input  class="jky-number-of-cones"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.number_of_cones	+ '" /></td>'
+		+ '<td class="jky-td-weight"	><input  class="jky-received-weight"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.received_weight	+ '" /></td>'
+		+ '<td class="jky-td-price"		><input  class="jky-unit-price"			onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.unit_price		+ '" /></td>'
 		+ '</tr>'
 		;
 	return my_html;

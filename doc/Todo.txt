@@ -4,7 +4,6 @@ Bugs
 1.	loading.gif is not displaying on IE and CH
 2.	to immediately highlight clicked tab on menu or side-menu
 		not working on IE and CH
-		
 -------------------------------------------------------------------------------
 3.	program ERPController.php
 4.	program ERP_add_new.PHP
@@ -51,7 +50,7 @@ Bugs
 1. 2013-12-14	disable [Generate Check Out], if any missing Thread Batch
 2. 2013-12-14	drop out [Total] row of [Threads] tab
 3. 2013-12-17	drop out [Quality] col of [Pieces] tab
-4. 				decrease width of jky-form-line (4)
+4. 2013-12-31	decrease width of jky-form-line (4)
 5. 2013-12-22	add [Check Out Pieces] on form
 6. 2013-12-22	add [Produced Weight] on form
 
@@ -114,13 +113,12 @@ Extras
 
 4. program D3 into management reports
 
-
 6. modify all selects into new Search Layer:
 	[Customer] field of the [Quotations] form
 	
 7. on calendars, on click to exit the calendar back to form 	
 
-
+8. on Contacts, connect to Company
 ------------------------------------------------------------------------
 
 - IP fixo (telefonica) 30/5 mb R$270

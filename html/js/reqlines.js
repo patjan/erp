@@ -28,10 +28,10 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-requested-value').attr('data-format', JKY.Session.get_date		());
-	$('#jky-scheduled-value').attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-requested-date	input').attr('data-format', JKY.Session.get_date	 ());
+	$('#jky-scheduled-date	input').attr('data-format', JKY.Session.get_date_time());
 	$('#jky-requested-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
-	$('#jky-scheduled-at'	).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-scheduled-date'	).datetimepicker({language: JKY.Session.get_locale()});
 
 	$('#jky-action-generate'	).click( function() {JKY.generate_batch();})
 };
@@ -56,10 +56,10 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-machine-name"	>' + JKY.fix_null	(the_row.machine_name		)	+ '</td>'
 		+  '<td class="jky-supplier-name"	>' + JKY.fix_null	(the_row.supplier_name		)	+ '</td>'
 		+  '<td class="jky-thread-name"		>' +				 the_row.thread_name			+ '</td>'
-		+  '<td class="jky-batch-number"	>' +				 the_row.batch_number			+ '</td>'
-		+  '<td class="jky-ordered-at"		>' + JKY.short_date	(the_row.ordered_at			)	+ '</td>'
+		+  '<td class="jky-batch-code"		>' +				 the_row.batch_code				+ '</td>'
+		+  '<td class="jky-ordered-date"	>' + JKY.short_date	(the_row.ordered_at			)	+ '</td>'
 		+  '<td class="jky-requested-date"	>' + JKY.out_date	(the_row.requested_at		)	+ '</td>'
-		+  '<td class="jky-scheduled-at"	>' + JKY.short_date	(the_row.scheduled_at		)	+ '</td>'
+		+  '<td class="jky-scheduled-date"	>' + JKY.short_date	(the_row.scheduled_at		)	+ '</td>'
 		+  '<td class="jky-requested-weight">' +				 the_row.requested_weight		+ '</td>'
 		+  '<td class="jky-checkout-weight"	>' + JKY.fix_null	(the_row.checkout_weight	)	+ '</td>'
 		;
@@ -74,12 +74,12 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-machine-name'		, the_row.machine_name				);
 	JKY.set_value	('jky-supplier-name'	, the_row.supplier_name				);
 	JKY.set_value	('jky-thread-name'		, the_row.thread_name				);
-	JKY.set_value	('jky-batch-number'		, the_row.batch_number				);
-	JKY.set_value	('jky-ordered-at'		, JKY.out_time(the_row.ordered_at	));
+	JKY.set_value	('jky-batch-code'		, the_row.batch_code				);
+	JKY.set_value	('jky-ordered-date'		, JKY.out_time(the_row.ordered_at	));
 	JKY.set_date	('jky-requested-date'	, JKY.out_date(the_row.requested_at	));
 	JKY.set_value	('jky-requested-weight'	, the_row.requested_weight			);
-	JKY.set_date	('jky-scheduled-at'		, JKY.out_time(the_row.scheduled_at	));
-	JKY.set_value	('jky-checkout-at'		, JKY.out_time(the_row.checkout_at	));
+	JKY.set_date	('jky-scheduled-date'	, JKY.out_time(the_row.scheduled_at	));
+	JKY.set_value	('jky-checkout-date'	, JKY.out_time(the_row.checkout_at	));
 	JKY.set_value	('jky-checkout-weight'	, the_row.checkout_weight			);
 
 	if (the_row.batch_id == null) {
@@ -102,11 +102,11 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-supplier-name'	, '');
 	JKY.set_value	('jky-thread-name'		, '');
 	JKY.set_value	('jky-batch-number'		, '');
-	JKY.set_value	('jky-ordered-at'		,  JKY.out_time(JKY.get_now ()));
+	JKY.set_value	('jky-ordered-date'		,  JKY.out_time(JKY.get_now ()));
 	JKY.set_date	('jky-requested-date'	,  JKY.out_date(JKY.get_date()));
 	JKY.set_value	('jky-requested-weight'	, '');
-	JKY.set_date	('jky-scheduled-at'		, '');
-	JKY.set_date	('jky-checkout-at'		, '');
+	JKY.set_date	('jky-scheduled-date'	, '');
+	JKY.set_date	('jky-checkout-date'	, '');
 	JKY.set_value	('jky-checkout-weight'	, '');
 }
 
@@ -119,9 +119,9 @@ JKY.get_form_set = function() {
 //		+	 ', supplier_id=  ' + my_supplier_id
 //		+	   ', thread_id=  ' + my_thread_id
 //		+	  ', batchin_id=  ' + my_batchin_id
-//		+	   ' ordered_at=  ' + JKY.inp_time (JKY.get_value('jky-ordered-value'	))
-		+   'requested_date=  ' + JKY.inp_date (JKY.get_value('jky-requested-value'	))
-		+   ', scheduled_at=  ' + JKY.inp_time (JKY.get_value('jky-scheduled-value'	))
+//		+	   ' ordered_at=  ' + JKY.inp_time ('jky-ordered-date'	)
+		+   'requested_date=  ' + JKY.inp_date ('jky-requested-date')
+		+   ', scheduled_at=  ' + JKY.inp_time ('jky-scheduled-date')
 		;
 	return my_set;
 };

@@ -8,6 +8,7 @@ JKY.display_ftps = function() {
 		, table			: 'FTPs'
 		, specific		: 'product'
 		, specific_id	:  JKY.row.id
+		, select		: 'All'
 		, order_by		: 'FTPs.id'
 		};
 	JKY.ajax(false, my_data, JKY.generate_ftps);
@@ -22,7 +23,7 @@ JKY.generate_ftps = function(response) {
 			my_html += JKY.generate_ftp(my_row);
 		}
 	}
-	JKY.set_html('jky-ftp-body' , my_html);
+	JKY.set_html('jky-ftps-body' , my_html);
 }
 
 JKY.generate_ftp = function(the_row) {
@@ -31,10 +32,10 @@ JKY.generate_ftp = function(the_row) {
 
 	var my_html  = ''
 		+ '<tr ftp_id=' + my_id + '>'
-		+ '<td class="jky-action">' + my_trash + '</td>'
-		+ '<td class="jky-ftp-number"		>' + the_row.ftp_number		+ '</td>'
-		+ '<td class="jky-ftp-composition"	>' + the_row.composition	+ '</td>'
-		+ '<td class="jky-ftp-machine"		>' + the_row.machine_name	+ '</td>'
+		+ '<td class="jky-td-action"	>' + my_trash + '</td>'
+		+ '<td class="jky-td-number"	>' + the_row.ftp_number		+ '</td>'
+		+ '<td class="jky-td-name-l"	>' + the_row.composition	+ '</td>'
+		+ '<td class="jky-td-name-s"	>' + the_row.machine_name	+ '</td>'
 		+ '</tr>'
 		;
 	return my_html;

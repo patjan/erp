@@ -5,8 +5,8 @@
  *
  * require:	JKY.Utils.js(JKY.display_confirm)
  *
- * 		$(my_parent).find('.jky-thread-row-id'  ).val(the_id );
- *		$(my_parent).find('.jky-thread-row-name').val(my_name);
+ * 		$(my_parent).find('.jky-thread-id'  ).val(the_id );
+ *		$(my_parent).find('.jky-thread-name').val(my_name);
  */
 JKY.Thread = function() {
 	var my_the_id		= null;		//	external id that initiated the call
@@ -52,9 +52,9 @@ JKY.Thread = function() {
 	function my_click_row(the_index, the_id) {
 		var my_name = $(the_index).find('.jky-thread-search-name').html();
 		var my_parent = $(my_the_id).parent();
-		$(my_parent).find('.jky-thread-row-id'  ).val(the_id );
-		$(my_parent).find('.jky-thread-row-name').val(my_name);
-		$(my_parent).find('.jky-thread-row-name').change();		//	to activate change event
+		$(my_parent).find('.jky-thread-id'  ).val(the_id );
+		$(my_parent).find('.jky-thread-name').val(my_name);
+		$(my_parent).find('.jky-thread-name').change();		//	to activate change event
 		JKY.hide_modal(my_layer);
 	}
 

@@ -136,7 +136,7 @@ return;
 		}
 		var my_number_of_boxes	= my_row.number_of_boxes	;
 		var my_number_of_cones	= my_row.number_of_cones	;
-		var my_batch_number		= my_row.batch				;
+		var my_batch_code		= my_row.batch				;
 		var my_checkin_location	= my_row.checkin_location	;
 		var my_barcode			= my_row.barcode			;
 
@@ -193,7 +193,7 @@ return;
 + "\n" + 'INV;POINT;428;667;16;16;*' + my_composition		+ '*'
 + "\n" + 'INV;POINT;377;671;16;16;*' + my_real_weight		+ ' KG*'
 + "\n" + 'INV;POINT;324;647;16;16;*' + my_number_of_cones	+ '*'
-+ "\n" + 'INV;POINT;324;248;16;16;*' + my_batch_number		+ '*'
++ "\n" + 'INV;POINT;324;248;16;16;*' + my_batch_code		+ '*'
 + "\n" + 'INV;POINT;242;296;32;32;*' + my_checkin_location	+ '*'
 
 + "\n" + 'STOP'

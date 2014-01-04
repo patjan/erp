@@ -1,48 +1,17 @@
-<style>
-.jky-row-loadout-number		{width: 80px; margin-right:5px;}
-.jky-td-loadout-number		{width:110px;}
-.jky-td-color-name			{width:300px;}
-.jky-td-pieces				{text-align:right !important;}
-
-.jky-color-name				{width:280px;}
-.jky-shipdyer-number		{width: 70px; text-align:center !important;}
-.jky-invoice-number			{width: 70px; text-align:center !important;}
-.jky-dyer-name				{width:100px; text-align:center !important; text-transform:capitalize;}
-.jky-transport-name			{width:100px; text-align:center !important; text-transform:capitalize;}
-.jky-shipped-date			{width: 60px; text-align:center !important;}
-.jky-delivered-date			{width: 60px; text-align:center !important;}
-.jky-batch-code				{width: 70px; text-align:center !important;}
-.jky-quantity				{width: 70px; text-align:right !important;}
-.jky-gross-weight			{width: 70px; text-align:right !important;}
-.jky-net-weight				{width: 70px; text-align:right !important;}
-
-#jky-shipdyer-number		{width: 80px;}
-#jky-invoice-number			{width: 80px;}
-#jky-dyer-name				{width:300px; text-transform:capitalize;}
-#jky-transport-name			{width:300px; text-transform:capitalize;}
-#jky-truck-license			{width: 80px;}
-#jky-unit-name				{width: 80px;}
-#jky-brand-name				{width: 80px;}
-#jky-batch-code				{width: 80px;}
-#jky-quantity				{width: 80px; text-align:right;}
-#jky-gross-weight			{width: 80px; text-align:right;}
-#jky-net-weight				{width: 80px; text-align:right;}
-</style>
-
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-shipdyer-number'	><span>  Ship Dyer<br>Number	</span></th>
-			<th class='jky-invoice-number'	><span>    Invoice<br>Number	</span></th>
-			<th class='jky-dyer-name'		><span>               Dyer		</span></th>
-			<th class='jky-transport-name'	><span>               Transport	</span></th>
-			<th class='jky-shipped-date'	><span>    Shipped<br>Date		</span></th>
-			<th class='jky-delivered-date'	><span>  Delivered<br>Date		</span></th>
-			<th class='jky-batch-code'		><span>	              Batch		</span></th>
-			<th class='jky-quantity'		><span>               Quantity 	</span></th>
-			<th class='jky-gross-weight'	><span>      Gross<br>Weight	</span></th>
-			<th class='jky-net-weight'		><span>        Net<br>Weight	</span></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-number'	><span>  Ship Dyer<br>Number	</span></th>
+			<th class='jky-td-number'	><span>    Invoice<br>Number	</span></th>
+			<th class='jky-td-name-s'	><span>       Dyer				</span></th>
+			<th class='jky-td-name-s'	><span>  Transport				</span></th>
+			<th class='jky-td-date'		><span>    Shipped<br>Date		</span></th>
+			<th class='jky-td-date'		><span>  Delivered<br>Date		</span></th>
+			<th class='jky-td-code'		><span>	     Batch<br>Code		</span></th>
+			<th class='jky-td-pieces'	><span>   Quantity				</span></th>
+			<th class='jky-td-weight'	><span>      Gross<br>Weight	</span></th>
+			<th class='jky-td-weight'	><span>        Net<br>Weight	</span></th>
 		</tr>
 	</thead>
 
@@ -66,57 +35,57 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Ship Dyer Number</span>:</div>
-				<input  id='jky-shipdyer-number' class='jky-form-value'	disabled />
+				<input  id='jky-shipdyer-number' class='jky-form-number' disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Invoice Number</span>:</div>
-				<input  id='jky-invoice-number' class='jky-form-value'	disabled />
+				<input  id='jky-invoice-number'	 class='jky-form-number' disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Dyer</span>:</div>
-				<input id='jky-dyer-id'			type='hidden'	value='' />
-				<input id='jky-dyer-name'		disabled		value='' />
+				<input id='jky-dyer-id'									type='hidden'	value='' />
+				<input id='jky-dyer-name'		class='jky-form-name'	disabled		value='' />
 				<a href='#' onClick='JKY.Dyer.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Transport</span>:</div>
-				<input id='jky-transport-id'	type='hidden'	value='' />
-				<input id='jky-transport-name'	disabled		value='' />
+				<input id='jky-transport-id'							type='hidden'	value='' />
+				<input id='jky-transport-name'	class='jky-form-name'	disabled		value='' />
 				<a href='#' onClick='JKY.Transport.display(this)'><i class='icon-share'></i></a>
 			</div>
-			<br>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
 
-			<div class='jky-left'>
-				<div class='jky-form-line'>
-					<div class='jky-form-label'><span>Truck License</span>:</div>
-					<input id='jky-truck-license' class='jky-form-value' />
-				</div>
-				<div class='jky-form-line'>
-					<div class='jky-form-label'><span>Shipped Date</span>:</div>
-					<div id="jky-shipped-date" class="input-append date">
-						<input id='jky-shipped-value' type="text" />
-						<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
-					</div>
-				</div>
-				<div class='jky-form-line'>
-					<div class='jky-form-label'><span>Delivered Date</span>:</div>
-					<div id="jky-delivered-date" class="input-append date">
-						<input id='jky-delivered-value' type="text" />
-						<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
-					</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Truck License</span>:</div>
+				<input id='jky-truck-license' class='jky-form-number' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Shipped Date</span>:</div>
+				<div id='jky-shipped-date' class='input-append date'>
+					<input class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
-			<div class='jky-left'>
-				<div class='jky-form-line'><div class='jky-form-label'><span>        Unit</span>:</div><input  id='jky-unit-name'		class='jky-form-value'	/></div>
-				<div class='jky-form-line'><div class='jky-form-label'><span>       Brand</span>:</div><input  id='jky-brand-name'		class='jky-form-value'	/></div>
-				<div class='jky-form-line'><div class='jky-form-label'><span>       Batch</span>:</div><input  id='jky-batch-code'		class='jky-form-value'	/></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Delivered Date</span>:</div>
+				<div id='jky-delivered-date' class='input-append date'>
+					<input class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
+				</div>
 			</div>
-			<div class='jky-left'>
-				<div class='jky-form-line'><div class='jky-form-label'><span>    Quantity</span>:</div><input  id='jky-quantity'		class='jky-form-value'	/></div>
-				<div class='jky-form-line'><div class='jky-form-label'><span>Gross Weight</span>:</div><input  id='jky-gross-weight'	class='jky-form-value'	/></div>
-				<div class='jky-form-line'><div class='jky-form-label'><span>  Net Weight</span>:</div><input  id='jky-net-weight'		class='jky-form-value'	/></div>
-			</div>
-
+		</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label-s'><span>        Unit</span>:</div><input id='jky-unit-name'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label-s'><span>       Brand</span>:</div><input id='jky-brand-name'		/></div>
+			<div class='jky-form-line'><div class='jky-form-label-s'><span>       Batch</span>:</div><input id='jky-batch-code'		/></div>
+		</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label-s'><span>    Quantity</span>:</div><input id='jky-quantity'		class='jky-form-pieces' /></div>
+			<div class='jky-form-line'><div class='jky-form-label-s'><span>Gross Weight</span>:</div><input id='jky-gross-weight'	class='jky-form-weight' /></div>
+			<div class='jky-form-line'><div class='jky-form-label-s'><span>  Net Weight</span>:</div><input id='jky-net-weight'		class='jky-form-weight' /></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -144,13 +113,13 @@
 				<table class='table table-striped' >
 					<thead>
 						<tr>
-							<th class='jky-action'></th>
-							<th class='jky-td-loadout-number'	><span>	Load Out<br>Number	</span></th>
-							<th	class='jky-td-color-name'		><span>             Color	</span></th>
-							<th class='jky-td-requested-date'	><span>Requested<br>Date	</span></th>
-							<th class='jky-td-checkout-date'	><span>Check Out<br>Date	</span></th>
-							<th class='jky-td-pieces'			><span>Requested<br>Pieces	</span></th>
-							<th class='jky-td-pieces'			><span>Check Out<br>Pieces	</span></th>
+							<th class='jky-td-action'	></th>
+							<th class='jky-td-key-m'	><span>	Load Out<br>Number	</span></th>
+							<th	class='jky-td-text-l'	><span>             Color	</span></th>
+							<th class='jky-td-date'		><span>Requested<br>Date	</span></th>
+							<th class='jky-td-date'		><span>Check Out<br>Date	</span></th>
+							<th class='jky-td-pieces'	><span>Requested<br>Pieces	</span></th>
+							<th class='jky-td-pieces'	><span>Check Out<br>Pieces	</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-loadouts-body'></tbody>

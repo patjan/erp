@@ -36,17 +36,17 @@ JKY.generate_line = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = JKY.is_status('Draft') ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_product = ''
-		+ "<input class='jky-product-row-id' type='hidden' value=" + the_row.product_id + " />"
-		+ "<input class='jky-product-row-name' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.product_name + "' />"
-		+ "<a href='#' onClick='JKY.Product.display(this)'><i class='icon-share'></i></a>"
+		+ "<input class='jky-product-id' type='hidden' value=" + the_row.product_id + " />"
+		+ "<input class='jky-product-name' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.product_name + "' />"
+		+ " <a href='#' onClick='JKY.Product.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_disabled = JKY.is_status('Draft') ? '' : ' disabled="disabled"';
 	var my_html = ''
 		+ '<tr class="jky-line" quot_line_id=' + my_id + '>'
-		+ '<td class="jky-action"			>' + my_trash	+ '</td>'
-		+ '<td class="jky-td-product-name"	>' + my_product	+ '</td>'
-		+ '<td class="jky-td-color-pieces"	><input class="jky-quoted-pieces" disabled value="' + the_row.quoted_pieces + '" /></td>'
-		+ '<td class="jky-td-color-name"	><button class="btn btn-success" type="button" onclick="JKY.insert_color(this, ' + my_id + ')"' + my_disabled + '><span>Add Color</span></button></td>'
+		+ '<td class="jky-td-action"	>' + my_trash	+ '</td>'
+		+ '<td class="jky-td-key-w"		>' + my_product	+ '</td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-quoted-pieces" disabled value="' + the_row.quoted_pieces + '" /></td>'
+		+ '<td class="jky-td-key-l"		><button class="btn btn-success" type="button" onclick="JKY.insert_color(this, ' + my_id + ')"' + my_disabled + '>' + JKY.t('Add Color') + '</button></td>'
 		+ '<td colspan="4"></td>'
 		+ '</tr>'
 		;
@@ -60,7 +60,7 @@ JKY.generate_line = function(the_row) {
 
 JKY.update_line = function(id_name, the_id) {
 	var my_td = $(id_name).parent();
-	var my_product_id = my_td.find('.jky-product-row-id').val();
+	var my_product_id = my_td.find('.jky-product-id').val();
 	var my_set = ''
 		+       'product_id =  ' + my_product_id
 		;

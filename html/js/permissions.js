@@ -51,10 +51,10 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-user-role"		>' + the_row.user_role		+ '</td>'
-		+  '<td class="jky-user-resource"	>' + the_row.user_resource	+ '</td>'
-		+  '<td class="jky-user-action"		>' + the_row.user_action	+ '</td>'
-//		+  '<td class="jky-status"			>' + the_row.status			+ '</td>'
+		+  '<td class="jky-td-name-l"	>' + the_row.user_role		+ '</td>'
+		+  '<td class="jky-td-name-l"	>' + the_row.user_resource	+ '</td>'
+		+  '<td class="jky-td-name-l"	>' + the_row.user_action	+ '</td>'
+//		+  '<td class="jky-td-status"	>' + the_row.status			+ '</td>'
 		;
 	return my_html;
 };

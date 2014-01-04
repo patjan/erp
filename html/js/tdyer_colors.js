@@ -6,20 +6,20 @@ JKY.generate_color = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = JKY.is_status('Draft') ? '<a onclick="JKY.delete_color(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_color = ''
-		+ "<input class='jky-color-row-id' type='hidden' value=" + the_row.color_id + " />"
-		+ "<input class='jky-color-row-name' disabled onchange='JKY.update_color(this, " + my_id + ")' value='" + the_row.color_name + "' />"
-		+ "<a href='#' onClick='JKY.Color.display(this)'><i class='icon-share'></i></a>"
+		+ "<input class='jky-color-id' type='hidden' value=" + the_row.color_id + " />"
+		+ "<input class='jky-color-name' disabled onchange='JKY.update_color(this, " + my_id + ")' value='" + the_row.color_name + "' />"
+		+ " <a href='#' onClick='JKY.Color.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
 		+ '<tr color_id=' + my_id + '>'
 		+ '<td></td>'
 		+ '<td></td>'
-		+ '<td class="jky-action" style="text-align:right !important;">' + my_trash	+ '</td>'
-		+ '<td class="jky-td-color-name"	>' + my_color + '</td>'
-		+ '<td class="jky-td-color-weight"	><input class="jky-ordered-weight"	onchange="JKY.update_color(this, ' + my_id + ')" value="' +				 the_row.ordered_weight	  + '" /></td>'
-		+ '<td class="jky-td-color-weight"	><input class="jky-checkout-weight"	onchange="JKY.update_color(this, ' + my_id + ')" value="' +				 the_row.checkout_weight  + '" disabled /></td>'
-		+ '<td class="jky-td-color-date"	><input class="jky-needed-date"		onchange="JKY.update_color(this, ' + my_id + ')" value="' + JKY.out_date(the_row.needed_at		) + '" /></td>'
-		+ '<td class="jky-td-color-date"	><input class="jky-checkout-date"	onchange="JKY.update_color(this, ' + my_id + ')" value="' + JKY.out_date(the_row.checkout_at	) + '" disabled /></td>'
+		+ '<td class="jky-td-action" style="text-align:right !important;">' + my_trash	+ '</td>'
+		+ '<td class="jky-td-key-l"	>' + my_color + '</td>'
+		+ '<td class="jky-td-weight"><input class="jky-ordered-weight"	onchange="JKY.update_color(this, ' + my_id + ')" value="' +				 the_row.ordered_weight	  + '" /></td>'
+		+ '<td class="jky-td-weight"><input class="jky-checkout-weight"	onchange="JKY.update_color(this, ' + my_id + ')" value="' +				 the_row.checkout_weight  + '" disabled /></td>'
+		+ '<td class="jky-td-date"	><input class="jky-needed-date"		onchange="JKY.update_color(this, ' + my_id + ')" value="' + JKY.out_date(the_row.needed_at		) + '" /></td>'
+		+ '<td class="jky-td-date"	><input class="jky-checkout-date"	onchange="JKY.update_color(this, ' + my_id + ')" value="' + JKY.out_date(the_row.checkout_at	) + '" disabled /></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -35,10 +35,10 @@ JKY.update_color = function(id_name, the_id) {
 	JKY.set_value('jky-ordered-weight', my_ordered_weight + my_diff_weight);
 	JKY.update_ordered_weight(JKY.row.id, my_diff_weight);
 
-	var my_color_id			= my_tr_id.find('.jky-color-row-id').val();
+	var my_color_id			= my_tr_id.find('.jky-color-id').val();
 		my_color_id			= (my_color_id == '') ? 'null' : my_color_id;
-		my_ordered_weight	= parseFloat	(my_tr_id.find('.jky-ordered-weight'	).val());
-	var	my_needed_at		= JKY.inp_time	(my_tr_id.find('.jky-needed-date'		).val());
+		my_ordered_weight	= parseFloat		(my_tr_id.find('.jky-ordered-weight').val());
+	var	my_needed_at		= JKY.inp_date_value(my_tr_id.find('.jky-needed-date'	).val());
 	var my_set = ''
 		+          'color_id =  ' + my_color_id
 		+  ', ordered_weight =  ' + my_ordered_weight

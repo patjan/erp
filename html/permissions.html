@@ -1,28 +1,11 @@
-<style>
-.jky-form-label			{width:160px;}
-.jky-form-value			{width:300px;}
-.jky-checkbox			{width: 30px; text-align:center;}
-
-.jky-status				{width: 80px; text-align:center;}
-.jky-user-role			{width:150px; text-align:center;}
-.jky-user-resource		{width:150px; text-align:center;}
-.jky-user-action		{width:150px; text-align:center;}
-
-#jky-status				{width:100px;}
-#jky-user-role			{width:260px;}
-#jky-user-resource		{width:260px;}
-#jky-user-action		{width:260px;}
-</style>
-
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-user-role'		><span>User Role		</span></th>
-			<th class='jky-user-resource'	><span>User Resource	</span></th>
-			<th class='jky-user-action'		><span>User Action		</span></th>
-<!--		<th class='jky-status'			><span>Status			</span></th>
--->
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-name-l'	><span>User Role		</span></th>
+			<th class='jky-td-name-l'	><span>User Resource	</span></th>
+			<th class='jky-td-name-l'	><span>User Action		</span></th>
+<!--		<th class='jky-td-status'	><span>Status			</span></th>	-->
 		</tr>
 	</thead>
 
@@ -38,8 +21,7 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-<!--		<div class='jky-form-line'><div class='jky-form-label'><span>            Status</span>:</div><select id='jky-status'		></select></div>
--->
+<!--		<div class='jky-form-line'><div class='jky-form-label'><span>            Status</span>:</div><select id='jky-status'		></select></div>	-->
 			<div class='jky-form-line'><div class='jky-form-label'><span>         User Role</span>:</div><select id='jky-user-role'		></select></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>     User Resource</span>:</div><select id='jky-user-resource'	></select></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>       User Action</span>:</div><select id='jky-user-action'	></select></div>
@@ -50,7 +32,7 @@
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
 				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-				  <button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
 			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>
@@ -62,4 +44,5 @@
 </div>
 
 <div id='jky-body-loaded'></div>
+
 <script src='js/permissions.js'></script>

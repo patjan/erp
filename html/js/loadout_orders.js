@@ -48,7 +48,7 @@ JKY.generate_order = function(the_row) {
 	var my_order = ''
 		+ "<input class='jky-row-order-id' type='hidden' value=" + the_row.order_id + " />"
 		+ "<input class='jky-row-order-number' disabled onchange='JKY.update_order(this, " + my_id + ")' value='" + JKY.fix_null(the_row.order_number) + "' />"
-		+ "<a href='#' onClick='JKY.Order.display(this)'><i class='icon-share'></i></a>"
+		+ " <a href='#' onClick='JKY.Order.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
 		+ '<tr order_id=' + my_id + '>'

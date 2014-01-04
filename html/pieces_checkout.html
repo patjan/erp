@@ -6,18 +6,18 @@
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-loadout-number'		><span>	    Load Out<br>Number		</span></th>
-			<th class='jky-requested-date'		><span>	   Requested<br>Date		</span></th>
-			<th class='jky-dyer-name'			><span>					Dyer		</span></th>
-			<th class='jky-color-name'			><span>					Color		</span></th>
-			<th class='jky-sale-number'			><span>			Sale<br>Number		</span></th>
-			<th class='jky-customer-name'		><span>					Customer	</span></th>
-			<th class='jky-product-short'		><span>					Product		</span></th>
-			<th class='jky-checkin-location'	><span>     Check In<br>Location	</span></th>
-			<th class='jky-checkin-pieces'		><span>     Check In<br>Pieces		</span></th>
-			<th class='jky-reserved-pieces'		><span>     Reserved<br>Pieces		</span></th>
-			<th class='jky-checkout-pieces'		><span>    Check Out<br>Pieces		</span></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-number'	><span>	    Load Out<br>Number		</span></th>
+			<th class='jky-td-date'		><span>	   Requested<br>Date		</span></th>
+			<th class='jky-td-name-s'	><span>	        Dyer				</span></th>
+			<th class='jky-td-name-s'	><span>	       Color				</span></th>
+			<th class='jky-td-number'	><span>			Sale<br>Number		</span></th>
+			<th class='jky-td-name-s'	><span>     Customer				</span></th>
+			<th class='jky-td-name-l'	><span>	     Product				</span></th>
+			<th class='jky-td-location'	><span>     Check In<br>Location	</span></th>
+			<th class='jky-td-pieces'	><span>     Check In<br>Pieces		</span></th>
+			<th class='jky-td-pieces'	><span>     Reserved<br>Pieces		</span></th>
+			<th class='jky-td-pieces'	><span>    Check Out<br>Pieces		</span></th>
 		</tr>
 	</thead>
 
@@ -33,65 +33,53 @@
 			<span>Status</span>:
 			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
 		</div>
-
+		<div class='jky-clear'></div>
 	</div>
-	<div class='jky-clear'></div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span> Load Out Number</span>:</div><input  id='jky-loadout-number'		class='jky-form-value'	disabled /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>	         Dyer</span>:</div><input  id='jky-dyer-name'			class='jky-form-value'	disabled /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>	        Color</span>:</div><input  id='jky-color-name'			class='jky-form-value'	disabled /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>     Sale Number</span>:</div><input  id='jky-sale-number'			class='jky-form-value'	disabled /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>        Location</span>:</div><input  id='jky-checkin-location'	class='jky-form-value'	disabled /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>        Customer</span>:</div><input  id='jky-customer-name'		class='jky-form-value'	disabled /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>	      Product</span>:</div><input  id='jky-product-name'		class='jky-form-value'	disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Load Out Number</span>:</div><input  id='jky-loadout-number'		class='jky-form-number'		disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	         Dyer</span>:</div><input  id='jky-dyer-name'			class='jky-form-name'		disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	        Color</span>:</div><input  id='jky-color-name'			class='jky-form-name'		disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>     Sale Number</span>:</div><input  id='jky-sale-number'			class='jky-form-number'		disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>        Location</span>:</div><input  id='jky-checkin-location'	class='jky-form-location'	disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>        Customer</span>:</div><input  id='jky-customer-name'		class='jky-form-name'		disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	      Product</span>:</div><input  id='jky-product-name'		class='jky-form-name'		disabled /></div>
 		</div>
 		<div class='jky-clear'></div>
+		<br>
+
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>  Requested Date</span>:</div><input  id='jky-requested-date'		type='text'	disabled  /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Requested Pieces</span>:</div><input  id='jky-requested-pieces'	type='text'	disabled  /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span> Reserved Pieces</span>:</div><input  id='jky-reserved-pieces'		type='text'	disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Requested Date</span>:</div><input  id='jky-requested-date'		class='jky-form-date'		disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Requested Pieces</span>:</div><input  id='jky-requested-pieces'	class='jky-form-pieces'		disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Reserved Pieces</span>:</div><input  id='jky-reserved-pieces'		class='jky-form-pieces'		disabled  /></div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>  Average Weight</span>:</div><input  id='jky-average-weight'		type='text'	disabled  /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Weight</span>:</div><input  id='jky-checkout-weight'		type='text'	disabled  /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Pieces</span>:</div><input  id='jky-checkout-pieces'		type='text'	disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Average Weight</span>:</div><input  id='jky-average-weight'		class='jky-form-weight'		disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Weight</span>:</div><input  id='jky-checkout-weight'		class='jky-form-weight'		disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Pieces</span>:</div><input  id='jky-checkout-pieces'		class='jky-form-pieces'		disabled  /></div>
 		</div>
 		<div class='jky-clear'></div>
-<!--	<br>
-		<div>
-			<div class='jky-form-label'></div>
-			<div class='jky-form-buttons'>
-				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-				  <button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
-			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
-			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
-			</div>
-		</div>
-		<div class='jky-clear'></div>
--->
 	</div>
 
 	<table id='jky-piece-table' class='table table-striped'>
 		<thead>
 			<tr>
-				<th class='jky-checkbox'			><input id='jky-piece-check-all' type='checkbox' title="Click here to check all records" /></th>
-				<th class='jky-barcode'				><span>                 Barcode		</span></th>
-				<th class='jky-sequence'			><span>                 Seq			</span></th>
-				<th class='jky-status'				><span>                 Status		</span></th>
-				<th class='jky-produced-by'			><span>	                Produced By	</span></th>
-				<th class='jky-number-of-pieces'	><span>         # of<br>Piece		</span></th>
-				<th class='jky-checkin-weight'		><span>     Check In<br>Weight		</span></th>
-				<th class='jky-checkin-location'	><span>     Check In<br>Location	</span></th>
-				<th class='jky-product-name'		><span>					Product		</span></th>
+				<th class='jky-td-checkbox'	><input id='jky-piece-check-all' type='checkbox' title="Click here to check all records" /></th>
+				<th class='jky-td-barcode'	><span>                 Barcode		</span></th>
+				<th class='jky-td-input'	><span>                 Seq			</span></th>
+				<th class='jky-td-status'	><span>                 Status		</span></th>
+				<th class='jky-td-name-s'	><span>	                Produced By	</span></th>
+				<th class='jky-td-pieces'	><span>         # of<br>Pieces		</span></th>
+				<th class='jky-td-weight'	><span>     Check In<br>Weight		</span></th>
+				<th class='jky-td-location'	><span>     Check In<br>Location	</span></th>
+				<th class='jky-td-name-l'	><span>					Product		</span></th>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
-				<td><input id='jky-piece-input-barcode' /></td>
+				<td class='jky-td-barcode'><input id='jky-input-barcode' /></td>
 				<td>&nbsp;</td>
-				<td id='jky-piece-input-message'></td>
-				<td colspan='5'>&nbsp;</td>
+				<td id='jky-input-message' colspan='6'></td>
 			</tr>
 		</thead>
 
@@ -102,4 +90,5 @@
 </div>
 
 <div id='jky-body-loaded'></div>
+
 <script src='js/pieces_checkout.js'></script>

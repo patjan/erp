@@ -56,16 +56,16 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-order-number"		>' +				 the_row.order_number			+ '</td>'
-		+  '<td class="jky-barcode"				>' +				 the_row.barcode				+ '</td>'
-		+  '<td class="jky-status"				>' + JKY.t			(the_row.status				)	+ '</td>'
-		+  '<td class="jky-number-of-pieces"	>' +				 the_row.number_of_pieces		+ '</td>'
-		+  '<td class="jky-produced-by"			>' +				 the_row.produced_by			+ '</td>'
-		+  '<td class="jky-checkin-weight"		>' +				 the_row.checkin_weight			+ '</td>'
-		+  '<td class="jky-returned-weight"		>' +				 the_row.returned_weight		+ '</td>'
-		+  '<td class="jky-checkin-location"	>' + JKY.fix_null	(the_row.checkin_location	)	+ '</td>'
-		+  '<td class="jky-checkout-location"	>' + JKY.fix_null	(the_row.checkout_location	)	+ '</td>'
-		+  '<td class="jky-remarks"				>' + JKY.fix_null	(the_row.remarks			)	+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.order_number			+ '</td>'
+		+  '<td class="jky-td-barcode"	>' +				 the_row.barcode				+ '</td>'
+		+  '<td class="jky-td-status"	>' + JKY.t			(the_row.status				)	+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.number_of_pieces		+ '</td>'
+		+  '<td class="jky-td-name-s"	>' +				 the_row.produced_by			+ '</td>'
+		+  '<td class="jky-td-weight"	>' +				 the_row.checkin_weight			+ '</td>'
+		+  '<td class="jky-td-weight"	>' +				 the_row.returned_weight		+ '</td>'
+		+  '<td class="jky-td-location"	>' + JKY.fix_null	(the_row.checkin_location	)	+ '</td>'
+		+  '<td class="jky-td-location"	>' + JKY.fix_null	(the_row.checkout_location	)	+ '</td>'
+		+  '<td class="jky-td-name-l"	>' + JKY.fix_null	(the_row.remarks			)	+ '</td>'
 		;
 	return my_html;
 };

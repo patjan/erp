@@ -38,12 +38,12 @@ JKY.generate_row = function(the_row) {
 	var my_thread = ''
 		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
 		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
-		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
+		+ " <a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_batchin = ''
 		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-row-number' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.batch_number + "' />"
-		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
+		+ "<input class='jky-batchin-row-number' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.batch_code + "' />"
+		+ " <a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_requested_date =	JKY.out_date(the_row.requested_date);
 	if (my_requested_date == '') {
@@ -67,10 +67,10 @@ JKY.update_line = function(id_name, the_id ) {
 	var my_saved_requested = parseFloat(JKY.get_value_by_id('ReqLines', 'requested_weight', the_id));
 
 	var my_tr = $(id_name).parent().parent();
-	var my_thread_id		= my_tr.find('.jky-thread-row-id').val();
-	var my_batchin_id		= my_tr.find('.jky-batchin-row-id').val();
-	var my_requested_weight	= parseFloat  (my_tr.find('.jky-requested-weight'	).val());
-	var my_requested_date	= JKY.inp_date(my_tr.find('.jky-requested-date'		).val());
+	var my_thread_id		=					 my_tr.find('.jky-thread-row-id'	).val();
+	var my_batchin_id		=					 my_tr.find('.jky-batchin-row-id'	).val();
+	var my_requested_weight	= parseFloat		(my_tr.find('.jky-requested-weight'	).val());
+	var my_requested_date	= JKY.inp_date_value(my_tr.find('.jky-requested-date'	).val());
 
 	var my_set = ''
 		+         'thread_id = ' + my_thread_id

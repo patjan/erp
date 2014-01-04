@@ -32,22 +32,22 @@ JKY.generate_thread = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = JKY.is_status('Draft') ? '<a onclick="JKY.delete_thread(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_thread = ''
-		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
-		+ "<a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
+		+ "<input class='jky-thread-id' type='hidden' value=" + the_row.thread_id + " />"
+		+ "<input class='jky-thread-name' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
+		+ " <a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_batchin = ''
-		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-row-number' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batchin_number + "' />"
-		+ "<a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
+		+ "<input class='jky-batchin-id' type='hidden' value=" + the_row.batchin_id + " />"
+		+ "<input class='jky-batchin-number' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batchin_number + "' />"
+		+ " <a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_disabled = JKY.is_status('Draft') ? '' : ' disabled="disabled"';
 	var my_html = ''
 		+ '<tr tdyer_thread_id=' + my_id + '>'
-		+ '<td class="jky-action"			>' + my_trash	+ '</td>'
-		+ '<td class="jky-td-thread-name"	>' + my_thread	+ '</td>'
-		+ '<td class="jky-td-thread-batchin">' + my_batchin	+ '</td>'
-		+ '<td class="jky-td-color-name"><button class="btn btn-success" type="button" onclick="JKY.insert_color(this, ' + my_id + ')"' + my_disabled + '><span>Add Color</span></button></td>'
+		+ '<td class="jky-td-action">' + my_trash	+ '</td>'
+		+ '<td class="jky-td-key-w"	>' + my_thread	+ '</td>'
+		+ '<td class="jky-td-key"	>' + my_batchin	+ '</td>'
+		+ '<td class="jky-td-key-l"	><button class="btn btn-success" type="button" onclick="JKY.insert_color(this, ' + my_id + ')"' + my_disabled + '>' + JKY.t('Add Color') + '</button></td>'
 		+ '<td colspan="4"></td>'
 		+ '</tr>'
 		;
@@ -61,8 +61,8 @@ JKY.generate_thread = function(the_row) {
 
 JKY.update_thread = function(id_name, the_id) {
 	var my_td = $(id_name).parent().parent();
-	var my_thread_id  = my_td.find('.jky-thread-row-id').val();
-	var my_batchin_id = my_td.find('.jky-batchin-row-id').val();
+	var my_thread_id  = my_td.find('.jky-thread-id').val();
+	var my_batchin_id = my_td.find('.jky-batchin-id').val();
 	var my_set = ''
 		+       ' thread_id =  ' + my_thread_id
 		+     ', batchin_id =  ' + my_batchin_id

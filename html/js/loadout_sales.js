@@ -46,17 +46,17 @@ JKY.generate_sale = function(the_row) {
 	var my_sale = ''
 		+ "<input class='jky-row-sale-color-id' type='hidden' value=" + the_row.sale_color_id + " />"
 		+ "<input class='jky-row-sale-number' disabled onchange='JKY.update_sale(this, " + my_id + ")' value='" + JKY.fix_null(the_row.sale_number) + "' />"
-		+ "<a href='#' onClick='JKY.Sale.display(this, JKY.get_color_id(), JKY.get_color_name())'><i class='icon-share'></i></a>"
+		+ " <a href='#' onClick='JKY.Sale.display(this, JKY.get_color_id(), JKY.get_color_name())'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
 		+ '<tr sale_id=' + my_id + '>'
-		+ '<td class="jky-action"				>' + my_trash	+ '</td>'
-		+ '<td class="jky-td-sale-number"		>' + my_sale	+ '</td>'
-		+ '<td class="jky-td-customer-name"		><input  class="jky-customer-name"		disabled value="' + JKY.fix_null	(the_row.customer_name	)	+ '" /></td>'
-		+ '<td class="jky-td-product-name"		><input  class="jky-product-name"		disabled value="' + JKY.fix_null	(the_row.product_name	)	+ '" /></td>'
-		+ '<td class="jky-td-pieces"			><input  class="jky-sold-pieces"		disabled value="' + JKY.fix_null	(the_row.sold_pieces	)	+ '" /></td>'
-		+ '<td class="jky-td-pieces"			><input  class="jky-checkout-pieces"	disabled value="' +	JKY.fix_null	(the_row.checkout_pieces)	+ '" /></td>'
-		+ '<td class="jky-td-pieces"			><input  class="jky-requested-pieces"	onchange="JKY.update_sale(this, ' + my_id + ')"  value="' + the_row.requested_pieces + '" /></td>'
+		+ '<td class="jky-td-action"	>' + my_trash	+ '</td>'
+		+ '<td class="jky-td-key"		>' + my_sale	+ '</td>'
+		+ '<td class="jky-td-text-s"	><input class="jky-customer-name"		value="' + JKY.fix_null	(the_row.customer_name	)	+ '" disabled /></td>'
+		+ '<td class="jky-td-text-l"	><input class="jky-product-name"		value="' + JKY.fix_null	(the_row.product_name	)	+ '" disabled /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-sold-pieces"			value="' + JKY.fix_null	(the_row.sold_pieces	)	+ '" disabled /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-checkout-pieces"		value="' + JKY.fix_null	(the_row.checkout_pieces)	+ '" disabled /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-requested-pieces"	value="' +				 the_row.requested_pieces	+ '" onchange="JKY.update_sale(this, ' + my_id + ')"  /></td>'
 		+ '</tr>'
 		;
 	return my_html;

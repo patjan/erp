@@ -33,12 +33,12 @@ JKY.generate_boxes = function(response) {
 
 			my_html  += ''
 				+ '<tr>'
-				+ '<td class="jky-action"></td>'
-				+ '<td class="jky-boxes-location"	><input class="jky-checkin-location"	value="' +				my_row.location		+ '" disabled	/></td>'
-				+ '<td class="jky-boxes-date-in"	><input class="jky-checkin-date"		value="' + JKY.out_date(my_row.checkin_at)	+ '" disabled	/></td>'
-				+ '<td class="jky-boxes-weight"		><input class="jky-checkin-weight"		value="' +				my_row.total_weight	+ '" disabled	/></td>'
-				+ '<td class="jky-boxes-checkin"	><input class="jky-checkin-boxes"		value="' +				my_boxes_checkin	+ '" disabled	/></td>'
-				+ '<td class="jky-boxes-reserved"	><input class="jky-reserved-boxes"		value="' +				my_boxes_reserved	+ '" onchange="JKY.update_boxes(this)"	/></td>'
+				+ '<td class="jky-td-action"	></td>'
+				+ '<td class="jky-td-location"	><input class="jky-checkin-location"	value="' +				my_row.location		+ '" disabled	/></td>'
+				+ '<td class="jky-td-date"		><input class="jky-checkin-date"		value="' + JKY.out_date(my_row.checkin_at)	+ '" disabled	/></td>'
+				+ '<td class="jky-td-weight"	><input class="jky-checkin-weight"		value="' +				my_row.total_weight	+ '" disabled	/></td>'
+				+ '<td class="jky-td-boxes"		><input class="jky-checkin-boxes"		value="' +				my_boxes_checkin	+ '" disabled	/></td>'
+				+ '<td class="jky-td-boxes"		><input class="jky-reserved-boxes"		value="' +				my_boxes_reserved	+ '" onchange="JKY.update_boxes(this)"	/></td>'
 				+ '</tr>'
 				;
 		}

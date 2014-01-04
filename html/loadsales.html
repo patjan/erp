@@ -1,26 +1,17 @@
-<style>
-.jky-loadout-number		{width: 65px;}
-.jky-dyer-name			{width: 50px;}
-.jky-color-name			{width: 70px;}
-.jky-sale-number		{width: 50px;}
-.jky-product-name		{width:100px;}
-.jky-requested-date		{width: 65px;}
-</style>
-
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-loadout-number'	><span>   Load Out<br>Number	</span></th>
-			<th class='jky-dyer-name'		><span>               Dyer		</span></th>
-			<th class='jky-color-name'		><span>               Color		</span></th>
-			<th class='jky-sale-number'		><span>       Sale<br>Number	</span></th>
-			<th class='jky-customer-name'	><span>               Customer	</span></th>
-			<th class='jky-product-name'	><span>               Product	</span></th>
-			<th class='jky-requested-date'	><span>  Requested<br>Date		</span></th>
-			<th class='jky-requested-pieces'><span>  Requested<br>Pieces	</span></th>
-			<th class='jky-reserved-pieces'	><span>   Reserved<br>Pieces	</span></th>
-			<th class='jky-checkout-pieces'	><span>  Check Out<br>Pieces	</span></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-number'	><span>   Load Out<br>Number	</span></th>
+			<th class='jky-td-short'	><span>       Dyer				</span></th>
+			<th class='jky-td-short'	><span>      Color				</span></th>
+			<th class='jky-td-number'	><span>       Sale<br>Number	</span></th>
+			<th class='jky-td-name-s'	><span>   Customer				</span></th>
+			<th class='jky-td-name-l'	><span>    Product				</span></th>
+			<th class='jky-td-date'		><span>  Requested<br>Date		</span></th>
+			<th class='jky-td-pieces'	><span>  Requested<br>Pieces	</span></th>
+			<th class='jky-td-pieces'	><span>   Reserved<br>Pieces	</span></th>
+			<th class='jky-td-pieces'	><span>  Check Out<br>Pieces	</span></th>
 		</tr>
 	</thead>
 
@@ -44,35 +35,35 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Load Out Number</span>:</div>
-				<input  id='jky-loadout-number'	type='text'	readonly />
+				<input  id='jky-loadout-number' class='jky-form-number jky-form-key' disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Dyer</span>:</div>
-				<input  id='jky-dyer-name'		class='jky-form-value'	readonly />
+				<input  id='jky-dyer-name'		class='jky-form-name'	disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Color</span>:</div>
-				<input  id='jky-color-name'		class='jky-form-value'	readonly />
+				<input  id='jky-color-name'		class='jky-form-name'	disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Sale Number</span>:</div>
-				<input  id='jky-sale-number'	class='jky-form-value'	readonly />
+				<input  id='jky-sale-number'	class='jky-form-number'	disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Customer</span>:</div>
-				<input  id='jky-customer-name'	class='jky-form-value'	readonly />
+				<input  id='jky-customer-name'	class='jky-form-name'	disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Product</span>:</div>
-				<input  id='jky-product-name'	class='jky-form-value'	readonly />
+				<input  id='jky-product-name'	class='jky-form-name'	disabled />
 			</div>
 		</div>
 		<div class='jky-clear'></div>
 
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Requested Pieces</span>:</div><input  id='jky-requested-pieces'	type='text' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span> Reserved Pieces</span>:</div><input  id='jky-reserved-pieces'		type='text' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Pieces</span>:</div><input  id='jky-checkout-pieces'		type='text'	readonly /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Requested Pieces</span>:</div><input id='jky-requested-pieces'	class='jky-form-pieces' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Reserved Pieces</span>:</div><input id='jky-reserved-pieces'	class='jky-form-pieces' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Pieces</span>:</div><input id='jky-checkout-pieces'	class='jky-form-pieces' readonly /></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -99,23 +90,16 @@
 				<table class='table table-striped' >
 					<thead>
 						<tr style='font-weight:bold;'>
-							<th class='jky-action'></td>
-							<th class='jky-pieces-location'	><span>	Check In<br>Location	</span></td>
-							<th	class='jky-pieces-date-in'	><span>	Check In<br>Date		</span></td>
-							<th class='jky-pieces-weight'	><span>	Check In<br>Weight		</span></td>
-							<th class='jky-pieces-checkin'	><span> Check In<br>Pieces		</span></td>
-							<th class='jky-pieces-reserved'	><span> Reserved<br>Pieces		</span></td>
+							<th class='jky-td-action'></td>
+							<th class='jky-td-short'	><span>	Check In<br>Location	</span></td>
+							<th	class='jky-td-date'		><span>	Check In<br>Date		</span></td>
+							<th class='jky-td-weight'	><span>	Check In<br>Weight		</span></td>
+							<th class='jky-td-pieces'	><span> Check In<br>Pieces		</span></td>
+							<th class='jky-td-pieces'	><span> Reserved<br>Pieces		</span></td>
 						</tr>
 					</thead>
 					<tbody id='jky-pieces-body'></tbody>
-<!--				<tfoot>
-						<tr>
-							<td id='jky-batch-add-new' class='jky-action' colspan='2'>
-								<a class='btn btn-success' type='button' href='#'><span>Add New</span></a>
-							</td>
-						</tr>
-					</tfoot>
--->				</table>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -123,5 +107,6 @@
 </div>
 
 <div id='jky-body-loaded'></div>
+
 <script src='js/loadsales.js'		></script>
 <script src='js/piece_locations.js'	></script>

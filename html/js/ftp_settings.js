@@ -31,13 +31,13 @@ JKY.generate_settings = function(response) {
 
 			my_html  += ''
 				+ '<tr>'
-				+ '<td class="jky-set-label">' + my_name  + '</td>'
-				+ '<td class="left" ><input class="jky-set-value" text="text" onchange="' + my_onchange + '" value="' + my_value + '" /></td>'
+				+ '<td class="jky-td-name-l">' + my_name  + '</td>'
+				+ '<td><input style="width:500px;" text="text" onchange="' + my_onchange + '" value="' + my_value + '" /></td>'
 				+ '</tr>'
 				;
 		}
 	}
-	JKY.set_html('jky-set-body', my_html);
+	JKY.set_html('jky-sets-body', my_html);
 }
 
 JKY.insert_setting = function(index, setting) {

@@ -16,16 +16,16 @@ JKY.display_composition = function() {
 			my_total += my_percent;
 			my_html  += ''
 				+ '<tr>'
-				+ '<td class="jky-action"><a onclick="JKY.delete_composition(this)"><i class="icon-trash"></i></a></td>'
-				+ '<td class="jky-filler">&nbsp;</td>'
-				+ '<td class="jky-comp-value"><input  class="jky-comp-percent"  text="text"	onchange="JKY.update_composition()" value="' + my_percent + '" /></td>'
-				+ '<td class="jky-comp-label"><select class="jky-comp-material"				onchange="JKY.update_composition()">' + JKY.set_options_array(my_material, JKY.materials, false) + '</select></td>'
+				+ '<td class="jky-td-action"	><a onclick="JKY.delete_composition(this)"><i class="icon-trash"></i></a></td>'
+				+ '<td class="jky-td-filler"	>&nbsp;</td>'
+				+ '<td class="jky-td-percent"	><input  class="jky-comp-percent"  text="text"	onchange="JKY.update_composition()" value="' + my_percent + '" /></td>'
+				+ '<td							><select class="jky-comp-material"				onchange="JKY.update_composition()">' + JKY.set_options_array(my_material, JKY.materials, false) + '</select></td>'
 				+ '</tr>'
 				;
 		}
 	}
-	JKY.set_html('jky-comp-total', my_total);
-	JKY.set_html('jky-comp-body' , my_html );
+	JKY.set_value('jky-comp-total', my_total);
+	JKY.set_html ('jky-comp-body' , my_html );
 	$('.jky-comp-percent').ForceIntegerOnly();
 	if (my_rows == '') {
 		JKY.insert_composition();

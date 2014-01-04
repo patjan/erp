@@ -65,7 +65,7 @@ JKY.suppliers	= [];
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-start-value'		).attr('data-format', JKY.Session.get_date());
+	$('#jky-start-date	input'	).attr('data-format', JKY.Session.get_date());
 	$('#jky-start-date'			).datetimepicker({language:JKY.Session.get_locale(), pickTime:false});
 
 	$('#jky-tab-threads'		).click (function() {JKY.display_threads	();});
@@ -124,10 +124,10 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-ftp-number"		>' +				 the_row.ftp_number			+ '</td>'
-		+  '<td class="jky-product-name"	>' + JKY.fix_null	(the_row.product_name	)	+ '</td>'
-		+  '<td class="jky-machine-name"	>' + JKY.fix_null	(the_row.machine_name	)	+ '</td>'
-		+  '<td class="jky-composition"		>' +				 the_row.composition		+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.ftp_number			+ '</td>'
+		+  '<td class="jky-td-name-w"	>' + JKY.fix_null	(the_row.product_name	)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.machine_name	)	+ '</td>'
+		+  '<td class="jky-td-name-l"	>' +				 the_row.composition		+ '</td>'
 		+  '</tr>'
 		;
 	return my_html;
@@ -206,7 +206,7 @@ JKY.get_form_set = function() {
 
 	var my_set = ''
 		+      'product_id=  ' + JKY.get_value	('jky-product-id'		)
-		+    ', start_date=  ' + JKY.inp_date(JKY.get_value('jky-start-value'))
+		+    ', start_date=  ' + JKY.inp_date	('jky-start-date'		)
 		+    ', machine_id=  ' + my_machine_id
 		+    ', collection=\'' + JKY.get_value	('jky-collection'		) + '\''
 		+     ', nick_name=\'' + JKY.get_value	('jky-nick-name'		) + '\''

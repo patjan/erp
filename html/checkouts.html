@@ -1,50 +1,15 @@
-<style>
-.jky-form-line-1		{width:360px;}
-.jky-form-line-2		{width:290px;}
-.jky-form-label			{width:160px;}
-.jky-form-label-1		{width:100px;}
-.jky-form-value			{width:100px;}
-.jky-form-value1		{width:240px;}
-
-.Xjky-batch-value			{width: 10%;	text-align:right ;}
-.Xjky-batch-label			{width: 40%;	text-align:left  ;}
-.Xjky-batch-code				{width: 60px; text-align:center;}
-
-.jky-td-thread-name			{width:250px;}
-.jky-thread-row-name		{width:220px;}
-
-.jky-line-batchin			{width: 90px;}
-.jky-line-batchin input		{width: 85px;	text-align:left  ;}
-.jky-line-batchin a			{margin-left:-30px; padding:5px;}
-.jky-batch-average-weight	{width: 60px; text-align:right;}
-.jky-batch-requested-boxes	{width: 55px; text-align:right;}
-.jky-batch-requested-weight	{width: 60px; text-align:right;}
-.jky-batch-labels-printed	{width: 50px; text-align:right;}
-.jky-batch-labels-print		{width: 20px; text-align:right;}
-.jky-batch-action-print		{width: 30px; text-align:center;}
-.jky-batch-checkout-weight	{width: 60px; text-align:right;}
-.jky-batch-checkout-boxes	{width: 55px; text-align:right;}
-
-#jky-batch-total			{text-align:right;}
-
-#jky-boxes-layer		{width:350px; top:240px; left:920px;}
-.jky-boxes-line			{width:260px; font-weight:bold; text-align:right;}
-.jky-boxes-label		{width:160px; float:left; font-weight:bold; text-align:right;}
-.jky-boxes-line input	{width: 60px; margin-left:10px; text-align:right;}
-</style>
-
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-checkout-number'	><span>  Check Out<br>Number	</span></th>
-			<th class='jky-machine-name'	><span>               Machine	</span></th>
-			<th class='jky-supplier-name'	><span>               Supplier	</span></th>
-			<th class='jky-dyer-name'		><span>               Dyer		</span></th>
-			<th class='jky-requested-date'	><span>  Requested<br>Date		</span></th>
-			<th class='jky-requested-weight'><span>  Requested<br>Weight	</span></th>
-			<th class='jky-checkout-date'	><span>  Check Out<br>Date		</span></th>
-			<th class='jky-checkout-weight'	><span>  Check Out<br>Weight	</span></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-number'	><span>  Check Out<br>Number	</span></th>
+			<th class='jky-td-name-s'	><span>    Machine				</span></th>
+			<th class='jky-td-name-s'	><span>   Supplier				</span></th>
+			<th class='jky-td-name-s'	><span>       Dyer				</span></th>
+			<th class='jky-td-date'		><span>  Requested<br>Date		</span></th>
+			<th class='jky-td-weight'	><span>  Requested<br>Weight	</span></th>
+			<th class='jky-td-date'		><span>  Check Out<br>Date		</span></th>
+			<th class='jky-td-weight'	><span>  Check Out<br>Weight	</span></th>
 		</tr>
 	</thead>
 
@@ -68,56 +33,62 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Check Out Number</span>:</div>
-				<input  id='jky-checkout-number' class='jky-form-value'	disabled />
+				<input  id='jky-checkout-number' class='jky-form-number jky-form-key' disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Machine</span>:</div>
-				<input id='jky-machine-id'		type='hidden'	value='' />
-				<input id='jky-machine-name'	disabled		value='' />
+				<input id='jky-machine-id'								type='hidden'	value='' />
+				<input id='jky-machine-name'	class='jky-form-name'	disabled		value='' />
 				<a href='#' onClick='JKY.Machine.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Supplier</span>:</div>
-				<input id='jky-supplier-id'		type='hidden'	value='' />
-				<input id='jky-supplier-name'	disabled		value='' />
+				<input id='jky-supplier-id'								type='hidden'	value='' />
+				<input id='jky-supplier-name'	class='jky-form-name'	disabled		value='' />
 				<a href='#' onClick='JKY.Supplier.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Dyer</span>:</div>
-				<input id='jky-dyer-id'			type='hidden'	value='' />
-				<input id='jky-dyer-name'		disabled		value='' />
+				<input id='jky-dyer-id'									type='hidden'	value='' />
+				<input id='jky-dyer-name'		class='jky-form-name'	disabled		value='' />
 				<a href='#' onClick='JKY.Dyer.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>NFe DL</span>:</div>
-				<input  id='jky-nfe-dl' class='jky-form-value' />
+				<input  id='jky-nfe-dl' class='jky-form-number' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>NFe TM</span>:</div>
-				<input  id='jky-nfe-tm' class='jky-form-value' />
+				<input  id='jky-nfe-tm' class='jky-form-number' />
 			</div>
 			<div class='jky-clear'></div>
 			<br>
 
 			<div class='jky-left'>
-				<div class='jky-form-line-1'>
+				<div class='jky-form-line'>
 					<div class='jky-form-label'><span>Requested Date</span>:</div>
-					<div id="jky-requested-date" class="input-append date">
-						<input id='jky-requested-value'	data-format="dd-MM-yyyy hh:mm:ss" type="text" />
-						<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+					<div id='jky-requested-date' class='input-append date'>
+						<input class='jky-form-date' type='text' />
+						<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 					</div>
 				</div>
-				<div class='jky-form-line-1'>
+				<div class='jky-form-line'>
 					<div class='jky-form-label'><span>Check Out Date</span>:</div>
-					<div id="jky-checkout-date"	 class="input-append date">
-						<input id='jky-checkout-value'	data-format="dd-MM-yyyy hh:mm:ss" type="text" />
-						<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+					<div id='jky-checkout-date' class='input-append date'>
+						<input class='jky-form-date' type='text' />
+						<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 					</div>
 				</div>
 			</div>
 			<div class='jky-left'>
-				<div class='jky-form-line-2'><div class='jky-form-label'><span>Requested Weight	</span>:</div><input  id='jky-requested-weight'	class='jky-form-value' disabled /></div>
-				<div class='jky-form-line-2'><div class='jky-form-label'><span>Check Out Weight	</span>:</div><input  id='jky-checkout-weight'	class='jky-form-value' disabled /></div>
+				<div class='jky-form-line'>
+					<div class='jky-form-label'><span>Requested Weight	</span>:</div>
+					<input  id='jky-requested-weight'	class='jky-form-weight' disabled />
+				</div>
+				<div class='jky-form-line'>
+					<div class='jky-form-label'><span>Check Out Weight	</span>:</div>
+					<input  id='jky-checkout-weight'	class='jky-form-weight' disabled />
+				</div>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -145,15 +116,15 @@
 				<table class='table table-striped' >
 					<thead>
 						<tr>
-							<th class='jky-action'></th>
-							<th class='jky-td-code'				><span>	 Product<br>Code	</span></th>
-							<th	class='jky-td-thread-name'		><span>             Thread	</span></th>
-							<th class='jky-td-batchin-number'	><span>             Batch	</span></th>
-							<th class='jky-td-weight'			><span>	 Average<br>Weight	</span></th>
-							<th class='jky-td-weight'			><span>Requested<br>Weight	</span></th>
-							<th class='jky-td-weight'			><span>Check Out<br>Weight	</span></th>
-							<th class='jky-td-boxes'			><span>Requested<br>Boxes	</span></th>
-							<th class='jky-td-boxes'			><span>Check Out<br>Boxes	</span></th>
+							<th class='jky-td-action'	></th>
+							<th class='jky-td-code'		><span>	 Product<br>Code	</span></th>
+							<th	class='jky-td-thread'	><span>   Thread			</span></th>
+							<th class='jky-td-key'		><span>    Batch			</span></th>
+							<th class='jky-td-weight'	><span>	 Average<br>Weight	</span></th>
+							<th class='jky-td-weight'	><span>Requested<br>Weight	</span></th>
+							<th class='jky-td-weight'	><span>Check Out<br>Weight	</span></th>
+							<th class='jky-td-boxes'	><span>Requested<br>Boxes	</span></th>
+							<th class='jky-td-boxes'	><span>Check Out<br>Boxes	</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-batches-body'></tbody>
@@ -168,27 +139,8 @@
 	</div>
 	<div id='jky-form-footer'></div>
 </div>
-<!--
-<div id='jky-boxes-layer' class='modal hide fade in'>
-	<div class='modal-header'>
-		<a class='close' data-dismiss='modal'>X</a>
-		<h3><span>Print</span>: <span>Labels</span></h3>
-	</div>
-	<div class='modal-body'>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Check In Boxes</span>:</div><input id='jky-boxes-checkin-boxes'	type='text' disabled /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Labels Printed</span>:</div><input id='jky-boxes-labels-printed'	type='text' disabled /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>Labels Unprinted</span>:</div><input id='jky-boxes-labels-unprinted'	type='text' disabled /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span> Labels to Print</span>:</div><input id='jky-boxes-labels-to-print'	type='text'			 /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>        Location</span>:</div><input id='jky-boxes-location'			type='text'			 /></div>
-		<div class='jky-boxes-line'><div class='jky-boxes-label'><span>  Average Weight</span>:</div><input id='jky-boxes-average_weight'	type='text'	disabled /></div>
-	</div>
-	<div class='modal-footer'>
-			  <button id='jky-boxes-print'    class='btn btn-success'			type='button'><span>Print  </span></button>
-		&nbsp;<button id='jky-boxes-cancel'   class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></button>
-	</div>
-</div>
--->
 <div id='jky-body-loaded'></div>
+
 <script src='js/checkouts.js'		></script>
 <script src='js/JKY.Machine.js'		></script>
 <script src='js/JKY.Supplier.js'	></script>

@@ -27,7 +27,7 @@ function JKY_print_labels($data) {
 
 function JKY_print_boxes($data) {
 	$sql= 'SELECT Boxes.*'
-		. '     , Batches.batch AS batch_number'
+		. '     , Batches.batch AS batch_code'
 		. '     , Threads.composition, Threads.name AS thread_name'
 		. '     , Incomings.nfe_dl, Incomings.nfe_tm'
 		. '     , Contacts.nick_name AS supplier_name'
@@ -99,7 +99,7 @@ function JKY_print_boxes($data) {
 		$labels .= NL . 'INV;POINT;373;667;16;16;*' . $my_row['composition'		] . '*';
 		$labels .= NL . 'INV;POINT;327;671;16;16;*' . $my_real_weight			  . ' KG*';
 		$labels .= NL . 'INV;POINT;279;647;16;16;*' . $my_row['number_of_cones'	] . '*';
-		$labels .= NL . 'INV;POINT;231;678;16;16;*' . $my_row['batch_number'	] . '*';
+		$labels .= NL . 'INV;POINT;231;678;16;16;*' . $my_row['batch_code'		] . '*';
 		$labels .= NL . 'INV;POINT;231;296;32;33;*' . $my_row['checkin_location'] . '*';
 		$labels .= NL . 'STOP';
 		$labels .= NL . '/CODIGO DE BARRAS';

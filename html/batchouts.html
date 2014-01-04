@@ -1,44 +1,21 @@
-<style>
-.jky-form-line-1		{width:273px;}
-.jky-form-line-2		{width:290px;}
-.jky-form-label			{width:160px;}
-.jky-form-label-1		{width:100px;}
-.jky-form-value			{width:100px;}
-.jky-form-value1		{width:240px;}
-.jky-checkbox			{width: 30px; text-align:center;}
-
-#jky-unit-price			{width:75px;}
-
-.jky-line-label			{font-weight:bold; text-align:right;}
-.jky-line-value  input	{width: 90%;	text-align:right ;}
-.jky-line-thread input	{width:275px;	text-align:left  ;}
-.jky-line-thread a		{margin-left:-30px; padding:5px;}
-.jky-line-thread a		{margin-left:-30px; padding:5px;}
-.jky-line-percent		{width: 40px;	text-align:right ; margin-right:0;}
-.jky-line-name			{width:280px;}
-
-#jky-line-total-expected{padding-right:15px; font-weight:bold; text-align:right;}
-#jky-line-total-received{padding-right:15px; font-weight:bold; text-align:right;}
-</style>
-
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-checkout-number'	><span>  Check Out<br>Number	</span></th>
-<!--		<th class='jky-code'			><span>    Product<br>Code		</span></th>
--->			<th class='jky-requested-date'	><span>  Requested<br>Date		</span></th>
-			<th class='jky-machine-name'	><span>               Machine	</span></th>
-			<th class='jky-supplier-name'	><span>               Supplier	</span></th>
-			<th class='jky-thread-name'		><span>               Thread	</span></th>
-			<th class='jky-batch-number'	><span>      Batch<br>Number	</span></th>
-<!--		<th class='jky-unit-price'		><span>       Unit<br>Price		</span></th>
-			<th class='jky-average-weight'	><span>    Average<br>Weight	</span></th>
--->			<th class='jky-requested-weight'><span>  Requested<br>Weight	</span></th>
-			<th class='jky-checkout-weight'	><span>  Check Out<br>Weight	</span></th>
-			<th class='jky-requested-boxes'	><span>  Requested<br>Boxes		</span></th>
-			<th class='jky-reserved-boxes'	><span>   Reserved<br>Boxes		</span></th>
-			<th class='jky-checkout-boxes'	><span>  Check Out<br>Boxes		</span></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-number'	><span>  Check Out<br>Number	</span></th>
+<!--		<th class='jky-td-code'		><span>    Product<br>Code		</span></th>	-->
+			<th class='jky-td-date'		><span>  Requested<br>Date		</span></th>
+			<th class='jky-td-name-s'	><span>    Machine				</span></th>
+			<th class='jky-td-name-s'	><span>   Supplier				</span></th>
+			<th class='jky-td-name-l'	><span>     Thread				</span></th>
+			<th class='jky-td-code'		><span>      Batch<br>Code		</span></th>
+<!--		<th class='jky-td-price'	><span>       Unit<br>Price		</span></th>	-->
+<!--		<th class='jky-td-weight'	><span>    Average<br>Weight	</span></th>	-->
+			<th class='jky-td-weight'	><span>  Requested<br>Weight	</span></th>
+			<th class='jky-td-weight'	><span>  Check Out<br>Weight	</span></th>
+			<th class='jky-td-boxes'	><span>  Requested<br>Boxes		</span></th>
+			<th class='jky-td-boxes'	><span>   Reserved<br>Boxes		</span></th>
+			<th class='jky-td-boxes'	><span>  Check Out<br>Boxes		</span></th>
 		</tr>
 	</thead>
 
@@ -62,37 +39,37 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Product Code</span>:</div>
-				<input  id='jky-product-code'		type='text' />
+				<input id='jky-product-code' class='jky-form-code' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Thread</span>:</div>
-				<input  id='jky-thread-name'		class='jky-form-value'	disabled />
+				<input  id='jky-thread-name' class='jky-form-name' disabled />
 			</div>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Batch Number</span>:</div>
-				<input  id='jky-batch-number'		class='jky-form-value'	disabled />
+				<div class='jky-form-label'><span>Batch Code</span>:</div>
+				<input id='jky-batch-code' class='jky-form-code' disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Machine</span>:</div>
-				<input  id='jky-machine-name'		class='jky-form-value'	disabled />
+				<input  id='jky-machine-name' class='jky-form-name' disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Supplier</span>:</div>
-				<input  id='jky-supplier-name'		class='jky-form-value'	disabled />
+				<input  id='jky-supplier-name' class='jky-form-name' disabled />
 			</div>
 		</div>
 		<div class='jky-clear'></div>
 
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>      Unit Price</span>:</div><input  id='jky-unit-price'			type='text' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Requested Weight</span>:</div><input  id='jky-requested-weight'	type='text' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span> Requested Boxes</span>:</div><input  id='jky-requested-boxes'		type='text' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>  Reserved Boxes</span>:</div><input  id='jky-reserved-boxes'		type='text'	disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>      Unit Price</span>:</div><input  id='jky-unit-price'			class='jky-form-price'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Requested Weight</span>:</div><input  id='jky-requested-weight'	class='jky-form-weight'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Requested Boxes</span>:</div><input  id='jky-requested-boxes'		class='jky-form-boxes'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Reserved Boxes</span>:</div><input  id='jky-reserved-boxes'		class='jky-form-boxes'	disabled  /></div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>  Average Weight</span>:</div><input  id='jky-average-weight'		type='text' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Weight</span>:</div><input  id='jky-checkout-weight'		type='text' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span> Check Out Boxes</span>:</div><input  id='jky-checkout-boxes'		type='text' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Average Weight</span>:</div><input  id='jky-average-weight'		class='jky-form-weight' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Weight</span>:</div><input  id='jky-checkout-weight'		class='jky-form-weight' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Check Out Boxes</span>:</div><input  id='jky-checkout-boxes'		class='jky-form-boxes'	/></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -119,23 +96,16 @@
 				<table class='table table-striped' >
 					<thead>
 						<tr style='font-weight:bold;'>
-							<th class='jky-action'></td>
-							<th class='jky-boxes-location'	><span>	Check In<br>Location	</span></td>
-							<th	class='jky-boxes-date-in'	><span>	Check In<br>Date		</span></td>
-							<th class='jky-boxes-weight'	><span>	Check In<br>Weight		</span></td>
-							<th class='jky-boxes-checkin'	><span> Check In<br>Boxes		</span></td>
-							<th class='jky-boxes-reserved'	><span> Reserved<br>Boxes		</span></td>
+							<th class='jky-td-action'	></td>
+							<th class='jky-td-location'	><span>	Check In<br>Location	</span></td>
+							<th	class='jky-td-date'		><span>	Check In<br>Date		</span></td>
+							<th class='jky-td-weight'	><span>	Check In<br>Weight		</span></td>
+							<th class='jky-td-boxes'	><span> Check In<br>Boxes		</span></td>
+							<th class='jky-td-boxes'	><span> Reserved<br>Boxes		</span></td>
 						</tr>
 					</thead>
 					<tbody id='jky-boxes-body'></tbody>
-<!--				<tfoot>
-						<tr>
-							<td id='jky-batch-add-new' class='jky-action' colspan='2'>
-								<a class='btn btn-success' type='button' href='#'><span>Add New</span></a>
-							</td>
-						</tr>
-					</tfoot>
--->				</table>
+				</table>
 			</div>
 		</div>
 	</div>

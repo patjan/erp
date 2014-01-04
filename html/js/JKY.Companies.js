@@ -72,10 +72,10 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-nick-name"		>' +				 the_row.nick_name		+ '</td>'
-		+  '<td class="jky-phone"			>' + JKY.fix_null	(the_row.phone		)	+ '</td>'
-		+  '<td class="jky-mobile"			>' + JKY.fix_null	(the_row.mobile		)	+ '</td>'
-		+  '<td class="jky-email"			>' +				 the_row.email			+ '</td>'
+		+  '<td class="jky-td-name-l"		>' +				 the_row.nick_name		+ '</td>'
+		+  '<td class="jky-td-phone"		>' + JKY.fix_null	(the_row.phone		)	+ '</td>'
+		+  '<td class="jky-td-phone"		>' + JKY.fix_null	(the_row.mobile		)	+ '</td>'
+		+  '<td class="jky-td-email"		>' +				 the_row.email			+ '</td>'
 		;
 	return my_html;
 };

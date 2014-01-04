@@ -28,7 +28,7 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-reference-value').attr('data-format', JKY.Session.get_date());
+	$('#jky-reference-date	input').attr('data-format', JKY.Session.get_date());
 	$('#jky-reference-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 
 	$('#jky-action-refresh'	).click (function() {JKY.process_refresh();});
@@ -58,15 +58,15 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-thread-group"	>' + the_row.thread_group		+ '</td>'
-		+  '<td class="jky-thread-name"		>' + the_row.thread_name		+ '</td>'
-		+  '<td class="jky-supplier-name"	>' + the_row.supplier_name		+ '</td>'
-		+  '<td class="jky-current-balance"	>' + the_row.current_balance	+ '</td>'
-		+  '<td class="jky-forecast-past"	>' + the_row.forecast_past		+ '</td>'
-		+  '<td class="jky-forecast-month-1">' + the_row.forecast_month_1	+ '</td>'
-		+  '<td class="jky-forecast-month-2">' + the_row.forecast_month_2	+ '</td>'
-		+  '<td class="jky-forecast-month-3">' + the_row.forecast_month_3	+ '</td>'
-		+  '<td class="jky-forecast-future"	>' + the_row.forecast_future	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + the_row.thread_group		+ '</td>'
+		+  '<td class="jky-td-name-l"	>' + the_row.thread_name		+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + the_row.supplier_name		+ '</td>'
+		+  '<td class="jky-td-weight"	>' + the_row.current_balance	+ '</td>'
+		+  '<td class="jky-td-weight"	>' + the_row.forecast_past		+ '</td>'
+		+  '<td class="jky-td-weight"	>' + the_row.forecast_month_1	+ '</td>'
+		+  '<td class="jky-td-weight"	>' + the_row.forecast_month_2	+ '</td>'
+		+  '<td class="jky-td-weight"	>' + the_row.forecast_month_3	+ '</td>'
+		+  '<td class="jky-td-weight"	>' + the_row.forecast_future	+ '</td>'
 		;
 	return my_html;
 };
@@ -98,7 +98,7 @@ JKY.set_add_new_row = function() {
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-		+            'ncm=\'' + JKY.get_value	('jky-ncm'				) + '\''
+		+            ' ncm=\'' + JKY.get_value	('jky-ncm'				) + '\''
 		+          ', name=\'' + JKY.get_value	('jky-thread-name'		) + '\''
 		+  ', thread_group=\'' + JKY.get_value	('jky-thread-groups'	) + '\''
 //		+  ', thread_color=\'' + JKY.get_value	('jky-thread-color'		) + '\''
@@ -112,7 +112,7 @@ JKY.get_form_set = function() {
  */
 JKY.process_refresh = function() {
 	JKY.show('jky-loading');
-	var my_reference_date = JKY.inp_date(JKY.get_value('jky-reference-value'));
+	var my_reference_date = JKY.inp_date('jky-reference-date');
 	var my_data =
 		{ method		: 'refresh'
 		, table			: 'ThreadForecast'

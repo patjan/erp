@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS ShipDyers
 , PRIMARY KEY(id)
 , UNIQUE(shipdyer_number)
 , KEY dyer		(dyer_id)
-, KEY nfe_number(nfe_number)
+, KEY invoice	(invoice_number)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 INSERT NextIds	SET table_name='ShipDyers', next_id=1, id_size=9;

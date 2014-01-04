@@ -11,8 +11,8 @@
  *
  * require:	JKY.Utils.js(JKY.display_confirm)
  *
- * 		$(my_parent).find('.jky-product-row-id'  ).val(the_id );
- *		$(my_parent).find('.jky-product-row-name').val(my_name);
+ * 		$(my_parent).find('.jky-product-id'  ).val(the_id );
+ *		$(my_parent).find('.jky-product-name').val(my_name);
  */
 JKY.Product = function() {
 	var my_the_id		= null;		//	external id that initiated the call
@@ -69,14 +69,14 @@ JKY.Product = function() {
 //		var my_dom_id = $(my_parent).find('#jky-product-id');
 		var my_dom_id = $('#jky-product-id');
 		if (my_dom_id.length == 0) {
-			my_dom_id = $(my_parent).find('.jky-product-row-id');
+			my_dom_id = $(my_parent).find('.jky-product-id');
 		}
 		my_dom_id.val(the_id );
 
 //		var my_dom_name = $(my_parent).find('#jky-product-name');
 		var my_dom_name = $('#jky-product-name');
 		if (my_dom_name.length == 0) {
-			my_dom_name = $(my_parent).find('.jky-product-row-name');
+			my_dom_name = $(my_parent).find('.jky-product-name');
 		}
 		my_dom_name.val(my_name);
 		my_dom_name.change();		//	to activate change event

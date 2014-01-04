@@ -25,6 +25,12 @@ JKY.start_program = function() {
 };
 
 /**
+ *	set all events (run only once per load)
+ */
+JKY.set_all_events = function() {
+};
+
+/**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
@@ -39,7 +45,6 @@ JKY.set_initial_values = function() {
 //	select the first option as default
 	$('#jky-app-select option').eq(1).prop('selected', true);
 	$('#jky-app-select').change();
-
 };
 
 /**
@@ -47,11 +52,11 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-thread-name"		>' +				 the_row.name				+ '</td>'
-		+  '<td class="jky-ncm"				>' + JKY.fix_null	(the_row.ncm			)	+ '</td>'
-		+  '<td class="jky-thread-group"	>' +				 the_row.thread_group		+ '</td>'
-//		+  '<td class="jky-thread-color"		>' +				 the_row.thread_color		+ '</td>'
-		+  '<td class="jky-composition"		>' +				 the_row.composition		+ '</td>'
+		+  '<td class="jky-ts-name-l"	>' +				 the_row.name				+ '</td>'
+		+  '<td class="jky-td-code"	>' + JKY.fix_null	(the_row.ncm				)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' +				 the_row.thread_group		+ '</td>'
+//		+  '<td class="jky-td-name-s"	>' +				 the_row.thread_color		+ '</td>'
+		+  '<td class="jky-td-name-l"	>' +				 the_row.composition		+ '</td>'
 		;
 	return my_html;
 };
@@ -60,11 +65,11 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-ncm'				, the_row.ncm			);
-	JKY.set_value	('jky-thread-name'		, the_row.name			);
-	JKY.set_option	('jky-thread-groups'	, the_row.thread_group	);
-//	JKY.set_value	('jky-thread-color'		, the_row.thread_color	);
-	JKY.set_option	('jky-compositions'		, the_row.composition	);
+	JKY.set_value	('jky-ncm'				,				 the_row.ncm			);
+	JKY.set_value	('jky-thread-name'		,				 the_row.name			);
+	JKY.set_option	('jky-thread-groups'	,				 the_row.thread_group	);
+//	JKY.set_value	('jky-thread-color'		,				 the_row.thread_color	);
+	JKY.set_option	('jky-compositions'		,				 the_row.composition	);
 };
 
 /**

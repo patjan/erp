@@ -35,9 +35,9 @@ JKY.suppliers	= [];
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-quoted-value'	).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-produced-value'	).attr('data-format', JKY.Session.get_date		());
-	$('#jky-delivered-value').attr('data-format', JKY.Session.get_date		());
+	$('#jky-quoted-date		input').attr('data-format', JKY.Session.get_date_time());
+	$('#jky-produced-date	input').attr('data-format', JKY.Session.get_date	 ());
+	$('#jky-delivered-date	input').attr('data-format', JKY.Session.get_date	 ());
 	$('#jky-quoted-date'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-produced-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-delivered-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
@@ -97,28 +97,27 @@ JKY.set_initial_values = function() {
 	$('#jky-gola-units'		).ForceIntegerOnly();
 	$('#jky-galao-percent'	).ForceIntegerOnly();
 	$('#jky-galao-units'	).ForceIntegerOnly();
-
-}
+};
 
 /**
  *	set table row
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-quotation-number">' +				 the_row.quotation_number		+ '</td>'
-		+  '<td class="jky-customer-name"	>' + JKY.fix_null	(the_row.customer_name		)	+ '</td>'
-		+  '<td class="jky-machine-name"	>' + JKY.fix_null	(the_row.machine_name		)	+ '</td>'
-		+  '<td class="jky-dyer-name"		>' + JKY.fix_null	(the_row.dyer_name			)	+ '</td>'
-		+  '<td class="jky-quoted-date"		>' + JKY.short_date	(the_row.quoted_at			)	+ '</td>'
-		+  '<td class="jky-produced-date"	>' + JKY.out_date	(the_row.produced_date		)	+ '</td>'
-		+  '<td class="jky-delivered-date"	>' + JKY.out_date	(the_row.delivered_date		)	+ '</td>'
-		+  '<td class="jky-quoted-pieces"	>' +				 the_row.quoted_pieces			+ '</td>'
-		+  '<td class="jky-produced-pieces"	>' +				 the_row.produced_pieces		+ '</td>'
-		+  '<td class="jky-delivered-pieces">' +				 the_row.delivered_pieces		+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.quotation_number	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.customer_name	)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.machine_name	)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.dyer_name		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.quoted_at		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.produced_date	)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.delivered_date	)	+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.quoted_pieces		+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.produced_pieces	+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.delivered_pieces	+ '</td>'
 		+  '</tr>'
 		;
 	return my_html;
-}
+};
 
 /**
  *	set form row
@@ -163,7 +162,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-galao-name'		,				 the_row.galao_name			);
 	JKY.set_value	('jky-remarks'			,				 JKY.row.remarks			);
 	JKY.display_lines();
-}
+};
 
 /**
  *	set add new row
@@ -195,7 +194,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-gola-name'		, '');
 	JKY.set_value	('jky-galao-name'		, '');
 	JKY.set_value	('jky-remarks'			, '');
-}
+};
 
 /**
  *	get form set
@@ -218,27 +217,27 @@ JKY.get_form_set = function() {
 		+     '  customer_id=  ' + my_customer_id
 		+      ', machine_id=  ' + my_machine_id
 		+         ', dyer_id=  ' + my_dyer_id
-		+       ', quoted_at=  ' + JKY.inp_time(JKY.get_value	('jky-quoted-value'		))
-		+   ', produced_date=  ' + JKY.inp_date(JKY.get_value	('jky-produced-value'	))
-		+  ', delivered_date=  ' + JKY.inp_date(JKY.get_value	('jky-delivered-value'	))
-//		+        ', diameter=  ' +				JKY.get_value	('jky-diameter'			)
-		+          ', weight=  ' +				JKY.get_value	('jky-weight'			)
-		+           ', width=  ' +				JKY.get_value	('jky-width'			)
-		+            ', peso=  ' +				JKY.get_value	('jky-peso'				)
-		+       ', has_break=\'' +				JKY.get_checked	('jky-has-break'		) + '\''
-		+   ', punho_percent=  ' +				JKY.get_value	('jky-punho-percent'	)
-		+    ', gola_percent=  ' +				JKY.get_value	('jky-gola-percent'		)
-		+   ', galao_percent=  ' +				JKY.get_value	('jky-galao-percent'	)
-		+     ', punho_units=  ' +				JKY.get_value	('jky-punho-units'		)
-		+      ', gola_units=  ' +				JKY.get_value	('jky-gola-units'		)
-		+     ', galao_units=  ' +				JKY.get_value	('jky-galao-units'		)
-		+        ', punho_id=  ' +								 my_punho_id
-		+         ', gola_id=  ' +								 my_gola_id
-		+        ', galao_id=  ' +								 my_galao_id
-		+         ', remarks=\'' +				JKY.get_value	('jky-remarks'			) + '\''
+		+       ', quoted_at=  ' + JKY.inp_time		('jky-quoted-date'		)
+		+   ', produced_date=  ' + JKY.inp_date		('jky-produced-date'	)
+		+  ', delivered_date=  ' + JKY.inp_date		('jky-delivered-date'	)
+//		+        ', diameter=  ' + JKY.get_value	('jky-diameter'			)
+		+          ', weight=  ' + JKY.get_value	('jky-weight'			)
+		+           ', width=  ' + JKY.get_value	('jky-width'			)
+		+            ', peso=  ' + JKY.get_value	('jky-peso'				)
+		+       ', has_break=\'' + JKY.get_checked	('jky-has-break'		) + '\''
+		+   ', punho_percent=  ' + JKY.get_value	('jky-punho-percent'	)
+		+    ', gola_percent=  ' + JKY.get_value	('jky-gola-percent'		)
+		+   ', galao_percent=  ' + JKY.get_value	('jky-galao-percent'	)
+		+     ', punho_units=  ' + JKY.get_value	('jky-punho-units'		)
+		+      ', gola_units=  ' + JKY.get_value	('jky-gola-units'		)
+		+     ', galao_units=  ' + JKY.get_value	('jky-galao-units'		)
+		+        ', punho_id=  ' + my_punho_id
+		+         ', gola_id=  ' + my_gola_id
+		+        ', galao_id=  ' + my_galao_id
+		+         ', remarks=\'' + JKY.get_value	('jky-remarks'			) + '\''
 		;
 	return my_set;
-}
+};
 
 JKY.zero_value = function(the_id, the_name) {
 	JKY.App.process_change_input(the_id);
@@ -247,12 +246,12 @@ JKY.zero_value = function(the_id, the_name) {
 
 JKY.display_list = function() {
 	JKY.show('jky-action-print');
-}
+};
 
 JKY.display_form = function() {
 	JKY.show('jky-action-print');
 	JKY.show('jky-action-copy');
-}
+};
 
 JKY.process_delete = function(the_id, the_row) {
 	var my_data = '';
@@ -273,7 +272,7 @@ JKY.process_delete = function(the_id, the_row) {
 		, where : 'parent_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
-}
+};
 
 /* -------------------------------------------------------------------------- */
 JKY.generate_order = function() {
@@ -290,12 +289,12 @@ JKY.generate_order = function() {
 		, id		:  JKY.row.id
 		}
 	JKY.ajax(false, my_data, JKY.refresh_form);
-}
+};
 
 JKY.refresh_form = function(response) {
 	JKY.display_message('Order row generated: ' + JKY.row.id);
 	JKY.App.display_row();
-}
+};
 
 /* -------------------------------------------------------------------------- */
 JKY.save_remarks = function() {
@@ -307,12 +306,12 @@ JKY.save_remarks = function() {
 		, where : 'Quotations.id = ' + JKY.row.id
 		};
 	JKY.ajax(true, my_data, JKY.save_remarks_success);
-}
+};
 
 JKY.save_remarks_success = function(response) {
 	JKY.display_message('Remarks saved, ' + response.message);
 	JKY.row = JKY.get_row('Quotations', JKY.row.id);
-}
+};
 
 /**
  * print row
@@ -349,7 +348,7 @@ JKY.print_row = function(the_id) {
 		+ "<tr>"
 		+	"<td class='jky-print-label'><span>  Punho</span>:</td>"
 		+	"<td id='jky-print-punho-percent'	class='jky-print-value'></td>"
-		+	"<td id='jky-print-punho-units'	class='jky-print-value'></td>"
+		+	"<td id='jky-print-punho-units'		class='jky-print-value'></td>"
 		+	"<td id='jky-print-punho-name'		class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "<tr>"
@@ -361,7 +360,7 @@ JKY.print_row = function(the_id) {
 		+ "<tr>"
 		+	"<td class='jky-print-label'><span>  Galao</span>:</td>"
 		+	"<td id='jky-print-galao-percent'	class='jky-print-value'></td>"
-		+	"<td id='jky-print-galao-units'	class='jky-print-value'></td>"
+		+	"<td id='jky-print-galao-units'		class='jky-print-value'></td>"
 		+	"<td id='jky-print-galao-name'		class='jky-print-value'></td>"
 		+ "</tr>"
 		+ "</table>"
@@ -421,4 +420,4 @@ JKY.print_row = function(the_id) {
 
 //	JKY.show('jky-printable');
 	$("#jky-printable").print();
-}
+};

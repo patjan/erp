@@ -102,9 +102,9 @@ JKY.display_next = function() {
 
 JKY.set_all_check = function(the_index) {
 	if ($(the_index).is(':checked')) {
-		$('#jky-table-body .jky-checkbox input').each(function() {$(this).attr('checked', 'checked');})
+		$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).attr('checked', 'checked');})
 	}else{
-		$('#jky-table-body .jky-checkbox input').each(function() {$(this).removeAttr('checked');})
+		$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).removeAttr('checked');})
 	}
 }
 
@@ -154,7 +154,7 @@ JKY.process_load_success = function(response) {
 		var my_row = JKY.rows[i];
 		var my_checkbox = '<input type="checkbox" onclick="JKY.set_checkbox(this)" row_id=' + my_row.id + ' />';
 		my_html += '<tr onclick="JKY.display_form(' + (i+1) + ')">'
-				+  '<td class="jky-checkbox"		>' + my_checkbox			+ '</td>'
+				+  '<td class="jky-td-checkbox"	>' + my_checkbox			+ '</td>'
 				+  '<td class="jky-full-name"		>' + my_row.full_name		+ '</td>'
 				+  '<td class="jky-mobile"			>' + my_row.mobile			+ '</td>'
 				+  '<td class="jky-email"			>' + my_row.email			+ '</td>'
@@ -350,7 +350,7 @@ JKY.process_print = function() {
 	if ($('#jky-app-form').css('display') == 'block') {
 		JKY.print_row(JKY.row.id);
 	}else{
-		$('#jky-table-body .jky-checkbox input:checked').each(function() {
+		$('#jky-table-body .jky-td-checkbox input:checked').each(function() {
 			JKY.print_row($(this).attr('row_id'));
 		})
 	}

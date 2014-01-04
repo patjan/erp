@@ -75,15 +75,15 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-nick-name"		>' + JKY.fix_null	(the_row.nick_name	)	+ '</td>'
-		+  '<td class="jky-is-customer"		>' +				 the_row.is_customer	+ '</td>'
-		+  '<td class="jky-is-supplier"		>' +				 the_row.is_supplier	+ '</td>'
-		+  '<td class="jky-is-dyer"			>' +				 the_row.is_dyer		+ '</td>'
-		+  '<td class="jky-is-partner"		>' +				 the_row.is_partner		+ '</td>'
-		+  '<td class="jky-is-transport"	>' +				 the_row.is_transport	+ '</td>'
-		+  '<td class="jky-phone"			>' + JKY.fix_null	(the_row.phone		)	+ '</td>'
-		+  '<td class="jky-mobile"			>' + JKY.fix_null	(the_row.mobile		)	+ '</td>'
-		+  '<td class="jky-email"			>' +				 the_row.email			+ '</td>'
+		+  '<td class="jky-td-name-l"		>' + JKY.fix_null	(the_row.nick_name	)	+ '</td>'
+		+  '<td class="jky-td-yes-no"		>' +				 the_row.is_customer	+ '</td>'
+		+  '<td class="jky-td-yes-no"		>' +				 the_row.is_supplier	+ '</td>'
+		+  '<td class="jky-td-yes-no"		>' +				 the_row.is_dyer		+ '</td>'
+		+  '<td class="jky-td-yes-no"		>' +				 the_row.is_partner		+ '</td>'
+		+  '<td class="jky-td-yes-no"		>' +				 the_row.is_transport	+ '</td>'
+		+  '<td class="jky-td-phone"		>' + JKY.fix_null	(the_row.phone		)	+ '</td>'
+		+  '<td class="jky-td-phone"		>' + JKY.fix_null	(the_row.mobile		)	+ '</td>'
+		+  '<td class="jky-td-email"		>' +				 the_row.email			+ '</td>'
 		;
 	return my_html;
 };
@@ -92,19 +92,19 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
-	JKY.set_value	('jky-nick-name'			, the_row.nick_name			);
-	JKY.set_value	('jky-full-name'			, the_row.full_name			);
-	JKY.set_yes		('jky-is-customer'			, the_row.is_customer		);
-	JKY.set_yes		('jky-is-supplier'			, the_row.is_supplier		);
-	JKY.set_yes		('jky-is-dyer'				, the_row.is_dyer			);
-	JKY.set_yes		('jky-is-partner'			, the_row.is_partner		);
-	JKY.set_yes		('jky-is-transport'			, the_row.is_transport		);
-	JKY.set_option	('jky-contact-tag'			, the_row.tags				);
-	JKY.set_value	('jky-cnpj'					, the_row.cnpj				);
-	JKY.set_value	('jky-ie'					, the_row.ie				);
-	JKY.set_value	('jky-website'				, the_row.website			);
-	JKY.set_value	('jky-email'				, the_row.email				);
+	JKY.set_html	('jky-status'			, JKY.t			(the_row.status			));
+	JKY.set_value	('jky-nick-name'		, the_row.nick_name		);
+	JKY.set_value	('jky-full-name'		, the_row.full_name		);
+	JKY.set_yes		('jky-is-customer'		, the_row.is_customer	);
+	JKY.set_yes		('jky-is-supplier'		, the_row.is_supplier	);
+	JKY.set_yes		('jky-is-dyer'			, the_row.is_dyer		);
+	JKY.set_yes		('jky-is-partner'		, the_row.is_partner	);
+	JKY.set_yes		('jky-is-transport'		, the_row.is_transport	);
+	JKY.set_option	('jky-contact-tag'		, the_row.tags			);
+	JKY.set_value	('jky-cnpj'				, the_row.cnpj			);
+	JKY.set_value	('jky-ie'				, the_row.ie			);
+	JKY.set_value	('jky-website'			, the_row.website		);
+	JKY.set_value	('jky-email'			, the_row.email			);
 //	JKY.disable_button('jky-is-company');
 //	setTimeout(function() {JKY.App.process_is_company($('#jky-is-company'));}, 100);
 

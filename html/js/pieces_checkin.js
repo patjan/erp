@@ -51,14 +51,14 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-barcode"				>' +				 the_row.barcode				+ '</td>'
-		+  '<td class="jky-product-name"		>' +				 the_row.product_name			+ '</td>'
-		+  '<td class="jky-inspected-by"		>' +				 the_row.inspected_name			+ '</td>'
-		+  '<td class="jky-weighed-by"			>' +				 the_row.weighed_name			+ '</td>'
-		+  '<td class="jky-checkin-date"		>' + JKY.short_date	(the_row.checkin_at			)	+ '</td>'
-		+  '<td class="jky-checkin-location"	>' + JKY.fix_null	(the_row.checkin_location	)	+ '</td>'
-		+  '<td class="jky-checkin-weight"		>' +				 the_row.checkin_weight			+ '</td>'
-		+  '<td class="jky-remarks"				>' + JKY.fix_null	(the_row.remarks			)	+ '</td>'
+		+  '<td class="jky-td-barcode"	>' +				 the_row.barcode				+ '</td>'
+		+  '<td class="jky-td-name-l"	>' +				 the_row.product_name			+ '</td>'
+		+  '<td class="jky-td-name-s"	>' +				 the_row.inspected_name			+ '</td>'
+		+  '<td class="jky-td-name-s"	>' +				 the_row.weighed_name			+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.checkin_at			)	+ '</td>'
+		+  '<td class="jky-td-location"	>' + JKY.fix_null	(the_row.checkin_location	)	+ '</td>'
+		+  '<td class="jky-td-weight"	>' +				 the_row.checkin_weight			+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.remarks			)	+ '</td>'
 		;
 	return my_html;
 };
@@ -222,14 +222,14 @@ JKY.checkin_piece_success = function() {
 	var my_row	= JKY.get_row('Pieces', my_id);
 
 	var my_html = '<tr>'
-		+  '<td class="jky-barcode"				>' +				 my_row.barcode				+ '</td>'
-		+  '<td class="jky-product-name"		>' +				 my_row.product_name		+ '</td>'
-		+  '<td class="jky-inspected-by"		>' +				 my_row.inspected_name		+ '</td>'
-		+  '<td class="jky-weighed-by"			>' +				 my_row.weighed_name		+ '</td>'
-		+  '<td class="jky-checkin-date"		>' + JKY.short_date	(my_row.checkin_at		)	+ '</td>'
-		+  '<td class="jky-checkin-location"	>' + JKY.fix_null	(my_row.checkin_location)	+ '</td>'
-		+  '<td class="jky-checkin-weight"		>' +				 my_row.checkin_weight		+ '</td>'
-		+  '<td class="jky-remarks"				>' + JKY.fix_null	(my_row.remarks			)	+ '</td>'
+		+  '<td class="jky-td-barcode"	>' +				 my_row.barcode				+ '</td>'
+		+  '<td class="jky-td-name-l"	>' +				 my_row.product_name		+ '</td>'
+		+  '<td class="jky-td-name-s"	>' +				 my_row.inspected_name		+ '</td>'
+		+  '<td class="jky-td-name-s"	>' +				 my_row.weighed_name		+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.short_date	(my_row.checkin_at		)	+ '</td>'
+		+  '<td class="jky-td-location"	>' + JKY.fix_null	(my_row.checkin_location)	+ '</td>'
+		+  '<td class="jky-td-weight"	>' +				 my_row.checkin_weight		+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(my_row.remarks			)	+ '</td>'
 		+ '</tr>'
 		;
 	JKY.prepend_html('jky-pieces-table-body', my_html);

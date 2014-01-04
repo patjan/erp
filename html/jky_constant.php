@@ -2,6 +2,6 @@
 //   define constants
 
 define('SITE_NAME'		, 'ERP');
-define('SERVER_NAME'	, 'http://' . $_SERVER['SERVER_ADDR'] . ':' . $_SERVER['SERVER_PORT'] . '/');
+define('SERVER_NAME'	, 'http://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/');
 
 ?>

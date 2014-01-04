@@ -28,12 +28,12 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-ordered-value'	).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-requested-value').attr('data-format', JKY.Session.get_date		());
-	$('#jky-scheduled-value').attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-ordered-at'		).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-ordered-date	input').attr('data-format', JKY.Session.get_date_time());
+	$('#jky-requested-date	input').attr('data-format', JKY.Session.get_date	 ());
+	$('#jky-scheduled-date	input').attr('data-format', JKY.Session.get_date_time());
+	$('#jky-ordered-date'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-requested-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
-	$('#jky-scheduled-at'	).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-scheduled-date'	).datetimepicker({language: JKY.Session.get_locale()});
 
 	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
 	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
@@ -58,9 +58,9 @@ JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-number"			>' +				 the_row.number					+ '</td>'
 		+  '<td class="jky-source-doc"		>' +				 the_row.source_doc				+ '</td>'
-		+  '<td class="jky-ordered-at"		>' + JKY.short_date	(the_row.ordered_at			)	+ '</td>'
+		+  '<td class="jky-ordered-date"	>' + JKY.short_date	(the_row.ordered_at			)	+ '</td>'
 		+  '<td class="jky-requested-date"	>' + JKY.out_date	(the_row.requested_date		)	+ '</td>'
-		+  '<td class="jky-scheduled-at"	>' + JKY.short_date	(the_row.scheduled_at		)	+ '</td>'
+		+  '<td class="jky-scheduled-date"	>' + JKY.short_date	(the_row.scheduled_at		)	+ '</td>'
 		+  '<td class="jky-requested-weight">' +				 the_row.requested_weight		+ '</td>'
 		+  '<td class="jky-checkout-weight"	>' +				 the_row.checkout_weight		+ '</td>'
 		+  '<td class="jky-machine-name"	>' + JKY.fix_null	(the_row.machine_name		)	+ '</td>'
@@ -76,9 +76,9 @@ JKY.set_table_row = function(the_row) {
 JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-number'			, the_row.number		);
 	JKY.set_value	('jky-source-doc'		, the_row.source_doc	);
-	JKY.set_date	('jky-ordered-at'		, JKY.out_time(the_row.ordered_at	));
+	JKY.set_date	('jky-ordered-date'		, JKY.out_time(the_row.ordered_at	));
 	JKY.set_date	('jky-requested-date'	, JKY.out_date(the_row.requested_date));
-	JKY.set_date	('jky-scheduled-at'		, JKY.out_time(the_row.scheduled_at	));
+	JKY.set_date	('jky-scheduled-date'	, JKY.out_time(the_row.scheduled_at	));
 	JKY.set_option	('jky-machine-name'		, the_row.machine_id	);
 	JKY.set_option	('jky-supplier-name'	, the_row.supplier_id	);
 	JKY.set_value	('jky-supplier-ref'		, the_row.supplier_ref	);
@@ -92,9 +92,9 @@ JKY.set_form_row = function(the_row) {
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-number'			,  JKY.t('New'));
 	JKY.set_value	('jky-source-doc'		, '');
-	JKY.set_date	('jky-ordered-at'		,  JKY.out_time(JKY.get_now ()));
+	JKY.set_date	('jky-ordered-date'		,  JKY.out_time(JKY.get_now ()));
 	JKY.set_date	('jky-requested-date'	,  JKY.out_date(JKY.get_date()));
-	JKY.set_date	('jky-scheduled-at'		, '');
+	JKY.set_date	('jky-scheduled-date'	, '');
 	JKY.set_option	('jky-machine-name'		, '');
 	JKY.set_option	('jky-supplier-name'	, '');
 	JKY.set_value	('jky-supplier-ref'		, '');
@@ -111,9 +111,9 @@ JKY.get_form_set = function() {
 
 	var my_set = ''
 		+      'source_doc=\'' + JKY.get_value	('jky-source-doc'		) + '\''
-		+    ', ordered_at=  ' + JKY.inp_time(JKY.get_value('jky-ordered-value'		))
-		+ ', requested_date= ' + JKY.inp_date(JKY.get_value('jky-requested-value'	))
-		+  ', scheduled_at=  ' + JKY.inp_time(JKY.get_value('jky-scheduled-value'	))
+		+    ', ordered_at=  ' + JKY.inp_time	('jky-ordered-date'		)
+		+', requested_date=  ' + JKY.inp_date	('jky-requested-date'	)
+		+  ', scheduled_at=  ' + JKY.inp_time	('jky-scheduled-date'	)
 		+    ', machine_id=  ' + my_machine_id
 		+   ', supplier_id=  ' + my_supplier_id
 		+  ', supplier_ref=\'' + JKY.get_value	('jky-supplier-ref'		) + '\''

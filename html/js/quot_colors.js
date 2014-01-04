@@ -6,20 +6,20 @@ JKY.generate_color = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = JKY.is_status('Draft') ? '<a onclick="JKY.delete_color(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_color = ''
-		+ "<input class='jky-color-row-id' type='hidden' value=" + the_row.color_id + " />"
-		+ "<input class='jky-color-row-name' disabled onchange='JKY.update_color(this, " + my_id + ")' value='" + the_row.color_name + "' />"
-		+ "<a href='#' onClick='JKY.Color.display(this)'><i class='icon-share'></i></a>"
+		+ "<input class='jky-color-id' type='hidden' value=" + the_row.color_id + " />"
+		+ "<input class='jky-color-name' disabled onchange='JKY.update_color(this, " + my_id + ")' value='" + the_row.color_name + "' />"
+		+ " <a href='#' onClick='JKY.Color.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
 		+ '<tr color_id=' + my_id + '>'
 		+ '<td></td>'
-		+ '<td class="jky-action" style="text-align:right !important;">' + my_trash	+ '</td>'
-		+ '<td class="jky-td-color-pieces"	><input class="jky-quoted-pieces"	onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.quoted_pieces	+ '" /></td>'
-		+ '<td class="jky-td-color-name"	>' + my_color + '</td>'
-		+ '<td class="jky-td-color-price"	><input class="jky-fabric-price"	onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.fabric_price	+ '" /></td>'
-		+ '<td class="jky-td-color-price"	><input class="jky-punho-price"		onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.punho_price		+ '" /></td>'
-		+ '<td class="jky-td-color-price"	><input class="jky-gola-price"		onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.gola_price		+ '" /></td>'
-		+ '<td class="jky-td-color-price"	><input class="jky-galao-price"		onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.galao_price		+ '" /></td>'
+		+ '<td class="jky-td-action" style="text-align:right !important;">' + my_trash	+ '</td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-quoted-pieces"	onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.quoted_pieces	+ '" /></td>'
+		+ '<td class="jky-td-key-l"		>' + my_color + '</td>'
+		+ '<td class="jky-td-price"		><input class="jky-fabric-price	jky-td-price"	onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.fabric_price	+ '" /></td>'
+		+ '<td class="jky-td-price"		><input class="jky-punho-price	jky-td-price"	onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.punho_price		+ '" /></td>'
+		+ '<td class="jky-td-price"		><input class="jky-gola-price	jky-td-price"	onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.gola_price		+ '" /></td>'
+		+ '<td class="jky-td-price"		><input class="jky-galao-price	jky-td-price"	onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.galao_price		+ '" /></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -37,7 +37,7 @@ JKY.update_color = function(id_name, the_id) {
 	my_pieces_id.val(my_line_pieces + my_diff_pieces);
 	JKY.update_quoted_pieces(my_line_id, my_diff_pieces);
 
-	var my_color_id			= my_tr_id.find('.jky-color-row-id').val();
+	var my_color_id			= my_tr_id.find('.jky-color-id').val();
 		my_color_id			= (my_color_id == '') ? 'null' : my_color_id;
 	var	my_quoted_pieces	= parseFloat(my_tr_id.find('.jky-quoted-pieces'	).val());
 	var my_fabric_price		= parseFloat(my_tr_id.find('.jky-fabric-price'	).val());

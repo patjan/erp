@@ -1,46 +1,16 @@
-<style>
-.jky-form-line-1		{width:273px;}
-.jky-form-line-2		{width:290px;}
-.jky-form-label			{width:160px;}
-.jky-form-label-1		{width:100px;}
-.jky-form-value			{width:100px;}
-.jky-form-value1		{width:240px;}
-.jky-checkbox			{width: 30px; text-align:center;}
-
-.jky-batch-number		{width: 40px; text-align:center !important;}
-.jky-barcode			{width: 80px; text-align:center !important;}
-.jky-status				{width: 60px; text-align:center !important;}
-.jky-number-of-boxes	{width: 40px; text-align:right  !important;}
-.jky-number-of-cones	{width: 40px; text-align:right  !important;}
-.jky-average-weight		{width: 40px; text-align:right  !important;}
-.jky-real-weight		{width: 40px; text-align:right  !important;}
-.jky-checkin-location	{width: 40px; text-align:center !important; text-transform:capitalize;}
-.jky-checkout-location	{width: 40px; text-align:center !important; text-transform:capitalize;}
-
-.jky-line-label			{font-weight:bold; text-align:right;}
-.jky-line-value  input	{width: 90%;	text-align:right ;}
-.jky-line-thread input	{width:275px;	text-align:left  ;}
-.jky-line-thread a		{margin-left:-30px; padding:5px;}
-.jky-line-thread a		{margin-left:-30px; padding:5px;}
-.jky-line-percent		{width: 40px;	text-align:right ; margin-right:0;}
-.jky-line-name			{width:280px;}
-#jky-line-total-expected{padding-right:15px; font-weight:bold; text-align:right;}
-#jky-line-total-received{padding-right:15px; font-weight:bold; text-align:right;}
-</style>
-
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'			><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-batch-number'		><span>        Batch<br>Number			</span></th>
-			<th class='jky-barcode'				><span>                 Barcode			</span></th>
-			<th class='jky-status'				><span>                 Status			</span></th>
-			<th class='jky-number-of-boxes'		><span>       Number<br>Boxes			</span></th>
-			<th class='jky-number-of-cones'		><span>       Number<br>Cones			</span></th>
-			<th class='jky-average-weight'		><span>      Average<br>Weight			</span></th>
-			<th class='jky-real-weight'			><span>         Real<br>Weight			</span></th>
-			<th class='jky-checkin-location'	><span>     Check In<br>Location		</span></th>
-			<th class='jky-checkout-location'	><span>    Check Out<br>Location		</span></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-code'		><span>        Batch<br>Code		</span></th>
+			<th class='jky-td-barcode'	><span>      Barcode				</span></th>
+			<th class='jky-td-status'	><span>       Status				</span></th>
+			<th class='jky-td-integer'	><span>       Number<br>Boxes		</span></th>
+			<th class='jky-td-integer'	><span>       Number<br>Cones		</span></th>
+			<th class='jky-td-weight'	><span>      Average<br>Weight		</span></th>
+			<th class='jky-td-weight'	><span>         Real<br>Weight		</span></th>
+			<th class='jky-td-location'	><span>     Check In<br>Location	</span></th>
+			<th class='jky-td-location'	><span>    Check Out<br>Location	</span></th>
 		</tr>
 	</thead>
 
@@ -49,7 +19,8 @@
 
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
-		<div id='jky-form-actions'	></div>
+		<div id='jky-form-actions'>
+		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
 			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
@@ -60,17 +31,42 @@
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Batch Number		</span>:</div><input  id='jky-batch-number'			class='jky-form-value'	/></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Barcode			</span>:</div><input  id='jky-barcode'				class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Number Boxes		</span>:</div><input  id='jky-number-of-boxes'		class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Number Cones		</span>:</div><input  id='jky-number-of-cones'		class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Average Weight		</span>:</div><input  id='jky-average-weight'		class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Real Weight		</span>:</div><input  id='jky-real-weight'			class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Check In Location	</span>:</div><input  id='jky-checkin-location'		class='jky-form-value' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Location	</span>:</div><input  id='jky-checkout-location'	class='jky-form-value' /></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Batch Code</span>:</div>
+				<input  id='jky-batch-code' class='jky-form-code jky-form-key' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Barcode</span>:</div>
+				<input  id='jky-barcode' class='jky-form-barcode' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Number Boxes</span>:</div>
+				<input  id='jky-number-of-boxes' class='jky-form-integer' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Number Cones</span>:</div>
+				<input  id='jky-number-of-cones' class='jky-form-integer' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Average Weight</span>:</div>
+				<input  id='jky-average-weight' class='jky-form-weight' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Real Weight</span>:</div>
+				<input  id='jky-real-weight' class='jky-form-weight' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Check In Location</span>:</div>
+				<input  id='jky-checkin-location' class='jky-form-location' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Check Out Location</span>:</div>
+				<input  id='jky-checkout-location' class='jky-form-location' />
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
+
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
@@ -83,16 +79,6 @@
 		<div class='jky-clear'></div>
 	</div>
 
-<!--<div id='jky-form-tabs' class='tabbable'>
-		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-lines'			class='active'	><a href='#jky-pane-lines'			data-toggle='tab'><span>Lines			</span></a></li>
-		</ul>
-
-		<div class='tab-content'>
-			<div id='jky-pane-lines' class='tab-pane active'>
-			</div>
-		</div>
-	</div> -->
 	<div id='jky-form-footer'></div>
 </div>
 

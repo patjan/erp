@@ -1,10 +1,10 @@
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-color-name'		><span>Color Name		</span></th>
-			<th class='jky-color-type'		><span>Color Type		</span></th>
-			<th class='jky-status'			><span>Status			</span></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-name-w'	><span>      Color Name			</span></th>
+			<th class='jky-td-name-s'	><span>      Color Type			</span></th>
+			<th class='jky-td-status'	><span>          Status			</span></th>
 		</tr>
 	</thead>
 
@@ -20,21 +20,23 @@
 			<span>Status</span>:
 			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
 		</div>
-
+		<div class='jky-clear'></div>
 	</div>
-	<div class='jky-clear'></div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>        Color Name</span>:</div><input  id='jky-color-name' class='jky-form-value' placeholder='Name' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>        Color Type</span>:</div><select id='jky-color-type'></select></div>
-		</div>
-		<div class='jky-clear'></div>
-
-		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Color Name</span>:</div>
+				<input  id='jky-color-name' class='jky-form-name jky-form-key' placeholder='Color Name' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Color Type</span>:</div>
+				<select id='jky-color-type'></select>
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
+
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
@@ -49,16 +51,11 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-notes' class='active'><a href='#jky-notes' data-toggle='tab'><span>Notes</span></a></li>
+			<li	id='jky-tab-notes'			class='active'	><a href='#jky-notes'					data-toggle='tab'><span>Notes			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
 			<div id='jky-notes' class='tab-pane'>
-				<div class='jky-form-line'><div class='jky-form-label'><span>		Expected Date</span></div><div id='jky-expected-date'		class='jky-form-value'>02/01/2013	</div></div>
-				<div class='jky-form-line'><div class='jky-form-label'><span>	Invoicing Control</span></div><div id='jky-invoicing-control'	class='jky-form-value'>Based on 	</div></div>
-				<div class='jky-form-line'><div class='jky-form-label'><span>	 Invoice Received</span></div><div id='jky-invoice-received'	class='jky-form-value'>No			</div></div>
-				<div class='jky-form-line'><div class='jky-form-label'><span>		 Payment Term</span></div><div id='jky-payment-term'		class='jky-form-value'>				</div></div>
-				<div class='jky-form-line'><div class='jky-form-label'><span>	  Fiscal Position</span></div><div id='jky-fiscal-position'		class='jky-form-value'>				</div></div>
 			</div>
 		</div>
 	</div>
@@ -66,4 +63,5 @@
 </div>
 
 <div id='jky-body-loaded'></div>
+
 <script src='js/colors.js'></script>

@@ -679,7 +679,8 @@ private function set_specific($table, $specific, $specific_id) {
 private function set_select($table, $specific, $select) {
 	if ($select == 'All')	return '';
 
-	if ($select == 'Draft + Active') {
+	if ($select == 'Draft + Active'			//	from ajax
+	||  $select == 'Draft   Active') {		//	from export
 		switch($table) {
 			case 'BatchOuts'		: return ' AND  BatchOuts	.status IN   ("Draft","Active")';
 			case 'CheckOuts'		: return ' AND  CheckOuts	.status IN   ("Draft","Active")';
@@ -795,7 +796,7 @@ private function set_new_fields($table) {
 												. ',   Product.product_name		AS   product_name';
 	if ($table == 'OrdThreads'		)	$return = ',    Orderx.order_number		AS 	   order_number'
 												. ',    Thread.name				AS    thread_name'
-												. ',   BatchIn.batch			AS     batch_number';
+												. ',   BatchIn.batch			AS     batch_code';
 	if ($table == 'Pieces'			)	$return = ',    Orderx.order_number		AS     order_number'
 												. ', Inspected.nick_name		AS inspected_name'
 												. ',   Weighed.nick_name		AS   weighed_name'
@@ -828,7 +829,7 @@ private function set_new_fields($table) {
 	if ($table == 'Batches'			)	$return = ',   Threads.name				AS           name'
 												. ', Incomings.incoming_number	AS  incoming_number'
 												. ', Purchases.purchase_number	AS  purchase_number';
-	if ($table == 'Boxes'			)	$return = ',   Batches.batch			AS     batch_number'
+	if ($table == 'Boxes'			)	$return = ',   Batches.batch			AS     batch_code'
 												. ',    Parent.barcode			AS           parent'
 												. ',   CheckIn.nick_name		AS           checkin'
 												. ',  CheckOut.nick_name		AS           checkout'
@@ -842,7 +843,7 @@ private function set_new_fields($table) {
 												. ',  Requests.machine_id		AS   machine_id'
 												. ',  Requests.supplier_id		AS  supplier_id'
 												. ',   Threads.name				AS    thread_name'
-												. ',   Batches.batch			AS     batch_number'
+												. ',   Batches.batch			AS     batch_code'
 //												. ', BatchOuts.checkout_weight	AS  checkout_weight'
 												. ', CheckOuts.checkout_at		AS  checkout_at'
 												. ',  Machines.name				AS   machine_name'
@@ -851,7 +852,7 @@ private function set_new_fields($table) {
 												. ',  Supplier.nick_name		AS  supplier_name'
 												. ',      Dyer.nick_name		AS      dyer_name';
 	if ($table == 'BatchOuts'		)	$return = ',   Threads.name				AS	  thread_name'
-												. ',   Batches.batch			AS     batch_number'
+												. ',   Batches.batch			AS     batch_code'
 												. ', CheckOuts.number			AS  checkout_number'
 												. ', CheckOuts.requested_at		AS requested_at'
 												. ',  Supplier.nick_name		AS  supplier_name'
@@ -860,7 +861,7 @@ private function set_new_fields($table) {
 												. ', BatchOuts.requested_weight	AS requested_weight'
 												. ', BatchOuts.checkout_weight	AS  checkout_weight'
 												. ',   Threads.name				AS    thread_name'
-												. ',   Batches.batch			AS     batch_number'
+												. ',   Batches.batch			AS     batch_code'
 												. ', CheckOuts.number			AS  checkout_number'
 												. ', CheckOuts.requested_at		AS requested_at'
 												. ',  Supplier.nick_name		AS  supplier_name'
@@ -2686,8 +2687,12 @@ private function delete($data) {
 
 	$my_id = $this->get_only_id($table, $where);
 	if ($my_id) {
+
 		if ($table == 'Contacts') {
 			$this->delete_jky_user($my_id);
+		}
+		if ($table == 'ShipDyers') {
+			$this->unlink_loadouts($my_id);
 		}
 
 		$new = db_get_row($table, 'id = ' . $my_id);
@@ -2716,6 +2721,19 @@ private function delete_jky_user($id) {
 		. '  FROM JKY_Users'
 		. ' WHERE id = ' . $my_id
 		;
+	$this->log_sql('JKY_Users', $my_id, $sql);
+	$db = Zend_Registry::get('db');
+	$db->query($sql);
+	insert_changes($db, 'JKY_Users', $my_id);
+}
+
+private function unlink_loadouts($id) {
+	$my_id = $id;
+	$sql= 'UPDATE LoadOuts'
+		. '   SET LoadOuts.shipdyer_id = NULL'
+		. ' WHERE LoadOuts.shipdyer_id = ' . $my_id
+		;
+	$this->log_sql('LoadOuts', $my_id, $sql);
 	$db = Zend_Registry::get('db');
 	$db->query($sql);
 	insert_changes($db, 'JKY_Users', $my_id);

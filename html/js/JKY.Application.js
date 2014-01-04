@@ -158,9 +158,9 @@ if (my_first == true) {
 	function my_set_all_check(the_index) {
 			JKY.display_trace('set_all_check');
 			if ($(the_index).is(':checked')) {
-				$('#jky-table-body .jky-checkbox input').each(function() {$(this).attr('checked', 'checked');})
+				$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).attr('checked', 'checked');})
 			}else{
-				$('#jky-table-body .jky-checkbox input').each(function() {$(this).removeAttr('checked');})
+				$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).removeAttr('checked');})
 			}
 		}
 
@@ -225,7 +225,7 @@ if (my_first == true) {
 				var my_row = JKY.rows[i];
 				var my_checkbox = '<input type="checkbox" onclick="' + my_args.object_name + '.set_checkbox(this)" row_id=' + my_row.id + ' />';
 				my_html += '<tr onclick="' + my_args.object_name + '.display_form(' + (i+1) + ')">'
-						+  '<td class="jky-checkbox">' + my_checkbox + '</td>'
+						+  '<td class="jky-td-checkbox">' + my_checkbox + '</td>'
 						+  JKY.set_table_row(my_row)
 						+  '</tr>'
 						;
@@ -427,7 +427,7 @@ if (my_first == true) {
 		if ($('#jky-app-form').css('display') == 'block') {
 			my_print_row(JKY.row.id);
 		}else{
-			$('#jky-table-body .jky-checkbox input:checked').each(function() {
+			$('#jky-table-body .jky-td-checkbox input:checked').each(function() {
 				my_print_row($(this).attr('row_id'));
 			});
 		}

@@ -55,16 +55,16 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-loadout-number"	>' +				 the_row.loadout_number			+ '</td>'
-		+  '<td class="jky-dyer-name"		>' + JKY.fix_null	(the_row.dyer_name			)	+ '</td>'
-		+  '<td class="jky-color-name"		>' + JKY.fix_null	(the_row.color_name			)	+ '</td>'
-		+  '<td class="jky-sale-number"		>' +				 the_row.sale_number			+ '</td>'
-		+  '<td class="jky-customer-name"	>' + JKY.fix_null	(the_row.customer_name		)	+ '</td>'
-		+  '<td class="jky-product-name"	>' + JKY.fix_null	(the_row.product_name		)	+ '</td>'
-		+  '<td class="jky-requested-date"	>' + JKY.short_date	(the_row.requested_at		)	+ '</td>'
-		+  '<td class="jky-requested-pieces">' +				 the_row.requested_pieces		+ '</td>'
-		+  '<td class="jky-reserved-pieces"	>' +				 the_row.reserved_pieces		+ '</td>'
-		+  '<td class="jky-checkout-pieces"	>' +				 the_row.checkout_pieces		+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.loadout_number			+ '</td>'
+		+  '<td class="jky-td-short"	>' + JKY.fix_null	(the_row.dyer_name			)	+ '</td>'
+		+  '<td class="jky-td-short"	>' + JKY.fix_null	(the_row.color_name			)	+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.sale_number			+ '</td>'
+		+  '<td class="jky-td-short"	>' + JKY.fix_null	(the_row.customer_name		)	+ '</td>'
+		+  '<td class="jky-td-text-s"	>' + JKY.fix_null	(the_row.product_name		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.requested_at		)	+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.requested_pieces		+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.reserved_pieces		+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.checkout_pieces		+ '</td>'
 		;
 	return my_html;
 };
@@ -187,10 +187,10 @@ JKY.insert_load_sets = function() {
 		var my_tr = my_trs[i];
 		var my_reserved_pieces = parseInt($(my_tr).find('.jky-reserved-pieces').val());
 		if (my_reserved_pieces > 0) {
-			var my_checkin_location	=				 $(my_tr).find('.jky-checkin-location'	).val().toUpperCase();
-			var my_checkin_date		= JKY.inp_date	($(my_tr).find('.jky-checkin-date'		).val());
-			var my_checkin_weight	= parseFloat	($(my_tr).find('.jky-checkin-weight'	).val());
-			var my_checkin_pieces	= parseInt		($(my_tr).find('.jky-checkin-pieces'	).val());
+			var my_checkin_location	=					 $(my_tr).find('.jky-checkin-location'	).val().toUpperCase();
+			var my_checkin_date		= JKY.inp_date_value($(my_tr).find('.jky-checkin-date'		).val());
+			var my_checkin_weight	= parseFloat		($(my_tr).find('.jky-checkin-weight'	).val());
+			var my_checkin_pieces	= parseInt			($(my_tr).find('.jky-checkin-pieces'	).val());
 			var my_set = ''
 				+       ' loadsale_id=  ' + JKY.row.id
 				+ ', checkin_location=\'' + my_checkin_location + '\''

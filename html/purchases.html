@@ -1,29 +1,14 @@
-<style>
-.jky-form-line-1		{width:273px;}
-.jky-form-line-2		{width:290px;}
-.jky-form-label			{width:160px;}
-.jky-form-label-1		{width:100px;}
-.jky-form-value			{width:100px;}
-.jky-form-value1		{width:240px;}
-.jky-line-label			{font-weight:bold; text-align:right;}
-.jky-line-value  input	{width: 90%;	text-align:right ;}
-.jky-line-thread input	{width:275px;	text-align:left  ;}
-.jky-line-thread a		{margin-left:-30px; padding:5px;}
-.jky-line-thread a		{margin-left:-30px; padding:5px;}
-.jky-line-name			{width:280px;}
-</style>
-
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-purchase-number'	><span>   Purchase<br>Number	</span></th>
-			<th class='jky-source-doc'		><span>     Source<br>Document	</span></th>
-			<th class='jky-ordered-date'	><span>    Ordered<br>Date		</span></th>
-			<th class='jky-expected-date'	><span>   Expected<br>Date		</span></th>
-			<th class='jky-expected-weight'	><span>   Expected<br>Weight	</span></th>
-			<th class='jky-received-weight'	><span>   Received<br>Weight	</span></th>
-			<th class='jky-supplier-name'	><span>               Supplier	</span></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-number'	><span>   Purchase<br>Number	</span></th>
+			<th class='jky-td-ref'		><span>     Source<br>Document	</span></th>
+			<th class='jky-td-date'		><span>    Ordered<br>Date		</span></th>
+			<th class='jky-td-date'		><span>   Expected<br>Date		</span></th>
+			<th class='jky-td-weight'	><span>   Expected<br>Weight	</span></th>
+			<th class='jky-td-weight'	><span>   Received<br>Weight	</span></th>
+			<th class='jky-td-name-s'	><span>   Supplier				</span></th>
 		</tr>
 	</thead>
 
@@ -47,36 +32,45 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Purchase Number</span>:</div>
-				<input  id='jky-purchase-number' class='jky-form-value' disabled />
+				<input  id='jky-purchase-number' class='jky-form-number jky-form-key' disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Source Document</span>:</div>
-				<input  id='jky-source-doc'			class='jky-form-value' />
+				<input  id='jky-source-doc' class='jky-form-ref' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Ordered Date</span>:</div>
-				<div id="jky-ordered-date" class="input-append date">
-					<input id='jky-ordered-value' type="text" />
-					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+				<div id='jky-ordered-date' class='input-append date'>
+					<input class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Expected Date</span>:</div>
-				<div id="jky-expected-date" class="input-append date">
-					<input id='jky-expected-value' type="text" />
-					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+				<div id='jky-expected-date' class='input-append date'>
+					<input class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line hide'>
 				<div class='jky-form-label'><span>Scheduled Date</span>:</div>
-				<div id="jky-scheduled-date" class="input-append date">
-					<input id='jky-scheduled-value' type="text" />
-					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+				<div id='jky-scheduled-date' class='input-append date'>
+					<input class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
-			<div class='jky-form-line'		><div class='jky-form-label'><span>	        Supplier</span>:</div><select id='jky-supplier-name'></select></div>
-			<div class='jky-form-line hide'	><div class='jky-form-label'><span>Supplier Document</span>:</div><input  id='jky-supplier-ref'	class='jky-form-value' /></div>
-			<div class='jky-form-line hide'	><div class='jky-form-label'><span>	    Payment Term</span>:</div><select id='jky-payment-term' ></select></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Supplier</span>:</div>
+				<select id='jky-supplier-name'></select>
+			</div>
+			<div class='jky-form-line hide'>
+				<div class='jky-form-label'><span>Supplier Ref</span>:</div>
+				<input  id='jky-supplier-ref' class='jky-form-ref' />
+			</div>
+			<div class='jky-form-line hide'>
+				<div class='jky-form-label'><span>Payment Term</span>:</div>
+				<select id='jky-payment-term'></select>
+			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -95,7 +89,7 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-lines'		class='active'	><a href='#jky-pane-lines'		data-toggle='tab'><span>Lines	</span></a></li>
+			<li	id='jky-tab-lines'			class='active'	><a href='#jky-pane-lines'				data-toggle='tab'><span>Lines			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
@@ -103,12 +97,12 @@
 				<table class='table table-striped' >
 					<thead>
 						<tr>
-							<th class='jky-action'></th>
-							<th class='jky-td-thread-name'		><span>             Thread	</span></th>
-							<th class='jky-td-line-weight'		><span> Expected<br>Weight	</span></th>
-							<th class='jky-td-line-weight'		><span> Received<br>Weight	</span></th>
-							<th class='jky-td-line-date'		><span> Expected<br>Date	</span></th>
-							<th class='jky-td-line-date'		><span>Scheduled<br>Date	</span></th>
+							<th class='jky-td-action'	></th>
+							<th class='jky-td-key-w'	><span>    Thread			</span></th>
+							<th class='jky-td-weight'	><span> Expected<br>Weight	</span></th>
+							<th class='jky-td-weight'	><span> Received<br>Weight	</span></th>
+							<th class='jky-td-date'		><span> Expected<br>Date	</span></th>
+							<th class='jky-td-date'		><span>Scheduled<br>Date	</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-lines-body'></tbody>
@@ -117,9 +111,9 @@
 							<td colspan='2'>
 								<button id='jky-lines-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
 							</td>
-<!--						<td class='jky-line-label'><span>Total</span></td>	-->
-							<td class='jky-td-line-weight'><input id='jky-total-expected' value='' disabled /></td>
-							<td class='jky-td-line-weight'><input id='jky-total-received' value='' disabled /></td>
+<!--						<td class='jky-td-label'><span>Total</span></td>	-->
+							<td class='jky-td-weight'><input id='jky-total-expected' value='' disabled /></td>
+							<td class='jky-td-weight'><input id='jky-total-received' value='' disabled /></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -127,30 +121,6 @@
 		</div>
 	</div>
 	<div id='jky-form-footer'></div>
-</div>
-
-<div id='jky-thread-search' class='modal hide fade in'>
-	<div class='modal-header'>
-		<a class='close' data-dismiss='modal'>X</a>
-		<h3><span>Search</span>: <span>Thread</span></h3>
-	</div>
-	<div class='modal-body'>
-		<div><input id='jky-thread-filter' class='search-query' type='text' placeholder='Search' /></div>
-		<table id='jky-thread-table' class='table table-striped'>
-			<thead>
-				<tr>
-					<th class='jky-thread-header-name'			><span>Name			</span></th>
-					<th class='jky-thread-header-group'			><span>Group		</span></th>
-					<th class='jky-thread-header-composition'	><span>Composition	</span></th>
-				</tr>
-			</thead>
-			<tbody id='jky-thread-search-body'></tbody>
-		</table>
-	</div>
-	<div class='modal-footer'>
-<!--		  <button id='jky-thread-add-new' class='btn btn-success'			type='button'><span>Add New</span></button>	-->
-		&nbsp;<button id='jky-thread-cancel'  class='btn' data-dismiss='modal'	type='button'><span>Cancel </span></button>
-	</div>
 </div>
 
 <div id='jky-body-loaded'></div>

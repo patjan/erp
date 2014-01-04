@@ -28,7 +28,7 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-updated-date').attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-updated-date input').attr('data-format', JKY.Session.get_date_time	());
 };
 
 /**

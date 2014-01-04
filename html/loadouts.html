@@ -1,36 +1,17 @@
-<style>
-div.jky-loadout-date		{float:left; width:150px; text-align:center !important; font-weight:bold;}
-div.jky-loadout-pieces		{float:left; width: 80px; text-align:right  !important; font-weight:bold;}
-div.jky-loadout-weight		{float:left; width:120px; text-align:right  !important; font-weight:bold;}
-
-.jky-td-pieces				{text-align:right !important;}
-
-.jky-row-sale-color-id		{}
-.jky-row-sale-number		{width: 50px; margin-right:5px;}
-.jky-td-sale-number			{width:100px;}
-
-#jky-checkout-pieces		{width: 40px; margin-left:30px;	 text-align:right;}
-#jky-checkout-weight		{width: 75px; margin-left:30px;  text-align:right;}
-#jky-requested-pieces		{width: 40px; margin-left:30px;	 text-align:right;}
-#jky-requested-weight		{width: 75px; margin-left:30px;  text-align:right;}
-#jky-returned-pieces		{width: 40px; margin-left:30px;	 text-align:right;}
-#jky-returned-weight		{width: 75px; margin-left:30px;  text-align:right;}
-</style>
-
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
-			<th class='jky-checkbox'		><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-loadout-number'	><span>   Load Out<br>Number	</span></th>
-			<th class='jky-shipdyer-number'	><span>  Ship Dyer<br>Number	</span></th>
-			<th class='jky-dyer-name'		><span>               Dyer		</span></th>
-			<th class='jky-color-name'		><span>               Color		</span></th>
-			<th class='jky-requested-date'	><span>  Requested<br>Date		</span></th>
-			<th class='jky-loadout-date'	><span>  Check Out<br>Date		</span></th>
-			<th class='jky-returned-date'	><span>   Returned<br>Date		</span></th>
-			<th class='jky-requested-pieces'><span>  Requested<br>Pieces	</span></th>
-			<th class='jky-checkout-pieces'	><span>  Check Out<br>Pieces	</span></th>
-			<th class='jky-returned-pieces'	><span>   Returned<br>Pieces	</span></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-number'	><span>   Load Out<br>Number	</span></th>
+			<th class='jky-td-number'	><span>  Ship Dyer<br>Number	</span></th>
+			<th class='jky-td-name-s'	><span>       Dyer				</span></th>
+			<th class='jky-td-name-s'	><span>      Color				</span></th>
+			<th class='jky-td-date'		><span>  Requested<br>Date		</span></th>
+			<th class='jky-td-date'		><span>  Check Out<br>Date		</span></th>
+			<th class='jky-td-date'		><span>   Returned<br>Date		</span></th>
+			<th class='jky-td-pieces'	><span>  Requested<br>Pieces	</span></th>
+			<th class='jky-td-pieces'	><span>  Check Out<br>Pieces	</span></th>
+			<th class='jky-td-pieces'	><span>   Returned<br>Pieces	</span></th>
 		</tr>
 	</thead>
 
@@ -54,56 +35,56 @@ div.jky-loadout-weight		{float:left; width:120px; text-align:right  !important; 
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Load Out Number</span>:</div>
-				<input  id='jky-loadout-number' class='jky-form-value'	disabled />
+				<input  id='jky-loadout-number' class='jky-form-number jky-form-key' disabled />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Dyer</span>:</div>
-				<input id='jky-dyer-id'			type='hidden'	value='' />
-				<input id='jky-dyer-name'		disabled		value='' />
+				<input id='jky-dyer-id'			type='hidden'					value='' />
+				<input id='jky-dyer-name'		class='jky-form-name' disabled	value='' />
 				<a href='#' onClick='JKY.Dyer.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Color</span>:</div>
-				<input id='jky-color-id'		type='hidden'	value='' />
-				<input id='jky-color-name'	disabled		value='' />
+				<input id='jky-color-id'		type='hidden'					value='' />
+				<input id='jky-color-name'		class='jky-form-name' disabled	value='' />
 				<a href='#' onClick='JKY.Color.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<br>
 
 			<div class='jky-left'>
 				<div class='jky-form-line'>
-					<div class='jky-form-label'></div>
-					<div class='jky-loadout-date'  ><span>Date		</span></div>
-					<div class='jky-loadout-pieces'><span>Pieces	</span></div>
-					<div class='jky-loadout-weight'><span>Weight	</span></div>
+					<div class='jky-form-label'	></div>
+					<div class='jky-form-label' style='width:135px; text-align:center;'><span>Date</span></div>
+					<div class='jky-form-label' style='width: 52px; text-align:right ;'><span>Pieces</span></div>
+					<div class='jky-form-label' style='width: 70px; text-align:right ;'><span>Weight</span></div>
 					<div class='jky-clear'></div>
 				</div>
 				<div class='jky-form-line'>
 					<div class='jky-form-label'><span>Requested</span>:</div>
 					<div id='jky-requested-date' class='input-append date'>
-						<input id='jky-requested-value'	type='text' />
+						<input class='jky-form-date' type='text' />
 						<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 					</div>
-					<input  id='jky-requested-pieces'	disabled />
-					<input  id='jky-requested-weight'	disabled />
+					<input  id='jky-requested-pieces'	class='jky-form-pieces' disabled />
+					<input  id='jky-requested-weight'	class='jky-form-weight' disabled />
 				</div>
 				<div class='jky-form-line'>
 					<div class='jky-form-label'><span>Check Out</span>:</div>
 					<div id='jky-checkout-date' class='input-append date'>
-						<input id='jky-checkout-value' type='text' />
+						<input class='jky-form-date' type='text' />
 						<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 					</div>
-					<input  id='jky-checkout-pieces'	disabled />
-					<input  id='jky-checkout-weight'	disabled />
+					<input  id='jky-checkout-pieces'	class='jky-form-pieces' disabled />
+					<input  id='jky-checkout-weight'	class='jky-form-weight' disabled />
 				</div>
 				<div class='jky-form-line'>
 					<div class='jky-form-label'><span>Returned</span>:</div>
 					<div id='jky-returned-date' class='input-append date'>
-						<input id='jky-returned-value' type='text' />
+						<input class='jky-form-date' type='text' />
 						<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 					</div>
-					<input  id='jky-returned-pieces'	disabled />
-					<input  id='jky-returned-weight'	disabled />
+					<input  id='jky-returned-pieces'	class='jky-form-pieces' disabled />
+					<input  id='jky-returned-weight'	class='jky-form-weight' disabled />
 				</div>
 			</div>
 		</div>
@@ -133,13 +114,13 @@ div.jky-loadout-weight		{float:left; width:120px; text-align:right  !important; 
 				<table class='table table-striped' >
 					<thead>
 						<tr>
-							<th class='jky-action'></th>
-							<th class='jky-td-sale-number'		><span>	    Sale<br>Number	</span></th>
-							<th	class='jky-td-customer-name'	><span>             Customer</span></th>
-							<th class='jky-td-product-name'		><span>             Product</span></th>
-							<th class='jky-td-pieces'			><span>     Sold<br>Pieces	</span></th>
-							<th class='jky-td-pieces'			><span>Check Out<br>Pieces	</span></th>
-							<th class='jky-td-pieces'			><span>Requested<br>Pieces	</span></th>
+							<th class='jky-td-action'		></th>
+							<th class='jky-td-key'		><span>	    Sale<br>Number	</span></th>
+							<th	class='jky-td-text-s'	><span>             Customer</span></th>
+							<th class='jky-td-text-l'	><span>             Product</span></th>
+							<th class='jky-td-pieces'	><span>     Sold<br>Pieces	</span></th>
+							<th class='jky-td-pieces'	><span>Check Out<br>Pieces	</span></th>
+							<th class='jky-td-pieces'	><span>Requested<br>Pieces	</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-sales-body'></tbody>
@@ -154,7 +135,9 @@ div.jky-loadout-weight		{float:left; width:120px; text-align:right  !important; 
 	</div>
 	<div id='jky-form-footer'></div>
 </div>
+
 <div id='jky-body-loaded'></div>
+
 <script src='js/loadouts.js'		></script>
 <script src='js/JKY.Dyer.js'		></script>
 <script src='js/JKY.Color.js'		></script>

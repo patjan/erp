@@ -45,12 +45,12 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-updated-at"		>' + the_row.updated_at		+ '</td>'
-		+  '<td class="jky-updated-by"		>' + the_row.updated_name	+ '</td>'
-		+  '<td class="jky-parent-name"		>' + the_row.parent_name	+ '</td>'
-		+  '<td class="jky-parent-id"		>' + the_row.parent_id		+ '</td>'
-		+  '<td class="jky-method"			>' + the_row.method			+ '</td>'
-		+  '<td class="jky-history"			>' + the_row.history		+ '</td>'
+		+  '<td class="jky-td-datetime"	>' + the_row.updated_at		+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + the_row.updated_name	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + the_row.parent_name	+ '</td>'
+		+  '<td class="jky-td-number"	>' + the_row.parent_id		+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + the_row.method			+ '</td>'
+		+  '<td class="jky-td-name-w"	>' + the_row.history		+ '</td>'
 		;
 	return my_html;
 };

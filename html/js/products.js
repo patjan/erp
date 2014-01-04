@@ -44,7 +44,7 @@ JKY.start_program = function() {
  */
 JKY.set_all_events = function() {
 	$('#jky-action-change'		).click( function() {JKY.App.change_status(JKY.row.id);});
-	$('#jky-start-value'		).attr('data-format', JKY.Session.get_date());
+	$('#jky-start-date	input'	).attr('data-format', JKY.Session.get_date());
 	$('#jky-start-date'			).datetimepicker({language:JKY.Session.get_locale(), pickTime:false});
 
 //	$('#jky-tab-ftps'			).click (function() {JKY.display_ftps	();});
@@ -72,10 +72,10 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-product-name"	>' + the_row.product_name	+ '</td>'
-		+  '<td class="jky-product-type"	>' + the_row.product_type	+ '</td>'
-		+  '<td class="jky-start-date"		>' + JKY.out_date(the_row.start_date)	+ '</td>'
-		+  '<td class="jky-status"			>' + the_row.status			+ '</td>'
+		+  '<td class="jky-td-name-w"	>' +				 the_row.product_name		+ '</td>'
+		+  '<td class="jky-td-name-s"	>' +				 the_row.product_type		+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.start_date		)	+ '</td>'
+		+  '<td class="jky-td-status"	>' +				 the_row.status				+ '</td>'
 		;
 	return my_html;
 };
@@ -84,10 +84,10 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
-	JKY.set_value	('jky-product-name'			, the_row.product_name	);
-	JKY.set_radio	('jky-product-type'			, the_row.product_type	);
-	JKY.set_date	('jky-start-date'			, JKY.out_date(the_row.start_date));
+	JKY.set_html	('jky-status'			, JKY.t			(the_row.status				));
+	JKY.set_value	('jky-product-name'		,				 the_row.product_name		);
+	JKY.set_radio	('jky-product-type'		,				 the_row.product_type		);
+	JKY.set_date	('jky-start-date'		, JKY.out_date	(the_row.start_date			));
 
 	JKY.Photo.set_row_id(the_row.id);
 	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));
@@ -112,9 +112,9 @@ JKY.set_add_new_row = function() {
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-		+    'product_name=\'' + JKY.get_value	('jky-product-name'		) + '\''
-		+  ', product_type=\'' + JKY.get_checked('jky-product-type'		) + '\''
-		+    ', start_date=  ' + JKY.inp_date(JKY.get_value('jky-start-value'))
+		+    'product_name=\'' + JKY.get_value	('jky-product-name'	) + '\''
+		+  ', product_type=\'' + JKY.get_checked('jky-product-type'	) + '\''
+		+    ', start_date=  ' + JKY.inp_date	('jky-start-date'	)
 		;
 	return my_set;
 };

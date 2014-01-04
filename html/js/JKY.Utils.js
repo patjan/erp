@@ -30,7 +30,7 @@ $(function() {
 	});
 	if(!JKY.is_loaded('jky-utils'))	{
 		$('body').append('<div id="jky-utils"></div>');
-		JKY.load_html('jky-utils', 'JKY.utils.html'	);
+		JKY.load_html('jky-utils', 'JKY.utils.html');
 	}
 
 	if (JKY.is_browser('msie')) {
@@ -509,16 +509,27 @@ JKY.set_date = function(the_id, the_date){
 }
 
 /**
- * input date
+ * input date id
  * @param	the_date	mm-dd-yyyy (en-US)
  *						dd-mm-yyyy (pt_BR)
  *
  * @return	yyyy-mm-dd
  */
-JKY.inp_date = function(the_date){
-	if (the_date == '') {
-		return 'null';
-	}
+JKY.inp_date = function(the_id){
+	var my_date = $('#' + the_id + ' input').val();
+	return JKY.inp_date_value(my_date);
+}
+
+/**
+ * input date value
+ * @param	the_date	mm-dd-yyyy (en-US)
+ *						dd-mm-yyyy (pt_BR)
+ *
+ * @return	yyyy-mm-dd
+ */
+JKY.inp_date_value = function(the_date){
+	if (the_date == '')		return 'null';
+
 	var my_date		= the_date.substr(0, 10);
 	var my_dates	= my_date.replace(/\//g, '-').split('-');
 	var my_result	= '';
@@ -532,16 +543,27 @@ JKY.inp_date = function(the_date){
 }
 
 /**
- * input time
+ * input time id
  * @param	the_time	mm-dd-yyyy hh:mm (en-US)
  *						dd-mm-yyyy hh:mm (pt_BR)
  *
  * @return	yyyy-mm-dd hh:mm
  */
-JKY.inp_time = function(the_time){
-	if (the_time == '') {
-		return 'null';
-	}
+JKY.inp_time = function(the_id){
+	var my_time = $('#' + the_id + ' input').val();
+	return JKY.inp_time_value(my_time);
+}
+
+/**
+ * input time value
+ * @param	the_time	mm-dd-yyyy hh:mm (en-US)
+ *						dd-mm-yyyy hh:mm (pt_BR)
+ *
+ * @return	yyyy-mm-dd hh:mm
+ */
+JKY.inp_time_value = function(the_time){
+	if (the_time == '')		return 'null';
+
 	var my_date		= the_time.substr( 0, 10);
 	var my_time		= the_time.substr(11,  5);
 	var my_dates	= my_date.replace(/\//g, '-').split('-');
@@ -696,8 +718,14 @@ JKY.append_html = function(id_name, html){
  * @param	file_name
  */
 JKY.append_file = function(id_name, file_name){
-	$('body').append('<div id="' + id_name + '"></div>');
-	$('#' + id_name).load(file_name);
+	if ($('#' + id_name).length == 0) {
+		$('body').append('<div id="' + id_name + '"></div>');
+		$('#' + id_name).load(file_name);
+
+		JKY.t_tag	(id_name, 'span');
+		JKY.t_input	(id_name, 'placeholder');
+//		JKY.t_button(id_name, 'title');
+	}
 }
 
 /**
@@ -1200,8 +1228,8 @@ JKY.display_confirm = function(function_yes, function_no, header, body, label_ye
 		if (reply == 'Yes' && typeof(function_yes) == 'function')	{function_yes();}
 		if (reply == 'No'  && typeof(function_no ) == 'function')	{function_no ();}
 	}
-	$('#jky-confirm-header'	).html(header	);
-	$('#jky-confirm-body'	).html(body		);
+	$('#jky-confirm-header'	).html(JKY.t(header		));
+	$('#jky-confirm-body'	).html(JKY.t(body		));
 	$('#jky-confirm-yes'	).html(JKY.t(label_yes	));
 	$('#jky-confirm-no'		).html(JKY.t(label_no	));
 	$('#jky-confirm').on('hidden', function() {JKY.click_confirm('No');});

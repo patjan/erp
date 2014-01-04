@@ -68,11 +68,11 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-opened-at"		>' +		 the_row.opened_at		+ '</td>'
-		+  '<td class="jky-worked-hour"		>' +		 the_row.worked_hour	+ '</td>'
-		+  '<td class="jky-priority"		>' + 	(the_row.priority	)	+ '</td>'
-		+  '<td class="jky-category"		>' +	(the_row.category	)	+ '</td>'
-		+  '<td class="jky-description"		>' +		 the_row.description	+ '</td>'
+		+  '<td class="jky-td-datetime"	>' + the_row.opened_at		+ '</td>'
+		+  '<td class="jky-td-input"	>' + the_row.worked_hour	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + the_row.priority		+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + the_row.category		+ '</td>'
+		+  '<td class="jky-td-name-l"	>' + the_row.description	+ '</td>'
 		;
 	return my_html;
 };

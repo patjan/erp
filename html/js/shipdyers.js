@@ -28,8 +28,8 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-shipped-value'	).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-delivered-value').attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-shipped-date	input').attr('data-format', JKY.Session.get_date_time());
+	$('#jky-delivered-date	input').attr('data-format', JKY.Session.get_date_time());
 	$('#jky-shipped-date'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-delivered-date'	).datetimepicker({language: JKY.Session.get_locale()});
 
@@ -70,16 +70,16 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-shipdyer-number"	>' +				 the_row.shipdyer_number		+ '</td>'
-		+  '<td class="jky-invoice-number"	>' + JKY.fix_null	(the_row.invoice_number		)	+ '</td>'
-		+  '<td class="jky-dyer-name"		>' + JKY.fix_null	(the_row.dyer_name			)	+ '</td>'
-		+  '<td class="jky-transport-name"	>' + JKY.fix_null	(the_row.transport_name		)	+ '</td>'
-		+  '<td class="jky-shipped-date"	>' + JKY.short_date	(the_row.shipped_at			)	+ '</td>'
-		+  '<td class="jky-delivered-date"	>' + JKY.short_date	(the_row.delivered_at		)	+ '</td>'
-		+  '<td class="jky-batch-code"		>' +				 the_row.batch_code				+ '</td>'
-		+  '<td class="jky-quantity"		>' +				 the_row.quantity				+ '</td>'
-		+  '<td class="jky-gross-weight"	>' +				 the_row.gross_weight			+ '</td>'
-		+  '<td class="jky-net-weight"		>' +				 the_row.net_weight				+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.shipdyer_number		+ '</td>'
+		+  '<td class="jky-td-number"	>' + JKY.fix_null	(the_row.invoice_number		)	+ '</td>'
+		+  '<td class="jky-td-short"	>' + JKY.fix_null	(the_row.dyer_name			)	+ '</td>'
+		+  '<td class="jky-td-short"	>' + JKY.fix_null	(the_row.transport_name		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.shipped_at			)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.delivered_at		)	+ '</td>'
+		+  '<td class="jky-td-code"		>' +				 the_row.batch_code				+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.quantity				+ '</td>'
+		+  '<td class="jky-td-weight"	>' +				 the_row.gross_weight			+ '</td>'
+		+  '<td class="jky-td-weight"	>' +				 the_row.net_weight				+ '</td>'
 		;
 	return my_html;
 }
@@ -160,15 +160,15 @@ JKY.get_form_set = function() {
 	var my_set = ''
 		+          '  dyer_id=  ' + my_dyer_id
 		+     ', transport_id=  ' + my_transport_id
-		+    ', truck_license=\'' +				 JKY.get_value('jky-truck-license'	) + '\''
-		+       ', shipped_at=  ' + JKY.inp_time(JKY.get_value('jky-shipped-value'	))
-		+     ', delivered_at=  ' + JKY.inp_time(JKY.get_value('jky-delivered-value'))
-		+        ', unit_name=\'' +				 JKY.get_value('jky-unit-name'		) + '\''
-		+       ', brand_name=\'' +				 JKY.get_value('jky-brand-name'		) + '\''
-		+       ', batch_code=\'' +				 JKY.get_value('jky-batch-code'		) + '\''
-		+         ', quantity=  ' +				 JKY.get_value('jky-quantity'		)
-		+     ', gross_weight=  ' +				 JKY.get_value('jky-gross-weight'	)
-		+       ', net_weight=  ' +				 JKY.get_value('jky-net-weight'		)
+		+    ', truck_license=\'' + JKY.get_value	('jky-truck-license'	) + '\''
+		+       ', shipped_at=  ' + JKY.inp_time	('jky-shipped-date'		)
+		+     ', delivered_at=  ' + JKY.inp_time	('jky-delivered-date'	)
+		+        ', unit_name=\'' + JKY.get_value	('jky-unit-name'		) + '\''
+		+       ', brand_name=\'' +	JKY.get_value	('jky-brand-name'		) + '\''
+		+       ', batch_code=\'' +	JKY.get_value	('jky-batch-code'		) + '\''
+		+         ', quantity=  ' +	JKY.get_value	('jky-quantity'			)
+		+     ', gross_weight=  ' +	JKY.get_value	('jky-gross-weight'		)
+		+       ', net_weight=  ' +	JKY.get_value	('jky-net-weight'		)
 		;
 	return my_set;
 }

@@ -87,8 +87,8 @@ JKY.set_form_row = function(the_row) {
 		}
 		my_html += '<div class="jky-form-line">'
 				+  '<div class="jky-form-label">' + my_language + ':</div>'
-				+  '<div class="jky-form-value">'
-				+  '<input id="' + my_locale + '" value="' + my_sentence + '" onkeyup="JKY.Changes.increment();" />'
+				+  '<div class="jky-left">'
+				+  '<input id="' + my_locale + '" class="jky-form-sentence" value="' + my_sentence + '" onkeyup="JKY.Changes.increment();" />'
 				+  '</div>'
 				+  '</div>'
 				;
@@ -108,7 +108,9 @@ JKY.set_add_new_row = function() {
 		var my_sentence = '';
 		my_html += '<div class="jky-form-line">'
 				+  '<div class="jky-form-label">' + my_language + ':</div>'
-				+  '<div class="jky-form-value"><input id="' + my_locale + '" value="' + my_sentence + '" /></div>'
+				+  '<div class="jky-left">'
+				+  '<input id="' + my_locale + '" class="jky-form-sentence" value="' + my_sentence + '" />'
+				+  '</div>'
 				+  '</div>'
 				;
 	}

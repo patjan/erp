@@ -49,7 +49,8 @@ class jky_class {
  *   query - proxy using curl to run AjaxController.php
  */
 public function query( $domain, $postvars ) {
-//$this->log_proxy( 'POSTVARS: ' . $postvars );
+$this->log_proxy( '  domain: ' . $domain   );
+$this->log_proxy( 'POSTVARS: ' . $postvars );
 
      $ch  = curl_init( $domain );
 
@@ -104,6 +105,9 @@ public function run( $table, $cols, $rows ) {
      $count_cols = count( $cols );
      $dropped    = 0;
      $count_rows = count( $rows );
+
+$this->log_proxy('count_cols: ' . $count_cols);
+$this->log_proxy('count_rows: ' . $count_rows);
 
      $widths = '';
      foreach( $cols as $col ) {
@@ -260,12 +264,17 @@ $args = '&table='        . $_REQUEST[ 'table'     ]
  */
 $args = ',"table":"'	. $_REQUEST[ 'table'     ] . '"'
       . ',"filter":"'	. $_REQUEST[ 'filter'    ] . '"'
-      . ',"select":"'	. $_REQUEST[ 'select'    ] . '"'
+//      . ',"select":"'	. $_REQUEST[ 'select'    ] . '"'
+//      . ',"select":"'	. 'All' . '"'
 //      . ',"display":"'	. $_REQUEST[ 'display'   ] . '"'
       . ',"display":"'	. '99999' . '"'
       . ',"order_by":"'	. $_REQUEST[ 'order_by'  ] . '"'
       . ',"specific":"'	. $_REQUEST[ 'specific'  ] . '"'
       ;
+
+$select = $_REQUEST['select'];
+$args .= ',"select":"' . ($select == '' ? 'All' : $select) . '"';
+
 
 $program->log_proxy( 'args: ' . $args );
 
