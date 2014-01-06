@@ -144,6 +144,11 @@ JKY.run_when_is_ready = function(template_name, function_name) {
  * @param	file_name
  */
 JKY.load_html = function(id_name, file_name) {
+//	remove [bootstrap-datetimepicker-widget] from previous program
+	$('.bootstrap-datetimepicker-widget').each(function() {$(this).remove();});
+//	remove [plupload] from previous program
+	$('.plupload').each(function() {$(this).remove();});
+
 	JKY.display_trace('load_html: ' + file_name);
 	if ($('#' + id_name).length > 0) {
 		$('#' + id_name).load('../js/JKY.Reset.js');					//	reset abstract functions
@@ -1067,7 +1072,7 @@ JKY.reset_active = function(id_name){
  * @param	id_name
  */
 JKY.reset_all_active = function(id_name){
-	$('#' + id_name + ' .active').each(function() {$(this).removeClass('active');})
+	$('#' + id_name + ' .active').each(function() {$(this).removeClass('active');});
 }
 
 /**
@@ -2173,6 +2178,42 @@ JKY.get_rows = function(table_name, id) {
 		{ method: 'get_rows'
 		, table	:  table_name
 		, where :  my_where
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_rows = response.rows;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.hide('jky-loading');
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_rows;
+}
+
+JKY.get_rows_by_where = function(the_table, the_where) {
+	var my_rows = null;
+	var my_data =
+		{ method: 'get_rows'
+		, table	:  the_table
+		, where :  the_where
 		};
 
 	var my_object = {};

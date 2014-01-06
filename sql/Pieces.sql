@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS Pieces
 															# Check Out	> Return
 															# Return	> Check Out
 , order_id			BIGINT				DEFAULT NULL
-, parent_id			BIGINT				DEFAULT NULL
+, loadsale_id		BIGINT				DEFAULT NULL
 , barcode			VARCHAR(32)			DEFAULT NULL
 , is_printed		CHAR(3)				DEFAULT 'No'
 , number_of_pieces	INT(11)				DEFAULT 0
@@ -53,3 +53,6 @@ ALTER TABLE Pieces			CHANGE	checkin_by		inspected_by	BIGINT			DEFAULT NULL;
 ALTER TABLE Pieces			ADD COLUMN				weighed_by		BIGINT			DEFAULT NULL	AFTER inspected_by;
 
 UPDATE	Pieces	SET	checkin_location = UPPER(checkin_location);
+
+ALTER TABLE Pieces			CHANGE	parent_id	loadsale_id		BIGINT			DEFAULT NULL;
+

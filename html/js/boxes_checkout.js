@@ -79,19 +79,19 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
-	JKY.set_value	('jky-checkout-number'		, the_row.checkout_number	);
-	JKY.set_value	('jky-thread-name'			, the_row.thread_name		);
-	JKY.set_value	('jky-batch-code'			, the_row.batch_code		);
-	JKY.set_value	('jky-checkin-location'		, the_row.checkin_location	);
-	JKY.set_value	('jky-machine-name'			, the_row.machine_name		);
-	JKY.set_value	('jky-supplier-name'		, the_row.supplier_name		);
-	JKY.set_value	('jky-requested-date'		, the_row.requested_at		);
-	JKY.set_value	('jky-requested-weight'		, the_row.requested_weight	);
-	JKY.set_value	('jky-reserved-boxes'		, the_row.reserved_boxes	);
-	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);
-	JKY.set_value	('jky-checkout-weight'		, the_row.checkout_weight	);
-	JKY.set_value	('jky-checkout-boxes'		, the_row.checkout_boxes	);
+	JKY.set_html	('jky-status'				, JKY.t			(the_row.status				));
+	JKY.set_value	('jky-checkout-number'		,				 the_row.checkout_number	);
+	JKY.set_value	('jky-thread-name'			,				 the_row.thread_name		);
+	JKY.set_value	('jky-batch-code'			,				 the_row.batch_code			);
+	JKY.set_value	('jky-checkin-location'		,				 the_row.checkin_location	);
+	JKY.set_value	('jky-machine-name'			,				 the_row.machine_name		);
+	JKY.set_value	('jky-supplier-name'		,				 the_row.supplier_name		);
+	JKY.set_value	('jky-requested-date'		, JKY.out_date	(the_row.requested_at		));
+	JKY.set_value	('jky-requested-weight'		,				 the_row.requested_weight	);
+	JKY.set_value	('jky-reserved-boxes'		,				 the_row.reserved_boxes		);
+	JKY.set_value	('jky-average-weight'		,				 the_row.average_weight		);
+	JKY.set_value	('jky-checkout-weight'		,				 the_row.checkout_weight	);
+	JKY.set_value	('jky-checkout-boxes'		,				 the_row.checkout_boxes		);
 };
 
 JKY.set_all_box_check = function(the_index) {

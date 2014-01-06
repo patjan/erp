@@ -193,17 +193,17 @@ JKY.set_add_new_row = function() {
 	JKY.set_date	('jky-ordered-date'		,  JKY.out_time(JKY.get_now()));
 	JKY.set_date	('jky-needed-date'		,  JKY.out_time(JKY.get_now()));
 	JKY.set_date	('jky-produced-date'	, '');
-	JKY.set_value	('jky-ordered-pieces'	, 0);
-	JKY.set_value	('jky-checkout-pieces'	, 0);
-	JKY.set_value	('jky-produced-pieces'	, 0);
-	JKY.set_value	('jky-rejected-pieces'	, 0);
-	JKY.set_value	('jky-ordered-weight'	, 0);
-	JKY.set_value	('jky-checkout-weight'	, 0);
-	JKY.set_value	('jky-returned-weight'	, 0);
-	JKY.set_value	('jky-produced-weight'	, 0);
-	JKY.set_value	('jky-labels-printed'	, 0);
-	JKY.set_value	('jky-ftps-printed'		, 0);
-	JKY.set_value	('jky-ops-printed'		, 0);
+	JKY.set_value	('jky-ordered-pieces'	,  0);
+	JKY.set_value	('jky-checkout-pieces'	,  0);
+	JKY.set_value	('jky-produced-pieces'	,  0);
+	JKY.set_value	('jky-rejected-pieces'	,  0);
+	JKY.set_value	('jky-ordered-weight'	,  0);
+	JKY.set_value	('jky-checkout-weight'	,  0);
+	JKY.set_value	('jky-returned-weight'	,  0);
+	JKY.set_value	('jky-produced-weight'	,  0);
+	JKY.set_value	('jky-labels-printed'	,  0);
+	JKY.set_value	('jky-ftps-printed'		,  0);
+	JKY.set_value	('jky-ops-printed'		,  0);
 };
 
 /**

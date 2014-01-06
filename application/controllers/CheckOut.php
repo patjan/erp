@@ -174,28 +174,7 @@ function JKY_checkout_piece($the_data) {
 	$my_location	= get_data($the_data, 'location'	);
 	$my_loadset_id	= get_data($the_data, 'loadset_id'	);
 
-	$sql= 'UPDATE Pieces'
-		. '   SET ' . get_updated()
-		. ',           status="Check Out"'
-		. ',       checkout_by='  . get_session('user_id')
-		. ',       checkout_at="' . get_time() . '"'
-		. ', checkout_location="' . $my_location . '"'
-		. ' WHERE id =' . $my_barcode
-		;
-	log_sql('Pieces', 'update', $sql);
-	$db->query($sql);
-	insert_changes($db, 'Pieces', $my_barcode);
-
 	$my_piece = db_get_row('Pieces', 'id=' . $my_barcode);
-
-	$sql= 'UPDATE Orders'
-		. '   SET checkout_pieces = checkout_pieces + 1'
-		. '     , checkout_weight = checkout_weight + ' . $my_piece['checkin_weight']
-		. ' WHERE id = ' . $my_piece['order_id']
-		;
-	log_sql('Orders', 'update', $sql);
-	$db->query($sql);
-	insert_changes($db, 'Orders', $my_piece['order_id']);
 
 	$sql= 'UPDATE LoadSets'
 		. '   SET reserved_pieces = reserved_pieces - 1'
@@ -229,6 +208,28 @@ function JKY_checkout_piece($the_data) {
 	log_sql('LoadOuts', 'update', $sql);
 	$db->query($sql);
 	insert_changes($db, 'LoadOuts', $my_loadsale['loadout_id']);
+
+	$sql= 'UPDATE Pieces'
+		. '   SET ' . get_updated()
+		. ',           status="Check Out"'
+		. ',       checkout_by='  . get_session('user_id')
+		. ',       checkout_at="' . get_time() . '"'
+		. ', checkout_location="' . $my_location . '"'
+		.       ', loadsale_id= ' . $my_loadsale['id']
+		. ' WHERE id =' . $my_piece['id']
+		;
+	log_sql('Pieces', 'update', $sql);
+	$db->query($sql);
+	insert_changes($db, 'Pieces', $my_barcode);
+
+	$sql= 'UPDATE Orders'
+		. '   SET checkout_pieces = checkout_pieces + 1'
+		. '     , checkout_weight = checkout_weight + ' . $my_piece['checkin_weight']
+		. ' WHERE id = ' . $my_piece['order_id']
+		;
+	log_sql('Orders', 'update', $sql);
+	$db->query($sql);
+	insert_changes($db, 'Orders', $my_piece['order_id']);
 
 	return '';
 }

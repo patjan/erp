@@ -28,7 +28,7 @@ define( 'APP_PATH'            ,  dirname( __FILE__ )        );
 define( 'COMPANY_ID'          , '100001'					);
 define( 'COMPANY_NAME'        , 'JKY Software'				);
 define( 'COMPANY_LOGO'        , 'JKY-Software.png'			);
-define( 'LOCALE'	          , 'pt_BR'						);		//	en_US, pt_BR
+define( 'LOCALE'	          , 'en_US'						);		//	en_US, pt_BR
 define( 'WEB_SITE'            , 'http://im4/'               );
 define( 'DOMAIN_NAME'         , 'pat'                       );
 define( 'SERVER_NUMBER'       , '8'							);		//	1 = TM, 2 = DL, 8 = JKY, 9 = HQ

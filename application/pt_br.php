@@ -506,6 +506,7 @@ $translations = array
 , "saving them?"=>"salvá-los?"
 , "Scheduled Date"=>"Data Programado"
 , "Scheduled<br>Date"=>"Data<br>Programado"
+, "SDs Printed"=>"SDs Impressas"
 , "Search"=>"Procurar"
 , "Second"=>"Segundo"
 , "Second Number"=>"Segundo Numero"
@@ -625,6 +626,7 @@ $translations = array
 , "Yield"=>"Rendimento"
 , "You are now log off"=>"Você já está fora do sistema"
 , "You have been inactive for too long"=>"Você ficou inativo por muito tempo"
+, "You requested to <b>delete</b> this record. <br>Are you sure?"=>"Você solicitou para <b>deletar</b> este registro. <br>Você tem certeza?"
 , "Your Profile"=>"Teu Perfil"
 , "Zip"=>"Cep"
 );

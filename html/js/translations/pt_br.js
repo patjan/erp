@@ -506,6 +506,7 @@ JKY.translations =
 , "saving them?":"salvá-los?"
 , "Scheduled Date":"Data Programado"
 , "Scheduled<br>Date":"Data<br>Programado"
+, "SDs Printed":"SDs Impressas"
 , "Search":"Procurar"
 , "Second":"Segundo"
 , "Second Number":"Segundo Numero"

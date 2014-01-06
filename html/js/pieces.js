@@ -112,7 +112,7 @@ JKY.get_form_set = function() {
 
 	var my_set = ''
 		+            ' barcode=  ' + JKY.get_value('jky-barcode'			)
-		+            ', status=\'' + JKY.get_value('jky-status'				) + '\''
+//		+            ', status=\'' + JKY.get_value('jky-status'				) + '\''
 		+  ', number_of_pieces=  ' + JKY.get_value('jky-number-of-pieces'	)
 		+       ', produced_by=\'' + JKY.get_value('jky-produced-by'		) + '\''
 		+    ', checkin_weight=  ' + JKY.get_value('jky-checkin-weight'		)

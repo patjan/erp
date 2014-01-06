@@ -1,3 +1,9 @@
+<style>
+.jky-print-barcode		{width:200px; text-align:center; border:1px solid black;}
+.jky-print-weight		{width:100px; text-align:center; border:1px solid black;}
+.jky-print-filler		{width:100px;}
+</style>
+
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
@@ -41,6 +47,16 @@
 				<div class='jky-form-label'><span>Invoice Number</span>:</div>
 				<input  id='jky-invoice-number'	 class='jky-form-number' disabled />
 			</div>
+		</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label-s'><span>SDs Printed</span>:</div>
+				<input  id='jky-sds-printed' class='jky-form-integer' style='width:56px;' disabled /> <a id='jky-print-sd'><i class='icon-print'></i></a>
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+
+		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Dyer</span>:</div>
 				<input id='jky-dyer-id'									type='hidden'	value='' />
@@ -135,6 +151,8 @@
 	<div id='jky-form-footer'></div>
 </div>
 <div id='jky-body-loaded'></div>
+<div id='jky-printable'  ></div>
+
 <script src='js/shipdyers.js'		></script>
 <script src='js/JKY.Dyer.js'		></script>
 <script src='js/JKY.Transport.js'	></script>

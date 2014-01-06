@@ -112,6 +112,114 @@ JKY.LoadOut = function() {
 		JKY.ajax(true, my_data);
 	}
 
+	/**
+	 *	 print SD
+	 */
+	function my_print_sd() {
+		var my_html = '';
+
+		var my_loadouts = JKY.get_rows_by_where('LoadOuts', 'shipdyer_id=' + JKY.row.id);
+		var my_count_i = my_loadouts.length;
+		for(var i=0; i<my_count_i; i++) {
+			var my_loadout = my_loadouts[i];
+			my_html += my_print_loadout(my_loadout.loadout_number, my_loadout.color_name, my_loadout.dyer_name);
+
+			var my_loadsales = JKY.get_rows_by_where('LoadSales', 'loadout_id=' + my_loadout.id);
+			var my_count_j = my_loadsales.length;
+			for(var j=0; j<my_count_j; j++) {
+				var my_loadsale = my_loadsales[j];
+				my_html += my_print_loadsale(my_loadsale.sale_number, my_loadsale.customer_name, my_loadsale.product_name);
+
+				my_html += '<table cellspacing=0 style="width:700px;">'
+						+ '<tr style="line-height:20px;">'
+						+ '<th class="jky-print-barcode">Barcode</th>'
+						+ '<th class="jky-print-weight" >Weight	</th>'
+						+ '<th class="jky-print-filler" ></th>'
+						+ '<th class="jky-print-barcode">Barcode</th>'
+						+ '<th class="jky-print-weight" >Weight	</th>'
+						+ '</tr>'
+						;
+				var my_pieces = JKY.get_rows_by_where('Pieces', 'Pieces.loadsale_id=' + my_loadsale.id);
+				var my_count_k = my_pieces.length;
+				var my_floor_k = Math.floor(my_count_k / 2);
+				var my_ceil_k  = Math.ceil (my_count_k / 2);
+				for(var k=0; k<my_ceil_k; k++) {
+					my_html += '<tr>';
+					var my_piece = my_pieces[k];
+					if (my_piece) {
+						my_html += ''
+								+ '<td class="jky-print-barcode">' + my_piece.barcode			+ '</td>'
+								+ '<td class="jky-print-weight" >' + my_piece.checkin_weight	+ '</td>'
+								;
+					}
+					var my_piece = my_pieces[k+my_ceil_k];
+					if (my_piece) {
+						my_html += ''
+								+ '<th class="jky-print-filler" ></th>'
+								+ '<td class="jky-print-barcode">' + my_piece.barcode			+ '</td>'
+								+ '<td class="jky-print-weight" >' + my_piece.checkin_weight	+ '</td>'
+								;
+					}
+					my_html += '</tr>';
+				}
+				my_html += '<table>';
+			}
+			my_html += '<div style="page-break-before:always;"></div>';
+			my_html += '<table cellspacing=0 style="width:700px;">';
+			my_html += '</table>';
+		}
+
+		var my_sds_printed = parseFloat(JKY.row.sds_printed);
+		my_sds_printed ++;
+
+		var my_data =
+			{ method	: 'update'
+			, table		: 'ShipDyers'
+			, set		: 'sds_printed = ' + my_sds_printed
+			, where		: 'ShipDyers.id=' + JKY.row.id
+			};
+		JKY.ajax(false, my_data);
+
+		JKY.row.sds_printed = my_sds_printed;
+		JKY.set_value('jky-sds-printed', JKY.row.sds_printed);
+
+		JKY.set_html('jky-printable', my_html);
+		JKY.t_tag	('jky-printable', 'span');
+
+//		JKY.show('jky-printable');
+		$("#jky-printable").print();
+
+		JKY.display_message('SD printed');
+	}
+
+	function my_print_loadout(the_loadout_number, the_color_name, the_dyer_name) {
+		return ''
+			+ '<table>'
+			+ '<tr>'
+			+ '<td style="width:150px; font-weight:bold; text-align:left;"><span>Load Out</span></td>'
+			+ '<td style="width:430px;"</td>'
+			+ '<td style="width:120px; text-align:right;"><span>Date</span>: ' + JKY.out_date(JKY.get_now())+ '</td>'
+			+ '</tr>'
+			+ '<tr><td style="width:150px; font-weight:bold; text-align:right;"><span>Load Out Number</span>: </td><td>' + the_loadout_number	+ '</td></tr>'
+			+ '<tr><td style="width:150px; font-weight:bold; text-align:right;"><span>          Color</span>: </td><td>' + the_color_name		+ '</td></tr>'
+			+ '<tr><td style="width:150px; font-weight:bold; text-align:right;"><span>           Dyer</span>: </td><td>' + the_dyer_name		+ '</td></tr>'
+			+ '</tr>'
+			+ '</table>'
+			;
+	}
+
+	function my_print_loadsale(the_sale_number, the_customer_name, the_product_name) {
+		return ''
+			+ '<br>'
+			+ '<table>'
+			+ '<tr><td style="width:150px; font-weight:bold; text-align:right;"><span>   Sale Number</span>: </td><td>' + the_sale_number		+ '</td></tr>'
+			+ '<tr><td style="width:150px; font-weight:bold; text-align:right;"><span>      Customer</span>: </td><td>' + the_customer_name		+ '</td></tr>'
+			+ '<tr><td style="width:150px; font-weight:bold; text-align:right;"><span>       Product</span>: </td><td>' + the_product_name		+ '</td></tr>'
+			+ '</tr></table>'
+			;
+	}
+
+
 	$(function() {
 	});
 
@@ -133,5 +241,7 @@ JKY.LoadOut = function() {
 
 		, update_sold_weight	: function(the_id)		{my_update_sold_weight		(the_id);}
 		, update_checkout_weight: function(the_id)		{my_update_checkout_weight	(the_id);}
+
+		, print_sd		: function()					{		my_print_sd		();}
 	};
 }();

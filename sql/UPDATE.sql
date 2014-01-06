@@ -240,9 +240,12 @@ ALTER TABLE QuotLines		CHANGE	quotation_id	parent_id		BIGINT			DEFAULT NULL;
 /* -- 2013/12/22	*/
 ALTER TABLE Orders			ADD COLUMN produced_weight	DECIMAL(10,2)	DEFAULT 0		AFTER ordered_weight;
 /* -- 2013/12/23	*/
-ALTER TABLE Contacts	ADD COLUMN st_cpl				VARCHAR(255)	DEFAULT NULL  AFTER website;
-ALTER TABLE Contacts	ADD COLUMN st_number			VARCHAR(255)	DEFAULT NULL  AFTER website;
-ALTER TABLE Contacts	ADD COLUMN district				VARCHAR(255)	DEFAULT NULL  AFTER country;
+ALTER TABLE Contacts		ADD COLUMN st_cpl			VARCHAR(255)	DEFAULT NULL	AFTER website;
+ALTER TABLE Contacts		ADD COLUMN st_number		VARCHAR(255)	DEFAULT NULL	AFTER website;
+ALTER TABLE Contacts		ADD COLUMN district			VARCHAR(255)	DEFAULT NULL	AFTER country;
 /* -- 2013/12/25	*/
-ALTER TABLE Contacts	ADD COLUMN is_transport    		CHAR(3)   		DEFAULT 'No'	AFTER is_partner;
-ALTER TABLE LoadOuts	ADD COLUMN shipdyer_id			BIGINT			DEFAULT NULL	AFTER color_id;
+ALTER TABLE Contacts		ADD COLUMN is_transport    	CHAR(3)   		DEFAULT 'No'	AFTER is_partner;
+ALTER TABLE LoadOuts		ADD COLUMN shipdyer_id		BIGINT			DEFAULT NULL	AFTER color_id;
+/* -- 2014/01/04	*/
+ALTER TABLE ShipDyers		ADD COLUMN sds_printed		INT				DEFAULT 0		AFTER batch_code;
+ALTER TABLE Pieces			CHANGE	parent_id	loadsale_id		BIGINT			DEFAULT NULL;

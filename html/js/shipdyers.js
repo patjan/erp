@@ -30,15 +30,15 @@ JKY.start_program = function() {
 JKY.set_all_events = function() {
 	$('#jky-shipped-date	input').attr('data-format', JKY.Session.get_date_time());
 	$('#jky-delivered-date	input').attr('data-format', JKY.Session.get_date_time());
-	$('#jky-shipped-date'	).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-delivered-date'	).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-shipped-date'		).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-delivered-date'		).datetimepicker({language: JKY.Session.get_locale()});
 
-	$('#jky-action-generate').click( function() {JKY.generate_invoice		();});
-	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
-	$('#jky-tab-loadouts'	).click (function() {JKY.display_loadouts		();});
-	$('#jky-loadout-add-new').click (function() {JKY.LoadOut.display(null, JKY.get_dyer_id(), JKY.get_dyer_name());});
+	$('#jky-action-generate'	).click( function() {JKY.generate_invoice		();});
+	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
+	$('#jky-tab-loadouts'		).click (function() {JKY.display_loadouts		();});
+	$('#jky-loadout-add-new'	).click (function() {JKY.LoadOut.display(null, JKY.get_dyer_id(), JKY.get_dyer_name());});
 
-	$('#jky-loadouts-print'	).click (function() {JKY.Loadout.print()});
+	$('#jky-print-sd'			).click (function() {JKY.LoadOut.print_sd		();});
 }
 
 /**
@@ -113,12 +113,13 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-truck-license'	,				 the_row.truck_license	);
 	JKY.set_date	('jky-shipped-date'		, JKY.out_time	(the_row.shipped_at		));
 	JKY.set_date	('jky-delivered-date'	, JKY.out_time	(the_row.delivered_at	));
-	JKY.set_value	('jky-unit-name'	,					 the_row.unit_name		);
-	JKY.set_value	('jky-brand-name'	,					 the_row.brand_name		);
-	JKY.set_value	('jky-batch-code'	,					 the_row.batch_code		);
-	JKY.set_value	('jky-quantity'	,						 the_row.quantity		);
-	JKY.set_value	('jky-gross-weight'	,					 the_row.gross_weight	);
-	JKY.set_value	('jky-net-weight'	,					 the_row.net_weight		);
+	JKY.set_value	('jky-unit-name'		,				 the_row.unit_name		);
+	JKY.set_value	('jky-brand-name'		,				 the_row.brand_name		);
+	JKY.set_value	('jky-batch-code'		,				 the_row.batch_code		);
+	JKY.set_value	('jky-quantity'			,				 the_row.quantity		);
+	JKY.set_value	('jky-gross-weight'		,				 the_row.gross_weight	);
+	JKY.set_value	('jky-net-weight'		,				 the_row.net_weight		);
+	JKY.set_value	('jky-sds-printed'		,				 the_row.sds_printed	);
 
 //	JKY.set_calculated_transport();
 	JKY.display_loadouts();
@@ -146,6 +147,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-quantity'			,  0);
 	JKY.set_value	('jky-gross-weight'		,  0);
 	JKY.set_value	('jky-net-weight'		,  0);
+	JKY.set_value	('jky-sds-printed'		,  0);
 }
 
 /**
@@ -169,6 +171,7 @@ JKY.get_form_set = function() {
 		+         ', quantity=  ' +	JKY.get_value	('jky-quantity'			)
 		+     ', gross_weight=  ' +	JKY.get_value	('jky-gross-weight'		)
 		+       ', net_weight=  ' +	JKY.get_value	('jky-net-weight'		)
+		+      ', sds_printed=  ' + JKY.get_value	('jky-sds-printed'		)
 		;
 	return my_set;
 }
