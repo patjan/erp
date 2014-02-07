@@ -28,10 +28,13 @@ $(function() {
 			JKY.display_message('Error from backend server, please re-try later.');
 		}
 	});
+/*
 	if(!JKY.is_loaded('jky-utils'))	{
 		$('body').append('<div id="jky-utils"></div>');
 		JKY.load_html('jky-utils', 'JKY.utils.html');
 	}
+*/
+	JKY.load_util('jky-utils', 'JKY.utils.html');
 
 	if (JKY.is_browser('msie')) {
 		JKY.TRACE = false;		//	IE, TRACE must be false
@@ -143,6 +146,33 @@ JKY.run_when_is_ready = function(template_name, function_name) {
  * @param	id_name
  * @param	file_name
  */
+JKY.load_util = function(id_name, file_name) {
+//	remove [bootstrap-datetimepicker-widget] from previous program
+	$('.bootstrap-datetimepicker-widget').each(function() {$(this).remove();});
+//	remove [plupload] from previous program
+	$('.plupload').each(function() {$(this).remove();});
+
+	JKY.display_trace('load_html: ' + file_name);
+	if ($('#' + id_name).length > 0) {
+		$('#' + id_name).load('../js/JKY.Reset.js');					//	reset abstract functions
+		$('#' + id_name).load('../' + file_name);						//	production mode
+//		$('#' + id_name).load('../' + file_name + '?' + Math.random());	//	testing mode
+		JKY.display_trace('load_html: ' + file_name + ' DONE');
+
+		JKY.t_tag	('jky-app-body', 'span');
+		JKY.t_input	('jky-app-body', 'placeholder');
+		JKY.t_button('jky-app-body', 'title');
+	}else{
+		setTimeout(function() {JKY.load_util(id_name, file_name);}, 100);
+	}
+}
+
+/**
+ * load html into specific id
+ * wait until the id is rendered
+ * @param	id_name
+ * @param	file_name
+ */
 JKY.load_html = function(id_name, file_name) {
 //	remove [bootstrap-datetimepicker-widget] from previous program
 	$('.bootstrap-datetimepicker-widget').each(function() {$(this).remove();});
@@ -159,6 +189,8 @@ JKY.load_html = function(id_name, file_name) {
 		JKY.t_tag	('jky-app-body', 'span');
 		JKY.t_input	('jky-app-body', 'placeholder');
 		JKY.t_button('jky-app-body', 'title');
+
+		JKY.start_program(file_name);
 	}else{
 		setTimeout(function() {JKY.load_html(id_name, file_name);}, 100);
 	}
@@ -297,7 +329,9 @@ JKY.process_action = function(action) {
 //	JKY.load_html('jky-application', action + '.html');
 	JKY.load_html('jky-app-body', action + '.html');
 //	$.getScript(JKY.AJAX_APP + 'js/' + action + '.js', function() {
-	JKY.start_program(action);
+
+//	JKY.start_program(action);		//	not ready
+
 //	JKY.visible('jky-application');
 //	});
 }
@@ -1090,7 +1124,7 @@ JKY.show = function(id_name){
 JKY.hide = function(id_name){
 	if (id_name == 'jky-loading') {
 //		the delay of 1 sec is just ilusion for the user to perceive the end of loading
-		setTimeout(function()	{$('#jky-loading').hide();}, 1000);
+		setTimeout(function()	{$('#jky-loading').hide();}, 1000);		//	for Colors 2000
 	}else{
 		$('#' + id_name).hide();
 	}

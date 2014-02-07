@@ -15,6 +15,7 @@
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'>
+<!--		<button id='jky-action-change'		class='btn' type='button' title="Click here to change the status"		><span>Change Status			</span></button>	-->
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
@@ -40,6 +41,10 @@
 			<div id='jky-company' class='jky-form-line'>
 				<div class='jky-form-label'><span>Company</span>:</div>
 				<select id='jky-contact-company'></select>
+			</div>
+			<div id='jky-parent' class='jky-form-line'>
+				<div class='jky-form-label'><span>Head Office</span>:</div>
+				<select id='jky-parent-company'></select>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Tag</span>:</div>
@@ -115,10 +120,10 @@
 		<div class='tab-content'>
 			<div id='jky-pane-address' class='tab-pane active'>
 				<br>
-				<div class='jky-form-line'><div class='jky-form-label'><span> Street1</span>: </div><input id='jky-street1'		class='jky-form-name'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span> Street1</span>: </div><input id='jky-street1'		class='jky-form-normal'	/></div>
 				<div class='jky-form-line'><div class='jky-form-label'><span>  Number</span>: </div><input id='jky-st-number'	class='jky-form-street'	/></div>
 				<div class='jky-form-line'><div class='jky-form-label'><span>     Cpl</span>: </div><input id='jky-st-cpl'		class='jky-form-street'	/></div>
-				<div class='jky-form-line'><div class='jky-form-label'><span> Street2</span>: </div><input id='jky-street2'		class='jky-form-name'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span> Street2</span>: </div><input id='jky-street2'		class='jky-form-normal'	/></div>
 				<div class='jky-form-line'><div class='jky-form-label'><span>    City</span>: </div>
 					<input	id='jky-city'		class='jky-form-city'		placeholder='City'/>
 					<input	id='jky-zip'		class='jky-form-zip'		placeholder='Zip' />
@@ -136,21 +141,23 @@
 				<div class='jky-form-line'><div class='jky-form-label'><span>Mobile</span>:	</div><input  id='jky-mobile'	class='jky-form-phone' placeholder='123-456-7890'	/></div>
 				<div class='jky-form-line'><div class='jky-form-label'><span>   Fax</span>:	</div><input  id='jky-fax'		class='jky-form-phone' placeholder='123-456-7890'	/></div>
 				<br>
-				<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-phones'	class='btn btn-success' type='button'><span>Save Phones</span></button></div>
+				<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-save-phones' class='btn btn-success' type='button'><span>Save Phones</span></button></div>
 			</div>
 
-			<table id='jky-pane-contacts' class='tab-pane table table-striped'>
-				<thead>
-					<tr>
-						<th class='jky-full-name'		><span>Full Name		</span></th>
-						<th class='jky-mobile'			><span>Mobile			</span></th>
-						<th class='jky-email'			><span>Email			</span></th>
-						<th class='jky-user-name'		><span>User Name		</span></th>
-						<th class='jky-user-role'		><span>User Role		</span></th>
-					</tr>
-				</thead>
-				<tbody id='jky-contacts-body'></tbody>
-			</table>
+			<div id='jky-pane-contacts' class='tab-pane'>
+				<table class='table table-striped'>
+					<thead>
+						<tr>
+							<th class='jky-full-name'		><span>Full Name		</span></th>
+							<th class='jky-mobile'			><span>Mobile			</span></th>
+							<th class='jky-email'			><span>Email			</span></th>
+							<th class='jky-user-name'		><span>User Name		</span></th>
+							<th class='jky-user-role'		><span>User Role		</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-contacts-body'></tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 	<div id='jky-form-footer'></div>

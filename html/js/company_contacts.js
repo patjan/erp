@@ -54,8 +54,8 @@ JKY.generate_contact = function(the_row) {
 	var my_id = the_row.id;
 /*
 	var my_thread = ''
-		+ "<input class='jky-thread-row-id' type='hidden' value=" + my_thread_id + " />"
-		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + my_name + "' />"
+		+ "<input class='jky-thread-id' type='hidden' value=" + my_thread_id + " />"
+		+ "<input class='jky-thread-name' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + my_name + "' />"
 		+ " <a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 */

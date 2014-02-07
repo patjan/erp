@@ -45,7 +45,6 @@ JKY.set_initial_values = function() {
 	$('#jky-app-select option').eq(1).prop('selected', true);
 	$('#jky-app-select').change();
 
-	JKY.hide('jky-action-add-new');
 	JKY.hide('jky-action-form');
 
 	$('#jky-number-of-boxes').ForceIntegerOnly();
@@ -59,9 +58,11 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-td-code"		>' +				 the_row.batch_code				+ '</td>'
 		+  '<td class="jky-td-barcode"	>' +				 the_row.barcode				+ '</td>'
 		+  '<td class="jky-td-status"	>' + JKY.t			(the_row.status				)	+ '</td>'
+		+  '<td class="jky-td-name-l"	>' +				 the_row.thread_name			+ '</td>'
+		+  '<td class="jky-td-name-s"	>' +				 the_row.supplier_name			+ '</td>'
+		+  '<td class="jky-td-code"		>' +				 the_row.batch_code				+ '</td>'
 		+  '<td class="jky-td-integer"	>' +				 the_row.number_of_boxes		+ '</td>'
 		+  '<td class="jky-td-integer"	>' +				 the_row.number_of_cones		+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 the_row.average_weight			+ '</td>'

@@ -36,13 +36,13 @@ JKY.generate_row = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = (the_row.batch_id == null) ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_thread = ''
-		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
+		+ "<input class='jky-thread-id' type='hidden' value=" + the_row.thread_id + " />"
+		+ "<input class='jky-thread-name' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.thread_name + "' />"
 		+ " <a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_batchin = ''
-		+ "<input class='jky-batchin-row-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-row-number' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.batch_code + "' />"
+		+ "<input class='jky-batchin-id' type='hidden' value=" + the_row.batchin_id + " />"
+		+ "<input class='jky-batchin-number' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.batch_code + "' />"
 		+ " <a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_requested_date =	JKY.out_date(the_row.requested_date);
@@ -67,8 +67,8 @@ JKY.update_line = function(id_name, the_id ) {
 	var my_saved_requested = parseFloat(JKY.get_value_by_id('ReqLines', 'requested_weight', the_id));
 
 	var my_tr = $(id_name).parent().parent();
-	var my_thread_id		=					 my_tr.find('.jky-thread-row-id'	).val();
-	var my_batchin_id		=					 my_tr.find('.jky-batchin-row-id'	).val();
+	var my_thread_id		=					 my_tr.find('.jky-thread-id'		).val() ;
+	var my_batchin_id		=					 my_tr.find('.jky-batchin-id'		).val() ;
 	var my_requested_weight	= parseFloat		(my_tr.find('.jky-requested-weight'	).val());
 	var my_requested_date	= JKY.inp_date_value(my_tr.find('.jky-requested-date'	).val());
 

@@ -37,12 +37,12 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-boxes-info');
-	JKY.process_clear_screen();
-};
 
-JKY.display_list = function() {
-	JKY.hide('jky-action-add-new');
-	JKY.hide('jky-action-export' );
+	JKY.hide('jky-action-export');
+	JKY.hide('jky-action-list'	);
+	JKY.hide('jky-action-form'	);
+
+	JKY.process_clear_screen();
 };
 
 JKY.process_clear_screen = function() {

@@ -6,8 +6,8 @@
  *
  * require:	JKY.Utils.js(JKY.display_confirm)
  *
- * 		$(my_parent).find('.jky-thread-row-id'  ).val(the_id );
- *		$(my_parent).find('.jky-thread-row-name').val(my_name);
+ * 		$(my_parent).find('.jky-thread-id'  ).val(the_id );
+ *		$(my_parent).find('.jky-thread-name').val(my_name);
  */
 JKY.Batch = function() {
 	var my_index 	= null;		//	external id that initiated the call

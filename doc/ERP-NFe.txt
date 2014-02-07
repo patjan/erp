@@ -40,6 +40,49 @@ http://nfe-tm/ERP?data={"method":"add_new", "customer": {"name":"CS INDUSTRIA E 
 	]
 }
 
+2014-01-07 18:38:06.283137 domain: http://nfe-tm/ERP?
+
+2014-01-07 18:38:06.283255 POSTVARS: data=
+{"method":"add_new"
+, "customer": {"name":"CS INDUSTRIA E COMERCIO DE CONFECCOES LTDA","cnpj":"09.612.835/0001-77","ie":"148200205113"}
+, "order": {"number":"123456"}
+}
+
+2014-01-07 18:38:06.301386 content: 
+{"status":"ok"
+,"count":2
+,"customer":{"name":"CS INDUSTRIA E COMERCIO DE CONFECCOES LTDA","cnpj":"09.612.835\/0001-77","ie":"148200205113"}
+,"order":{"number":"123456"}
+,"shipping":null
+,"items":null
+}
+
+2014-01-07 18:38:06.301527 response:
+{"url":"http:\/\/nfe-tm\/ERP?"
+,"content_type":"text\/html"
+,"http_code":200
+,"header_size":399
+,"request_size":400
+,"filetime":-1
+,"ssl_verify_result":0
+,"redirect_count":0
+,"total_time":0.016
+,"namelookup_time":0
+,"connect_time":0
+,"pretransfer_time":0
+,"size_upload":170
+,"size_download":196
+,"speed_download":12250
+,"speed_upload":10625
+,"download_content_length":-1
+,"upload_content_length":0
+,"starttransfer_time":0.016
+,"redirect_time":0
+,"certinfo":[]
+,"redirect_url":""
+}
+
+
 
 
 
@@ -186,3 +229,48 @@ transp
 infAdic
      return tag_nl( 'infAdic', ''
           , tag( 'infCpl'     , $infCpl      )
+
+		  
+data={"method":"add_new"
+
+,"ide":
+{"cUF":"35"
+,"cNF":"96118164"
+,"natOp":"REMESSA PARA BENEFICIAMENTO"
+,"indPag":"0"
+,"mod":"55"
+,"serie":"1"
+,"nNF":"29908"
+,"dEmi":"2014-01-06"
+,"dSaiEnt":"2014-01-06"
+,"tpNF":"1"
+,"cMunFG":"3550308"
+,"tpImp":"1"
+,"tpEmis":"1"
+,"cDV":"0"
+,"tpAmb":"1"
+,"finNFe":"1"
+,"procEmi":"3"
+,"verProc":"2.0.0.3"}
+
+,"emit":
+{"CNPJ":"04744013000126"
+,"xNome":"Tecno Malhas Ltda"
+,"enderEmit":
+{"xLgr":"Rua Baceunas"
+,"nro":"51"
+,"xBairro":"Vila Prudente"
+,"cMun":"3550308"
+,"xMun":"Sao Paulo"
+,"UF":"SP"
+,"CEP":"03127060"
+,"cPais":"1058"
+,"xPais":"Brasil"
+,"fone":"1122743833"}
+,"IE":"116257257110"
+,"IM":"30729335"
+,"CNAE":"4641901"
+,"CRT":"3"}
+
+}
+		  

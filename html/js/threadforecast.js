@@ -48,8 +48,8 @@ JKY.set_initial_values = function() {
 	$('#jky-app-select option').eq(1).prop('selected', true);
 	$('#jky-app-select').change();
 
-	JKY.hide('jky-action-add-new');
-	JKY.show('jky-action-print');
+//	JKY.hide('jky-action-add-new');
+	JKY.hide('jky-action-form' );
 	JKY.set_date('jky-reference-date', JKY.out_time(JKY.get_config_value('System Controls', 'Reference Date')));
 };
 
@@ -57,6 +57,7 @@ JKY.set_initial_values = function() {
  *	set table row
  */
 JKY.set_table_row = function(the_row) {
+	JKY.show('jky-action-print');
 	var my_html = ''
 		+  '<td class="jky-td-name-s"	>' + the_row.thread_group		+ '</td>'
 		+  '<td class="jky-td-name-l"	>' + the_row.thread_name		+ '</td>'

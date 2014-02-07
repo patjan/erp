@@ -11,8 +11,8 @@
  *
  * require:	JKY.Utils.js(JKY.display_confirm)
  *
- * 		$(my_parent).find('.jky-ftp-row-id'  ).val(the_id );
- *		$(my_parent).find('.jky-ftp-row-name').val(my_name);
+ * 		$(my_parent).find('.jky-ftp-id'  ).val(the_id );
+ *		$(my_parent).find('.jky-ftp-name').val(my_name);
  */
 JKY.FTP = function() {
 	var my_the_id		= null;		//	external id that initiated the call
@@ -71,14 +71,14 @@ JKY.FTP = function() {
 //		var my_dom_id = $(my_parent).find('#jky-ftp-id');
 		var my_dom_id = $('#jky-ftp-id');
 		if (my_dom_id.length == 0) {
-			my_dom_id = $(my_parent).find('.jky-ftp-row-id');
+			my_dom_id = $(my_parent).find('.jky-ftp-id');
 		}
 		my_dom_id.val(the_id );
 
 //		var my_dom_number = $(my_parent).find('#jky-ftp-number');
 		var my_dom_number = $('#jky-ftp-number');
 		if (my_dom_number.length == 0) {
-			my_dom_number = $(my_parent).find('.jky-ftp-row-number');
+			my_dom_number = $(my_parent).find('.jky-ftp-number');
 		}
 		my_dom_number.val(my_number);
 		my_dom_number.change();		//	to activate change event

@@ -39,6 +39,7 @@ JKY.Companies = function(the_program_name, the_specific) {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
+//	$('#jky-action-change'	).click( function() {JKY.App.change_status(JKY.row.id);});
 	$('#jky-tab-address'	).click (function() {JKY.display_address (JKY.row	 );});
 	$('#jky-tab-phones'		).click (function() {JKY.display_phones	 (JKY.row	 );});
 	$('#jky-tab-contacts'	).click (function() {JKY.display_contacts(JKY.row.id );});
@@ -54,6 +55,7 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_side_bar();
 	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
+	JKY.set_html('jky-parent-company'	, JKY.set_options_array('', JKY.get_companies('parent_id IS NULL AND is_customer'), true));
 	JKY.set_html('jky-contact-tag'		, JKY.set_configs ('Customer Tags'	, '', ''));
 	JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
 	JKY.set_html('jky-country'			, JKY.set_configs ('Countries'		, '', ''));
@@ -72,7 +74,7 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-td-name-l"		>' +				 the_row.nick_name		+ '</td>'
+		+  '<td class="jky-td-name-l"		>' + JKY.fix_null	(the_row.nick_name	)	+ '</td>'
 		+  '<td class="jky-td-phone"		>' + JKY.fix_null	(the_row.phone		)	+ '</td>'
 		+  '<td class="jky-td-phone"		>' + JKY.fix_null	(the_row.mobile		)	+ '</td>'
 		+  '<td class="jky-td-email"		>' +				 the_row.email			+ '</td>'
@@ -89,6 +91,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-full-name'		, the_row.full_name		);
 	JKY.set_yes		('jky-is-company'		, the_row.is_company	);
 	JKY.set_option	('jky-contact-company'	, the_row.company_id	);
+	JKY.set_option	('jky-parent-company'	, the_row.parent_id		);
 	JKY.set_option	('jky-contact-tag'		, the_row.tags			);
 	JKY.set_value	('jky-cnpj'				, the_row.cnpj			);
 	JKY.set_value	('jky-ie'				, the_row.ie			);
@@ -116,6 +119,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-full-name'		, '');
 	JKY.set_yes		('jky-is-company'		, 'No');
 	JKY.set_option	('jky-contact-company'	, '');
+	JKY.set_option	('jky-parent-company'	, '');
 	JKY.set_option	('jky-contact-tag'		, '');
 	JKY.set_value	('jky-cnpj'				, '');
 	JKY.set_value	('jky-ie'				, '');
@@ -134,6 +138,7 @@ JKY.get_form_set = function() {
 		+     ', full_name=\'' + JKY.get_value	('jky-full-name'		) + '\''
 		+    ', is_company=\'' + JKY.get_yes_no	('jky-is-company'		) + '\''
 		+    ', company_id=  ' + JKY.get_value	('jky-contact-company'	)
+		+     ', parent_id=  ' + JKY.get_value	('jky-parent-company'	)
 		+          ', tags=\'' + JKY.get_value	('jky-contact-tag'		) + '\''
 		+          ', cnpj=\'' + JKY.get_value	('jky-cnpj'				) + '\''
 		+            ', ie=\'' + JKY.get_value	('jky-ie'				) + '\''
@@ -154,17 +159,35 @@ JKY.display_form = function() {
 JKY.process_is_company = function(the_id) {
 	JKY.display_trace('my_process_is_company');
 	if ($(the_id).is(':checked')) {
-		JKY.invisible	('jky-company');
+//		JKY.invisible	('jky-company');
+		JKY.hide		('jky-company');
+		JKY.show		('jky-parent');
 		JKY.hide		('jky-position-line'	);
 		JKY.show		('jky-website-line'		);
 		JKY.set_html	('jky-cnpj-label','CNPJ');
 		JKY.set_html	('jky-ie-label'  ,'IE'	);
+		JKY.show		('jky-tab-contacts'		);
 	}else{
-		JKY.visible		('jky-company');
+//		JKY.visible		('jky-company');
+		JKY.show		('jky-company');
+		JKY.hide		('jky-parent');
 		JKY.show		('jky-position-line'	);
 		JKY.hide		('jky-website-line'		);
 		JKY.set_html	('jky-cnpj-label','CPF'	);
 		JKY.set_html	('jky-ie-label'  ,'RG'	);
+		JKY.hide		('jky-tab-contacts'		);
+		if ($('#jky-tab-contacts').hasClass('active')) {
+			$('#jky-tab-address a').click();
+		}
 	}
 };
 
+JKY.process_insert = function(the_id) {
+	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
+	JKY.set_html('jky-parent-company'	, JKY.set_options_array('', JKY.get_companies('parent_id IS NULL AND is_customer'), true));
+};
+
+JKY.process_delete = function(the_id, the_row) {
+	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
+	JKY.set_html('jky-parent-company'	, JKY.set_options_array('', JKY.get_companies('parent_id IS NULL AND is_customer'), true));
+}

@@ -44,8 +44,8 @@ JKY.generate_loadout = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = (the_row.status == 'Draft') ? '<a onclick="JKY.delete_loadout(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_loadout = ''
-		+ "<input class='jky-row-loadout-color-id' type='hidden' value=" + the_row.loadout_color_id + " />"
-		+ "<input class='jky-row-loadout-number' disabled onchange='JKY.update_loadout(this, " + my_id + ")' value='" + JKY.fix_null(the_row.loadout_number) + "' />"
+		+ "<input class='jky-loadout-color-id' type='hidden' value=" + the_row.loadout_color_id + " />"
+		+ "<input class='jky-loadout-number' disabled onchange='JKY.update_loadout(this, " + my_id + ")' value='" + JKY.fix_null(the_row.loadout_number) + "' />"
 		+ " <a href='#' onClick='JKY.LoadOut.display(this, JKY.get_dyer_id(), JKY.get_dyer_name())'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
@@ -66,7 +66,7 @@ JKY.update_loadout = function(id_name, the_id) {
 	JKY.display_trace('update_loadout');
 	JKY.select_loadout(the_id);
 	var my_tr = $(id_name).parent().parent();
-	var my_loadout_color_id	= my_tr.find('.jky-row-loadout-color-id'	).val();
+	var my_loadout_color_id	=			 my_tr.find('.jky-loadout-color-id'	).val() ;
 	var my_requested_pieces	= parseFloat(my_tr.find('.jky-requested-pieces'	).val());
 
 	var my_set = ''

@@ -25,7 +25,7 @@ class TestDB {
 		try{
 		//	$my_params = array('host'=>DB_HOST, 'username'=>DB_USER, 'password'=>DB_PASS, 'dbname'=>DB_NAME);
 		//	$my_params = array('host'=>'177.33.255.216', 'username'=>'root', 'password'=>'brazil18781', 'dbname'=>'erp');
-		//	$my_params = array('host'=>'external-db.s122232.gridserver.com', 'username'=>'db122232', 'password'=>'brazil.18781', 'dbname'=>'db122232_erp');
+		//	$my_params = array('host'=>'external-db.s122232.gridserver.com', 'username'=>'db122232', 'password'=>'brazil.18781', 'dbname'=>'db122232_tecno');
 		//	$my_local_db = Zend_Db::factory('PDO_MYSQL', $my_params);
 
 			$my_host	= '127.0.0.1';
@@ -36,7 +36,7 @@ class TestDB {
 			$my_host	= 'external-db.s122232.gridserver.com';
 			$my_username= 'db122232';
 			$my_password= 'brazil.18781';
-			$my_dbname	= 'db122232_erp';
+			$my_dbname	= 'db122232_tecno';
 
 			$my_host	= '177.33.255.216';
 			$my_username= 'root';
@@ -131,7 +131,7 @@ class TestDB {
 								('host'		=> 'external-db.s122232.gridserver.com'
 								,'username'	=> 'db122232'
 								,'password'	=> 'brazil.18781'
-								,'dbname'	=> 'db122232_erp'
+								,'dbname'	=> 'db122232_tecno'
 								);
 							break;
 		}

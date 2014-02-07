@@ -5,8 +5,8 @@
  *
  * require:	JKY.Utils.js(JKY.display_confirm)
  *
- * 		$(my_parent).find('.jky-partner-row-id'  ).val(the_id );
- *		$(my_parent).find('.jky-partner-row-name').val(my_name);
+ * 		$(my_parent).find('.jky-partner-id'  ).val(the_id );
+ *		$(my_parent).find('.jky-partner-name').val(my_name);
  */
 JKY.Partner = function() {
 	var my_the_id		= null;				//	external id that initiated the call
@@ -62,13 +62,13 @@ JKY.Partner = function() {
 
 		var my_dom_id = $(my_parent).find('#jky-partner-id');
 		if (my_dom_id.length == 0) {
-			my_dom_id = $(my_parent).find('.jky-partner-row-id');
+			my_dom_id = $(my_parent).find('.jky-partner-id');
 		}
 		my_dom_id.val(the_id );
 
 		var my_dom_name = $(my_parent).find('#jky-partner-name');
 		if (my_dom_name.length == 0) {
-			my_dom_name = $(my_parent).find('.jky-partner-row-name');
+			my_dom_name = $(my_parent).find('.jky-partner-name');
 		}
 		my_dom_name.val(my_name);
 		my_dom_name.change();		//	to activate change event

@@ -47,8 +47,8 @@ JKY.set_initial_values = function() {
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-td-input"	>' +				 the_row.sequence		+ '</td>'
-		+  '<td class="jky-td-name-l"	>' +				 the_row.name			+ '</td>'
-		+  '<td class="jky-td-name-l"	>' + JKY.fix_null	(the_row.value		)	+ '</td>'
+		+  '<td class="jky-td-normal"	>' +				 the_row.name			+ '</td>'
+		+  '<td class="jky-td-normal"	>' + JKY.fix_null	(the_row.value		)	+ '</td>'
 		+  '<td class="jky-td-status"	>' +				 the_row.status			+ '</td>'
 		;
 	return my_html;

@@ -1,0 +1,79 @@
+<html>
+
+<head>
+	<title>Test array in JS</title>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+	<style>
+		.my_button	{width:100px; margin-right:20px;}
+	</style>
+</head>
+
+
+
+<body>
+<div>Test Array</div>
+
+<script>
+var my_array1 = 
+	[['name11', 'value11']
+	,['name12', 'value12']
+	,['name13', 'value13']
+	,['name14', 'value14']
+	,['name15', 'value15']
+	];
+	
+var my_array2 = 
+	[['name21', 'value21']
+	,['name22', 'value22']
+	,['name23', 'value23']
+	,['name24', 'value24']
+	,['name25', 'value25']
+	];
+
+var output_row = function(the_row) {
+	var my_html = '<li>' + the_row[0] + ' : ' + the_row[1] + '</li>';
+	return my_html;
+}
+
+var toggle_button = function(the_index, the_id) {
+	var my_button = $(the_index).html();
+	if (my_button == 'Hide') {
+		$('#' + the_id).css('display', 'none' );
+		$(the_index).html('Display');
+	}else{
+		$('#' + the_id).css('display', 'block');
+		$(the_index).html('Hide');
+	}
+}
+
+var test = function() {
+	var my_html = '';
+
+	my_html += '<br><button class="my_button" onclick="toggle_button(this, \'my_div1\')">Hide</button>';	
+	my_html += '<span>Table 1</span>';	
+	my_html += '<ul id="my_div1">';	
+	for( var i=0; i<my_array1.length; i++) {
+		my_html += output_row(my_array1[i]);
+	}
+	my_html += '</ul>';
+
+	my_html += '<br><button class="my_button" onclick="toggle_button(this, \'my_div2\')">Hide</button>';
+	my_html += '<span>Table 2</span>';	
+	my_html += '<ul id="my_div2">';	
+	for( var i=0; i<my_array2.length; i++) {
+		my_html += output_row(my_array2[i]);
+	}
+	my_html += '</ul>';
+
+	$('body').append(my_html);
+}
+
+
+$(document).ready(function() {
+	test();
+});
+</script>
+
+</body>
+</html>

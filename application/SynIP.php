@@ -105,21 +105,21 @@ function update_servers_host($the_local_db, $the_data) {
 function build_db($the_server) {
 	switch($the_server) {
 		 case('1')	:	$params = array
-							('host'		=> '201.83.200.78'
+							('host'		=> '201.83.200.83'
 							,'username'	=> 'root'
 							,'password'	=> 'brazil18781'
 							,'dbname'	=> 'erp'
 							);
 						break;
 		 case('2')	:	$params = array
-							('host'		=> '177.33.255.216'
+							('host'		=> '201.81.20.19'
 							,'username'	=> 'root'
 							,'password'	=> 'brazil18781'
 							,'dbname'	=> 'erp'
 							);
 						break;
 		 case('8')	:	$params = array
-							('host'		=> 'localhost'
+							('host'		=> '172.248.88.107'
 							,'username'	=> 'root'
 							,'password'	=> 'brazil18781'
 							,'dbname'	=> 'erp'
@@ -129,7 +129,7 @@ function build_db($the_server) {
 							('host'		=> 'external-db.s122232.gridserver.com'
 							,'username'	=> 'db122232'
 							,'password'	=> 'brazil.18781'
-							,'dbname'	=> 'db122232_erp'
+							,'dbname'	=> 'db122232_tecno'
 							);
 						break;
 	}

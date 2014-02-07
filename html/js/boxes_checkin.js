@@ -40,11 +40,10 @@ JKY.set_initial_values = function() {
 	JKY.set_css('jky-app-breadcrumb', 'color', '#006600');
 	JKY.set_side_active('jky-boxes-checkin');
 	JKY.process_clear_screen();
-};
 
-JKY.display_list = function() {
-	JKY.hide('jky-action-add-new');
-	JKY.hide('jky-action-export' );
+	JKY.hide('jky-action-export');
+	JKY.hide('jky-action-list'	);
+	JKY.hide('jky-action-form'	);
 };
 
 JKY.process_clear_screen = function() {

@@ -1,0 +1,6 @@
+Technologia
+
+- Open Source
+- PHP, MySQL, Javascript, JQuery, Bootstrap, Ajax, HTML, CSS, JSON
+- Printronix, Leitora de Barras
+

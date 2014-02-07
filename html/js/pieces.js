@@ -40,12 +40,14 @@ JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-planning-pieces');
 	JKY.set_side_active('jky-production-pieces');
 	JKY.set_side_active('jky-dyers-pieces');
-	JKY.set_html('jky-app-select', JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Check In', 'Check Out', 'Return'));
+	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Check In', 'Check Out', 'Return'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
 	JKY.show('jky-app-select-line');
 //	select the first option as default
 	$('#jky-app-select option').eq(1).prop('selected', true);
 	$('#jky-app-select').change();
+
+	JKY.hide('jky-action-form');
 
 	$('#jky-checkin-weight' ).ForceNumericOnly();
 	$('#jky-returned-weight').ForceNumericOnly();
@@ -56,16 +58,17 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-td-number"	>' +				 the_row.order_number			+ '</td>'
 		+  '<td class="jky-td-barcode"	>' +				 the_row.barcode				+ '</td>'
 		+  '<td class="jky-td-status"	>' + JKY.t			(the_row.status				)	+ '</td>'
+		+  '<td class="jky-td-name-l"	>' +				 the_row.product_name			+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.order_number			+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.number_of_pieces		+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 the_row.produced_by			+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 the_row.checkin_weight			+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 the_row.returned_weight		+ '</td>'
 		+  '<td class="jky-td-location"	>' + JKY.fix_null	(the_row.checkin_location	)	+ '</td>'
 		+  '<td class="jky-td-location"	>' + JKY.fix_null	(the_row.checkout_location	)	+ '</td>'
-		+  '<td class="jky-td-name-l"	>' + JKY.fix_null	(the_row.remarks			)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.remarks			)	+ '</td>'
 		;
 	return my_html;
 };

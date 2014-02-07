@@ -64,13 +64,13 @@ JKY.Sale = function() {
 
 		var my_dom_id = $(my_parent).find('#jky-sale-color-id');
 		if (my_dom_id.length == 0) {
-			my_dom_id = $(my_parent).find('.jky-row-sale-color-id');
+			my_dom_id = $(my_parent).find('.jky-sale-color-id');
 		}
 		my_dom_id.val(the_id);
 
 		var my_dom_number = $(my_parent).find('#jky-sale-number');
 		if (my_dom_number.length == 0) {
-			my_dom_number = $(my_parent).find('.jky-row-sale-number');
+			my_dom_number = $(my_parent).find('.jky-sale-number');
 		}
 		my_dom_number.val(my_sale_number);
 

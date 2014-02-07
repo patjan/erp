@@ -47,14 +47,14 @@ JKY.generate_batch = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = (the_row.labels_printed == 0) ? '<a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_thread = ''
-		+ "<input class='jky-thread-row-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.name + "' />"
-		+ " <a class='jky-thread-row-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
+		+ "<input class='jky-thread-id' type='hidden' value=" + the_row.thread_id + " />"
+		+ "<input class='jky-thread-name' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.name + "' />"
+		+ " <a class='jky-thread-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_purline = ''
-		+ "<input class='jky-purline-row-id' type='hidden' value=" + the_row.purchase_line_id + " />"
-		+ "<input class='jky-purline-row-number' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.purchase_number + "' />"
-		+ " <a class='jky-purline-row-icon href='#' onClick='JKY.PurLine.display(this, " + JKY.row.supplier_id + ")'><i class='icon-th'></i></a>"
+		+ "<input class='jky-purline-id' type='hidden' value=" + the_row.purchase_line_id + " />"
+		+ "<input class='jky-purline-number' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.purchase_number + "' />"
+		+ " <a class='jky-purline-icon href='#' onClick='JKY.PurLine.display(this, " + JKY.row.supplier_id + ")'><i class='icon-th'></i></a>"
 		;
 //	var my_print = (the_row.labels_printed >= the_row.received_boxes) ? '' : '<a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
 	var my_print = ' <a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
@@ -79,10 +79,10 @@ JKY.update_batch = function(id_name, the_id ) {
 	JKY.display_trace('update_batch');
 	JKY.select_batch(the_id);
 	var my_tr = $(id_name).parent().parent();
-	var my_thread_id		= my_tr.find('.jky-thread-row-id'	).val();
-	var my_purline_id		= my_tr.find('.jky-purline-row-id'	).val();
-	var my_code				= my_tr.find('.jky-batch-code'		).val();
-	var my_batch			= my_tr.find('.jky-batch-number'	).val();
+	var my_thread_id		=			 my_tr.find('.jky-thread-id'		).val() ;
+	var my_purline_id		=			 my_tr.find('.jky-purline-id'		).val() ;
+	var my_code				=			 my_tr.find('.jky-batch-code'		).val() ;
+	var my_batch			=			 my_tr.find('.jky-batch-number'		).val() ;
 	var my_received_boxes	= parseFloat(my_tr.find('.jky-received-boxes'	).val());
 	var my_number_of_cones	= parseFloat(my_tr.find('.jky-number-of-cones'	).val());
 	var my_received_weight	= parseFloat(my_tr.find('.jky-received-weight'	).val());
@@ -135,6 +135,7 @@ JKY.insert_batch_success = function(response) {
 	my_row.code				= '';
 	my_row.batch			= '';
 	my_row.thread_id		= null;
+	my_row.purchase_line_id	= null;
 	my_row.received_boxes	= 0;
 	my_row.labels_printed	= 0;
 	my_row.number_of_cones	= 0;

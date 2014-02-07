@@ -45,7 +45,7 @@ JKY.set_all_events = function() {
 	$('#jky-action-generate'	).click( function() {JKY.generate_order			();});
 	$('#jky-action-sale'		).click( function() {JKY.generate_sale			();});
 	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
-
+/*
 	$('#jky-punho-percent'		).change( function()	{JKY.zero_value(this, 'jky-punho-units'		);});
 	$('#jky-gola-percent'		).change( function()	{JKY.zero_value(this, 'jky-gola-units'		);});
 	$('#jky-galao-percent'		).change( function()	{JKY.zero_value(this, 'jky-galao-units'		);});
@@ -55,7 +55,7 @@ JKY.set_all_events = function() {
 	$('#jky-punho-name'			).change( function()	{JKY.App.process_change_input(this);});
 	$('#jky-gola-name'			).change( function()	{JKY.App.process_change_input(this);});
 	$('#jky-galao-name'			).change( function()	{JKY.App.process_change_input(this);});
-
+*/
 	$('#jky-lines-add-new'		).click (function()	{JKY.insert_line		();});
 
 //	$('#jky-action-product'		).click (function() {JKY.display_product	();});
@@ -90,13 +90,14 @@ JKY.set_initial_values = function() {
 	$('#jky-weight'	).ForceIntegerOnly();
 	$('#jky-width'	).ForceIntegerOnly();
 	$('#jky-peso'	).ForceNumericOnly();
-
+/*
 	$('#jky-punho-percent'	).ForceIntegerOnly();
 	$('#jky-punho-units'	).ForceIntegerOnly();
 	$('#jky-gola-percent'	).ForceIntegerOnly();
 	$('#jky-gola-units'		).ForceIntegerOnly();
 	$('#jky-galao-percent'	).ForceIntegerOnly();
 	$('#jky-galao-units'	).ForceIntegerOnly();
+*/
 };
 
 /**
@@ -149,8 +150,9 @@ JKY.set_form_row = function(the_row) {
 //	JKY.set_value	('jky-diameter'			,				 the_row.diameter			);
 	JKY.set_value	('jky-weight'			,				 the_row.weight				);
 	JKY.set_value	('jky-width'			,				 the_row.width				);
-	JKY.set_value	('jky-peso'				,				 the_row.peso				);
+//	JKY.set_value	('jky-peso'				,				 the_row.peso				);
 	JKY.set_radio	('jky-has-break'		,				 the_row.has_break			);
+/*
 	JKY.set_value	('jky-punho-percent'	,				 the_row.punho_percent		);
 	JKY.set_value	('jky-gola-percent'		,				 the_row.gola_percent		);
 	JKY.set_value	('jky-galao-percent'	,				 the_row.galao_percent		);
@@ -160,6 +162,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-punho-name'		,				 the_row.punho_name			);
 	JKY.set_value	('jky-gola-name'		,				 the_row.gola_name			);
 	JKY.set_value	('jky-galao-name'		,				 the_row.galao_name			);
+*/
 	JKY.set_value	('jky-remarks'			,				 JKY.row.remarks			);
 	JKY.display_lines();
 };
@@ -182,8 +185,9 @@ JKY.set_add_new_row = function() {
 //	JKY.set_value	('jky-diameter'			, '0');
 	JKY.set_value	('jky-weight'			, '0');
 	JKY.set_value	('jky-width'			, '0');
-	JKY.set_value	('jky-peso'				, '12.5');
+//	JKY.set_value	('jky-peso'				, '12.5');
 	JKY.set_radio	('jky-has-break'		, 'No');
+/*
 	JKY.set_value	('jky-punho-percent'	, '0');
 	JKY.set_value	('jky-gola-percent'		, '0');
 	JKY.set_value	('jky-galao-percent'	, '0');
@@ -193,6 +197,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-punho-name'		, '');
 	JKY.set_value	('jky-gola-name'		, '');
 	JKY.set_value	('jky-galao-name'		, '');
+*/
 	JKY.set_value	('jky-remarks'			, '');
 };
 
@@ -223,8 +228,9 @@ JKY.get_form_set = function() {
 //		+        ', diameter=  ' + JKY.get_value	('jky-diameter'			)
 		+          ', weight=  ' + JKY.get_value	('jky-weight'			)
 		+           ', width=  ' + JKY.get_value	('jky-width'			)
-		+            ', peso=  ' + JKY.get_value	('jky-peso'				)
+//		+            ', peso=  ' + JKY.get_value	('jky-peso'				)
 		+       ', has_break=\'' + JKY.get_checked	('jky-has-break'		) + '\''
+/*
 		+   ', punho_percent=  ' + JKY.get_value	('jky-punho-percent'	)
 		+    ', gola_percent=  ' + JKY.get_value	('jky-gola-percent'		)
 		+   ', galao_percent=  ' + JKY.get_value	('jky-galao-percent'	)
@@ -234,6 +240,7 @@ JKY.get_form_set = function() {
 		+        ', punho_id=  ' + my_punho_id
 		+         ', gola_id=  ' + my_gola_id
 		+        ', galao_id=  ' + my_galao_id
+*/
 		+         ', remarks=\'' + JKY.get_value	('jky-remarks'			) + '\''
 		;
 	return my_set;
@@ -342,7 +349,7 @@ JKY.print_row = function(the_id) {
 		+ "</tr>"
 		+ "</table>"
 		+ "<br>"
-
+/*
 		+ "<div style='width:700px; border:1px solid black;'>"
 		+ "<table>"
 		+ "<tr>"
@@ -366,13 +373,13 @@ JKY.print_row = function(the_id) {
 		+ "</table>"
 		+ "</div>"
 		+ "<br>"
-
+*/
 		+ "<div style='width:700px; border:1px solid black;'>"
 		+ "<table>"
 //		+ "<tr><td class='jky-print-label'><span>  Diameter</span>:</td><td id='jky-print-diameter'		class='jky-print-value'></td></tr>"
 		+ "<tr><td class='jky-print-label'><span>    Weight</span>:</td><td id='jky-print-weight'		class='jky-print-value'></td></tr>"
 		+ "<tr><td class='jky-print-label'><span>     Width</span>:</td><td id='jky-print-width'		class='jky-print-value'></td></tr>"
-		+ "<tr><td class='jky-print-label'><span>      Peso</span>:</td><td id='jky-print-peso'			class='jky-print-value'></td></tr>"
+//		+ "<tr><td class='jky-print-label'><span>      Peso</span>:</td><td id='jky-print-peso'			class='jky-print-value'></td></tr>"
 		+ "<tr><td class='jky-print-label'><span>     Break</span>?</td><td id='jky-print-has-break'	class='jky-print-value'></td></tr>"
 		+ "</table>"
 		+ "</div>"
@@ -380,17 +387,21 @@ JKY.print_row = function(the_id) {
 
 		+ "<table style='width:700px; border:1px solid black;'>"
 		+ "<thead><tr class='jky-print-lines'>"
-		+	"<td><span>Product</span></td>"
-		+	"<td><span>Quoted<br>Pieces</span></td>"
-		+	"<td><span>Color</span></td>"
-		+	"<td><span>Fabric<br>$/Kg</span></td>"
-		+	"<td><span>Punho<br>$/Kg</span></td>"
-		+	"<td><span>Gola<br>$/Kg</span></td>"
-		+	"<td><span>Galao<br>$/Kg</span></td>"
+		+	'<td								><span>Product				</span></td>'
+		+	'<td								><span>  Color				</span></td>'
+		+	'<td class="jky-print-pieces"		><span>   Peso<br>Kg/peça	</span></td>'
+		+	'<td class="jky-print-pieces"		><span> Quoted<br>Units		</span></td>'
+		+	'<td class="jky-print-pieces"		><span>  Units<br>/Piece	</span></td>'
+		+	'<td class="jky-print-pieces"		><span> Quoted<br>Pieces	</span></td>'
 		+ "<tr><thead>"
 		+ "<tbody id='jky-print-lines-body'></table>"
 		+ "</table>"
 		+ "<br>"
+
+		+ "<div style='width:700px; border:1px solid black;'>"
+		+ "<div class='jky-print-label'><span>Remarks</span>:</div>"
+		+ "<div id='jky-print-remarks'></div>"
+		+ "</div>"
 		;
 	JKY.set_html('jky-printable', my_html);
 	JKY.t_tag	('jky-printable', 'span');
@@ -399,7 +410,7 @@ JKY.print_row = function(the_id) {
 	JKY.set_html('jky-print-customer-name'		, my_row.customer_name		);
 	JKY.set_html('jky-print-machine-name'		, my_row.machine_name		);
 	JKY.set_html('jky-print-dyer-name'			, my_row.dyer_name			);
-
+/*
 	JKY.set_html('jky-print-punho-percent'		, my_row.punho_percent		);
 	JKY.set_html('jky-print-punho-units'		, my_row.punho_units		);
 	JKY.set_html('jky-print-punho-name'			, my_row.punho_name			);
@@ -409,14 +420,16 @@ JKY.print_row = function(the_id) {
 	JKY.set_html('jky-print-galao-percent'		, my_row.galao_percent		);
 	JKY.set_html('jky-print-galao-units'		, my_row.galao_units		);
 	JKY.set_html('jky-print-galao-name'			, my_row.galao_name			);
-
+*/
 //	JKY.set_html('jky-print-diameter'			, my_row.diameter		+ ' (pol)'	);
 	JKY.set_html('jky-print-weight'				, my_row.weight			+ ' (gr)'	);
 	JKY.set_html('jky-print-width'				, my_row.width			+ ' (cm)'	);
-	JKY.set_html('jky-print-peso'				, my_row.peso			+ ' (Kg/peça)'	);
+//	JKY.set_html('jky-print-peso'				, my_row.peso			+ ' (Kg/peça)'	);
 	JKY.set_html('jky-print-has-break'			, JKY.t((my_row.has_break == 'No') ? 'Without' : 'With'));
 
 	JKY.set_html('jky-print-lines-body'			, JKY.print_lines(the_id));
+
+	JKY.set_html('jky-print-remarks'			, JKY.nl2br(my_row.remarks));
 
 //	JKY.show('jky-printable');
 	$("#jky-printable").print();

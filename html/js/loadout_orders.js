@@ -46,8 +46,8 @@ JKY.generate_order = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = (the_row.status == 'Draft') ? '<a onclick="JKY.delete_order(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_order = ''
-		+ "<input class='jky-row-order-id' type='hidden' value=" + the_row.order_id + " />"
-		+ "<input class='jky-row-order-number' disabled onchange='JKY.update_order(this, " + my_id + ")' value='" + JKY.fix_null(the_row.order_number) + "' />"
+		+ "<input class='jky-order-id' type='hidden' value=" + the_row.order_id + " />"
+		+ "<input class='jky-order-number' disabled onchange='JKY.update_order(this, " + my_id + ")' value='" + JKY.fix_null(the_row.order_number) + "' />"
 		+ " <a href='#' onClick='JKY.Order.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
@@ -69,10 +69,10 @@ JKY.update_order = function(id_name, the_id ) {
 	JKY.display_trace('update_order');
 	JKY.select_order(the_id);
 	var my_tr = $(id_name).parent().parent();
-	var my_order_line_id	= my_tr.find('.jky-thread-row-id'	).val();
-	var my_orderin_id		= my_tr.find('.jky-orderin-row-id'	).val();
-	var my_product_code		= my_tr.find('.jky-product-code'	).val();
-//	var my_order			= my_tr.find('.jky-order-number'	).val();
+	var my_order_line_id	=			 my_tr.find('.jky-thread-id'		).val() ;
+	var my_orderin_id		=			 my_tr.find('.jky-orderin-id'		).val() ;
+	var my_product_code		=			 my_tr.find('.jky-product-code'		).val() ;
+//	var my_order			=			 my_tr.find('.jky-order-number'		).val() ;
 //	var my_average_weight	= parseFloat(my_tr.find('.jky-average-weight'	).val());
 //	var my_requested_boxes	= parseFloat(my_tr.find('.jky-requested-boxes'	).val());
 	var my_requested_weight	= parseFloat(my_tr.find('.jky-requested-weight'	).val());

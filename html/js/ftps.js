@@ -394,9 +394,9 @@ JKY.print_row = function(the_id) {
 //	JKY.set_html('jky-print-lanes'			, my_row.lanes						);
 	JKY.set_html('jky-print-has-break'		, JKY.t((my_row.has_break == 'No') ? 'Without' : 'With'));
 
-	JKY.set_html('jky-print-thread-body'	, JKY.print_threads	(the_id));
-	JKY.set_html('jky-print-load-body'		, JKY.print_loads	(the_id));
-	JKY.set_html('jky-print-setting-body'	, JKY.print_settings(the_id));
+	JKY.set_html('jky-print-thread-body'	, JKY.print_ftp_threads	(the_id));
+	JKY.set_html('jky-print-load-body'		, JKY.print_ftp_loads	(the_id));
+	JKY.set_html('jky-print-setting-body'	, JKY.print_ftp_settings(the_id));
 
 //	JKY.show('jky-printable');
 	$("#jky-printable").print();

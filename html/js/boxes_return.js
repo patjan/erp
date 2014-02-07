@@ -43,13 +43,12 @@ JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-boxes-return');
 	JKY.process_clear_screen();
 
+	JKY.hide('jky-action-export');
+	JKY.hide('jky-action-list'	);
+	JKY.hide('jky-action-form'	);
+
 	$('#jky-input-number-of-cones'	).ForceIntegerOnly();
 	$('#jky-input-real-weight'		).ForceNumericOnly();
-};
-
-JKY.display_list = function() {
-	JKY.hide('jky-action-add-new');
-	JKY.hide('jky-action-export' );
 };
 
 JKY.process_clear_screen = function() {

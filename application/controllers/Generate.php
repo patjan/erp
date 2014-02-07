@@ -11,10 +11,10 @@ function JKY_generate($data) {
 
 	$count = 0;
 	switch($table) {
-		case 'CheckOut'		: $count = JKY_generate_checkout($id); break;
-		case 'Order'		: $count = JKY_generate_order	($id); break;
-		case 'Purchase'		: $count = JKY_generate_purchase($id); break;
-		case 'TDyer'		: $count = JKY_generate_tdyer	($id); break;
+		case 'CheckOut'			: $count = JKY_generate_checkout		($id); break;
+		case 'Order'			: $count = JKY_generate_order			($id); break;
+		case 'Purchase'			: $count = JKY_generate_purchase		($id); break;
+		case 'TDyer'			: $count = JKY_generate_tdyer			($id); break;
 	}
 
 	$return = array();
@@ -23,7 +23,7 @@ function JKY_generate($data) {
 		$return[ 'count'  ] = $count;
 	}else{
 		$return[ 'status' ] = 'error';
-		$return[ 'message'] = 'records generated: ' . $count;
+		$return[ 'message'] = 'no record generated';
 	}
 	return $return;
 }
@@ -177,9 +177,9 @@ log_sql('Orders', 'INSERT', $sql);
 	foreach($my_rows as $my_row) {
 		$my_quot_line_id	= $my_row['id'];
 		$my_quoted_pieces	= (float)$my_row['quoted_pieces'];
-		$my_quoted_weight	= $my_quoted_pieces * (float)$my_quotation['peso'];
+		$my_quoted_weight	= $my_quoted_pieces * (float)$my_row['peso'];
 
-		$my_order_id = generate_sub_order($db, $my_quotation, $my_quot_line_id, $my_needed_at, $my_quoted_pieces, $my_quoted_weight, $my_row['product_id'], 100, 0);
+		$my_order_id = generate_sub_order($db, $my_quotation, $my_quot_line_id, $my_needed_at, $my_quoted_pieces, $my_quoted_weight, $my_row['product_id'], 100, $my_row['units']);
 		$sql= 'UPDATE QuotLines'
 			. '   SET order_id = ' . $my_order_id
 			. ' WHERE id = ' . $my_quot_line_id
@@ -206,6 +206,12 @@ log_sql('Quotations', 'UPDATE', $sql);
 	return $my_count;
 }
 
+/**
+ *	generate Purchase
+ *
+ * @param	int		purchase_id
+ * @return	int		count of Incomings generated
+ */
 function JKY_generate_purchase($the_id) {
 	$db = Zend_Registry::get('db');
 
@@ -268,6 +274,12 @@ log_sql('Purchases', 'UPDATE', $sql);
 	return $my_count;
 }
 
+/**
+ *	generate TDyers
+ *
+ * @param	int		tdyer_id
+ * @return	int		count of CheckOuts generated
+ */
 function JKY_generate_tdyer($the_id) {
 	$db = Zend_Registry::get('db');
 
@@ -347,4 +359,3 @@ log_sql('TDyers', 'UPDATE', $sql);
 
 	return $my_count;
 }
-

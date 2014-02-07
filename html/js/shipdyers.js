@@ -33,7 +33,7 @@ JKY.set_all_events = function() {
 	$('#jky-shipped-date'		).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-delivered-date'		).datetimepicker({language: JKY.Session.get_locale()});
 
-	$('#jky-action-generate'	).click( function() {JKY.generate_invoice		();});
+	$('#jky-action-invoice'		).click( function() {JKY.invoice_dyer			();});
 	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-tab-loadouts'		).click (function() {JKY.display_loadouts		();});
 	$('#jky-loadout-add-new'	).click (function() {JKY.LoadOut.display(null, JKY.get_dyer_id(), JKY.get_dyer_name());});
@@ -89,11 +89,11 @@ JKY.set_table_row = function(the_row) {
  */
 JKY.set_form_row = function(the_row) {
 	if (the_row.status == 'Draft') {
-		JKY.enable_button ('jky-action-generate');
+		JKY.enable_button ('jky-action-invoice'	);
 		JKY.enable_button ('jky-action-delete'  );
 		JKY.enable_button ('jky-lines-add-new'	);
 	}else{
-		JKY.disable_button('jky-action-generate');
+		JKY.disable_button('jky-action-invoice'	);
 		JKY.disable_button('jky-action-delete'  );
 		JKY.disable_button('jky-lines-add-new'	);
 	}
@@ -129,8 +129,9 @@ JKY.set_form_row = function(the_row) {
  *	set add new row
  */
 JKY.set_add_new_row = function() {
-	JKY.disable_button('jky-action-delete'	);
+	JKY.disable_button('jky-action-invoice'	);
 	JKY.disable_button('jky-action-close'	);
+	JKY.disable_button('jky-action-delete'	);
 
 	JKY.set_value	('jky-shipdyer-number'	,  JKY.t('New'));
 	JKY.set_value	('jky-invoice-number'	, '');
@@ -198,7 +199,7 @@ JKY.display_form = function() {
 };
 
 /* -------------------------------------------------------------------------- */
-JKY.generate_invoice = function() {
+JKY.invoice_dyer = function() {
 	var my_quantity = JKY.get_value_by_id('ShipDyers', 'quantity', JKY.row.id);
 	if (my_quantity <= 0) {
 		JKY.display_message('Invoice cannot be generated');
@@ -207,8 +208,8 @@ JKY.generate_invoice = function() {
 	}
 
 	var my_data =
-		{ method	: 'generate'
-		, table		: 'Invoice'
+		{ method	: 'invoice'
+		, table		: 'Dyer'
 		, id		:  JKY.row.id
 		}
 	JKY.ajax(false, my_data, JKY.refresh_form);

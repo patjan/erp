@@ -122,13 +122,13 @@ JKY.LoadOut = function() {
 		var my_count_i = my_loadouts.length;
 		for(var i=0; i<my_count_i; i++) {
 			var my_loadout = my_loadouts[i];
-			my_html += my_print_loadout(my_loadout.loadout_number, my_loadout.color_name, my_loadout.dyer_name);
+			my_html += my_print_loadout(my_loadout);
 
 			var my_loadsales = JKY.get_rows_by_where('LoadSales', 'loadout_id=' + my_loadout.id);
 			var my_count_j = my_loadsales.length;
 			for(var j=0; j<my_count_j; j++) {
 				var my_loadsale = my_loadsales[j];
-				my_html += my_print_loadsale(my_loadsale.sale_number, my_loadsale.customer_name, my_loadsale.product_name);
+				my_html += my_print_loadsale(my_loadsale);
 
 				my_html += '<table cellspacing=0 style="width:700px;">'
 						+ '<tr style="line-height:20px;">'
@@ -162,7 +162,8 @@ JKY.LoadOut = function() {
 					}
 					my_html += '</tr>';
 				}
-				my_html += '<table>';
+				my_html += '</table>';
+				my_html += '<br>';
 			}
 			my_html += '<div style="page-break-before:always;"></div>';
 			my_html += '<table cellspacing=0 style="width:700px;">';
@@ -192,30 +193,46 @@ JKY.LoadOut = function() {
 		JKY.display_message('SD printed');
 	}
 
-	function my_print_loadout(the_loadout_number, the_color_name, the_dyer_name) {
+	function my_print_loadout(the_loadout) {
 		return ''
 			+ '<table>'
 			+ '<tr>'
-			+ '<td style="width:150px; font-weight:bold; text-align:left;"><span>Load Out</span></td>'
-			+ '<td style="width:430px;"</td>'
-			+ '<td style="width:120px; text-align:right;"><span>Date</span>: ' + JKY.out_date(JKY.get_now())+ '</td>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>Load Out Number</span>: </td><td style="width:300px;">' + the_loadout.loadout_number	+ '</td>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>           Date</span>: </td><td style="width:100px;">' + JKY.out_date(JKY.get_now())	+ '</td>'
 			+ '</tr>'
-			+ '<tr><td style="width:150px; font-weight:bold; text-align:right;"><span>Load Out Number</span>: </td><td>' + the_loadout_number	+ '</td></tr>'
-			+ '<tr><td style="width:150px; font-weight:bold; text-align:right;"><span>          Color</span>: </td><td>' + the_color_name		+ '</td></tr>'
-			+ '<tr><td style="width:150px; font-weight:bold; text-align:right;"><span>           Dyer</span>: </td><td>' + the_dyer_name		+ '</td></tr>'
+			+ '<tr>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>           Dyer</span>: </td><td style="width:300px;">' + the_loadout.dyer_name		+ '</td>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>          Color</span>: </td><td style="width:100px;">' + the_loadout.color_name		+ '</td>'
 			+ '</tr>'
 			+ '</table>'
+			+ '<hr>'
 			;
 	}
 
-	function my_print_loadsale(the_sale_number, the_customer_name, the_product_name) {
+	function my_print_loadsale(the_loadsale) {
+		var my_ftp_id	= JKY.get_id('QuotColorFTPs', 'QuotColors.id=' + the_loadsale.sale_color_id);
+		var my_ftp		= JKY.get_row('FTPs', my_ftp_id);
+
 		return ''
-			+ '<br>'
 			+ '<table>'
-			+ '<tr><td style="width:150px; font-weight:bold; text-align:right;"><span>   Sale Number</span>: </td><td>' + the_sale_number		+ '</td></tr>'
-			+ '<tr><td style="width:150px; font-weight:bold; text-align:right;"><span>      Customer</span>: </td><td>' + the_customer_name		+ '</td></tr>'
-			+ '<tr><td style="width:150px; font-weight:bold; text-align:right;"><span>       Product</span>: </td><td>' + the_product_name		+ '</td></tr>'
-			+ '</tr></table>'
+			+ '<tr>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>    Sale Number</span>: </td><td style="width:300px;">' + the_loadsale.sale_number	+ '</td>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>          Width</span>: </td><td style="width:100px;">' + my_ftp.width				+ ' (m)</td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>       Customer</span>: </td><td style="width:300px;">' + the_loadsale.customer_name	+ '</td>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>         Weight</span>: </td><td style="width:100px;">' + my_ftp.weight				+ ' (gr)</td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>        Product</span>: </td><td style="width:300px;">' + the_loadsale.product_name	+ '</td>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>   Total Pieces</span>: </td><td style="width:100px;">' + the_loadsale.checkout_pieces+ ' (pieces)</td>'
+			+ '</tr>'
+			+ '<tr>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>    Composition</span>: </td><td style="width:300px;">' + my_ftp.composition			+ '</td>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>   Total Weight</span>: </td><td style="width:100px;">' + the_loadsale.checkout_weight+ ' (Kg)</td>'
+			+ '</tr>'
+			+ '</table>'
+			+ '<br>'
 			;
 	}
 

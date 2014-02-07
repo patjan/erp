@@ -176,7 +176,12 @@ if (my_first == true) {
 			JKY.hide('jky-app-navs'			);
 			JKY.hide('jky-app-add-new'		);
 			JKY.show('jky-app-counters'		);
-			JKY.enable_button('jky-action-add-new'	);
+			if (JKY.is_loaded('jky-app-form')) {
+//				JKY.show('jky-action-add-new');
+				JKY.enable_button('jky-action-add-new');
+			}else{
+				JKY.hide('jky-action-add-new');
+			}
 			JKY.hide('jky-action-print'		);
 			JKY.hide('jky-action-clear'		);
 			JKY.hide('jky-action-confirm'	);
@@ -187,7 +192,7 @@ if (my_first == true) {
 			}
 			JKY.hide('jky-action-save'		);
 			JKY.hide('jky-action-copy'		);
-			JKY.disable_button('jky-action-delete'	);
+			JKY.disable_button('jky-action-delete');
 			JKY.hide('jky-action-cancel'	);
 			JKY.show('jky-app-table'		);
 			JKY.hide('jky-app-form'			);
@@ -202,6 +207,7 @@ if (my_first == true) {
 				return;
 			}
 
+//alert('show loading');
 			JKY.show('jky-loading');
 			var my_data =
 				{ method	: 'get_index'
@@ -224,7 +230,8 @@ if (my_first == true) {
 			for(var i=0; i<my_count; i++) {
 				var my_row = JKY.rows[i];
 				var my_checkbox = '<input type="checkbox" onclick="' + my_args.object_name + '.set_checkbox(this)" row_id=' + my_row.id + ' />';
-				my_html += '<tr onclick="' + my_args.object_name + '.display_form(' + (i+1) + ')">'
+				var my_clickrow = JKY.is_loaded('jky-app-form') ? ' onclick="' + my_args.object_name + '.display_form(' + (i+1) + ')"' : '';
+				my_html += '<tr' + my_clickrow + '>'
 						+  '<td class="jky-td-checkbox">' + my_checkbox + '</td>'
 						+  JKY.set_table_row(my_row)
 						+  '</tr>'
@@ -236,11 +243,15 @@ if (my_first == true) {
 //			JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
 			JKY.setTableWidthHeight('jky-app-table', 851, 240, 350, 125);
 			JKY.set_focus('jky-app-filter');
+//alert('hide loading');
 			JKY.hide('jky-loading');
 		}
 
 	function my_display_form(the_index) {
 			JKY.display_trace('my_display_form');
+			if (typeof the_index != 'number') {
+				the_index = my_index;
+			}
 			if (my_skip_form) {
 				my_skip_form = false;
 				return;
@@ -452,7 +463,8 @@ if (my_first == true) {
 			, set		: 'status = \'' + my_status + '\''
 			, where		: 'id = ' + the_id
 			};
-		JKY.ajax(false, my_data, my_display_list);
+//		JKY.ajax(false, my_data, my_display_list);
+		JKY.ajax(false, my_data, my_display_form);
 		JKY.display_message('record (' + the_id + ') changed')
 	}
 

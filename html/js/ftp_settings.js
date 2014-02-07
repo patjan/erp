@@ -124,7 +124,7 @@ JKY.delete_settings = function(the_id) {
 	JKY.ajax(true, my_data);
 }
 
-JKY.print_settings = function(the_id) {
+JKY.print_ftp_settings = function(the_id) {
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'

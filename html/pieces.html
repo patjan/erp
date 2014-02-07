@@ -1,60 +1,24 @@
-<!--style>
-.jky-form-line-1		{width:273px;}
-.jky-form-line-2		{width:290px;}
-.jky-form-label			{width:160px;}
-.jky-form-label-1		{width:100px;}
-.jky-form-value			{width:100px;}
-.jky-form-value1		{width:240px;}
-
-.jky-order-number		{width: 40px; text-align:center !important;}
-.jky-barcode			{width: 80px; text-align:center !important;}
-.jky-status				{width: 60px; text-align:center !important;}
-.jky-number-of-pieces	{width: 40px; text-align:right  !important;}
-.jky-checkin-weight		{width: 40px; text-align:right  !important;}
-.jky-returned-weight	{width: 40px; text-align:right  !important;}
-.jky-remarks			{width:120px; text-align:left	!important;}
-
-#jky-order-number		{width: 60px; font-size:16px; font-weight:bold;}
-#jky-barcode			{width: 80px;}
-#jky-status				{width: 80px;}
-#jky-number-of-pieces	{width: 40px;}
-#jky-checkin-weight		{width: 40px;}
-#jky-returned-weight	{width: 40px;}
-#jky-checkin-location	{width: 60px; text-transform:capitalize;}
-#jky-checkout-location	{width: 80px; text-transform:capitalize;}
-#jky-remarks			{width:400px; height:22px;}
-
-.jky-line-label			{font-weight:bold; text-align:right;}
-.jky-line-value  input	{width: 90%;	text-align:right ;}
-.jky-line-thread input	{width:275px;	text-align:left  ;}
-.jky-line-thread a		{margin-left:-30px; padding:5px;}
-.jky-line-thread a		{margin-left:-30px; padding:5px;}
-.jky-line-percent		{width: 40px;	text-align:right ; margin-right:0;}
-.jky-line-name			{width:280px;}
-#jky-line-total-expected{padding-right:15px; font-weight:bold; text-align:right;}
-#jky-line-total-received{padding-right:15px; font-weight:bold; text-align:right;}
-</style-->
-
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
 			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-td-number'	><span>      Order<br>Number	</span></th>
 			<th class='jky-td-barcode'	><span>    Barcode				</span></th>
 			<th class='jky-td-status'	><span>     Status				</span></th>
+			<th class='jky-td-name-l'	><span>    Product				</span></th>
+			<th class='jky-td-number'	><span>      Order<br>Number	</span></th>
 			<th class='jky-td-pieces'	><span>     Number<br>Pieces	</span></th>
 			<th class='jky-td-name-s'	><span>   Produced<br>By		</span></th>
 			<th class='jky-td-weight'	><span>   Check In<br>Weight	</span></th>
 			<th class='jky-td-weight'	><span>   Returned<br>Weight	</span></th>
 			<th class='jky-td-location'	><span>	  Check In<br>Location	</span></th>
 			<th class='jky-td-location'	><span>  Check Out<br>Location	</span></th>
-			<th class='jky-td-name-l'	><span>	   Remarks				</span></th>
+			<th class='jky-td-name-s'	><span>	   Remarks				</span></th>
 		</tr>
 	</thead>
 
 	<tbody id='jky-table-body'></tbody>
 </table>
-
+<!--
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'>
@@ -107,6 +71,7 @@
 		</div>
 		<div class='jky-clear'></div>
 		<br>
+
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
@@ -121,7 +86,7 @@
 
 	<div id='jky-form-footer'></div>
 </div>
-
+-->
 <div id='jky-body-loaded'></div>
 
 <script src='js/pieces.js'></script>

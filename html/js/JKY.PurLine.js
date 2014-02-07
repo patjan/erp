@@ -5,8 +5,8 @@
  *
  * require:	JKY.Utils.js(JKY.display_confirm)
  *
- * 		$(my_parent).find('.jky-purline-row-id'  ).val(the_id );
- *		$(my_parent).find('.jky-purline-row-name').val(my_name);
+ * 		$(my_parent).find('.jky-purline-id'  ).val(the_id );
+ *		$(my_parent).find('.jky-purline-name').val(my_name);
  */
 JKY.PurLine = function() {
 	var my_the_id		= null;		//	external id that initiated the call
@@ -64,9 +64,9 @@ JKY.PurLine = function() {
 	function my_click_row(the_index, the_id) {
 		var my_number = $(the_index).find('.jky-purline-search-purchase-number').html();
 		var my_parent = $(my_the_id).parent();
-		$(my_parent).find('.jky-purline-row-id'    ).val(the_id	  );
-		$(my_parent).find('.jky-purline-row-number').val(my_number);
-		$(my_parent).find('.jky-purline-row-number').change();		//	to activate change event
+		$(my_parent).find('.jky-purline-id'    ).val(the_id	  );
+		$(my_parent).find('.jky-purline-number').val(my_number);
+		$(my_parent).find('.jky-purline-number').change();		//	to activate change event
 		JKY.hide_modal(my_layer);
 	}
 

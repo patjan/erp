@@ -2662,6 +2662,10 @@ function ftp_date( $MMM, $DD, $HH_MM ) {
      return $year . '-' . $month . '-' . $DD . ' ' . $HH_MM;
 }
 
+function get_date() {
+     return date( 'Y-m-d' );
+}
+
 function get_time() {
      return date( 'Y-m-d H:i:s' );
 }
@@ -2783,7 +2787,6 @@ function set_memory( $name ) {
 
 function log_sql( $table, $id, $action, $data=null ) {
      $date = date( 'Y-m-d' );
-     $time = date( 'H:i:s' );
      $sql = '';
 
      if(  $action != 'deleted' and substr( $action, 0, 4 ) != 'sql:' and $data != null )
@@ -2797,7 +2800,6 @@ function log_sql( $table, $id, $action, $data=null ) {
 
 function log_bat( $program, $message ) {
      $date = date( 'Y-m-d' );
-     $time = date( 'H:i:s' );
 
      $logFile = fopen( SERVER_BASE . 'logbat/' . $date . '.txt', 'a' ) or die( 'cannot open logbat file' );
      fwrite( $logFile, get_now() . ' Program ' . $program . ' ' . $message . NL );
@@ -2812,7 +2814,6 @@ function log_event( $event ) {
 
 function log_prog( $program, $message ) {
      $date = date( 'Y-m-d' );
-     $time = date( 'H:i:s' );
 
      $logFile = fopen( SERVER_BASE . $program . '/' . $date . '.txt', 'a' ) or die( 'cannot open log ' . $program . ' file' );
      fwrite( $logFile, get_now() . ' ' . $message . NL );
@@ -3867,6 +3868,41 @@ function insert_changes($the_db, $the_table_name, $the_table_id) {
 			;
 	}
 	$the_db->query($sql);
+}
+
+/*
+ *   proxy - using curl
+ */
+function proxy($domain, $postvars) {
+log_prog('proxy', 'domain: '   . $domain  );
+log_prog('proxy', 'POSTVARS: ' . $postvars);
+
+	$ch = curl_init($domain);
+
+	curl_setopt($ch, CURLOPT_POST          , 0);
+	curl_setopt($ch, CURLOPT_VERBOSE       , 0);
+//	curl_setopt($ch, CURLOPT_USERAGENT     , isset( $_SERVER[ 'User-Agent' ]) ? $_SERVER[ 'User-Agent' ] : '');
+	curl_setopt($ch, CURLOPT_POSTFIELDS    , $postvars);
+//	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	curl_setopt($ch, CURLOPT_REFERER       , $domain);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
+	curl_setopt($ch, CURLOPT_AUTOREFERER   , 0);
+	curl_setopt($ch, CURLOPT_COOKIEJAR     , 'ses_' . session_id());
+	curl_setopt($ch, CURLOPT_COOKIEFILE    , 'ses_' . session_id());
+//	curl_setopt($ch, CURLOPT_COOKIE        , $COOKIE);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_FAILONERROR   , 1);
+
+	$content  = curl_exec   ($ch);
+//log_prog('proxy', 'content: ' . $content);
+	$response = curl_getinfo($ch);
+//log_prog('proxy', 'response: ' . json_encode($response));
+
+	curl_close($ch);
+	return $content;
 }
 
 ?>

@@ -3,6 +3,7 @@ require_once   'Buscar_CEP.php';
 require_once      'CheckIn.php';
 require_once     'CheckOut.php';
 require_once     'Generate.php';
+require_once      'Invoice.php';
 require_once 'Print_Labels.php';
 require_once       'Return.php';
 /**
@@ -161,9 +162,10 @@ public function indexAction() {
 				case 'publish'		: $required = 'Publish'	; break;
 				case 'export'		: $required = 'Export'	; break;
 
-				case 'generate'		: $required = 'Update'	; break;
 				case 'checkin'		: $required = 'Update'	; break;
 				case 'checkout'		: $required = 'Update'	; break;
+				case 'generate'		: $required = 'Update'	; break;
+				case 'invoice'		: $required = 'Update'	; break;
 				case 'return'		: $required = 'Update'	; break;
 
 				default				: $this->echo_error('method name [' . $method . '] is undefined'); return;
@@ -202,10 +204,11 @@ public function indexAction() {
 			case 'export'		: $this->get_index		($data); break;
 			case 'Xrefresh'		: $this->Xrefresh		(); break;
 
-			case 'generate'		: echo json_encode(JKY_generate	($data)); return;
-			case 'checkin'		: echo json_encode(JKY_checkin	($data)); return;
-			case 'checkout'		: echo json_encode(JKY_checkout	($data)); return;
-			case 'return'		: echo json_encode(JKY_return	($data)); return;
+			case 'checkin'		: echo json_encode (JKY_checkin	($data)); return;
+			case 'checkout'		: echo json_encode (JKY_checkout($data)); return;
+			case 'generate'		: echo json_encode (JKY_generate($data)); return;
+			case 'invoice'		:					JKY_invoice	($data) ; return;
+			case 'return'		: echo json_encode (JKY_return	($data)); return;
 
 			case 'set_amount'	: $this->set_amount		(); break;
 			case 'reset_amount'	: $this->reset_amount	(); break;
@@ -334,6 +337,14 @@ private function get_id($data) {
 		return;
 	}
 
+	if ($table == 'QuotColorFTPs') {
+		$sql= 'SELECT Orders.ftp_id'
+			. '  FROM QuotColors'
+			. '  LEFT JOIN QuotLines ON QuotLines.id = QuotColors.parent_id'
+			. '  LEFT JOIN Orders    ON Orders.id = QuotLines.order_id'
+			. ' WHERE ' . $where
+			;
+	}else{
 	$where = $this->get_security($table, $where);
 	$names = explode('=', $where);
 	if (trim($names[0]) == 'user_name') {
@@ -347,7 +358,7 @@ private function get_id($data) {
 			. ' WHERE ' . $where
 			;
 		;
-	}
+	}}
 
 $this->log_sql( $table, 'get_id', $sql );
 	$db = Zend_Registry::get('db');
@@ -779,7 +790,8 @@ private function set_new_fields($table) {
 												. ',  Customer.nick_name		AS  customer_name'
 												. ',   Product.id				AS   product_id'
 												. ',   Product.product_name		AS   product_name'
-												. ', SaleColor.quoted_pieces	AS      sold_pieces';
+//												. ', SaleColor.quoted_pieces	AS      sold_pieces';
+							. ', CEIL(SaleColor.quoted_units / SaleLine.units)	AS      sold_pieces';
 	if ($table == 'LoadSets'		)	$return = ',   LoadOut.loadout_number	AS   loadout_number'
 												. ',   LoadOut.requested_at		AS requested_at'
 												. ',      Dyer.nick_name		AS      dyer_name'
@@ -788,7 +800,8 @@ private function set_new_fields($table) {
 												. ',  Customer.nick_name		AS  customer_name'
 												. ',   Product.id				AS   product_id'
 												. ',   Product.product_name		AS   product_name'
-												. ', SaleColor.quoted_pieces	AS      sold_pieces';
+//												. ', SaleColor.quoted_pieces	AS      sold_pieces';
+							. ', CEIL(SaleColor.quoted_units / SaleLine.units)	AS      sold_pieces';
 	if ($table == 'Orders'			)	$return = ',  Customer.nick_name		AS  customer_name'
 												. ',   Machine.name				AS   machine_name'
 												. ',   Partner.nick_name		AS   partner_name'
@@ -816,7 +829,7 @@ private function set_new_fields($table) {
 												. ',      Gola.product_name		AS      gola_name'
 												. ',     Galao.product_name		AS     galao_name';
 	if ($table == 'QuotLines'		)	$return = ',   Product.product_name		AS   product_name';
-	if ($table == 'QuotColors'		)	$return = ',QuotColors.quoted_pieces	AS      sold_pieces'
+	if ($table == 'QuotColors'		)	$return = ',QuotColors.quoted_units		AS      sold_units'
 												. ',     Color.color_name		AS     color_name'
 												. ',      Sale.quotation_number	AS      sale_number'
 												. ',      Sale.quoted_at		AS      sold_at'
@@ -1511,20 +1524,6 @@ private function set_where($table, $filter) {
 						return ' AND Threads.name LIKE ' . $value;
 					}
 				}
-				if ($name == 'batch') {
-					if ($value == '"%null%"') {
-						return ' AND PurchaseLines.batch_id IS NULL';
-					}else{
-						return ' AND Batches.received_weight LIKE ' . $value;
-					}
-				}
-				if ($name == 'incoming') {
-					if ($value == '"%null%"') {
-						return ' AND Batches.incoming_id IS NULL';
-					}else{
-						return ' AND Incomings.received_at LIKE ' . $value;
-					}
-				}
 				if ($name == 'supplier') {
 					if ($value == '"%null%"') {
 						return ' AND Incomings.supplier_id IS NULL';
@@ -1707,7 +1706,21 @@ private function set_where($table, $filter) {
 					return ' AND Boxes.' . $name . ' LIKE ' . $value;
 				}
 			}else{
-				if ($name == 'batch') {
+				if ($name == 'thread') {
+					if ($value == '"%null%"') {
+						return ' AND Batches.thread_id IS NULL';
+					}else{
+						return ' AND Threads.name LIKE ' . $value;
+					}
+				}
+				if ($name == 'supplier') {
+					if ($value == '"%null%"') {
+						return ' AND Incomings.supplier_id IS NULL';
+					}else{
+						return ' AND Supplier.nick_name LIKE ' . $value;
+					}
+				}
+				if ($name == 'batch_code') {
 					if ($value == '"%null%"') {
 						return ' AND Boxes.batch_id IS NULL';
 					}else{
@@ -1851,7 +1864,7 @@ private function set_where($table, $filter) {
 					return ' AND BatchOuts.' . $name . ' LIKE ' . $value;
 				}
 			}else{
-				if ($name == 'thread_name') {
+				if ($name == 'thread') {
 					if ($value == '"%null%"') {
 						return ' AND BatchOuts.thread_id IS NULL';
 					}else{
@@ -2202,6 +2215,8 @@ private function set_where($table, $filter) {
 			. ' OR  Boxes.checkin_location	LIKE ' . $filter
 			. ' OR  Boxes.checkout_location	LIKE ' . $filter
 			. ' OR  Boxes.returned_location	LIKE ' . $filter
+			. ' OR  Threads.name			LIKE ' . $filter
+			. ' OR  Supplier.nick_name		LIKE ' . $filter
 			. ' OR  Batches.batch			LIKE ' . $filter
 			. ' OR  Parent.barcode			LIKE ' . $filter
 			;

@@ -44,8 +44,8 @@ JKY.generate_sale = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = (the_row.status == 'Draft') ? '<a onclick="JKY.delete_sale(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_sale = ''
-		+ "<input class='jky-row-sale-color-id' type='hidden' value=" + the_row.sale_color_id + " />"
-		+ "<input class='jky-row-sale-number' disabled onchange='JKY.update_sale(this, " + my_id + ")' value='" + JKY.fix_null(the_row.sale_number) + "' />"
+		+ "<input class='jky-sale-color-id' type='hidden' value=" + the_row.sale_color_id + " />"
+		+ "<input class='jky-sale-number' disabled onchange='JKY.update_sale(this, " + my_id + ")' value='" + JKY.fix_null(the_row.sale_number) + "' />"
 		+ " <a href='#' onClick='JKY.Sale.display(this, JKY.get_color_id(), JKY.get_color_name())'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
@@ -66,7 +66,7 @@ JKY.update_sale = function(id_name, the_id) {
 	JKY.display_trace('update_sale');
 	JKY.select_sale(the_id);
 	var my_tr = $(id_name).parent().parent();
-	var my_sale_color_id	= my_tr.find('.jky-row-sale-color-id'	).val();
+	var my_sale_color_id	=			 my_tr.find('.jky-sale-color-id'	).val() ;
 	var my_requested_pieces	= parseFloat(my_tr.find('.jky-requested-pieces'	).val());
 
 	var my_set = ''

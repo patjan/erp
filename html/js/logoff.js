@@ -39,13 +39,13 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values - ' + jky_program);
 	if (JKY.is_loaded('jky-body')) {
-		JKY.set_html('jky-log-off-logo', '<img src="/img/' + JKY.Session.get_value('company_logo') + '" />');
+		JKY.set_html('jky-log-logo', '<img src="/img/' + JKY.Session.get_value('company_logo') + '" />');
 		JKY.set_html('jky-log-off-time', JKY.get_time());
 //		$('#jky-log-off-user-name').val('');
 //		$('#jky-log-off-password' ).val('');
 //		JKY.set_button_log_off();
 //		JKY.set_focus(jky_focus);
-		JKY.t_tag('jky-log-off-form', 'span');
+		JKY.t_tag('jky-log-form', 'span');
 	}else{
 		setTimeout(function() {JKY.set_initial_values();}, 100);
 	}

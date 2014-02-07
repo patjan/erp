@@ -1,0 +1,193 @@
+C:\htdocs\erp\application>php TestXML.php
+2014-02-01 18:47:59.096926
+2014-02-01 18:47:59.098585 start of program
+
+{"@attributes":{"versao":"2.00"}
+
+,"NFe":
+	{"infNFe":
+		{"@attributes":{"Id":"NFe35130704744013000126550010000252661985351560","versao":"2.00"}
+		,"ide":	{"cUF"		:"35"
+				,"cNF"		:"98535156"
+				,"natOp"	:"VENDA NO ESTADO"
+				,"indPag"	:"0"
+				,"mod"		:"55"
+				,"serie"	:"1"
+				,"nNF"		:"25266"
+				,"dEmi"		:"2013-07-08"
+				,"dSaiEnt"	:"2013-07-08"
+				,"tpNF"		:"1"
+				,"cMunFG"	:"3550308"
+				,"tpImp"	:"1"
+				,"tpEmis"	:"1"
+				,"cDV"		:"0"
+				,"tpAmb"	:"1"
+				,"finNFe"	:"1"
+				,"procEmi"	:"3"
+				,"verProc"	:"2.0.0.3"
+				}
+		,"emit":{"CNPJ"		:"04744013000126"
+				,"xNome"	:"Tecno Malhas Ltda"
+				,"enderEmit":
+					{"xLgr"		:"Rua Baceunas"
+					,"nro"		:"51"
+					,"xBairro"	:"Vila Prudente"
+					,"cMun"		:"3550308"
+					,"xMun"		:"Sao Paulo"
+					,"UF"		:"SP"
+					,"CEP"		:"03127060"
+					,"cPais"	:"1058"
+					,"xPais"	:"Brasil"
+					,"fone"		:"1122743833"
+					}
+				,"IE"		:"116257257110"
+				,"IM"		:"30729335"
+				,"CNAE"		:"4641901"
+				,"CRT"		:"3"
+				}
+		,"dest":{"CNPJ"		:"11170001000109"
+				,"xNome"	:"WF DE CARVALHO JR"
+				,"enderDest":
+					{"xLgr"		:"Rua Araruama"
+					,"nro"		:"148"
+					,"xBairro"	:"Cidade Patriarca"
+					,"cMun"		:"3550308"
+					,"xMun"		:"Sao Paulo"
+					,"UF"		:"SP"
+					,"CEP"		:"03555090"
+					,"cPais"	:"1058"
+					,"xPais"	:"Brasil"
+					,"fone"		:"27484455"
+					}
+				,"IE"		:"148801031117"
+				,"email"	:"wesc_oficina@ig.com.br"
+				}
+		,"det":
+			{"@attributes":{"nItem":"1"}
+			,"prod"	:
+				{"cProd"	:"353"
+				,"cEAN"		:{}
+				,"xProd"	:"Meia Malha Penteada Confort 160 CM 100% CO"
+				,"NCM"		:"52083900"
+				,"CFOP"		:"5101"
+				,"uCom"		:"KILO"
+				,"qCom"		:"77.4600"
+				,"vUnCom"	:"20.9034"
+				,"vProd"	:"1619.18"
+				,"cEANTrib"	:{}
+				,"uTrib"	:"KILO"
+				,"qTrib"	:"77.4600"
+				,"vUnTrib"	:"20.9034"
+				,"indTot"	:"1"
+				}
+			,"imposto":
+				{"ICMS":
+					{"ICMS20":
+						{"orig"		:"0"
+						,"CST"		:"20"
+						,"modBC"	:"3"
+						,"pRedBC"	:"38.89"
+						,"vBC"		:"629.70"
+						,"pICMS"	:"18.00"
+						,"vICMS"	:"113.35"
+						}
+					}
+				,"IPI":
+					{"cEnq":"51"
+					,"IPINT":
+						{"CST":"51"}
+					}
+				,"PIS":
+					{"PISAliq":
+						{"CST"	:"01"
+						,"vBC"	:"1619.18"
+						,"pPIS"	:"0.65"
+						,"vPIS"	:"10.52"
+						}
+					}
+				,"COFINS":
+					{"COFINSAliq":
+						{"CST"		:"01"
+						,"vBC"		:"1619.18"
+						,"pCOFINS"	:"3.00"
+						,"vCOFINS"	:"48.58"
+						}
+					}
+				}
+			}
+		,"total":
+			{"ICMSTot":
+				{"vBC"		:"629.70"
+				,"vICMS"	:"113.35"
+				,"vBCST"	:"0.00"
+				,"vST"		:"0.00"
+				,"vProd"	:"1619.18"
+				,"vFrete"	:"0.00"
+				,"vSeg"		:"0.00"
+				,"vDesc"	:"0.00"
+				,"vII"		:"0.00"
+				,"vIPI"		:"0.00"
+				,"vPIS"		:"10.52"
+				,"vCOFINS"	:"48.58"
+				,"vOutro"	:"0.00"
+				,"vNF"		:"1619.18"
+				}
+			}
+		,"transp":
+			{"modFrete"		:"1"
+			,"transporta"	:
+				{"CNPJ"			:"11170001000109"
+				,"xNome"		:"O PROPRIO"
+				,"xEnder"		:"Rua Araruama, 148 - Cidade Patriarca"
+				,"xMun"			:"Sao Paulo"
+				,"UF"			:"SP"
+				}
+			,"vol":
+				{"qVol"			:"7"
+				,"esp"			:"VOLUMES"
+				,"marca"		:"TECIDOS"
+				,"pesoL"		:"77.460"
+				,"pesoB"		:"77.460"
+				}
+			}
+		,"infAdic":
+			{"infCpl":"**Atencao** Ao receber os tecidos dessa nota fiscal, favor conferir e fazer: testes de solidez, encolhimento, gramatura, tonalidade e outros que julgar necessario antes de cortar. Diferencas de tonalidade de um lote para outros devem ser observados portanto, nao misturar lotes na confeccao. Nao estandode acordo, favor devolver sem enfestar ou cortar. reclamacoes so serao aceitas ate 10 dias da saida da mercadoria  ***Reducao da base de calculo do ICMS nos termos do artigo 52,item II,do anexo II,do RICMS\/00***"
+			}
+		}
+	,"Signature":
+		{"SignedInfo":
+			{"CanonicalizationMethod"	:{"@attributes":{"Algorithm":"http://www.w3.org/TR/2001/REC-xml-c14n-20010315"}}
+			,"SignatureMethod"			:{"@attributes":{"Algorithm":"http://www.w3.org/2000/09/xmldsig#rsa-sha1"}}
+			,"Reference":
+				{"@attributes":{"URI":"#NFe35130704744013000126550010000252661985351560"}
+				,"Transforms"	:
+					{"Transform":
+						[{"@attributes":{"Algorithm":"http://www.w3.org/2000/09/xmldsig#enveloped-signature"}}
+						,{"@attributes":{"Algorithm":"http://www.w3.org/TR/2001/REC-xml-c14n-20010315"}}
+						]
+					}
+				,"DigestMethod":{"@attributes":{"Algorithm":"http://www.w3.org/2000/09/xmldsig#sha1"}}
+				,"DigestValue":"q8I1qKu3B5w7cDq1QsuRo8rwNhc="
+				}
+			}
+			,"SignatureValue":"QNp ... AnP"
+		}
+	}
+,"protNFe":
+	{"@attributes":{"versao":"2.00"}
+	,"infProt":
+		{"tpAmb"	:"1"
+		,"verAplic"	:"SP_NFE_PL_006q"
+		,"chNFe"	:"35130704744013000126550010000252661985351560"
+		,"dhRecbto"	:"2013-07-08T15:25:50"
+		,"nProt"	:"135130402290523"
+		,"digVal"	:"q8I1qKu3B5w7cDq1QsuRo8rwNhc="
+		,"cStat"	:"100"
+		,"xMotivo"	:"Autorizado o uso da NF-e"
+		}
+	}
+
+}
+2014-02-01 18:47:59.103513 end of program
+
+C:\htdocs\erp\application>

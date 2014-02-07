@@ -51,8 +51,8 @@ JKY.thread_select = function(the_index, the_id) {
 	var my_name = $(the_index).find('.jky-thread-search-name').html();
 //	JKY.display_message('id: ' + the_id + ', name: ' + my_name);
 	var my_parent = $(JKY.thread_the_id).parent();
-	$(my_parent).find('.jky-thread-row-id'  ).val(the_id );
-	$(my_parent).find('.jky-thread-row-name').val(my_name);
-	$(my_parent).find('.jky-thread-row-name').change();		//	to activate change event
+	$(my_parent).find('.jky-thread-id'  ).val(the_id );
+	$(my_parent).find('.jky-thread-name').val(my_name);
+	$(my_parent).find('.jky-thread-name').change();		//	to activate change event
 	JKY.hide_modal('jky-thread-search');
 }

@@ -5,8 +5,8 @@
  *
  * require:	JKY.Utils.js(JKY.display_confirm)
  *
- * 		$(my_parent).find('.jky-pieces-row-id'  ).val(the_id );
- *		$(my_parent).find('.jky-pieces-row-name').val(my_name);
+ * 		$(my_parent).find('.jky-pieces-id'  ).val(the_id );
+ *		$(my_parent).find('.jky-pieces-name').val(my_name);
  */
 JKY.Pieces = function() {
 	var my_index		=  null;		//	external id that initiated the call
@@ -172,7 +172,7 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_ordered_
 			+ "<tr>"
 			+ "<td class='jky-print-label1'><span>  Diameter</span>:</td><td id='jky-print-diameter'	class='jky-print-value'></td>"
 			+ "<td class='jky-print-label2'><span>     Turns</span>:</td><td id='jky-print-turns'		class='jky-print-value'></td>"
-			+ "<td class='jky-print-label1'><span>     Speed</span>:</td><td id='jky-print-speed'		class='jky-print-value'></td>"
+			+ "<td class='jky-print-label3'><span>     Speed</span>:</td><td id='jky-print-speed'		class='jky-print-value'></td>"
 //			+ "<td class='jky-print-label3'><span>Elasticity</span>:</td><td id='jky-print-elasticity'	class='jky-print-value'></td>"
 			+ "</tr>"
 			+ "<tr>"
@@ -247,9 +247,9 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_ordered_
 //		JKY.set_html('jky-print-lanes'			, my_row.lanes						);
 		JKY.set_html('jky-print-has-break'		, JKY.t((my_row.has_break == 'No') ? 'Without' : 'With'));
 
-		JKY.set_html('jky-print-thread-body'	, JKY.print_threads	(JKY.row.ftp_id));
-		JKY.set_html('jky-print-load-body'		, JKY.print_loads	(JKY.row.ftp_id));
-		JKY.set_html('jky-print-setting-body'	, JKY.print_settings(JKY.row.ftp_id));
+		JKY.set_html('jky-print-thread-body'	, JKY.print_ftp_threads	(JKY.row.ftp_id));
+		JKY.set_html('jky-print-load-body'		, JKY.print_ftp_loads	(JKY.row.ftp_id));
+		JKY.set_html('jky-print-setting-body'	, JKY.print_ftp_settings(JKY.row.ftp_id));
 
 //		JKY.show('jky-printable');
 		$("#jky-printable").print();
@@ -305,7 +305,7 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_ordered_
 				;
 			if (i % 10 == 0) {
 				my_html += "</table>";
-				if (i % 40 == 0) {
+				if (i % 40 == 0 && i < my_count) {
 					my_html += "<div style='page-break-before:always;'></div>";
 					my_html += my_print_header(JKY.row.customer_name, JKY.row.order_number, JKY.row.ops_printed);
 				}else{

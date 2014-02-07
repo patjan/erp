@@ -48,6 +48,9 @@ JKY.set_initial_values = function() {
 	$('#jky-app-select option').eq(1).prop('selected', true);
 	$('#jky-app-select').change();
 
+	JKY.hide('jky-action-export');
+	JKY.hide('jky-action-list'	);
+	JKY.hide('jky-action-form'	);
 	JKY.process_clear_screen();
 };
 
@@ -105,12 +108,10 @@ JKY.set_all_box_check = function(the_index) {
 
 JKY.display_list = function() {
 	JKY.hide('jky-action-add-new');
-	JKY.hide('jky-action-export' );
 };
 
 JKY.display_form = function() {
 	JKY.hide('jky-action-add-new');
-	JKY.hide('jky-action-export' );
 };
 
 JKY.process_clear_screen = function() {

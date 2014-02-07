@@ -230,7 +230,7 @@ JKY.get_name = function(the_id, the_array) {
 	return my_name;
 }
 
-JKY.print_loads = function(the_id) {
+JKY.print_ftp_loads = function(the_id) {
 	JKY.loads = JKY.load_ids(the_id);
 	var my_html  = '';
 	var my_data =

@@ -41,8 +41,8 @@ JKY.generate_thread = function(the_row) {
 	var my_percent			= parseFloat(the_row.percent);
 
 	var my_thread = ''
-		+ "<input class='jky-thread-row-id' type='hidden' value=" + my_thread_id + " />"
-		+ "<input class='jky-thread-row-name' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + my_name + "' />"
+		+ "<input class='jky-thread-id' type='hidden' value=" + my_thread_id + " />"
+		+ "<input class='jky-thread-name' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + my_name + "' />"
 		+ " <a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 
@@ -60,9 +60,9 @@ JKY.generate_thread = function(the_row) {
 
 JKY.update_thread = function(id_name, the_id ) {
 	var my_tr = $(id_name).parent().parent();
-	var my_thread_id		= my_tr.find('.jky-thread-row-id').val();
-	var my_percent			= parseFloat(my_tr.find('.jky-thread-percent').val());
-	var my_supplier_id		= my_tr.find('.jky-thread-supplier'	).val();
+	var my_thread_id		=			 my_tr.find('.jky-thread-id'		).val() ;
+	var my_percent			= parseFloat(my_tr.find('.jky-thread-percent'	).val());
+	var my_supplier_id		=			 my_tr.find('.jky-thread-supplier'	).val() ;
 	var my_set = ''
 		+        'thread_id =   ' + my_thread_id
 		+    ', supplier_id = ' + my_supplier_id
@@ -184,7 +184,7 @@ JKY.verify_total_percent = function() {
 	}
 }
 
-JKY.print_threads = function(the_id) {
+JKY.print_ftp_threads = function(the_id) {
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'

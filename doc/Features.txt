@@ -19,7 +19,7 @@ Features (2013-12-17)
 	- Protected numeric
 	- Check for duplicates
 	- Dynamic lookup
-	- Change Status
+	- Change status
 	
 - Easy to configure by Administrator (Configs)
 - Easy to manage by Support (Controls, several access level) 
@@ -83,6 +83,7 @@ Features (2013-12-17)
 	- Dyers
 		- Aggregate Load Outs
 		- Load Out Sales
+		- Ship Dyers
 	- Pieces
 		- Check In
 		- Return

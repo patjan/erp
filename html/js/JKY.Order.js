@@ -55,13 +55,13 @@ JKY.Order = function() {
 
 		var my_dom_id = $(my_parent).find('#jky-order-id');
 		if (my_dom_id.length == 0) {
-			my_dom_id = $(my_parent).find('.jky-order-row-id');
+			my_dom_id = $(my_parent).find('.jky-order-id');
 		}
 		my_dom_id.val(the_id );
 
 		var my_dom_number = $(my_parent).find('#jky-order-number');
 		if (my_dom_number.length == 0) {
-			my_dom_number = $(my_parent).find('.jky-order-row-number');
+			my_dom_number = $(my_parent).find('.jky-order-number');
 		}
 		my_dom_number.val(my_number);
 		my_dom_number.change();		//	to activate change event

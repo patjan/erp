@@ -39,8 +39,8 @@ JKY.generate_piece = function(the_row) {
 //	var my_trash = (the_row.batch_id == null) ? '<a onclick="JKY.delete_pieces(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_trash = '';
 	var my_pieces = ''
-		+ "<input class='jky-pieces-row-id' type='hidden' value=" + the_row.pieces_id + " />"
-		+ "<input class='jky-pieces-row-name' disabled onchange='JKY.update_pieces(this, " + my_id + ")' value='" + the_row.pieces_name + "' />"
+		+ "<input class='jky-pieces-id' type='hidden' value=" + the_row.pieces_id + " />"
+		+ "<input class='jky-pieces-name' disabled onchange='JKY.update_pieces(this, " + my_id + ")' value='" + the_row.pieces_name + "' />"
 		+ " <a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_needed_at = JKY.out_date(the_row.needed_at);
@@ -65,8 +65,8 @@ JKY.update_pieces = function(id_name, the_id ) {
 	var my_saved_requested = parseFloat(JKY.get_value_by_id('Pieces', 'requested_weight', the_id));
 
 	var my_tr = $(id_name).parent().parent();
-	var my_pieces_id		=					 my_tr.find('.jky-pieces-row-id'			).val();
-	var my_batchin_id		=					 my_tr.find('.jky-batchin-row-id'			).val();
+	var my_pieces_id		=					 my_tr.find('.jky-pieces-id'				).val() ;
+	var my_batchin_id		=					 my_tr.find('.jky-batchin-id'				).val() ;
 	var my_needed_at		= JKY.inp_date_value(my_tr.find('.jky-pieces-needed-date'		).val());
 	var my_requested_weight	= parseFloat		(my_tr.find('.jky-pieces-requested-weight'	).val());
 
