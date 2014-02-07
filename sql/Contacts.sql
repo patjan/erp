@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS Contacts
 
 , company_id		BIGINT				DEFAULT NULL
 , support_id		BIGINT				DEFAULT NULL
+, parent_id			BIGINT				DEFAULT NULL
 , is_company		CHAR(3)				DEFAULT 'No'
 , is_customer		CHAR(3)				DEFAULT 'No'
 , is_supplier		CHAR(3)				DEFAULT 'No'
@@ -79,3 +80,5 @@ ALTER TABLE Contacts	ADD COLUMN st_number			VARCHAR(255)	DEFAULT NULL  AFTER web
 ALTER TABLE Contacts	ADD COLUMN district				VARCHAR(255)	DEFAULT NULL  AFTER country;
 
 ALTER TABLE Contacts	ADD COLUMN is_transport    		CHAR(3)   		DEFAULT 'No'  AFTER is_partner;
+
+ALTER TABLE Contacts	ADD COLUMN parent_id    		BIGINT   		DEFAULT NULL  AFTER support_id;
