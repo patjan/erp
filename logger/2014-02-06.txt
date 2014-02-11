@@ -1,0 +1,5194 @@
+
+
+2014-02-06 00:31:17.317994 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 00:31:17
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 00:31:17.805048 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 00:31:17
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:24:06.318601 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:24:06.742424 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:24:10.998572 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"log_in\",\"user_name\":\"patjan\",\"encrypted\":\"7ff4a164abc9da32725c6a1790422df6\"}
+
+2014-02-06 01:24:11.319557 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:24:11.810950 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Tickets\",\"specific\":\"\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"opened_at DESC\"}
+
+2014-02-06 01:24:12.049548 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Priorities\"}
+
+2014-02-06 01:24:12.296437 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Ticket Categories\"}
+
+2014-02-06 01:24:12.542155 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Tickets\",\"specific\":\"\",\"select\":\"Open\",\"filter\":\"\",\"order_by\":\"opened_at DESC\"}
+
+2014-02-06 01:24:13.003986 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Translations\",\"specific\":\"locale\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"sentence ASC\"}
+
+2014-02-06 01:24:14.293159 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Translations\",\"specific\":\"locale\",\"select\":\"Active\",\"filter\":\"\",\"order_by\":\"sentence ASC\"}
+
+2014-02-06 01:24:14.727241 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Languages\"}
+
+2014-02-06 01:24:20.331481 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Controls\",\"specific\":\"\",\"select\":\"Root\",\"filter\":\"\",\"order_by\":\"sequence, name ASC\"}
+
+2014-02-06 01:24:20.677417 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Root\"}
+
+2014-02-06 01:24:20.937899 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Status Codes\"}
+
+2014-02-06 01:24:24.095621 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Controls\",\"specific\":\"\",\"select\":\"Servers Host\",\"filter\":\"\",\"order_by\":\"sequence, name ASC\"}
+
+2014-02-06 01:26:28.164605 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:24:06
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"log_out\"}
+
+2014-02-06 01:26:28.642150 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:26:43.553790 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:28:51.643921 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:28:52.193862 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:29:20.248158 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:29:20.931728 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:31:42.046255 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:31:42.572996 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:33:43.512643 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:33:43.957274 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:33:49.966170 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"log_in\",\"user_name\":\"patjan\",\"encrypted\":\"339e45b7edbd9857e42e442ee87dd0aa\"}
+
+2014-02-06 01:33:50.229907 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:33:51.015714 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Tickets\",\"specific\":\"\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"opened_at DESC\"}
+
+2014-02-06 01:33:51.669461 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Priorities\"}
+
+2014-02-06 01:33:51.876348 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Ticket Categories\"}
+
+2014-02-06 01:33:52.107923 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Tickets\",\"specific\":\"\",\"select\":\"Open\",\"filter\":\"\",\"order_by\":\"opened_at DESC\"}
+
+2014-02-06 01:33:54.853280 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Translations\",\"specific\":\"locale\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"sentence ASC\"}
+
+2014-02-06 01:33:55.201744 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Translations\",\"specific\":\"locale\",\"select\":\"Active\",\"filter\":\"\",\"order_by\":\"sentence ASC\"}
+
+2014-02-06 01:33:55.703443 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Languages\"}
+
+2014-02-06 01:33:56.644884 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:33:56.925701 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_company\"}
+
+2014-02-06 01:33:57.180068 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 01:33:57.423885 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"States\"}
+
+2014-02-06 01:33:57.666521 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Countries\"}
+
+2014-02-06 01:33:57.933802 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 01:33:58.154476 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"Support\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:34:02.198822 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"Admin\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:34:04.420360 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_row\",\"table\":\"Contacts\",\"where\":\"Contacts.id = 100006\"}
+
+2014-02-06 01:34:08.297015 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_id\",\"table\":\"Contacts\",\"where\":\"nick_name = \'Marcelo\'\"}
+
+2014-02-06 01:34:08.553037 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_id\",\"table\":\"Contacts\",\"where\":\"user_name = \'marcelo\'\"}
+
+2014-02-06 01:34:08.792809 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"update\",\"table\":\"Contacts\",\"set\":\"nick_name=\'Marcelo\', first_name=\'Marcelo\', last_name=\'Lodi\', company_id=  null, mobile=\'\', position=\'\', email=\'marcelo@metatex.com.br\', full_name=\'Marcelo Lodi\'\",\"where\":\"id = 100006\"}
+
+2014-02-06 01:34:09.031657 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"update\",\"table\":\"JKY_Users\",\"set\":\"contact_id =   100006, user_name = \'marcelo\', user_role = \'Support\'\",\"where\":\"id = 100003\"}
+
+2014-02-06 01:34:09.290960 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_row\",\"table\":\"Contacts\",\"where\":\"Contacts.id = 100006\"}
+
+2014-02-06 01:34:09.521657 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_row\",\"table\":\"Contacts\",\"where\":\"Contacts.id = 100006\"}
+
+2014-02-06 01:35:31.845575 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:26:28
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"log_out\"}
+
+2014-02-06 01:35:32.413399 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:35:34.594088 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:38:05.668731 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:38:06.129418 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:40:22.297233 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"log_in\",\"user_name\":\"patjan\",\"encrypted\":\"e0f506d75ba0aae448841f0de2af7392\"}
+
+2014-02-06 01:40:22.541802 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 01:40:22.897351 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Tickets\",\"specific\":\"\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"opened_at DESC\"}
+
+2014-02-06 01:40:23.123175 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Priorities\"}
+
+2014-02-06 01:40:23.350030 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Ticket Categories\"}
+
+2014-02-06 01:40:23.599662 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Tickets\",\"specific\":\"\",\"select\":\"Open\",\"filter\":\"\",\"order_by\":\"opened_at DESC\"}
+
+2014-02-06 01:40:25.078065 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:40:25.287143 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_company\"}
+
+2014-02-06 01:40:25.560637 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 01:40:25.785455 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"States\"}
+
+2014-02-06 01:40:25.992229 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Countries\"}
+
+2014-02-06 01:40:26.668062 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 01:40:26.923005 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"Support\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:40:32.590285 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"Admin\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:40:34.415370 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_row\",\"table\":\"Contacts\",\"where\":\"Contacts.id = 100006\"}
+
+2014-02-06 01:40:43.438525 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_id\",\"table\":\"Contacts\",\"where\":\"nick_name = \'Marcelo\'\"}
+
+2014-02-06 01:40:43.786559 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_id\",\"table\":\"Contacts\",\"where\":\"user_name = \'marcelo\'\"}
+
+2014-02-06 01:40:44.149913 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"update\",\"table\":\"Contacts\",\"set\":\"nick_name=\'Marcelo\', first_name=\'Marcelo\', last_name=\'Lodi\', company_id=  null, mobile=\'\', position=\'\', email=\'marcelo@metatex.com.br\', full_name=\'Marcelo Lodi\'\",\"where\":\"id = 100006\"}
+
+2014-02-06 01:40:44.402820 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"update\",\"table\":\"JKY_Users\",\"set\":\"contact_id =   100006, user_name = \'marcelo\', user_role = \'Support\'\",\"where\":\"id = 100003\"}
+
+2014-02-06 01:40:44.655098 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_row\",\"table\":\"Contacts\",\"where\":\"Contacts.id = 100006\"}
+
+2014-02-06 01:40:44.890795 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_row\",\"table\":\"Contacts\",\"where\":\"Contacts.id = 100006\"}
+
+2014-02-06 01:40:47.170005 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"Admin\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:40:51.941537 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"Support\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:43:18.138868 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Configs\",\"specific\":\"\",\"select\":\"Root\",\"filter\":\"\",\"order_by\":\"sequence, name ASC\"}
+
+2014-02-06 01:43:18.473471 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Root\"}
+
+2014-02-06 01:43:18.773169 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Status Codes\"}
+
+2014-02-06 01:43:19.455142 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:43:19.676340 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_company\"}
+
+2014-02-06 01:43:19.883280 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 01:43:20.101620 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"States\"}
+
+2014-02-06 01:43:20.305880 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Countries\"}
+
+2014-02-06 01:43:20.591978 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 01:43:20.825725 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"Support\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:43:21.612992 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_company\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:43:21.919153 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"parent_id IS NULL AND is_customer\"}
+
+2014-02-06 01:43:22.117610 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Customer Tags\"}
+
+2014-02-06 01:43:22.383928 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"States\"}
+
+2014-02-06 01:43:22.672398 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Countries\"}
+
+2014-02-06 01:43:22.982418 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_company\",\"select\":\"Active\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:43:41.268299 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_company\",\"select\":\"Active\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:43:47.942935 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_company\",\"select\":\"Active\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:44:02.343573 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Translations\",\"specific\":\"locale\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"sentence ASC\"}
+
+2014-02-06 01:44:02.605754 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Translations\",\"specific\":\"locale\",\"select\":\"Active\",\"filter\":\"\",\"order_by\":\"sentence ASC\"}
+
+2014-02-06 01:44:03.017001 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Languages\"}
+
+2014-02-06 01:44:03.775033 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Controls\",\"specific\":\"\",\"select\":\"Root\",\"filter\":\"\",\"order_by\":\"sequence, name ASC\"}
+
+2014-02-06 01:44:03.982114 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Root\"}
+
+2014-02-06 01:44:04.177656 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Status Codes\"}
+
+2014-02-06 01:44:07.873673 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Controls\",\"specific\":\"\",\"select\":\"Servers Host\",\"filter\":\"\",\"order_by\":\"sequence, name ASC\"}
+
+2014-02-06 01:44:29.826718 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_row\",\"table\":\"Controls\",\"where\":\"Controls.id = 900389\"}
+
+2014-02-06 01:44:53.941349 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Quotations\",\"specific\":\"\",\"select\":\"Draft + Active\",\"filter\":\"\",\"order_by\":\"quotation_number DESC\"}
+
+2014-02-06 01:44:54.462275 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_options\",\"table\":\"Machines\",\"field\":\"name\",\"selected\":\"\",\"initial\":\"\"}
+
+2014-02-06 01:44:54.002699 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_customer\"}
+
+2014-02-06 01:44:55.432916 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_dyer\"}
+
+2014-02-06 01:44:57.807602 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"FTPs\",\"specific\":\"\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"ftp_number DESC\"}
+
+2014-02-06 01:44:58.523936 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_options\",\"table\":\"Machines\",\"field\":\"name\",\"selected\":\"\",\"initial\":\"\"}
+
+2014-02-06 01:44:58.953858 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Collections\"}
+
+2014-02-06 01:44:59.455353 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Collections\"}
+
+2014-02-06 01:45:00.021747 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"FTPs\",\"specific\":\"\",\"select\":\"Inverno 2014\",\"filter\":\"\",\"order_by\":\"ftp_number DESC\"}
+
+2014-02-06 01:45:00.523345 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Materials\"}
+
+2014-02-06 01:45:00.831449 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_ids\",\"table\":\"Threads\"}
+
+2014-02-06 01:45:01.053814 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Settings\"}
+
+2014-02-06 01:45:01.340490 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_supplier\"}
+
+2014-02-06 01:45:02.975672 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Purchases\",\"specific\":\"\",\"select\":\"Draft + Active\",\"filter\":\"\",\"order_by\":\"purchase_number DESC\"}
+
+2014-02-06 01:45:03.214002 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_supplier\"}
+
+2014-02-06 01:45:05.828725 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Pieces\",\"specific\":\"\",\"select\":\"All\",\"filter\":\"\",\"display\":\"20\",\"order_by\":\"Pieces.checkin_at DESC\"}
+
+2014-02-06 01:45:06.163275 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_row\",\"table\":\"Pieces\",\"where\":\"Pieces.id = 9000000001\"}
+
+2014-02-06 01:45:06.932710 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Tickets\",\"specific\":\"\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"opened_at DESC\"}
+
+2014-02-06 01:45:07.271861 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Priorities\"}
+
+2014-02-06 01:45:07.545238 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Ticket Categories\"}
+
+2014-02-06 01:45:07.840422 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Tickets\",\"specific\":\"\",\"select\":\"Open\",\"filter\":\"\",\"order_by\":\"opened_at DESC\"}
+
+2014-02-06 01:45:08.487243 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:45:08.858615 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_company\"}
+
+2014-02-06 01:45:09.265759 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 01:45:09.604803 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"States\"}
+
+2014-02-06 01:45:09.946671 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Countries\"}
+
+2014-02-06 01:45:10.199349 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 01:45:10.483135 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"Support\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:45:11.155945 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Translations\",\"specific\":\"locale\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"sentence ASC\"}
+
+2014-02-06 01:45:11.450715 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Translations\",\"specific\":\"locale\",\"select\":\"Active\",\"filter\":\"\",\"order_by\":\"sentence ASC\"}
+
+2014-02-06 01:45:11.854306 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Languages\"}
+
+2014-02-06 01:45:14.489366 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Templates\",\"specific\":\"\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"updated_at ASC\"}
+
+2014-02-06 01:45:14.721689 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Priorities\"}
+
+2014-02-06 01:45:15.108331 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Template Types\"}
+
+2014-02-06 01:45:15.337304 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Templates\",\"specific\":\"\",\"select\":\"By Event\",\"filter\":\"\",\"order_by\":\"updated_at ASC\"}
+
+2014-02-06 01:45:18.752106 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Permissions\",\"specific\":\"\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"user_resource ASC\"}
+
+2014-02-06 01:45:18.997363 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Resources\"}
+
+2014-02-06 01:45:19.230165 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Actions\"}
+
+2014-02-06 01:45:19.441079 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 01:45:19.711978 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 01:45:19.963407 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Permissions\",\"specific\":\"\",\"select\":\"Support\",\"filter\":\"\",\"order_by\":\"user_resource ASC\"}
+
+2014-02-06 01:45:21.596232 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Controls\",\"specific\":\"\",\"select\":\"Root\",\"filter\":\"\",\"order_by\":\"sequence, name ASC\"}
+
+2014-02-06 01:45:21.948879 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Root\"}
+
+2014-02-06 01:45:22.180540 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Status Codes\"}
+
+2014-02-06 01:45:28.391074 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:45:28.673052 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_company\"}
+
+2014-02-06 01:45:28.934633 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 01:45:29.148713 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"States\"}
+
+2014-02-06 01:45:29.348691 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Countries\"}
+
+2014-02-06 01:45:29.540804 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 01:45:29.749028 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"Support\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:45:31.217674 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Translations\",\"specific\":\"locale\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"sentence ASC\"}
+
+2014-02-06 01:45:31.467429 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Translations\",\"specific\":\"locale\",\"select\":\"Active\",\"filter\":\"\",\"order_by\":\"sentence ASC\"}
+
+2014-02-06 01:45:31.844568 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Languages\"}
+
+2014-02-06 01:45:33.406101 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:45:33.663771 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_company\"}
+
+2014-02-06 01:45:33.887080 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 01:45:34.081429 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"States\"}
+
+2014-02-06 01:45:34.293626 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Countries\"}
+
+2014-02-06 01:45:34.559620 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 01:45:34.785627 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"Support\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:45:35.787937 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_company\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:45:36.014579 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"parent_id IS NULL AND is_customer\"}
+
+2014-02-06 01:45:36.251761 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Customer Tags\"}
+
+2014-02-06 01:45:36.456689 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"States\"}
+
+2014-02-06 01:45:36.662104 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Countries\"}
+
+2014-02-06 01:45:36.864200 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_company\",\"select\":\"Active\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:45:38.264509 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Configs\",\"specific\":\"\",\"select\":\"Root\",\"filter\":\"\",\"order_by\":\"sequence, name ASC\"}
+
+2014-02-06 01:45:38.468201 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Root\"}
+
+2014-02-06 01:45:38.658741 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Status Codes\"}
+
+2014-02-06 01:45:40.464802 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"History\",\"specific\":\"\",\"select\":\"FTPs\",\"filter\":\"\",\"display\":\"100\",\"order_by\":\"updated_at DESC\"}
+
+2014-02-06 01:45:40.791010 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Resources\"}
+
+2014-02-06 01:45:41.985412 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Configs\",\"specific\":\"\",\"select\":\"Root\",\"filter\":\"\",\"order_by\":\"sequence, name ASC\"}
+
+2014-02-06 01:45:42.290981 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Root\"}
+
+2014-02-06 01:45:42.519611 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Status Codes\"}
+
+2014-02-06 01:45:46.793567 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Tickets\",\"specific\":\"\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"opened_at DESC\"}
+
+2014-02-06 01:45:47.085842 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Priorities\"}
+
+2014-02-06 01:45:47.383861 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Ticket Categories\"}
+
+2014-02-06 01:45:47.627355 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Tickets\",\"specific\":\"\",\"select\":\"Open\",\"filter\":\"\",\"order_by\":\"opened_at DESC\"}
+
+2014-02-06 01:45:49.519596 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Pieces\",\"specific\":\"\",\"select\":\"All\",\"filter\":\"\",\"display\":\"20\",\"order_by\":\"Pieces.checkin_at DESC\"}
+
+2014-02-06 01:45:49.727112 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_row\",\"table\":\"Pieces\",\"where\":\"Pieces.id = 9000000001\"}
+
+2014-02-06 01:45:54.878987 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"ShipDyers\",\"specific\":\"\",\"select\":\"Draft + Active\",\"filter\":\"\",\"order_by\":\"shipdyer_number DESC\"}
+
+2014-02-06 01:45:55.186627 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_dyer\"}
+
+2014-02-06 01:45:55.399008 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_transport\"}
+
+2014-02-06 01:45:57.640968 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"LoadSales\",\"specific\":\"\",\"select\":\"Draft + Active\",\"filter\":\"\",\"order_by\":\"LoadOut.loadout_number ASC\"}
+
+2014-02-06 01:45:59.521656 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"LoadOuts\",\"specific\":\"\",\"select\":\"Draft + Active\",\"filter\":\"\",\"order_by\":\"loadout_number DESC\"}
+
+2014-02-06 01:45:59.798362 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_dyer\"}
+
+2014-02-06 01:46:00.129612 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_options\",\"table\":\"Colors\",\"field\":\"color_name\",\"selected\":\"\",\"initial\":\"\"}
+
+2014-02-06 01:46:02.526783 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_transport\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:46:02.764730 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_customer\"}
+
+2014-02-06 01:46:03.019274 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"parent_id IS NULL AND is_customer\"}
+
+2014-02-06 01:46:03.217579 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Customer Tags\"}
+
+2014-02-06 01:46:03.458154 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"States\"}
+
+2014-02-06 01:46:03.676151 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Countries\"}
+
+2014-02-06 01:46:03.879739 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_transport\",\"select\":\"Active\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:46:05.636132 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_dyer\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:46:05.849972 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_customer\"}
+
+2014-02-06 01:46:06.056926 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"parent_id IS NULL AND is_customer\"}
+
+2014-02-06 01:46:06.309334 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Customer Tags\"}
+
+2014-02-06 01:46:06.731816 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"States\"}
+
+2014-02-06 01:46:07.058963 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Countries\"}
+
+2014-02-06 01:46:07.492855 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_dyer\",\"select\":\"Active\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 01:46:08.168067 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Pieces\",\"specific\":\"\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"barcode DESC\"}
+
+2014-02-06 01:46:08.667049 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Pieces\",\"specific\":\"\",\"select\":\"Active\",\"filter\":\"\",\"order_by\":\"barcode DESC\"}
+
+2014-02-06 01:46:09.472750 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Cylinders\"}
+
+2014-02-06 01:46:10.044516 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Machines\",\"specific\":\"\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"name ASC\"}
+
+2014-02-06 01:46:10.619639 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Machine Families\"}
+
+2014-02-06 01:46:11.158988 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Machine Brands\"}
+
+2014-02-06 01:46:11.492972 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Machine Brands\"}
+
+2014-02-06 01:46:11.943411 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Machines\",\"specific\":\"\",\"select\":\"Flyng Horse\",\"filter\":\"\",\"order_by\":\"name ASC\"}
+
+2014-02-06 01:46:17.362238 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:35:32
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"log_out\"}
+
+2014-02-06 01:46:17.787954 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 01:46:17
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 02:51:49.590011 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 02:51:49.949770 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 02:51:54.475586 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"log_in\",\"user_name\":\"patjan\",\"encrypted\":\"ac4d7a7726fb16af06a71c45ae543520\"}
+
+2014-02-06 02:51:54.772410 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 02:51:55.160809 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Tickets\",\"specific\":\"\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"opened_at DESC\"}
+
+2014-02-06 02:51:55.469889 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Priorities\"}
+
+2014-02-06 02:51:55.741744 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Ticket Categories\"}
+
+2014-02-06 02:51:56.074939 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Tickets\",\"specific\":\"\",\"select\":\"Open\",\"filter\":\"\",\"order_by\":\"opened_at DESC\"}
+
+2014-02-06 02:51:57.713586 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 02:51:58.038797 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_companies\",\"specific\":\"is_company\"}
+
+2014-02-06 02:51:58.264491 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 02:51:58.486035 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"States\"}
+
+2014-02-06 02:51:58.720248 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_configs\",\"group_set\":\"Countries\"}
+
+2014-02-06 02:51:58.930854 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"User Roles\"}
+
+2014-02-06 02:51:59.154977 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Contacts\",\"specific\":\"is_contact\",\"select\":\"Support\",\"filter\":\"\",\"order_by\":\"nick_name ASC\"}
+
+2014-02-06 02:51:59.875936 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Translations\",\"specific\":\"locale\",\"select\":\"\",\"filter\":\"\",\"order_by\":\"sentence ASC\"}
+
+2014-02-06 02:52:00.120808 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Translations\",\"specific\":\"locale\",\"select\":\"Active\",\"filter\":\"\",\"order_by\":\"sentence ASC\"}
+
+2014-02-06 02:52:00.543973 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Languages\"}
+
+2014-02-06 02:52:01.276713 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Controls\",\"specific\":\"\",\"select\":\"Root\",\"filter\":\"\",\"order_by\":\"sequence, name ASC\"}
+
+2014-02-06 02:52:01.486793 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Root\"}
+
+2014-02-06 02:52:01.703479 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_controls\",\"group_set\":\"Status Codes\"}
+
+2014-02-06 02:52:04.200016 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Controls\",\"specific\":\"\",\"select\":\"Servers Host\",\"filter\":\"\",\"order_by\":\"sequence, name ASC\"}
+
+2014-02-06 02:53:11.639126 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_row\",\"table\":\"Controls\",\"where\":\"Controls.id = 900389\"}
+
+2014-02-06 02:53:25.648303 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Controls\",\"specific\":\"\",\"select\":\"Servers Host\",\"filter\":\"\",\"order_by\":\"sequence, name ASC\"}
+
+2014-02-06 02:53:27.419512 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_row\",\"table\":\"Controls\",\"where\":\"Controls.id = 900390\"}
+
+2014-02-06 02:53:46.094741 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Controls\",\"specific\":\"\",\"select\":\"Servers Host\",\"filter\":\"\",\"order_by\":\"sequence, name ASC\"}
+
+2014-02-06 02:53:47.240840 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_row\",\"table\":\"Controls\",\"where\":\"Controls.id = 900395\"}
+
+2014-02-06 02:54:16.311020 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"get_index\",\"table\":\"Controls\",\"specific\":\"\",\"select\":\"Servers Host\",\"filter\":\"\",\"order_by\":\"sequence, name ASC\"}
+
+2014-02-06 03:10:19.351586 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 02:51:49
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=help
+user_action=All ###  *** 
+data={\"method\":\"log_out\"}
+
+2014-02-06 03:10:19.658557 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 03:10:19
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array ###  *** 
+data={\"method\":\"get_session\"}
+
+2014-02-06 03:10:21.169193 Program=ajax		 IP=172.248.88.107 +++ 
+environment=test
+control_company=100001
+user_time=2014-02-06 03:10:19
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=pt_BR
+permissions=Array
+logdate=2014-02-06 ###  *** 
+data={\"method\":\"get_session\"}

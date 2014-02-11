@@ -41,8 +41,8 @@ define( 'SERVER_NAME'         , 'http://erp/'				);
 define( 'SERVER_BASE'         , '../'                       );
 define( 'APPLICATION'         , '../application/'           );
 define( 'LIBRARY'             , '/../library/'              );
-define( 'DELIVERY_BASE'       , 'C:/htdocs/erp/'			);		//	on linux, it must be [../]
-define( 'DOCUMENT_ROOT'       , 'C:/htdocs/erp/html/'		);		//	on linux, it must be [../html/]
+define( 'DELIVERY_BASE'       , 'D:/htdocs/erp/'			);		//	on linux, it must be [../]
+define( 'DOCUMENT_ROOT'       , 'D:/htdocs/erp/html/'		);		//	on linux, it must be [../html/]
 define( 'START_ASSET'         , 'start/'     );
 define( 'END_ASSET'           , 'end/'       );
 define( 'IMAGES'              , 'images/layout/'            );
