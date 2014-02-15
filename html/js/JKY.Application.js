@@ -240,6 +240,9 @@ if (my_first == true) {
 			JKY.set_html('jky-app-index', my_index);
 			JKY.set_html('jky-app-count', my_count);
 			JKY.set_html('jky-table-body', my_html );
+            setTimeout(function() {
+                JKY_ts();
+            }, 100);
 //			JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
 			JKY.setTableWidthHeight('jky-app-table', 851, 240, 350, 125);
 			JKY.set_focus('jky-app-filter');
