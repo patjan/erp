@@ -11,6 +11,7 @@
 		<link href='css/bootstrap-responsive.2.3.2.css'		rel='stylesheet'>
 		<link href='css/bootstrap-datetimepicker.min.css'	rel='stylesheet'>
 <!--	<link href='css/datepicker.css'						rel='stylesheet'>	-->
+		<link href="css/ts/theme.white.css"					rel="stylesheet">
 		<link href='css/JKY.base.css'						rel='stylesheet'>
 	</head>
 
@@ -236,6 +237,10 @@
 <!--<script src='lib/bootstrap-datepicker.js'					></script>	-->
 	<script src='lib/bootstrap-datetimepicker.min.js'			></script>
 	<script src='lib/bootstrap-datetimepicker.pt_BR.js'			></script>
+<!-- load jQuery and tablesorter scripts-->
+    <script type="text/javascript" src="lib/jquery.tablesorter.js"></script>
+<!-- tablesorter widgets (optional)-->
+<!--<script type="text/javascript" src="lib/jquery.tablesorter.widgets.js"></script>	-->
 
 	<script src='js/JKY.Utils_fn.js'							></script>
 	<script src='js/JKY.Utils.js'								></script>
@@ -246,6 +251,19 @@
 	<script src='js/JKY.Translation.js'							></script>
 	<script src='js/JKY.Changes.js'								></script>
 	<script src='js/home.js'									></script>
+
+	<script>
+		function JKY_ts(){
+			$("#jky-app-table").tablesorter(
+				{"delayInit":true
+				,"headers":{0:{sorter:false}}	//	disable sort on checkbox column
+				}
+			);
+			$("#jky-app-table").trigger("update", true);
+//			to re-bind [Check All] after tablesorter
+			$('#jky-check-all').click (function() {JKY.App.set_all_check(this);});
+		}
+	</script>
 
 	</body>
 </html>

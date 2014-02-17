@@ -35,8 +35,11 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 .input-append			{margin-bottom:4px;}
 .Xinput-append input		{height:14px;}
 
-.table thead th {vertical-align: middle;}
+.table thead th {background:#025d91; color:white; vertical-align: middle;}
 .table tbody td {line-height:12px;}
+
+.tablesorter-default	{margin:0;}
+
 .progress		{margin-bottom:0;}
 
 .left			{text-align:left   !important;}
@@ -108,7 +111,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 #jky-application div	{}
 #jky-application table	{width:100%;
 	border-collapse:separate;
-    table-layout:fixed;
+#    table-layout:fixed;
     width:100%;
     background-color:#EDEDED;
     background-image:linear-gradient(to bottom, #FCFCFC, #DEDEDE);
@@ -116,16 +119,17 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
     box-shadow:0 1px 0 rgba(255, 255, 255, 0.4), 0 0 9px rgba(0, 0, 0, 0.1);
     border-collapse:collapse;
     padding:0;
+#	font-size:12px;
 }
 
-#jky-application thead tr		{height:40px; background-color:#EEEEEE;}
+#jky-application thead tr		{height:63px; background-color:#EEEEEE;}
 #jky-application tbody tr		{height:30px; border-bottom:1px solid #DDDDDD;}
-#jky-application thead th		{border:1px solid #999999;}
+#jky-application thead th		{border:1px solid #999999; padding:4px 20px 4px 4px;}
 #jky-form-tabs	 thead th		{border:0px solid #999999;}
 #Xjky-form-tabs	 input		{margin-bottom:0;}
 #jky-application thead th:first-child	{border-left :0px}
 #jky-application thead th:last-child	{border-right:0px}
-#jky-application tbody td		{margin:2px; padding:4px 8px; vertical-align:middle;}
+#jky-application tbody td		{margin:2px; height:33px; padding:4px 8px; vertical-align:middle;}
 #jky-application input[type='checkbox']	{width:20px; margin:0 0 2px 5px;}
 #jky-app-header			{
     background-color: #EDEDED;

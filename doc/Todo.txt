@@ -1,5 +1,13 @@
 Todo
 
+- tablesorter
+- d3
+- thumb
+- email
+
+
+
+
 Marcelo:
 
 1.	OK	Instalar servidor de Teste da DL

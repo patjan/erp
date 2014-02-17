@@ -58,7 +58,8 @@ if (my_first == true) {
 				$('#jky-action-copy'		).click (function() {JKY.Changes.can_leave(function() { my_process_copy			();})});
 				$('#jky-action-delete'		).click (function() {									my_process_delete		();});
 				$('#jky-action-cancel'		).click (function() {JKY.Changes.can_leave(function() { my_process_cancel		();})});
-				$('#jky-check-all'			).click (function() {									my_set_all_check	(this);});
+//				disabled by tablesorter
+//				$('#jky-check-all'			).click (function() {									my_set_all_check	(this);});
 
 				JKY.set_all_events();	// from caller
 			}else{
@@ -240,8 +241,11 @@ if (my_first == true) {
 			JKY.set_html('jky-app-index', my_index);
 			JKY.set_html('jky-app-count', my_count);
 			JKY.set_html('jky-table-body', my_html );
+            setTimeout(function() {
+                JKY_ts();
+            }, 10);
 //			JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
-			JKY.setTableWidthHeight('jky-app-table', 851, 240, 350, 125);
+//			JKY.setTableWidthHeight('jky-app-table', 851, 240, 350, 125);
 			JKY.set_focus('jky-app-filter');
 //alert('hide loading');
 			JKY.hide('jky-loading');
@@ -565,6 +569,7 @@ if (my_first == true) {
 		, get					:	function(the_property)	{return my_get(the_property)			;}
 		, init					:	function()				{		my_init()						;}
 
+		, set_all_check			:	function(the_index)		{		my_set_all_check(the_index);	;}
 		, display_list			:	function()				{		my_display_list	()				;}
 		, display_form			:	function(the_index)		{		my_display_form	(the_index)		;}
 		, display_row			:	function(the_index)		{		my_display_row	(the_index)		;}

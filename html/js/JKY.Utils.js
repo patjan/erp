@@ -276,6 +276,8 @@ if (JKY.Session.get_value('user_name') == 'patjan') {
 			}
 		}
 	}
+//	to avoid table headers to break words as: [Check Out] into [Check<br>Out]
+	my_result = my_result.replace(/ /g, '&nbsp;');
 	return my_result;
 }
 
@@ -676,7 +678,6 @@ JKY.display_trace = function(message){
 //	var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
 //	$('#jky-trace-body').html(my_html);
 //	JKY.show('jky-trace');
-
 }
 
 /**
