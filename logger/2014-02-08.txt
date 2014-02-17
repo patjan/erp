@@ -1,0 +1,136 @@
+
+
+2014-02-08 01:05:01.703664 Program=ajax		 IP=127.0.0.1 +++ 
+environment=development
+control_company=100001
+user_time=2014-02-08 01:05:01
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array ### 
+ZDEDebuggerPresent=php,phtml,php3 *** 
+data={"method":"get_session"}
+ZDEDebuggerPresent=php,phtml,php3
+
+2014-02-08 01:05:02.204359 Program=ajax		 IP=127.0.0.1 +++ 
+environment=development
+control_company=100001
+user_time=2014-02-08 01:05:01
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-08 ### 
+ZDEDebuggerPresent=php,phtml,php3 *** 
+data={"method":"get_session"}
+ZDEDebuggerPresent=php,phtml,php3
+
+2014-02-08 01:05:02.741388 Program=ajax		 IP=127.0.0.1 +++ 
+environment=development
+control_company=100001
+user_time=2014-02-08 01:05:01
+user_role=visitor
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-08 ### 
+ZDEDebuggerPresent=php,phtml,php3 *** 
+data={"method":"log_in","user_name":"patjan","encrypted":"a86d4a3c893ce2572f165d5c79c954b2"}
+ZDEDebuggerPresent=php,phtml,php3
+
+2014-02-08 01:05:03.040406 Program=ajax		 IP=127.0.0.1 +++ 
+environment=development
+control_company=100001
+user_time=2014-02-08 01:05:01
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-08
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=dyers ### 
+ZDEDebuggerPresent=php,phtml,php3 *** 
+data={"method":"get_session"}
+ZDEDebuggerPresent=php,phtml,php3
+
+2014-02-08 01:05:03.502432 Program=ajax		 IP=127.0.0.1 +++ 
+environment=development
+control_company=100001
+user_time=2014-02-08 01:05:01
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-08
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=dyers ### 
+ZDEDebuggerPresent=php,phtml,php3 *** 
+data={"method":"get_index","table":"ShipDyers","specific":"","select":"Draft + Active","filter":"","order_by":"shipdyer_number DESC"}
+ZDEDebuggerPresent=php,phtml,php3
+
+2014-02-08 01:05:04.256476 Program=ajax		 IP=127.0.0.1 +++ 
+environment=development
+control_company=100001
+user_time=2014-02-08 01:05:01
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-08
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=dyers
+user_action=All ### 
+ZDEDebuggerPresent=php,phtml,php3 *** 
+data={"method":"get_companies","specific":"is_dyer"}
+ZDEDebuggerPresent=php,phtml,php3
+
+2014-02-08 01:05:04.325479 Program=ajax		 IP=127.0.0.1 +++ 
+environment=development
+control_company=100001
+user_time=2014-02-08 01:05:01
+user_role=Support
+company_name=JKY Software
+company_logo=JKY-Software.png
+locale=en_US
+permissions=Array
+logdate=2014-02-08
+user_id=100001
+user_name=patjan
+user_type=Support
+contact_id=100004
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+user_email=patjan2000@gmail.com
+start_page=dyers
+user_action=All ### 
+ZDEDebuggerPresent=php,phtml,php3 *** 
+data={"method":"get_companies","specific":"is_transport"}
+ZDEDebuggerPresent=php,phtml,php3
