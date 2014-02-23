@@ -39,7 +39,7 @@ $(function() {
 	if (JKY.is_browser('msie')) {
 		JKY.TRACE = false;		//	IE, TRACE must be false
 	}else{
-		JKY.TRACE = true;		//	on production, should be set to false, help development to trace sequence flow
+		JKY.TRACE = false;		//	on production, should be set to false, help development to trace sequence flow
 	}
 
 //	reset session timeout for every ajax request
@@ -249,7 +249,7 @@ JKY.set_translations = function(the_array) {
  * @return	translated text
  * @example JKY.t('Home')
  */
-JKY.t = function(the_text) {
+JKY.t = function(the_text, the_option) {
 	if (typeof the_text == 'undefined' || the_text == '') {
 		return '';
 	}
@@ -276,8 +276,11 @@ if (JKY.Session.get_value('user_name') == 'patjan') {
 			}
 		}
 	}
-//	to avoid table headers to break words as: [Check Out] into [Check<br>Out]
-	my_result = my_result.replace(/ /g, '&nbsp;');
+
+	if (the_option) {
+//		to avoid table headers to break words as: [Check Out] into [Check<br>Out]
+		my_result = my_result.replace(/ /g, '&nbsp;');
+	}
 	return my_result;
 }
 
@@ -286,7 +289,7 @@ JKY.t_tag = function(the_id, the_tag) {
 //		only translate span without id
 		if (!$(this).attr('id')) {
 			var my_text = $(this).html().trim();
-			$(this).html(JKY.t(my_text));
+			$(this).html(JKY.t(my_text, true));
 		}
 	});
 }
@@ -675,9 +678,9 @@ JKY.display_trace = function(message){
 	var my_time = my_date.getMinutes() + ':' + my_date.getSeconds() + '.' + my_msec;
 	console.log(my_time + ' ' + message);
 
-//	var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
-//	$('#jky-trace-body').html(my_html);
-//	JKY.show('jky-trace');
+	var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
+	$('#jky-trace-body').html(my_html);
+	JKY.show('jky-trace');
 }
 
 /**

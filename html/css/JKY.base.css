@@ -122,7 +122,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 	font-size:12px;
 }
 
-#jky-application thead tr		{height:63px; background-color:#EEEEEE;}
+#jky-application thead tr		{height:52px; background-color:#EEEEEE;}
 #jky-application tbody tr		{height:30px; border-bottom:1px solid #DDDDDD;}
 #jky-application thead th		{border:1px solid #999999; padding:4px 20px 4px 4px;}
 #jky-form-tabs	 thead th		{border:0px solid #999999;}

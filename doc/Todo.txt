@@ -1,6 +1,6 @@
 Todo
 
-- tablesorter
+- tablesorter (done)
 - d3
 - thumb
 - email
