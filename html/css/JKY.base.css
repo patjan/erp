@@ -35,7 +35,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 .input-append			{margin-bottom:4px;}
 .Xinput-append input		{height:14px;}
 
-.table thead th {background:#025d91; color:white; vertical-align: middle;}
+.table thead th {vertical-align: middle;}
 .table tbody td {line-height:12px;}
 
 .tablesorter-default	{margin:0;}
@@ -111,7 +111,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 #jky-application div	{}
 #jky-application table	{width:100%;
 	border-collapse:separate;
-#    table-layout:fixed;
+/*    table-layout:fixed;	*/
     width:100%;
     background-color:#EDEDED;
     background-image:linear-gradient(to bottom, #FCFCFC, #DEDEDE);
@@ -122,7 +122,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 	font-size:12px;
 }
 
-#jky-application thead tr		{height:52px; background-color:#EEEEEE;}
+#jky-application thead tr		{height:52px;}
 #jky-application tbody tr		{height:30px; border-bottom:1px solid #DDDDDD;}
 #jky-application thead th		{border:1px solid #999999; padding:4px 20px 4px 4px;}
 #jky-form-tabs	 thead th		{border:0px solid #999999;}
@@ -156,6 +156,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 	font-weight: bold;
 }
 #jky-table tbody		{max-height:300px; overflow-y:visible;}
+
 #Xjky-table-body		{display:block; overflow-y:scroll;}
 
 #jky-action-add-new		{display:none;}
@@ -435,7 +436,10 @@ li .arrow span {
 #jky-side-bar			{display:none;}
 #jky-app-header			{display:none;}
 #jky-app-table			{display:none;}
+#jky-app-graph			{display:none;}
 #jky-app-form			{display:none;}
+
+#jky-app-table th		{background:#025D91; color:#FFFFFF;}
 
 #jky-log-logo			{width:180px; height:46px; margin:200px auto 10px auto; text-align:center;}
 #jky-log-form			{width:350px; margin:0 auto; background:#E6EEEF; border:1px solid gray; border-radius:4px;}

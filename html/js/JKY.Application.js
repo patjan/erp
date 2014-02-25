@@ -51,6 +51,7 @@ if (my_first == true) {
 				$('#jky-action-prev'		).click (function() {JKY.Changes.can_leave(function() { my_display_prev			();})});
 				$('#jky-action-next'		).click (function() {JKY.Changes.can_leave(function() { my_display_next			();})});
 				$('#jky-action-list'		).click (function() {JKY.Changes.can_leave(function() { my_display_list			();})});
+				$('#jky-action-graph'		).click (function() {JKY.Changes.can_leave(function() { my_display_graph		();})});
 				$('#jky-action-form'		).click (function() {JKY.Changes.can_leave(function() { my_display_form			();})});
 }
 				$('#jky-action-save'		).click (function() {									my_process_save			();});
@@ -196,6 +197,7 @@ if (my_first == true) {
 			JKY.disable_button('jky-action-delete');
 			JKY.hide('jky-action-cancel'	);
 			JKY.show('jky-app-table'		);
+		JKY.hide('jky-app-graph'		);
 			JKY.hide('jky-app-form'			);
 			JKY.display_list();
 			my_load_table();
@@ -251,6 +253,21 @@ if (my_first == true) {
 	}
 
 /**
+ *	display graph
+ *
+ *	$param	undefined	display last index
+ *	$param	number		display new  index
+ *	$param	object		display index of the row
+ */
+	function my_display_graph(the_index) {
+		JKY.display_trace('my_display_graph: ' + the_index);
+		JKY.hide('jky-app-table'		);
+		JKY.show('jky-app-graph'		);
+		JKY.hide('jky-app-form'			);
+		JKY.display_graph();
+	}
+
+/**
  *	display form
  *
  *	$param	undefined	display last index
@@ -278,6 +295,7 @@ if (my_first == true) {
 			JKY.enable_button('jky-action-delete'	);
 			JKY.show('jky-action-cancel'	);
 			JKY.hide('jky-app-table'		);
+		JKY.hide('jky-app-graph'		);
 			JKY.show('jky-app-form'			);
 			JKY.show('jky-app-upload'		);		//	??????????
 			JKY.display_form();

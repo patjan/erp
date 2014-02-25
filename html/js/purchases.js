@@ -48,6 +48,8 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-thread', '../JKY.Search.Thread.html'	);
 
+	JKY.show('jky-action-graph');
+
 	JKY.set_side_active('jky-threads-purchases');
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.purchase.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
@@ -189,3 +191,8 @@ JKY.refresh_form = function(response) {
 	JKY.display_message('Purchase row generated: ' + JKY.row.id);
 	JKY.App.display_row();
 };
+
+
+JKY.display_graph = function() {
+//alert('display_graph');
+}

@@ -15,6 +15,211 @@
 	<tbody id='jky-table-body'></tbody>
 </table>
 
+<div id='jky-app-graph'>
+
+<div style="padding:10px;:>
+	<h3><a name="s1">Paired Bar Charts</a></h3>
+	A July/2011 blog post on stalled budget negotiations in the US, came with a bar chart
+	that placed Obama's proposed tax increases and spending cuts, alongside those recent presidents.
+	In the chart below, maroon bars represent budget cuts (% share of total budget deal),
+	while blue bars represent tax increases.
+	I didn't have access to the raw data,
+	so the chart below is based on eyeballing the values in the original bar chart.
+	Since the chart relies on very few data points, I just hard-coded the data.
+	(For a similar example, see my Decision 2012 page.)
+</div>
+
+<center>
+<div id="paired-bar-chart" style="background:#ffffff;">
+
+<script type="text/javascript">
+var data = d3.range(10).map(Math.random);
+var data = [23, 85, 67, 38, 70, 30, 80, 18 ];
+var colorlist = ["maroon", "darkblue"];
+var labellist =
+	[ "Reagan (1982/84/87)", ""
+	, "Bush I (1990)", ""
+	, "Clinton (1993/1997)", ""
+	, "Obama (proposed, 2011)", ""
+	];
+
+var w = 815,
+    h = 260,
+    labelpad = 165,
+    x = d3.scale.linear().domain([0, 100]).range([0, w]),
+    y = d3.scale.ordinal().domain(d3.range(data.length)).rangeBands([0, h], .2);
+
+var vis = d3.select("#paired-bar-chart")
+  .append("svg:svg")
+    .attr("width", w + 40)
+    .attr("height", h + 20)
+  .append("svg:g")
+    .attr("transform", "translate(20,0)");
+
+var bars = vis.selectAll("g.bar")
+    .data(data)
+  .enter().append("svg:g")
+    .attr("class", "bar")
+    .attr("transform", function(d, i) { return "translate(" + labelpad + "," + y(i) + ")"; });
+
+bars.append("svg:rect")
+    .attr("fill", function(d, i) { return colorlist[i % 2]; } )   //Alternate colors
+    .attr("width", x)
+    .attr("height", y.rangeBand());
+
+bars.append("svg:text")
+    .attr("x", 0)
+    .attr("y", 10 + y.rangeBand() / 2)
+    .attr("dx", -6)
+    .attr("dy", ".35em")
+    .attr("text-anchor", "end")
+    .text(function(d, i) { return labellist[i]; });
+
+
+var rules = vis.selectAll("g.rule")
+    .data(x.ticks(10))
+	.enter().append("svg:g")
+    .attr("class", "rule")
+    .attr("transform", function(d) { return "translate(" + x(d) + ", 0)"; });
+
+rules.append("svg:line")
+    .attr("y1", h)
+    .attr("y2", h + 6)
+    .attr("x1", labelpad)
+    .attr("x2", labelpad)
+    .attr("stroke", "black");
+
+rules.append("svg:line")
+    .attr("y1", 0)
+    .attr("y2", h)
+    .attr("x1", labelpad)
+    .attr("x2", labelpad)
+    .attr("stroke", "white")
+    .attr("stroke-opacity", .3);
+
+
+rules.append("svg:text")
+    .attr("y", h + 8)
+    .attr("x", labelpad)
+    .attr("dy", ".71em")
+    .attr("text-anchor", "middle")
+    .text(x.tickFormat(10));
+
+</script>
+
+<!--svg width="855" height="280">
+<g transform="translate(20,0)">
+
+	<g class="bar" transform="translate(165,6.3414634146341475)">
+	<rect fill="maroon" width="187.45000000000002" height="25.36585365853659"/>
+	<text x="0" y="22.682926829268297" dx="-6" dy=".35em" text-anchor="end">Reagan (1982/84/87)</text>
+	</g>
+
+	<g class="bar" transform="translate(165,38.04878048780488)">
+	<rect fill="darkblue" width="692.75" height="25.36585365853659"/>
+	<text x="0" y="22.682926829268297" dx="-6" dy=".35em" text-anchor="end"/>
+	</g>
+
+	<g class="bar" transform="translate(165,69.75609756097562)">
+	<rect fill="maroon" width="546.0500000000001" height="25.36585365853659"/>
+	<text x="0" y="22.682926829268297" dx="-6" dy=".35em" text-anchor="end">Bush I (1990)</text>
+	</g>
+
+	<g class="bar" transform="translate(165,101.46341463414635)">
+	<rect fill="darkblue" width="309.7" height="25.36585365853659"/>
+	<text x="0" y="22.682926829268297" dx="-6" dy=".35em" text-anchor="end"/>
+	</g>
+
+	<g class="bar" transform="translate(165,133.1707317073171)">
+	<rect fill="maroon" width="570.5" height="25.36585365853659"/>
+	<text x="0" y="22.682926829268297" dx="-6" dy=".35em" text-anchor="end">Clinton (1993/1997)</text>
+	</g>
+
+	<g class="bar" transform="translate(165,164.87804878048783)">
+	<rect fill="darkblue" width="244.5" height="25.36585365853659"/>
+	<text x="0" y="22.682926829268297" dx="-6" dy=".35em" text-anchor="end"/>
+	</g>
+
+	<g class="bar" transform="translate(165,196.58536585365854)">
+	<rect fill="maroon" width="652" height="25.36585365853659"/>
+	<text x="0" y="22.682926829268297" dx="-6" dy=".35em" text-anchor="end">Obama (proposed, 2011)</text>
+	</g>
+
+	<g class="bar" transform="translate(165,228.2926829268293)">
+	<rect fill="darkblue" width="146.7" height="25.36585365853659"/>
+	<text x="0" y="22.682926829268297" dx="-6" dy=".35em" text-anchor="end"/>
+	</g>
+
+	<g class="rule" transform="translate(0, 0)">
+	<line y1="260" y2="266" x1="165" x2="165" stroke="black"/>
+	<line y1="0" y2="260" x1="165" x2="165" stroke="white" stroke-opacity="0.3"/>
+	<text y="268" x="165" dy=".71em" text-anchor="middle">0</text>
+	</g>
+
+	<g class="rule" transform="translate(81.5, 0)">
+	<line y1="260" y2="266" x1="165" x2="165" stroke="black"/>
+	<line y1="0" y2="260" x1="165" x2="165" stroke="white" stroke-opacity="0.3"/>
+	<text y="268" x="165" dy=".71em" text-anchor="middle">10</text>
+	</g>
+
+
+	<g class="rule" transform="translate(244.5, 0)">
+	<line y1="260" y2="266" x1="165" x2="165" stroke="black"/>
+	<line y1="0" y2="260" x1="165" x2="165" stroke="white" stroke-opacity="0.3"/>
+	<text y="268" x="165" dy=".71em" text-anchor="middle">30</text>
+	</g>
+
+	<g class="rule" transform="translate(326, 0)">
+	<line y1="260" y2="266" x1="165" x2="165" stroke="black"/>
+	<line y1="0" y2="260" x1="165" x2="165" stroke="white" stroke-opacity="0.3"/>
+	<text y="268" x="165" dy=".71em" text-anchor="middle">40</text>
+	</g>
+
+	<g class="rule" transform="translate(407.5, 0)">
+	<line y1="260" y2="266" x1="165" x2="165" stroke="black"/>
+	<line y1="0" y2="260" x1="165" x2="165" stroke="white" stroke-opacity="0.3"/>
+	<text y="268" x="165" dy=".71em" text-anchor="middle">50</text>
+	</g>
+
+	<g class="rule" transform="translate(489, 0)">
+	<line y1="260" y2="266" x1="165" x2="165" stroke="black"/>
+	<line y1="0" y2="260" x1="165" x2="165" stroke="white" stroke-opacity="0.3"/>
+	<text y="268" x="165" dy=".71em" text-anchor="middle">60</text>
+	</g>
+
+	<g class="rule" transform="translate(570.5, 0)">
+	<line y1="260" y2="266" x1="165" x2="165" stroke="black"/>
+	<line y1="0" y2="260" x1="165" x2="165" stroke="white" stroke-opacity="0.3"/>
+	<text y="268" x="165" dy=".71em" text-anchor="middle">70</text>
+	</g>
+
+	<g class="rule" transform="translate(652, 0)">
+	<line y1="260" y2="266" x1="165" x2="165" stroke="black"/>
+	<line y1="0" y2="260" x1="165" x2="165" stroke="white" stroke-opacity="0.3"/>
+	<text y="268" x="165" dy=".71em" text-anchor="middle">80</text>
+	</g>
+
+	<g class="rule" transform="translate(733.5, 0)">
+	<line y1="260" y2="266" x1="165" x2="165" stroke="black"/>
+	<line y1="0" y2="260" x1="165" x2="165" stroke="white" stroke-opacity="0.3"/>
+	<text y="268" x="165" dy=".71em" text-anchor="middle">90</text>
+	</g>
+
+	<g class="rule" transform="translate(815, 0)">
+	<line y1="260" y2="266" x1="165" x2="165" stroke="black"/>
+	<line y1="0" y2="260" x1="165" x2="165" stroke="white" stroke-opacity="0.3"/>
+	<text y="268" x="165" dy=".71em" text-anchor="middle">100</text>
+	</g>
+
+</g>
+
+</svg-->
+<br>
+</div>
+</center>
+
+</div>
+
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'>
