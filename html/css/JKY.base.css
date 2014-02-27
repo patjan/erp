@@ -35,7 +35,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 .input-append			{margin-bottom:4px;}
 .Xinput-append input		{height:14px;}
 
-.table thead th {vertical-align: middle;}
+.table thead th {background:#025d91; color:white; vertical-align:middle;}
 .table tbody td {line-height:12px;}
 
 .tablesorter-default	{margin:0;}
@@ -174,10 +174,12 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 /* -------------------------------------------------------------------------- */
 
 #jky-form-control		{
-	background-color: #EDEDED;
-    background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
+/*	background-color: #EDEDED;	*/
+	background:#025d91; color:white;
+/*    background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);	*/
     border-bottom: 1px solid #CACACA;
-    height:34px;
+    height:54px;
+	padding:10px 0;
 }
 #jky-form-actions		{float:left ; margin:4px 10px;}
 #jky-form-status		{float:right; margin:4px 10px;}
@@ -224,7 +226,8 @@ li .arrow span {
 #jky-profile input	{width:200px;}
 #jky-profile label	{float:left; width:180px; margin:5px 7px; text-align:right; font-weight:bold;}
 
-#jky-form-tabs	{margin:10px 0; padding:10px 0; background-color:#FFFFFF;}
+#jky-form-tabs		{margin:10px 0; padding:10px 0; background-color:#FFFFFF;}
+#jky-form-tabs	th	{background:#FFFFFF; color:#4C4C4C;}
 /* -------------------------------------------------------------------------- */
 .jky-add-color			{width:180px; text-align:left   !important;}
 .jky-empty				{height:30px;}
@@ -419,6 +422,7 @@ li .arrow span {
 .jky-search-sold-pieces		{width: 55px; text-align:right  !important;}
 .jky-search-transport-name	{width:270px; text-align:left   !important; text-transform:capitalize;}
 
+.jky-pane-lines th		{background:white;}
 /* -------------------------------------------------------------------------- */
 #jky-search-color-name	{text-transform:capitalize;}
 #jky-search-dyer-name	{text-transform:capitalize;}
@@ -439,7 +443,7 @@ li .arrow span {
 #jky-app-graph			{display:none;}
 #jky-app-form			{display:none;}
 
-#jky-app-table th		{background:#025D91; color:#FFFFFF;}
+#jky-app-table thead th tr	{background:#025D91 !important; color:#FFFFFF !important; vertical-align:middle;}
 
 #jky-log-logo			{width:180px; height:46px; margin:200px auto 10px auto; text-align:center;}
 #jky-log-form			{width:350px; margin:0 auto; background:#E6EEEF; border:1px solid gray; border-radius:4px;}

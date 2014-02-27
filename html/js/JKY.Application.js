@@ -82,6 +82,7 @@ if (my_first == true) {
 			JKY.show('jky-app-header');
 			JKY.hide('jky-action-publish'	);
 			JKY.show('jky-action-list'		);
+			JKY.hide('jky-action-graph'		);
 			JKY.show('jky-action-form'		);
 			JKY.set_initial_values();
 
