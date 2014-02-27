@@ -465,7 +465,8 @@ if (my_first == true) {
 		if (my_count == 0) {
 			my_process_add_new()
 		}else{
-			my_display_next();
+			my_index = (my_index >= my_count) ? my_count : my_index;
+			my_display_row(my_index);
 		}
 	}
 
