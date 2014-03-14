@@ -48,20 +48,29 @@ JKY.BatchIn = function() {
 		var my_html = '';
 		for(var i=0; i<my_rows.length; i++) {
 			var my_row = my_rows[i];
+			var my_boxes	= parseInt(my_row.checkin_boxes)
+							+ parseInt(my_row.returned_boxes)
+							- parseInt(my_row.checkout_boxes)
+							;
 			var my_balance  = parseFloat(my_row.checkin_weight)
 							+ parseFloat(my_row.returned_weight)
 							- parseFloat(my_row.checkout_weight)
 							;
 			my_balance = Math.round(my_balance * 100) / 100;
-			my_html += '<tr onclick="JKY.BatchIn.click_row(this, ' + my_row.id + ')">'
-					+  '<td class="jky-batchin-search-number"		>' + my_row.batch			+ '</td>'
-					+  '<td class="jky-batchin-search-date"			>' + JKY.short_date(my_row.updated_at) + '</td>'
-					+  '<td class="jky-batchin-search-balance"		>' + my_balance				+ '</td>'
-					+  '<td class="jky-batchin-search-checkin"		>' + my_row.checkin_weight	+ '</td>'
-					+  '<td class="jky-batchin-search-returned"		>' + my_row.returned_weight	+ '</td>'
-					+  '<td class="jky-batchin-search-checkout"		>' + my_row.checkout_weight	+ '</td>'
-					+  '</tr>'
-					;
+//			display only batches with balance
+			if (my_balance > 0 ) {
+				my_html += '<tr onclick="JKY.BatchIn.click_row(this, ' + my_row.id + ')">'
+						+  '<td class="jky-search-batch"	>' + my_row.batch			+ '</td>'
+//						+  '<td class="jky-search-date"		>' + JKY.short_date(my_row.updated_at) + '</td>'
+						+  '<td class="jky-search-date"		>' + JKY.short_date(my_row.invoice_date) + '</td>'
+						+  '<td class="jky-search-boxes"	>' + my_boxes				+ '</td>'
+						+  '<td class="jky-search-weight"	>' + my_balance				+ '</td>'
+						+  '<td class="jky-search-weight"	>' + my_row.checkin_weight	+ '</td>'
+						+  '<td class="jky-search-weight"	>' + my_row.returned_weight	+ '</td>'
+						+  '<td class="jky-search-weight"	>' + my_row.checkout_weight	+ '</td>'
+						+  '</tr>'
+						;
+			}
 		}
 		JKY.set_html(my_search_body, my_html);
 		JKY.show_modal(my_layer);

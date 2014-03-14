@@ -1,7 +1,167 @@
 Todo
 
+- tablesorter (done)
+- d3
+- thumb
+- email
 
 
+
+- adicionar pedido por caixa
+- travar alteracoes no estado Fechado
+ok- display data da emissao NFe
+ok- display qtde de caixas
+ok- supplier display search correto
+- fechar ajuda
+
+
+Marcelo:
+
+1.	OK	Instalar servidor de Teste da DL
+2.	OK	Criar companhias Matriz e Filial, contabilidade pelo Matriz, NFe pelo Filial
+3.	OK	Definir a tela de Receituario (simplificar)
+4.  OK	Testar fase 1 ERP (Producao, Ajuda, Admin)
+5.	OK	Testar fase 2 ERP (Fios, Caixas)
+6.		Testar fase 3 ERP (Planejamento, Pecas)
+7.		Testar fase 4 ERP (Tinturarias
+8.		Definir o sistema NFe para emitir NF para Tinturarias
+
+
+
+Bugs
+1.	loading.gif is not displaying on IE and CH
+2.	to immediately highlight clicked tab on menu or side-menu
+		not working on IE and CH
+-------------------------------------------------------------------------------
+7.	ok	syncronizar uploads (fling)
+6.	ok	programar Backup diario do DB
+12.		programar stock de pecas por produto
+11.		modificar Quotations
+12.		generate Sales
+3.	ok	program ERPController.php
+4.	ok	program ERP_add_new.PHP
+5.	ok	Json interface ERP to NFe
+8.		add prefix to next ids and to numbers.
+9.		fix bug on change menu or sub-menu
+10.		programar NFe para TDyers
+
+
+1. 2013-12-13	add Permissions to: Boxes, Pieces
+2. 2013-12-13	on [Color Types] of Configs, dropout [Branco] and [Preto]
+3. 2013-12-13	allow only digits on integer fields: diameter, density inputs, turns, weight, width, speed, peso, perc
+
+-----------------------------	Colors, Products
+1. 2013-12-20	change Status (Active X Inactive)
+
+-----------------------------	Customers, Suppliers, Dyers, Partners
+1. 2013-12-19	add jky-app-select-line by Status: Active
+2. 2014-01-11	program [Contacts] tab on Customers
+
+1. 				select	[HeadQuarter]  (new layer)
+2. 				select	[Tag		]  (new layer)
+1. 				program [Orders	 ] tab (display history)
+2. 				program [Invoices] tab (display history)
+3. 				program [Payments] tab (display history)
+
+-----------------------------	Contacts, Companies
+1. 2013-12-19	change Status (Active X Inactive)
+
+-----------------------------	Products
+1.				add Product prices (Color Type)
+
+-----------------------------	Products
+1. 				select	[Color Types]  (new layer)
+
+
+
+-----------------------------	Quotations
+1. 2013-12-14	disable [Generate Order] if [Quoted Pieces] = 0
+2. 2013-12-14	if Status != Draft, then on [Lines] tab disable all: [Add New], [Delete] and [Quoted Pieces]
+
+3. not needed	on [Generate Order], transfer [Remarks] into [Orders] (link back to Quotation)
+4. 				program [Generate Sales]
+
+-----------------------------	TDyers
+1. 2013-12-14	disable [Generate Check Out], if any missing Dyer
+2. 2013-12-14	disable [Generate Check Out], if any [Ordered Weight] = 0
+3. 2013-12-14	disable [Generate Check Out], if any missing Thread Batch
+4. 2013-12-14	if Status != Draft, then on [Lines] tab disable all: [Add New], [Delete] and [Quoted Pieces]
+
+-----------------------------	Orders
+1. 2013-12-14	disable [Generate Check Out], if any [Ordered Weight] = 0
+1. 2013-12-14	disable [Generate Check Out], if any missing Thread Batch
+2. 2013-12-14	drop out [Total] row of [Threads] tab
+3. 2013-12-17	drop out [Quality] col of [Pieces] tab
+4. 2013-12-31	decrease width of jky-form-line (4)
+5. 2013-12-22	add [Check Out Pieces] on form
+6. 2013-12-22	add [Produced Weight] on form
+
+-----------------------------	FTPs
+1. 2013-12-19	add jky-app-select-line by Collection: (last)
+
+-----------------------------	Threads
+1. 				program [Purchases] tab (display history)
+
+-----------------------------	Machines
+1. 				program [Repairs] tab (display history)
+
+-----------------------------	Purchases
+1. 2013-12-14	disable [Generate Check Out], if any missing Supplier
+2. 2013-12-14	disable [Generate Check Out], if any [Expected Weight] = 0
+3. 2013-12-14	disable [Generate Check Out], if any missing Thread
+
+-----------------------------	Batch Outs
+1. 2013-12-16	disable [Generate Check Out], if [Reserved Boxes] != [Requested Boxes]
+
+-----------------------------	Boxes
+1. 2013-12-19	add jky-app-select-line by Status: Active (not All)
+2. 2014-01-12	Disable [Add New] and [Form View]
+
+-----------------------------	Pieces
+1. 2013-12-19	add jky-app-select-line by Status: Active (not All)
+2. 2014-01-12	Disable [Add New] and [Form View]
+
+-----------------------------	Boxes Check Out
+1. 2013-12-19	add jky-app-select-line by Status: Active
+2. 2013-12-19	add [Close Request]
+3. 2013-12-19	display [Status]
+
+-----------------------------	Load Sales
+1. 2013-12-16	disable [Generate Load Out], if [Reserved Pieces] != [Requested Pieces]
+
+-----------------------------	Pieces Check Out
+1. 2013-12-19	add jky-app-select-line by Status: Active
+2. 2013-12-19	add [Close Request]
+3. 2013-12-19	display [Status]
+
+-----------------------------	Templates
+1. 2013-12-19	drop out [Created By]
+
+-----------------------------	Translations
+1. 2013-12-19	drop out [Created At]
+
+
+
+
+Extras
+1. 2014-01-10	code JSON data transfer from ERP to NFe
+
+2. code link to redirect from one program to another program:
+	a. on [FTPs] tab of [Products] form, click on specific ftp to redirect into FTPs form view
+
+3. change the scope of vertical scroll bar only inside of table body
+	height:200px; overflow-x:hidden;
+	display:block; (conflict)
+
+4. program D3 into management reports
+
+6. modify all selects into new Search Layer:
+	[Customer] field of the [Quotations] form
+
+7. on calendars, on click to exit the calendar back to form
+
+8. 2014-01-11	on Contacts, connect to Company
+------------------------------------------------------------------------
 
 - IP fixo (telefonica) 30/5 mb R$270
 - Roteador (tecno)
@@ -12,12 +172,12 @@ Todo
 - Mapeamento:
 	- andar 	( 0 1 2 )
 	- coluna	( A B C ... )
-	- quadrantes	( 01 02 03 )
+	- quadrantes( 01 02 03 )
 
 
 - Codigo da Pecas
 	- XXX		( abrev da maquina )
-	- NNNNNN	( numero sequencial de 000001 ) 
+	- NNNNNN	( numero sequencial de 000001 )
 
 - Cores
 	CC cor claro
@@ -35,7 +195,7 @@ Todo
 	- 24 cones / caixa
 	- 2 hr para descarregar
 
-	- 4 carrinhos	
+	- 4 carrinhos
 	- 16 caixas/carrinho
 
 
@@ -45,7 +205,7 @@ Todo
 	10 pm -  6 am
 
 
-- Partida
+- Barca (Partida)
 	- mesmo fornecedor
 	- mesmo lote
 	- mesmo fio
@@ -54,8 +214,8 @@ Todo
 
 - Revisao:
 	- defeito ( DEF000001 )	origem ( XXX000001 )
-	- adicionar [Peso] 
-	
+	- adicionar [Peso]
+
 
 - User-role = admin
 	- update most of data
@@ -72,7 +232,7 @@ Todo
 	Cliente DL
 - Foto (w X h) .jpg
 
-- Minimum Lote 
+- Minimum Lote
 
 
 1. Criar Ficha Tecnica de Producao FTPs
@@ -80,10 +240,12 @@ Todo
 	- Cadastro de Familias
 	- Cadastro de Fios
 	- Dicionario de FioFornedecores XML
-	- 
+	-
 
 2. Amostras status:
 	- reprocessar
 	- revisao
 	- rejeitar
 	- confirmar
+
+--------------------------------------------------------------

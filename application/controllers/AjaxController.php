@@ -841,6 +841,7 @@ private function set_new_fields($table) {
 	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name		AS  supplier_name';
 	if ($table == 'Batches'			)	$return = ',   Threads.name				AS           name'
 												. ', Incomings.incoming_number	AS  incoming_number'
+												. ', Incomings.invoice_date		AS   invoice_date'
 												. ', Purchases.purchase_number	AS  purchase_number';
 	if ($table == 'Boxes'			)	$return = ',   Batches.batch			AS     batch_code'
 												. ',    Parent.barcode			AS           parent'

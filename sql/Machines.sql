@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS Machines
 , purchase_date		DATE				DEFAULT NULL
 , repair_date		DATE				DEFAULT NULL
 , return_date		DATE				DEFAULT NULL
+, remarks			TEXT				DEFAULT	NULL
 
 , PRIMARY KEY(id)
 , UNIQUE(name)
@@ -28,3 +29,5 @@ CREATE TABLE IF NOT EXISTS Machines
 ;
 
 ALTER TABLE Machines	ADD		lane_type			VARCHAR(32) 	DEFAULT NULL	AFTER lanes;
+
+ALTER TABLE Machines	ADD		remarks				TEXT		 	DEFAULT NULL	AFTER return_date;

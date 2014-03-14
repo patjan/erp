@@ -57,7 +57,7 @@ JKY.generate_batch = function(the_row) {
 		+ " <a class='jky-purline-icon href='#' onClick='JKY.PurLine.display(this, " + JKY.row.supplier_id + ")'><i class='icon-th'></i></a>"
 		;
 //	var my_print = (the_row.labels_printed >= the_row.received_boxes) ? '' : '<a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
-	var my_print = ' <a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
+	var my_print = ' <a onclick="JKY.print_labels(this, ' + my_id + ')"><i class="icon-print"></i></a>';
 	var my_html = ''
 		+ '<tr batch_id=' + my_id + '>'
 		+ '<td class="jky-td-action"	>' + my_trash + '</td>'
@@ -82,7 +82,7 @@ JKY.update_batch = function(id_name, the_id ) {
 	var my_thread_id		=			 my_tr.find('.jky-thread-id'		).val() ;
 	var my_purline_id		=			 my_tr.find('.jky-purline-id'		).val() ;
 	var my_code				=			 my_tr.find('.jky-batch-code'		).val() ;
-	var my_batch			=			 my_tr.find('.jky-batch-number'		).val() ;
+	var my_batch			=			 my_tr.find('.jky-batch-number'		).val().toUpperCase();
 	var my_received_boxes	= parseFloat(my_tr.find('.jky-received-boxes'	).val());
 	var my_number_of_cones	= parseFloat(my_tr.find('.jky-number-of-cones'	).val());
 	var my_received_weight	= parseFloat(my_tr.find('.jky-received-weight'	).val());
@@ -276,4 +276,14 @@ JKY.print_batches = function(the_id) {
 		}
 	)
 	return my_html;
+}
+
+JKY.print_labels = function(the_index, the_id) {
+	var my_invoice_weight	= parseFloat(JKY.get_value('jky-invoice-weight'	));
+	var my_received_weight	= parseFloat(JKY.get_value('jky-received-weight'));
+	if (my_invoice_weight == my_received_weight) {
+		JKY.Batch.display(the_index, the_id);
+	}else{
+		JKY.display_message('You cannot print labels because [Received Weight] does not match to [Invoice Weight]');
+	}
 }

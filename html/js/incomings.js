@@ -46,6 +46,8 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-thread'	, '../JKY.Search.Thread.html'	);
 	JKY.append_file('jky-load-purline'	, '../JKY.Search.PurLine.html'	);
 
+	JKY.show('jky-action-graph');
+
 	JKY.set_side_active('jky-threads-incomings');
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.incoming.select, 'All', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
