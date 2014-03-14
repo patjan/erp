@@ -422,6 +422,10 @@ li .arrow span {
 .jky-search-sold-pieces		{width: 55px; text-align:right  !important;}
 .jky-search-transport-name	{width:270px; text-align:left   !important; text-transform:capitalize;}
 
+.jky-search-date			{text-align:center	!important;}
+.jky-search-boxes			{text-align:right	!important;}
+.jky-search-weight			{text-align:right	!important;}
+
 .jky-pane-lines th		{background:white;}
 /* -------------------------------------------------------------------------- */
 #jky-search-color-name	{text-transform:capitalize;}

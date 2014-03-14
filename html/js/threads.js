@@ -52,8 +52,8 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-ts-name-l"	>' +				 the_row.name				+ '</td>'
-		+  '<td class="jky-td-code"	>' + JKY.fix_null	(the_row.ncm				)	+ '</td>'
+		+  '<td class="jky-td-name-l"	>' +				 the_row.name				+ '</td>'
+		+  '<td class="jky-td-code"		>' + JKY.fix_null	(the_row.ncm			)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 the_row.thread_group		+ '</td>'
 //		+  '<td class="jky-td-name-s"	>' +				 the_row.thread_color		+ '</td>'
 		+  '<td class="jky-td-name-l"	>' +				 the_row.composition		+ '</td>'

@@ -35,7 +35,8 @@ JKY.set_all_events = function() {
 	$('#jky-repair-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime:false});
 	$('#jky-return-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime:false});
 
-	$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder();});
+	$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
+	$('#jky-save-remarks'		).click (function()	{JKY.save_remarks		();});
 };
 
 /**
@@ -95,6 +96,8 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_date	('jky-purchase-date'	, JKY.out_date	(the_row.purchase_date	));
 	JKY.set_date	('jky-repair-date'		, JKY.out_date	(the_row.repair_date	));
 	JKY.set_date	('jky-return-date'		, JKY.out_date	(the_row.return_date	));
+
+	JKY.set_value	('jky-remarks'			,				 JKY.row.remarks		);
 	JKY.display_cylinders();
 };
 
@@ -111,10 +114,11 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-width'			, '0');
 	JKY.set_value	('jky-density'			, '0');
 	JKY.set_value	('jky-inputs'			, '0');
-	JKY.set_value	('jky-lane-type'		, '');
+	JKY.set_value	('jky-lane-type'		, '' );
 	JKY.set_date	('jky-purchase-date'	, '' );
 	JKY.set_date	('jky-repair-date'		, '' );
 	JKY.set_date	('jky-return-date'		, '' );
+	JKY.set_value	('jky-remarks'			, '' );
 };
 
 /**
@@ -122,16 +126,17 @@ JKY.set_add_new_row = function() {
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-		+            'name=\'' + JKY.get_value	('jky-machine-name'		) + '\''
-		+  ', machine_type=\'' + JKY.get_checked('jky-machine-type'		) + '\''
-		+ ', machine_family=\'' + JKY.get_value	('jky-machine-family'	) + '\''
-		+ ', machine_brand=\'' + JKY.get_value	('jky-machine-brand'	) + '\''
-		+ ', serial_number=\'' + JKY.get_value	('jky-serial-number'	) + '\''
-		+      ', diameter=\'' + JKY.get_value	('jky-diameter'			) + '\''
-		+         ', width=\'' + JKY.get_value	('jky-width'			) + '\''
-		+       ', density=\'' + JKY.get_value	('jky-density'			) + '\''
-		+        ', inputs=\'' + JKY.get_value	('jky-inputs'			) + '\''
-		+	  ', lane_type=\'' + JKY.get_value	('jky-lane-type'		) + '\''
+		+              'name=\'' + JKY.get_value	('jky-machine-name'		) + '\''
+		+    ', machine_type=\'' + JKY.get_checked	('jky-machine-type'		) + '\''
+		+  ', machine_family=\'' + JKY.get_value	('jky-machine-family'	) + '\''
+		+   ', machine_brand=\'' + JKY.get_value	('jky-machine-brand'	) + '\''
+		+   ', serial_number=\'' + JKY.get_value	('jky-serial-number'	) + '\''
+		+        ', diameter=\'' + JKY.get_value	('jky-diameter'			) + '\''
+		+           ', width=\'' + JKY.get_value	('jky-width'			) + '\''
+		+         ', density=\'' + JKY.get_value	('jky-density'			) + '\''
+		+          ', inputs=\'' + JKY.get_value	('jky-inputs'			) + '\''
+		+	    ', lane_type=\'' + JKY.get_value	('jky-lane-type'		) + '\''
+		+         ', remarks=\'' + JKY.get_value	('jky-remarks'			) + '\''
 		;
 	my_set += ', purchase_date = ' + JKY.inp_date('jky-purchase-date'	);
 	my_set +=   ', repair_date = ' + JKY.inp_date('jky-repair-date'		);
@@ -146,5 +151,22 @@ JKY.process_delete = function(the_id, the_row) {
 		, where : 'machine_id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
+};
+
+/* -------------------------------------------------------------------------- */
+JKY.save_remarks = function() {
+	var my_set	=   'remarks = \'' + JKY.get_value('jky-remarks') + '\'';
+	var my_data =
+		{ method: 'update'
+		, table : 'Machines'
+		, set	:  my_set
+		, where : 'Machines.id = ' + JKY.row.id
+		};
+	JKY.ajax(true, my_data, JKY.save_remarks_success);
+};
+
+JKY.save_remarks_success = function(response) {
+	JKY.display_message('Remarks saved, ' + response.message);
+	JKY.row = JKY.get_row('Machines', JKY.row.id);
 };
 

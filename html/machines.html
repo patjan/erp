@@ -113,6 +113,7 @@
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
 			<li	id='jky-tab-cylinders'		class='active'	><a href='#jky-pane-cylinders'			data-toggle='tab'><span>Cylinders		</span></a></li>
+			<li id='jky-tab-remarks'						><a href='#jky-pane-remarks'			data-toggle='tab'><span>Remarks			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
@@ -132,6 +133,20 @@
 						</tr>
 					</tfoot>
 				</table>
+			</div>
+
+			<div id='jky-pane-remarks' class='tab-pane'>
+				<br>
+				<div class='jky-form-remarks'>
+					<div class='jky-form-label'><span>Remarks</span>:</div>
+					<textarea id='jky-remarks'></textarea>
+				</div>
+				<br>
+
+				<div class='jky-form-line'>
+					<div class='jky-form-label'></div>
+					<button id='jky-save-remarks' class='btn btn-success' type='button'><span>Save Remarks</span></button>
+				</div>
 			</div>
 		</div>
 	</div>

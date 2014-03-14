@@ -7,6 +7,13 @@ Todo
 
 
 
+- adicionar pedido por caixa
+- travar alteracoes no estado Fechado
+ok- display data da emissao NFe
+ok- display qtde de caixas
+ok- supplier display search correto
+- fechar ajuda
+
 
 Marcelo:
 
@@ -141,7 +148,7 @@ Extras
 
 2. code link to redirect from one program to another program:
 	a. on [FTPs] tab of [Products] form, click on specific ftp to redirect into FTPs form view
-	
+
 3. change the scope of vertical scroll bar only inside of table body
 	height:200px; overflow-x:hidden;
 	display:block; (conflict)
@@ -150,8 +157,8 @@ Extras
 
 6. modify all selects into new Search Layer:
 	[Customer] field of the [Quotations] form
-	
-7. on calendars, on click to exit the calendar back to form 	
+
+7. on calendars, on click to exit the calendar back to form
 
 8. 2014-01-11	on Contacts, connect to Company
 ------------------------------------------------------------------------
@@ -170,7 +177,7 @@ Extras
 
 - Codigo da Pecas
 	- XXX		( abrev da maquina )
-	- NNNNNN	( numero sequencial de 000001 ) 
+	- NNNNNN	( numero sequencial de 000001 )
 
 - Cores
 	CC cor claro
@@ -188,7 +195,7 @@ Extras
 	- 24 cones / caixa
 	- 2 hr para descarregar
 
-	- 4 carrinhos	
+	- 4 carrinhos
 	- 16 caixas/carrinho
 
 
@@ -207,8 +214,8 @@ Extras
 
 - Revisao:
 	- defeito ( DEF000001 )	origem ( XXX000001 )
-	- adicionar [Peso] 
-	
+	- adicionar [Peso]
+
 
 - User-role = admin
 	- update most of data
@@ -225,7 +232,7 @@ Extras
 	Cliente DL
 - Foto (w X h) .jpg
 
-- Minimum Lote 
+- Minimum Lote
 
 
 1. Criar Ficha Tecnica de Producao FTPs
@@ -233,12 +240,12 @@ Extras
 	- Cadastro de Familias
 	- Cadastro de Fios
 	- Dicionario de FioFornedecores XML
-	- 
+	-
 
 2. Amostras status:
 	- reprocessar
 	- revisao
 	- rejeitar
 	- confirmar
-	
+
 --------------------------------------------------------------

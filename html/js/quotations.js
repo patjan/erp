@@ -194,11 +194,11 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-punho-units'		, '0');
 	JKY.set_value	('jky-gola-units'		, '0');
 	JKY.set_value	('jky-galao-units'		, '0');
-	JKY.set_value	('jky-punho-name'		, '');
-	JKY.set_value	('jky-gola-name'		, '');
-	JKY.set_value	('jky-galao-name'		, '');
+	JKY.set_value	('jky-punho-name'		, '' );
+	JKY.set_value	('jky-gola-name'		, '' );
+	JKY.set_value	('jky-galao-name'		, '' );
 */
-	JKY.set_value	('jky-remarks'			, '');
+	JKY.set_value	('jky-remarks'			, '' );
 };
 
 /**
