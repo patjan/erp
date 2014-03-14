@@ -236,7 +236,7 @@ function get_db_params($the_server_number) {
 							('host'		=> 'external-db.s122232.gridserver.com'
 							,'username'	=> 'db122232'
 							,'password'	=> 'brazil.18781'
-							,'dbname'	=> 'db122232_tecno'
+							,'dbname'	=> 'db122232_erp'
 							);
 						break;
 	}

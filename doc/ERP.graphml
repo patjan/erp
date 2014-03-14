@@ -135,7 +135,7 @@ controls.js<y:LabelModel>
           <y:Geometry height="40.0" width="80.0" x="233.0" y="488.6666666666667"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="custom" textColor="#000000" visible="true" width="74.693359375" x="2.6533203125" y="3.298828125000057">contacts.html
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="custom" textColor="#000000" visible="true" width="74.693359375" x="2.6533203125" y="3.298828125">contacts.html
 contacts.js<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
@@ -162,57 +162,16 @@ contacts.js<y:LabelModel>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="298.0234375" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="201.40234375" x="240.298828125" y="25.02734375">css/bootstrap.2.3.2.css
-css/bootstrap-response.2.3.2.css
-css/bootstrap-datetimepicker.min.css
-css/JKY.base.css
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="92.20703125" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="104.04296875" x="52.978515625" y="-36.064453125">css/JKY-base.css
 lib/jquery-1.8.2.js
 lib/jquery.md5.js
-lib/jquery.print.js
-lib/plupload.full.js
-lib/bootstrap.min.2.3.2.js
-lib/bootstrap-datetimepicker.min.js
-lib/bootstrap-datetimepicker.pt_BR.js
-js/JKY.Utils_fn.js
+lib/bootstrap.min.js
 js/JKY-Utils.js
-js/JKY.Application.js
-js/JKY.Validation.js
-js/JKY.Upload.js
-js/JKY-Session.js
-js/JKY.Translation.js
-js/JKY.Changes.js
-js/home.js<y:LabelModel>
+js/JKY-Session.js<y:LabelModel>
               <y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/>
             </y:LabelModel>
             <y:ModelParameter>
-              <y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="341.0" distanceToCenter="true" position="left" ratio="134.0" segment="-1"/>
-            </y:ModelParameter>
-            <y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/>
-          </y:EdgeLabel>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="298.0234375" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="201.40234375" x="75.298828125" y="-211.97265625">css/bootstrap.2.3.2.css
-css/bootstrap-response.2.3.2.css
-css/bootstrap-datetimepicker.min.css
-css/JKY.base.css
-lib/jquery-1.8.2.js
-lib/jquery.md5.js
-lib/jquery.print.js
-lib/plupload.full.js
-lib/bootstrap.min.2.3.2.js
-lib/bootstrap-datetimepicker.min.js
-lib/bootstrap-datetimepicker.pt_BR.js
-js/JKY.Utils_fn.js
-js/JKY-Utils.js
-js/JKY.Application.js
-js/JKY.Validation.js
-js/JKY.Upload.js
-js/JKY-Session.js
-js/JKY.Translation.js
-js/JKY.Changes.js
-js/home.js<y:LabelModel>
-              <y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/>
-            </y:LabelModel>
-            <y:ModelParameter>
-              <y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="176.0" distanceToCenter="true" position="left" ratio="-63.0" segment="-1"/>
+              <y:SmartEdgeLabelModelParameter angle="6.283185307179586" distance="105.0" distanceToCenter="true" position="left" ratio="0.25" segment="-1"/>
             </y:ModelParameter>
             <y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/>
           </y:EdgeLabel>
@@ -257,6 +216,7 @@ js/home.js<y:LabelModel>
       </data>
     </edge>
     <edge id="e5" source="n5" target="n6">
+      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -269,6 +229,7 @@ js/home.js<y:LabelModel>
       </data>
     </edge>
     <edge id="e6" source="n5" target="n7">
+      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
