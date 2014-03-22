@@ -16,7 +16,7 @@
 
 	<tbody id='jky-table-body'></tbody>
 </table>
-
+<!--
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'>
@@ -29,15 +29,15 @@
 	<div id='jky-form-data'>
 		<div class='jky-form-line'>
 			<div class='jky-form-label'><span>Purchase Number</span>:</div>
-			<input  id='jky-purchase-number' class='jky-form-number jky-form-key' disabled />
+			<input  disabled id='jky-purchase-number' class='jky-form-number jky-form-key' />
 		</div>
 		<div class='jky-form-line'>
 			<div class='jky-form-label'><span>Supplier</span>:</div>
-			<input  id='jky-supplier-name' class='jky-form-name' disabled />
+			<input  disabled id='jky-supplier-name' class='jky-form-name' />
 		</div>
 		<div class='jky-form-line'>
 			<div class='jky-form-label'><span>Thread</span>:</div>
-			<input  id='jky-thread-name' class='jky-form-name' disabled />
+			<input  disabled id='jky-thread-name' class='jky-form-name' />
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -45,29 +45,29 @@
 		<div class='jky-form-line'>
 			<div class='jky-form-label'><span>Ordered Date</span>:</div>
 			<div id='jky-ordered-date' class='input-append date'>
-					<input class='jky-form-date' type='text' />
-<!--				<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>	-->
+					<input disabled class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 			</div>
 		</div>
 		<div class='jky-left'>
 			<div class='jky-form-line-1'>
 				<div class='jky-form-label'><span> Expected Date</span>:</div>
 				<div id='jky-expected-date' class='input-append date'>
-					<input class='jky-form-date' type='text' />
+					<input changeable class='jky-form-date' type='text' />
 					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line-1'>
 				<div class='jky-form-label'><span> Received Date</span>:</div>
 				<div id='jky-received-date' class='input-append date'>
-					<input class='jky-form-date' type='text' />
-<!--				<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>	-->
+					<input disabled class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line-1'>
 				<div class='jky-form-label'><span>Scheduled Date</span>:</div>
 				<div id='jky-scheduled-date' class='input-append date'>
-					<input class='jky-form-date' type='text' />
+					<input changeable class='jky-form-date' type='text' />
 					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
@@ -75,11 +75,11 @@
 		<div class='jky-left'>
 			<div class='jky-form-line-2'>
 				<div class='jky-form-label'><span>Expected Weight</span>:</div>
-				<input  id='jky-expected-weight' class='jky-form-weight' />
+				<input  changeable id='jky-expected-weight' class='jky-form-weight' />
 			</div>
 			<div class='jky-form-line-2'>
 				<div class='jky-form-label'><span>Received Weight</span>:</div>
-				<input  id='jky-received-weight' class='jky-form-weight' disabled />
+				<input  changeable id='jky-received-weight' class='jky-form-weight' disabled />
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -98,7 +98,7 @@
 	</div>
 	<div id='jky-form-footer'></div>
 </div>
-
+-->
 <div id='jky-body-loaded'></div>
 
 <script src='js/purc_lines.js'		></script>

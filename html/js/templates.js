@@ -18,6 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'updated_at'
 		, sort_seq		: 'ASC'
+		, sort_list		: [[1, 0]]
 		, focus			: 'jky-priority'
 		, add_new		: 'display form'
 		});

@@ -7,12 +7,12 @@ Todo
 
 
 
-- adicionar pedido por caixa
-- travar alteracoes no estado Fechado
+V2- adicionar pedido por caixa
+ok- travar alteracoes no estado Fechado
 ok- display data da emissao NFe
 ok- display qtde de caixas
 ok- supplier display search correto
-- fechar ajuda
+- error de sql on search 
 
 
 Marcelo:
@@ -44,6 +44,7 @@ Bugs
 8.		add prefix to next ids and to numbers.
 9.		fix bug on change menu or sub-menu
 10.		programar NFe para TDyers
+11.	ok	close tickets
 
 
 1. 2013-12-13	add Permissions to: Boxes, Pieces

@@ -34,11 +34,11 @@ JKY.generate_boxes = function(response) {
 			my_html  += ''
 				+ '<tr>'
 				+ '<td class="jky-td-action"	></td>'
-				+ '<td class="jky-td-location"	><input class="jky-checkin-location"	value="' +				my_row.location		+ '" disabled	/></td>'
-				+ '<td class="jky-td-date"		><input class="jky-checkin-date"		value="' + JKY.out_date(my_row.checkin_at)	+ '" disabled	/></td>'
-				+ '<td class="jky-td-weight"	><input class="jky-checkin-weight"		value="' +				my_row.total_weight	+ '" disabled	/></td>'
-				+ '<td class="jky-td-boxes"		><input class="jky-checkin-boxes"		value="' +				my_boxes_checkin	+ '" disabled	/></td>'
-				+ '<td class="jky-td-boxes"		><input class="jky-reserved-boxes"		value="' +				my_boxes_reserved	+ '" onchange="JKY.update_boxes(this)"	/></td>'
+				+ '<td class="jky-td-location"	><input disabled	class="jky-checkin-location"	value="' +				my_row.location		+ '" /></td>'
+				+ '<td class="jky-td-date"		><input disabled	class="jky-checkin-date"		value="' + JKY.out_date(my_row.checkin_at)	+ '" /></td>'
+				+ '<td class="jky-td-weight"	><input disabled	class="jky-checkin-weight"		value="' +				my_row.total_weight	+ '" /></td>'
+				+ '<td class="jky-td-boxes"		><input disabled	class="jky-checkin-boxes"		value="' +				my_boxes_checkin	+ '" /></td>'
+				+ '<td class="jky-td-boxes"		><input changeable	class="jky-reserved-boxes"		value="' +				my_boxes_reserved	+ '" onchange="JKY.update_boxes(this)"	/></td>'
 				+ '</tr>'
 				;
 		}
@@ -47,6 +47,12 @@ JKY.generate_boxes = function(response) {
 	$('.jky-reserved-boxes').ForceIntegerOnly();
 	if (my_rows == '') {
 //		JKY.insert_load();
+	}
+
+	if (JKY.row.status == 'Closed') {
+		$('#jky-boxes-body input[changeable]').prop('disabled', true );
+	}else{
+		$('#jky-boxes-body input[changeable]').prop('disabled', false);
 	}
 }
 

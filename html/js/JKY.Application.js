@@ -235,12 +235,35 @@ if (my_first == true) {
 		JKY.set_html('jky-app-count', my_count);
 		JKY.set_html('jky-table-body', my_html);
 		setTimeout(function() {
-			JKY_ts();
+			my_tablesorter();
 		}, 10);
 //		JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
 //		JKY.setTableWidthHeight('jky-app-table', 851, 240, 350, 125);
 		JKY.set_focus('jky-app-filter');
 		JKY.hide('jky-loading');
+	}
+
+	function my_tablesorter(){
+		JKY.display_trace('my_tablesorter');
+		var my_date_format = 'yyyymmdd';
+		var	my_locale = JKY.Session.get_value('locale');
+		switch(my_locale) {
+			case 'en_US'	: my_date_format = 'mmddyyyy'; break;
+			case 'pt_BR'	: my_date_format = 'ddmmyyyy'; break;
+		}
+
+		var my_sort_list = my_args.sort_list ? my_args.sort_list : [[1,0]];
+		$("#jky-app-table").tablesorter(
+			{delayInit:true
+			,dateFormat:my_date_format
+			,headers:{0:{sorter:false}}		//	disable sort on checkbox column
+			,sortList:my_sort_list			//	sort on second column, order asc
+			,showProcessing:true
+			});
+
+		$("#jky-app-table").trigger("update", true);
+//		to re-bind [Check All] after tablesorter
+		$('#jky-check-all').click (function() {JKY.App.set_all_check(this);});
 	}
 
 	function my_set_table_row(the_args, the_row) {
@@ -296,7 +319,7 @@ if (my_first == true) {
 			JKY.enable_button('jky-action-delete'	);
 			JKY.show('jky-action-cancel'	);
 			JKY.hide('jky-app-table'		);
-		JKY.hide('jky-app-graph'		);
+			JKY.hide('jky-app-graph'		);
 			JKY.show('jky-app-form'			);
 			JKY.show('jky-app-upload'		);		//	??????????
 			JKY.display_form();
@@ -314,6 +337,25 @@ if (my_first == true) {
 		JKY.display_trace('my_id: ' + my_id);
 		JKY.row = JKY.get_row(my_args.table_name, my_id);
 		JKY.set_html('jky-app-index', my_index);
+
+		if (JKY.row.status == 'Closed') {
+//			$('#jky-app-form        a[changeable]').prop('disabled', true );
+//			$('#jky-app-form   button[changeable]').prop('disabled', true );
+			$('#jky-app-form    input[changeable]').prop('disabled', true );
+			$('#jky-app-form   select[changeable]').prop('disabled', true );
+			$('#jky-app-form textarea[changeable]').prop('disabled', true );
+			$('#jky-upload-photo').css('visibility', 'hidden');
+			$('.add-on').css('visibility', 'hidden');
+		}else{
+//			$('#jky-app-form        a[changeable]').prop('disabled', false);
+//			$('#jky-app-form   button[changeable]').prop('disabled', false);
+			$('#jky-app-form    input[changeable]').prop('disabled', false);
+			$('#jky-app-form   select[changeable]').prop('disabled', false);
+			$('#jky-app-form textarea[changeable]').prop('disabled', false);
+			$('#jky-upload-photo').css('visibility', 'visible');
+			$('.add-on').css('visibility', 'visible');
+		}
+
 		JKY.set_form_row(JKY.row);
 		JKY.set_focus(my_args.focus);
 	}
@@ -343,6 +385,13 @@ if (my_first == true) {
 		JKY.display_trace('my_display_new');
 //		my_index = 0;
 		JKY.row = null;
+//		$('#jky-app-form        a[changeable]').prop('disabled', false);
+//		$('#jky-app-form   button[changeable]').prop('disabled', false);
+		$('#jky-app-form    input[changeable]').prop('disabled', false);
+		$('#jky-app-form   select[changeable]').prop('disabled', false);
+		$('#jky-app-form textarea[changeable]').prop('disabled', false);
+		$('#jky-upload-photo').css('display', 'block');
+		$('.add-on').css('display', 'inline-block');
 		JKY.set_add_new_row();
 		JKY.set_focus(my_args.focus);
 	}

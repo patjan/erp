@@ -19,6 +19,7 @@ JKY.start_program = function() {
 		, display		: '20'
 		, sort_by		: 'Pieces.checkin_at'
 		, sort_seq		: 'DESC'
+		, sort_list		: [[5, 1]]
 		, focus			: 'jky-barcode'
 		, add_new		: 'display form'
 		});

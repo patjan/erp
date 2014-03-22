@@ -66,7 +66,7 @@ bars.append("svg:rect")
     .attr("width", x)
     .attr("height", y.rangeBand());
 
-//	y axis 
+//	y axis
 bars.append("svg:text")
     .attr("x", 0)
     .attr("y", 10 + y.rangeBand() / 2)
@@ -127,7 +127,7 @@ rules.append("svg:text")
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
-			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+			<button disabled class='btn jky-status' type='button' disabled><span id='jky-status'></span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -136,44 +136,44 @@ rules.append("svg:text")
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Purchase Number</span>:</div>
-				<input  id='jky-purchase-number' class='jky-form-number jky-form-key' disabled />
+				<input disabled id='jky-purchase-number' class='jky-form-number jky-form-key' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Source Document</span>:</div>
-				<input  id='jky-source-doc' class='jky-form-ref' />
+				<input changeable id='jky-source-doc' class='jky-form-ref' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Ordered Date</span>:</div>
 				<div id='jky-ordered-date' class='input-append date'>
-					<input class='jky-form-date' type='text' />
+					<input changeable class='jky-form-date' type='text' />
 					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Expected Date</span>:</div>
 				<div id='jky-expected-date' class='input-append date'>
-					<input class='jky-form-date' type='text' />
+					<input changeable class='jky-form-date' type='text' />
 					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line hide'>
 				<div class='jky-form-label'><span>Scheduled Date</span>:</div>
 				<div id='jky-scheduled-date' class='input-append date'>
-					<input class='jky-form-date' type='text' />
+					<input changeable class='jky-form-date' type='text' />
 					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Supplier</span>:</div>
-				<select id='jky-supplier-name'></select>
+				<select changeable id='jky-supplier-name'></select>
 			</div>
 			<div class='jky-form-line hide'>
 				<div class='jky-form-label'><span>Supplier Ref</span>:</div>
-				<input  id='jky-supplier-ref' class='jky-form-ref' />
+				<input  changeable id='jky-supplier-ref' class='jky-form-ref' />
 			</div>
 			<div class='jky-form-line hide'>
 				<div class='jky-form-label'><span>Payment Term</span>:</div>
-				<select id='jky-payment-term'></select>
+				<select changeable id='jky-payment-term'></select>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -216,8 +216,8 @@ rules.append("svg:text")
 								<button id='jky-lines-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
 							</td>
 <!--						<td class='jky-td-label'><span>Total</span></td>	-->
-							<td class='jky-td-weight'><input id='jky-total-expected' value='' disabled /></td>
-							<td class='jky-td-weight'><input id='jky-total-received' value='' disabled /></td>
+							<td class='jky-td-weight'><input disabled id='jky-total-expected' value='' /></td>
+							<td class='jky-td-weight'><input disabled id='jky-total-received' value='' /></td>
 						</tr>
 					</tfoot>
 				</table>

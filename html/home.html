@@ -250,29 +250,5 @@
 	<script src='js/JKY.Translation.js'							></script>
 	<script src='js/JKY.Changes.js'								></script>
 	<script src='js/home.js'									></script>
-
-	<script>
-		function JKY_ts(){
-			var	my_locale = JKY.Session.get_value('locale');
-			switch(my_locale) {
-				case 'en_US'	: my_date_format = 'mmddyyyy'; break;
-				case 'pt_BR'	: my_date_format = 'ddmmyyyy'; break;
-				default			: my_date_format = 'yyyymmdd';
-			}
-
-			$("#jky-app-table").tablesorter(
-				{delayInit:true
-				,dateFormat:my_date_format
-				,headers:{0:{sorter:false}}		//	disable sort on checkbox column
-				,sortList:[[1,0]]				//	sort on second column, order asc
-				,showProcessing:true
-				});
-
-			$("#jky-app-table").trigger("update", true);
-//			to re-bind [Check All] after tablesorter
-			$('#jky-check-all').click (function() {JKY.App.set_all_check(this);});
-		}
-	</script>
-
 	</body>
 </html>

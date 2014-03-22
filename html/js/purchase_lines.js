@@ -33,15 +33,22 @@ JKY.generate_lines = function(response) {
 	if (my_rows == '') {
 		JKY.insert_line();
 	}
+
+	if (JKY.row.status == 'Closed') {
+		$('#jky-lines-body input[changeable]').prop('disabled', true );
+	}else{
+		$('#jky-lines-body input[changeable]').prop('disabled', false);
+	}
 }
 
 JKY.generate_line = function(the_row) {
 	var my_id = the_row.id;
-	var my_trash = JKY.is_status('Draft') ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
-	var my_line = ''
-		+ "<input class='jky-thread-id' type='hidden' value=" + the_row.thread_id + " />"
-		+ "<input class='jky-thread-name' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + JKY.fix_null(the_row.thread_name) + "' />"
-		+ " <a href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
+	var my_trash = JKY.is_status('Draft' ) ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_share = JKY.is_status('Closed') ? '' : '<a href="#" onClick="JKY.Thread.display(this)"><i class="icon-share"></i></a>';
+	var my_line = ""
+		+ "<input type='hidden' class='jky-thread-id' value=" + the_row.thread_id + " />"
+		+ "<input disabled		class='jky-thread-name' onchange='JKY.update_line(this, " + my_id + ")' value='" + JKY.fix_null(the_row.thread_name) + "' />"
+		+ ' ' + my_share
 		;
 	var my_expected_date = JKY.out_date(the_row.expected_date);
 	if (my_expected_date == '') {
@@ -51,10 +58,10 @@ JKY.generate_line = function(the_row) {
 		+ '<tr purchase_line_id=' + my_id + '>'
 		+ '<td class="jky-td-action"	>' + my_trash + '</td>'
 		+ '<td class="jky-td-key-w"		>' + my_line  + '</td>'
-		+ '<td class="jky-td-weight"	><input class="jky-expected-weight" onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.expected_weight  ) + '"			/></td>'
-		+ '<td class="jky-td-weight"	><input class="jky-received-weight" onchange="JKY.update_line(this, ' + my_id + ')" value="' +				 the_row.received_weight	+ '" disabled	/></td>'
-		+ '<td class="jky-td-date"		><input class="jky-expected-date"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' +					  my_expected_date		+ '"			/></td>'
-		+ '<td class="jky-td-date"		><input class="jky-scheduled-date"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	  ) + '" disabled	/></td>'
+		+ '<td class="jky-td-weight"	><input changeable	class="jky-expected-weight" onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.expected_weight  ) + '" /></td>'
+		+ '<td class="jky-td-weight"	><input disabled	class="jky-received-weight" onchange="JKY.update_line(this, ' + my_id + ')" value="' +				 the_row.received_weight	+ '" /></td>'
+		+ '<td class="jky-td-date"		><input changeable	class="jky-expected-date"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' +					  my_expected_date		+ '" /></td>'
+		+ '<td class="jky-td-date"		><input disabled	class="jky-scheduled-date"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.out_time	(the_row.scheduled_at	  ) + '" /></td>'
 		+ '</tr>'
 		;
 	return my_html;

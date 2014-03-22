@@ -16,8 +16,9 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: JKY.incoming.select
 		, filter		: ''
-		, sort_by		: 'code'
+		, sort_by		: 'batch'
 		, sort_seq		: 'DESC'
+		, sort_list		: [[1, 1]]
 		, focus			: 'jky-checkin-boxes'
 		, add_new		: 'display form'
 		});

@@ -24,7 +24,7 @@
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
-			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+			<button disabled class='btn jky-status' type='button' disabled><span id='jky-status'></span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -32,34 +32,34 @@
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Check Out Number</span>:</div>
-				<input  id='jky-checkout-number' class='jky-form-number jky-form-key' disabled />
+				<div			class='jky-form-label'><span>Check Out Number</span>:</div>
+				<input disabled id='jky-checkout-number' class='jky-form-number jky-form-key' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Machine</span>:</div>
-				<input id='jky-machine-id'								type='hidden'	value='' />
-				<input id='jky-machine-name'	class='jky-form-name'	disabled		value='' />
+				<input			id='jky-machine-id'		type='hidden'			value='' />
+				<input disabled id='jky-machine-name'	class='jky-form-name'	value='' />
 				<a href='#' onClick='JKY.Machine.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Supplier</span>:</div>
-				<input id='jky-supplier-id'								type='hidden'	value='' />
-				<input id='jky-supplier-name'	class='jky-form-name'	disabled		value='' />
+				<input			id='jky-supplier-id'	type='hidden'			value='' />
+				<input disabled	id='jky-supplier-name'	class='jky-form-name'	value='' />
 				<a href='#' onClick='JKY.Supplier.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Dyer</span>:</div>
-				<input id='jky-dyer-id'									type='hidden'	value='' />
-				<input id='jky-dyer-name'		class='jky-form-name'	disabled		value='' />
+				<input			id='jky-dyer-id'		type='hidden'			value='' />
+				<input disabled	id='jky-dyer-name'		class='jky-form-name'	value='' />
 				<a href='#' onClick='JKY.Dyer.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>NFe DL</span>:</div>
-				<input  id='jky-nfe-dl' class='jky-form-number' />
+				<input changeable id='jky-nfe-dl' class='jky-form-number' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>NFe TM</span>:</div>
-				<input  id='jky-nfe-tm' class='jky-form-number' />
+				<input changeable id='jky-nfe-tm' class='jky-form-number' />
 			</div>
 			<div class='jky-clear'></div>
 			<br>
@@ -68,14 +68,14 @@
 				<div class='jky-form-line'>
 					<div class='jky-form-label'><span>Requested Date</span>:</div>
 					<div id='jky-requested-date' class='input-append date'>
-						<input class='jky-form-date' type='text' />
+						<input changeable class='jky-form-date' type='text' />
 						<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 					</div>
 				</div>
 				<div class='jky-form-line'>
 					<div class='jky-form-label'><span>Check Out Date</span>:</div>
 					<div id='jky-checkout-date' class='input-append date'>
-						<input class='jky-form-date' type='text' />
+						<input changeable class='jky-form-date' type='text' />
 						<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 					</div>
 				</div>
@@ -83,11 +83,11 @@
 			<div class='jky-left'>
 				<div class='jky-form-line'>
 					<div class='jky-form-label'><span>Requested Weight	</span>:</div>
-					<input  id='jky-requested-weight'	class='jky-form-weight' disabled />
+					<input disabled id='jky-requested-weight'	class='jky-form-weight' />
 				</div>
 				<div class='jky-form-line'>
 					<div class='jky-form-label'><span>Check Out Weight	</span>:</div>
-					<input  id='jky-checkout-weight'	class='jky-form-weight' disabled />
+					<input disabled id='jky-checkout-weight'	class='jky-form-weight' disabled />
 				</div>
 			</div>
 		</div>
@@ -130,7 +130,9 @@
 					<tbody id='jky-batches-body'></tbody>
 					<tfoot>
 						<tr>
-							<td id='jky-batch-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+							<td colspan='2'>
+								<button id='jky-batches-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
+							</td>
 						</tr>
 					</tfoot>
 				</table>

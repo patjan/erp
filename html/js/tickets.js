@@ -18,6 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'opened_at'
 		, sort_seq		: 'DESC'
+		, sort_list		: [[1, 1]]
 		, focus			: 'jky-description'
 		, add_new		: 'display form'
 		});
@@ -43,6 +44,7 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
+	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
 };
 
 /**
@@ -81,6 +83,16 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
+	if (the_row.status == 'Open') {
+		JKY.enable_button ('jky-action-close'	);
+		JKY.enable_button ('jky-action-delete'  );
+		JKY.enable_button ('jky-batches-add-new');
+	}else{
+		JKY.disable_button('jky-action-close'	);
+		JKY.disable_button('jky-action-delete'  );
+		JKY.disable_button('jky-batches-add-new');
+	}
+
 	JKY.set_html	('jky-status'			, JKY.t			(the_row.status			));
 	JKY.set_value	('jky-opened-at'		, JKY.short_date(the_row.opened_at		));
 	JKY.set_value	('jky-opened-by'		,				 the_row.opened_name	);
@@ -105,6 +117,9 @@ JKY.set_form_row = function(the_row) {
  *	set add new row
  */
 JKY.set_add_new_row = function() {
+	JKY.disable_button('jky-action-delete'	);
+	JKY.disable_button('jky-action-close'	);
+
 	JKY.set_option	('jky-status'			, 'Open');
 	JKY.set_value	('jky-opened-by'		, JKY.Session.get_value('full_name'));
 	JKY.set_value	('jky-opened-value'		, JKY.get_now());

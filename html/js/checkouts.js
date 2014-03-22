@@ -18,6 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'number'
 		, sort_seq		: 'DESC'
+		, sort_list		: [[1, 1]]
 		, focus			: 'jky-machine-name'
 		, add_new		: 'display form'
 		});
@@ -93,19 +94,14 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	if (the_row.status == 'Draft') {
-//		JKY.enable_button ('jky-action-generate');
-		JKY.enable_button ('jky-action-delete'  );
-		JKY.enable_button ('jky-lines-add-new'	);
-	}else{
-//		JKY.disable_button('jky-action-generate');
-		JKY.disable_button('jky-action-delete'  );
-		JKY.disable_button('jky-lines-add-new'	);
-	}
 	if (the_row.status == 'Active') {
 		JKY.enable_button ('jky-action-close'	);
+		JKY.enable_button ('jky-action-delete'  );
+		JKY.enable_button ('jky-batches-add-new');
 	}else{
 		JKY.disable_button('jky-action-close'	);
+		JKY.disable_button('jky-action-delete'  );
+		JKY.disable_button('jky-batches-add-new');
 	}
 
 	JKY.set_html	('jky-status'			, JKY.t			(the_row.status			));

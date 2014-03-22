@@ -21,6 +21,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'sentence'
 		, sort_seq		: 'ASC'
+		, sort_list		: [[1, 0]]
 		, focus			: 'en_US'
 		, add_new		: 'display form'
 		});

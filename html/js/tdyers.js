@@ -18,6 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'tdyer_number'
 		, sort_seq		: 'DESC'
+		, sort_list		: [[1, 1]]
 		, focus			: 'jky-ordered-value'
 		, add_new		: 'display form'
 		});

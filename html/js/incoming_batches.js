@@ -41,35 +41,42 @@ JKY.generate_batches = function(response) {
 	if (my_rows == '') {
 		JKY.insert_batch();
 	}
+
+	if (JKY.row.status == 'Closed') {
+		$('#jky-batches-body input[changeable]').prop('disabled', true );
+	}else{
+		$('#jky-batches-body input[changeable]').prop('disabled', false);
+	}
 }
 
 JKY.generate_batch = function(the_row) {
 	var my_id = the_row.id;
-	var my_trash = (the_row.labels_printed == 0) ? '<a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_trash = JKY.is_status('Closed') || the_row.labels_printed > 0 ? '' : '<a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a>';
+	var my_share = JKY.is_status('Closed') ? '' : '<a class="jky-thread-icon"  href="#" onClick="JKY.Thread.display(this)"><i class="icon-share"></i></a>';
+	var my_th	 = JKY.is_status('Closed') ? '' : '<a class="jky-purline-icon" href="#" onClick="JKY.PurLine.display(this, ' + JKY.row.supplier_id + ')"><i class="icon-th"></i></a>';
+	var my_print = JKY.is_status('Closed') ? '' : '<a onclick="JKY.print_labels(this, ' + my_id + ')"><i class="icon-print"></i></a>';
 	var my_thread = ''
 		+ "<input class='jky-thread-id' type='hidden' value=" + the_row.thread_id + " />"
 		+ "<input class='jky-thread-name' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.name + "' />"
-		+ " <a class='jky-thread-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
+		+ ' ' + my_share
 		;
 	var my_purline = ''
 		+ "<input class='jky-purline-id' type='hidden' value=" + the_row.purchase_line_id + " />"
 		+ "<input class='jky-purline-number' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.purchase_number + "' />"
-		+ " <a class='jky-purline-icon href='#' onClick='JKY.PurLine.display(this, " + JKY.row.supplier_id + ")'><i class='icon-th'></i></a>"
+		+ ' ' + my_th
 		;
-//	var my_print = (the_row.labels_printed >= the_row.received_boxes) ? '' : '<a onclick="JKY.Batch.display(this, ' + my_id + ')"><i class="icon-print"></i></a>';
-	var my_print = ' <a onclick="JKY.print_labels(this, ' + my_id + ')"><i class="icon-print"></i></a>';
 	var my_html = ''
 		+ '<tr batch_id=' + my_id + '>'
 		+ '<td class="jky-td-action"	>' + my_trash + '</td>'
-		+ '<td class="jky-td-code"		><input  class="jky-batch-code"		text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.code	) + '" /></td>'
-		+ '<td class="jky-td-number"	><input  class="jky-batch-number"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.batch	) + '" /></td>'
+		+ '<td class="jky-td-code"		><input  changeable	class="jky-batch-code"		text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.code	) + '" /></td>'
+		+ '<td class="jky-td-number"	><input  changeable	class="jky-batch-number"	text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.batch	) + '" /></td>'
 		+ '<td class="jky-td-thread"	>' + my_thread  + '</td>'
 		+ '<td class="jky-td-key"		>' + my_purline + '</td>'
-		+ '<td class="jky-td-boxes"		><input  class="jky-received-boxes"		onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.received_boxes	+ '" /></td>'
-		+ '<td class="jky-td-key-s"		><input  class="jky-labels-printed"									 disabled value="' + the_row.labels_printed	+ '" />' + my_print + '</td>'
-		+ '<td class="jky-td-integer"	><input  class="jky-number-of-cones"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.number_of_cones	+ '" /></td>'
-		+ '<td class="jky-td-weight"	><input  class="jky-received-weight"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.received_weight	+ '" /></td>'
-		+ '<td class="jky-td-price"		><input  class="jky-unit-price"			onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.unit_price		+ '" /></td>'
+		+ '<td class="jky-td-boxes"		><input  changeable	class="jky-received-boxes"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.received_boxes	+ '" /></td>'
+		+ '<td class="jky-td-key-s"		><input  disabled	class="jky-labels-printed"								     value="' + the_row.labels_printed + '" /> ' + my_print + '</td>'
+		+ '<td class="jky-td-integer"	><input  changeable	class="jky-number-of-cones"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.number_of_cones	+ '" /></td>'
+		+ '<td class="jky-td-weight"	><input  changeable	class="jky-received-weight"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.received_weight	+ '" /></td>'
+		+ '<td class="jky-td-price"		><input  changeable	class="jky-unit-price"		onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.unit_price		+ '" /></td>'
 		+ '</tr>'
 		;
 	return my_html;

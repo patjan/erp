@@ -18,6 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'user_resource'
 		, sort_seq		: 'ASC'
+		, sort_list		: [[1, 0]]
 		, focus			: 'jky-user-role'
 		, add_new		: 'display form'
 		});

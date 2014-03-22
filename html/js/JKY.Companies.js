@@ -14,6 +14,7 @@ JKY.Companies = function(the_program_name, the_specific) {
 		, filter		: ''
 		, sort_by		: 'nick_name'
 		, sort_seq		: 'ASC'
+		, sort_list		: [[1, 0]]
 		, focus			: 'jky-nick-name'
 		, add_new		: 'display form'
 		});

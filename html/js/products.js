@@ -18,6 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'product_name'
 		, sort_seq		: 'ASC'
+		, sort_list		: [[1, 0]]
 		, focus			: 'jky-product-name'
 		, add_new		: 'display form'
 		});

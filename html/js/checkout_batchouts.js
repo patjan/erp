@@ -41,32 +41,40 @@ JKY.generate_batches = function(response) {
 	if (my_rows == '') {
 		JKY.insert_batch();
 	}
+
+	if (JKY.row.status == 'Closed') {
+		$('#jky-batches-body input[changeable]').prop('disabled', true );
+	}else{
+		$('#jky-batches-body input[changeable]').prop('disabled', false);
+	}
 }
 
 JKY.generate_batch = function(the_row) {
 	var my_id = the_row.id;
-	var my_trash = (the_row.status == 'Draft') ? '<a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_trash = JKY.is_status('Draft' ) ? '<a onclick="JKY.delete_batch(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_share = JKY.is_status('Closed') ? '' : '<a class="jky-thread-icon"  href="#" onClick="JKY.Thread.display(this)"><i class="icon-share"></i></a>';
+	var my_th	 = JKY.is_status('Closed') ? '' : '<a class="jky-purline-icon" href="#" onClick="JKY.BatchIn.display(this)"><i class="icon-th"></i></a>';
 	var my_thread = ''
 		+ "<input class='jky-thread-id' type='hidden' value=" + the_row.thread_id + " />"
 		+ "<input class='jky-thread-name' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + JKY.fix_null(the_row.thread_name) + "' />"
-		+ " <a class='jky-thread-icon href='#' onClick='JKY.Thread.display(this)'><i class='icon-share'></i></a>"
+		+ ' ' + my_share
 		;
 	var my_batchin = ''
 		+ "<input class='jky-batchin-id' type='hidden' value=" + the_row.batchin_id + " />"
 		+ "<input class='jky-batchin-number' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + JKY.fix_null(the_row.batch_code) + "' />"
-		+ " <a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
+		+ ' ' + my_th
 		;
 	var my_html = ''
 		+ '<tr batch_id=' + my_id + '>'
 		+ '<td class="jky-td-action"	>' + my_trash	+ '</td>'
-		+ '<td class="jky-td-code"		><input class="jky-product-code" text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.code)+ '" /></td>'
+		+ '<td class="jky-td-code"		><input changeable	class="jky-product-code" text="text" onchange="JKY.update_batch(this, ' + my_id + ')" value="' + JKY.fix_null(the_row.code)+ '" /></td>'
 		+ '<td class="jky-td-thread"	>' + my_thread	+ '</td>'
 		+ '<td class="jky-td-key"		>' + my_batchin	+ '</td>'
-		+ '<td class="jky-td-weight"	><input  class="jky-average-weight"		disabled value="' + the_row.average_weight	+ '" /></td>'
-		+ '<td class="jky-td-weight"	><input  class="jky-requested-weight"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.requested_weight + '" /></td>'
-		+ '<td class="jky-td-weight"	><input  class="jky-checkout-weight"	disabled value="' + the_row.checkout_weight	+ '" /></td>'
-		+ '<td class="jky-td-boxes"		><input  class="jky-requested-boxes"	disabled value="' + the_row.requested_boxes	+ '" /></td>'
-		+ '<td class="jky-td-boxes"		><input  class="jky-checkout-boxes"		disabled value="' + the_row.checkout_boxes	+ '" /></td>'
+		+ '<td class="jky-td-weight"	><input  disabled	class="jky-average-weight"		value="' + the_row.average_weight	+ '" /></td>'
+		+ '<td class="jky-td-weight"	><input  changeable	class="jky-requested-weight"	value="' + the_row.requested_weight + '" onchange="JKY.update_batch(this, ' + my_id + ')" /></td>'
+		+ '<td class="jky-td-weight"	><input  disabled	class="jky-checkout-weight"		value="' + the_row.checkout_weight	+ '" /></td>'
+		+ '<td class="jky-td-boxes"		><input  disabled	class="jky-requested-boxes"		value="' + the_row.requested_boxes	+ '" /></td>'
+		+ '<td class="jky-td-boxes"		><input  disabled	class="jky-checkout-boxes"		value="' + the_row.checkout_boxes	+ '" /></td>'
 		+ '</tr>'
 		;
 	return my_html;

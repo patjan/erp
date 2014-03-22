@@ -15,10 +15,12 @@
 
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
-		<div id='jky-form-actions'	></div>
+		<div id='jky-form-actions'>
+			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this ticket"	><span>Close Ticket		</span></button>
+		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
-			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+			<button disabled class='btn jky-status' type='button'><span id='jky-status'></span></button>
 		</div>
 
 	</div>
@@ -28,30 +30,30 @@
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Open</span>:</div>
-				<input id='jky-opened-at' class='jky-form-datetime' disabled />
-				<input id='jky-opened-by' class='jky-form-by'		disabled />
+				<input disabled id='jky-opened-at' class='jky-form-datetime'	/>
+				<input disabled id='jky-opened-by' class='jky-form-by'			/>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Assigned</span>:</div>
-				<input id='jky-assigned-at' class='jky-form-datetime'	disabled />
-				<input id='jky-assigned-to' class='jky-form-by'		disabled />
+				<input disabled id='jky-assigned-at' class='jky-form-datetime'	/>
+				<input disabled id='jky-assigned-to' class='jky-form-by'		/>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Closed</span>:</div>
-				<input id='jky-closed-at' class='jky-form-datetime' disabled />
-				<input id='jky-closed-by' class='jky-form-by'		disabled />
+				<input disabled id='jky-closed-at' class='jky-form-datetime'	/>
+				<input disabled id='jky-closed-by' class='jky-form-by'			/>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Priority</span>:</div>
-				<select id='jky-priority'></select>
+				<select changeable id='jky-priority'></select>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Category</span>:</div>
-				<select id='jky-category'></select>
+				<select changeable id='jky-category'></select>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Worked</span>:</div>
-				<input id='jky-worked-hour' class='jky-form-input' type='number' /> (hour)
+				<input  changeable id='jky-worked-hour' class='jky-form-input' type='number' /> (hour)
 			</div>
 			<br>
 		</div>
@@ -73,11 +75,11 @@
 		<div class='jky-clear'></div>
 		<div class='jky-left'>
 			<div class='jky-form-box'><div class='jky-form-label'><span>Description</span>:</div>
-				<textarea id='jky-description' class='jky-form-text' placeholder='Description'></textarea>
+				<textarea changeable id='jky-description' class='jky-form-text' placeholder='Description'></textarea>
 			</div>
 			<br>
 			<div class='jky-form-box'><div class='jky-form-label'><span>Resolution</span>:</div>
-				<textarea id='jky-resolution' class='jky-form-text' placeholder='Resolution'></textarea>
+				<textarea changeable id='jky-resolution' class='jky-form-text' placeholder='Resolution'></textarea>
 			</div>
 			<br>
 		</div>

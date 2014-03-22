@@ -18,6 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'LoadOut.requested_at'
 		, sort_seq		: 'ASC'
+		, sort_list		: [[2, 0]]
 		, focus			: 'jky-input-barcode'
 		, add_new		: 'display form'
 		});

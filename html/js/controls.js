@@ -18,6 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'sequence, name'
 		, sort_seq		: 'ASC'
+		, sort_list		: [[1, 0], [2, 0]]
 		, focus			: 'jky-name'
 		, add_new		: 'display form'
 		});

@@ -18,6 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'expected_date'
 		, sort_seq		: 'ASC'
+		, sort_list		: [[5, 0]]
 		, focus			: 'jky-scheduled-value'
 		, add_new		: 'display form'
 		});
@@ -48,6 +49,8 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.purchase.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show('jky-app-select-line');
+
+	JKY.hide('jky-action-form');
 
 	$('#jky-expected-weight').ForceNumericOnly();
 	$('#jky-received-weight').ForceNumericOnly();

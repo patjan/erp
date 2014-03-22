@@ -194,7 +194,7 @@ sets.append("rect")
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
-			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+			<button disabled class='btn jky-status' type='button' disabled><span id='jky-status'></span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -203,19 +203,19 @@ sets.append("rect")
 		<div class='jky-left'>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Incoming Number</span>:</div>
-				<input  id='jky-incoming-number' class='jky-form-number jky-form-key' disabled />
+				<input  disabled id='jky-incoming-number' class='jky-form-number jky-form-key' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Supplier</span>:</div>
-				<select id='jky-supplier-name'></select>
+				<select changeable id='jky-supplier-name'></select>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>NFe DL</span>:</div>
-				<input  id='jky-nfe-dl' class='jky-form-number' />
+				<input  changeable id='jky-nfe-dl' class='jky-form-number' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>NFe TM</span>:</div>
-				<input  id='jky-nfe-tm' class='jky-form-number' />
+				<input  changeable id='jky-nfe-tm' class='jky-form-number' />
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -225,14 +225,14 @@ sets.append("rect")
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Received Date</span>:</div>
 				<div id='jky-received-date' class='input-append date'>
-					<input class='jky-form-date' type='text' />
+					<input changeable class='jky-form-date' type='text' />
 					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Invoice Date</span>:</div>
 				<div id='jky-invoice-date' class='input-append date'>
-					<input class='jky-form-date' type='text' />
+					<input changeable class='jky-form-date' type='text' />
 					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
@@ -240,12 +240,12 @@ sets.append("rect")
 		<div class='jky-clear'></div>
 
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Amount</span>:</div><input  id='jky-invoice-amount'	class='jky-form-amount' /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Invoice Weight</span>:</div><input  id='jky-invoice-weight'	class='jky-form-weight' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Invoice Amount</span>:</div><input  changeable	id='jky-invoice-amount'		class='jky-form-amount' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Invoice Weight</span>:</div><input  changeable	id='jky-invoice-weight'		class='jky-form-weight' /></div>
 		</div>
 		<div class='jky-left'>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Received Amount</span>:</div><input  id='jky-received-amount'	class='jky-form-amount' disabled  /></div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>Received Weight</span>:</div><input  id='jky-received-weight'	class='jky-form-weight' disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Received Amount</span>:</div><input  disabled		id='jky-received-amount'	class='jky-form-amount' /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Received Weight</span>:</div><input  disabled		id='jky-received-weight'	class='jky-form-weight' /></div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -288,7 +288,7 @@ sets.append("rect")
 					<tfoot>
 						<tr>
 							<td colspan='2'>
-								<button id='jky-batch-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
+								<button id='jky-batches-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
 							</td>
 						</tr>
 					</tfoot>
