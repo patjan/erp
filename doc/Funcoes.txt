@@ -3,13 +3,14 @@ Funcoes:
 
 Entrada de Pecas:
 - rejeicao do lote de Pecas Tingidas
-- rejeicao de especifica Peca Tingida
+- rejeicao de espefica Peca Tingida
 	- mancha de oleo
 	- falta de acabamento
 - emissao de NF da DL para Tinturaria
 
 
 Ficha Tecnica de Producao:
+
 - revisar
 - rejeitar
 - reprocessar
