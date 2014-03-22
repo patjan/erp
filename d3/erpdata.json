@@ -1,0 +1,14 @@
+[
+    {"date":20130101, "expected_weight":220, "received_weight":200},
+    {"date":20130202, "expected_weight":245, "received_weight":250},
+    {"date":20130303, "expected_weight":250, "received_weight":150},
+    {"date":20130407, "expected_weight":265, "received_weight":300},
+    {"date":20130508, "expected_weight":280, "received_weight":280},
+    {"date":20130617, "expected_weight":235, "received_weight":240},
+    {"date":20130722, "expected_weight":215, "received_weight":315},
+    {"date":20130825, "expected_weight":210, "received_weight":100},
+    {"date":20130929, "expected_weight":215, "received_weight":80},
+    {"date":20131020, "expected_weight":205, "received_weight":200},
+    {"date":20131115, "expected_weight":255, "received_weight":350},
+    {"date":20131205, "expected_weight":290, "received_weight":180}
+]
