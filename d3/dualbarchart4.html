@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+
+
+<style>
+.expected	{fill:green	;}
+.received	{fill:red	;}
+.bar:hover	{fill:brown	;}
+
+.date 		{fill:blue	;}
+.value		{fill:white	;}
+
+.axis		{font:10px sans-serif;}
+.axis path,
+.axis line	{fill:none; stroke:#000; shape-rendering:crispEdges;}
+.x.axis path	{display:inline;}
+</style>
+</head>
+
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+	var width	= 1000;
+	var height	=  600;
+    var margin	= {top:20, right:30, bottom:20, left:30};
+
+	var bar_height	=  30;
+	var second_bar	= bar_height + 2;
+	var row_height	= 2 * bar_height + 10;
+    var date_width	= 100;
+	var axis_height	=  20;
+
+    var parseDate = d3.time.format("%Y%m%d").parse;
+
+    var row_position = function(i) {
+				return i*row_height + axis_height;
+			};
+    var x = d3.scale.linear()
+            .range([0, width])
+            .domain([0, 350])
+			;
+    var width_scale = d3.scale.linear()
+            .domain	([0, 0])
+            .range	([0, width - date_width - margin.right - margin.left])
+			;
+    var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("top")
+            .ticks(10, "")
+			;
+    var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+     //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+            .attr("transform", function(d) { return "translate(" + x(d) + ", 0)"; })
+			;
+	svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(" + date_width + ", " + axis_height + ")")
+			.call(xAxis)
+			;
+
+	d3.json("erpdata.json", function(data) {
+        width_scale .domain([0, d3.max(data, function(d)	{return d.expected_weight;})]);
+
+/*
+        svg.append("g")
+                .attr("class", "y axis")
+                .append("text")
+//                .attr("transform", "rotate(-90)")
+                .attr("x", 100)
+                .attr("dy", ".71em")
+                .style("text-anchor", "end")
+                .text("expected_weight")
+				;
+*/
+        svg.selectAll(".bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("class"	, "expected")
+                .attr("x"		, date_width)
+				.attr("y"		, function(d, i)	{return row_position(i);})
+                .attr("width"	, function(d, i)	{return width_scale(d.expected_weight);})
+                .attr("height"	, bar_height)
+				;
+        svg.selectAll(".bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("class"	, "received")
+                .attr("x"		, date_width)
+                .attr("y"		, function(d, i)	{return row_position(i) + second_bar;})
+                .attr("width"	, function(d, i)	{return width_scale(d.received_weight);})
+                .attr("height"	, bar_height)
+				;
+        svg.selectAll("text.name")
+                .data(data)
+                .enter().append("text")
+                .attr("x"		, function(d, i)	{return date_width + width_scale(d.expected_weight);})
+                .attr("y"		, function(d, i)	{return row_position(i);})
+                .attr("dx"		, -5)
+                .attr("dy"		, 20)
+                .attr("class"	, "value")
+                .attr("text-anchor", "end")
+                .text(function (d, i)	 {return d.expected_weight})
+				;
+        svg.selectAll("text.name")
+                .data(data)
+                .enter().append("text")
+                .attr("x"		, function(d, i)	{return date_width + width_scale(d.received_weight);})
+                .attr("y"		, function(d, i)	{return row_position(i) + second_bar;})
+                .attr("dx"		, -5)
+                .attr("dy"		, 20)
+                .attr("class"	, "value")
+                .attr("text-anchor", "end")
+                .text(function (d, i)	 {return d.received_weight})
+				;
+        svg.selectAll("text.name")
+                .data(data)
+                .enter().append("text")
+                .attr("x"		,  0)
+                .attr("y"		, function(d, i)	{return row_position(i) + bar_height;})
+                .attr("dx"		, 10)
+                .attr("dy"		,  5)
+                .attr("class"	, "date")
+                .attr("text-anchor", "begin")
+                .text(function(d, i)	{return d.date;})
+				;
+    });
+
+ /*   function type(d) {
+        d.expected_weight = +d.expected_weight;
+        return d;
+    }*/
+
+</script>
+</body>
+</html>
