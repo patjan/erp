@@ -198,7 +198,7 @@ if (my_first == true) {
 			JKY.disable_button('jky-action-delete');
 			JKY.hide('jky-action-cancel'	);
 			JKY.show('jky-app-table'		);
-		JKY.hide('jky-app-graph'		);
+			JKY.hide('jky-app-graph'		);
 			JKY.hide('jky-app-form'			);
 			JKY.display_list();
 			my_load_table();
@@ -285,9 +285,12 @@ if (my_first == true) {
  */
 	function my_display_graph(the_index) {
 		JKY.display_trace('my_display_graph: ' + the_index);
-		JKY.hide('jky-app-table'		);
-		JKY.show('jky-app-graph'		);
-		JKY.hide('jky-app-form'			);
+		if (my_args.table_name == '')		return;
+
+		JKY.hide('jky-app-table');
+		JKY.show('jky-app-graph');
+		JKY.hide('jky-app-form'	);
+
 		JKY.display_graph();
 	}
 

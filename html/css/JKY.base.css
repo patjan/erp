@@ -107,6 +107,16 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 #jky-side-footer		{width:200px; bottom:0; position:fixed; text-align:center;}
 #jky-contact-us			{color:#C81010; font-weight:bold;}
 
+#jky-graph-header		{}
+#jky-graph-title		{padding:10px; font-size:20px; font-weight:bold;}
+#jky-graph-description	{padding:10px;}
+#jky-graph-body			{padding:10px; background:#ffffff; text-align:center;}
+#jky-graph-footer		{padding:10px;}
+#jky-graph-legend		{}
+
+#jky-form-tabs	 thead th		{border:0px solid #999999;}
+#Xjky-form-tabs	 input		{margin-bottom:0;}
+
 #jky-application		{vertical-align:top;}
 #jky-application div	{}
 #jky-application table	{width:100%;
@@ -121,16 +131,14 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
     padding:0;
 	font-size:12px;
 }
-
 #jky-application thead tr		{height:52px;}
 #jky-application tbody tr		{height:30px; border-bottom:1px solid #DDDDDD;}
 #jky-application thead th		{border:1px solid #999999; padding:4px 20px 4px 4px;}
-#jky-form-tabs	 thead th		{border:0px solid #999999;}
-#Xjky-form-tabs	 input		{margin-bottom:0;}
 #jky-application thead th:first-child	{border-left :0px}
 #jky-application thead th:last-child	{border-right:0px}
 #jky-application tbody td		{margin:2px; height:33px; padding:4px 8px; vertical-align:middle;}
 #jky-application input[type='checkbox']	{width:20px; margin:0 0 2px 5px;}
+
 #jky-app-header			{
     background-color: #EDEDED;
     background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);

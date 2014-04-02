@@ -29,13 +29,13 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-received-date	input'	).attr('data-format', JKY.Session.get_date_time	());
-	$('#jky-invoice-date	input'	).attr('data-format', JKY.Session.get_date		());
+	$('#jky-received-date	input').attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-invoice-date	input').attr('data-format', JKY.Session.get_date		());
 	$('#jky-received-date'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-invoice-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 
 	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
-	$('#jky-batch-add-new'	).click (function() {JKY.insert_batch		();});
+	$('#jky-batch-add-new'	).click (function() {JKY.insert_batch			();});
 
 	$('#jky-boxes-print'	).click (function() {JKY.Batch.print()});
 };
@@ -173,3 +173,35 @@ JKY.set_calculated_color = function() {
 	JKY.set_css('jky-received-amount', 'color', (Math.abs(my_invoice_amount - my_received_amount) > 0.021) ? 'red' : 'black');
 	JKY.set_css('jky-received-weight', 'color', (Math.abs(my_invoice_weight - my_received_weight) > 0.021) ? 'red' : 'black');
 };
+
+JKY.display_graph = function() {
+	JKY.show('jky-loading');
+	var my_data =
+		{ method	: 'get_index'
+		, table		: JKY.App.get('table_name')
+		, specific	: JKY.App.get('specific')
+		, select	: JKY.App.get('select')
+		, filter	: JKY.App.get('filter')
+		, display	: JKY.App.get('display')
+		, order_by	: 'invoice_date'
+		, group_by	: 'invoice_date'
+		};
+	JKY.ajax(false, my_data, JKY.display_graph_success);
+}
+
+JKY.display_graph_success = function(response) {
+	$('#jky-graph-body').html('');
+	JKY.Graph = JKY.D3;
+	JKY.Graph.setArgs(
+		{ id_name		: 'jky-graph-body'
+		, graph_name	: 'dual_bar'
+		, axis_name		: 'invoice_date'
+		, var1_name		: 'invoice_weight'
+		, var2_name		: 'received_weight'
+		, round_up		: 200
+		, chart_width	: 500
+		, chart_height	:   0
+		});
+	JKY.Graph.draw(response.rows);
+	JKY.hide('jky-loading');
+}

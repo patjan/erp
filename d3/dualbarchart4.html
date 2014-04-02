@@ -65,20 +65,21 @@
 			.call(xAxis)
 			;
 
+/*
+	svg.append("g")
+			.attr("class", "y axis")
+			.append("text")
+//          .attr("transform", "rotate(-90)")
+			.attr("x", 100)
+			.attr("dy", ".71em")
+			.style("text-anchor", "end")
+			.text("expected_weight")
+			;
+*/
+
 	d3.json("erpdata.json", function(data) {
         width_scale .domain([0, d3.max(data, function(d)	{return d.expected_weight;})]);
 
-/*
-        svg.append("g")
-                .attr("class", "y axis")
-                .append("text")
-//                .attr("transform", "rotate(-90)")
-                .attr("x", 100)
-                .attr("dy", ".71em")
-                .style("text-anchor", "end")
-                .text("expected_weight")
-				;
-*/
         svg.selectAll(".bar")
                 .data(data)
                 .enter().append("rect")
