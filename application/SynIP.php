@@ -129,7 +129,7 @@ function build_db($the_server) {
 							('host'		=> 'external-db.s122232.gridserver.com'
 							,'username'	=> 'db122232'
 							,'password'	=> 'brazil.18781'
-							,'dbname'	=> 'db122232_erp'
+							,'dbname'	=> 'db122232_tecno'
 							);
 						break;
 	}

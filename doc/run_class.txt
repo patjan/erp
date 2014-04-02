@@ -1,0 +1,16 @@
+	var my_data =
+		[{date:'2014/03/01', expected-weight:1000, received-weight:1050}
+		,{date:'2014/03/02', expected-weight:1100, received-weight:1150}
+		,{date:'2014/03/03', expected-weight:1200, received-weight:1250}
+		,{date:'2014/03/04', expected-weight:1300, received-weight:1350}
+		];
+
+	JKY.Graph = JKY.D3;
+	JKY.Graph.setArgs(
+		{ action_name	: 'dualBar'
+		, axis_name		: 'date'
+		, var1_name		: 'expected-weight'
+		, var2_name		: 'received-weight'
+		});
+	var my_html = JKY.Graph.draw(my_data); 
+	$('#my_id').html(my_html); 

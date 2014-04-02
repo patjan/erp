@@ -1,3 +1,12 @@
+mysql_real_escape_string($_POST['username'])
+
+
+
+GRANT ALL PRIVILEGES ON erp.* TO 'root'@'%' IDENTIFIED BY 'brazil18781';
+
+FLUSH PRIVILEGES;
+CREATE USER 'root'@'%' IDENTIFIED BY 'brazil18781';
+
 UPDATE Controls SET status = 'Active' WHERE status = 'active';
 
 UPDATE Controls SET company_id='3';
@@ -58,3 +67,7 @@ UPDATE Maquinas SET name = 'paquita4'	WHERE name = 'paquita 4';
 UPDATE Tickets	SET status = 'Open'		WHERE status = 'Active';
 
 UPDATE Products	SET start_date = NULL	WHERE start_date = '0000-00-00';
+
+SELECT checkin_location, COUNT(*)
+  FROM Boxes
+ GROUP by checkin_location

@@ -52,7 +52,11 @@ JKY.D3 = function() {
 
 		var my_html = '';
 		if (my_args.graph_name == 'dual_bar')		{my_dual_bar(the_data);}
+<<<<<<< HEAD
         if (my_args.graph_name == 'donut')          {my_donut(the_data);}
+=======
+		if (my_args.graph_name == 'donut'	)		{my_donut	(the_data);}
+>>>>>>> 6ba4b2c4a9e14ea84a163dc9be920f8cc44c9de2
 
 		return my_html;
 	};
@@ -115,10 +119,10 @@ JKY.D3 = function() {
 		var xAxisTop = d3.svg.axis()
 			.scale(width_scale)
 			.orient("top")
-			.ticks(ticks, "Kilos")
+			.ticks(ticks, "")
 			;
 		svg.append("g")
-			.attr("class", "x axis")
+			.attr("class", "axis")
 			.attr("transform", "translate(" + left_width + ", " + axis_height + ")")
 			.call(xAxisTop)
 			;
@@ -129,7 +133,7 @@ JKY.D3 = function() {
 			.ticks(ticks, "")
 			;
 		svg.append("g")
-			.attr("class", "x axis")
+			.attr("class", "axis")
 			.attr("transform", "translate(" + left_width + ", " + (axis_height + chart_height - space) + ")")
 			.call(xAxisBottom)
 			;
@@ -189,6 +193,7 @@ JKY.D3 = function() {
 			;
     };
 
+<<<<<<< HEAD
     /**
      *	draw donut
      */
@@ -210,6 +215,20 @@ JKY.D3 = function() {
     }
 
         return {version	:	'1.0.0'
+=======
+/**
+ *	draw donut
+ */
+	function my_donut(the_data) {
+		JKY.display_trace('my_dual_bar');
+
+//		calculate the height based on number of json rows
+		var chart_width		= my_args.chart_width;
+		var chart_height	= the_data.length * row_height;
+	}
+
+return {version	:	'1.0.0'
+>>>>>>> 6ba4b2c4a9e14ea84a163dc9be920f8cc44c9de2
 		, setArgs	:	function(the_args)				{		my_setArgs(the_args)		;}
 		, getArgs	:	function()						{		my_getArgs()				;}
 		, set		:	function(the_arg, the_value)	{return my_set(the_arg, the_value)	;}

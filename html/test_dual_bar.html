@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+
+<style>
+body				{font-family:arial; font-size:12px;}
+
+.date				{fill:black	;}
+.expected_weight	{fill:green	;}
+.received_weight	{fill:red	;}
+.insider			{fill:white	;}
+.divider			{stroke:white; stroke-opacity:.5;}
+.axis path,
+.axis line			{fill:none; stroke:black; shape-rendering:crispEdges;}
+</style>
+</head>
+
+<body>
+	This the test D3 dual bar
+	<div id='my_graph'></div>
+	<div id='my_graph2'></div>
+
+<script src='lib/jquery-2.0.3.min.js'						></script>
+<script src="http://d3js.org/d3.v3.min.js"					></script>
+<script src="js/JKY.Utils.js"								></script>
+<script src="js/JKY.D3.js"									></script>
+<script>
+	var my_data =
+		[{date:'2014/03/01', expected_weight:1000, received_weight:1050}
+		,{date:'2014/03/02', expected_weight:1100, received_weight:1150}
+		,{date:'2014/03/03', expected_weight:1200, received_weight:1250}
+		,{date:'2014/03/04', expected_weight:1300, received_weight:1350}
+		,{date:'2014/03/05', expected_weight:1200, received_weight:1300}
+		,{date:'2014/03/06', expected_weight:1100, received_weight:1200}
+		];
+
+	JKY.Graph = JKY.D3;
+	JKY.Graph.setArgs(
+		{ id_name		: 'my_graph'
+		, graph_name	: 'dual_bar'
+		, axis_name		: 'date'
+		, var1_name		: 'expected_weight'
+		, var2_name		: 'received_weight'
+		, round_up		: 200
+		, chart_width	: 500
+		, chart_height	:   0
+		});
+	JKY.Graph.draw(my_data);
+
+/*
+	var my_data2 =
+		[{date:'2014/02/01', expected_weight:100, received_weight:1050}
+		,{date:'2014/02/02', expected_weight:100, received_weight:1150}
+		,{date:'2014/02/03', expected_weight:200, received_weight:1250}
+		,{date:'2014/02/04', expected_weight:300, received_weight:1350}
+		,{date:'2014/02/05', expected_weight:200, received_weight:1300}
+		,{date:'2014/02/06', expected_weight:100, received_weight:1200}
+		];
+
+	JKY.Graph2 = JKY.D3;
+	JKY.Graph2.setArgs(
+		{ id_name		: 'my_graph2'
+		, graph_name	: 'dual_bar'
+		, axis_name		: 'date'
+		, var1_name		: 'expected_weight'
+		, var2_name		: 'received_weight'
+		});
+	JKY.Graph2.draw(my_data2);
+*/
+</script>
+</body>
+</html>
