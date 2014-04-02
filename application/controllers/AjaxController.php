@@ -572,6 +572,7 @@ private function get_index($data) {
 	$filter		= get_data($data, 'filter'	);
 	$display	= get_data($data, 'display'	);
 	$order_by	= get_data($data, 'order_by');
+	$group_by	= get_data($data, 'group_by');
 
 	$where = '';
 	$where .= $this->set_specific($table, $specific, get_data($data, 'specific_id'));
@@ -628,16 +629,48 @@ private function get_index($data) {
 			. ' ORDER BY Configs.sequence'
 			;
 	}else{
+	if ($table == 'Purchases' and $group_by != '') {
 		if ($where    != '')	{$where		= ' WHERE '    . $where   ;}
 		if ($order_by != '')	{$order_by	= ' ORDER BY ' . $order_by;}
+		if ($group_by != '')	{$group_by	= ' GROUP BY ' . $group_by;}
+
+		$sql= 'SELECT '		. $table . '.expected_date'
+			. '		, SUM(' . $table . '.expected_weight' . ') AS expected_weight'
+			. '		, SUM(' . $table . '.received_weight' . ') AS received_weight'
+			. '  FROM ' . $table		. $this->set_left_joins($table)
+			. $where
+			. $group_by
+			. $order_by
+			. $limit
+			;
+	}else{
+	if ($table == 'Incomings' and $group_by != '') {
+		if ($where    != '')	{$where		= ' WHERE '    . $where   ;}
+		if ($order_by != '')	{$order_by	= ' ORDER BY ' . $order_by;}
+		if ($group_by != '')	{$group_by	= ' GROUP BY ' . $group_by;}
+
+		$sql= 'SELECT '		. $table . '.invoice_date'
+			. '		, SUM(' . $table . '.invoice_weight'  . ') AS invoice_weight'
+			. '		, SUM(' . $table . '.received_weight' . ') AS received_weight'
+			. '  FROM ' . $table		. $this->set_left_joins($table)
+			. $where
+			. $group_by
+			. $order_by
+			. $limit
+			;
+	}else{
+		if ($where    != '')	{$where		= ' WHERE '    . $where   ;}
+		if ($order_by != '')	{$order_by	= ' ORDER BY ' . $order_by;}
+		if ($group_by != '')	{$group_by	= ' GROUP BY ' . $group_by;}
 
 		$sql= 'SELECT ' . $table . '.*' . $this->set_new_fields($table)
 			. '  FROM ' . $table		. $this->set_left_joins($table)
 			. $where
+			. $group_by
 			. $order_by
 			. $limit
 			;
-	}}}
+	}}}}}
 $this->log_sql($table, 'get_index', $sql);
      $db   = Zend_Registry::get('db');
      $rows = $db->fetchAll($sql);

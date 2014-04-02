@@ -29,32 +29,32 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-ordered-date	input').attr('data-format', JKY.Session.get_date_time());
-	$('#jky-expected-date	input').attr('data-format', JKY.Session.get_date	 ());
+	$('#jky-ordered-date	input').attr('data-format', JKY.Session.get_date_time	());
+	$('#jky-expected-date	input').attr('data-format', JKY.Session.get_date		());
 	$('#jky-scheduled-date	input').attr('data-format', JKY.Session.get_date_time());
-	$('#jky-ordered-date'		).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-expected-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
-	$('#jky-scheduled-date'		).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-ordered-date'	).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-expected-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-scheduled-date'	).datetimepicker({language: JKY.Session.get_locale()});
 
-	$('#jky-action-generate'	).click( function() {JKY.generate_purchase		();});
-	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
-	$('#jky-lines-add-new'		).click (function() {JKY.insert_line			();});
+	$('#jky-action-generate').click( function() {JKY.generate_purchase		();});
+	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
+	$('#jky-lines-add-new'	).click (function() {JKY.insert_line			();});
 
-	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data);
+	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.append_file('jky-load-thread', '../JKY.Search.Thread.html'	);
+	JKY.append_file('jky-load-thread'	, '../JKY.Search.Thread.html'	);
 
 	JKY.show('jky-action-graph');
 
 	JKY.set_side_active('jky-threads-purchases');
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.purchase.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
-	JKY.show('jky-app-select-line');
+	JKY.show	('jky-app-select-line');
 	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), false));
 //	JKY.set_html('jky-payment-term'	, JKY.set_configs('Payment Terms', '', ''));
 };
@@ -193,7 +193,34 @@ JKY.refresh_form = function(response) {
 	JKY.App.display_row();
 };
 
-
 JKY.display_graph = function() {
-//alert('display_graph');
+	JKY.show('jky-loading');
+	var my_data =
+		{ method	: 'get_index'
+		, table		: JKY.App.get('table_name')
+		, specific	: JKY.App.get('specific')
+		, select	: JKY.App.get('select')
+		, filter	: JKY.App.get('filter')
+		, display	: JKY.App.get('display')
+		, order_by	: 'expected_date'
+		, group_by	: 'expected_date'
+		};
+	JKY.ajax(false, my_data, JKY.display_graph_success);
+}
+
+JKY.display_graph_success = function(response) {
+	$('#jky-graph-body').html('');
+	JKY.Graph = JKY.D3;
+	JKY.Graph.setArgs(
+		{ id_name		: 'jky-graph-body'
+		, graph_name	: 'dual_bar'
+		, axis_name		: 'expected_date'
+		, var1_name		: 'expected_weight'
+		, var2_name		: 'received_weight'
+		, round_up		: 200
+		, chart_width	: 500
+		, chart_height	:   0
+		});
+	JKY.Graph.draw(response.rows);
+	JKY.hide('jky-loading');
 }
