@@ -195,10 +195,48 @@ JKY.D3 = function() {
 	function my_donut(the_data) {
 		JKY.display_trace('my_dual_bar');
 
-//		calculate the height based on number of json rows
-		var chart_width		= my_args.chart_width;
-		var chart_height	= the_data.length * row_height;
-	}
+    var radius = Math.min(my_args.chart_width, my_args.chart_height) / 2;
+
+    var color = d3.scale.ordinal()
+        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+    var arc = d3.svg.arc()
+        .outerRadius(radius)
+        .innerRadius(radius *.6);
+
+    var pie = d3.layout.pie()
+        .sort(null)
+        .value(function(d) { return d[my_args.var1_name]; });
+
+    var svg = d3.select('#' + my_args.id_name)
+        .append("svg")
+        .attr("width", my_args.chart_width)
+        .attr("height", my_args.chart_height)
+        .append("g")
+        .attr("transform", "translate(" + my_args.chart_width / 2 + "," + my_args.chart_height / 2 + ")");
+
+        the_data.forEach(function(d) {
+            d[my_args.var1_name] = +d[my_args.var1_name];
+        });
+
+        var g = svg.selectAll(".arc")
+            .data(pie(the_data))
+            .enter().append("g")
+            .attr("class", "arc");
+
+        g.append("path")
+            .attr("d", arc)
+            .style("fill", function(d,i) { return color(i); });
+
+        g.append("text")
+            .attr("transform", function(d,i) { return "translate(" + arc.centroid(d) + ")"; })
+            .attr("dy", ".35em")
+            .style("text-anchor", "middle")
+            .text(function(d) { return d[my_args.axis_name]; });
+
+	};
+
+
 
 return {version	:	'1.0.0'
 		, setArgs	:	function(the_args)				{		my_setArgs(the_args)		;}
