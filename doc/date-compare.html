@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<script>
+	var date1 = '10/01/2014';
+	var date2 = '12/01/2013';
+
+//	var date1 = '2014/10/01';
+//	var date2 = '2013/12/01';
+	
+	if (date1 > date2) {
+		alert (date1 + ' > ' + date2);
+	}else
+	if (date1 < date2) {
+		alert (date1 + ' < ' + date2);
+	}else
+		alert (date1 + ' = ' + date2);
+
+	var my_json =
+		[{ "id": 3, "created_at": "Sun May 05 2013", "amount": 12000}
+		,{ "id": 1, "created_at": "Mon May 13 2013", "amount":  2000}
+		,{ "id": 2, "created_at": "Thu Jun 06 2013", "amount": 17000}
+		,{ "id": 4, "created_at": "Thu May 09 2013", "amount": 15000}
+		,{ "id": 5, "created_at": "Mon Jul 01 2013", "amount": 16000}
+		];
+
+	var my_args = 
+		{ action_name	: 'action'
+		, axis_name		: 'date'
+		, var1_name		: 'created_at'
+		, var2_name		: 'amount'
+		};
+		
+	var my_html = '';
+	for (var i=0, max=my_json.length; i<max; i++) {
+		var my_row = my_json[i];
+		my_html += "\n"
+				+    'var1_name: ' + my_json[i][my_args.var1_name]
+				+  ', var2_name: ' + my_json[i][my_args.var2_name]
+				;
+	}
+	alert(my_html);
+		
+</script>
+		
+</body>
+</html>

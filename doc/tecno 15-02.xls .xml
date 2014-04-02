@@ -1,0 +1,1765 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Crystal Decisions</Author>
+  <Description>Powered by Crystal</Description>
+  <LastAuthor>Pat Jan</LastAuthor>
+  <Created>2014-02-18T04:44:46Z</Created>
+  <Version>14.00</Version>
+ </DocumentProperties>
+ <CustomDocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Business_x0020_Objects_x0020_Context_x0020_Information dt:dt="string">017F6CB9912E2BAF3782D9446DD8B357CDC88AB65F9DDD6C88ECE7E650B1E9C7143EB33AFFF233C2F993D93B39C265F4CDBECFD27F052AFD42478DFEC8E060EA274435CC4DF844D8BCCC63B339BB38447A9A562EBB370E99342377D5628926072696C2229FD6DFC42572207C50DD00771DBCEC642FFFA3D4E65FAC7903FA920</Business_x0020_Objects_x0020_Context_x0020_Information>
+  <Business_x0020_Objects_x0020_Context_x0020_Information1 dt:dt="string">6EA69F043714844D6F6955C9E51796AC8B7C2D35AF44DC8546069FCCFAB82437E8AE85364339A3FD7B8457322ABA5F93C19AE1510F54DDC058B541E4AA986E19A4E0E3C085511CF837F59F5C22A1C081DEADD6FFA8A5A5D4BB6495E846168AEF0F441A3A1A5FC0E32548D4AADCF4BBF072EACF58CEDBA310C70132E4FD3E2FD</Business_x0020_Objects_x0020_Context_x0020_Information1>
+  <Business_x0020_Objects_x0020_Context_x0020_Information2 dt:dt="string">E4E54292429BFD893644DC46909888F44C4949974772710816B3135DB34264D5D4F50D9C998EE00C07327A28898C1F9CA5530FBF4324D1AD94042F434463F2C71BBAB109613B4AAD2F27E47C8C2215A9EABD43EEA99EF3C1375B1116D9654D0A761248CA98224AE41B700151411CB75F9F47BA9B5CB7E252B08D16DC25F304D</Business_x0020_Objects_x0020_Context_x0020_Information2>
+  <Business_x0020_Objects_x0020_Context_x0020_Information3 dt:dt="string">6A5644A8BFD64ABB1EF5BD10646EC97C77446E8A7CFF9E74CAD06760F5A1BD132C949C723C294B0F484A5551EB934679CF6125EB41AB205A3D6EEE6EBBDED7913F90BCB195A6EE58C8F40376DD0DF1C7A1E32400165F976EF2FEB80A1F34BFAC1850DBC76B354AA6FEFDBBC0EBCACE6994732608B582A1BADB9006D652E9FA6</Business_x0020_Objects_x0020_Context_x0020_Information3>
+  <Business_x0020_Objects_x0020_Context_x0020_Information4 dt:dt="string">EAFD0226B466F37C519FA1716C39F13FE55B19429B9ECC1563CDB4E8A5951F4B6B6A76EFA0F862792F2A389C69D3412888B97204E4F99296DCAF2F6812AA3364A8B6A4A8465B1C0CAF762583E457C86B5CBC88BA5423415912F0C28ABD5AC219726EDEAEE8C6440BFE494F880E4BF57E26283880CEEF99E1B0EA16FCE7A3AE1</Business_x0020_Objects_x0020_Context_x0020_Information4>
+  <Business_x0020_Objects_x0020_Context_x0020_Information5 dt:dt="string">47B9CC1B6961F7A44F28A4103E8263DAE9BEA2497F639C517C109DF9D3D8A72A06A11D7ED7919DC0FB36AD86A9F810E26977B36CD805811F7EE1CDFCE9C3F429D709931577284DCBAC6729103794A932EB6BD0B1CB2CFA6717DDD14A5FBB996C027AD7BD2E1B0457341DF4491F891A681E9443A734361CD07C3C85B968AA4B2</Business_x0020_Objects_x0020_Context_x0020_Information5>
+  <Business_x0020_Objects_x0020_Context_x0020_Information6 dt:dt="string">781C480CC8C9F86A9DE90B9DF49FD6176E7EC464811C68D18936B460D39A60132DC108F2833B1FDF751272E707887E4F5D6E0C42511C099F0501BF24FEA057159056F00345DA9401DA948EF8DDD9AF3B46C9312613825C0E7058C456A619B11F008B235D2D60E4B14C1728BCFE2C910C66F98034F94562CEF4517EBFC11619E</Business_x0020_Objects_x0020_Context_x0020_Information6>
+  <Business_x0020_Objects_x0020_Context_x0020_Information7 dt:dt="string">486D11B1A3A650A8C0EE8648A7E597B079B26013456AA8210820F71A4CD10B82069ABE7B56597D973D1E8C1F0882BB6CAB95BF310CD19DB6C32B298155C240B8F6403E3C6C262EEEA164DE68292D94C3BF7E51F91</Business_x0020_Objects_x0020_Context_x0020_Information7>
+ </CustomDocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+  <Colors>
+   <Color>
+    <Index>39</Index>
+    <RGB>#E3E3E3</RGB>
+   </Color>
+   <Color>
+    <Index>40</Index>
+    <RGB>#33CCCC</RGB>
+   </Color>
+   <Color>
+    <Index>41</Index>
+    <RGB>#99CC00</RGB>
+   </Color>
+   <Color>
+    <Index>42</Index>
+    <RGB>#FFCC00</RGB>
+   </Color>
+   <Color>
+    <Index>43</Index>
+    <RGB>#FF9900</RGB>
+   </Color>
+   <Color>
+    <Index>44</Index>
+    <RGB>#FF6600</RGB>
+   </Color>
+   <Color>
+    <Index>45</Index>
+    <RGB>#666699</RGB>
+   </Color>
+   <Color>
+    <Index>46</Index>
+    <RGB>#969696</RGB>
+   </Color>
+   <Color>
+    <Index>47</Index>
+    <RGB>#003366</RGB>
+   </Color>
+   <Color>
+    <Index>48</Index>
+    <RGB>#339966</RGB>
+   </Color>
+   <Color>
+    <Index>49</Index>
+    <RGB>#003300</RGB>
+   </Color>
+   <Color>
+    <Index>50</Index>
+    <RGB>#333300</RGB>
+   </Color>
+   <Color>
+    <Index>51</Index>
+    <RGB>#993300</RGB>
+   </Color>
+   <Color>
+    <Index>52</Index>
+    <RGB>#993366</RGB>
+   </Color>
+   <Color>
+    <Index>53</Index>
+    <RGB>#333399</RGB>
+   </Color>
+   <Color>
+    <Index>54</Index>
+    <RGB>#333333</RGB>
+   </Color>
+   <Color>
+    <Index>55</Index>
+    <RGB>#999999</RGB>
+   </Color>
+  </Colors>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>10455</WindowHeight>
+  <WindowWidth>19365</WindowWidth>
+  <WindowTopX>0</WindowTopX>
+  <WindowTopY>0</WindowTopY>
+  <TabRatio>500</TabRatio>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Top"/>
+   <Borders/>
+   <Font ss:FontName="ARIAL" x:CharSet="1" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s32">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Size="9" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s33">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Size="9" ss:Color="#000000"/>
+   <NumberFormat ss:Format="dd\/mm\/yy"/>
+  </Style>
+  <Style ss:ID="s34">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Size="9" ss:Color="#000000"/>
+   <NumberFormat ss:Format="#,##0"/>
+  </Style>
+  <Style ss:ID="s45">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Color="#000000" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s46">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s47">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Color="#000000"/>
+   <NumberFormat ss:Format="dd\/mm\/yy"/>
+  </Style>
+  <Style ss:ID="s48">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Color="#000000"/>
+   <NumberFormat ss:Format="hh\:mm\:\ "/>
+  </Style>
+  <Style ss:ID="s49">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s50">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top"
+    ss:ReadingOrder="LeftToRight" ss:WrapText="1"/>
+   <Font ss:FontName="ARIAL" x:CharSet="1" ss:Color="#000000" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s51">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:ReadingOrder="LeftToRight"
+    ss:WrapText="1"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Color="#000000" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s52">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:ReadingOrder="LeftToRight"
+    ss:WrapText="1"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Size="9" ss:Color="#000000"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s53">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Top" ss:ReadingOrder="LeftToRight"
+    ss:WrapText="1"/>
+   <Font ss:FontName="ARIAL" x:CharSet="1" ss:Color="#000000" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s54">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Top" ss:ReadingOrder="LeftToRight"
+    ss:WrapText="1"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Size="9" ss:Color="#000000"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s55">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Color="#000000" ss:Bold="1"/>
+   <NumberFormat ss:Format="#,##0"/>
+  </Style>
+  <Style ss:ID="s58">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Size="9" ss:Color="#000000"/>
+   <NumberFormat ss:Format="#,##0.000"/>
+  </Style>
+  <Style ss:ID="s59">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Size="8" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s60">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Size="7" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s61">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:ReadingOrder="LeftToRight"
+    ss:WrapText="1"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Size="9" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Size="9" ss:Color="#000000"
+    ss:Bold="1"/>
+   <NumberFormat ss:Format="#,##0.000"/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Size="9" ss:Color="#000000"
+    ss:Bold="1"/>
+   <NumberFormat ss:Format="#,##0"/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top"
+    ss:ReadingOrder="LeftToRight" ss:WrapText="1"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Size="12"
+    ss:Color="#000000" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Top" ss:ReadingOrder="LeftToRight"
+    ss:WrapText="1"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Color="#000000" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Color="#000000"/>
+   <NumberFormat ss:Format="#,##0.000"/>
+  </Style>
+  <Style ss:ID="s67">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Top"/>
+   <Font ss:FontName="Times New Roman" x:CharSet="1" ss:Color="#000000"/>
+   <NumberFormat ss:Format="#,##0"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1">
+  <Table ss:ExpandedColumnCount="256" ss:ExpandedRowCount="293" x:FullColumns="1"
+   x:FullRows="1">
+   <Column ss:AutoFitWidth="0" ss:Width="6" ss:Span="1"/>
+   <Column ss:Index="3" ss:AutoFitWidth="0" ss:Width="36"/>
+   <Column ss:AutoFitWidth="0" ss:Width="6"/>
+   <Column ss:AutoFitWidth="0" ss:Width="58.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="6"/>
+   <Column ss:AutoFitWidth="0" ss:Width="7.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="6" ss:Span="4"/>
+   <Column ss:Index="13" ss:AutoFitWidth="0" ss:Width="12"/>
+   <Column ss:AutoFitWidth="0" ss:Width="7.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="24"/>
+   <Column ss:AutoFitWidth="0" ss:Width="9"/>
+   <Column ss:AutoFitWidth="0" ss:Width="25.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="6"/>
+   <Column ss:AutoFitWidth="0" ss:Width="30"/>
+   <Column ss:AutoFitWidth="0" ss:Width="15"/>
+   <Column ss:AutoFitWidth="0" ss:Width="6"/>
+   <Column ss:AutoFitWidth="0" ss:Width="9"/>
+   <Column ss:AutoFitWidth="0" ss:Width="6"/>
+   <Column ss:AutoFitWidth="0" ss:Width="12"/>
+   <Column ss:AutoFitWidth="0" ss:Width="11.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="29.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="7.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="6"/>
+   <Column ss:AutoFitWidth="0" ss:Width="22.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="25.5"/>
+   <Column ss:AutoFitWidth="0" ss:Width="6" ss:Span="3"/>
+   <Column ss:Index="35" ss:AutoFitWidth="0" ss:Width="26.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="9.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="15.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="8.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="6"/>
+   <Column ss:AutoFitWidth="0" ss:Width="23.25"/>
+   <Column ss:AutoFitWidth="0" ss:Width="6.75"/>
+   <Column ss:AutoFitWidth="0" ss:Width="18"/>
+   <Column ss:AutoFitWidth="0" ss:Width="6"/>
+   <Column ss:AutoFitWidth="0" ss:Width="36" ss:Span="212"/>
+   <Row ss:AutoFitHeight="0" ss:Height="6"/>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="9" ss:StyleID="s45"><Data ss:Type="String">Favo</Data></Cell>
+    <Cell ss:Index="13" ss:MergeAcross="17" ss:StyleID="s46"><Data ss:Type="String">Relatorio Ordem Produção a Faturar   Lote: 20088</Data></Cell>
+    <Cell ss:Index="32" ss:MergeAcross="3" ss:StyleID="s47"><Data
+      ss:Type="DateTime">2014-02-15T00:00:00.000</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s48"><Data ss:Type="DateTime">1899-12-31T07:20:11.000</Data></Cell>
+    <Cell ss:Index="40" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">Página 1 de 5</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="6"/>
+   <Row ss:AutoFitHeight="0" ss:Height="6.75">
+    <Cell ss:Index="39" ss:MergeAcross="4" ss:MergeDown="1" ss:StyleID="s50"><Data
+      ss:Type="String">A Faturar</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="5.25">
+    <Cell ss:Index="2" ss:MergeAcross="1" ss:MergeDown="1" ss:StyleID="s51"><Data
+      ss:Type="String">OP/Item</Data></Cell>
+    <Cell ss:Index="5" ss:MergeAcross="1" ss:MergeDown="1" ss:StyleID="s51"><Data
+      ss:Type="String">Emissão</Data></Cell>
+    <Cell ss:Index="8" ss:MergeAcross="5" ss:MergeDown="1" ss:StyleID="s51"><Data
+      ss:Type="String">Ref. Cli.</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="9" ss:MergeDown="1" ss:StyleID="s51"><Data
+      ss:Type="String">Produto do Cliente</Data></Cell>
+    <Cell ss:Index="29" ss:MergeAcross="2" ss:MergeDown="1" ss:StyleID="s51"><Data
+      ss:Type="String">Receita</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="7.5"/>
+   <Row ss:AutoFitHeight="0" ss:Height="6.75">
+    <Cell ss:MergeAcross="3" ss:MergeDown="1" ss:StyleID="s52"><Data
+      ss:Type="String">Ref. Interna</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:MergeDown="1" ss:StyleID="s53"><Data
+      ss:Type="String">Peso</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s53"><Data ss:Type="String">PC</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="5.25">
+    <Cell ss:Index="34" ss:MergeAcross="3" ss:MergeDown="1" ss:StyleID="s54"><Data
+      ss:Type="String">Nota Entrada</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="6.75"/>
+   <Row ss:AutoFitHeight="0" ss:Height="6"/>
+   <Row ss:AutoFitHeight="0" ss:Height="17.25">
+    <Cell ss:Index="5" ss:MergeAcross="1" ss:StyleID="s51"><Data ss:Type="String">Cliente:</Data></Cell>
+    <Cell ss:Index="9" ss:MergeAcross="4" ss:StyleID="s55"><Data ss:Type="Number">4332</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="18" ss:StyleID="s45"><Data ss:Type="String">Tecno Malhas Ltda.</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">100760/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-24T14:19:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104016</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8008</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON PA  FELPADO</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">8850</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Girassol - Pa50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">29844</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">250.94</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">19</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">8850-Girassol Pa 50/ / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 29.844/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">100762/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-24T14:20:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104016</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">7953</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 40 STRETCH PA</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">8850</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Girassol - Pa50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">29844</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">38.74</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">8850-Girassol Pa 50/ /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 29.844/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">100773/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-24T14:25:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2103984</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8008</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON PA  FELPADO</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">51587</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Chocolate Scooby Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">29815</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">251.32</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">19</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">51587-Chocolate Scoob / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 29.815/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">100775/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-24T14:26:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2103984</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">5078</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 40 STRETCH PAC</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">51587</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Chocolate Scooby Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">29815</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">37</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">51587-Chocolate Scoob /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 29.815/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">100837/1 R/2</Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-24T15:06:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104619</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8447</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON FLEECE FELPADO OVER</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">51718</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Chumbo Sarah Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30359</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">228.88</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">18</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">51718-Chumbo Sarah Tu / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.359/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">100838/1 R/2</Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-24T15:07:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104619</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8448</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 70 STRETCH OVER</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">51718</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Chumbo Sarah Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30359</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">35.5</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">51718-Chumbo Sarah Tu /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.359/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">100844/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-24T15:12:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104615</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8447</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON FLEECE FELPADO OVER</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">51454</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Rosa Maravilha Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30359</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">201.58</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">16</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">51454-Rosa Maravilha / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.359/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">100846/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-24T15:12:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104615</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8448</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 70 STRETCH OVER</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">51454</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Rosa Maravilha Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30359</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">31.68</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">51454-Rosa Maravilha /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.359/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101009/1 R/3</Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-27T11:17:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104659</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8467</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON PA FELPADO DB 24</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">B8203</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Marinho Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30387</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">124.86</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">10</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">B8203-Azul Marinho Pa / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.387/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101010/1 R/3</Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-27T11:19:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104659</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">5078</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 40 STRETCH PAC</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">B8203</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Marinho Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30387</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">19.82</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">B8203-Azul Marinho Pa /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.387/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101528/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-29T16:06:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104740</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8483</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON FLEECE PADRAO MESCLA ALGODAO 98/2 FELPADO</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">001BT</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Branco Alvejado</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30458</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">323.10000000000002</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">25</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">001BT-Branco Alvejado / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.458/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101529/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-29T16:08:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104740</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">6940</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 73 STRETCH MESCLA ALGODÃO</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">001BT</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Branco Alvejado</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30458</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">46</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">001BT-Branco Alvejado /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.458/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101547/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-29T16:45:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104204</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8455</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON FLEECE PADRAO FELPADO HB</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">54746</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Oriente Impzo Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">29994</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">238.22</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">19</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">54746-Oriente Impzo Pa 50/ / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 29.994/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101549/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-29T16:45:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104204</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">5182</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 73 STRETCH PAC</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">54746</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Oriente Impzo Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">29994</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">38.14</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">54746-Oriente Impzo Pa 50/ /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 29.994/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101683/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-30T14:55:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104770</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">7984</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON FLEECE MESCLA CINZA 50/50 FELPADO</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">001BT</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Branco Alvejado</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30502</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">265.02</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">21</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">001BT-Branco Alvejado / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.502/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101684/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-30T14:56:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104770</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">7985</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 73 STRETCH MESCLA CINZA 50/50</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">001BT</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Branco Alvejado</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30502</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">38.24</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">001BT-Branco Alvejado /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.502/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101766/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-31T10:35:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104837</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">5952</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">FLAMETON HEAVY</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">062</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Lavação</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30535</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">310.98</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">25</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">062-LAVACAO / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.535/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101790/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-31T11:05:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104828</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8440</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON FLEECE DRY FELPADO</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">51454</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Rosa Maravilha Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30535</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">194.63</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">51454-Rosa Maravilha / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.535/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101791/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-31T11:05:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104828</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">7955</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 73 STRETCH PA DRY</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">51454</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Rosa Maravilha Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30535</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">35.159999999999997</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">51454-Rosa Maravilha /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.535/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101812/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-31T11:16:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104812</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">7984</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON FLEECE MESCLA CINZA 50/50 FELPADO</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">001BT</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Branco Alvejado</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30535</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">249.8</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">21</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">001BT-Branco Alvejado / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.535/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101813/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-01-31T11:16:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104812</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">7985</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 73 STRETCH MESCLA CINZA 50/50</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">001BT</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Branco Alvejado</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30535</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">41.78</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">001BT-Branco Alvejado /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.535/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101915/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-03T10:27:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104854</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">7984</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON FLEECE MESCLA CINZA 50/50 FELPADO</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">001BT</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Branco Alvejado</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30568</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">231.18</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">18</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">001BT-Branco Alvejado / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.568/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101916/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-03T10:28:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104854</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">7985</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 73 STRETCH MESCLA CINZA 50/50</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">001BT</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Branco Alvejado</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30568</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">38.54</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">001BT-Branco Alvejado /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.568/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101921/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-03T10:32:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104880</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8445</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON PA FELPADO MIC 2</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">B8203</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Marinho Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30568</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">201.42</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">16</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">B8203-Azul Marinho Pa / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.568/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101922/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-03T10:33:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104880</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">5078</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 40 STRETCH PAC</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">B8203</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Marinho Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30568</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">35.520000000000003</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">B8203-Azul Marinho Pa /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.568/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">101948/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-03T11:19:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104881</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8445</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON PA FELPADO MIC 2</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">B8203</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Marinho Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30568</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">28.14</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">B8203-Azul Marinho Pa / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.568/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102192/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-04T16:03:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104917</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8489</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON FLEECE OVER FELPADO HIBRIDO</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">52251</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Galapagos Star - Pa50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30618</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">120.46</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">9</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">52251-Galapagos Star / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.618/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102193/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-04T16:04:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104917</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8448</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 70 STRETCH OVER</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">52251</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Galapagos Star - Pa50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30618</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">17.02</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">52251-Galapagos Star /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.618/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102237/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-05T08:20:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104899</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8471</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON PA FELPADO (USA)</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">LL062</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Lavação Oleo Listrado</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30578</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">128.72</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">10</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">FL202-Flanelagem 01 L / LL062-Lavacao Oleo / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.578/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2915</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102238/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-05T08:21:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104899</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">5078</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 40 STRETCH PAC</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">LL062</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Lavação Oleo Listrado</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30578</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">18.96</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">LL062-Lavacao Oleo /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.578/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2915</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102308/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-05T10:40:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104242</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8455</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON FLEECE PADRAO FELPADO HB</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">51718</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Chumbo Sarah Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30027</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">235.84</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">19</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">51718-Chumbo Sarah Tu / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.027/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102310/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-05T10:40:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104242</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">5182</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 73 STRETCH PAC</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">51718</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Chumbo Sarah Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30027</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">38.32</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">51718-Chumbo Sarah Tu /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.027/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102332/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-05T11:03:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104968</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">3787</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON FLEECE PADRAO FELPADO</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">5433</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Royal Escolar (Nivea) Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30651</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">258.48</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">20</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">5433-Royal Escolar 5 / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.651/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102475/1 R/1</Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-06T10:27:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2104686</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8476</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MALHA COQUINHO RALADO</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">54815</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Verde Spruce Pa 60/40</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30387</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">101.44</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">8</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">54815-Verde Spruce Pa 60/4 /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.387/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102746/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-07T15:07:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2105041</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">70</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">GOLAS</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">001BT</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Branco Alvejado</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30725</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">11.34</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">001BT-Branco Alvejado /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.725/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102746/2  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-07T15:07:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2105041</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">2090</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHOS POLO</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">001BT</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Branco Alvejado</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30725</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">001BT-Branco Alvejado /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.725/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102755/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-07T15:19:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2103730</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">3357</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MEIA MALHA PENTEADA TRADICIONAL</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">14696</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Chumbo Sarah 100% Co</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">29668</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">265.05</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">21</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">14696-Chumbo Sarah 10 /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 29.668/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102755/2  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-07T15:19:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2103730</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">4000</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">NEW PLM ERIKA T</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">14696</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Chumbo Sarah 100% Co</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">29668</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">12.9</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">14696-Chumbo Sarah 10 /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 29.668/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102759/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-07T15:23:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2105021</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8455</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MOLETON FLEECE PADRAO FELPADO HB</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">50178</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Rosa Bb Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30725</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">224.42</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">18</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">50178-Rosa Bb Pa50/50 / FL202-Flanelagem 01 L / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO FLANELADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.725/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102760/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-07T15:24:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2105021</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">5182</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PUNHO 2X1 73 STRETCH PAC</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">50178</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Rosa Bb Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30725</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">47.12</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">4</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">50178-Rosa Bb Pa50/50 /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.725/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102898/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-10T11:37:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2105063</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">7811</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MALHA FLAME FINE PAC</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">52639</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Azul Cancun - Pa50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30759</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">110.12</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">8</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">52639-Azul Cancun Pa / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.759/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102899/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-10T11:38:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2105063</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">3904</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">NEW P.L.M. FLAME P.A.</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">52639</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Azul Cancun - Pa50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30759</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">6.58</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">52639-Azul Cancun Pa /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.759/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102919/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-10T13:28:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2105089</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">4271</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MEIA MALHA PENTEADA CONFORT 160</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">21839</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Bordo Mooca</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30759</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">306.39999999999998</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">24</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">21839-Bordo Mooca /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.759/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102919/2  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-10T13:28:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2105089</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">4000</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">NEW PLM ERIKA T</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">21839</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Bordo Mooca</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30759</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">21839-Bordo Mooca /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.759/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102932/1 R/1</Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-10T13:52:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2105090</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">4271</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MEIA MALHA PENTEADA CONFORT 160</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">23111</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Verde Br 100%Co</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30759</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">101.18</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">8</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">23111-Verde Br 100%Co /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.759/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102991/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-11T09:52:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2105154</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8442</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">PIQUET PA 0,90 CONV (TD /OT)</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">52371</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Mentol Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30802</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">263.2</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">20</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">52371-Mentol Pa50/50 /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.802/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">102991/2  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-11T09:52:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2105154</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">70</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">GOLAS</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">52371</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Mentol Pa 50/50</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30802</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">27.2</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">52371-Mentol Pa50/50 /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">TUBOLAR</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.802/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s32"><Data ss:Type="String">103003/1  </Data></Cell>
+    <Cell ss:StyleID="s33"><Data ss:Type="DateTime">2014-02-11T10:08:00.000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="7" ss:StyleID="s32"><Data ss:Type="String">2105128</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s32"><Data ss:Type="String">8497</Data></Cell>
+    <Cell ss:MergeAcross="8" ss:StyleID="s32"><Data ss:Type="String">MALHA FLAME MESCLA VISCOFIT USA</Data></Cell>
+    <Cell ss:StyleID="s32"><Data ss:Type="String">062</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="5" ss:StyleID="s32"><Data ss:Type="String">Lavação</Data></Cell>
+    <Cell ss:Index="35" ss:MergeAcross="2" ss:StyleID="s34"><Data ss:Type="Number">30802</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="2" ss:StyleID="s58"><Data ss:Type="Number">215.82</Data></Cell>
+    <Cell ss:StyleID="s34"><Data ss:Type="Number">18</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s59"><Data ss:Type="String">062-LAVACAO / RA206-Ramagem Prod.Ti /</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="s59"><Data ss:Type="String">PRODUÇÃO</Data></Cell>
+    <Cell ss:Index="15" ss:MergeAcross="27" ss:StyleID="s60"><Data ss:Type="String">RAMADO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="2.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell ss:Index="3" ss:MergeAcross="2" ss:StyleID="s61"><Data ss:Type="String">Nota: 30.802/1</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="8" ss:StyleID="s61"><Data ss:Type="String">CFOP: 2901</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="6"/>
+   <Row ss:AutoFitHeight="0" ss:Height="17.25">
+    <Cell ss:Index="10" ss:MergeAcross="8" ss:StyleID="s51"><Data ss:Type="String">Total do Cliente . . .</Data></Cell>
+    <Cell ss:Index="20" ss:MergeAcross="1" ss:StyleID="s51"><Data ss:Type="String">OPs:</Data></Cell>
+    <Cell ss:Index="23" ss:MergeAcross="2" ss:StyleID="s55"><Data ss:Type="Number">44</Data></Cell>
+    <Cell ss:Index="37" ss:MergeAcross="3" ss:StyleID="s62"><Data ss:Type="Number">6066.76</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s63"><Data ss:Type="Number">479</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="6"/>
+   <Row ss:AutoFitHeight="0" ss:Height="12">
+    <Cell ss:Index="10" ss:MergeAcross="8" ss:StyleID="s51"><Data ss:Type="String">Total Geral . . .</Data></Cell>
+    <Cell ss:Index="20" ss:MergeAcross="1" ss:StyleID="s51"><Data ss:Type="String">OPs:</Data></Cell>
+    <Cell ss:Index="23" ss:MergeAcross="2" ss:StyleID="s55"><Data ss:Type="Number">44</Data></Cell>
+    <Cell ss:Index="37" ss:MergeAcross="3" ss:StyleID="s62"><Data ss:Type="Number">6066.76</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s63"><Data ss:Type="Number">479</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="6"/>
+   <Row ss:AutoFitHeight="0" ss:Height="6.75"/>
+   <Row ss:AutoFitHeight="0" ss:Height="20.25">
+    <Cell ss:Index="18" ss:MergeAcross="11" ss:MergeDown="1" ss:StyleID="s64"><Data
+      ss:Type="String">RESUMO POR PRODUTO</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="0.75"/>
+   <Row ss:AutoFitHeight="0" ss:Height="12">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s51"><Data ss:Type="String">Cod. Produto</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s51"><Data ss:Type="String">Descrição</Data></Cell>
+    <Cell ss:Index="24" ss:MergeAcross="2" ss:StyleID="s65"><Data ss:Type="String">Peso Prog.</Data></Cell>
+    <Cell ss:Index="29" ss:MergeAcross="1" ss:StyleID="s65"><Data ss:Type="String">PCs Prog.</Data></Cell>
+    <Cell ss:Index="34" ss:MergeAcross="3" ss:StyleID="s65"><Data ss:Type="String">Peso Faturar</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s65"><Data ss:Type="String">PCs Faturar</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="10.5"/>
+   <Row ss:AutoFitHeight="0" ss:Height="5.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">2090</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">PUNHOS POLO</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">3357</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MEIA MALHA PENTEADA TRADICIONAL</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">265.05</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">21</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">265.05</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">21</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">3787</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MOLETON FLEECE PADRAO FELPADO</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">258.48</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">258.48</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">20</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">3904</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">NEW P.L.M. FLAME P.A.</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">6.58</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">6.58</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">4000</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">NEW PLM ERIKA T</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">25.9</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">25.9</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">2</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">4271</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MEIA MALHA PENTEADA CONFORT 160</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">407.58</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">32</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">407.58</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">32</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">5078</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">PUNHO 2X1 40 STRETCH PAC</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">111.3</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">111.3</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">10</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">5182</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">PUNHO 2X1 73 STRETCH PAC</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">123.58</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">123.58</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">10</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">5952</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">FLAMETON HEAVY</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">310.98</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">25</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">310.98</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">25</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">6940</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">PUNHO 2X1 73 STRETCH MESCLA ALGODÃO</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">46</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">46</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">70</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">GOLAS</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">38.54</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">38.54</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">7811</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MALHA FLAME FINE PAC</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">110.12</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">110.12</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">8</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">7953</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">PUNHO 2X1 40 STRETCH PA</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">38.74</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">38.74</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">7955</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">PUNHO 2X1 73 STRETCH PA DRY</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">35.159999999999997</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">35.159999999999997</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">3</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">7984</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MOLETON FLEECE MESCLA CINZA 50/50 FELPADO</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">746</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">60</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">746</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">60</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">7985</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">PUNHO 2X1 73 STRETCH MESCLA CINZA 50/50</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">118.56</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">118.56</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">9</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">8008</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MOLETON PA  FELPADO</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">502.26</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">38</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">502.26</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">38</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">8440</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MOLETON FLEECE DRY FELPADO</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">194.63</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">15</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">194.63</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">15</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">8442</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">PIQUET PA 0,90 CONV (TD /OT)</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">263.2</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">263.2</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">20</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">8445</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MOLETON PA FELPADO MIC 2</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">229.56</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">229.56</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">18</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">8447</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MOLETON FLEECE FELPADO OVER</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">430.46</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">34</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">430.46</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">34</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">8448</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">PUNHO 2X1 70 STRETCH OVER</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">84.2</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">84.2</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">7</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">8455</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MOLETON FLEECE PADRAO FELPADO HB</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">698.48</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">56</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">698.48</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">56</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">8467</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MOLETON PA FELPADO DB 24</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">124.86</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">124.86</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">10</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">8471</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MOLETON PA FELPADO (USA)</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">128.72</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">128.72</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">10</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">8476</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MALHA COQUINHO RALADO</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">101.44</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">101.44</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">8</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">8483</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MOLETON FLEECE PADRAO MESCLA ALGODAO 98/2 FELPADO</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">323.10000000000002</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">25</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">323.10000000000002</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">25</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">8489</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MOLETON FLEECE OVER FELPADO HIBRIDO</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">120.46</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">120.46</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">9</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15.75">
+    <Cell ss:Index="2" ss:MergeAcross="3" ss:StyleID="s49"><Data ss:Type="String">8497</Data></Cell>
+    <Cell ss:Index="7" ss:MergeAcross="13" ss:StyleID="s49"><Data ss:Type="String">MALHA FLAME MESCLA VISCOFIT USA</Data></Cell>
+    <Cell ss:Index="22" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">215.82</Data></Cell>
+    <Cell ss:Index="28" ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:Index="33" ss:MergeAcross="4" ss:StyleID="s66"><Data ss:Type="Number">215.82</Data></Cell>
+    <Cell ss:Index="39" ss:MergeAcross="3" ss:StyleID="s67"><Data ss:Type="Number">18</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="330"/>
+   <Row ss:AutoFitHeight="0" ss:Height="9.75"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0"/>
+    <Footer x:Margin="0"/>
+    <PageMargins x:Bottom="0.39374999999999999" x:Left="0.31527777777777777"
+     x:Right="0.31527777777777777" x:Top="0.39374999999999999"/>
+   </PageSetup>
+   <Unsynced/>
+   <DisplayPageBreak/>
+   <Print>
+    <FitWidth>0</FitWidth>
+    <FitHeight>0</FitHeight>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <VerticalResolution>0</VerticalResolution>
+    <NumberofCopies>0</NumberofCopies>
+   </Print>
+   <Selected/>
+   <DoNotDisplayGridlines/>
+   <TopRowVisible>226</TopRowVisible>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>
