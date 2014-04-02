@@ -208,38 +208,21 @@ JKY.display_graph = function() {
 	JKY.ajax(false, my_data, JKY.display_graph_success);
 }
 
-/**
 JKY.display_graph_success = function(response) {
 	$('#jky-graph-body').html('');
 	JKY.Graph = JKY.D3;
 	JKY.Graph.setArgs(
 		{ id_name		: 'jky-graph-body'
-		, graph_name	: 'dual_bar'
+//		, graph_name	: 'dual_bar'
+		, graph_name	: 'donut'
 		, axis_name		: 'expected_date'
 		, var1_name		: 'expected_weight'
 		, var2_name		: 'received_weight'
 		, round_up		: 200
 		, chart_width	: 500
-		, chart_height	:   0
+//		, chart_height	:   0
+		, chart_height	: 500
 		});
 	JKY.Graph.draw(response.rows);
 	JKY.hide('jky-loading');
-}
-**/
-
-JKY.display_graph_success = function(response) {
-    $('#jky-graph-body').html('');
-    JKY.Graph = JKY.D3;
-    JKY.Graph.setArgs(
-        { id_name		: 'jky-graph-body'
-            , graph_name	: 'donut'
-            , axis_name		: 'expected_date'
-            , var1_name		: 'expected_weight'
-            , var2_name		: 'received_weight'
-            , round_up		: 200
-            , chart_width	: 960
-            , chart_height	: 500
-        });
-    JKY.Graph.draw(response.rows);
-    JKY.hide('jky-loading');
 }
