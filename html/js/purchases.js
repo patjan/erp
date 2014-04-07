@@ -213,8 +213,8 @@ JKY.display_graph_success = function(response) {
 	JKY.Graph = JKY.D3;
 	JKY.Graph.setArgs(
 		{ id_name		: 'jky-graph-body'
-//		, graph_name	: 'dual_bar'
-		, graph_name	: 'donut'
+		, graph_name	: 'dual_bar'
+//		, graph_name	: 'donut'
 		, axis_name		: 'expected_date'
 		, var1_name		: 'expected_weight'
 		, var2_name		: 'received_weight'
