@@ -183,25 +183,81 @@ JKY.display_graph = function() {
 		, select	: JKY.App.get('select')
 		, filter	: JKY.App.get('filter')
 		, display	: JKY.App.get('display')
-		, order_by	: 'invoice_date'
-		, group_by	: 'invoice_date'
+//		, order_by	: 'invoice_date'
+//		, group_by	: 'invoice_date'
 		};
 	JKY.ajax(false, my_data, JKY.display_graph_success);
 }
 
 JKY.display_graph_success = function(response) {
+	var my_rows	= response.rows;
+
+//	sum all [invoice_weight] by [invoice_date]
+	var sum_by_invoice_date = d3.nest()
+		.key	(function(d)	{return d.invoice_date ? d.invoice_date.substr(5,5) : 'unknown';})
+		.sortKeys(d3.ascending)
+		.rollup	(function(d)	{return	{invoice_weight:d3.sum(d, function(g)	{return +g.invoice_weight ;})};})
+		.entries(my_rows)
+		;
+//	JKY.var_dump('sum_by_invoice_date', sum_by_invoice_date);
+
+//	sum all [received_weight] by [received_date]
+	var sum_by_received_date = d3.nest()
+		.key	(function(d)	{return d.received_at ? d.received_at.substr(5,5) : 'unknown';})
+		.sortKeys(d3.ascending)
+		.rollup	(function(d) 	{return	{received_weight:d3.sum(d, function(g)	{return +g.received_weight;})};})
+		.entries(my_rows)
+		;
+//	JKY.var_dump('sum_by_received_date', sum_by_received_date);
+
+	var merged_array = [];
+	var get_index = function(the_key) {
+		var j = merged_array.length;
+		if (j > 0) {
+			for(j in merged_array) {
+				var my_key = merged_array[j].key;
+				if (my_key == the_key)		{return j;}
+				if (my_key >  the_key)	 	{j=parseInt(j)-1; break;}
+			}
+			j=parseInt(j)+1;
+		}
+		var my_row = {'key':the_key, 'invoice_weight':0, 'received_weight':0};
+		merged_array.splice(j, 0, my_row);
+		return j;
+	}
+
+//	merge all [invoice_weight] by [invoice_date]
+	for(var i in sum_by_invoice_date) {
+		var my_row = sum_by_invoice_date[i];
+		if (my_row.values.invoice_weight > 0) {
+			var my_index = get_index(my_row.key);
+			merged_array[my_index].invoice_weight += my_row.values.invoice_weight;
+		}
+	}
+
+//	merge all [received_weight] by [received_date]
+	for(var i in sum_by_received_date) {
+		var my_row = sum_by_received_date[i];
+		if (my_row.values.received_weight > 0) {
+			var my_index = get_index(my_row.key);
+			merged_array[my_index].received_weight += my_row.values.received_weight;
+		}
+	}
+//	JKY.var_dump('merged_array', merged_array);
+
+//	draw dual_bar chart with [invoice_weight] and [received_weight] by [date]
 	$('#jky-graph-body').html('');
 	JKY.Graph = JKY.D3;
 	JKY.Graph.setArgs(
 		{ id_name		: 'jky-graph-body'
 		, graph_name	: 'dual_bar'
-		, axis_name		: 'invoice_date'
+		, axis_name		: 'key'
 		, var1_name		: 'invoice_weight'
 		, var2_name		: 'received_weight'
 		, round_up		: 200
-		, chart_width	: 500
+		, chart_width	: 600
 		, chart_height	:   0
 		});
-	JKY.Graph.draw(response.rows);
+	JKY.Graph.draw(merged_array);
 	JKY.hide('jky-loading');
 }

@@ -64,15 +64,15 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-td-number"	>' +				 the_row.purchase_number	+ '</td>'
-		+  '<td class="jky-td-name-s"	>' +				 the_row.source_doc			+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.ordered_at		)	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.expected_date	)	+ '</td>'
-//		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.scheduled_at	)	+ '</td>'
-		+  '<td class="jky-td-weight"	>' +				 the_row.expected_weight	+ '</td>'
-		+  '<td class="jky-td-weight"	>' +				 the_row.received_weight	+ '</td>'
-		+  '<td class="jky-td-name-s"	>' +				 the_row.supplier_name		+ '</td>'
-//		+  '<td class="jky-td-name-s"	>' +				 the_row.supplier_ref		+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.purchase_number		+ '</td>'
+		+  '<td class="jky-td-name-s"	>' +				 the_row.source_doc				+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.ordered_at			)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.expected_date		)	+ '</td>'
+//		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.scheduled_at		)	+ '</td>'
+		+  '<td class="jky-td-weight"	>' +				 the_row.expected_weight		+ '</td>'
+		+  '<td class="jky-td-weight"	>' +				 the_row.received_weight		+ '</td>'
+		+  '<td class="jky-td-name-s"	>' +				 the_row.supplier_name			+ '</td>'
+//		+  '<td class="jky-td-name-s"	>' +				 the_row.supplier_ref			+ '</td>'
 		;
 	return my_html;
 };
@@ -202,27 +202,76 @@ JKY.display_graph = function() {
 		, select	: JKY.App.get('select')
 		, filter	: JKY.App.get('filter')
 		, display	: JKY.App.get('display')
-		, order_by	: 'expected_date'
-		, group_by	: 'expected_date'
+//		, order_by	: 'expected_date'
+//		, group_by	: 'expected_date'
 		};
 	JKY.ajax(false, my_data, JKY.display_graph_success);
 }
 
 JKY.display_graph_success = function(response) {
+/*
+	response.rows.forEach(function(d) {
+		d.expected_date		= d.expected_date.substr(5);
+		d.expected_weight	= parseInt(d.expected_weight);
+		d.received_weight	= parseInt(d.received_weight);
+	});
+*/
+	var my_rows	= response.rows;
+
+//	sum all [expected_weight] by [expected_date]
+	var sum_by_expected_date = d3.nest()
+		.key	(function(d)	{return d.expected_date ? d.expected_date.substr(5,5) : 'unknown';})
+		.sortKeys(d3.ascending)
+		.rollup	(function(d)	{return	{expected_weight:d3.sum(d, function(g)	{return +g.expected_weight ;})};})
+		.entries(my_rows)
+		;
+//	JKY.var_dump('sum_by_expected_date', sum_by_expected_date);
+
+	var merged_array = [];
+	var get_index = function(the_key) {
+		var j = merged_array.length;
+		if (j > 0) {
+			for(j in merged_array) {
+				var my_key = merged_array[j].key;
+				if (my_key == the_key)		{return j;}
+				if (my_key >  the_key)	 	{j=parseInt(j)-1; break;}
+			}
+			j=parseInt(j)+1;
+		}
+		var my_row = {'key':the_key, 'expected_weight':0, 'received_weight':0};
+		merged_array.splice(j, 0, my_row);
+		return j;
+	}
+
+//	merge all [expected_weight] by [expected_date]
+	for(var i in sum_by_expected_date) {
+		var my_row = sum_by_expected_date[i];
+		if (my_row.values.expected_weight > 0) {
+			var my_index = get_index(my_row.key);
+			merged_array[my_index].expected_weight += my_row.values.expected_weight;
+		}
+	}
+
+	var my_list = '';
+	merged_array.forEach(function(d) {
+		my_list += '<div class="expected_date"  >' + d.key + '</div>'
+				+  '<div class="expected_weight">' + d.expected_weight + '</div>'
+				;
+	});
+	JKY.set_html('jky-graph-list', my_list);
+
+//	donut chart with [expected_weight] by [expected_date]
 	$('#jky-graph-body').html('');
 	JKY.Graph = JKY.D3;
 	JKY.Graph.setArgs(
 		{ id_name		: 'jky-graph-body'
-//		, graph_name	: 'dual_bar'
 		, graph_name	: 'donut'
-		, axis_name		: 'expected_date'
+		, axis_name		: 'key'
 		, var1_name		: 'expected_weight'
-		, var2_name		: 'received_weight'
 		, round_up		: 200
-		, chart_width	: 500
-//		, chart_height	:   0
+		, chart_width	: 600
 		, chart_height	: 500
 		});
-	JKY.Graph.draw(response.rows);
+	JKY.Graph.draw(merged_array);
 	JKY.hide('jky-loading');
 }

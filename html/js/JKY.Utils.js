@@ -2593,3 +2593,29 @@ JKY.set_decimal = function(the_number, the_decimal) {
 	if (typeof my_decimal == 'undefined')	my_decimal = '00';
 	return my_integer + '.' + my_decimal;
 }
+
+JKY.var_dump = function(the_name, the_object) {
+	var dump_object = function(the_obj) {
+		var my_string = '';
+		for(var key in the_obj) {
+			var my_obj = the_obj[key];
+			if (typeof my_obj === 'object')	{
+				my_string += dump_object(my_obj);
+			}else{
+				my_string += key + '=' + my_obj + ', ';
+			}
+		}
+		return my_string;
+	}
+
+	var my_output = the_name + '\n';
+	for( var i in the_object) {
+		var my_object = the_object[i];
+		my_output += i + ': '; 
+		my_output += dump_object(my_object);
+		my_output += "\n"; 
+	}
+	var my_pre = document.createElement('pre');
+	my_pre.innerHTML = my_output;
+	document.body.appendChild(my_pre);
+}
