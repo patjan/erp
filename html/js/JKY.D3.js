@@ -195,10 +195,6 @@ JKY.D3 = function() {
 	function my_donut(the_data) {
 		JKY.display_trace('my_donut');
 
-		the_data.forEach(function(d) {
-			d[my_args.var1_name] = +d[my_args.var1_name];
-		});
-
 //		calculate the height based on number of json rows
 		var chart_width		= my_args.chart_width ;
 		var chart_height	= my_args.chart_height;
@@ -237,10 +233,7 @@ JKY.D3 = function() {
 			.attr("transform", function(d)	{return "translate(" + arc.centroid(d) + ")";})
 			.attr("dy", ".35em")
 			.style("text-anchor", "middle")
-			.text(function(d)	 {
-				var my_axis = d.data[my_args.axis_name];
-				return my_axis.substr(5);
-			})
+			.text(function(d)	 {return d.data[my_args.axis_name]})
 			;
 	};
 

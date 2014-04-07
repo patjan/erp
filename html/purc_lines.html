@@ -1,3 +1,15 @@
+<style>
+.expected-weight	{width:130px; height:22px; margin-bottom:2px; background-color:green; color:white; text-align:center;}
+.received-weight	{width:130px; height:22px; margin-bottom:2px; background-color:red	; color:white; text-align:center;}
+.key				{fill:black	;}
+.expected_weight	{fill:green	;}
+.received_weight	{fill:red	;}
+.insider			{fill:white	;}
+.divider			{stroke:white; stroke-opacity:.5;}
+.axis path,
+.axis line			{fill:none; stroke:black; shape-rendering:crispEdges;}
+</style>
+
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
@@ -16,6 +28,22 @@
 
 	<tbody id='jky-table-body'></tbody>
 </table>
+
+<div id='jky-app-graph'>
+	<div id='jky-graph-header'>
+		<div id='jky-graph-title' class='jky-left'><span>Dual Bar Chart by Date</span></div>
+		<div id='jky-graph-description' class='jky-right' style='text-align:right;'>
+			<div class='expected-weight'><span>Expected Weight</span></div>
+			<div class='received-weight'><span>Received Weight</span></div>
+			<div><span>Unit(Kilos)</span></div>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+	<div id='jky-graph-body'></div>
+	<div id='jky-graph-footer'>
+	</div>
+</div>
+
 <!--
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
