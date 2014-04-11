@@ -239,7 +239,7 @@ JKY.D3 = function() {
 
 /**
  *	draw multi-line
-
+ */
     function my_multi_line (the_data) {
         JKY.display_trace('my_multi_line');
 
@@ -293,9 +293,10 @@ JKY.D3 = function() {
                 })
             };
         });
-
+        //set the min and max of the date
         x.domain(d3.extent(data, function(d) { return d.date; }));
 
+        //set the min and max of the temperature
         y.domain([
             d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
             d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
@@ -326,14 +327,14 @@ JKY.D3 = function() {
             .attr("d", function(d) { return line(d.values); })
             .style("stroke", function(d) { return color(d.name); });
 
-        city.append("text")
+        city.append("text.name")
             .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
             .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
             .attr("x", 3)
             .attr("dy", ".35em")
             .text(function(d) { return d.name; });
     });
- */
+
 return {version	:	'1.0.0'
 		, setArgs	:	function(the_args)				{		my_setArgs(the_args)		;}
 		, getArgs	:	function()						{		my_getArgs()				;}
