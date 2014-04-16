@@ -212,7 +212,7 @@ function get_db_params($the_server_number) {
 
 	switch($the_server_number) {
 		 case('1')	:	$my_params = array
-							('host'		=> '201.83.198.134'
+							('host'		=> '201.83.204.120'
 							,'username'	=> 'root'
 							,'password'	=> 'brazil18781'
 							,'dbname'	=> 'erp'

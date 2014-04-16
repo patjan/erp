@@ -38,24 +38,18 @@ JKY.Upload = function(the_args) {
 			var my_names = the_photo.split(',');
 			var my_extension = JKY.get_file_type(my_names[0]);
 			my_html = '<a href="' + 'jky_download.php?file_name=' + my_args.directory + '/' + my_row_id + '.' + my_extension + '">'
-			if (my_extension == 'pdf') {
-				my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/pdf.png" />';
-			}else{
-			if (my_extension == 'xml') {
-				my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/xml.png" />';
-			}else{
-			if (my_extension == 'xls') {
-				my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/xls.png" />';
-			}else{
-			if (my_extension == 'xps') {
-				my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/xps.png" />';
-			}else{
-			if (my_extension == 'sql') {
-				my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/sql.png" />';
+				  if (my_extension == 'doc' ) {my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/doc.png" />';
+			}else if (my_extension == 'docx') {my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/doc.png" />';
+			}else if (my_extension == 'pdf' ) {my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/pdf.png" />';
+			}else if (my_extension == 'sql' ) {my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/sql.png" />';
+			}else if (my_extension == 'xml' ) {my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/xml.png" />';
+			}else if (my_extension == 'xls' ) {my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/xls.png" />';
+			}else if (my_extension == 'xps' ) {my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/xps.png" />';
+			}else if (my_extension == 'zip' ) {my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/img/zip.png" />';
 			}else{
 				var my_time = my_names[1];
-				my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/uploads/' + my_args.directory + '/' + my_row_id + '.' + my_extension + '?time=' + my_time + '" />';
-			}}}}}
+				my_html += '<img id="' + my_args.img_id + '" class="jky-thumb" src="/thumbs/' + my_args.directory + '/' + my_row_id + '.png?time=' + my_time + '" />';
+			}
 			my_html += '</a>';
 		}
 		return my_html;

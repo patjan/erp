@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+	<div>Expected: <div id='expected'></div></div>
+	<div>Received: <div id='received'></div></div>
+	<div>  Result: <div id='result'  ></div></div>
+
+<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+<script>
+	var array_expected = 
+		[{'date': '2014/01/02', 'weight': 1120}
+		,{'date': '2014/02/03', 'weight': 1230}
+		,{'date': '2014/02/03', 'weight': 1230}
+		,{'date': '2014/03/04', 'weight': 1340}
+		,{'date': '2014/01/02', 'weight': 1120}
+		,{'date': '2014/03/04', 'weight': 1340}
+		];
+	var array_received = 
+		[{'date': '2014/02/03', 'weight': 1230}
+		,{'date': '2014/03/05', 'weight': 1350}
+		,{'date': '2014/02/03', 'weight': 1230}
+		,{'date': '2014/01/01', 'weight': 1110}
+		,{'date': '2014/01/01', 'weight': 1110}
+		,{'date': '2014/03/05', 'weight': 1350}
+		];
+	$(document).ready(function() {
+		var my_expected = '';
+		for(var i in array_expected) {
+			var my_row = array_expected[i];
+			my_expected += my_row.date + ' = ' + my_row.weight + '<br>';
+		}
+		$('#expected').html(my_expected);
+
+		var my_received = '';
+		for(var i in array_received) {
+			var my_row = array_received[i];
+			my_received += my_row.date + ' = ' + my_row.weight + '<br>';
+		}
+		$('#received').html(my_received);
+
+		var get_index = function(the_key) {
+			var j = array_result.length;
+			if (j > 0) {
+				for(j in array_result) {
+					var my_key = array_result[j].key;
+					if (my_key == the_key)		{return j;}
+					if (my_key >  the_key)	 	{j=parseInt(j)-1; break;}
+				}
+				j=parseInt(j)+1;
+			}
+			var my_row = {'key':the_key, 'expected':0, 'received':0};
+			array_result.splice(j, 0, my_row);
+			return j;
+		}
+		
+		var array_result = [];
+		for(var i in array_expected) {
+			var my_row = array_expected[i];
+			var my_index = get_index(my_row.date);
+			array_result[my_index].expected += my_row.weight;
+		}
+		for(var i in array_received) {
+			var my_row = array_received[i];
+			var my_index = get_index(my_row.date);
+			array_result[my_index].received += my_row.weight;
+		}
+		
+		var my_result = '';
+		for(var i in array_result) {
+			var my_row = array_result[i];
+			my_result += my_row.key + ' = ' + my_row.expected+ ' : ' + my_row.received + '<br>';
+		}
+		$('#result').html(my_result);
+	});
+		
+</script>
+		
+</body>
+</html>

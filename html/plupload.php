@@ -77,6 +77,44 @@ function Xlog_sql( $message ) {
      fclose( $logFile );
 }
 
+function create_thumb( $folder, $name, $ext, $maxW, $maxH ) {
+	$photoPath = UPLOADS . $folder . $name . '.' . $ext;
+
+     $info = getimagesize( $photoPath );
+     $w = $info[ 0 ];
+     $h = $info[ 1 ];
+
+     $ratio = $w / $h;
+
+     if(  $ratio < 1 ) {
+          $newW = min( $w, $maxW );
+          $newH = $newW / $ratio;
+     } else {
+          $newH = min( $h, $maxH );
+          $newW = $newH * $ratio;
+     }
+
+     switch( $ext ) {
+          case 'gif':    $infunc = 'imagecreatefromgif' ;   $outfunc = 'imagepng';  break;
+          case 'jpg':    $infunc = 'imagecreatefromjpeg';   $outfunc = 'imagepng';  break;
+          case 'png':    $infunc = 'imagecreatefrompng' ;   $outfunc = 'imagepng';  break;
+          default   :    throw new Exception( 'Invalid image type' );
+     }
+
+     $image = @$infunc( $photoPath );
+
+     if( !$image )                           throw new Exception( 'Unable to read image file' );
+
+     $thumb = imagecreatetruecolor( $newW, $newH );
+     imagecopyresampled( $thumb, $image, 0, 0, 0, 0, $newW, $newH, $w, $h );
+
+     $thumbPath = THUMBS . $folder . $name . '.png';
+     imagepng( $thumb, $thumbPath );
+
+     if(  ! file_exists( $thumbPath ))       throw new Exception( 'Unkown error occured creating thumbnail' );
+     if(  ! is_readable( $thumbPath ))       throw new Exception( 'Unable to read thumbnail' );
+}
+
 //   http headers for no cache etc
 header( 'Expires: Mon, 26 Jul 1997 05:00:00 GMT' );
 header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s' ) . ' GMT' );
@@ -87,30 +125,30 @@ header( 'Pragma: no-cache' );
 //   settings
 //$targetDir = ini_get( 'upload_tmp_dir' ) . DIRECTORY_SEPARATOR . 'plupload';
 $targetDir = UPLOADS;
+$thumbsDir = THUMBS;
 
 //$cleanupTargetDir = false;         //   remove old files
 //$maxFileAge = 60 * 60;             //   temp file age in seconds
 
-@set_time_limit( 5 * 60 );         //   5 minutes execution time
+@set_time_limit(5 * 60);			//	5 minutes execution time
 
 //usleep( 5000 );                  //   uncomment this one to fake upload time
 
-//   get parameters
-$chunk    = isset( $_REQUEST[ 'chunk'  ]) ? $_REQUEST[ 'chunk'  ] : 0 ;
-$chunks   = isset( $_REQUEST[ 'chunks' ]) ? $_REQUEST[ 'chunks' ] : 0 ;
-$fileName = isset( $_REQUEST[ 'name'   ]) ? $_REQUEST[ 'name'   ] : '';
+//	get parameters
+$chunk		= isset($_REQUEST['chunk'	]) ? $_REQUEST['chunk'	] : 0 ;
+$chunks		= isset($_REQUEST['chunks'	]) ? $_REQUEST['chunks'	] : 0 ;
+$fileName	= isset($_REQUEST['name'	]) ? $_REQUEST['name'	] : '';
 
-if(  $chunk == 0 )
-     set_session( 'my_time', get_time());
+if ($chunk == 0)		set_session('my_time', get_time());
 
-Xlog_sql( ' my time: ' . get_session( 'my_time' ) . ', chunk: ' . $chunk . ', chunks: ' . $chunks . ', fileName: ' . $fileName . ', fileSize: ' . $_FILES[ 'file' ][ 'size' ] );
+Xlog_sql(' my time: ' . get_session( 'my_time' ) . ', chunk: ' . $chunk . ', chunks: ' . $chunks . ', fileName: ' . $fileName . ', fileSize: ' . $_FILES['file']['size']);
 
 //   clean the fileName for security reasons
 $fileName  = preg_replace( '/[^\w\._]+/', '', $fileName );
 $names     = explode( '.', $fileName );
 $folder    = $names[ 0 ] . '/';
 $file_id   = $names[ 1 ];
-$file_type = $names[ count( $names )-1 ];
+$file_type = strtolower($names[ count( $names )-1 ]);
 
 //   make sure the fileName is unique but only if chunking is disabled
 /*
@@ -235,6 +273,8 @@ Xlog_sql( 'php://input' );
 		die( "{ 'jsonrpc' : '2.0', 'error' : { 'code': 102, 'message': 'Failed to open output stream.' }, 'id' : 'id' }" );
      }
 }
+Xlog_sql( ' end of upload' );
+create_thumb( $folder, $file_key, $file_type, 120, 120 );
 
 //   return JSON-RPC response
 die( "{ 'jsonrpc' : '2.0', 'result' : null, 'id' : 'id' }" );

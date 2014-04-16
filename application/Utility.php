@@ -3265,33 +3265,33 @@ function get_mime( $ext ) {
      }
 }
 
-function email_by_event( $user_id, $template_name, $email_from, $additional_message='' ) {
-     $user     = db_get_row( 'Users'    , 'id = ' . $user_id );
-     $user_jky = db_get_row( 'User_jky' , 'id = ' . $user_id );
-     $to_name  = $user[ 'full_name'     ];
-     $to_email = $user[ 'user_email'    ];
-     $cc_name  = '';
-     $cc_email = '';
+function email_by_event($user_id, $contact_id, $template_name, $email_from, $additional_message='') {
+	$jky_user	= db_get_row('JKY_Users', 'id = ' . $user_id	);
+	$contact	= db_get_row('Contacts'	, 'id = ' . $contact_id	);
+	$to_name	= $contact['full_name'	];
+	$to_email	= $contact['email'		];
+	$cc_name	= '';
+	$cc_email	= '';
 
-     $template = db_get_row( 'Templates', 'template_name = "' . $template_name . '"' );
-	$subject  = revert_entities($template[ 'template_subject'   ]);
-	$body     = revert_entities($template[ 'template_body'      ]);
+	$template	= db_get_row('Templates', 'template_name = "' . $template_name . '"');
+	$subject	= revert_entities($template['template_subject'	]);
+	$body		= revert_entities($template['template_body'		]);
 
-     $names    = explode( ';', get_control_value( 'System Keys', $email_from ));
-     $from_name  = $names[ 0 ];
-     $from_email = $names[ 1 ];
+	$names    = explode(';', get_control_value('System Keys', $email_from));
+	$from_name  = $names[0];
+	$from_email = $names[1];
 
-     $search   = array();
-     $replace  = array();
-     $search[] = '+'               ; $replace[] = ' ';
-     $search[] = '{SERVER_NAME}'   ; $replace[] = SERVER_NAME;
-     $search[] = '{SUPPORT_NAME}'  ; $replace[] = $from_name;
-     $search[] = '{USER_EMAIL}'    ; $replace[] = $user     [ 'user_email' ];
-     $search[] = '{USER_NAME}'     ; $replace[] = $user     [ 'full_name'  ];
-     $search[] = '{USER_KEY}'      ; $replace[] = $user_jky [ 'user_key'   ];
+	$search   = array();
+	$replace  = array();
+	$search[] = '+'               ; $replace[] = ' ';
+	$search[] = '{SERVER_NAME}'   ; $replace[] = SERVER_NAME;
+	$search[] = '{SUPPORT_NAME}'  ; $replace[] = $from_name;
+	$search[] = '{USER_EMAIL}'    ; $replace[] = $contact	['email'	];
+	$search[] = '{USER_NAME}'     ; $replace[] = $contact	['full_name'];
+	$search[] = '{USER_KEY}'      ; $replace[] = $jky_user	['user_key'	];
 
-     $subject  = str_replace( $search, $replace, $subject   );
-     $body     = str_replace( $search, $replace, $body      );
+	$subject  = str_replace($search, $replace, $subject);
+	$body     = str_replace($search, $replace, $body	);
 /*
      $data = array();
      if(  is_session( 'user_id' ))      $data[ 'sent_from'  ] = get_session( 'user_id' );
@@ -3311,63 +3311,65 @@ function email_by_event( $user_id, $template_name, $email_from, $additional_mess
      $Emails = new $model();
      $Emails->insert( $data );
 */
-     return email_now( $from_email, $from_name, $to_email, $to_name, $cc_email, $cc_name, $subject, $body );
+	return email_now($from_email, $from_name, $to_email, $to_name, $cc_email, $cc_name, $subject, $body);
 }
 
-function email_now( $from_email, $from_name, $to_email, $to_name, $cc_email, $cc_name, $subject, $body, $photos=null ) {
-     $Mail = new Zend_Mail();
-     $Mail->setFrom( $from_email, $from_name );
-     $Mail->addTo  (   $to_email,   $to_name );
-     if(  '' != $cc_email and $cc_email != $to_email )
-          $Mail->addCc ( $cc_email, $cc_name );
-     $Mail->setSubject ( $subject );
-#    $Mail->setBodyText( $body );
-     $Mail->setBodyHtml( $body );
+function email_now($from_email, $from_name, $to_email, $to_name, $cc_email, $cc_name, $subject, $body, $photos=null) {
+	$Mail = new Zend_Mail();
+	$Mail->setFrom($from_email, $from_name);
+	$Mail->addTo  (  $to_email,   $to_name);
+	if ('' != $cc_email and $cc_email != $to_email)		$Mail->addCc ($cc_email, $cc_name);
+	$Mail->setSubject ($subject);
+#	$Mail->setBodyText($body);
+	$Mail->setBodyHtml($body);
 
-     if(  $photos ) {
-          foreach( $photos as $photo ) {
-               $my_image   = file_get_contents( SERVER_NAME . PHOTOS . $photo[ 'id' ] . '.' . $photo[ 'ext' ]);
-               $at = new Zend_Mime_Part( $my_image );
-               $at->type           = 'image/' . $photo[ 'ext' ];
-               $at->disposition    = Zend_Mime::DISPOSITION_INLINE;
-               $at->encoding       = Zend_Mime::ENCODING_BASE64;
-               $at->filename       = $photo[ 'file_name' ];
-               $Mail->addAttachment( $at );
-          }
-     }
+	if ($photos) {
+		foreach( $photos as $photo ) {
+			$my_image = file_get_contents(SERVER_NAME . PHOTOS . $photo['id'] . '.' . $photo['ext']);
+			$at = new Zend_Mime_Part($my_image);
+			$at->type           = 'image/' . $photo['ext'];
+			$at->disposition    = Zend_Mime::DISPOSITION_INLINE;
+			$at->encoding       = Zend_Mime::ENCODING_BASE64;
+			$at->filename       = $photo['file_name'];
+			$Mail->addAttachment($at);
+		}
+	}
+log_sql( null, 'email_now', var_dump($Mail, true));
 
-     try {
-          $smtp = get_control_value( 'System Keys', 'SMTP' );
+	try {
+		 $smtp = get_control_value('System Keys', 'SMTP');
 
-          if(  $smtp == '' ) {
-               $Mail->send();
-          } else {
-               $names  = explode( ';', $smtp );
-               if(  count( $names ) == 5 ) {
-                    $config = array
-                         ( 'auth'       => 'login'
-                         , 'username'   => $names[ 1 ]
-                         , 'password'   => $names[ 2 ]
-                         , 'ssl'        => $names[ 3 ]
-                         , 'port'       => $names[ 4 ]
-                         );
-               } else {
-                    $config = array
-                         ( 'auth'       => 'login'
-                         , 'username'   => $names[ 1 ]
-                         , 'password'   => $names[ 2 ]
-                         );
-               }
-               if(  $names[ 1 ] == '' )
-                    $transport = new Zend_Mail_Transport_Smtp( $names[ 0 ]);
-               else $transport = new Zend_Mail_Transport_Smtp( $names[ 0 ], $config );
-               $Mail->send( $transport );
-          }
-     } catch( Exception $exp ) {
-          return $exp->getMessage();
-     }
+		 if ($smtp == '') {
+			$Mail->send();
+		 }else{
+			$names = explode(';', $smtp);
+			if (count($names) == 5) {
+				$config = array
+					( 'auth'       => 'login'
+					, 'username'   => $names[1]
+					, 'password'   => $names[2]
+					, 'ssl'        => $names[3]
+					, 'port'       => $names[4]
+					);
+			}else{
+				$config = array
+					( 'auth'		=> 'login'
+					, 'username'	=> $names[1]
+					, 'password'	=> $names[2]
+					);
+			}
+			if ($names[1] == '') {
+				$transport = new Zend_Mail_Transport_Smtp($names[0]);
+			}else{
+				$transport = new Zend_Mail_Transport_Smtp($names[0], $config);
+			}
+			$Mail->send( $transport );
+		}
+	} catch( Exception $exp ) {
+		 return $exp->getMessage();
+	}
 
-     return '';
+	return '';
 }
 
 function expand_tab( $string ) {

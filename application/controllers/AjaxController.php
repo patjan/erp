@@ -95,11 +95,11 @@ public function indexAction() {
 			case 'check_session'	: $this->check_session	(); return;
 			case 'log_in'			: $this->log_in			($data); return;
 			case 'log_out'			: $this->log_out		($data); return;
-			case 'log_help'			: $this->log_help		(); return;
+			case 'log_help'			: $this->log_help		($data); return;
 			case 'profile'			: $this->profile		($data); return;
 			case 'sign_up'			: $this->sign_up		(); return;
 			case 'confirm'			: $this->confirm		(); return;
-			case 'reset'			: $this->reset			(); return;
+			case 'reset'			: $this->reset			($data); return;
 
 			case 'send_email'		: $this->send_email		(); return;
 			case 'send_receipt'		: $this->send_receipt	(); return;
@@ -3959,11 +3959,20 @@ private function log_out($data) {
  *		status: ok
  *  user_email: x...x
  */
-private function log_help() {
-	$help_name  = get_request('help_name');
+private function log_help($data) {
+	$help_name  = $data['help_name'];
 
+	$db = Zend_Registry::get('db');
 	$error = '';
-	$users = db_get_rows('Contacts', 'status = "Active" AND( user_name = "' . $help_name . '" OR user_email = "' . $help_name . '" )');
+	$sql= 'SELECT JKY_Users.id, JKY_Users.contact_id, Contacts.email'
+		. '  FROM JKY_Users'
+		. '  LEFT JOIN Contacts ON Contacts.id = JKY_Users.contact_id'
+		. ' WHERE JKY_Users.status = "Active"'
+		. '   AND  Contacts.email IS NOT NULL'
+		. '   AND(JKY_Users.user_name = "' . $help_name . '" OR Contacts.email = "' . $help_name . '" )'
+		;
+$this->log_sql( null, 'log_help', $sql );
+	$users = $db->fetchAll($sql);
 	if (count($users) == 0) {
 		$error .= set_not_found('User Name or Email Address');
 	}
@@ -3972,9 +3981,9 @@ private function log_help() {
 	if (is_empty($error)) {
 //		email for all users
 		foreach($users as $user) {
-			$return = email_by_event($user['id'], 'Remind Me', 'Email From System');
+			$return = email_by_event($user['id'], $user['contact_id'], 'Remind Me', 'Email From System');
 			if (!isset($return['user_email'])) {
-				$return['user_email'] = $user['user_email'];
+				$return['user_email'] = $user['email'];
 			}
 		}
 	}

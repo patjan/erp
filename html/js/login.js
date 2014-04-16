@@ -3,7 +3,7 @@
 /**
  * login.html
  */
-var jky_program		= 'Login';
+var jky_program		= 'LogIn';
 var jky_focus		= 'jky-log-in-user-name';
 
 /**
@@ -25,6 +25,7 @@ JKY.set_all_events = function() {
 	if (JKY.is_loaded('jky-body')) {
 		$('#jky-log-in-user-name'	).change(function() {JKY.change_log_in_name	(this)	;});
 		$('#jky-log-in-password'	).change(function() {JKY.change_password	(this)	;});
+		$('#jky-button-log-help'	).click (function() {JKY.process_action('log_help')	;});
 		$('#jky-button-log-in'		).click (function() {JKY.process_log_in		()		;});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
@@ -41,7 +42,7 @@ JKY.set_initial_values = function() {
 		if (JKY.Session.get_value('environment') == 'development') {
 			$('#jky-log-in-user-name').val('patjan');
 			$('#jky-log-in-password' ).val('brazil');
-			setTimeout(function() {$('#jky-button-log-in').click();}, 500);
+//			setTimeout(function() {$('#jky-button-log-in').click();}, 500);
 		}else{
 			$('#jky-log-in-user-name').val('');
 			$('#jky-log-in-password' ).val('');
@@ -80,7 +81,7 @@ JKY.set_button_log_in = function() {
 JKY.process_log_in = function() {
 	JKY.display_trace('process_log_in - ' + jky_program);
 	if (JKY.is_disabled('jky-button-log-in')) {
-		JKY.display_message(JKY.t('Please, fill in all information'));
+		JKY.display_message(JKY.t('Please, fill in missing information'));
 		JKY.set_focus(jky_focus);
 		return;
 	}

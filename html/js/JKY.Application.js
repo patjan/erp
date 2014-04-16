@@ -277,6 +277,24 @@ if (my_first == true) {
 	}
 
 /**
+ *	display graph
+ *
+ *	$param	undefined	display last index
+ *	$param	number		display new  index
+ *	$param	object		display index of the row
+ */
+	function my_display_graph(the_index) {
+		JKY.display_trace('my_display_graph: ' + the_index);
+		if (my_args.table_name == '')		return;
+
+		JKY.hide('jky-app-table');
+		JKY.show('jky-app-graph');
+		JKY.hide('jky-app-form'	);
+
+		JKY.display_graph();
+	}
+
+/**
  *	display form
  *
  *	$param	undefined	display last index

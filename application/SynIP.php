@@ -105,7 +105,7 @@ function update_servers_host($the_local_db, $the_data) {
 function build_db($the_server) {
 	switch($the_server) {
 		 case('1')	:	$params = array
-							('host'		=> '201.83.198.134'
+							('host'		=> '201.83.204.120'
 							,'username'	=> 'root'
 							,'password'	=> 'brazil18781'
 							,'dbname'	=> 'erp'

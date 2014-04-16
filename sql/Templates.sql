@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS Templates
 , created_at        DATETIME			DEFAULT NULL
 , updated_by        BIGINT				DEFAULT NULL
 , updated_at        DATETIME			DEFAULT NULL
-, status            VARCHAR(32)         DEFAULT 'Aactive'
+, status            VARCHAR(32)         DEFAULT 'Active'
 
 , company_id        BIGINT UNSIGNED     NULL
 , template_name     VARCHAR(255)        NULL

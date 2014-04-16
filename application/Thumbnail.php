@@ -1,17 +1,26 @@
+/**
+ *
+ *
+ *	@param file_type: gif jpeg png
+ *
+ *
+ *
+ */
 function resize($filename, $newfile, $the_width, $the_height) { 
-    //	open the original file
+//	open the original file
+    $image = imagecreatefromgif	($filename);
     $image = imagecreatefromjpeg($filename);
+    $image = imagecreatefrompng	($filename);
 
-    //	create a new blank image
+//	create a new blank image
     $new_image = imagecreatetruecolor($the_width, $the_height); 
 
-    //	copy the original, according to the specified width and height
-    imagecopyresampled($new_image, $image, 0, 0, 0, 0, $the_width, $the_height, imagesx($image), imagesy($image)); 
+//	copy the original, according to the specified width and height
+	imagecopyresampled($new_image, $image, 0, 0, 0, 0, $the_width, $the_height, imagesx($image), imagesy($image)); 
 
-    // 	save the new file to $newfile
-    imagejpeg($new_image, $newfile); 
-} 
-
+// 	save the new file to $newfile
+	imagejpeg($new_image, $newfile); 
+}
 
 function img_resize($the_source, $the_target, $the_width, $the_height, $the_rgb=0xFFFFFF, $the_quality=100) {
 	if (!file_exists($the_source))			return false;

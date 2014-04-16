@@ -1,9 +1,11 @@
 Todo
 
 - tablesorter (done)
-- d3
-- thumb
+- d3 (done)
+- thumb (done)
 - email
+	- log-help
+	
 
 
 
