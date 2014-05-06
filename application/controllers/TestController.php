@@ -36,7 +36,7 @@ public function init() {
 		('host'		=> 'external-db.s122232.gridserver.com'
 		,'username'	=> 'db122232'
 		,'password'	=> 'brazil.18781'
-		,'dbname'	=> 'db122232_tecno'
+		,'dbname'	=> 'db122232_erp'
 		);
 
 	$db = Zend_Db::factory('PDO_MYSQL', $params);
