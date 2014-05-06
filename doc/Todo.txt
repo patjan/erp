@@ -4,8 +4,10 @@ Todo
 - d3 (done)
 - thumb (done)
 - email
-	- log-help
-	
+	- log-help (done)
+	- help-sent (done)
+	- 
+- expiration	(done)
 
 
 

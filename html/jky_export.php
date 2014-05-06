@@ -192,8 +192,13 @@ $this->log_proxy('count_rows: ' . $count_rows);
                          default        : $ssStyle = ''          ; $ssType = 'String'  ; break;
                     }
                     $value = $row[ $col[ 'Field' ]];
-                    if(  $value  == '' )               $ssType   = 'String';
-                    if(  $ssType == 'DateTime' )       $value    = str_replace( ' ', 'T', $value );
+					if ($ssType == 'DateTime') {
+						$value = str_replace( ' ', 'T', $value );
+						if ($value == '0000-00-00T00:00:00') {
+							$value = '';
+						}
+					}
+					if ($value  == '')		$ssType = 'String';
 
                     if(  $field == 'country'
                     or   $field == 'fax'

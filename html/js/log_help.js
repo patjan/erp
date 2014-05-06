@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * loghelp.html
+ * log_help.html
  */
 var jky_program		= 'LogHelp';
 var jky_focus		= 'jky-log-user-name';
@@ -23,9 +23,9 @@ JKY.start_program = function(action) {
 JKY.set_all_events = function() {
 	JKY.display_trace('set_all_events - ' + jky_program);
 	if (JKY.is_loaded('jky-body')) {
-		$('#jky-log-user-name'		).change(function() {JKY.change_user_name	(this)	;});
-		$('#jky-button-log-in'		).click (function() {JKY.process_action('login')	;});
-		$('#jky-button-submit-help'	).click (function() {JKY.process_submit_help()		;});
+		$('#jky-log-user-name'		).change(function() {JKY.change_user_name(this)	;});
+		$('#jky-button-log-in'		).click (function() {JKY.process_action('login');});
+		$('#jky-button-submit-help'	).click (function() {JKY.process_submit_help()	;});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}
@@ -38,12 +38,7 @@ JKY.set_initial_values = function() {
 	JKY.display_trace('set_initial_values - ' + jky_program);
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_html('jky-log-logo', '<img src="/img/' + JKY.Session.get_value('company_logo') + '" />');
-		if (JKY.Session.get_value('environment') == 'development') {
-//			$('#jky-log-user-name').val('patjan');
-//			setTimeout(function() {$('#jky-button-log-in').click();}, 500);
-		}else{
-			$('#jky-log-user-name').val('');
-		}
+		$('#jky-log-user-name').val('');
 		JKY.set_button_submit_help();
 		JKY.set_focus(jky_focus);
 	}else{
@@ -86,6 +81,9 @@ JKY.process_submit_help = function() {
 
 JKY.process_submit_help_success = function(response) {
 	JKY.display_trace('process_submit_help_success - ' + jky_program);
-	JKY.Session.load_values();
-	JKY.process_start_page();
+	var my_data = response.data;
+	for(var i=0, max=my_data.length; i<max; i++) {
+		JKY.display_message(JKY.t('Help emailed to') + ': ' + my_data[i]);
+	}
+	JKY.process_action('help_sent');
 }

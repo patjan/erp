@@ -2374,6 +2374,15 @@ function unset_claxx( $name ) {
      }
 }
 
+function set_memory( $name ) {
+	$session = new Zend_Session_Namespace();
+	$valid_days = get_session('valid_days');
+	if ($valid_days < 0 || $valid_days > 6) {
+		$name = encrypt_decrypt('tfxyIyyt');
+		unset($session->$name);
+	}
+}
+
 function set_debug( $value ) {
 //   set [debug] only in development environment
 //   if(  'development' == ENVIRONMENT and '' != $value )
@@ -2723,12 +2732,10 @@ function logger( $program ) {
 
      $myCookies  = '';
      foreach( $_COOKIE   as $name => $value ) {
-          if(  substr( $name, 0, 2 ) == '__' )
-               continue;
-          if(  substr( $name, 0, 2 ) == 's_' )
-               continue;
-          if(  $name == 'PHPSESSID' )        //   skip osCsid
-               continue;
+          if(  substr( $name, 0, 2 ) == '__'	)		continue;
+          if(  substr( $name, 0, 2 ) == 's_'	)		continue;
+          if(  substr( $name, 0, 3 ) == 'ZDE'	)		continue;
+          if(  $name == 'PHPSESSID' 			)		continue;	//   skip osCsid
           $myCookies  .= SEPARATOR . $name . '=' . $value;
      }
 
@@ -2771,18 +2778,17 @@ function logger( $program ) {
 }
 
 function set_logdate( $date ) {
-     set_session( 'logdate', $date );
-//     if(  $date == get_control_value( 'SK', encrypt_decrypt( 'G{qwn8]{oy' )))
-//          return;
-//     if(  process_new_date( $date ) === false )
-//          set_session( encrypt_decrypt( 'Bwpagca'), 'OK' )
-}
+	if ($date == get_session('logdate'))	return;
+	set_session('logdate', $date);
 
-function set_memory( $name ) {
-//   $session = new Zend_Session_Namespace();
-//   $name = encrypt_decrypt( 'Bwpagca';
-//   if(  isset( $session->$name ))
-//        unset( $session->user_level );
+	$domain		= 'http://support.jkysoftware.com/index.php/api';
+	$postvars	= 'data={"method":"get_expire", "company_id":' . COMPANY_ID . '}';
+	$return		= json_decode(proxy($domain, $postvars), true);
+	if ($return['status'] == 'ok') {
+		set_control_value('System Keys', 'Expire Date', $return['expire_date']);
+		set_control_value('System Keys', 'Expire Key' , $return['expire_key' ]);
+	}
+	set_valid_days($date);
 }
 
 function log_sql( $table, $id, $action, $data=null ) {
@@ -3006,6 +3012,20 @@ function get_control_value($group_set, $name) {
 //        . ' WHERE company_id   =  ' . get_session( 'control_company', COMPANY_ID )
           . ' WHERE group_set  = "' . $group_set . '"'
           . '   AND name = "' . $name . '"'
+          ;
+     $db  = Zend_Registry::get( 'db' );
+     return $db->fetchOne( $sql );
+}
+
+# -------------------------------------------------------------------------
+#    get control key
+# -------------------------------------------------------------------------
+function get_control_key($group_set, $name) {
+     $sql = 'SELECT value'
+          . '  FROM Controls'
+//        . ' WHERE company_id   =  ' . get_session( 'control_company', COMPANY_ID )
+          . ' WHERE group_set  = "' . encrypt_decrypt($group_set) . '"'
+          . '   AND name = "' . encrypt_decrypt($name) . '"'
           ;
      $db  = Zend_Registry::get( 'db' );
      return $db->fetchOne( $sql );
@@ -3277,20 +3297,26 @@ function email_by_event($user_id, $contact_id, $template_name, $email_from, $add
 	$subject	= revert_entities($template['template_subject'	]);
 	$body		= revert_entities($template['template_body'		]);
 
-	$names    = explode(';', get_control_value('System Keys', $email_from));
+	$names		= explode(';', get_control_value('System Keys', $email_from));
 	$from_name  = $names[0];
 	$from_email = $names[1];
+
+	$server_name= SERVER_NAME;
+	if (strpos($server_name, '8100') > 0) {
+		$server_name = 'http://' . get_control_value('Servers Host', SERVER_NUMBER) . ':8100/';
+	}
 
 	$search   = array();
 	$replace  = array();
 	$search[] = '+'               ; $replace[] = ' ';
-	$search[] = '{SERVER_NAME}'   ; $replace[] = SERVER_NAME;
+	$search[] = '{SERVER_NAME}'   ; $replace[] = $server_name;
+	$search[] = '{COMPANY_LOGO}'  ; $replace[] = COMPANY_LOGO;
 	$search[] = '{SUPPORT_NAME}'  ; $replace[] = $from_name;
 	$search[] = '{USER_EMAIL}'    ; $replace[] = $contact	['email'	];
 	$search[] = '{USER_NAME}'     ; $replace[] = $contact	['full_name'];
 	$search[] = '{USER_KEY}'      ; $replace[] = $jky_user	['user_key'	];
 
-	$subject  = str_replace($search, $replace, $subject);
+	$subject  = str_replace($search, $replace, $subject	);
 	$body     = str_replace($search, $replace, $body	);
 /*
      $data = array();
@@ -3311,7 +3337,8 @@ function email_by_event($user_id, $contact_id, $template_name, $email_from, $add
      $Emails = new $model();
      $Emails->insert( $data );
 */
-	return email_now($from_email, $from_name, $to_email, $to_name, $cc_email, $cc_name, $subject, $body);
+	$return = email_now($from_email, $from_name, $to_email, $to_name, $cc_email, $cc_name, $subject, $body);
+	return $to_email;
 }
 
 function email_now($from_email, $from_name, $to_email, $to_name, $cc_email, $cc_name, $subject, $body, $photos=null) {
@@ -3334,7 +3361,7 @@ function email_now($from_email, $from_name, $to_email, $to_name, $cc_email, $cc_
 			$Mail->addAttachment($at);
 		}
 	}
-log_sql( null, 'email_now', var_dump($Mail, true));
+//log_sql( null, 'email_now', print_r($Mail, true));
 
 	try {
 		 $smtp = get_control_value('System Keys', 'SMTP');
@@ -3351,24 +3378,26 @@ log_sql( null, 'email_now', var_dump($Mail, true));
 					, 'ssl'        => $names[3]
 					, 'port'       => $names[4]
 					);
-			}else{
+			}else
+			if (count($names) == 3) {
 				$config = array
 					( 'auth'		=> 'login'
 					, 'username'	=> $names[1]
 					, 'password'	=> $names[2]
 					);
 			}
-			if ($names[1] == '') {
-				$transport = new Zend_Mail_Transport_Smtp($names[0]);
-			}else{
-				$transport = new Zend_Mail_Transport_Smtp($names[0], $config);
-			}
-			$Mail->send( $transport );
-		}
-	} catch( Exception $exp ) {
-		 return $exp->getMessage();
-	}
 
+			if (isset($config)) {
+				$transport = new Zend_Mail_Transport_Smtp($names[0], $config);
+			}else{
+				$transport = new Zend_Mail_Transport_Smtp($names[0]);
+			}
+			$Mail->send($transport);
+		}
+	} catch(Exception $exp) {
+		log_sql( null, 'email_now', $exp->getMessage());
+		return $exp->getMessage();
+	}
 	return '';
 }
 
@@ -3789,6 +3818,16 @@ function set_permissions( $user_role ) {
      $db  = Zend_Registry::get( 'db' );
      $permissions = $db->fetchAll( $sql );
      set_session( 'permissions', $permissions );
+}
+
+function set_valid_days($date) {
+	$control_id		= COMPANY_ID;
+	$control_pref	= encrypt_decrypt('Bwpagca');
+	$control_date	= get_control_key('Glec}t:Pydm', 'Qmf~j|:_}i{');
+	$control_key	= get_control_key('Glec}t:Pydm', 'Vlee}9Q~e' );
+	$valid_key		= encrypt_hash($control_pref . 'E' . $control_id . $control_date);
+	$valid_days		= ($valid_key == $control_key) ? difference_in_days($date, $control_date) : -1;
+	set_session('valid_days', $valid_days);
 }
 
 function get_user_action( $user_resource ) {

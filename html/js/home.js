@@ -12,7 +12,8 @@ $(function() {
 	JKY.set_copyright	(JKY.Session.get_value('copyright'		));
 //	JKY.set_contact_us	(JKY.Session.get_value('contact_us'		));
 //	JKY.set_buttons_control([], JKY.Session.get_value('language'), JKY.Session.get_value('languages'));
-	JKY.set_all_events_home(jky_program);
+	JKY.set_all_events_home();
+	JKY.set_initial_values_home();
 
 	if (JKY.Session.has('full_name')) {
 //		JKY.set_initial_values_home(jky_program);
@@ -25,8 +26,8 @@ $(function() {
 /**
  *	set all events (run only once per load)
  */
-JKY.set_all_events_home = function(jky_program) {
-	if (JKY.is_loaded('jky-loaded')) {
+JKY.set_all_events_home = function() {
+	if (JKY.is_loaded('jky')) {
 		JKY.display_trace('set_all_events - '  + jky_program);
 		JKY.set_html('jky-loaded', '<scr' + 'ipt src="js/translations/' + JKY.Session.get_value('locale') + '.js"></scr' + 'ipt>');
 		JKY.t_tag	('jky-wrapper', 'span');
@@ -116,9 +117,10 @@ JKY.set_all_events_home = function(jky_program) {
 /**
  *	set initial values (run only once per load)
  */
-JKY.set_initial_values_home = function(jky_program) {
+JKY.set_initial_values_home = function() {
 	if (JKY.is_loaded('jky')) {
-JKY.display_trace('set_initial_values - '  + jky_program);
+		JKY.display_trace('set_initial_values - '  + jky_program);
+		JKY.set_html('jky-version', JKY.Session.get_value('version') + '-' + JKY.Session.get_value('control_company'));
 //		JKY.set_menu_active('jky-menu-admin');
 /*
 		$('#jky-home'				).click (function() {JKY.process_home		()		;});
@@ -127,7 +129,6 @@ JKY.display_trace('set_initial_values - '  + jky_program);
 		$('#jky-control-language'	).change(function() {JKY.change_language	(this)	;});
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));
 */
-		JKY.show('jky-side-bar');
 	}else{
 		setTimeout(function() {JKY.set_initial_values_home();}, 100);
 	}
@@ -219,12 +220,26 @@ JKY.process_start_page = function() {
 		];
 	JKY.set_buttons_menus(my_menus);
 	JKY.set_user_info(JKY.Session.get_value('full_name'));
+
 	var my_start_page = JKY.Session.get_value('start_page');
+//	JKY.load_html('jky-app-body', my_start_page + '.html');
 	JKY.show('jky-side-bar');
+	var my_id = $('#jky-side-bar');
+	$('#jky-collapsible-icon').removeClass('icon-step-forward').addClass('icon-step-backward');
+	my_id.css('display' , 'table-cell');
+	my_id.css('margin-left' , '0px');
 	JKY.process_menu('jky-menu-' + my_start_page);
-//	JKY.process_action(my_start_page);
-//	JKY.process_action('ftps');
-//	JKY.process_action('suppliers');
+
+	var my_overlay_page	= JKY.Session.get_value('overlay_page');
+	if (my_overlay_page == 'reset') {
+//		setTimeout(function()	{JKY.process_reset();}, 1000);
+		JKY.process_reset();
+		var my_data =
+			{ method	: 'set_session'
+			, action	: 'reset'
+			};
+		JKY.ajax(false, my_data);
+	}
 }
 
 /** ------------------------------------------------------------------------ **/

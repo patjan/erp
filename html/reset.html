@@ -1,24 +1,26 @@
-<div id='jky-profile' class='modal hide fade in'>
+<div id='jky-reset' class='modal hide fade in'>
 	<div class='modal-header'>
-		<a class='close' data-dismiss='modal'>X</a>
-		<h3><span>Your Profile</span></h3>
+		<span>Reset your Password</span>
 	</div>
+
 	<div class='modal-body'>
-		 <div class='jky-form-line'><label><span>         User Name</span>:</label><input type='text'		id='jky-profile-user-name'	placeholder='Enter your user name'			value=''></div>
-		 <div class='jky-form-line'><label><span>        First Name</span>:</label><input type='text'		id='jky-profile-first-name'	placeholder='Enter your first name'			value=''></div>
-		 <div class='jky-form-line'><label><span>         Last Name</span>:</label><input type='text'		id='jky-profile-last-name'	placeholder='Enter your last name'			value=''></div>
-		 <div class='jky-form-line'><label><span>             Email</span>:</label><input type='text'		id='jky-profile-email'		placeholder='Enter your email'				value=''></div>
-		 <br />
-		 <div class='jky-form-line'><label><span>  Current Password</span>:</label><input type='password'	id='jky-current-password'	placeholder='Enter your current password'	value=''></div>
-		 <div class='jky-form-line'><label><span>      New Password</span>:</label><input type='password'	id='jky-new-password'		placeholder='Enter your new password'		value=''></div>
-		 <div class='jky-form-line'><label><span>  Confirm Password</span>:</label><input type='password'	id='jky-confirm-password'	placeholder='Enter your password again'		value=''></div>
+		<label><span>      New Password</span>:</label>
+		<input type='password'	id='jky-new-password'		class='jky-form-normal' placeholder='Enter your new password'		value=''>
+		<label><span>  Confirm Password</span>:</label>
+		<input type='password'	id='jky-confirm-password'	class='jky-form-normal' placeholder='Enter your password again'		value=''>
+		<br>
+		<br>
+		<span>If you do not want to change your current password</span>,
+		<span>just click on this button</span>
+		<a id='jky-button-log-mini' class='btn btn-mini' data-dismiss='modal'><span>Cancel</span></a>.
 	</div>
+
 	<div class='modal-footer'>
-			  <button id='jky-profile-save'		class='btn btn-success'				type='button'><span>Save	</span></button>
-		&nbsp;<button id='jky-profile-cancel'	class='btn' data-dismiss='modal'	type='button'><span>Cancel	</span></button>
+		<button id='jky-button-save'	class='btn btn-success disabled'	type='button'><span>Save	</span></button>
+		<button id='jky-button-cancel'	class='btn' data-dismiss='modal'	type='button'><span>Cancel	</span></button>
 	</div>
 </div>
 
-<div id='jky-profile-loaded'></div>
+<div id='jky-reset-loaded'></div>
 
-<script src='js/profile.js'></script>
+<script src='js/reset.js'></script>

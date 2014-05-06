@@ -112,14 +112,14 @@ function build_db($the_server) {
 							);
 						break;
 		 case('2')	:	$params = array
-							('host'		=> '201.81.20.19'
+							('host'		=> '186.220.62.214'
 							,'username'	=> 'root'
 							,'password'	=> 'brazil18781'
 							,'dbname'	=> 'erp'
 							);
 						break;
 		 case('8')	:	$params = array
-							('host'		=> '172.248.88.107'
+							('host'		=> '76.170.81.230'
 							,'username'	=> 'root'
 							,'password'	=> 'brazil18781'
 							,'dbname'	=> 'erp'
@@ -129,7 +129,7 @@ function build_db($the_server) {
 							('host'		=> 'external-db.s122232.gridserver.com'
 							,'username'	=> 'db122232'
 							,'password'	=> 'brazil.18781'
-							,'dbname'	=> 'db122232_tecno'
+							,'dbname'	=> 'db122232_erp'
 							);
 						break;
 	}
