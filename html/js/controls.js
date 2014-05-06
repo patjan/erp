@@ -29,6 +29,7 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
+	$('#jky-save-remarks').click (function()	{JKY.save_remarks();});
 };
 
 /**
@@ -63,6 +64,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-sequence'			, the_row.sequence		);
 	JKY.set_value	('jky-name'				, the_row.name			);
 	JKY.set_value	('jky-value'			, the_row.value			);
+	JKY.set_value	('jky-remarks'			, JKY.row.remarks		);
 
 	var my_select = JKY.App.get('select');
 	if (my_select == 'Root' && the_row.name == 'Root') {
@@ -86,6 +88,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-sequence'			, 50);
 	JKY.set_value	('jky-name'				, '');
 	JKY.set_value	('jky-value'			, '');
+	JKY.set_value	('jky-remarks'			, '');
 };
 
 /**
@@ -132,3 +135,21 @@ JKY.refresh_select = function() {
 		JKY.set_html('jky-app-select', JKY.set_controls('Root', my_select));
 	}
 };
+
+/* -------------------------------------------------------------------------- */
+JKY.save_remarks = function() {
+	var my_set	=   'remarks = \'' + JKY.get_value('jky-remarks') + '\'';
+	var my_data =
+		{ method: 'update'
+		, table : 'Controls'
+		, set	:  my_set
+		, where : 'Controls.id = ' + JKY.row.id
+		};
+	JKY.ajax(true, my_data, JKY.save_remarks_success);
+};
+
+JKY.save_remarks_success = function(response) {
+	JKY.display_message('Remarks saved, ' + response.message);
+	JKY.row = JKY.get_row('Controls', JKY.row.id);
+};
+

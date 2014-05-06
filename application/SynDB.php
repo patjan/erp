@@ -219,14 +219,14 @@ function get_db_params($the_server_number) {
 							);
 						break;
 		 case('2')	:	$my_params = array
-							('host'		=> '201.81.20.19'
+							('host'		=> '186.220.62.214'
 							,'username'	=> 'root'
 							,'password'	=> 'brazil18781'
 							,'dbname'	=> 'erp'
 							);
 						break;
 		 case('8')	:	$my_params = array
-							('host'		=> '172.248.88.107'
+							('host'		=> '76.170.81.230'
 							,'username'	=> 'db122232'
 							,'password'	=> 'brazil.18781'
 							,'dbname'	=> 'erp'
@@ -236,7 +236,7 @@ function get_db_params($the_server_number) {
 							('host'		=> 'external-db.s122232.gridserver.com'
 							,'username'	=> 'db122232'
 							,'password'	=> 'brazil.18781'
-							,'dbname'	=> 'db122232_tecno'
+							,'dbname'	=> 'db122232_erp'
 							);
 						break;
 	}

@@ -97,7 +97,6 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_date	('jky-purchase-date'	, JKY.out_date	(the_row.purchase_date	));
 	JKY.set_date	('jky-repair-date'		, JKY.out_date	(the_row.repair_date	));
 	JKY.set_date	('jky-return-date'		, JKY.out_date	(the_row.return_date	));
-
 	JKY.set_value	('jky-remarks'			,				 JKY.row.remarks		);
 	JKY.display_cylinders();
 };
@@ -137,7 +136,6 @@ JKY.get_form_set = function() {
 		+         ', density=\'' + JKY.get_value	('jky-density'			) + '\''
 		+          ', inputs=\'' + JKY.get_value	('jky-inputs'			) + '\''
 		+	    ', lane_type=\'' + JKY.get_value	('jky-lane-type'		) + '\''
-		+         ', remarks=\'' + JKY.get_value	('jky-remarks'			) + '\''
 		;
 	my_set += ', purchase_date = ' + JKY.inp_date('jky-purchase-date'	);
 	my_set +=   ', repair_date = ' + JKY.inp_date('jky-repair-date'		);

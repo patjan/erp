@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS Controls
 , group_set			VARCHAR(32)			DEFAULT 'Root'
 , name				VARCHAR(255)		DEFAULT NULL		/* unique by group_set */
 , value				TEXT				DEFAULT NULL
+, remarks			TEXT				DEFAULT	NULL
 
 , PRIMARY KEY(id)
 , UNIQUE(group_set, name)
@@ -111,3 +112,5 @@ INSERT INTO `controls` (`id`, `created_by`, `created_at`, `updated_by`, `updated
 (1000000247, 1000000001, '2012-08-17 19:36:19', NULL, NULL, 'active', 1000000001, 'Summary', 0, 'Count by School Year', ''),
 (1000000245, 1000000001, '2012-08-15 13:50:03', NULL, NULL, 'active', 1000000001, 'Summary', 0, 'Tshirt Size', ''),
 (1000000246, 1000000001, '2012-08-15 13:51:00', NULL, NULL, 'active', 1000000001, 'User Resources', 50, 'Summary', '');
+
+ALTER TABLE Controls	ADD		remarks				TEXT		 	DEFAULT NULL	AFTER value;

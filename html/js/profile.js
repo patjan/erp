@@ -9,8 +9,8 @@ var jky_focus		= 'jky-profile-user-name';
 /**
  *	set all events (run only once per load)
  */
-JKY.set_all_events_profile = function(jky_program) {
-	JKY.display_trace('set_all_events_profile');
+JKY.set_all_events_profile = function() {
+	JKY.display_trace('set_all_events - ' + jky_program);
 	if (JKY.is_loaded('jky-profile')) {
 //		$('#jky-profile-user-name'	).change(function() {JKY.change_user_name		(this)	;});
 //		$('#jky-confirm-password'	).change(function() {JKY.set_profile_save		(this)	;});
@@ -29,8 +29,8 @@ JKY.set_all_events_profile = function(jky_program) {
 /**
  *	set initial values (run only once per load)
  */
-JKY.set_initial_values_profile = function(jky_program) {
-	JKY.display_trace('set_initial_values_profile');
+JKY.set_initial_values_profile = function() {
+	JKY.display_trace('set_initial_values - ' + jky_program);
 	if (JKY.is_loaded('jky-profile')) {
 		var my_user_name = JKY.Session.get_value('user_name' );
 		var my_contact_id= JKY.Session.get_value('contact_id');
@@ -40,6 +40,7 @@ JKY.set_initial_values_profile = function(jky_program) {
 		JKY.set_value('jky-profile-last-name'	, my_user.last_name	);
 		JKY.set_value('jky-profile-email'		, my_user.email		);
 		JKY.t_tag	 ('jky-profile', 'span');
+		JKY.t_input	 ('jky-profile', 'placeholder');
 		JKY.set_focus(jky_focus);
 	}else{
 		setTimeout(function() {JKY.set_initial_values_profile();}, 100);

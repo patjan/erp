@@ -109,8 +109,8 @@ private function reset($user_key) {
 		set_session('overlay_page', 'reset');
 	}else{
 		$error .= BR . 'User Key is invalid';
-		$this->_helper->viewRenderer->setNoRender();
-	}
+		$this->render('invalid');
+	 }
 }
 
 private function set_user_session($user_id) {

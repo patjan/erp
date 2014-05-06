@@ -259,7 +259,9 @@ JKY.t = function(the_text, the_option) {
 	var my_result = JKY.translations[the_text];
 	if (typeof my_result == 'undefined') {
 
-if (JKY.Session.get_value('user_name') == 'patjan') {
+if (JKY.Session.get_value('user_name') == 'patjan'
+&&  jky_program != 'Profile'
+&&  jky_program != 'Reset') {
 	alert('JKY.t the_text: ' + the_text);
 }
 
@@ -1128,7 +1130,8 @@ JKY.show = function(id_name){
 JKY.hide = function(id_name){
 	if (id_name == 'jky-loading') {
 //		the delay of 1 sec is just ilusion for the user to perceive the end of loading
-		setTimeout(function()	{$('#jky-loading').hide();}, 1000);		//	for Colors 2000
+//		setTimeout(function()	{$('#jky-loading').hide();}, 1000);		//	for Colors 2000
+		setTimeout(function()	{$('#jky-loading').hide();}, 100);
 	}else{
 		$('#' + id_name).hide();
 	}
@@ -2131,6 +2134,7 @@ JKY.set_table_options = function(table, field, selected, initial) {
 JKY.ajax = function(async, data, function_success, function_error) {
 	var my_object = {};
 	my_object.data = JSON.stringify(data);
+	JKY.show('jky-loading');
 	$.ajax(
 		{ url		: JKY.AJAX_URL
 		, data		: my_object
@@ -2138,6 +2142,7 @@ JKY.ajax = function(async, data, function_success, function_error) {
 		, dataType	: 'json'
 		, async		: async
 		, success	: function(response) {
+				JKY.hide('jky-loading');
 				if (response.status == 'ok') {
 					if (typeof function_success != 'undefined') {
 						function_success(response);
@@ -2156,11 +2161,12 @@ JKY.ajax = function(async, data, function_success, function_error) {
 						if (my_message.substr(0, 4) == '<br>') {
 							my_message = my_message.substr(4);
 						}
-						JKY.display_message(JKY.t(my_message)	);
+						JKY.display_message(JKY.t(my_message));
 					}
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
+				JKY.hide('jky-loading');
 				if (typeof function_error != 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
@@ -2292,8 +2298,21 @@ JKY.process_profile = function() {
 	}else{
 		$('#jky-new-layer').load('../profile.html');
 		JKY.set_all_events_profile();
-		JKY.set_initial_values_profile();
 		JKY.display_profile();
+	}
+}
+
+/**
+ * process reset
+ */
+JKY.process_reset = function() {
+	JKY.display_trace('process_reset');
+	if (JKY.is_loaded('jky-reset')) {
+		JKY.display_reset();
+	}else{
+		$('#jky-new-layer').load('../reset.html');
+		JKY.set_all_events_reset();
+		JKY.display_reset();
 	}
 }
 
@@ -2611,9 +2630,9 @@ JKY.var_dump = function(the_name, the_object) {
 	var my_output = the_name + '\n';
 	for( var i in the_object) {
 		var my_object = the_object[i];
-		my_output += i + ': '; 
+		my_output += i + ': ';
 		my_output += dump_object(my_object);
-		my_output += "\n"; 
+		my_output += "\n";
 	}
 	var my_pre = document.createElement('pre');
 	my_pre.innerHTML = my_output;

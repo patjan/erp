@@ -2,14 +2,10 @@
 	<thead>
 		<tr>
 			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-td-name-s'	><span>Updated By		</span></th>
-			<th class='jky-td-datetime'	><span>Updated At		</span></th>
 			<th class='jky-td-name-s'	><span>Template Name	</span></th>
 			<th class='jky-td-name-s'	><span>Template Type	</span></th>
-			<th class='jky-td-name-l'	><span>Template Subject	</span></th>
-			<th class='jky-td-name-l'	><span>Template Body	</span></th>
-			<th class='jky-td-name-l'	><span>Template SQL		</span></th>
-			<th class='jky-td-name-l'	><span>Description		</span></th>
+			<th class='jky-td-name-w'	><span>Template Subject	</span></th>
+			<th class='jky-td-status'	><span>Status			</span></th>
 		</tr>
 	</thead>
 
@@ -19,52 +15,45 @@
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'>
+			<button id='jky-action-change'		class='btn' type='button' title="Click here to change the status"		><span>Change Status			</span></button>
 		</div>
 		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button disabled class='btn jky-status' type='button'><span id='jky-status'></span></button>
 		</div>
+		<div class='jky-clear'></div>
 	</div>
-	<div class='jky-clear'></div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Updated By</span>:</div>
-				<input id='jky-updated-by' class='jky-form-name' placeholder='Name' />
-			</div>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Updated At</span>:</div>
-				<div id="jky-updated-date"	class="input-append date">
-					<input id='jky-form-date' type="text" />
-					<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
-				</div>
-			</div>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Template Name</span>:</div>
-				<input id='jky-template-name' class='jky-form-name' placeholder='Name' />
+				<div class='jky-form-label'><span>Updated</span>:</div>
+				<input disabled id='jky-updated-at'		class='jky-form-date'	/>
+				<input disabled id='jky-updated-name'	class='jky-form-by'		/>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Template Type</span>:</div>
-				<select id='jky-template-type'></select>
+				<select changeable id='jky-template-type'></select>
 			</div>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Status</span>:</div>
-				<select id='jky-status'></select>
+				<div class='jky-form-label'><span>Template Name</span>:</div>
+				<input changeable id='jky-template-name' class='jky-form-name' placeholder='Template Name' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Template Subject</span>:</div>
-				<input id='jky-template-subject' class='jky-form-name' placeholder='Subject' />
+				<input changeable id='jky-template-subject' class='jky-form-name' placeholder='Template Subject' />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Template Body</span>:</div>
-				<input id='jky-template-body' class='jky-form-name' placeholder='Body' />
+				<textarea changeable id='jky-template-body' class='jky-form-text' placeholder='Template Body'></textarea>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Template SQL</span>:</div>
-				<input id='jky-template-sql' class='jky-form-name' placeholder='SQL' />
+				<textarea changeable id='jky-template-sql' class='jky-form-text' placeholder='Template SQL'></textarea>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Description</span>:</div>
-				<textarea id='jky-description' class='jky-form-text jky-form-name' placeholder='Description'></textarea>
+				<textarea changeable id='jky-description' class='jky-form-text' placeholder='Description'></textarea>
 			</div>
 		</div>
 		<div class='jky-clear'></div>

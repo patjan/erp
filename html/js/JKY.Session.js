@@ -53,10 +53,12 @@ JKY.Session = function() {
 	};
 
 	function my_get_action(the_resource) {
-		for(var i=0, max=my_session.permissions.length; i<max; i++) {
-			var my_permission = my_session.permissions[i];
-			if (my_permission.user_resource == the_resource) {
-				return my_permission.user_action;
+		if (my_session.permissions) {
+			for(var i=0, max=my_session.permissions.length; i<max; i++) {
+				var my_permission = my_session.permissions[i];
+				if (my_permission.user_resource == the_resource) {
+					return my_permission.user_action;
+				}
 			}
 		}
 		return '';

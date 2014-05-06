@@ -33,7 +33,7 @@ public function init() {
 //	set_session('full_name' , 'Pat Jan'  );
 //	set_session('user_id'	, 4 );
 
-//	*************************************** Export rquired Support
+//	*************************************** Export required Support
 	$data = json_decode(get_request('data'), true);
 	$method = $data['method'];
 	if ($method == 'get_columns'
@@ -41,6 +41,7 @@ public function init() {
 		set_permissions('Support');
 	}
 
+	if (!is_session('version'			))		set_session('version'			, VERSION				);
 	if (!is_session('environment'		))		set_session('environment'		, ENVIRONMENT			);
 	if (!is_session('control_company'	))		set_session('control_company'	, COMPANY_ID			);
 	if (!is_session('user_time'			))		set_session('user_time'			, date( 'Y-m-d H:i:s')	);
@@ -69,7 +70,7 @@ public function indexAction() {
 		switch ($method) {
 			case 'set_language'		: $this->set_language	(); return;
 			case 'get_language'		: $this->get_language	(); return;
-			case 'set_session'		: $this->set_session	(); return;
+			case 'set_session'		: $this->set_session	($data); return;
 			case 'get_session'		: $this->get_session	(); return;
 			case 'get_options'		: $this->get_options	($data); return;
 			case 'get_users'		: $this->get_users		(); return;
@@ -345,20 +346,21 @@ private function get_id($data) {
 			. ' WHERE ' . $where
 			;
 	}else{
-	$where = $this->get_security($table, $where);
-	$names = explode('=', $where);
-	if (trim($names[0]) == 'user_name') {
-		$sql= 'SELECT contact_id as id'
-			. '  FROM JKY_Users'
-			. ' WHERE ' . $where
+		$where = $this->get_security($table, $where);
+		$names = explode('=', $where);
+		if (trim($names[0]) == 'user_name') {
+			$sql= 'SELECT contact_id as id'
+				. '  FROM JKY_Users'
+				. ' WHERE ' . $where
+				;
+		}else{
+			$sql= 'SELECT ' . $table . '.id'
+				. '  FROM ' . $table . $this->get_left_join($table)
+				. ' WHERE ' . $where
+				;
 			;
-	}else{
-		$sql= 'SELECT ' . $table . '.id'
-			. '  FROM ' . $table . $this->get_left_join($table)
-			. ' WHERE ' . $where
-			;
-		;
-	}}
+		}
+	}
 
 $this->log_sql( $table, 'get_id', $sql );
 	$db = Zend_Registry::get('db');
@@ -606,7 +608,7 @@ private function get_index($data) {
 			. ' GROUP BY Boxes.checkin_location'
 			. ' ORDER BY Boxes.checkin_location'
 			;
-	}else{
+	}else
 	if ($table == 'PieceLocations') {
 		$sql= 'SELECT Pieces.checkin_location	AS location'
 			. '	 , MIN(Pieces.checkin_at)		AS checkin_at'
@@ -619,7 +621,7 @@ private function get_index($data) {
 			. ' GROUP BY Pieces.checkin_location'
 			. ' ORDER BY Pieces.checkin_location'
 			;
-	}else{
+	}else
 	if ($table == 'FTP_Sets') {
 		$sql= 'SELECT Configs.id as setting, Configs.name, FTP_Sets.id, FTP_Sets.value'
 			. '  FROM Configs'
@@ -628,7 +630,7 @@ private function get_index($data) {
 			. ' WHERE Configs.group_set = "Settings"'
 			. ' ORDER BY Configs.sequence'
 			;
-	}else{
+	}else
 	if ($table == 'Purchases' and $group_by != '') {
 		if ($where    != '')	{$where		= ' WHERE '    . $where   ;}
 		if ($order_by != '')	{$order_by	= ' ORDER BY ' . $order_by;}
@@ -643,7 +645,7 @@ private function get_index($data) {
 			. $order_by
 			. $limit
 			;
-	}else{
+	}else
 	if ($table == 'Incomings' and $group_by != '') {
 		if ($where    != '')	{$where		= ' WHERE '    . $where   ;}
 		if ($order_by != '')	{$order_by	= ' ORDER BY ' . $order_by;}
@@ -670,7 +672,7 @@ private function get_index($data) {
 			. $order_by
 			. $limit
 			;
-	}}}}}
+	}
 $this->log_sql($table, 'get_index', $sql);
      $db   = Zend_Registry::get('db');
      $rows = $db->fetchAll($sql);
@@ -687,7 +689,7 @@ $this->log_sql($table, 'get_index', $sql);
 	$return = array();
 	$return['status'] = 'ok';
 	$return['rows'	] = $rows;
-	$this->echo_json($return);
+	echo json_encode($return);
 }
 
 private function set_specific($table, $specific, $specific_id) {
@@ -780,7 +782,7 @@ private function set_select($table, $specific, $select) {
 		case 'TDyers'			: return ' AND         TDyers.status		= "' . $select . '"';
 		case 'TDyerColors'		: return ' AND    TDyerColors.parent_id		=  ' . $select;
 		case 'TDyerThreads'		: return ' AND   TDyerThreads.parent_id		=  ' . $select;
-		case 'Templates'		: return ' AND      Templates.template_type	= "' . $select . '"';
+		case 'Templates'		: return ' AND      Templates.status		= "' . $select . '"';
 		case 'ThreadForecast'	: return ' AND        Threads.thread_group	= "' . $select . '"';
 		case 'Threads'			: return ' AND        Threads.thread_group	= "' . $select . '"';
 		case 'Tickets'			: return ' AND        Tickets.status		= "' . $select . '"';
@@ -943,7 +945,8 @@ private function set_left_joins($table) {
 	$return = '';
 	if ($table == 'Categories'		)	$return = '  LEFT JOIN  Categories AS Parent	ON    Parent.id	=	   Categories.parent_id';
 	if ($table == 'Companies'		)	$return = '  LEFT JOIN    Contacts AS Contact	ON   Contact.id	=		Companies.contact_id';
-	if ($table == 'Templates'		)	$return = '  LEFT JOIN    Contacts AS Updated	ON   Updated.id	=		Templates.updated_by';
+	if ($table == 'Templates'		)	$return = '  LEFT JOIN   JKY_Users AS User		ON      User.id =		Templates.updated_by'
+												. '  LEFT JOIN    Contacts AS Updated	ON   Updated.id	=		     User.contact_id';
 	if ($table == 'Tickets'			)	$return = '  LEFT JOIN   JKY_Users AS User_Op	ON   User_Op.id	=		  Tickets.opened_by'
 												. '  LEFT JOIN   JKY_Users AS User_As	ON   User_As.id	=		  Tickets.assigned_to'
 												. '  LEFT JOIN   JKY_Users AS User_Cl	ON   User_Cl.id	=		  Tickets.closed_by'
@@ -1090,13 +1093,12 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND Categories.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'parent_name') {
-					if ($value == '"%null%"') {
-						return ' AND Categories.parent_id  IS NULL';
-					}else{
-						return ' AND     Parent.category   LIKE ' . $value;
-					}
+			}else
+			if ($name == 'parent_name') {
+				if ($value == '"%null%"') {
+					return ' AND Categories.parent_id  IS NULL';
+				}else{
+					return ' AND     Parent.category   LIKE ' . $value;
 				}
 			}
 		}
@@ -1130,13 +1132,12 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND Companies.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'contact_name') {
-					if ($value == '"%null%"') {
-						return ' AND Companies.contact_id  IS NULL';
-					}else{
-						return ' AND   Contact.full_name   LIKE ' . $value;
-					}
+			}else
+			if ($name == 'contact_name') {
+				if ($value == '"%null%"') {
+					return ' AND Companies.contact_id  IS NULL';
+				}else{
+					return ' AND   Contact.full_name   LIKE ' . $value;
 				}
 			}
 		}
@@ -1239,13 +1240,12 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND Templates.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'updated_by') {
-					if ($value == '"%null%"') {
-						return ' AND Templates.updated_by  IS NULL';
-					}else{
-						return ' AND   Updated.full_name   LIKE ' . $value;
-					}
+			}else
+			if ($name == 'updated_by') {
+				if ($value == '"%null%"') {
+					return ' AND Templates.updated_by  IS NULL';
+				}else{
+					return ' AND   Updated.full_name   LIKE ' . $value;
 				}
 			}
 		}
@@ -1262,13 +1262,12 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND Tickets.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'opened_by') {
-					if ($value == '"%null%"') {
-						return ' AND  Tickets.opened_by    IS NULL';
-					}else{
-						return ' AND   Opened.full_name    LIKE ' . $value;
-					}
+			}else
+			if ($name == 'opened_by') {
+				if ($value == '"%null%"') {
+					return ' AND  Tickets.opened_by    IS NULL';
+				}else{
+					return ' AND   Opened.full_name    LIKE ' . $value;
 				}
 			}
 		}
@@ -1301,13 +1300,12 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND Contacts.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'company_name') {
-					if ($value == '"%null%"') {
-						return ' AND Contacts.company_id IS NULL';
-					}else{
-						return ' AND Companies.full_name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'company_name') {
+				if ($value == '"%null%"') {
+					return ' AND Contacts.company_id IS NULL';
+				}else{
+					return ' AND Companies.full_name LIKE ' . $value;
 				}
 			}
 		}
@@ -1333,22 +1331,21 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND FTPs.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'product_name') {
-					if ($value == '"%null%"') {
-						return ' AND FTPs.product_id IS NULL';
-					}else{
-						return ' AND Products.product_name LIKE ' . $value;
-					}
-			}else{
-				if ($name == 'machine_name') {
-					if ($value == '"%null%"') {
-						return ' AND FTPs.machine_id IS NULL';
-					}else{
-						return ' AND Machines.name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'product_name') {
+				if ($value == '"%null%"') {
+					return ' AND FTPs.product_id IS NULL';
+				}else{
+					return ' AND Products.product_name LIKE ' . $value;
 				}
-			}}
+			}else
+			if ($name == 'machine_name') {
+				if ($value == '"%null%"') {
+					return ' AND FTPs.machine_id IS NULL';
+				}else{
+					return ' AND Machines.name LIKE ' . $value;
+				}
+			}
 		}
 
 		if ($table == 'LoadOuts') {
@@ -1362,21 +1359,26 @@ private function set_where($table, $filter) {
 			or	$name == 'returned_at'
 			or	$name == 'returned_pieces'
 			or	$name == 'returned_weight') {
-				if ($name == 'dyer_name') {
-					if ($value == '"%null%"') {
-						return ' AND LoadOuts.dyer_id IS NULL';
-					}else{
-						return ' AND Dyer.nick_name LIKE ' . $value;
-					}
+				if ($value == '"%null%"') {
+					return ' AND LoadOuts.' . $name . ' IS NULL ';
+				}else{
+					return ' AND LoadOuts.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'color_name') {
-					if ($value == '"%null%"') {
-						return ' AND LoadOuts.color_id IS NULL';
-					}else{
-						return ' AND Color.color_name LIKE ' . $value;
-					}
-			}}
+			}else
+			if ($name == 'dyer_name') {
+				if ($value == '"%null%"') {
+					return ' AND LoadOuts.dyer_id IS NULL';
+				}else{
+					return ' AND Dyer.nick_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'color_name') {
+				if ($value == '"%null%"') {
+					return ' AND LoadOuts.color_id IS NULL';
+				}else{
+					return ' AND Color.color_name LIKE ' . $value;
+				}
+			}
 		}
 
 		if ($table ==  'Machines') {
@@ -1437,42 +1439,47 @@ private function set_where($table, $filter) {
 			or	$name == 'ordered_pieces'
 			or	$name == 'rejected_pieces'
 			or	$name == 'produced_pieces') {
-				if ($name == 'customer_name') {
-					if ($value == '"%null%"') {
-						return ' AND Orders.customer_id IS NULL';
-					}else{
-						return ' AND Customer.nick_name LIKE ' . $value;
-					}
-			}else{
-				if ($name == 'product_name') {
-					if ($value == '"%null%"') {
-						return ' AND Orders.product_id IS NULL';
-					}else{
-						return ' AND Product.product_name LIKE ' . $value;
-					}
-			}else{
-				if ($name == 'ftp_number') {
-					if ($value == '"%null%"') {
-						return ' AND Orders.ftp_id IS NULL';
-					}else{
-						return ' AND FTP.ftp_number LIKE ' . $value;
-					}
-			}else{
-				if ($name == 'machine_name') {
-					if ($value == '"%null%"') {
-						return ' AND Orders.machine_id IS NULL';
-					}else{
-						return ' AND Machine.name LIKE ' . $value;
-					}
-			}else{
-				if ($name == 'partner_name') {
-					if ($value == '"%null%"') {
-						return ' AND Orders.partner_id IS NULL';
-					}else{
-						return ' AND Partner.nick_name LIKE ' . $value;
-					}
+				if ($value == '"%null%"') {
+					return ' AND Orders.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Orders.' . $name . ' LIKE ' . $value;
 				}
-			}}}}}
+			}else
+			if ($name == 'customer_name') {
+				if ($value == '"%null%"') {
+					return ' AND Orders.customer_id IS NULL';
+				}else{
+					return ' AND Customer.nick_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'product_name') {
+				if ($value == '"%null%"') {
+					return ' AND Orders.product_id IS NULL';
+				}else{
+					return ' AND Product.product_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'ftp_number') {
+				if ($value == '"%null%"') {
+					return ' AND Orders.ftp_id IS NULL';
+				}else{
+					return ' AND FTP.ftp_number LIKE ' . $value;
+				}
+			}else
+			if ($name == 'machine_name') {
+				if ($value == '"%null%"') {
+					return ' AND Orders.machine_id IS NULL';
+				}else{
+					return ' AND Machine.name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'partner_name') {
+				if ($value == '"%null%"') {
+					return ' AND Orders.partner_id IS NULL';
+				}else{
+					return ' AND Partner.nick_name LIKE ' . $value;
+				}
+			}
 		}
 
 		if ($table == 'Pieces') {
@@ -1492,20 +1499,19 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND Pieces.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'inspected') {
-					if ($value == '"%null%"') {
-						return ' AND Pieces.inspected_by IS NULL';
-					}else{
-						return ' AND Inspected.nick_name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'inspected') {
+				if ($value == '"%null%"') {
+					return ' AND Pieces.inspected_by IS NULL';
+				}else{
+					return ' AND Inspected.nick_name LIKE ' . $value;
 				}
-				if ($name == 'weighed') {
-					if ($value == '"%null%"') {
-						return ' AND Pieces.weighed_by IS NULL';
-					}else{
-						return ' AND Weighed.nick_name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'weighed') {
+				if ($value == '"%null%"') {
+					return ' AND Pieces.weighed_by IS NULL';
+				}else{
+					return ' AND Weighed.nick_name LIKE ' . $value;
 				}
 			}
 		}
@@ -1523,13 +1529,12 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND Purchases.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'supplier_name') {
-					if ($value == '"%null%"') {
-						return ' AND Purchases.supplier_id IS NULL';
-					}else{
-						return ' AND Supplier.nick_name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'supplier_name') {
+				if ($value == '"%null%"') {
+					return ' AND Purchases.supplier_id IS NULL';
+				}else{
+					return ' AND Supplier.nick_name LIKE ' . $value;
 				}
 			}
 		}
@@ -1543,27 +1548,26 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND PurchaseLines.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'purchase') {
-					if ($value == '"%null%"') {
-						return ' AND PurchaseLines.parent_id IS NULL';
-					}else{
-						return ' AND Purchases.number LIKE ' . $value;
-					}
+			}else
+			if ($name == 'purchase') {
+				if ($value == '"%null%"') {
+					return ' AND PurchaseLines.parent_id IS NULL';
+				}else{
+					return ' AND Purchases.number LIKE ' . $value;
 				}
-				if ($name == 'thread') {
-					if ($value == '"%null%"') {
-						return ' AND PurchaseLines.thread_id IS NULL';
-					}else{
-						return ' AND Threads.name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'thread') {
+				if ($value == '"%null%"') {
+					return ' AND PurchaseLines.thread_id IS NULL';
+				}else{
+					return ' AND Threads.name LIKE ' . $value;
 				}
-				if ($name == 'supplier') {
-					if ($value == '"%null%"') {
-						return ' AND Incomings.supplier_id IS NULL';
-					}else{
-						return ' AND Supplier.nick_name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'supplier') {
+				if ($value == '"%null%"') {
+					return ' AND Incomings.supplier_id IS NULL';
+				}else{
+					return ' AND Supplier.nick_name LIKE ' . $value;
 				}
 			}
 		}
@@ -1590,50 +1594,49 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND Quotations.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'customer_name') {
-					if ($value == '"%null%"') {
-						return ' AND Quotations.customer_id IS NULL';
-					}else{
-						return ' AND Contacts.nick_name LIKE ' . $value;
-					}
-			}else{
-				if ($name == 'machine_name') {
-					if ($value == '"%null%"') {
-						return ' AND Quotations.machine_id IS NULL';
-					}else{
-						return ' AND Machines.name LIKE ' . $value;
-					}
-			}else{
-				if ($name == 'dyer_name') {
-					if ($value == '"%null%"') {
-						return ' AND Quotations.dyer_id IS NULL';
-					}else{
-						return ' AND Contacts.name LIKE ' . $value;
-					}
-			}else{
-				if ($name == 'punho_name') {
-					if ($value == '"%null%"') {
-						return ' AND Quotations.punho_id IS NULL';
-					}else{
-						return ' AND Punho.product_name LIKE ' . $value;
-					}
-			}else{
-				if ($name == 'gola_name') {
-					if ($value == '"%null%"') {
-						return ' AND Quotations.gola_id IS NULL';
-					}else{
-						return ' AND Gola.product_name LIKE ' . $value;
-					}
-			}else{
-				if ($name == 'galao_name') {
-					if ($value == '"%null%"') {
-						return ' AND Quotations.galao_id IS NULL';
-					}else{
-						return ' AND Galao.product_name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'customer_name') {
+				if ($value == '"%null%"') {
+					return ' AND Quotations.customer_id IS NULL';
+				}else{
+					return ' AND Contacts.nick_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'machine_name') {
+				if ($value == '"%null%"') {
+					return ' AND Quotations.machine_id IS NULL';
+				}else{
+					return ' AND Machines.name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'dyer_name') {
+				if ($value == '"%null%"') {
+					return ' AND Quotations.dyer_id IS NULL';
+				}else{
+					return ' AND Contacts.name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'punho_name') {
+				if ($value == '"%null%"') {
+					return ' AND Quotations.punho_id IS NULL';
+				}else{
+					return ' AND Punho.product_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'gola_name') {
+				if ($value == '"%null%"') {
+					return ' AND Quotations.gola_id IS NULL';
+				}else{
+					return ' AND Gola.product_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'galao_name') {
+				if ($value == '"%null%"') {
+					return ' AND Quotations.galao_id IS NULL';
+				}else{
+					return ' AND Galao.product_name LIKE ' . $value;
+				}
 			}
-			}}}}}}
 		}
 
 		if ($table == 'ShipDyers') {
@@ -1648,21 +1651,26 @@ private function set_where($table, $filter) {
 			or	$name == 'quantity'
 			or	$name == 'gross_weight'
 			or	$name == 'net_weight') {
-				if ($name == 'dyer_name') {
-					if ($value == '"%null%"') {
-						return ' AND ShipDyers.dyer_id IS NULL';
-					}else{
-						return ' AND Dyer.nick_name LIKE ' . $value;
-					}
+				if ($value == '"%null%"') {
+					return ' AND ShipDyers.' . $name . ' IS NULL ';
+				}else{
+					return ' AND ShipDyers.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'transport_name') {
-					if ($value == '"%null%"') {
-						return ' AND ShipDyers.transport_id IS NULL';
-					}else{
-						return ' AND Transport.nick_name LIKE ' . $value;
-					}
-			}}
+			}else
+			if ($name == 'dyer_name') {
+				if ($value == '"%null%"') {
+					return ' AND ShipDyers.dyer_id IS NULL';
+				}else{
+					return ' AND Dyer.nick_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'transport_name') {
+				if ($value == '"%null%"') {
+					return ' AND ShipDyers.transport_id IS NULL';
+				}else{
+					return ' AND Transport.nick_name LIKE ' . $value;
+				}
+			}
 		}
 
 		if ($table == 'Incomings') {
@@ -1680,13 +1688,12 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND Incomings.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'supplier_name') {
-					if ($value == '"%null%"') {
-						return ' AND Incomings.supplier_id IS NULL';
-					}else{
-						return ' AND Supplier.nick_name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'supplier_name') {
+				if ($value == '"%null%"') {
+					return ' AND Incomings.supplier_id IS NULL';
+				}else{
+					return ' AND Supplier.nick_name LIKE ' . $value;
 				}
 			}
 		}
@@ -1709,20 +1716,19 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND Batches.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'thread_name') {
-					if ($value == '"%null%"') {
-						return ' AND Batches.thread_id IS NULL';
-					}else{
-						return ' AND Threads.name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'thread_name') {
+				if ($value == '"%null%"') {
+					return ' AND Batches.thread_id IS NULL';
+				}else{
+					return ' AND Threads.name LIKE ' . $value;
 				}
-				if ($name == 'purchase_number') {
-					if ($value == '"%null%"') {
-						return ' AND Batches.purchase_line_id IS NULL';
-					}else{
-						return ' AND Incomings.number LIKE ' . $value;
-					}
+			}else
+			if ($name == 'purchase_number') {
+				if ($value == '"%null%"') {
+					return ' AND Batches.purchase_line_id IS NULL';
+				}else{
+					return ' AND Incomings.number LIKE ' . $value;
 				}
 			}
 		}
@@ -1739,34 +1745,33 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND Boxes.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'thread') {
-					if ($value == '"%null%"') {
-						return ' AND Batches.thread_id IS NULL';
-					}else{
-						return ' AND Threads.name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'thread') {
+				if ($value == '"%null%"') {
+					return ' AND Batches.thread_id IS NULL';
+				}else{
+					return ' AND Threads.name LIKE ' . $value;
 				}
-				if ($name == 'supplier') {
-					if ($value == '"%null%"') {
-						return ' AND Incomings.supplier_id IS NULL';
-					}else{
-						return ' AND Supplier.nick_name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'supplier') {
+				if ($value == '"%null%"') {
+					return ' AND Incomings.supplier_id IS NULL';
+				}else{
+					return ' AND Supplier.nick_name LIKE ' . $value;
 				}
-				if ($name == 'batch_code') {
-					if ($value == '"%null%"') {
-						return ' AND Boxes.batch_id IS NULL';
-					}else{
-						return ' AND Batches.batch LIKE ' . $value;
-					}
+			}else
+			if ($name == 'batch_code') {
+				if ($value == '"%null%"') {
+					return ' AND Boxes.batch_id IS NULL';
+				}else{
+					return ' AND Batches.batch LIKE ' . $value;
 				}
-				if ($name == 'parent') {
-					if ($value == '"%null%"') {
-						return ' AND Boxes.parent_id IS NULL';
-					}else{
-						return ' AND Parent.barcode LIKE ' . $value;
-					}
+			}else
+			if ($name == 'parent') {
+				if ($value == '"%null%"') {
+					return ' AND Boxes.parent_id IS NULL';
+				}else{
+					return ' AND Parent.barcode LIKE ' . $value;
 				}
 			}
 		}
@@ -1784,20 +1789,19 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND Requests.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'machine_name') {
-					if ($value == '"%null%"') {
-						return ' AND Requests.machine_id IS NULL';
-					}else{
-						return ' AND Machines.name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'machine_name') {
+				if ($value == '"%null%"') {
+					return ' AND Requests.machine_id IS NULL';
+				}else{
+					return ' AND Machines.name LIKE ' . $value;
 				}
-				if ($name == 'supplier_name') {
-					if ($value == '"%null%"') {
-						return ' AND Requests.supplier_id IS NULL';
-					}else{
-						return ' AND Supplier.nick_name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'supplier_name') {
+				if ($value == '"%null%"') {
+					return ' AND Requests.supplier_id IS NULL';
+				}else{
+					return ' AND Supplier.nick_name LIKE ' . $value;
 				}
 			}
 		}
@@ -1811,34 +1815,33 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND ReqLines.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'request') {
-					if ($value == '"%null%"') {
-						return ' AND ReqLines.request_id IS NULL';
-					}else{
-						return ' AND Requests.number LIKE ' . $value;
-					}
+			}else
+			if ($name == 'request') {
+				if ($value == '"%null%"') {
+					return ' AND ReqLines.request_id IS NULL';
+				}else{
+					return ' AND Requests.number LIKE ' . $value;
 				}
-				if ($name == 'thread') {
-					if ($value == '"%null%"') {
-						return ' AND ReqLines.thread_id IS NULL';
-					}else{
-						return ' AND Threads.name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'thread') {
+				if ($value == '"%null%"') {
+					return ' AND ReqLines.thread_id IS NULL';
+				}else{
+					return ' AND Threads.name LIKE ' . $value;
 				}
-				if ($name == 'batch') {
-					if ($value == '"%null%"') {
-						return ' AND ReqLines.batch_id IS NULL';
-					}else{
-						return ' AND BatchOuts.checkout_weight LIKE ' . $value;
-					}
+			}else
+			if ($name == 'batch') {
+				if ($value == '"%null%"') {
+					return ' AND ReqLines.batch_id IS NULL';
+				}else{
+					return ' AND BatchOuts.checkout_weight LIKE ' . $value;
 				}
-				if ($name == 'checkout') {
-					if ($value == '"%null%"') {
-						return ' AND Batches.checkout_id IS NULL';
-					}else{
-						return ' AND CheckOut.nick_name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'checkout') {
+				if ($value == '"%null%"') {
+					return ' AND Batches.checkout_id IS NULL';
+				}else{
+					return ' AND CheckOut.nick_name LIKE ' . $value;
 				}
 			}
 		}
@@ -1858,27 +1861,26 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND CheckOuts.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'machine_name') {
-					if ($value == '"%null%"') {
-						return ' AND CheckOuts.machine_id IS NULL';
-					}else{
-						return ' AND Machines.name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'machine_name') {
+				if ($value == '"%null%"') {
+					return ' AND CheckOuts.machine_id IS NULL';
+				}else{
+					return ' AND Machines.name LIKE ' . $value;
 				}
-				if ($name == 'supplier_name') {
-					if ($value == '"%null%"') {
-						return ' AND CheckOuts.supplier_id IS NULL';
-					}else{
-						return ' AND Supplier.nick_name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'supplier_name') {
+				if ($value == '"%null%"') {
+					return ' AND CheckOuts.supplier_id IS NULL';
+				}else{
+					return ' AND Supplier.nick_name LIKE ' . $value;
 				}
-				if ($name == 'dyer_name') {
-					if ($value == '"%null%"') {
-						return ' AND CheckOuts.dyer_id IS NULL';
-					}else{
-						return ' AND Dyer.nick_name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'dyer_name') {
+				if ($value == '"%null%"') {
+					return ' AND CheckOuts.dyer_id IS NULL';
+				}else{
+					return ' AND Dyer.nick_name LIKE ' . $value;
 				}
 			}
 		}
@@ -1897,20 +1899,19 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND BatchOuts.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'thread') {
-					if ($value == '"%null%"') {
-						return ' AND BatchOuts.thread_id IS NULL';
-					}else{
-						return ' AND Threads.name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'thread') {
+				if ($value == '"%null%"') {
+					return ' AND BatchOuts.thread_id IS NULL';
+				}else{
+					return ' AND Threads.name LIKE ' . $value;
 				}
-				if ($name == 'request_number') {
-					if ($value == '"%null%"') {
-						return ' AND BatchOuts.req_line_id IS NULL';
-					}else{
-						return ' AND Requests.number LIKE ' . $value;
-					}
+			}else
+			if ($name == 'request_number') {
+				if ($value == '"%null%"') {
+					return ' AND BatchOuts.req_line_id IS NULL';
+				}else{
+					return ' AND Requests.number LIKE ' . $value;
 				}
 			}
 		}
@@ -1927,20 +1928,19 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND ThreadForecast.' . $name . ' LIKE ' . $value;
 				}
-			}else{
-				if ($name == 'thread_name') {
-					if ($value == '"%null%"') {
-						return ' AND ThreadForecast.thread_id IS NULL';
-					}else{
-						return ' AND Threads.name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'thread_name') {
+				if ($value == '"%null%"') {
+					return ' AND ThreadForecast.thread_id IS NULL';
+				}else{
+					return ' AND Threads.name LIKE ' . $value;
 				}
-				if ($name == 'supplier_name') {
-					if ($value == '"%null%"') {
-						return ' AND ThreadForecast.supplier_id IS NULL';
-					}else{
-						return ' AND Contacts.nick_name LIKE ' . $value;
-					}
+			}else
+			if ($name == 'supplier_name') {
+				if ($value == '"%null%"') {
+					return ' AND ThreadForecast.supplier_id IS NULL';
+				}else{
+					return ' AND Contacts.nick_name LIKE ' . $value;
 				}
 			}
 		}
@@ -3179,7 +3179,7 @@ private function set_language() {
 
      $return = array();
      $return[ 'status'   ] = 'ok';
-     $this->echo_json( $return );
+     echo json_encode( $return );
 }
 
 /*
@@ -3188,28 +3188,33 @@ private function set_language() {
  *       status: ok
  *     language: xx_yy
  */
-    private function get_language() {
+private function get_language() {
 	$return = array();
 	$return[ 'status'        ] = 'ok';
 	$return[ 'language'      ] = get_session('language');
-	$this->echo_json( $return );
+	echo json_encode( $return );
     }
 
 /*
  *	$.ajax({ method: set_session });
  *
- *	http://jky/jky_proxy.php?method=set_session&action=confirm&user_key=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
- *	http://jky/jky_proxy.php?method=set_session&action=reset&user_key=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+ *	$.ajax({method:set_session, data:{action:confirm, user_key=6e5fa4d9c48ca921c0a2ce1e64c9ae6f});
+ *
+ *	http://jky/jky_proxy.php?method=set_session&action=reset  &user_key=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
  *
  *	status: ok
  */
-private function set_session() {
-	if (is_request( 'action'	))		set_session( 'action'	, get_request('action'	));
-	if (is_request( 'user_key'	))		set_session( 'user_key'	, get_request('user_key'));
+private function set_session($data) {
+	if ($data['action'] == 'reset') {
+		unset_session('overlay_page');
+	}else{
+		set_session('action', $data['action']);
+	}
+//	if ($data['user_key'])		set_session('user_key', $data['user_key']);
 
 	$return = array();
 	$return['status'] = 'ok';
-	$this->echo_json( $return );
+	echo json_encode( $return );
 }
 
 /*
@@ -3226,30 +3231,34 @@ private function get_session() {
 	if (is_session('user_key'		))   $data['user_key'		] = fetch_session( 'user_key'	);
 
 	if (is_session('language'		))   $data['language'		] =   get_session('language'	);
+	if (is_session('version'		))   $data['version'		] =   get_session('version'		);
 	if (is_session('environment'	))   $data['environment'	] =   get_session('environment'	);
 	if (is_session('control_company'))   $data['control_company'] =   get_session('control_company', COMPANY_ID);
 	if (is_session('company_name'	))   $data['company_name'	] =   get_session('company_name');
 	if (is_session('company_logo'	))   $data['company_logo'	] =   get_session('company_logo');
 	if (is_session('locale'			))   $data['locale'			] =   get_session('locale'		);
+	if (is_session('user_time'		))   $data['user_time'		] =   get_session('user_time'	);
+
+if (is_session('full_name')) {
 	if (is_session('contact_id'		))   $data['contact_id'		] =   get_session('contact_id'	);
 	if (is_session('full_name'		))   $data['full_name'		] =   get_session('full_name'	);
 	if (is_session('user_name'		))   $data['user_name'		] =   get_session('user_name'	);
 	if (is_session('user_role'		))   $data['user_role'		] =   get_session('user_role'	);
-	if (is_session('user_time'		))   $data['user_time'		] =   get_session('user_time'	);
 	if (is_session('user_id'		))   $data['user_id'		] =   get_session('user_id'		);
-	if (is_session('full_name'		))   $data['full_name'		] =   get_session('full_name'	);
 	if (is_session('permissions'	))   $data['permissions'	] =   get_session('permissions'	);
 	if (is_session('start_page'		))   $data['start_page'		] =   get_session('start_page'	);
+	if (is_session('overlay_page'	))   $data['overlay_page'	] =   get_session('overlay_page');
+}
 /*
 	$data['copyright'	] = '&#64; 2013 JKY Software Corp';
 	$data['contact_us'	] = 'Contact Us';
 	$data['language'	] = 'Portugues';
 	$data['languages'	] = array('English', 'Portugues', 'Chinese', 'Taiwanese');
 */
-	$obj = array();
-	$obj['status'] = 'ok';
-	$obj['data'  ] = $data;
-	$this->echo_json($obj);
+	$return = array();
+	$return['status'] = 'ok';
+	$return['data'  ] = $data;
+	echo json_encode($return);
 }
 
 /**
@@ -3392,7 +3401,7 @@ private function set_user_id() {
 
 	$return['status'	] = $error == '' ? 'ok' : 'error';
 	$return['message'	] = $error;
-	$this->echo_json($return);
+	echo json_encode($return);
 }
 
 /**
@@ -3472,7 +3481,7 @@ private function get_options($data) {
 	$return = array();
 	$return['status'] = 'ok';
 	$return['rows'	] = $rows;
-	$this->echo_json($return);
+	echo json_encode($return);
 }
 
 /**
@@ -3543,7 +3552,7 @@ $this->log_sql(null, 'get_users', $sql);
 	$return = array();
 	$return['status'] = 'ok';
 	$return['rows'	] = $rows;
-	$this->echo_json($return);
+	echo json_encode($return);
 }
 
 /**
@@ -3569,7 +3578,7 @@ private function get_configs($data) {
 	$return = array();
 	$return['status'] = 'ok';
 	$return['rows'	] = $rows;
-	$this->echo_json($return);
+	echo json_encode($return);
 }
 
 /**
@@ -3596,7 +3605,7 @@ private function get_companies($data) {
 	$return = array();
 	$return['status'] = 'ok';
 	$return['rows'	] = $rows;
-	$this->echo_json($return);
+	echo json_encode($return);
 }
 
 /**
@@ -3781,11 +3790,13 @@ private function get_user_data() {
 	$control = db_get_row('Controls', 'status = "Active" AND group_set ="User Roles" AND name= "' . get_session('user_role') . '"') ;
 	set_session('start_page', $control['value']);
 	$data = array();
+if (is_session('full_name')) {
 	$data['first_name'	] = get_session('first_name');
 	$data['last_name'	] = get_session('last_name'	);
 	$data['full_name'	] = get_session('full_name'	);
 	$data['user_role'	] = get_session('user_role' );
 	$data['start_page'	] = get_session('start_page');
+}
 	return $data;
 }
 
@@ -3812,7 +3823,7 @@ private function check_session($data) {
 		$return['status' ] = 'error';
 		$return['message'] = $error;
 	}
-	$this->echo_json($return);
+	echo json_encode($return);
 }
 
 /**
@@ -3829,7 +3840,7 @@ private function confirm($data) {
 	if (!$user_id) {
 		$error .= BR . 'User Account already expired';
 	}else{
-		if (is_empty(meta_get_id('User', $user_id, 'unconfirmed_email'))) {
+		if (is_empty(meta_get_id('Contacts', $user_id, 'unconfirmed_email'))) {
 			$error .= BR . 'Email Address already confirmed';
 		}
 	}
@@ -3844,7 +3855,7 @@ private function confirm($data) {
 		$return['status' ] = 'error';
 		$return['message'] = $error;
 	}
-	$this->echo_json($return);
+	echo json_encode($return);
 }
 
 /**
@@ -3854,12 +3865,13 @@ private function confirm($data) {
  * message: password reseted
  */
 private function reset($data) {
-	$user_id   = get_session('user_id');
-	$encrypted = $data['encrypted'];
+	$error = '';
+	$user_id	= get_session('user_id');
+	$password	= $data['password'];
 
-	if ($encrypted != '') {
+	if ($password != '') {
 		$sql= 'UPDATE JKY_Users'
-			. '   SET password = "' . $encrypted . '"'
+			. '   SET password = "' . $password . '"'
 			. ' WHERE id = ' . $user_id
 			;
 		$db = Zend_Registry::get('db');
@@ -3872,9 +3884,9 @@ private function reset($data) {
 	$return['status' ] = 'ok';
 	$return['message'] = 'New Password reseted';
 
-	$control = db_get_row('Controls', 'status = "Active" AND group_set ="User Role" AND control_name= "' . get_session( 'user_role' ) . '"');
-	$return['re_direct'] = $control['control_value'];
-	$this->echo_json($return);
+//	$control = db_get_row('Controls', 'status = "Active" AND group_set ="User Role" AND control_name= "' . get_session( 'user_role' ) . '"');
+//	$return['re_direct'] = $control['control_value'];
+	echo json_encode($return);
 }
 
 /**
@@ -3914,7 +3926,7 @@ private function log_in($data) {
 		$return['status' ] = 'error';
 		$return['message'] = $error;
 	}
-	$this->echo_json($return);
+	echo json_encode($return);
 }
 
 private function get_password($id) {
@@ -3960,7 +3972,7 @@ private function log_out($data) {
  *  user_email: x...x
  */
 private function log_help($data) {
-	$help_name  = $data['help_name'];
+	$help_name = $data['help_name'];
 
 	$db = Zend_Registry::get('db');
 	$error = '';
@@ -3971,25 +3983,26 @@ private function log_help($data) {
 		. '   AND  Contacts.email IS NOT NULL'
 		. '   AND(JKY_Users.user_name = "' . $help_name . '" OR Contacts.email = "' . $help_name . '" )'
 		;
-$this->log_sql( null, 'log_help', $sql );
+//$this->log_sql( null, 'log_help', $sql );
 	$users = $db->fetchAll($sql);
 	if (count($users) == 0) {
 		$error .= set_not_found('User Name or Email Address');
 	}
 
-	$return = array();
+	$data = array();
 	if (is_empty($error)) {
 //		email for all users
 		foreach($users as $user) {
-			$return = email_by_event($user['id'], $user['contact_id'], 'Remind Me', 'Email From System');
-			if (!isset($return['user_email'])) {
-				$return['user_email'] = $user['email'];
-			}
+			$to_email = email_by_event($user['id'], $user['contact_id'], 'Remind Me', 'Email From System');
+			$data[] = $to_email;
 		}
 	}
-
+	$return = array();
 	$return['status' ] = $error == '' ? 'ok' : 'error';
 	$return['message'] = $error;
+	$return['data'   ] = $data;
+//$this->log_sql( null, 'log_help', print_r($return, true));
+//$this->log_sql( null, 'log_help', json_encode($return));
 	echo json_encode($return);
 }
 
@@ -4058,7 +4071,7 @@ private function profile($data) {
 		$return['status' ] = 'error';
 		$return['message'] = $error;
 	}
-	$this->echo_json($return);
+	echo json_encode($return);
 }
 
 /**
@@ -4132,7 +4145,7 @@ private function sign_up() {
      $return = array();
      $return[ 'status'   ] = 'ok';
      $return[ 'message'  ] = 'new account created';
-     $this->echo_json( $return );
+     echo json_encode( $return );
 }
 
 /*
@@ -4178,7 +4191,7 @@ private function send_email() {
      $return = array();
      $return[ 'status'   ] = 'ok';
      $return[ 'message'  ] = 'Email sent out, the template: ' . $template_name;
-     $this->echo_json( $return );
+     echo json_encode( $return );
 }
 
 /*
@@ -4236,7 +4249,7 @@ private function send_email() {
 	$return = array();
 	$return[ 'status'   ] = 'ok';
 	$return[ 'message'  ] = 'Email sent out, the template: ' . $template_name;
-	$this->echo_json( $return );
+	echo json_encode( $return );
     }
 
 //   ---------------------------------------------------------------------------

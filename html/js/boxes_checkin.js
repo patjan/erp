@@ -18,6 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: ''
 		, sort_seq		: ''
+		, sort_list		: [[1, 0]]
 		, focus			: ''
 		, add_new		: ''
 		});

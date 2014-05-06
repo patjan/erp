@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS Contacts
 
 , PRIMARY KEY(id)
 , KEY company	(company_id	)
-, KEY nick_name	(first_name	)
+, KEY nick_name	(nick_name	)
 , KEY first_name(first_name	)
 , KEY last_name	(last_name	)
 , KEY full_name (full_name	)

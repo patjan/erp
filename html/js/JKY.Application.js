@@ -160,9 +160,11 @@ if (my_first == true) {
 	function my_set_all_check(the_index) {
 			JKY.display_trace('set_all_check');
 			if ($(the_index).is(':checked')) {
-				$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).attr('checked', 'checked');})
+//				$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).attr('checked', 'checked');})
+				$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).prop('checked', true);})
 			}else{
-				$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).removeAttr('checked');})
+//				$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).removeAttr('checked');})
+				$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).prop('checked', false);})
 			}
 		}
 
@@ -206,7 +208,11 @@ if (my_first == true) {
 
 	function my_load_table() {
 		JKY.display_trace('my_load_table');
-		if (my_args.table_name == '')		return;
+		if (my_args.table_name == '') {
+//			to bind [Check All] function for screens without table loaded
+			$('#jky-check-all').click (function() {my_set_all_check(this);});
+			return;
+		}
 
 		JKY.show('jky-loading');
 		var my_data =

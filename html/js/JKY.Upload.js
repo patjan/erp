@@ -69,7 +69,7 @@ JKY.Upload = function(the_args) {
 		JKY.show('jky_loading');
 		$.each(files, function(i, file) {
 			JKY.set_html(my_args.filename_id, file.name);
-			my_saved_name = file.name;
+			my_saved_name = file.name.toLowerCase();
 			file.name = my_args.directory + '.' + my_row_id + '.' + my_saved_name;
 		});
 		up.refresh();	//	reposition Flash/Silverlight

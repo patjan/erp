@@ -1,6 +1,12 @@
-2013-03-175	API
+2014-04-30	API
 
-http://erp/index.php?ajax&data=
+http://support.jkysoftware.com/index.php/api?data={"method":"get_expire","company_id":9...9}
+
+
+
+
+
+
 
 Protocol	REST
 Type		JSON
