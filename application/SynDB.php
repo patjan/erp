@@ -3,15 +3,17 @@ require_once 'Constant.php';
 require_once  'Utility.php';
 
 define('PROGRAM_NAME'	,	'SynDB');
-define('LOCAL_SERVER'	,	'erp');						//	local server for test
-define('MAIN_SERVER'	,	'erp.jkysoftware.com');		//	main server for production
+//define('LOCAL_SERVER'	,	'erp'  );					//	local server for test
+//define('MAIN_SERVER'	,	'tecno.jkysoftware.com');	//	main server for production
 
 /**
  *	Program:  SynDB
  *	 Author:	Pat Jan
  *	Command:	cd /htdocs/erp/application
  *				php SynDB.php
- *	 Domain:	process only on local server
+ *	 Domain:	get data from Host Server the Changes
+ *				and flag on Host Server with locar server number
+ *				and update only Local Server the Tables
  * 		Run:	started by Scheduled Tasks and run every 1 minutes
  *
  *    Speed:   8000 transacoes por min ( USA )
@@ -29,8 +31,17 @@ error_reporting(E_ALL);		//	report errors
 ini_set('display_startup_errors', 'on');
 ini_set('display_errors'		, 'on');
 //ini_set('include_path'			, '../library');
+ini_set('memory_limit', '256M');
 
 date_default_timezone_set('America/Sao_Paulo');
+
+
+//   Define path to application directory
+defined( 'APPLICATION_PATH' ) or define( 'APPLICATION_PATH', realpath( dirname( __FILE__ )));
+
+//   Ensure library/ is on include_path
+set_include_path( implode( PATH_SEPARATOR, array( realpath( APPLICATION_PATH . LIBRARY ), get_include_path() )));
+
 
 $program_name = $_SERVER['PHP_SELF'];
 require_once 'Zend/Db.php';
@@ -111,6 +122,7 @@ function process_changes($the_server_number, $the_local_db, $the_host_db) {
 		. ' FROM ' . $my_table
 		. ' WHERE servers IS NULL'
 		. '    OR LOCATE("' . $the_server_number . ' ", servers) = 0'
+		. ' ORDER BY table_name, table_id, created_at'
 		;
 	$my_changes = $the_host_db->fetchAll($my_sql);
 	$my_count	= count($my_changes);
@@ -122,8 +134,8 @@ function process_changes($the_server_number, $the_local_db, $the_host_db) {
 		$my_id			= $my_change['id'			];
 		$my_table_name	= $my_change['table_name'	];
 		$my_table_id	= $my_change['table_id'		];
-
 log_message($my_table . ': ' . $my_id . ', ' . $my_table_name . ': ' . $my_table_id);
+
 		$my_sql = ''
 			. 'SELECT *'
 			. '  FROM ' . $my_table_name
@@ -131,6 +143,7 @@ log_message($my_table . ': ' . $my_id . ', ' . $my_table_name . ': ' . $my_table
 			;
 		$my_local_row = $the_local_db->fetchRow($my_sql);
 //log_message(json_encode($my_local_row));
+
 		$my_host_row = $the_host_db->fetchRow($my_sql);
 //log_message(json_encode($my_host_row));
 
@@ -154,16 +167,20 @@ log_message($my_table . ': ' . $my_id . ', ' . $my_table_name . ': ' . $my_table
 		}
 
 		$my_sql = '';
-		if ($my_local_row and $my_change['created_at'] > $my_local_row['updated_at']) {
-			if ($my_host_row) {
-				log_message('Update');
-				$my_sql = get_sql_replace($my_table_name, $my_host_row);
+		if ($my_local_row) {
+			if ($my_change['created_at'] > $my_local_row['updated_at']) {
+				if ($my_host_row) {
+					log_message('Update');
+					$my_sql = get_sql_replace($my_table_name, $my_host_row);
+				}else{
+					log_message('Delete');
+					$my_sql = ''
+						. 'DELETE FROM ' . $my_table_name
+						. ' WHERE id = ' . $my_table_id
+						;
+				}
 			}else{
-				log_message('Delete');
-				$my_sql = ''
-					. 'DELETE FROM ' . $my_table_name
-					. ' WHERE id = ' . $my_table_id
-					;
+				log_message('Outdated');
 			}
 		}else{
 			if ($my_host_row) {
@@ -236,7 +253,7 @@ function get_db_params($the_server_number) {
 							('host'		=> 'external-db.s122232.gridserver.com'
 							,'username'	=> 'db122232'
 							,'password'	=> 'brazil.18781'
-							,'dbname'	=> 'db122232_erp'
+							,'dbname'	=> 'db122232_tecno'
 							);
 						break;
 	}

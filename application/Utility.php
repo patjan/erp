@@ -3943,6 +3943,7 @@ log_prog('proxy', 'POSTVARS: ' . $postvars);
 //log_prog('proxy', 'response: ' . json_encode($response));
 
 	curl_close($ch);
+	unlink('ses_' . session_id());
 	return $content;
 }
 

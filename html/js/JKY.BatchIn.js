@@ -77,7 +77,7 @@ JKY.BatchIn = function() {
 	}
 
 	function my_click_row(the_index, the_id) {
-		var my_batch = $(the_index).find('.jky-batchin-search-number').html();
+		var my_batch = $(the_index).find('.jky-search-batch').html();
 		var my_parent = $(my_the_id).parent();
 		$(my_parent).find('.jky-batchin-id').val(the_id);
 		$(my_parent).find('.jky-batchin-number').val(my_batch);

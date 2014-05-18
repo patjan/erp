@@ -1,3 +1,5 @@
+UPDATE Changes SET servers = '1 9 ';
+
 ALTER TABLE History			CHANGE	created_by		updated_by		BIGINT			DEFAULT NULL;
 ALTER TABLE History			CHANGE	created_at		updated_at		DATETIME		DEFAULT NULL;
 ALTER TABLE CheckOuts		ADD COLUMN partner_id		BIGINT		DEFAULT NULL	AFTER machine_id;
@@ -40,79 +42,147 @@ UPDATE Machines			SET id = id - 999800000;
 UPDATE Permissions		SET id = id + 900000;		/* HQ	*/
 UPDATE Products			SET id = id + 100000;		/* TM	*/
 UPDATE PurchaseLines	SET id = id + 2000000000;
-UPDATE Purchases		SET id = id + 100000;	
+UPDATE Purchases		SET id = id + 100000;
 UPDATE Threads			SET id = id + 200000;
-UPDATE Tickets			SET id = id - 800000;	
+UPDATE Tickets			SET id = id - 800000;
 UPDATE Translations		SET id = id + 900000;		/* HQ	*/
 
 #	TM
-UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'Batches'		;#		   97
-UPDATE NextIds SET next_id =  3100	WHERE table_name = 'Colors'			;#3100
-UPDATE NextIds SET next_id =   223	WHERE table_name = 'Configs'	 	;# 223
-UPDATE NextIds SET next_id =   105	WHERE table_name = 'Contacts'	 	;# 105
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Controls'		;#				396
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Cylinders'		;#		   99
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTPs'			;#		  206
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTP_Loads'		;#		  331
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTP_Sets'		;#		 1078
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTP_Threads'	;#		  424
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'History'		;#		13197
-UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Incomings'		;#		   98
-UPDATE NextIds SET next_id =   	44	WHERE table_name = 'JKY_Users'	  	;#  44
-UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Machines'		;#		   95
-UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Permissions'	;#				 66
-UPDATE NextIds SET next_id =  1286	WHERE table_name = 'Products'		;#1286	    4
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'PurchaseLines'	;#		  102
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Purchases'		;#		   45
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Threads'		;#		  317
-UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Tickets'		;#		   67
-UPDATE NextIds SET next_id =     1 	WHERE table_name = 'Translations'	;#				1239
+UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'Batches'		;
+UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'BatchOuts'		;
+UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'BatchSets'		;
+UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'Boxes'			;
+UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'Categories'		;
+UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'CheckOuts'		;
+UPDATE NextIds SET next_id =  3100	WHERE table_name = 'Colors'			;
+UPDATE NextIds SET next_id =   223	WHERE table_name = 'Configs'	 	;
+UPDATE NextIds SET next_id =   105	WHERE table_name = 'Contacts'	 	;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'Controls'		;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'Cylinders'		;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTPs'			;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTP_Loads'		;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTP_Sets'		;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTP_Threads'	;
+UPDATE NextIds SET next_id =    24	WHERE table_name = 'History'		;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Incomings'		;
+UPDATE NextIds SET next_id =   	44	WHERE table_name = 'JKY_Users'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'LoadOuts'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'LoadSales'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'LoadSets'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Machines'		;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Orders'			;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'OrdThreads'		;
+UPDATE NextIds SET next_id =   	 1  WHERE table_name = 'Permissions'	;
+UPDATE NextIds SET next_id =   	 1  WHERE table_name = 'Pieces'			;
+UPDATE NextIds SET next_id =   	 1  WHERE table_name = 'ProdPrices'		;
+UPDATE NextIds SET next_id =  1286	WHERE table_name = 'Products'		;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'PurchaseLines'	;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'Purchases'		;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Quotations'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'QuotColors'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'QuotLines'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'ReqLines'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Requests'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'ShipDyers'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'TDyerColors'  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'TDyers'		  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'TDyerThreads'  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Templates'  	;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'Threads'		;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Tickets'		;
+UPDATE NextIds SET next_id =     1 	WHERE table_name = 'Translations'	;
+TRUNCATE TABLE Changes;
 
 #	DL
-UPDATE NextIds SET next_id = 	97	WHERE table_name = 'Batches'		;#		   97
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Colors'			;#3100
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Configs'	 	;# 223
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Contacts'	 	;# 105
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Controls'		;#				396
-UPDATE NextIds SET next_id =    99	WHERE table_name = 'Cylinders'		;#		   99
-UPDATE NextIds SET next_id =   206	WHERE table_name = 'FTPs'			;#		  206
-UPDATE NextIds SET next_id =   331	WHERE table_name = 'FTP_Loads'		;#		  331
-UPDATE NextIds SET next_id =  1078	WHERE table_name = 'FTP_Sets'		;#		 1078
-UPDATE NextIds SET next_id =   424	WHERE table_name = 'FTP_Threads'	;#		  424
-UPDATE NextIds SET next_id = 13197	WHERE table_name = 'History'		;#		13197
-UPDATE NextIds SET next_id =   	98	WHERE table_name = 'Incomings'		;#		   98
-UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'JKY_Users'	  	;#  44
-UPDATE NextIds SET next_id =   	95	WHERE table_name = 'Machines'		;#		   95
-UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Permissions'	;#				 66
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Products'		;#1286	    4
-UPDATE NextIds SET next_id =   102	WHERE table_name = 'PurchaseLines'	;#		  102
-UPDATE NextIds SET next_id =    45	WHERE table_name = 'Purchases'		;#		   45
-UPDATE NextIds SET next_id =   317	WHERE table_name = 'Threads'		;#		  317
-UPDATE NextIds SET next_id =   	67	WHERE table_name = 'Tickets'		;#		   67
-UPDATE NextIds SET next_id =     1 	WHERE table_name = 'Translations'	;#				xxx
+UPDATE NextIds SET next_id =   389	WHERE table_name = 'Batches'		;
+UPDATE NextIds SET next_id =   185	WHERE table_name = 'BatchOuts'		;
+UPDATE NextIds SET next_id =   178	WHERE table_name = 'BatchSets'		;
+UPDATE NextIds SET next_id = 36589	WHERE table_name = 'Boxes'			;
+UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'Categories'		;
+UPDATE NextIds SET next_id =   101	WHERE table_name = 'CheckOuts'		;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'Colors'			;
+UPDATE NextIds SET next_id =    57	WHERE table_name = 'Configs'	 	;
+UPDATE NextIds SET next_id =     6	WHERE table_name = 'Contacts'	 	;
+UPDATE NextIds SET next_id =     2	WHERE table_name = 'Controls'		;
+UPDATE NextIds SET next_id =   100	WHERE table_name = 'Cylinders'		;
+UPDATE NextIds SET next_id =   254	WHERE table_name = 'FTPs'			;
+UPDATE NextIds SET next_id =   398	WHERE table_name = 'FTP_Loads'		;
+UPDATE NextIds SET next_id =  1255	WHERE table_name = 'FTP_Sets'		;
+UPDATE NextIds SET next_id =   505	WHERE table_name = 'FTP_Threads'	;
+UPDATE NextIds SET next_id = 62393	WHERE table_name = 'History'		;
+UPDATE NextIds SET next_id =   382	WHERE table_name = 'Incomings'		;
+UPDATE NextIds SET next_id =   	 4	WHERE table_name = 'JKY_Users'	  	;
+UPDATE NextIds SET next_id =   	 2	WHERE table_name = 'LoadOuts'	  	;
+UPDATE NextIds SET next_id =   	 3	WHERE table_name = 'LoadSales'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'LoadSets'	  	;
+UPDATE NextIds SET next_id =   	95	WHERE table_name = 'Machines'		;
+UPDATE NextIds SET next_id =   	10	WHERE table_name = 'Orders'			;
+UPDATE NextIds SET next_id =   	28	WHERE table_name = 'OrdThreads'		;
+UPDATE NextIds SET next_id =   	13	WHERE table_name = 'Permissions'	;
+UPDATE NextIds SET next_id =   	 1  WHERE table_name = 'Pieces'			;
+UPDATE NextIds SET next_id =   	 1  WHERE table_name = 'ProdPrices'		;
+UPDATE NextIds SET next_id =    52	WHERE table_name = 'Products'		;
+UPDATE NextIds SET next_id =   269	WHERE table_name = 'PurchaseLines'	;
+UPDATE NextIds SET next_id =    98	WHERE table_name = 'Purchases'		;
+UPDATE NextIds SET next_id =   	 2	WHERE table_name = 'Quotations'	  	;
+UPDATE NextIds SET next_id =   	12	WHERE table_name = 'QuotColors'	  	;
+UPDATE NextIds SET next_id =   	 7	WHERE table_name = 'QuotLines'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'ReqLines'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Requests'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'ShipDyers'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'TDyerColors'  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'TDyers'		  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'TDyerThreads'  	;
+UPDATE NextIds SET next_id =   	 2	WHERE table_name = 'Templates'  	;
+UPDATE NextIds SET next_id =   360	WHERE table_name = 'Threads'		;
+UPDATE NextIds SET next_id =   	78	WHERE table_name = 'Tickets'		;
+UPDATE NextIds SET next_id =     1 	WHERE table_name = 'Translations'	;
 
 #	HQ
-UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'Batches'		;#		   97
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Colors'			;#3100
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Configs'	 	;# 223
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Contacts'	 	;# 105
-UPDATE NextIds SET next_id =   396	WHERE table_name = 'Controls'		;#				396
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Cylinders'		;#		   99
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTPs'			;#		  206
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTP_Loads'		;#		  331
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTP_Sets'		;#		 1078
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTP_Threads'	;#		  424
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'History'		;#		13197
-UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Incomings'		;#		   98
-UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'JKY_Users'	  	;#  44
-UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Machines'		;#		   95
-UPDATE NextIds SET next_id =   	66	WHERE table_name = 'Permissions'	;#				 66
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Products'		;#1286	    4
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'PurchaseLines'	;#		  102
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Purchases'		;#		   45
-UPDATE NextIds SET next_id =     1	WHERE table_name = 'Threads'		;#		  317
-UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Tickets'		;#		   67
-UPDATE NextIds SET next_id =  1239	WHERE table_name = 'Translations'	;#				1239
+UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'Batches'		;
+UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'BatchOuts'		;
+UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'BatchSets'		;
+UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'Boxes'			;
+UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'Categories'		;
+UPDATE NextIds SET next_id = 	 1	WHERE table_name = 'CheckOuts'		;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'Colors'			;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'Configs'	 	;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'Contacts'	 	;
+UPDATE NextIds SET next_id =   399	WHERE table_name = 'Controls'		;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'Cylinders'		;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTPs'			;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTP_Loads'		;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTP_Sets'		;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'FTP_Threads'	;
+UPDATE NextIds SET next_id =   793	WHERE table_name = 'History'		;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Incomings'		;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'JKY_Users'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'LoadOuts'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'LoadSales'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'LoadSets'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Machines'		;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Orders'			;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'OrdThreads'		;
+UPDATE NextIds SET next_id =   	66	WHERE table_name = 'Permissions'	;
+UPDATE NextIds SET next_id =   	 1  WHERE table_name = 'Pieces'			;
+UPDATE NextIds SET next_id =   	 1  WHERE table_name = 'ProdPrices'		;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'Products'		;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'PurchaseLines'	;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'Purchases'		;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Quotations'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'QuotColors'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'QuotLines'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'ReqLines'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Requests'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'ShipDyers'	  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'TDyerColors'  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'TDyers'		  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'TDyerThreads'  	;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Templates'  	;
+UPDATE NextIds SET next_id =     1	WHERE table_name = 'Threads'		;
+UPDATE NextIds SET next_id =   	 1	WHERE table_name = 'Tickets'		;
+UPDATE NextIds SET next_id =  1531	WHERE table_name = 'Translations'	;
+TRUNCATE TABLE Changes;
 
 UPDATE Batches			SET updated_by		= updated_by		+ 100000;
 UPDATE Batches			SET incoming_id		= incoming_id		+ 100000;

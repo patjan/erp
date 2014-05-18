@@ -36,7 +36,7 @@ JKY.set_all_events = function() {
 
 	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-tab-batches'	).click (function() {JKY.display_batches	();});
-	$('#jky-batch-add-new'	).click (function() {JKY.insert_batch		();});
+	$('#jky-batches-add-new').click (function() {JKY.insert_batch		();});
 
 	$('#jky-boxes-print'	).click (function() {JKY.Batch.print()});
 

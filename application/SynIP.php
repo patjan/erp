@@ -3,8 +3,8 @@ require_once 'Constant.php';
 require_once  'Utility.php';
 
 define('PROGRAM_NAME'	,	'SynIP');
-define('LOCAL_SERVER'	,	'erp');						//	local server for test
-define('MAIN_SERVER'	,	'erp.jkysoftware.com');		//	main server for production
+define('LOCAL_SERVER'	,	'erp'  );					//	local server for test
+define('MAIN_SERVER'	,	'tecno.jkysoftware.com');	//	main server for production
 
 /**
  *	Program:	SynIP.php
@@ -55,7 +55,7 @@ try{
 log_message('end of program');
 return;
 
-// -----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 function get_previous_ip($the_server_number, $the_local_db) {
 	$sql= 'SELECT value'
 		. '  FROM Controls'
@@ -101,7 +101,7 @@ function update_servers_host($the_local_db, $the_data) {
 	}
 }
 
-// -----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 function build_db($the_server) {
 	switch($the_server) {
 		 case('1')	:	$params = array
@@ -129,7 +129,7 @@ function build_db($the_server) {
 							('host'		=> 'external-db.s122232.gridserver.com'
 							,'username'	=> 'db122232'
 							,'password'	=> 'brazil.18781'
-							,'dbname'	=> 'db122232_erp'
+							,'dbname'	=> 'db122232_tecno'
 							);
 						break;
 	}
