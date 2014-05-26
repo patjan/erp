@@ -191,6 +191,17 @@ JKY.generate_checkout = function() {
 	JKY.insert_batch_sets();
 }
 
+/* -------------------------------------------------------------------------- */
+JKY.close_row = function(the_id) {
+	var my_data =
+		{ method	: 'update'
+		, table		: 'BatchSets'
+		, set		: 'status = \'Closed\''
+		, where		: 'batchout_id = ' + the_id
+		};
+	JKY.ajax(false, my_data);
+}
+
 JKY.insert_batch_sets = function() {
 	var my_data;
 	var my_trs = $('#jky-boxes-body tr');

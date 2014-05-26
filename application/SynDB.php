@@ -147,13 +147,6 @@ log_message($my_table . ': ' . $my_id . ', ' . $my_table_name . ': ' . $my_table
 		$my_host_row = $the_host_db->fetchRow($my_sql);
 //log_message(json_encode($my_host_row));
 
-		$my_sql = ''
-			. 'UPDATE ' . $my_table
-			. '   SET servers = CONCAT(servers, "' . $the_server_number . ' ")'
-			. ' WHERE id = ' . $my_id
-			;
-		$the_host_db->query($my_sql);
-
 /**
  *		Skip DB syncronization for
  *		Controls: Servers Host or System Keys or System Numbers
@@ -162,6 +155,12 @@ log_message($my_table . ': ' . $my_id . ', ' . $my_table_name . ': ' . $my_table
 			if ($my_host_row['group_set'] == 'Servers Host'
 			||  $my_host_row['group_set'] == 'System Keys'
 			||  $my_host_row['group_set'] == 'System Numbers') {
+				$my_sql = ''
+					. 'UPDATE ' . $my_table
+					. '   SET servers = CONCAT(servers, "' . $the_server_number . ' ")'
+					. ' WHERE id = ' . $my_id
+					;
+				$the_host_db->query($my_sql);
 				continue;
 			}
 		}
@@ -218,6 +217,13 @@ log_message('my_sql: ' . $my_sql);
 			. ' WHERE id = ' . $my_id . ';'
 			;
  */
+
+		$my_sql = ''
+			. 'UPDATE ' . $my_table
+			. '   SET servers = CONCAT(servers, "' . $the_server_number . ' ")'
+			. ' WHERE id = ' . $my_id
+			;
+		$the_host_db->query($my_sql);
 	}
 //log_message('my_update: ' . $my_update);
 //	$the_host_db->query($my_update);

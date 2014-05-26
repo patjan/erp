@@ -8,6 +8,8 @@ Todo
 	- help-sent (done)
 	- 
 - expiration	(done)
+- single script
+- copy ftp-photos & ftp-draws
 
 
 

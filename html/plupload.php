@@ -274,7 +274,14 @@ Xlog_sql( 'php://input' );
      }
 }
 Xlog_sql( ' end of upload' );
-create_thumb( $folder, $file_key, $file_type, 120, 120 );
+
+
+if ($file_type == 'gif'
+or	$file_type == 'jpg'
+or	$file_type == 'png') {
+	create_thumb( $folder, $file_key, $file_type, 120, 120 );
+}
+
 
 //   return JSON-RPC response
 die( "{ 'jsonrpc' : '2.0', 'result' : null, 'id' : 'id' }" );

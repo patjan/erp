@@ -17,7 +17,7 @@
 JKY.BatchIn = function() {
 	var my_the_id		= null;		//	external id that initiated the call
 	var my_thread_id	= null;		//	external id that initiated the call
-	var my_order_by		= 'batch';
+	var my_order_by		= 'invoice_date, checkin_location';
 	var my_filter		= 'jky-batchin-filter';
 	var my_search_body	= 'jky-batchin-search-body';
 	var my_layer		= 'jky-batchin-search';
@@ -30,17 +30,19 @@ JKY.BatchIn = function() {
 	}
 
 	function my_load_data() {
-		var my_data =
-			{ method		: 'get_index'
-			, table			: 'Batches'
-			, specific		: 'thread'
-			, specific_id	:  my_thread_id
-			, select		: 'All'
-			, filter		:  JKY.get_value(my_filter)
-			, display		: '10'
-			, order_by		:  my_order_by
-			};
-		JKY.ajax(false, my_data, my_load_data_success);
+		if (my_thread_id) {
+			var my_data =
+				{ method		: 'get_index'
+				, table			: 'BatchesBalance'
+				, specific		: 'thread'
+				, specific_id	:  my_thread_id
+				, select		: 'All'
+				, filter		:  JKY.get_value(my_filter)
+//				, display		: '10'
+				, order_by		:  my_order_by
+				};
+			JKY.ajax(false, my_data, my_load_data_success);
+		}
 	}
 
 	function my_load_data_success(response) {
@@ -48,6 +50,7 @@ JKY.BatchIn = function() {
 		var my_html = '';
 		for(var i=0; i<my_rows.length; i++) {
 			var my_row = my_rows[i];
+/*
 			var my_boxes	= parseInt(my_row.checkin_boxes)
 							+ parseInt(my_row.returned_boxes)
 							- parseInt(my_row.checkout_boxes)
@@ -57,20 +60,24 @@ JKY.BatchIn = function() {
 							- parseFloat(my_row.checkout_weight)
 							;
 			my_balance = Math.round(my_balance * 100) / 100;
+*/
 //			display only batches with balance
-			if (my_balance > 0 ) {
+//	balance > 0 is moved to backend selection
+//			if (my_balance > 0 ) {
 				my_html += '<tr onclick="JKY.BatchIn.click_row(this, ' + my_row.id + ')">'
-						+  '<td class="jky-search-batch"	>' + my_row.batch			+ '</td>'
-//						+  '<td class="jky-search-date"		>' + JKY.short_date(my_row.updated_at) + '</td>'
-						+  '<td class="jky-search-date"		>' + JKY.short_date(my_row.invoice_date) + '</td>'
-						+  '<td class="jky-search-boxes"	>' + my_boxes				+ '</td>'
-						+  '<td class="jky-search-weight"	>' + my_balance				+ '</td>'
-						+  '<td class="jky-search-weight"	>' + my_row.checkin_weight	+ '</td>'
-						+  '<td class="jky-search-weight"	>' + my_row.returned_weight	+ '</td>'
-						+  '<td class="jky-search-weight"	>' + my_row.checkout_weight	+ '</td>'
+						+  '<td class="jky-search-batch"		>' + my_row.batch			+ '</td>'
+//						+  '<td class="jky-search-date"			>' + JKY.short_date(my_row.updated_at) + '</td>'
+						+  '<td class="jky-search-date"			>' + JKY.short_date(my_row.invoice_date) + '</td>'
+						+  '<td class="jky-search-boxes"		>' + my_row.balance_boxes	+ '</td>'
+						+  '<td class="jky-search-weight"		>' + my_row.balance_weight	+ '</td>'
+						+  '<td class="jky-search-weight"		>' + my_row.checkin_weight	+ '</td>'
+//						+  '<td class="jky-search-weight"		>' + my_row.returned_weight	+ '</td>'
+//						+  '<td class="jky-search-weight"		>' + my_row.checkout_weight	+ '</td>'
+						+  '<td class="jky-search-location"		>' + my_row.checkin_location+ '</td>'
+						+  '<td class="jky-search-supplier-name">' + my_row.supplier_name	+ '</td>'
 						+  '</tr>'
 						;
-			}
+//			}
 		}
 		JKY.set_html(my_search_body, my_html);
 		JKY.show_modal(my_layer);

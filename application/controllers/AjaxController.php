@@ -568,16 +568,17 @@ private function get_index($data) {
 		return;
 	}
 
-	$table		= get_data($data, 'table'	);
-	$specific	= get_data($data, 'specific');
-	$select		= get_data($data, 'select'	);
-	$filter		= get_data($data, 'filter'	);
-	$display	= get_data($data, 'display'	);
-	$order_by	= get_data($data, 'order_by');
-	$group_by	= get_data($data, 'group_by');
+	$table		= get_data($data, 'table'		);
+	$specific	= get_data($data, 'specific'	);
+	$specific_id= get_data($data, 'specific_id'	);
+	$select		= get_data($data, 'select'		);
+	$filter		= get_data($data, 'filter'		);
+	$display	= get_data($data, 'display'		);
+	$order_by	= get_data($data, 'order_by'	);
+	$group_by	= get_data($data, 'group_by'	);
 
 	$where = '';
-	$where .= $this->set_specific($table, $specific, get_data($data, 'specific_id'));
+	$where .= $this->set_specific($table, $specific, $specific_id);
 	$where .= $this->set_select  ($table, $specific, $select);
 	if ($filter != '') {
 		$filters = explode(' and ', $filter);
@@ -596,6 +597,40 @@ private function get_index($data) {
 	}
 	$where = $this->get_security($table, $where);
 
+	if ($table == 'BatchesBalance') {
+/*
+		$sql= 'SELECT Batches.id, Batches.batch, Batches.checkin_weight'
+			. '     , (checkin_boxes  + returned_boxes  - checkout_boxes ) AS balance_boxes'
+			. '     , (checkin_weight + returned_weight - checkout_weight) AS balance_weight'
+			. '     ,  Incomings.invoice_date	AS invoice_date'
+			. '     ,   Supplier.nick_name		AS supplier_name'
+			. '     , (SELECT Boxes.checkin_location FROM Boxes WHERE Boxes.status = "Check In" AND Boxes.batch_id = Batches.id LIMIT 1) AS checkin_location'
+			. '	 FROM Batches'
+			. '	 LEFT JOIN   Incomings  			ON Incomings.id	=   Batches.incoming_id'
+			. '	 LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	= Incomings.supplier_id'
+			. '	WHERE Batches.thread_id = ' . $specific_id . $this->set_where($table, $filter)
+			. '	  AND (checkin_weight + returned_weight - checkout_weight) > 0'
+			. '	ORDER BY ' . $order_by
+			;
+ */
+		$sql= 'SELECT Batches.id'
+			. '		, Incomings.invoice_date'
+			. '		, Batches.batch'
+			. '     , Boxes.checkin_location'
+			. '     , SUM(IF(Boxes.status = "Check In", 1, 0)) AS balance_boxes'
+			. '     , SUM(IF(Boxes.status = "Check In", IF(Boxes.real_weight = 0, Boxes.average_weight, Boxes.real_weight), 0)) AS balance_weight'
+			. '     , SUM(Boxes.average_weight) AS checkin_weight'
+			. '     ,   Supplier.nick_name		AS supplier_name'
+			. '  FROM Boxes'
+			. '  LEFT JOIN Batches				ON Batches.id = Boxes.batch_id'
+			. '  LEFT JOIN Incomings  			ON Incomings.id	= Batches.incoming_id'
+			. '  LEFT JOIN Contacts AS Supplier	ON  Supplier.id	= Incomings.supplier_id'
+			. ' WHERE Batches.thread_id = ' . $specific_id . $this->set_where($table, $filter)
+			. ' GROUP BY invoice_date, batch, checkin_location'
+			. ' HAVING balance_boxes > 0'
+			. ' ORDER BY ' . $order_by
+			;
+	}else
 	if ($table == 'CheckinLocations') {
 		$sql= 'SELECT Boxes.checkin_location	AS location'
 			. '	 , MIN(Boxes.checkin_at)		AS checkin_at'
@@ -1962,6 +1997,14 @@ private function set_where($table, $filter) {
 				. ' OR       Supplier.nick_name			LIKE ' . $filter
 				. ' OR        Threads.name				LIKE ' . $filter
 				. ' OR        Batches.batch				LIKE ' . $filter
+				;
+	}
+
+	if ($table == 'BatchesBalance') {
+		$return = '			Batches.batch				LIKE ' . $filter
+				. ' OR		Batches.checkin_weight		LIKE ' . $filter
+				. ' OR		Incomings.invoice_date		LIKE ' . $filter
+				. ' OR		Supplier.nick_name			LIKE ' . $filter
 				;
 	}
 

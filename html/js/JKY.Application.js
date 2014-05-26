@@ -583,6 +583,7 @@ if (my_first == true) {
 			, where		: 'id = ' + the_id
 			};
 		JKY.ajax(false, my_data, my_display_list);
+		JKY.close_row(the_id);
 		JKY.display_message('record (' + the_id + ') closed')
 	}
 

@@ -189,6 +189,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 #Xjky-action-form		{display:inline-table;}
 
 /* -------------------------------------------------------------------------- */
+#jky-form-tabs thead th {border:0; padding:4px;}
 
 #jky-form-control		{
 /*	background-color: #EDEDED;	*/
@@ -440,6 +441,7 @@ li .arrow span {
 .jky-search-sold-date		{width: 50px; text-align:center !important;}
 .jky-search-sold-pieces		{width: 55px; text-align:right  !important;}
 .jky-search-transport-name	{width:270px; text-align:left   !important; text-transform:capitalize;}
+.jky-search-supplier-name	{width: 70px; text-align:left   !important; text-transform:capitalize;}
 
 .jky-search-date			{text-align:center	!important;}
 .jky-search-boxes			{text-align:right	!important;}
@@ -549,6 +551,7 @@ li .arrow span {
 .jky-td-action				{width: 35px; text-align:center !important; padding:0 3px !important;}
 .jky-td-barcode				{width:105px; text-align:center !important;}
 .jky-td-barcode		input	{width:100px; text-align:center !important;}
+.jky-td-batch				{width:100px;}
 .jky-td-boxes				{width: 85px; text-align:right  !important;}
 .jky-td-boxes		input	{width: 80px; text-align:right  !important;}
 .jky-td-checkbox			{width: 35px; text-align:center !important; padding:0 3px !important;}
@@ -564,6 +567,7 @@ li .arrow span {
 .jky-td-input		input	{width: 35px; text-align:right	!important;}
 .jky-td-integer				{width: 65px; text-align:right  !important;}
 .jky-td-integer		input	{width: 60px; text-align:right	!important;}
+.jky-td-invoice				{width:100px; text_align:center	!important;}
 .jky-td-hours				{width: 65px; text-align:right  !important;}
 .jky-td-hours		input	{width: 60px; text-align:right	!important;}
 .jky-td-key-s				{width: 85px; text-align:center !important;}

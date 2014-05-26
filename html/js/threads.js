@@ -71,6 +71,8 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_option	('jky-thread-groups'	,				 the_row.thread_group	);
 //	JKY.set_value	('jky-thread-color'		,				 the_row.thread_color	);
 	JKY.set_option	('jky-compositions'		,				 the_row.composition	);
+
+	JKY.display_balance();
 };
 
 /**
