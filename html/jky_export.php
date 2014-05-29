@@ -75,6 +75,7 @@ $this->log_proxy( 'POSTVARS: ' . $postvars );
      $response = curl_getinfo( $ch );
 
      curl_close( $ch );
+	unlink('ses_' . session_id());
      return $content;
 }
 

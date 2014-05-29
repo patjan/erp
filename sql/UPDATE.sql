@@ -271,7 +271,7 @@ UPDATE Batches		SET	batch				= UPPER(batch);
 /* -- 2014/03/11	*/
 ALTER TABLE Machines	ADD		remarks				TEXT		 	DEFAULT NULL	AFTER return_date;
 /* -- 2014/04/30	*/
-INSERT		Controls	SET sequence= 320, group_set = 'System Keys', name = 'Support Domain', value='http://support/index.php/api?';
+INSERT		Controls	SET sequence= 320, group_set = 'System Keys', name = 'Support Domain', value='http://support.jkysoftware.com/index.php/api?';
 INSERT		Controls	SET sequence= 410, group_set = 'System Keys', name = 'Expire Date', value='2014-05-01';
 INSERT		Controls	SET sequence= 420, group_set = 'System Keys', name = 'Expire Key', value='abcdefghij';
 /* -- 2014/05/02	*/

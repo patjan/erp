@@ -18,6 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: ''
 		, sort_seq		: ''
+		, sort_list		: [[1, 0]]
 		, focus			: ''
 		, add_new		: ''
 		});
@@ -156,18 +157,18 @@ JKY.process_input_success = function(response) {
 			}
 
 			var my_html = '<tr>'
-					+ '<td class="jky-td-checkbox"	>' +  my_checkbox				+ '</td>'
-					+ '<td class="jky-td-barcode"	>' +  my_row.barcode			+ '</td>'
-					+ '<td class="jky-td-input"		>' +  my_sequence				+ '</td>'
-					+ '<td class="jky-td-status"	>' +  JKY.t(my_row.status)		+ '</td>'
-					+ '<td class="jky-td-code"		>' +  my_row.batch_code			+ '</td>'
-					+ '<td class="jky-td-integer"	>' +  my_row.number_of_boxes	+ '</td>'
-					+ '<td class="jky-td-integer"	>' +  my_number_of_cones		+ '</td>'
-					+ '<td class="jky-td-weight"	>' +  my_row.average_weight		+ '</td>'
-					+ '<td class="jky-td-weight"	>' +  my_real_weight			+ '</td>'
-					+ '<td class="jky-td-location"	>' +  my_location				+ '</td>'
-					+ '<td class="jky-td-name-s"	>' +  my_row.supplier_name		+ '</td>'
-					+ '<td class="jky-td-name-l"	>' +  my_row.thread_name		+ '</td>'
+					+ '<td class="jky-td-checkbox"		>' +  my_checkbox				+ '</td>'
+					+ '<td class="jky-barcode"			>' +  my_row.barcode			+ '</td>'
+					+ '<td class="jky-td-input"			>' +  my_sequence				+ '</td>'
+					+ '<td class="jky-td-status"		>' +  JKY.t(my_row.status)		+ '</td>'
+					+ '<td class="jky-td-code"			>' +  my_row.batch_code			+ '</td>'
+					+ '<td class="jky-td-integer"		>' +  my_row.number_of_boxes	+ '</td>'
+					+ '<td class="jky-number-of-cones"	>' +  my_number_of_cones		+ '</td>'
+					+ '<td class="jky-td-weight"		>' +  my_row.average_weight		+ '</td>'
+					+ '<td class="jky-real-weight"		>' +  my_real_weight			+ '</td>'
+					+ '<td class="jky-td-location"		>' +  my_location				+ '</td>'
+					+ '<td class="jky-td-name-s"		>' +  my_row.supplier_name		+ '</td>'
+					+ '<td class="jky-td-name-l"		>' +  my_row.thread_name		+ '</td>'
 					+ '</tr>'
 					;
 			JKY.prepend_html('jky-table-body', my_html);
@@ -232,4 +233,3 @@ JKY.confirm_row = function(the_id, the_barcode) {
 JKY.confirm_row_success = function(response) {
 	JKY.display_trace('confirm_row');
 }
-

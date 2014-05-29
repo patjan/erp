@@ -26,7 +26,12 @@ public function posDelete     ( $id )   { }
 public function posReplace    ( $id )   { }
 public function posShow       ( $id )   { }
 
-public function init( $table='', $class='', $min_level=0, $per_page=0 ) {
+public function init() {
+	$table='';
+	$class='';
+	$min_level=0;
+	$per_page=0;
+
      if(  is_request( 'event_id' ))     set_new_event( get_request( 'event_id' ));
 
      $this->table        = MODEL . $table;

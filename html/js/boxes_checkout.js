@@ -14,7 +14,7 @@ JKY.start_program = function() {
 		, program_name	: 'Boxes Check Out'
 		, table_name	: 'BatchSets'
 		, specific		: ''
-		, select		: ''
+		, select		: 'Active'
 		, filter		: ''
 		, sort_by		: 'CheckOuts.requested_at'
 		, sort_seq		: 'ASC'
@@ -31,7 +31,7 @@ JKY.start_program = function() {
 JKY.set_all_events = function() {
 	$('#jky-action-clear'		).click	(function() {JKY.process_clear_screen	();});
 	$('#jky-action-confirm'		).click	(function() {JKY.process_confirm_screen	();});
-	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
+//	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-input-barcode'		).change(function() {JKY.process_input_barcode	();});
 	$('#jky-box-check-all'		).click (function() {JKY.set_all_box_check	(this);});
 };
@@ -42,16 +42,17 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_css('jky-app-breadcrumb', 'color', '#CC0000');
 	JKY.set_side_active('jky-boxes-checkout');
+/*
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
 	JKY.show('jky-app-select-line');
 //	select the first option as default
 	$('#jky-app-select option').eq(1).prop('selected', true);
 	$('#jky-app-select').change();
-
+*/
 	JKY.hide('jky-action-export');
-	JKY.hide('jky-action-list'	);
-	JKY.hide('jky-action-form'	);
+	JKY.show('jky-action-list'	);
+	JKY.show('jky-action-form'	);
 	JKY.process_clear_screen();
 };
 
@@ -174,6 +175,18 @@ JKY.process_barcode_success = function(response) {
 				my_sequence = JKY.sequence;
 			}
 
+			var my_weight = (my_row.real_weight == 0) ? my_row.average_weight : my_row.real_weight;
+			var my_reserved_boxes  = parseInt  (JKY.get_value('jky-reserved-boxes' )) - 1;
+			var my_checkout_boxes  = parseInt  (JKY.get_value('jky-checkout-boxes' )) + 1;
+			var my_checkout_weight = parseFloat(JKY.get_value('jky-checkout-weight')) + parseFloat(my_weight);
+			JKY.set_value('jky-reserved-boxes' , my_reserved_boxes );
+			JKY.set_value('jky-checkout-boxes' , my_checkout_boxes );
+			JKY.set_value('jky-checkout-weight', JKY.set_decimal(my_checkout_weight, 2));
+			if ((my_reserved_boxes) < 0) {
+				JKY.play_beep();
+				JKY.display_message('Check out boxes is greater than requested boxes');
+			}
+
 			var my_html = '<tr>'
 					+ '<td class="jky-td-checkbox"	>'							+  my_checkbox				+ '</td>'
 					+ '<td class="jky-td-barcode"	>'							+  my_row.barcode			+ '</td>'
@@ -246,7 +259,7 @@ JKY.confirm_row_success = function(response) {
 	JKY.display_trace('confirm_row');
 //	JKY.set_value('jky-checkout-weight', JKY.get_value_by_id('BatchOuts', 'checkout_weight', JKY.row.id));
 //	JKY.set_value('jky-checkout-boxes' , JKY.get_value_by_id('BatchOuts', 'checkout_boxes' , JKY.row.id));
-	JKY.row = JKY.get_row(my_args.table_name, JKY.row.id);
+	JKY.row = JKY.get_row('BatchSets', JKY.row.id);
 	JKY.set_value('jky-reserved-boxes' , JKY.row.reserved_boxes );
 	JKY.set_value('jky-checkout-weight', JKY.row.checkout_weight);
 	JKY.set_value('jky-checkout-boxes' , JKY.row.checkout_boxes );
