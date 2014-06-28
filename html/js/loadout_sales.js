@@ -7,6 +7,29 @@ var my_old_requested_pieces	= 0;
 var my_new_requested_pieces	= 0;
 
 JKY.display_sales = function() {
+/*
+SELECT LoadSales.*
+,   LoadOut.loadout_number		AS   loadout_number
+,   LoadOut.requested_at		AS requested_at
+,      Dyer.nick_name			AS      dyer_name
+,     Color.color_name			AS     color_name
+,      Sale.quotation_number	AS      sale_number
+,  Customer.nick_name			AS  customer_name
+,   Product.id					AS   product_id
+,   Product.product_name		AS   product_name
+, CEIL(SaleColor.quoted_units / SaleLine.units)	AS      sold_pieces
+  FROM LoadSales
+  LEFT JOIN    LoadOuts AS LoadOut		ON   LoadOut.id	=		 LoadSales.loadout_id
+  LEFT JOIN  QuotColors AS SaleColor	ON SaleColor.id	=		 LoadSales.sale_color_id
+  LEFT JOIN    Contacts AS Dyer			ON      Dyer.id	=		   LoadOut.dyer_id
+  LEFT JOIN      Colors AS Color		ON     Color.id	=		   LoadOut.color_id
+  LEFT JOIN   QuotLines AS SaleLine		ON  SaleLine.id	=		 SaleColor.parent_id
+  LEFT JOIN  Quotations AS Sale			ON      Sale.id	=		  SaleLine.parent_id
+  LEFT JOIN    Products AS Product		ON   Product.id	=		  SaleLine.product_id
+  LEFT JOIN    Contacts AS Customer		ON  Customer.id	=		      Sale.customer_id
+ WHERE LoadSales.loadout_id = 8000000004
+ ORDER BY LoadOut.loadout_number
+*/
 	my_loadout_id = JKY.row.id;
 	var my_data =
 		{ method		: 'get_index'

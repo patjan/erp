@@ -1,16 +1,16 @@
 Todo
 
-- tablesorter (done)
-- d3 (done)
-- thumb (done)
-- email
-	- log-help (done)
-	- help-sent (done)
-	- 
-- expiration	(done)
+(done) - tablesorter 
+(done) - d3
+(done) - thumb
+(done) - email
+(done)		- log-help
+(done)		- help-sent
+(done) - expiration
 - single script
 - copy ftp-photos & ftp-draws
-
+(done) - new layers: center, draggable e resizable
+(done) - add [peso] [units] on [Products]
 
 
 V2- adicionar pedido por caixa
@@ -18,7 +18,10 @@ ok- travar alteracoes no estado Fechado
 ok- display data da emissao NFe
 ok- display qtde de caixas
 ok- supplier display search correto
-- error de sql on search 
+ok- error de sql on search 
+
+
+
 
 
 Marcelo:
@@ -32,6 +35,17 @@ Marcelo:
 7.		Testar fase 4 ERP (Tinturarias
 8.		Definir o sistema NFe para emitir NF para Tinturarias
 
+
+9.		Qdo e' definido o tipo de cone usado no tecido ?
+10.		Quantos tipos de cones com peso ?
+11.		Qual e' peso padrao de cone ?
+12.		Tabela de Precos dos tecidos ?
+13.		Como e' reportado o retorno de Tecidos ?
+
+14.		Mapeamento de tecidos ja esta pronto
+14.		Qdo e' melhor imprimir etiquetas de tecidos? com mapeamento
+15.		Conseque ler o peso do tecido automaticamente ?
+15.		Qdo e' melhor digitar novos peso do tecido?
 
 
 Bugs

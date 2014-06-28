@@ -1,0 +1,14 @@
+SELECT Batches.*
+,   Threads.name				AS           name
+, Incomings.incoming_number	AS  incoming_number
+, Incomings.invoice_date		AS   invoice_date
+, Purchases.purchase_number	AS  purchase_number
+  FROM Batches
+  LEFT JOIN   Incomings  			ON Incomings.id	=		   Batches.incoming_id
+  LEFT JOIN     Threads  			ON   Threads.id	=		   Batches.thread_id
+  LEFT JOIN PurchaseLines AS PLines  ON    PLines.id	=		   Batches.purchase_line_id
+  LEFT JOIN   Purchases				ON Purchases.id	=		    PLines.parent_id
+  WHERE        Batches.thread_id	=  
+  AND (   Batches.code				LIKE "6c%" OR    Batches.batch				LIKE "6c%" OR    Batches.received_boxes	LIKE "6c%" OR    Batches.checkin_boxes		LIKE "6c%" OR    Batches.returned_boxes	LIKE "6c%" OR    Batches.checkout_boxes	LIKE "6c%" OR    Batches.unit_price		LIKE "6c%" OR    Batches.average_weight	LIKE "6c%" OR    Batches.received_weight	LIKE "6c%" OR    Batches.checkin_weight	LIKE "6c%" OR    Batches.returned_weight	LIKE "6c%" OR    Batches.checkout_weight	LIKE "6c%" OR    Threads.name				LIKE "6c%" OR	Incomings.incoming_number	LIKE "6c%")
+  ORDER BY batch
+  LIMIT 10

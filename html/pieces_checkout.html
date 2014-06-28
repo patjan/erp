@@ -7,13 +7,14 @@
 	<thead>
 		<tr>
 			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
-			<th class='jky-td-number'	><span>	    Load Out<br>Number		</span></th>
-			<th class='jky-td-date'		><span>	   Requested<br>Date		</span></th>
-			<th class='jky-td-name-s'	><span>	        Dyer				</span></th>
-			<th class='jky-td-name-s'	><span>	       Color				</span></th>
+			<th class='jky-td-number'	><span>     Load Out<br>Number		</span></th>
+			<th class='jky-td-date'		><span>    Requested<br>Date		</span></th>
+			<th class='jky-td-date'		><span>    Check Out<br>Date		</span></th>
+			<th class='jky-td-name-s'	><span>         Dyer				</span></th>
+			<th class='jky-td-name-s'	><span>        Color				</span></th>
 			<th class='jky-td-number'	><span>			Sale<br>Number		</span></th>
 			<th class='jky-td-name-s'	><span>     Customer				</span></th>
-			<th class='jky-td-name-l'	><span>	     Product				</span></th>
+			<th class='jky-td-name-l'	><span>      Product				</span></th>
 			<th class='jky-td-location'	><span>     Check In<br>Location	</span></th>
 			<th class='jky-td-pieces'	><span>     Check In<br>Pieces		</span></th>
 			<th class='jky-td-pieces'	><span>     Reserved<br>Pieces		</span></th>
@@ -27,7 +28,9 @@
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'>
+<!--
 			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this check out"	><span>Close Check Out			</span></button>
+-->
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
@@ -47,8 +50,6 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span>	      Product</span>:</div><input  id='jky-product-name'		class='jky-form-name'		disabled /></div>
 		</div>
 		<div class='jky-clear'></div>
-		<br>
-
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>  Requested Date</span>:</div><input  id='jky-requested-date'		class='jky-form-date'		disabled  /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Requested Pieces</span>:</div><input  id='jky-requested-pieces'	class='jky-form-pieces'		disabled  /></div>
@@ -83,7 +84,7 @@
 			</tr>
 		</thead>
 
-		<tbody id='jky-piece-table-body'></tbody>
+		<tbody id='jky-pieces-table-body'></tbody>
 	</table>
 
 	<div id='jky-form-footer'></div>
@@ -92,3 +93,4 @@
 <div id='jky-body-loaded'></div>
 
 <script src='js/pieces_checkout.js'></script>
+<script src='js/piece_locations.js'></script>

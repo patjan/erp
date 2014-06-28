@@ -1,0 +1,34 @@
+UPDATE LoadSales
+   SET code=''            
+   , batch=''       
+   , unit_price=   
+   , requested_weight=   
+   , requested_pieces=  20  
+   , reserved_pieces=     
+   , average_weight=    
+   , checkout_weight=    
+   , checkout_pieces=  0
+   , updated_by=100001
+   , updated_at="2014-06-02 01:37:44"
+WHERE id = 2000000002
+
+SELECT QuotColors.*
+,QuotColors.quoted_units		AS      sold_units
+,     Color.color_name			AS     color_name
+,      Sale.quotation_number	AS      sale_number
+,      Sale.quoted_at			AS      sold_at
+,   Product.product_name		AS   product_name
+,  Customer.nick_name			AS  customer_name
+,       FTP.composition			AS			 composition
+  FROM QuotColors
+  LEFT JOIN      Colors AS Color 	ON     Color.id	=	    QuotColors.color_id
+  LEFT JOIN   QuotLines AS SaleLine	ON  SaleLine.id	=		QuotColors.parent_id
+  LEFT JOIN  Quotations AS Sale		ON      Sale.id	=		  SaleLine.parent_id
+  LEFT JOIN      Orders AS Orderx	ON	  Orderx.id	=		  SaleLine.order_id
+  LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleLine.product_id
+  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id
+  LEFT JOIN        FTPs AS FTP		ON       FTP.id	=		    Orderx.ftp_id
+  WHERE     QuotColors.color_id		= 100020
+  AND        Orderx.ftp_id IS NOT NULL
+  ORDER BY Sale.quotation_number
+  LIMIT 10

@@ -3,6 +3,18 @@
  */
 
 JKY.display_pieces = function() {
+/*
+SELECT Pieces.checkin_location	AS location
+	 , MIN(Pieces.checkin_at)		AS checkin_at
+	 , COUNT(*)						AS total_pieces
+	 , SUM(Pieces.checkin_weight)	AS total_weight
+  FROM Pieces
+  LEFT JOIN Orders ON Orders.id = Pieces.order_id
+ WHERE Pieces.status = "Check In"
+   AND Orders.product_id = 101200
+ GROUP BY Pieces.checkin_location
+ ORDER BY Pieces.checkin_location
+*/
 //	JKY.loads = JKY.load_ids(JKY.row.id);
 	var my_data =
 		{ method	: 'get_index'
@@ -33,7 +45,7 @@ JKY.generate_pieces = function(response) {
 
 			my_html  += ''
 				+ '<tr>'
-				+ '<td class="jky-td-action"></td>'
+				+ '<td class="jky-td-action"	></td>'
 				+ '<td class="jky-td-short"		><input class="jky-checkin-location"	value="' +				my_row.location		+ '" disabled	/></td>'
 				+ '<td class="jky-td-date"		><input class="jky-checkin-date"		value="' + JKY.out_date(my_row.checkin_at)	+ '" disabled	/></td>'
 				+ '<td class="jky-td-weight"	><input class="jky-checkin-weight"		value="' +				my_row.total_weight	+ '" disabled	/></td>'
@@ -47,6 +59,12 @@ JKY.generate_pieces = function(response) {
 	$('.jky-reserved-pieces').ForceIntegerOnly();
 	if (my_rows == '') {
 //		JKY.insert_load();
+	}
+
+	if (JKY.row.status == 'Closed') {
+		$('#jky-pieces-body input[changeable]').prop('disabled', true );
+	}else{
+		$('#jky-pieces-body input[changeable]').prop('disabled', false);
 	}
 }
 

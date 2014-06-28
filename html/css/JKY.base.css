@@ -30,6 +30,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 .nav-tabs > .active > a:hover	{background-color:#FFFFFF;}
 .Xinput-append .add-on	{margin-left:-6px; padding:2px;}
 .input-append .add-on	{height:26px; padding:4px 1px 0 3px;}
+.modal					{overflow:initial; margin:0;}
 .modal-header			{background:#223870; color:white; border-bottom:1px solid #DDDDDD; border-radius:3px 3px 0 0; font-size:120%; font-weight:bold;}
 .modal-body				{background:white;}
 .modal-backdrop,
@@ -250,7 +251,7 @@ li .arrow span {
 #jky-form-tabs	th	{background:#FFFFFF; color:#4C4C4C;}
 /* -------------------------------------------------------------------------- */
 .jky-add-color			{width:180px; text-align:left   !important;}
-.jky-empty				{height:30px;}
+.jky-empty				{height:28px;}
 .jky-thumb				{width:120px; height:120px; border:4px ridge darkblue; border-radius:6px;}
 
 #jky-loading			{display:none; position:fixed; top:50%;left:50%; margin:-50px 0 0 -50px; overflow:auto; z-index:9999;}
@@ -428,6 +429,7 @@ li .arrow span {
 .jky-search-checkout-pieces	{width: 65px; text-align:right  !important;}
 .jky-search-color-name		{width:319px; text-align:left   !important; text-transform:capitalize;}
 .jky-search-color-type		{width: 50px; text-align:center !important;}
+.jky-search-color-date		{width: 80px; text-align:center !important;}
 .jky-search-machine-name	{width:270px; text-align:left   !important; text-transform:capitalize;}
 .jky-search-machine-type	{width: 50px; text-align:center !important;}
 .jky-search-machine-brand	{width: 50px; text-align:center !important;}
@@ -435,7 +437,8 @@ li .arrow span {
 .jky-search-ordered-pieces	{width: 55px; text-align:right  !important;}
 .jky-search-product-name	{width:420px; text-align:left   !important; text-transform:capitalize;}
 .jky-search-product-type	{width: 50px; text-align:center !important;}
-.jky-search-product-start	{width: 50px; text-align:center !important;}
+.jky-search-product-peso	{width: 50px; text-align:right  !important;}
+.jky-search-product-units	{width: 50px; text-align:right  !important;}
 .jky-search-requested-date	{width: 65px; text-align:center !important;}
 .jky-search-requested-pieces{width: 65px; text-align:right  !important;}
 .jky-search-sold-date		{width: 50px; text-align:center !important;}
@@ -453,7 +456,7 @@ li .arrow span {
 #jky-search-dyer-name	{text-transform:capitalize;}
 
 /* -------------------------------------------------------------------------- */
-#jky-boxes-layer		{width:350px; top:240px; left:920px;}
+#jky-boxes-layer		{width:350px;}
 .jky-boxes-line			{width:260px; text-align:right; font-weight:bold;}
 .jky-boxes-line input		{width: 60px; text-align:right;}
 .jky-boxes-label		{width:170px; float:left; font-weight:bold; text-align:right;}
@@ -479,7 +482,7 @@ li .arrow span {
 #jky-product-type input	{margin-top: 2px;}
 #jky-product-type span	{padding:2px 20px 0 4px; vertical-align:middle;}
 
-#jky-pieces-layer		{width:350px; top:240px; left:920px;}
+#jky-pieces-layer		{width:350px;}
 .jky-pieces-line		{width:260px; text-align:right; font-weight:bold;}
 .jky-pieces-line input	{width: 60px; text-align:right;}
 .jky-pieces-label		{width:170px; float:left; margin-top:5px; font-weight:bold; text-align:right;}

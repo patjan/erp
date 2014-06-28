@@ -21,6 +21,7 @@ JKY.Product = function() {
 	var my_filter		= 'jky-product-filter';
 	var my_search_body	= 'jky-product-search-body';
 	var my_layer		= 'jky-product-search';
+	var my_cookie		= null;
 
 	function my_display(the_id, the_type) {
 		my_the_id	= the_id;
@@ -53,7 +54,8 @@ JKY.Product = function() {
 			my_html += '<tr onclick="JKY.Product.click_row(this, ' + my_row.id + ')">'
 					+  '<td class="jky-search-product-name"		>' + my_row.product_name	+ '</td>'
 					+  '<td class="jky-search-product-type"		>' + my_row.product_type	+ '</td>'
-					+  '<td class="jky-search-product-start"	>' + JKY.out_date(my_row.start_date) + '</td>'
+					+  '<td class="jky-search-product-peso"		>' + my_row.peso			+ '</td>'
+					+  '<td class="jky-search-product-units"	>' + my_row.units			+ '</td>'
 					+  '</tr>'
 					;
 		}
@@ -63,8 +65,10 @@ JKY.Product = function() {
 
 
 	function my_click_row(the_index, the_id) {
-		var my_name = $(the_index).find('.jky-search-product-name').html();
-		var my_parent = $(my_the_id).parent();
+		var my_name		= $(the_index).find('.jky-search-product-name' ).html();
+		var my_peso		= $(the_index).find('.jky-search-product-peso' ).html();
+		var my_units	= $(the_index).find('.jky-search-product-units').html();
+		var my_parent	= $(my_the_id).parent().parent();
 
 //		var my_dom_id = $(my_parent).find('#jky-product-id');
 		var my_dom_id = $('#jky-product-id');
@@ -81,12 +85,31 @@ JKY.Product = function() {
 		my_dom_name.val(my_name);
 		my_dom_name.change();		//	to activate change event
 
+		var my_dom_peso = $('#jky-product-peso');
+		if (my_dom_peso.length == 0) {
+			my_dom_peso = $(my_parent).find('.jky-product-peso');
+		}
+		my_dom_peso.val(my_peso);
+		my_dom_peso.change();		//	to activate change event
+
+		var my_dom_units = $('#jky-product-units');
+		if (my_dom_units.length == 0) {
+			my_dom_units = $(my_parent).find('.jky-product-units');
+		}
+		my_dom_units.val(my_units);
+		my_dom_units.change();		//	to activate change event
+
 		JKY.hide_modal(my_layer);
 	}
 
 	function my_add_new() {
 		JKY.display_message('add_new');
 	}
+
+
+	$(function() {
+		my_cookie = $.cookie(my_layer);
+	});
 
 	return {
 		  display		: function(the_id, the_type)	{		my_display(the_id, the_type);}

@@ -617,9 +617,11 @@ private function get_index($data) {
 			. '		, Incomings.invoice_date'
 			. '		, Batches.batch'
 			. '     , Boxes.checkin_location'
-			. '     , SUM(IF(Boxes.status = "Check In", 1, 0)) AS balance_boxes'
-			. '     , SUM(IF(Boxes.status = "Check In", IF(Boxes.real_weight = 0, Boxes.average_weight, Boxes.real_weight), 0)) AS balance_weight'
-			. '     , SUM(Boxes.average_weight) AS checkin_weight'
+			. '     , SUM(IF(Boxes.status  = "Check In"	OR Boxes.status  = "Return", 1, 0)) AS balance_boxes'
+			. '     , SUM(IF(Boxes.status  = "Check In"	OR Boxes.status  = "Return", IF(Boxes.real_weight = 0, Boxes.average_weight, Boxes.real_weight), 0)) AS balance_weight'
+			. '     , SUM(IF(Boxes.status  = "Active"	, 0,	Boxes.average_weight	   )) AS  checkin_weight'
+//			. '     , SUM(IF(Boxes.status  = "Return"	,		Boxes.real_weight		, 0)) AS   return_weight'
+//			. '     , SUM(IF(Boxes.status  = "Check Out",		Boxes.average_weight	, 0)) AS checkout_weight'
 			. '     ,   Supplier.nick_name		AS supplier_name'
 			. '  FROM Boxes'
 			. '  LEFT JOIN Batches				ON Batches.id = Boxes.batch_id'
@@ -638,8 +640,9 @@ private function get_index($data) {
 			. '	 , SUM(IF(Boxes.real_weight = 0, Boxes.average_weight, Boxes.real_weight))	AS total_weight'
 			. '  FROM Boxes'
 			. '  LEFT JOIN Batches	ON Batches.id = Boxes.batch_id'
-			. ' WHERE Boxes.status = "Check In"'
-			. '   AND Batches.id = ' . $select
+			. ' WHERE Batches.thread_id = ' . $specific_id
+			. '   AND Batches.batch = "' . $select . '"'
+			. '   AND (Boxes.status = "Check In" OR Boxes.status = "Return")'
 			. ' GROUP BY Boxes.checkin_location'
 			. ' ORDER BY Boxes.checkin_location'
 			;
@@ -864,6 +867,7 @@ private function set_new_fields($table) {
 							. ', CEIL(SaleColor.quoted_units / SaleLine.units)	AS      sold_pieces';
 	if ($table == 'LoadSets'		)	$return = ',   LoadOut.loadout_number	AS   loadout_number'
 												. ',   LoadOut.requested_at		AS requested_at'
+												. ',   LoadOut.checkout_at		AS  checkout_at'
 												. ',      Dyer.nick_name		AS      dyer_name'
 												. ',     Color.color_name		AS     color_name'
 												. ',      Sale.quotation_number	AS      sale_number'
@@ -901,6 +905,7 @@ private function set_new_fields($table) {
 	if ($table == 'QuotLines'		)	$return = ',   Product.product_name		AS   product_name';
 	if ($table == 'QuotColors'		)	$return = ',QuotColors.quoted_units		AS      sold_units'
 												. ',     Color.color_name		AS     color_name'
+												. ',  SaleLine.units			AS			 units'
 												. ',      Sale.quotation_number	AS      sale_number'
 												. ',      Sale.quoted_at		AS      sold_at'
 												. ',   Product.product_name		AS   product_name'
@@ -939,6 +944,7 @@ private function set_new_fields($table) {
 												. ',   Batches.batch			AS     batch_code'
 												. ', CheckOuts.number			AS  checkout_number'
 												. ', CheckOuts.requested_at		AS requested_at'
+												. ', CheckOuts.checkout_at		AS  checkout_at'
 												. ',  Supplier.nick_name		AS  supplier_name'
 												. ',  Machines.name				AS   machine_name';
 	if ($table == 'BatchSets'		)	$return = ', BatchOuts.average_weight	AS   average_weight'
@@ -948,6 +954,7 @@ private function set_new_fields($table) {
 												. ',   Batches.batch			AS     batch_code'
 												. ', CheckOuts.number			AS  checkout_number'
 												. ', CheckOuts.requested_at		AS requested_at'
+												. ', CheckOuts.checkout_at		AS  checkout_at'
 												. ',  Supplier.nick_name		AS  supplier_name'
 												. ',  Machines.name				AS   machine_name';
 	if ($table == 'TDyers'			)	$return = ',    Orderx.order_number		AS	   order_number'

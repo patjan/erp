@@ -213,7 +213,7 @@ JKY.process_start_page = function() {
 		,{id:'jky-menu-boxes'		, icon:'plus', label:'Boxes'		}
 		,{id:'jky-menu-dyers'		, icon:'plus', label:'Dyers'		}
 		,{id:'jky-menu-pieces'		, icon:'plus', label:'Pieces'		}
-//		,{id:'jky-menu-fabrics'		, icon:'plus', label:'Fabrics'		}
+		,{id:'jky-menu-fabrics'		, icon:'plus', label:'Fabrics'		}
 		,{id:'jky-menu-help'		, icon:'plus', label:'Help'			}
 		,{id:'jky-menu-admin'		, icon:'plus', label:'Admin'		}
 		,{id:'jky-menu-support'		, icon:'plus', label:'Support'		}
@@ -258,6 +258,6 @@ JKY.process_menu = function(menu) {
 		case 'jky-menu-fabrics'		: JKY.show('jky-side-fabrics'	); JKY.process_action('fabrics_checkin'	); break;
 		case 'jky-menu-help'		: JKY.show('jky-side-help'		); JKY.process_action('tickets'			); break;
 		case 'jky-menu-admin'		: JKY.show('jky-side-admin'		); JKY.process_action('contacts'		); break;
-		case 'jky-menu-support'		: JKY.show('jky-side-support'	); JKY.process_action('translations'	); break;
+		case 'jky-menu-support'		: JKY.show('jky-side-support'	); JKY.process_action('controls'		); break;
 	}
 }

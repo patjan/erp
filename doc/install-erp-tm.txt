@@ -1,0 +1,88 @@
+ DL Server 2014-05-07 8:28 
+ 
+  Full texts 	id 	table_name 	next_id 	id_size
+	Edit Edit 	Copy Copy 	Delete Delete 	1 	Batches 		389 	9
+	Edit Edit 	Copy Copy 	Delete Delete 	2 	BatchOuts 		185 	9
+	Edit Edit 	Copy Copy 	Delete Delete 	3 	BatchSets 		178 	9
+	Edit Edit 	Copy Copy 	Delete Delete 	4 	Boxes 			36589 	9
+	Edit Edit 	Copy Copy 	Delete Delete 	5 	Categories 		1 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	6 	CheckOuts 		101 	5
+	Edit Edit 	Copy Copy 	Delete Delete 	7 	Colors 			1 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	8 	Configs 		57 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	9 	Contacts 		6 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	10 	Controls 		2	 	5
+	Edit Edit 	Copy Copy 	Delete Delete 	11 	Cylinders 		100 	5
+	Edit Edit 	Copy Copy 	Delete Delete 	12 	FTPs 			254 	5
+	Edit Edit 	Copy Copy 	Delete Delete 	13 	FTP_Loads 		398 	9
+	Edit Edit 	Copy Copy 	Delete Delete 	14 	FTP_Sets 		1255 	9
+	Edit Edit 	Copy Copy 	Delete Delete 	15 	FTP_Threads 	505 	9
+	Edit Edit 	Copy Copy 	Delete Delete 	16 	History 		62393 	9
+	Edit Edit 	Copy Copy 	Delete Delete 	17 	Incomings 		382 	5
+	Edit Edit 	Copy Copy 	Delete Delete 	18 	JKY_Users 		4 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	40 	LoadOuts 		2 		9
+	Edit Edit 	Copy Copy 	Delete Delete 	41 	LoadSales 		3 		9
+	Edit Edit 	Copy Copy 	Delete Delete 	42 	LoadSets 		1 		9
+	Edit Edit 	Copy Copy 	Delete Delete 	19 	Machines 		95 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	20 	Orders 			10 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	21 	OrdThreads 		28 		9
+	Edit Edit 	Copy Copy 	Delete Delete 	22 	Permissions 	13 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	23 	Pieces 			1 		9
+	Edit Edit 	Copy Copy 	Delete Delete 	24 	ProdPrices 		1 		9
+	Edit Edit 	Copy Copy 	Delete Delete 	25 	Products 		52 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	26 	PurchaseLines 	269 	9
+	Edit Edit 	Copy Copy 	Delete Delete 	27 	Purchases 		98 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	28 	Quotations 		2 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	29 	QuotColors 		12 		9
+	Edit Edit 	Copy Copy 	Delete Delete 	30 	QuotLines 		7 		9
+ 	Edit Edit 	Copy Copy 	Delete Delete 	31 	ReqLines 		1 		9
+	Edit Edit 	Copy Copy 	Delete Delete 	32 	Requests 		1 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	43 	ShipDyers 		1 		9
+	Edit Edit 	Copy Copy 	Delete Delete 	33 	TDyerColors 	1 		9
+	Edit Edit 	Copy Copy 	Delete Delete 	34 	TDyers 			1 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	35 	TDyerThreads 	1 		9
+	Edit Edit 	Copy Copy 	Delete Delete 	36 	Templates 		2 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	37 	Threads 		360 	5
+	Edit Edit 	Copy Copy 	Delete Delete 	38 	Tickets 		78 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	39 	Translations 	1 		5
+With selected: Check All / Uncheck All With selected:
+
+
+
+SELECT *
+FROM `Controls`
+ORDER BY `Controls`.`id` DESC
+LIMIT 0 , 30
+Profiling
+[Inline] [ Edit ] [ Explain SQL ] [ Create PHP Code ] [ Refresh ]
+
+Start row: Number of rows: Headers every rows
+	
+Sort by key:
+
++ Options
+Full texts 	id Descending 	created_at 	created_by 	updated_at 	updated_by 	status 	company_id 	sequence 	group_set 	name 	value
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000403 	2013-12-25 15:29:23 	1 	NULL	NULL	Active 	1 	50 	Ticket Categories 	ShipDyers 	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000402 	2013-12-25 15:29:23 	1 	NULL	NULL	Active 	1 	50 	User Resources 	ShipDyers 	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000401 	2013-12-12 22:11:21 	1 	NULL	NULL	Active 	1 	50 	Ticket Categories 	LoadSets 	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000400 	2013-12-12 22:11:21 	1 	NULL	NULL	Active 	1 	50 	User Resources 	LoadSets 	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000399 	2013-12-12 22:10:33 	1 	NULL	NULL	Active 	1 	50 	Ticket Categories 	LoadSales 	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000398 	2013-12-12 22:10:33 	1 	NULL	NULL	Active 	1 	50 	User Resources 	LoadSales 	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000397 	2013-12-12 22:09:20 	1 	NULL	NULL	Active 	1 	50 	Ticket Categories 	LoadOuts 	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000396 	2013-12-12 22:09:20 	1 	NULL	NULL	Active 	1 	50 	User Resources 	LoadOuts 	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	900397 	NULL	NULL	2014-01-06 12:47:35 	100001 	Active 	1 	2
+	
+ Full texts 	id Descending 	created_at 	created_by 	updated_at 	updated_by 	status 	company_id 	sequence 	group_set 	name 	value 	remarks
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000406 	NULL	NULL	NULL	NULL	Active 	1 	420 	System Keys 	Expire Key 	abcdefghij	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000405 	NULL	NULL	NULL	NULL	Active 	1 	410 	System Keys 	Expire Date 	2014-05-01	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000404 	NULL	NULL	NULL	NULL	Active 	1 	320 	System Keys 	Support Domain 	http://support/index.php/api?	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000403 	2014-01-02 10:50:38 	1 	NULL	NULL	Active 	1 	50 	Ticket Categories 	ShipDyers 	NULL	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000402 	2014-01-02 10:50:38 	1 	NULL	NULL	Active 	1 	50 	User Resources 	ShipDyers 	NULL	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000401 	2013-12-13 06:30:59 	1 	NULL	NULL	Active 	1 	50 	Ticket Categories 	LoadSets 	NULL	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000400 	2013-12-13 06:30:59 	1 	NULL	NULL	Active 	1 	50 	User Resources 	LoadSets 	NULL	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000399 	2013-12-13 06:30:27 	1 	NULL	NULL	Active 	1 	50 	Ticket Categories 	LoadSales 	NULL	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000398 	2013-12-13 06:30:27 	1 	NULL	NULL	Active 	1 	50 	User Resources 	LoadSales 	NULL	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000397 	2013-12-13 06:30:11 	1 	NULL	NULL	Active 	1 	50 	Ticket Categories 	LoadOuts 	NULL	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	1000000396 	2013-12-13 06:30:10 	1 	NULL	NULL	Active 	1 	50 	User Resources 	LoadOuts 	NULL	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	900398 	NULL	NULL	2013-12-14 02:08:47 	100001 	Active 	1 	50 	User Roles 	Pieces 	pieces	NULL
+	Edit Edit 	Copy Copy 	Delete Delete 	900397 	NULL	NULL	2013-11-11 19:20:14 	100001 	Active 	1 	210 	System Keys 	SynDB 	stopped 2013-11-12 14:55:24.603147	NULL
+	

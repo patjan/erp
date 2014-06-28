@@ -1,0 +1,40 @@
+2013-10-24 07:14:20.615463 
+2013-10-24 07:14:20.615814 start of program
+2013-10-24 07:14:20.625400 error, database not connected: SQLSTATE[42000] [1049] Unknown database 'erpx'
+2013-10-24 07:14:20.625687 end of program
+2013-10-24 07:14:48.007501 
+2013-10-24 07:14:48.007842 start of program
+2013-10-24 07:14:48.017513 error, database not connected: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)
+2013-10-24 07:14:48.017815 end of program
+2013-10-24 07:15:07.169527 
+2013-10-24 07:15:07.169853 start of program
+2013-10-24 07:15:07.179453 error, database not connected: SQLSTATE[28000] [1045] Access denied for user 'rootx'@'localhost' (using password: YES)
+2013-10-24 07:15:07.179727 end of program
+2013-10-24 07:15:26.020554 
+2013-10-24 07:15:26.020903 start of program
+2013-10-24 07:15:30.941575 error, database not connected: SQLSTATE[HY000] [2002] php_network_getaddresses: gethostbyname failed. errno=2
+2013-10-24 07:15:30.942053 end of program
+2013-10-24 07:12:52.910339 
+2013-10-24 07:12:52.910710 start of program
+2013-10-24 07:12:53.923085 error, database not connected: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+2013-10-24 07:12:53.923577 end of program
+2013-10-24 07:18:41.859829 
+2013-10-24 07:18:41.860202 start of program
+2013-10-24 07:18:41.870677 error, no reply from main server
+2013-10-24 07:18:41.870950 end of program
+
+2013-10-24 06:33:29.683281 
+2013-10-24 06:33:29.683633 start of program
+2013-10-24 06:33:29.689639 OK, database connected
+2013-10-24 06:33:32.043715 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name = "1"
+2013-10-24 06:33:32.044479 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name = "2"
+2013-10-24 06:33:32.044955 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name = "8"
+2013-10-24 06:33:32.045409 UPDATE Controls   SET value = "external-db.s122232.gridserver.com" WHERE group_set = "Servers Host"   AND name = "9"
+2013-10-24 06:33:32.045889 end of program
+
+2013-10-24 08:03:07.500568 
+2013-10-24 08:03:07.500891 start of program
+2013-10-24 08:03:07.939473 UPDATE Controls   SET value = "201.83.200.78" WHERE group_set = "Servers Host"   AND name  = "1"
+2013-10-24 08:03:07.940545 UPDATE Controls   SET value = "177.33.255.216" WHERE group_set = "Servers Host"   AND name  = "2"
+2013-10-24 08:03:07.941396 UPDATE Controls   SET value = "172.248.88.107" WHERE group_set = "Servers Host"   AND name  = "8"
+2013-10-24 08:03:07.942246 end of program

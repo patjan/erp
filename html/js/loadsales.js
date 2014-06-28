@@ -33,7 +33,7 @@ JKY.set_all_events = function() {
 //	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
 //	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 
-	$('#jky-action-generate').click( function() {JKY.generate_loadout();});
+	$('#jky-action-generate').click( function() {JKY.generate_loadset();});
 	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
 }
 
@@ -139,18 +139,26 @@ JKY.get_form_set = function() {
 //	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
 
 	var my_set = ''
-		+             '  code=\'' + JKY.get_value('jky-product-code'	) + '\''
-		+'            , batch=\'' + JKY.get_value('jky-batch-number'	) + '\''
-		+'       , unit_price=  ' + JKY.get_value('jky-unit-price'		)
-		+' , requested_weight=  ' + JKY.get_value('jky-requested-weight')
-		+' , requested_pieces=  ' + JKY.get_value('jky-requested-pieces')
+//		+             '  code=\'' + JKY.get_value('jky-product-code'	) + '\''
+//		+'            , batch=\'' + JKY.get_value('jky-batch-number'	) + '\''
+//		+'       , unit_price=  ' + JKY.get_value('jky-unit-price'		)
+//		+' , requested_weight=  ' + JKY.get_value('jky-requested-weight')
+		+'   requested_pieces=  ' + JKY.get_value('jky-requested-pieces')
 		+'  , reserved_pieces=  ' + JKY.get_value('jky-reserved-pieces'	)
-		+'   , average_weight=  ' + JKY.get_value('jky-average-weight'	)
-		+'  , checkout_weight=  ' + JKY.get_value('jky-checkout-weight'	)
+//		+'   , average_weight=  ' + JKY.get_value('jky-average-weight'	)
+//		+'  , checkout_weight=  ' + JKY.get_value('jky-checkout-weight'	)
 		+'  , checkout_pieces=  ' + JKY.get_value('jky-checkout-pieces'	)
 		;
 	return my_set;
 }
+
+JKY.display_list = function() {
+	JKY.hide('jky-action-add-new');
+};
+
+JKY.display_form = function() {
+	JKY.hide('jky-action-add-new');
+};
 
 /**
  *	set calculated color
@@ -169,16 +177,27 @@ JKY.set_calculated_color = function() {
 }
 
 /* -------------------------------------------------------------------------- */
-JKY.generate_loadout = function() {
+JKY.generate_loadset = function() {
 	var my_requested_pieces = JKY.get_value('jky-requested-pieces');
 	var my_reserved_pieces  = JKY.get_value('jky-reserved-pieces' );
 	if (my_requested_pieces !=  my_reserved_pieces) {
-		JKY.display_message('Check Out cannot be generated');
+		JKY.display_message('Load Set cannot be generated');
 		JKY.display_message('because Resersed Pieces is not equal to Requested Pieces');
 		return;
 	}
 
 	JKY.insert_load_sets();
+}
+
+/* -------------------------------------------------------------------------- */
+JKY.close_row = function(the_id) {
+	var my_data =
+		{ method	: 'update'
+		, table		: 'LoadSets'
+		, set		: 'status = \'Closed\''
+		, where		: 'loadout_id = ' + the_id
+		};
+	JKY.ajax(false, my_data);
 }
 
 JKY.insert_load_sets = function() {

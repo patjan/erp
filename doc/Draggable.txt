@@ -1,0 +1,7 @@
+.modal			{overflow:initial; margin:0; max-height:800px;}
+#cd-wrapper		{margin:0; width:960px; height:680px; padding:5px 10px;}
+
+<div id='cd-header' class='modal-header'>
+
+		CX.showModal ('cd-wrapper');
+		CX.center_box('cd-wrapper');

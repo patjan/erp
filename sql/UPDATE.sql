@@ -250,10 +250,10 @@ ALTER TABLE LoadOuts		ADD COLUMN shipdyer_id		BIGINT			DEFAULT NULL	AFTER color_
 ALTER TABLE ShipDyers		ADD COLUMN sds_printed		INT				DEFAULT 0		AFTER batch_code;
 ALTER TABLE Pieces			CHANGE	parent_id	loadsale_id		BIGINT			DEFAULT NULL;
 /* -- 2014/01/11	*/
-ALTER TABLE Contacts	ADD COLUMN parent_id    		BIGINT   		DEFAULT NULL  	AFTER support_id;
+ALTER TABLE Contacts		ADD COLUMN parent_id    		BIGINT   		DEFAULT NULL  	AFTER support_id;
 /* -- 2014/01/15	*/
-ALTER TABLE FTPs		ADD		units					INT(11)			DEFAULT 1		AFTER width;
-UPDATE		FTPs		SET		units = 1;
+ALTER TABLE FTPs			ADD		units					INT(11)			DEFAULT 1		AFTER width;
+UPDATE		FTPs			SET		units = 1;
 /* -- 2014/01/17	*/
 ALTER TABLE QuotLines		ADD		units					INT(11)			DEFAULT 1		AFTER product_id;
 ALTER TABLE QuotLines		ADD		quoted_units			INT(11)			DEFAULT 0		AFTER product_id;
@@ -264,18 +264,25 @@ ALTER TABLE QuotColors		CHANGE	punho_price		product_price	DECIMAL(10,2)	DEFAULT 
 ALTER TABLE QuotColors		DROP	gola_price		;
 ALTER TABLE QuotColors		DROP	galao_price		;
 /* -- 2014/03/08	*/
-UPDATE Boxes		SET	checkin_location	= UPPER(checkin_location );
-UPDATE Boxes		SET	checkout_location	= UPPER(checkout_location);
-UPDATE Boxes		SET	returned_location	= UPPER(returned_location);
-UPDATE Batches		SET	batch				= UPPER(batch);
+UPDATE Boxes				SET	checkin_location	= UPPER(checkin_location );
+UPDATE Boxes				SET	checkout_location	= UPPER(checkout_location);
+UPDATE Boxes				SET	returned_location	= UPPER(returned_location);
+UPDATE Batches				SET	batch				= UPPER(batch);
 /* -- 2014/03/11	*/
-ALTER TABLE Machines	ADD		remarks				TEXT		 	DEFAULT NULL	AFTER return_date;
+ALTER TABLE Machines		ADD		remarks					TEXT		 	DEFAULT NULL	AFTER return_date;
 /* -- 2014/04/30	*/
-INSERT		Controls	SET sequence= 320, group_set = 'System Keys', name = 'Support Domain', value='http://support.jkysoftware.com/index.php/api?';
-INSERT		Controls	SET sequence= 410, group_set = 'System Keys', name = 'Expire Date', value='2014-05-01';
-INSERT		Controls	SET sequence= 420, group_set = 'System Keys', name = 'Expire Key', value='abcdefghij';
+INSERT		Controls		SET sequence= 320, group_set = 'System Keys', name = 'Support Domain', value='http://support.jkysoftware.com/index.php/api?';
+INSERT		Controls		SET sequence= 410, group_set = 'System Keys', name = 'Expire Date', value='2014-05-01';
+INSERT		Controls		SET sequence= 420, group_set = 'System Keys', name = 'Expire Key', value='abcdefghij';
 /* -- 2014/05/02	*/
-ALTER TABLE Controls	ADD		remarks				TEXT		 	DEFAULT NULL	AFTER value;
-ALTER TABLE Configs		ADD		remarks				TEXT		 	DEFAULT NULL	AFTER value;
-UPDATE FTPs			SET	draw	= LOWER(draw );
-UPDATE FTPs			SET	photo	= LOWER(photo);
+ALTER TABLE Controls		ADD		remarks					TEXT		 	DEFAULT NULL	AFTER value;
+ALTER TABLE Configs			ADD		remarks					TEXT		 	DEFAULT NULL	AFTER value;
+UPDATE FTPs					SET	draw	= LOWER(draw );
+UPDATE FTPs					SET	photo	= LOWER(photo);
+/* -- 2014/06/02	*/
+ALTER TABLE LoadSales		ADD		reserved_pieces			INT				DEFAULT 0		AFTER requested_pieces;
+/* -- 2014/06/14	*/
+ALTER TABLE Products		ADD		units					INT(11)			DEFAULT 1		AFTER start_date;
+ALTER TABLE Products		ADD		peso					DECIMAL(5,2)	DEFAULT 0		AFTER start_date;
+/* -- 2014/06/16	*/
+ALTER TABLE Products		ADD		cone_type				VARCHAR(32)		DEFAULT NULL	AFTER units;

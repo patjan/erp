@@ -1,5 +1,6 @@
 "use strict";
 var JKY = JKY || {};
+
 /**
  * JKY.Util.js
  * generic functions for the JKY application
@@ -20,7 +21,7 @@ JKY.AJAX_URL	= '../index.php/ajax?';		//  relative to remote directory
  */
 $(function() {
 	$.ajaxSetup({
-		async	: false,
+		async	: false,		//	false = will cause delay (show) on IE, Chrome
 		type	: 'post',
 		dataType: 'json',
 		error	: function(jqXHR, textStatus, errorThrown) {
@@ -164,6 +165,27 @@ JKY.load_util = function(id_name, file_name) {
 		JKY.t_button('jky-app-body', 'title');
 	}else{
 		setTimeout(function() {JKY.load_util(id_name, file_name);}, 100);
+	}
+}
+
+/**
+ * overlay html into specific id
+ * wait until the id is rendered
+ * @param	the_id
+ * @param	the_url
+ */
+JKY.overlay_html = function(the_id, the_url) {
+	JKY.display_trace('JKY.overlay_html: ' + the_id);
+	if (JKY.is_loaded(the_id)) {
+		JKY.set_html(the_id, '');
+		$.get(the_url, function(the_response) {
+			if (the_response.status == 'ok') {
+				JKY.set_html(the_id, the_response.data.overlay);
+				JKY.display_trace('JKY.overlay_html: ' + the_id + ' DONE');
+			}
+		});
+	}else{
+		setTimeout(function() {JKY.overlay_html(the_id, the_url);}, 100);
 	}
 }
 
@@ -393,7 +415,7 @@ JKY.fix_br = function(string_value){
 JKY.fix_date = function(date_time){
 	if (date_time) {
 		date_time = date_time.replace(' @ ', '<br />');
-		date_time = date_time.replace(' @', '');
+		date_time = date_time.replace(' @', ' ');
 		return date_time;
 	}else{
 		return '&nbsp;';
@@ -634,18 +656,19 @@ JKY.inp_time_value = function(the_time){
  *				#jky-message-body
  *
  */
-JKY.display_message = function(message, id_name) {
-	if (message == '') {
+JKY.display_message = function(the_message, id_name) {
+	var my_message = the_message.trim();
+	if (my_message == '') {
 		return;
 	}
-	if (message.substr(0, 4) == '<br>') {
-		message = message.substr(4);
+	if (my_message.substr(0, 4) == '<br>') {
+		my_message = my_message.substr(4);
 	}
 	var my_body = $('#jky-message-body');
 	if (my_body.html() == '') {
-		my_body.append(message);
+		my_body.append(my_message);
 	}else{
-		my_body.append('<br />' + message);
+		my_body.append('<br />' + my_message);
 	}
 	JKY.set_html('jky-message-header', JKY.t('Message'));
 	JKY.show('jky-message');
@@ -1174,11 +1197,26 @@ JKY.visible = function(id_name){
 }
 
 /**
+ * center specific box on windows
+ * @param	id_name
+ */
+JKY.center_box = function(id_name) {
+	var my_box  = $('#' + id_name);
+	var my_left = ($(window).width () - my_box.width ())/2;
+	var my_top  = ($(window).height() - my_box.height())/2;
+	my_box.css('top' , my_top );
+	my_box.css('left', my_left);
+}
+
+/**
  * show modal specific id name
  * @param	id_name
  */
 JKY.show_modal = function(id_name) {
-	$('#' + id_name).modal('show');
+	var my_box  = $('#' + id_name);
+	my_box.modal('show');
+	my_box.draggable({handle:'.modal-header', containment:'window', delay:100, distance:10});
+//	my_box.resizable();		//	comment out because of side effect on scrollable
 }
 
 /**

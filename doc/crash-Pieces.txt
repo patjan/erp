@@ -1,0 +1,44 @@
+exception 'PDOException' with message 'SQLSTATE[42S22]: 
+Column not found: 1054 Unknown column 'undefined' in 'where clause'' in C:\htdocs\erp\library\Zend\Db\Statement\Pdo.php:228 Stack trace: 
+#0 C:\htdocs\erp\library\Zend\Db\Statement\Pdo.php(228): PDOStatement->execute(Array) 
+#1 C:\htdocs\erp\library\Zend\Db\Statement.php(300): Zend_Db_Statement_Pdo->_execute(Array) 
+#2 C:\htdocs\erp\library\Zend\Db\Adapter\Abstract.php(468): Zend_Db_Statement->execute(Array) 
+#3 C:\htdocs\erp\library\Zend\Db\Adapter\Pdo\Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT Pieces.*...', Array) 
+#4 C:\htdocs\erp\library\Zend\Db\Adapter\Abstract.php(725): Zend_Db_Adapter_Pdo_Abstract->query('SELECT Pieces.*...', Array) 
+#5 C:\htdocs\erp\application\controllers\AjaxController.php(502): Zend_Db_Adapter_Abstract->fetchRow('SELECT Pieces.*...') 
+#6 C:\htdocs\erp\application\controllers\AjaxController.php(190): AjaxController->get_row(Array) 
+#7 C:\htdocs\erp\library\Zend\Controller\Action.php(513): AjaxController->indexAction() 
+#8 C:\htdocs\erp\library\Zend\Controller\Dispatcher\Standard.php(289): Zend_Controller_Action->dispatch('indexAction')
+#9 C:\htdocs\erp\library\Zend\Controller\Front.php(954): Zend_Controller_Dispatcher_Standard->dispatch(Object(Zend_Controller_Request_Http), Object(Zend_Controller_Response_Http)) 
+#10 C:\htdocs\erp\library\Zend\Application\Bootstrap\Bootstrap.php(97): Zend_Controller_Front->dispatch() 
+#11 C:\htdocs\erp\library\Zend\Application.php(366): Zend_Application_Bootstrap_Bootstrap->run() 
+#12 C:\htdocs\erp\application\Application.php(27): Zend_Application->run() 
+#13 C:\htdocs\erp\html\index.php(2): require('C:\htdocs\erp\a...') 
+#14 {main}
+
+ 
+ SELECT Pieces.*
+ ,    Orderx.order_number	AS     order_number
+ , Inspected.nick_name		AS inspected_name
+ ,   Weighed.nick_name		AS   weighed_name
+ ,   Product.product_name	AS   product_name
+ FROM Pieces
+ LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=			Pieces.order_id
+ LEFT JOIN    Contacts AS Inspected	ON Inspected.id	=		    Pieces.inspected_by
+ LEFT JOIN    Contacts AS Weighed	ON   Weighed.id	=		    Pieces.weighed_by
+ LEFT JOIN    Products AS Product	ON   Product.id	=		    Orderx.product_id
+ ORDER BY Pieces.checkin_at DESC LIMIT 20
+
+ 
+ 
+ SELECT Pieces.*
+ ,    Orderx.order_number	AS     order_number
+ , Inspected.nick_name		AS inspected_name
+ ,   Weighed.nick_name		AS   weighed_name
+ ,   Product.product_name	AS   product_name
+ FROM Pieces
+ LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		    Pieces.order_id
+ LEFT JOIN    Contacts AS Inspected	ON Inspected.id	=		    Pieces.inspected_by
+ LEFT JOIN    Contacts AS Weighed	ON   Weighed.id	=		    Pieces.weighed_by
+ LEFT JOIN    Products AS Product	ON   Product.id	=		    Orderx.product_id
+ WHERE Pieces.id = undefined

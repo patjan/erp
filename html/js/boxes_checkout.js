@@ -16,9 +16,9 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: 'Active'
 		, filter		: ''
-		, sort_by		: 'CheckOuts.requested_at'
+		, sort_by		: 'CheckOuts.checkout_at'
 		, sort_seq		: 'ASC'
-		, sort_list		: [[2, 0]]
+		, sort_list		: [[3, 0]]
 		, focus			: 'jky-input-barcode'
 		, add_new		: 'display form'
 		});
@@ -64,6 +64,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-number"	>' +				 the_row.checkout_number		+ '</td>'
 //		+  '<td class="jky-td-code"		>' +				 the_row.code					+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.requested_at		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.checkout_at		)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.machine_name		)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.supplier_name		)	+ '</td>'
 		+  '<td class="jky-td-name-l"	>' +				 the_row.thread_name			+ '</td>'
@@ -92,9 +93,10 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-machine-name'			,				 the_row.machine_name		);
 	JKY.set_value	('jky-supplier-name'		,				 the_row.supplier_name		);
 	JKY.set_value	('jky-requested-date'		, JKY.out_date	(the_row.requested_at		));
-	JKY.set_value	('jky-requested-weight'		,				 the_row.requested_weight	);
+	JKY.set_value	('jky-checkout-date'		, JKY.out_date	(the_row.checkout_at		));
 	JKY.set_value	('jky-reserved-boxes'		,				 the_row.reserved_boxes		);
 	JKY.set_value	('jky-average-weight'		,				 the_row.average_weight		);
+	JKY.set_value	('jky-requested-weight'		,				 the_row.requested_weight	);
 	JKY.set_value	('jky-checkout-weight'		,				 the_row.checkout_weight	);
 	JKY.set_value	('jky-checkout-boxes'		,				 the_row.checkout_boxes		);
 };
@@ -102,9 +104,9 @@ JKY.set_form_row = function(the_row) {
 JKY.set_all_box_check = function(the_index) {
 	JKY.display_trace('set_all_box_check');
 	if ($(the_index).is(':checked')) {
-		$('#jky-box-table-body .jky-td-checkbox input').each(function() {$(this).attr('checked', 'checked');})
+		$('#jky-boxes-table-body .jky-td-checkbox input').each(function() {$(this).attr('checked', 'checked');})
 	}else{
-		$('#jky-box-table-body .jky-td-checkbox input').each(function() {$(this).removeAttr('checked');})
+		$('#jky-boxes-table-body .jky-td-checkbox input').each(function() {$(this).removeAttr('checked');})
 	}
 };
 
@@ -120,9 +122,9 @@ JKY.process_clear_screen = function() {
 	JKY.hide('jky-action-clear'  );
 	JKY.hide('jky-action-confirm');
 	JKY.remove_attr('jky-box-check-all', 'checked');
-	JKY.set_html ('jky-box-table-body'	 , '');
-	JKY.set_html ('jky-input-message', '');
-	JKY.set_value('jky-input-barcode', '');
+	JKY.set_html ('jky-boxes-table-body', '');
+	JKY.set_html ('jky-input-message'	, '');
+	JKY.set_value('jky-input-barcode'	, '');
 	JKY.set_focus('jky-input-barcode');
 	JKY.sequence = 0;
 }
@@ -142,7 +144,7 @@ JKY.process_barcode_success = function(response) {
 	var my_row  = response.row;
 	if (my_row) {
 		var my_barcode = JKY.get_value('jky-input-barcode');
-		if ($('#jky-box-table-body td:contains("' + my_barcode + '")').length > 0) {
+		if ($('#jky-boxes-table-body td:contains("' + my_barcode + '")').length > 0) {
 			JKY.play_beep();
 			JKY.set_html ('jky-input-message', JKY.t('duplicate'));
 			JKY.set_focus('jky-input-barcode');
@@ -202,7 +204,7 @@ JKY.process_barcode_success = function(response) {
 					+ '<td class="jky-td-name-s"	>'							+  my_row.supplier_name		+ '</td>'
 					+ '</tr>'
 					;
-			JKY.prepend_html('jky-box-table-body', my_html);
+			JKY.prepend_html('jky-boxes-table-body', my_html);
 			JKY.show('jky-action-clear'  );
 			JKY.show('jky-action-confirm');
 			JKY.set_html ('jky-input-message', '');
@@ -223,12 +225,12 @@ JKY.process_confirm_screen = function() {
 //	if ($('#jky-app-form').css('display') == 'block') {
 //		JKY.confirm_row(JKY.row.id);
 //	}else{
-		$('#jky-box-table-body .jky-td-checkbox input:checked').each(function() {
+		$('#jky-boxes-table-body .jky-td-checkbox input:checked').each(function() {
 			JKY.confirm_row(this, $(this).attr('barcode'));
 		});
 //	}
 
-	if (JKY.get_html('jky-box-table-body') == '') {
+	if (JKY.get_html('jky-boxes-table-body') == '') {
 		JKY.process_clear_screen();
 	}
 	JKY.set_focus('jky-input-barcode');

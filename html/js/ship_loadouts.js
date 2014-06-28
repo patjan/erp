@@ -7,6 +7,18 @@ var my_old_requested_pieces	= 0;
 var my_new_requested_pieces	= 0;
 
 JKY.display_loadouts = function() {
+/*
+SELECT LoadOuts.*
+,      Dyer.nick_name		AS      dyer_name
+,     Color.color_name		AS     color_name
+  FROM LoadOuts
+  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		  LoadOuts.dyer_id
+  LEFT JOIN      Colors AS Color	ON     Color.id	=		  LoadOuts.color_id
+ WHERE LoadOuts.dyer_id = 200001
+   AND LoadOuts.shipdyer_id IS NULL
+ ORDER BY LoadOuts.loadout_number
+ LIMIT 10
+*/
 	my_shipdyer_id = JKY.row.id;
 	var my_data =
 		{ method		: 'get_index'

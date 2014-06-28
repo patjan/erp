@@ -10,6 +10,9 @@ CREATE TABLE IF NOT EXISTS Products
 , product_name		VARCHAR(255)		DEFAULT NULL
 , product_type		VARCHAR(32)			DEFAULT 'Tubular'
 , start_date		DATE				DEFAULT NULL
+, peso				DECIMAL(5,2)		DEFAULT 0		# Peso da Peca (12.5) (Kg)
+, units				INT(11)				DEFAULT 1		# Unidades por Peca
+, cone_type			VARCHAR(32)			DEFAULT NULL
 , photo				VARCHAR(255)		DEFAULT NULL
 
 , PRIMARY KEY(id)
@@ -18,3 +21,7 @@ CREATE TABLE IF NOT EXISTS Products
 ;
 ALTER TABLE Products		ADD COLUMN photo			VARCHAR(255)		DEFAULT NULL	AFTER start_date;
 ALTER TABLE Products		CHANGE name product_name	VARCHAR(255)		DEFAULT NULL	;
+ALTER TABLE Products		ADD		units					INT(11)			DEFAULT 1		AFTER start_date;
+ALTER TABLE Products		ADD		peso					DECIMAL(5,2)	DEFAULT 0		AFTER start_date;
+
+ALTER TABLE Products		ADD		cone_type				VARCHAR(32)		DEFAULT NULL	AFTER units;
