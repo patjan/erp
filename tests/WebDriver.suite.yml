@@ -1,0 +1,13 @@
+class_name: WebDriverGuy
+modules:
+   enabled:
+      - WebHelper
+      - WebDriver
+   config:
+      WebDriver:
+         url: 'http://erp/'
+         browser: firefox
+         window_size: 1024x768
+         wait: 0.1
+         capabilities:
+             unexpectedAlertBehaviour: 'accept'

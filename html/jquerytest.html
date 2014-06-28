@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src='lib/jquery-2.0.3.min.js'						></script>
+    <style>
+body				{font-family:arial; font-size:12px;}
+
+.date				{fill:black	;}
+.expected_weight	{fill:green	;}
+.received_weight	{fill:red	;}
+.insider			{fill:white	;}
+.divider			{stroke:white; stroke-opacity:.5;}
+.axis path,
+.axis line			{fill:none; stroke:black; shape-rendering:crispEdges;}
+</style>
+</head>
+
+<body>
+	<div id='my_graph'>mygraph1</div>
+	<div id='my_graph2'>mygraph2</div>
+    <div id='words'>word0</div>
+    <div class='words'>word1</div>
+    <div class='words'>word2</div>
+    <div class='words'>word3</div>
+<script>
+    alert ($('#my_graph').html());
+    $('#my_graph').css('color','red');
+    alert ($('#my_graph2').html());
+    $('.words').css('color', 'blue');
+    $('#words').text('word zero');
+    $('#words').css('background', 'orange');
+</script>
+</body>
+</html>

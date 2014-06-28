@@ -1,0 +1,12 @@
+cmd.exe
+C:
+cd \htdocs\erp\tests
+"C:\Program Files (x86)\Java\jre7\bin\java.exe" -jar selenium-server-standalone-2.42.2.jar
+
+
+cmd.exe
+C:
+cd \htdocs\erp\vendor\bin
+codecept run WebDriver   LoginCept.php
+codecept run WebDriver   SalesCept.php
+codecept run WebDriver SupportCept.php
