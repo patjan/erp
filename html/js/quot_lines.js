@@ -22,8 +22,8 @@ JKY.generate_lines = function(response) {
 		}
 	}
 	JKY.set_html('jky-lines-body', my_html);
-	$('.jky-peso'			).ForceNumericOnly();
-	$('.jky-units'			).ForceIntegerOnly();
+	$('.jky-product-peso'	).ForceNumericOnly();
+	$('.jky-product-units'	).ForceIntegerOnly();
 	if (my_rows == '') {
 		JKY.insert_line();
 	}
@@ -45,9 +45,9 @@ JKY.generate_line = function(the_row) {
 		+ '<td class="jky-td-action"	>' + my_trash	+ '</td>'
 		+ '<td class="jky-td-key-w3"	>' + my_product	+ '</td>'
 		+ '<td class="jky-td-key-m"		><button class="btn btn-success" type="button" onclick="JKY.insert_color(this, ' + my_id + ')"' + my_disabled + '>' + JKY.t('Add Color') + '</button></td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-peso"			onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.peso			 + '" /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-product-peso"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.peso			 + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-quoted-units"	disabled										value="' + the_row.quoted_units	 + '" /></td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-units"			onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.units		 + '" /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-product-units"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.units		 + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-quoted-pieces"	disabled										value="' + the_row.quoted_pieces + '" /></td>'
 		+ '</tr>'
 		;
@@ -62,15 +62,15 @@ JKY.generate_line = function(the_row) {
 JKY.update_line = function(id_name, the_id) {
 	var my_tr = $(id_name).parent().parent();
 	var my_product_id	= my_tr.find('.jky-product-id'		).val();
-	var my_peso			= my_tr.find('.jky-peso'			).val();
+	var my_peso			= my_tr.find('.jky-product-peso'	).val();
 	var my_quoted_units	= my_tr.find('.jky-quoted-units'	).val();
-	var my_units		= my_tr.find('.jky-units'			).val();
+	var my_units		= my_tr.find('.jky-product-units'	).val();
 	var my_quoted_pieces= my_tr.find('.jky-quoted-pieces'	).val();
 
 	if (my_units < 1) {
 		JKY.display_message(JKY.set_value_is_under('Units/Piece', 1));
-		my_tr.find('.jky-units').select();
-		my_tr.find('.jky-units').focus();
+		my_tr.find('.jky-product-units').select();
+		my_tr.find('.jky-product-units').focus();
 		return false;
 	}
 

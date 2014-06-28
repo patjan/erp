@@ -18,7 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'CheckOuts.requested_at'
 		, sort_seq		: 'ASC'
-		, sort_list		: [[2, 0]]
+		, sort_list		: [[3, 0]]
 		, focus			: 'jky-requested-weight'
 		, add_new		: 'display form'
 		});
@@ -63,6 +63,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-number"	>' +				 the_row.checkout_number		+ '</td>'
 //		+  '<td class="jky-td-code"		>' +				 the_row.code					+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.requested_at		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.checkout_at		)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.machine_name		)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.supplier_name		)	+ '</td>'
 		+  '<td class="jky-td-name-l"	>' + JKY.fix_null	(the_row.thread_name		)	+ '</td>'

@@ -131,14 +131,16 @@ function JKY_generate_order($the_id) {
 	function generate_sub_order($the_db, $the_quotation, $the_quot_line_id, $the_needed_at, $the_quoted_pieces, $the_quoted_weight, $the_product_id, $the_product_percent, $the_product_units) {
 		$my_order_id = null;
 		if ($the_product_id && ($the_product_percent > 0 || $the_product_units > 0)) {
-			$my_order_id = get_next_id('Orders');
+			$my_order_id	= get_next_id('Orders');
+			$my_customer_id	= $the_quotation['customer_id'] == null ? 'null' : $the_quotation['customer_id'];
+			$my_machine_id	= $the_quotation['machine_id' ] == null ? 'null' : $the_quotation['machine_id' ];
 			$sql= 'INSERT Orders'
 				. '   SET          id='  . $my_order_id
 				. ',       updated_by='  . get_session('user_id')
 				. ',       updated_at="' . get_now() . '"'
 				. ',     order_number="' . $my_order_id . '"'
-				. ',      customer_id='  . $the_quotation['customer_id']
-				. ',       machine_id='  . $the_quotation['machine_id']
+				. ',      customer_id='  . $my_customer_id
+				. ',       machine_id='  . $my_machine_id
 				. ',     quot_line_id='  . $the_quot_line_id
 				. ', quotation_number="' . $the_quotation['quotation_number'] . '"'
 				. ',       product_id='  . $the_product_id
@@ -146,7 +148,7 @@ function JKY_generate_order($the_id) {
 				. ',        needed_at="' . $the_needed_at . '"'
 				. ',    quoted_pieces='  . $the_quoted_pieces
 				. ',   ordered_pieces='  . $the_quoted_pieces
-				. ',    quoted_weight='  . $the_quoted_weight * $the_product_percent / 100
+				. ',    quoted_weight='  . $the_quoted_weight * $the_product_units
 				. ',     quoted_units='  . $the_product_units
 				;
 log_sql('Orders', 'INSERT', $sql);
@@ -179,7 +181,7 @@ log_sql('Orders', 'INSERT', $sql);
 		$my_quoted_pieces	= (float)$my_row['quoted_pieces'];
 		$my_quoted_weight	= $my_quoted_pieces * (float)$my_row['peso'];
 
-		$my_order_id = generate_sub_order($db, $my_quotation, $my_quot_line_id, $my_needed_at, $my_quoted_pieces, $my_quoted_weight, $my_row['product_id'], 100, $my_row['units']);
+		$my_order_id = generate_sub_order($db, $my_quotation, $my_quot_line_id, $my_needed_at, $my_quoted_pieces, $my_quoted_weight, $my_row['product_id'], 1, $my_row['units']);
 		$sql= 'UPDATE QuotLines'
 			. '   SET order_id = ' . $my_order_id
 			. ' WHERE id = ' . $my_quot_line_id

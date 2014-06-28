@@ -34,7 +34,7 @@ JKY.update_color = function(id_name, the_id) {
 	var my_line_pieces_id	= my_line_id.find('.jky-quoted-pieces');
 	var my_line_units		= parseInt(my_line_units_id .val());
 	var my_line_pieces		= parseInt(my_line_pieces_id.val());
-	var my_units			= parseInt(my_line_id.find('.jky-units').val());
+	var my_units			= parseInt(my_line_id.find('.jky-product-units').val());
 
 	var my_new_units		= my_line_units + my_diff_units;
 	var my_new_pieces		= Math.ceil(my_new_units / my_units);
@@ -115,7 +115,7 @@ JKY.delete_color = function(id_name, the_id) {
 	var my_line_pieces_id	= my_line_id.find('.jky-quoted-pieces');
 	var my_line_units		= parseInt(my_line_units_id .val());
 	var my_line_pieces		= parseInt(my_line_pieces_id.val());
-	var my_units			= parseInt(my_line_id.find('.jky-units').val());
+	var my_units			= parseInt(my_line_id.find('.jky-product-units').val());
 
 	var my_new_units		= my_line_units + my_diff_units;
 	var my_new_pieces		= Math.ceil(my_new_units / my_units);

@@ -5,16 +5,12 @@ CREATE TABLE IF NOT EXISTS ProdPrices
 , created_at		DATETIME			DEFAULT NULL
 , updated_by		BIGINT				DEFAULT NULL
 , updated_at		DATETIME			DEFAULT NULL
-, status			VARCHAR(32)			DEFAULT 'Active'
+, status			VARCHAR(32)			DEFAULT 'Active'		/*	History, Future	*/
 
 , product_id		BIGINT				DEFAULT NULL
 , color_type		VARCHAR(32)			DEFAULT NULL
-, previous_date		DATE				DEFAULT NULL
-, previous_price	DECIMAL(10,2)		DEFAULT 0
-, active_date		DATE				DEFAULT NULL
-, active_price		DECIMAL(10,2)		DEFAULT 0
-, next_date			DATE				DEFAULT NULL
-, next_price		DECIMAL(10,2)		DEFAULT 0
+, effective_date	DATE				DEFAULT NULL
+, effective_price	DECIMAL(10,2)		DEFAULT 0
 
 , PRIMARY KEY	(id)
 , KEY product	(product_id)

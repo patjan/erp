@@ -1,0 +1,1604 @@
+2014-05-14 00:00:24.850353 
+2014-05-14 00:00:24.856015 start of program
+2014-05-14 00:00:24.899160 number: 1, host: 201.83.204.120
+2014-05-14 00:00:25.472407 OK, Server Host 1 connected.
+2014-05-14 00:00:25.663033 Changes has 0 records
+2014-05-14 00:00:25.663435 number: 2, host: 186.220.62.214
+2014-05-14 00:00:26.234301 OK, Server Host 2 connected.
+2014-05-14 00:00:26.635862 Changes has 0 records
+2014-05-14 00:00:26.637655 end of program
+2014-05-14 00:05:14.150846 
+2014-05-14 00:05:14.164887 start of program
+2014-05-14 00:05:14.185368 number: 1, host: 201.83.204.120
+2014-05-14 00:05:14.760702 OK, Server Host 1 connected.
+2014-05-14 00:05:14.951624 Changes has 0 records
+2014-05-14 00:05:14.952721 number: 2, host: 186.220.62.214
+2014-05-14 00:05:15.528654 OK, Server Host 2 connected.
+2014-05-14 00:05:15.946032 Changes has 0 records
+2014-05-14 00:05:15.947959 end of program
+2014-05-14 00:10:14.919130 
+2014-05-14 00:10:14.926893 start of program
+2014-05-14 00:10:14.949525 number: 1, host: 201.83.204.120
+2014-05-14 00:10:15.523679 OK, Server Host 1 connected.
+2014-05-14 00:10:15.716708 Changes has 0 records
+2014-05-14 00:10:15.717851 number: 2, host: 186.220.62.214
+2014-05-14 00:10:16.284657 OK, Server Host 2 connected.
+2014-05-14 00:10:16.718769 Changes has 2 records
+2014-05-14 00:10:16.719195 Changes: 89571, History: 2000064199
+2014-05-14 00:10:17.098432 Insert
+2014-05-14 00:10:17.098860 my_sql: REPLACE INTO History SET id = 2000064199, updated_by = 100001, updated_at = "2014-05-14 00:05:57", parent_name = "Purchases", parent_id = 200092, method = "update", history = "updated_by:100003=>100001" ;
+2014-05-14 00:10:17.100217 Changes: 75901, Purchases: 200092
+2014-05-14 00:10:17.480546 Update
+2014-05-14 00:10:17.481148 my_sql: REPLACE INTO Purchases SET id = 200092, created_by = null, created_at = null, updated_by = 100001, updated_at = "2014-05-14 00:05:57", status = "Active", purchase_number = 200092, source_doc = "COCAMAR_05_14", ordered_at = "2014-04-14 11:15:00", expected_date = "2014-05-13", scheduled_at = null, expected_weight = 20000.00, received_weight = 10015.67, supplier_id = 100034, supplier_ref = null, payment_term = null ;
+2014-05-14 00:10:17.483494 end of program
+2014-05-14 00:15:18.975137 
+2014-05-14 00:15:18.990527 start of program
+2014-05-14 00:15:19.088618 number: 1, host: 201.83.204.120
+2014-05-14 00:15:19.682256 OK, Server Host 1 connected.
+2014-05-14 00:15:19.874332 Changes has 0 records
+2014-05-14 00:15:19.875932 number: 2, host: 186.220.62.214
+2014-05-14 00:15:20.465552 OK, Server Host 2 connected.
+2014-05-14 00:15:20.898485 Changes has 2 records
+2014-05-14 00:15:20.901114 Changes: 89572, History: 2000064200
+2014-05-14 00:15:21.287288 Insert
+2014-05-14 00:15:21.288080 my_sql: REPLACE INTO History SET id = 2000064200, updated_by = 100001, updated_at = "2014-05-14 00:15:03", parent_name = "Tickets", parent_id = 200078, method = "update", history = "updated_by:100003=>100001, resolution:=>Changed id [jky-batch-add-new] to [jky-batches-add-new]." ;
+2014-05-14 00:15:21.289702 Changes: 88950, Tickets: 200078
+2014-05-14 00:15:21.688794 Update
+2014-05-14 00:15:21.689230 my_sql: REPLACE INTO Tickets SET id = 200078, created_by = null, created_at = null, updated_by = 100001, updated_at = "2014-05-14 00:15:03", status = "Open", company_id = 100003, opened_by = 100003, opened_at = "2014-05-12 11:29:08", assigned_to = null, assigned_at = null, closed_by = null, closed_at = null, estimate_hour = 0.0, worked_hour = 0.0, priority = "Critical", category = "Dyers", description = "Na aba fios, tela saída de pedidos, quando acrecentamos um produto o botão não acrescenta um segundo produto.", resolution = "Changed id [jky-batch-add-new] to [jky-batches-add-new].", photo = "01_Erro_12_05.jpg,2014-05-12 11:29:23,321028" ;
+2014-05-14 00:15:21.691925 end of program
+2014-05-14 00:20:15.083655 
+2014-05-14 00:20:15.084045 start of program
+2014-05-14 00:20:15.170469 number: 1, host: 201.83.204.120
+2014-05-14 00:20:15.742549 OK, Server Host 1 connected.
+2014-05-14 00:20:15.933840 Changes has 0 records
+2014-05-14 00:20:15.937826 number: 2, host: 186.220.62.214
+2014-05-14 00:20:16.505604 OK, Server Host 2 connected.
+2014-05-14 00:20:16.907954 Changes has 0 records
+2014-05-14 00:20:16.910038 end of program
+2014-05-14 00:25:13.752516 
+2014-05-14 00:25:13.759359 start of program
+2014-05-14 00:25:13.789602 number: 1, host: 201.83.204.120
+2014-05-14 00:25:14.366359 OK, Server Host 1 connected.
+2014-05-14 00:25:14.558754 Changes has 0 records
+2014-05-14 00:25:14.559177 number: 2, host: 186.220.62.214
+2014-05-14 00:25:15.127680 OK, Server Host 2 connected.
+2014-05-14 00:25:15.528051 Changes has 0 records
+2014-05-14 00:25:15.529642 end of program
+2014-05-14 00:30:21.294676 
+2014-05-14 00:30:21.302647 start of program
+2014-05-14 00:30:21.369006 number: 1, host: 201.83.204.120
+2014-05-14 00:30:21.946649 OK, Server Host 1 connected.
+2014-05-14 00:30:22.143531 Changes has 0 records
+2014-05-14 00:30:22.144385 number: 2, host: 186.220.62.214
+2014-05-14 00:30:22.708640 OK, Server Host 2 connected.
+2014-05-14 00:30:23.114850 Changes has 0 records
+2014-05-14 00:30:23.118744 end of program
+2014-05-14 00:35:14.122281 
+2014-05-14 00:35:14.141909 start of program
+2014-05-14 00:35:14.164212 number: 1, host: 201.83.204.120
+2014-05-14 00:35:14.742027 OK, Server Host 1 connected.
+2014-05-14 00:35:14.935724 Changes has 0 records
+2014-05-14 00:35:14.936091 number: 2, host: 186.220.62.214
+2014-05-14 00:35:15.514638 OK, Server Host 2 connected.
+2014-05-14 00:35:15.952812 Changes has 0 records
+2014-05-14 00:35:15.954058 end of program
+2014-05-14 00:40:14.968290 
+2014-05-14 00:40:14.981160 start of program
+2014-05-14 00:40:14.999904 number: 1, host: 201.83.204.120
+2014-05-14 00:40:15.578087 OK, Server Host 1 connected.
+2014-05-14 00:40:15.772497 Changes has 0 records
+2014-05-14 00:40:15.773242 number: 2, host: 186.220.62.214
+2014-05-14 00:40:16.356862 OK, Server Host 2 connected.
+2014-05-14 00:40:16.777396 Changes has 0 records
+2014-05-14 00:40:16.778807 end of program
+2014-05-14 00:45:18.592571 
+2014-05-14 00:45:18.602607 start of program
+2014-05-14 00:45:18.633265 number: 1, host: 201.83.204.120
+2014-05-14 00:45:19.196752 OK, Server Host 1 connected.
+2014-05-14 00:45:19.385802 Changes has 0 records
+2014-05-14 00:45:19.386350 number: 2, host: 186.220.62.214
+2014-05-14 00:45:19.958454 OK, Server Host 2 connected.
+2014-05-14 00:45:20.364820 Changes has 0 records
+2014-05-14 00:45:20.366135 end of program
+2014-05-14 00:50:14.762699 
+2014-05-14 00:50:14.773145 start of program
+2014-05-14 00:50:14.804072 number: 1, host: 201.83.204.120
+2014-05-14 00:50:15.371381 OK, Server Host 1 connected.
+2014-05-14 00:50:15.559672 Changes has 0 records
+2014-05-14 00:50:15.560099 number: 2, host: 186.220.62.214
+2014-05-14 00:50:16.127951 OK, Server Host 2 connected.
+2014-05-14 00:50:16.538711 Changes has 0 records
+2014-05-14 00:50:16.540522 end of program
+2014-05-14 00:55:13.564772 
+2014-05-14 00:55:13.565329 start of program
+2014-05-14 00:55:13.584142 number: 1, host: 201.83.204.120
+2014-05-14 00:55:14.165117 OK, Server Host 1 connected.
+2014-05-14 00:55:14.358609 Changes has 0 records
+2014-05-14 00:55:14.359057 number: 2, host: 186.220.62.214
+2014-05-14 00:55:14.930826 OK, Server Host 2 connected.
+2014-05-14 00:55:15.345372 Changes has 0 records
+2014-05-14 00:55:15.347149 end of program
+2014-05-14 01:00:24.753786 
+2014-05-14 01:00:24.755696 start of program
+2014-05-14 01:00:24.909463 number: 1, host: 201.83.204.120
+2014-05-14 01:00:25.490592 OK, Server Host 1 connected.
+2014-05-14 01:00:25.681779 Changes has 0 records
+2014-05-14 01:00:25.682959 number: 2, host: 186.220.62.214
+2014-05-14 01:00:26.268694 OK, Server Host 2 connected.
+2014-05-14 01:00:26.673955 Changes has 0 records
+2014-05-14 01:00:26.676539 end of program
+2014-05-14 01:05:13.498805 
+2014-05-14 01:05:13.540513 start of program
+2014-05-14 01:05:13.558813 number: 1, host: 201.83.204.120
+2014-05-14 01:05:14.135900 OK, Server Host 1 connected.
+2014-05-14 01:05:14.329300 Changes has 0 records
+2014-05-14 01:05:14.330286 number: 2, host: 186.220.62.214
+2014-05-14 01:05:14.908683 OK, Server Host 2 connected.
+2014-05-14 01:05:15.333835 Changes has 0 records
+2014-05-14 01:05:15.335854 end of program
+2014-05-14 01:10:14.978667 
+2014-05-14 01:10:14.989296 start of program
+2014-05-14 01:10:15.081386 number: 1, host: 201.83.204.120
+2014-05-14 01:10:15.657485 OK, Server Host 1 connected.
+2014-05-14 01:10:15.847679 Changes has 0 records
+2014-05-14 01:10:15.848147 number: 2, host: 186.220.62.214
+2014-05-14 01:10:16.417604 OK, Server Host 2 connected.
+2014-05-14 01:10:16.821492 Changes has 0 records
+2014-05-14 01:10:16.822770 end of program
+2014-05-14 01:15:18.917677 
+2014-05-14 01:15:18.918737 start of program
+2014-05-14 01:15:18.958356 number: 1, host: 201.83.204.120
+2014-05-14 01:15:19.521886 OK, Server Host 1 connected.
+2014-05-14 01:15:19.714503 Changes has 0 records
+2014-05-14 01:15:19.716980 number: 2, host: 186.220.62.214
+2014-05-14 01:15:20.285997 OK, Server Host 2 connected.
+2014-05-14 01:15:20.680327 Changes has 0 records
+2014-05-14 01:15:20.684495 end of program
+2014-05-14 01:20:15.093814 
+2014-05-14 01:20:15.108713 start of program
+2014-05-14 01:20:15.131967 number: 1, host: 201.83.204.120
+2014-05-14 01:20:15.705969 OK, Server Host 1 connected.
+2014-05-14 01:20:15.895005 Changes has 0 records
+2014-05-14 01:20:15.895444 number: 2, host: 186.220.62.214
+2014-05-14 01:20:16.467226 OK, Server Host 2 connected.
+2014-05-14 01:20:16.907639 Changes has 0 records
+2014-05-14 01:20:16.909293 end of program
+2014-05-14 01:25:13.531811 
+2014-05-14 01:25:13.533307 start of program
+2014-05-14 01:25:13.615586 number: 1, host: 201.83.204.120
+2014-05-14 01:25:14.191103 OK, Server Host 1 connected.
+2014-05-14 01:25:14.383949 Changes has 0 records
+2014-05-14 01:25:14.385978 number: 2, host: 186.220.62.214
+2014-05-14 01:25:14.968734 OK, Server Host 2 connected.
+2014-05-14 01:25:15.369875 Changes has 0 records
+2014-05-14 01:25:15.371262 end of program
+2014-05-14 01:30:20.578822 
+2014-05-14 01:30:20.580222 start of program
+2014-05-14 01:30:20.644268 number: 1, host: 201.83.204.120
+2014-05-14 01:30:21.221512 OK, Server Host 1 connected.
+2014-05-14 01:30:21.414417 Changes has 0 records
+2014-05-14 01:30:21.414949 number: 2, host: 186.220.62.214
+2014-05-14 01:30:21.006926 OK, Server Host 2 connected.
+2014-05-14 01:30:22.411210 Changes has 0 records
+2014-05-14 01:30:22.412630 end of program
+2014-05-14 01:35:14.147558 
+2014-05-14 01:35:14.148916 start of program
+2014-05-14 01:35:14.167793 number: 1, host: 201.83.204.120
+2014-05-14 01:35:14.754428 OK, Server Host 1 connected.
+2014-05-14 01:35:14.947291 Changes has 0 records
+2014-05-14 01:35:14.948166 number: 2, host: 186.220.62.214
+2014-05-14 01:35:15.520524 OK, Server Host 2 connected.
+2014-05-14 01:35:15.924275 Changes has 0 records
+2014-05-14 01:35:15.926156 end of program
+2014-05-14 01:40:14.925247 
+2014-05-14 01:40:14.926271 start of program
+2014-05-14 01:40:15.041810 number: 1, host: 201.83.204.120
+2014-05-14 01:40:15.619876 OK, Server Host 1 connected.
+2014-05-14 01:40:15.814867 Changes has 0 records
+2014-05-14 01:40:15.815353 number: 2, host: 186.220.62.214
+2014-05-14 01:40:16.381870 OK, Server Host 2 connected.
+2014-05-14 01:40:16.796314 Changes has 0 records
+2014-05-14 01:40:16.798350 end of program
+2014-05-14 01:45:18.972115 
+2014-05-14 01:45:18.981521 start of program
+2014-05-14 01:45:19.071131 number: 1, host: 201.83.204.120
+2014-05-14 01:45:19.648280 OK, Server Host 1 connected.
+2014-05-14 01:45:19.840628 Changes has 0 records
+2014-05-14 01:45:19.841024 number: 2, host: 186.220.62.214
+2014-05-14 01:45:20.403426 OK, Server Host 2 connected.
+2014-05-14 01:45:20.801848 Changes has 0 records
+2014-05-14 01:45:20.803224 end of program
+2014-05-14 01:50:14.765289 
+2014-05-14 01:50:14.766045 start of program
+2014-05-14 01:50:14.795768 number: 1, host: 201.83.204.120
+2014-05-14 01:50:15.369627 OK, Server Host 1 connected.
+2014-05-14 01:50:15.559044 Changes has 0 records
+2014-05-14 01:50:15.559499 number: 2, host: 186.220.62.214
+2014-05-14 01:50:16.146056 OK, Server Host 2 connected.
+2014-05-14 01:50:16.556909 Changes has 0 records
+2014-05-14 01:50:16.560412 end of program
+2014-05-14 01:55:13.509123 
+2014-05-14 01:55:13.521588 start of program
+2014-05-14 01:55:13.574774 number: 1, host: 201.83.204.120
+2014-05-14 01:55:14.155429 OK, Server Host 1 connected.
+2014-05-14 01:55:14.347565 Changes has 0 records
+2014-05-14 01:55:14.347983 number: 2, host: 186.220.62.214
+2014-05-14 01:55:14.910328 OK, Server Host 2 connected.
+2014-05-14 01:55:15.308113 Changes has 0 records
+2014-05-14 01:55:15.309662 end of program
+2014-05-14 02:00:25.241353 
+2014-05-14 02:00:25.242330 start of program
+2014-05-14 02:00:25.340850 number: 1, host: 201.83.204.120
+2014-05-14 02:00:25.916038 OK, Server Host 1 connected.
+2014-05-14 02:00:26.104540 Changes has 0 records
+2014-05-14 02:00:26.106166 number: 2, host: 186.220.62.214
+2014-05-14 02:00:26.672206 OK, Server Host 2 connected.
+2014-05-14 02:00:27.087992 Changes has 0 records
+2014-05-14 02:00:27.090491 end of program
+2014-05-14 02:05:13.916987 
+2014-05-14 02:05:13.917941 start of program
+2014-05-14 02:05:13.936281 number: 1, host: 201.83.204.120
+2014-05-14 02:05:14.503198 OK, Server Host 1 connected.
+2014-05-14 02:05:14.699477 Changes has 0 records
+2014-05-14 02:05:14.699867 number: 2, host: 186.220.62.214
+2014-05-14 02:05:15.266983 OK, Server Host 2 connected.
+2014-05-14 02:05:15.667424 Changes has 0 records
+2014-05-14 02:05:15.668813 end of program
+2014-05-14 02:10:14.676470 
+2014-05-14 02:10:14.686149 start of program
+2014-05-14 02:10:14.767961 number: 1, host: 201.83.204.120
+2014-05-14 02:10:15.345250 OK, Server Host 1 connected.
+2014-05-14 02:10:15.537606 Changes has 0 records
+2014-05-14 02:10:15.538038 number: 2, host: 186.220.62.214
+2014-05-14 02:10:16.103125 OK, Server Host 2 connected.
+2014-05-14 02:10:16.507847 Changes has 0 records
+2014-05-14 02:10:16.509850 end of program
+2014-05-14 02:15:18.911040 
+2014-05-14 02:15:18.911446 start of program
+2014-05-14 02:15:18.951752 number: 1, host: 201.83.204.120
+2014-05-14 02:15:19.523199 OK, Server Host 1 connected.
+2014-05-14 02:15:19.713298 Changes has 0 records
+2014-05-14 02:15:19.713728 number: 2, host: 186.220.62.214
+2014-05-14 02:15:20.288374 OK, Server Host 2 connected.
+2014-05-14 02:15:20.695012 Changes has 0 records
+2014-05-14 02:15:20.696442 end of program
+2014-05-14 02:20:14.776509 
+2014-05-14 02:20:14.796341 start of program
+2014-05-14 02:20:14.824167 number: 1, host: 201.83.204.120
+2014-05-14 02:20:15.404600 OK, Server Host 1 connected.
+2014-05-14 02:20:15.592840 Changes has 0 records
+2014-05-14 02:20:15.593220 number: 2, host: 186.220.62.214
+2014-05-14 02:20:16.161823 OK, Server Host 2 connected.
+2014-05-14 02:20:16.567329 Changes has 0 records
+2014-05-14 02:20:16.568679 end of program
+2014-05-14 02:25:13.440647 
+2014-05-14 02:25:13.441844 start of program
+2014-05-14 02:25:13.469247 number: 1, host: 201.83.204.120
+2014-05-14 02:25:14.027917 OK, Server Host 1 connected.
+2014-05-14 02:25:14.216789 Changes has 0 records
+2014-05-14 02:25:14.217207 number: 2, host: 186.220.62.214
+2014-05-14 02:25:14.788488 OK, Server Host 2 connected.
+2014-05-14 02:25:15.195140 Changes has 0 records
+2014-05-14 02:25:15.196823 end of program
+2014-05-14 02:30:21.078753 
+2014-05-14 02:30:21.079887 start of program
+2014-05-14 02:30:21.117849 number: 1, host: 201.83.204.120
+2014-05-14 02:30:21.704269 OK, Server Host 1 connected.
+2014-05-14 02:30:21.899988 Changes has 0 records
+2014-05-14 02:30:21.900412 number: 2, host: 186.220.62.214
+2014-05-14 02:30:22.466568 OK, Server Host 2 connected.
+2014-05-14 02:30:22.878879 Changes has 0 records
+2014-05-14 02:30:22.880182 end of program
+2014-05-14 02:35:13.568544 
+2014-05-14 02:35:13.584047 start of program
+2014-05-14 02:35:13.604042 number: 1, host: 201.83.204.120
+2014-05-14 02:35:14.175467 OK, Server Host 1 connected.
+2014-05-14 02:35:14.360130 Changes has 0 records
+2014-05-14 02:35:14.360471 number: 2, host: 186.220.62.214
+2014-05-14 02:35:14.924835 OK, Server Host 2 connected.
+2014-05-14 02:35:15.365263 Changes has 0 records
+2014-05-14 02:35:15.366642 end of program
+2014-05-14 02:40:14.704689 
+2014-05-14 02:40:14.718276 start of program
+2014-05-14 02:40:14.747873 number: 1, host: 201.83.204.120
+2014-05-14 02:40:15.316029 OK, Server Host 1 connected.
+2014-05-14 02:40:15.504379 Changes has 0 records
+2014-05-14 02:40:15.504755 number: 2, host: 186.220.62.214
+2014-05-14 02:40:16.073500 OK, Server Host 2 connected.
+2014-05-14 02:40:16.480685 Changes has 0 records
+2014-05-14 02:40:16.482393 end of program
+2014-05-14 02:45:19.238429 
+2014-05-14 02:45:19.254854 start of program
+2014-05-14 02:45:19.285580 number: 1, host: 201.83.204.120
+2014-05-14 02:45:19.860983 OK, Server Host 1 connected.
+2014-05-14 02:45:20.053272 Changes has 0 records
+2014-05-14 02:45:20.053852 number: 2, host: 186.220.62.214
+2014-05-14 02:45:20.617518 OK, Server Host 2 connected.
+2014-05-14 02:45:21.017855 Changes has 0 records
+2014-05-14 02:45:21.019239 end of program
+2014-05-14 02:50:14.692201 
+2014-05-14 02:50:14.705895 start of program
+2014-05-14 02:50:14.739094 number: 1, host: 201.83.204.120
+2014-05-14 02:50:15.316099 OK, Server Host 1 connected.
+2014-05-14 02:50:15.508586 Changes has 0 records
+2014-05-14 02:50:15.511487 number: 2, host: 186.220.62.214
+2014-05-14 02:50:16.088625 OK, Server Host 2 connected.
+2014-05-14 02:50:16.489208 Changes has 0 records
+2014-05-14 02:50:16.490991 end of program
+2014-05-14 02:55:13.386157 
+2014-05-14 02:55:13.388171 start of program
+2014-05-14 02:55:13.413593 number: 1, host: 201.83.204.120
+2014-05-14 02:55:13.988160 OK, Server Host 1 connected.
+2014-05-14 02:55:14.176474 Changes has 0 records
+2014-05-14 02:55:14.176935 number: 2, host: 186.220.62.214
+2014-05-14 02:55:14.742381 OK, Server Host 2 connected.
+2014-05-14 02:55:15.158023 Changes has 0 records
+2014-05-14 02:55:15.159264 end of program
+2014-05-14 03:00:24.447703 
+2014-05-14 03:00:24.456748 start of program
+2014-05-14 03:00:24.639987 number: 1, host: 201.83.204.120
+2014-05-14 03:00:25.220565 OK, Server Host 1 connected.
+2014-05-14 03:00:25.413844 Changes has 0 records
+2014-05-14 03:00:25.416015 number: 2, host: 186.220.62.214
+2014-05-14 03:00:25.979271 OK, Server Host 2 connected.
+2014-05-14 03:00:26.384428 Changes has 0 records
+2014-05-14 03:00:26.386591 end of program
+2014-05-14 03:05:13.889052 
+2014-05-14 03:05:13.899270 start of program
+2014-05-14 03:05:13.916198 number: 1, host: 201.83.204.120
+2014-05-14 03:05:14.490192 OK, Server Host 1 connected.
+2014-05-14 03:05:14.682369 Changes has 0 records
+2014-05-14 03:05:14.682756 number: 2, host: 186.220.62.214
+2014-05-14 03:05:15.262576 OK, Server Host 2 connected.
+2014-05-14 03:05:15.678277 Changes has 0 records
+2014-05-14 03:05:15.679607 end of program
+2014-05-14 03:10:14.760522 
+2014-05-14 03:10:14.761432 start of program
+2014-05-14 03:10:14.779219 number: 1, host: 201.83.204.120
+2014-05-14 03:10:15.344177 OK, Server Host 1 connected.
+2014-05-14 03:10:15.534508 Changes has 0 records
+2014-05-14 03:10:15.535388 number: 2, host: 186.220.62.214
+2014-05-14 03:10:16.101659 OK, Server Host 2 connected.
+2014-05-14 03:10:16.501754 Changes has 0 records
+2014-05-14 03:10:16.503475 end of program
+2014-05-14 03:15:19.153148 
+2014-05-14 03:15:19.166903 start of program
+2014-05-14 03:15:19.194950 number: 1, host: 201.83.204.120
+2014-05-14 03:15:19.787641 OK, Server Host 1 connected.
+2014-05-14 03:15:19.979524 Changes has 0 records
+2014-05-14 03:15:19.979950 number: 2, host: 186.220.62.214
+2014-05-14 03:15:20.550713 OK, Server Host 2 connected.
+2014-05-14 03:15:20.964992 Changes has 0 records
+2014-05-14 03:15:20.971126 end of program
+2014-05-14 03:20:14.683162 
+2014-05-14 03:20:14.697043 start of program
+2014-05-14 03:20:14.714133 number: 1, host: 201.83.204.120
+2014-05-14 03:20:15.282293 OK, Server Host 1 connected.
+2014-05-14 03:20:15.474660 Changes has 0 records
+2014-05-14 03:20:15.475069 number: 2, host: 186.220.62.214
+2014-05-14 03:20:16.043334 OK, Server Host 2 connected.
+2014-05-14 03:20:16.449244 Changes has 0 records
+2014-05-14 03:20:16.453592 end of program
+2014-05-14 03:25:13.778875 
+2014-05-14 03:25:13.779665 start of program
+2014-05-14 03:25:13.806253 number: 1, host: 201.83.204.120
+2014-05-14 03:25:14.381766 OK, Server Host 1 connected.
+2014-05-14 03:25:14.574086 Changes has 0 records
+2014-05-14 03:25:14.574537 number: 2, host: 186.220.62.214
+2014-05-14 03:25:15.144666 OK, Server Host 2 connected.
+2014-05-14 03:25:15.549042 Changes has 0 records
+2014-05-14 03:25:15.550479 end of program
+2014-05-14 03:30:20.767202 
+2014-05-14 03:30:20.769404 start of program
+2014-05-14 03:30:20.836593 number: 1, host: 201.83.204.120
+2014-05-14 03:30:21.405254 OK, Server Host 1 connected.
+2014-05-14 03:30:21.595679 Changes has 0 records
+2014-05-14 03:30:21.596179 number: 2, host: 186.220.62.214
+2014-05-14 03:30:22.170567 OK, Server Host 2 connected.
+2014-05-14 03:30:22.580540 Changes has 0 records
+2014-05-14 03:30:22.581958 end of program
+2014-05-14 03:35:14.041102 
+2014-05-14 03:35:14.050528 start of program
+2014-05-14 03:35:14.211461 number: 1, host: 201.83.204.120
+2014-05-14 03:35:14.789521 OK, Server Host 1 connected.
+2014-05-14 03:35:14.981949 Changes has 0 records
+2014-05-14 03:35:14.982370 number: 2, host: 186.220.62.214
+2014-05-14 03:35:15.551235 OK, Server Host 2 connected.
+2014-05-14 03:35:15.970264 Changes has 0 records
+2014-05-14 03:35:15.971884 end of program
+2014-05-14 03:40:14.873797 
+2014-05-14 03:40:14.874484 start of program
+2014-05-14 03:40:14.893365 number: 1, host: 201.83.204.120
+2014-05-14 03:40:15.470717 OK, Server Host 1 connected.
+2014-05-14 03:40:15.663085 Changes has 0 records
+2014-05-14 03:40:15.663477 number: 2, host: 186.220.62.214
+2014-05-14 03:40:16.225462 OK, Server Host 2 connected.
+2014-05-14 03:40:16.641889 Changes has 0 records
+2014-05-14 03:40:16.643839 end of program
+2014-05-14 03:45:19.150812 
+2014-05-14 03:45:19.164592 start of program
+2014-05-14 03:45:19.251166 number: 1, host: 201.83.204.120
+2014-05-14 03:45:19.821575 OK, Server Host 1 connected.
+2014-05-14 03:45:20.013777 Changes has 0 records
+2014-05-14 03:45:20.014235 number: 2, host: 186.220.62.214
+2014-05-14 03:45:20.585029 OK, Server Host 2 connected.
+2014-05-14 03:45:20.987360 Changes has 0 records
+2014-05-14 03:45:20.988902 end of program
+2014-05-14 03:50:14.589838 
+2014-05-14 03:50:14.590529 start of program
+2014-05-14 03:50:14.674792 number: 1, host: 201.83.204.120
+2014-05-14 03:50:15.239115 OK, Server Host 1 connected.
+2014-05-14 03:50:15.427430 Changes has 0 records
+2014-05-14 03:50:15.428855 number: 2, host: 186.220.62.214
+2014-05-14 03:50:15.996290 OK, Server Host 2 connected.
+2014-05-14 03:50:16.400090 Changes has 0 records
+2014-05-14 03:50:16.401483 end of program
+2014-05-14 03:55:13.372426 
+2014-05-14 03:55:13.373299 start of program
+2014-05-14 03:55:13.391708 number: 1, host: 201.83.204.120
+2014-05-14 03:55:13.977358 OK, Server Host 1 connected.
+2014-05-14 03:55:14.169636 Changes has 0 records
+2014-05-14 03:55:14.170538 number: 2, host: 186.220.62.214
+2014-05-14 03:55:14.738104 OK, Server Host 2 connected.
+2014-05-14 03:55:15.152329 Changes has 0 records
+2014-05-14 03:55:15.153627 end of program
+2014-05-14 04:00:33.288929 
+2014-05-14 04:00:33.355240 start of program
+2014-05-14 04:00:33.673015 number: 1, host: 201.83.204.120
+2014-05-14 04:00:34.266022 OK, Server Host 1 connected.
+2014-05-14 04:00:34.507038 Changes has 0 records
+2014-05-14 04:00:34.508868 number: 2, host: 186.220.62.214
+2014-05-14 04:00:35.077680 OK, Server Host 2 connected.
+2014-05-14 04:00:35.477814 Changes has 0 records
+2014-05-14 04:00:35.482744 end of program
+2014-05-14 04:05:14.359821 
+2014-05-14 04:05:14.363216 start of program
+2014-05-14 04:05:14.395668 number: 1, host: 201.83.204.120
+2014-05-14 04:05:14.974040 OK, Server Host 1 connected.
+2014-05-14 04:05:15.166947 Changes has 0 records
+2014-05-14 04:05:15.168626 number: 2, host: 186.220.62.214
+2014-05-14 04:05:15.731647 OK, Server Host 2 connected.
+2014-05-14 04:05:16.144996 Changes has 0 records
+2014-05-14 04:05:16.146554 end of program
+2014-05-14 04:10:15.689221 
+2014-05-14 04:10:15.690572 start of program
+2014-05-14 04:10:15.712027 number: 1, host: 201.83.204.120
+2014-05-14 04:10:16.307458 OK, Server Host 1 connected.
+2014-05-14 04:10:16.500409 Changes has 0 records
+2014-05-14 04:10:16.501358 number: 2, host: 186.220.62.214
+2014-05-14 04:10:17.060952 OK, Server Host 2 connected.
+2014-05-14 04:10:17.464926 Changes has 0 records
+2014-05-14 04:10:17.466753 end of program
+2014-05-14 04:15:19.549892 
+2014-05-14 04:15:19.569319 start of program
+2014-05-14 04:15:19.664194 number: 1, host: 201.83.204.120
+2014-05-14 04:15:20.232834 OK, Server Host 1 connected.
+2014-05-14 04:15:20.421265 Changes has 0 records
+2014-05-14 04:15:20.422386 number: 2, host: 186.220.62.214
+2014-05-14 04:15:20.993783 OK, Server Host 2 connected.
+2014-05-14 04:15:21.405830 Changes has 0 records
+2014-05-14 04:15:21.407344 end of program
+2014-05-14 04:20:16.154926 
+2014-05-14 04:20:16.155390 start of program
+2014-05-14 04:20:16.171131 number: 1, host: 201.83.204.120
+2014-05-14 04:20:16.744900 OK, Server Host 1 connected.
+2014-05-14 04:20:16.937202 Changes has 0 records
+2014-05-14 04:20:16.937568 number: 2, host: 186.220.62.214
+2014-05-14 04:20:17.717680 OK, Server Host 2 connected.
+2014-05-14 04:20:18.128308 Changes has 0 records
+2014-05-14 04:20:18.129597 end of program
+2014-05-14 04:25:14.351445 
+2014-05-14 04:25:14.352518 start of program
+2014-05-14 04:25:14.450865 number: 1, host: 201.83.204.120
+2014-05-14 04:25:15.031069 OK, Server Host 1 connected.
+2014-05-14 04:25:15.227813 Changes has 0 records
+2014-05-14 04:25:15.228364 number: 2, host: 186.220.62.214
+2014-05-14 04:25:15.795131 OK, Server Host 2 connected.
+2014-05-14 04:25:16.201466 Changes has 0 records
+2014-05-14 04:25:16.203098 end of program
+2014-05-14 04:30:21.376273 
+2014-05-14 04:30:21.388185 start of program
+2014-05-14 04:30:21.508905 number: 1, host: 201.83.204.120
+2014-05-14 04:30:22.090188 OK, Server Host 1 connected.
+2014-05-14 04:30:22.287077 Changes has 0 records
+2014-05-14 04:30:22.287514 number: 2, host: 186.220.62.214
+2014-05-14 04:30:22.858854 OK, Server Host 2 connected.
+2014-05-14 04:30:23.290020 Changes has 0 records
+2014-05-14 04:30:23.291639 end of program
+2014-05-14 04:35:14.031669 
+2014-05-14 04:35:14.051725 start of program
+2014-05-14 04:35:14.076066 number: 1, host: 201.83.204.120
+2014-05-14 04:35:14.670743 OK, Server Host 1 connected.
+2014-05-14 04:35:14.867357 Changes has 0 records
+2014-05-14 04:35:14.867786 number: 2, host: 186.220.62.214
+2014-05-14 04:35:15.442400 OK, Server Host 2 connected.
+2014-05-14 04:35:15.846417 Changes has 0 records
+2014-05-14 04:35:15.847790 end of program
+2014-05-14 04:40:14.898250 
+2014-05-14 04:40:14.898648 start of program
+2014-05-14 04:40:14.916409 number: 1, host: 201.83.204.120
+2014-05-14 04:40:15.494212 OK, Server Host 1 connected.
+2014-05-14 04:40:15.683783 Changes has 0 records
+2014-05-14 04:40:15.684190 number: 2, host: 186.220.62.214
+2014-05-14 04:40:16.251909 OK, Server Host 2 connected.
+2014-05-14 04:40:16.671572 Changes has 0 records
+2014-05-14 04:40:16.673862 end of program
+2014-05-14 04:45:19.425785 
+2014-05-14 04:45:19.435494 start of program
+2014-05-14 04:45:19.522196 number: 1, host: 201.83.204.120
+2014-05-14 04:45:20.118628 OK, Server Host 1 connected.
+2014-05-14 04:45:20.318897 Changes has 0 records
+2014-05-14 04:45:20.319706 number: 2, host: 186.220.62.214
+2014-05-14 04:45:20.892885 OK, Server Host 2 connected.
+2014-05-14 04:45:21.295419 Changes has 0 records
+2014-05-14 04:45:21.296767 end of program
+2014-05-14 04:50:14.766795 
+2014-05-14 04:50:14.767498 start of program
+2014-05-14 04:50:14.848291 number: 1, host: 201.83.204.120
+2014-05-14 04:50:15.448020 OK, Server Host 1 connected.
+2014-05-14 04:50:15.647932 Changes has 0 records
+2014-05-14 04:50:15.648327 number: 2, host: 186.220.62.214
+2014-05-14 04:50:16.212529 OK, Server Host 2 connected.
+2014-05-14 04:50:16.616257 Changes has 0 records
+2014-05-14 04:50:16.617946 end of program
+2014-05-14 04:55:14.054114 
+2014-05-14 04:55:14.054559 start of program
+2014-05-14 04:55:14.144908 number: 1, host: 201.83.204.120
+2014-05-14 04:55:14.731156 OK, Server Host 1 connected.
+2014-05-14 04:55:14.927424 Changes has 0 records
+2014-05-14 04:55:14.927949 number: 2, host: 186.220.62.214
+2014-05-14 04:55:15.495588 OK, Server Host 2 connected.
+2014-05-14 04:55:15.898790 Changes has 0 records
+2014-05-14 04:55:15.900095 end of program
+2014-05-14 05:00:25.656585 
+2014-05-14 05:00:25.673568 start of program
+2014-05-14 05:00:25.795870 number: 1, host: 201.83.204.120
+2014-05-14 05:00:26.391625 OK, Server Host 1 connected.
+2014-05-14 05:00:26.613894 Changes has 0 records
+2014-05-14 05:00:26.641709 number: 2, host: 186.220.62.214
+2014-05-14 05:00:27.256458 OK, Server Host 2 connected.
+2014-05-14 05:00:27.694137 Changes has 0 records
+2014-05-14 05:00:29.901664 end of program
+2014-05-14 05:05:14.476595 
+2014-05-14 05:05:14.478224 start of program
+2014-05-14 05:05:14.504365 number: 1, host: 201.83.204.120
+2014-05-14 05:05:15.078900 OK, Server Host 1 connected.
+2014-05-14 05:05:15.271473 Changes has 0 records
+2014-05-14 05:05:15.272276 number: 2, host: 186.220.62.214
+2014-05-14 05:05:15.843112 OK, Server Host 2 connected.
+2014-05-14 05:05:16.259194 Changes has 0 records
+2014-05-14 05:05:16.261363 end of program
+2014-05-14 05:10:15.025355 
+2014-05-14 05:10:15.026396 start of program
+2014-05-14 05:10:15.062040 number: 1, host: 201.83.204.120
+2014-05-14 05:10:15.636912 OK, Server Host 1 connected.
+2014-05-14 05:10:15.832506 Changes has 0 records
+2014-05-14 05:10:15.832886 number: 2, host: 186.220.62.214
+2014-05-14 05:10:16.403520 OK, Server Host 2 connected.
+2014-05-14 05:10:16.809563 Changes has 0 records
+2014-05-14 05:10:16.811628 end of program
+2014-05-14 05:15:19.219378 
+2014-05-14 05:15:19.228749 start of program
+2014-05-14 05:15:19.316344 number: 1, host: 201.83.204.120
+2014-05-14 05:15:19.891041 OK, Server Host 1 connected.
+2014-05-14 05:15:20.083316 Changes has 0 records
+2014-05-14 05:15:20.083840 number: 2, host: 186.220.62.214
+2014-05-14 05:15:20.646175 OK, Server Host 2 connected.
+2014-05-14 05:15:21.058044 Changes has 0 records
+2014-05-14 05:15:21.059399 end of program
+2014-05-14 05:20:15.087667 
+2014-05-14 05:20:15.088313 start of program
+2014-05-14 05:20:15.109645 number: 1, host: 201.83.204.120
+2014-05-14 05:20:15.685171 OK, Server Host 1 connected.
+2014-05-14 05:20:15.877963 Changes has 0 records
+2014-05-14 05:20:15.878723 number: 2, host: 186.220.62.214
+2014-05-14 05:20:16.446090 OK, Server Host 2 connected.
+2014-05-14 05:20:16.861916 Changes has 0 records
+2014-05-14 05:20:16.868579 end of program
+2014-05-14 05:25:13.804566 
+2014-05-14 05:25:13.832426 start of program
+2014-05-14 05:25:13.861377 number: 1, host: 201.83.204.120
+2014-05-14 05:25:14.426364 OK, Server Host 1 connected.
+2014-05-14 05:25:14.619009 Changes has 0 records
+2014-05-14 05:25:14.619921 number: 2, host: 186.220.62.214
+2014-05-14 05:25:15.188075 OK, Server Host 2 connected.
+2014-05-14 05:25:15.599616 Changes has 0 records
+2014-05-14 05:25:15.601550 end of program
+2014-05-14 05:30:21.033534 
+2014-05-14 05:30:21.039084 start of program
+2014-05-14 05:30:21.106976 number: 1, host: 201.83.204.120
+2014-05-14 05:30:21.673652 OK, Server Host 1 connected.
+2014-05-14 05:30:21.860990 Changes has 0 records
+2014-05-14 05:30:21.861822 number: 2, host: 186.220.62.214
+2014-05-14 05:30:22.717428 OK, Server Host 2 connected.
+2014-05-14 05:30:23.133124 Changes has 0 records
+2014-05-14 05:30:23.134847 end of program
+2014-05-14 05:35:13.882260 
+2014-05-14 05:35:13.882757 start of program
+2014-05-14 05:35:13.963178 number: 1, host: 201.83.204.120
+2014-05-14 05:35:14.543631 OK, Server Host 1 connected.
+2014-05-14 05:35:14.736514 Changes has 0 records
+2014-05-14 05:35:14.737032 number: 2, host: 186.220.62.214
+2014-05-14 05:35:15.300505 OK, Server Host 2 connected.
+2014-05-14 05:35:15.717715 Changes has 0 records
+2014-05-14 05:35:15.719229 end of program
+2014-05-14 05:40:15.240034 
+2014-05-14 05:40:15.240988 start of program
+2014-05-14 05:40:15.335006 number: 1, host: 201.83.204.120
+2014-05-14 05:40:15.900874 OK, Server Host 1 connected.
+2014-05-14 05:40:16.089279 Changes has 0 records
+2014-05-14 05:40:16.089692 number: 2, host: 186.220.62.214
+2014-05-14 05:40:16.667935 OK, Server Host 2 connected.
+2014-05-14 05:40:17.074279 Changes has 0 records
+2014-05-14 05:40:17.075604 end of program
+2014-05-14 05:45:18.963476 
+2014-05-14 05:45:18.965553 start of program
+2014-05-14 05:45:19.060679 number: 1, host: 201.83.204.120
+2014-05-14 05:45:19.638679 OK, Server Host 1 connected.
+2014-05-14 05:45:19.830886 Changes has 0 records
+2014-05-14 05:45:19.831321 number: 2, host: 186.220.62.214
+2014-05-14 05:45:20.397311 OK, Server Host 2 connected.
+2014-05-14 05:45:20.795643 Changes has 0 records
+2014-05-14 05:45:20.797305 end of program
+2014-05-14 05:50:14.893618 
+2014-05-14 05:50:14.899115 start of program
+2014-05-14 05:50:14.922040 number: 1, host: 201.83.204.120
+2014-05-14 05:50:15.494070 OK, Server Host 1 connected.
+2014-05-14 05:50:15.682431 Changes has 0 records
+2014-05-14 05:50:15.683650 number: 2, host: 186.220.62.214
+2014-05-14 05:50:16.251901 OK, Server Host 2 connected.
+2014-05-14 05:50:16.652988 Changes has 0 records
+2014-05-14 05:50:16.655240 end of program
+2014-05-14 05:55:13.722072 
+2014-05-14 05:55:13.723016 start of program
+2014-05-14 05:55:13.746648 number: 1, host: 201.83.204.120
+2014-05-14 05:55:14.330684 OK, Server Host 1 connected.
+2014-05-14 05:55:14.522525 Changes has 0 records
+2014-05-14 05:55:14.523099 number: 2, host: 186.220.62.214
+2014-05-14 05:55:15.088589 OK, Server Host 2 connected.
+2014-05-14 05:55:15.492795 Changes has 0 records
+2014-05-14 05:55:15.494708 end of program
+2014-05-14 06:00:25.291466 
+2014-05-14 06:00:25.296374 start of program
+2014-05-14 06:00:25.383145 number: 1, host: 201.83.204.120
+2014-05-14 06:00:25.960357 OK, Server Host 1 connected.
+2014-05-14 06:00:26.151058 Changes has 0 records
+2014-05-14 06:00:26.151616 number: 2, host: 186.220.62.214
+2014-05-14 06:00:26.720451 OK, Server Host 2 connected.
+2014-05-14 06:00:27.125886 Changes has 0 records
+2014-05-14 06:00:27.129825 end of program
+2014-05-14 06:05:13.556787 
+2014-05-14 06:05:13.559155 start of program
+2014-05-14 06:05:13.653708 number: 1, host: 201.83.204.120
+2014-05-14 06:05:14.232410 OK, Server Host 1 connected.
+2014-05-14 06:05:14.424725 Changes has 0 records
+2014-05-14 06:05:14.427880 number: 2, host: 186.220.62.214
+2014-05-14 06:05:44.603634 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '186.220.62.214' (4)
+2014-05-14 06:05:44.618762 end of program
+2014-05-14 06:10:14.615422 
+2014-05-14 06:10:14.625554 start of program
+2014-05-14 06:10:14.661014 number: 1, host: 201.83.204.120
+2014-05-14 06:10:15.236955 OK, Server Host 1 connected.
+2014-05-14 06:10:15.429452 Changes has 0 records
+2014-05-14 06:10:15.430048 number: 2, host: 186.220.62.214
+2014-05-14 06:10:45.641475 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '186.220.62.214' (4)
+2014-05-14 06:10:45.654744 end of program
+2014-05-14 06:15:19.149829 
+2014-05-14 06:15:19.151093 start of program
+2014-05-14 06:15:19.199236 number: 1, host: 201.83.204.120
+2014-05-14 06:15:19.769861 OK, Server Host 1 connected.
+2014-05-14 06:15:19.958262 Changes has 0 records
+2014-05-14 06:15:19.959066 number: 2, host: 186.220.62.214
+2014-05-14 06:15:50.064611 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '186.220.62.214' (4)
+2014-05-14 06:15:50.073047 end of program
+2014-05-14 06:20:14.909220 
+2014-05-14 06:20:14.910333 start of program
+2014-05-14 06:20:14.992977 number: 1, host: 201.83.204.120
+2014-05-14 06:20:15.569976 OK, Server Host 1 connected.
+2014-05-14 06:20:15.762631 Changes has 0 records
+2014-05-14 06:20:15.763482 number: 2, host: 186.220.62.214
+2014-05-14 06:20:45.860819 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '186.220.62.214' (4)
+2014-05-14 06:20:45.863666 end of program
+2014-05-14 06:25:13.824767 
+2014-05-14 06:25:13.825618 start of program
+2014-05-14 06:25:13.858301 number: 1, host: 201.83.204.120
+2014-05-14 06:25:14.453414 OK, Server Host 1 connected.
+2014-05-14 06:25:14.645024 Changes has 0 records
+2014-05-14 06:25:14.645813 number: 2, host: 186.220.62.214
+2014-05-14 06:25:15.211312 OK, Server Host 2 connected.
+2014-05-14 06:25:15.617654 Changes has 0 records
+2014-05-14 06:25:15.618882 end of program
+2014-05-14 06:30:20.952654 
+2014-05-14 06:30:20.959572 start of program
+2014-05-14 06:30:21.079019 number: 1, host: 201.83.204.120
+2014-05-14 06:30:21.675730 OK, Server Host 1 connected.
+2014-05-14 06:30:21.869088 Changes has 0 records
+2014-05-14 06:30:21.872953 number: 2, host: 186.220.62.214
+2014-05-14 06:30:22.439334 OK, Server Host 2 connected.
+2014-05-14 06:30:22.845215 Changes has 0 records
+2014-05-14 06:30:22.846869 end of program
+2014-05-14 06:35:13.669791 
+2014-05-14 06:35:13.671321 start of program
+2014-05-14 06:35:13.692690 number: 1, host: 201.83.204.120
+2014-05-14 06:35:14.266268 OK, Server Host 1 connected.
+2014-05-14 06:35:14.458507 Changes has 0 records
+2014-05-14 06:35:14.459130 number: 2, host: 186.220.62.214
+2014-05-14 06:35:15.024602 OK, Server Host 2 connected.
+2014-05-14 06:35:15.431227 Changes has 0 records
+2014-05-14 06:35:15.433516 end of program
+2014-05-14 06:40:15.149256 
+2014-05-14 06:40:15.150047 start of program
+2014-05-14 06:40:15.169329 number: 1, host: 201.83.204.120
+2014-05-14 06:40:15.747154 OK, Server Host 1 connected.
+2014-05-14 06:40:15.939802 Changes has 0 records
+2014-05-14 06:40:15.940663 number: 2, host: 186.220.62.214
+2014-05-14 06:40:16.504449 OK, Server Host 2 connected.
+2014-05-14 06:40:16.904614 Changes has 0 records
+2014-05-14 06:40:16.905953 end of program
+2014-05-14 06:45:18.592351 
+2014-05-14 06:45:18.592995 start of program
+2014-05-14 06:45:18.660355 number: 1, host: 201.83.204.120
+2014-05-14 06:45:19.225415 OK, Server Host 1 connected.
+2014-05-14 06:45:19.412623 Changes has 0 records
+2014-05-14 06:45:19.413293 number: 2, host: 186.220.62.214
+2014-05-14 06:45:19.980041 OK, Server Host 2 connected.
+2014-05-14 06:45:20.391185 Changes has 0 records
+2014-05-14 06:45:20.392697 end of program
+2014-05-14 06:50:15.358652 
+2014-05-14 06:50:15.359089 start of program
+2014-05-14 06:50:15.438510 number: 1, host: 201.83.204.120
+2014-05-14 06:50:15.017047 OK, Server Host 1 connected.
+2014-05-14 06:50:16.208889 Changes has 0 records
+2014-05-14 06:50:16.209411 number: 2, host: 186.220.62.214
+2014-05-14 06:50:16.777355 OK, Server Host 2 connected.
+2014-05-14 06:50:17.189928 Changes has 0 records
+2014-05-14 06:50:17.191458 end of program
+2014-05-14 06:55:14.656954 
+2014-05-14 06:55:14.659040 start of program
+2014-05-14 06:55:14.748901 number: 1, host: 201.83.204.120
+2014-05-14 06:55:15.327630 OK, Server Host 1 connected.
+2014-05-14 06:55:15.520004 Changes has 0 records
+2014-05-14 06:55:15.521438 number: 2, host: 186.220.62.214
+2014-05-14 06:55:16.101097 OK, Server Host 2 connected.
+2014-05-14 06:55:16.520632 Changes has 0 records
+2014-05-14 06:55:16.522765 end of program
+2014-05-14 07:00:25.973213 
+2014-05-14 07:00:25.974998 start of program
+2014-05-14 07:00:26.076326 number: 1, host: 201.83.204.120
+2014-05-14 07:00:26.642297 OK, Server Host 1 connected.
+2014-05-14 07:00:26.830806 Changes has 0 records
+2014-05-14 07:00:26.831905 number: 2, host: 186.220.62.214
+2014-05-14 07:00:27.402800 OK, Server Host 2 connected.
+2014-05-14 07:00:27.816828 Changes has 0 records
+2014-05-14 07:00:27.822434 end of program
+2014-05-14 07:05:14.637579 
+2014-05-14 07:05:14.638021 start of program
+2014-05-14 07:05:14.661707 number: 1, host: 201.83.204.120
+2014-05-14 07:05:15.239796 OK, Server Host 1 connected.
+2014-05-14 07:05:15.447869 Changes has 0 records
+2014-05-14 07:05:15.448907 number: 2, host: 186.220.62.214
+2014-05-14 07:05:16.013026 OK, Server Host 2 connected.
+2014-05-14 07:05:16.411580 Changes has 0 records
+2014-05-14 07:05:16.413548 end of program
+2014-05-14 07:10:15.560827 
+2014-05-14 07:10:15.564691 start of program
+2014-05-14 07:10:15.593320 number: 1, host: 201.83.204.120
+2014-05-14 07:10:16.168454 OK, Server Host 1 connected.
+2014-05-14 07:10:16.356752 Changes has 0 records
+2014-05-14 07:10:16.357737 number: 2, host: 186.220.62.214
+2014-05-14 07:10:16.935441 OK, Server Host 2 connected.
+2014-05-14 07:10:17.335637 Changes has 0 records
+2014-05-14 07:10:17.337592 end of program
+2014-05-14 07:15:20.146894 
+2014-05-14 07:15:20.159685 start of program
+2014-05-14 07:15:20.391326 number: 1, host: 201.83.204.120
+2014-05-14 07:15:20.972783 OK, Server Host 1 connected.
+2014-05-14 07:15:21.165140 Changes has 0 records
+2014-05-14 07:15:21.165603 number: 2, host: 186.220.62.214
+2014-05-14 07:15:21.761326 OK, Server Host 2 connected.
+2014-05-14 07:15:22.170734 Changes has 0 records
+2014-05-14 07:15:22.172314 end of program
+2014-05-14 07:20:15.757078 
+2014-05-14 07:20:15.757521 start of program
+2014-05-14 07:20:15.774081 number: 1, host: 201.83.204.120
+2014-05-14 07:20:45.870915 error, Server Host 1 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '201.83.204.120' (4)
+2014-05-14 07:20:45.871328 number: 2, host: 186.220.62.214
+2014-05-14 07:21:15.969888 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '186.220.62.214' (4)
+2014-05-14 07:21:15.983654 error, Local Server not connected: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+2014-05-14 07:21:15.984204 end of program
+2014-05-14 07:25:13.438864 
+2014-05-14 07:25:13.446224 start of program
+2014-05-14 07:25:13.463042 running since started 2014-05-14 07:20:15.772641
+2014-05-14 07:25:13.463534 end of program
+2014-05-14 07:30:21.040231 
+2014-05-14 07:30:21.040935 start of program
+2014-05-14 07:30:21.064816 running since started 2014-05-14 07:20:15.772641
+2014-05-14 07:30:21.065150 end of program
+2014-05-14 07:35:13.656990 
+2014-05-14 07:35:13.657433 start of program
+2014-05-14 07:35:13.672142 running since started 2014-05-14 07:20:15.772641
+2014-05-14 07:35:13.672634 end of program
+2014-05-14 07:40:14.819554 
+2014-05-14 07:40:14.819979 start of program
+2014-05-14 07:40:14.837483 running since started 2014-05-14 07:20:15.772641
+2014-05-14 07:40:14.837867 end of program
+2014-05-14 07:45:19.387010 
+2014-05-14 07:45:19.400865 start of program
+2014-05-14 07:45:19.425178 running since started 2014-05-14 07:20:15.772641
+2014-05-14 07:45:19.425602 end of program
+2014-05-14 07:50:14.750052 
+2014-05-14 07:50:14.750683 start of program
+2014-05-14 07:50:14.768774 running since started 2014-05-14 07:20:15.772641
+2014-05-14 07:50:14.769151 end of program
+2014-05-14 07:55:13.929665 
+2014-05-14 07:55:13.930130 start of program
+2014-05-14 07:55:13.950578 running since started 2014-05-14 07:20:15.772641
+2014-05-14 07:55:13.950953 end of program
+2014-05-14 08:00:25.344315 
+2014-05-14 08:00:25.344971 start of program
+2014-05-14 08:00:25.407055 running since started 2014-05-14 07:20:15.772641
+2014-05-14 08:00:25.408804 end of program
+2014-05-14 08:05:13.016323 
+2014-05-14 08:05:14.026795 start of program
+2014-05-14 08:05:14.119210 running since started 2014-05-14 07:20:15.772641
+2014-05-14 08:05:14.120121 end of program
+2014-05-14 08:10:15.887048 
+2014-05-14 08:10:15.898616 start of program
+2014-05-14 08:10:15.922483 running since started 2014-05-14 07:20:15.772641
+2014-05-14 08:10:15.923231 end of program
+2014-05-14 08:15:20.686876 
+2014-05-14 08:15:20.699548 start of program
+2014-05-14 08:15:20.809223 running since started 2014-05-14 07:20:15.772641
+2014-05-14 08:15:20.811693 end of program
+2014-05-14 08:20:16.596861 
+2014-05-14 08:20:16.597687 start of program
+2014-05-14 08:20:16.618550 running since started 2014-05-14 07:20:15.772641
+2014-05-14 08:20:16.619197 end of program
+2014-05-14 08:25:13.984196 
+2014-05-14 08:25:13.994363 start of program
+2014-05-14 08:25:14.013269 running since started 2014-05-14 07:20:15.772641
+2014-05-14 08:25:14.013677 end of program
+2014-05-14 08:30:21.806239 
+2014-05-14 08:30:21.809934 start of program
+2014-05-14 08:30:21.855862 running since started 2014-05-14 07:20:15.772641
+2014-05-14 08:30:21.857499 end of program
+2014-05-14 08:35:14.424670 
+2014-05-14 08:35:14.430091 start of program
+2014-05-14 08:35:14.445316 running since started 2014-05-14 07:20:15.772641
+2014-05-14 08:35:14.447162 end of program
+2014-05-14 08:40:16.529914 
+2014-05-14 08:40:16.531306 start of program
+2014-05-14 08:40:16.546895 running since started 2014-05-14 07:20:15.772641
+2014-05-14 08:40:16.547351 end of program
+2014-05-14 08:45:19.809896 
+2014-05-14 08:45:19.810960 start of program
+2014-05-14 08:45:19.840814 running since started 2014-05-14 07:20:15.772641
+2014-05-14 08:45:19.843183 end of program
+2014-05-14 08:50:14.681692 
+2014-05-14 08:50:14.683344 start of program
+2014-05-14 08:50:14.765102 running since started 2014-05-14 07:20:15.772641
+2014-05-14 08:50:14.765586 end of program
+2014-05-14 08:55:13.574645 
+2014-05-14 08:55:13.583563 start of program
+2014-05-14 08:55:13.618165 running since started 2014-05-14 07:20:15.772641
+2014-05-14 08:55:13.618656 end of program
+2014-05-14 09:00:24.552963 
+2014-05-14 09:00:24.556328 start of program
+2014-05-14 09:00:24.660902 running since started 2014-05-14 07:20:15.772641
+2014-05-14 09:00:24.662992 end of program
+2014-05-14 09:05:13.574722 
+2014-05-14 09:05:13.591368 start of program
+2014-05-14 09:05:13.670365 running since started 2014-05-14 07:20:15.772641
+2014-05-14 09:05:13.670781 end of program
+2014-05-14 09:10:14.972676 
+2014-05-14 09:10:14.973695 start of program
+2014-05-14 09:10:15.011275 running since started 2014-05-14 07:20:15.772641
+2014-05-14 09:10:15.011685 end of program
+2014-05-14 09:15:19.534822 
+2014-05-14 09:15:19.546149 start of program
+2014-05-14 09:15:19.587616 running since started 2014-05-14 07:20:15.772641
+2014-05-14 09:15:19.588661 end of program
+2014-05-14 09:20:14.973108 
+2014-05-14 09:20:14.986624 start of program
+2014-05-14 09:20:15.071836 running since started 2014-05-14 07:20:15.772641
+2014-05-14 09:20:15.072701 end of program
+2014-05-14 09:25:14.087657 
+2014-05-14 09:25:14.088804 start of program
+2014-05-14 09:25:14.105638 running since started 2014-05-14 07:20:15.772641
+2014-05-14 09:25:14.106062 end of program
+2014-05-14 09:30:20.885067 
+2014-05-14 09:30:20.898738 start of program
+2014-05-14 09:30:21.016207 running since started 2014-05-14 07:20:15.772641
+2014-05-14 09:30:21.017276 end of program
+2014-05-14 09:35:13.798939 
+2014-05-14 09:35:13.799658 start of program
+2014-05-14 09:35:13.828935 running since started 2014-05-14 07:20:15.772641
+2014-05-14 09:35:13.829710 end of program
+2014-05-14 09:40:15.218474 
+2014-05-14 09:40:15.230998 start of program
+2014-05-14 09:40:15.264369 running since started 2014-05-14 07:20:15.772641
+2014-05-14 09:40:15.265455 end of program
+2014-05-14 09:45:18.891050 
+2014-05-14 09:45:18.892579 start of program
+2014-05-14 09:45:18.921918 running since started 2014-05-14 07:20:15.772641
+2014-05-14 09:45:18.922970 end of program
+2014-05-14 09:50:14.874904 
+2014-05-14 09:50:14.876815 start of program
+2014-05-14 09:50:14.916123 running since started 2014-05-14 07:20:15.772641
+2014-05-14 09:50:14.932607 end of program
+2014-05-14 09:55:13.844937 
+2014-05-14 09:55:13.846363 start of program
+2014-05-14 09:55:13.925312 running since started 2014-05-14 07:20:15.772641
+2014-05-14 09:55:13.926363 end of program
+2014-05-14 10:00:25.573535 
+2014-05-14 10:00:25.588018 start of program
+2014-05-14 10:00:25.670753 running since started 2014-05-14 07:20:15.772641
+2014-05-14 10:00:25.678816 end of program
+2014-05-14 10:05:14.272853 
+2014-05-14 10:05:14.279781 start of program
+2014-05-14 10:05:14.312376 running since started 2014-05-14 07:20:15.772641
+2014-05-14 10:05:14.313276 end of program
+2014-05-14 10:10:15.060516 
+2014-05-14 10:10:15.061106 start of program
+2014-05-14 10:10:15.097621 running since started 2014-05-14 07:20:15.772641
+2014-05-14 10:10:15.098031 end of program
+2014-05-14 10:15:19.285015 
+2014-05-14 10:15:19.286481 start of program
+2014-05-14 10:15:19.307194 running since started 2014-05-14 07:20:15.772641
+2014-05-14 10:15:19.308911 end of program
+2014-05-14 10:20:14.003224 
+2014-05-14 10:20:14.004313 start of program
+2014-05-14 10:20:15.108670 running since started 2014-05-14 07:20:15.772641
+2014-05-14 10:20:15.109843 end of program
+2014-05-14 10:25:13.741747 
+2014-05-14 10:25:13.743133 start of program
+2014-05-14 10:25:13.766453 running since started 2014-05-14 07:20:15.772641
+2014-05-14 10:25:13.766897 end of program
+2014-05-14 10:30:20.727203 
+2014-05-14 10:30:20.743980 start of program
+2014-05-14 10:30:20.771633 running since started 2014-05-14 07:20:15.772641
+2014-05-14 10:30:20.772024 end of program
+2014-05-14 10:35:14.124971 
+2014-05-14 10:35:14.126439 start of program
+2014-05-14 10:35:14.148429 running since started 2014-05-14 07:20:15.772641
+2014-05-14 10:35:14.148865 end of program
+2014-05-14 10:40:15.176180 
+2014-05-14 10:40:15.177171 start of program
+2014-05-14 10:40:15.221272 running since started 2014-05-14 07:20:15.772641
+2014-05-14 10:40:15.222477 end of program
+2014-05-14 10:45:18.933984 
+2014-05-14 10:45:18.944458 start of program
+2014-05-14 10:45:18.991586 running since started 2014-05-14 07:20:15.772641
+2014-05-14 10:45:18.993126 end of program
+2014-05-14 10:50:14.672147 
+2014-05-14 10:50:14.682291 start of program
+2014-05-14 10:50:14.716751 running since started 2014-05-14 07:20:15.772641
+2014-05-14 10:50:14.717489 end of program
+2014-05-14 10:55:13.589764 
+2014-05-14 10:55:13.590446 start of program
+2014-05-14 10:55:13.605865 running since started 2014-05-14 07:20:15.772641
+2014-05-14 10:55:13.606263 end of program
+2014-05-14 11:00:25.094702 
+2014-05-14 11:00:25.109654 start of program
+2014-05-14 11:00:25.155937 running since started 2014-05-14 07:20:15.772641
+2014-05-14 11:00:25.156743 end of program
+2014-05-14 11:05:13.710479 
+2014-05-14 11:05:13.730532 start of program
+2014-05-14 11:05:13.749234 running since started 2014-05-14 07:20:15.772641
+2014-05-14 11:05:13.749684 end of program
+2014-05-14 11:10:14.475044 
+2014-05-14 11:10:14.476322 start of program
+2014-05-14 11:10:14.497365 running since started 2014-05-14 07:20:15.772641
+2014-05-14 11:10:14.497770 end of program
+2014-05-14 11:15:19.415967 
+2014-05-14 11:15:19.437628 start of program
+2014-05-14 11:15:19.514236 running since started 2014-05-14 07:20:15.772641
+2014-05-14 11:15:19.517552 end of program
+2014-05-14 11:20:15.366802 
+2014-05-14 11:20:15.368213 start of program
+2014-05-14 11:20:15.447237 running since started 2014-05-14 07:20:15.772641
+2014-05-14 11:20:15.447656 end of program
+2014-05-14 11:25:13.729576 
+2014-05-14 11:25:13.730925 start of program
+2014-05-14 11:25:13.811532 running since started 2014-05-14 07:20:15.772641
+2014-05-14 11:25:13.813743 end of program
+2014-05-14 11:30:20.856566 
+2014-05-14 11:30:20.873790 start of program
+2014-05-14 11:30:20.915196 running since started 2014-05-14 07:20:15.772641
+2014-05-14 11:30:20.916756 end of program
+2014-05-14 11:35:13.847019 
+2014-05-14 11:35:13.855126 start of program
+2014-05-14 11:35:13.876485 running since started 2014-05-14 07:20:15.772641
+2014-05-14 11:35:13.876906 end of program
+2014-05-14 11:40:15.382775 
+2014-05-14 11:40:15.400594 start of program
+2014-05-14 11:40:15.458729 running since started 2014-05-14 07:20:15.772641
+2014-05-14 11:40:15.467640 end of program
+2014-05-14 11:45:19.363464 
+2014-05-14 11:45:19.374432 start of program
+2014-05-14 11:45:19.505422 running since started 2014-05-14 07:20:15.772641
+2014-05-14 11:45:19.515362 end of program
+2014-05-14 11:50:15.157855 
+2014-05-14 11:50:15.172047 start of program
+2014-05-14 11:50:15.275317 running since started 2014-05-14 07:20:15.772641
+2014-05-14 11:50:15.276200 end of program
+2014-05-14 11:55:13.970651 
+2014-05-14 11:55:13.976666 start of program
+2014-05-14 11:55:13.996555 running since started 2014-05-14 07:20:15.772641
+2014-05-14 11:55:13.996992 end of program
+2014-05-14 12:00:25.202221 
+2014-05-14 12:00:25.235377 start of program
+2014-05-14 12:00:25.336642 running since started 2014-05-14 07:20:15.772641
+2014-05-14 12:00:25.337778 end of program
+2014-05-14 12:05:14.207998 
+2014-05-14 12:05:14.209399 start of program
+2014-05-14 12:05:14.311503 running since started 2014-05-14 07:20:15.772641
+2014-05-14 12:05:14.311975 end of program
+2014-05-14 12:10:14.755660 
+2014-05-14 12:10:14.788209 start of program
+2014-05-14 12:10:14.821250 running since started 2014-05-14 07:20:15.772641
+2014-05-14 12:10:14.821680 end of program
+2014-05-14 12:15:18.577440 
+2014-05-14 12:15:18.590563 start of program
+2014-05-14 12:15:18.607949 running since started 2014-05-14 07:20:15.772641
+2014-05-14 12:15:18.608693 end of program
+2014-05-14 12:20:14.937498 
+2014-05-14 12:20:14.944396 start of program
+2014-05-14 12:20:15.023549 running since started 2014-05-14 07:20:15.772641
+2014-05-14 12:20:15.024118 end of program
+2014-05-14 12:25:14.036449 
+2014-05-14 12:25:14.046228 start of program
+2014-05-14 12:25:14.065820 running since started 2014-05-14 07:20:15.772641
+2014-05-14 12:25:14.066511 end of program
+2014-05-14 12:30:21.031176 
+2014-05-14 12:30:21.031813 start of program
+2014-05-14 12:30:21.143303 running since started 2014-05-14 07:20:15.772641
+2014-05-14 12:30:21.155433 end of program
+2014-05-14 12:35:13.363210 
+2014-05-14 12:35:13.382149 start of program
+2014-05-14 12:35:13.404562 running since started 2014-05-14 07:20:15.772641
+2014-05-14 12:35:13.404980 end of program
+2014-05-14 12:40:14.976077 
+2014-05-14 12:40:14.977487 start of program
+2014-05-14 12:40:15.023163 running since started 2014-05-14 07:20:15.772641
+2014-05-14 12:40:15.023620 end of program
+2014-05-14 12:45:18.984518 
+2014-05-14 12:45:18.997281 start of program
+2014-05-14 12:45:19.024433 running since started 2014-05-14 07:20:15.772641
+2014-05-14 12:45:19.024856 end of program
+2014-05-14 12:50:14.820869 
+2014-05-14 12:50:14.821826 start of program
+2014-05-14 12:50:14.872518 running since started 2014-05-14 07:20:15.772641
+2014-05-14 12:50:14.873385 end of program
+2014-05-14 12:55:13.900610 
+2014-05-14 12:55:13.903688 start of program
+2014-05-14 12:55:13.921336 running since started 2014-05-14 07:20:15.772641
+2014-05-14 12:55:13.922198 end of program
+2014-05-14 13:00:24.695931 
+2014-05-14 13:00:24.697244 start of program
+2014-05-14 13:00:24.798411 running since started 2014-05-14 07:20:15.772641
+2014-05-14 13:00:24.800191 end of program
+2014-05-14 13:05:13.878048 
+2014-05-14 13:05:13.882726 start of program
+2014-05-14 13:05:13.929121 running since started 2014-05-14 07:20:15.772641
+2014-05-14 13:05:13.930346 end of program
+2014-05-14 13:10:14.447531 
+2014-05-14 13:10:14.448664 start of program
+2014-05-14 13:10:14.593858 running since started 2014-05-14 07:20:15.772641
+2014-05-14 13:10:14.597101 end of program
+2014-05-14 13:15:18.839384 
+2014-05-14 13:15:18.855063 start of program
+2014-05-14 13:15:18.885427 running since started 2014-05-14 07:20:15.772641
+2014-05-14 13:15:18.888617 end of program
+2014-05-14 13:20:15.183311 
+2014-05-14 13:20:15.183974 start of program
+2014-05-14 13:20:15.272043 running since started 2014-05-14 07:20:15.772641
+2014-05-14 13:20:15.272879 end of program
+2014-05-14 13:25:13.686100 
+2014-05-14 13:25:13.697427 start of program
+2014-05-14 13:25:13.779412 running since started 2014-05-14 07:20:15.772641
+2014-05-14 13:25:13.780426 end of program
+2014-05-14 13:30:20.851185 
+2014-05-14 13:30:20.904956 start of program
+2014-05-14 13:30:20.981012 running since started 2014-05-14 07:20:15.772641
+2014-05-14 13:30:20.982921 end of program
+2014-05-14 13:35:13.769015 
+2014-05-14 13:35:13.769495 start of program
+2014-05-14 13:35:13.848382 running since started 2014-05-14 07:20:15.772641
+2014-05-14 13:35:13.849177 end of program
+2014-05-14 13:40:15.188781 
+2014-05-14 13:40:15.191424 start of program
+2014-05-14 13:40:15.252587 running since started 2014-05-14 07:20:15.772641
+2014-05-14 13:40:15.255483 end of program
+2014-05-14 13:45:18.702037 
+2014-05-14 13:45:18.716873 start of program
+2014-05-14 13:45:18.799861 running since started 2014-05-14 07:20:15.772641
+2014-05-14 13:45:18.800702 end of program
+2014-05-14 13:50:14.882116 
+2014-05-14 13:50:14.891010 start of program
+2014-05-14 13:50:14.918415 running since started 2014-05-14 07:20:15.772641
+2014-05-14 13:50:14.919363 end of program
+2014-05-14 13:55:13.580512 
+2014-05-14 13:55:13.581468 start of program
+2014-05-14 13:55:13.598871 running since started 2014-05-14 07:20:15.772641
+2014-05-14 13:55:13.600091 end of program
+2014-05-14 14:00:24.922522 
+2014-05-14 14:00:24.926880 start of program
+2014-05-14 14:00:25.043291 running since started 2014-05-14 07:20:15.772641
+2014-05-14 14:00:25.044467 end of program
+2014-05-14 14:05:13.729200 
+2014-05-14 14:05:13.746988 start of program
+2014-05-14 14:05:13.835919 running since started 2014-05-14 07:20:15.772641
+2014-05-14 14:05:13.836363 end of program
+2014-05-14 14:10:15.020778 
+2014-05-14 14:10:15.022891 start of program
+2014-05-14 14:10:15.125406 running since started 2014-05-14 07:20:15.772641
+2014-05-14 14:10:15.126302 end of program
+2014-05-14 14:15:19.247038 
+2014-05-14 14:15:19.261623 start of program
+2014-05-14 14:15:19.304277 running since started 2014-05-14 07:20:15.772641
+2014-05-14 14:15:19.308256 end of program
+2014-05-14 14:20:15.645124 
+2014-05-14 14:20:15.663411 start of program
+2014-05-14 14:20:15.698927 running since started 2014-05-14 07:20:15.772641
+2014-05-14 14:20:15.699805 end of program
+2014-05-14 14:25:13.752560 
+2014-05-14 14:25:13.768931 start of program
+2014-05-14 14:25:13.802762 running since started 2014-05-14 07:20:15.772641
+2014-05-14 14:25:13.803952 end of program
+2014-05-14 14:30:21.128996 
+2014-05-14 14:30:21.130284 start of program
+2014-05-14 14:30:21.276591 running since started 2014-05-14 07:20:15.772641
+2014-05-14 14:30:21.280115 end of program
+2014-05-14 14:35:13.952353 
+2014-05-14 14:35:13.963478 start of program
+2014-05-14 14:35:14.044190 running since started 2014-05-14 07:20:15.772641
+2014-05-14 14:35:14.044563 end of program
+2014-05-14 14:40:15.247065 
+2014-05-14 14:40:15.249296 start of program
+2014-05-14 14:40:15.335844 running since started 2014-05-14 07:20:15.772641
+2014-05-14 14:40:15.336503 end of program
+2014-05-14 14:45:18.929007 
+2014-05-14 14:45:18.929508 start of program
+2014-05-14 14:45:18.950211 running since started 2014-05-14 07:20:15.772641
+2014-05-14 14:45:18.950583 end of program
+2014-05-14 14:50:14.572724 
+2014-05-14 14:50:14.581135 start of program
+2014-05-14 14:50:14.688536 running since started 2014-05-14 07:20:15.772641
+2014-05-14 14:50:14.689388 end of program
+2014-05-14 14:55:13.738537 
+2014-05-14 14:55:13.738969 start of program
+2014-05-14 14:55:13.778516 running since started 2014-05-14 07:20:15.772641
+2014-05-14 14:55:13.788499 end of program
+2014-05-14 15:00:24.939847 
+2014-05-14 15:00:24.949257 start of program
+2014-05-14 15:00:24.010196 running since started 2014-05-14 07:20:15.772641
+2014-05-14 15:00:24.011027 end of program
+2014-05-14 15:05:13.982709 
+2014-05-14 15:05:13.996730 start of program
+2014-05-14 15:05:14.086588 running since started 2014-05-14 07:20:15.772641
+2014-05-14 15:05:14.087720 end of program
+2014-05-14 15:10:14.957922 
+2014-05-14 15:10:14.959287 start of program
+2014-05-14 15:10:14.980726 running since started 2014-05-14 07:20:15.772641
+2014-05-14 15:10:14.981426 end of program
+2014-05-14 15:15:18.845716 
+2014-05-14 15:15:18.851899 start of program
+2014-05-14 15:15:18.889931 running since started 2014-05-14 07:20:15.772641
+2014-05-14 15:15:18.891275 end of program
+2014-05-14 15:20:15.130297 
+2014-05-14 15:20:15.145163 start of program
+2014-05-14 15:20:15.163378 running since started 2014-05-14 07:20:15.772641
+2014-05-14 15:20:15.164199 end of program
+2014-05-14 15:25:13.533050 
+2014-05-14 15:25:13.554471 start of program
+2014-05-14 15:25:13.579238 running since started 2014-05-14 07:20:15.772641
+2014-05-14 15:25:13.580164 end of program
+2014-05-14 15:30:21.441772 
+2014-05-14 15:30:21.463261 start of program
+2014-05-14 15:30:21.638112 running since started 2014-05-14 07:20:15.772641
+2014-05-14 15:30:21.640211 end of program
+2014-05-14 15:35:14.117120 
+2014-05-14 15:35:14.119591 start of program
+2014-05-14 15:35:14.151002 running since started 2014-05-14 07:20:15.772641
+2014-05-14 15:35:14.151380 end of program
+2014-05-14 15:40:14.766628 
+2014-05-14 15:40:14.776595 start of program
+2014-05-14 15:40:14.796173 running since started 2014-05-14 07:20:15.772641
+2014-05-14 15:40:14.796734 end of program
+2014-05-14 15:45:18.919428 
+2014-05-14 15:45:18.933327 start of program
+2014-05-14 15:45:19.035544 running since started 2014-05-14 07:20:15.772641
+2014-05-14 15:45:19.037784 end of program
+2014-05-14 15:50:14.888537 
+2014-05-14 15:50:14.896895 start of program
+2014-05-14 15:50:14.930391 running since started 2014-05-14 07:20:15.772641
+2014-05-14 15:50:14.932057 end of program
+2014-05-14 15:55:13.657499 
+2014-05-14 15:55:13.659411 start of program
+2014-05-14 15:55:13.680186 running since started 2014-05-14 07:20:15.772641
+2014-05-14 15:55:13.680693 end of program
+2014-05-14 16:00:26.568734 
+2014-05-14 16:00:26.584560 start of program
+2014-05-14 16:00:26.677099 running since started 2014-05-14 07:20:15.772641
+2014-05-14 16:00:26.691689 end of program
+2014-05-14 16:05:14.798449 
+2014-05-14 16:05:14.817525 start of program
+2014-05-14 16:05:14.901282 running since started 2014-05-14 07:20:15.772641
+2014-05-14 16:05:14.902384 end of program
+2014-05-14 16:10:15.003113 
+2014-05-14 16:10:16.021267 start of program
+2014-05-14 16:10:16.037654 running since started 2014-05-14 07:20:15.772641
+2014-05-14 16:10:16.038788 end of program
+2014-05-14 16:15:19.688026 
+2014-05-14 16:15:19.690716 start of program
+2014-05-14 16:15:19.740735 running since started 2014-05-14 07:20:15.772641
+2014-05-14 16:15:19.741223 end of program
+2014-05-14 16:20:14.008369 
+2014-05-14 16:20:15.009559 start of program
+2014-05-14 16:20:15.092209 running since started 2014-05-14 07:20:15.772641
+2014-05-14 16:20:15.092850 end of program
+2014-05-14 16:25:13.916225 
+2014-05-14 16:25:13.926324 start of program
+2014-05-14 16:25:14.012771 running since started 2014-05-14 07:20:15.772641
+2014-05-14 16:25:14.013197 end of program
+2014-05-14 16:30:21.034281 
+2014-05-14 16:30:21.042603 start of program
+2014-05-14 16:30:21.072037 running since started 2014-05-14 07:20:15.772641
+2014-05-14 16:30:21.080512 end of program
+2014-05-14 16:35:13.741199 
+2014-05-14 16:35:13.751453 start of program
+2014-05-14 16:35:13.775339 running since started 2014-05-14 07:20:15.772641
+2014-05-14 16:35:13.775792 end of program
+2014-05-14 16:40:14.513740 
+2014-05-14 16:40:14.524069 start of program
+2014-05-14 16:40:14.545680 running since started 2014-05-14 07:20:15.772641
+2014-05-14 16:40:14.546227 end of program
+2014-05-14 16:45:18.708498 
+2014-05-14 16:45:18.717937 start of program
+2014-05-14 16:45:18.819092 running since started 2014-05-14 07:20:15.772641
+2014-05-14 16:45:18.820324 end of program
+2014-05-14 16:50:14.564788 
+2014-05-14 16:50:14.580367 start of program
+2014-05-14 16:50:14.595666 running since started 2014-05-14 07:20:15.772641
+2014-05-14 16:50:14.596040 end of program
+2014-05-14 16:55:13.675642 
+2014-05-14 16:55:13.688715 start of program
+2014-05-14 16:55:13.769851 running since started 2014-05-14 07:20:15.772641
+2014-05-14 16:55:13.772159 end of program
+2014-05-14 17:00:24.742221 
+2014-05-14 17:00:24.769646 start of program
+2014-05-14 17:00:24.866437 running since started 2014-05-14 07:20:15.772641
+2014-05-14 17:00:24.867284 end of program
+2014-05-14 17:05:13.954119 
+2014-05-14 17:05:13.957679 start of program
+2014-05-14 17:05:13.988174 running since started 2014-05-14 07:20:15.772641
+2014-05-14 17:05:13.989418 end of program
+2014-05-14 17:10:14.831376 
+2014-05-14 17:10:14.845451 start of program
+2014-05-14 17:10:14.928402 running since started 2014-05-14 07:20:15.772641
+2014-05-14 17:10:14.928776 end of program
+2014-05-14 17:15:18.977200 
+2014-05-14 17:15:18.978312 start of program
+2014-05-14 17:15:19.075736 running since started 2014-05-14 07:20:15.772641
+2014-05-14 17:15:19.097487 end of program
+2014-05-14 17:20:15.227055 
+2014-05-14 17:20:15.231185 start of program
+2014-05-14 17:20:15.302919 running since started 2014-05-14 07:20:15.772641
+2014-05-14 17:20:15.314525 end of program
+2014-05-14 17:25:13.670420 
+2014-05-14 17:25:13.671863 start of program
+2014-05-14 17:25:13.695428 running since started 2014-05-14 07:20:15.772641
+2014-05-14 17:25:13.695841 end of program
+2014-05-14 17:30:21.157730 
+2014-05-14 17:30:21.161380 start of program
+2014-05-14 17:30:21.210205 running since started 2014-05-14 07:20:15.772641
+2014-05-14 17:30:21.213790 end of program
+2014-05-14 17:35:14.195613 
+2014-05-14 17:35:14.199649 start of program
+2014-05-14 17:35:14.225434 running since started 2014-05-14 07:20:15.772641
+2014-05-14 17:35:14.225831 end of program
+2014-05-14 17:40:15.199453 
+2014-05-14 17:40:15.207140 start of program
+2014-05-14 17:40:15.231079 running since started 2014-05-14 07:20:15.772641
+2014-05-14 17:40:15.250489 end of program
+2014-05-14 17:45:19.368001 
+2014-05-14 17:45:19.378343 start of program
+2014-05-14 17:45:19.421744 running since started 2014-05-14 07:20:15.772641
+2014-05-14 17:45:19.422440 end of program
+2014-05-14 17:50:15.130428 
+2014-05-14 17:50:15.142150 start of program
+2014-05-14 17:50:15.198522 running since started 2014-05-14 07:20:15.772641
+2014-05-14 17:50:15.213254 end of program
+2014-05-14 17:55:13.803976 
+2014-05-14 17:55:13.805259 start of program
+2014-05-14 17:55:13.841591 running since started 2014-05-14 07:20:15.772641
+2014-05-14 17:55:13.846010 end of program
+2014-05-14 18:00:24.280411 
+2014-05-14 18:00:24.284333 start of program
+2014-05-14 18:00:24.354506 running since started 2014-05-14 07:20:15.772641
+2014-05-14 18:00:24.357230 end of program
+2014-05-14 18:05:13.583559 
+2014-05-14 18:05:13.597611 start of program
+2014-05-14 18:05:13.629817 running since started 2014-05-14 07:20:15.772641
+2014-05-14 18:05:13.630814 end of program
+2014-05-14 18:10:14.860728 
+2014-05-14 18:10:14.871347 start of program
+2014-05-14 18:10:14.902865 running since started 2014-05-14 07:20:15.772641
+2014-05-14 18:10:14.905515 end of program
+2014-05-14 18:15:18.809841 
+2014-05-14 18:15:18.841831 start of program
+2014-05-14 18:15:18.934343 running since started 2014-05-14 07:20:15.772641
+2014-05-14 18:15:18.934819 end of program
+2014-05-14 18:20:14.836900 
+2014-05-14 18:20:14.838259 start of program
+2014-05-14 18:20:14.952532 running since started 2014-05-14 07:20:15.772641
+2014-05-14 18:20:14.953170 end of program
+2014-05-14 18:25:13.713575 
+2014-05-14 18:25:13.727886 start of program
+2014-05-14 18:25:13.785880 running since started 2014-05-14 07:20:15.772641
+2014-05-14 18:25:13.787775 end of program
+2014-05-14 18:30:20.881827 
+2014-05-14 18:30:20.883106 start of program
+2014-05-14 18:30:20.003558 running since started 2014-05-14 07:20:15.772641
+2014-05-14 18:30:21.004773 end of program
+2014-05-14 18:35:13.973779 
+2014-05-14 18:35:13.983767 start of program
+2014-05-14 18:35:13.006585 running since started 2014-05-14 07:20:15.772641
+2014-05-14 18:35:13.007210 end of program
+2014-05-14 18:40:14.761188 
+2014-05-14 18:40:14.776854 start of program
+2014-05-14 18:40:14.860986 running since started 2014-05-14 07:20:15.772641
+2014-05-14 18:40:14.861370 end of program
+2014-05-14 18:45:18.724001 
+2014-05-14 18:45:18.739544 start of program
+2014-05-14 18:45:18.831325 running since started 2014-05-14 07:20:15.772641
+2014-05-14 18:45:18.834175 end of program
+2014-05-14 18:50:14.363398 
+2014-05-14 18:50:14.372895 start of program
+2014-05-14 18:50:14.453954 running since started 2014-05-14 07:20:15.772641
+2014-05-14 18:50:14.460671 end of program
+2014-05-14 18:55:13.635224 
+2014-05-14 18:55:13.653203 start of program
+2014-05-14 18:55:13.686025 running since started 2014-05-14 07:20:15.772641
+2014-05-14 18:55:13.686434 end of program
+2014-05-14 19:00:25.231612 
+2014-05-14 19:00:25.240022 start of program
+2014-05-14 19:00:25.336514 running since started 2014-05-14 07:20:15.772641
+2014-05-14 19:00:25.340919 end of program
+2014-05-14 19:05:14.268104 
+2014-05-14 19:05:14.270640 start of program
+2014-05-14 19:05:14.366900 running since started 2014-05-14 07:20:15.772641
+2014-05-14 19:05:14.367416 end of program
+2014-05-14 19:10:14.738302 
+2014-05-14 19:10:14.739721 start of program
+2014-05-14 19:10:14.758855 running since started 2014-05-14 07:20:15.772641
+2014-05-14 19:10:14.759378 end of program
+2014-05-14 19:15:19.184685 
+2014-05-14 19:15:19.185141 start of program
+2014-05-14 19:15:19.214393 running since started 2014-05-14 07:20:15.772641
+2014-05-14 19:15:19.215438 end of program
+2014-05-14 19:20:15.218975 
+2014-05-14 19:20:15.235734 start of program
+2014-05-14 19:20:15.254984 running since started 2014-05-14 07:20:15.772641
+2014-05-14 19:20:15.255689 end of program
+2014-05-14 19:25:13.538469 
+2014-05-14 19:25:13.539837 start of program
+2014-05-14 19:25:13.564908 running since started 2014-05-14 07:20:15.772641
+2014-05-14 19:25:13.565940 end of program
+2014-05-14 19:30:21.065187 
+2014-05-14 19:30:21.077618 start of program
+2014-05-14 19:30:21.126238 running since started 2014-05-14 07:20:15.772641
+2014-05-14 19:30:21.127372 end of program
+2014-05-14 19:35:13.660501 
+2014-05-14 19:35:13.661690 start of program
+2014-05-14 19:35:13.741246 running since started 2014-05-14 07:20:15.772641
+2014-05-14 19:35:13.742169 end of program
+2014-05-14 19:40:14.624566 
+2014-05-14 19:40:14.644339 start of program
+2014-05-14 19:40:14.676920 running since started 2014-05-14 07:20:15.772641
+2014-05-14 19:40:14.682440 end of program
+2014-05-14 19:45:18.648261 
+2014-05-14 19:45:18.649720 start of program
+2014-05-14 19:45:18.669232 running since started 2014-05-14 07:20:15.772641
+2014-05-14 19:45:18.670294 end of program
+2014-05-14 19:50:14.671493 
+2014-05-14 19:50:14.683212 start of program
+2014-05-14 19:50:14.725827 running since started 2014-05-14 07:20:15.772641
+2014-05-14 19:50:14.727061 end of program
+2014-05-14 19:55:13.539049 
+2014-05-14 19:55:13.539907 start of program
+2014-05-14 19:55:13.624532 running since started 2014-05-14 07:20:15.772641
+2014-05-14 19:55:13.624998 end of program
+2014-05-14 20:00:24.510898 
+2014-05-14 20:00:24.516283 start of program
+2014-05-14 20:00:24.549475 running since started 2014-05-14 07:20:15.772641
+2014-05-14 20:00:24.551137 end of program
+2014-05-14 20:05:13.784321 
+2014-05-14 20:05:13.796962 start of program
+2014-05-14 20:05:13.816495 running since started 2014-05-14 07:20:15.772641
+2014-05-14 20:05:13.817299 end of program
+2014-05-14 20:10:14.871792 
+2014-05-14 20:10:14.877652 start of program
+2014-05-14 20:10:14.904715 running since started 2014-05-14 07:20:15.772641
+2014-05-14 20:10:14.905139 end of program
+2014-05-14 20:15:18.900305 
+2014-05-14 20:15:18.901138 start of program
+2014-05-14 20:15:18.941989 running since started 2014-05-14 07:20:15.772641
+2014-05-14 20:15:18.942832 end of program
+2014-05-14 20:20:15.145171 
+2014-05-14 20:20:15.158186 start of program
+2014-05-14 20:20:15.255097 running since started 2014-05-14 07:20:15.772641
+2014-05-14 20:20:15.257378 end of program
+2014-05-14 20:25:14.762119 
+2014-05-14 20:25:14.808427 start of program
+2014-05-14 20:25:14.829558 running since started 2014-05-14 07:20:15.772641
+2014-05-14 20:25:14.830626 end of program
+2014-05-14 20:30:20.843565 
+2014-05-14 20:30:20.857490 start of program
+2014-05-14 20:30:20.963030 running since started 2014-05-14 07:20:15.772641
+2014-05-14 20:30:20.963774 end of program
+2014-05-14 20:35:13.652496 
+2014-05-14 20:35:13.653681 start of program
+2014-05-14 20:35:13.679665 running since started 2014-05-14 07:20:15.772641
+2014-05-14 20:35:13.680433 end of program
+2014-05-14 20:40:15.239762 
+2014-05-14 20:40:15.254005 start of program
+2014-05-14 20:40:15.288759 running since started 2014-05-14 07:20:15.772641
+2014-05-14 20:40:15.289804 end of program
+2014-05-14 20:45:18.806476 
+2014-05-14 20:45:18.823390 start of program
+2014-05-14 20:45:18.856901 running since started 2014-05-14 07:20:15.772641
+2014-05-14 20:45:18.858032 end of program
+2014-05-14 20:50:14.649405 
+2014-05-14 20:50:14.659408 start of program
+2014-05-14 20:50:14.741891 running since started 2014-05-14 07:20:15.772641
+2014-05-14 20:50:14.743337 end of program
+2014-05-14 20:55:13.407997 
+2014-05-14 20:55:13.409016 start of program
+2014-05-14 20:55:13.425336 running since started 2014-05-14 07:20:15.772641
+2014-05-14 20:55:13.427657 end of program
+2014-05-14 21:00:24.411786 
+2014-05-14 21:00:24.413032 start of program
+2014-05-14 21:00:24.462947 running since started 2014-05-14 07:20:15.772641
+2014-05-14 21:00:24.463876 end of program
+2014-05-14 21:05:13.652981 
+2014-05-14 21:05:13.679831 start of program
+2014-05-14 21:05:13.699594 running since started 2014-05-14 07:20:15.772641
+2014-05-14 21:05:13.700800 end of program
+2014-05-14 21:10:15.269242 
+2014-05-14 21:10:15.270971 start of program
+2014-05-14 21:10:15.352842 running since started 2014-05-14 07:20:15.772641
+2014-05-14 21:10:15.353841 end of program
+2014-05-14 21:15:18.663068 
+2014-05-14 21:15:18.670839 start of program
+2014-05-14 21:15:18.697523 running since started 2014-05-14 07:20:15.772641
+2014-05-14 21:15:18.698298 end of program
+2014-05-14 21:20:15.275557 
+2014-05-14 21:20:15.285172 start of program
+2014-05-14 21:20:15.305339 running since started 2014-05-14 07:20:15.772641
+2014-05-14 21:20:15.305793 end of program
+2014-05-14 21:25:13.674153 
+2014-05-14 21:25:13.694903 start of program
+2014-05-14 21:25:13.784337 running since started 2014-05-14 07:20:15.772641
+2014-05-14 21:25:13.784999 end of program
+2014-05-14 21:30:21.136277 
+2014-05-14 21:30:21.138006 start of program
+2014-05-14 21:30:21.258842 running since started 2014-05-14 07:20:15.772641
+2014-05-14 21:30:21.292039 end of program
+2014-05-14 21:35:13.895408 
+2014-05-14 21:35:13.914950 start of program
+2014-05-14 21:35:13.930951 running since started 2014-05-14 07:20:15.772641
+2014-05-14 21:35:13.932154 end of program
+2014-05-14 21:40:14.501676 
+2014-05-14 21:40:14.517254 start of program
+2014-05-14 21:40:14.537447 running since started 2014-05-14 07:20:15.772641
+2014-05-14 21:40:14.537894 end of program
+2014-05-14 21:45:18.764762 
+2014-05-14 21:45:18.779811 start of program
+2014-05-14 21:45:18.811639 running since started 2014-05-14 07:20:15.772641
+2014-05-14 21:45:18.812959 end of program
+2014-05-14 21:50:14.818263 
+2014-05-14 21:50:14.828359 start of program
+2014-05-14 21:50:14.862258 running since started 2014-05-14 07:20:15.772641
+2014-05-14 21:50:14.863022 end of program
+2014-05-14 21:55:13.987184 
+2014-05-14 21:55:13.999810 start of program
+2014-05-14 21:55:14.085505 running since started 2014-05-14 07:20:15.772641
+2014-05-14 21:55:14.090832 end of program
+2014-05-14 22:00:25.585991 
+2014-05-14 22:00:25.597823 start of program
+2014-05-14 22:00:25.756562 running since started 2014-05-14 07:20:15.772641
+2014-05-14 22:00:25.758069 end of program
+2014-05-14 22:05:13.994847 
+2014-05-14 22:05:13.007620 start of program
+2014-05-14 22:05:14.024097 running since started 2014-05-14 07:20:15.772641
+2014-05-14 22:05:14.024627 end of program
+2014-05-14 22:10:14.419206 
+2014-05-14 22:10:14.421300 start of program
+2014-05-14 22:10:14.440763 running since started 2014-05-14 07:20:15.772641
+2014-05-14 22:10:14.441124 end of program
+2014-05-14 22:15:18.707608 
+2014-05-14 22:15:18.728171 start of program
+2014-05-14 22:15:18.824455 running since started 2014-05-14 07:20:15.772641
+2014-05-14 22:15:18.825173 end of program
+2014-05-14 22:20:15.418236 
+2014-05-14 22:20:15.418701 start of program
+2014-05-14 22:20:15.513928 running since started 2014-05-14 07:20:15.772641
+2014-05-14 22:20:15.515116 end of program
+2014-05-14 22:25:13.930972 
+2014-05-14 22:25:13.932151 start of program
+2014-05-14 22:25:13.947680 running since started 2014-05-14 07:20:15.772641
+2014-05-14 22:25:13.948025 end of program
+2014-05-14 22:30:20.900785 
+2014-05-14 22:30:20.910852 start of program
+2014-05-14 22:30:20.957811 running since started 2014-05-14 07:20:15.772641
+2014-05-14 22:30:20.958636 end of program
+2014-05-14 22:35:13.588080 
+2014-05-14 22:35:13.637096 start of program
+2014-05-14 22:35:13.669369 running since started 2014-05-14 07:20:15.772641
+2014-05-14 22:35:13.670522 end of program
+2014-05-14 22:40:14.451449 
+2014-05-14 22:40:14.452521 start of program
+2014-05-14 22:40:14.538224 running since started 2014-05-14 07:20:15.772641
+2014-05-14 22:40:14.538596 end of program
+2014-05-14 22:45:18.729727 
+2014-05-14 22:45:18.736894 start of program
+2014-05-14 22:45:18.815602 running since started 2014-05-14 07:20:15.772641
+2014-05-14 22:45:18.816555 end of program
+2014-05-14 22:50:15.092141 
+2014-05-14 22:50:15.104564 start of program
+2014-05-14 22:50:15.124779 running since started 2014-05-14 07:20:15.772641
+2014-05-14 22:50:15.125673 end of program
+2014-05-14 22:55:13.937292 
+2014-05-14 22:55:13.938217 start of program
+2014-05-14 22:55:13.955229 running since started 2014-05-14 07:20:15.772641
+2014-05-14 22:55:13.955596 end of program
+2014-05-14 23:00:24.804314 
+2014-05-14 23:00:24.807067 start of program
+2014-05-14 23:00:24.908374 running since started 2014-05-14 07:20:15.772641
+2014-05-14 23:00:24.911215 end of program
+2014-05-14 23:05:13.760099 
+2014-05-14 23:05:13.769528 start of program
+2014-05-14 23:05:13.793530 running since started 2014-05-14 07:20:15.772641
+2014-05-14 23:05:13.794940 end of program
+2014-05-14 23:10:14.962112 
+2014-05-14 23:10:14.973655 start of program
+2014-05-14 23:10:15.086544 running since started 2014-05-14 07:20:15.772641
+2014-05-14 23:10:15.087339 end of program
+2014-05-14 23:15:19.128992 
+2014-05-14 23:15:19.131503 start of program
+2014-05-14 23:15:19.172404 running since started 2014-05-14 07:20:15.772641
+2014-05-14 23:15:19.173160 end of program
+2014-05-14 23:20:15.184256 
+2014-05-14 23:20:15.192091 start of program
+2014-05-14 23:20:15.284808 running since started 2014-05-14 07:20:15.772641
+2014-05-14 23:20:15.285200 end of program
+2014-05-14 23:25:13.829642 
+2014-05-14 23:25:13.845419 start of program
+2014-05-14 23:25:13.868964 running since started 2014-05-14 07:20:15.772641
+2014-05-14 23:25:13.869460 end of program
+2014-05-14 23:30:20.902560 
+2014-05-14 23:30:20.910141 start of program
+2014-05-14 23:30:20.001135 running since started 2014-05-14 07:20:15.772641
+2014-05-14 23:30:20.001543 end of program
+2014-05-14 23:35:13.759313 
+2014-05-14 23:35:13.763559 start of program
+2014-05-14 23:35:13.795235 running since started 2014-05-14 07:20:15.772641
+2014-05-14 23:35:13.796439 end of program
+2014-05-14 23:40:14.766008 
+2014-05-14 23:40:14.779705 start of program
+2014-05-14 23:40:14.796484 running since started 2014-05-14 07:20:15.772641
+2014-05-14 23:40:14.796880 end of program
+2014-05-14 23:45:18.865561 
+2014-05-14 23:45:18.874417 start of program
+2014-05-14 23:45:18.921401 running since started 2014-05-14 07:20:15.772641
+2014-05-14 23:45:18.938083 end of program
+2014-05-14 23:50:14.492346 
+2014-05-14 23:50:14.492787 start of program
+2014-05-14 23:50:14.514569 running since started 2014-05-14 07:20:15.772641
+2014-05-14 23:50:14.515116 end of program
+2014-05-14 23:55:13.571547 
+2014-05-14 23:55:13.573815 start of program
+2014-05-14 23:55:13.591634 running since started 2014-05-14 07:20:15.772641
+2014-05-14 23:55:13.592431 end of program

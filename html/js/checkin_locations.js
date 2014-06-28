@@ -3,12 +3,14 @@
  */
 
 JKY.display_boxes = function() {
-//	JKY.loads = JKY.load_ids(JKY.row.id);
+	my_thread_id = JKY.row.thread_id;
 	var my_data =
-		{ method	: 'get_index'
-		, table		: 'CheckinLocations'
-		, select	:  JKY.row.batchin_id
-		, order_by  : 'location'
+		{ method		: 'get_index'
+		, table			: 'CheckinLocations'
+		, specific		: 'thread'
+		, specific_id	:  my_thread_id
+		, select		:  JKY.row.batch_code
+		, order_by		: 'location'
 		};
 	JKY.ajax(false, my_data, JKY.generate_boxes);
 }

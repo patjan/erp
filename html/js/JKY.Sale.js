@@ -23,6 +23,29 @@ JKY.Sale = function() {
 	}
 
 	function my_load_data() {
+/*
+SELECT QuotColors.*
+,QuotColors.quoted_units		AS      sold_units
+,     Color.color_name			AS     color_name
+,  SaleLine.units				AS			 units
+,      Sale.quotation_number	AS      sale_number
+,      Sale.quoted_at			AS      sold_at
+,   Product.product_name		AS   product_name
+,  Customer.nick_name			AS  customer_name
+,       FTP.composition			AS			 composition
+FROM QuotColors
+LEFT JOIN      Colors AS Color		ON     Color.id	=	    QuotColors.color_id
+LEFT JOIN   QuotLines AS SaleLine	ON  SaleLine.id	=		QuotColors.parent_id
+LEFT JOIN  Quotations AS Sale		ON      Sale.id	=		  SaleLine.parent_id
+LEFT JOIN      Orders AS Orderx		ON	  Orderx.id	=		  SaleLine.order_id
+LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleLine.product_id
+LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id
+LEFT JOIN        FTPs AS FTP		ON       FTP.id	=		    Orderx.ftp_id
+WHERE QuotColors.color_id = 100020
+  AND Orderx.ftp_id IS NOT NULL
+ORDER BY Sale.quotation_number
+LIMIT 10
+*/
 		var my_data =
 			{ method		: 'get_index'
 			, table			: 'QuotColors'
@@ -41,13 +64,14 @@ JKY.Sale = function() {
 		var my_html = '';
 		for(var i=0; i<my_rows.length; i++) {
 			var my_row = my_rows[i];
+			var my_sold_pieces = my_row.sold_units / my_row.units;
 			my_html += '<tr onclick="JKY.Sale.click_row(this, ' + my_row.id + ')">'
 					+  '<td class="jky-search-sale-number"		>' +				 my_row.sale_number		+ '</td>'
 					+  '<td class="jky-search-customer-name"	>' +				 my_row.customer_name	+ '</td>'
 					+  '<td class="jky-search-product-name"		>' +				 my_row.product_name	+ '</td>'
 					+  '<td class="jky-search-composition"		>' +				 my_row.composition		+ '</td>'
 					+  '<td class="jky-search-sold-date"		>' + JKY.short_date	(my_row.sold_at		  ) + '</td>'
-					+  '<td class="jky-search-sold-pieces"		>' +				 my_row.sold_pieces		+ '</td>'
+					+  '<td class="jky-search-sold-pieces"		>' +				 my_sold_pieces			+ '</td>'
 					+  '</tr>'
 					;
 		}

@@ -40,8 +40,8 @@ JKY.set_initial_values = function() {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_html('jky-log-logo', '<img src="/img/' + JKY.Session.get_value('company_logo') + '" />');
 		if (JKY.Session.get_value('environment') == 'development') {
-			$('#jky-log-user-name').val('patjan');
-			$('#jky-log-password' ).val('brazil');
+//			$('#jky-log-user-name').val('patjan');
+//			$('#jky-log-password' ).val('brazil');
 //			setTimeout(function() {$('#jky-button-log-in').click();}, 500);
 		}else{
 			$('#jky-log-user-name').val('');

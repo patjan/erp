@@ -24,6 +24,16 @@ JKY.LoadOut = function() {
 	}
 
 	function my_load_data() {
+/*
+SELECT LoadOuts.*
+,      Dyer.nick_name		AS      dyer_name
+,      Color.color_name		AS     color_name
+  FROM LoadOuts
+  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		  LoadOuts.dyer_id
+  LEFT JOIN      Colors AS Color	ON     Color.id	=		  LoadOuts.color_id
+ WHERE LoadOuts.shipdyer_id = 8000000001
+ ORDER BY LoadOuts.loadout_number
+*/
 		var my_data =
 			{ method		: 'get_index'
 			, table			: 'LoadOuts'

@@ -76,6 +76,8 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-name-w"	>' +				 the_row.product_name		+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 the_row.product_type		+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.start_date		)	+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.peso				+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.units				+ '</td>'
 		+  '<td class="jky-td-status"	>' +				 the_row.status				+ '</td>'
 		;
 	return my_html;
@@ -89,6 +91,8 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-product-name'		,				 the_row.product_name		);
 	JKY.set_radio	('jky-product-type'		,				 the_row.product_type		);
 	JKY.set_date	('jky-start-date'		, JKY.out_date	(the_row.start_date			));
+	JKY.set_value	('jky-peso'				,				 the_row.peso				);
+	JKY.set_value	('jky-units'			,				 the_row.units				);
 
 	JKY.Photo.set_row_id(the_row.id);
 	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));
@@ -106,6 +110,8 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-product-name'		, '');
 	JKY.set_radio	('jky-product-type'		,  JKY.t('Tubular'));
 	JKY.set_date	('jky-start-date'		,  JKY.out_date(JKY.get_date()));
+	JKY.set_value	('jky-peso'				, '0');
+	JKY.set_value	('jky-units'			, '1');
 };
 
 /**
@@ -116,6 +122,8 @@ JKY.get_form_set = function() {
 		+    'product_name=\'' + JKY.get_value	('jky-product-name'	) + '\''
 		+  ', product_type=\'' + JKY.get_checked('jky-product-type'	) + '\''
 		+    ', start_date=  ' + JKY.inp_date	('jky-start-date'	)
+		+		   ', peso=  ' + JKY.get_value	('jky-peso'			)
+		+		  ', units=  ' + JKY.get_value	('jky-units'		)
 		;
 	return my_set;
 };

@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS LoadSales
 , loadout_id		BIGINT				DEFAULT NULL
 , sale_color_id		BIGINT				DEFAULT NULL
 , requested_pieces	INT					DEFAULT 0
+, reserved_pieces	INT					DEFAULT 0
 , checkout_pieces	INT					DEFAULT 0
 , checkout_weight	DECIMAL(10,2)		DEFAULT 0
 , returned_pieces	INT					DEFAULT 0
@@ -20,5 +21,7 @@ CREATE TABLE IF NOT EXISTS LoadSales
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 INSERT NextIds	SET table_name='LoadSales', next_id=1, id_size=9;
-INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, name='LoadSales', created_by=1, created_at=NOW();
-INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='LoadSales', created_by=1, created_at=NOW();
+INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, name='LoadSales', updated_by=1, updated_at=NOW();
+INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='LoadSales', updated_by=1, updated_at=NOW();
+
+ALTER TABLE LoadSales		ADD		reserved_pieces			INT			DEFAULT 0		AFTER requested_pieces;

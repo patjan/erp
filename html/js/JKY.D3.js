@@ -240,7 +240,7 @@ JKY.D3 = function() {
 /**
  *	draw multi-line
  */
-    function  my_multi_line (the_data) {
+    function my_multi_line (the_data) {
         JKY.display_trace('my_multi_line');
 
         the_data.forEach(function(d) {
