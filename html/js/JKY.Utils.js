@@ -120,9 +120,9 @@ JKY.setTableWidthHeight = function(tableId, width, off_width, minHeight, offHeig
  */
 JKY.re_direct = function(the_program) {
 	if (typeof the_program == 'undefined') {
-		location = '/home';
+		window.location = '/home';
 	}else{
-		location = '/' + the_program;
+		window.location = '/' + the_program;
 	}
 }
 
@@ -459,7 +459,7 @@ JKY.fix_null = function(the_string){
  * @return			dd-mm-yyyy
  */
 JKY.fix_ymd2dmy = function(date){
-	if (date == null) {
+	if (date == null || date == 'null') {
 		return '';
 	}
 	var my_dates = date.split('-');
@@ -472,9 +472,12 @@ JKY.fix_ymd2dmy = function(date){
  * @return			yyyy-mm-dd
  */
 JKY.fix_dmy2ymd = function(date){
+    if (date == null){
+        return '';
+    }
 	var my_date = date.trim();
-	if (my_date == '') {
-		return 'null';
+	if (my.date == 'null') {
+		return '';
 	}
 	var my_dates = my_date.split('-');
 	return '\'' + my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0] + '\'';
@@ -1026,13 +1029,13 @@ JKY.get_index_by_id = function(the_id, the_array) {
 //	JKY.set_radios(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
 //	----------------------------------------------------------------------------
 JKY.set_radios = function() {
-	radios    = '';
-	set_id    = arguments[0];
-	set_value = arguments[1];
+	var radios    = '';
+	var set_id    = arguments[0];
+	var set_value = arguments[1];
 
 	for(var i=2, max=arguments.length; i<max; i++) {
-		value = arguments[i];
-		checked = (value == set_value) ? ' checked="checked"' : '';
+		var value = arguments[i];
+		var checked = (value == set_value) ? ' checked="checked"' : '';
 		radios += '<input type="radio" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + checked + '/>&nbsp;' + value + ' &nbsp; ';
 	}
 	return radios;
@@ -1061,11 +1064,11 @@ JKY.set_radios_array = function(the_name, the_array) {
 //	JKY.set_checks('...', ..., '...')
 //	----------------------------------------------------------------------------
 JKY.Xset_checks = function() {
-     checks    = '';
-     set_id    = arguments[0];
+    var checks    = '';
+    var set_id    = arguments[0];
 
      for( var i=1; i<arguments.length; i++ ) {
-          value = arguments[i];
+          var value = arguments[i];
           checks += '<input type="checkbox" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + '/>&nbsp;' + value + ' <br>';
      }
      return checks;

@@ -13,7 +13,7 @@ describe("JKY.Utils.js", function() {
 	it("should define object JKY"					, function() {expect(JKY			).toBeDefined();});
 	it("should define object JKY.AJAX_APP"			, function() {expect(JKY.AJAX_APP	).toBeDefined();});
 	it("should define object JKY.AJAX_URL"			, function() {expect(JKY.AJAX_URL	).toBeDefined();});
-
+/*
 	describe("test JKY.fix_flag", function() {
 		it("empty should return empty"				, function() {expect(JKY.fix_flag(					)).toEqual('&nbsp;'	 );});
 		it("null should return empty"				, function() {expect(JKY.fix_flag(null				)).toEqual('&nbsp;'	 );});
@@ -48,18 +48,46 @@ describe("JKY.Utils.js", function() {
 	});
 
 	describe("test JKY.fix_null", function() {
-		it("empty should return ''"					, function() {expect(JKY.fix_null(					)).toEqual(''	);});
-		it("null should return ''"					, function() {expect(JKY.fix_null(null				)).toEqual(''	);});
-		it("'null' should return ''"				, function() {expect(JKY.fix_null('null'			)).toEqual(''	);});
-		it("string should return original"			, function() {expect(JKY.fix_null('string'			)).toEqual('string');});
+		it("empty should return empty"					, function() {expect(JKY.fix_null(					)).toEqual(''	);});
+		it("null should return empty"					, function() {expect(JKY.fix_null(null				)).toEqual(''	);});
+		it("'null' should return empty"			    	, function() {expect(JKY.fix_null('null'			)).toEqual(''	);});
+		it("string should return original"		    	, function() {expect(JKY.fix_null('string'			)).toEqual('string');});
 	});
 
-	describe("test JKY.fix_null", function() {
-		it("empty should return ''"					, function() {expect(JKY.fix_null(					)).toEqual(''	);});
-		it("null should return ''"					, function() {expect(JKY.fix_null(null				)).toEqual(''	);});
-		it("'null' should return ''"				, function() {expect(JKY.fix_null('null'			)).toEqual(''	);});
-		it("string should return original"			, function() {expect(JKY.fix_null('string'			)).toEqual('string');});
+    describe("test JKY.ymd2dmy", function() {
+        it("empty should return empty"					, function() {expect(JKY.fix_ymd2dmy(					)).toEqual(''	);});
+        it("empty should return empty"				    , function() {expect(JKY.fix_ymd2dmy('    '             )).toEqual(''   );});
+        it("null should return empty"					, function() {expect(JKY.fix_ymd2dmy(null				)).toEqual(''	);});
+        it("'null' should return empty"				    , function() {expect(JKY.fix_ymd2dmy('null'			    )).toEqual(''	);});
+        it("yyyy-mm-dd should return dd-mm-yyyy"	    , function() {expect(JKY.fix_ymd2dmy('2011-07-17' 	    )).toEqual('17-07-2011');});
+    });
+
+	describe("test JKY.fix_dmy2ymd", function() {
+        it("empty should return empty"				, function() {expect(JKY.fix_dmy2ymd(					)).toEqual(''	);});
+        it("empty should return empty"				, function() {expect(JKY.fix_dmy2ymd('      '           )).toEqual(''   );});
+		it("null should return empty"				, function() {expect(JKY.fix_dmy2ymd(null				)).toEqual(''   );});
+		it("'null' should return empty"				, function() {expect(JKY.fix_dmy2ymd('null'		    	)).toEqual(''   );});
+		it("dd-mm-yyyy should return yyyy-mm-dd"	, function() {expect(JKY.fix_dmy2ymd('17-07-2011'		)).toEqual('2011-07-17');});
 	});
+ */
+    describe("test JKY.out_float", function(){
+        it("null should return empty"					, function() {expect(JKY.out_float(null  			)).toEqual(''	);});
+        it("12 should return 12", function() {expect(JKY.out_float('12')).toEqual(12);});
+        it("12.00 should return 12.00"		, function() {expect(JKY.out_float('12.00')).toEqual(12.00);});
+        it("12.34 should return 12.34"		, function() {expect(JKY.out_float(12.34)).toEqual(12.34);});
+        it("12 13 14 should return 12"		, function() {expect(JKY.out_float('12 13 14')).toEqual(12);});
+        it(" 12  should return 12"		    , function() {expect(JKY.out_float(' 12 ')).toEqual(12);});
+        it("12 years should return 12"		, function() {expect(JKY.out_float('12 years')).toEqual(12);});
+        it("He was 12 should return Nan"	, function() {expect(JKY.out_float('He was 12')).toEqual(NaN);});
+    });
+
+    describe("test JKY.out_date", function() {
+//        JKY.Session.set_locale ('en_US');
+        it("null should return empty"					, function() {expect(JKY.out_date(null				)).toEqual(''	);});
+        it("yyyy-mm-dd hh:mm:ss should return mm-dd-yyyy locale is US"	, function()
+            {expect(JKY.out_date('2014-07-17 07:17:17')).toEqual('07-17-2014');
+          });
+    });
 /*
 	describe("when song has been paused", function() {
 		beforeEach(function() {
@@ -101,5 +129,5 @@ describe("JKY.Utils.js", function() {
 			}).toThrowError("song is already playing");
 		});
 	});
-*/	
+*/
 });

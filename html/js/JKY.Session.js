@@ -153,8 +153,9 @@ JKY.Session = function() {
 	};
 
 	$(function() {
-		JKY.Session.load_values();
+//		JKY.Session.load_values();
 		my_locale = my_session['locale'];
+        my_locale = 'en_US';
 		switch(my_locale) {
 			case 'en_US'	: my_date_time = 'MM-dd-yyyy hh:mm'; break;
 			case 'pt_BR'	: my_date_time = 'dd-MM-yyyy hh:mm'; break;
