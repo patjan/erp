@@ -15,8 +15,8 @@
  */
 JKY.Session = function() {
 	var my_session		= [];
-	var my_locale		= '';
-	var my_date_time	= '';
+	var my_locale		= 'en_US';
+	var my_date_time	= 'yyyy-MM-dd hh:mm';
 
 	var my_session_time = 1800;	//	in seconds 1800 = 30 minutes
 	var my_recover_time =   60;	//	in seconds   60 =  1 minute
@@ -28,12 +28,17 @@ JKY.Session = function() {
 	function my_load_values() {
 		var my_data = {method:'get_session'};
 		JKY.ajax(false, my_data, my_load_values_success);
-	};
+	}
 
 	function my_load_values_success(response) {
 		my_session = response.data;
 //alert('my_load_values_success:' + my_session['full_name']);
-	};
+		my_locale = my_session['locale'];
+		switch(my_locale) {
+			case 'en_US'	: my_date_time = 'MM-dd-yyyy hh:mm'; break;
+			case 'pt_BR'	: my_date_time = 'dd-MM-yyyy hh:mm'; break;
+		}
+	}
 
 //	it is incomplete, not sure if it is needed.
 	function my_save_values() {
@@ -50,7 +55,7 @@ JKY.Session = function() {
 			}
 		});
 		return my_rows;
-	};
+	}
 
 	function my_get_action(the_resource) {
 		if (my_session.permissions) {
@@ -62,7 +67,7 @@ JKY.Session = function() {
 			}
 		}
 		return '';
-	};
+	}
 
 	var my_clear_timeout = function() {
 		if (my_session_event) {
@@ -123,7 +128,7 @@ JKY.Session = function() {
 				clearTimeout(my_session_event);
 			}else{
 				my_process_count_down();
-			};
+			}
 		}, 1000);
 	};
 
@@ -148,19 +153,12 @@ JKY.Session = function() {
 				my_log_out.click();		//	this will work on [Log Off] anchor
 //				window.location = my_log_out.attr('onclick');
 				clearTimeout(my_session_event);
-			};
-		};
+			}
+		}
 	};
 
 	$(function() {
-//		JKY.Session.load_values();
-		my_locale = my_session['locale'];
-        my_locale = 'en_US';
-		switch(my_locale) {
-			case 'en_US'	: my_date_time = 'MM-dd-yyyy hh:mm'; break;
-			case 'pt_BR'	: my_date_time = 'dd-MM-yyyy hh:mm'; break;
-			default			: my_date_time = 'yyyy-MM-dd hh:mm';
-		}
+		JKY.Session.load_values();
 	});
 
 	return {
