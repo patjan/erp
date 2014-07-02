@@ -1,0 +1,3 @@
+cd \Program Files (x86)\Java\jre7\bin
+
+java -jar C:/Selenium/selenium-server-standalone-2.42.2.jar -role webdriver -hub http://127.0.01:4444/grid/register -browser browserName="internet explorer",version=8.0,platform=WINDOWS -Dwebdriver.internetexplorer.driver=c:\Selenium\IEDriverServer.exe
