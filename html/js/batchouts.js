@@ -59,13 +59,13 @@ JKY.set_initial_values = function() {
  *	set table row
  */
 JKY.set_table_row = function(the_row) {
+	var my_checkout_name = the_row.machine_name + the_row.partner_name + the_row.supplier_name + the_row.dyer_name;
 	var my_html = ''
 		+  '<td class="jky-td-number"	>' +				 the_row.checkout_number		+ '</td>'
 //		+  '<td class="jky-td-code"		>' +				 the_row.code					+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.requested_at		)	+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.checkout_at		)	+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.machine_name		)	+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.supplier_name		)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' +				  my_checkout_name				+ '</td>'
 		+  '<td class="jky-td-name-l"	>' + JKY.fix_null	(the_row.thread_name		)	+ '</td>'
 		+  '<td class="jky-td-code"		>' + JKY.fix_null	(the_row.batch_code			)	+ '</td>'
 //		+  '<td class="jky-td-price"	>' +				 the_row.unit_price				+ '</td>'
@@ -105,7 +105,9 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-thread-name'		, the_row.thread_name		);
 	JKY.set_value	('jky-batch-code'		, the_row.batch_code		);
 	JKY.set_value	('jky-machine-name'		, the_row.machine_name		);
+	JKY.set_value	('jky-partner-name'		, the_row.partner_name		);
 	JKY.set_value	('jky-supplier-name'	, the_row.supplier_name		);
+	JKY.set_value	('jky-dyer-name'		, the_row.dyer_name			);
 	JKY.set_value	('jky-unit-price'		, the_row.unit_price		);
 	JKY.set_value	('jky-requested-weight'	, the_row.requested_weight	);
 	JKY.set_value	('jky-requested-boxes'	, the_row.requested_boxes	);
@@ -132,7 +134,9 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-thread-name'			, '');
 	JKY.set_value	('jky-batch-code'			, '');
 	JKY.set_value	('jky-machine-name'			, '');
+	JKY.set_value	('jky-partner-name'			, '');
 	JKY.set_value	('jky-supplier-name'		, '');
+	JKY.set_value	('jky-dyer-name'			, '');
 	JKY.set_value	('jky-requested-weight'		,  0);
 	JKY.set_value	('jky-requested-boxes'		, '');
 	JKY.set_value	('jky-reserved-boxes'		, '');

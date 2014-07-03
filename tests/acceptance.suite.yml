@@ -11,7 +11,6 @@
 class_name: WebGuy
 modules:
     enabled:
-#        - PhpBrowser
         - WebHelper
         - WebDriver
     config:
@@ -20,7 +19,11 @@ modules:
         WebDriver:
             url: 'http://erp/'
             browser: 'firefox'
-            window_size: 1024x768
+#            browser: 'chrome'
+#            browser: 'internetexplorer'
+            host: '127.0.0.1'
+            port: '4444'
+            window_size: 1200x860
             wait: 0.1
             capabilities:
                 unexpectedAlertBehaviour: 'accept'

@@ -41,6 +41,7 @@ JKY.set_all_events = function() {
 	$('#jky-boxes-print'	).click (function() {JKY.Batch.print()});
 
 	$('#jky-machine-name'	).change(function() {JKY.clear_produced_by("machine"	);});
+	$('#jky-partner-name'	).change(function() {JKY.clear_produced_by("partner"	);});
 	$('#jky-supplier-name'	).change(function() {JKY.clear_produced_by("supplier"	);});
 	$('#jky-dyer-name'		).change(function() {JKY.clear_produced_by("dyer"		);});
 }
@@ -50,6 +51,7 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-machine'	, '../JKY.Search.Machine.html'	);
+	JKY.append_file('jky-load-partner'	, '../JKY.Search.Partner.html'	);
 	JKY.append_file('jky-load-supplier'	, '../JKY.Search.Supplier.html'	);
 	JKY.append_file('jky-load-dyer'		, '../JKY.Search.Dyer.html'		);
 	JKY.append_file('jky-load-thread'	, '../JKY.Search.Thread.html'	);
@@ -60,10 +62,12 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
 	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
-	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'), true));
-	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_dyer'), true));
+	JKY.set_html('jky-partner-name' , JKY.set_options_array('', JKY.get_companies('is_partner'	), true));
+	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'	), true));
+	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_dyer'		), true));
 
 	$('#jky-machine-filter'		).KeyUpDelay(JKY.Machine.load_data	);
+	$('#jky-partner-filter'		).KeyUpDelay(JKY.Partner.load_data	);
 	$('#jky-supplier-filter'	).KeyUpDelay(JKY.Supplier.load_data	);
 	$('#jky-dyer-filter'		).KeyUpDelay(JKY.Dyer.load_data		);
 	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data	);
@@ -80,6 +84,7 @@ JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-td-number"	>' +				 the_row.number					+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.machine_name		)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.partner_name		)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.supplier_name		)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.dyer_name			)	+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.requested_at		)	+ '</td>'
@@ -108,6 +113,8 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-checkout-number'	,				 the_row.number			);
 	JKY.set_value	('jky-machine-id'		,				 the_row.machine_id		);
 	JKY.set_value	('jky-machine-name'		,				 the_row.machine_name	);
+	JKY.set_value	('jky-partner-id'		,				 the_row.partner_id		);
+	JKY.set_value	('jky-partner-name'		,				 the_row.partner_name	);
 	JKY.set_value	('jky-supplier-id'		,				 the_row.supplier_id	);
 	JKY.set_value	('jky-supplier-name'	,				 the_row.supplier_name	);
 	JKY.set_value	('jky-dyer-id'			,				 the_row.dyer_id		);
@@ -135,6 +142,8 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-checkout-number'	,  JKY.t('New'));
 	JKY.set_value	('jky-machine-id'		, '');
 	JKY.set_value	('jky-machine-name'		, '');
+	JKY.set_value	('jky-partner-id'		, '');
+	JKY.set_value	('jky-partner-name'		, '');
 	JKY.set_value	('jky-supplier-id'		, '');
 	JKY.set_value	('jky-supplier-name'	, '');
 	JKY.set_value	('jky-dyer-id'			, '');
@@ -154,14 +163,17 @@ JKY.set_add_new_row = function() {
  */
 JKY.get_form_set = function() {
 	var my_machine_id	= JKY.get_value('jky-machine-id'	);
+	var my_partner_id	= JKY.get_value('jky-partner-id'	);
 	var my_supplier_id	= JKY.get_value('jky-supplier-id'	);
 	var my_dyer_id		= JKY.get_value('jky-dyer-id'		);
 	my_machine_id	= (my_machine_id	== '') ? 'null' : my_machine_id	;
+	my_partner_id	= (my_partner_id	== '') ? 'null' : my_partner_id	;
 	my_supplier_id	= (my_supplier_id	== '') ? 'null' : my_supplier_id;
 	my_dyer_id		= (my_dyer_id		== '') ? 'null' : my_dyer_id	;
 
 	var my_set = ''
 		+      '  machine_id=  ' + my_machine_id
+		+      ', partner_id=  ' + my_partner_id
 		+     ', supplier_id=  ' + my_supplier_id
 		+         ', dyer_id=  ' + my_dyer_id
 		+          ', nfe_dl=\'' + JKY.get_value('jky-nfe-dl'			) + '\''
@@ -187,6 +199,10 @@ JKY.clear_produced_by = function(the_name) {
 	if (the_name != 'machine') {
 		JKY.set_value('jky-machine-id', null);
 		JKY.set_value('jky-machine-name', '');
+	}
+	if (the_name != 'partner') {
+		JKY.set_value('jky-partner-id', null);
+		JKY.set_value('jky-partner-name', '');
 	}
 	if (the_name != 'supplier') {
 		JKY.set_value('jky-supplier-id', null);

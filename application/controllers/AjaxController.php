@@ -938,6 +938,7 @@ private function set_new_fields($table) {
 												. ',  Machines.name				AS   machine_name'
 												. ',  Supplier.nick_name		AS  supplier_name';
 	if ($table == 'CheckOuts'		)	$return = ',  Machines.name				AS   machine_name'
+												. ',   Partner.nick_name		AS   partner_name'
 												. ',  Supplier.nick_name		AS  supplier_name'
 												. ',      Dyer.nick_name		AS      dyer_name';
 	if ($table == 'BatchOuts'		)	$return = ',   Threads.name				AS	  thread_name'
@@ -945,8 +946,10 @@ private function set_new_fields($table) {
 												. ', CheckOuts.number			AS  checkout_number'
 												. ', CheckOuts.requested_at		AS requested_at'
 												. ', CheckOuts.checkout_at		AS  checkout_at'
+												. ',  Machines.name				AS   machine_name'
+												. ',   Partner.nick_name		AS  partner_name'
 												. ',  Supplier.nick_name		AS  supplier_name'
-												. ',  Machines.name				AS   machine_name';
+												. ',      Dyer.nick_name		AS      dyer_name';
 	if ($table == 'BatchSets'		)	$return = ', BatchOuts.average_weight	AS   average_weight'
 												. ', BatchOuts.requested_weight	AS requested_weight'
 												. ', BatchOuts.checkout_weight	AS  checkout_weight'
@@ -955,8 +958,10 @@ private function set_new_fields($table) {
 												. ', CheckOuts.number			AS  checkout_number'
 												. ', CheckOuts.requested_at		AS requested_at'
 												. ', CheckOuts.checkout_at		AS  checkout_at'
+												. ',  Machines.name				AS   machine_name'
+												. ',   Partner.nick_name		AS   partner_name'
 												. ',  Supplier.nick_name		AS  supplier_name'
-												. ',  Machines.name				AS   machine_name';
+												. ',      Dyer.nick_name		AS      dyer_name';
 	if ($table == 'TDyers'			)	$return = ',    Orderx.order_number		AS	   order_number'
 												. ',  Customer.nick_name		AS  customer_name'
 												. ',      Dyer.nick_name		AS      dyer_name';
@@ -1086,6 +1091,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Machines				ON  Machines.id	=		  Requests.machine_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		  Requests.supplier_id';
 	if ($table == 'CheckOuts'		)	$return = '  LEFT JOIN    Machines				ON  Machines.id	=		 CheckOuts.machine_id'
+												. '  LEFT JOIN    Contacts AS Partner	ON   Partner.id	=		 CheckOuts.partner_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id'
 												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		 CheckOuts.dyer_id';
 	if ($table == 'BatchOuts'		)	$return = '  LEFT JOIN   CheckOuts  			ON CheckOuts.id	=		 BatchOuts.checkout_id'
@@ -1093,6 +1099,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN     Batches  			ON   Batches.id	=		 BatchOuts.batchin_id'
 												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=		 BatchOuts.req_line_id'
 												. '  LEFT JOIN    Machines				ON  Machines.id	=		 CheckOuts.machine_id'
+												. '  LEFT JOIN    Contacts AS Partner	ON   Partner.id	=		 CheckOuts.partner_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id'
 												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		 CheckOuts.dyer_id';
 	if ($table == 'BatchSets'		)	$return = '  LEFT JOIN   BatchOuts				ON BatchOuts.id	=		 BatchSets.batchout_id'
@@ -1101,6 +1108,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN     Batches  			ON   Batches.id	=		 BatchOuts.batchin_id'
 												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=		 BatchOuts.req_line_id'
 												. '  LEFT JOIN    Machines				ON  Machines.id	=		 CheckOuts.machine_id'
+												. '  LEFT JOIN    Contacts AS Partner	ON   Partner.id	=		 CheckOuts.partner_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id'
 												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		 CheckOuts.dyer_id';
 	if ($table == 'TDyers'			)	$return = '  LEFT JOIN      Orders AS Orderx	ON    Orderx.id	=		    TDyers.order_id'
@@ -1911,6 +1919,13 @@ private function set_where($table, $filter) {
 					return ' AND Machines.name LIKE ' . $value;
 				}
 			}else
+			if ($name == 'partner_name') {
+				if ($value == '"%null%"') {
+					return ' AND CheckOuts.partner_id IS NULL';
+				}else{
+					return ' AND Partner.nick_name LIKE ' . $value;
+				}
+			}else
 			if ($name == 'supplier_name') {
 				if ($value == '"%null%"') {
 					return ' AND CheckOuts.supplier_id IS NULL';
@@ -2001,7 +2016,9 @@ private function set_where($table, $filter) {
 				. ' OR		CheckOuts.number			LIKE ' . $filter
 				. ' OR      CheckOuts.requested_at		LIKE ' . $filter
 				. ' OR       Machines.name				LIKE ' . $filter
+				. ' OR        Partner.nick_name			LIKE ' . $filter
 				. ' OR       Supplier.nick_name			LIKE ' . $filter
+				. ' OR           Dyer.nick_name			LIKE ' . $filter
 				. ' OR        Threads.name				LIKE ' . $filter
 				. ' OR        Batches.batch				LIKE ' . $filter
 				;
@@ -2342,6 +2359,7 @@ private function set_where($table, $filter) {
 			. ' OR  CheckOuts.requested_weight	LIKE ' . $filter
 			. ' OR  CheckOuts.requested_amount	LIKE ' . $filter
 			. ' OR   Machines.name				LIKE ' . $filter
+			. ' OR    Partner.nick_name			LIKE ' . $filter
 			. ' OR   Supplier.nick_name			LIKE ' . $filter
 			. ' OR       Dyer.nick_name			LIKE ' . $filter
 			;

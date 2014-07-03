@@ -472,9 +472,9 @@ JKY.fix_ymd2dmy = function(date){
  * @return			yyyy-mm-dd
  */
 JKY.fix_dmy2ymd = function(date){
-    if (date == null){
-        return '';
-    }
+	if (date == null){
+		return '';
+	}
 	var my_date = date.trim();
 	if (my.date == 'null') {
 		return '';
@@ -1029,9 +1029,9 @@ JKY.get_index_by_id = function(the_id, the_array) {
 //	JKY.set_radios(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
 //	----------------------------------------------------------------------------
 JKY.set_radios = function() {
-	var radios    = '';
-	var set_id    = arguments[0];
-	var set_value = arguments[1];
+	var radios		= '';
+	var set_id		= arguments[0];
+	var set_value	= arguments[1];
 
 	for(var i=2, max=arguments.length; i<max; i++) {
 		var value = arguments[i];
@@ -1064,14 +1064,14 @@ JKY.set_radios_array = function(the_name, the_array) {
 //	JKY.set_checks('...', ..., '...')
 //	----------------------------------------------------------------------------
 JKY.Xset_checks = function() {
-    var checks    = '';
-    var set_id    = arguments[0];
+	var checks	= '';
+	var set_id	= arguments[0];
 
-     for( var i=1; i<arguments.length; i++ ) {
-          var value = arguments[i];
-          checks += '<input type="checkbox" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + '/>&nbsp;' + value + ' <br>';
-     }
-     return checks;
+	for(var i=1; i<arguments.length; i++ ) {
+		var value = arguments[i];
+		checks += '<input type="checkbox" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + '/>&nbsp;' + value + ' <br>';
+	}
+	return checks;
 }
 
 /**
