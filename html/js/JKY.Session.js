@@ -15,8 +15,8 @@
  */
 JKY.Session = function() {
 	var my_session		= [];
-	var my_locale		= 'en_US';
-	var my_date_time	= 'yyyy-MM-dd hh:mm';
+	var my_locale		= '';
+	var my_date_time	= '';
 
 	var my_session_time = 1800;	//	in seconds 1800 = 30 minutes
 	var my_recover_time =   60;	//	in seconds   60 =  1 minute
@@ -169,6 +169,7 @@ JKY.Session = function() {
 		, has			: function(key)				{return my_session[key] ? true : false;}
 		, get_action	: function(the_resource)	{return my_get_action(the_resource);}
 
+		, set_locale	: function(the_value)		{		my_locale = the_value;}
 		, get_locale	: function()	{return my_locale					;}
 		, get_date_time	: function()	{return my_date_time				;}
 		, get_date 		: function()	{return my_date_time.substr(0, 10)	;}
