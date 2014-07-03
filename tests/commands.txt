@@ -1,3 +1,49 @@
 cd \Program Files (x86)\Java\jre7\bin
 
 java -jar C:/Selenium/selenium-server-standalone-2.42.2.jar -role webdriver -hub http://127.0.01:4444/grid/register -browser browserName="internet explorer",version=8.0,platform=WINDOWS -Dwebdriver.internetexplorer.driver=c:\Selenium\IEDriverServer.exe
+
+
+
+http://docs.seleniumhq.org/download/
+download selenium-server-standalone-2.42.2.jar
+and saved into C:\Selenium
+
+
+http://code.google.com/p/selenium/wiki/InternetExplorerDriver
+http://selenium-release.storage.googleapis.com/index.html
+IEDriverServer x64 2.42.0.zip
+and saved into C:\Selenium
+
+add C:\Selenium on PATH
+
+
+cd /usr/java
+su -c "yum install java-1.7.0-openjdk"
+
+
+/* inside of box Terminal */
+cd /var/www/tandem.inhouseusa-solutions.com/tests
+java -jar selenium-server-standalone-2.42.2.jar
+
+
+/* inside of Window - cmd, run as administrator */
+C:
+cd /Selenium
+"C:\Program Files (x86)\Java\jre7\bin\java.exe" -jar C:\Selenium\selenium-server-standalone-2.42.2.jar
+
+"C:\Program Files (x86)\Java\jre7\bin\java.exe" -jar C:\Selenium\selenium-server-standalone-2.42.2.jar -Dwebdriver.ie.driver="C:\Selenium\IEDriverServer.exe"
+
+
+
+cd /var/www/tandem.inhouseusa-solutions.com
+vendor/bin/codecept run acceptance LoginCept.php
+
+alias b="vendor/bin/codecept build"
+alias t="vendor/bin/codecept run acceptance"
+
+t LoginCept.php
+
+cd 
+codecept run acceptance SalesCept.php
+
+

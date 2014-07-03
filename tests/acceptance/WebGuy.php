@@ -5,8 +5,8 @@
 
 
 use \Codeception\Maybe;
-use Codeception\Module\WebHelper;
 use Codeception\Module\WebDriver;
+use Codeception\Module\WebHelper;
 
 /**
  * Inherited methods
@@ -27,287 +27,6 @@ use Codeception\Module\WebDriver;
 class WebGuy extends \Codeception\AbstractGuy
 {
     
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-    * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Module\WebHelper::seeButton()
-     * @return \Codeception\Maybe
-     */
-    public function canSeeButton($button_name) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeButton', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-     * @see Codeception\Module\WebHelper::seeButton()
-     * @return \Codeception\Maybe
-     */
-    public function seeButton($button_name) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('seeButton', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-    * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Module\WebHelper::seeLayer()
-     * @return \Codeception\Maybe
-     */
-    public function canSeeLayer($layer_name) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeLayer', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-     * @see Codeception\Module\WebHelper::seeLayer()
-     * @return \Codeception\Maybe
-     */
-    public function seeLayer($layer_name) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('seeLayer', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-    * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Module\WebHelper::seeImage()
-     * @return \Codeception\Maybe
-     */
-    public function canSeeImage($image_url) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeImage', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-     * @see Codeception\Module\WebHelper::seeImage()
-     * @return \Codeception\Maybe
-     */
-    public function seeImage($image_url) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('seeImage', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-    * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Module\WebHelper::seeProgram()
-     * @return \Codeception\Maybe
-     */
-    public function canSeeProgram($program_name) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeProgram', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-     * @see Codeception\Module\WebHelper::seeProgram()
-     * @return \Codeception\Maybe
-     */
-    public function seeProgram($program_name) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('seeProgram', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-     * @see Codeception\Module\WebHelper::clickActionForm()
-     * @return \Codeception\Maybe
-     */
-    public function clickActionForm($I, $filter_string) {
-        $this->scenario->addStep(new \Codeception\Step\Action('clickActionForm', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-     * @see Codeception\Module\WebHelper::clickSelect()
-     * @return \Codeception\Maybe
-     */
-    public function clickSelect($I, $option_name) {
-        $this->scenario->addStep(new \Codeception\Step\Action('clickSelect', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-     * @see Codeception\Module\WebHelper::clickBar()
-     * @return \Codeception\Maybe
-     */
-    public function clickBar($I, $menu_name, $bar_name) {
-        $this->scenario->addStep(new \Codeception\Step\Action('clickBar', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-     * @see Codeception\Module\WebHelper::clickTab()
-     * @return \Codeception\Maybe
-     */
-    public function clickTab($I, $tab_name) {
-        $this->scenario->addStep(new \Codeception\Step\Action('clickTab', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-     * @see Codeception\Module\WebHelper::login()
-     * @return \Codeception\Maybe
-     */
-    public function login($I, $the_first_name, $the_last_name) {
-        $this->scenario->addStep(new \Codeception\Step\Action('login', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-     * @see Codeception\Module\WebHelper::logoff()
-     * @return \Codeception\Maybe
-     */
-    public function logoff($I) {
-        $this->scenario->addStep(new \Codeception\Step\Action('logoff', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-     * @see Codeception\Module::getName()
-     * @return \Codeception\Maybe
-     */
-    public function getName() {
-        $this->scenario->addStep(new \Codeception\Step\Action('getName', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
     /**
      * This method is generated.
      * Documentation taken from corresponding module.
@@ -2935,6 +2654,287 @@ class WebGuy extends \Codeception\AbstractGuy
      */
     public function appendField($field, $value) {
         $this->scenario->addStep(new \Codeception\Step\Action('appendField', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module::getName()
+     * @return \Codeception\Maybe
+     */
+    public function getName() {
+        $this->scenario->addStep(new \Codeception\Step\Action('getName', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\WebHelper::seeButton()
+     * @return \Codeception\Maybe
+     */
+    public function canSeeButton($button_name) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeButton', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\WebHelper::seeButton()
+     * @return \Codeception\Maybe
+     */
+    public function seeButton($button_name) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeButton', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\WebHelper::seeLayer()
+     * @return \Codeception\Maybe
+     */
+    public function canSeeLayer($layer_name) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeLayer', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\WebHelper::seeLayer()
+     * @return \Codeception\Maybe
+     */
+    public function seeLayer($layer_name) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeLayer', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\WebHelper::seeImage()
+     * @return \Codeception\Maybe
+     */
+    public function canSeeImage($image_url) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeImage', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\WebHelper::seeImage()
+     * @return \Codeception\Maybe
+     */
+    public function seeImage($image_url) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeImage', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+    * Conditional Assertion: Test won't be stopped on fail
+     * @see Codeception\Module\WebHelper::seeProgram()
+     * @return \Codeception\Maybe
+     */
+    public function canSeeProgram($program_name) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeProgram', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\WebHelper::seeProgram()
+     * @return \Codeception\Maybe
+     */
+    public function seeProgram($program_name) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeProgram', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\WebHelper::clickActionForm()
+     * @return \Codeception\Maybe
+     */
+    public function clickActionForm($I, $filter_string) {
+        $this->scenario->addStep(new \Codeception\Step\Action('clickActionForm', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\WebHelper::clickSelect()
+     * @return \Codeception\Maybe
+     */
+    public function clickSelect($I, $option_name) {
+        $this->scenario->addStep(new \Codeception\Step\Action('clickSelect', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\WebHelper::clickBar()
+     * @return \Codeception\Maybe
+     */
+    public function clickBar($I, $menu_name, $bar_name) {
+        $this->scenario->addStep(new \Codeception\Step\Action('clickBar', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\WebHelper::clickTab()
+     * @return \Codeception\Maybe
+     */
+    public function clickTab($I, $tab_name) {
+        $this->scenario->addStep(new \Codeception\Step\Action('clickTab', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\WebHelper::login()
+     * @return \Codeception\Maybe
+     */
+    public function login($I, $the_first_name, $the_last_name) {
+        $this->scenario->addStep(new \Codeception\Step\Action('login', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\WebHelper::logoff()
+     * @return \Codeception\Maybe
+     */
+    public function logoff($I) {
+        $this->scenario->addStep(new \Codeception\Step\Action('logoff', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);

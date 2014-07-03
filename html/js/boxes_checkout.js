@@ -60,7 +60,11 @@ JKY.set_initial_values = function() {
  *	set table row
  */
 JKY.set_table_row = function(the_row) {
-	var my_checkout_name = the_row.machine_name + the_row.partner_name + the_row.supplier_name + the_row.dyer_name;
+	var my_checkout_name = JKY.fix_null(the_row.machine_name	)
+						 + JKY.fix_null(the_row.partner_name	)
+						 + JKY.fix_null(the_row.supplier_name	)
+						 + JKY.fix_null(the_row.dyer_name		)
+						 ;
 	var my_html = ''
 		+  '<td class="jky-td-number"	>' +				 the_row.checkout_number		+ '</td>'
 //		+  '<td class="jky-td-code"		>' +				 the_row.code					+ '</td>'
@@ -244,9 +248,11 @@ JKY.process_confirm_screen = function() {
 JKY.confirm_row = function(the_id, the_barcode) {
 	JKY.display_trace('confirm_row');
 	JKY.display_message(JKY.t('Confirmed, barcode') + ': ' + the_barcode);
-/* ???????????????????? */
-var my_location = (JKY.row.machine_name == null) ? JKY.row.supplier_name : JKY.row.machine_name;
-
+	var my_location = JKY.fix_null(JKY.row.machine_name	)
+					+ JKY.fix_null(JKY.row.partner_name	)
+					+ JKY.fix_null(JKY.row.supplier_name)
+					+ JKY.fix_null(JKY.row.dyer_name	)
+					;
 	var my_data =
 		{ method		: 'checkout'
 		, table			: 'Boxes'

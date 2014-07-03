@@ -5,6 +5,8 @@ namespace Codeception\Module;
 
 class WebHelper extends \Codeception\Module
 {
+	private $delay_time	= 0;	//	in seconds for wait
+
 	public function seeButton($button_name) {
 		$webDriver = $this->getModule('WebDriver');
 		$webDriver->see($button_name, 'span');
@@ -33,7 +35,7 @@ class WebHelper extends \Codeception\Module
 
 	public function clickSelect($I, $option_name) {
 		$I->selectOption('#jky-app-select', $option_name);
-		$I->wait(1);
+		$I->wait		($this->delay_time);
 	}
 
 	public function clickBar($I, $menu_name, $bar_name) {
@@ -43,7 +45,7 @@ class WebHelper extends \Codeception\Module
 	}
 
 	public function clickTab($I, $tab_name) {
-		$I->wait		(1);
+		$I->wait		($this->delay_time);
 		$I->click		('a[href="#jky-pane-' . $tab_name . '"]');
 		$I->canSee		("#jky-pane-" . $tab_name);
 	}
@@ -65,7 +67,7 @@ class WebHelper extends \Codeception\Module
 	}
 
 	public function logoff($I) {
-		$I->wait			(2);
+		$I->wait			($this->delay_time);
 		$I->amGoingTo		('Log Off page');
 		$I->click			('Log Off');
 		$I->canSeeLayer		('Log Off');
@@ -76,6 +78,6 @@ class WebHelper extends \Codeception\Module
 		$I->waitForElement	('#jky-log-form');
 		$I->canSeeLayer		('Log In');
 
-		$I->wait			(5);
+		$I->wait			($this->delay_time);
 	}
 }
