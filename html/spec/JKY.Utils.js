@@ -69,7 +69,7 @@ describe("JKY.Utils.js", function() {
 		it("'null' should return empty"				, function() {expect(JKY.fix_dmy2ymd('null'		    	)).toEqual(''   );});
 		it("dd-mm-yyyy should return yyyy-mm-dd"	, function() {expect(JKY.fix_dmy2ymd('17-07-2011'		)).toEqual('2011-07-17');});
 	});
- */
+
     describe("test JKY.out_float", function(){
         it("null should return empty"					, function() {expect(JKY.out_float(null  			)).toEqual(''	);});
         it("12 should return 12", function() {expect(JKY.out_float('12')).toEqual(12);});
@@ -88,6 +88,7 @@ describe("JKY.Utils.js", function() {
             {expect(JKY.out_date('2014-07-17 07:17:17')).toEqual('07-17-2014');
           });
     });
+ */
 
 /*
     describe("test JKY.out_date", function() {
