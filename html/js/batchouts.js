@@ -59,7 +59,11 @@ JKY.set_initial_values = function() {
  *	set table row
  */
 JKY.set_table_row = function(the_row) {
-	var my_checkout_name = the_row.machine_name + the_row.partner_name + the_row.supplier_name + the_row.dyer_name;
+	var my_checkout_name = JKY.fix_null(the_row.machine_name	)
+						 + JKY.fix_null(the_row.partner_name	)
+						 + JKY.fix_null(the_row.supplier_name	)
+						 + JKY.fix_null(the_row.dyer_name		)
+						 ;
 	var my_html = ''
 		+  '<td class="jky-td-number"	>' +				 the_row.checkout_number		+ '</td>'
 //		+  '<td class="jky-td-code"		>' +				 the_row.code					+ '</td>'

@@ -26,15 +26,4 @@ $I->click			('#jky-button-log-in');
 $I->canSeeLink		($my_full_name);
 $I->canSeeLink		('Log Off');
 
-$I->amGoingTo		('Log Off page');
-$I->click			('Log Off');
-
-$I->canSeeLayer		('Log Off');
-$I->canSeeButton	('Log In');
-
-$I->amGoingTo		('Log In page');
-$I->click			('#jky-button-log-in');
-
-$I->canSeeLayer		('Log In');
-
-$I->wait(5);
+$I->logoff			($I);

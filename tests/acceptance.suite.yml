@@ -11,11 +11,9 @@
 class_name: WebGuy
 modules:
     enabled:
-        - WebHelper
         - WebDriver
+        - WebHelper
     config:
-        PhpBrowser:
-            url: 'http://erp/'
         WebDriver:
             url: 'http://erp/'
             browser: 'firefox'
