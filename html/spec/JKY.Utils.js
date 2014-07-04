@@ -10,9 +10,9 @@ describe("JKY.Utils.js", function() {
 		jasmine.clock().uninstall();
 	});
 
-	it("should define object JKY"					, function() {expect(JKY			).toBeDefined();});
-	it("should define object JKY.AJAX_APP"			, function() {expect(JKY.AJAX_APP	).toBeDefined();});
-	it("should define object JKY.AJAX_URL"			, function() {expect(JKY.AJAX_URL	).toBeDefined();});
+	it("should define object JKY"					, function() {expect(JKY								).toBeDefined();});
+	it("should define object JKY.AJAX_APP"			, function() {expect(JKY.AJAX_APP						).toBeDefined();});
+	it("should define object JKY.AJAX_URL"			, function() {expect(JKY.AJAX_URL						).toBeDefined();});
 
 	describe("test JKY.fix_flag", function() {
 		it("empty should return empty"				, function() {expect(JKY.fix_flag(						)).toEqual('&nbsp;'	 );});

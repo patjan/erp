@@ -344,12 +344,13 @@ JKY.process_action = function(action) {
 //	because some action take long time to complete
 	JKY.set_side_active('jky-sales-'		+ action);
 	JKY.set_side_active('jky-planning-'		+ action);
-	JKY.set_side_active('jky-purchases-'	+ action);
+//	JKY.set_side_active('jky-purchases-'	+ action);
 	JKY.set_side_active('jky-production-'	+ action);
 	JKY.set_side_active('jky-threads-'		+ action);
 	JKY.set_side_active('jky-boxes-'		+ action);
 	JKY.set_side_active('jky-dyers-'		+ action);
 	JKY.set_side_active('jky-pieces-'		+ action);
+	JKY.set_side_active('jky-fabrics-'		+ action);
 	JKY.set_side_active('jky-help-'			+ action);
 	JKY.set_side_active('jky-admin-'		+ action);
 	JKY.set_side_active('jky-support-'		+ action);
