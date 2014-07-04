@@ -82,22 +82,15 @@ describe("JKY.Utils.js", function() {
     });
 
     describe("test JKY.out_date", function() {
-        JKY.Session.set_locale('en_US');
 		it("null should return empty", function() {
 			expect(JKY.out_date(null)).toEqual('');
 		});
 		it("yyyy-mm-dd hh:mm:ss should return mm-dd-yyyy locale is " + JKY.Session.get_locale() + JKY.out_date('2014-07-17 12:34:56'), function() {
+			JKY.Session.set_locale('en_US');
 			expect(JKY.out_date('2014-07-17 12:34:56')).toEqual('07-17-2014');
 		});
-    });
-
-
-    describe("test JKY.out_date", function() {
-        JKY.Session.set_locale('pt_BR');
-		it("null should return empty", function() {
-			expect(JKY.out_date(null)).toEqual('');
-		});
         it("yyyy-mm-dd hh:mm:ss should return dd-mm-yyyy locale is " + JKY.Session.get_locale() + JKY.out_date('2014-07-17 12:34:56'), function() {
+			JKY.Session.set_locale('pt_BR');
 			expect(JKY.out_date('2014-07-17 12:34:56')).toEqual('17-07-2014');
 		});
     });
