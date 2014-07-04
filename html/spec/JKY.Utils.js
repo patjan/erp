@@ -9,7 +9,7 @@ describe("JKY.Utils.js", function() {
 	afterEach(function() {
 		jasmine.clock().uninstall();
 	});
-  
+
 	it("should define object JKY"					, function() {expect(JKY			).toBeDefined();});
 	it("should define object JKY.AJAX_APP"			, function() {expect(JKY.AJAX_APP	).toBeDefined();});
 	it("should define object JKY.AJAX_URL"			, function() {expect(JKY.AJAX_URL	).toBeDefined();});
@@ -69,7 +69,7 @@ describe("JKY.Utils.js", function() {
 		it("'null' should return empty"				, function() {expect(JKY.fix_dmy2ymd('null'		    	)).toEqual(''   );});
 		it("dd-mm-yyyy should return yyyy-mm-dd"	, function() {expect(JKY.fix_dmy2ymd('17-07-2011'		)).toEqual('2011-07-17');});
 	});
- */
+
     describe("test JKY.out_float", function(){
         it("null should return empty"					, function() {expect(JKY.out_float(null  			)).toEqual(''	);});
         it("12 should return 12", function() {expect(JKY.out_float('12')).toEqual(12);});
@@ -82,18 +82,116 @@ describe("JKY.Utils.js", function() {
     });
 
     describe("test JKY.out_date", function() {
-		it("null should return empty", function() {
-			expect(JKY.out_date(null)).toEqual('');
-		});
-		it("yyyy-mm-dd hh:mm:ss should return mm-dd-yyyy locale is " + JKY.Session.get_locale() + JKY.out_date('2014-07-17 12:34:56'), function() {
-			JKY.Session.set_locale('en_US');
-			expect(JKY.out_date('2014-07-17 12:34:56')).toEqual('07-17-2014');
-		});
-        it("yyyy-mm-dd hh:mm:ss should return dd-mm-yyyy locale is " + JKY.Session.get_locale() + JKY.out_date('2014-07-17 12:34:56'), function() {
-			JKY.Session.set_locale('pt_BR');
-			expect(JKY.out_date('2014-07-17 12:34:56')).toEqual('17-07-2014');
-		});
+        it("null should return empty", function() {
+            expect(JKY.out_date(null)).toEqual('');
+        });
+        it("yyyy-mm-dd hh:mm:ss should return mm-dd-yyyy locale is US", function() {
+            JKY.Session.set_locale('en_US');
+            expect(JKY.out_date('2014-07-17 12:34:56')).toEqual('07-17-2014');
+        });
+
+        it("yyyy-mm-dd hh:mm:ss should return dd-mm-yyyy locale is BR", function() {
+            JKY.Session.set_locale('pt_BR');
+            expect(JKY.out_date('2014-07-17 12:34:56')).toEqual('17-07-2014');
+        });
     });
+
+    describe("test JKY.out_time", function() {
+        it("null should return empty", function() {
+            expect(JKY.out_time(null)).toEqual('');
+        });
+        it("yyyy-mm-dd hh:mm:ss should return mm-dd-yyyy hh:mm locale is US", function() {
+            JKY.Session.set_locale('en_US');
+            expect(JKY.out_time('2014-07-17 12:34:56')).toEqual('07-17-2014 12:34');
+        });
+
+        it("yyyy-mm-dd hh:mm:ss should return dd-mm-yyyy hh:mm locale is BR", function() {
+            JKY.Session.set_locale('pt_BR');
+            expect(JKY.out_time('2014-07-17 12:34:56')).toEqual('17-07-2014 12:34');
+        });
+    });
+
+    describe("test JKY.short_date", function() {
+        it("null should return empty", function() {
+            expect(JKY.short_date(null)).toEqual('');
+        });
+        it("yyyy-mm-dd hh:mm:ss should return mm-dd-yyyy locale is US", function() {
+            JKY.Session.set_locale('en_US');
+            expect(JKY.short_date('2014-07-17 12:34:56')).toEqual('07-17-2014');
+        });
+
+        it("yyyy-mm-dd hh:mm:ss should return dd-mm-yyyy locale is BR", function() {
+            JKY.Session.set_locale('pt_BR');
+            expect(JKY.short_date('2014-07-17 12:34:56')).toEqual('17-07-2014');
+        });
+
+        it("yyyy-mm-dd hh:mm:ss should return mm-dd hh:mm locale is US", function() {
+            JKY.Session.set_locale('en_US');
+            var my_date = JKY.get_date();
+            var my_mm = my_date.substr(5 , 2);
+            var my_dd = my_date.substr(8 , 2);
+            expect(JKY.short_date(my_date + ' 12:34:56')).toEqual(my_mm + '-' + my_dd + '&nbsp;12:34');
+        });
+
+        it("yyyy-mm-dd hh:mm:ss should return dd-mm hh:mm locale is BR", function() {
+            JKY.Session.set_locale('pt_BR');
+            var my_date = JKY.get_date();
+            var my_mm = my_date.substr(5 , 2);
+            var my_dd = my_date.substr(8 , 2);
+            expect(JKY.short_date(my_date + ' 12:34:56')).toEqual(my_dd + '-' + my_mm + '&nbsp;12:34');
+        });
+>>>>>>> 2b2e82149d19aec98823a6bb34dbceb94ae7ecba
+    });
+
+    describe("test JKY.inp_date", function() {
+        it("mm-dd-yyyy should return yyyy-mm-dd locale is US", function() {
+            JKY.Session.set_locale('en_US');
+            expect(JKY.inp_date('my_time_us')).toEqual("'2011-08-21'");
+        });
+
+        it("dd-mm-yyyy should return yyyy-mm-dd locale is BR", function() {
+            JKY.Session.set_locale('pt_BR');
+            expect(JKY.inp_date('my_time_br')).toEqual("'2011-08-21'");
+        });
+    });
+
+    describe("test JKY.inp_date_value", function() {
+        it("mm-dd-yyyy should return yyyy-mm-dd locale is US", function() {
+            JKY.Session.set_locale('en_US');
+            expect(JKY.inp_date_value('07-17-2014')).toEqual("'2014-07-17'");
+        });
+
+        it("dd-mm-yyyy should return yyyy-mm-dd locale is BR", function() {
+            JKY.Session.set_locale('pt_BR');
+            expect(JKY.inp_date_value('17-07-2014')).toEqual("'2014-07-17'");
+        });
+    });
+
+    describe("test JKY.inp_time", function() {
+        it("mm-dd-yyyy hh:mm should return yyyy-mm-dd hh:mm locale is US", function() {
+            JKY.Session.set_locale('en_US');
+            expect(JKY.inp_time('my_time_us')).toEqual("'2011-08-21 11:34'");
+        });
+
+        it("dd-mm-yyyy hh:mm should return yyyy-mm-dd hh:mm locale is BR", function() {
+            JKY.Session.set_locale('pt_BR');
+            expect(JKY.inp_time('my_time_br')).toEqual("'2011-08-21 11:34'");
+        });
+    });
+
+    describe("test JKY.inp_time_value", function() {
+        it("mm-dd-yyyy hh:mm should return yyyy-mm-dd hh:mm locale is US", function() {
+            JKY.Session.set_locale('en_US');
+            expect(JKY.inp_time_value('07-17-2014 12:34')).toEqual("'2014-07-17 12:34'");
+        });
+
+        it("dd-mm-yyyy hh:mm should return yyyy-mm-dd hh:mm locale is BR", function() {
+            JKY.Session.set_locale('pt_BR');
+            expect(JKY.inp_time_value('17-07-2014 12:34')).toEqual("'2014-07-17 12:34'");
+        });
+    });
+*/
+
 
 
 /*
