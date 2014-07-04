@@ -140,7 +140,6 @@ describe("JKY.Utils.js", function() {
             var my_dd = my_date.substr(8 , 2);
             expect(JKY.short_date(my_date + ' 12:34:56')).toEqual(my_dd + '-' + my_mm + '&nbsp;12:34');
         });
->>>>>>> 2b2e82149d19aec98823a6bb34dbceb94ae7ecba
     });
 
     describe("test JKY.inp_date", function() {
