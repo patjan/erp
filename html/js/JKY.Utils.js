@@ -551,11 +551,14 @@ JKY.out_time = function(the_time){
  * short date
  * @param	the_time	yyyy-mm-dd hh:mm:ss
  *
+
+ * if the date is not the current date, then return only the date
  * @return	mm-dd-yyyy	(en_US)
  * @return	dd-mm-yyyy	(pt_BR)
+ * if the date is the current date, then return the month, date, and time
  * @return	mm-dd hh:ss	(en_US)
  * @return	dd-mm hh:ss	(pt_BR)
- */
+ * */
 JKY.short_date = function(the_time){
 	if (the_time == null) {
 		return '';
@@ -635,7 +638,6 @@ JKY.inp_time = function(the_id){
  */
 JKY.inp_time_value = function(the_time){
 	if (the_time == '')		return 'null';
-
 	var my_date		= the_time.substr( 0, 10);
 	var my_time		= the_time.substr(11,  5);
 	var my_dates	= my_date.replace(/\//g, '-').split('-');
