@@ -62,12 +62,12 @@ describe("JKY.Utils.js", function() {
         it("yyyy-mm-dd should return dd-mm-yyyy"	    , function() {expect(JKY.fix_ymd2dmy('2011-07-17' 	    )).toEqual('17-07-2011');});
     });
 
-	describe("test JKY.fix_dmy2ymd", function() {
-        it("empty should return empty"				, function() {expect(JKY.fix_dmy2ymd(					)).toEqual(''	);});
-        it("empty should return empty"				, function() {expect(JKY.fix_dmy2ymd('      '           )).toEqual(''   );});
-		it("null should return empty"				, function() {expect(JKY.fix_dmy2ymd(null				)).toEqual(''   );});
-		it("'null' should return empty"				, function() {expect(JKY.fix_dmy2ymd('null'		    	)).toEqual(''   );});
-		it("dd-mm-yyyy should return yyyy-mm-dd"	, function() {expect(JKY.fix_dmy2ymd('17-07-2011'		)).toEqual('2011-07-17');});
+	describe("test JKY.display_message", function() {
+        it("empty should return empty"				, function() {expect(JKY.display_message(					)).toEqual(''	);});
+        it("empty should return empty"				, function() {expect(JKY.display_message('      '           )).toEqual(''   );});
+		it("null should return empty"				, function() {expect(JKY.display_message(null				)).toEqual(''   );});
+		it("'null' should return empty"				, function() {expect(JKY.display_message('null'		    	)).toEqual(''   );});
+		it("dd-mm-yyyy should return yyyy-mm-dd"	, function() {expect(JKY.display_message('17-07-2011'		)).toEqual('2011-07-17');});
 	});
 
     describe("test JKY.out_float", function(){
@@ -191,48 +191,89 @@ describe("JKY.Utils.js", function() {
     });
 */
 
-
-
 /*
-	describe("when song has been paused", function() {
-		beforeEach(function() {
-			player.play(song);
-			player.pause();
-		});
+    describe("test JKY.display_message", function() {
+        it("empty should return empty"				, function() {expect(JKY.display_message(					)).toEqual(''	);});
+        it("empty should return empty"				, function() {expect(JKY.display_message('      '           )).toEqual(''   );});
+        it("null should return empty"				, function() {expect(JKY.display_message(null				)).toEqual(''   );});
+        it("'null' should return empty"				, function() {expect(JKY.display_message('null'		    	)).toEqual(''   );});
+        it("dd-mm-yyyy should return yyyy-mm-dd"	, function() {expect(JKY.display_message('17-07-2011'		)).toEqual('2011-07-17');});
+    });
 
-		it("should indicate that the song is currently paused", function() {
-			expect(player.isPlaying).toBeFalsy();
+     describe("test JKY.display_trace"                  , function() {
+     it("if true should display message"				, function() {expect(JKY.display_trace(	)).toEqual('');});
+     });
 
-//			demonstrates use of 'not' with a custom matcher
-			expect(player).not.toBePlaying(song);
-		});
+    describe("test JKY.get_now", function() {
+        it("should return yyyy-mm-dd hh:mm:ss"	, function() {expect(JKY.get_now('')).toEqual('2011-07-17 12:13:14');});
+    });
 
-		it("should be possible to resume", function() {
-			player.resume();
-			expect(player.isPlaying).toBeTruthy();
-			expect(player.currentlyPlayingSong).toEqual(song);
-		});
-	});
+    describe("test JKY.get_date", function() {
+        it("return yyyy-mm-dd"	, function() {expect(JKY.get_date('')).toEqual('2011-07-17');});
+    });
 
-//	demonstrates use of spies to intercept and test method calls
-	it("tells the current song if the user has made it a favorite", function() {
-		spyOn(song, 'persistFavoriteStatus');
+    describe("test JKY.get_time", function() {
+        it("should return hh:mm:ss"	, function() {expect(JKY.get_time('')).toEqual('12:13:14');});
+    });
 
-		player.play(song);
-		player.makeFavorite();
+    describe("test JKY.get_text", function() {
+        it("empty should return empty"				, function() {expect(JKY.idName(					)).toEqual(''	);});
+    });
 
-		expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
-	});
-
-//	demonstrates use of expected exceptions
-	describe("#resume", function() {
-		it("should throw an exception if song is already playing", function() {
-			player.play(song);
-
-			expect(function() {
-				player.resume();
-			}).toThrowError("song is already playing");
-		});
-	});
+    describe("test JKY.", function() {
+        it("empty should return empty"				, function() {expect(JKY.id_name(					)).toEqual(''	);});
+        it("empty should return empty"				, function() {expect(JKY.id_name(''           )).toEqual(''   );});
+    });
 */
+
+    describe("test JKY.display_message", function() {
+        it("empty should return empty"				, function() {expect(JKY.display_message(					)).toEqual(''	);});
+        it("empty should return empty"				, function() {expect(JKY.display_message('      '           )).toEqual(''   );});
+        it("null should return empty"				, function() {expect(JKY.display_message(null				)).toEqual(''   );});
+        it("'null' should return empty"				, function() {expect(JKY.display_message('null'		    	)).toEqual(''   );});
+        it("dd-mm-yyyy should return yyyy-mm-dd"	, function() {expect(JKY.display_message('17-07-2011'		)).toEqual('2011-07-17');});
+    });
+*/
+    /*
+        describe("when song has been paused", function() {
+            beforeEach(function() {
+                player.play(song);
+                player.pause();
+            });
+
+            it("should indicate that the song is currently paused", function() {
+                expect(player.isPlaying).toBeFalsy();
+
+    //			demonstrates use of 'not' with a custom matcher
+                expect(player).not.toBePlaying(song);
+            });
+
+            it("should be possible to resume", function() {
+                player.resume();
+                expect(player.isPlaying).toBeTruthy();
+                expect(player.currentlyPlayingSong).toEqual(song);
+            });
+        });
+
+    //	demonstrates use of spies to intercept and test method calls
+        it("tells the current song if the user has made it a favorite", function() {
+            spyOn(song, 'persistFavoriteStatus');
+
+            player.play(song);
+            player.makeFavorite();
+
+            expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
+        });
+
+    //	demonstrates use of expected exceptions
+        describe("#resume", function() {
+            it("should throw an exception if song is already playing", function() {
+                player.play(song);
+
+                expect(function() {
+                    player.resume();
+                }).toThrowError("song is already playing");
+            });
+        });
+    */
 });
