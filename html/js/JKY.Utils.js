@@ -344,12 +344,13 @@ JKY.process_action = function(action) {
 //	because some action take long time to complete
 	JKY.set_side_active('jky-sales-'		+ action);
 	JKY.set_side_active('jky-planning-'		+ action);
-	JKY.set_side_active('jky-purchases-'	+ action);
+//	JKY.set_side_active('jky-purchases-'	+ action);
 	JKY.set_side_active('jky-production-'	+ action);
 	JKY.set_side_active('jky-threads-'		+ action);
 	JKY.set_side_active('jky-boxes-'		+ action);
 	JKY.set_side_active('jky-dyers-'		+ action);
 	JKY.set_side_active('jky-pieces-'		+ action);
+	JKY.set_side_active('jky-fabrics-'		+ action);
 	JKY.set_side_active('jky-help-'			+ action);
 	JKY.set_side_active('jky-admin-'		+ action);
 	JKY.set_side_active('jky-support-'		+ action);
@@ -367,12 +368,15 @@ JKY.process_action = function(action) {
 
 /**
  * fix flag
+ *
+ * if	flag is 't'
+ *		then return first	(true_value)
+ *		else return second (false_value)
+ *
  * @param	flag_value
  * @param	true_value
  * @param	false_value
- * @return	&nbsp;
- * @return	true_value
- * @return	false_value
+ * @return	string_value
  */
 JKY.fix_flag = function(flag_value, true_value, false_value){
 	if (flag_value) {
@@ -388,9 +392,10 @@ JKY.fix_flag = function(flag_value, true_value, false_value){
 
 /**
  * fix break line
+ *
  * replace ' ' with '<br />'
+ *
  * @param	string_value
- * @return	&nbsp;
  * @return	string_value
  */
 JKY.fix_br = function(string_value){
@@ -407,15 +412,17 @@ JKY.fix_br = function(string_value){
 
 /**
  * fix date time
+ *
  * replace ' @ ' with '<br />'
+ * replace ' @'  with ' '
+ *
  * @param	date_time	mm/dd/yy @ hh:mm xm
- * @return	&nbsp;
  * @return	date_time	mm/dd/yy<br />hh:mm xm
  */
 JKY.fix_date = function(date_time){
 	if (date_time) {
 		date_time = date_time.replace(' @ ', '<br />');
-		date_time = date_time.replace(' @', ' ');
+		date_time = date_time.replace(' @' , ' ');
 		return date_time;
 	}else{
 		return '&nbsp;';
@@ -424,11 +431,12 @@ JKY.fix_date = function(date_time){
 
 /**
  * fix name
- * return lastName, firstName
- * @param	trailer		'<br />'
+ *
+ * return trailer last_name, first_name
+ *
+ * @param	trailer
  * @param	first_name
  * @param	last_name
- * @return	&nbsp;
  * @return	full_name
  */
 JKY.fix_name = function(trailer, first_name, last_name){
@@ -441,8 +449,8 @@ JKY.fix_name = function(trailer, first_name, last_name){
 
 /**
  * fix null
+ *
  * @param	the_string
- * @return	&nbsp;
  * @return	the_string
  */
 JKY.fix_null = function(the_string){
@@ -455,66 +463,63 @@ JKY.fix_null = function(the_string){
 
 /**
  * fix ymd to dmy
- * @param	date	yyyy-mm-dd
- * @return			dd-mm-yyyy
+ *
+ * @param	yyyy-mm-dd
+ * @return	dd-mm-yyyy
  */
-JKY.fix_ymd2dmy = function(date){
-	if (date == null || date == 'null') {
-		return '';
-	}
-	var my_dates = date.split('-');
+JKY.fix_ymd2dmy = function(the_date){
+	if (the_date == null)	return '';
+	var my_date = the_date.trim();
+	if (my_date == 'null' || my_date == '')		return '';
+
+	var my_dates = the_date.split('-');
 	return my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];
 }
 
 /**
  * fix dmy to ymd
- * @param	date	dd-mm-yyyy
- * @return			yyyy-mm-dd
+ *
+ * @param	dd-mm-yyyy
+ * @return	yyyy-mm-dd
  */
-JKY.fix_dmy2ymd = function(date){
-	if (date == null){
-		return '';
-	}
-	var my_date = date.trim();
-	if (my.date == 'null') {
-		return '';
-	}
+JKY.fix_dmy2ymd = function(the_date){
+	if (the_date == null)	return '';
+	var my_date = the_date.trim();
+	if (my_date == 'null' || my_date == '')		return '';
+
 	var my_dates = my_date.split('-');
-	return '\'' + my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0] + '\'';
+	return my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];
 }
 
 /**
  * out float
+ *
  * @param	the_float
  *
- * @return	mm-dd-yyyy (en_US)
- * @return	dd-mm-yyyy (pt_BR)
+ * @return	float value
  */
 JKY.out_float = function(the_float){
-	if (the_float == null) {
-		return '';
-	}
+	if (the_float == null)	return '';
+
 	return parseFloat(the_float);
 }
 
 /**
  * out date
+ *
  * @param	the_time	yyyy-mm-dd hh:mm:ss
  *
  * @return	mm-dd-yyyy (en_US)
  * @return	dd-mm-yyyy (pt_BR)
  */
 JKY.out_date = function(the_time){
-	if (the_time == null) {
-		return '';
-	}
+	if (the_time == null)	return '';
 
-	var my_date		= the_time.substr( 0, 10);
+	var my_date		= the_time.substr(0, 10);
 	var my_dates	= my_date.split('-');
 	var my_result	= '';
 
-	var my_locale	= JKY.Session.get_locale();
-	switch(my_locale) {
+	switch(JKY.Session.get_locale()) {
 		case 'en_US'	: my_result = my_dates[1] + '-' + my_dates[2] + '-' + my_dates[0];	break;
 		case 'pt_BR'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
 		default			: my_result = my_date;
@@ -524,18 +529,17 @@ JKY.out_date = function(the_time){
 
 /**
  * out time
+ *
  * @param	the_time	yyyy-mm-dd hh:mm:ss
  *
  * @return	mm-dd-yyyy hh:mm (en_US)
  * @return	dd-mm-yyyy hh:mm (pt_BR)
  */
 JKY.out_time = function(the_time){
-	if (the_time == null) {
-		return '';
-	}
+	if (the_time == null)	return '';
 
-	var my_date		= the_time.substr( 0, 10);
-	var my_time		= the_time.substr(11,  5);
+	var my_date		= the_time.substr(0, 10);
+	var my_time		= the_time.substr(11, 5);
 	var my_dates	= my_date.split('-');
 	var my_result	= '';
 
@@ -549,20 +553,18 @@ JKY.out_time = function(the_time){
 
 /**
  * short date
- * @param	the_time	yyyy-mm-dd hh:mm:ss
  *
-
+ * @param	yyyy-mm-dd hh:mm:ss
+ *
  * if the date is not the current date, then return only the date
  * @return	mm-dd-yyyy	(en_US)
  * @return	dd-mm-yyyy	(pt_BR)
  * if the date is the current date, then return the month, date, and time
  * @return	mm-dd hh:ss	(en_US)
  * @return	dd-mm hh:ss	(pt_BR)
- * */
+ */
 JKY.short_date = function(the_time){
-	if (the_time == null) {
-		return '';
-	}
+	if (the_time == null)	return '';
 
 	var my_time = JKY.out_time(the_time);
 	var my_date = the_time.substr(0, 10);
@@ -576,6 +578,7 @@ JKY.short_date = function(the_time){
 
 /**
  * set date
+ *
  * @param	the_id
  * @param	the_date
  */
@@ -585,8 +588,9 @@ JKY.set_date = function(the_id, the_date){
 
 /**
  * input date id
- * @param	the_date	mm-dd-yyyy (en-US)
- *						dd-mm-yyyy (pt_BR)
+ *
+ * @param	mm-dd-yyyy (en-US)
+ *			dd-mm-yyyy (pt_BR)
  *
  * @return	yyyy-mm-dd
  */
@@ -597,8 +601,9 @@ JKY.inp_date = function(the_id){
 
 /**
  * input date value
- * @param	the_date	mm-dd-yyyy (en-US)
- *						dd-mm-yyyy (pt_BR)
+ *
+ * @param	mm-dd-yyyy (en-US)
+ *			dd-mm-yyyy (pt_BR)
  *
  * @return	yyyy-mm-dd
  */
@@ -614,13 +619,14 @@ JKY.inp_date_value = function(the_date){
 		case 'pt_BR'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
 		default			: my_result = my_date;
 	}
-	return '\'' + my_result + '\'';
+	return "'" + my_result + "'";
 }
 
 /**
  * input time id
- * @param	the_time	mm-dd-yyyy hh:mm (en-US)
- *						dd-mm-yyyy hh:mm (pt_BR)
+ *
+ * @param	mm-dd-yyyy hh:mm (en-US)
+ *			dd-mm-yyyy hh:mm (pt_BR)
  *
  * @return	yyyy-mm-dd hh:mm
  */
@@ -638,6 +644,7 @@ JKY.inp_time = function(the_id){
  */
 JKY.inp_time_value = function(the_time){
 	if (the_time == '')		return 'null';
+
 	var my_date		= the_time.substr( 0, 10);
 	var my_time		= the_time.substr(11,  5);
 	var my_dates	= my_date.replace(/\//g, '-').split('-');
@@ -648,7 +655,7 @@ JKY.inp_time_value = function(the_time){
 		case 'pt_BR'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
 		default			: my_result = my_date;
 	}
-	return '\'' + my_result + ' ' + my_time + '\'';
+	return "'" + my_result + ' ' + my_time + "'";
 }
 
 /**
