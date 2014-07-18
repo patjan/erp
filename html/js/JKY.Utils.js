@@ -557,11 +557,11 @@ JKY.out_time = function(the_time){
  * @param	yyyy-mm-dd hh:mm:ss
  *
  * if the date is not the current date, then return only the date
- * @return	mm-dd-yyyy	(en_US)
+ * @return	mm-dd-yyyy 	(en_US)
  * @return	dd-mm-yyyy	(pt_BR)
  * if the date is the current date, then return the month, date, and time
- * @return	mm-dd hh:ss	(en_US)
- * @return	dd-mm hh:ss	(pt_BR)
+ * @return	mm-dd hh:mm	(en_US)
+ * @return	dd-mm hh:mm	(pt_BR)
  */
 JKY.short_date = function(the_time){
 	if (the_time == null)	return '';

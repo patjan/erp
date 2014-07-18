@@ -117,12 +117,12 @@ describe("JKY.Utils.js", function() {
         });
         it("yyyy-mm-dd hh:mm:ss should return mm-dd-yyyy, locale = US", function() {
             JKY.Session.set_locale('en_US');
-            expect(JKY.short_date('2014-07-17 12:34:56')).toEqual('07-17-2014');
+            expect(JKY.short_date('2014-07-08 12:34:56')).toEqual('07-08-2014');
         });
 
         it("yyyy-mm-dd hh:mm:ss should return dd-mm-yyyy, locale = BR", function() {
             JKY.Session.set_locale('pt_BR');
-            expect(JKY.short_date('2014-07-17 12:34:56')).toEqual('17-07-2014');
+            expect(JKY.short_date('2014-07-08 12:34:56')).toEqual('08-07-2014');
         });
 
         it("yyyy-mm-dd hh:mm:ss should return mm-dd hh:mm, locale = US", function() {
@@ -194,6 +194,88 @@ describe("JKY.Utils.js", function() {
         });
     });
 
+/*
+    describe("test JKY.display_message", function() {
+        it("mm-dd-yyyy hh:mm should return yyyy-mm-dd hh:mm, locale = US", function() {
+            JKY.Session.set_locale('en_US');
+            expect(JKY.inp_time_value('07-17-2014 12:34')).toEqual("'2014-07-17 12:34'");
+        });
+
+        it("dd-mm-yyyy hh:mm should return yyyy-mm-dd hh:mm, locale = BR", function() {
+            JKY.Session.set_locale('pt_BR');
+            expect(JKY.inp_time_value('17-07-2014 12:34')).toEqual("'2014-07-17 12:34'");
+        });
+    });
+    describe("test JKY.inp_time_value", function() {
+        it("mm-dd-yyyy hh:mm should return yyyy-mm-dd hh:mm, locale = US", function() {
+            JKY.Session.set_locale('en_US');
+            expect(JKY.inp_time_value('07-17-2014 12:34')).toEqual("'2014-07-17 12:34'");
+        });
+
+        it("dd-mm-yyyy hh:mm should return yyyy-mm-dd hh:mm, locale = BR", function() {
+            JKY.Session.set_locale('pt_BR');
+            expect(JKY.inp_time_value('17-07-2014 12:34')).toEqual("'2014-07-17 12:34'");
+        });
+    });
+*/
+    describe("test JKY.get_now", function() {
+        it("get the date and time return yyyy-mm-dd hh:mm:ss", function() {
+            var my_time = new Date();
+            var my_year = my_time.getFullYear();
+            var my_month = my_time.getMonth() +1;
+            if (my_month < 10) {
+                my_month = '0' + my_month;
+            }
+            var my_day = my_time.getDate();
+            var my_hour = my_time.getHours();
+            var my_min = my_time.getMinutes();
+            var my_sec = my_time.getSeconds();
+            var my_result = my_year + '-' + my_month + '-' + my_day + ' ' + my_hour + ':' + my_min + ':' + my_sec;
+
+            JKY.Session.set_locale('en_US');
+            expect(JKY.get_now()).toEqual(my_result);
+        });
+    });
+
+    describe("test JKY.get_date", function() {
+        it("get the date and time return yyyy-mm-dd", function() {
+            JKY.Session.set_locale('en_US');
+            expect(JKY.inp_time_value(JKY.get_date)).toEqual("'2014-07-17'");
+        });
+    });
+
+    describe("test JKY.get_time", function() {
+        it("get time return hh:mm:ss", function() {
+            JKY.Session.set_locale('en_US');
+            expect(JKY.inp_time_value(JKY.get_time)).toEqual("'12:34:56'");
+        });
+    });
+
+    describe("test JKY.set_html", function() {
+        it("set the html", function() {
+            JKY.set_html('my_text', 'Update Text');
+            expect(JKY.get_html('my_text')).toEqual("Update Text");
+        });
+    });
+
+    describe("test JKY.get_text", function() {
+        it("get text return html", function() {
+            expect(JKY.get_text('my_text')).toEqual("My Text");
+        });
+    });
+
+    describe("test JKY.get_html", function() {
+        it("get the html return html", function() {
+            expect(JKY.inp_time_value(JKY.get_html)).toEqual("'html'");
+        });
+    });
+
+    describe("test JKY.append_html", function() {
+        it("append the html", function() {
+            JKY.append_html('my_text', ' Appended')
+            expect(JKY.get_html('my_text')).toEqual('My Text Appended');
+        });
+    });
 /*
 	describe("when song has been paused", function() {
 		beforeEach(function() {
