@@ -29,7 +29,7 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-save-remarks').click (function()	{JKY.save_remarks();});
+	$('#jky-action-save-remarks').click (function()	{JKY.save_remarks();});
 };
 
 /**

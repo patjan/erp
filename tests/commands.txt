@@ -43,7 +43,26 @@ alias t="vendor/bin/codecept run acceptance"
 
 t LoginCept.php
 
-cd 
-codecept run acceptance SalesCept.php
+C:
+cd \htdocs\erp\vendor\bin
 
+codecept run acceptance LoginCept.php
+codecept run acceptance Sales/QuotationsCept.php
+codecept run acceptance Planning/TDyersCept.php
+codecept run acceptance Planning/ThreadsCept.php
+codecept run acceptance Threads/IncomingsCept.php
+codecept run acceptance Threads/PurchasesCept.php
+codecept run acceptance Threads/SuppliersCept.php
+
+codecept run ../../tests/acceptance/Sales
+codecept run ../../tests/acceptance/Planning
+codecept run ../../tests/acceptance/Production
+codecept run ../../tests/acceptance/Threads
+codecept run ../../tests/acceptance/Boxes
+codecept run ../../tests/acceptance/Dyers
+codecept run ../../tests/acceptance/Pieces
+codecept run ../../tests/acceptance/Fabrics
+codecept run ../../tests/acceptance/Help
+codecept run ../../tests/acceptance/Admin
+codecept run ../../tests/acceptance/Support
 

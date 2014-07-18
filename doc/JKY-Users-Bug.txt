@@ -1,0 +1,110 @@
+--
+-- Table structure for table `JKY_Users`
+--
+
+DROP TABLE IF EXISTS `JKY_Users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `JKY_Users` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` bigint(20) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_by` bigint(20) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `status` varchar(32) COLLATE utf8_unicode_ci DEFAULT 'Active',
+  `contact_id` bigint(20) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `user_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `user_type` varchar(32) COLLATE utf8_unicode_ci DEFAULT 'User',
+  `user_role` varchar(32) COLLATE utf8_unicode_ci DEFAULT 'Guest',
+  `user_key` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_name` (`user_name`),
+  KEY `contact` (`contact_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=200012 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `JKY_Users`
+--
+
+LOCK TABLES `JKY_Users` WRITE;
+/*!40000 ALTER TABLE `JKY_Users` DISABLE KEYS */;
+INSERT INTO `JKY_Users` VALUES 
+ (100001,NULL,NULL,100001,'2014-05-09 11:34:28','Active',100004,'2012-09-24',NULL,'patjan','Support','Support','826fd1fc36955c9a1253e357d39ca398','6e5fa4d9c48ca921c0a2ce1e64c9ae6f')
+,(100002,NULL,NULL,100001,'2014-01-13 13:06:04','Active',100005,NULL,NULL,'joeljan','Support','Support','a56a03eacde0b5495e1a0912d7d26943','6ac31ddf8146c836bcab351344195bff')
+,(100003,NULL,NULL,100003,'2014-06-20 15:07:00','Active',100006,NULL,NULL,'marcelo','User','Admin','47559d26960df036daa1a9f6efa75e7a','4c8300ea221048a0ac4646e16e832d9a')
+,(100022,1,'2013-06-07 06:09:29',100001,'2014-01-13 13:07:58','Active',100059,NULL,NULL,'sanliu','User','Admin',NULL,'97b9433efcebde61ed84706eecff387d')
+,(100023,1,'2013-06-07 06:10:02',100001,'2014-01-13 13:05:56','Active',100060,NULL,NULL,'helenaliu','User','Admin',NULL,'89740a66e43de0ce4f7751d7826036da')
+,(100024,1,'2013-06-07 06:10:28',100001,'2014-01-13 13:06:22','Active',100061,NULL,NULL,'julianaliu','User','Support',NULL,'712789e23f75fd4053597785acf1a74c')
+,(100025,1,'2013-06-07 06:10:55',100001,'2014-01-13 13:05:23','Active',100062,NULL,NULL,'danielliu','User','Support',NULL,'6c766113190192adfa466ce70f7ad983')
+,(100026,1,'2013-06-07 06:20:32',100001,'2014-01-13 13:03:54','Active',100063,NULL,NULL,'admin','User','Admin',NULL,'dc14511e97e7eb725fb2976bc939b375')
+,(100027,1,'2013-06-07 06:21:09',100001,'2014-01-13 13:08:13','Active',100064,NULL,NULL,'visitor','User','Visitor',NULL,'e2f6e5692e21ba47d16937b3b3fcb7d5')
+,(100028,1,'2013-06-07 06:21:58',100001,'2014-01-13 13:05:42','Active',100065,NULL,NULL,'guest','User','Guest',NULL,'e0c10b54e4f2f7fe75c06461c0d3feda')
+,(100029,1,'2013-06-07 06:22:24',100001,'2014-01-13 13:07:36','Active',100066,NULL,NULL,'sales','User','Sales',NULL,'e4158a5a455130119a9b9a7c24d99f97')
+,(100030,1,'2013-06-07 06:23:16',100001,'2014-01-13 13:07:44','Active',100067,NULL,NULL,'salesmanager','User','Sales Manager',NULL,'bcd2d13c51719421ce3b8f89f4affaad')
+,(100031,1,'2013-06-07 06:24:31',100001,'2014-01-13 13:06:32','Active',100068,NULL,NULL,'maintenance','User','Maintenance',NULL,'c70c96c839ded6ac04a7dbf31a4557f1')
+,(100032,1,'2013-06-07 06:25:12',100001,'2014-01-13 13:08:07','Active',100069,NULL,NULL,'threadmanager','User','Threads Manager',NULL,'65e2bb5566a769af4de5fb3e301c80e9')
+,(100033,1,'2013-06-07 06:25:38',100001,'2014-01-13 13:05:10','Active',100070,NULL,NULL,'crusmanager','User','Crus Manager',NULL,'878baedac03b0125523b1db77ee85833')
+,(100034,1,'2013-06-19 05:35:35',100001,'2014-01-13 13:07:20','Active',100071,NULL,NULL,'production','User','Production',NULL,'846d1aa764be37d4139122b1096f6f63')
+,(100035,1,'2013-06-21 06:00:42',100001,'2014-01-13 13:07:28','Active',100072,NULL,NULL,'purchases','User','Purchases',NULL,'74b10ec8d76f1697c87858612f037d5b')
+,(100037,1,'2013-08-03 09:39:14',100037,'2014-05-09 10:15:28','Active',100079,NULL,NULL,'bruno','User','Admin',NULL,'a7c4bead0e9d63f6caa74df8a0419ae9')
+,(100038,3,'2013-08-27 14:46:43',100003,'2014-05-20 15:04:16','Active',100081,NULL,NULL,'Joselio','User','Production',NULL,'0de84196b99fa8d5c6a8ed6d57e0a515')
+,(100039,3,'2013-08-27 14:47:24',100001,'2014-01-13 13:04:08','Active',100082,NULL,NULL,'Alex','User','Admin',NULL,'dbd3a262cc4f3ea225862a26529db5ad')
+,(100040,3,'2013-08-27 14:48:05',100003,'2014-06-05 09:44:44','Active',100083,NULL,NULL,'Felipe','User','Threads Manager',NULL,'47747eb03123acf1995cf1a2baa60cb4'),(100041,3,'2013-08-27 14:48:34',100003,'2014-01-15 11:05:49','Active',100084,NULL,NULL,'Max','User','Production',NULL,'ad70f4bc1c44e7b2a395262d69272653')
+,(100042,3,'2013-08-27 14:55:29',100003,'2014-06-02 10:10:05','Active',100085,NULL,NULL,'Cris','User','Admin',NULL,'adc2c7a9452e726f33158433b11c1aa5')
+,(100043,3,'2013-08-27 14:56:18',100001,'2014-01-13 13:04:42','Active',100086,NULL,NULL,'Carol','User','Sales',NULL,'440aef1c3c77957e73eac172adb4c009')
+,(200001,NULL,NULL,100001,'2014-01-13 13:04:18','Active',200002,'2013-12-13',NULL,'boxes','User','Boxes','c18d07ebea0abb7ae0f9509218def751','55cefbdf7b7cf8e5454cbc66d1a16462')
+,(200002,NULL,NULL,100001,'2014-01-13 13:07:10','Active',200003,'2013-12-14',NULL,'pieces','User','Pieces','3dbe36944ed10879327e700bae1c079b','c41604407e0e74b601a62c9a69acaf21')
+,(200003,NULL,NULL,100003,'2014-04-17 09:14:30','Active',200005,'2014-04-17',NULL,'Marcos','User','Boxes','498f30d1f3ef8ab93202b5014369acf5','86a1fa88adb5c33bd7a68ac2f9f3f96b')
+,(200010,NULL,NULL,100003,'2014-06-05 11:08:33','Active',200014,'2014-06-05',NULL,'almir','User','Boxes','1f232500288df781eeb1a5e0b5da7f50','7017414f90731764283d82537a41821e')
+,(200005,NULL,NULL,100003,'2014-05-20 11:35:56','Active',200008,'2014-05-20',NULL,'robson','User','Production','89c16964f9e1316ef92973b96291cc8c','dc9e3df7899f268582c5d30eb1cbe999')
+,(200006,NULL,NULL,100003,'2014-06-17 09:24:04','Active',200009,'2014-05-20',NULL,'Getulio','User','Admin','a26b77cf9eacb8b490062bcb6e474f50','6eb4768657ca783dcc387802c1fef51a')
+,(200008,NULL,NULL,100003,'2014-06-05 09:56:28','Active',200013,'2014-06-04',NULL,'Valdinei','User','Threads Manager','a57cb31bc86d4f8727e0d4db719a1ec2','a3bdeb983d8e3a4ff0ec29b7894d4d6d');
+/*!40000 ALTER TABLE `JKY_Users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+100080
+100086
+100089
+200012
+100090
+100093
+100095
+100097
+100094
+100098
+100096
+100091
+100087
+100092
+100088
+100087
+100092
+100088
+100073
+
+200010
+100045 Joselio
+100044 Bruno
+
+		200004
+		200007
+		200009
+		200011
+		
+		100036
+		100037
+		100038
+
+		
+		
+ (100037,1,'2013-08-03 09:39:14',100037,'2014-05-09 10:15:28','Active',100079,NULL,NULL,'bruno','User','Admin',NULL,'a7c4bead0e9d63f6caa74df8a0419ae9')
+,(100038,3,'2013-08-27 14:46:43',100003,'2014-05-20 15:04:16','Active',100081,NULL,NULL,'Joselio','User','Production',NULL,'0de84196b99fa8d5c6a8ed6d57e0a515')
+,(200011,NULL,NULL,100003,'2014-06-05 11:06:03','Active',200015,'2014-06-05',NULL,'caixas','User','Boxes','3032adfb26ecf6401e6c9492d265295c','6d071901727aec1ba6d8e2497ef5b709')
+
+INSERT INTO `JKY_Users` VALUES 
+ (100043,3,'2013-08-27 14:56:18',100001,'2014-01-13 13:04:42','Active',100086,NULL,NULL,'Carol','User','Sales',NULL,'440aef1c3c77957e73eac172adb4c009')
+,(100036,3,'2013-07-01 06:25:41',100003,'2014-05-20 15:04:16','Inative',100073,NULL,NULL,'Dailson','User','Production',NULL,'f7f03006767cd8474de0dd04763845df')

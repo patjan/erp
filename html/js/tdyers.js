@@ -44,7 +44,7 @@ JKY.set_all_events = function() {
 
 //	$('#jky-action-product'		).click (function() {JKY.display_product	();});
 //	$('#jky-search-add-new'		).click (function() {JKY.add_new_product	();});
-	$('#jky-save-remarks'		).click (function() {JKY.save_remarks		();});
+	$('#jky-action-save-remarks').click (function() {JKY.save_remarks		();});
 //	$('#jky-search-filter'		).KeyUpDelay(JKY.filter_product);
 }
 

@@ -472,7 +472,7 @@ JKY.fix_ymd2dmy = function(the_date){
 	var my_date = the_date.trim();
 	if (my_date == 'null' || my_date == '')		return '';
 
-	var my_dates = the_date.split('-');
+	var my_dates = my_date.split('-');
 	return my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];
 }
 

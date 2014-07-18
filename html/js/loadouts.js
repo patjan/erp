@@ -55,8 +55,8 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.loadout.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
-	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_dyer'), true));
-	JKY.set_html('jky-color-name'	, JKY.set_table_options('Colors', 'color_name', '', ''));
+//	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_dyer'), true));
+//	JKY.set_html('jky-color-name'	, JKY.set_table_options('Colors', 'color_name', '', ''));
 
 	$('#jky-dyer-filter'		).KeyUpDelay(JKY.Dyer.load_data		);
 	$('#jky-color-filter'		).KeyUpDelay(JKY.Color.load_data	);

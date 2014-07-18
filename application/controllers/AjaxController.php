@@ -564,7 +564,9 @@ private function get_rows($data) {
  *			]
  */
 private function get_index($data) {
-	if (get_session('user_action') != 'All') {
+//file_put_contents('debug.txt', "\n" . get_session('user_action'), FILE_APPEND);
+	if (get_session('user_action') != 'All'
+	and get_session('user_action') != 'View') {
 		return;
 	}
 
@@ -1276,6 +1278,45 @@ private function set_where($table, $filter) {
 			}
 		}
 
+		if ($table == 'TDyers') {
+			if ($name == 'tdyer_number'
+			or	$name == 'ordered_at'
+			or	$name == 'needed_at'
+			or	$name == 'checkout_at'
+			or	$name == 'returned_at'
+			or	$name == 'ordered_weight'
+			or	$name == 'checkout_weight'
+			or	$name == 'returned_weight'
+			or	$name == 'remarks') {
+				if ($value == '"%null%"') {
+					return ' AND TDyers.' . $name . ' IS NULL ';
+				}else{
+					return ' AND TDyers.' . $name . ' LIKE ' . $value;
+				}
+			}else
+			if ($name == 'order_number') {
+				if ($value == '"%null%"') {
+					return ' AND TDyers.order_id IS NULL';
+				}else{
+					return ' AND Orderx.order_number LIKE ' . $value;
+				}
+			}else
+			if ($name == 'customer') {
+				if ($value == '"%null%"') {
+					return ' AND TDyers.customer_id IS NULL';
+				}else{
+					return ' AND Customer.nick_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'dyer') {
+				if ($value == '"%null%"') {
+					return ' AND TDyers.dyer_id IS NULL';
+				}else{
+					return ' AND Dyer.nick_name LIKE ' . $value;
+				}
+			}
+		}
+
 		if ($table == 'Templates') {
 			if ($name == 'updated_at'
 			or	$name == 'template_name'
@@ -1334,7 +1375,8 @@ private function set_where($table, $filter) {
 		}
 
 		if ($table == 'Contacts') {
-			if ($name == 'first_name'
+			if ($name == 'nick_name'
+			or  $name == 'first_name'
 			or	$name == 'last_name'
 			or	$name == 'full_name'
 			or	$name == 'email'
@@ -1427,6 +1469,120 @@ private function set_where($table, $filter) {
 					return ' AND LoadOuts.color_id IS NULL';
 				}else{
 					return ' AND Color.color_name LIKE ' . $value;
+				}
+			}
+		}
+
+		if ($table == 'LoadSales') {
+			if ($name == 'requested_pieces'
+			or	$name == 'reserved_pieces'
+			or	$name == 'checkout_pieces'
+			or	$name == 'checkout_weight'
+			or	$name == 'returned_pieces'
+			or	$name == 'returned_weight') {
+				if ($value == '"%null%"') {
+					return ' AND LoadSets.' . $name . ' IS NULL ';
+				}else{
+					return ' AND LoadSets.' . $name . ' LIKE ' . $value;
+				}
+			}else
+			if ($name == 'loadout_number') {
+				if ($value == '"%null%"') {
+					return ' AND LoadSales.loadout_id IS NULL';
+				}else{
+					return ' AND LoadOut.loadout_number LIKE ' . $value;
+				}
+			}else
+			if ($name == 'sale_number') {
+				if ($value == '"%null%"') {
+					return ' AND SaleLine.parent_id IS NULL';
+				}else{
+					return ' AND Sale.quotation_number LIKE ' . $value;
+				}
+			}else
+			if ($name == 'customer_name') {
+				if ($value == '"%null%"') {
+					return ' AND Sale.customer_id IS NULL';
+				}else{
+					return ' AND Customer.nick_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'dyer_name') {
+				if ($value == '"%null%"') {
+					return ' AND LoadOut.dyer_id IS NULL';
+				}else{
+					return ' AND Dyer.nick_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'color_name') {
+				if ($value == '"%null%"') {
+					return ' AND LoadOut.color_id IS NULL';
+				}else{
+					return ' AND Color.color_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'product_name') {
+				if ($value == '"%null%"') {
+					return ' AND SaleLine.product_id IS NULL';
+				}else{
+					return ' AND Product.product_name LIKE ' . $value;
+				}
+			}
+		}
+
+		if ($table == 'LoadSets') {
+			if ($name == 'checkin_location'
+			or	$name == 'checkin_date'
+			or	$name == 'checkin_weight'
+			or	$name == 'checkin_pieces'
+			or	$name == 'reserved_pieces'
+			or	$name == 'checkout_pieces') {
+				if ($value == '"%null%"') {
+					return ' AND LoadSets.' . $name . ' IS NULL ';
+				}else{
+					return ' AND LoadSets.' . $name . ' LIKE ' . $value;
+				}
+			}else
+			if ($name == 'loadout_number') {
+				if ($value == '"%null%"') {
+					return ' AND LoadSale.loadout_id IS NULL';
+				}else{
+					return ' AND LoadOut.loadout_number LIKE ' . $value;
+				}
+			}else
+			if ($name == 'sale_number') {
+				if ($value == '"%null%"') {
+					return ' AND SaleLine.parent_id IS NULL';
+				}else{
+					return ' AND Sale.quotation_number LIKE ' . $value;
+				}
+			}else
+			if ($name == 'customer_name') {
+				if ($value == '"%null%"') {
+					return ' AND Sale.customer_id IS NULL';
+				}else{
+					return ' AND Customer.nick_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'dyer_name') {
+				if ($value == '"%null%"') {
+					return ' AND LoadOut.dyer_id IS NULL';
+				}else{
+					return ' AND Dyer.nick_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'color_name') {
+				if ($value == '"%null%"') {
+					return ' AND LoadOut.color_id IS NULL';
+				}else{
+					return ' AND Color.color_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'product_name') {
+				if ($value == '"%null%"') {
+					return ' AND SaleLine.product_id IS NULL';
+				}else{
+					return ' AND Product.product_name LIKE ' . $value;
 				}
 			}
 		}
@@ -2081,6 +2237,22 @@ private function set_where($table, $filter) {
 				;
 	}
 
+	if ($table == 'TDyers') {
+		$return = '        TDyers.tdyer_number			LIKE ' . $filter
+				. ' or     TDyers.ordered_at			LIKE ' . $filter
+				. ' or     TDyers.needed_at				LIKE ' . $filter
+				. ' or     TDyers.checkout_at			LIKE ' . $filter
+				. ' or     TDyers.returned_at			LIKE ' . $filter
+				. ' or     TDyers.ordered_weight		LIKE ' . $filter
+				. ' or     TDyers.checkout_weight		LIKE ' . $filter
+				. ' or     TDyers.returned_weight		LIKE ' . $filter
+				. ' or     TDyers.remarks				LIKE ' . $filter
+				. ' or     Orderx.order_number			LIKE ' . $filter
+				. ' or   Customer.nick_name				LIKE ' . $filter
+				. ' or       Dyer.nick_name				LIKE ' . $filter
+				;
+	}
+
 	if ($table == 'Templates') {
 		$return = '        Templates.updated_at			LIKE ' . $filter
 				. ' or     Templates.template_name		LIKE ' . $filter
@@ -2109,7 +2281,8 @@ private function set_where($table, $filter) {
 }
 
 	if ($table ==  'Contacts') {
-		$return = ' Contacts.first_name		LIKE ' . $filter
+		$return = ' Contacts.nick_name		LIKE ' . $filter
+			. ' OR	Contacts.first_name		LIKE ' . $filter
 			. ' OR	Contacts.last_name		LIKE ' . $filter
 			. ' OR	Contacts.full_name		LIKE ' . $filter
 			. ' OR	Contacts.mobile			LIKE ' . $filter
@@ -2159,6 +2332,38 @@ private function set_where($table, $filter) {
 			. ' OR  LoadOuts.returned_weight	LIKE ' . $filter
 			. ' OR      Dyer.nick_name			LIKE ' . $filter
 			. ' OR     Color.color_name			LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'LoadSales') {
+		$return = ' LoadSales.requested_pieces	LIKE ' . $filter
+			. ' OR  LoadSales.reserved_pieces	LIKE ' . $filter
+			. ' OR  LoadSales.checkout_pieces	LIKE ' . $filter
+			. ' OR  LoadSales.checkout_weight	LIKE ' . $filter
+			. ' OR  LoadSales.returned_pieces	LIKE ' . $filter
+			. ' OR  LoadSales.returned_weight	LIKE ' . $filter
+			. ' OR   LoadOut.loadout_number		LIKE ' . $filter
+			. ' OR      Sale.quotation_number	LIKE ' . $filter
+			. ' OR  Customer.nick_name			LIKE ' . $filter
+			. ' OR      Dyer.nick_name			LIKE ' . $filter
+			. ' OR     Color.color_name			LIKE ' . $filter
+			. ' OR   Product.product_name		LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'LoadSets') {
+		$return = ' LoadSets.checkin_location	LIKE ' . $filter
+			. ' OR  LoadSets.checkin_date		LIKE ' . $filter
+			. ' OR  LoadSets.checkin_weight		LIKE ' . $filter
+			. ' OR  LoadSets.checkin_pieces		LIKE ' . $filter
+			. ' OR  LoadSets.reserved_pieces	LIKE ' . $filter
+			. ' OR  LoadSets.checkout_pieces	LIKE ' . $filter
+			. ' OR   LoadOut.loadout_number		LIKE ' . $filter
+			. ' OR      Sale.quotation_number	LIKE ' . $filter
+			. ' OR  Customer.nick_name			LIKE ' . $filter
+			. ' OR      Dyer.nick_name			LIKE ' . $filter
+			. ' OR     Color.color_name			LIKE ' . $filter
+			. ' OR   Product.product_name		LIKE ' . $filter
 			;
 		}
 
@@ -2833,7 +3038,9 @@ private function delete($data) {
 }
 
 private function delete_jky_user($id) {
-	$my_id = $id;
+	$where = 'contact_id = ' . $id;
+	$my_id = $this->get_only_id('JKY_Users', $where);
+
 	$sql= 'DELETE'
 		. '  FROM JKY_Users'
 		. ' WHERE id = ' . $my_id
@@ -3007,7 +3214,7 @@ private function combine() {
 	  $db->query( 'UPDATE User_metas     SET    parent_id = ' . $target . ' WHERE   parent_id = ' . $source );
 
 	  $db->query( 'DELETE FROM Contacts                                     WHERE          id = ' . $source );
-	  $db->query( 'DELETE FROM JKY_Users                                    WHERE          id = ' . $source );
+	  $db->query( 'DELETE FROM JKY_Users                                    WHERE  contact_id = ' . $source );
 
 	  $return = array();
 	  $return[ 'status'   ] = 'ok';

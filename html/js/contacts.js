@@ -44,11 +44,11 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-action-change'	).click (function() {JKY.App.change_status(JKY.row.id);});
-	$('#jky-action-reset'	).click (function()	{JKY.reset_user					();});
+	$('#jky-action-change'		).click (function() {JKY.App.change_status(JKY.row.id);});
+	$('#jky-action-reset'		).click (function()	{JKY.reset_user					();});
 
-	$('#jky-zip'			).change(function() {JKY.buscar_cep				(this);});
-	$('#jky-save-address'	).click (function()	{JKY.save_address				();});
+	$('#jky-zip'				).change(function() {JKY.buscar_cep				(this);});
+	$('#jky-action-save-address').click (function()	{JKY.save_address				();});
 };
 
 /**
@@ -171,7 +171,7 @@ JKY.process_update = function(the_id, the_row) {
 };
 
 JKY.process_delete = function(the_id, the_row) {
-	JKY.delete_user(the_id, the_row.user_id);
+//	JKY.delete_user(the_id, the_row.user_id);
 };
 
 JKY.buscar_cep = function(the_id) {

@@ -38,8 +38,8 @@ JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-planning-threads');
 	JKY.set_side_active('jky-threads-threads');
 	JKY.set_side_active('jky-production-threads');
-	JKY.set_html('jky-compositions'		, JKY.set_configs('Thread Compositions', '', ''));
-	JKY.set_html('jky-thread-groups'	, JKY.set_configs('Thread Groups', '', ''));
+	JKY.set_html('jky-composition'		, JKY.set_configs('Thread Compositions', '', ''));
+	JKY.set_html('jky-thread-group'		, JKY.set_configs('Thread Groups', '', ''));
 	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-app-select-label', JKY.t('Group'));
 	JKY.show('jky-app-select-line');
@@ -68,9 +68,9 @@ JKY.set_table_row = function(the_row) {
 JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-ncm'				,				 the_row.ncm			);
 	JKY.set_value	('jky-thread-name'		,				 the_row.name			);
-	JKY.set_option	('jky-thread-groups'	,				 the_row.thread_group	);
+	JKY.set_option	('jky-thread-group'		,				 the_row.thread_group	);
 //	JKY.set_value	('jky-thread-color'		,				 the_row.thread_color	);
-	JKY.set_option	('jky-compositions'		,				 the_row.composition	);
+	JKY.set_option	('jky-composition'		,				 the_row.composition	);
 
 	JKY.display_balance();
 };
@@ -81,9 +81,9 @@ JKY.set_form_row = function(the_row) {
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-ncm'				, '' );
 	JKY.set_value	('jky-thread-name'		, '' );
-	JKY.set_option	('jky-thread-groups'	, '' );
+	JKY.set_option	('jky-thread-group'		, '' );
 //	JKY.set_value	('jky-thread-color'		, '0');
-	JKY.set_option	('jky-compositions'		, '0');
+	JKY.set_option	('jky-composition'		, '0');
 };
 
 /**
@@ -93,9 +93,9 @@ JKY.get_form_set = function() {
 	var my_set = ''
 		+             'ncm=\'' + JKY.get_value	('jky-ncm'				) + '\''
 		+          ', name=\'' + JKY.get_value	('jky-thread-name'		) + '\''
-		+  ', thread_group=\'' + JKY.get_value	('jky-thread-groups'	) + '\''
+		+  ', thread_group=\'' + JKY.get_value	('jky-thread-group'		) + '\''
 //		+  ', thread_color=\'' + JKY.get_value	('jky-thread-color'		) + '\''
-		+   ', composition=\'' + JKY.get_value	('jky-compositions'		) + '\''
+		+   ', composition=\'' + JKY.get_value	('jky-composition'		) + '\''
 		;
 	return my_set;
 };

@@ -2688,11 +2688,11 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      *
     * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Module\WebHelper::seeButton()
+     * @see Codeception\Module\WebHelper::seeBar()
      * @return \Codeception\Maybe
      */
-    public function canSeeButton($button_name) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeButton', func_get_args()));
+    public function canSeeBar($menu_name) {
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeBar', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -2705,11 +2705,11 @@ class WebGuy extends \Codeception\AbstractGuy
      * ----------------------------------------------
      *
      *
-     * @see Codeception\Module\WebHelper::seeButton()
+     * @see Codeception\Module\WebHelper::seeBar()
      * @return \Codeception\Maybe
      */
-    public function seeButton($button_name) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('seeButton', func_get_args()));
+    public function seeBar($menu_name) {
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeBar', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -2762,43 +2762,6 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      *
     * Conditional Assertion: Test won't be stopped on fail
-     * @see Codeception\Module\WebHelper::seeImage()
-     * @return \Codeception\Maybe
-     */
-    public function canSeeImage($image_url) {
-        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeImage', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-     * @see Codeception\Module\WebHelper::seeImage()
-     * @return \Codeception\Maybe
-     */
-    public function seeImage($image_url) {
-        $this->scenario->addStep(new \Codeception\Step\Assertion('seeImage', func_get_args()));
-        if ($this->scenario->running()) {
-            $result = $this->scenario->runStep();
-            return new Maybe($result);
-        }
-        return new Maybe();
-    }
-
- 
-    /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
-     *
-     *
-    * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebHelper::seeProgram()
      * @return \Codeception\Maybe
      */
@@ -2835,6 +2798,44 @@ class WebGuy extends \Codeception\AbstractGuy
      * ----------------------------------------------
      *
      *
+     * @see Codeception\Module\WebHelper::canSeeButton()
+     * @return \Codeception\Maybe
+     */
+    public function canSeeButton($I, $button_name) {
+        $this->scenario->addStep(new \Codeception\Step\Action('canSeeButton', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\WebHelper::clickActionList()
+     * @return \Codeception\Maybe
+     */
+    public function clickActionList($I, $filter_string) {
+        $this->scenario->addStep(new \Codeception\Step\Action('clickActionList', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
      * @see Codeception\Module\WebHelper::clickActionForm()
      * @return \Codeception\Maybe
      */
@@ -2854,11 +2855,49 @@ class WebGuy extends \Codeception\AbstractGuy
      * ----------------------------------------------
      *
      *
+     * @see Codeception\Module\WebHelper::clickButton()
+     * @return \Codeception\Maybe
+     */
+    public function clickButton($I, $button_name) {
+        $this->scenario->addStep(new \Codeception\Step\Action('clickButton', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
      * @see Codeception\Module\WebHelper::clickSelect()
      * @return \Codeception\Maybe
      */
     public function clickSelect($I, $option_name) {
         $this->scenario->addStep(new \Codeception\Step\Action('clickSelect', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\WebHelper::clickMenu()
+     * @return \Codeception\Maybe
+     */
+    public function clickMenu($I, $menu_name) {
+        $this->scenario->addStep(new \Codeception\Step\Action('clickMenu', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -2897,6 +2936,25 @@ class WebGuy extends \Codeception\AbstractGuy
      */
     public function clickTab($I, $tab_name) {
         $this->scenario->addStep(new \Codeception\Step\Action('clickTab', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see Codeception\Module\WebHelper::clickAction()
+     * @return \Codeception\Maybe
+     */
+    public function clickAction($I, $tab_title, $tab_name, $close_name = null) {
+        $this->scenario->addStep(new \Codeception\Step\Action('clickAction', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);

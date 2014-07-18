@@ -37,7 +37,7 @@ JKY.set_all_events = function() {
 	$('#jky-return-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime:false});
 
 	$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
-	$('#jky-save-remarks'		).click (function()	{JKY.save_remarks		();});
+	$('#jky-action-save-remarks').click (function()	{JKY.save_remarks		();});
 };
 
 /**

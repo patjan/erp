@@ -51,7 +51,7 @@ JKY.set_all_events = function(jky_program) {
 
 		$('#jky-user-name'			).change(function() {JKY.verify_user_name	();});
 		$('#jky-upload-photo'		).change(function() {JKY.upload-user-photo	();});
-		$('#jky-save-address'		).click (function() {JKY.save_address		();});
+		$('#jky-action-save-address').click (function() {JKY.save_address		();});
 	}else{
 		setTimeout(function() {JKY.set_all_events();}, 100);
 	}

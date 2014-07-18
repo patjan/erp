@@ -40,14 +40,14 @@ JKY.Companies = function(the_program_name, the_specific) {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-//	$('#jky-action-change'	).click( function() {JKY.App.change_status(JKY.row.id);});
-	$('#jky-tab-address'	).click (function() {JKY.display_address (JKY.row	 );});
-	$('#jky-tab-phones'		).click (function() {JKY.display_phones	 (JKY.row	 );});
-	$('#jky-tab-contacts'	).click (function() {JKY.display_contacts(JKY.row.id );});
+//	$('#jky-action-change'		).click( function() {JKY.App.change_status(JKY.row.id);});
+	$('#jky-tab-address'		).click (function() {JKY.display_address (JKY.row	 );});
+	$('#jky-tab-phones'			).click (function() {JKY.display_phones	 (JKY.row	 );});
+	$('#jky-tab-contacts'		).click (function() {JKY.display_contacts(JKY.row.id );});
 
-	$('#jky-zip'			).change(function() {JKY.buscar_cep				(this);});
-	$('#jky-save-address'	).click (function() {JKY.save_address				();});
-	$('#jky-save-phones'	).click (function() {JKY.save_phones				();});
+	$('#jky-zip'				).change(function() {JKY.buscar_cep				(this);});
+	$('#jky-action-save-address').click (function() {JKY.save_address				();});
+	$('#jky-action-save-phones'	).click (function() {JKY.save_phones				();});
 };
 
 /**
