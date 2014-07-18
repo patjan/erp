@@ -13,7 +13,7 @@ describe("JKY.Utils.js", function() {
 	it("should define object JKY"					, function() {expect(JKY								).toBeDefined();});
 	it("should define object JKY.AJAX_APP"			, function() {expect(JKY.AJAX_APP						).toBeDefined();});
 	it("should define object JKY.AJAX_URL"			, function() {expect(JKY.AJAX_URL						).toBeDefined();});
-
+/*
 	describe("test JKY.fix_flag", function() {
 		it("empty should return empty"				, function() {expect(JKY.fix_flag(						)).toEqual('&nbsp;'	 );});
 		it("null should return empty"				, function() {expect(JKY.fix_flag(null					)).toEqual('&nbsp;'	 );});
@@ -141,11 +141,11 @@ describe("JKY.Utils.js", function() {
             expect(JKY.short_date(my_date + ' 12:34:56')).toEqual(my_dd + '-' + my_mm + '&nbsp;12:34');
         });
     });
-	
+
     describe("test JKY.set_date", function() {
-	
+
     });
-	
+
     describe("test JKY.inp_date", function() {
         it("mm-dd-yyyy should return yyyy-mm-dd, locale = US", function() {
             JKY.Session.set_locale('en_US');
@@ -206,7 +206,7 @@ describe("JKY.Utils.js", function() {
             expect(JKY.inp_time_value('17-07-2014 12:34')).toEqual("'2014-07-17 12:34'");
         });
     });
-	
+
     describe("test JKY.inp_time_value", function() {
         it("mm-dd-yyyy hh:mm should return yyyy-mm-dd hh:mm, locale = US", function() {
             JKY.Session.set_locale('en_US');
@@ -218,7 +218,7 @@ describe("JKY.Utils.js", function() {
             expect(JKY.inp_time_value('17-07-2014 12:34')).toEqual("'2014-07-17 12:34'");
         });
     });
-*/
+
     describe("test JKY.get_now", function() {
         it("get the date and time return yyyy-mm-dd hh:mm:ss", function() {
             var my_time = new Date();
@@ -233,24 +233,23 @@ describe("JKY.Utils.js", function() {
             var my_sec = my_time.getSeconds();
             var my_result = my_year + '-' + my_month + '-' + my_day + ' ' + my_hour + ':' + my_min + ':' + my_sec;
 
-            JKY.Session.set_locale('en_US');
             expect(JKY.get_now()).toEqual(my_result);
         });
     });
+*/
 
     describe("test JKY.get_date", function() {
         it("get the date and time return yyyy-mm-dd", function() {
-            JKY.Session.set_locale('en_US');
             expect(JKY.inp_time_value(JKY.get_date)).toEqual("'2014-07-17'");
         });
     });
 
     describe("test JKY.get_time", function() {
         it("get time return hh:mm:ss", function() {
-            JKY.Session.set_locale('en_US');
             expect(JKY.inp_time_value(JKY.get_time)).toEqual("'12:34:56'");
         });
     });
+
 
     describe("test JKY.set_html", function() {
         it("set the html", function() {
@@ -261,6 +260,7 @@ describe("JKY.Utils.js", function() {
 
     describe("test JKY.get_text", function() {
         it("get text return html", function() {
+            JKY.set_html('my_text', 'My Text');
             expect(JKY.get_text('my_text')).toEqual("My Text");
         });
     });
@@ -277,46 +277,82 @@ describe("JKY.Utils.js", function() {
             expect(JKY.get_html('my_text')).toEqual('My Text Appended');
         });
     });
+
+    describe("test JKY.append_file", function() {
+        it("append the file", function() {
+            JKY.append_file('my_text', ' Appended')
+            expect(JKY.get_html('my_text')).toEqual('My Text Appended');
+        });
+    });
+
+
+    describe("test JKY.prepend_html", function() {
+        it("prepend the html", function() {
+            JKY.prepend_html('my_text', ' Prepended' + ' ')
+            expect(JKY.get_html('my_text')).toEqual('Prepended My Text');
+        });
+    });
+
+    describe("test JKY.set_title", function() {
+        it("set the html", function() {
+            JKY.set_title('my_text', 'Set')
+            expect(JKY.get_html('set_title')).toEqual('Title Name');
+        });
+    });
+
+    describe("test JKY.set_src", function() {
+        it("set the src", function() {
+            JKY.set_src('my_text', 'Set')
+            expect(JKY.get_html('set_src')).toEqual('Source Set');
+        });
+    });
+
+    describe("test JKY.set_css", function() {
+        it("set the css", function() {
+            JKY.append_html('my_text', 'Set')
+            expect(JKY.get_html('set_css')).toEqual('CSS Set');
+        });
+    });
 /*
-	describe("when song has been paused", function() {
-		beforeEach(function() {
-			player.play(song);
-			player.pause();
-		});
+        describe("when song has been paused", function() {
+            beforeEach(function() {
+                player.play(song);
+                player.pause();
+            });
 
-		it("should indicate that the song is currently paused", function() {
-			expect(player.isPlaying).toBeFalsy();
+            it("should indicate that the song is currently paused", function() {
+                expect(player.isPlaying).toBeFalsy();
 
-//			demonstrates use of 'not' with a custom matcher
-			expect(player).not.toBePlaying(song);
-		});
+    //			demonstrates use of 'not' with a custom matcher
+                expect(player).not.toBePlaying(song);
+            });
 
-		it("should be possible to resume", function() {
-			player.resume();
-			expect(player.isPlaying).toBeTruthy();
-			expect(player.currentlyPlayingSong).toEqual(song);
-		});
-	});
+            it("should be possible to resume", function() {
+                player.resume();
+                expect(player.isPlaying).toBeTruthy();
+                expect(player.currentlyPlayingSong).toEqual(song);
+            });
+        });
 
-//	demonstrates use of spies to intercept and test method calls
-	it("tells the current song if the user has made it a favorite", function() {
-		spyOn(song, 'persistFavoriteStatus');
+    //	demonstrates use of spies to intercept and test method calls
+        it("tells the current song if the user has made it a favorite", function() {
+            spyOn(song, 'persistFavoriteStatus');
 
-		player.play(song);
-		player.makeFavorite();
+            player.play(song);
+            player.makeFavorite();
 
-		expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
-	});
+            expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
+        });
 
-//	demonstrates use of expected exceptions
-	describe("#resume", function() {
-		it("should throw an exception if song is already playing", function() {
-			player.play(song);
+    //	demonstrates use of expected exceptions
+        describe("#resume", function() {
+            it("should throw an exception if song is already playing", function() {
+                player.play(song);
 
-			expect(function() {
-				player.resume();
-			}).toThrowError("song is already playing");
-		});
-	});
-*/
+                expect(function() {
+                    player.resume();
+                }).toThrowError("song is already playing");
+            });
+        });
+    */
 });
