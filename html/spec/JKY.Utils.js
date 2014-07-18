@@ -206,6 +206,7 @@ describe("JKY.Utils.js", function() {
             expect(JKY.inp_time_value('17-07-2014 12:34')).toEqual("'2014-07-17 12:34'");
         });
     });
+	
     describe("test JKY.inp_time_value", function() {
         it("mm-dd-yyyy hh:mm should return yyyy-mm-dd hh:mm, locale = US", function() {
             JKY.Session.set_locale('en_US');
