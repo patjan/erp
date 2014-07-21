@@ -194,7 +194,6 @@ describe("JKY.Utils.js", function() {
         });
     });
 
-/*
     describe("test JKY.display_message", function() {
         it("mm-dd-yyyy hh:mm should return yyyy-mm-dd hh:mm, locale = US", function() {
             JKY.Session.set_locale('en_US');

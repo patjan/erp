@@ -286,3 +286,10 @@ ALTER TABLE Products		ADD		units					INT(11)			DEFAULT 1		AFTER start_date;
 ALTER TABLE Products		ADD		peso					DECIMAL(5,2)	DEFAULT 0		AFTER start_date;
 /* -- 2014/06/16	*/
 ALTER TABLE Products		ADD		cone_type				VARCHAR(32)		DEFAULT NULL	AFTER units;
+/* -- 2014/07/19	*/
+ALTER TABLE Contacts	ADD COLUMN extra_info			VARCHAR(255)	DEFAULT NULL	AFTER total_paid;
+ALTER TABLE Contacts	ADD COLUMN remarks				VARCHAR(255)	DEFAULT NULL	AFTER total_paid;
+ALTER TABLE Contacts	ADD COLUMN alert				VARCHAR(255)	DEFAULT NULL	AFTER total_paid;
+ALTER TABLE Contacts	ADD COLUMN payments				VARCHAR(255)	DEFAULT NULL	AFTER total_paid;
+ALTER TABLE Contacts	ADD COLUMN im					VARCHAR(255)	DEFAULT NULL	AFTER ie;
+ALTER TABLE Contacts	ADD COLUMN icms_exemption		CHAR(3)			DEFAULT 'No'	AFTER is_taxable;

@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS Sales
 , customer_id		BIGINT				DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
 , dyer_id			BIGINT				DEFAULT NULL
-, dyer_ref      	VARCHAR(32)			DEFAULT NULL
+, dyer_ref			VARCHAR(32)			DEFAULT NULL
 , diameter			INT					DEFAULT 0		# Diametro (cm)
 , weight			INT					DEFAULT 0		# Gramatura (gr)
 , width				INT					DEFAULT 0		# Largura (cm)

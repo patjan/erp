@@ -76,15 +76,15 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 #jky-wrapper			{height:100%; background:none repeat scroll 0 0 white; color:#4C4C4C;}
 #jky-wrapper table		{width:100%;}
 
-#jky-header				{height:20px; background-color:#323232; color:#EEEEEE; background-image:linear-gradient(to bottom, #646060, #262626);}
+#jky-header				{height:30px; background-color:#323232; color:#EEEEEE; background-image:linear-gradient(to bottom, #646060, #262626);}
 #jky-header a			{color:#FFFFFF;}
 #jky-header a:hover		{color:#1E9CD9;}
 
 #jky-menus				{float:left; margin:0; padding:4px 0;}
-#jky-menus li			{display:inline; padding:8px 10px; line-height:20px;}
+#jky-menus li			{display:inline; padding:7px 10px; line-height:20px;}
 #jky-menus .active		{background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3); box-shadow:0 1px 2px rgba(0, 0, 0, 0.4) inset; text-shadow:0 0 3px black;}
 
-#jky-user-full-name		{float:right; height:20px; margin:6px 10px 4px;}
+#jky-user-full-name		{float:right; margin:0 10px;}
 
 #jky-body				{width:100%; height:100%;}
 
@@ -253,6 +253,7 @@ li .arrow span {
 .jky-add-color			{width:180px; text-align:left   !important;}
 .jky-empty				{height:28px;}
 .jky-thumb				{width:120px; height:120px; border:4px ridge darkblue; border-radius:6px;}
+.jky-mini				{width: 30px; height: 30px;}
 
 #jky-loading			{display:none; position:fixed; top:50%;left:50%; margin:-50px 0 0 -50px; overflow:auto; z-index:9999;}
 #jky-message			{display:none; position:absolute; top:auto; bottom:0; left:auto ; right:0; width:340px; z-index:2000;}
@@ -497,7 +498,10 @@ li .arrow span {
 #jky-input-barcode	input	{width:90px; }
 #jky-input-message		{color:red;}
 
+#jky-form-tabs	textarea{width:570px; height:100px;}
+
 .jky-color-name			{text-transform:capitalize;}
+.jky-alert				{color:#CC0000;}
 .jky-error				{color:#CC0000;}
 .jky-line				{background-color:#FFFFFF; width:100%;}
 .jky-not-found			{color:  red; text-align:center !important;}
@@ -524,9 +528,12 @@ li .arrow span {
 .jky-form-district		{width: 70px; text-align:center !important;}
 .jky-form-email			{width:300px; text-align:left   !important;}
 
-.jky-form-has-break		{width:135px; float:left;}
-.jky-form-has-break	input	{margin:1px;}
-.jky-form-has-break span	{padding:1px 10px 0 4px; vertical-align:middle;}
+.jky-form-has-break					{width:135px; float:left;}
+.jky-form-has-break			input	{margin:1px;}
+.jky-form-has-break			span	{padding:1px 10px 0 4px; vertical-align:middle;}
+.jky-form-icms-exemption			{width:135px; float:left;}
+.jky-form-icms-exemption	input	{margin:1px;}
+.jky-form-icms-exemption	span	{padding:1px 10px 0 4px; vertical-align:middle;}
 .jky-form-history		{width:500px; height:500px;}
 
 .jky-form-action		{width: 80px; text-align:left   !important;}
@@ -541,8 +548,6 @@ li .arrow span {
 .jky-form-pieces		{width: 80px; text-align:right  !important;}
 .jky-form-price			{width: 80px; text-align:right  !important;}
 .jky-form-ref			{width:130px; text-align:left   !important;}
-.jky-form-remarks		{}
-.jky-form-remarks	textarea{width:570px; height:170px;}
 .jky-form-sentence		{width:500px; text-align:left   !important;}
 .jky-form-state			{width: 50px; text-align:left   !important;}
 .jky-form-street		{width:140px; text-align:left   !important;}

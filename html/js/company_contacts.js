@@ -1,4 +1,13 @@
 /*
+ * display payments ---------------------------------------------------------
+ */
+JKY.display_payments = function(the_row) {
+	JKY.set_radio	('jky-icms-exemption'	, the_row.icms_exemption);
+	JKY.set_value	('jky-payments'			, the_row.payments		);
+	JKY.set_value	('jky-alert'			, the_row.alert			);
+}
+
+/*
  * display address ---------------------------------------------------------
  */
 JKY.display_address = function(the_row) {
@@ -35,6 +44,14 @@ JKY.display_contacts = function(the_id) {
 		, order_by		: 'Contacts.full_name'
 		};
 	JKY.ajax(false, my_data, JKY.generate_contacts);
+}
+
+/*
+ * display remarks ---------------------------------------------------------
+ */
+JKY.display_remarks = function(the_row) {
+	JKY.set_value	('jky-remarks'	 , the_row.remarks	 );
+	JKY.set_value	('jky-extra-info', the_row.extra_info);
 }
 
 JKY.generate_contacts = function(response) {
@@ -155,6 +172,28 @@ JKY.buscar_cep_success = function(the_row) {
 	JKY.hide('jky-loading');
 }
 
+JKY.save_payments = function() {
+//	JKY.display_message('JKY.save_payments');
+	var my_set  = 'icms_exemption = \'' + JKY.get_checked('jky-icms-exemption') + '\''
+				+     ', payments = \'' + JKY.get_value('jky-payments'		) + '\''
+				+        ', alert = \'' + JKY.get_value('jky-alert'			) + '\''
+				;
+	var my_where = 'id = ' + JKY.row.id;
+	var my_data =
+		{ method: 'update'
+		, table : 'Contacts'
+		, set	: my_set
+		, where : my_where
+		};
+	JKY.ajax(true, my_data, JKY.save_payments_success);
+}
+
+JKY.save_payments_success = function(response) {
+//	JKY.display_trace('save_payments_success');
+	JKY.display_message('Payments saved, ' + response.message);
+	JKY.row = JKY.get_row('Contacts', JKY.row.id);
+}
+
 JKY.save_address = function() {
 //	JKY.display_message('JKY.save_address');
 	var my_set  =     'street1 = \'' + JKY.get_value('jky-street1'	) + '\''
@@ -202,5 +241,26 @@ JKY.save_phones = function() {
 JKY.save_phones_success = function(response) {
 //	JKY.display_trace('save_phones_success');
 	JKY.display_message('Phones saved, ' + response.message);
+	JKY.row = JKY.get_row('Contacts', JKY.row.id);
+}
+
+JKY.save_remarks = function() {
+//	JKY.display_message('JKY.save_remarks');
+	var my_set  =      'remarks = \'' + JKY.get_value('jky-remarks'		) + '\''
+				+ ', extra_info = \'' + JKY.get_value('jky-extra-info'	) + '\''
+				;
+	var my_where = 'id = ' + JKY.row.id;
+	var my_data =
+		{ method: 'update'
+		, table : 'Contacts'
+		, set	: my_set
+		, where : my_where
+		};
+	JKY.ajax(true, my_data, JKY.save_remarks_success);
+}
+
+JKY.save_remarks_success = function(response) {
+//	JKY.display_trace('save_remarks_success');
+	JKY.display_message('Remarks saved, ' + response.message);
 	JKY.row = JKY.get_row('Contacts', JKY.row.id);
 }

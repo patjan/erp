@@ -58,6 +58,10 @@
 				<div class='jky-form-label'><span id='jky-ie-label'	>IE</span>:</div>
 				<input id='jky-ie' class='jky-form-string' />
 			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span id='jky-im-label'	>IM</span>:</div>
+				<input id='jky-im' class='jky-form-string' />
+			</div>
 			<div class='jky-form-line'>&nbsp;</div>
 		</div>
 		<div id='jky-app-upload' class='jky-left'>
@@ -112,13 +116,36 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-address'		class='active'	><a href='#jky-pane-address'			data-toggle='tab'><span>Address			</span></a></li>
-			<li	id='jky-tab-phones'							><a href='#jky-pane-phones'				data-toggle='tab'><span>Phones			</span></a></li>
-			<li id='jky-tab-contacts'						><a href='#jky-pane-contacts'			data-toggle='tab'><span>Contacts		</span></a></li>
+			<li	id='jky-tab-payments'		><a href='#jky-pane-payments'			data-toggle='tab'><span>Payments		</span></a></li>
+			<li	id='jky-tab-address'		><a href='#jky-pane-address'			data-toggle='tab'><span>Address			</span></a></li>
+			<li	id='jky-tab-phones'			><a href='#jky-pane-phones'				data-toggle='tab'><span>Phones			</span></a></li>
+			<li id='jky-tab-contacts'		><a href='#jky-pane-contacts'			data-toggle='tab'><span>Contacts		</span></a></li>
+			<li	id='jky-tab-remarks'		><a href='#jky-pane-remarks'			data-toggle='tab'><span>Remarks			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
-			<div id='jky-pane-address' class='tab-pane active'>
+			<div id='jky-pane-payments' class='tab-pane'>
+				<br>
+				<div class='jky-form-line'>
+					<div class='jky-form-label'><span>ICMS Exemption</span>?</div>
+					<div id='jky-icms-exemption' class='jky-form-icms-exemption'>
+						<input type='radio' name='jky-icms-exemption' value='Yes' /><span>Yes </span>
+						<input type='radio' name='jky-icms-exemption' value='No'  /><span>No  </span>
+					</div>
+				</div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Payments</span>: </div><input id='jky-payments'	class='jky-form-normal'	/></div>
+				<div class='jky-form-alert'>
+					<div class='jky-form-label'><span>Alert</span>:</div>
+					<textarea id='jky-alert' class='jky-alert'></textarea>
+				</div>
+
+				<div class='jky-form-line'>
+					<div class='jky-form-label'></div>
+					<button id='jky-action-save-payments' class='btn btn-success' type='button'><span>Save Payments</span></button>
+				</div>
+			</div>
+
+			<div id='jky-pane-address' class='tab-pane'>
 				<br>
 				<div class='jky-form-line'><div class='jky-form-label'><span> Street1</span>: </div><input id='jky-street1'		class='jky-form-normal'	/></div>
 				<div class='jky-form-line'><div class='jky-form-label'><span>  Number</span>: </div><input id='jky-st-number'	class='jky-form-street'	/></div>
@@ -157,6 +184,24 @@
 					</thead>
 					<tbody id='jky-contacts-body'></tbody>
 				</table>
+			</div>
+
+			<div id='jky-pane-remarks' class='tab-pane'>
+				<br>
+				<div class='jky-form-remarks'>
+					<div class='jky-form-label'><span>Remarks</span>:</div>
+					<textarea id='jky-remarks'></textarea>
+				</div>
+				<div class='jky-form-extra-info'>
+					<div class='jky-form-label'><span>Extra Info</span>:</div>
+					<textarea id='jky-extra-info'></textarea>
+				</div>
+				<br>
+
+				<div class='jky-form-line'>
+					<div class='jky-form-label'></div>
+					<button id='jky-action-save-remarks' class='btn btn-success' type='button'><span>Save Remarks</span></button>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -1705,14 +1705,19 @@ JKY.set_company_name = function(company_name) {
 /**
  * set user info
  */
-JKY.set_user_info = function(full_name) {
+JKY.set_user_info = function(full_name, contact_id) {
 	if (full_name == null) {
 		JKY.set_html('jky-user-full-name', '');
 		JKY.hide('jky-user-logged');
 		JKY.show('jky-user-unkown');
 	}else{
-		var my_full_name = '<a href="#" onclick="JKY.process_profile()">' + full_name + '</a>';
-		var my_log_off = ':&nbsp; <a id="jky-menu-logoff" href="#" onclick="JKY.process_log_off()">' + JKY.t('Log Off') + '</a>';
+//		var my_full_name = '<a href="#" onclick="JKY.process_profile()">' + full_name + '</a>';
+		var my_full_name = '<a href="#" onclick="JKY.process_profile()">'
+						 + '<img class="jky-mini" src="/thumbs/contacts/' + contact_id + '.png">'
+						 + ' ' + full_name
+						 + '</a>'
+						 ;
+		var my_log_off = ' &nbsp; <a id="jky-menu-logoff" href="#" onclick="JKY.process_log_off()">' + JKY.t('Log Off') + '</a>';
 		JKY.set_html('jky-user-full-name', my_full_name + my_log_off);
 		JKY.hide('jky-user-unkown');
 		JKY.show('jky-user-logged');
