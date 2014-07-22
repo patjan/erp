@@ -239,14 +239,27 @@ describe("JKY.Utils.js", function() {
 */
 
     describe("test JKY.get_date", function() {
-        it("get the date and time return yyyy-mm-dd", function() {
-            expect(JKY.inp_time_value(JKY.get_date)).toEqual("'2014-07-17'");
+        it("get the date return yyyy-mm-dd", function() {
+            var my_time = new Date();
+            var my_year = my_time.getFullYear();
+            var my_month = my_time.getMonth() +1;
+            if (my_month < 10) {
+                my_month = '0' + my_month;
+            }
+            var my_day = my_time.getDate();
+            var my_result =  my_year + '-' + my_month + '-' + my_day;
+            expect(JKY.get_date()).toEqual(my_result);
         });
     });
 
     describe("test JKY.get_time", function() {
         it("get time return hh:mm:ss", function() {
-            expect(JKY.inp_time_value(JKY.get_time)).toEqual("'12:34:56'");
+            var my_time = new Date();
+            var my_hour = my_time.getHours();
+            var my_min = my_time.getMinutes();
+            var my_sec = my_time.getSeconds();
+            var my_result = my_hour + ':' + my_min + ':' + my_sec;
+            expect(JKY.get_time()).toEqual(my_result);
         });
     });
 
@@ -267,52 +280,55 @@ describe("JKY.Utils.js", function() {
 
     describe("test JKY.get_html", function() {
         it("get the html return html", function() {
-            expect(JKY.inp_time_value(JKY.get_html)).toEqual("'html'");
+            JKY.set_html ('my_text', 'My Html');
+            expect(JKY.get_html('my_text')).toEqual("My Html");
         });
     });
 
     describe("test JKY.append_html", function() {
         it("append the html", function() {
-            JKY.append_html('my_text', ' Appended')
-            expect(JKY.get_html('my_text')).toEqual('My Text Appended');
+            JKY.append_html('my_text', ' Appended');
+            expect(JKY.get_html('my_text')).toEqual('My Html Appended');
         });
     });
 
     describe("test JKY.append_file", function() {
         it("append the file", function() {
-            JKY.append_file('my_text', ' Appended')
-            expect(JKY.get_html('my_text')).toEqual('My Text Appended');
+            JKY.append_file('my_text', ' Appended');
+            expect(JKY.get_html('my_text')).toEqual('My Html Appended');
         });
     });
 
 
     describe("test JKY.prepend_html", function() {
         it("prepend the html", function() {
-            JKY.prepend_html('my_text', ' Prepended' + ' ')
-            expect(JKY.get_html('my_text')).toEqual('Prepended My Text');
+            JKY.prepend_html('my_text', 'Prepended ');
+            expect(JKY.get_html('my_text')).toEqual('Prepended My Html Appended');
         });
     });
 
     describe("test JKY.set_title", function() {
         it("set the html", function() {
-            JKY.set_title('my_text', 'Set')
+            JKY.set_title('my_text', 'Set');
             expect(JKY.get_html('set_title')).toEqual('Title Name');
         });
     });
 
     describe("test JKY.set_src", function() {
         it("set the src", function() {
-            JKY.set_src('my_text', 'Set')
+            JKY.set_src('my_text', 'Set');
             expect(JKY.get_html('set_src')).toEqual('Source Set');
         });
     });
 
     describe("test JKY.set_css", function() {
         it("set the css", function() {
-            JKY.append_html('my_text', 'Set')
+            JKY.append_html('my_text', 'Set');
             expect(JKY.get_html('set_css')).toEqual('CSS Set');
         });
     });
+
+
 /*
         describe("when song has been paused", function() {
             beforeEach(function() {
