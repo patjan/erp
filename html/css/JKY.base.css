@@ -627,6 +627,7 @@ li .arrow span {
 .jky-td-thread				{width:280px; text-align:left   !important; text-transform:capitalize;}
 .jky-td-thread		input	{width:245px; margin-top:2px;}
 .jky-td-thread		select	{width:270px; margin-top:2px;}
+.jky-td-thumb				{width: 30px; text-align:center !important; padding:0 !important;}
 .jky-td-yes-no				{width: 40px; text-align:center !important;}
 .jky-td-weight				{width: 85px; text-align:right  !important;}
 .jky-td-weight		input	{width: 80px; text-align:right	!important;}
