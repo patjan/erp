@@ -219,7 +219,7 @@ JKY.process_start_page = function() {
 		,{id:'jky-menu-support'		, icon:'plus', label:'Support'		}
 		];
 	JKY.set_buttons_menus(my_menus);
-	JKY.set_user_info(JKY.Session.get_value('full_name'));
+	JKY.set_user_info(JKY.Session.get_value('full_name'), JKY.Session.get_value('contact_id'));
 
 	var my_start_page = JKY.Session.get_value('start_page');
 //	JKY.load_html('jky-app-body', my_start_page + '.html');

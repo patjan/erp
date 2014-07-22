@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS Contacts
 , is_partner		CHAR(3)				DEFAULT 'No'
 , is_transport		CHAR(3)				DEFAULT 'No'
 , is_taxable		CHAR(3)				DEFAULT 'Yes'
+, icms_exemption	CHAR(3)				DEFAULT 'No'
 , photo				VARCHAR(255)		DEFAULT NULL
 , nick_name			VARCHAR(255)		DEFAULT NULL
 , first_name		VARCHAR(255)		DEFAULT NULL
@@ -43,6 +44,7 @@ CREATE TABLE IF NOT EXISTS Contacts
 , time_zone			VARCHAR(255)		DEFAULT '-3'
 , cnpj				VARCHAR(255)		DEFAULT NULL
 , ie				VARCHAR(255)		DEFAULT NULL
+, im				VARCHAR(255)		DEFAULT NULL
 , start_dt			date				DEFAULT NULL
 , end_dt			date				DEFAULT NULL
 , credit_limit		DECIMAL(10,2)		DEFAULT 0
@@ -50,6 +52,11 @@ CREATE TABLE IF NOT EXISTS Contacts
 , total_refunded	DECIMAL(10,2)		DEFAULT 0
 , total_invoiced	DECIMAL(10,2)		DEFAULT 0
 , total_paid		DECIMAL(10,2)		DEFAULT 0
+
+, payments			VARCHAR(255)		DEFAULT NULL	# 30 45 60
+, alert				VARCHAR(255)		DEFAULT NULL	# 
+, remarks			VARCHAR(255)		DEFAULT NULL
+, extra_info		VARCHAR(255)		DEFAULT NULL
 
 , PRIMARY KEY(id)
 , KEY company	(company_id	)
@@ -82,3 +89,10 @@ ALTER TABLE Contacts	ADD COLUMN district				VARCHAR(255)	DEFAULT NULL  AFTER cou
 ALTER TABLE Contacts	ADD COLUMN is_transport    		CHAR(3)   		DEFAULT 'No'  AFTER is_partner;
 
 ALTER TABLE Contacts	ADD COLUMN parent_id    		BIGINT   		DEFAULT NULL  AFTER support_id;
+
+ALTER TABLE Contacts	ADD COLUMN extra_info			VARCHAR(255)	DEFAULT NULL	AFTER total_paid;
+ALTER TABLE Contacts	ADD COLUMN remarks				VARCHAR(255)	DEFAULT NULL	AFTER total_paid;
+ALTER TABLE Contacts	ADD COLUMN alert				VARCHAR(255)	DEFAULT NULL	AFTER total_paid;
+ALTER TABLE Contacts	ADD COLUMN payments				VARCHAR(255)	DEFAULT NULL	AFTER total_paid;
+ALTER TABLE Contacts	ADD COLUMN im					VARCHAR(255)	DEFAULT NULL	AFTER ie;
+ALTER TABLE Contacts	ADD COLUMN icms_exemption		CHAR(3)			DEFAULT 'No'	AFTER is_taxable;
