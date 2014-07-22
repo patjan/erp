@@ -888,7 +888,7 @@ JKY.set_value = function(the_id, the_value){
 }
 
 /**
- * get yes or no on specific id
+ * get yes or no on specific checkbox
  * @param	id_name
  * @return	Yes
  * @return	No
@@ -911,11 +911,11 @@ JKY.set_yes = function(id_name, value){
 //	my_id.removeAttr('checked');		//	jquery 1.8.2
 	my_id.prop('checked', false);		//	jquery 2.0.3
 	if (value == 'Yes') {
-		JKY.Changes.track(false);
+//		JKY.Changes.track(false);
 //		$('#' + id_name).attr('checked', true);		//	jquery 1.8.1
 //		my_id.click();								//	jquery 1.8.2
 		my_id.prop('checked', true);				//	jquery 2.0.3
-		JKY.Changes.track(true);
+//		JKY.Changes.track(true);
 	}
 }
 

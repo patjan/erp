@@ -235,7 +235,6 @@ describe("JKY.Utils.js", function() {
             expect(JKY.get_now()).toEqual(my_result);
         });
     });
-*/
 
     describe("test JKY.get_date", function() {
         it("get the date return yyyy-mm-dd", function() {
@@ -256,7 +255,13 @@ describe("JKY.Utils.js", function() {
             var my_time = new Date();
             var my_hour = my_time.getHours();
             var my_min = my_time.getMinutes();
+            if (my_min < 10) {
+                my_min = '0' + my_min;
+            }
             var my_sec = my_time.getSeconds();
+            if (my_sec< 10) {
+                my_sec = '0' + my_sec;
+            }
             var my_result = my_hour + ':' + my_min + ':' + my_sec;
             expect(JKY.get_time()).toEqual(my_result);
         });
@@ -322,52 +327,117 @@ describe("JKY.Utils.js", function() {
 
     describe("test JKY.set_css", function() {
         it("set the css", function() {
-            JKY.append_html('my_text', 'Set');
+            JKY.set_css('my_text', 'Set');
             expect(JKY.get_html('set_css')).toEqual('CSS Set');
         });
     });
 
+    describe("test JKY.has_attr", function() {
+        it("check if it has attr", function() {
+            expect(JKY.has_attr('my_text', 'joeljan')).toBeTruthy();
+            expect(JKY.has_attr('my_text', 'img')).toBeFalsy();
+        });
+    });
 
+    describe("test JKY.has_class", function() {
+        it("check if it has class", function() {
+            expect(JKY.has_class('my_text', '1st')).toBeTruthy();
+            expect(JKY.has_class('my_text', '2nd')).toBeTruthy();
+            expect(JKY.has_class('my_text', '3rd')).toBeTruthy();
+            expect(JKY.has_class('my_text', '4th')).toBeFalsy();
+        });
+    });
+
+    describe("test JKY.remove_attr", function() {
+        it("remove the attr", function() {
+            expect(JKY.has_attr('my_text', 'joeljan')).toBeTruthy();
+            JKY.remove_attr('my_text', 'joeljan');
+            expect(JKY.has_attr('my_text', 'joeljan')).toBeFalsy();
+        });
+    });
+*/
+    describe("test JKY.get_value", function() {
+        it("get the value", function() {
+            expect(JKY.get_value('my_input')).toEqual('my_value');
+        });
+    });
+
+    describe("test JKY.set_value", function() {
+        it("set the value", function() {
+            JKY.set_value('my_input', 'new_value');
+            expect(JKY.get_value('my_input')).toEqual('new_value');
+        });
+    });
+
+    describe("test JKY.get_yes_no", function() {
+        it("get yes or no", function() {
+            expect(JKY.get_yes_no('my_checkbox')).toEqual('Yes');
+            expect(JKY.get_yes_no('my_checkbox')).not.toEqual('No');
+            expect(JKY.get_yes_no('my_box')).toEqual('No');
+        });
+    });
+
+    describe("test JKY.set_yes", function() {
+        it("set the value to yes", function() {
+            JKY.set_yes('my_box', 'Yes');
+            expect(JKY.get_yes_no('my_box')).toEqual('Yes');
+        });
+    });
 /*
-        describe("when song has been paused", function() {
-            beforeEach(function() {
-                player.play(song);
-                player.pause();
-            });
-
-            it("should indicate that the song is currently paused", function() {
-                expect(player.isPlaying).toBeFalsy();
-
-    //			demonstrates use of 'not' with a custom matcher
-                expect(player).not.toBePlaying(song);
-            });
-
-            it("should be possible to resume", function() {
-                player.resume();
-                expect(player.isPlaying).toBeTruthy();
-                expect(player.currentlyPlayingSong).toEqual(song);
-            });
+    THERE IS A BUG IN HERE
+    THERE IS A BUG IN HERE
+    THERE IS A BUG IN HERE
+    describe("test JKY.set_radio", function() {
+        it("set the radio", function() {
+            expect(JKY.get_yes_no('my_radio')).toEqual('No');
+            JKY.set_radio('my_radio', 'box1');
+            expect(JKY.get_yes_no('my_radio')).toEqual('Yes');
         });
+    });
+    THERE IS A BUG IN HERE
+    THERE IS A BUG IN HERE
+    THERE IS A BUG IN HERE
+*/
+    /*
+            describe("when song has been paused", function() {
+                beforeEach(function() {
+                    player.play(song);
+                    player.pause();
+                });
 
-    //	demonstrates use of spies to intercept and test method calls
-        it("tells the current song if the user has made it a favorite", function() {
-            spyOn(song, 'persistFavoriteStatus');
+                it("should indicate that the song is currently paused", function() {
+                    expect(player.isPlaying).toBeFalsy();
 
-            player.play(song);
-            player.makeFavorite();
+        //			demonstrates use of 'not' with a custom matcher
+                    expect(player).not.toBePlaying(song);
+                });
 
-            expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
-        });
-
-    //	demonstrates use of expected exceptions
-        describe("#resume", function() {
-            it("should throw an exception if song is already playing", function() {
-                player.play(song);
-
-                expect(function() {
+                it("should be possible to resume", function() {
                     player.resume();
-                }).toThrowError("song is already playing");
+                    expect(player.isPlaying).toBeTruthy();
+                    expect(player.currentlyPlayingSong).toEqual(song);
+                });
             });
-        });
-    */
+
+        //	demonstrates use of spies to intercept and test method calls
+            it("tells the current song if the user has made it a favorite", function() {
+                spyOn(song, 'persistFavoriteStatus');
+
+                player.play(song);
+                player.makeFavorite();
+
+                expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
+            });
+
+        //	demonstrates use of expected exceptions
+            describe("#resume", function() {
+                it("should throw an exception if song is already playing", function() {
+                    player.play(song);
+
+                    expect(function() {
+                        player.resume();
+                    }).toThrowError("song is already playing");
+                });
+            });
+        */
 });
