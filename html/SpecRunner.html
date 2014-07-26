@@ -26,7 +26,8 @@
 	<script type="text/javascript" src="spec/Helper.js"			></script>
 	<script type="text/javascript" src="spec/Player.js"			></script>
 -->
-	<script type="text/javascript" src="spec/JKY.Utils.js"		></script>
+    <script src="js/translations/en_US.js"                      ></script>
+    <script type="text/javascript" src="spec/JKY.Utils.js"		></script>
 <!--
 	<script type="text/javascript" src="spec/home.js"			></script>
 -->
@@ -40,10 +41,24 @@
     <div id='set_src'>Source Set</div>
     <div id='set_css'>CSS Set</div>
     <input id= 'my_input' value= 'my_value'/>
-    <input id= 'my_checkbox' type= checkbox value= 'yes' checked= 'checked'/>
+    <input id= 'my_checkbox' name='my_checkbox' type= checkbox value= 'yes' checked= 'checked'/>
     <input id= 'my_box' type= checkbox value= 'yes'/>
+    <input id= 'my_box2' type= checkbox value= 'no'/>
     <input id= 'my_radio' type= radio value = 'box1'/>
     <input id= 'my_radio' type= radio value = 'box2'/>
+    <select id= 'my_select'>
+        <option value='option1'>Option 1</option>
+        <option value='option2'>Option 2</option>
+        <option value='option3'>Option 3</option>
+    </select>
+    <div id= 'my_radios'>
+
+    </div>
+    <ul>
+        <li id="jky-menu-production"><a onclick="JKY.process_menu('jky-menu-production')">Production</a></li>
+        <li id="jky-menu-threads"><a onclick="JKY.process_menu('jky-menu-threads')">Threads</a></li>
+        <li id="jky-menu-boxes"><a onclick="JKY.process_menu('jky-menu-boxes')">Boxes</a></li>
+    </ul>
 </body>
 
 </html>
