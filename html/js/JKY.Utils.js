@@ -965,7 +965,7 @@ JKY.set_yes = function(id_name, value){
  * @param	the_id
  * @return	value
  */
-JKY.Xget_selected_text = function(the_id){
+JKY.get_selected_text = function(the_id){
 	var my_value = $('#' + the_id + ' option:selected').text();
 	return my_value;
 }
@@ -990,7 +990,7 @@ JKY.set_radio = function(id_name, value){
 //	$('#' + id_name + ' input').filter(':checkbox').prop('checked', false);		//	jquery 1.8.2
 	$('#' + id_name + ' input').prop('checked', false);							//	jquery 2.0.3
 //	var my_command = "$('#" + id_name + " :radio[value=" + value + "]').attr('checked', true);";	//	jquery 1.8.2
-	var my_command = "$('#" + id_name + " :radio[value=" + value + "]').prop('checked', true);";	//	jquery 2.0.3
+	var my_command = "$('#" + id_name + " :radio[value=\'" + value + "\']').prop('checked', true);";	//	jquery 2.0.3
 	setTimeout(my_command, 100);
 }
 
@@ -1010,6 +1010,7 @@ JKY.set_option = function(id_name, value){
 }
 
 //	JKY.set_options(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
+//  Only String is able to work
 //	----------------------------------------------------------------------------
 JKY.set_options = function( ) {
      var my_options = '';
@@ -1066,7 +1067,7 @@ JKY.get_name_by_id = function(the_id, the_array) {
 	return null;
 }
 
-//	get name by id from array
+//	get index by id from array
 //	----------------------------------------------------------------------------
 JKY.get_index_by_id = function(the_id, the_array) {
 	for(var i=0; i<the_array.length; i++) {
@@ -1162,7 +1163,7 @@ JKY.set_side_active = function(id_name){
 
 /**
  * get value of checkbox or radio checked
- * @param	id_name
+ * @param	the name
  * @return	value
  */
 JKY.get_checked = function(id_name){

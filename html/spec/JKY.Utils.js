@@ -355,7 +355,7 @@ describe("JKY.Utils.js", function() {
             expect(JKY.has_attr('my_text', 'joeljan')).toBeFalsy();
         });
     });
-*/
+
     describe("test JKY.get_value", function() {
         it("get the value", function() {
             expect(JKY.get_value('my_input')).toEqual('my_value');
@@ -383,10 +383,16 @@ describe("JKY.Utils.js", function() {
             expect(JKY.get_yes_no('my_box')).toEqual('Yes');
         });
     });
-/*
-    THERE IS A BUG IN HERE
-    THERE IS A BUG IN HERE
-    THERE IS A BUG IN HERE
+
+    describe("test JKY.get_selected_text", function() {
+        it("get the selected text", function() {
+            expect(JKY.get_value('my_input')).toEqual('my_value');
+        });
+    });
+
+THERE IS A BUG IN HERE
+THERE IS A BUG IN HERE
+THERE IS A BUG IN HERE
     describe("test JKY.set_radio", function() {
         it("set the radio", function() {
             expect(JKY.get_yes_no('my_radio')).toEqual('No');
@@ -394,50 +400,154 @@ describe("JKY.Utils.js", function() {
             expect(JKY.get_yes_no('my_radio')).toEqual('Yes');
         });
     });
+THERE IS A BUG IN HERE
+THERE IS A BUG IN HERE
+THERE IS A BUG IN HERE
+
+    describe("test JKY.set_option", function() {
+        it("set the option to option2", function() {
+            JKY.set_option('my_select', 'option2');
+            expect(JKY.get_selected_text('my_select')).toEqual('Option 2');
+        });
+    });
+
+    describe("test JKY.set_options", function() {
+        it("generate options", function() {
+            var my_options = JKY.set_options('20', 'All', '10', '20', '50', '100', '200', '500', '1000');
+            JKY.set_html('my_select', my_options);
+            JKY.set_option('my_select', 'ALL');
+            expect(JKY.get_selected_text('my_select')).toEqual('All');
+        });
+    });
+
+    describe("test JKY.set_options_array", function() {
+        it("set array options", function() {
+            var my_array =
+                [{'id': 1, 'name': 'John'}
+                ,{'id': 2, 'name': 'James'}
+                ,{'id': 3, 'name': 'Jarred'}
+                ,{'id': 4, 'name': 'Jack'}
+                ];
+            var my_options = JKY.set_options_array('Jarred', my_array, false);
+            JKY.set_html('my_select', my_options);
+            expect(JKY.get_selected_text('my_select')).toEqual('Jarred');
+        });
+    });
+
+THERE IS A BUG IN HERE
+THERE IS A BUG IN HERE
+THERE IS A BUG IN HERE
+    describe("test JKY.get_name_by_id", function() {
+        it("get the name by id from array", function() {
+            expect(JKY.get_id('my_input')).toEqual('my_value');
+        });
+    });
+THERE IS A BUG IN HERE
+THERE IS A BUG IN HERE
+THERE IS A BUG IN HERE
+
+    describe("test JKY.get_index_by_id", function() {
+        it("get the selected index by id", function() {
+            expect(JKY.get_value('my_input')).toEqual('my_value');
+        });
+    });
+
+    describe("test JKY.set_radios", function() {
+        it("set radios", function() {
+            var my_options = JKY.set_radios('club', '50', '10', '20', '50', '100', '200', '500', '1000');
+            JKY.set_html('my_radios', my_options);
+            JKY.set_radios('my_radios', '50');
+            expect(JKY.get_checked('club')).toEqual('50');
+        });
+    });
+
     THERE IS A BUG IN HERE
     THERE IS A BUG IN HERE
     THERE IS A BUG IN HERE
+    describe("test JKY.set_radios_array", function() {
+        it("set radio array", function() {
+            var my_array =
+                [    {'id': 1, 'name': 'John'}
+                    ,{'id': 2, 'name': 'James'}
+                    ,{'id': 3, 'name': 'Jarred'}
+                    ,{'id': 4, 'name': 'Jack'}
+                ];
+            var my_options = JKY.set_radios_array('my_radios', my_array);
+            JKY.set_html('my_radios', my_options);
+            JKY.set_radio ('my_radios', 'Jarred');
+            expect(JKY.get_value('my_radios')).toEqual('Jarred');
+        });
+    });
+    THERE IS A BUG IN HERE
+    THERE IS A BUG IN HERE
+    THERE IS A BUG IN HERE
+
+    describe("test JKY.set_menu_active", function() {
+        it("set an active menu", function() {
+            JKY.set_menu_active('jky-menu-threads', '');
+            expect(JKY.has_class('jky-menu-production', 'active')).toBeFalsy();
+            expect(JKY.has_class('jky-menu-threads', 'active')).toBeTruthy();
+            expect(JKY.has_class('jky-menu-boxes', 'active')).toBeFalsy();
+        });
+    });
+
+    describe("test JKY.set_side_active", function() {
+        it("set an active side menu", function() {
+            JKY.set_side_active('jky-menu-threads', '');
+            expect(JKY.has_class('jky-menu-production', 'active')).toBeFalsy();
+            expect(JKY.has_class('jky-menu-threads', 'active')).toBeTruthy();
+            expect(JKY.has_class('jky-menu-boxes', 'active')).toBeFalsy();
+        });
+    });
+
+    describe("test JKY.get_checked", function() {
+        it("return the value of the checkbox or radio", function() {
+            expect(JKY.get_checked('my_checkbox')).toEqual('yes');
+        });
+    });
+
+    describe("test JKY.set_active", function() {
+        it("set the active function then check for it ", function() {
+            JKY.set_active('my_box2');
+            expect(JKY.has_class('my_box2', 'active')).toBeTruthy();
+        });
+    });
+
+    describe("test JKY.reset_active", function() {
+        it("reset the active function then check for it ", function() {
+            JKY.reset_active('my_box2');
+            expect(JKY.has_class('my_box2', 'active')).toBeTruthy();
+        });
+    });
+
+    describe("test JKY.reset_all_active", function() {
+        it("reset all the active functions then check for them ", function() {
+            JKY.reset_all_active('my_box2');
+            expect(JKY.has_class('my_box2', 'active')).toBeTruthy();
+        });
+    });
+
+    describe("test JKY.show", function() {
+        it("show the specific ID names", function() {
+            JKY.show('my_box2');
+            expect(JKY.has_class('my_box2', 'active')).toBeTruthy();
+        });
+    });
+
+    describe("test JKY.hide", function() {
+        it("hide the specific ID names", function() {
+            JKY.hide('my_box2');
+            expect(JKY.has_class('my_box2', 'active')).toBeTruthy();
+        });
+    });
 */
-    /*
-            describe("when song has been paused", function() {
-                beforeEach(function() {
-                    player.play(song);
-                    player.pause();
-                });
 
-                it("should indicate that the song is currently paused", function() {
-                    expect(player.isPlaying).toBeFalsy();
+    describe("test JKY.collapse", function() {
+        it("Collapse the side bar", function() {
+            JKY.collapse('my_box2');
+            expect(JKY.has_class('my_box2', 'active')).toBeTruthy();
+        });
+    });
 
-        //			demonstrates use of 'not' with a custom matcher
-                    expect(player).not.toBePlaying(song);
-                });
 
-                it("should be possible to resume", function() {
-                    player.resume();
-                    expect(player.isPlaying).toBeTruthy();
-                    expect(player.currentlyPlayingSong).toEqual(song);
-                });
-            });
-
-        //	demonstrates use of spies to intercept and test method calls
-            it("tells the current song if the user has made it a favorite", function() {
-                spyOn(song, 'persistFavoriteStatus');
-
-                player.play(song);
-                player.makeFavorite();
-
-                expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
-            });
-
-        //	demonstrates use of expected exceptions
-            describe("#resume", function() {
-                it("should throw an exception if song is already playing", function() {
-                    player.play(song);
-
-                    expect(function() {
-                        player.resume();
-                    }).toThrowError("song is already playing");
-                });
-            });
-        */
 });
