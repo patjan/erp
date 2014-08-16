@@ -15,6 +15,7 @@ JKY.Companies = function(the_program_name, the_specific) {
 		, sort_by		: 'nick_name'
 		, sort_seq		: 'ASC'
 		, sort_list		: [[1, 0]]
+		, sort_false	: 1						//	thumb
 		, focus			: 'jky-nick-name'
 		, add_new		: 'display form'
 		});
@@ -41,17 +42,17 @@ JKY.Companies = function(the_program_name, the_specific) {
  */
 JKY.set_all_events = function() {
 //	$('#jky-action-change'			).click( function() {JKY.App.change_status(JKY.row.id);});
-	$('#jky-tab-payments'			).click (function() {JKY.display_payments(JKY.row	 );});
 	$('#jky-tab-address'			).click (function() {JKY.display_address (JKY.row	 );});
 	$('#jky-tab-phones'				).click (function() {JKY.display_phones	 (JKY.row	 );});
 	$('#jky-tab-contacts'			).click (function() {JKY.display_contacts(JKY.row.id );});
 	$('#jky-tab-remarks'			).click (function() {JKY.display_remarks (JKY.row	 );});
+	$('#jky-tab-payments'			).click (function() {JKY.display_payments(JKY.row	 );});
 
 	$('#jky-zip'					).change(function() {JKY.buscar_cep				(this);});
-	$('#jky-action-save-payments'	).click (function() {JKY.save_payments				();});
 	$('#jky-action-save-address'	).click (function() {JKY.save_address				();});
 	$('#jky-action-save-phones'		).click (function() {JKY.save_phones				();});
 	$('#jky-action-save-remarks'	).click (function() {JKY.save_remarks				();});
+	$('#jky-action-save-payments'	).click (function() {JKY.save_payments				();});
 };
 
 /**
@@ -81,10 +82,11 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-td-name-l"		>' + JKY.fix_null	(the_row.nick_name	)	+ '</td>'
-		+  '<td class="jky-td-phone"		>' + JKY.fix_null	(the_row.phone		)	+ '</td>'
-		+  '<td class="jky-td-phone"		>' + JKY.fix_null	(the_row.mobile		)	+ '</td>'
-		+  '<td class="jky-td-email"		>' +				 the_row.email			+ '</td>'
+		+  '<td class="jky-td-thumb"	>'	+ JKY.fix_thumb	(the_row.photo, the_row.id, 'contacts') + '</td>'
+		+  '<td class="jky-td-name-l"	>'	+ JKY.fix_null	(the_row.nick_name	)	+ '</td>'
+		+  '<td class="jky-td-phone"	>'	+ JKY.fix_null	(the_row.phone		)	+ '</td>'
+		+  '<td class="jky-td-phone"	>'	+ JKY.fix_null	(the_row.mobile		)	+ '</td>'
+		+  '<td class="jky-td-email"	>'	+				 the_row.email			+ '</td>'
 		;
 	return my_html;
 };
@@ -114,11 +116,11 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_html('jky-upload-percent'	, '');
 	JKY.set_css ('jky-upload-progress'	, 'width', '0%');
 
-	JKY.display_payments(the_row);
 	JKY.display_address (the_row);
 	JKY.display_phones  (the_row);
 	JKY.display_contacts(the_row.id);
 	JKY.display_remarks (the_row);
+	JKY.display_payments(the_row);
 };
 
 /**

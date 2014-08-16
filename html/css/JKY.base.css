@@ -13,11 +13,11 @@ html	{height:100%}
 body	{height:100%; margin:0; padding:0; font-size:13px;}
 label	{font-weight:bold;}
 Xinput	{height:20px; margin:0 5px 0 0; padding:1px 4px; border:1px solid #cccccc; border-radius:3px;}
-input	{height:26px !important; margin-bottom:2px ; padding:1px 4px; border:1px solid #cccccc; border-radius:3px;}
-select	{height:26px; margin-bottom:2px ; padding:2px; color:black; border-radius:3px;}
+Xinput	{height:24px; margin-bottom:2px ; padding:1px 4px; border:1px solid #cccccc; border-radius:3px;}
+select	{height:24px; margin-bottom:2px ; padding:2px; color:black; border-radius:3px;}
 option	{padding:2px 6px;}
 input.span2			{width:80px; padding:2px 4px;}
-input.search-query	{margin-bottom:10px; border-radius:3px;}
+input.search-query	{height:26px; margin-bottom:10px; border-radius:3px;}
 
 .btn			{padding:2px 10px;}
 .btn-mini		{padding:0px  6px;}
@@ -29,7 +29,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover	{background-color:#FFFFFF;}
 .Xinput-append .add-on	{margin-left:-6px; padding:2px;}
-.input-append .add-on	{height:26px; padding:4px 1px 0 3px;}
+.input-append .add-on	{height:24px; padding:2px 1px 0 3px;}
 .modal					{overflow:initial; margin:0;}
 .modal-header			{background:#223870; color:white; border-bottom:1px solid #DDDDDD; border-radius:3px 3px 0 0; font-size:120%; font-weight:bold;}
 .modal-body				{background:white;}
@@ -39,6 +39,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 .input-append			{margin-bottom:4px;}
 .Xinput-append input		{height:14px;}
 
+.table			{margin-bottom:0;}
 .table thead th {background:#025d91; color:white; vertical-align:middle;}
 .table tbody td {line-height:12px;}
 
@@ -141,12 +142,13 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
     padding:0;
 	font-size:12px;
 }
-#jky-application thead tr		{height:52px;}
+#jky-application thead tr		{height:30px;}
 #jky-application tbody tr		{height:30px; border-bottom:1px solid #DDDDDD;}
 #jky-application thead th		{border:1px solid #999999; padding:4px 20px 4px 4px;}
 #jky-application thead th:first-child	{border-left :0px}
 #jky-application thead th:last-child	{border-right:0px}
 #jky-application tbody td		{margin:2px; height:33px; padding:4px 8px; vertical-align:middle;}
+#jky-application input					{height:24px; margin-bottom:2px ; padding:1px 4px; border:1px solid #cccccc; border-radius:3px;}
 #jky-application input[type='checkbox']	{width:20px; margin:0 0 2px 5px;}
 
 #jky-app-header			{
@@ -158,7 +160,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 #jky-app-breadcrumb		{float:left ; margin:12px 10px 8px 10px; height:24px; font-size:18px; font-weight:bold; vertical-align:middle;}
 #jky-app-select-line	{float:left ; margin:10px  0px 0px 30px; font-size:14px;}
 #jky-app-select			{						   width:170px; }
-#jky-app-filter			{float:right; margin:10px; width:300px; height:16px; border-radius:3px;}
+#jky-app-filter			{float:right; margin:10px; width:300px; border-radius:3px;}
 #jky-app-actions		{float:left ; margin: 6px 10px;}
 #jky-app-actions a		{vertical-align:bottom;}
 #jky-app-more			{float:left ; margin: 6px 10px 6px 80px;}
@@ -175,7 +177,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 }
 #jky-table tbody		{max-height:300px; overflow-y:visible;}
 
-#Xjky-table-body		{display:block; overflow-y:scroll;}
+#jky-table-body			{overflow-y:scroll;}
 
 #jky-action-add-new		{display:none;}
 #jky-action-save		{display:none;}
@@ -190,7 +192,7 @@ input.search-query	{margin-bottom:10px; border-radius:3px;}
 #Xjky-action-form		{display:inline-table;}
 
 /* -------------------------------------------------------------------------- */
-#jky-form-tabs thead th {border:0; padding:4px;}
+#jky-form-tabs thead th {border:0; padding:4px 14px;}
 
 #jky-form-control		{
 /*	background-color: #EDEDED;	*/
@@ -480,8 +482,9 @@ li .arrow span {
 #jky-app-upload			{margin-left:20px;}
 #jky-machine-type input	{margin-top: 2px;}
 #jky-machine-type span	{padding:2px 20px 0 4px; vertical-align:middle;}
-#jky-product-type input	{margin-top: 2px;}
-#jky-product-type span	{padding:2px 20px 0 4px; vertical-align:middle;}
+#jky-product-type		{margin:2px 0;}
+#jky-product-type input	{height:15px; margin-top:0px;}
+#jky-product-type span	{padding:0 20px 0 4px; vertical-align:middle;}
 
 #jky-pieces-layer		{width:350px;}
 .jky-pieces-line		{width:260px; text-align:right; font-weight:bold;}
@@ -501,7 +504,7 @@ li .arrow span {
 #jky-form-tabs	textarea{width:570px; height:100px;}
 
 .jky-color-name			{text-transform:capitalize;}
-.jky-alert				{color:#CC0000;}
+.jky-alert				{color:#CC0000; font-weight:bold;}
 .jky-error				{color:#CC0000;}
 .jky-line				{background-color:#FFFFFF; width:100%;}
 .jky-not-found			{color:  red; text-align:center !important;}
@@ -510,7 +513,8 @@ li .arrow span {
 
 .jky-form-key			{font-size:14px; font-weight:bold;}
 
-.jky-form-line			{clear:both;}
+.jky-form-line			{clear:both; height:26px;}
+.jky-form-free			{clear:both;}
 .jky-form-label			{float:left; width:160px; margin:3px 7px; text-align:right; font-weight:bold;}
 .jky-form-label-s		{float:left; width:140px; margin:3px 7px; text-align:right; font-weight:bold;}
 .jky-form-label-2		{float:left; width:160px; margin:3px 7px; text-align:right; font-weight:bold;}
@@ -524,7 +528,7 @@ li .arrow span {
 .jky-form-boxes			{width: 80px; text-align:right  !important;}
 .jky-form-city			{width:162px; text-align:left   !important;}
 .jky-form-code			{width: 80px; text-align:left   !important;}
-.jky-form-date			{width:150px; text-align:left	!important;}
+.jky-form-date			{width:150px; text-align:left	!important; height:24px !important;}
 .jky-form-district		{width: 70px; text-align:center !important;}
 .jky-form-email			{width:300px; text-align:left   !important;}
 
@@ -538,7 +542,7 @@ li .arrow span {
 
 .jky-form-action		{width: 80px; text-align:left   !important;}
 .jky-form-by			{width:200px; text-align:left   !important;}
-.jky-form-input			{width: 80px; text-align:right  !important;}
+.jky-form-input			{width: 80px; text-align:right  !important; height:24px !important;}
 .jky-form-integer		{width: 80px; text-align:right  !important;}
 .jky-form-location		{width: 80px; text-align:left	!important;}
 .jky-form-name			{width:300px; text-align:left   !important; text-transform:capitalize;}
@@ -552,7 +556,7 @@ li .arrow span {
 .jky-form-state			{width: 50px; text-align:left   !important;}
 .jky-form-street		{width:140px; text-align:left   !important;}
 .jky-form-string		{width:200px; text-align:left   !important;}
-.jky-form-text			{width:500px; height:140px; margin-bottom:2px;}
+.jky-form-text			{width:570px; height:140px; margin-bottom:2px;}
 .jky-form-weight		{width: 80px; text-align:right  !important;}
 .jky-form-zip			{width: 80px; text-align:left   !important;}
 
@@ -596,9 +600,9 @@ li .arrow span {
 .jky-td-name-s				{width: 85px; text-align:center !important; text-transform:capitalize;}
 .jky-td-name-s		input	{width: 80px; text-transform:capitalize;}
 .jky-td-name-l				{width:145px; text-align:left   !important; text-transform:capitalize;}
-.jky-td-name-l		input	{width:140px;}
+.jky-td-name-l		input	{width:140px; text-transform:capitalize;}
 .jky-td-name-w				{width:305px; text-align:left   !important; text-transform:capitalize;}
-.jky-td-name-w		input	{width:300px;}
+.jky-td-name-w		input	{width:300px; text-transform:capitalize;}
 .jky-td-normal				{width:145px; text-align:left   !important;}
 .jky-td-normal		input	{width:140px;}
 .jky-td-number				{width: 80px; text-align:center !important;}
@@ -619,16 +623,15 @@ li .arrow span {
 .jky-td-short		input	{width:100px; text-align:center !important;}
 .jky-td-status				{width:100px; text-align:center !important;}
 .jky-td-text-s				{width:145px; text-align:left   !important; text-transform:capitalize;}
-.jky-td-text-s		input	{width:140px;}
+.jky-td-text-s		input	{width:140px; text-transform:capitalize;}
 .jky-td-text-l				{width:245px; text-align:left   !important; text-transform:capitalize;}
-.jky-td-text-l		input	{width:240px;}
+.jky-td-text-l		input	{width:240px; text-transform:capitalize;}
 .jky-td-text-w				{width:305px; text-align:left   !important; text-transform:capitalize;}
-.jky-td-text-w		input	{width:300px;}
+.jky-td-text-w		input	{width:300px; text-transform:capitalize;}
 .jky-td-thread				{width:280px; text-align:left   !important; text-transform:capitalize;}
-.jky-td-thread		input	{width:245px; margin-top:2px;}
+.jky-td-thread		input	{width:245px; text-transform:capitalize; margin-top:2px;}
 .jky-td-thread		select	{width:270px; margin-top:2px;}
 .jky-td-thumb				{width: 30px; text-align:center !important; padding:0 !important;}
 .jky-td-yes-no				{width: 40px; text-align:center !important;}
 .jky-td-weight				{width: 85px; text-align:right  !important;}
 .jky-td-weight		input	{width: 80px; text-align:right	!important;}
-

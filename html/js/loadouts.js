@@ -88,11 +88,11 @@ JKY.set_table_row = function(the_row) {
 JKY.set_form_row = function(the_row) {
 	if (the_row.status == 'Draft') {
 //		JKY.enable_button ('jky-action-generate');
-		JKY.enable_button ('jky-action-delete'  );
+		JKY.enable_delete_button();
 		JKY.enable_button ('jky-lines-add-new'	);
 	}else{
 //		JKY.disable_button('jky-action-generate');
-		JKY.disable_button('jky-action-delete'  );
+		JKY.disable_delete_button();
 		JKY.disable_button('jky-lines-add-new'	);
 	}
 	if (the_row.status == 'Active') {

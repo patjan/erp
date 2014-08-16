@@ -9,8 +9,9 @@ CREATE TABLE IF NOT EXISTS ProdPrices
 
 , product_id		BIGINT				DEFAULT NULL
 , color_type		VARCHAR(32)			DEFAULT NULL
+, current_price		DECIMAL(10,2)		DEFAULT 0
+, new_price			DECIMAL(10,2)		DEFAULT 0
 , effective_date	DATE				DEFAULT NULL
-, effective_price	DECIMAL(10,2)		DEFAULT 0
 
 , PRIMARY KEY	(id)
 , KEY product	(product_id)

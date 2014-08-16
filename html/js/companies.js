@@ -19,6 +19,7 @@ JKY.start_program = function() {
 		, sort_by		: 'nick_name'
 		, sort_seq		: 'ASC'
 		, sort_list		: [[1, 0]]
+		, sort_false	: 1						//	thumb
 		, focus			: 'jky-nick-name'
 		, add_new		: 'display form'
 		});
@@ -84,15 +85,16 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-td-name-l"		>' + JKY.fix_null	(the_row.nick_name	)	+ '</td>'
-		+  '<td class="jky-td-yes-no"		>' +				 the_row.is_customer	+ '</td>'
-		+  '<td class="jky-td-yes-no"		>' +				 the_row.is_supplier	+ '</td>'
-		+  '<td class="jky-td-yes-no"		>' +				 the_row.is_dyer		+ '</td>'
-		+  '<td class="jky-td-yes-no"		>' +				 the_row.is_partner		+ '</td>'
-		+  '<td class="jky-td-yes-no"		>' +				 the_row.is_transport	+ '</td>'
-		+  '<td class="jky-td-phone"		>' + JKY.fix_null	(the_row.phone		)	+ '</td>'
-		+  '<td class="jky-td-phone"		>' + JKY.fix_null	(the_row.mobile		)	+ '</td>'
-		+  '<td class="jky-td-email"		>' +				 the_row.email			+ '</td>'
+		+  '<td class="jky-td-thumb"	>'	+ JKY.fix_thumb	(the_row.photo, the_row.id, 'contacts') + '</td>'
+		+  '<td class="jky-td-name-l"	>'	+ JKY.fix_null	(the_row.nick_name	)	+ '</td>'
+		+  '<td class="jky-td-yes-no"	>'	+				 the_row.is_customer	+ '</td>'
+		+  '<td class="jky-td-yes-no"	>'	+				 the_row.is_supplier	+ '</td>'
+		+  '<td class="jky-td-yes-no"	>'	+				 the_row.is_dyer		+ '</td>'
+		+  '<td class="jky-td-yes-no"	>'	+				 the_row.is_partner		+ '</td>'
+		+  '<td class="jky-td-yes-no"	>'	+				 the_row.is_transport	+ '</td>'
+		+  '<td class="jky-td-phone"	>'	+ JKY.fix_null	(the_row.phone		)	+ '</td>'
+		+  '<td class="jky-td-phone"	>'	+ JKY.fix_null	(the_row.mobile		)	+ '</td>'
+		+  '<td class="jky-td-email"	>'	+				 the_row.email			+ '</td>'
 		;
 	return my_html;
 };

@@ -59,6 +59,7 @@ JKY.set_initial_values = function() {
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-sentence"		>' + 				the_row.sentence		+ '</td>'
+		+  '<td class="jky-sentence"		>' + 				the_row.translated		+ '</td>'
 		+  '<td class="jky-updated-at"		>' + JKY.short_date(the_row.updated_at)		+ '</td>'
 		+  '<td class="jky-status"			>' + 				the_row.status			+ '</td>'
 		;

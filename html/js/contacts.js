@@ -19,6 +19,7 @@ JKY.start_program = function() {
 		, sort_by		: 'nick_name'
 		, sort_seq		: 'ASC'
 		, sort_list		: [[2, 0]]
+		, sort_false	: 1						//	thumb
 		, focus			: 'jky-nick-name'
 		, add_new		: 'display form'
 		});
@@ -72,9 +73,8 @@ JKY.set_initial_values = function() {
  *	set table row
  */
 JKY.set_table_row = function(the_row) {
-	var my_image = '<img class="jky-mini" src="/thumbs/contacts/' + the_row.id + '.png"> ';
 	var my_html = ''
-		+  '<td class="jky-td-thumb"	>'	+				 my_image				+ '</td>'
+		+  '<td class="jky-td-thumb"	>'	+ JKY.fix_thumb	(the_row.photo, the_row.id, 'contacts') + '</td>'
 		+  '<td class="jky-td-name-l"	>'	+ JKY.fix_null	(the_row.nick_name	)	+ '</td>'
 		+  '<td class="jky-td-phone"	>'	+ JKY.fix_null	(the_row.mobile		)	+ '</td>'
 		+  '<td class="jky-td-email"	>'	+				 the_row.email			+ '</td>'

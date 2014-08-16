@@ -1,0 +1,62 @@
+Fabrics
+
+check in invoice from dyers
+	- list all loads check out
+	- filter by dyer
+	- filter by load number
+	- QC accept or reject back
+	- input number of pieces
+	- input type of cones
+	- generate fabrics from pieces
+	- print new labels with barcode with location
+send in to humifier CL
+take out from humifier CL
+weight each fabric with bar code
+store fabric on specific location
+
+return to dyers
+
+checkout 
+weight each fabric with barcode
+
+info
+
+
+Receive Dyers
+1.	Add New 
+	- select Dyer
+	- input NFe TM number
+	- select Invoice Date
+	- input Invoice Amount
+	- input Invoice Weight
+	- click Save
+2.	find all Loads
+	- search by Fabric Number
+	- add all Loads
+	- add all Products of each Load
+	- input Received Fabrics
+	- update Cone Type if nedded
+	- input Received Weight
+	- input Unit Price
+3.	print Barcode Labels
+	- display Total Active with Last Location
+	- input Location
+	- print first Load Barcode 
+	- print Fabrics Barcode
+4.	generate Fabrics Check In
+
+5.	close Receive
+	- print the NFe (if needed)
+
+	
+Fabrics Check In
+1.	read Load Barcode
+2.	read Fabrics with defect
+	- input the defect description
+3.	read missing Fabrics (left out)
+4.	print NFe for return the defects
+	- one print for all Loads
+	- separated by each Load
+
+
+

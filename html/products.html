@@ -2,11 +2,14 @@
 	<thead>
 		<tr>
 			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-thumb'	><span>							</span></th>
 			<th class='jky-td-name-w'	><span>    Product Name			</span></th>
-			<th class='jky-td-name-s'	><span>    Product Type			</span></th>
-			<th class='jky-td-date'		><span>      Start Date			</span></th>
+			<th class='jky-td-name-l'	><span>    Product Base			</span></th>
+			<th class='jky-td-name-s'	><span>    Product<br>Type		</span></th>
+			<th class='jky-td-name-s'	><span>       Finishing			</span></th>
 			<th class='jky-td-number'	><span>            Peso			</span></th>
 			<th class='jky-td-number'	><span>           Units			</span></th>
+			<th class='jky-td-date'		><span>      Start Date			</span></th>
 			<th class='jky-td-status'	><span>          Status			</span></th>
 		</tr>
 	</thead>
@@ -33,10 +36,22 @@
 				<input id='jky-product-name' class='jky-form-name jky-form-key' placeholder='Product Name' />
 			</div>
 			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Product Base</span>:</div>
+				<input  id='jky-parent-id'							type='hidden'	value='' />
+				<input  id='jky-product-base' class='jky-form-name'	disabled		value='' />
+				<a href='#' onClick='JKY.Product.display(this, "All")'><i class='icon-share'></i></a>
+			</div>
+			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Product Type</span>:</div>
 				<div id='jky-product-type' class='jky-left'></div>
 			</div>
-			<div class='jky-form-line'>&nbsp;</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Finishing</span>:</div>
+				<input  id='jky-finishing' class='jky-form-name'	disabled		value='' />
+				<a href='#' onClick='JKY.Finishing.display(this, "All")'><i class='icon-share'></i></a>
+			</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>    Peso</span>:</div><input id='jky-peso'		class='jky-form-integer' /> (Kg/peça)	</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>   Units</span>:</div><input id='jky-units'	class='jky-form-integer' /> (unit/peça)	</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Start Date</span>:</div>
 				<div id='jky-start-date' class='input-append date'>
@@ -44,8 +59,6 @@
 					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
 				</div>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>    Peso</span>:</div><input id='jky-peso'		class='jky-form-integer' /> (Kg/peça)	</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>   Units</span>:</div><input id='jky-units'	class='jky-form-integer' /> (unit/peça)	</div>
 		</div>
 
 		<div id='jky-app-upload' class='jky-left'>
@@ -84,11 +97,57 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-ftps'			class='active'	><a href='#jky-pane-ftps'				data-toggle='tab'><span>FTPs			</span></a></li>
+			<li	id='jky-tab-prices'		class='active'	><a href='#jky-pane-prices'				data-toggle='tab'><span>Prices			</span></a></li>
+			<li	id='jky-tab-fabrics'					><a href='#jky-pane-fabrics'			data-toggle='tab'><span>Fabrics			</span></a></li>
+			<li	id='jky-tab-pieces'						><a href='#jky-pane-pieces'				data-toggle='tab'><span>Pieces			</span></a></li>
+			<li	id='jky-tab-ftps'						><a href='#jky-pane-ftps'				data-toggle='tab'><span>FTPs			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
-			<div id='jky-pane-ftps' class='tab-pane active'>
+			<div id='jky-pane-prices' class='tab-pane active'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<th class='jky-td-action'	></th>
+							<th class='jky-td-name'		><span>Color			</span></th>
+							<th class='jky-td-price'	><span>Current Price	</span></th>
+							<th class='jky-td-price'	><span>New Price		</span></th>
+							<th class='jky-td-date'		><span>Effective Date	</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-prices-body'></tbody>
+				</table>
+			</div>
+
+			<div id='jky-pane-fabrics' class='tab-pane'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<th class='jky-td-action'	></th>
+							<th class='jky-td-number'	><span>FTP Number	</span></th>
+							<th class='jky-td-name-l'	><span>Composition	</span></th>
+							<th class='jky-td-name-s'	><span>Machine		</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-fabrics-body'></tbody>
+				</table>
+			</div>
+
+			<div id='jky-pane-pieces' class='tab-pane'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<th class='jky-td-action'	></th>
+							<th class='jky-td-number'	><span>FTP Number	</span></th>
+							<th class='jky-td-name-l'	><span>Composition	</span></th>
+							<th class='jky-td-name-s'	><span>Machine		</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-pieces-body'></tbody>
+				</table>
+			</div>
+
+			<div id='jky-pane-ftps' class='tab-pane'>
 				<table class='table table-striped' >
 					<thead>
 						<tr>
@@ -101,6 +160,7 @@
 					<tbody id='jky-ftps-body'></tbody>
 				</table>
 			</div>
+
 		</div>
 	</div>
 	<div id='jky-form-footer'></div>
@@ -108,5 +168,9 @@
 
 <div id='jky-body-loaded'></div>
 
-<script src='js/products.js'></script>
-<script src='js/product_ftps.js'></script>
+<script src='js/products.js'		></script>
+<script src='js/JKY.Product.js'		></script>
+<script src='js/JKY.Finishing.js'	></script>
+
+<script src='js/product_prices.js'	></script>
+<script src='js/product_ftps.js'	></script>

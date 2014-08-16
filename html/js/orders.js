@@ -93,7 +93,7 @@ JKY.set_initial_values = function() {
 JKY.set_table_row = function(the_row) {
 	var my_machine_partner = the_row.machine_name;
 	if(!my_machine_partner) {
-		my_machine_partner = '<b>' + the_row.partner_name + '</b>';
+		my_machine_partner = '<b>' + JKY.fix_null(the_row.partner_name) + '</b>';
 	}
 
 	var my_html = ''
@@ -119,11 +119,11 @@ JKY.set_table_row = function(the_row) {
 JKY.set_form_row = function(the_row) {
 	if (the_row.status == 'Draft') {
 		JKY.enable_button ('jky-action-generate');
-		JKY.enable_button ('jky-action-delete'  );
+		JKY.enable_delete_button();
 //		JKY.enable_button ('jky-threads-add-new');
 	}else{
 		JKY.disable_button('jky-action-generate');
-		JKY.disable_button('jky-action-delete'  );
+		JKY.disable_delete_button();
 //		JKY.disable_button('jky-threads-add-new');
 	}
 	if (the_row.status == 'Active') {

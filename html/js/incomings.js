@@ -35,7 +35,7 @@ JKY.set_all_events = function() {
 	$('#jky-invoice-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 
 	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
-	$('#jky-batch-add-new'	).click (function() {JKY.insert_batch			();});
+	$('#jky-batches-add-new').click (function() {JKY.insert_batch			();});
 
 	$('#jky-boxes-print'	).click (function() {JKY.Batch.print()});
 };
@@ -91,11 +91,11 @@ JKY.set_table_row = function(the_row) {
 JKY.set_form_row = function(the_row) {
 	if (the_row.status == 'Active') {
 		JKY.enable_button ('jky-action-close'	);
-		JKY.enable_button ('jky-action-delete'  );
+		JKY.enable_delete_button();
 		JKY.enable_button ('jky-batches-add-new');
 	}else{
 		JKY.disable_button('jky-action-close'	);
-		JKY.disable_button('jky-action-delete'  );
+		JKY.disable_delete_button();
 		JKY.disable_button('jky-batches-add-new');
 	}
 

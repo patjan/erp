@@ -44,7 +44,7 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.append_file('jky-load-cylinder', '../JKY.Search.Cylinder.html'	);
+	JKY.append_file('jky-load-cylinder', '../JKY.Search.Cylinder.html');
 	JKY.set_side_active('jky-planning-machines');
 	JKY.set_side_active('jky-threads-machines');
 	JKY.set_side_active('jky-production-machines');
