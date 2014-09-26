@@ -69,8 +69,8 @@ JKY.set_all_events_home = function() {
 		$('#jky-production-pieces'		).click (function() {JKY.process_action('pieces'			);});
 
 		$('#jky-threads-threads'		).click (function() {JKY.process_action('threads'			);});
-		$('#jky-threads-suppliers'		).click (function() {JKY.process_action('suppliers'			);});
 		$('#jky-threads-machines'		).click (function() {JKY.process_action('machines'			);});
+		$('#jky-threads-suppliers'		).click (function() {JKY.process_action('suppliers'			);});
 		$('#jky-threads-purchases'		).click (function() {JKY.process_action('purchases'			);});
 		$('#jky-threads-purc-lines'		).click (function() {JKY.process_action('purc_lines'		);});
 		$('#jky-threads-incomings'		).click (function() {JKY.process_action('incomings'			);});
@@ -94,9 +94,22 @@ JKY.set_all_events_home = function() {
 		$('#jky-dyers-shipdyers'		).click (function() {JKY.process_action('shipdyers'			);});
 
 		$('#jky-pieces-checkin'			).click (function() {JKY.process_action('pieces_checkin'	);});
-		$('#jky-pieces-return'			).click (function() {JKY.process_action('pieces_return'		);});
+//		$('#jky-pieces-return'			).click (function() {JKY.process_action('pieces_return'		);});
 		$('#jky-pieces-checkout'		).click (function() {JKY.process_action('pieces_checkout'	);});
-		$('#jky-fabrics-info'			).click (function() {JKY.process_action('fabrics_info'		);});
+//		$('#jky-pieces-info'			).click (function() {JKY.process_action('pieces_info'		);});
+
+		$('#jky-receiving-fabrics'		).click (function() {JKY.process_action('fabrics'			);});
+		$('#jky-receiving-products'		).click (function() {JKY.process_action('products'			);});
+		$('#jky-receiving-customers'	).click (function() {JKY.process_action('customers'			);});
+		$('#jky-receiving-dyers'		).click (function() {JKY.process_action('dyers'				);});
+		$('#jky-receiving-transports'	).click (function() {JKY.process_action('transports'		);});
+		$('#jky-receiving-receivedyers'	).click (function() {JKY.process_action('receivedyers'		);});
+//		$('#jky-receiving-loadins'		).click (function() {JKY.process_action('loadins'			);});
+
+		$('#jky-fabrics-checkin'		).click (function() {JKY.process_action('fabrics_checkin'	);});
+//		$('#jky-fabrics-return'			).click (function() {JKY.process_action('fabrics_return'	);});
+//		$('#jky-fabrics-checkout'		).click (function() {JKY.process_action('fabrics_checkout'	);});
+//		$('#jky-fabrics-info'			).click (function() {JKY.process_action('fabrics_info'		);});
 
 		$('#jky-help-tickets'			).click (function() {JKY.process_action('tickets'			);});
 
@@ -213,6 +226,7 @@ JKY.process_start_page = function() {
 		,{id:'jky-menu-boxes'		, icon:'plus', label:'Boxes'		}
 		,{id:'jky-menu-dyers'		, icon:'plus', label:'Dyers'		}
 		,{id:'jky-menu-pieces'		, icon:'plus', label:'Pieces'		}
+		,{id:'jky-menu-receiving'	, icon:'plus', label:'Receiving'	}
 		,{id:'jky-menu-fabrics'		, icon:'plus', label:'Fabrics'		}
 		,{id:'jky-menu-help'		, icon:'plus', label:'Help'			}
 		,{id:'jky-menu-admin'		, icon:'plus', label:'Admin'		}
@@ -249,12 +263,13 @@ JKY.process_menu = function(menu) {
 	switch(menu) {
 		case 'jky-menu-sales'		: JKY.show('jky-side-sales'		); JKY.process_action('quotations'		); break;
 		case 'jky-menu-planning'	: JKY.show('jky-side-planning'	); JKY.process_action('orders'			); break;
-		case 'jky-menu-purchases'	: JKY.show('jky-side-purchases'	); JKY.process_action('purchases'		); break;
+//		case 'jky-menu-purchases'	: JKY.show('jky-side-purchases'	); JKY.process_action('purchases'		); break;
 		case 'jky-menu-production'	: JKY.show('jky-side-production'); JKY.process_action('ftps'			); break;
 		case 'jky-menu-threads'		: JKY.show('jky-side-threads'	); JKY.process_action('purchases'		); break;
 		case 'jky-menu-boxes'		: JKY.show('jky-side-boxes'		); JKY.process_action('boxes_checkin'	); break;
 		case 'jky-menu-dyers'		: JKY.show('jky-side-dyers'		); JKY.process_action('shipdyers'		); break;
 		case 'jky-menu-pieces'		: JKY.show('jky-side-pieces'	); JKY.process_action('pieces_checkin'	); break;
+		case 'jky-menu-receiving'	: JKY.show('jky-side-receiving'	); JKY.process_action('receivedyers'	); break;
 		case 'jky-menu-fabrics'		: JKY.show('jky-side-fabrics'	); JKY.process_action('fabrics_checkin'	); break;
 		case 'jky-menu-help'		: JKY.show('jky-side-help'		); JKY.process_action('tickets'			); break;
 		case 'jky-menu-admin'		: JKY.show('jky-side-admin'		); JKY.process_action('contacts'		); break;

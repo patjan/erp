@@ -21,6 +21,7 @@ JKY.Application = function() {
 	JKY.incoming	= JKY.incoming	|| [];
 	JKY.loadout		= JKY.laodout	|| [];
 	JKY.planning	= JKY.planning	|| [];
+	JKY.receive		= JKY.receive	|| [];
 	JKY.purchase	= JKY.purchase	|| [];
 	JKY.sales		= JKY.sales		|| [];
 	JKY.shipdyer	= JKY.shipdyer	|| [];
@@ -29,6 +30,7 @@ JKY.Application = function() {
 	JKY.incoming.select = JKY.incoming.select	||			'Active';
 	JKY.loadout.select	= JKY.loadout.select	||	'Draft + Active';
 	JKY.planning.select = JKY.planning.select	||	'Draft + Active';
+	JKY.receive.select	= JKY.receive.select	||			'Active';
 	JKY.purchase.select = JKY.purchase.select	||	'Draft + Active';
 	JKY.sales.select	= JKY.sales.select		||	'Draft + Active';
 	JKY.shipdyer.select	= JKY.shipdyer.select	||	'Draft + Active';
@@ -258,13 +260,18 @@ if (my_first == true) {
 			case 'pt_BR'	: my_date_format = 'ddmmyyyy'; break;
 		}
 
+		var my_sort_false = {};
+			my_sort_false[0] = {sorter:false};
+		if (my_args.sort_false) {
+			my_sort_false[my_args.sort_false] = {sorter:false};
+		}
 		var my_sort_list = my_args.sort_list ? my_args.sort_list : [[1,0]];
 		$("#jky-app-table").tablesorter(
-			{delayInit:true
-			,dateFormat:my_date_format
-			,headers:{0:{sorter:false}}		//	disable sort on checkbox column
-			,sortList:my_sort_list			//	sort on second column, order asc
-			,showProcessing:true
+			{delayInit		:true
+			,dateFormat		:my_date_format
+			,headers		:my_sort_false		//	disable sort on checkbox column
+			,sortList		:my_sort_list		//	sort on second column, order asc
+			,showProcessing	:true
 			});
 
 		$("#jky-app-table").trigger("update", true);
@@ -325,7 +332,9 @@ if (my_first == true) {
 			JKY.hide('jky-action-print'		);
 			JKY.show('jky-action-save'		);
 			JKY.hide('jky-action-copy'		);
-			JKY.enable_button('jky-action-delete'	);
+
+			JKY.enable_delete_button();
+
 			JKY.show('jky-action-cancel'	);
 			JKY.hide('jky-app-table'		);
 			JKY.hide('jky-app-graph'		);

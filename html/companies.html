@@ -2,6 +2,7 @@
 	<thead>
 		<tr>
 			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-thumb'	><span>							</span></th>
 			<th class='jky-td-name-s'	><span>  Nick Name				</span></th>
 			<th class='jky-td-yes-no'	><span>   Customer				</span></th>
 			<th class='jky-td-yes-no'	><span>   Supplier				</span></th>
@@ -39,23 +40,23 @@
 				<div class='jky-form-label'><span>Full Name</span>:</div>
 				<input id='jky-full-name' class='jky-form-name' placeholder='Full Name' />
 			</div>
-			<div class='jky-form-line'>
+			<div class='jky-form-free'>
 				<div class='jky-form-label'></div>
 				<input id='jky-is-customer' type='checkbox' value='Yes' /> (<span>Is a Customer</span> ?)
 			</div>
-			<div class='jky-form-line'>
+			<div class='jky-form-free'>
 				<div class='jky-form-label'></div>
 				<input id='jky-is-supplier' type='checkbox' value='Yes' /> (<span>Is a Supplier</span> ?)
 			</div>
-			<div class='jky-form-line'>
+			<div class='jky-form-free'>
 				<div class='jky-form-label'></div>
 				<input id='jky-is-dyer' type='checkbox' value='Yes' /> (<span>Is a Dyer</span> ?)
 			</div>
-			<div class='jky-form-line'>
+			<div class='jky-form-free'>
 				<div class='jky-form-label'></div>
 				<input id='jky-is-partner' type='checkbox' value='Yes' /> (<span>Is a Partner</span> ?)
 			</div>
-			<div class='jky-form-line'>
+			<div class='jky-form-free'>
 				<div class='jky-form-label'></div>
 				<input id='jky-is-transport' type='checkbox' value='Yes' /> (<span>Is a Transport</span> ?)
 			</div>
@@ -129,35 +130,14 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-payments'		><a href='#jky-pane-payments'			data-toggle='tab'><span>Payments		</span></a></li>
 			<li	id='jky-tab-address'		><a href='#jky-pane-address'			data-toggle='tab'><span>Address			</span></a></li>
 			<li	id='jky-tab-phones'			><a href='#jky-pane-phones'				data-toggle='tab'><span>Phones			</span></a></li>
 			<li id='jky-tab-contacts'		><a href='#jky-pane-contacts'			data-toggle='tab'><span>Contacts		</span></a></li>
 			<li	id='jky-tab-remarks'		><a href='#jky-pane-remarks'			data-toggle='tab'><span>Remarks			</span></a></li>
+			<li	id='jky-tab-payments'		><a href='#jky-pane-payments'			data-toggle='tab'><span>Payments		</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
-			<div id='jky-pane-payments' class='tab-pane'>
-				<br>
-				<div class='jky-form-line'>
-					<div class='jky-form-label'><span>ICMS Exemption</span>?</div>
-					<div id='jky-icms-exemption' class='jky-form-icms-exemption'>
-						<input type='radio' name='jky-icms-exemption' value='Yes' /><span>Yes </span>
-						<input type='radio' name='jky-icms-exemption' value='No'  /><span>No  </span>
-					</div>
-				</div>
-				<div class='jky-form-line'><div class='jky-form-label'><span>Payments</span>: </div><input id='jky-payments'	class='jky-form-normal'	/></div>
-				<div class='jky-form-alert'>
-					<div class='jky-form-label'><span>Alert</span>:</div>
-					<textarea id='jky-alert' class='jky-alert'></textarea>
-				</div>
-
-				<div class='jky-form-line'>
-					<div class='jky-form-label'></div>
-					<button id='jky-action-save-payments' class='btn btn-success' type='button'><span>Save Payments</span></button>
-				</div>
-			</div>
-
 			<div id='jky-pane-address' class='tab-pane'>
 				<br>
 				<div class='jky-form-line'><div class='jky-form-label'><span> Street1</span>: </div><input id='jky-street1'		class='jky-form-normal'	/></div>
@@ -214,6 +194,27 @@
 				<div class='jky-form-line'>
 					<div class='jky-form-label'></div>
 					<button id='jky-action-save-remarks' class='btn btn-success' type='button'><span>Save Remarks</span></button>
+				</div>
+			</div>
+
+			<div id='jky-pane-payments' class='tab-pane'>
+				<br>
+				<div class='jky-form-line'>
+					<div class='jky-form-label'><span>ICMS Exemption</span>?</div>
+					<div id='jky-icms-exemption' class='jky-form-icms-exemption'>
+						<input type='radio' name='jky-icms-exemption' value='Yes' /><span>Yes </span>
+						<input type='radio' name='jky-icms-exemption' value='No'  /><span>No  </span>
+					</div>
+				</div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Payments</span>: </div><input id='jky-payments'	class='jky-form-normal'	/></div>
+				<div class='jky-form-alert'>
+					<div class='jky-form-label'><span>Alert</span>:</div>
+					<textarea id='jky-alert' class='jky-alert'></textarea>
+				</div>
+
+				<div class='jky-form-line'>
+					<div class='jky-form-label'></div>
+					<button id='jky-action-save-payments' class='btn btn-success' type='button'><span>Save Payments</span></button>
 				</div>
 			</div>
 		</div>

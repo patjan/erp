@@ -19,6 +19,7 @@ JKY.start_program = function() {
 		, sort_by		: 'ftp_number'
 		, sort_seq		: 'DESC'
 		, sort_list		: [[1, 1]]
+		, sort_false	: 2						//	thumb
 		, focus			: 'jky-diameter'
 		, add_new		: 'display form'
 		});
@@ -125,10 +126,11 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-td-number"	>' +				 the_row.ftp_number			+ '</td>'
-		+  '<td class="jky-td-name-w"	>' + JKY.fix_null	(the_row.product_name	)	+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.machine_name	)	+ '</td>'
-		+  '<td class="jky-td-name-l"	>' +				 the_row.composition		+ '</td>'
+		+  '<td class="jky-td-number"	>'	+				 the_row.ftp_number			+ '</td>'
+		+  '<td class="jky-td-thumb"	>'	+ JKY.fix_thumb	(the_row.photo, the_row.id, 'ftp_photos') + '</td>'
+		+  '<td class="jky-td-name-w"	>'	+ JKY.fix_null	(the_row.product_name	)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>'	+ JKY.fix_null	(the_row.machine_name	)	+ '</td>'
+		+  '<td class="jky-td-name-l"	>'	+				 the_row.composition		+ '</td>'
 		+  '</tr>'
 		;
 	return my_html;

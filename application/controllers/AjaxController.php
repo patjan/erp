@@ -735,29 +735,31 @@ $this->log_sql($table, 'get_index', $sql);
 private function set_specific($table, $specific, $specific_id) {
 	if ($specific == '')	return '';
 
-	if ($table == 'Contacts'		&& $specific == 'is_customer'	)	return ' AND      Contacts.is_customer	= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	return ' AND      Contacts.is_supplier	= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_dyer'		)	return ' AND      Contacts.is_dyer		= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_partner'	)	return ' AND      Contacts.is_partner	= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_transport'	)	return ' AND      Contacts.is_transport	= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_company'	)	return ' AND      Contacts.is_company	= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	return ' AND      Contacts.is_company	= "No" ';
-	if ($table == 'Contacts'		&& $specific == 'company'		)	return ' AND      Contacts.company_id	= ' . $specific_id;
-	if ($table == 'Batches'			&& $specific == 'incoming'		)	return ' AND       Batches.incoming_id	= ' . $specific_id;
-	if ($table == 'Batches'			&& $specific == 'thread'		)	return ' AND       Batches.thread_id	= ' . $specific_id;
-	if ($table == 'BatchOuts'		&& $specific == 'checkout'		)	return ' AND     BatchOuts.checkout_id	= ' . $specific_id;
-	if ($table == 'Boxes'			&& $specific == 'batch'			)	return ' AND         Boxes.batch_id		= ' . $specific_id;
-	if ($table == 'FTPs'			&& $specific == 'product'		)	return ' AND          FTPs.product_id	= ' . $specific_id;
-	if ($table == 'LoadOuts'		&& $specific == 'dyer'			)	return ' AND      LoadOuts.dyer_id		= ' . $specific_id
-																			.  ' AND      LoadOuts.shipdyer_id IS NULL';
-	if ($table == 'LoadOuts'		&& $specific == 'shipdyer'		)	return ' AND      LoadOuts.shipdyer_id	= ' . $specific_id;
-	if ($table == 'LoadSales'		&& $specific == 'loadout'		)	return ' AND     LoadSales.loadout_id	= ' . $specific_id;
-	if ($table == 'Pieces'			&& $specific == 'order'			)	return ' AND         Pieces.order_id	= ' . $specific_id;
-	if ($table == 'PurchaseLines'	&& $specific == 'parent'		)	return ' AND PurchaseLines.parent_id	= ' . $specific_id;
-	if ($table == 'PurchaseLines'	&& $specific == 'supplier'		)	return ' AND     Purchases.supplier_id	= ' . $specific_id;
-	if ($table == 'QuotColors'		&& $specific == 'color'			)	return ' AND    QuotColors.color_id		= ' . $specific_id
-																			.  ' AND        Orderx.ftp_id IS NOT NULL';
-	if ($table == 'Translations'	&& $specific == 'locale'		)	return ' AND  Translations.locale		= "en_US"';
+	if ($table == 'Contacts'		&& $specific == 'is_customer'	)	return ' AND      Contacts.is_customer		= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	return ' AND      Contacts.is_supplier		= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_dyer'		)	return ' AND      Contacts.is_dyer			= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_partner'	)	return ' AND      Contacts.is_partner		= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_transport'	)	return ' AND      Contacts.is_transport		= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_company'	)	return ' AND      Contacts.is_company		= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	return ' AND      Contacts.is_company		= "No" ';
+	if ($table == 'Contacts'		&& $specific == 'company'		)	return ' AND      Contacts.company_id		= ' . $specific_id;
+	if ($table == 'Batches'			&& $specific == 'incoming'		)	return ' AND       Batches.incoming_id		= ' . $specific_id;
+	if ($table == 'Batches'			&& $specific == 'thread'		)	return ' AND       Batches.thread_id		= ' . $specific_id;
+	if ($table == 'BatchOuts'		&& $specific == 'checkout'		)	return ' AND     BatchOuts.checkout_id		= ' . $specific_id;
+	if ($table == 'Boxes'			&& $specific == 'batch'			)	return ' AND         Boxes.batch_id			= ' . $specific_id;
+	if ($table == 'FTPs'			&& $specific == 'product'		)	return ' AND          FTPs.product_id		= ' . $specific_id;
+	if ($table == 'LoadIns'			&& $specific == 'receive'		)	return ' AND       LoadIns.receivedyer_id	= ' . $specific_id;
+	if ($table == 'LoadOuts'		&& $specific == 'dyer'			)	return ' AND      LoadOuts.dyer_id			= ' . $specific_id
+																			.  ' AND      LoadOuts.shipdyer_id		IS NULL';
+	if ($table == 'LoadOuts'		&& $specific == 'shipdyer'		)	return ' AND      LoadOuts.shipdyer_id		= ' . $specific_id;
+	if ($table == 'LoadSales'		&& $specific == 'loadout'		)	return ' AND     LoadSales.loadout_id		= ' . $specific_id;
+	if ($table == 'Pieces'			&& $specific == 'order'			)	return ' AND        Pieces.order_id			= ' . $specific_id;
+	if ($table == 'ProdPrices'		&& $specific == 'product'		)	return ' AND    ProdPrices.product_id		= ' . $specific_id;
+	if ($table == 'PurchaseLines'	&& $specific == 'parent'		)	return ' AND PurchaseLines.parent_id		= ' . $specific_id;
+	if ($table == 'PurchaseLines'	&& $specific == 'supplier'		)	return ' AND     Purchases.supplier_id		= ' . $specific_id;
+	if ($table == 'QuotColors'		&& $specific == 'color'			)	return ' AND    QuotColors.color_id			= ' . $specific_id
+																			.  ' AND        Orderx.ftp_id			IS NOT NULL';
+	if ($table == 'Translations'	&& $specific == 'locale'		)	return ' AND  Translations.locale			= "en_US"';
 
 	return '';
 }
@@ -770,11 +772,13 @@ private function set_select($table, $specific, $select) {
 		switch($table) {
 			case 'BatchOuts'		: return ' AND  BatchOuts	.status IN   ("Draft","Active")';
 			case 'CheckOuts'		: return ' AND  CheckOuts	.status IN   ("Draft","Active")';
+			case 'LoadIns'			: return ' AND  LoadIns		.status IN   ("Draft","Active")';
 			case 'LoadOuts'			: return ' AND  LoadOuts	.status IN   ("Draft","Active")';
 			case 'LoadSales'		: return ' AND  LoadSales	.status IN   ("Draft","Active")';
 			case 'Orders'			: return ' AND  Orders		.status IN   ("Draft","Active")';
 			case 'Purchases'		: return ' AND  Purchases	.status IN   ("Draft","Active")';
 			case 'PurchaseLines'	: return ' AND  Purchases	.status IN   ("Draft","Active")';
+			case 'ReceiveDyers'		: return ' AND  ReceiveDyers.status IN   ("Draft","Active")';
 			case 'ShipDyers'		: return ' AND  ShipDyers	.status IN   ("Draft","Active")';
 			case 'Quotations'		: return ' AND  Quotations	.status IN   ("Draft","Active")';
 			case 'TDyers'			: return ' AND  TDyers		.status IN   ("Draft","Active")';
@@ -803,6 +807,7 @@ private function set_select($table, $specific, $select) {
 		case 'FTP_Sets'			: return ' AND       FTP_Sets.parent_id		=  ' . $select;
 		case 'History'			: return ' AND        History.parent_name	= "' . $select . '"';
 		case 'Incomings'		: return ' AND      Incomings.status		= "' . $select . '"';
+		case 'LoadIns'			: return ' AND        LoadIns.status		= "' . $select . '"';
 		case 'LoadOuts'			: return ' AND       LoadOuts.status		= "' . $select . '"';
 		case 'LoadSales'		: return ' AND      LoadSales.status		= "' . $select . '"';
 		case 'LoadSets'			: return ' AND       LoadSets.status		= "' . $select . '"';
@@ -811,12 +816,14 @@ private function set_select($table, $specific, $select) {
 		case 'OrdThreads'		: return ' AND     OrdThreads.parent_id		=  ' . $select;
 		case 'Permissions'		: return ' AND    Permissions.user_role		= "' . $select . '"';
 		case 'Pieces'			: return ' AND         Pieces.status		= "' . $select . '"';
+		case 'ProdPrices'		: return ' AND     ProdPrices.status		= "' . $select . '"';
 		case 'Products'			: return ' AND       Products.product_type	= "' . $select . '"';
 		case 'Purchases'		: return ' AND      Purchases.status		= "' . $select . '"';
 		case 'PurchaseLines'	: return ' AND      Purchases.status		= "' . $select . '"';
 		case 'Quotations'		: return ' AND     Quotations.status		= "' . $select . '"';
 		case 'QuotLines'		: return ' AND      QuotLines.parent_id		=  ' . $select;
 		case 'QuotColors'		: return ' AND     QuotColors.parent_id		=  ' . $select;
+		case 'ReceiveDyers'		: return ' AND   ReceiveDyers.status		= "' . $select . '"';
 		case 'ReqLines'			: return ' AND       ReqLines.request_id	=  ' . $select;
 		case 'ShipDyers'		: return ' AND      ShipDyers.status		= "' . $select . '"';
 		case 'TDyers'			: return ' AND         TDyers.status		= "' . $select . '"';
@@ -855,6 +862,7 @@ private function set_new_fields($table) {
 	if ($table == 'FTP_Sets'		)	$return = ',   Configs.sequence			AS           sequence'
 												. ',   Configs.name				AS           name';
 	if ($table == 'History'			)	$return = ',  Contacts.full_name		AS   updated_name';
+	if ($table == 'LoadIns'			)	$return = ',   Product.product_name		AS   product_name';
 	if ($table == 'LoadOuts'		)	$return = ',      Dyer.nick_name		AS      dyer_name'
 												. ',     Color.color_name		AS     color_name';
 	if ($table == 'LoadSales'		)	$return = ',   LoadOut.loadout_number	AS   loadout_number'
@@ -890,6 +898,7 @@ private function set_new_fields($table) {
 												. ', Inspected.nick_name		AS inspected_name'
 												. ',   Weighed.nick_name		AS   weighed_name'
 												. ',   Product.product_name		AS   product_name';
+	if ($table == 'Products'		)	$return = ',    Parent.product_name		AS    parent_name';
 	if ($table == 'Purchases'		)	$return = ',  Supplier.nick_name		AS  supplier_name';
 	if ($table == 'PurchaseLines'	)	$return = ', Purchases.purchase_number	AS  purchase_number'
 												. ', Purchases.ordered_at		AS   ordered_at'
@@ -964,6 +973,7 @@ private function set_new_fields($table) {
 												. ',   Partner.nick_name		AS   partner_name'
 												. ',  Supplier.nick_name		AS  supplier_name'
 												. ',      Dyer.nick_name		AS      dyer_name';
+	if ($table == 'ReceiveDyers'	)	$return = ',      Dyer.nick_name		AS      dyer_name';
 	if ($table == 'TDyers'			)	$return = ',    Orderx.order_number		AS	   order_number'
 												. ',  Customer.nick_name		AS  customer_name'
 												. ',      Dyer.nick_name		AS      dyer_name';
@@ -974,6 +984,7 @@ private function set_new_fields($table) {
 												. ',   Threads.thread_group		AS    thread_group'
 												. ',   Threads.name				AS    thread_name'
 												. ',   Configs.sequence			AS    thread_sequence';
+	if ($table == 'Translations'	)	$return = ', Translated.sentence		AS           translated';
 
 //	special code to append fields from Contacts to Services table
 	if (get_request('method') == 'export') {
@@ -1017,6 +1028,7 @@ private function set_left_joins($table) {
 	if ($table == 'FTP_Sets'		)	$return = '  LEFT JOIN     Configs  			ON   Configs.id	=		  FTP_Sets.setting_id';
 	if ($table == 'History'			)	$return = '  LEFT JOIN   JKY_Users AS Users		ON     Users.id =		   History.updated_by'
 												. '  LEFT JOIN    Contacts				ON  Contacts.id =			 Users.contact_id';
+	if ($table == 'LoadIns'			)	$return = '  LEFT JOIN    Products AS Product	ON   Product.id	=		   LoadIns.product_id';
 	if ($table == 'LoadOuts'		)	$return = '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		  LoadOuts.dyer_id'
 												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		  LoadOuts.color_id';
 	if ($table == 'LoadSales'		)	$return = '  LEFT JOIN    LoadOuts AS LoadOut	ON   LoadOut.id	=		 LoadSales.loadout_id'
@@ -1048,6 +1060,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Contacts AS Inspected	ON Inspected.id	=		    Pieces.inspected_by'
 												. '  LEFT JOIN    Contacts AS Weighed	ON   Weighed.id	=		    Pieces.weighed_by'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		    Orderx.product_id';
+	if ($table == 'Products'		)	$return = '  LEFT JOIN    Products AS Parent	ON    Parent.id	=		  Products.parent_id';
 	if ($table == 'Purchases'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Purchases.supplier_id';
 	if ($table == 'PurchaseLines'	)	$return = '  LEFT JOIN   Purchases  			ON Purchases.id	=	 PurchaseLines.parent_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=	 PurchaseLines.thread_id'
@@ -1113,6 +1126,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Contacts AS Partner	ON   Partner.id	=		 CheckOuts.partner_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id'
 												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		 CheckOuts.dyer_id';
+	if ($table == 'ReceiveDyers'	)	$return = '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=	  ReceiveDyers.dyer_id';
 	if ($table == 'TDyers'			)	$return = '  LEFT JOIN      Orders AS Orderx	ON    Orderx.id	=		    TDyers.order_id'
 												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		    TDyers.customer_id'
 												. '  LEFT JOIN    Contacts AS Dyer    	ON      Dyer.id	=		    TDyers.dyer_id';
@@ -1122,6 +1136,7 @@ private function set_left_joins($table) {
 	if ($table == 'ThreadForecast'	)	$return = '  LEFT JOIN    Contacts  			ON  Contacts.id	=	ThreadForecast.supplier_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=	ThreadForecast.thread_id'
 												. '  LEFT JOIN	   Configs  			ON   Configs.name = Threads.thread_group AND Configs.group_set = "Thread Groups"';
+	if ($table == 'Translations'	)	$return = '  LEFT JOIN Translations AS Translated ON Translated.parent_id = Translations.parent_id AND Translated.locale = "pt_BR"';
 	return $return;
 }
 
@@ -2768,6 +2783,7 @@ private function insert($data) {
 		case('LoadOuts'		)	: $set .=   ', loadout_number = ' . $my_id; break;
 		case('Orders'		)	: $set .=     ', order_number = ' . $my_id; break;
 		case('Purchases'	)	: $set .=  ', purchase_number = ' . $my_id; break;
+		case('ReceiveDyers'	)	: $set .=   ', receive_number = ' . $my_id; break;
 		case('Quotations'	)	: $set .= ', quotation_number = ' . $my_id; break;
 		case('Pieces'		)	: $set .=          ', barcode = ' . $my_id; break;
 		case('Requests'		)	: $set .=           ', number = ' . $my_id; break;

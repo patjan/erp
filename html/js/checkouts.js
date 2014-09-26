@@ -101,11 +101,11 @@ JKY.set_table_row = function(the_row) {
 JKY.set_form_row = function(the_row) {
 	if (the_row.status == 'Active') {
 		JKY.enable_button ('jky-action-close'	);
-		JKY.enable_button ('jky-action-delete'  );
+		JKY.enable_delete_button();
 		JKY.enable_button ('jky-batches-add-new');
 	}else{
 		JKY.disable_button('jky-action-close'	);
-		JKY.disable_button('jky-action-delete'  );
+		JKY.disable_delete_button();
 		JKY.disable_button('jky-batches-add-new');
 	}
 

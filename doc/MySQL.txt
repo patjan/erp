@@ -76,3 +76,7 @@ SELECT checkin_location, COUNT(*)
  
  
 UPDATE Changes SET servers = '1 9 ';
+
+SELECT color_type, COUNT(*)
+  FROM ProdPrices
+ GROUP by color_type

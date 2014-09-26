@@ -50,9 +50,15 @@ $(function() {
 //	$(document).ajaxStart(function() {						 $('#jky-loading').show();});
 //	$(document).ajaxStop (function() {setTimeout(function() {$('#jky-loading').hide();}, 2000)});
 
-	$(window).bind('resize', function() {
-		JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
+	$(window).resize(function() {
+//		JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
+		JKY.resize_window();
 	});
+
+	setTimeout(function() {
+		JKY.resize_window();
+	}, 500);	//	minimum delay of 100 ms
+
 });
 
 /**
@@ -74,6 +80,23 @@ JKY.Xbinding_on_resize = function() {
 	} else {
 		setTimeout(function() {JKY.binding_on_resize();}, 100);
 	}
+}
+
+JKY.resize_window = function() {
+	var my_width = $(window).width();
+//	if (my_width < 1041)	my_width = 1041;
+
+//	$('.adm-config-value'			).css('width' , my_width -880 + 'px');
+
+	var my_height = $(window).height();
+//	if (my_height < 400)	my_width = 400;
+//	$('#ihs-controls').css('width', my_width-the_offset + 'px');
+
+//	$('#jky-app-table'			).css('height', my_height-189 + 'px');
+//	$('#jky-table-body'			).css('height', my_height-189 + 'px');
+//	$('#jky-form-data'			).css('height', my_height-189 + 'px');
+//	$('#adm-sub-selector-body'		).css('height', my_height-235 + 'px');
+//	$('#adm-content-body'			).css('height', my_height-266 + 'px');
 }
 
 /**
@@ -350,6 +373,7 @@ JKY.process_action = function(action) {
 	JKY.set_side_active('jky-boxes-'		+ action);
 	JKY.set_side_active('jky-dyers-'		+ action);
 	JKY.set_side_active('jky-pieces-'		+ action);
+	JKY.set_side_active('jky-receiving-'	+ action);
 	JKY.set_side_active('jky-fabrics-'		+ action);
 	JKY.set_side_active('jky-help-'			+ action);
 	JKY.set_side_active('jky-admin-'		+ action);
@@ -489,6 +513,23 @@ JKY.fix_dmy2ymd = function(the_date){
 
 	var my_dates = my_date.split('-');
 	return my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];
+}
+
+/**
+ * fix thumb name
+ *
+ * @param	the_photo	filename, date time, size
+ * @param	the_id
+ * @param	the_folder	contacts, products, ...
+ * @return	img tag
+ */
+JKY.fix_thumb = function(the_photo, the_id, the_folder){
+	if (the_photo) {
+		var my_time = the_photo.split(',')[1];
+		return '<img class="jky-mini" src="/thumbs/' + the_folder + '/' + the_id + '.png?time=' + my_time + '">';
+	}else{
+		return '';
+	}
 }
 
 /**
@@ -1098,6 +1139,7 @@ JKY.set_menu_active = function(id_name){
 	JKY.hide('jky-side-boxes'		);
 	JKY.hide('jky-side-dyers'		);
 	JKY.hide('jky-side-pieces'		);
+	JKY.hide('jky-side-receiving'	);
 	JKY.hide('jky-side-fabrics'		);
 	JKY.hide('jky-side-help'		);
 	JKY.hide('jky-side-admin'		);
@@ -1750,6 +1792,7 @@ JKY.is_permitted = function(the_menu_id) {
 		case('jky-menu-boxes'		)	:	my_resource = 'Menu-Boxes'		; break;
 		case('jky-menu-dyers'		)	:	my_resource = 'Menu-Dyers'		; break;
 		case('jky-menu-pieces'		)	:	my_resource = 'Menu-Pieces'		; break;
+		case('jky-menu-receiving'	)	:	my_resource = 'Menu-Receiving'	; break;
 		case('jky-menu-fabrics'		)	:	my_resource = 'Menu-Fabrics'	; break;
 		case('jky-menu-help'		)	:	my_resource = 'Menu-Help'		; break;
 		case('jky-menu-admin'		)	:	my_resource = 'Menu-Admin'		; break;
@@ -2694,4 +2737,22 @@ JKY.var_dump = function(the_name, the_object) {
 	var my_pre = document.createElement('pre');
 	my_pre.innerHTML = my_output;
 	document.body.appendChild(my_pre);
+}
+
+JKY.enable_delete_button = function() {
+	if (JKY.Session.get_value('user_role') == 'Support'
+	||  JKY.Session.get_value('user_role') == 'Admin') {
+		JKY.enable_button('jky-action-delete');
+	}else{
+		JKY.hide('jky-action-delete');
+	}
+}
+
+JKY.disable_delete_button = function() {
+	if (JKY.Session.get_value('user_role') == 'Support'
+	||  JKY.Session.get_value('user_role') == 'Admin') {
+		JKY.disable_button('jky-action-delete');
+	}else{
+		JKY.hide('jky-action-delete');
+	}
 }

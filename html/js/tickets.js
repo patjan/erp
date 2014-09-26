@@ -19,6 +19,7 @@ JKY.start_program = function() {
 		, sort_by		: 'opened_at'
 		, sort_seq		: 'DESC'
 		, sort_list		: [[1, 1]]
+		, sort_false	: 5						//	thumb
 		, focus			: 'jky-description'
 		, add_new		: 'display form'
 		});
@@ -70,11 +71,12 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-td-datetime"	>' + the_row.opened_at		+ '</td>'
-		+  '<td class="jky-td-input"	>' + the_row.worked_hour	+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + the_row.priority		+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + the_row.category		+ '</td>'
-		+  '<td class="jky-td-name-l"	>' + the_row.description	+ '</td>'
+		+  '<td class="jky-td-datetime"	>'	+ the_row.opened_at		+ '</td>'
+		+  '<td class="jky-td-input"	>'	+ the_row.worked_hour	+ '</td>'
+		+  '<td class="jky-td-name-s"	>'	+ the_row.priority		+ '</td>'
+		+  '<td class="jky-td-name-s"	>'	+ the_row.category		+ '</td>'
+		+  '<td class="jky-td-thumb"	>'	+ JKY.fix_thumb	(the_row.photo, the_row.id, 'tickets') + '</td>'
+		+  '<td class="jky-td-name-l"	>'	+ the_row.description	+ '</td>'
 		;
 	return my_html;
 };
@@ -85,11 +87,11 @@ JKY.set_table_row = function(the_row) {
 JKY.set_form_row = function(the_row) {
 	if (the_row.status == 'Open') {
 		JKY.enable_button ('jky-action-close'	);
-		JKY.enable_button ('jky-action-delete'  );
+		JKY.enable_delete_button();
 		JKY.enable_button ('jky-batches-add-new');
 	}else{
 		JKY.disable_button('jky-action-close'	);
-		JKY.disable_button('jky-action-delete'  );
+		JKY.disable_delete_button();
 		JKY.disable_button('jky-batches-add-new');
 	}
 

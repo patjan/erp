@@ -7,8 +7,10 @@ CREATE TABLE IF NOT EXISTS Products
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'
 
+, parent_id			BIGINT				DEFAULT NULL
 , product_name		VARCHAR(255)		DEFAULT NULL
 , product_type		VARCHAR(32)			DEFAULT 'Tubular'
+, finishing			VARCHAR(255)		DEFAULT NULL
 , start_date		DATE				DEFAULT NULL
 , peso				DECIMAL(5,2)		DEFAULT 0		# Peso da Peca (12.5) (Kg)
 , units				INT(11)				DEFAULT 1		# Unidades por Peca
@@ -25,3 +27,7 @@ ALTER TABLE Products		ADD		units					INT(11)			DEFAULT 1		AFTER start_date;
 ALTER TABLE Products		ADD		peso					DECIMAL(5,2)	DEFAULT 0		AFTER start_date;
 
 ALTER TABLE Products		ADD		cone_type				VARCHAR(32)		DEFAULT NULL	AFTER units;
+
+ALTER TABLE Products		ADD COLUMN parent_id    		BIGINT   		DEFAULT NULL  	AFTER status;
+
+ALTER TABLE Products		ADD		finishing				VARCHAR(255)	DEFAULT NULL	AFTER product_type;
