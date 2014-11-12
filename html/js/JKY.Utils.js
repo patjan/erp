@@ -1258,7 +1258,7 @@ JKY.invisible = function(id_name){
 }
 
 /**
- * hide specific id name
+ * show specific id name
  * @param	id_name
  */
 JKY.visible = function(id_name){

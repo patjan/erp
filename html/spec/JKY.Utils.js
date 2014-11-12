@@ -545,9 +545,21 @@ THERE IS A BUG IN HERE
     describe("test JKY.collapse", function() {
         it("Collapse the side bar", function() {
             JKY.collapse('my_box2');
-            expect(JKY.has_class('my_box2', 'active')).toBeTruthy();
+            expect(JKY.has_class('my_box2', 'active')).toBeFalsy();
         });
     });
 
+    describe("test JKY.invisible", function() {
+        it("Hide specific id names", function() {
+            JKY.invisible('my_box2');
+            expect(JKY.has_class('visibility', 'hidden')).toBeTruthy();
+        });
+    });
 
+    describe("test JKY.visible", function() {
+        it("Show specific id names", function() {
+            JKY.visible('my_box2');
+            expect(JKY.has_class('visibility', 'shown')).toBeTruthy();
+        });
+    });
 });
