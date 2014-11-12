@@ -9,12 +9,12 @@ CREATE TABLE IF NOT EXISTS Orders
 
 , order_number		VARCHAR(32)			DEFAULT NULL
 , customer_id		BIGINT				DEFAULT NULL
-, machine_id		BIGINT				DEFAULT NULL
-, partner_id		BIGINT				DEFAULT NULL
 , product_id		BIGINT				DEFAULT NULL
 , ftp_id			BIGINT				DEFAULT NULL
-, quot_line_id		BIGINT				DEFAULT NULL
-, quotation_number	VARCHAR(32)			DEFAULT NULL
+, machine_id		BIGINT				DEFAULT NULL
+, partner_id		BIGINT				DEFAULT NULL
+, osa_line_id		BIGINT				DEFAULT NULL
+, osa_number		VARCHAR(32)			DEFAULT NULL
 , labels_printed	INT					DEFAULT 0
 , fpts_printed		INT					DEFAULT 0
 , ops_printed		INT					DEFAULT 0
@@ -66,3 +66,7 @@ ALTER TABLE Orders			ADD COLUMN checkout_pieces	INT				DEFAULT 0		AFTER produced
 
 ALTER TABLE Orders			ADD COLUMN quoted_units		INT				DEFAULT 0		AFTER produced_at;
 ALTER TABLE Orders			ADD COLUMN produced_weight	DECIMAL(10,2)	DEFAULT 0		AFTER ordered_weight;
+
+ALTER TABLE Orders			CHANGE	quot_line_id		osa_line_id		BIGINT			DEFAULT NULL;
+ALTER TABLE Orders			CHANGE	quotation_number	osa_number		VARCHAR(32)		DEFAULT NULL;
+

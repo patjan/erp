@@ -80,3 +80,7 @@ UPDATE Changes SET servers = '1 9 ';
 SELECT color_type, COUNT(*)
   FROM ProdPrices
  GROUP by color_type
+
+ SELECT composition, COUNT(*)
+  FROM FTPs
+ GROUP by composition

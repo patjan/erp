@@ -30,12 +30,15 @@ JKY.start_program = function() {
  */
 JKY.set_all_events = function() {
 	$('#jky-action-change'		).click( function() {JKY.App.change_status(JKY.row.id);});
+	$('#jky-recipe-add-new'		).click (function() {JKY.insert_recipe		();});
+	$('#jky-action-save-remarks').click (function()	{JKY.App.save_remarks	();});
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
+	JKY.append_file('jky-load-composition', '../JKY.Search.Composition.html');
 	JKY.set_side_active('jky-sales-colors');
 	JKY.set_html('jky-status'			, JKY.set_controls('Status Codes', 'Active'));
 	JKY.set_html('jky-color-type'		, JKY.set_configs ('Color Types' , JKY.App.get('select'), ''));
@@ -45,6 +48,8 @@ JKY.set_initial_values = function() {
 //	select the first option as default
 	$('#jky-app-select option').eq(1).prop('selected', true);
 	$('#jky-app-select').change();
+
+	$('#jky-composition-filter').KeyUpDelay(JKY.Composition.display);
 };
 
 /**
@@ -66,6 +71,8 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_html	('jky-status'			, JKY.t			(the_row.status				));
 	JKY.set_value	('jky-color-name'		,				 the_row.color_name			);
 	JKY.set_option	('jky-color-type'		,				 the_row.color_type			);
+	JKY.set_value	('jky-remarks'			,				 JKY.row.remarks		);
+	JKY.display_recipes();
 };
 
 /**
@@ -74,6 +81,7 @@ JKY.set_form_row = function(the_row) {
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-color-name'		, '');
 	JKY.set_option	('jky-color-type'		, '');
+	JKY.set_value	('jky-remarks'			, '');
 };
 
 /**
@@ -86,3 +94,13 @@ JKY.get_form_set = function() {
 		;
 	return my_set;
 };
+
+JKY.process_delete = function(the_id, the_row) {
+	var my_data =
+		{ method: 'delete_many'
+		, table : 'Recipes'
+		, where : 'color_id = ' + the_id
+		};
+	JKY.ajax(true, my_data);
+};
+

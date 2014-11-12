@@ -20,6 +20,8 @@ JKY.display_phones = function(the_row) {
 	JKY.set_value	('jky-phone'	, the_row.phone		);
 	JKY.set_value	('jky-mobile'	, the_row.mobile	);
 	JKY.set_value	('jky-fax'		, the_row.fax		);
+	JKY.set_value	('jky-skype'	, the_row.skype		);
+	JKY.set_value	('jky-nextel'	, the_row.nextel	);
 }
 
 /*
@@ -50,6 +52,7 @@ JKY.display_remarks = function(the_row) {
  */
 JKY.display_payments = function(the_row) {
 	JKY.set_radio	('jky-icms-exemption'	, the_row.icms_exemption);
+	JKY.set_value	('jky-interest-rate'	, the_row.interest_rate	);
 	JKY.set_value	('jky-payments'			, the_row.payments		);
 	JKY.set_value	('jky-alert'			, the_row.alert			);
 }
@@ -79,10 +82,11 @@ JKY.generate_contact = function(the_row) {
 	var my_html = ''
 		+ '<tr contact_id=' + my_id + '>'
 		+ '<td class="jky-full-name"	>' + the_row.full_name	+ '</td>'
+		+ '<td class="jky-user-role"	>' + the_row.user_role	+ '</td>'
+		+ '<td class="jky-phone"		>' + the_row.phone		+ '</td>'
 		+ '<td class="jky-mobile"		>' + the_row.mobile		+ '</td>'
 		+ '<td class="jky-email"		>' + the_row.email		+ '</td>'
 		+ '<td class="jky-user-name"	>' + the_row.user_name	+ '</td>'
-		+ '<td class="jky-user-role"	>' + the_row.user_role	+ '</td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -205,6 +209,8 @@ JKY.save_phones = function() {
 	var my_set  =     'phone = \'' + JKY.get_value('jky-phone'	) + '\''
 				+  ', mobile = \'' + JKY.get_value('jky-mobile'	) + '\''
 				+     ', fax = \'' + JKY.get_value('jky-fax'	) + '\''
+				+   ', skype = \'' + JKY.get_value('jky-skype'	) + '\''
+				+  ', nextel = \'' + JKY.get_value('jky-nextel'	) + '\''
 				;
 	var my_where = 'id = ' + JKY.row.id;
 	var my_data =
@@ -245,9 +251,14 @@ JKY.save_remarks_success = function(response) {
 
 JKY.save_payments = function() {
 //	JKY.display_message('JKY.save_payments');
-	var my_set  = 'icms_exemption = \'' + JKY.get_checked('jky-icms-exemption'	) + '\''
-				+     ', payments = \'' + JKY.get_value  ('jky-payments'		) + '\''
-				+        ', alert = \'' + JKY.get_value  ('jky-alert'			) + '\''
+	var my_interest_rate = JKY.get_value('jky-interest-rate');
+	if (my_interest_rate == '') {
+		my_interest_rate = 'null';
+	}
+	var my_set  =  'icms_exemption = \'' + JKY.get_checked('jky-icms-exemption'	) + '\''
+				+ ', interest_rate =   ' +					 my_interest_rate
+				+      ', payments = \'' + JKY.get_value  ('jky-payments'		) + '\''
+				+         ', alert = \'' + JKY.get_value  ('jky-alert'			) + '\''
 				;
 	var my_where = 'id = ' + JKY.row.id;
 	var my_data =

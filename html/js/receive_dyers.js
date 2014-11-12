@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * receivedyers.js
+ * receive_dyers.js
  */
 
 /**
@@ -49,7 +49,7 @@ JKY.set_initial_values = function() {
 
 	JKY.show('jky-action-graph');
 
-	JKY.set_side_active('jky-dyers-receivedyers');
+	JKY.set_side_active('jky-receiving-receive-dyers');
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.receive.select, 'All', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');

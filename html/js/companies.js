@@ -67,6 +67,7 @@ JKY.set_initial_values = function() {
 //	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
 	JKY.set_html('jky-parent-company'	, JKY.set_options_array('', JKY.get_companies('parent_id IS NULL AND is_customer'), true));
 	JKY.set_html('jky-contact-tag'		, JKY.set_configs ('Customer Tags'	, '', ''));
+	JKY.set_html('jky-payment-type'		, JKY.set_configs ('Payment Types'	, '', ''));
 	JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
 	JKY.set_html('jky-country'			, JKY.set_configs ('Countries'		, '', ''));
 	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Inactive'));
@@ -117,6 +118,8 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-cnpj'				, the_row.cnpj			);
 	JKY.set_value	('jky-ie'				, the_row.ie			);
 	JKY.set_value	('jky-im'				, the_row.im			);
+	JKY.set_value	('jky-credit-limit'		, the_row.credit_limit	);
+	JKY.set_value	('jky-payment-type'		, the_row.payment_type	);
 	JKY.set_value	('jky-website'			, the_row.website		);
 	JKY.set_value	('jky-email'			, the_row.email			);
 //	JKY.disable_button('jky-is-company');
@@ -152,6 +155,8 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-cnpj'				, '');
 	JKY.set_value	('jky-ie'				, '');
 	JKY.set_value	('jky-im'				, '');
+	JKY.set_value	('jky-credit-limit'		, '0');
+	JKY.set_value	('jky-payment-type'		, '');
 	JKY.set_value	('jky-website'			, '');
 	JKY.set_value	('jky-email'			, '');
 
@@ -178,6 +183,8 @@ JKY.get_form_set = function() {
 		+          ', cnpj=\'' + JKY.get_value	('jky-cnpj'				) + '\''
 		+            ', ie=\'' + JKY.get_value	('jky-ie'				) + '\''
 		+            ', im=\'' + JKY.get_value	('jky-im'				) + '\''
+		+  ', credit_limit=  ' + JKY.get_value	('jky-credit-limit'		)
+		+  ', payment_type=\'' + JKY.get_value	('jky-payment-type'		) + '\''
 		+       ', website=\'' + JKY.get_value	('jky-website'			) + '\''
 		+         ', email=\'' + JKY.get_value	('jky-email'			) + '\''
 		;

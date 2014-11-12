@@ -1,8 +1,6 @@
 DROP   TABLE IF     EXISTS Pieces;
 CREATE TABLE IF NOT EXISTS Pieces
 ( id				BIGINT				NOT NULL AUTO_INCREMENT
-, created_by		BIGINT				DEFAULT NULL
-, created_at		DATETIME			DEFAULT NULL
 , updated_by		BIGINT				DEFAULT NULL
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'	# Active	> Check In
@@ -33,6 +31,7 @@ CREATE TABLE IF NOT EXISTS Pieces
 , checkin_weight	DECIMAL(10,2)		DEFAULT 0
 , retuned_weight	DECIMAL(10,2)		DEFAULT 0
 
+, qualities			VARCHAR(255)		DEFAULT NULL
 , remarks			TEXT				DEFAULT NULL
 
 , PRIMARY KEY(id)
@@ -55,4 +54,7 @@ ALTER TABLE Pieces			ADD COLUMN				weighed_by		BIGINT			DEFAULT NULL	AFTER inspe
 UPDATE	Pieces	SET	checkin_location = UPPER(checkin_location);
 
 ALTER TABLE Pieces			CHANGE	parent_id	loadsale_id		BIGINT			DEFAULT NULL;
+
+ALTER TABLE Pieces			ADD COLUMN		qualities		VARCHAR(255)		DEFAULT NULL	AFTER returned_at;
+
 

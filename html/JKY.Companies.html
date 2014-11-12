@@ -87,6 +87,14 @@
 		<div class='jky-clear'></div>
 
 		<div class='jky-left'>
+			<div id='jky-credit-line'  class='jky-form-line'>
+				<div class='jky-form-label'><span>Credit Limit</span>:</div>
+				<input id='jky-credit-limit' class='jky-form-price'  />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Payment Type</span>:</div>
+				<select id='jky-payment-type'></select>
+			</div>
 			<div id='jky-website-line'  class='jky-form-line'>
 				<div class='jky-form-label'><span>Website</span>:</div>
 				<input id='jky-website' class='jky-form-normal' placeholder='www.jkysoftware.com' />
@@ -120,6 +128,7 @@
 			<li	id='jky-tab-address'		><a href='#jky-pane-address'			data-toggle='tab'><span>Address			</span></a></li>
 			<li	id='jky-tab-phones'			><a href='#jky-pane-phones'				data-toggle='tab'><span>Phones			</span></a></li>
 			<li id='jky-tab-contacts'		><a href='#jky-pane-contacts'			data-toggle='tab'><span>Contacts		</span></a></li>
+			<li	id='jky-tab-restrictions'	><a href='#jky-pane-restrictions'		data-toggle='tab'><span>Restrictions	</span></a></li>
 			<li	id='jky-tab-remarks'		><a href='#jky-pane-remarks'			data-toggle='tab'><span>Remarks			</span></a></li>
 			<li	id='jky-tab-payments'		><a href='#jky-pane-payments'			data-toggle='tab'><span>Payments		</span></a></li>
 		</ul>
@@ -127,13 +136,13 @@
 		<div class='tab-content'>
 			<div id='jky-pane-address' class='tab-pane'>
 				<br>
-				<div class='jky-form-line'><div class='jky-form-label'><span> Street1</span>: </div><input id='jky-street1'		class='jky-form-normal'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>     ZIP</span>: </div><input id='jky-zip'			class='jky-form-zip'	placeholder='Zip' /></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span> Street1</span>: </div><input id='jky-street1'		class='jky-form-name'	/></div>
 				<div class='jky-form-line'><div class='jky-form-label'><span>  Number</span>: </div><input id='jky-st-number'	class='jky-form-street'	/></div>
-				<div class='jky-form-line'><div class='jky-form-label'><span>     Cpl</span>: </div><input id='jky-st-cpl'		class='jky-form-street'	/></div>
-				<div class='jky-form-line'><div class='jky-form-label'><span> Street2</span>: </div><input id='jky-street2'		class='jky-form-normal'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>     Cpl</span>: </div><input id='jky-st-cpl'		class='jky-form-name'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span> Street2</span>: </div><input id='jky-street2'		class='jky-form-name'	/></div>
 				<div class='jky-form-line'><div class='jky-form-label'><span>    City</span>: </div>
 					<input	id='jky-city'		class='jky-form-city'		placeholder='City'/>
-					<input	id='jky-zip'		class='jky-form-zip'		placeholder='Zip' />
 					<select id='jky-state'		class='jky-form-state'		></select>
 				</div>
 				<div class='jky-form-line'><div class='jky-form-label'><span> Country</span>: </div><select id='jky-country'	class='jky-form-name'></select></div>
@@ -147,6 +156,8 @@
 				<div class='jky-form-line'><div class='jky-form-label'><span> Phone</span>:	</div><input  id='jky-phone'	class='jky-form-phone' placeholder='123-456-7890'	/></div>
 				<div class='jky-form-line'><div class='jky-form-label'><span>Mobile</span>:	</div><input  id='jky-mobile'	class='jky-form-phone' placeholder='123-456-7890'	/></div>
 				<div class='jky-form-line'><div class='jky-form-label'><span>   Fax</span>:	</div><input  id='jky-fax'		class='jky-form-phone' placeholder='123-456-7890'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span> Skype</span>:	</div><input  id='jky-skype'	class='jky-form-phone' placeholder='123-456-7890'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Nextel</span>:	</div><input  id='jky-nextel'	class='jky-form-phone' placeholder='123-456-7890'	/></div>
 				<br>
 				<div class='jky-form-line'><div class='jky-form-label'></div><button id='jky-action-save-phones' class='btn btn-success' type='button'><span>Save Phones</span></button></div>
 			</div>
@@ -156,13 +167,36 @@
 					<thead>
 						<tr>
 							<th class='jky-full-name'		><span>Full Name		</span></th>
+							<th class='jky-user-role'		><span>User Role		</span></th>
+							<th class='jky-phone'			><span>Phone			</span></th>
 							<th class='jky-mobile'			><span>Mobile			</span></th>
 							<th class='jky-email'			><span>Email			</span></th>
 							<th class='jky-user-name'		><span>User Name		</span></th>
-							<th class='jky-user-role'		><span>User Role		</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-contacts-body'></tbody>
+				</table>
+			</div>
+
+			<div id='jky-pane-restrictions' class='tab-pane'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<th class='jky-td-action'	></th>
+							<th class='jky-td-ref'		><span>Date			</span></th>
+							<th class='jky-td-ref'		><span>Document		</span></th>
+							<th class='jky-td-ref'		><span>Bank			</span></th>
+							<th class='jky-td-ref'		><span>Number		</span></th>
+							<th class='jky-td-price'	><span>Amount		</span></th>
+							<th class='jky-td-normal'	><span>Motive		</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-restrictions-body'></tbody>
+					<tfoot>
+						<tr>
+							<td id='jky-action-add-restriction' class='jky-action' colspan='7'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+						</tr>
+					</tfoot>
 				</table>
 			</div>
 
@@ -193,7 +227,8 @@
 						<input type='radio' name='jky-icms-exemption' value='No'  /><span>No  </span>
 					</div>
 				</div>
-				<div class='jky-form-line'><div class='jky-form-label'><span>Payments</span>: </div><input id='jky-payments'	class='jky-form-normal'	/></div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Interest Rate</span>: </div><input id='jky-interest-rate'	class='jky-form-price' /> (%)</div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Payments</span>: </div><input id='jky-payments'	class='jky-form-normal'	/> (<span>days, separated by space</span>)</div>
 				<div class='jky-form-alert'>
 					<div class='jky-form-label'><span>Alert</span>:</div>
 					<textarea id='jky-alert' class='jky-alert'></textarea>

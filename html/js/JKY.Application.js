@@ -20,20 +20,22 @@ JKY.Application = function() {
 	JKY.checkout	= JKY.checkout	|| [];
 	JKY.incoming	= JKY.incoming	|| [];
 	JKY.loadout		= JKY.laodout	|| [];
+	JKY.osas		= JKY.osas		|| [];
 	JKY.planning	= JKY.planning	|| [];
 	JKY.receive		= JKY.receive	|| [];
 	JKY.purchase	= JKY.purchase	|| [];
 	JKY.sales		= JKY.sales		|| [];
 	JKY.shipdyer	= JKY.shipdyer	|| [];
 
-	JKY.checkout.select = JKY.checkout.select	||	'Draft + Active';
-	JKY.incoming.select = JKY.incoming.select	||			'Active';
-	JKY.loadout.select	= JKY.loadout.select	||	'Draft + Active';
-	JKY.planning.select = JKY.planning.select	||	'Draft + Active';
-	JKY.receive.select	= JKY.receive.select	||			'Active';
-	JKY.purchase.select = JKY.purchase.select	||	'Draft + Active';
-	JKY.sales.select	= JKY.sales.select		||	'Draft + Active';
-	JKY.shipdyer.select	= JKY.shipdyer.select	||	'Draft + Active';
+	JKY.checkout	.select = JKY.checkout	.select	||	'Draft + Active';
+	JKY.incoming	.select = JKY.incoming	.select	||			'Active';
+	JKY.loadout		.select	= JKY.loadout	.select	||	'Draft + Active';
+	JKY.osas		.select	= JKY.osas		.select	||	'Draft + Active';
+	JKY.planning	.select = JKY.planning	.select	||	'Draft + Active';
+	JKY.receive		.select	= JKY.receive	.select	||			'Active';
+	JKY.purchase	.select = JKY.purchase	.select	||	'Draft + Active';
+	JKY.sales		.select	= JKY.sales		.select	||	'Draft + Active';
+	JKY.shipdyer	.select	= JKY.shipdyer	.select	||	'Draft + Active';
 
 /**
  *	set all events (run only once per load)
@@ -126,18 +128,18 @@ if (my_first == true) {
 			my_display_list();
 
 			switch(my_args.program_name) {
-				case 'Batches'			:	JKY.incoming.select = my_args.select; break;
-				case 'BatchOuts'		:	JKY.checkout.select = my_args.select; break;
-//				case 'Boxes'			:	JKY.incoming.select = my_args.select; break;
-				case 'CheckOuts'		:	JKY.checkout.select = my_args.select; break;
-				case 'Incomings'		:	JKY.incoming.select = my_args.select; break;
-				case 'LoadOuts'			:	JKY.loadout.select  = my_args.select; break;
-				case 'LoadSales'		:	JKY.loadout.select  = my_args.select; break;
-				case 'Orders'			:	JKY.planning.select = my_args.select; break;
-				case 'Purchases'		:	JKY.purchase.select = my_args.select; break;
-				case 'Purchase Lines'	:	JKY.purchase.select = my_args.select; break;
-				case 'Quotations'		:	JKY.sales.select	= my_args.select; break;
-				case 'Thread Dyers'		:	JKY.planning.select = my_args.select; break;
+				case 'Batches'			:	JKY.incoming	.select = my_args.select; break;
+				case 'BatchOuts'		:	JKY.checkout	.select = my_args.select; break;
+//				case 'Boxes'			:	JKY.incoming	.select = my_args.select; break;
+				case 'CheckOuts'		:	JKY.checkout	.select = my_args.select; break;
+				case 'Incomings'		:	JKY.incoming	.select = my_args.select; break;
+				case 'LoadOuts'			:	JKY.loadout		.select = my_args.select; break;
+				case 'LoadSales'		:	JKY.loadout		.select = my_args.select; break;
+				case 'Orders'			:	JKY.planning	.select = my_args.select; break;
+				case 'Purchases'		:	JKY.purchase	.select = my_args.select; break;
+				case 'Purchase Lines'	:	JKY.purchase	.select = my_args.select; break;
+				case 'Quotations'		:	JKY.sales		.select	= my_args.select; break;
+				case 'Thread Dyers'		:	JKY.planning	.select = my_args.select; break;
 			}
 		}
 
@@ -217,16 +219,25 @@ if (my_first == true) {
 		}
 
 		JKY.show('jky-loading');
-		var my_data =
-			{ method	: 'get_index'
-			, table		: my_args.table_name
-			, specific	: my_args.specific
-			, select	: my_args.select
-			, filter	: my_args.filter
-			, display	: my_args.display
-			, order_by	: my_args.sort_by + ' ' + my_args.sort_seq
-			};
-		JKY.ajax(false, my_data, my_process_load_success);
+		if (my_args.program_name == 'Receive NFEs') {
+			var my_data =
+				{ method	: 'glob'
+				, select	: my_args.select
+				, filter	: my_args.filter
+				};
+			JKY.ajax(false, my_data, my_process_load_success);
+		}else{
+			var my_data =
+				{ method	: 'get_index'
+				, table		: my_args.table_name
+				, specific	: my_args.specific
+				, select	: my_args.select
+				, filter	: my_args.filter
+				, display	: my_args.display
+				, order_by	: my_args.sort_by + ' ' + my_args.sort_seq
+				};
+			JKY.ajax(false, my_data, my_process_load_success);
+		}
 	}
 
 	function my_process_load_success(response) {
@@ -314,35 +325,35 @@ if (my_first == true) {
  *	$param	number		display new  index
  *	$param	object		display index of the row
  */
-		function my_display_form(the_index) {
-			JKY.display_trace('my_display_form: ' + the_index);
-					if (typeof the_index == 'number')	my_index = the_index;
-			else	if (typeof the_index == 'object')	my_index = the_index.rowIndex;
+	function my_display_form(the_index) {
+		JKY.display_trace('my_display_form: ' + the_index);
+				if (typeof the_index == 'number')	my_index = the_index;
+		else	if (typeof the_index == 'object')	my_index = the_index.rowIndex;
 
-			if (my_skip_form) {
-				my_skip_form = false;
-				return;
-			}
-//			JKY.show('jky-app-filter'		);
-			JKY.hide('jky-app-more'			);
-			JKY.show('jky-app-navs'			);
-			JKY.hide('jky-app-add-new'		);
-			JKY.show('jky-app-counters'		);
-			JKY.enable_button('jky-action-add-new'	);
-			JKY.hide('jky-action-print'		);
-			JKY.show('jky-action-save'		);
-			JKY.hide('jky-action-copy'		);
-
-			JKY.enable_delete_button();
-
-			JKY.show('jky-action-cancel'	);
-			JKY.hide('jky-app-table'		);
-			JKY.hide('jky-app-graph'		);
-			JKY.show('jky-app-form'			);
-			JKY.show('jky-app-upload'		);		//	??????????
-			JKY.display_form();
-			my_display_row(my_index);
+		if (my_skip_form) {
+			my_skip_form = false;
+			return;
 		}
+//		JKY.show('jky-app-filter'		);
+		JKY.hide('jky-app-more'			);
+		JKY.show('jky-app-navs'			);
+		JKY.hide('jky-app-add-new'		);
+		JKY.show('jky-app-counters'		);
+		JKY.enable_button('jky-action-add-new'	);
+		JKY.hide('jky-action-print'		);
+		JKY.show('jky-action-save'		);
+		JKY.hide('jky-action-copy'		);
+
+		JKY.enable_delete_button();
+
+		JKY.show('jky-action-cancel'	);
+		JKY.hide('jky-app-table'		);
+		JKY.hide('jky-app-graph'		);
+		JKY.show('jky-app-form'			);
+		JKY.show('jky-app-upload'		);		//	??????????
+		JKY.display_form();
+		my_display_row(my_index);
+	}
 
 	function my_display_row(the_index) {
 		JKY.display_trace('my_display_row');
@@ -351,9 +362,13 @@ if (my_first == true) {
 			my_index = the_index;
 		}
 		JKY.display_trace('my_index: ' + my_index);
-		var my_id = $('#jky-app-table tbody tr:eq(' + (my_index-1) + ')').attr('row_id');
-		JKY.display_trace('my_id: ' + my_id);
-		JKY.row = JKY.get_row(my_args.table_name, my_id);
+		JKY.row_id = $('#jky-app-table tbody tr:eq(' + (my_index-1) + ')').attr('row_id');
+		JKY.display_trace('JKY.row_id: ' + JKY.row_id);
+		if (my_args.program_name == 'Receive NFEs') {
+			JKY.row = JKY.get_xml(JKY.row_id);
+		}else{
+			JKY.row = JKY.get_row(my_args.table_name, JKY.row_id);
+		}
 		JKY.set_html('jky-app-index', my_index);
 
 		if (JKY.row.status == 'Closed') {
@@ -460,7 +475,8 @@ if (my_first == true) {
 //				my_display_form(JKY.get_index_by_id(response.id, JKY.rows)+1);
 //				my_index = $('#jky-table-body tr[row_id="' + response.id + '"]').index() + 1;
 				my_display_form(my_index);		//	display added record
-			}else{
+			}else
+			if (my_args.add_new == 'display list') {
 				my_process_add_new();
 			}
 		}
@@ -555,6 +571,25 @@ if (my_first == true) {
 				my_print_row($(this).attr('row_id'));
 			});
 		}
+	}
+
+/**
+ *	save remarks
+ */
+	function my_save_remarks() {
+		var my_set	= 'remarks = \'' + JKY.get_value('jky-remarks') + '\'';
+		var my_data =
+			{ method: 'update'
+			, table :  my_args.table_name
+			, set	:  my_set
+			, where :  my_args.table_name + '.id = ' + JKY.row.id
+			};
+		JKY.ajax(true, my_data, my_save_remarks_success);
+	}
+
+	function my_save_remarks_success(response) {
+		JKY.display_message('Remarks saved, ' + response.message);
+		JKY.row = JKY.get_row(my_args.table_name, JKY.row.id);
 	}
 
 /**
@@ -688,5 +723,9 @@ if (my_first == true) {
 		, set_checkbox			:	function(the_index)		{		my_set_checkbox	(the_index)		;}
 		, Xprocess_is_company	:	function(the_id)		{		Xmy_process_is_company(the_id)	;}
 		, process_change_input	:	function(the_id)		{		my_process_change_input(the_id) ;}
+		, process_insert		:	function()				{		my_process_insert()				;}
+		, process_update		:	function()				{		my_process_update()				;}
+
+		, save_remarks			:	function()				{		my_save_remarks()				;}
 	};
 }();

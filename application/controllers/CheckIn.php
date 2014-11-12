@@ -76,6 +76,7 @@ function JKY_checkin_piece($the_data) {
 	$my_barcode			= get_data($the_data, 'barcode'			);
 	$my_inspected_by	= get_data($the_data, 'inspected_by'	);
 	$my_weighed_by		= get_data($the_data, 'weighed_by'		);
+	$my_qualities		= get_data($the_data, 'qualities'		);
 	$my_remarks			= get_data($the_data, 'remarks'			);
 	$my_checkin_weight	= get_data($the_data, 'checkin_weight'	);
 	$my_checkin_location= get_data($the_data, 'checkin_location');
@@ -86,6 +87,7 @@ function JKY_checkin_piece($the_data) {
 //		. ',          barcode=\'' . $my_barcode			. '\''
 		. ',     inspected_by=  ' . $my_inspected_by
 		. ',       weighed_by=  ' . $my_weighed_by
+		. ',        qualities=\'' . $my_qualities		. '\''
 		. ',          remarks=\'' . $my_remarks			. '\''
 		. ',   checkin_weight=  ' . $my_checkin_weight
 		. ', checkin_location=\'' . $my_checkin_location. '\''

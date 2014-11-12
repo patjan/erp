@@ -61,17 +61,13 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.checkout.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
-//	JKY.set_html('jky-machine-name' , JKY.set_table_options('Machines', 'name', '', ''));
-//	JKY.set_html('jky-partner-name' , JKY.set_options_array('', JKY.get_companies('is_partner'	), true));
-//	JKY.set_html('jky-supplier-name', JKY.set_options_array('', JKY.get_companies('is_supplier'	), true));
-//	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_dyer'		), true));
 
-	$('#jky-machine-filter'		).KeyUpDelay(JKY.Machine.load_data	);
-	$('#jky-partner-filter'		).KeyUpDelay(JKY.Partner.load_data	);
-	$('#jky-supplier-filter'	).KeyUpDelay(JKY.Supplier.load_data	);
-	$('#jky-dyer-filter'		).KeyUpDelay(JKY.Dyer.load_data		);
-	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data	);
-	$('#jky-batchin-filter'		).KeyUpDelay(JKY.BatchIn.load_data	);
+	$('#jky-machine-filter'		).KeyUpDelay(JKY.Machine	.load_data);
+	$('#jky-partner-filter'		).KeyUpDelay(JKY.Partner	.load_data);
+	$('#jky-supplier-filter'	).KeyUpDelay(JKY.Supplier	.load_data);
+	$('#jky-dyer-filter'		).KeyUpDelay(JKY.Dyer		.load_data);
+	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread		.load_data);
+	$('#jky-batchin-filter'		).KeyUpDelay(JKY.BatchIn	.load_data);
 
 	$('#jky-requested-weight').ForceNumericOnly();
 	$('#jky-checkout-weight' ).ForceNumericOnly();

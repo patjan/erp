@@ -28,6 +28,8 @@ CREATE TABLE IF NOT EXISTS Contacts
 , phone				VARCHAR(255)		DEFAULT NULL
 , mobile			VARCHAR(255)		DEFAULT NULL
 , fax				VARCHAR(255)		DEFAULT NULL
+, skype				VARCHAR(255)		DEFAULT NULL
+, nextel			VARCHAR(255)		DEFAULT NULL
 , email				VARCHAR(255)		DEFAULT NULL
 , website			VARCHAR(255)		DEFAULT NULL
 , st_number			VARCHAR(255)		DEFAULT NULL	# numero
@@ -52,7 +54,9 @@ CREATE TABLE IF NOT EXISTS Contacts
 , total_refunded	DECIMAL(10,2)		DEFAULT 0
 , total_invoiced	DECIMAL(10,2)		DEFAULT 0
 , total_paid		DECIMAL(10,2)		DEFAULT 0
+, interest_rate		DECIMAL( 5,2)		DEFAULT NULL	# null => no agreement, 0 => 0%
 
+, payment_type		VARCHAR(255)		DEFAULT NULL	# duplicata, assinar, cheque, somente em dinheiro
 , payments			VARCHAR(255)		DEFAULT NULL	# 30 45 60
 , alert				VARCHAR(255)		DEFAULT NULL	# 
 , remarks			VARCHAR(255)		DEFAULT NULL
@@ -96,3 +100,8 @@ ALTER TABLE Contacts	ADD COLUMN alert				VARCHAR(255)	DEFAULT NULL	AFTER total_p
 ALTER TABLE Contacts	ADD COLUMN payments				VARCHAR(255)	DEFAULT NULL	AFTER total_paid;
 ALTER TABLE Contacts	ADD COLUMN im					VARCHAR(255)	DEFAULT NULL	AFTER ie;
 ALTER TABLE Contacts	ADD COLUMN icms_exemption		CHAR(3)			DEFAULT 'No'	AFTER is_taxable;
+
+ALTER TABLE Contacts	ADD COLUMN payment_type			VARCHAR(255)	DEFAULT NULL	AFTER total_paid;
+ALTER TABLE Contacts	ADD COLUMN interest_rate		DECIMAL(5,2)	DEFAULT NULL	AFTER total_paid;
+ALTER TABLE Contacts	ADD COLUMN nextel				VARCHAR(255)	DEFAULT NULL 	AFTER fax;
+ALTER TABLE Contacts	ADD COLUMN skype				VARCHAR(255)	DEFAULT NULL 	AFTER fax;

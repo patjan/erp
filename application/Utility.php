@@ -2554,6 +2554,13 @@ function is_empty( $string ) {
      else return false;
 }
 
+function is_json($string) {
+   $result = is_string($string) && is_object(json_decode($string)) && (json_last_error() == JSON_ERROR_NONE);
+   if ( $result )
+	    return true ;
+   else return false;
+}
+
 function get_first_day_of_month( $date ) {
 //   date format YYYY-MM-DD
      $dates = explode( '-', $date );
@@ -2782,6 +2789,7 @@ function set_logdate( $date ) {
 	set_session('logdate', $date);
 
 	$domain		= 'http://support.jkysoftware.com/index.php/api';
+//	$domain		= 'http://support/index.php/api';
 	$postvars	= 'data={"method":"get_expire", "company_id":' . COMPANY_ID . '}';
 	$return		= json_decode(proxy($domain, $postvars), true);
 	if ($return['status'] == 'ok') {
@@ -2919,8 +2927,8 @@ function put_part_name( $full_name, $position ) {
 #    put size ( convert into properly unit )
 # -------------------------------------------------------------------------
 function put_size( $size ) {
-          if(  $size >= 1 * 1024 * 1024 )    return round( $size / ( 1024 * 1024 )) . '&nbsp;MB';
-     else if(  $size >= 1 * 1024        )    return round( $size / ( 1024        )) . '&nbsp;KB';
+          if(  $size >= 1 * 1024 * 1024 )    return round( $size / ( 1024 * 1024 )) . ' MB';
+     else if(  $size >= 1 * 1024        )    return round( $size / ( 1024        )) . ' KB';
      else if(  $size >  0               )    return        $size                    ;
      else                                    return '';
 }

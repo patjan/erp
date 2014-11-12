@@ -546,6 +546,19 @@ JKY.out_float = function(the_float){
 }
 
 /**
+ * out count
+ *
+ * @param	the_string
+ *
+ * @return	count
+ */
+JKY.out_count = function(the_string){
+	if (JKY.is_empty(the_string))		return '';
+	var my_array = the_string.split(', ');
+	return my_array.length;
+}
+
+/**
  * out date
  *
  * @param	the_time	yyyy-mm-dd hh:mm:ss
@@ -990,7 +1003,7 @@ JKY.set_radio = function(id_name, value){
 //	$('#' + id_name + ' input').filter(':checkbox').prop('checked', false);		//	jquery 1.8.2
 	$('#' + id_name + ' input').prop('checked', false);							//	jquery 2.0.3
 //	var my_command = "$('#" + id_name + " :radio[value=" + value + "]').attr('checked', true);";	//	jquery 1.8.2
-	var my_command = "$('#" + id_name + " :radio[value=\'" + value + "\']').prop('checked', true);";	//	jquery 2.0.3
+	var my_command = "$('#" + id_name + " :radio[value=\"" + value + "\"]').prop('checked', true);";	//	jquery 2.0.3
 	setTimeout(my_command, 100);
 }
 
@@ -1699,6 +1712,15 @@ JKY.is_status = function(the_status) {
 	}
 };
 
+JKY.is_array = function(the_value) {
+	return the_value
+		&& typeof the_value === 'object'
+		&& typeof the_value.length === 'number'
+		&& typeof the_value.splice === 'function'
+		&& !(the_value.propertyIsEnumerable('length'))
+		;
+};
+
 //        JKY.str_replace
 //        ----------------------------------------------------------------------
 JKY.str_replace = function(search, replace, subject, count) {
@@ -2155,12 +2177,18 @@ JKY.set_controls = function(group_set, selected, initial) {
 	for(var i=0; i<my_rows.length; i+=1) {
 		var my_name  = my_rows[i]['name' ];
 		var my_value = my_rows[i]['value'];
-//		if (my_value == '' || group_set == 'User Roles') {
-		if (my_value == null || my_value == '' || my_value == 'null' || group_set == 'User Roles') {
+		if (my_value == null
+		||	my_value == ''
+		||	my_value == 'null') {
 			my_value = my_name;
 		}
 		var my_selected = (my_name == selected) ? ' selected="selected"' : '';
-		my_html += '<option value="' + my_name + '"' + my_selected + '>' + my_value + '</option>';
+		if (group_set == 'User Roles'
+		||	group_set == 'NFE Folders') {
+			my_html += '<option value="' + my_value + '"' + my_selected + '>' + my_name  + '</option>';
+		}else{
+			my_html += '<option value="' + my_name  + '"' + my_selected + '>' + my_value + '</option>';
+		}
 	}
 //	my_html += '<option onclick="JKY.process_option_search(this)"	class="jky-option-search"	>Search More...</option>';
 //	my_html += '<option onclick="JKY.process_option_add_new(this)"	class="jky-option-add-new"	>Add New...</option>';
@@ -2386,6 +2414,41 @@ JKY.get_rows_by_where = function(the_table, the_where) {
 		}
 	);
 	return my_rows;
+}
+
+JKY.get_xml = function(the_file_name) {
+	var my_row = null;
+	var my_data =
+		{ method	: 'get_xml'
+		, file_name : the_file_name
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_row = response.xml_nfe;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.hide('jky-loading');
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_row;
 }
 
 /**
@@ -2669,6 +2732,16 @@ JKY.get_sum_by_id = function(table, field, id) {
 	return my_sum;
 }
 
+JKY.get_file_name = function(the_full_name) {
+	var my_names = the_full_name.split('/');
+	var my_length = my_names.length;
+	if (my_length > 1 ) {
+		return my_names[my_length-1];
+	}else{
+		return '';
+	}
+}
+
 JKY.get_file_type = function(the_full_name) {
 	var my_names = the_full_name.split('.');
 	var my_length = my_names.length;
@@ -2685,6 +2758,15 @@ JKY.get_config_value = function(the_group_set, the_name) {
 				 ;
 	var my_id	 = JKY.get_id('Configs', my_where);
 	var my_value = JKY.get_value_by_id('Configs', 'value', my_id);
+	return my_value;
+}
+
+JKY.get_control_value = function(the_group_set, the_name) {
+	var my_where = 'group_set = \'' + the_group_set + '\''
+				 + ' AND name = \'' + the_name + '\''
+				 ;
+	var my_id	 = JKY.get_id('Controls', my_where);
+	var my_value = JKY.get_value_by_id('Controls', 'value', my_id);
 	return my_value;
 }
 
@@ -2755,4 +2837,13 @@ JKY.disable_delete_button = function() {
 	}else{
 		JKY.hide('jky-action-delete');
 	}
+}
+
+JKY.in_array = function(the_value, the_array) {
+	for(var i=0, max=the_array.length; i<max; i++) {
+		if (the_value == the_array[i]) {
+			return true;
+		}
+	}
+	return false;
 }

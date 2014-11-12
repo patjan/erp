@@ -108,6 +108,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_option	('jky-state'			, the_row.state			);
 	JKY.set_option	('jky-country'			, the_row.country		);
 	JKY.set_value	('jky-district'			, the_row.district		);
+	JKY.set_value	('jky-credit-limit'		, the_row.credit_limit	);
 
 	JKY.Photo.set_row_id(the_row.id);
 	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));
@@ -145,6 +146,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_option	('jky-state'			, 'SP');
 	JKY.set_option	('jky-country'			, 'BR');
 	JKY.set_value	('jky-district'			, '');
+	JKY.set_value	('jky-credit-limit'		, '0');
 };
 
 /**
@@ -156,6 +158,8 @@ JKY.get_form_set = function() {
 		+    ', first_name=\'' + JKY.get_value	('jky-first-name'		) + '\''
 		+     ', last_name=\'' + JKY.get_value	('jky-last-name'		) + '\''
 		+    ', company_id=  ' + JKY.get_value	('jky-contact-company'	)
+		+  ', credit_limit=  ' + JKY.get_value	('jky-credit-limit'		)
+		+        ', phone=\'' + JKY.get_value	('jky-phone'			) + '\''
 		+        ', mobile=\'' + JKY.get_value	('jky-mobile'			) + '\''
 		+      ', position=\'' + JKY.get_value	('jky-position'			) + '\''
 		+         ', email=\'' + JKY.get_value	('jky-email'			) + '\''

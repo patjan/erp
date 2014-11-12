@@ -6,21 +6,51 @@ JKY.generate_color = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = JKY.is_status('Draft') ? '<a onclick="JKY.delete_color(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_color = ''
-		+ "<input class='jky-color-id' type='hidden' value=" + the_row.color_id + " />"
+		+ "<input class='jky-color-id'	 type='hidden' value=" + the_row.color_id   + " />"
+		+ "<input class='jky-color-type' type='hidden' value=" + the_row.color_type + " />"
 		+ "<input class='jky-color-name' disabled onchange='JKY.update_color(this, " + my_id + ")' value='" + the_row.color_name + "' />"
-		+ " <a href='#' onClick='JKY.Color.display(this)'><i class='icon-share'></i></a>"
+		+ "<a href='#' onClick='JKY.Color.display(this)'><i class='icon-share'></i></a>"
+		;
+	var my_dyer	 = ''
+		+ "<input class='jky-dyer-id'	type='hidden'	value=" + the_row.dyer_id	+ " />"
+		+ "<input class='jky-dyer-name'	disabled onchange='JKY.update_color(this, " + my_id + ")' value='" + the_row.dyer_name + "' />"
+		+ "<a href='#' onClick='JKY.Dyer.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_html = ''
 		+ '<tr color_id=' + my_id + '>'
 		+ '<td></td>'
-		+ '<td class="jky-td-action" style="text-align:right !important;">' + my_trash	+ '</td>'
-		+ '<td class="jky-td-key-l"	colspan="2">' + my_color + '</td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-quoted-units"				onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.quoted_units + '" /></td>'
-		+ '<td class="jky-td-price"		><input class="jky-quoted-price	jky-td-price"	onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.quoted_price + '" /></td>'
-		+ '<td > ($/Kg)</td>'
+		+ '<td class="jky-td-action"	colspan="3" style="text-align:right !important;">' + my_trash + '</td>'
+		+ '<td class="jky-td-key-m"					>' + my_color + '</td>'
+		+ '<td class="jky-td-key"					>' + my_dyer  + '</td>'
+		+ '<td class="jky-td-pieces"				><input class="jky-quoted-units"				onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.quoted_units	+ '" /></td>'
+		+ '<td class="jky-td-pieces"				>($/Kg)</td>'
+		+ '<td class="jky-td-price"					><input class="jky-quoted-price	jky-td-price"	onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.quoted_price	+ '" /></td>'
+		+ '<td class="jky-td-price"					><input class="jky-discount		jky-td-price"	onchange="JKY.update_color(this, ' + my_id + ')" value="' + the_row.discount		+ '" /></td>'
 		+ '</tr>'
 		;
 	return my_html;
+}
+
+JKY.get_quoted_price = function(my_product_id, my_color_type) {
+	var my_where =		'ProdPrices.product_id = ' + my_product_id
+				 + ' AND ProdPrices.color_type = \'' + my_color_type + '\''
+				 + ' AND ProdPrices.current_price > 0'
+				 ;
+	var my_rows = JKY.get_rows_by_where('ProdPrices', my_where);
+
+	if (my_rows.length == 0) {
+		my_where =		'ProdPrices.product_id = ' + my_product_id
+				 + ' AND ProdPrices.color_type = \'Unico\''
+				 + ' AND ProdPrices.current_price > 0'
+				 ;
+		my_rows = JKY.get_rows_by_where('ProdPrices', my_where);
+	}
+
+	if (my_rows.length == 0) {
+		return 0
+	}else{
+		return my_rows[0].current_price;
+	}
 }
 
 JKY.update_color = function(id_name, the_id) {
@@ -30,8 +60,9 @@ JKY.update_color = function(id_name, the_id) {
 	var my_diff_units		= my_color_units - my_prev_units;
 
 	var my_line_id			= JKY.get_prev_dom(my_tr_id, 'quot_line_id');
-	var my_line_units_id	= my_line_id.find('.jky-quoted-units' );
-	var my_line_pieces_id	= my_line_id.find('.jky-quoted-pieces');
+	var my_product_id		= my_line_id.find('.jky-product-id'		).val();
+	var my_line_units_id	= my_line_id.find('.jky-quoted-units'	);
+	var my_line_pieces_id	= my_line_id.find('.jky-quoted-pieces'	);
 	var my_line_units		= parseInt(my_line_units_id .val());
 	var my_line_pieces		= parseInt(my_line_pieces_id.val());
 	var my_units			= parseInt(my_line_id.find('.jky-product-units').val());
@@ -45,20 +76,27 @@ JKY.update_color = function(id_name, the_id) {
 
 	JKY.update_quoted_units(my_line_id, my_diff_units, my_diff_pieces);
 
-	var my_color_id			= my_tr_id.find('.jky-color-id').val();
+	var my_color_id			= my_tr_id.find('.jky-color-id'  ).val();
 		my_color_id			= (my_color_id == '') ? 'null' : my_color_id;
+	var my_color_type		= my_tr_id.find('.jky-color-type').val();
+	var my_dyer_id			= my_tr_id.find('.jky-dyer-id'  ).val();
+		my_dyer_id			= (my_dyer_id == '') ? 'null' : my_dyer_id;
 	var	my_quoted_units		= parseFloat(my_tr_id.find('.jky-quoted-units'	).val());
 	var my_quoted_price		= parseFloat(my_tr_id.find('.jky-quoted-price'	).val());
-//	var my_punho_price		= parseFloat(my_tr_id.find('.jky-punho-price'	).val());
-//	var my_gola_price		= parseFloat(my_tr_id.find('.jky-gola-price'	).val());
-//	var my_galao_price		= parseFloat(my_tr_id.find('.jky-galao-price'	).val());
+	var my_discount			=			 my_tr_id.find('.jky-discount'		).val() ;
+
+	if (my_quoted_price == 0) {
+		my_quoted_price = JKY.get_quoted_price(my_product_id, my_color_type);
+		my_tr_id.find('.jky-quoted-price').val(my_quoted_price);
+	}
+
 	var my_set = ''
 		+          'color_id =  ' + my_color_id
+		+      ', color_type =\'' + my_color_type + '\''
+		+         ', dyer_id =  ' + my_dyer_id
 		+    ', quoted_units =  ' + my_quoted_units
 		+    ', quoted_price =  ' + my_quoted_price
-//		+     ', punho_price =  ' + my_punho_price
-//		+      ', gola_price =  ' + my_gola_price
-//		+     ', galao_price =  ' + my_galao_price
+		+        ', discount =\'' + my_discount + '\''
 		;
 	var my_data =
 		{ method	: 'update'
@@ -67,10 +105,12 @@ JKY.update_color = function(id_name, the_id) {
 		, where		: 'QuotColors.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, JKY.update_color_success);
+
 }
 
 JKY.update_color_success = function(response) {
 //	JKY.display_message(response.message)
+	JKY.update_quotation_amount();
 }
 
 JKY.insert_color = function(the_id, the_parent_id) {
@@ -88,8 +128,12 @@ JKY.insert_color_success = function(response) {
 	my_row.id				= response.id;
 	my_row.color_id			= null;
 	my_row.color_name		= '';
+	my_row.color_type		= '';
+	my_row.dyer_id			= null;
+	my_row.dyer_name		= '';
 	my_row.quoted_units		= 0;
 	my_row.quoted_price		= 0;
+	my_row.discount			= '';
 //	my_row.punho_price		= 0;
 //	my_row.gola_price		= 0;
 //	my_row.galao_price		= 0;
@@ -106,16 +150,17 @@ JKY.insert_color_success = function(response) {
 }
 
 JKY.delete_color = function(id_name, the_id) {
-	var my_tr_id	= $(id_name).parent().parent();
-	var my_color_units		= parseInt(my_tr_id.find('.jky-quoted-units').val());
+	var my_tr_id = $(id_name).parent().parent();
+	var my_color_units		= parseInt	(my_tr_id.find('.jky-quoted-units'	).val());
+	var my_color_price		= parseFloat(my_tr_id.find('.jky-quoted-price'	).val());
 	var my_diff_units		= - my_color_units;
 
 	var my_line_id			= JKY.get_prev_dom(my_tr_id, 'quot_line_id');
-	var my_line_units_id	= my_line_id.find('.jky-quoted-units' );
-	var my_line_pieces_id	= my_line_id.find('.jky-quoted-pieces');
-	var my_line_units		= parseInt(my_line_units_id .val());
-	var my_line_pieces		= parseInt(my_line_pieces_id.val());
-	var my_units			= parseInt(my_line_id.find('.jky-product-units').val());
+	var my_line_units_id	=			 my_line_id.find('.jky-quoted-units'	);
+	var my_line_pieces_id	=			 my_line_id.find('.jky-quoted-pieces'	);
+	var my_line_units		= parseInt	(my_line_units_id .val());
+	var my_line_pieces		= parseInt	(my_line_pieces_id.val());
+	var my_units			= parseInt	(my_line_id.find('.jky-product-units'	).val());
 
 	var my_new_units		= my_line_units + my_diff_units;
 	var my_new_pieces		= Math.ceil(my_new_units / my_units);
@@ -138,6 +183,61 @@ JKY.delete_color = function(id_name, the_id) {
 JKY.delete_color_success = function(response) {
 //	JKY.display_message(response.message)
 //	JKY.updated_total_pieces();
+	JKY.update_quotation_amount();
+}
+
+JKY.copy_colors = function(the_id, the_parent_id) {
+	JKY.line_tr = $(the_id).parent().parent();
+	var my_curr_tr	= JKY.line_tr;
+	var my_colors	= [];
+	do {
+		my_curr_tr = my_curr_tr.prev();
+		var my_quot_line_id	= my_curr_tr.attr('quot_line_id');
+		if (my_quot_line_id) {
+			break;
+		}
+		var my_quot_color_id	= my_curr_tr.attr('color_id');
+		if (my_quot_color_id) {
+			var my_color = [];
+			var my_color_id		= my_curr_tr.find('.jky-color-id'	).val();
+			var my_color_name	= my_curr_tr.find('.jky-color-name'	).val();
+			my_color.color_id	= my_color_id	;
+			my_color.color_name = my_color_name	;
+			var my_dyer_id		= my_curr_tr.find('.jky-dyer-id'	).val();
+			var my_dyer_name	= my_curr_tr.find('.jky-dyer-name'	).val();
+			my_color.dyer_id	= my_dyer_id	;
+			my_color.dyer_name	= my_dyer_name	;
+			my_colors.push(my_color);
+		}
+	} while(my_quot_line_id || my_quot_color_id);
+
+	JKY.display_message(my_colors.length + ' colors copied');
+	if (my_colors.length > 0) {
+		for(var i=my_colors.length-1; i>=0; i--) {
+			var my_color = my_colors[i];
+			var my_set = ''
+				+         'parent_id =  ' + the_parent_id
+				+        ', color_id =  ' + my_color.color_id
+				+         ', dyer_id =  ' + my_color.dyer_id
+				;
+			var my_data =
+				{ method	: 'insert'
+				, table		: 'QuotColors'
+				, set		:  my_set
+				};
+			JKY.ajax(true, my_data, JKY.copy_color_success);
+		}
+	}
+}
+
+JKY.copy_color_success = function(response) {
+	var my_row  = JKY.get_row('QuotColors', response.id);
+	var my_html = JKY.generate_color(my_row);
+	JKY.line_tr.after(my_html);
+	var my_tr = JKY.line_tr.next();
+//	my_tr.find('.jky-quoted-units'	).focus().select();
+	my_tr.find('.jky-quoted-units'	).ForceIntegerOnly();
+	my_tr.find('.jky-quoted-price'	).ForceNumericOnly();
 }
 
 JKY.update_quoted_units = function(the_line_id, the_diff_units, the_diff_pieces) {
@@ -228,11 +328,13 @@ JKY.print_colors = function(the_id) {
 						my_html  += ''
 							+ '<tr>'
 							+ '<td></td>'
+							+ '<td></td>'
 							+ '<td class="jky-print-color-name"	>' + my_row.color_name		+ '</td>'
 							+ '<td></td>'
 							+ '<td class="jky-print-pieces"		>' + my_row.quoted_units	+ '</td>'
+							+ '<td class="jky-print-pieces"		>' + '($/Kg)'				+ '</td>'
 							+ '<td class="jky-print-pieces"		>' + my_row.quoted_price	+ '</td>'
-							+ '<td								>' + '($/Kg)'				+ '</td>'
+							+ '<td class="jky-print-pieces"		>' + my_row.discount		+ '</td>'
 							+ '</tr>'
 							;
 					}

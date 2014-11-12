@@ -284,6 +284,7 @@ ALTER TABLE LoadSales		ADD		reserved_pieces			INT				DEFAULT 0		AFTER requested_
 /* -- 2014/06/14	*/
 ALTER TABLE Products		ADD		units					INT(11)			DEFAULT 1		AFTER start_date;
 ALTER TABLE Products		ADD		peso					DECIMAL(5,2)	DEFAULT 0		AFTER start_date;
+
 /* -- 2014/06/16	*/
 ALTER TABLE Products		ADD		cone_type				VARCHAR(32)		DEFAULT NULL	AFTER units;
 /* -- 2014/07/19	*/
@@ -297,3 +298,47 @@ ALTER TABLE Contacts		ADD COLUMN icms_exemption		CHAR(3)			DEFAULT 'No'	AFTER is
 ALTER TABLE Products		ADD COLUMN parent_id    		BIGINT   		DEFAULT NULL  	AFTER status;
 /* -- 2014/08/10	*/
 ALTER TABLE Products		ADD		finishing				VARCHAR(255)	DEFAULT NULL	AFTER product_type;
+/* -- 2014/10/03	*/
+ALTER TABLE Colors			ADD COLUMN remarks    			TEXT   			DEFAULT NULL  	AFTER color_name;
+/* -- 2014/10/12	*/
+ALTER TABLE Quotations		ADD COLUMN contact_id				BIGINT			DEFAULT NULL	AFTER customer_id;
+ALTER TABLE Quotations		CHANGE	weight		weight_from		INTEGER			DEFAULT 0;
+ALTER TABLE Quotations		ADD COLUMN weight_to				INTEGER			DEFAULT 0		AFTER weight_from;
+ALTER TABLE Quotations		CHANGE	width		width_from		INTEGER			DEFAULT 0;
+ALTER TABLE Quotations		ADD COLUMN width_to					INTEGER			DEFAULT 0		AFTER width_from;
+ALTER TABLE Quotations		CHANGE	has_break	product_type	VARCHAR(32)		DEFAULT '';
+ALTER TABLE QuotLines		ADD COLUMN remarks				TEXT			DEFAULT NULL	AFTER quoted_pieces;
+/* -- 2014/10/14	*/
+ALTER TABLE Orders			CHANGE	quot_line_id		osa_line_id		BIGINT			DEFAULT NULL;
+ALTER TABLE Orders			CHANGE	quotation_number	osa_number		VARCHAR(32)		DEFAULT NULL;
+ALTER TABLE QuotLines		CHANGE	order_id			osa_line_id		BIGINT			DEFAULT NULL;
+/* -- 2014/10/23	*/
+ALTER TABLE Quotations		ADD COLUMN discount_amount			DECIMAL(10,2)	DEFAULT 0		AFTER peso;
+ALTER TABLE Quotations		ADD COLUMN quoted_amount			DECIMAL(10,2)	DEFAULT 0		AFTER peso;
+ALTER TABLE QuotLines		ADD COLUMN discount					VARCHAR(8)		DEFAULT ''		AFTER quoted_pieces;
+ALTER TABLE QuotColors		ADD COLUMN discount					VARCHAR(8)		DEFAULT ''		AFTER product_price;
+/* -- 2014/10/24	*/
+ALTER TABLE Products		CHANGE	start_date	start_at	DATETIME			DEFAULT NULL	;
+ALTER TABLE Products		CHANGE	finishing	finishings	VARCHAR(255)		DEFAULT NULL	;
+/* -- 2014/10/26	*/
+ALTER TABLE Pieces			ADD COLUMN		qualities		VARCHAR(255)		DEFAULT NULL	AFTER returned_at;
+/* -- 2014/10/27	*/
+ALTER TABLE Products		ADD			washings				VARCHAR(255)	DEFAULT NULL	AFTER finishings;
+ALTER TABLE Products		ADD COLUMN yield					DECIMAL(5,2)	DEFAULT 0		AFTER photo;
+ALTER TABLE Products		ADD COLUMN width_dyer				INTEGER			DEFAULT 0		AFTER photo;
+ALTER TABLE Products		ADD COLUMN width_to					INTEGER			DEFAULT 0		AFTER photo;
+ALTER TABLE Products		ADD COLUMN width_from				INTEGER			DEFAULT 0		AFTER photo;
+ALTER TABLE Products		ADD COLUMN weight_dyer				INTEGER			DEFAULT 0		AFTER photo;
+ALTER TABLE Products		ADD COLUMN weight_to				INTEGER			DEFAULT 0		AFTER photo;
+ALTER TABLE Products		ADD COLUMN weight_from				INTEGER			DEFAULT 0		AFTER photo;
+/* -- 2014/10/29	*/
+ALTER TABLE Contacts	ADD COLUMN payment_type			VARCHAR(255)	DEFAULT NULL	AFTER total_paid;
+ALTER TABLE Contacts	ADD COLUMN interest_rate		DECIMAL(5,2)	DEFAULT NULL	AFTER total_paid;
+ALTER TABLE Contacts	ADD COLUMN nextel				VARCHAR(255)	DEFAULT NULL 	AFTER fax;
+ALTER TABLE Contacts	ADD COLUMN skype				VARCHAR(255)	DEFAULT NULL 	AFTER fax;
+/* -- 2014/11/07	*/
+ALTER TABLE Quotations		ADD COLUMN advanced_amount			DECIMAL(10,2)	DEFAULT 0		AFTER peso;
+ALTER TABLE Quotations		ADD COLUMN payments					VARCHAR(255)	DEFAULT NULL	AFTER discount_amount;
+/* -- 2014/11/08	*/
+ALTER TABLE QuotLines		ADD COLUMN machine_id			BIGINT			DEFAULT NULL	AFTER product_id;
+ALTER TABLE QuotColors		ADD COLUMN dyer_id				BIGINT			DEFAULT NULL	AFTER parent_id;

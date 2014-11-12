@@ -18,7 +18,7 @@ JKY.generate_lines = function(response) {
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];
-			my_html += JKY.generate_line(my_row);
+			my_html += JKY.generate_line(i, my_row);
 		}
 	}
 	JKY.set_html('jky-lines-body', my_html);
@@ -29,26 +29,36 @@ JKY.generate_lines = function(response) {
 	}
 }
 
-JKY.generate_line = function(the_row) {
+JKY.generate_line = function(the_index, the_row) {
 	var my_id = the_row.id;
 	var my_trash = JKY.is_status('Draft') ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_product = ''
 		+ "<input class='jky-product-id' type='hidden' value=" + the_row.product_id + " />"
 		+ "<input class='jky-product-name' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.product_name + "' />"
-		+ " <a href='#' onClick='JKY.Product.display(this)'><i class='icon-share'	></i></a>"
-		+ " <a href='#' onClick='JKY.Product.display(this)'><i class='icon-signal'	></i></a>"
-		+ " <a href='#' onClick='JKY.Product.display(this)'><i class='icon-th'		></i></a>"
+		+ " <a href='#' onClick='JKY.Product.display		(this)'><i class='icon-share'		></i></a>"
+		+ " <a href='#' onClick='JKY.Product.display_info	(this)'><i class='icon-info-sign'	></i></a>"
+//		+ " <a href='#' onClick='JKY.Product.display(this)'><i class='icon-th'		></i></a>"
+		;
+	var my_machine = ''
+		+ "<input class='jky-machine-id' type='hidden' value=" + the_row.machine_id + " />"
+		+ "<input class='jky-machine-name' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.machine_name + "' />"
+		+ " <a href='#' onClick='JKY.Machine.display(this)'><i class='icon-share'	></i></a>"
 		;
 	var my_disabled = JKY.is_status('Draft') ? '' : ' disabled="disabled"';
+	var my_add_color = '<button class="btn btn-success" type="button" onclick="JKY.insert_color(this, ' + my_id + ')"' + my_disabled + '>' + JKY.t('Add Color') + '</button>';
+	var my_copy	= (the_index == 0) ? '' : '<button class="btn btn-success" type="button" onclick="JKY.copy_colors (this, ' + my_id + ')"' + my_disabled + '>' + JKY.t('Copy') + '</button>';
 	var my_html = ''
 		+ '<tr class="jky-line" quot_line_id=' + my_id + '>'
-		+ '<td class="jky-td-action"	>' + my_trash	+ '</td>'
-		+ '<td class="jky-td-key-w3"	>' + my_product	+ '</td>'
-		+ '<td class="jky-td-key-m"		><button class="btn btn-success" type="button" onclick="JKY.insert_color(this, ' + my_id + ')"' + my_disabled + '>' + JKY.t('Add Color') + '</button></td>'
+		+ '<td class="jky-td-action"	>' + my_trash			+ '</td>'
+		+ '<td class="jky-td-key-w3"	>' + my_product			+ '</td>'
+		+ '<td class="jky-td-key"		>' + my_machine			+ '</td>'
+		+ '<td class="jky-td-name-s"	><input class="jky-remarks"			onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.fix_null(the_row.remarks) + '" /></td>'
+		+ '<td class="jky-td-key-m"		>' + my_add_color + '&nbsp;' + my_copy + '</td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-product-peso"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.peso			 + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-quoted-units"	disabled										value="' + the_row.quoted_units	 + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-product-units"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.units		 + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-quoted-pieces"	disabled										value="' + the_row.quoted_pieces + '" /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-discount"		onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.discount		 + '" /></td>'
 		+ '</tr>'
 		;
 	var my_rows = JKY.get_rows('QuotColors', my_id);
@@ -62,10 +72,13 @@ JKY.generate_line = function(the_row) {
 JKY.update_line = function(id_name, the_id) {
 	var my_tr = $(id_name).parent().parent();
 	var my_product_id	= my_tr.find('.jky-product-id'		).val();
+	var my_machine_id	= my_tr.find('.jky-machine-id'		).val();
+	var my_remarks		= my_tr.find('.jky-remarks'			).val();
 	var my_peso			= my_tr.find('.jky-product-peso'	).val();
 	var my_quoted_units	= my_tr.find('.jky-quoted-units'	).val();
 	var my_units		= my_tr.find('.jky-product-units'	).val();
 	var my_quoted_pieces= my_tr.find('.jky-quoted-pieces'	).val();
+	var my_discount		= my_tr.find('.jky-discount'		).val();
 
 	if (my_units < 1) {
 		JKY.display_message(JKY.set_value_is_under('Units/Piece', 1));
@@ -82,9 +95,12 @@ JKY.update_line = function(id_name, the_id) {
 
 	var my_set = ''
 		+    '  product_id =  ' + my_product_id
+		+    ', machine_id =  ' + my_machine_id
+		+       ', remarks =\'' + my_remarks + '\''
 		+          ', peso =  ' + my_peso
 		+         ', units =  ' + my_units
 		+ ', quoted_pieces =  ' + my_new_pieces
+		+      ', discount =\'' + my_discount + '\''
 		;
 	var my_data =
 		{ method	: 'update'
@@ -106,6 +122,7 @@ JKY.update_line = function(id_name, the_id) {
 
 JKY.update_line_success = function(response) {
 //	JKY.display_message(response.message)
+	JKY.update_quotation_amount();
 }
 
 JKY.insert_line = function() {
@@ -123,12 +140,16 @@ JKY.insert_line_success = function(response) {
 	my_row.order_id			= null;
 	my_row.product_id		= null;
 	my_row.product_name		= '';
+	my_row.machine_id		= null;
+	my_row.machine_name		= '';
+	my_row.remarks			= '';
 	my_row.peso				= 0;
 	my_row.quoted_units		= 0;
 	my_row.units			= 1;
 	my_row.quoted_pieces	= 0;
+	my_row.discount			= '';
 
-	var my_html = JKY.generate_line(my_row);
+	var my_html = JKY.generate_line(null, my_row);
 	JKY.append_html('jky-lines-body', my_html);
 }
 
@@ -152,6 +173,7 @@ JKY.delete_line = function(id_name, the_id) {
 JKY.delete_line_success = function(response) {
 //	JKY.display_message(response.message)
 //	JKY.verify_total_percent();
+
 }
 
 JKY.print_lines = function(the_id) {
@@ -178,11 +200,13 @@ JKY.print_lines = function(the_id) {
 						my_html  += ''
 							+ '<tr class="jky-bold">'
 							+ '<td								><b>' + my_row.product_name	+ '</b></td>'
-							+ '<td								></td>'
+							+ '<td class="jky-print-name-s"		><b>' + my_row.remarks		+ '</b></td>'
+							+ '<td></td>'
 							+ '<td class="jky-print-pieces"		><b>' + my_row.peso			+ '</b></td>'
 							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_units	+ '</b></td>'
 							+ '<td class="jky-print-pieces"		><b>' + my_row.units		+ '</b></td>'
 							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_pieces+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' + my_row.discount		+ '</b></td>'
 							+ '</tr>'
 							;
 						my_html  += JKY.print_colors(my_row.id);

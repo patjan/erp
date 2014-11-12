@@ -51,11 +51,41 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-notes'			class='active'	><a href='#jky-pane-notes'				data-toggle='tab'><span>Notes			</span></a></li>
+			<li	id='jky-tab-recipes'		class='active'	><a href='#jky-pane-recipes'			data-toggle='tab'><span>Recipes			</span></a></li>
+			<li id='jky-tab-remarks'						><a href='#jky-pane-remarks'			data-toggle='tab'><span>Remarks			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
-			<div id='jky-pane-notes' class='tab-pane'>
+			<div id='jky-pane-recipes' class='tab-pane active'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<th class='jky-td-action'	></th>
+							<th class='jky-td-name'		><span>Composition		</span></th>
+							<th class='jky-td-recipe'	><span>Recipe			</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-recipes-body'></tbody>
+					<tfoot>
+						<tr>
+							<td id='jky-recipe-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+			<div id='jky-pane-remarks' class='tab-pane'>
+				<br>
+				<div class='jky-form-remarks'>
+					<div class='jky-form-label'><span>Remarks</span>:</div>
+					<textarea id='jky-remarks'></textarea>
+				</div>
+				<br>
+
+				<div class='jky-form-line'>
+					<div class='jky-form-label'></div>
+					<button id='jky-action-save-remarks' class='btn btn-success' type='button'><span>Save Remarks</span></button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -65,3 +95,5 @@
 <div id='jky-body-loaded'></div>
 
 <script src='js/colors.js'></script>
+<script src='js/JKY.Composition.js'></script>
+<script src='js/recipes.js'></script>

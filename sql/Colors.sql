@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS Colors
 , color_code		VARCHAR(32)			DEFAULT NULL
 , color_type		VARCHAR(32)			DEFAULT NULL
 , color_name		VARCHAR(255)		DEFAULT NULL
+, remarks			TEXT				DEFAULT	NULL
 
 , PRIMARY KEY	(id)
 , UNIQUE		(color_code)
@@ -38,3 +39,5 @@ UPDATE Colors	SET color_type	= 'Fraca'		WHERE color_type = 'FC';
 UPDATE Colors	SET color_type	= 'Forte'		WHERE color_type = 'FT';
 
 UPDATE Colors	SET color_name	= LCASE(color_name);
+
+ALTER TABLE Colors			ADD COLUMN remarks    			TEXT   			DEFAULT NULL  	AFTER color_name;

@@ -12,7 +12,7 @@ JKY.process_change_product = function() {
 JKY.clear_current_ftp = function() {
 	JKY.set_value('jky-ftp-id'		, '');
 	JKY.set_value('jky-ftp-number'	, '');
-	JKY.FTP.display(JKY.get_value('jky-product-id'));
+	JKY.FTP.display(null, JKY.get_value('jky-product-id'));
 }
 
 JKY.process_change_ftp = function() {

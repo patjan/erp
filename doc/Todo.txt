@@ -1,6 +1,6 @@
 Todo
 
-(done)	- tablesorter 
+(done)	- tablesorter
 (done)	- d3
 (done)	- thumb
 (done)	- email
@@ -12,6 +12,8 @@ Todo
 (done)	- new layers: center, draggable e resizable
 (done)	- add [peso] [units] on [Products]
 		- update ProdPrices (cronejob daily)
+		- alteracoes de caixas: localizacao, ...
+		- alteracoes de caixas: lote
 
 
 V2		- adicionar pedido por caixa
@@ -19,7 +21,7 @@ ok		- travar alteracoes no estado Fechado
 ok		- display data da emissao NFe
 ok		- display qtde de caixas
 ok		- supplier display search correto
-ok		- error de sql on search 
+ok		- error de sql on search
 
 
 
@@ -41,7 +43,7 @@ Marcelo:
 		por tinturaria: papelao fino, papelao grosso, plastico, ...
 		por comprimento: 90 (300), 120 (400), 180 (600)
 		criar cone padra por tinturaria
-		
+
 10.		Quantos tipos de cones com peso ?
 11.		Qual e' peso padrao de cone ?
 12.		Tabela de Precos dos tecidos ?
@@ -49,7 +51,7 @@ Marcelo:
 		pode chegar parcialmente (com defeitos, faltando)
 		input tecidos faltando (Etiquetas sobrados).
 
-		
+
 14.		Mapeamento de tecidos ja esta pronto ?
 14.		Qdo e' melhor imprimir etiquetas de tecidos?
 		com mapeamento
@@ -57,7 +59,7 @@ Marcelo:
 
 15.		Conseque ler o peso do tecido automaticamente ?
 		novas pesagedores pode,
-		
+
 15.		Qdo e' melhor digitar novos peso do tecido?
 		1. chegado no CL
 		2. depois da CL (4hr - 24 hr)
@@ -65,7 +67,7 @@ Marcelo:
 16.		Qdo recebe cargas da tinturarias:
 		cada carga so tem um tecido: especifico pano, cor, acabamento, cone ?
 		nao, pode ter juntos: tecido, punho e gola
-		
+
 17.		Tipo de acabamentos no tingimento?
 		lista de acabamentos = 20 tipos
 		checkbox, ate 5 tipo por tecido
@@ -74,11 +76,11 @@ Marcelo:
 		when changed the Product,
 		it must update the product from the QuotLines,
 		email the SalePerson of the change
-		
+
 		when changed the Customer,
 		it must update the customer from the Quotations,
 		email the SalePerson of the change
-		
+
 19.		Instrucoes para acabamento:
 		e' definido no FTP ou  por Produto ?
 
@@ -107,17 +109,17 @@ Bugs
 	ok	- flash alerts (red)
 		- tags (multiple select)
 		- payments (single select)
-		
+
 16.		upgrade Products
 	ok	- add tab prices by color
 	ok	- load prices - ImportProdPrices.php
 		- add tab Fabrics
 		- add tab Pieces
-		- add finishing (multiple select)
+		- add finishings (multiple select)
 		- product type (single select)
 		- peso  (single select)
 		- units (single select)
-		
+
 17.		upgrade Colors
 		- add tab dyer code
 
@@ -128,16 +130,16 @@ Bugs
 19.		upgrade Machines
 		- add photo
 		- add Change Status and Status of Form
-		
+
 20.		upgrade Purchases
 		- add Batches or Incomings
-		
+
 21.		upgrade FTPs
 		- add Change Status and Status of Form
-		
+
 22.		upgrade FTPs
 		- FTP (single select)
-		
+
 1. 2013-12-13	add Permissions to: Boxes, Pieces
 2. 2013-12-13	on [Color Types] of Configs, dropout [Branco] and [Preto]
 3. 2013-12-13	allow only digits on integer fields: diameter, density inputs, turns, weight, width, speed, peso, perc

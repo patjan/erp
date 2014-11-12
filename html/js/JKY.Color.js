@@ -63,6 +63,7 @@ JKY.Color = function() {
 
 
 	function my_click_row(the_index, the_id) {
+		var my_type = $(the_index).find('.jky-search-color-type').html();
 		var my_name = $(the_index).find('.jky-search-color-name').html();
 		var my_parent = $(my_the_id).parent();
 
@@ -72,6 +73,12 @@ JKY.Color = function() {
 			my_dom_id = $(my_parent).find('.jky-color-id');
 		}
 		my_dom_id.val(the_id );
+
+		var my_dom_type = $('#jky-color-type');
+		if (my_dom_type.length == 0) {
+			my_dom_type = $(my_parent).find('.jky-color-type');
+		}
+		my_dom_type.val(my_type);
 
 //		var my_dom_name = $(my_parent).find('#jky-color-name');
 		var my_dom_name = $('#jky-color-name');

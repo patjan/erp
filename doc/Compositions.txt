@@ -1,0 +1,82 @@
+											Composition 	COUNT(*)
+											
+								50 Algodao, 50 Polyester 	101
+											100 Algodao 	23
+											100 Polyester 	18
+									95 Algodao, 5 Elastano 	8
+								65 Polyester, 35 Viscose 	5
+									96 Algodao, 4 Elastano 	5
+											100 Viscose 	5
+					47 Algodao, 48 Polyester, 5 Elastano 	4
+									95 Viscose, 5 Elastano 	4
+								60 Polyester, 40 Algodao 	4
+								81 Algodao, 19 Polyester 	4
+								97 Polyester, 3 Elastano 	4
+								75 Algodao, 25 Polyester 	3
+								68 Viscose, 32 Polyester 	3
+								98 Algodao, 2 Polyester 	3
+					48 Algodao, 48 Polyester, 4 Elastano 	3
+					48 Polyester, 47 Algodao, 5 Elastano 	3
+								95 Polyester, 5 Elastano 	3
+								50 Polyester, 50 Algodao 	3
+								67 Polyester, 33 Viscose 	2
+								77 Polyester, 23 Algodao 	2
+								98 Polyester, 2 Elastano 	2
+								60 Algodao, 40 Polyester 	2
+								90 Algodao, 10 Polyester 	2
+								88 Algodao, 12 Polyester 	2
+					83 Polyester, 14 Algodao, 3 Elastano 	2
+									75 Modal, 25 Polyester 	1
+					49 Polyester, 49 Algodao, 2 Elastano 	1
+									95 Modal, 5 Elastano 	1
+								56 Polyester, 44 Viscose 	1
+					26 Algodao, 27 Polyester, 47 Viscose 	1
+								55 Polyester, 45 Algodao 	1
+								48 Algodao, 52 Polyester 	1
+								74 Algodao, 26 Polyester 	1
+		27 Algodao, 50 Polyester, 18 Viscose, 5 Elastano 	1
+					60 Algodao, 35 Polyester, 5 Elastano 	1
+									50 Modal, 50 Algodao 	1
+								67 Viscose, 33 Polyester 	1
+								86 Algodao, 14 Polyester 	1
+								96 Polyester, 4 Elastano 	1
+								78 Algodao, 22 Polyester 	1
+												100 Modal 	1
+															1
+								68 Algodao, 32 Polyester 	1
+								52 Polyester, 48 Algodao 	1
+								70 Algodao, 30 Polyester 	1
+					57 Viscose, 41 Algodao, 2 Polyester 	1
+						71 Modal, 24 Polyester, 5 Elastano 	1
+									97 Algodao, 3 Elastano 	1
+					63 Algodao, 32 Polyester, 5 Elastano 	1
+					86 Algodao, 10 Polyester, 4 Elastano 	1
+								59 Algodao, 41 Polyester 	1
+					65 Algodao, 27 Polyester, 8 Viscose 	1
+								25 Algodao, 75 Polyester 	1
+								24 Polyester, 76 Algodao 	1
+									98 Algodao, 2 Elastano 	1
+								83 Polyester, 17 Algodao 	1
+								91 Polyester, 9 Algodao 	1
+					55 Algodao, 41 Polyester, 4 Elastano 	1
+								57 Algodao, 43 Polyester 	1
+					84 Algodao, 11 Polyester, 5 Elastano 	1
+								66 Polyester, 34 Viscose 	1
+								52 Polyester, 48 Viscose 	1
+								90 Polyester, 10 Elastano 	1
+					42 Algodao, 44 Polyester, 14 Viscose 	1
+								30 Algodao, 70 Polyester 	1
+			25 Algodao, 26 Polyester, 34 Viscose, 15 Linho 	1
+					28 Algodao, 30 Viscose, 42 Polyester 	1
+								61 Algodao, 39 Polyester 	1
+								38 Algodao, 62 Polyester 	1
+					60 Polyester, 38 Algodao, 2 Elastano 	1
+					31 Algodao, 28 Polyester, 41 Viscose 	1
+					31 Algodao, 30 Viscose, 39 Polyester 	1
+					38 Polyester, 60 Viscose, 2 Elastano 	1
+								72 Polyester, 28 Algodao 	1
+								95 Algodao, 5 Polyester 	1
+								92 Algodao, 8 Polyester 	1
+								40 Algodao, 60 Polyester 	1
+								34 Algodao, 66 Polyester 	1
+55 Viscose, 36 Modal, 6 Linho, 2 Polyester, 1 Poliamida 	1

@@ -9,14 +9,21 @@ CREATE TABLE IF NOT EXISTS Quotations
 
 , quotation_number	VARCHAR(32)			DEFAULT NULL
 , customer_id		BIGINT				DEFAULT NULL
+, contact_id		BIGINT				DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
 , dyer_id			BIGINT				DEFAULT NULL
 , dyer_ref      	VARCHAR(32)			DEFAULT NULL
 , diameter			INT					DEFAULT 0		# Diametro (cm)
-, weight			INT					DEFAULT 0		# Gramatura (gr)
-, width				INT					DEFAULT 0		# Largura (cm)
+, weight_from		INT					DEFAULT 0		# Gramatura (gr)
+, weight_to			INT					DEFAULT 0		# Gramatura (gr)
+, width_from		INT					DEFAULT 0		# Largura (cm)
+, width_to			INT					DEFAULT 0		# Largura (cm)
 , peso				DECIMAL(10,2)		DEFAULT 0		# Peso da Peca (12.5) (Kg)
-, has_break			CHAR(3)				DEFAULT 'No'	# Tem falha
+, advanced_amount	DECIMAL(10,2)		DEFAULT 0
+, quoted_amount		DECIMAL(10,2)		DEFAULT 0
+, discount_amount	DECIMAL(10,2)		DEFAULT 0
+, payments			VARCHAR(255)		DEFAULT NULL	# 30 45 60
+, product_type		VARCHAR(32)			DEFAULT NULL
 , punho_id			BIGINT				DEFAULT NULL
 , punho_percent		INTEGER				DEFAULT 0
 , punho_units		INTEGER				DEFAULT 0		# per one quoted piece
@@ -51,3 +58,16 @@ ALTER TABLE Quotations		CHANGE	galao_perc			galao_percent	INTEGER			DEFAULT 0;
 ALTER TABLE Quotations		ADD COLUMN punho_units		INTEGER		DEFAULT 0	AFTER punho_percent;
 ALTER TABLE Quotations		ADD COLUMN gola_units		INTEGER		DEFAULT 0	AFTER gola_percent;
 ALTER TABLE Quotations		ADD COLUMN galao_units		INTEGER		DEFAULT 0	AFTER galao_percent;
+
+ALTER TABLE Quotations		ADD COLUMN contact_id				BIGINT			DEFAULT NULL	AFTER customer_id;
+ALTER TABLE Quotations		CHANGE	weight		weight_from		INTEGER			DEFAULT 0;
+ALTER TABLE Quotations		ADD COLUMN weight_to				INTEGER			DEFAULT 0		AFTER weight_from;
+ALTER TABLE Quotations		CHANGE	width		width_from		INTEGER			DEFAULT 0;
+ALTER TABLE Quotations		ADD COLUMN width_to					INTEGER			DEFAULT 0		AFTER width_from;
+ALTER TABLE Quotations		CHANGE	has_break	product_type	VARCHAR(32)		DEFAULT '';
+
+ALTER TABLE Quotations		ADD COLUMN discount_amount			DECIMAL(10,2)	DEFAULT 0		AFTER peso;
+ALTER TABLE Quotations		ADD COLUMN quoted_amount			DECIMAL(10,2)	DEFAULT 0		AFTER peso;
+
+ALTER TABLE Quotations		ADD COLUMN advanced_amount			DECIMAL(10,2)	DEFAULT 0		AFTER peso;
+ALTER TABLE Quotations		ADD COLUMN payments					VARCHAR(255)	DEFAULT NULL	AFTER discount_amount;

@@ -154,7 +154,7 @@ JKY.process_delete = function(the_id, the_row) {
 
 /* -------------------------------------------------------------------------- */
 JKY.save_remarks = function() {
-	var my_set	=   'remarks = \'' + JKY.get_value('jky-remarks') + '\'';
+	var my_set	= 'remarks = \'' + JKY.get_value('jky-remarks') + '\'';
 	var my_data =
 		{ method: 'update'
 		, table : 'Machines'

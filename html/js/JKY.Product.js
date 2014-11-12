@@ -23,6 +23,34 @@ JKY.Product = function() {
 	var my_layer		= 'jky-product-search';
 	var my_cookie		= null;
 
+	function my_display_info(the_this) {
+		var my_id = $(the_this).parent().find('.jky-product-id').val();
+		var my_data =
+			{ method	: 'get_row'
+			, table		: 'Products'
+			, where		: 'Products.id = ' + my_id
+			};
+		JKY.ajax(true, my_data, my_display_info_success);
+	}
+
+	function my_display_info_success(the_response) {
+		var my_row = the_response.row;
+		var my_html = ''
+			+ '<div><label>' + JKY.t('Parent'		) + ': </label><span>' + my_row.parent_name	+ '</span></div>'
+			+ '<div><label>' + JKY.t('Type'			) + ': </label><span>' + my_row.product_type+ '</span></div>'
+			+ '<div><label>' + JKY.t('Finishings'	) + ': </label><span>' + my_row.finishings	+ '</span></div>'
+			+ '<div><label>' + JKY.t('Washings'		) + ': </label><span>' + my_row.washings	+ '</span></div>'
+			+ '<div><label>' + JKY.t('Peso'			) + ': </label><span>' + my_row.peso		+ '</span></div>'
+			+ '<div><label>' + JKY.t('Units'		) + ': </label><span>' + my_row.units		+ '</span></div>'
+			+ '<div><label>' + JKY.t('Weight'		) + ': </label><span>' + my_row.weight_from	+ ' - ' + my_row.weight_to + ' : ' + my_row.weight_dyer + '</span></div>'
+			+ '<div><label>' + JKY.t('Width'		) + ': </label><span>' + my_row.width_from	+ ' - ' + my_row.width_to  + ' : ' + my_row.width_dyer  + '</span></div>'
+			+ '<div><label>' + JKY.t('Yield'		) + ': </label><span>' + my_row.yield		+ '</span></div>'
+			;
+		JKY.set_html('jky-product-name', my_row.product_name);
+		JKY.set_html('jky-product-body', my_html);
+		JKY.show_modal('jky-product-info');
+	}
+
 	function my_display(the_id, the_type) {
 		my_the_id	= the_id;
 		if (the_type == null) {
@@ -125,7 +153,8 @@ JKY.Product = function() {
 	});
 
 	return {
-		  display		: function(the_id, the_type)	{		my_display(the_id, the_type);}
+		  display_info	: function(the_this)			{		my_display_info(the_this);}
+		, display		: function(the_id, the_type)	{		my_display(the_id, the_type);}
 		, load_data		: function()					{		my_load_data();}
 		, click_row		: function(the_index, the_id)	{		my_click_row(the_index, the_id);}
 		, add_new		: function()					{		my_add_new();}

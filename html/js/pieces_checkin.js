@@ -59,7 +59,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.checkin_at			)	+ '</td>'
 		+  '<td class="jky-td-location"	>' + JKY.fix_null	(the_row.checkin_location	)	+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 the_row.checkin_weight			+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.remarks			)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.qualities + ' ' + the_row.remarks) + '</td>'
 		;
 	return my_html;
 };
@@ -77,6 +77,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-product-name'		, the_row.product_name		);
 	JKY.set_value	('jky-inspector-name'	, the_row.inspector_name	);
 	JKY.set_value	('jky-weigher-name'		, the_row.weigher_name		);
+	JKY.set_value	('jky-qualities'		, the_row.qualities			);
 	JKY.set_value	('jky-remarks'			, the_row.remarks			);
 	JKY.set_value	('jky-checkin-weight'	, the_row.checkin_weight	);
 	JKY.set_value	('jky-checkin-location'	, the_row.checkin_location	);
@@ -100,6 +101,7 @@ JKY.process_clear_screen = function() {
 	JKY.set_value('jky-inspected-name'	, '');
 	JKY.set_value('jky-weighed-by'		, '');
 	JKY.set_value('jky-weighed-name'	, '');
+	JKY.set_value('jky-qualities'		, '');
 	JKY.set_value('jky-remarks'			, '');
 	JKY.set_value('jky-checkin-weight'	, '');
 	JKY.set_value('jky-checkin-location', '');
@@ -116,7 +118,8 @@ JKY.process_keyup_input = function(the_id, the_event) {
 	switch(my_id) {
 		case('jky-barcode'			) : JKY.process_barcode()				 ;	break;
 		case('jky-inspected-name'	) : JKY.set_focus('jky-weighed-name'	);	break;
-		case('jky-weighed-name'		) : JKY.set_focus('jky-remarks'			);	break;
+		case('jky-weighed-name'		) : JKY.set_focus('jky-qualities'		);	break;
+		case('jky-qualities'		) : JKY.set_focus('jky-remarks'			);	break;
 		case('jky-remarks'			) : JKY.set_focus('jky-checkin-weight'	);	break;
 		case('jky-checkin-weight'	) : JKY.set_focus('jky-checkin-location');	break;
 		case('jky-checkin-location'	) : JKY.set_focus('jky-form-action'		);	break;
@@ -148,6 +151,7 @@ JKY.process_barcode_success = function(response) {
 			JKY.set_value('jky-inspected-name'	, my_row.inspected_name		);
 			JKY.set_value('jky-weighed-by'		, my_row.weighed_by			);
 			JKY.set_value('jky-weighed-name'	, my_row.weighed_name		);
+			JKY.set_value('jky-qualities'		, my_row.qualities			);
 			JKY.set_value('jky-remarks'			, my_row.remarks			);
 			JKY.set_value('jky-checkin-weight'	, my_row.checkin_weight		);
 			JKY.set_value('jky-checkin-location', my_row.checkin_location	);
@@ -177,6 +181,7 @@ JKY.process_form_action = function() {
 		var my_barcode			= JKY.get_value('jky-barcode'			);
 		var my_inspected_name	= JKY.get_value('jky-inspected-name'	);
 		var my_weighed_name		= JKY.get_value('jky-weighed-name'		);
+		var my_qualities		= JKY.get_value('jky-qualities'			);
 		var my_remarks			= JKY.get_value('jky-remarks'			);
 		var my_checkin_weight	= JKY.get_value('jky-checkin-weight'	);
 		var my_checkin_location	= JKY.get_value('jky-checkin-location'	).toUpperCase();
@@ -189,6 +194,7 @@ JKY.process_form_action = function() {
 		if (my_barcode			== '' )		my_error += JKY.set_is_required('Barcode'	);
 		if (my_inspected_by		== '' )		my_error += JKY.set_is_required('Inspected'	);
 		if (my_weighed_by		== '' )		my_error += JKY.set_is_required('Weighed'	);
+		if (my_qualities		== '' )		my_error += JKY.set_is_required('Qualities'	);
 		if (my_remarks			== '' )		my_error += JKY.set_is_required('Remarks'	);
 		if (my_checkin_weight	== '' )		my_error += JKY.set_is_required('Weight'	);
 		if (my_checkin_location	== '' )		my_error += JKY.set_is_required('Location'	);
@@ -201,6 +207,7 @@ JKY.process_form_action = function() {
 				, barcode			: my_barcode
 				, inspected_by		: my_inspected_by
 				, weighed_by		: my_weighed_by
+				, qualities			: my_qualities
 				, remarks			: my_remarks
 				, checkin_weight	: my_checkin_weight
 				, checkin_location	: my_checkin_location
@@ -230,7 +237,7 @@ JKY.checkin_piece_success = function() {
 		+  '<td class="jky-td-date"		>' + JKY.short_date	(my_row.checkin_at		)	+ '</td>'
 		+  '<td class="jky-td-location"	>' + JKY.fix_null	(my_row.checkin_location)	+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 my_row.checkin_weight		+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(my_row.remarks			)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(my_row.qualities +' ' + my_row.remarks) + '</td>'
 		+ '</tr>'
 		;
 	JKY.prepend_html('jky-pieces-table-body', my_html);
