@@ -48,11 +48,13 @@ JKY.generate_prices = function(response) {
 		if (my_row) {
 			my_color_prices[i].id				= my_row.id				;
 			my_color_prices[i].current_price	= my_row.current_price	;
+			my_color_prices[i].updated_at		= my_row.updated_at		;
 			my_color_prices[i].new_price		= my_row.new_price		;
 			my_color_prices[i].effective_date	= my_row.effective_date	;
 		}else{
 			my_color_prices[i].id				= null;
 			my_color_prices[i].current_price	= '0';
+			my_color_prices[i].updated_at		= null;
 			my_color_prices[i].new_price		= '0';
 			my_color_prices[i].effective_date	= null;
 		}
@@ -78,6 +80,7 @@ JKY.generate_price = function(the_row) {
 		+ '<td class="jky-td-action"	>' + my_trash + '</td>'
 		+ '<td class="jky-td-name"		><input  disabled	class="jky-color-type"		value="' +				the_row.color_type		+ '" /></td>'
 		+ '<td class="jky-td-price"		><input  changeable	class="jky-current-price"	value="' +				the_row.current_price	+ '" onchange="JKY.change_price(this, ' + my_id + ')" /></td>'
+		+ '<td class="jky-td-date"		><input  disabled	class="jky-updated-date"	value="' + JKY.out_date(the_row.updated_at)		+ '" onchange="JKY.change_price(this, ' + my_id + ')" /></td>'
 		+ '<td class="jky-td-price"		><input  changeable	class="jky-new-price"		value="' +				the_row.new_price		+ '" onchange="JKY.change_price(this, ' + my_id + ')" /></td>'
 		+ '<td class="jky-td-date"		><input  changeable	class="jky-effective-date"	value="' + JKY.out_date(the_row.effective_date)	+ '" onchange="JKY.change_price(this, ' + my_id + ')" /></td>'
 		+ '</tr>'

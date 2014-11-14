@@ -739,6 +739,7 @@ JKY.translations =
 , "Updated":"Atualizado"
 , "Updated At":"Atualizado Em"
 , "Updated By":"Atualizado Por"
+, "Updated Date":"Data Atualizado"
 , "Upload Drawing":"Upload Desenho"
 , "Upload Photo":"Upload Foto"
 , "Upto":"Ate"

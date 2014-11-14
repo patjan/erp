@@ -95,6 +95,7 @@ return;
 
 // -----------------------------------------------------------------------------
 function update_products_new_price($the_local_db) {
+	$my_table = 'ProdPrices';
 	$my_today = get_date();
 	$my_sql = ''
 		. 'SELECT ProdPrices.*'
@@ -113,16 +114,17 @@ function update_products_new_price($the_local_db) {
 		$my_new_price	= $my_row['new_price'	];
 
 		$my_sql = ''
-			. 'UPDATE ProdPrices'
-			. '   SET updated_at = NOW()'
+			. 'UPDATE ' . $my_table
+			. '   SET updated_at = "' . get_now() . '"'
 			. '     , current_price = ' . $my_new_price
 			. '     , new_price	= 0'
 			. '     , effective_date = NULL'
 			. ' WHERE id = ' . $my_id
 			;
+log_message($my_sql);
 		$my_local_row = $the_local_db->query($my_sql);
 log_message(json_encode($my_local_row));
-log_message($my_sql);
+		insert_changes($the_local_db, $my_table, $my_id);
 	}
 }
 
@@ -159,19 +161,20 @@ function log_message($message) {
 	$logFile = fopen( SERVER_BASE . PROGRAM_NAME . '/' . $date . '.txt', 'a' ) or die( 'cannot open log ' . PROGRAM_NAME . ' file' );
 	fwrite( $logFile, get_now() . ' ' . $message . NL );
 	fclose( $logFile );
-//	print(get_now() . ' ' . $message . NL);
+	print(get_now() . ' ' . $message . NL);
 }
 
-function OnlyString( $String )
-{
-     $myString = '';
-     for( $I = 0; $I < strlen( $String ); $I++ )
-     {
-          $C = $String[ $I ];
-          if( $C == ' ' || ( $C >= '0' && $C <= '9' ) || ( $C >= 'a' && $C <= 'z' ) || ( $C >= 'A' && $C <= 'Z' ) )
-               $myString .= $C;
-     }
-     return $myString;
+function OnlyString( $String ) {
+	$myString = '';
+	for($I=0; $I<strlen($String); $I++) {
+		$C = $String[$I];
+		if ($C == ' '
+		|| ($C >= '0' && $C <= '9')
+		|| ($C >= 'a' && $C <= 'z')
+		|| ($C >= 'A' && $C <= 'Z'))
+			$myString .= $C;
+	}
+	return $myString;
 }
 
 ?>
