@@ -71,7 +71,6 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select'	, JKY.set_options(JKY.sales.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
-	JKY.show	('jky-action-print');
 
 	$('#jky-customer-filter'	).KeyUpDelay(JKY.Customer	.load_data);
 	$('#jky-salesman-filter'	).KeyUpDelay(JKY.Salesman	.load_data);
@@ -203,10 +202,12 @@ JKY.zero_value = function(the_id, the_name) {
 }
 
 JKY.display_list = function() {
+	JKY.hide('jky-action-add-new');
 	JKY.show('jky-action-print');
 };
 
 JKY.display_form = function() {
+	JKY.hide('jky-action-add-new');
 	JKY.show('jky-action-print');
 	JKY.show('jky-action-copy');
 };

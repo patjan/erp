@@ -22,11 +22,14 @@ JKY.generate_lines = function(response) {
 		}
 	}
 	JKY.set_html('jky-lines-body', my_html);
-	$('.jky-product-peso'	).ForceNumericOnly();
-	$('.jky-product-units'	).ForceIntegerOnly();
 	if (my_rows == '') {
 		JKY.insert_line();
 	}
+	$('.jky-product-peso'	).ForceNumericOnly();
+	$('.jky-quoted-units'	).ForceIntegerOnly();
+	$('.jky-product-units'	).ForceIntegerOnly();
+	$('.jky-quoted-pieces'	).ForceIntegerOnly();
+	$('.jky-quoted-weight'	).ForceNumericOnly();
 }
 
 JKY.generate_line = function(the_index, the_row) {
@@ -47,6 +50,7 @@ JKY.generate_line = function(the_index, the_row) {
 		+ '<td class="jky-td-action"	>' + my_trash			+ '</td>'
 		+ '<td class="nowrap"			>' + my_product			+ '</td>'
 		+ '<td class="jky-td-extra"		><input class="jky-remarks"			onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.fix_null(the_row.remarks) + '" /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-quoted-weight"	disabled										value="' + the_row.quoted_weight + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-product-peso"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.peso			 + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-quoted-units"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.quoted_units	 + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-product-units"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.units		 + '" /></td>'
@@ -58,6 +62,7 @@ JKY.generate_line = function(the_index, the_row) {
 		+ '<th class="jky-td-action"	>' + '&nbsp;'			+ '</td>'
 		+ '<th class="jky-td-action"	>' + '&nbsp;'			+ '</td>'
 		+ '<th class="jky-td-extra"		>' + my_add_order		+ '</td>'
+		+ '<th class="nowrap"			>' + JKY.t('Color')		+ '</td>'
 		+ '<th class="nowrap"			>' + JKY.t('FTP')		+ '</td>'
 		+ '<th class="jky-td-name-s"	>' + JKY.t('Machine')	+ '</td>'
 		+ '<th class="nowrap"			>' + JKY.t('Partner')	+ '</td>'
@@ -82,14 +87,14 @@ JKY.update_line = function(id_name, the_id) {
 	var my_units		= my_tr.find('.jky-product-units'	).val();
 	var my_quoted_pieces= my_tr.find('.jky-quoted-pieces'	).val();
 
-	if (my_units < 1) {
-		JKY.display_message(JKY.set_value_is_under('Units/Piece', 1));
+	if (my_units < 0) {
+		JKY.display_message(JKY.set_value_is_under('Units/Piece', 0));
 		my_tr.find('.jky-product-units').select();
 		my_tr.find('.jky-product-units').focus();
 		return false;
 	}
 
-	var my_new_pieces		= Math.ceil(my_quoted_units / my_units);
+	var my_new_pieces		= (my_units == 0) ? my_quoted_units : Math.ceil(my_quoted_units / my_units);
 	var my_new_weight		= my_quoted_units * my_peso;
 	var my_diff_pieces		= my_new_pieces - my_quoted_pieces;
 
@@ -119,7 +124,6 @@ JKY.update_line = function(id_name, the_id) {
 		, set		: 'quoted_pieces = quoted_pieces + ' + my_diff_pieces
 		};
 	JKY.ajax(true, my_data, JKY.update_line_success);
-debugger;
 	my_tr.find('.jky-quoted-pieces').val(my_new_pieces);
 	my_tr.find('.jky-quoted-weight').val(my_new_weight);
 }

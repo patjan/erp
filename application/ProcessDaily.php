@@ -102,6 +102,7 @@ function update_products_new_price($the_local_db) {
 		. '  FROM ProdPrices'
 		. ' WHERE ProdPrices.effective_date IS NOT NULL'
 		. '   AND ProdPrices.effective_date <= "' . $my_today . '"'
+		. '   AND ProdPrices.new_price != 0'
 		;
 	log_message($my_sql);
 	$my_rows	= $the_local_db->fetchAll($my_sql);
@@ -122,8 +123,7 @@ function update_products_new_price($the_local_db) {
 			. ' WHERE id = ' . $my_id
 			;
 log_message($my_sql);
-		$my_local_row = $the_local_db->query($my_sql);
-log_message(json_encode($my_local_row));
+		$my_result = $the_local_db->query($my_sql);
 		insert_changes($the_local_db, $my_table, $my_id);
 	}
 }

@@ -77,8 +77,10 @@ JKY.set_initial_values = function() {
 	$('#jky-app-select option').eq(1).prop('selected', true);
 	$('#jky-app-select').change();
 	JKY.show('jky-tab-payments');
-	$('#jky-tab-payments' ).addClass('active');
-	$('#jky-pane-payments').addClass('active');
+	$('#jky-tab-payments'	).addClass('active');
+	$('#jky-pane-payments'	).addClass('active');
+
+	$('#jky-credit-limit'	).ForceNumericOnly();
 };
 
 /**

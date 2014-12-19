@@ -24,9 +24,22 @@ ok		- supplier display search correto
 ok		- error de sql on search
 
 
+		- add salesman_id into Quotations
+		- drop out salesman_id from OSAs
+		- update AjaxController
 
+done	- usar tanto . , como ponto decimal
+done	- update dynamically [Sub Amount] of Quotations(form) on any amount change
+done	- copy Colors in the same sequence on Quotation(form)
+done	- allow to enter decimal point on Quotation Colors
 
-
+		- on OSA(form), when change Units (to zero), enable Quoted Weight on OSA_Orders
+done	- on OSA(form), display correct Salesman's name
+		- verify [Quoted Pieces] on OSA_Lines after change on Quoted Weight on punhos
+		- display correctly OSA(list)
+		
+		- limit box weight upto 70 Kg or divide by 100
+		
 Marcelo:
 
 1.	OK	Instalar servidor de Teste da DL

@@ -12,14 +12,14 @@ CREATE TABLE IF NOT EXISTS LoadOuts
 , color_id			BIGINT				DEFAULT NULL
 , shipdyer_id		BIGINT				DEFAULT NULL
 , requested_at		DATETIME			DEFAULT NULL
-, requested_pieces	INT					DEFAULT 0
-, requested_weight	DECIMAL(10,2)		DEFAULT 0
-, checkout_at		DATETIME			DEFAULT NULL
-, checkout_pieces	INT					DEFAULT 0
-, checkout_weight	DECIMAL(10,2)		DEFAULT 0
+, quoted_pieces		INT					DEFAULT 0
+, quoted_weight		DECIMAL(7,1)		DEFAULT 0
+, loadout_at		DATETIME			DEFAULT NULL
+, loadout_pieces	INT					DEFAULT 0
+, loadout_weight	DECIMAL(7,1)		DEFAULT 0
 , returned_at		DATETIME			DEFAULT NULL
 , returned_pieces	INT					DEFAULT 0
-, returned_weight	DECIMAL(10,2)		DEFAULT 0
+, returned_weight	DECIMAL(7,1)		DEFAULT 0
 
 , PRIMARY KEY(id)
 , UNIQUE(loadout_number)

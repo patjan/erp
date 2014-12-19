@@ -172,6 +172,8 @@ function JKY_print_pieces($data) {
 				$my_product_name2 = substr($my_product_name, $i+1);
 			}
 		}
+		$my_date = $my_row['updated_at'];
+		$my_updated = substr($my_date, 8, 2) . '/' . substr($my_date, 5, 2) . '/' . substr($my_date, 0, 4);
 
 		$labels  =		'~NORMAL';
 		$labels .= NL . '~NORMAL';
@@ -184,19 +186,19 @@ function JKY_print_pieces($data) {
 		$labels .= NL . 'ISET;0';
 		$labels .= NL . 'FONT;FACE 92250';
 		$labels .= NL . 'ALPHA';
-		$labels .= NL . 'INV;POINT;268;791;12;12;*CM*';
-		$labels .= NL . 'INV;POINT;268;280;12;12;*Data:*';
-//		$labels .= NL . 'INV;POINT;226;791;12;12;*Estocagem:*';
+		$labels .= NL . 'INV;POINT;268;741;12;12;*CM*';
+		$labels .= NL . 'INV;POINT;268;230;12;12;*Data:*';
+//		$labels .= NL . 'INV;POINT;226;741;12;12;*Estocagem:*';
 		$labels .= NL . 'STOP';
 		$labels .= NL . '/PARTE VARIAVEL';
 		$labels .= NL . 'ISET;0';
 		$labels .= NL . 'FONT;FACE 92250';
 		$labels .= NL . 'ALPHA';
-		$labels .= NL . 'INV;POINT;354;791;12;12;*' . $my_product_name1			  . '*';
-		$labels .= NL . 'INV;POINT;311;791;12;12;*' . $my_product_name2			  . '*';
-		$labels .= NL . 'INV;POINT;268;728;12;12;*' . $my_produced_by			  . '*';
-		$labels .= NL . 'INV;POINT;268;200;12;12;*' . $my_row['created_at'		] . '*';
-//		$labels .= NL . 'INV;POINT;226;592;12;12;*' . $my_row['checkin_location'] . '*';
+		$labels .= NL . 'INV;POINT;354;741;12;12;*' . $my_product_name1			  . '*';
+		$labels .= NL . 'INV;POINT;311;741;12;12;*' . $my_product_name2			  . '*';
+		$labels .= NL . 'INV;POINT;268;678;12;12;*' . $my_produced_by			  . '*';
+		$labels .= NL . 'INV;POINT;268;150;12;12;*' . $my_updated				  . '*';
+//		$labels .= NL . 'INV;POINT;226;542;12;12;*' . $my_row['checkin_location'] . '*';
 		$labels .= NL . 'STOP';
 		$labels .= NL . '/CODIGO DE BARRAS';
 		$labels .= NL . 'BARCODE';

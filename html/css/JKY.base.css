@@ -190,6 +190,7 @@ input[type='checkbox']	{margin:0;}
 #jky-action-cancel		{display:none;}
 #jky-action-export		{display:inline-block;}
 #jky-action-publish		{display:none;}
+#jky-action-replace		{display:inline-block;}
 #Xjky-action-list		{display:inline-table;}
 #jky-action-graph		{display:none;}
 #jky-action-calendar	{display:none;}
@@ -216,6 +217,7 @@ input[type='checkbox']	{margin:0;}
     padding: 0 0 0 22px;
 }
 .jky-form-status		{display: inline; border:0px solid #999999; margin:2px; padding:4px;}
+.jky-form-display		{margin-top:20px;}
 
 Xli.active 				{background-image: linear-gradient(to bottom, #729FCF, #3465A4);}
 li.active .xlabel		{color:white; font-weight:bold;}
@@ -437,6 +439,7 @@ li .arrow span {
 .jky-search-color-name		{width:319px; text-align:left   !important; text-transform:capitalize;}
 .jky-search-color-type		{width: 50px; text-align:center !important;}
 .jky-search-color-date		{width: 80px; text-align:center !important;}
+.jky-search-customer-name	{width:110px; text-align:left   !important; text-transform:capitalize;}
 .jky-search-machine-name	{width:270px; text-align:left   !important; text-transform:capitalize;}
 .jky-search-machine-type	{width: 50px; text-align:center !important;}
 .jky-search-machine-brand	{width: 50px; text-align:center !important;}
@@ -452,7 +455,12 @@ li .arrow span {
 .jky-search-sold-pieces		{width: 55px; text-align:right  !important;}
 .jky-search-transport-name	{width:270px; text-align:left   !important; text-transform:capitalize;}
 .jky-search-supplier-name	{width: 70px; text-align:left   !important; text-transform:capitalize;}
-.jky-search-composition-name	{width:450px; text-align:left   !important; text-transform:capitalize;}
+.jky-search-composition-name{width:450px; text-align:left   !important; text-transform:capitalize;}
+.jky-search-quoted-date		{width: 80px; text-align:center !important;}
+.jky-search-quoted-pieces	{width: 50px; text-align:right  !important;}
+.jky-search-quoted-weight	{width: 50px; text-align:right  !important;}
+.jky-search-delta-pieces	{visibility:hidden; width:0;}
+.jky-search-delta-weight	{visibility:hidden; width:0;}
 
 .jky-search-date			{text-align:center	!important;}
 .jky-search-boxes			{text-align:right	!important;}
@@ -516,6 +524,7 @@ li .arrow span {
 .jky-not-found			{color:  red; text-align:center !important;}
 .jky-ok					{color:#4C4C4C;}
 .jky-status				{width: 70px;}
+.jky-large-digit		{width: 80px; text-align:center	!important; font-size:200%; font-weight:bold;}
 
 .jky-form-key			{font-size:14px; font-weight:bold;}
 
@@ -564,7 +573,8 @@ li .arrow span {
 .jky-form-string		{width:200px; text-align:left   !important;}
 .jky-form-text			{width:570px; height:140px; margin-bottom:2px;}
 .jky-form-type			{width:132px; text-align:left   !important;}
-.jky-form-weight		{width: 60px; text-align:right  !important; margin-right:20px;}
+.jky-form-weight		{width: 80px; text-align:right  !important; margin-right:20px;}
+.jky-form-digit 		{width: 18px; text-align:right  !important;}
 .jky-form-width			{width: 60px; text-align:right  !important; margin-right:20px;}
 .jky-form-zip			{width: 80px; text-align:left   !important;}
 
@@ -595,9 +605,9 @@ li .arrow span {
 .jky-td-hours		input	{width: 60px; text-align:right	!important;}
 .jky-td-key-s				{width: 85px; text-align:center !important;}
 .jky-td-key-s		input	{width: 45px; text-align:right	!important;}
-.jky-td-key					{width:120px; text-align:center !important;}
+.jky-td-key					{width:100px; text-align:center !important;}
 .jky-td-key			input	{width: 75px;}
-.jky-td-key-m				{width:170px; text-align:left   !important;}
+.jky-td-key-m				{width:150px; text-align:left   !important;}
 .jky-td-key-m		input	{width:125px;}
 .jky-td-key-l				{width:205px; text-align:left   !important;}
 .jky-td-key-l		input	{width:170px;}
@@ -621,10 +631,10 @@ li .arrow span {
 .jky-td-phone				{width: 60px; text-align:left	!important;}
 .jky-td-percent				{width: 80px; text-align:right	!important;}
 .jky-td-percent		input	{width: 60px; text-align:right	!important;}
-.jky-td-pieces				{width: 75px; text-align:right	!important;}
-.jky-td-pieces		input	{width: 70px; text-align:right	!important;}
-.jky-td-price				{width: 75px; text-align:right  !important;}
-.jky-td-price		input	{width: 70px; text-align:right  !important;}
+.jky-td-pieces				{width: 65px; text-align:right	!important;}
+.jky-td-pieces		input	{width: 60px; text-align:right	!important;}
+.jky-td-price				{width: 65px; text-align:right  !important;}
+.jky-td-price		input	{width: 60px; text-align:right  !important;}
 .jky-td-ref					{width: 85px; text-align:center !important;}
 .jky-td-ref			input	{width: 80px;}
 .jky-td-remarks				{}
@@ -643,9 +653,11 @@ li .arrow span {
 .jky-td-thread		input	{width:245px; text-transform:capitalize; margin-top:2px;}
 .jky-td-thread		select	{width:270px; margin-top:2px;}
 .jky-td-thumb				{width: 30px; text-align:center !important; padding:0 !important;}
+.jky-td-units				{width: 40px; text-align:right	!important;}
+.jky-td-units		input	{width: 50px; text-align:right	!important;}
 .jky-td-yes-no				{width: 40px; text-align:center !important;}
-.jky-td-weight				{width: 85px; text-align:right  !important;}
-.jky-td-weight		input	{width: 80px; text-align:right	!important;}
+.jky-td-weight				{width: 65px; text-align:right  !important;}
+.jky-td-weight		input	{width: 60px; text-align:right	!important;}
 .jky-td-width				{width: 85px; text-align:right  !important;}
 .jky-td-width		input	{width: 80px; text-align:right	!important;}
 
@@ -659,7 +671,8 @@ li .arrow span {
  jky-pane-tfoot	tr			{border-bottom:1px solid black;}
 .jky-pane-tfoot	tr td		{background:#999999; color:black; height:24px; padding:2px 8px;}
 
-.jky-product-name		{text-transform:capitalize;}
+.jky-color-name			{width:100px;}
+.jky-product-name		{width:240px; text-transform:capitalize;}
 .jky-machine-name		{text-transform:capitalize; text-align:center !important;}
 
 tbody .jky-config-line		{height:22px;}
@@ -707,3 +720,4 @@ tbody .jky-config-line		{height:22px;}
 
 #jky-product-info label		{float:left; clear:both; width:100px; margin-right:10px; text-align:right;}
 #jky-product-info span		{float:left;}
+#jky-remarks				{width:300px;}

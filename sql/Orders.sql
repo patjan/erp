@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS Orders
 , order_number		VARCHAR(32)			DEFAULT NULL
 , customer_id		BIGINT				DEFAULT NULL
 , product_id		BIGINT				DEFAULT NULL
+, color_id			BIGINT				DEFAULT NULL
 , ftp_id			BIGINT				DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
 , partner_id		BIGINT				DEFAULT NULL
@@ -70,3 +71,4 @@ ALTER TABLE Orders			ADD COLUMN produced_weight	DECIMAL(10,2)	DEFAULT 0		AFTER o
 ALTER TABLE Orders			CHANGE	quot_line_id		osa_line_id		BIGINT			DEFAULT NULL;
 ALTER TABLE Orders			CHANGE	quotation_number	osa_number		VARCHAR(32)		DEFAULT NULL;
 
+ALTER TABLE Orders			ADD		color_id				BIGINT			DEFAULT NULL	AFTER product_id;

@@ -26,6 +26,8 @@ JKY.generate_restrictions = function(response) {
 	if (my_rows == '') {
 //		JKY.insert_restriction();
 	}
+
+	$('.jky-amount').ForceNumericOnly();
 }
 
 JKY.generate_restriction = function(the_row) {

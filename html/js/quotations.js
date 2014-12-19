@@ -19,7 +19,7 @@ JKY.start_program = function() {
 		, sort_by		: 'quotation_number'
 		, sort_seq		: 'DESC'
 		, sort_list		: [[1, 1]]
-		, focus			: 'jky-weight'
+		, focus			: 'jky-payments'
 		, add_new		: 'display form'
 		});
 	JKY.App.init();
@@ -44,7 +44,7 @@ JKY.set_all_events = function() {
 	$('#jky-delivered-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 
 	$('#jky-action-gen-sale'	).click( function() {JKY.generate_order			();});
-	$('#jky-action-gen-osa'		).click( function() {JKY.generate_osa			();});
+	$('#jky-action-generate'	).click( function() {JKY.generate_osa			();});
 	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 /*
 	$('#jky-punho-percent'		).change( function()	{JKY.zero_value(this, 'jky-punho-units'		);});
@@ -96,15 +96,7 @@ JKY.set_initial_values = function() {
 //	$('#jky-weight'	).ForceIntegerOnly();
 //	$('#jky-width'	).ForceIntegerOnly();
 //	$('#jky-peso'	).ForceNumericOnly();
-	$('#jky-advanced-amount'	).ForceNumericOnly();
-/*
-	$('#jky-punho-percent'	).ForceIntegerOnly();
-	$('#jky-punho-units'	).ForceIntegerOnly();
-	$('#jky-gola-percent'	).ForceIntegerOnly();
-	$('#jky-gola-units'		).ForceIntegerOnly();
-	$('#jky-galao-percent'	).ForceIntegerOnly();
-	$('#jky-galao-units'	).ForceIntegerOnly();
-*/
+	$('#jky-advanced-amount').ForceNumericOnly();
 };
 
 /**
@@ -168,9 +160,9 @@ JKY.set_form_row = function(the_row) {
 //	JKY.set_value	('jky-product-type'		,				 the_row.product_type		);
 
 	var my_sub_amount = (the_row.quoted_amount - the_row.discount_amount - the_row.advanced_amount).toFixed(2);
-	JKY.set_value	('jky-advanced-amount'	,				 the_row.advanced_amount	);
 	JKY.set_value	('jky-quoted-amount'	,				 the_row.quoted_amount		);
 	JKY.set_value	('jky-discount-amount'	,				 the_row.discount_amount	);
+	JKY.set_value	('jky-advanced-amount'	,				 the_row.advanced_amount	);
 	JKY.set_value	('jky-sub-amount'		,				 my_sub_amount				);
 	JKY.set_value	('jky-payments'			,				 the_row.payments			);
 /*
@@ -387,11 +379,12 @@ JKY.save_remarks_success = function(response) {
 };
 
 JKY.update_sub_amount = function() {
+	if (JKY.is_empty($('#jky-advanced-amount').val()))      JKY.set_value('jky-advanced-amount', 0);
 	var my_quoted_amount	= parseFloat($('#jky-quoted-amount'		).val());
 	var my_discount_amount	= parseFloat($('#jky-discount-amount'	).val());
 	var my_advanced_amount	= parseFloat($('#jky-advanced-amount'	).val());
-	var my_sub_amount		= (my_quoted_amount - my_discount_amount - my_advanced_amount).toFixed(2);
-	JKY.set_value('jky-sub-amount', my_sub_amount);
+	var my_sub_amount		= my_quoted_amount - my_discount_amount - my_advanced_amount;
+	JKY.set_value('jky-sub-amount', my_sub_amount.toFixed(2));
 }
 
 /**
@@ -401,6 +394,7 @@ JKY.update_quotation_amount = function() {
 	var my_quoted_amount	= 0;
 	var my_discount_amount	= 0;
 	var my_line_peso		= 0;
+	var my_line_units		= 0;
 	var my_line_discount	= '';
 	var my_color_units		= 0;
 	var my_color_price		= 0;
@@ -410,9 +404,11 @@ JKY.update_quotation_amount = function() {
 		var my_quot_line_id = $(this).attr('quot_line_id');
 		if (my_quot_line_id) {
 			my_line_peso		= parseFloat($(this).find('.jky-product-peso'	).val());
+			my_line_units		= parseInt	($(this).find('.jky-product-units'	).val());
 			my_line_discount	=			 $(this).find('.jky-discount'		).val()	;
+			if (my_line_units == 0)		my_line_peso = 1;
 		}else{
-			my_color_units		= parseInt	($(this).find('.jky-quoted-units'	).val());
+			my_color_units		= parseFloat($(this).find('.jky-quoted-units'	).val());
 			my_color_price		= parseFloat($(this).find('.jky-quoted-price'	).val());
 			my_color_discount	=			 $(this).find('.jky-discount'		).val() ;
 
@@ -424,15 +420,22 @@ JKY.update_quotation_amount = function() {
 			var my_length = my_color_discount.length;
 			if (my_color_discount.substr(my_length-1, 1) == '%') {
 				my_color_discount = parseFloat(my_color_discount);
-				my_discount_amount += my_color_amount * my_color_discount / 100;
+				if (!isNaN(my_color_discount)) {
+					my_discount_amount += my_color_amount * my_color_discount / 100;
+				}
 			}else{
-				my_discount_amount += my_line_peso * my_color_units * my_color_discount;
+				my_color_discount = parseFloat(my_color_discount);
+				if (!isNaN(my_color_discount)) {
+					my_discount_amount += my_line_peso * my_color_units * my_color_discount;
+				}
 			}
 		}
 	});
-	$('#jky-quoted-amount'  ).val((my_quoted_amount						).toFixed(2));
-	$('#jky-discount-amount').val((my_discount_amount					).toFixed(2));
-	$('#jky-total-amount'	).val((my_quoted_amount-my_discount_amount	).toFixed(2));
+	var my_advanced_amount	= parseFloat($('#jky-advanced-amount').val());
+	var my_sub_amount		= my_quoted_amount - my_discount_amount - my_advanced_amount;
+	JKY.set_value('jky-quoted-amount'	, my_quoted_amount  .toFixed(2));
+	JKY.set_value('jky-discount-amount'	, my_discount_amount.toFixed(2));
+	JKY.set_value('jky-sub-amount'		, my_sub_amount		.toFixed(2));
 
 	var my_set	=     'quoted_amount = ' + my_quoted_amount
 				+ ', discount_amount = ' + my_discount_amount

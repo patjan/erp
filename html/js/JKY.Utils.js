@@ -723,6 +723,10 @@ JKY.inp_time_value = function(the_time){
  *				#jky-message-body
  *
  */
+JKY.d = function(the_message, id_name) {
+	JKY.display_message(the_message, id_name);
+}
+
 JKY.display_message = function(the_message, id_name) {
 	var my_message = the_message.trim();
 	if (my_message == '') {

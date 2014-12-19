@@ -84,3 +84,58 @@ SELECT color_type, COUNT(*)
  SELECT composition, COUNT(*)
   FROM FTPs
  GROUP by composition
+
+SELECT Pur.parent_id, Pur.received_weight AS purchase_weight, Batches.received_weight 
+  FROM PurchaseLines AS Pur
+  LEFT JOIN Batches ON Batches.purchase_line_id = Pur.id
+ WHERE Pur.received_weight != Batches.received_weight  
+ ORDER BY parent_id
+ 
+ 
+SELECT Batches.purchase_line_id
+	 , SUM( Batches.received_weight ) AS received_weight
+	 , Pur.received_weight AS purchase_weight
+  FROM Batches
+  LEFT JOIN PurchaseLines AS Pur ON Pur.id = Batches.purchase_line_id
+ WHERE Batches.purchase_line_id > 0
+ GROUP BY Batches.purchase_line_id
+HAVING received_weight != purchase_weight
+
+purchase	pur_line_id  rec_weight 	pur_weight
+200084		2000000239	   15606.50 	16107.00	500.50
+200091		2000000256	 	9979.20 	19958.40	9979.20
+200101		2000000275	   10680.00 	31972.50	10710.00	10582.50
+200107		2000000284	 	 473.94 	  588.54	114.60
+200107		2000000289	 	 234.83 	  350.79	115.96
+200113		2000000312	 	2912.16 	 5824.32	2912.16
+200118		2000000323	 	 320.00 	  480.00	160.00
+200146		2000000400	 	1515.94 	 3529.64	2013.70
+
+200195		2000000502								3456.00	
+200113		2000000311								6032.03
+200120		2000000330								5026.97		5018.46
+200126		2000000351								121.13
+			
+SELECT *
+  FROM History
+ WHERE parent_name = 'Batches'
+   AND method = 'Delete'
+   AND history NOT LIKE '%purchase_line_id:,%'
+   AND history NOT LIKE '%received_weight:0.00%'
+   
+   Full texts 	id 	updated_by 	updated_at 	parent_name 	parent_id 	method 	history
+	Edit Edit 	Copy Copy 	Delete Delete 	2000056908 	100003 	2014-04-15 13:54:14 	Batches 	2000000350 	delete 	id:2000000350, created_by:, created_at:, updated_b...
+	Edit Edit 	Copy Copy 	Delete Delete 	2000087698 	100039 	2014-07-21 09:02:49 	Batches 	2000000403 	delete 	id:2000000403, created_by:, created_at:, updated_b...
+	Edit Edit 	Copy Copy 	Delete Delete 	2000073528 	100039 	2014-06-06 15:54:01 	Batches 	2000000459 	delete 	id:2000000459, created_by:, created_at:, updated_b...
+	Edit Edit 	Copy Copy 	Delete Delete 	2000073808 	100039 	2014-06-09 13:09:45 	Batches 	2000000463 	delete 	id:2000000463, created_by:, created_at:, updated_b...
+	Edit Edit 	Copy Copy 	Delete Delete 	2000080588 	100039 	2014-07-01 07:22:50 	Batches 	2000000497 	delete 	id:2000000497, created_by:, created_at:, updated_b...
+	Edit Edit 	Copy Copy 	Delete Delete 	2000090567 	100039 	2014-07-25 08:25:13 	Batches 	2000000518 	delete 	id:2000000518, created_by:, created_at:, updated_b...
+	Edit Edit 	Copy Copy 	Delete Delete 	2000090565 	100039 	2014-07-25 08:25:06 	Batches 	2000000519 	delete 	id:2000000519, created_by:, created_at:, updated_b...
+	Edit Edit 	Copy Copy 	Delete Delete 	2000088152 	100039 	2014-07-22 07:27:32 	Batches 	2000000537 	delete 	id:2000000537, created_by:, created_at:, updated_b...
+	Edit Edit 	Copy Copy 	Delete Delete 	2000096214 	100039 	2014-08-07 11:53:57 	Batches 	2000000552 	delete 	id:2000000552, created_by:, created_at:, updated_b...
+	Edit Edit 	Copy Copy 	Delete Delete 	2000098863 	100039 	2014-08-14 08:52:21 	Batches 	2000000583 	delete 	id:2000000583, created_by:, created_at:, updated_b...
+	Edit Edit 	Copy Copy 	Delete Delete 	2000097945 	100039 	2014-08-12 07:27:53 	Batches 	2000000655 	delete 	id:2000000655, created_by:, created_at:, updated_b...
+	Edit Edit 	Copy Copy 	Delete Delete 	2000099103 	100039 	2014-08-14 09:15:25 	Batches 	2000000680 	delete 	id:2000000680, created_by:, created_at:, updated_b...
+	Edit Edit 	Copy Copy 	Delete Delete 	2000164937 	100039 	2014-12-11 08:00:28 	Batches 	2000001016 	delete 	id:2000001016, created_by:, created_at:, updated_b...
+	Edit Edit 	Copy Copy 	Delete Delete 	2000166742 	100039 	2014-12-12 10:06:34 	Batches 	2000001455 	delete 	id:2000001455, created_by:, created_at:, updated_b...
+With selected: Check All / Uncheck All With selected:

@@ -52,7 +52,7 @@ JKY.Product = function() {
 	}
 
 	function my_display(the_id, the_type) {
-		my_the_id	= the_id;
+		my_the_id = the_id;
 		if (the_type == null) {
 			my_the_type	= 'All';
 		}else{
@@ -98,20 +98,20 @@ JKY.Product = function() {
 		var my_units	= $(the_index).find('.jky-search-product-units').html();
 		var my_parent	= $(my_the_id).parent().parent();
 
-//		var my_dom_id = $(my_parent).find('#jky-product-id');
-		var my_dom_id = $('#jky-parent-id');
+		var	my_dom_id = $('#jky-parent-id');							//	Products
 		if (my_dom_id.length == 0) {
-			my_dom_id = $('#jky-product-id');
+			my_dom_id = $(my_parent).find('#jky-product-id');			//	Quotations
+//			my_dom_id = $('#jky-product-id');
 			if (my_dom_id.length == 0) {
 				my_dom_id = $(my_parent).find('.jky-product-id');
 			}
 		}
 		my_dom_id.val(the_id );
 
-//		var my_dom_name = $(my_parent).find('#jky-product-name');
-		var my_dom_name = $('#jky-product-base');
+		var	my_dom_name = $('#jky-product-base');						//	Products
 		if (my_dom_name.length == 0) {
-			my_dom_name = $('#jky-product-name');
+			my_dom_name = $(my_parent).find('#jky-product-name');		//	Quotations
+//			my_dom_name = $('#jky-product-name');
 			if (my_dom_name.length == 0) {
 				my_dom_name = $(my_parent).find('.jky-product-name');
 			}
@@ -119,7 +119,7 @@ JKY.Product = function() {
 		my_dom_name.val(my_name);
 		my_dom_name.change();		//	to activate change event
 
-		var my_dom_type = $('#jky-product-type');
+		var my_dom_type = $('#jky-product-type');						//	Products
 		if (my_dom_type.length == 0) {
 			my_dom_type = $(my_parent).find('.jky-product-type');
 		}
@@ -127,14 +127,14 @@ JKY.Product = function() {
 		my_dom_type.find('input:radio[value=' + my_type + ']').prop('checked', true);	//	jquery 2.0.3
 		my_dom_type.change();		//	to activate change event
 
-		var my_dom_peso = $('#jky-peso');
+		var my_dom_peso = $('#jky-peso');								//	Products
 		if (my_dom_peso.length == 0) {
 			my_dom_peso = $(my_parent).find('.jky-product-peso');
 		}
 		my_dom_peso.val(my_peso);
 		my_dom_peso.change();		//	to activate change event
 
-		var my_dom_units = $('#jky-units');
+		var my_dom_units = $('#jky-units');								//	Products
 		if (my_dom_units.length == 0) {
 			my_dom_units = $(my_parent).find('.jky-product-units');
 		}

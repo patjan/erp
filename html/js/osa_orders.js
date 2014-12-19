@@ -9,9 +9,15 @@ JKY.generate_order = function(the_row, the_peso, the_units) {
 	my_units= the_units;
 	var my_id = the_row.id;
 	var my_trash = JKY.is_status('Draft') ? '<a onclick="JKY.delete_order(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_color = ''
+		+ "<input class='jky-color-id'		type='hidden' value=" + the_row.color_id   + " />"
+		+ "<input class='jky-color-type'	type='hidden' value=" + the_row.color_type + " />"
+		+ "<input class='jky-color-name'	disabled onchange='JKY.update_order(this, " + my_id + ")' value='" + the_row.color_name + "' />"
+		+ "<a href='#' onClick='JKY.Color.display(this)'><i class='icon-share'></i></a>"
+		;
 	var my_ftp = ''
 		+ "<input class='jky-ftp-id'		type='hidden'	value="  + the_row.ftp_id		+ "  />"
-		+ "<input class='jky-ftp-number'	disabled onchange='JKY.update_order(this, " + my_id + ")' value='" + the_row.ftp_number		+ "' />"
+		+ "<input class='jky-ftp-number'	disabled onchange='JKY.update_order(this, " + my_id + ")' value='" + the_row.ftp_number	+ "' />"
 		+ " <a href='#' onclick='JKY.FTP.display(this, null)'><i class='icon-share'></i></a>"
 		;
 	var my_machine = ''
@@ -24,17 +30,21 @@ JKY.generate_order = function(the_row, the_peso, the_units) {
 		+ " <a href='#' onClick='JKY.Partner.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_quoted_pieces = the_row.quoted_pieces;
-	var my_quoted_weight = my_peso * my_units * my_quoted_pieces;
+
+	var my_quoted_weight = (my_units == 0) ? the_row.quoted_weight : my_peso * my_units * my_quoted_pieces;
+	var my_disabled		 = (my_units == 0) ? '' : ' disabled';
+
 	var my_html = ''
 		+ '<tr jky_order_id=' + my_id + '>'
 		+ '<td></td>'
 		+ '<td class="jky-td-action"	style="text-align:right !important;">' + my_trash + '</td>'
-		+ '<td class="jky-td-number"	><input class="jky-number"	disabled	value="' + the_row.order_number + '" /></td>'
-		+ '<td class="nowrap" >' + my_ftp		+ '</td>'
-		+ '<td class="jky-td-name-s"	>' + my_machine	+ '</td>'
-		+ '<td class="nowrap jky-td-name-l"	>' + my_partner	+ '</td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-quoted-pieces"	onchange="JKY.update_order(this, ' + my_id + ')" value="' + my_quoted_pieces + '" /></td>'
-		+ '<td class="jky-td-weight"	><input class="jky-quoted-weight"	disabled										 value="' + my_quoted_weight + '" /></td>'
+		+ '<td class="jky-td-number"		><input class="jky-number"	disabled	value="' + the_row.order_number + '" /></td>'
+		+ '<td class="nowrap"				>' + my_color	+ '</td>'
+		+ '<td class="nowrap"				>' + my_ftp		+ '</td>'
+		+ '<td class="jky-td-name-s"		>' + my_machine	+ '</td>'
+		+ '<td class="nowrap jky-td-name-s"	>' + my_partner	+ '</td>'
+		+ '<td class="jky-td-pieces"		><input class="jky-quoted-pieces"	onchange="JKY.update_order(this, ' + my_id + ')" value="' + my_quoted_pieces + '" /></td>'
+		+ '<td class="jky-td-weight"		><input class="jky-quoted-weight"	onchange="JKY.update_order(this, ' + my_id + ')" value="' + my_quoted_weight + '" ' + my_disabled + '/></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -42,6 +52,7 @@ JKY.generate_order = function(the_row, the_peso, the_units) {
 
 JKY.update_order = function(id_name, the_id) {
 	var my_tr = $(id_name).parent().parent();
+	var my_color_id		= my_tr.find('.jky-color-id'	).val();
 	var my_ftp_id		= my_tr.find('.jky-ftp-id'		).val();
 	var my_machine_id	= my_tr.find('.jky-machine-id'	).val();
 	var my_partner_id	= my_tr.find('.jky-partner-id'	).val();
@@ -50,7 +61,14 @@ JKY.update_order = function(id_name, the_id) {
 	var my_line	= JKY.get_prev_dom(my_tr, 'osa_line_id');
 	var my_line_peso	= my_line.find('.jky-product-peso' ).val();
 	var my_line_units	= my_line.find('.jky-product-units').val();
-	var my_quoted_weight= my_line_peso * my_line_units * my_quoted_pieces;
+	
+	var my_quoted_weight;
+	if (my_line_units == 0) {
+		my_quoted_weight = parseFloat(my_tr.find('.jky-quoted-weight').val());
+	}else{	
+		my_quoted_weight = my_line_peso * my_line_units * my_quoted_pieces;
+	}
+
 	my_tr.find('.jky-quoted-weight').val(my_quoted_weight);
 /*
 	var my_line_pieces		= parseInt(my_line_pieces_id.val());
@@ -67,10 +85,12 @@ JKY.update_order = function(id_name, the_id) {
 */
 	var	my_quoted_pieces	= parseFloat(my_tr.find('.jky-quoted-pieces').val());
 	var my_set = ''
-		+            'ftp_id =  ' + my_ftp_id
+		+          'color_id =  ' + my_color_id
+		+          ', ftp_id =  ' + my_ftp_id
 		+      ', machine_id =  ' + my_machine_id
 		+      ', partner_id =  ' + my_partner_id
 		+   ', quoted_pieces =  ' + my_quoted_pieces
+		+   ', quoted_weight =  ' + my_quoted_weight
 		;
 	var my_data =
 		{ method	: 'update'
@@ -104,8 +124,11 @@ JKY.insert_order = function(the_id, the_osa_line_id, the_product_id) {
 }
 
 JKY.insert_order_success = function(response) {
-	var my_row = JKY.get_row('Orders', response.id);
-	var my_html = JKY.generate_order(my_row, my_peso, my_units);
+	var my_row		= JKY.get_row('Orders', response.id);
+	var my_line_tr	= JKY.line_tr.prev();
+	var my_peso		= my_line_tr.find('.jky-product-peso' ).val();
+	var my_units	= my_line_tr.find('.jky-product-units').val();
+	var my_html		= JKY.generate_order(my_row, my_peso, my_units);
 	JKY.line_tr.after(my_html);
 	var my_tr = JKY.line_tr.next();
 	my_tr.find('.jky-quoted-units'	).focus().select();

@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS Pieces
 , produced_by		VARCHAR(32)			DEFAULT NULL		# machine | partner
 , product_name		VARCHAR(255)		DEFAULT NULL
 
-, inspected_by		BIGINT				DEFAULT NULL
-, weighted_by		BIGINT				DEFAULT NULL
+, revised_by		BIGINT				DEFAULT NULL
+, weighed_by		BIGINT				DEFAULT NULL
 , checkout_by		BIGINT				DEFAULT NULL
 , returned_by		BIGINT				DEFAULT NULL
 
@@ -57,4 +57,6 @@ ALTER TABLE Pieces			CHANGE	parent_id	loadsale_id		BIGINT			DEFAULT NULL;
 
 ALTER TABLE Pieces			ADD COLUMN		qualities		VARCHAR(255)		DEFAULT NULL	AFTER returned_at;
 
+ALTER TABLE Pieces			CHANGE	inspected_by	revised_by		BIGINT			DEFAULT NULL;
+ALTER TABLE Pieces			CHANGE	weighted_by		weighed_by 		BIGINT			DEFAULT NULL;
 

@@ -87,7 +87,6 @@ JKY.update_line = function(id_name, the_id ) {
 		, where		: 'PurchaseLines.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, JKY.update_line_success);
-
 	JKY.Purchase.add_expected(my_expected_weight - my_saved_expected);
 }
 
@@ -120,6 +119,8 @@ JKY.insert_line_success = function(response) {
 }
 
 JKY.delete_line = function(id_name, the_id) {
+	var my_saved_expected = parseFloat(JKY.get_value_by_id('PurchaseLines', 'expected_weight', the_id));
+
 	$(id_name).parent().parent().remove();
 	var my_data =
 		{ method	: 'delete'
@@ -127,6 +128,7 @@ JKY.delete_line = function(id_name, the_id) {
 		, where		: 'PurchaseLines.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, JKY.delete_line_success);
+	JKY.Purchase.add_expected(- my_saved_expected);
 }
 
 JKY.delete_line_success = function(response) {

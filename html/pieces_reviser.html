@@ -1,0 +1,79 @@
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-barcode'	><span>Barcode			</span></th>
+			<th class='jky-td-name-l'	><span>Product			</span></th>
+			<th class='jky-td-name-s'	><span>Revised			</span></th>
+			<th class='jky-td-name-s'	><span>Weighed			</span></th>
+			<th class='jky-td-date'		><span>Check In Date	</span></th>
+			<th class='jky-td-location'	><span>Check In Location</span></th>
+			<th class='jky-td-weight'	><span>Check In Weight	</span></th>
+			<th class='jky-td-name-l'	><span>Remarks			</span></th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+</table>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'	></div>
+		<ul  id='jky-form-status'	></ul>
+	</div>
+	<div class='jky-clear'></div>
+
+	<div id='jky-form-data'>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Barcode</span>:</div>
+			<input  id='jky-status'				type='hidden' />
+			<input  id='jky-barcode'			class='jky-form-barcode' placeholder='Barcode'	/>
+			<input  id='jky-product-name'		class='jky-form-name'	 placeholder='Product Name' disabled	/>
+		</div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Revised</span>:</div>
+			<input  id='jky-revised-by' 		type='hidden'				/>
+			<input  id='jky-revised-name'		class='jky-form-name' placeholder='Revised'		/>
+		</div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Qualities</span>:</div>
+			<input  id='jky-qualities'			class='jky-form-name' placeholder='Qualities'	/>
+		</div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Remarks</span>:</div>
+			<input  id='jky-remark'				class='jky-form-name' placeholder='Remark'		/>
+		</div>
+		<div class='jky-form-line' style='height:auto;'>
+			<div class='jky-form-label'><span></span></div>
+			<textarea id='jky-remarks' disabled ></textarea>
+		</div>
+		<br>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Action</span>:</div>
+			<input  id='jky-form-action'		class='jky-form-action' /> (<span>Save</span> | <span>Clear</span>)
+		</div>
+	</div>
+
+	<table id='jky-pieces-table' class='table table-striped'>
+		<thead>
+			<tr>
+				<th class='jky-td-barcode'	><span>  Barcode			</span></th>
+				<th class='jky-td-name-l'	><span>  Product			</span></th>
+				<th class='jky-td-name-s'	><span>  Revised			</span></th>
+				<th class='jky-td-name-s'	><span>  Weighed			</span></th>
+				<th class='jky-td-date'		><span> Check In<br>Date	</span></th>
+				<th class='jky-td-location'	><span> Check In<br>Location</span></th>
+				<th class='jky-td-weight'	><span> Check In<br>Weight	</span></th>
+				<th class='jky-td-name-s'	><span>Qualities<br>Remarks	</span></th>
+			</tr>
+		</thead>
+
+		<tbody id='jky-pieces-table-body'></tbody>
+	</table>
+
+	<div id='jky-form-footer'></div>
+</div>
+
+<div id='jky-body-loaded'></div>
+
+<script src='js/pieces_reviser.js'></script>

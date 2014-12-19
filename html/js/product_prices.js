@@ -69,6 +69,8 @@ JKY.generate_prices = function(response) {
 		}
 	}
 	JKY.set_html('jky-prices-body', my_html);
+	$('.jky-current-price'	).ForceNumericOnly();
+	$('.jky-new-price'		).ForceNumericOnly();
 }
 
 JKY.generate_price = function(the_row) {

@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS QuotColors
 , dyer_id			BIGINT				DEFAULT NULL
 , color_id			BIGINT				DEFAULT NULL
 , color_type		VARCHAR(32)			DEFAULT NULL
-, quoted_units		INT					DEFAULT 0
+, quoted_units		DECIMAL(7,1)		DEFAULT 0
 , quoted_price		DECIMAL(10,2)		DEFAULT 0
 , product_price		DECIMAL(10,2)		DEFAULT 0
 , discount			VARCHAR(8)			DEFAULT ''
@@ -34,3 +34,5 @@ ALTER TABLE QuotColors		DROP	galao_price		;
 ALTER TABLE QuotColors		ADD COLUMN discount				VARCHAR(8)		DEFAULT ''		AFTER product_price;
 
 ALTER TABLE QuotColors		ADD COLUMN dyer_id				BIGINT			DEFAULT NULL	AFTER parent_id;
+
+ALTER TABLE QuotColors		CHANGE	quoted_units	quoted_units	DECIMAL(7,1)	DEFAULT 0;

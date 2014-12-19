@@ -22,11 +22,13 @@ JKY.generate_lines = function(response) {
 		}
 	}
 	JKY.set_html('jky-lines-body', my_html);
-	$('.jky-product-peso'	).ForceNumericOnly();
-	$('.jky-product-units'	).ForceIntegerOnly();
 	if (my_rows == '') {
 		JKY.insert_line();
 	}
+	$('.jky-product-peso'	).ForceNumericOnly();
+	$('.jky-product-units'	).ForceIntegerOnly();
+	$('.jky-quoted-units'	).ForceNumericOnly();
+	$('.jky-quoted-price'	).ForceNumericOnly();
 }
 
 JKY.generate_line = function(the_index, the_row) {
@@ -56,15 +58,16 @@ JKY.generate_line = function(the_index, the_row) {
 		+ '<td class="jky-td-key-m"		>' + my_add_color + '&nbsp;' + my_copy + '</td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-product-peso"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.peso			 + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-quoted-units"	disabled										value="' + the_row.quoted_units	 + '" /></td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-product-units"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.units		 + '" /></td>'
+		+ '<td class="jky-td-units"		><input class="jky-product-units"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.units		 + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-quoted-pieces"	disabled										value="' + the_row.quoted_pieces + '" /></td>'
+		+ '<td class="jky-td-units"></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-discount"		onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.discount		 + '" /></td>'
 		+ '</tr>'
 		;
 	var my_rows = JKY.get_rows('QuotColors', my_id);
 	for(var i=0, max=my_rows.length; i<max; i++) {
 		var my_row = my_rows[i];
-		my_html += JKY.generate_color(my_row);
+		my_html += JKY.generate_color(my_row, the_row.units);
 	}
 	return my_html;
 }
@@ -79,16 +82,16 @@ JKY.update_line = function(id_name, the_id) {
 	var my_units		= my_tr.find('.jky-product-units'	).val();
 	var my_quoted_pieces= my_tr.find('.jky-quoted-pieces'	).val();
 	var my_discount		= my_tr.find('.jky-discount'		).val();
-
+/*
 	if (my_units < 1) {
 		JKY.display_message(JKY.set_value_is_under('Units/Piece', 1));
 		my_tr.find('.jky-product-units').select();
 		my_tr.find('.jky-product-units').focus();
 		return false;
 	}
-
-	var my_new_pieces		= Math.ceil(my_quoted_units / my_units);
-	var my_diff_pieces		= my_new_pieces - my_quoted_pieces;
+*/
+	var my_new_pieces	= (my_units == 0 ) ? my_quoted_units : Math.ceil(my_quoted_units / my_units);
+	var my_diff_pieces	= my_new_pieces - my_quoted_pieces;
 
 	var my_line_pieces_id	= my_tr.find('.jky-quoted-pieces');
 	my_line_pieces_id.val(my_new_pieces);
@@ -149,7 +152,8 @@ JKY.insert_line_success = function(response) {
 	my_row.quoted_pieces	= 0;
 	my_row.discount			= '';
 
-	var my_html = JKY.generate_line(null, my_row);
+	var my_count = JKY.get_count_by_id('QuotLines', JKY.row.id);
+	var my_html = JKY.generate_line(my_count-1, my_row);
 	JKY.append_html('jky-lines-body', my_html);
 }
 

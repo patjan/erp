@@ -52,6 +52,7 @@ if (my_first == true) {
 				$('#jky-action-print'		).click (function() {JKY.Changes.can_leave(function() { my_process_print		();})});
 				$('#jky-action-export'		).click (function() {JKY.Changes.can_leave(function() { my_process_export		();})});
 				$('#jky-action-publish'		).click (function() {JKY.Changes.can_leave(function() { my_process_publish		();})});
+				$('#jky-action-replace'		).click (function() {JKY.Changes.can_leave(function() { my_display_replace		();})});
 				$('#jky-action-prev'		).click (function() {JKY.Changes.can_leave(function() { my_display_prev			();})});
 				$('#jky-action-next'		).click (function() {JKY.Changes.can_leave(function() { my_display_next			();})});
 				$('#jky-action-list'		).click (function() {JKY.Changes.can_leave(function() { my_display_list			();})});
@@ -60,6 +61,7 @@ if (my_first == true) {
 }
 				$('#jky-action-save'		).click (function() {									my_process_save			();});
 				$('#jky-action-copy'		).click (function() {JKY.Changes.can_leave(function() { my_process_copy			();})});
+				$('#jky-action-update'		).click (function() {									my_process_replace		();});
 				$('#jky-action-delete'		).click (function() {									my_process_delete		();});
 				$('#jky-action-cancel'		).click (function() {JKY.Changes.can_leave(function() { my_process_cancel		();})});
 //				disabled by tablesorter
@@ -164,10 +166,8 @@ if (my_first == true) {
 	function my_set_all_check(the_index) {
 			JKY.display_trace('set_all_check');
 			if ($(the_index).is(':checked')) {
-//				$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).attr('checked', 'checked');})
 				$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).prop('checked', true);})
 			}else{
-//				$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).removeAttr('checked');})
 				$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).prop('checked', false);})
 			}
 		}
@@ -176,6 +176,7 @@ if (my_first == true) {
 			JKY.display_trace('set_checkbox');
 			my_skip_form = true;
 			my_index = the_index.rowIndex - 1;
+			return false;		//	to avoid the trigger of click tr row
 		}
 
 	function my_display_list() {
@@ -194,11 +195,13 @@ if (my_first == true) {
 			JKY.hide('jky-action-print'		);
 			JKY.hide('jky-action-clear'		);
 			JKY.hide('jky-action-confirm'	);
-			if (JKY.Session.get_value('user_role') == 'Support') {
+			if (JKY.Session.get_value('user_role') == 'support'
+			|| (JKY.Session.get_value('user_role') == 'admin' && my_args.table_name == 'ThreadForecast')) {
 				JKY.show('jky-action-export');
 			}else{
 				JKY.hide('jky-action-export');
 			}
+			JKY.hide('jky-action-replace'	);
 			JKY.hide('jky-action-save'		);
 			JKY.hide('jky-action-copy'		);
 			JKY.disable_button('jky-action-delete');
@@ -327,8 +330,14 @@ if (my_first == true) {
  */
 	function my_display_form(the_index) {
 		JKY.display_trace('my_display_form: ' + the_index);
-				if (typeof the_index == 'number')	my_index = the_index;
-		else	if (typeof the_index == 'object')	my_index = the_index.rowIndex;
+		if (typeof the_index == 'number') {
+			my_index = the_index;
+		}else
+		if (typeof the_index == 'object') {
+			if (typeof(the_index.rowIndex) == 'number') {
+				my_index = the_index.rowIndex;
+			}
+		}
 
 		if (my_skip_form) {
 			my_skip_form = false;
@@ -339,7 +348,7 @@ if (my_first == true) {
 		JKY.show('jky-app-navs'			);
 		JKY.hide('jky-app-add-new'		);
 		JKY.show('jky-app-counters'		);
-		JKY.enable_button('jky-action-add-new'	);
+		JKY.enable_button('jky-action-add-new');
 		JKY.hide('jky-action-print'		);
 		JKY.show('jky-action-save'		);
 		JKY.hide('jky-action-copy'		);
@@ -351,8 +360,45 @@ if (my_first == true) {
 		JKY.hide('jky-app-graph'		);
 		JKY.show('jky-app-form'			);
 		JKY.show('jky-app-upload'		);		//	??????????
+
+		JKY.Changes.reset();		//	to reset the changes counter of previous record
 		JKY.display_form();
 		my_display_row(my_index);
+	}
+
+/**
+ * display replace
+ */
+	function my_display_replace() {
+		JKY.display_trace('my_display_replace');
+		var my_counter = $('#jky-table-body .jky-td-checkbox input:checked').size();
+		if (my_counter == 0) {
+			JKY.display_message(JKY.t('No record selected to be replaced'));
+			return;
+		}
+
+		JKY.set_html('jky-app-index', my_counter);
+		JKY.display_message(JKY.t('Total records to be replaced') + ': ' + my_counter);
+
+//		JKY.show('jky-app-filter'		);
+//		JKY.hide('jky-app-more'			);
+		JKY.hide('jky-app-navs'			);
+		JKY.hide('jky-app-add-new'		);
+		JKY.show('jky-app-counters'		);
+		JKY.hide('jky-action-add-new'	);
+		JKY.hide('jky-action-export'	);
+		JKY.show('jky-action-replace'	);
+		JKY.hide('jky-action-save'		);
+		JKY.hide('jky-action-copy'		);
+		JKY.show('jky-action-update'	);
+		JKY.hide('jky-action-delete'	);
+		JKY.show('jky-action-cancel'	);
+		JKY.hide('jky-app-table'		);
+		JKY.hide('jky-app-graph'		);
+		JKY.show('jky-app-form'			);
+
+		JKY.set_replace();
+		JKY.set_focus(my_args.focus);
 	}
 
 	function my_display_row(the_index) {
@@ -574,6 +620,38 @@ if (my_first == true) {
 	}
 
 /**
+ * process print
+ */
+	function my_print_row(the_id) {
+		JKY.display_trace('my_print_row');
+		JKY.print_row(the_id);
+	}
+
+/**
+ * process replace
+ */
+	function my_process_replace() {
+		JKY.display_trace('my_process_replace');
+		var my_set = JKY.get_replace_set();
+		if (my_set != '') {
+			$('#jky-table-body .jky-td-checkbox input:checked').each(function() {
+				var my_data =
+					{ method: 'update'
+					, table :  my_args.table_name
+					, set	:  my_set.substr(2)
+					, where :  my_args.table_name + '.id = ' + $(this).attr('row_id')
+					};
+				JKY.ajax(true, my_data, my_process_replace_success);
+			});
+		}
+		my_display_list();
+	}
+
+	function my_process_replace_success(the_response) {
+		JKY.display_message('Record replaced, ' + the_response.message);
+	}
+
+/**
  *	save remarks
  */
 	function my_save_remarks() {
@@ -590,14 +668,6 @@ if (my_first == true) {
 	function my_save_remarks_success(response) {
 		JKY.display_message('Remarks saved, ' + response.message);
 		JKY.row = JKY.get_row(my_args.table_name, JKY.row.id);
-	}
-
-/**
- * process print
- */
-	function my_print_row(the_id) {
-		JKY.display_trace('my_print_row');
-		JKY.print_row(the_id);
 	}
 
 /**

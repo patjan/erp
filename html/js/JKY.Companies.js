@@ -78,6 +78,8 @@ JKY.set_initial_values = function() {
 	$('#jky-app-select').change();
 
 	$('#jky-is-company').click (function() {JKY.process_is_company(this);});
+
+	$('#jky-credit-limit').ForceNumericOnly();
 };
 
 /**

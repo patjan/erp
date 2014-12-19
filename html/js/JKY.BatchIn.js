@@ -24,7 +24,11 @@ JKY.BatchIn = function() {
 
 	function my_display(the_id) {
 		my_the_id = the_id;
-		my_thread_id = $(the_id).parent().parent().find('.jky-thread-id').val();
+		var my_dom_id = $('#jky-thread-id');
+		if (my_dom_id.length == 0) {
+			my_dom_id = $(the_id).parent().parent().find('.jky-thread-id');
+		}
+		my_thread_id = my_dom_id.val();
 		JKY.set_focus(my_filter);
 		my_load_data();
 	}
@@ -86,9 +90,20 @@ JKY.BatchIn = function() {
 	function my_click_row(the_index, the_id) {
 		var my_batch = $(the_index).find('.jky-search-batch').html();
 		var my_parent = $(my_the_id).parent();
-		$(my_parent).find('.jky-batchin-id').val(the_id);
-		$(my_parent).find('.jky-batchin-number').val(my_batch);
-		$(my_parent).find('.jky-batchin-number').change();		//	to activate change event
+
+		var my_dom_id = $('#jky-batchin-id');
+		if (my_dom_id.length == 0) {
+			my_dom_id = $(my_parent).find('.jky-batchin-id');
+		}
+		my_dom_id.val(the_id );
+
+		var my_dom_number = $('#jky-batchin-number');
+		if (my_dom_number.length == 0) {
+			my_dom_number = $(my_parent).find('.jky-batchin-number');
+		}
+		my_dom_number.val(my_batch );
+		my_dom_number.change();		//	to activate change event
+
 		JKY.hide_modal(my_layer);
 	}
 

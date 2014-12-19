@@ -36,8 +36,8 @@
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'>
-			<button id='jky-action-gen-sale'	class='btn'	type='button' title="Click here to generate sale order"			><span>Generate Sale		</span></button>
-			<button id='jky-action-gen-osa'		class='btn'	type='button' title="Click here to generate OSA"				><span>Generate OSA			</span></button>
+<!--		<button id='jky-action-gen-sale'	class='btn'	type='button' title="Click here to generate sale order"			><span>Generate Sale		</span></button>	-->
+			<button id='jky-action-generate'	class='btn'	type='button' title="Click here to generate OSA"				><span>Generate OSA			</span></button>
 			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this quotation"		><span>Close Quotation		</span></button>
 		</div>
 		<div id='jky-form-status'>
@@ -125,6 +125,22 @@
 			</div>
 -->
 			<div class='jky-form-line'>
+				<div class="jky-form-label"><span>Payments</span>:</div>
+				<input id='jky-payments'		class='jky-form-normal'				value='' />
+			</div><!--
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Break</span>?</div>
+				<div id='jky-has-break' class='jky-form-has-break'>
+					<input type='radio' name='jky-has-break' value='No'  /><span>Without</span>
+					<input type='radio' name='jky-has-break' value='Yes' /><span>With   </span>
+				</div>
+			</div>
+-->
+		</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'></div>
+			<div class='jky-form-line'></div>
+			<div class='jky-form-line'>
 				<div class="jky-form-label"><span>Quoted Amount</span>:</div>
 				<input id='jky-quoted-amount'	class='jky-form-amount'	disabled	value='' />
 			</div>
@@ -140,18 +156,6 @@
 				<div class="jky-form-label"><span>Sub Amount</span>:</div>
 				<input id='jky-sub-amount'		class='jky-form-amount'	disabled	value='' />
 			</div>
-			<div class='jky-form-line'>
-				<div class="jky-form-label"><span>Payments</span>:</div>
-				<input id='jky-payments'		class='jky-form-normal'				value='' />
-			</div><!--
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Break</span>?</div>
-				<div id='jky-has-break' class='jky-form-has-break'>
-					<input type='radio' name='jky-has-break' value='No'  /><span>Without</span>
-					<input type='radio' name='jky-has-break' value='Yes' /><span>With   </span>
-				</div>
-			</div>
--->
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -221,15 +225,16 @@
 							<th class='jky-td-key-m'	><span>    Color			</span></th>
 							<th class='jky-td-pieces'	><span>     Peso<br>Kg/Unit	</span></th>
 							<th class='jky-td-pieces'	><span>   Quoted<br>Units	</span></th>
-							<th class='jky-td-pieces'	><span>    Units<br>/Piece	</span></th>
+							<th class='jky-td-units'	><span>    Units<br>/Piece	</span></th>
 							<th class='jky-td-pieces'	><span>	  Quoted<br>Pieces	</span></th>
-							<th class='jky-td-pieces'	><span>	Discount<br>%		</span></th>
+							<th class='jky-td-units'	><span>						</span></th>
+							<th class='jky-td-pieces'	><span>	Discount<br>$ or %	</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-lines-body'></tbody>
 					<tfoot>
 						<tr class='jky-line'>
-							<td class='jky-action' colspan='10'>
+							<td class='jky-action' colspan='11'>
 								<button id='jky-lines-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
 							</td>
 						</tr>

@@ -48,6 +48,7 @@ JKY.set_all_events_home = function() {
 		$('#jky-sales-products'			).click (function() {JKY.process_action('products'			);});
 		$('#jky-sales-colors'			).click (function() {JKY.process_action('colors'			);});
 		$('#jky-sales-quotations'		).click (function() {JKY.process_action('quotations'		);});
+		$('#jky-sales-loadouts'			).click (function() {JKY.process_action('loadouts'			);});
 
 		$('#jky-planning-threads'		).click (function() {JKY.process_action('threads'			);});
 		$('#jky-planning-machines'		).click (function() {JKY.process_action('machines'			);});
@@ -90,11 +91,12 @@ JKY.set_all_events_home = function() {
 		$('#jky-dyers-machines'			).click (function() {JKY.process_action('machines'			);});
 		$('#jky-dyers-dyers'			).click (function() {JKY.process_action('dyers'				);});
 		$('#jky-dyers-transports'		).click (function() {JKY.process_action('transports'		);});
-		$('#jky-dyers-loadouts'			).click (function() {JKY.process_action('loadouts'			);});
 		$('#jky-dyers-loadsales'		).click (function() {JKY.process_action('loadsales'			);});
 		$('#jky-dyers-shipdyers'		).click (function() {JKY.process_action('shipdyers'			);});
 
 		$('#jky-pieces-checkin'			).click (function() {JKY.process_action('pieces_checkin'	);});
+		$('#jky-pieces-reviser'			).click (function() {JKY.process_action('pieces_reviser'	);});
+		$('#jky-pieces-weigher'			).click (function() {JKY.process_action('pieces_weigher'	);});
 //		$('#jky-pieces-return'			).click (function() {JKY.process_action('pieces_return'		);});
 		$('#jky-pieces-checkout'		).click (function() {JKY.process_action('pieces_checkout'	);});
 //		$('#jky-pieces-info'			).click (function() {JKY.process_action('pieces_info'		);});

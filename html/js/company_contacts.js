@@ -55,6 +55,8 @@ JKY.display_payments = function(the_row) {
 	JKY.set_value	('jky-interest-rate'	, the_row.interest_rate	);
 	JKY.set_value	('jky-payments'			, the_row.payments		);
 	JKY.set_value	('jky-alert'			, the_row.alert			);
+
+	$('#jky-interest-rate').ForceNumericOnly();
 }
 
 JKY.generate_contacts = function(response) {

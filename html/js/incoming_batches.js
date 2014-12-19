@@ -62,7 +62,7 @@ JKY.generate_batch = function(the_row) {
 		;
 	var my_purline = ''
 		+ "<input class='jky-purline-id' type='hidden' value=" + the_row.purchase_line_id + " />"
-		+ "<input class='jky-purline-number' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + the_row.purchase_number + "' />"
+		+ "<input class='jky-purline-number' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + JKY.fix_null(the_row.purchase_number) + "' />"
 		+ ' ' + my_th
 		;
 	var my_html = ''
@@ -73,7 +73,7 @@ JKY.generate_batch = function(the_row) {
 		+ '<td class="jky-td-thread"	>' + my_thread  + '</td>'
 		+ '<td class="jky-td-key"		>' + my_purline + '</td>'
 		+ '<td class="jky-td-boxes"		><input  changeable	class="jky-received-boxes"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.received_boxes	+ '" /></td>'
-		+ '<td class="jky-td-key-s"		><input  disabled	class="jky-labels-printed"								     value="' + the_row.labels_printed + '" /> ' + my_print + '</td>'
+		+ '<td class="jky-td-key-s"		><input  disabled	class="jky-labels-printed"								    				 value="' + the_row.labels_printed	+ '" /> ' + my_print + '</td>'
 		+ '<td class="jky-td-integer"	><input  changeable	class="jky-number-of-cones"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.number_of_cones	+ '" /></td>'
 		+ '<td class="jky-td-weight"	><input  changeable	class="jky-received-weight"	onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.received_weight	+ '" /></td>'
 		+ '<td class="jky-td-price"		><input  changeable	class="jky-unit-price"		onchange="JKY.update_batch(this, ' + my_id + ')" value="' + the_row.unit_price		+ '" /></td>'
@@ -124,7 +124,7 @@ JKY.update_batch = function(id_name, the_id ) {
 JKY.update_batch_success = function(response) {
 JKY.display_trace('update_batch_success');
 //	JKY.display_message(response.message)
-	JKY.update_incoming(response.id);
+	JKY.update_parent(response.id);
 }
 
 JKY.insert_batch = function() {
@@ -154,6 +154,9 @@ JKY.insert_batch_success = function(response) {
 }
 
 JKY.delete_batch = function(id_name, the_id) {
+	var my_received_weight = JKY.get_value_by_id('Batches', 'received_weight', the_id);
+	JKY.update_purchase(the_id, - my_received_weight);
+
 	JKY.select_batch(the_id);
 	$(id_name).parent().parent().remove();
 	var my_data =
@@ -168,7 +171,7 @@ JKY.delete_batch = function(id_name, the_id) {
 
 JKY.delete_batch_success = function(response) {
 //	JKY.display_message(response.message)
-	JKY.update_incoming(response.id);
+	JKY.update_parent(response.id);
 }
 
 JKY.select_batch = function(the_id) {
@@ -185,8 +188,8 @@ JKY.select_batch_success = function(response) {
 	my_old_unit_price		= parseFloat(response.row.unit_price	 );
 }
 
-JKY.update_incoming = function(the_batch_id) {
-	JKY.display_trace('update_incoming');
+JKY.update_parent = function(the_batch_id) {
+JKY.display_trace('update_parent');
 	var my_delta_weight = (my_new_received_weight - my_old_received_weight);
 	var my_delta_amount = (my_new_received_weight * my_new_unit_price)
 						- (my_old_received_weight * my_old_unit_price)
@@ -201,11 +204,33 @@ JKY.update_incoming = function(the_batch_id) {
 		, set		:  my_set
 		, where		: 'Incomings.id = ' + JKY.row.id
 		};
-	JKY.ajax(false, my_data, JKY.update_incoming_success);
+	JKY.ajax(false, my_data, JKY.update_parent_success);
+	JKY.update_purchase(the_batch_id, my_delta_weight);
+}
 
-	var my_purchase_line_id = JKY.get_value_by_id('Batches', 'purchase_line_id', the_batch_id);
+JKY.update_parent_success = function(response) {
+	JKY.display_trace('update_parent_success');
+	var my_data =
+		{ method	: 'get_row'
+		, table		: 'Incomings'
+		, where		: 'Incomings.id = ' + JKY.row.id
+		};
+	JKY.ajax(true, my_data, JKY.display_parent);
+}
+
+JKY.display_parent = function(response) {
+JKY.display_trace('display_parent');
+	var my_received_weight = parseFloat(response.row.received_weight);
+	var my_received_amount = parseFloat(response.row.received_amount);
+	JKY.set_value('jky-received-weight', my_received_weight);
+	JKY.set_value('jky-received-amount', my_received_amount);
+	JKY.set_calculated_color();
+}
+
+JKY.update_purchase = function(the_batch_id, the_delta_weight) {
+	var my_purchase_line_id = JKY.get_value_by_id('Batches', 'purchase_line_id', the_batch_id);		//	???	after Batches deleted
 	if (my_purchase_line_id) {
-		my_set  = 'received_weight = received_weight + ' + my_delta_weight;
+		my_set  = 'received_weight = received_weight + ' + the_delta_weight;
 		my_data =
 			{ method	: 'update'
 			, table		: 'PurchaseLines'
@@ -222,25 +247,6 @@ JKY.update_incoming = function(the_batch_id) {
 			};
 		JKY.ajax(false, my_data);
 	}
-}
-
-JKY.update_incoming_success = function(response) {
-	JKY.display_trace('update_incoming_success');
-	var my_data =
-		{ method	: 'get_row'
-		, table		: 'Incomings'
-		, where		: 'Incomings.id = ' + JKY.row.id
-		};
-	JKY.ajax(true, my_data, JKY.display_incoming_received);
-}
-
-JKY.display_incoming_received = function(response) {
-	JKY.display_trace('display_incoming_received');
-	var my_received_weight = parseFloat(response.row.received_weight);
-	var my_received_amount = parseFloat(response.row.received_amount);
-	JKY.set_value('jky-received-weight', my_received_weight);
-	JKY.set_value('jky-received-amount', my_received_amount);
-	JKY.set_calculated_color();
 }
 
 JKY.print_batches = function(the_id) {

@@ -72,7 +72,17 @@ JKY.set_initial_values = function() {
 	$('#jky-app-select option:last-child').prop('selected', true);
 	$('#jky-app-select').change();
 
-	$('#jky-product-filter'		).KeyUpDelay(JKY.Product.load_data	);
+	$('#jky-product-filter').KeyUpDelay(JKY.Product.load_data);
+
+	$('#jky-peso'		).ForceNumericOnly();
+	$('#jky-units'		).ForceIntegerOnly();
+	$('#jky-yield'		).ForceNumericOnly();
+	$('#jky-weight-from').ForceIntegerOnly();
+	$('#jky-weight-to'	).ForceIntegerOnly();
+	$('#jky-weight-dyer').ForceIntegerOnly();
+	$('#jky-width-from'	).ForceIntegerOnly();
+	$('#jky-width-to'	).ForceIntegerOnly();
+	$('#jky-width-dyer'	).ForceIntegerOnly();
 };
 
 /**
