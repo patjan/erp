@@ -30,6 +30,8 @@ function JKY_generate_osa($the_id) {
 		. ',      salesman_id='  . $my_quotation['updated_by' ]
 		. ',       ordered_at="' . get_time() . '"'
 		. ',        needed_at="' . $my_needed_at . '"'
+		. ',    quoted_pieces='  . $my_quotation['quoted_pieces']
+		. ',   ordered_pieces='  . $my_quotation['quoted_pieces']
 		. ',          remarks="' . $my_quotation['remarks'] . '"'
 		;
 log_sql('OSAs', 'INSERT', $sql);
@@ -50,18 +52,57 @@ log_sql('OSAs', 'INSERT', $sql);
 			. ',        parent_id='  . $my_osa_id
 			. ',       product_id='  . $my_row['product_id'		]
 			. ',             peso='  . $my_row['peso'			]
-			. ',    quoted_weight='  . $my_row['quoted_weight'	]
 			. ',     quoted_units='  . $my_row['quoted_units'	]
 			. ',            units='  . $my_row['units'			]
 			. ',    quoted_pieces='  . $my_row['quoted_pieces'	]
+			. ',   ordered_pieces='  . $my_row['quoted_pieces'	]
+			. ',    quoted_weight='  . $my_row['quoted_weight'	]
+			. ',   ordered_weight='  . $my_row['quoted_weight'	]
 			. ',		  remarks="' . $my_row['remarks'		] . '"'
 			;
 log_sql('OSA_Lines', 'INSERT', $sql);
 		$db->query($sql);
 		insert_changes($db, 'OSA_Lines', $my_osa_line_id);
 
-		$my_count++;
-	}
+		$sql= 'SELECT *'
+			. '  FROM QuotColors'
+			. ' WHERE parent_id = ' . $my_row['id']
+			;
+		$my_colors = $db->fetchAll($sql);
+
+		foreach($my_colors as $my_color) {
+			$my_order_id = get_next_id('Orders');
+			if ($my_row['units'] == 0) {
+				$my_quoted_pieces = ceil($my_color['quoted_units'] / $my_row['peso']);
+				$my_quoted_weight = $my_color['quoted_units'];
+			}else{
+				$my_quoted_pieces = ceil($my_color['quoted_units'] / $my_row['units']);
+				$my_quoted_weight = $my_color['quoted_units'] * $my_row['peso'];
+			}
+
+			$sql= 'INSERT Orders'
+				. '   SET          id='  . $my_order_id
+				. ',     order_number='  . $my_order_id
+				. ',      customer_id='  . $my_quotation['customer_id']
+				. ',       machine_id='  . $my_row['machine_id']
+				. ',       product_id='  . $my_row['product_id']
+				. ',         color_id='  . $my_color['color_id']
+				. ',      osa_line_id='  . $my_osa_line_id
+				. ',       osa_number='  . $my_osa_id
+				. ',       ordered_at="' . $my_quotation['quoted_at'] . '"'
+				. ',        needed_at="' . $my_needed_at . '"'
+				. ',    quoted_pieces='  . $my_quoted_pieces
+				. ',    quoted_weight='  . $my_quoted_weight
+				. ',   ordered_pieces='  . $my_quoted_pieces
+				. ',   ordered_weight='  . $my_quoted_weight
+				;
+log_sql('Orders', 'INSERT', $sql);
+			$db->query($sql);
+			insert_changes($db, 'Orders', $my_order_id);
+		}
+
+ 		$my_count++;
+ 	}
 
 	$sql= 'UPDATE Quotations'
 		. '   SET status = "Active"'

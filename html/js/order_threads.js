@@ -7,7 +7,7 @@ JKY.display_threads = function() {
 		{ method		: 'get_index'
 		, table			: 'OrdThreads'
 		, select		:  JKY.row.id
-		, order_by  	: 'OrdThreads.created_at DESC'
+		, order_by  	: 'OrdThreads.updated_at DESC'
 		};
 	JKY.ajax(false, my_data, JKY.generate_threads);
 }
@@ -45,7 +45,7 @@ JKY.generate_thread = function(the_row) {
 		;
 	var my_batchin = ''
 		+ "<input class='jky-batchin-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-number' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batch_code + "' />"
+		+ "<input class='jky-batchin-code' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batch_code + "' />"
 		+ " <a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_needed_at = JKY.out_date(the_row.needed_at);

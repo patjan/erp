@@ -72,22 +72,22 @@ public function init() {
  */
 
 	$sql= 'UPDATE Changes'
-		. '   SET created_at ="' . get_now() . '"'
+		. '   SET updated_at ="' . get_now() . '"'
 		. ' WHERE id = 1000000001'
 		;
 	$result = $db->query($sql);
 	$sql= 'UPDATE Changes'
-		. '   SET created_at ="' . get_now() . '"'
+		. '   SET updated_at ="' . get_now() . '"'
 		. ' WHERE id = 1000000002'
 		;
 	$result = $db->query($sql);
 	$sql= 'UPDATE Changes'
-		. '   SET created_at ="' . get_now() . '"'
+		. '   SET updated_at ="' . get_now() . '"'
 		. ' WHERE id = 1000000003'
 		;
 	$result = $db->query($sql);
 	$sql= 'UPDATE Changes'
-		. '   SET created_at ="' . get_now() . '"'
+		. '   SET updated_at ="' . get_now() . '"'
 		. ' WHERE id = 1000000004'
 		;
 	$result = $db->query($sql);
@@ -95,7 +95,7 @@ public function init() {
 	$sql = 'SELECT * FROM Changes';
 	$rows = $db->fetchAll($sql);
 	foreach($rows as $row) {
-		print '<br>Changes: ' . $row['created_at'];
+		print '<br>Changes: ' . $row['updated_at'];
 	}
 
 }

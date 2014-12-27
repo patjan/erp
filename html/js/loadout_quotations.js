@@ -1,12 +1,9 @@
 "use strict";
 /*
- * display Quotations -------------------------------------------------------------
+ * display Quotations ----------------------------------------------------------
  */
 
-var my_saved_row		= [];
-var my_quot_color_id	= 0;
-var my_quoted_pieces	= 0;
-var my_quoted_weight	= 0;
+var my_saved_row = [];
 
 JKY.display_quotations = function() {
 	var my_data =
@@ -21,8 +18,8 @@ JKY.display_quotations = function() {
 }
 
 JKY.generate_quotations = function(the_response) {
-	var my_html		= '';
-	var my_rows		= the_response.rows;
+	var my_html	 = '';
+	var my_rows  = the_response.rows;
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];
@@ -55,15 +52,15 @@ JKY.generate_quotation = function(the_row) {
 	var my_disabled = ' disabled';
 	var my_html = ''
 		+ '<tr quotation_id=' + my_id + '>'
-		+ '<td class="jky-td-action"	>' + my_trash		+ '</td>'
-		+ '<td class="jky-td-key"		>' + my_quotation	+ '</td>'
+		+ '<td class="jky-td-action"	>' + my_trash + '</td>'
+		+ '<td class="jky-td-key"		>' + my_quotation + '</td>'
 		+ '<td class="jky-td-text-l"	><input class="jky-product-name"	value="' + JKY.fix_null(the_row.product_name	) + '"' + my_disabled + ' /></td>'
 		+ '<td class="jky-td-text-s"	><input class="jky-customer-name"	value="' + JKY.fix_null(the_row.customer_name	) + '"' + my_disabled + ' /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-quoted-pieces"	value="' + JKY.fix_null(the_row.quoted_pieces	) + '"' + my_onchange + ' /></td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-loadout-pieces"	value="' + JKY.fix_null(the_row.loadout_pieces	) + '"' + my_disabled + ' /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-checkout-pieces"	value="' + JKY.fix_null(the_row.checkout_pieces	) + '"' + my_disabled + ' /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-returned-pieces"	value="' + JKY.fix_null(the_row.returned_pieces	) + '"' + my_disabled + ' /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-quoted-weight"	value="' + JKY.fix_null(the_row.quoted_weight	) + '"' + my_onchange + ' /></td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-loadout-weight"	value="' + JKY.fix_null(the_row.loadout_weight	) + '"' + my_disabled + ' /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-checkout-weight"	value="' + JKY.fix_null(the_row.checkout_weight	) + '"' + my_disabled + ' /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-returned-weight"	value="' + JKY.fix_null(the_row.returned_weight	) + '"' + my_disabled + ' /></td>'
 		+ '</tr>'
 		;
@@ -84,9 +81,12 @@ JKY.select_row = function(the_id) {
 JKY.update_quotation = function(the_this, the_id) {
 	JKY.select_row(the_id);
 	var my_tr = $(the_this).parent().parent();
-	my_quot_color_id =			  my_tr.find('.jky-quot-color-id').val();
-	my_quoted_pieces = parseFloat(my_tr.find('.jky-quoted-pieces').val());
-	my_quoted_weight = parseFloat(my_tr.find('.jky-quoted-weight').val());
+	if (my_tr.find('.jky-quoted-pieces').val() == '')	my_tr.find('.jky-quoted-pieces').val(0);
+	if (my_tr.find('.jky-quoted-weight').val() == '')	my_tr.find('.jky-quoted-weight').val(0);
+
+	var my_quot_color_id =			  my_tr.find('.jky-quot-color-id').val();
+	var my_quoted_pieces = parseFloat(my_tr.find('.jky-quoted-pieces').val());
+	var my_quoted_weight = parseFloat(my_tr.find('.jky-quoted-weight').val());
 
 	var my_set = ''
 		+  ' quot_color_id = ' + my_quot_color_id
@@ -100,7 +100,9 @@ JKY.update_quotation = function(the_this, the_id) {
 		, where		: 'LoadQuotations.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, function(the_response) {
-		JKY.update_parent(my_quoted_pieces-my_saved_row.quoted_pieces, my_quoted_weight-my_saved_row.quoted_weight);
+		var my_delta_pieces = my_quoted_pieces - my_saved_row.quoted_pieces;
+		var my_delta_weight = my_quoted_weight - my_saved_row.quoted_weight;
+		JKY.update_parent(my_delta_pieces, my_delta_weight);
 	})
 }
 
@@ -117,10 +119,10 @@ JKY.insert_quotation = function() {
 		my_saved_row.quot_color_id		= null;
 		my_saved_row.quotation_number	= '';
 		my_saved_row.quoted_pieces		= 0;
-		my_saved_row.loadout_pieces		= 0;
+		my_saved_row.checkout_pieces	= 0;
 		my_saved_row.returned_pieces	= 0;
 		my_saved_row.quoted_weight		= 0;
-		my_saved_row.loadout_weight		= 0;
+		my_saved_row.checkout_weight	= 0;
 		my_saved_row.returned_weight	= 0;
 
 		var my_html = JKY.generate_quotation(my_saved_row);
@@ -138,7 +140,9 @@ JKY.delete_quotation = function(the_this, the_id) {
 		, where		: 'LoadQuotations.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, function(the_response) {
-		JKY.update_parent(-my_saved_row.quoted_pieces, -my_saved_row.quoted_weight);
+		var my_delta_pieces = - my_saved_row.quoted_pieces;
+		var my_delta_weight = - my_saved_row.quoted_weight;
+		JKY.update_parent(my_delta_pieces, my_delta_weight);
 	})
 }
 

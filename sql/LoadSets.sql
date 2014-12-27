@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS LoadSets
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'
 
-, loadsale_id		BIGINT				DEFAULT NULL
+, load_quot_id		BIGINT				DEFAULT NULL
 , checkin_location	CHAR(4)				DEFAULT NULL
 , checkin_date		DATE				DEFAULT NULL
 , checkin_weight	DECIMAL(10,2)		DEFAULT 0

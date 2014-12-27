@@ -42,7 +42,7 @@ JKY.generate_row = function(the_row) {
 		;
 	var my_batchin = ''
 		+ "<input class='jky-batchin-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-number' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.batch_code + "' />"
+		+ "<input class='jky-batchin-code' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.batch_code + "' />"
 		+ " <a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_requested_date =	JKY.out_date(the_row.requested_date);
@@ -53,7 +53,7 @@ JKY.generate_row = function(the_row) {
 		+ '<tr request_line_id=' + my_id + '>'
 		+ '<td class="jky-action"			>' + my_trash	+ '</td>'
 		+ '<td class="jky-td-thread-name"	>' + my_thread	+ '</td>'
-		+ '<td class="jky-td-batchin-number">' + my_batchin	+ '</td>'
+		+ '<td class="jky-td-batchin-code"	>' + my_batchin	+ '</td>'
 		+ '<td class="jky-td-line-weight"	><input class="jky-requested-weight"	onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.requested_weight) + '"						/></td>'
 		+ '<td class="jky-td-line-date"		><input class="jky-requested-date"		onchange="JKY.update_line(this, ' + my_id + ')"	value="' +					  my_requested_date	   + '"						/></td>'
 		+ '<td class="jky-td-line-weight"	><input class="jky-checkout-weight"		onchange="JKY.update_line(this, ' + my_id + ')" value="' + JKY.out_float(the_row.checkout_weight ) + '" disabled	/></td>'

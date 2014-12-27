@@ -8,11 +8,12 @@ CREATE TABLE IF NOT EXISTS OSA_Lines
 , parent_id			BIGINT				DEFAULT NULL
 , product_id		BIGINT				DEFAULT NULL
 , peso				DECIMAL(5,2)		DEFAULT 0		# Peso da Peca (12.5) (Kg)
-, quoted_weight		DECIMAL(7,1)		DEFAULT 0		# Peso da Line
 , quoted_units		INT(11)				DEFAULT 0
 , units				INT(11)				DEFAULT 1		# Unidades por Peca
 , quoted_pieces		INT(11)				DEFAULT 0
 , ordered_pieces	INT(11)				DEFAULT 0
+, quoted_weight		DECIMAL(7,1)		DEFAULT 0
+, ordered_weight	DECIMAL(7,1)		DEFAULT 0
 , remarks			TEXT				DEFAULT	NULL
 
 , PRIMARY KEY(id)
@@ -24,5 +25,3 @@ CREATE TABLE IF NOT EXISTS OSA_Lines
 INSERT NextIds	SET table_name='OSA_Lines', next_id=1, id_size=9;
 INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, name='OSA_Lines', updated_by=1, updated_at=NOW();
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='OSA_Lines', updated_by=1, updated_at=NOW();
-
-ALTER TABLE OSA_Lines		ADD		quoted_weight			DECIMAL(7,1)	DEFAULT 0		AFTER peso;

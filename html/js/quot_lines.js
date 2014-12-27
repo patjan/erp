@@ -1,20 +1,21 @@
+"use strict";
 /*
  * display Quotation Lines -----------------------------------------------------
  */
 
 JKY.display_lines = function() {
 	var my_data =
-		{ method	: 'get_index'
-		, table		: 'QuotLines'
-		, select	:  JKY.row.id
-		, order_by  : 'QuotLines.id'
+		{ method		: 'get_index'
+		, table			: 'QuotLines'
+		, select		:  JKY.row.id
+		, order_by		: 'QuotLines.id'
 		};
 	JKY.ajax(false, my_data, JKY.generate_lines);
 }
 
-JKY.generate_lines = function(response) {
+JKY.generate_lines = function(the_response) {
 	var my_html  = '';
-	var my_rows  = response.rows;
+	var my_rows	 = the_response.rows;
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row = my_rows[i];
@@ -22,13 +23,14 @@ JKY.generate_lines = function(response) {
 		}
 	}
 	JKY.set_html('jky-lines-body', my_html);
-	if (my_rows == '') {
-		JKY.insert_line();
-	}
 	$('.jky-product-peso'	).ForceNumericOnly();
 	$('.jky-product-units'	).ForceIntegerOnly();
 	$('.jky-quoted-units'	).ForceNumericOnly();
 	$('.jky-quoted-price'	).ForceNumericOnly();
+	if (my_rows == '') {
+		JKY.insert_line();
+	}
+	JKY.enable_disable_lines();
 }
 
 JKY.generate_line = function(the_index, the_row) {
@@ -49,19 +51,21 @@ JKY.generate_line = function(the_index, the_row) {
 	var my_disabled = JKY.is_status('Draft') ? '' : ' disabled="disabled"';
 	var my_add_color = '<button class="btn btn-success" type="button" onclick="JKY.insert_color(this, ' + my_id + ')"' + my_disabled + '>' + JKY.t('Add Color') + '</button>';
 	var my_copy	= (the_index == 0) ? '' : '<button class="btn btn-success" type="button" onclick="JKY.copy_colors (this, ' + my_id + ')"' + my_disabled + '>' + JKY.t('Copy') + '</button>';
+	var my_onchange = ' changeable onchange="JKY.update_line(this, ' + my_id + ')"';
+	var my_disabled = ' disabled';
 	var my_html = ''
 		+ '<tr class="jky-line" quot_line_id=' + my_id + '>'
-		+ '<td class="jky-td-action"	>' + my_trash			+ '</td>'
-		+ '<td class="jky-td-key-w3"	>' + my_product			+ '</td>'
-		+ '<td class="jky-td-key"		>' + my_machine			+ '</td>'
-		+ '<td class="jky-td-name-s"	><input class="jky-remarks"			onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.fix_null(the_row.remarks) + '" /></td>'
+		+ '<td class="jky-td-action"	>' + my_trash + '</td>'
+		+ '<td class="jky-td-key-w3"	>' + my_product + '</td>'
+		+ '<td class="jky-td-key"		>' + my_machine + '</td>'
+		+ '<td class="jky-td-name-s"	><input class="jky-remarks"			value="' + JKY.fix_null(the_row.remarks			) + '"' + my_onchange + ' /></td>'
 		+ '<td class="jky-td-key-m"		>' + my_add_color + '&nbsp;' + my_copy + '</td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-product-peso"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.peso			 + '" /></td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-quoted-units"	disabled										value="' + the_row.quoted_units	 + '" /></td>'
-		+ '<td class="jky-td-units"		><input class="jky-product-units"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.units		 + '" /></td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-quoted-pieces"	disabled										value="' + the_row.quoted_pieces + '" /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-product-peso"	value="' + JKY.fix_null(the_row.peso			) + '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-quoted-units"	value="' + JKY.fix_null(the_row.quoted_units	) + '"' + my_disabled + ' /></td>'
+		+ '<td class="jky-td-units"		><input class="jky-product-units"	value="' + JKY.fix_null(the_row.units			) + '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-quoted-pieces"	value="' + JKY.fix_null(the_row.quoted_pieces	) + '"' + my_disabled + ' /></td>'
 		+ '<td class="jky-td-units"></td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-discount"		onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.discount		 + '" /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-discount"		value="' + JKY.fix_null(the_row.discount		) + '"' + my_onchange + ' /></td>'
 		+ '</tr>'
 		;
 	var my_rows = JKY.get_rows('QuotColors', my_id);
@@ -72,8 +76,8 @@ JKY.generate_line = function(the_index, the_row) {
 	return my_html;
 }
 
-JKY.update_line = function(id_name, the_id) {
-	var my_tr = $(id_name).parent().parent();
+JKY.update_line = function(the_this, the_id) {
+	var my_tr = $(the_this).parent().parent();
 	var my_product_id	= my_tr.find('.jky-product-id'		).val();
 	var my_machine_id	= my_tr.find('.jky-machine-id'		).val();
 	var my_remarks		= my_tr.find('.jky-remarks'			).val();
@@ -119,13 +123,9 @@ JKY.update_line = function(id_name, the_id) {
 		, where		: 'Quotations.id = ' + JKY.row.id
 		, set		: 'quoted_pieces = quoted_pieces + ' + my_diff_pieces
 		};
-	JKY.ajax(true, my_data, JKY.update_line_success);
-
-}
-
-JKY.update_line_success = function(response) {
-//	JKY.display_message(response.message)
-	JKY.update_quotation_amount();
+	JKY.ajax(true, my_data, function(the_response) {
+		JKY.update_quotation_amount();
+	})
 }
 
 JKY.insert_line = function() {
@@ -134,50 +134,63 @@ JKY.insert_line = function() {
 		, table		: 'QuotLines'
 		, set		: 'QuotLines.parent_id = ' + JKY.row.id
 		};
-	JKY.ajax(true, my_data, JKY.insert_line_success);
+	JKY.ajax(true, my_data, function(the_response) {
+		var my_row = [];
+		my_row.id				= the_response.id;
+		my_row.order_id			= null;
+		my_row.product_id		= null;
+		my_row.product_name		= '';
+		my_row.machine_id		= null;
+		my_row.machine_name		= '';
+		my_row.remarks			= '';
+		my_row.peso				= 0;
+		my_row.quoted_units		= 0;
+		my_row.units			= 1;
+		my_row.quoted_pieces	= 0;
+		my_row.discount			= '';
+
+		var my_count = JKY.get_count_by_id('QuotLines', JKY.row.id);
+		var my_html = JKY.generate_line(my_count-1, my_row);
+		JKY.append_html('jky-lines-body', my_html);
+	})
 }
 
-JKY.insert_line_success = function(response) {
-	var my_row = [];
-	my_row.id				= response.id;
-	my_row.order_id			= null;
-	my_row.product_id		= null;
-	my_row.product_name		= '';
-	my_row.machine_id		= null;
-	my_row.machine_name		= '';
-	my_row.remarks			= '';
-	my_row.peso				= 0;
-	my_row.quoted_units		= 0;
-	my_row.units			= 1;
-	my_row.quoted_pieces	= 0;
-	my_row.discount			= '';
-
-	var my_count = JKY.get_count_by_id('QuotLines', JKY.row.id);
-	var my_html = JKY.generate_line(my_count-1, my_row);
-	JKY.append_html('jky-lines-body', my_html);
-}
-
-JKY.delete_line = function(id_name, the_id) {
+JKY.delete_line = function(the_this, the_id) {
 	var my_count = JKY.get_count_by_id('QuotColors', the_id);
 	if (my_count > 0) {
 		JKY.display_message(JKY.t('Error, delete first all sub records'));
 		return;
 	}
 
-	var my_tr = $(id_name).parent().parent();
-	my_tr.remove();
+	$(the_this).parent().parent().remove();
 	var my_data =
 		{ method	: 'delete'
 		, table		: 'QuotLines'
 		, where		: 'QuotLines.id = ' + the_id
 		};
-	JKY.ajax(true, my_data);
+	JKY.ajax(true, my_data, function(the_response) {
+//		JKY.verify_total_percent();
+	})
 }
 
-JKY.delete_line_success = function(response) {
-//	JKY.display_message(response.message)
-//	JKY.verify_total_percent();
-
+JKY.enable_disable_lines = function() {
+	$('#jky-lines-body tr').each(function() {
+		if ($(this).hasClass('jky-line')) {
+			var my_peso  = $(this).find('.jky-product-peso' );
+			var my_units = $(this).find('.jky-product-units');
+			if ($(this).next().attr('color_id')) {
+				my_peso .prop('disabled'	, true	);
+				my_units.prop('disabled'	, true	);
+				my_peso .prop('changeable'	, false	);
+				my_units.prop('changeable'	, false	);
+			}else{
+				my_peso .prop('disabled'	, false	);
+				my_units.prop('disabled'	, false	);
+				my_peso .prop('changeable'	, true	);
+				my_units.prop('changeable'	, true	);
+			}
+		}
+	});
 }
 
 JKY.print_lines = function(the_id) {

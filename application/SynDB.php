@@ -122,7 +122,8 @@ function process_changes($the_server_number, $the_local_db, $the_host_db) {
 		. ' FROM ' . $my_table
 		. ' WHERE servers IS NULL'
 		. '    OR LOCATE("' . $the_server_number . ' ", servers) = 0'
-		. ' ORDER BY table_name, table_id, created_at'
+		. ' ORDER BY table_name, table_id, updated_at'
+		. ' LIMIT 500'
 		;
 	$my_changes = $the_host_db->fetchAll($my_sql);
 	$my_count	= count($my_changes);
@@ -167,7 +168,7 @@ log_message($my_table . ': ' . $my_id . ', ' . $my_table_name . ': ' . $my_table
 
 		$my_sql = '';
 		if ($my_local_row) {
-			if ($my_change['created_at'] > $my_local_row['updated_at']) {
+			if ($my_change['updated_at'] > $my_local_row['updated_at']) {
 				if ($my_host_row) {
 					log_message('Update');
 					$my_sql = get_sql_replace($my_table_name, $my_host_row);

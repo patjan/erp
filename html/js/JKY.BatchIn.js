@@ -12,7 +12,7 @@
  * require:	JKY.Utils.js(JKY.display_confirm)
  *
  * 		$(my_parent).find('.jky-batchin-id'  ).val(the_id );
- *		$(my_parent).find('.jky-batchin-number').val(my_number);
+ *		$(my_parent).find('.jky-batchin-code').val(the_code);
  */
 JKY.BatchIn = function() {
 	var my_the_id		= null;		//	external id that initiated the call
@@ -97,9 +97,9 @@ JKY.BatchIn = function() {
 		}
 		my_dom_id.val(the_id );
 
-		var my_dom_number = $('#jky-batchin-number');
+		var my_dom_number = $('#jky-batchin-code');
 		if (my_dom_number.length == 0) {
-			my_dom_number = $(my_parent).find('.jky-batchin-number');
+			my_dom_number = $(my_parent).find('.jky-batchin-code');
 		}
 		my_dom_number.val(my_batch );
 		my_dom_number.change();		//	to activate change event

@@ -1,8 +1,6 @@
 DROP   TABLE IF     EXISTS JKY_Users;
 CREATE TABLE IF NOT EXISTS JKY_Users
 ( id				BIGINT				NOT NULL AUTO_INCREMENT
-, created_by		BIGINT				DEFAULT NULL
-, created_at		DATETIME			DEFAULT NULL
 , updated_by		BIGINT				DEFAULT NULL
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'

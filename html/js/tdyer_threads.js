@@ -7,7 +7,7 @@ JKY.display_threads = function() {
 		{ method	: 'get_index'
 		, table		: 'TDyerThreads'
 		, select	:  JKY.row.id
-		, order_by  : 'TDyerThreads.created_at DESC'
+		, order_by  : 'TDyerThreads.updated_at DESC'
 		};
 	JKY.ajax(false, my_data, JKY.generate_threads);
 }
@@ -38,7 +38,7 @@ JKY.generate_thread = function(the_row) {
 		;
 	var my_batchin = ''
 		+ "<input class='jky-batchin-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-number' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batchin_number + "' />"
+		+ "<input class='jky-batchin-code' disabled onchange='JKY.update_thread(this, " + my_id + ")' value='" + the_row.batchin_code + "' />"
 		+ " <a href='#' onClick='JKY.BatchIn.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_disabled = JKY.is_status('Draft') ? '' : ' disabled="disabled"';
@@ -96,7 +96,7 @@ JKY.insert_thread_success = function(response) {
 	my_row.thread_id		= null;
 	my_row.thread_name		= '';
 	my_row.batchin_id		= null;
-	my_row.batchin_number	= '';
+	my_row.batchin_code		= '';
 
 	var my_html = JKY.generate_thread(my_row);
 	JKY.append_html('jky-threads-body', my_html);

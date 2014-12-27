@@ -58,7 +58,7 @@ JKY.generate_order = function(the_row) {
 		+ '<td class="jky-td-product-name"		><input  class="jky-product-name"		disabled value="' + JKY.fix_null	(the_row.product_name	)	+ '" /></td>'
 		+ '<td class="jky-td-pieces"			><input  class="jky-ordered-pieces"		disabled value="' + JKY.fix_null	(the_row.ordered_pieces	)	+ '" /></td>'
 		+ '<td class="jky-td-pieces"			><input  class="jky-produced-pieces"	disabled value="' + JKY.fix_null	(the_row.produced_pieces)	+ '" /></td>'
-		+ '<td class="jky-td-pieces"			><input  class="jky-loadout-pieces"		disabled value="' +					 the_row.loadout_pieces		+ '" /></td>'
+		+ '<td class="jky-td-pieces"			><input  class="jky-checkout-pieces"	disabled value="' +					 the_row.checkout_pieces	+ '" /></td>'
 		+ '<td class="jky-td-pieces"			><input  class="jky-requested-pieces"	onchange="JKY.update_order(this, ' + my_id + ')"  value="' + the_row.requested_pieces + '" /></td>'
 		+ '</tr>'
 		;
@@ -129,7 +129,7 @@ JKY.insert_order_success = function(response) {
 	my_row.id				= response.id;
 	my_row.order_line_id	= null;
 	my_row.requested_pieces	= 0;
-	my_row.loadout_pieces	= 0;
+	my_row.checkout_pieces	= 0;
 	my_row.returned_pieces	= 0;
 
 	var my_html = JKY.generate_order(my_row);

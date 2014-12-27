@@ -80,7 +80,9 @@ JKY.set_table_row = function(the_row) {
 JKY.set_form_row = function(the_row) {
 	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
 	JKY.set_value	('jky-barcode'				, the_row.barcode			);
-	JKY.set_value	('jky-batch-code'			, the_row.batch_code		);
+	JKY.set_value	('jky-thread-id'			, the_row.thread_id			);
+	JKY.set_value	('jky-batchin-id'			, the_row.batch_id			);
+	JKY.set_value	('jky-batchin-code'			, the_row.batch_code		);
 	JKY.set_value	('jky-number-of-boxes'		, the_row.number_of_boxes	);
 	JKY.set_value	('jky-number-of-cones'		, the_row.number_of_cones	);
 	JKY.set_value	('jky-average-weight'		, the_row.average_weight	);
@@ -92,11 +94,14 @@ JKY.set_form_row = function(the_row) {
 };
 
 /**
- *	set add new row
+ *	set add new row (hidden)
  */
 JKY.set_add_new_row = function() {
+	JKY.set_html	('jky-status'				, '');
 	JKY.set_value	('jky-barcode'				, '');
-	JKY.set_value	('jky-batch-code'			, '');
+	JKY.set_value	('jky-thread-id'			,  0);
+	JKY.set_value	('jky-batchin-id'			,  0);
+	JKY.set_value	('jky-batchin-code'			, '');
 	JKY.set_value	('jky-number-of-boxes'		,  0);
 	JKY.set_value	('jky-number-of-cones'		,  0);
 	JKY.set_value	('jky-average-weight'		,  0);
@@ -115,7 +120,7 @@ JKY.set_replace = function() {
 	var my_thread_id = JKY.get_id('Threads', 'Threads.name=\'' + my_thread_name + '\'');
 	JKY.set_value	('jky-thread-id'			, my_thread_id);
 	JKY.set_value	('jky-barcode'				, '');
-	JKY.set_value	('jky-batch-code'			, '');
+	JKY.set_value	('jky-batchin-code'			, '');
 	JKY.set_value	('jky-number-of-boxes'		, '');
 	JKY.set_value	('jky-number-of-cones'		, '');
 	JKY.set_value	('jky-average-weight'		, '');
@@ -130,7 +135,7 @@ JKY.set_replace = function() {
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-		+          '  batch_id=  '	+ JKY.get_value('jky-batchin_id'		)
+		+          '  batch_id=  '	+ JKY.get_value('jky-batchin-id'		)
 		+   ', number_of_boxes=  '	+ JKY.get_value('jky-number-of-boxes'	)
 		+   ', number_of_cones=  '	+ JKY.get_value('jky-number-of-cones'	)
 		+    ', average_weight=  '	+ JKY.get_value('jky-average-weight'	)

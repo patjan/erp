@@ -1,8 +1,6 @@
 DROP   TABLE IF     EXISTS LoadQuotations;
 CREATE TABLE IF NOT EXISTS LoadQuotations
 ( id				BIGINT				NOT NULL AUTO_INCREMENT
-, created_by		BIGINT				DEFAULT NULL
-, created_at		DATETIME			DEFAULT NULL
 , updated_by		BIGINT				DEFAULT NULL
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Draft'
@@ -11,8 +9,8 @@ CREATE TABLE IF NOT EXISTS LoadQuotations
 , quot_color_id		BIGINT				DEFAULT NULL
 , quoted_pieces		INT					DEFAULT 0
 , quoted_weight		DECIMAL(7,1)		DEFAULT 0
-, loadout_pieces	INT					DEFAULT 0
-, loadout_weight	DECIMAL(7,1)		DEFAULT 0
+, checkout_pieces	INT					DEFAULT 0
+, checkout_weight	DECIMAL(7,1)		DEFAULT 0
 , returned_pieces	INT					DEFAULT 0
 , returned_weight	DECIMAL(7,1)		DEFAULT 0
 

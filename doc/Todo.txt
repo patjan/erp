@@ -39,6 +39,7 @@ done	- on OSA(form), display correct Salesman's name
 		- display correctly OSA(list)
 		
 		- limit box weight upto 70 Kg or divide by 100
+		- add new on [Config] [System Controls] [Max Weight For Thread Box] = 70 kg
 		
 Marcelo:
 
@@ -97,6 +98,8 @@ Marcelo:
 19.		Instrucoes para acabamento:
 		e' definido no FTP ou  por Produto ?
 
+20.		Tirar do [Galao] do [Product Types] do [Config].		
+		
 Bugs
 1.	loading.gif is not displaying on IE and CH
 2.	to immediately highlight clicked tab on menu or side-menu

@@ -36,14 +36,14 @@ JKY.suppliers	= [];
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-ordered-date		input').attr('data-format', JKY.Session.get_date_time());
+	$('#jky-ordered-date	input').attr('data-format', JKY.Session.get_date_time());
 	$('#jky-produced-date	input').attr('data-format', JKY.Session.get_date	 ());
 	$('#jky-delivered-date	input').attr('data-format', JKY.Session.get_date	 ());
 	$('#jky-ordered-date'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-produced-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-delivered-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 
-	$('#jky-action-generate'	).click( function() {JKY.generate_order			();});
+	$('#jky-action-generate'	).click( function() {JKY.gen_osa_order		();});
 	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-lines-add-new'		).click (function()	{JKY.insert_line		();});
 
@@ -68,9 +68,10 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-product-type'	, '../JKY.Search.ProdType.html'	);
 
 	JKY.set_side_active('jky-sales-osas');
-	JKY.set_html('jky-app-select'	, JKY.set_options(JKY.sales.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.sales.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
+	JKY.show	('jky-action-print');
 
 	$('#jky-customer-filter'	).KeyUpDelay(JKY.Customer	.load_data);
 	$('#jky-salesman-filter'	).KeyUpDelay(JKY.Salesman	.load_data);
@@ -83,14 +84,6 @@ JKY.set_initial_values = function() {
 	$('#jky-weight'	).ForceIntegerOnly();
 	$('#jky-width'	).ForceIntegerOnly();
 	$('#jky-peso'	).ForceNumericOnly();
-/*
-	$('#jky-punho-percent'	).ForceIntegerOnly();
-	$('#jky-punho-units'	).ForceIntegerOnly();
-	$('#jky-gola-percent'	).ForceIntegerOnly();
-	$('#jky-gola-units'		).ForceIntegerOnly();
-	$('#jky-galao-percent'	).ForceIntegerOnly();
-	$('#jky-galao-units'	).ForceIntegerOnly();
-*/
 };
 
 /**
@@ -98,16 +91,15 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-td-number"	>' +				 the_row.osa_number	+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.osa_number			+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.quotation_number	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.customer_name	)	+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.machine_name	)	+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.dyer_name		)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.salesman_name	)	+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.ordered_at		)	+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.produced_date	)	+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.delivered_date	)	+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.quoted_pieces		+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.ordered_pieces		+ '</td>'
-		+  '<td class="jky-td-pieces"	>' +				 the_row.produced_pieces	+ '</td>'
-		+  '<td class="jky-td-pieces"	>' +				 the_row.delivered_pieces	+ '</td>'
 		+  '</tr>'
 		;
 	return my_html;
@@ -234,7 +226,7 @@ JKY.process_delete = function(the_id, the_row) {
 };
 
 /* -------------------------------------------------------------------------- */
-JKY.generate_order = function() {
+JKY.gen_osa_order = function() {
 	var my_ordered_pieces = JKY.get_value_by_id('OSAs', 'ordered_pieces', JKY.row.id);
 	if (my_ordered_pieces <= 0) {
 		JKY.display_message('Order cannot be generated');
@@ -247,12 +239,10 @@ JKY.generate_order = function() {
 		, table		: 'Order'
 		, id		:  JKY.row.id
 		}
-	JKY.ajax(false, my_data, JKY.refresh_form);
-};
-
-JKY.refresh_form = function(response) {
-	JKY.display_message('Order row generated: ' + JKY.row.id);
-	JKY.App.display_row();
+	JKY.ajax(false, my_data, function(the_response) {
+		JKY.display_message('Order row generated: ' + JKY.row.id);
+		JKY.App.display_row();
+	})
 };
 
 /* -------------------------------------------------------------------------- */
@@ -264,12 +254,10 @@ JKY.save_remarks = function() {
 		, set	:  my_set
 		, where : 'OSAs.id = ' + JKY.row.id
 		};
-	JKY.ajax(true, my_data, JKY.save_remarks_success);
-};
-
-JKY.save_remarks_success = function(response) {
-	JKY.display_message('Remarks saved, ' + response.message);
-	JKY.row = JKY.get_row('OSAs', JKY.row.id);
+	JKY.ajax(true, my_data, function(the_response) {
+		JKY.display_message('Remarks saved, ' + the_response.message);
+		JKY.row = JKY.get_row('OSAs', JKY.row.id);
+	})
 };
 
 /**
@@ -292,9 +280,9 @@ JKY.print_row = function(the_id) {
 		+ "<tr>"
 
 		+ "<td width=60%><table>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>Quotation Number</span>:</td><td id='jky-print-osa-number'		class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>	       Customer</span>:</td><td id='jky-print-customer-name'	class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>	       Salesman</span>:</td><td id='jky-print-salesman-name'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>      OSA Number</span>:</td><td id='jky-print-osa-number'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>        Customer</span>:</td><td id='jky-print-customer-name'	class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>        Salesman</span>:</td><td id='jky-print-salesman-name'		class='jky-form-value'></td></tr>"
 		+ "</table></td>"
 
 		+ "</tr>"
@@ -326,9 +314,9 @@ JKY.print_row = function(the_id) {
 	JKY.set_html('jky-printable', my_html);
 	JKY.t_tag	('jky-printable', 'span');
 
-	JKY.set_html('jky-print-osa-number'	, my_row.osa_number	);
-	JKY.set_html('jky-print-customer-name'		, my_row.customer_name	);
-	JKY.set_html('jky-print-salesman-name'		, my_row.salesman_name	);
+	JKY.set_html('jky-print-osa-number'			, my_row.osa_number			);
+	JKY.set_html('jky-print-customer-name'		, my_row.customer_name		);
+	JKY.set_html('jky-print-salesman-name'		, my_row.salesman_name		);
 	JKY.set_html('jky-print-lines-body'			, JKY.print_lines(the_id));
 
 	JKY.set_html('jky-print-remarks'			, JKY.nl2br(my_row.remarks));

@@ -281,10 +281,10 @@ UPDATE FTPs					SET	draw	= LOWER(draw );
 UPDATE FTPs					SET	photo	= LOWER(photo);
 /* -- 2014/06/02	*/
 ALTER TABLE LoadSales		ADD		reserved_pieces			INT				DEFAULT 0		AFTER requested_pieces;
-
 /* -- 2014/06/14	*/
 ALTER TABLE Products		ADD		units					INT(11)			DEFAULT 1		AFTER start_date;
 ALTER TABLE Products		ADD		peso					DECIMAL(5,2)	DEFAULT 0		AFTER start_date;
+
 /* -- 2014/06/16	*/
 ALTER TABLE Products		ADD		cone_type				VARCHAR(32)		DEFAULT NULL	AFTER units;
 /* -- 2014/07/19	*/
@@ -349,5 +349,6 @@ ALTER TABLE Pieces			CHANGE	weighted_by		weighed_by 		BIGINT			DEFAULT NULL;
 ALTER TABLE QuotLines		CHANGE	discount		discount		VARCHAR(8)		DEFAULT '';
 ALTER TABLE QuotColors		CHANGE	quoted_units	quoted_units	DECIMAL(7,1)	DEFAULT 0;
 ALTER TABLE QuotLines		ADD		quoted_weight			DECIMAL(7,1)	DEFAULT 0		AFTER peso;
+
 ALTER TABLE OSA_Lines		ADD		quoted_weight			DECIMAL(7,1)	DEFAULT 0		AFTER peso;
 ALTER TABLE Orders			ADD		color_id				BIGINT			DEFAULT NULL	AFTER product_id;

@@ -12,7 +12,7 @@ JKY.start_program = function() {
 	JKY.App.set(
 		{ object_name	: 'JKY.App'
 		, program_name	: 'LoadSales'
-		, table_name	: 'LoadSales'
+		, table_name	: 'LoadQuotations'
 		, specific		: ''
 		, select		: JKY.loadout.select
 		, filter		: ''
@@ -57,13 +57,13 @@ JKY.set_initial_values = function() {
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-td-number"	>' +				 the_row.loadout_number			+ '</td>'
+		+  '<td class="jky-td-number"	>' + JKY.fix_null	(the_row.quotation_number	)	+ '</td>'
 		+  '<td class="jky-td-short"	>' + JKY.fix_null	(the_row.dyer_name			)	+ '</td>'
 		+  '<td class="jky-td-short"	>' + JKY.fix_null	(the_row.color_name			)	+ '</td>'
-		+  '<td class="jky-td-number"	>' +				 the_row.sale_number			+ '</td>'
 		+  '<td class="jky-td-short"	>' + JKY.fix_null	(the_row.customer_name		)	+ '</td>'
 		+  '<td class="jky-td-text-s"	>' + JKY.fix_null	(the_row.product_name		)	+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.requested_at		)	+ '</td>'
-		+  '<td class="jky-td-pieces"	>' +				 the_row.requested_pieces		+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.quoted_pieces			+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.reserved_pieces		+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.checkout_pieces		+ '</td>'
 		;

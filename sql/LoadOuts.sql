@@ -1,8 +1,6 @@
 DROP   TABLE IF     EXISTS LoadOuts;
 CREATE TABLE IF NOT EXISTS LoadOuts
 ( id				BIGINT				NOT NULL AUTO_INCREMENT
-, created_by		BIGINT				DEFAULT NULL
-, created_at		DATETIME			DEFAULT NULL
 , updated_by		BIGINT				DEFAULT NULL
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Draft'
@@ -14,9 +12,9 @@ CREATE TABLE IF NOT EXISTS LoadOuts
 , requested_at		DATETIME			DEFAULT NULL
 , quoted_pieces		INT					DEFAULT 0
 , quoted_weight		DECIMAL(7,1)		DEFAULT 0
-, loadout_at		DATETIME			DEFAULT NULL
-, loadout_pieces	INT					DEFAULT 0
-, loadout_weight	DECIMAL(7,1)		DEFAULT 0
+, checkout_at		DATETIME			DEFAULT NULL
+, checkout_pieces	INT					DEFAULT 0
+, checkout_weight	DECIMAL(7,1)		DEFAULT 0
 , returned_at		DATETIME			DEFAULT NULL
 , returned_pieces	INT					DEFAULT 0
 , returned_weight	DECIMAL(7,1)		DEFAULT 0

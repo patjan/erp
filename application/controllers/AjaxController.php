@@ -796,7 +796,7 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	return ' AND       Contacts.is_supplier		= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_dyer'		)	return ' AND       Contacts.is_dyer			= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_partner'	)	return ' AND       Contacts.is_partner		= "Yes"';
-	if ($table == 'Contacts'		&& $specific == 'is_transport'	)	return ' AND       Contacts.is_transport		= "Yes"';
+	if ($table == 'Contacts'		&& $specific == 'is_transport'	)	return ' AND       Contacts.is_transport	= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_company'	)	return ' AND       Contacts.is_company		= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	return ' AND       Contacts.is_company		= "No" ';
 	if ($table == 'Contacts'		&& $specific == 'is_salesman'	)	return ' AND       Contacts.is_company		= "No" ';
@@ -804,7 +804,7 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'Batches'			&& $specific == 'incoming'		)	return ' AND        Batches.incoming_id		= ' . $specific_id;
 	if ($table == 'Batches'			&& $specific == 'thread'		)	return ' AND        Batches.thread_id		= ' . $specific_id;
 	if ($table == 'BatchOuts'		&& $specific == 'checkout'		)	return ' AND      BatchOuts.checkout_id		= ' . $specific_id;
-	if ($table == 'Boxes'			&& $specific == 'batch'			)	return ' AND          Boxes.batch_id			= ' . $specific_id;
+	if ($table == 'Boxes'			&& $specific == 'batch'			)	return ' AND          Boxes.batch_id		= ' . $specific_id;
 	if ($table == 'FTPs'			&& $specific == 'product'		)	return ' AND           FTPs.product_id		= ' . $specific_id;
 	if ($table == 'History'			&& $specific == 'parent_id'		)	return ' AND        History.parent_id		= ' . $specific_id;
 	if ($table == 'LoadIns'			&& $specific == 'receive'		)	return ' AND        LoadIns.receivedyer_id	= ' . $specific_id;
@@ -812,14 +812,14 @@ private function set_specific($table, $specific, $specific_id) {
 																			.  ' AND       LoadOuts.shipdyer_id		IS NULL';
 	if ($table == 'LoadOuts'		&& $specific == 'shipdyer'		)	return ' AND       LoadOuts.shipdyer_id		= ' . $specific_id;
 	if ($table == 'LoadQuotations'	&& $specific == 'loadout'		)	return ' AND LoadQuotations.loadout_id		= ' . $specific_id;
-	if ($table == 'Pieces'			&& $specific == 'order'			)	return ' AND         Pieces.order_id			= ' . $specific_id;
+	if ($table == 'Pieces'			&& $specific == 'order'			)	return ' AND         Pieces.order_id		= ' . $specific_id;
 	if ($table == 'ProdPrices'		&& $specific == 'product'		)	return ' AND     ProdPrices.product_id		= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'parent'		)	return ' AND  PurchaseLines.parent_id		= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'supplier'		)	return ' AND      Purchases.supplier_id		= ' . $specific_id;
-	if ($table == 'Recipes'			&& $specific == 'color'			)	return ' AND        Recipes.color_id			= ' . $specific_id;
+	if ($table == 'Recipes'			&& $specific == 'color'			)	return ' AND        Recipes.color_id		= ' . $specific_id;
 	if ($table == 'Restrictions'	&& $specific == 'customer'		)	return ' AND   Restrictions.customer_id		= ' . $specific_id;
-	if ($table == 'QuotColors'		&& $specific == 'color'			)	return ' AND     QuotColors.color_id			= ' . $specific_id;
-	if ($table == 'QuotUnloadeds'	&& $specific == 'color'			)	return ' AND     QuotColors.color_id			= ' . $specific_id;
+	if ($table == 'QuotColors'		&& $specific == 'color'			)	return ' AND     QuotColors.color_id		= ' . $specific_id;
+	if ($table == 'QuotUnloadeds'	&& $specific == 'color'			)	return ' AND     QuotColors.color_id		= ' . $specific_id;
 	if ($table == 'Translations'	&& $specific == 'locale'		)	return ' AND   Translations.locale			= "en_US"';
 
 	return '';
@@ -835,7 +835,7 @@ private function set_select($table, $specific, $select) {
 			case 'CheckOuts'		: return ' AND  CheckOuts		.status IN   ("Draft","Active")';
 			case 'LoadIns'			: return ' AND  LoadIns			.status IN   ("Draft","Active")';
 			case 'LoadOuts'			: return ' AND  LoadOuts		.status IN   ("Draft","Active")';
-			case 'LoadQuotations'	: return ' AND  LoadQuotation	.status IN   ("Draft","Active")';
+			case 'LoadQuotations'	: return ' AND  LoadQuotations	.status IN   ("Draft","Active")';
 			case 'Orders'			: return ' AND  Orders			.status IN   ("Draft","Active")';
 			case 'OSAs'				: return ' AND  OSAs			.status IN   ("Draft","Active")';
 			case 'Purchases'		: return ' AND  Purchases		.status IN   ("Draft","Active")';
@@ -929,7 +929,11 @@ private function set_new_fields($table) {
 	if ($table == 'LoadIns'			)	$return = ',   Product.product_name		AS   product_name';
 	if ($table == 'LoadOuts'		)	$return = ',      Dyer.nick_name		AS      dyer_name'
 												. ',     Color.color_name		AS     color_name';
-	if ($table == 'LoadQuotations'	)	$return = ', Quotation.quotation_number	AS quotation_number'
+	if ($table == 'LoadQuotations'	)	$return = ',   LoadOut.loadout_number	AS   loadout_number'
+												. ',   LoadOut.requested_at		AS requested_at'
+												. ', Quotation.quotation_number	AS quotation_number'
+												. ',      Dyer.nick_name		AS      dyer_name'
+												. ',     Color.color_name		AS     color_name'
 												. ',  Customer.nick_name		AS  customer_name'
 												. ',   Product.id				AS   product_id'
 												. ',   Product.product_name		AS   product_name';
@@ -938,12 +942,12 @@ private function set_new_fields($table) {
 												. ',   LoadOut.checkout_at		AS  checkout_at'
 												. ',      Dyer.nick_name		AS      dyer_name'
 												. ',     Color.color_name		AS     color_name'
-												. ',      Sale.quotation_number	AS      sale_number'
+												. ', Quotation.quotation_number	AS quotation_number'
 												. ',  Customer.nick_name		AS  customer_name'
 												. ',   Product.id				AS   product_id'
 												. ',   Product.product_name		AS   product_name'
-//												. ', SaleColor.quoted_pieces	AS      sold_pieces';
-							. ', CEIL(SaleColor.quoted_units / SaleLine.units)	AS      sold_pieces';
+//												. ', QuotColor.quoted_pieces	AS      sold_pieces';
+							. ', CEIL(QuotColor.quoted_units / QuotLine.units)	AS      sold_pieces';
 	if ($table == 'Orders'			)	$return = ',  Customer.nick_name		AS  customer_name'
 												. ',   Machine.name				AS   machine_name'
 												. ',   Partner.nick_name		AS   partner_name'
@@ -1004,6 +1008,7 @@ private function set_new_fields($table) {
 												. ',   CheckIn.nick_name		AS           checkin'
 												. ',  CheckOut.nick_name		AS           checkout'
 												. ',  Returned.nick_name		AS           returned'
+												. ',   Threads.id				AS    thread_id'
 												. ',   Threads.name				AS    thread_name'
 												. ',  Supplier.nick_name		AS  supplier_name';
 	if ($table == 'Requests'		)	$return = ',  Machines.name				AS   machine_name'
@@ -1048,7 +1053,7 @@ private function set_new_fields($table) {
 												. ',  Customer.nick_name		AS  customer_name'
 												. ',      Dyer.nick_name		AS      dyer_name';
 	if ($table == 'TDyerThreads'	)	$return = ',    Thread.name				AS    thread_name'
-												. ',   BatchIn.batch			AS   batchin_number';
+												. ',   BatchIn.batch			AS   batchin_code';
 	if ($table == 'TDyerColors'		)	$return = ',     Color.color_name		AS     color_name';
 	if ($table == 'ThreadForecast'	)	$return = ',  Contacts.nick_name		AS  supplier_name'
 												. ',   Threads.thread_group		AS    thread_group'
@@ -1059,7 +1064,7 @@ private function set_new_fields($table) {
 //	special code to append fields from Contacts to Services table
 	if (get_request('method') == 'export') {
 		if ($table   == 'Services') {
-			$sql  = 'SHOW COLUMNS FROM Contacts WHERE Field != "id" AND Field != "created_by" AND Field != "created_at" AND Field != "updated_by" AND Field != "updated_at" AND Field != "status" AND Field != "completed"';
+			$sql  = 'SHOW COLUMNS FROM Contacts WHERE Field != "id" AND Field != "updated_by" AND Field != "updated_at" AND Field != "status" AND Field != "completed"';
 			$db   = Zend_Registry::get( 'db' );
 			$cols = $db->fetchAll( $sql );
 			foreach($cols as $col) {
@@ -1101,20 +1106,23 @@ private function set_left_joins($table) {
 	if ($table == 'LoadIns'			)	$return = '  LEFT JOIN    Products AS Product	ON   Product.id	=		   LoadIns.product_id';
 	if ($table == 'LoadOuts'		)	$return = '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		  LoadOuts.dyer_id'
 												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		  LoadOuts.color_id';
-	if ($table == 'LoadQuotations'	)	$return = '  LEFT JOIN  QuotColors AS QuotColor	ON QuotColor.id	=	LoadQuotations.quot_color_id'
+	if ($table == 'LoadQuotations'	)	$return = '  LEFT JOIN    LoadOuts AS LoadOut	ON   LoadOut.id	=	LoadQuotations.loadout_id'
+												. '  LEFT JOIN  QuotColors AS QuotColor	ON QuotColor.id	=	LoadQuotations.quot_color_id'
 												. '  LEFT JOIN   QuotLines AS QuotLine	ON  QuotLine.id	=		 QuotColor.parent_id'
+												. '  LEFT JOIN    Contacts AS Dyer      ON      Dyer.id =        QuotColor.dyer_id'
+												. '  LEFT JOIN      Colors AS Color     ON     Color.id =        QuotColor.color_id'
 												. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=		  QuotLine.parent_id'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  QuotLine.product_id'
 												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		 Quotation.customer_id';
 	if ($table == 'LoadSets'		)	$return = '  LEFT JOIN LoadQuotations AS LoadQuot ON LoadQuot.id =        LoadSets.load_quot_id'
-												. '  LEFT JOIN    LoadOuts AS LoadOut	ON   LoadOut.id	=		  LoadSale.loadout_id'
-												. '  LEFT JOIN  QuotColors AS SaleColor	ON SaleColor.id	=		  LoadSale.sale_color_id'
+												. '  LEFT JOIN    LoadOuts AS LoadOut	ON   LoadOut.id	=		  LoadQuot.loadout_id'
+												. '  LEFT JOIN  QuotColors AS QuotColor	ON QuotColor.id	=		  LoadQuot.quot_color_id'
 												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		   LoadOut.dyer_id'
 												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		   LoadOut.color_id'
-												. '  LEFT JOIN   QuotLines AS SaleLine	ON  SaleLine.id	=		 SaleColor.parent_id'
-												. '  LEFT JOIN  Quotations AS Sale		ON      Sale.id	=		  SaleLine.parent_id'
-												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleLine.product_id'
-												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id';
+												. '  LEFT JOIN   QuotLines AS QuotLine	ON  QuotLine.id	=		 QuotColor.parent_id'
+												. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=		  QuotLine.parent_id'
+												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  QuotLine.product_id'
+												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		 Quotation.customer_id';
 	if ($table == 'Orders'			)	$return = '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		    Orders.customer_id'
 												. '  LEFT JOIN    Machines AS Machine	ON   Machine.id	=		    Orders.machine_id'
 												. '  LEFT JOIN    Contacts AS Partner	ON   Partner.id	=		    Orders.partner_id'
@@ -2840,7 +2848,7 @@ private function get_columns($data) {
 
 //	special code to append fields from Contacts to Services table
 	if ($table == 'Services') {
-		$sql  = 'SHOW COLUMNS FROM Contacts WHERE Field != "id" AND Field != "created_by" AND Field != "created_at" AND Field != "updated_by" AND Field != "updated_at" AND Field != "status" AND Field != "completed"';
+		$sql  = 'SHOW COLUMNS FROM Contacts WHERE Field != "id" AND Field != "updated_by" AND Field != "updated_at" AND Field != "status" AND Field != "completed"';
 		$db   = Zend_Registry::get('db');
 		$users= $db->fetchAll($sql);
 		$return['columns'] = array_merge($extra, $cols, $users);

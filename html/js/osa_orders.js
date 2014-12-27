@@ -1,12 +1,15 @@
+"use strict";
 /*
  * display OSA Orders ----------------------------------------------------------
  */
+
+var my_saved_row = [];
 var my_peso	= null;
 var my_units= null;
 
 JKY.generate_order = function(the_row, the_peso, the_units) {
-	my_peso = the_peso ;
-	my_units= the_units;
+	my_peso  = the_peso ;
+	my_units = the_units;
 	var my_id = the_row.id;
 	var my_trash = JKY.is_status('Draft') ? '<a onclick="JKY.delete_order(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_color = ''
@@ -29,68 +32,67 @@ JKY.generate_order = function(the_row, the_peso, the_units) {
 		+ "<input class='jky-partner-name'	disabled onchange='JKY.update_order(this, " + my_id + ")' value='" + JKY.fix_null(the_row.partner_name)	+ "' />"
 		+ " <a href='#' onClick='JKY.Partner.display(this)'><i class='icon-share'></i></a>"
 		;
-	var my_quoted_pieces = the_row.quoted_pieces;
-
-	var my_quoted_weight = (my_units == 0) ? the_row.quoted_weight : my_peso * my_units * my_quoted_pieces;
-	var my_disabled		 = (my_units == 0) ? '' : ' disabled';
-
+	var my_ordered_pieces = the_row.ordered_pieces;
+	var my_ordered_weight = (my_units == 0) ? the_row.ordered_weight : my_peso * my_units * my_ordered_pieces;
+	var my_disabled		  = (my_units == 0) ? '' : ' disabled';
 	var my_html = ''
 		+ '<tr jky_order_id=' + my_id + '>'
 		+ '<td></td>'
-		+ '<td class="jky-td-action"	style="text-align:right !important;">' + my_trash + '</td>'
+		+ '<td class="jky-td-action" style="text-align:right !important;">' + my_trash + '</td>'
 		+ '<td class="jky-td-number"		><input class="jky-number"	disabled	value="' + the_row.order_number + '" /></td>'
-		+ '<td class="nowrap"				>' + my_color	+ '</td>'
+		+ '<td class="nowrap" colspan=2		>' + my_color	+ '</td>'
 		+ '<td class="nowrap"				>' + my_ftp		+ '</td>'
 		+ '<td class="jky-td-name-s"		>' + my_machine	+ '</td>'
 		+ '<td class="nowrap jky-td-name-s"	>' + my_partner	+ '</td>'
-		+ '<td class="jky-td-pieces"		><input class="jky-quoted-pieces"	onchange="JKY.update_order(this, ' + my_id + ')" value="' + my_quoted_pieces + '" /></td>'
-		+ '<td class="jky-td-weight"		><input class="jky-quoted-weight"	onchange="JKY.update_order(this, ' + my_id + ')" value="' + my_quoted_weight + '" ' + my_disabled + '/></td>'
+		+ '<td class="jky-td-pieces"		><input class="jky-ordered-pieces"	onchange="JKY.update_order(this, ' + my_id + ')" value="' + my_ordered_pieces + '" /></td>'
+		+ '<td class="jky-td-weight"		><input class="jky-ordered-weight"	onchange="JKY.update_order(this, ' + my_id + ')" value="' + my_ordered_weight + '" ' + my_disabled + '/></td>'
 		+ '</tr>'
 		;
 	return my_html;
 }
 
-JKY.update_order = function(id_name, the_id) {
-	var my_tr = $(id_name).parent().parent();
-	var my_color_id		= my_tr.find('.jky-color-id'	).val();
-	var my_ftp_id		= my_tr.find('.jky-ftp-id'		).val();
-	var my_machine_id	= my_tr.find('.jky-machine-id'	).val();
-	var my_partner_id	= my_tr.find('.jky-partner-id'	).val();
-	var my_quoted_pieces= parseInt(my_tr.find('.jky-quoted-pieces').val());
+JKY.select_row = function(the_id) {
+	var my_data =
+		{ method	: 'get_row'
+		, table		: 'Orders'
+		, where		: 'Orders.id = ' + the_id
+		};
+	JKY.ajax(false, my_data, function(the_response) {
+		my_saved_row = the_response.row;
+	})
+}
 
-	var my_line	= JKY.get_prev_dom(my_tr, 'osa_line_id');
-	var my_line_peso	= my_line.find('.jky-product-peso' ).val();
-	var my_line_units	= my_line.find('.jky-product-units').val();
-	
-	var my_quoted_weight;
+JKY.update_order = function(the_this, the_id) {
+	JKY.select_row(the_id);
+	var my_tr = $(the_this).parent().parent();
+	if (my_tr.find('.jky-ordered-pieces').val() == '')		my_tr.find('.jky-ordered-pieces').val(0);
+	if (my_tr.find('.jky-ordered-weight').val() == '')		my_tr.find('.jky-ordered-weight').val(0);
+
+	var my_color_id			= my_tr.find('.jky-color-id'	).val();
+	var my_ftp_id			= my_tr.find('.jky-ftp-id'		).val();
+	var my_machine_id		= my_tr.find('.jky-machine-id'	).val();
+	var my_partner_id		= my_tr.find('.jky-partner-id'	).val();
+
+	var my_line_id		= JKY.get_prev_dom(my_tr, 'osa_line_id');
+	var my_line_peso	= my_line_id.find('.jky-product-peso' ).val();
+	var my_line_units	= my_line_id.find('.jky-product-units').val();
+
+	var my_ordered_pieces	= parseInt(my_tr.find('.jky-ordered-pieces').val());
+	var my_ordered_weight;
 	if (my_line_units == 0) {
-		my_quoted_weight = parseFloat(my_tr.find('.jky-quoted-weight').val());
-	}else{	
-		my_quoted_weight = my_line_peso * my_line_units * my_quoted_pieces;
+		my_ordered_weight = parseFloat(my_tr.find('.jky-ordered-weight').val());
+	}else{
+		my_ordered_weight = my_line_peso * my_line_units * my_ordered_pieces;
+		my_tr.find('.jky-ordered-weight').val(my_ordered_weight);
 	}
 
-	my_tr.find('.jky-quoted-weight').val(my_quoted_weight);
-/*
-	var my_line_pieces		= parseInt(my_line_pieces_id.val());
-	var my_units			= parseInt(my_line_id.find('.jky-product-units').val());
-
-	var my_new_units		= my_line_units + my_diff_units;
-	var my_new_pieces		= Math.ceil(my_new_units / my_units);
-	var my_diff_pieces		= my_new_pieces - my_line_pieces;
-
-	my_line_units_id .val(my_new_units );
-	my_line_pieces_id.val(my_new_pieces);
-
-//	JKY.update_quoted_units(my_line_id, my_diff_units, my_diff_pieces);
-*/
-	var	my_quoted_pieces	= parseFloat(my_tr.find('.jky-quoted-pieces').val());
 	var my_set = ''
 		+          'color_id =  ' + my_color_id
 		+          ', ftp_id =  ' + my_ftp_id
 		+      ', machine_id =  ' + my_machine_id
 		+      ', partner_id =  ' + my_partner_id
-		+   ', quoted_pieces =  ' + my_quoted_pieces
-		+   ', quoted_weight =  ' + my_quoted_weight
+		+  ', ordered_pieces =  ' + my_ordered_pieces
+		+  ', ordered_weight =  ' + my_ordered_weight
 		;
 	var my_data =
 		{ method	: 'update'
@@ -98,11 +100,11 @@ JKY.update_order = function(id_name, the_id) {
 		, set		:  my_set
 		, where		: 'Orders.id = ' + the_id
 		};
-	JKY.ajax(true, my_data, JKY.update_order_success);
-}
-
-JKY.update_order_success = function(response) {
-//	JKY.display_message(response.message)
+	JKY.ajax(true, my_data, function(the_response) {
+		var my_delta_pieces = my_ordered_pieces - my_saved_row.ordered_pieces;
+		var my_delta_weight = my_ordered_weight - my_saved_row.ordered_weight;
+		JKY.update_osa_line(my_line_id, my_delta_pieces, my_delta_weight);
+	})
 }
 
 JKY.insert_order = function(the_id, the_osa_line_id, the_product_id) {
@@ -112,66 +114,43 @@ JKY.insert_order = function(the_id, the_osa_line_id, the_product_id) {
 		+     ',  product_id=  ' + the_product_id
 		+     ', osa_line_id=  ' + the_osa_line_id
 		+      ', osa_number=\'' + $('#jky-osa-number' ).val() + '\''
-//		+    ', product_peso=  ' + JKY.line.tr.find('.jky-product-peso').val()
-//		+   ', product_units=  ' + JKY.line.tr.find('.jky-product-units').val()
+		+	   ', ordered_at=\'' + JKY.row.ordered_at + '\''
+		+	    ', needed_at=\'' + JKY.row.needed_at + '\''
 		;
 	var my_data =
 		{ method	: 'insert'
 		, table		: 'Orders'
 		, set		:  my_set
 		};
-	JKY.ajax(true, my_data, JKY.insert_order_success);
+	JKY.ajax(true, my_data, function(the_response) {
+		var my_row		= JKY.get_row('Orders', the_response.id);
+		var my_line_tr	= JKY.line_tr.prev();
+		var my_peso		= my_line_tr.find('.jky-product-peso' ).val();
+		var my_units	= my_line_tr.find('.jky-product-units').val();
+		var my_html		= JKY.generate_order(my_row, my_peso, my_units);
+		JKY.line_tr.after(my_html);
+		var my_tr = JKY.line_tr.next();
+		my_tr.find('.jky-ordered-pieces').ForceIntegerOnly();
+		my_tr.find('.jky-ordered-weight').ForceNumericOnly();
+	})
 }
 
-JKY.insert_order_success = function(response) {
-	var my_row		= JKY.get_row('Orders', response.id);
-	var my_line_tr	= JKY.line_tr.prev();
-	var my_peso		= my_line_tr.find('.jky-product-peso' ).val();
-	var my_units	= my_line_tr.find('.jky-product-units').val();
-	var my_html		= JKY.generate_order(my_row, my_peso, my_units);
-	JKY.line_tr.after(my_html);
-	var my_tr = JKY.line_tr.next();
-	my_tr.find('.jky-quoted-units'	).focus().select();
-	my_tr.find('.jky-quoted-units'	).ForceIntegerOnly();
-	my_tr.find('.jky-quoted-price'	).ForceNumericOnly();
-//	my_tr.find('.jky-punho-price'	).ForceNumericOnly();
-//	my_tr.find('.jky-gola-price'	).ForceNumericOnly();
-//	my_tr.find('.jky-galao-price'	).ForceNumericOnly();
-}
+JKY.delete_order = function(the_this, the_id) {
+//	JKY.select_row(the_id);
+	var my_tr	= $(the_this).parent().parent();
+	var my_line_id	= JKY.get_prev_dom(my_tr, 'osa_line_id');
+	var my_delta_pieces	= - parseInt(my_tr.find('.jky-ordered-pieces').val());
+	var my_delta_weight	= - parseInt(my_tr.find('.jky-ordered-weight').val());
 
-JKY.delete_order = function(id_name, the_id) {
-	var my_tr_id	= $(id_name).parent().parent();
-	var my_order_units		= parseInt(my_tr_id.find('.jky-quoted-units').val());
-	var my_diff_units		= - my_order_units;
-
-	var my_line_id			= JKY.get_prev_dom(my_tr_id, 'quot_line_id');
-	var my_line_units_id	= my_line_id.find('.jky-quoted-units' );
-	var my_line_pieces_id	= my_line_id.find('.jky-quoted-pieces');
-	var my_line_units		= parseInt(my_line_units_id .val());
-	var my_line_pieces		= parseInt(my_line_pieces_id.val());
-	var my_units			= parseInt(my_line_id.find('.jky-product-units').val());
-
-	var my_new_units		= my_line_units + my_diff_units;
-	var my_new_pieces		= Math.ceil(my_new_units / my_units);
-	var my_diff_pieces		= my_new_pieces - my_line_pieces;
-
-	my_line_units_id .val(my_new_units );
-	my_line_pieces_id.val(my_new_pieces);
-
-	JKY.update_quoted_units(my_line_id, my_diff_units, my_diff_pieces);
-
-	my_tr_id.remove();
+	my_tr.remove();
 	var my_data =
 		{ method	: 'delete'
 		, table		: 'Orders'
 		, where		: 'Orders.id = ' + the_id
 		};
-	JKY.ajax(true, my_data, JKY.delete_order_success);
-}
-
-JKY.delete_order_success = function(response) {
-//	JKY.display_message(response.message)
-//	JKY.updated_total_pieces();
+	JKY.ajax(true, my_data, function(the_response) {
+		JKY.update_osa_line(my_line_id, my_delta_pieces, my_delta_weight);
+	})
 }
 
 JKY.copy_orders = function(the_id, the_osa_line_id) {
@@ -208,36 +187,40 @@ JKY.copy_orders = function(the_id, the_osa_line_id) {
 				, table		: 'Orders'
 				, set		:  my_set
 				};
-			JKY.ajax(true, my_data, JKY.copy_order_success);
+			JKY.ajax(true, my_data, function(the_response) {
+				var my_row  = JKY.get_row('Orders', the_response.id);
+				var my_html = JKY.generate_order(my_row, my_peso, my_units);
+				JKY.line_tr.after(my_html);
+				var my_tr = JKY.line_tr.next();
+				my_tr.find('.jky-quoted-units'	).ForceIntegerOnly();
+				my_tr.find('.jky-quoted-price'	).ForceNumericOnly();
+			})
 		}
 	}
 }
 
-JKY.copy_order_success = function(response) {
-	var my_row  = JKY.get_row('Orders', response.id);
-	var my_html = JKY.generate_order(my_row, my_peso, my_units);
-	JKY.line_tr.after(my_html);
-	var my_tr = JKY.line_tr.next();
-//	my_tr.find('.jky-quoted-units'	).focus().select();
-	my_tr.find('.jky-quoted-units'	).ForceIntegerOnly();
-	my_tr.find('.jky-quoted-price'	).ForceNumericOnly();
-}
-
-JKY.update_quoted_units = function(the_line_id, the_diff_units, the_diff_pieces) {
+JKY.update_osa_line = function(the_line_id, the_delta_pieces, the_delta_weight) {
 	var my_data =
 		{ method	: 'update'
-		, table		: 'Orders'
-		, where		: 'Orders.id = ' + the_line_id.attr('quot_line_id')
-		, set		: 'quoted_units  = quoted_units  + ' + the_diff_units
-				  + ', quoted_pieces = quoted_pieces + ' + the_diff_pieces
+		, table		: 'OSA_Lines'
+		, where		: 'OSA_Lines.id = ' + the_line_id.attr('osa_line_id')
+		, set		: 'ordered_pieces = ordered_pieces + ' + the_delta_pieces
+				  + ', ordered_weight = ordered_weight + ' + the_delta_weight
 		};
-	JKY.ajax(true, my_data);
+	JKY.ajax(true, my_data, function(the_response) {
+		var my_line_pieces_id	= the_line_id.find('.jky-ordered-pieces');
+		var my_line_weight_id	= the_line_id.find('.jky-ordered-weight' );
+		var my_line_pieces		= parseInt(my_line_pieces_id.val());
+		var my_line_weight		= parseInt(my_line_weight_id.val());
+		my_line_pieces_id.val(my_line_pieces + the_delta_pieces);
+		my_line_weight_id.val(my_line_weight + the_delta_weight);
+	});
 
 	my_data =
 		{ method	: 'update'
-		, table		: 'Quotations'
-		, where		: 'Quotations.id = ' + JKY.row.id
-		, set		: 'quoted_pieces = quoted_pieces + ' + the_diff_pieces
+		, table		: 'OSAs'
+		, where		: 'OSAs.id = ' + JKY.row.id
+		, set		: 'ordered_pieces = ordered_pieces + ' + the_delta_pieces
 		};
 	JKY.ajax(true, my_data);
 }

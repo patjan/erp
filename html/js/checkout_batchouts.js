@@ -61,7 +61,7 @@ JKY.generate_batch = function(the_row) {
 		;
 	var my_batchin = ''
 		+ "<input class='jky-batchin-id' type='hidden' value=" + the_row.batchin_id + " />"
-		+ "<input class='jky-batchin-number' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + JKY.fix_null(the_row.batch_code) + "' />"
+		+ "<input class='jky-batchin-code' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + JKY.fix_null(the_row.batch_code) + "' />"
 		+ ' ' + my_th
 		;
 	var my_html = ''

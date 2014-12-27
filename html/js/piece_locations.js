@@ -26,7 +26,7 @@ SELECT Pieces.checkin_location	AS location
 }
 
 JKY.generate_pieces = function(response) {
-	var my_pieces_requested = parseInt(JKY.row.requested_pieces) - parseInt(JKY.row.loadout_pieces);
+	var my_pieces_requested = parseInt(JKY.row.requested_pieces) - parseInt(JKY.row.checkout_pieces);
 	var my_html  = '';
 	var my_rows  = response.rows;
 	if (my_rows != '') {

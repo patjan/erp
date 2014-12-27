@@ -1,8 +1,6 @@
 DROP   TABLE IF     EXISTS ProdPrices;
 CREATE TABLE IF NOT EXISTS ProdPrices
 ( id				BIGINT				NOT NULL AUTO_INCREMENT
-, created_by		BIGINT				DEFAULT NULL
-, created_at		DATETIME			DEFAULT NULL
 , updated_by		BIGINT				DEFAULT NULL
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'		/*	History, Future	*/

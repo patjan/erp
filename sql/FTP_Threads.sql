@@ -1,8 +1,6 @@
 DROP   TABLE IF     EXISTS FTP_Threads;
 CREATE TABLE IF NOT EXISTS FTP_Threads
 ( id				BIGINT				NOT NULL AUTO_INCREMENT
-, created_by		BIGINT				DEFAULT NULL
-, created_at		DATETIME			DEFAULT NULL
 , updated_by		BIGINT				DEFAULT NULL
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'

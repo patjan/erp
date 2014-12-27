@@ -14,8 +14,8 @@ public function init( $name, $primary ) {
 }
 
 public function insert( $data, $log=true ) {
-     $data[ 'created_at' ] = get_time();
-     if(  is_session( 'user_id' ))      $data[ 'created_by' ] = get_session( 'user_id' );
+     $data[ 'updted_at' ] = get_time();
+     if(  is_session( 'user_id' ))      $data[ 'updated_by' ] = get_session( 'user_id' );
      parent::insert( $data );
 
      $id = $this->getAdapter()->lastInsertId();
@@ -84,7 +84,7 @@ public function getLastId() {
 
 public function getRowById( $id='' ) {
      if(  '' == $id )    return false;
-     
+
      $sql = 'SELECT *'
           . '  FROM ' . $this->_name
           . ' WHERE id = ' . $id
@@ -94,7 +94,7 @@ public function getRowById( $id='' ) {
 
 public function get_row_by_id( $id='' ) {
      if(  '' == $id )    return false;
-     
+
      $sql = 'SELECT *'
           . '  FROM ' . $this->_name
           . ' WHERE id = ' . $id
@@ -160,7 +160,7 @@ public function getAddresses( $id ) {
             . ' WHERE status = "A"'
             . '   AND parent_name = "' . $this->_name . '"'
             . '   AND parent_id = ' . $id
-            . ' ORDER BY created_at DESC'
+            . ' ORDER BY updated_at DESC'
             ;
      return $this->getAdapter()->fetchAll( $sql );
 }
@@ -201,7 +201,7 @@ public function getComments( $id ) {
             . '  FROM Comments'
             . ' WHERE parent_name = "' . $this->_name . '"'
             . '   AND parent_id = ' . $id
-            . ' ORDER BY created_at DESC'
+            . ' ORDER BY updated_at DESC'
             ;
      return $this->getAdapter()->fetchAll( $sql );
 }
@@ -214,7 +214,7 @@ public function getTags( $id ) {
             . ' WHERE Tags.parent_name = "' . $this->_name . '"'
             . '   AND Tags.parent_id = ' . $id
             . '   AND Tags.tag_id = Controls.id'
-            . ' ORDER BY created_at DESC'
+            . ' ORDER BY updated_at DESC'
             ;
 */
      $sql   = 'SELECT Tags.*'
@@ -232,7 +232,7 @@ public function getNotes( $id ) {
             . ' WHERE status = "A"'
             . '   AND parent_name = "' . $this->_name . '"'
             . '   AND parent_id = ' . $id
-            . ' ORDER BY created_at DESC'
+            . ' ORDER BY updated_at DESC'
             ;
      return $this->getAdapter()->fetchAll( $sql );
 }
@@ -251,7 +251,7 @@ public function getHistory( $parent_name, $parent_id ) {
             . '  FROM Comments'
             . ' WHERE parent_name = "' . $parent_name . '"'
             . '   AND parent_id = ' . $parent_id
-            . ' ORDER BY created_at DESC'
+            . ' ORDER BY updated_at DESC'
             ;
      return $this->getAdapter()->fetchAll( $sql );
 }

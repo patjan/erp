@@ -1,7 +1,7 @@
 DROP   TABLE IF     EXISTS Changes;
 CREATE TABLE IF NOT EXISTS Changes
 ( id				BIGINT				NOT NULL AUTO_INCREMENT
-, created_at		VARCHAR(32)			DEFAULT NULL	# yyyy-mm-dd hh:mm:ss.uuuuuu (from PHP)
+, updated_at		VARCHAR(32)			DEFAULT NULL	# yyyy-mm-dd hh:mm:ss.uuuuuu (from PHP)
 , table_name		VARCHAR(32)			DEFAULT NULL
 , table_id			BIGINT				DEFAULT NULL
 , servers			VARCHAR(32)			DEFAULT ''		# 1 2 9

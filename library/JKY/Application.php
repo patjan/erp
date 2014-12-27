@@ -12,9 +12,9 @@ extends   Zend_Db_Table {
      }
 
      public function insert( array $data, $log=true ) {
-          $data[ 'created_at' ] = get_time();
+          $data[ 'updated_at' ] = get_time();
           if(  is_session( 'user_id' ))
-               $data[ 'created_by' ] = get_session( 'user_id' );
+               $data[ 'updated_by' ] = get_session( 'user_id' );
           parent::insert( $data );
 
           $id = $this->getAdapter()->lastInsertId();
@@ -82,7 +82,7 @@ public function getLastId() {
                return false;
 
           $select = $this->select();
-          $select->where( 'id = ?', (int) $id ); 
+          $select->where( 'id = ?', (int) $id );
           return $this->fetchRow( $select );
      }
 
@@ -126,7 +126,7 @@ public function getAddresses( $id ) {
             . ' WHERE status = "A"'
             . '   AND parent_name = "' . $this->_name . '"'
             . '   AND parent_id = ' . $id
-            . ' ORDER BY created_at DESC'
+            . ' ORDER BY updated_at DESC'
             ;
      return $this->getAdapter()->fetchAll( $sql );
 }
@@ -165,7 +165,7 @@ public function getComments( $id ) {
             . '  FROM Comments'
             . ' WHERE parent_name = "' . $this->_name . '"'
             . '   AND parent_id = ' . $id
-            . ' ORDER BY created_at DESC'
+            . ' ORDER BY updated_at DESC'
             ;
      return $this->getAdapter()->fetchAll( $sql );
 }
@@ -178,7 +178,7 @@ public function getTags( $id ) {
             . ' WHERE Tags.parent_name = "' . $this->_name . '"'
             . '   AND Tags.parent_id = ' . $id
             . '   AND Tags.tag_id = Controls.id'
-            . ' ORDER BY created_at DESC'
+            . ' ORDER BY updated_at DESC'
             ;
      return $this->getAdapter()->fetchAll( $sql );
 }
@@ -189,7 +189,7 @@ public function getNotes( $id ) {
             . ' WHERE status = "A"'
             . '   AND parent_name = "' . $this->_name . '"'
             . '   AND parent_id = ' . $id
-            . ' ORDER BY created_at DESC'
+            . ' ORDER BY updated_at DESC'
             ;
      return $this->getAdapter()->fetchAll( $sql );
 }
@@ -208,7 +208,7 @@ public function getHistory( $parent_name, $parent_id ) {
             . '  FROM Comments'
             . ' WHERE parent_name = "' . $parent_name . '"'
             . '   AND parent_id = ' . $parent_id
-            . ' ORDER BY created_at DESC'
+            . ' ORDER BY updated_at DESC'
             ;
      return $this->getAdapter()->fetchAll( $sql );
 }

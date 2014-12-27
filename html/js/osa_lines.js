@@ -44,25 +44,25 @@ JKY.generate_line = function(the_index, the_row) {
 		;
 	var my_disabled = JKY.is_status('Draft') ? '' : ' disabled="disabled"';
 	var my_add_order = '<button class="btn btn-success" type="button" onclick="JKY.insert_order(this, ' + my_id + ', ' + the_row.product_id + ')"' + my_disabled + '>' + JKY.t('Add Order') + '</button>';
-	var my_quoted_weight = the_row.peso * the_row.units * the_row.quoted_pieces;
 	var my_html = ''
 		+ '<tr class="jky-line" osa_line_id=' + my_id + '>'
 		+ '<td class="jky-td-action"	>' + my_trash			+ '</td>'
 		+ '<td class="nowrap"			>' + my_product			+ '</td>'
 		+ '<td class="jky-td-extra"		><input class="jky-remarks"			onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.fix_null(the_row.remarks) + '" /></td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-quoted-weight"	disabled										value="' + the_row.quoted_weight + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-product-peso"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.peso			 + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-quoted-units"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.quoted_units	 + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-product-units"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.units		 + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-quoted-pieces"	disabled										value="' + the_row.quoted_pieces + '" /></td>'
-		+ '<td class="jky-td-weight"	><input class="jky-quoted-weight"	disabled										value="' + my_quoted_weight		 + '" /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-quoted-weight"	disabled										value="' + the_row.quoted_weight + '" /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-ordered-pieces"	disabled										value="' + the_row.ordered_pieces + '" /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-ordered-weight"	disabled										value="' + the_row.ordered_weight + '" /></td>'
 		+ '</tr>'
 
 		+ '<tr class="jky-line" quot_line_id=' + my_id + '>'
 		+ '<th class="jky-td-action"	>' + '&nbsp;'			+ '</td>'
 		+ '<th class="jky-td-action"	>' + '&nbsp;'			+ '</td>'
 		+ '<th class="jky-td-extra"		>' + my_add_order		+ '</td>'
-		+ '<th class="nowrap"			>' + JKY.t('Color')		+ '</td>'
+		+ '<th class="nowrap" colspan=2	>' + JKY.t('Color')		+ '</td>'
 		+ '<th class="nowrap"			>' + JKY.t('FTP')		+ '</td>'
 		+ '<th class="jky-td-name-s"	>' + JKY.t('Machine')	+ '</td>'
 		+ '<th class="nowrap"			>' + JKY.t('Partner')	+ '</td>'
@@ -80,6 +80,10 @@ JKY.generate_line = function(the_index, the_row) {
 
 JKY.update_line = function(id_name, the_id) {
 	var my_tr = $(id_name).parent().parent();
+	if (my_tr.find('.jky-product-peso'	).val() == '')	my_tr.find('.jky-product-peso'	).val(0);
+	if (my_tr.find('.jky-product-units'	).val() == '')	my_tr.find('.jky-product-units'	).val(0);
+	if (my_tr.find('.jky-quoted-units'	).val() == '')	my_tr.find('.jky-quoted-units'	).val(0);
+
 	var my_product_id	= my_tr.find('.jky-product-id'		).val();
 	var my_remarks		= my_tr.find('.jky-remarks'			).val();
 	var my_peso			= my_tr.find('.jky-product-peso'	).val();

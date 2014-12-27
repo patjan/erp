@@ -348,7 +348,7 @@ function put_return( $row=null, $previous=null, $next=null, $extra='' ) {
      $html = '';
 
      if(  $row )
-          $html .= NL . '<div id=posted>' . translate( 'Posted by ' ) . get_user_name( $row[ 'created_by' ]) . ' (' . format_time( $row[ 'created_at' ], 'short' ) . ') &nbsp; ' . $extra . '</div>';
+          $html .= NL . '<div id=posted>' . translate( 'Posted by ' ) . get_user_name( $row[ 'updated_by' ]) . ' (' . format_time( $row[ 'updated_at' ], 'short' ) . ') &nbsp; ' . $extra . '</div>';
      else $html .= add_new();
 
      $html .= ''
@@ -369,7 +369,7 @@ function put_return2( $row=null, $previous=null, $next=null, $extra='' ) {
      $html = '';
 
      if(  $row )
-          $html .= NL . '<div id=posted style="margin-top:16px;">' . translate( 'Posted by ' ) . get_user_name( $row[ 'created_by' ]) . ' (' . format_time( $row[ 'created_at' ], 'short' ) . ') &nbsp; ' . $extra . '</div>';
+          $html .= NL . '<div id=posted style="margin-top:16px;">' . translate( 'Posted by ' ) . get_user_name( $row[ 'updated_by' ]) . ' (' . format_time( $row[ 'updated_at' ], 'short' ) . ') &nbsp; ' . $extra . '</div>';
      else $html .= add_new();
 
      $html .= ''
@@ -3209,12 +3209,12 @@ function get_control_next( $name ) {
 function get_comments( $name, $id, $date ) {
      $where = 'parent_name = "' . $name . '"'
             . ' AND parent_id = ' . $id
-            . ' AND DATE_FORMAT( created_at, "%Y-%m-%d" ) = "' . $date . '"'
+            . ' AND DATE_FORMAT( updated_at, "%Y-%m-%d" ) = "' . $date . '"'
             ;
 #    if(  $less_than != null )
-#         $where .= ' AND ( TO_DAYS( NOW()) - TO_DAYS( created_at )) < ' . $less_than;
+#         $where .= ' AND ( TO_DAYS( NOW()) - TO_DAYS( updated_at )) < ' . $less_than;
 
-     $order_by = 'created_at DESC';
+     $order_by = 'updated_at DESC';
      $db = Zend_Registry::get( 'db' );
      return $db->fetchAll( 'SELECT * FROM Comments WHERE ' . $where . ' ORDER BY ' . $order_by );
 }
@@ -3905,13 +3905,13 @@ function insert_changes($the_db, $the_table_name, $the_table_id) {
 
 	if ($my_id) {
 		$sql= 'UPDATE Changes'
-			. '   SET created_at ="' . get_now() . '"'
+			. '   SET updated_at ="' . get_now() . '"'
 			. ', servers = ""'
 			. ' WHERE id =' . $my_id
 			;
 	}else{
 		$sql= 'INSERT Changes'
-			. '   SET created_at ="' . get_now() . '"'
+			. '   SET updated_at ="' . get_now() . '"'
 			. ', table_name ="' . $the_table_name . '"'
 			. ', table_id =' . $the_table_id
 			;

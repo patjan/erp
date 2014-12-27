@@ -368,7 +368,7 @@ li .arrow span {
 .jky-td-batch-value			{width: 60px; text-align:right  !important;}
 .jky-td-batch-weight		{width: 75px; text-align:right  !important;}
 .jky-td-batch-price			{width: 70px; text-align:right  !important;}
-.jky-td-batchin-number		{width:100px; text-align:center !important;}
+.jky-td-batchin-code		{width:100px; text-align:center !important;}
 .jky-td-color-date			{width: 75px; text-align:center !important;}
 .jky-td-color-pieces		{width: 50px; text-align:right  !important;}
 .jky-td-color-price			{width: 50px; text-align:right  !important;}
@@ -440,6 +440,7 @@ li .arrow span {
 .jky-search-color-type		{width: 50px; text-align:center !important;}
 .jky-search-color-date		{width: 80px; text-align:center !important;}
 .jky-search-customer-name	{width:110px; text-align:left   !important; text-transform:capitalize;}
+.jky-search-dyer-name		{width:270px; text-align:left   !important; text-transform:capitalize;}
 .jky-search-machine-name	{width:270px; text-align:left   !important; text-transform:capitalize;}
 .jky-search-machine-type	{width: 50px; text-align:center !important;}
 .jky-search-machine-brand	{width: 50px; text-align:center !important;}
@@ -518,6 +519,7 @@ li .arrow span {
 #jky-form-tabs	textarea{width:570px; height:100px;}
 
 .jky-color-name			{text-transform:capitalize;}
+.jky-dyer-name			{text-transform:capitalize;}
 .jky-alert				{color:#CC0000; font-weight:bold;}
 .jky-error				{color:#CC0000;}
 .jky-line				{background-color:#FFFFFF; width:100%;}
@@ -575,7 +577,7 @@ li .arrow span {
 .jky-form-type			{width:132px; text-align:left   !important;}
 .jky-form-weight		{width: 80px; text-align:right  !important; margin-right:20px;}
 .jky-form-digit 		{width: 18px; text-align:right  !important;}
-.jky-form-width			{width: 60px; text-align:right  !important; margin-right:20px;}
+.jky-form-width			{width: 80px; text-align:right  !important; margin-right:20px;}
 .jky-form-zip			{width: 80px; text-align:left   !important;}
 
 .jky-td-action				{width: 35px; text-align:center !important; padding:0 3px !important;}
@@ -656,8 +658,8 @@ li .arrow span {
 .jky-td-units				{width: 40px; text-align:right	!important;}
 .jky-td-units		input	{width: 50px; text-align:right	!important;}
 .jky-td-yes-no				{width: 40px; text-align:center !important;}
-.jky-td-weight				{width: 65px; text-align:right  !important;}
-.jky-td-weight		input	{width: 60px; text-align:right	!important;}
+.jky-td-weight				{width: 85px; text-align:right  !important;}
+.jky-td-weight		input	{width: 80px; text-align:right	!important;}
 .jky-td-width				{width: 85px; text-align:right  !important;}
 .jky-td-width		input	{width: 80px; text-align:right	!important;}
 

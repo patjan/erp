@@ -85,8 +85,6 @@ $this->log_proxy( 'POSTVARS: ' . $postvars );
 public function run( $table, $cols, $rows ) {
      function is_internal( $field ) {
           if(  $field == 'id'
-          or   $field == 'created_by'
-          or   $field == 'created_at'
           or   $field == 'updated_by'
           or   $field == 'updated_at'
           or   $field == 'counter'
