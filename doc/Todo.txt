@@ -26,20 +26,23 @@ ok		- error de sql on search
 
 		- add salesman_id into Quotations
 		- drop out salesman_id from OSAs
-		- update AjaxController
+done	- update AjaxController
 
 done	- usar tanto . , como ponto decimal
 done	- update dynamically [Sub Amount] of Quotations(form) on any amount change
 done	- copy Colors in the same sequence on Quotation(form)
 done	- allow to enter decimal point on Quotation Colors
 
-		- on OSA(form), when change Units (to zero), enable Quoted Weight on OSA_Orders
+done	- on OSA(form), when change Units (to zero), enable Quoted Weight on OSA_Orders
 done	- on OSA(form), display correct Salesman's name
-		- verify [Quoted Pieces] on OSA_Lines after change on Quoted Weight on punhos
-		- display correctly OSA(list)
+done	- verify [Quoted Pieces] on OSA_Lines after change on Quoted Weight on punhos
+done	- display correctly OSA(list)
 		
-		- limit box weight upto 70 Kg or divide by 100
-		- add new on [Config] [System Controls] [Max Weight For Thread Box] = 70 kg
+done	- limit box weight upto 70 Kg or divide by 100
+done	- add new on [Config] [System Controls] [Max Weight For Thread Box] = 70 kg
+
+		- input Location to store good pieces [jky-checkin-location] and bad pieces
+		  quantos Locations (+ de um)?
 		
 Marcelo:
 
@@ -53,14 +56,14 @@ Marcelo:
 8.		Definir o sistema NFe para emitir NF para Tinturarias
 
 
-9.		Qdo e' definido o tipo de cone usado no tecido ?
+9.	OK	Qdo e' definido o tipo de cone usado no tecido ?
 		por tinturaria: papelao fino, papelao grosso, plastico, ...
 		por comprimento: 90 (300), 120 (400), 180 (600)
 		criar cone padra por tinturaria
 
-10.		Quantos tipos de cones com peso ?
-11.		Qual e' peso padrao de cone ?
-12.		Tabela de Precos dos tecidos ?
+10.	OK	Quantos tipos de cones com peso ?
+11.	OK	Qual e' peso padrao de cone ?
+12.	OK	Tabela de Precos dos tecidos ?
 13.		Como e' reportado o retorno de Tecidos ?
 		pode chegar parcialmente (com defeitos, faltando)
 		input tecidos faltando (Etiquetas sobrados).

@@ -2700,6 +2700,41 @@ JKY.get_count_by_id = function(table, id) {
 	return my_count;
 }
 
+JKY.get_count_by_where = function(the_table, the_where) {
+	var my_count = 0;
+	var my_data =
+		{ method: 'get_count'
+		, table	:  the_table
+		, where :  the_where
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_count = response.count;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_count;
+}
+
 JKY.get_sum_by_id = function(table, field, id) {
 	var my_sum = 0;
 	var my_data =

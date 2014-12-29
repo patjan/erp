@@ -34,7 +34,7 @@ JKY.generate_recipe = function(the_row) {
 	var my_recipe	= the_row.recipe;
 	var my_trash = (my_id) ? '<a onclick="JKY.delete_recipe(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '&nbsp;';
 	var my_composition = ''
-		+ "<input class='jky-composition-name' disabled onchange='JKY.update_name(this, " + my_id + ")' value='" + my_name + "' />"
+		+ "<input class='jky-composition-name' readonly onchange='JKY.update_name(this, " + my_id + ")' value='" + my_name + "' />"
 		+ " <a href='#' onClick='JKY.Composition.display(this)'><i class='icon-share'></i></a>"
 		;
 

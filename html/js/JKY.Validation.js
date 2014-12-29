@@ -91,9 +91,10 @@ JKY.Validation = function() {
 
 		if (my_is_loaded(the_dom_id)) {
 /**
- * skip the validation for input with attr = disabled
+ * skip the validation for input with attr = disabled or readonly
  */
-			if (JKY.has_attr(the_dom_id, 'disabled')) {
+			if (JKY.has_attr(the_dom_id, 'disabled')
+			||  JKY.has_attr(the_dom_id, 'readonly')) {
 				return '';
 			}
 			var my_value = JKY.get_value(the_dom_id);

@@ -1,3 +1,4 @@
+"use strict";
 /*
  * display OSA Lines -----------------------------------------------------
  */
@@ -59,15 +60,15 @@ JKY.generate_line = function(the_index, the_row) {
 		+ '</tr>'
 
 		+ '<tr class="jky-line" quot_line_id=' + my_id + '>'
-		+ '<th class="jky-td-action"	>' + '&nbsp;'			+ '</td>'
-		+ '<th class="jky-td-action"	>' + '&nbsp;'			+ '</td>'
-		+ '<th class="jky-td-extra"		>' + my_add_order		+ '</td>'
-		+ '<th class="nowrap" colspan=2	>' + JKY.t('Color')		+ '</td>'
-		+ '<th class="nowrap"			>' + JKY.t('FTP')		+ '</td>'
-		+ '<th class="jky-td-name-s"	>' + JKY.t('Machine')	+ '</td>'
-		+ '<th class="nowrap"			>' + JKY.t('Partner')	+ '</td>'
-		+ '<th class="jky-td-pieces"	>' + JKY.t('Pieces'	)	+ '</td>'
-		+ '<th class="jky-td-weight"	>' + JKY.t('Weight'	)	+ '</td>'
+		+ '<td class="jky-td-action"	>' + '&nbsp;'			+ '</td>'
+		+ '<td class="jky-td-action"	>' + '&nbsp;'			+ '</td>'
+		+ '<td class="jky-td-extra"		>' + my_add_order		+ '</td>'
+		+ '<td class="nowrap" colspan=2	>' + JKY.t('Color')		+ '</td>'
+		+ '<td class="nowrap"			>' + JKY.t('FTP')		+ '</td>'
+		+ '<td class="jky-td-name-s"	>' + JKY.t('Machine')	+ '</td>'
+		+ '<td class="nowrap"			>' + JKY.t('Partner')	+ '</td>'
+		+ '<td class="jky-td-pieces"	>' + JKY.t('Pieces'	)	+ '</td>'
+		+ '<td class="jky-td-weight"	>' + JKY.t('Weight'	)	+ '</td>'
 		+ '</tr>'
 		;
 	var my_rows = JKY.get_rows_by_where('Orders', 'osa_line_id = ' + my_id);
@@ -127,13 +128,11 @@ JKY.update_line = function(id_name, the_id) {
 		, where		: 'OSAs.id = ' + JKY.row.id
 		, set		: 'quoted_pieces = quoted_pieces + ' + my_diff_pieces
 		};
-	JKY.ajax(true, my_data, JKY.update_line_success);
+	JKY.ajax(true, my_data, function(the_response) {
+//		JKY.display_message(response.message)
+	})
 	my_tr.find('.jky-quoted-pieces').val(my_new_pieces);
 	my_tr.find('.jky-quoted-weight').val(my_new_weight);
-}
-
-JKY.update_line_success = function(response) {
-//	JKY.display_message(response.message)
 }
 
 JKY.insert_line = function() {
@@ -142,26 +141,24 @@ JKY.insert_line = function() {
 		, table		: 'OSA_Lines'
 		, set		: 'OSA_Lines.parent_id = ' + JKY.row.id
 		};
-	JKY.ajax(true, my_data, JKY.insert_line_success);
-}
+	JKY.ajax(true, my_data, function(the_response) {
+		var my_row = [];
+		my_row.id				= the_response.id;
+		my_row.product_id		= null;
+		my_row.product_name		= '';
+		my_row.peso				= 0;
+		my_row.quoted_units		= 0;
+		my_row.units			= 1;
+		my_row.quoted_pieces	= 0;
+		my_row.remarks			= '';
 
-JKY.insert_line_success = function(response) {
-	var my_row = [];
-	my_row.id				= response.id;
-	my_row.product_id		= null;
-	my_row.product_name		= '';
-	my_row.peso				= 0;
-	my_row.quoted_units		= 0;
-	my_row.units			= 1;
-	my_row.quoted_pieces	= 0;
-	my_row.remarks			= '';
-
-	var my_html = JKY.generate_line(null, my_row);
-	JKY.append_html('jky-lines-body', my_html);
+		var my_html = JKY.generate_line(null, my_row);
+		JKY.append_html('jky-lines-body', my_html);
+	})
 }
 
 JKY.delete_line = function(id_name, the_id) {
-	var my_count = JKY.get_count_by_id('Orders', the_id);
+	var my_count = JKY.get_count_by_where('Orders', 'osa_line_id = ' + the_id);
 	if (my_count > 0) {
 		JKY.display_message(JKY.t('Error, delete first all sub records'));
 		return;
@@ -174,12 +171,10 @@ JKY.delete_line = function(id_name, the_id) {
 		, table		: 'OSA_Lines'
 		, where		: 'OSA_Lines.id = ' + the_id
 		};
-	JKY.ajax(true, my_data);
-}
-
-JKY.delete_line_success = function(response) {
-//	JKY.display_message(response.message)
-//	JKY.verify_total_percent();
+	JKY.ajax(true, my_data, function(the_response) {
+//		JKY.display_message(response.message)
+//		JKY.verify_total_percent();
+	})
 }
 
 JKY.print_lines = function(the_id) {

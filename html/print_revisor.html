@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+<TITLE>Lista de Revisor</TITLE>
+<script src='lib/jquery-1.8.2.js' ></script>
+<script src='lib/jquery-barcode-2.0.2.min.js' ></script>
+
+<style>
+.label		{width:660px; height:120px;}
+.line		{clear:both;}
+.name		{float:right; font-size:250%;}
+.barcode	{float:left;}
+</style>
+
+<script>
+$(function() {
+	var my_index = 1;
+	$('.label').each(function() {
+		var my_label = $(this).html().trim();
+		$(this).html('');
+
+		var my_html = ''
+					+ '<div class="line">'
+					+ '<div class="barcode"><span id="my-' + my_index + '">' + my_label + '</span></div>'
+					+ '<div class="name">' + my_label + '</div>'
+					+ '</div>'
+					;
+		$(this).append(my_html);
+
+		var my_id = $('#my-' + my_index);
+		$(my_id).barcode( my_label, 'code128');
+		my_index++;
+	})
+});
+</script>
+</HEAD>
+
+<BODY>
+	<h1>Lista de Revisor</h1>
+	<br />
+	<div id="jky-barcodes">
+		<div class="label">Felipe	</div>
+		<div class="label">Carlos	</div>
+		<div class="label">David	</div>
+		<div class="label">Fabio   </div>
+		<div class="label">Ivan 	</div>
+		<div class="label">Paulo	</div>
+		<div class="label">Willian	</div>
+	</div>
+
+</BODY>
+</HTML>
+

@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS Orders
 , produced_weight	DECIMAL(10,2)		DEFAULT 0
 , checkout_weight	DECIMAL(10,2)		DEFAULT 0
 , returned_weight	DECIMAL(10,2)		DEFAULT 0
+, location			VARCHAR(4)			DEFAULT NULL
 
 
 , PRIMARY KEY	(id)
@@ -70,3 +71,5 @@ ALTER TABLE Orders			CHANGE	quot_line_id		osa_line_id		BIGINT			DEFAULT NULL;
 ALTER TABLE Orders			CHANGE	quotation_number	osa_number		VARCHAR(32)		DEFAULT NULL;
 
 ALTER TABLE Orders			ADD		color_id				BIGINT			DEFAULT NULL	AFTER product_id;
+
+ALTER TABLE Orders			ADD		location				VARCHAR(4)		DEFAULT NULL	AFTER returned_weight;

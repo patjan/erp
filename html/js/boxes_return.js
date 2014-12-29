@@ -40,6 +40,8 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
+	JKY.max_weight_for_thread_box = parseInt(JKY.get_config_value('System Controls', 'Max Weight For Thread Box'));
+
 	JKY.set_css('jky-app-breadcrumb', 'color', '#996600');
 	JKY.set_side_active('jky-boxes-return');
 	JKY.process_clear_screen();
@@ -100,6 +102,11 @@ JKY.process_input_real_weight = function() {
 
 	if (my_real_weight == '' || isNaN(my_real_weight))	{
 		JKY.display_message('Real Weight is invalid');
+		JKY.set_focus('jky-input-real-weight');
+		return;
+	}
+	if (my_real_weight > JKY.max_weight_for_thread_box)	{
+		JKY.display_message('Real Weight is over the maximum');
 		JKY.set_focus('jky-input-real-weight');
 		return;
 	}

@@ -81,10 +81,12 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-checkin-weight3'	, my_weight.substr(3, 1));
 	JKY.set_value	('jky-checkin-weight4'	, my_weight.substr(4, 1));
 	var my_location = the_row.checkin_location;
-	JKY.set_value	('jky-checkin-location1', my_location.substr(0, 1));
-	JKY.set_value	('jky-checkin-location2', my_location.substr(1, 1));
-	JKY.set_value	('jky-checkin-location3', my_location.substr(2, 1));
-	JKY.set_value	('jky-checkin-location4', my_location.substr(3, 1));
+	if (my_location) {
+		JKY.set_value	('jky-checkin-location1', my_location.substr(0, 1));
+		JKY.set_value	('jky-checkin-location2', my_location.substr(1, 1));
+		JKY.set_value	('jky-checkin-location3', my_location.substr(2, 1));
+		JKY.set_value	('jky-checkin-location4', my_location.substr(3, 1));
+	}
 	JKY.set_value	('jky-qualities'		, the_row.qualities		);
 	JKY.set_value	('jky-remarks'			, the_row.remarks		);
 };
@@ -177,36 +179,35 @@ JKY.process_barcode = function() {
 		, table		: 'Pieces'
 		, where		: 'Pieces.barcode = \'' + my_barcode +'\''
 		};
-	JKY.ajax(false, my_data, JKY.process_barcode_success);
-}
-
-JKY.process_barcode_success = function(response) {
-	var my_row  = response.row;
-	if (my_row) {
-		if (my_row.status == 'Active') {
-			JKY.set_value('jky-checkin-weight'	, my_row.checkin_weight		);
-			JKY.set_value('jky-qualities'		, my_row.qualities			);
-			JKY.set_value('jky-remarks'			, my_row.remarks			);
-//			JKY.set_value('jky-revised-by'		, my_row.revised_by			);
-//			JKY.set_value('jky-revised-name'	, my_row.revised_name		);
-//			JKY.set_value('jky-weighed-by'		, my_row.weighed_by			);
-//			JKY.set_value('jky-weighed-name'	, my_row.weighed_name		);
-			JKY.set_value('jky-status'			, my_row.status				);
-			JKY.set_value('jky-product-name'	, my_row.product_name		);
-//			JKY.set_value('jky-checkin-location', my_row.checkin_location	);
-			JKY.set_value('jky-checkin-location', '1A01');
-			JKY.set_value('jky-form-action'		, '');
-			JKY.set_focus('jky-checkin-weight1');
+	JKY.ajax(false, my_data, function(the_response) {
+		var my_row  = the_response.row;
+		if (my_row) {
+			if (my_row.status == 'Active') {
+				var my_location = JKY.get_value_by_id('Orders', 'location', my_row.order_id);
+				JKY.set_value('jky-checkin-weight'	, my_row.checkin_weight		);
+				JKY.set_value('jky-qualities'		, my_row.qualities			);
+				JKY.set_value('jky-remarks'			, my_row.remarks			);
+	//			JKY.set_value('jky-revised-by'		, my_row.revised_by			);
+	//			JKY.set_value('jky-revised-name'	, my_row.revised_name		);
+	//			JKY.set_value('jky-weighed-by'		, my_row.weighed_by			);
+	//			JKY.set_value('jky-weighed-name'	, my_row.weighed_name		);
+				JKY.set_value('jky-status'			, my_row.status				);
+				JKY.set_value('jky-product-name'	, my_row.product_name		);
+	//			JKY.set_value('jky-checkin-location', my_row.checkin_location	);
+				JKY.set_value('jky-checkin-location', my_location);
+				JKY.set_value('jky-form-action'		, '');
+				JKY.set_focus('jky-checkin-weight1');
+			}else{
+				JKY.play_beep();
+				JKY.display_message(JKY.set_is_invalid('Barcode'));
+				JKY.set_focus('jky-barcode');
+			}
 		}else{
 			JKY.play_beep();
-			JKY.display_message(JKY.set_is_invalid('Barcode'));
+			JKY.display_message(JKY.set_not_found('Barcode'));
 			JKY.set_focus('jky-barcode');
 		}
-	}else{
-		JKY.play_beep();
-		JKY.display_message(JKY.set_not_found('Barcode'));
-		JKY.set_focus('jky-barcode');
-	}
+	})
 }
 
 JKY.process_remark = function() {
@@ -214,7 +215,7 @@ JKY.process_remark = function() {
 	if (my_remark == '') {
 		return;
 	}
-	
+
 	JKY.set_value('jky-remarks', JKY.get_value('jky-remark') + "\n" + JKY.get_value('jky-remarks'));
 	JKY.set_value('jky-remark', '');
 }
@@ -229,9 +230,9 @@ JKY.process_form_action = function() {
 		JKY.process_save_screen();
 	}
 }
-		
+
 JKY.process_save_screen = function() {
-		var my_barcode			= JKY.get_value('jky-barcode'			);
+	var my_barcode			= JKY.get_value('jky-barcode'			);
 //	var my_revised_name		= JKY.get_value('jky-revised-name'		);
 //	var my_weighed_name		= JKY.get_value('jky-weighed-name'		);
 	var my_checkin_weight	= JKY.get_value('jky-checkin-weight1'	) + JKY.get_value('jky-checkin-weight2'	 )			+ '.' + JKY.get_value('jky-checkin-weight3'  ) + JKY.get_value('jky-checkin-weight4'  );

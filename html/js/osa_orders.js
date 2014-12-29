@@ -77,7 +77,7 @@ JKY.update_order = function(the_this, the_id) {
 	var my_line_peso	= my_line_id.find('.jky-product-peso' ).val();
 	var my_line_units	= my_line_id.find('.jky-product-units').val();
 
-	var my_ordered_pieces	= parseInt(my_tr.find('.jky-ordered-pieces').val());
+	var my_ordered_pieces = parseInt  (my_tr.find('.jky-ordered-pieces').val());
 	var my_ordered_weight;
 	if (my_line_units == 0) {
 		my_ordered_weight = parseFloat(my_tr.find('.jky-ordered-weight').val());
@@ -91,8 +91,9 @@ JKY.update_order = function(the_this, the_id) {
 		+          ', ftp_id =  ' + my_ftp_id
 		+      ', machine_id =  ' + my_machine_id
 		+      ', partner_id =  ' + my_partner_id
+		+   ', quoted_weight =  ' + my_ordered_weight
+		+   ', quoted_pieces =  ' + my_ordered_pieces
 		+  ', ordered_pieces =  ' + my_ordered_pieces
-		+  ', ordered_weight =  ' + my_ordered_weight
 		;
 	var my_data =
 		{ method	: 'update'
@@ -101,8 +102,8 @@ JKY.update_order = function(the_this, the_id) {
 		, where		: 'Orders.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, function(the_response) {
-		var my_delta_pieces = my_ordered_pieces - my_saved_row.ordered_pieces;
-		var my_delta_weight = my_ordered_weight - my_saved_row.ordered_weight;
+		var my_delta_pieces = my_ordered_pieces - my_saved_row.quoted_pieces;
+		var my_delta_weight = my_ordered_weight - my_saved_row.quoted_weight;
 		JKY.update_osa_line(my_line_id, my_delta_pieces, my_delta_weight);
 	})
 }
@@ -139,8 +140,8 @@ JKY.delete_order = function(the_this, the_id) {
 //	JKY.select_row(the_id);
 	var my_tr	= $(the_this).parent().parent();
 	var my_line_id	= JKY.get_prev_dom(my_tr, 'osa_line_id');
-	var my_delta_pieces	= - parseInt(my_tr.find('.jky-ordered-pieces').val());
-	var my_delta_weight	= - parseInt(my_tr.find('.jky-ordered-weight').val());
+	var my_delta_pieces	= - parseInt  (my_tr.find('.jky-ordered-pieces').val());
+	var my_delta_weight	= - parseFloat(my_tr.find('.jky-ordered-weight').val());
 
 	my_tr.remove();
 	var my_data =
@@ -210,8 +211,8 @@ JKY.update_osa_line = function(the_line_id, the_delta_pieces, the_delta_weight) 
 	JKY.ajax(true, my_data, function(the_response) {
 		var my_line_pieces_id	= the_line_id.find('.jky-ordered-pieces');
 		var my_line_weight_id	= the_line_id.find('.jky-ordered-weight' );
-		var my_line_pieces		= parseInt(my_line_pieces_id.val());
-		var my_line_weight		= parseInt(my_line_weight_id.val());
+		var my_line_pieces		= parseInt  (my_line_pieces_id.val());
+		var my_line_weight		= parseFloat(my_line_weight_id.val());
 		my_line_pieces_id.val(my_line_pieces + the_delta_pieces);
 		my_line_weight_id.val(my_line_weight + the_delta_weight);
 	});

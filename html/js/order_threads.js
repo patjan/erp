@@ -16,8 +16,8 @@ JKY.generate_threads = function(response) {
 	JKY.Order.set_ordered (0);
 	JKY.Order.set_checkout(0);
 	if (response.rows.length == 0) {
-		JKY.insert_thread();
-		JKY.display_threads();		//	***** recursive looping
+		JKY.insert_threads();
+		return;
 	}
 	var my_html  = '';
 	var my_rows  = response.rows;
@@ -91,15 +91,13 @@ JKY.update_thread = function(id_name, the_id ) {
 		, set		:  my_set
 		, where		: 'OrdThreads.id = ' + the_id
 		};
-	JKY.ajax(true, my_data, JKY.update_thread_success);
+	JKY.ajax(true, my_data, function(the_response) {
+//		JKY.display_message(the_response.message)
+		JKY.update_thread_weight();
+	})
 }
 
-JKY.update_thread_success = function(response) {
-//	JKY.display_message(response.message)
-	JKY.update_thread_weight();
-}
-
-JKY.insert_thread = function() {
+JKY.insert_threads = function() {
 	var my_rows = JKY.get_rows('FTP_Threads', JKY.row.ftp_id);
 	for(var i=0, max=my_rows.length; i<max; i++) {
 		var my_row = my_rows[i];
@@ -112,7 +110,9 @@ JKY.insert_thread = function() {
 			, table		: 'OrdThreads'
 			, set		:  my_set
 			};
-		JKY.ajax(false, my_data);
+		JKY.ajax(false, my_data, function(the_response) {
+			JKY.display_threads();
+		});
 	}
 }
 
@@ -123,12 +123,10 @@ JKY.delete_thread = function(id_name, the_id) {
 		, table		: 'OrdThreads'
 		, where		: 'OrdThreads.id = ' + the_id
 		};
-	JKY.ajax(true, my_data, JKY.delete_thread_success);
-}
-
-JKY.delete_thread_success = function(response) {
-//	JKY.display_message(response.message)
-	JKY.update_thread_weight();
+	JKY.ajax(true, my_data, function(the_response) {
+//		JKY.display_message(the_response.message)
+		JKY.update_thread_weight();
+	})
 }
 
 JKY.update_thread_weight = function() {

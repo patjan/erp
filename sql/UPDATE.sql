@@ -352,3 +352,5 @@ ALTER TABLE QuotLines		ADD		quoted_weight			DECIMAL(7,1)	DEFAULT 0		AFTER peso;
 
 ALTER TABLE OSA_Lines		ADD		quoted_weight			DECIMAL(7,1)	DEFAULT 0		AFTER peso;
 ALTER TABLE Orders			ADD		color_id				BIGINT			DEFAULT NULL	AFTER product_id;
+/* -- 2014/12/28	*/
+ALTER TABLE Orders			ADD		location				VARCHAR(4)		DEFAULT NULL	AFTER returned_weight;

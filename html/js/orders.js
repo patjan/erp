@@ -1,5 +1,4 @@
 "use strict";
-
 /**
  * orders.js
  */
@@ -104,11 +103,13 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-short"	>' +				 my_machine_partner			+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.ordered_at		)	+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.needed_at		)	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.produced_at	)	+ '</td>'
+//		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.produced_at	)	+ '</td>'
+		+  '<td class="jky-td-weight"	>' +				 the_row.quoted_weight		+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 the_row.ordered_weight		+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.quoted_pieces		+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.ordered_pieces		+ '</td>'
-		+  '<td class="jky-td-pieces"	>' +				 the_row.rejected_pieces	+ '</td>'
-		+  '<td class="jky-td-pieces"	>' +				 the_row.produced_pieces	+ '</td>'
+//		+  '<td class="jky-td-pieces"	>' +				 the_row.rejected_pieces	+ '</td>'
+//		+  '<td class="jky-td-pieces"	>' +				 the_row.produced_pieces	+ '</td>'
 		;
 	return my_html;
 };
@@ -144,7 +145,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-machine-name'		,				 the_row.machine_name		);
 	JKY.set_value	('jky-partner-id'		,				 the_row.partner_id			);
 	JKY.set_value	('jky-partner-name'		,				 the_row.partner_name		);
-	JKY.set_value	('jky-quotation-number'	,				 the_row.quotation_number	);
+	JKY.set_value	('jky-osa-number'		,				 the_row.osa_number			);
 	JKY.set_date	('jky-ordered-date'		, JKY.out_time	(the_row.ordered_at			));
 	JKY.set_date	('jky-needed-date'		, JKY.out_time	(the_row.needed_at			));
 	JKY.set_date	('jky-produced-date'	, JKY.out_time	(the_row.produced_at		));
@@ -162,6 +163,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-labels-printed'	,				 the_row.labels_printed		);
 	JKY.set_value	('jky-ftps-printed'		,				 the_row.ftps_printed		);
 	JKY.set_value	('jky-ops-printed'		,				 the_row.ops_printed		);
+	JKY.set_value	('jky-location'			,				 the_row.location			);
 
 	if (the_row.ftp_id) {
 		JKY.display_threads();
@@ -205,6 +207,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-labels-printed'	,  0);
 	JKY.set_value	('jky-ftps-printed'		,  0);
 	JKY.set_value	('jky-ops-printed'		,  0);
+	JKY.set_value	('jky-location'			, '');
 };
 
 /**
@@ -242,6 +245,7 @@ JKY.get_form_set = function() {
 		+  ', labels_printed=  ' + JKY.get_value('jky-labels-printed'	)
 		+    ', ftps_printed=  ' + JKY.get_value('jky-ftps-printed'		)
 		+     ', ops_printed=  ' + JKY.get_value('jky-ops-printed'		)
+		+        ', location=\'' + JKY.get_value('jky-location'			) + '\''
 		;
 	return my_set;
 };
