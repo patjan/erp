@@ -72,12 +72,12 @@ JKY.update_settings_success = function(response) {
 //	JKY.display_message(response.message)
 }
 
-JKY.copy_settings = function(the_source, the_id) {
+JKY.copy_settings = function(the_source, the_to) {
 	var my_html  = '';
 	var my_data =
-		{ method	: 'get_index'
+		{ method	: 'get_rows'
 		, table		: 'FTP_Sets'
-		, select	:  the_source
+		, where		: 'FTP_Sets.parent_id = ' + the_source
 		, order_by  : 'FTP_Sets.id'
 		};
 	var my_object = {};
@@ -94,7 +94,7 @@ JKY.copy_settings = function(the_source, the_id) {
 					for(var i in my_rows) {
 						var my_row = my_rows[i];
 						if (my_row.value) {
-							var my_set	=   '  parent_id =  ' + the_id
+							var my_set	=   '  parent_id =  ' + the_to
 										+ ',  setting_id =  ' + my_row.setting
 										+ ',       value =\'' + my_row.value + '\''
 										;

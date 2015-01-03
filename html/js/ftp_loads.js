@@ -113,12 +113,12 @@ JKY.insert_load_success = function(response) {
 	JKY.append_html('jky-loads-body', my_html);
 }
 
-JKY.copy_loads = function(the_source, the_id) {
+JKY.copy_loads = function(the_source, the_to) {
 	var my_html  = '';
 	var my_data =
-		{ method	: 'get_index'
+		{ method	: 'get_rows'
 		, table		: 'FTP_Loads'
-		, select	:  the_source
+		, where		: 'FTP_Loads.parent_id = ' + the_source
 		, order_by  : 'FTP_Loads.id'
 		};
 	var my_object = {};
@@ -134,7 +134,7 @@ JKY.copy_loads = function(the_source, the_id) {
 					var my_rows = response.rows;
 					for(var i in my_rows) {
 						var my_row	= my_rows[i];
-						var my_set	=   '  parent_id =  ' + the_id
+						var my_set	=   '  parent_id =  ' + the_to
 									+ ',  input_from =  ' + my_row.input_from
 									+ ',  input_upto =  ' + my_row.input_upto
 									+ ', thread_id_1 =  ' + my_row.thread_id_1

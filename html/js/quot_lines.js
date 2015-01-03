@@ -50,7 +50,7 @@ JKY.generate_line = function(the_index, the_row) {
 		;
 	var my_disabled = JKY.is_status('Draft') ? '' : ' disabled="disabled"';
 	var my_add_color = '<button class="btn btn-success" type="button" onclick="JKY.insert_color(this, ' + my_id + ')"' + my_disabled + '>' + JKY.t('Add Color') + '</button>';
-	var my_copy	= (the_index == 0) ? '' : '<button class="btn btn-success" type="button" onclick="JKY.copy_colors (this, ' + my_id + ')"' + my_disabled + '>' + JKY.t('Copy') + '</button>';
+	var my_copy	= (the_index == 0) ? '' : '<button class="btn btn-success" type="button" onclick="JKY.copy_previous_colors (this, ' + my_id + ')"' + my_disabled + '>' + JKY.t('Copy') + '</button>';
 	var my_onchange = ' changeable onchange="JKY.update_line(this, ' + my_id + ')"';
 	var my_disabled = ' disabled';
 	var my_html = ''
@@ -153,6 +153,55 @@ JKY.insert_line = function() {
 		var my_html = JKY.generate_line(my_count-1, my_row);
 		JKY.append_html('jky-lines-body', my_html);
 	})
+}
+
+JKY.copy_lines = function(the_source, the_to) {
+	var my_data =
+		{ method	: 'get_rows'
+		, table		: 'QuotLines'
+		, where		: 'QuotLines.parent_id = ' + the_source
+		, order_by  : 'QuotLines.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(the_response) {
+				if (the_response.status == 'ok') {
+					var my_rows = the_response.rows;
+					for(var i in my_rows) {
+						var my_row	= my_rows[i];
+						var my_set	= '      parent_id =   ' + the_to
+									+ ',   osa_line_id = NULL'
+									+ ',    product_id =   ' + my_row.product_id
+									+ ',    machine_id =   ' + my_row.machine_id
+									+ ',          peso =   ' + my_row.peso
+									+ ', quoted_weight =   ' + my_row.quoted_weight
+									+ ',  quoted_units =   ' + my_row.quoted_units
+									+ ', quoted_pieces =   ' + my_row.quoted_pieces
+									+ ',         units =   ' + my_row.units
+									+ ',      discount = \'' + my_row.discount	+ '\''
+									+ ',       remarks = \'' + my_row.remarks	+ '\''
+									;
+						var	my_data =
+							{ method	: 'insert'
+							, table		: 'QuotLines'
+							, set		:  my_set
+							};
+						JKY.ajax(false, my_data, function(the_response) {
+							JKY.copy_colors(my_row.id, the_response.id);
+						})
+					}
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		}
+	)
 }
 
 JKY.delete_line = function(the_this, the_id) {

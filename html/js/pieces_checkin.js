@@ -68,13 +68,13 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-status'			, the_row.status		);
-	JKY.set_value	('jky-barcode'			, the_row.barcode		);
-	JKY.set_value	('jky-revised-by'		, the_row.revised_by	);
-	JKY.set_value	('jky-revised-name'		, the_row.revised_name	);
-	JKY.set_value	('jky-weighed-by'		, the_row.weighed_by	);
-	JKY.set_value	('jky-weighed-name'		, the_row.weighed_name	);
-	JKY.set_value	('jky-product-name'		, the_row.product_name	);
+	JKY.set_value	('jky-status'			, the_row.status			);
+	JKY.set_value	('jky-barcode'			, the_row.barcode			);
+	JKY.set_value	('jky-revised-by'		, the_row.revised_by		);
+	JKY.set_value	('jky-revised-name'		, the_row.revised_name		);
+	JKY.set_value	('jky-weighed-by'		, the_row.weighed_by		);
+	JKY.set_value	('jky-weighed-name'		, the_row.weighed_name		);
+	JKY.set_value	('jky-product-name'		, the_row.product_name		);
 	var my_weight = parseFloat(the_row.checkin_weight) * 100 + 10000 + '';
 	JKY.set_value	('jky-checkin-weight1'	, my_weight.substr(1, 1));
 	JKY.set_value	('jky-checkin-weight2'	, my_weight.substr(2, 1));
@@ -87,8 +87,9 @@ JKY.set_form_row = function(the_row) {
 		JKY.set_value	('jky-checkin-location3', my_location.substr(2, 1));
 		JKY.set_value	('jky-checkin-location4', my_location.substr(3, 1));
 	}
-	JKY.set_value	('jky-qualities'		, the_row.qualities		);
-	JKY.set_value	('jky-remarks'			, the_row.remarks		);
+	JKY.set_value	('jky-qualities'		, the_row.qualities			);
+	JKY.set_value	('jky-remarks'			, the_row.remarks			);
+	JKY.set_value	('jky-checkin-location'	, the_row.checkin_location	);
 };
 
 JKY.display_list = function() {
@@ -119,6 +120,7 @@ JKY.process_clear_screen = function() {
 	JKY.set_value('jky-checkin-location4', '1');
 	JKY.set_value('jky-qualities'		, '');
 	JKY.set_value('jky-remarks'			, '');
+	JKY.set_value('jky-checkin-location', '');
 	JKY.set_value('jky-form-action'		, '');
 	JKY.set_focus(JKY.App.get('focus'));
 	JKY.Changes.reset();
@@ -161,7 +163,7 @@ JKY.process_keyup_input = function(the_id, the_event) {
 			case('jky-checkin-location2') : JKY.set_focus('jky-checkin-location3');	break;
 			case('jky-checkin-location3') : JKY.set_focus('jky-checkin-location4');	break;
 			case('jky-checkin-location4') : JKY.set_focus('jky-qualities'		 );	break;
-			case('jky-qualities'		) : JKY.set_focus('jky-remark'			 );	break;
+			case('jky-qualities'		) : JKY.process_qualities				();	break;
 			case('jky-remark'			) : JKY.process_remark					();	break;
 			case('jky-form-action'		) : JKY.process_form_action				();	break;
 		}
@@ -170,9 +172,8 @@ JKY.process_keyup_input = function(the_id, the_event) {
 
 JKY.process_barcode = function() {
 	var my_barcode = JKY.get_value('jky-barcode');
-	if (my_barcode == '') {
-		return;
-	}
+	if (my_barcode == '')		return;
+
 //	JKY.display_trace('process_barcode: ' + my_barcode);
 	var my_data =
 		{ method	: 'get_row'
@@ -194,6 +195,7 @@ JKY.process_barcode = function() {
 				JKY.set_value('jky-status'			, my_row.status				);
 				JKY.set_value('jky-product-name'	, my_row.product_name		);
 	//			JKY.set_value('jky-checkin-location', my_row.checkin_location	);
+				JKY.set_value('jky-hidden-location' , my_location);
 				JKY.set_value('jky-checkin-location', my_location);
 				JKY.set_value('jky-form-action'		, '');
 				JKY.set_focus('jky-checkin-weight1');
@@ -210,11 +212,23 @@ JKY.process_barcode = function() {
 	})
 }
 
+JKY.process_qualities = function() {
+	var my_qualities = JKY.get_value('jky-qualities');
+	if (my_qualities == '')		return;
+
+	var my_location = JKY.get_config_value('QC Quality', my_qualities);
+	if (!my_location || JKY.is_empty(my_location)) {
+		JKY.set_value('jky-checkin-location', JKY.get_value('jky-hidden-location'));
+	}else{
+		JKY.set_value('jky-checkin-location', my_location);
+	}
+
+	JKY.set_focus('jky-remark')
+}
+
 JKY.process_remark = function() {
 	var my_remark = JKY.get_value('jky-remark');
-	if (my_remark == '') {
-		return;
-	}
+	if (my_remark == '')	return;
 
 	JKY.set_value('jky-remarks', JKY.get_value('jky-remark') + "\n" + JKY.get_value('jky-remarks'));
 	JKY.set_value('jky-remark', '');

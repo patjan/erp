@@ -38,7 +38,7 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.append_file('jky-load-batchin'	, '../JKY.Search.BatchIn.html'	);
+	JKY.append_file('jky-load-batchin', '../JKY.Search.BatchIn.html');
 
 	JKY.set_side_active('jky-threads-boxes');
 	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Check In', 'Check Out', 'Return'));

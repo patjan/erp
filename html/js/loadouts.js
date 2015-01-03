@@ -58,6 +58,7 @@ JKY.set_initial_values = function() {
 //	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_dyer'), true));
 //	JKY.set_html('jky-color-name'	, JKY.set_table_options('Colors', 'color_name', '', ''));
 
+	$('#jky-action-save-remarks').click (function()	{JKY.save_remarks		();});
 	$('#jky-dyer-filter'		).KeyUpDelay(JKY.Dyer.load_data		);
 	$('#jky-color-filter'		).KeyUpDelay(JKY.Color.load_data	);
 	$('#jky-quotation-filter'	).KeyUpDelay(JKY.Quotation.load_data);
@@ -119,6 +120,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_date	('jky-returned-date'	, JKY.out_time	(the_row.returned_at	));
 	JKY.set_value	('jky-returned-pieces'	,				 the_row.returned_pieces);
 	JKY.set_value	('jky-returned-weight'	,				 the_row.returned_weight);
+	JKY.set_value	('jky-remarks'			,				 JKY.row.remarks		);
 
 //	JKY.set_calculated_color();
 	JKY.display_quotations();
@@ -145,6 +147,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_date	('jky-returned-date'	, '');
 	JKY.set_value	('jky-returned-pieces'	,  0);
 	JKY.set_value	('jky-returned-weight'	,  0);
+	JKY.set_value	('jky-remarks'			, '');
 }
 
 /**
@@ -168,6 +171,7 @@ JKY.get_form_set = function() {
 		+     ', returned_at=  ' + JKY.inp_time	('jky-returned-date'	)
 		+ ', returned_pieces=  ' + JKY.get_value('jky-returned-pieces'	)
 		+ ', returned_weight=  ' + JKY.get_value('jky-returned-weight'	)
+		+         ', remarks=\'' + JKY.get_value('jky-remarks'			) + '\''
 		;
 	return my_set;
 }
@@ -180,6 +184,21 @@ JKY.process_delete = function(the_id, the_row) {
 		};
 	JKY.ajax(true, my_data);
 }
+
+/* -------------------------------------------------------------------------- */
+JKY.save_remarks = function() {
+	var my_set	= 'remarks = \'' + JKY.get_value('jky-remarks') + '\'';
+	var my_data =
+		{ method: 'update'
+		, table : 'LoadOuts'
+		, set	:  my_set
+		, where : 'LoadOuts.id = ' + JKY.row.id
+		};
+	JKY.ajax(true, my_data, function(the_response) {
+		JKY.display_message('Remarks saved, ' + the_response.message);
+		JKY.row = JKY.get_row('LoadOuts', JKY.row.id);
+	})
+};
 
 JKY.get_color_id = function() {
 	return JKY.get_value('jky-color-id');
@@ -194,6 +213,6 @@ JKY.get_color_name = function() {
  */
 JKY.set_calculated_color = function() {
 	var my_quoted_weight	= parseFloat(JKY.get_value('jky-quoted-weight'	));
-	var my_checkout_weight	= parseFloat(JKY.get_value('jky-checkout-weight'	));
+	var my_checkout_weight	= parseFloat(JKY.get_value('jky-checkout-weight'));
 	JKY.set_css('jky-checkout-weight', 'color', (my_quoted_weight > my_checkout_weight) ? 'red' : 'black');
 }

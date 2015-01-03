@@ -103,12 +103,12 @@ JKY.insert_thread_success = function(response) {
 	JKY.append_html('jky-threads-body', my_html);
 }
 
-JKY.copy_threads = function(the_source, the_id) {
+JKY.copy_threads = function(the_source, the_to) {
 	var my_html  = '';
 	var my_data =
-		{ method	: 'get_index'
+		{ method	: 'get_rows'
 		, table		: 'FTP_Threads'
-		, select	:  the_source
+		, where		: 'FTP_Threads.parent_id = ' + the_source
 		, order_by  : 'FTP_Threads.id'
 		};
 	var my_object = {};
@@ -124,7 +124,7 @@ JKY.copy_threads = function(the_source, the_id) {
 					var my_rows = response.rows;
 					for(var i in my_rows) {
 						var my_row	= my_rows[i];
-						var my_set	=   '  parent_id = ' + the_id
+						var my_set	=   '  parent_id = ' + the_to
 									+ ',   thread_id = ' + my_row.thread_id
 									+ ', supplier_id = ' + my_row.supplier_id
 									+ ',     percent = ' + my_row.percent

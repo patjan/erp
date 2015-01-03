@@ -160,6 +160,51 @@ JKY.insert_color = function(the_id, the_parent_id) {
 	})
 }
 
+JKY.copy_colors = function(the_source, the_to) {
+	var my_data =
+		{ method	: 'get_rows'
+		, table		: 'QuotColors'
+		, where		: 'QuotColors.parent_id = ' + the_source
+		, order_by  : 'QuotColors.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(the_response) {
+				if (the_response.status == 'ok') {
+					var my_rows = the_response.rows;
+					for(var i in my_rows) {
+						var my_row	= my_rows[i];
+						var my_set	= '      parent_id =   ' + the_to
+									+ ',       dyer_id =   ' + my_row.dyer_id
+									+ ',      color_id =   ' + my_row.color_id
+									+ ',    color_type = \'' + my_row.color_type + '\''
+									+ ',  quoted_units =   ' + my_row.quoted_units
+									+ ',  quoted_price =   ' + my_row.quoted_price
+									+ ', product_price =   ' + my_row.product_price
+									+ ',      discount = \'' + my_row.discount	+ '\''
+									;
+						var	my_data =
+							{ method	: 'insert'
+							, table		: 'QuotColors'
+							, set		:  my_set
+							};
+						JKY.ajax(false, my_data, function(the_response) {
+						})
+					}
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		}
+	)
+}
+
 JKY.delete_color = function(the_this, the_id) {
 	var my_tr = $(the_this).parent().parent();
 
@@ -205,7 +250,7 @@ JKY.delete_color = function(the_this, the_id) {
 	})
 }
 
-JKY.copy_colors = function(the_id, the_parent_id) {
+JKY.copy_previous_colors = function(the_id, the_parent_id) {
 	JKY.line_tr = $(the_id).parent().parent();
 	var my_curr_tr	= JKY.line_tr;
 	var my_colors	= [];

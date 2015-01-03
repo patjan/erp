@@ -2351,9 +2351,10 @@ JKY.get_rows = function(table_name, id) {
 	var my_rows = null;
 	var my_where = table_name + '.parent_id = ' + id;
 	var my_data =
-		{ method: 'get_rows'
-		, table	:  table_name
-		, where :  my_where
+		{ method	: 'get_rows'
+		, table		:  table_name
+		, where		:  my_where
+		, order_by	: 'id'
 		};
 
 	var my_object = {};

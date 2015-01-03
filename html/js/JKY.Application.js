@@ -558,14 +558,11 @@ if (my_first == true) {
 			, table :  my_args.table_name
 			, set	:  JKY.get_form_set()
 			};
-		JKY.ajax(false, my_data, my_process_copy_success);
-	}
-
-	function my_process_copy_success(response) {
-		JKY.display_trace('my_process_copy_success');
-		JKY.display_message(response.message);
-		JKY.process_copy   (response.id, JKY.row);
-		my_display_list();
+		JKY.ajax(false, my_data, function(the_response) {
+			JKY.display_message(the_response.message);
+			JKY.process_copy(the_response.id, JKY.row);
+			my_display_list();
+		})
 	}
 
 	function my_process_delete() {

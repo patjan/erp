@@ -1,0 +1,149 @@
+SELECT id, status, batch_id, average_weight, real_weight
+  FROM Boxes
+ WHERE real_weight/average_weight > 1.2
+		;
+ 
+ SELECT id, status, batch_id, average_weight, real_weight
+  FROM Boxes
+ WHERE real_weight > 100
+		; 
+	Full texts 								id 			status 		batch_id 	average_weight 	real_weight
+	Edit Edit 	Copy Copy 	Delete Delete 	2000003556 	Check Out 	2000000055 	28.10 	2789.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000005747 	Return 		2000000103 	25.82 	2582.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000005749 	Return 		2000000103 	25.82 	2582.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000006167 	Check Out 	2000000115 	24.58 	2458.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000006205 	Check Out 	2000000115 	24.58 	2458.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000014579 	Check Out 	2000000098 	27.52 	2752.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000014593 	Check Out 	2000000098 	27.52 	2752.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000015027 	Return 		2000000207 	27.41 	2741.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000017028 	Return 		2000000221 	26.43 	2643.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000017382 	Check Out 	2000000236 	27.81 	2781.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000036648 	Return 		2000000389 	29.22 	2922.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000036724 	Check Out 	2000000389 	29.22 	2922.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000037433 	Return 		2000000392 	29.16 	2916.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000037443 	Return 		2000000392 	29.16 	2916.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000037450 	Return 		2000000392 	29.16 	2916.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000040896 	Check Out 	2000000441 	24.80 	1801.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000051204 	Return 		2000000548 	21.82 	2182.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000058548 	Return 		2000000763 	34.39 	3439.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000058576 	Return 		2000000763 	34.39 	3439.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000058685 	Return 		2000000763 	34.39 	3439.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000076819 	Return 		2000001124 	25.84 	2584.00
+
+ SELECT id, status, batch_id, average_weight, real_weight
+  FROM Boxes
+ WHERE real_weight > 100 
+   AND status = 'Check Out'
+		;
+	Full texts 								id 			status 		batch_id 	average_weight 	real_weight
+	Edit Edit 	Copy Copy 	Delete Delete 	2000003556 	Check Out 	2000000055 	28.10 	2789.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000006167 	Check Out 	2000000115 	24.58 	2458.00		200078
+	Edit Edit 	Copy Copy 	Delete Delete 	2000006205 	Check Out 	2000000115 	24.58 	2458.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000014579 	Check Out 	2000000098 	27.52 	2752.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000014593 	Check Out 	2000000098 	27.52 	2752.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000017382 	Check Out 	2000000236 	27.81 	2781.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000036724 	Check Out 	2000000389 	29.22 	2922.00
+	Edit Edit 	Copy Copy 	Delete Delete 	2000040896 	Check Out 	2000000441 	24.80 	1801.00
+	
+SELECT id, status, checkout_id, batchin_id, requested_weight, checkout_weight, average_weight, requested_boxes, checkout_boxes
+  FROM BatchOuts
+ WHERE checkout_weight/checkout_boxes/average_weight > 2.4
+ WHERE checkout_weight/requested_weight > 3
+
+	Full texts 								id 		status 	checkout_id 	batchin_id 	requested_weight 	checkout_weight 	average_weight 	requested_boxes 	checkout_boxes
+	Edit Edit 	Copy Copy 	Delete Delete 	2000000951 	Closed 	200765 	2000000054 	1876.00 	4638.67 	28.03 	67 	67
+	Edit Edit 	Copy Copy 	Delete Delete 	2000001735 	Closed 	201524 	2000000441 	 250.00 	2032.20 	24.80 	11 	11
+	Edit Edit 	Copy Copy 	Delete Delete 	2000002759 	Closed 	202441 	2000000236 	 200.00 	2975.67 	27.81 	8 	8
+	Edit Edit 	Copy Copy 	Delete Delete 	2000003081 	Closed 	202692 	2000000389 	 240.00 	3097.32 	29.22 	9 	7
+	Edit Edit 	Copy Copy 	Delete Delete 	2000003123 	Closed 	202731 	2000000112 	 390.00 	5243.12 	24.81 	16 	16
+	Edit Edit 	Copy Copy 	Delete Delete 	2000003150 	Closed 	202756 	2000000098 	 370.00 	5819.10 	27.52 	14 	14
+
+
+200002	1060.00	3163.32
+200006	300.00	1989.96
+200009	3000.00	4017.60
+
+SELECT *
+  FROM BatchOuts
+ WHERE checkout_weight / (checkout_boxes * average_weight) > 1.5
+		;
+  
+	Full texts 								id 			updated_by 	updated_at 			status 	checkout_id 	thread_id 	batchin_id 						 	unit_price 	requested_weight 	average_weight Descending 	requested_boxes 	reserved_boxes 	checkout_boxes 	checkout_weight
+	Edit Edit 	Copy Copy 	Delete Delete 	2000003081 	100003 	2014-12-12 09:58:55 	Closed 	202692 	200004 	2000000389 	NULL	NULL	NULL		NULL	1.00 	240.00 	29.22 	9 	2 	7 	3097.32
+	Edit Edit 	Copy Copy 	Delete Delete 	2000000951 	100003 	2014-07-14 16:55:27 	Closed 	200765 	200128 	2000000054 	NULL	NULL	NULL		NULL	4.80 	1876.00 28.03 	67 	0 	67 	4638.67
+	Edit Edit 	Copy Copy 	Delete Delete 	2000002759 	100003 	2014-11-13 08:24:58 	Closed 	202441 	200356 	2000000236 	NULL	NULL	NULL		NULL	7.20 	200.00 	27.81 	8 	0 	8 	2975.67
+	Edit Edit 	Copy Copy 	Delete Delete 	2000003150 	100003 	2014-12-12 10:05:53 	Closed 	202756 	200013 	2000000098 	NULL	NULL	NULL		NULL	5.15 	370.00 	27.52 	14 	0 	14 	5819.10
+	Edit Edit 	Copy Copy 	Delete Delete 	2000003123 	100003 	2014-12-16 08:13:58 	Closed 	202731 	200299 	2000000112 	NULL	NULL	NULL		NULL	14.00 	390.00 	24.81 	16 	0 	16 	5243.12
+	Edit Edit 	Copy Copy 	Delete Delete 	2000001735 	100041 	2014-09-22 10:12:36 	Closed 	201524 	200310 	2000000441 	NULL	NULL	NULL		NULL	1.00 	250.00 	24.80 	11 	0 	11 	2032.20
+	Edit Edit 	Copy Copy 	Delete Delete 	2000001887 	100041 	2014-10-02 15:09:38 	Closed 	201674 	200312 	2000000836 	NULL	NULL	NULL		NULL	10.00 	40.00 	20.24 	2 	0 	2 	62.96
+	Edit Edit 	Copy Copy 	Delete Delete 	2000001596 	100041 	2014-09-09 15:11:49 	Closed 	201387 	200338 	2000000715 	NULL	NULL	NULL		NULL	10.00 	15.00 	15.94 	1 	0 	1 	25.69
+	Edit Edit 	Copy Copy 	Delete Delete 	2000002793 	100003 	2014-11-18 16:36:30 	Closed 	202465 	200027 	2000000828 	NULL	NULL	NULL		NULL	10.00 	70.00 	15.51 	5 	0 	5 	126.90
+	Edit Edit 	Copy Copy 	Delete Delete 	2000001381 	200008 	2014-08-18 12:31:28 	Closed 	201182 	200362 	2000000470 	NULL	NULL	NULL		NULL	13.81 	65.00 	14.14 	5 	0 	5 	122.48
+	Edit Edit 	Copy Copy 	Delete Delete 	2000001663 	100041 	2014-09-11 16:32:01 	Closed 	201453 	200106 	2000000438 	NULL	NULL	NULL		NULL	1.00 	70.00 	12.50 	6 	0 	6 	175.68
+	Edit Edit 	Copy Copy 	Delete Delete 	2000001980 	200008 	2014-10-09 12:21:58 	Closed 	201765 	200106 	2000000438 	NULL	NULL	NULL		NULL	1.00 	30.00 	12.50 	3 	0 	3 	83.74  
+	
+SELECT *
+  FROM CheckOuts
+ WHERE checkout_weight > 2000
+   AND checkout_weight / requested_weight > 3
+		;
+
+UPDATE Boxes		SET real_weight = real_weight / 100		WHERE real_weight > 100;
+
+UPDATE Batches		SET returned_weight = returned_weight - 2789 + 27.89	WHERE id = 2000000055;
+UPDATE Batches		SET returned_weight = returned_weight - 2582 + 25.82	WHERE id = 2000000103;
+UPDATE Batches		SET returned_weight = returned_weight - 2582 + 25.82 	WHERE id = 2000000103;
+UPDATE Batches		SET returned_weight = returned_weight - 2458 + 24.58 	WHERE id = 2000000115;
+UPDATE Batches		SET returned_weight = returned_weight - 2458 + 24.58 	WHERE id = 2000000115;
+UPDATE Batches		SET returned_weight = returned_weight - 2752 + 27.52 	WHERE id = 2000000098;
+UPDATE Batches		SET returned_weight = returned_weight - 2752 + 27.52 	WHERE id = 2000000098;
+UPDATE Batches		SET returned_weight = returned_weight - 2741 + 27.41 	WHERE id = 2000000207;
+UPDATE Batches		SET returned_weight = returned_weight - 2643 + 26.43 	WHERE id = 2000000221;
+UPDATE Batches		SET returned_weight = returned_weight - 2781 + 27.81 	WHERE id = 2000000236;
+UPDATE Batches		SET returned_weight = returned_weight - 2922 + 29.22 	WHERE id = 2000000389;
+UPDATE Batches		SET returned_weight = returned_weight - 2922 + 29.22 	WHERE id = 2000000389;
+UPDATE Batches		SET returned_weight = returned_weight - 2916 + 29.16 	WHERE id = 2000000392;
+UPDATE Batches		SET returned_weight = returned_weight - 2916 + 29.16 	WHERE id = 2000000392;
+UPDATE Batches		SET returned_weight = returned_weight - 2916 + 29.16 	WHERE id = 2000000392;
+UPDATE Batches		SET returned_weight = returned_weight - 1801 + 18.01 	WHERE id = 2000000441;
+UPDATE Batches		SET returned_weight = returned_weight - 2182 + 21.82 	WHERE id = 2000000548;
+UPDATE Batches		SET returned_weight = returned_weight - 3439 + 34.39 	WHERE id = 2000000763;
+UPDATE Batches		SET returned_weight = returned_weight - 3439 + 34.39 	WHERE id = 2000000763;
+UPDATE Batches		SET returned_weight = returned_weight - 3439 + 34.39 	WHERE id = 2000000763;
+UPDATE Batches		SET returned_weight = returned_weight - 2584 + 25.84 	WHERE id = 2000001124;
+
+UPDATE Batches		SET checkout_weight = checkout_weight - 2789 + 27.89	WHERE id = 2000000055;
+UPDATE Batches		SET checkout_weight = checkout_weight - 2458 + 24.58 	WHERE id = 2000000115;
+UPDATE Batches		SET checkout_weight = checkout_weight - 2458 + 24.58 	WHERE id = 2000000115;
+UPDATE Batches		SET checkout_weight = checkout_weight - 2752 + 27.52 	WHERE id = 2000000098;
+UPDATE Batches		SET checkout_weight = checkout_weight - 2752 + 27.52 	WHERE id = 2000000098;
+UPDATE Batches		SET checkout_weight = checkout_weight - 2781 + 27.81 	WHERE id = 2000000236;
+UPDATE Batches		SET checkout_weight = checkout_weight - 2922 + 29.22 	WHERE id = 2000000389;
+UPDATE Batches		SET checkout_weight = checkout_weight - 1801 + 18.01 	WHERE id = 2000000441;
+
+UPDATE BatchOuts	SET checkout_weight = checkout_weight - 2789 + 27.89	WHERE id = 2000000951;
+UPDATE BatchOuts	SET checkout_weight = checkout_weight - 2458 + 24.58	WHERE id = 2000003123;
+UPDATE BatchOuts	SET checkout_weight = checkout_weight - 2458 + 24.58	WHERE id = 2000003123;
+UPDATE BatchOuts	SET checkout_weight = checkout_weight - 2752 + 27.52	WHERE id = 2000003150;
+UPDATE BatchOuts	SET checkout_weight = checkout_weight - 2752 + 27.52	WHERE id = 2000003150;
+UPDATE BatchOuts	SET checkout_weight = checkout_weight - 2781 + 27.81	WHERE id = 2000002759;
+UPDATE BatchOuts	SET checkout_weight = checkout_weight - 2922 + 29.22	WHERE id = 2000003081;
+UPDATE BatchOuts	SET checkout_weight = checkout_weight - 1801 + 18.01	WHERE id = 2000001735;
+
+UPDATE CheckOuts	SET checkout_amount = checkout_amount - (2789 + 27.89) *  4.80	WHERE id = 200765;
+UPDATE CheckOuts	SET checkout_amount = checkout_amount - (2458 + 24.58) * 14.00 	WHERE id = 202731;
+UPDATE CheckOuts	SET checkout_amount = checkout_amount - (2458 + 24.58) * 14.00	WHERE id = 202731;
+UPDATE CheckOuts	SET checkout_amount = checkout_amount - (2752 + 27.52) *  5.15	WHERE id = 202756;
+UPDATE CheckOuts	SET checkout_amount = checkout_amount - (2752 + 27.52) *  5.15	WHERE id = 202756;
+UPDATE CheckOuts	SET checkout_amount = checkout_amount - (2781 + 27.81) *  7.20	WHERE id = 202441;
+UPDATE CheckOuts	SET checkout_amount = checkout_amount - (2922 + 29.22) *  1.00	WHERE id = 202692;
+UPDATE CheckOuts	SET checkout_amount = checkout_amount - (1801 + 18.01) *  1.00	WHERE id = 201524;
+
+UPDATE CheckOuts	SET checkout_weight = checkout_weight - 2789 + 27.89	WHERE id = 200765;
+UPDATE CheckOuts	SET checkout_weight = checkout_weight - 2458 + 24.58	WHERE id = 202731;
+UPDATE CheckOuts	SET checkout_weight = checkout_weight - 2458 + 24.58	WHERE id = 202731;
+UPDATE CheckOuts	SET checkout_weight = checkout_weight - 2752 + 27.52	WHERE id = 202756;
+UPDATE CheckOuts	SET checkout_weight = checkout_weight - 2752 + 27.52	WHERE id = 202756;
+UPDATE CheckOuts	SET checkout_weight = checkout_weight - 2781 + 27.81	WHERE id = 202441;
+UPDATE CheckOuts	SET checkout_weight = checkout_weight - 2922 + 29.22	WHERE id = 202692;
+UPDATE CheckOuts	SET checkout_weight = checkout_weight - 1801 + 18.01	WHERE id = 201524;

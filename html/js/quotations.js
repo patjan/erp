@@ -178,20 +178,20 @@ JKY.set_add_new_row = function() {
 //	JKY.set_value	('jky-machine-name'		, '');
 //	JKY.set_value	('jky-dyer-id'			,  null);
 //	JKY.set_value	('jky-dyer-name'		, '');
-//	JKY.set_value	('jky-diameter'			, '0');
-//	JKY.set_value	('jky-weight-from'		, '0');
-//	JKY.set_value	('jky-weight-to'		, '0');
-//	JKY.set_value	('jky-width-from'		, '0');
-//	JKY.set_value	('jky-width-to'			, '0');
-//	JKY.set_value	('jky-peso'				, '12.5');
+//	JKY.set_value	('jky-diameter'			,  0);
+//	JKY.set_value	('jky-weight-from'		,  0);
+//	JKY.set_value	('jky-weight-to'		,  0);
+//	JKY.set_value	('jky-width-from'		,  0);
+//	JKY.set_value	('jky-width-to'			,  0);
+//	JKY.set_value	('jky-peso'				, 12.5);
 //	JKY.set_value	('jky-product-type'		, '');
 
-	JKY.set_value	('jky-quoted-amount'	, '0');
-	JKY.set_value	('jky-discount-amount'	, '0');
-	JKY.set_value	('jky-advanced-amount'	, '0');
-	JKY.set_value	('jky-total-estimaed'	, '0');
+	JKY.set_value	('jky-quoted-amount'	,  0);
+	JKY.set_value	('jky-discount-amount'	,  0);
+	JKY.set_value	('jky-advanced-amount'	,  0);
+	JKY.set_value	('jky-total-estimaed'	,  0);
 	JKY.set_value	('jky-payments'			, '');
-	JKY.set_value	('jky-remarks'			, '' );
+	JKY.set_value	('jky-remarks'			, '');
 };
 
 /**
@@ -212,22 +212,22 @@ JKY.get_form_set = function() {
 		+      ', contact_id=  ' + my_contact_id
 //		+      ', machine_id=  ' + my_machine_id
 //		+         ', dyer_id=  ' + my_dyer_id
-		+       ', quoted_at=  ' + JKY.inp_time		('jky-quoted-date'		)
-//		+   ', produced_date=  ' + JKY.inp_date		('jky-produced-date'	)
-		+  ', delivered_date=  ' + JKY.inp_date		('jky-delivered-date'	)
-//		+        ', diameter=  ' + JKY.get_value	('jky-diameter'			)
-//		+     ', weight_from=  ' + JKY.get_value	('jky-weight-from'		)
-//		+       ', weight_to=  ' + JKY.get_value	('jky-weight-to'		)
-//		+      ', width_from=  ' + JKY.get_value	('jky-width-from'		)
-//		+        ', width_to=  ' + JKY.get_value	('jky-width-to'			)
-//		+            ', peso=  ' + JKY.get_value	('jky-peso'				)
-//		+    ', product_type=\'' + JKY.get_value	('jky-product-type'		) + '\''
+		+       ', quoted_at=  ' + JKY.inp_time	('jky-quoted-date'		)
+//		+   ', produced_date=  ' + JKY.inp_date	('jky-produced-date'	)
+		+  ', delivered_date=  ' + JKY.inp_date	('jky-delivered-date'	)
+//		+        ', diameter=  ' + JKY.get_value('jky-diameter'			)
+//		+     ', weight_from=  ' + JKY.get_value('jky-weight-from'		)
+//		+       ', weight_to=  ' + JKY.get_value('jky-weight-to'		)
+//		+      ', width_from=  ' + JKY.get_value('jky-width-from'		)
+//		+        ', width_to=  ' + JKY.get_value('jky-width-to'			)
+//		+            ', peso=  ' + JKY.get_value('jky-peso'				)
+//		+    ', product_type=\'' + JKY.get_value('jky-product-type'		) + '\''
 
-		+   ', quoted_amount=  ' + JKY.get_value	('jky-quoted-amount'	)
-		+ ', discount_amount=  ' + JKY.get_value	('jky-discount-amount'	)
-		+ ', advanced_amount=  ' + JKY.get_value	('jky-advanced-amount'	)
-		+        ', payments=\'' + JKY.get_value	('jky-payments'			) + '\''
-		+         ', remarks=\'' + JKY.get_value	('jky-remarks'			) + '\''
+		+   ', quoted_amount=  ' + JKY.get_value('jky-quoted-amount'	)
+		+ ', discount_amount=  ' + JKY.get_value('jky-discount-amount'	)
+		+ ', advanced_amount=  ' + JKY.get_value('jky-advanced-amount'	)
+		+        ', payments=\'' + JKY.get_value('jky-payments'			) + '\''
+		+         ', remarks=\'' + JKY.get_value('jky-remarks'			) + '\''
 		;
 	return my_set;
 };
@@ -245,6 +245,20 @@ JKY.display_form = function() {
 	JKY.show('jky-action-print');
 	JKY.show('jky-action-copy');
 };
+
+JKY.process_copy = function(the_id, the_row) {
+	var my_set	= '  quoted_at =\'' + JKY.get_now() + '\''
+				+ ', quoted_pieces = ' + the_row.quoted_pieces
+				;
+	var my_data =
+		{ method	: 'update'
+		, table		: 'Quotations'
+		, set		: my_set
+		, where		: 'id = ' + the_id
+		};
+	JKY.ajax(true, my_data);
+	JKY.copy_lines(the_row.id, the_id);
+}
 
 JKY.process_delete = function(the_id, the_row) {
 	var my_data = '';

@@ -154,7 +154,7 @@ JKY.delete_order = function(the_this, the_id) {
 	})
 }
 
-JKY.copy_orders = function(the_id, the_osa_line_id) {
+JKY.Xcopy_orders = function(the_id, the_osa_line_id) {
 	JKY.line_tr = $(the_id).parent().parent();
 	var my_curr_tr	= JKY.line.tr;
 	var my_orders	= [];
