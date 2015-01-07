@@ -270,7 +270,6 @@ JKY.print_lines = function(the_id) {
 							+ '<td></td>'
 							+ '<td class="jky-print-pieces"		><b>' + my_row.peso			+ '</b></td>'
 							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_units	+ '</b></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.units		+ '</b></td>'
 							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_pieces+ '</b></td>'
 							+ '<td class="jky-print-pieces"		><b>' + my_row.discount		+ '</b></td>'
 							+ '</tr>'

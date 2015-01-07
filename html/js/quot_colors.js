@@ -401,7 +401,6 @@ JKY.print_colors = function(the_id) {
 							+ '<td class="jky-print-color-name"	>' + my_row.color_name		+ '</td>'
 							+ '<td></td>'
 							+ '<td class="jky-print-pieces"		>' + my_row.quoted_units	+ '</td>'
-							+ '<td class="jky-print-pieces"		>' + '($/Kg)'				+ '</td>'
 							+ '<td class="jky-print-pieces"		>' + my_row.quoted_price	+ '</td>'
 							+ '<td class="jky-print-pieces"		>' + my_row.discount		+ '</td>'
 							+ '</tr>'

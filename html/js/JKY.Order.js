@@ -22,31 +22,30 @@ JKY.Order = function() {
 
 	function my_load_data() {
 		var my_data =
-			{ method		: 'get_index'
-			, table			: 'Orders'
-			, filter		:  JKY.get_value(my_filter)
-			, display		: '10'
-			, order_by		:  my_order_by
+			{ method	: 'get_index'
+			, table		: 'Orders'
+			, select	: 'All'
+			, filter	:  JKY.get_value(my_filter)
+			, display	: '10'
+			, order_by	:  my_order_by
 			};
-		JKY.ajax(false, my_data, my_load_data_success);
-	}
-
-	function my_load_data_success(response) {
-		var my_rows	= response.rows;
-		var my_html = '';
-		for(var i=0; i<my_rows.length; i++) {
-			var my_row = my_rows[i];
-			my_html += '<tr onclick="JKY.Order.click_row(this, ' + my_row.id + ')">'
-					+  '<td class="jky-search-order-number"		>' +				 my_row.order_number	+ '</td>'
-					+  '<td class="jky-search-customer-name"	>' +				 my_row.customer_name	+ '</td>'
-					+  '<td class="jky-search-product-name"		>' +				 my_row.product_name	+ '</td>'
-					+  '<td class="jky-search-ordered-date"		>' + JKY.short_date	(my_row.ordered_at	  ) + '</td>'
-					+  '<td class="jky-search-ordered-pieces"	>' +				 my_row.ordered_pieces	+ '</td>'
-					+  '</tr>'
-					;
-		}
-		JKY.set_html(my_search_body, my_html);
-		JKY.show_modal(my_layer);
+		JKY.ajax(false, my_data, function(the_response) {
+			var my_rows	= the_response.rows;
+			var my_html = '';
+			for(var i=0; i<my_rows.length; i++) {
+				var my_row = my_rows[i];
+				my_html += '<tr onclick="JKY.Order.click_row(this, ' + my_row.id + ')">'
+						+  '<td class="jky-search-order-number"		>' +				 my_row.order_number	+ '</td>'
+						+  '<td class="jky-search-customer-name"	>' +				 my_row.customer_name	+ '</td>'
+						+  '<td class="jky-search-product-name"		>' +				 my_row.product_name	+ '</td>'
+						+  '<td class="jky-search-ordered-date"		>' + JKY.short_date	(my_row.ordered_at	  ) + '</td>'
+						+  '<td class="jky-search-ordered-pieces"	>' +				 my_row.ordered_pieces	+ '</td>'
+						+  '</tr>'
+						;
+			}
+			JKY.set_html(my_search_body, my_html);
+			JKY.show_modal(my_layer);
+		})
 	}
 
 	function my_click_row(the_index, the_id) {

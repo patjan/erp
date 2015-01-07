@@ -963,8 +963,8 @@ private function set_new_fields($table) {
 	if ($table == 'OSA_Lines'		)	$return = ',   Product.product_name		AS   product_name';
 	if ($table == 'Pieces'			)	$return = ',    Orderx.order_number		AS     order_number'
 												. ',   Revised.nick_name		AS   revised_name'
-												. ',   Weighed.nick_name		AS   weighed_name'
-												. ',   Product.product_name		AS   product_name';
+												. ',   Weighed.nick_name		AS   weighed_name';
+//												. ',   Product.product_name		AS   product_name';
 	if ($table == 'Products'		)	$return = ',    Parent.product_name		AS    parent_name';
 	if ($table == 'Purchases'		)	$return = ',  Supplier.nick_name		AS  supplier_name';
 	if ($table == 'PurchaseLines'	)	$return = ', Purchases.purchase_number	AS  purchase_number'
@@ -1139,8 +1139,8 @@ private function set_left_joins($table) {
 	if ($table == 'OSA_Lines'		)	$return = '  LEFT JOIN    Products AS Product	ON   Product.id	=	     OSA_Lines.product_id';
 	if ($table == 'Pieces'			)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		    Pieces.order_id'
 												. '  LEFT JOIN    Contacts AS Revised	ON   Revised.id	=		    Pieces.revised_by'
-												. '  LEFT JOIN    Contacts AS Weighed	ON   Weighed.id	=		    Pieces.weighed_by'
-												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		    Orderx.product_id';
+												. '  LEFT JOIN    Contacts AS Weighed	ON   Weighed.id	=		    Pieces.weighed_by';
+//												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		    Orderx.product_id';
 	if ($table == 'Products'		)	$return = '  LEFT JOIN    Products AS Parent	ON    Parent.id	=		  Products.parent_id';
 	if ($table == 'Purchases'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Purchases.supplier_id';
 	if ($table == 'PurchaseLines'	)	$return = '  LEFT JOIN   Purchases  			ON Purchases.id	=	 PurchaseLines.parent_id'
@@ -1797,6 +1797,7 @@ private function set_where($table, $filter) {
 		if ($table == 'Pieces') {
 			if ($name == 'barcode'
 			or	$name == 'product_name'
+			or	$name == 'produced_by'
 			or	$name == 'checkin_at'
 			or	$name == 'returned_at'
 			or	$name == 'checkout_at'
@@ -1825,6 +1826,13 @@ private function set_where($table, $filter) {
 					return ' AND Pieces.weighed_by IS NULL';
 				}else{
 					return ' AND Weighed.nick_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'order_number') {
+				if ($value == '"%null%"') {
+					return ' AND Pieces.order_id IS NULL';
+				}else{
+					return ' AND Orderx.order_number LIKE ' . $value;
 				}
 			}
 		}
@@ -2521,6 +2529,7 @@ private function set_where($table, $filter) {
 	if ($table ==  'Pieces') {
 		$return = ' Pieces.barcode				LIKE ' . $filter
 			. ' OR  Pieces.product_name			LIKE ' . $filter
+			. ' OR  Pieces.produced_by			LIKE ' . $filter
 			. ' OR  Pieces.checkin_at			LIKE ' . $filter
 			. ' OR  Pieces.returned_at			LIKE ' . $filter
 			. ' OR  Pieces.checkout_at			LIKE ' . $filter
@@ -2533,6 +2542,7 @@ private function set_where($table, $filter) {
 			. ' OR  Pieces.remarks				LIKE ' . $filter
 			. ' OR  Revised.nick_name			LIKE ' . $filter
 			. ' OR  Weighed.nick_name			LIKE ' . $filter
+			. ' OR  Orderx.order_number			LIKE ' . $filter
 			;
 		}
 

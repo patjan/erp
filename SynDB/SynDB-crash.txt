@@ -1,0 +1,39 @@
+2015-01-05 07:15:17.297004 
+
+2015-01-05 07:15:17.326622 start of program
+
+2015-01-05 07:15:17.413779 number: 1, host: 179.153.73.113
+
+2015-01-05 07:15:47.509568 error, Server Host 1 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '179.153.73.113' (4)
+
+2015-01-05 07:15:47.510132 number: 2, host: 201.81.30.248
+
+2015-01-05 07:16:17.608697 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '201.81.30.248' (4)
+
+2015-01-05 07:16:17.610168 end of program
+
+2015-01-05 07:20:12.885414 
+
+2015-01-05 07:20:12.885932 start of program
+
+2015-01-05 07:20:12.965291 number: 1, host: 179.153.73.113
+
+2015-01-05 07:20:43.060674 error, Server Host 1 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '179.153.73.113' (4)
+
+2015-01-05 07:20:43.061057 number: 2, host: 201.81.30.248
+
+2015-01-05 07:21:13.159861 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '201.81.30.248' (4)
+
+
+2015-01-05 07:21:13.172373 error, Local Server not connected: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+
+
+2015-01-05 07:21:13.172724 end of program
+
+2015-01-05 07:25:11.683456 
+
+2015-01-05 07:25:11.695242 start of program
+
+2015-01-05 07:25:11.711765 running since started 2015-01-05 07:20:12.963234
+
+2015-01-05 07:25:11.712175 end of program

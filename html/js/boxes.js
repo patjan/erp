@@ -48,6 +48,8 @@ JKY.set_initial_values = function() {
 	$('#jky-app-select option').eq(1).prop('selected', true);
 	$('#jky-app-select').change();
 
+	$('#jky-batchin-filter'	).KeyUpDelay(JKY.BatchIn.load_data);
+
 	$('#jky-number-of-boxes').ForceIntegerOnly();
 	$('#jky-number-of-cones').ForceIntegerOnly();
 	$('#jky-average-weight' ).ForceNumericOnly();

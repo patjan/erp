@@ -71,24 +71,22 @@ JKY.Product = function() {
 			, display	: '10'
 			, order_by	:  my_order_by
 			};
-		JKY.ajax(false, my_data, my_load_data_success);
-	}
-
-	function my_load_data_success(response) {
-		var my_rows	= response.rows;
-		var my_html = '';
-		for(var i=0; i<my_rows.length; i++) {
-			var my_row = my_rows[i];
-			my_html += '<tr onclick="JKY.Product.click_row(this, ' + my_row.id + ')">'
-					+  '<td class="jky-search-product-name"		>' + my_row.product_name	+ '</td>'
-					+  '<td class="jky-search-product-type"		>' + my_row.product_type	+ '</td>'
-					+  '<td class="jky-search-product-peso"		>' + my_row.peso			+ '</td>'
-					+  '<td class="jky-search-product-units"	>' + my_row.units			+ '</td>'
-					+  '</tr>'
-					;
-		}
-		JKY.set_html(my_search_body, my_html);
-		JKY.show_modal(my_layer);
+		JKY.ajax(false, my_data, function(the_response) {
+			var my_rows	= the_response.rows;
+			var my_html = '';
+			for(var i=0; i<my_rows.length; i++) {
+				var my_row = my_rows[i];
+				my_html += '<tr onclick="JKY.Product.click_row(this, ' + my_row.id + ')">'
+						+  '<td class="jky-search-product-name"		>' + my_row.product_name	+ '</td>'
+						+  '<td class="jky-search-product-type"		>' + my_row.product_type	+ '</td>'
+						+  '<td class="jky-search-product-peso"		>' + my_row.peso			+ '</td>'
+						+  '<td class="jky-search-product-units"	>' + my_row.units			+ '</td>'
+						+  '</tr>'
+						;
+			}
+			JKY.set_html(my_search_body, my_html);
+			JKY.show_modal(my_layer);
+		})
 	}
 
 	function my_click_row(the_index, the_id) {

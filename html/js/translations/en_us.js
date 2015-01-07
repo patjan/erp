@@ -488,6 +488,7 @@ JKY.translations =
 , "Percent":"Percent"
 , "Permissions":"Permissions"
 , "Peso":"Peso"
+, "Peso<br>Kg/peça":"Peso<br>Kg/peça"
 , "Peso<br>Kg/Unit":"Peso<br>Kg/Unit"
 , "Phone":"Phone"
 , "Phones":"Phones"

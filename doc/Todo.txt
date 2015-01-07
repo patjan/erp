@@ -4,16 +4,16 @@ Todo
 (done)	- d3
 (done)	- thumb
 (done)	- email
-(done)		- log-help
-(done)		- help-sent
+(done)	- log-help
+(done)	- help-sent
 (done)	- expiration
 		- single script
 		- copy ftp-photos & ftp-draws
 (done)	- new layers: center, draggable e resizable
 (done)	- add [peso] [units] on [Products]
-		- update ProdPrices (cronejob daily)
-		- alteracoes de caixas: localizacao, ...
-		- alteracoes de caixas: lote
+(done)	- update ProdPrices (cronejob daily)
+(done)	- alteracoes de caixas: localizacao, ...
+(done)	- alteracoes de caixas: lote
 
 
 V2		- adicionar pedido por caixa
@@ -41,17 +41,22 @@ done	- display correctly OSA(list)
 done	- limit box weight upto 70 Kg or divide by 100
 done	- add new on [Config] [System Controls] [Max Weight For Thread Box] = 70 kg
 
-		- input Location to store good pieces [jky-checkin-location] and bad pieces
-		  quantos Locations (+ de um)?
+done	- input Location to store good pieces [jky-checkin-location] and bad pieces
+			quantos Locations (+ de um)?
 		
 Marcelo:
+
+		Transferir de DL Teste para DL: Finishing Types
+		Deletar [Galao] do [Product Types]
+		Transferir de DL Teste para DL: Washing Instructions
+
 
 1.	OK	Instalar servidor de Teste da DL
 2.	OK	Criar companhias Matriz e Filial, contabilidade pelo Matriz, NFe pelo Filial
 3.	OK	Definir a tela de Receituario (simplificar)
 4.  OK	Testar fase 1 ERP (Producao, Ajuda, Admin)
 5.	OK	Testar fase 2 ERP (Fios, Caixas)
-6.		Testar fase 3 ERP (Planejamento, Pecas)
+6.	OK	Testar fase 3 ERP (Planejamento, Pecas)
 7.		Testar fase 4 ERP (Tinturarias
 8.		Definir o sistema NFe para emitir NF para Tinturarias
 

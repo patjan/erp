@@ -419,7 +419,8 @@ JKY.print_row = function(the_id) {
 //window.print();
 	var my_html = ''
 		+ "<table><tr>"
-		+ "<td style='width:250px; font-weight:bold;'>" + JKY.Session.get_value('company_name') + "</td>"
+//		+ "<td style='width:250px; font-weight:bold;'>" + JKY.Session.get_value('company_name') + "</td>"
+		+ "<td style='width:250px; font-weight:bold;'>" + "</td>"
 		+ "<td style='width:330px; font-weight:bold;'>" + "</td>"
 		+ "<td style='width:120px; text-align:right;'><spa	n>Date</span>: " + JKY.out_date(my_row.quoted_at) + "</td>"
 		+ "</tr></table>"
@@ -431,6 +432,14 @@ JKY.print_row = function(the_id) {
 		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>        Customer</span>:</td><td id='jky-print-customer-name'	class='jky-form-value'></td></tr>"
 		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>         Contact</span>:</td><td id='jky-print-contact-name'		class='jky-form-value'></td></tr>"
 //		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>			Machine</span>:</td><td id='jky-print-machine-name'		class='jky-form-value'></td></tr>"
+//		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>			   Dyer</span>:</td><td id='jky-print-dyer-name'		class='jky-form-value'></td></tr>"
+		+ "</table></td>"
+
+		+ "<td width=40%><table>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>  Quoted Amount</span>:</td><td id='jky-print-quoted-amount'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>Discount Amount</span>:</td><td id='jky-print-discount-amount'	class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>Advanced Amount</span>:</td><td id='jky-print-advanced-amount'	class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>     Sub Amount</span>:</td><td id='jky-print-sub-amount'		class='jky-form-value'></td></tr>"
 //		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>			   Dyer</span>:</td><td id='jky-print-dyer-name'		class='jky-form-value'></td></tr>"
 		+ "</table></td>"
 
@@ -475,13 +484,13 @@ JKY.print_row = function(the_id) {
 
 		+ "<table style='width:700px; border:1px solid black;'>"
 		+ "<thead><tr class='jky-print-lines'>"
-		+	'<td								><span>Product				</span></td>'
-		+	'<td								><span>  Extra				</span></td>'
-		+	'<td								><span>  Color				</span></td>'
-		+	'<td class="jky-print-pieces"		><span>   Peso<br>Kg/peça	</span></td>'
-		+	'<td class="jky-print-pieces"		><span> Quoted<br>Units		</span></td>'
-		+	'<td class="jky-print-pieces"		><span>  Units<br>/Piece	</span></td>'
-		+	'<td class="jky-print-pieces"		><span> Quoted<br>Pieces	</span></td>'
+		+	'<td								><span> Product				</span></td>'
+		+	'<td								><span>   Extra				</span></td>'
+		+	'<td								><span>   Color				</span></td>'
+		+	'<td class="jky-print-pieces"		><span>    Peso<br>Kg/peça	</span></td>'
+		+	'<td class="jky-print-pieces"		><span>  Quoted<br>Units	</span></td>'
+		+	'<td class="jky-print-pieces"		><span>  Quoted<br>Pieces	</span></td>'
+		+	'<td class="jky-print-pieces"		><span>Discount<br>$ or %	</span></td>'
 		+ "<tr><thead>"
 		+ "<tbody id='jky-print-lines-body'></table>"
 		+ "</table>"
@@ -500,6 +509,12 @@ JKY.print_row = function(the_id) {
 	JKY.set_html('jky-print-contact-name'		, my_row.contact_name	+ ' : ' + my_row.contact_mobile	);
 //	JKY.set_html('jky-print-machine-name'		, my_row.machine_name		);
 //	JKY.set_html('jky-print-dyer-name'			, my_row.dyer_name			);
+
+	var my_sub_amount = (my_row.quoted_amount - my_row.discount_amount - my_row.advanced_amount).toFixed(2);
+	JKY.set_html('jky-print-quoted-amount'		, my_row.quoted_amount		);
+	JKY.set_html('jky-print-discount-amount'	, my_row.discount_amount	);
+	JKY.set_html('jky-print-advanced-amount'	, my_row.advanced_amount	);
+	JKY.set_html('jky-print-sub-amount'			, my_sub_amount				);
 /*
 	JKY.set_html('jky-print-punho-percent'		, my_row.punho_percent		);
 	JKY.set_html('jky-print-punho-units'		, my_row.punho_units		);
@@ -519,7 +534,8 @@ JKY.print_row = function(the_id) {
 
 	JKY.set_html('jky-print-lines-body'			, JKY.print_lines(the_id));
 
-	JKY.set_html('jky-print-remarks'			, JKY.nl2br(my_row.remarks));
+	var my_remarks = JKY.get_config_value('Remarks', 'Quotation');
+	JKY.set_html('jky-print-remarks'			, JKY.nl2br(my_remarks));
 
 //	JKY.show('jky-printable');
 	$("#jky-printable").print();

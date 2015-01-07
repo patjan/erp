@@ -638,14 +638,13 @@ if (my_first == true) {
 					, set	:  my_set.substr(2)
 					, where :  my_args.table_name + '.id = ' + $(this).attr('row_id')
 					};
-				JKY.ajax(true, my_data, my_process_replace_success);
-			});
+				JKY.ajax(true, my_data, function(the_response) {
+					JKY.display_message('Record replaced, ' + the_response.message);
+					JKY.Changes.reset();
+					my_display_list();
+				})
+			})
 		}
-		my_display_list();
-	}
-
-	function my_process_replace_success(the_response) {
-		JKY.display_message('Record replaced, ' + the_response.message);
 	}
 
 /**
@@ -659,12 +658,10 @@ if (my_first == true) {
 			, set	:  my_set
 			, where :  my_args.table_name + '.id = ' + JKY.row.id
 			};
-		JKY.ajax(true, my_data, my_save_remarks_success);
-	}
-
-	function my_save_remarks_success(response) {
-		JKY.display_message('Remarks saved, ' + response.message);
-		JKY.row = JKY.get_row(my_args.table_name, JKY.row.id);
+		JKY.ajax(true, my_data, function(the_response) {
+			JKY.display_message('Remarks saved, ' + the_response.message);
+			JKY.row = JKY.get_row(my_args.table_name, JKY.row.id);
+		})
 	}
 
 /**
