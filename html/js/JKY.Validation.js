@@ -34,7 +34,7 @@ JKY.Validation = function() {
 		my_error += my_is_name		('jky-product-name'	, 'Product Name', 'Products'	, 'product_name');
 
 //		my_error += my_is_required	('jky-contact-company'	, 'Company'			);
-		my_error += my_is_required	('jky-customer-name'	, 'Customer Name'	);
+//		my_error += my_is_required	('jky-customer-name'	, 'Customer Name'	);
 		my_error += my_is_required	('jky-first-name'		, 'First Name'		);
 		my_error += my_is_required	('jky-last-name'		, 'Last Name'		);
 /*

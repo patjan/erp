@@ -43,8 +43,8 @@ JKY.set_all_events = function() {
 //	$('#jky-produced-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-delivered-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 
-	$('#jky-action-gen-sale'	).click( function() {JKY.generate_order			();});
-	$('#jky-action-generate'	).click( function() {JKY.generate_osa			();});
+	$('#jky-action-gen-sale'	).click( function() {JKY.generate_sale		();});
+	$('#jky-action-generate'	).click( function() {JKY.generate_osa		();});
 	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-lines-add-new'		).click (function()	{JKY.insert_line		();});
 
@@ -282,31 +282,41 @@ JKY.process_delete = function(the_id, the_row) {
 };
 
 /* -------------------------------------------------------------------------- */
-JKY.generate_order = function() {
+JKY.generate_sale = function() {
+	var my_error = '';
+	var my_customer_id = JKY.get_value('jky-customer-id');
+	if (!my_customer_id)		my_error += '<br>' + JKY.t('Customer') + ' ' + JKY.t('is required');
 	var my_quoted_pieces = JKY.get_value_by_id('Quotations', 'quoted_pieces', JKY.row.id);
-	if (my_quoted_pieces <= 0) {
-		JKY.display_message('Order cannot be generated');
-		JKY.display_message('because there is not any Quoted Piece');
+	if (my_quoted_pieces <= 0)	my_error += '<br>' + JKY.t('there is not any Quoted Piece');
+
+	if (!JKY.is_empty(my_error)) {
+		JKY.display_message(JKY.t('Sale cannot be generated, because'));
+		JKY.display_message(my_error);
 		return;
 	}
 
 	var my_data =
 		{ method	: 'generate'
-		, table		: 'Order'
+		, table		: 'Sale'
 		, id		:  JKY.row.id
 		}
 	JKY.ajax(false, my_data, function(the_response) {
-		JKY.display_message('Order row generated: ' + JKY.row.id);
+		JKY.display_message('Sale row generated: ' + JKY.row.id);
 		JKY.App.display_row();
 	})
 };
 
 /* -------------------------------------------------------------------------- */
 JKY.generate_osa = function() {
+	var my_error = '';
+	var my_customer_id = JKY.get_value('jky-customer-id');
+	if (!my_customer_id)		my_error += '<br>' + JKY.t('Customer') + ' ' + JKY.t('is required');
 	var my_quoted_pieces = JKY.get_value_by_id('Quotations', 'quoted_pieces', JKY.row.id);
-	if (my_quoted_pieces <= 0) {
-		JKY.display_message('OSA cannot be generated');
-		JKY.display_message('because there is not any Quoted Piece');
+	if (my_quoted_pieces <= 0)	my_error += '<br>' + JKY.t('there is not any Quoted Piece');
+
+	if (!JKY.is_empty(my_error)) {
+		JKY.display_message(JKY.t('OSA cannot be generated, because'));
+		JKY.display_message(my_error);
 		return;
 	}
 
@@ -436,11 +446,11 @@ JKY.print_row = function(the_id) {
 		+ "</table></td>"
 
 		+ "<td width=40%><table>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>  Quoted Amount</span>:</td><td id='jky-print-quoted-amount'		class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>Discount Amount</span>:</td><td id='jky-print-discount-amount'	class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>Advanced Amount</span>:</td><td id='jky-print-advanced-amount'	class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>     Sub Amount</span>:</td><td id='jky-print-sub-amount'		class='jky-form-value'></td></tr>"
-//		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>			   Dyer</span>:</td><td id='jky-print-dyer-name'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>  Quoted Amount</span>:</td><td id='jky-print-quoted-amount'		class='jky-print-amount'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>Discount Amount</span>:</td><td id='jky-print-discount-amount'	class='jky-print-amount'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>Advanced Amount</span>:</td><td id='jky-print-advanced-amount'	class='jky-print-amount'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>     Sub Amount</span>:</td><td id='jky-print-sub-amount'		class='jky-print-amount'></td></tr>"
+//		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>			  Dyer</span>:</td><td id='jky-print-dyer-name'			class='jky-form-value'></td></tr>"
 		+ "</table></td>"
 
 		+ "</tr>"

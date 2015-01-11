@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS Contacts
 , is_transport		CHAR(3)				DEFAULT 'No'
 , is_taxable		CHAR(3)				DEFAULT 'Yes'
 , icms_exemption	CHAR(3)				DEFAULT 'No'
+, deduct_cone		CHAR(3)				DEFAULT 'Yes'
 , photo				VARCHAR(255)		DEFAULT NULL
 , nick_name			VARCHAR(255)		DEFAULT NULL
 , first_name		VARCHAR(255)		DEFAULT NULL
@@ -103,3 +104,5 @@ ALTER TABLE Contacts	ADD COLUMN payment_type			VARCHAR(255)	DEFAULT NULL	AFTER t
 ALTER TABLE Contacts	ADD COLUMN interest_rate		DECIMAL(5,2)	DEFAULT NULL	AFTER total_paid;
 ALTER TABLE Contacts	ADD COLUMN nextel				VARCHAR(255)	DEFAULT NULL 	AFTER fax;
 ALTER TABLE Contacts	ADD COLUMN skype				VARCHAR(255)	DEFAULT NULL 	AFTER fax;
+
+ALTER TABLE Contacts	ADD COLUMN deduct_cone			CHAR(3)			DEFAULT 'Yes'	AFTER icms_exemption;

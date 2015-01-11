@@ -1,0 +1,22 @@
+Product:
+
+Codigo:		
+
+   NCM:		Config - Thread Composition
+  CFOP:		Config - Thread Composition
+  
+  Quantity:		4 decimal
+Unit Price:		4 decimal
+
+	Origem:
+
+       CST ICMS:
+        CST IPI:
+   Aliquota IPI
+   Aliquota PIS:
+ALiquota COFINS:	
+
+
+  Customers:
+  
+Deduct Cone: Y / N

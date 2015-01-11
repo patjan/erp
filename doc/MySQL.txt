@@ -139,3 +139,9 @@ SELECT *
 	Edit Edit 	Copy Copy 	Delete Delete 	2000164937 	100039 	2014-12-11 08:00:28 	Batches 	2000001016 	delete 	id:2000001016, created_by:, created_at:, updated_b...
 	Edit Edit 	Copy Copy 	Delete Delete 	2000166742 	100039 	2014-12-12 10:06:34 	Batches 	2000001455 	delete 	id:2000001455, created_by:, created_at:, updated_b...
 With selected: Check All / Uncheck All With selected:
+
+
+
+SELECT status, count(*)
+  FROM Boxes
+ GROUP BY status

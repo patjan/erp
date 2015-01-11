@@ -1,24 +1,33 @@
 #	Updated on 2013-10-31
 
+TRUNCATE TABLE 	LoadOuts		;
+TRUNCATE TABLE 	LoadQuotations	;
+TRUNCATE TABLE 	LoadSales		;
+TRUNCATE TABLE 	LoadSets		;
+TRUNCATE TABLE 	Orders			;
+TRUNCATE TABLE 	OrdThreads		;
+TRUNCATE TABLE 	OSAs			;
+TRUNCATE TABLE 	OSA_Lines		;
+TRUNCATE TABLE 	Pieces			;
+TRUNCATE TABLE 	Quotations		;
+TRUNCATE TABLE 	QuotColors		;
+TRUNCATE TABLE 	QuotLines		;
+TRUNCATE TABLE 	TDyerColors		;
+TRUNCATE TABLE 	TDyers			;
+TRUNCATE TABLE 	TDyerThreads	;
+
+
 TRUNCATE TABLE	Batches			;
 TRUNCATE TABLE 	BatchOuts		;
 TRUNCATE TABLE 	BatchSets		;
 TRUNCATE TABLE 	Boxes			;
 TRUNCATE TABLE 	CheckOuts		;
 TRUNCATE TABLE 	Incomings		;
-TRUNCATE TABLE 	Orders			;
-TRUNCATE TABLE 	OrdThreads	;
-TRUNCATE TABLE 	Pieces			;
+TRUNCATE TABLE 	LoadIns			;
 TRUNCATE TABLE 	PurchaseLines	;
 TRUNCATE TABLE 	Purchases		;
-TRUNCATE TABLE 	Quotations		;
-TRUNCATE TABLE 	QuotColors		;
-TRUNCATE TABLE 	QuotLines		;
 TRUNCATE TABLE 	ReqLines		;
 TRUNCATE TABLE 	Requests		;
-TRUNCATE TABLE 	TDyerColors		;
-TRUNCATE TABLE 	TDyers			;
-TRUNCATE TABLE 	TDyerThreads	;
 
 DELETE FROM History	WHERE parent_name = 'Batches'		;
 DELETE FROM History	WHERE parent_name = 'BatchOuts'		;

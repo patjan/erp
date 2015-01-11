@@ -356,3 +356,5 @@ ALTER TABLE Orders			ADD		color_id				BIGINT			DEFAULT NULL	AFTER product_id;
 ALTER TABLE Orders			ADD		location				VARCHAR(4)		DEFAULT NULL	AFTER returned_weight;
 /* -- 2015/01/01	*/
 ALTER TABLE LoadOuts		ADD COLUMN remarks				TEXT			DEFAULT NULL	AFTER returned_weight;
+/* -- 2015/01/10	*/
+ALTER TABLE Contacts	ADD COLUMN deduct_cone			CHAR(3)			DEFAULT 'Yes'	AFTER icms_exemption;

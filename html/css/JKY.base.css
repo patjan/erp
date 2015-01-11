@@ -581,6 +581,7 @@ li .arrow span {
 .jky-form-zip			{width: 80px; text-align:left   !important;}
 
 .jky-td-action				{width: 35px; text-align:center !important; padding:0 3px !important;}
+.jky-td-amount				{width: 85px; text-align:right  !important;}
 .jky-td-barcode				{width:105px; text-align:center !important;}
 .jky-td-barcode		input	{width:100px; text-align:center !important;}
 .jky-td-batch				{width:100px;}

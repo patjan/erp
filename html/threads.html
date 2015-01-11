@@ -70,7 +70,7 @@
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
 			<li id='jky-tab-balance'		class='active'	><a href='#jky-pane-balance'			data-toggle='tab'><span>Balance			</span></a></li>
-			<li	id='jky-tab-notes'							><a href='#jky-notes'					data-toggle='tab'><span>Notes			</span></a></li>
+			<li	id='jky-tab-batchins'						><a href='#jky-pane-batchins'			data-toggle='tab'><span>Incomings		</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
@@ -84,25 +84,29 @@
 							<th class='jky-td-weight'	><span>Balance		</span></th>
 							<th class='jky-td-weight'	><span>Check In		</span></th>
 							<th class='jky-td-location'	><span>Location		</span></th>
-							<th class='jky-td-name'		><span>Supplier		</span></th>
+							<th class='jky-td-name-s'	><span>Supplier		</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-balance-body'></tbody>
-<!--
-					<tfoot>
-						<tr>
-							<td    id='jky-comp-add-new' class='jky-td-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
-							<td class='jky-td-percent'	><input id='jky-comp-total' disabled /></td>
-							<td class='jky-td-name'		><span>Total</span></td>
-						</tr>
-					</tfoot>
--->
 				</table>
 			</div>
 
-			<div id='jky-notes' class='tab-pane'>
-				<div class='jky-left'>
-				</div>
+			<div id='jky-pane-batchins' class='tab-pane'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<th class='jky-td-date'		><span> Invoice<br>Date		</span></th>
+							<th class='jky-td-date'		><span>Received<br>Date		</span></th>
+							<th class='jky-td-name-s'	><span>            Supplier	</span></th>
+							<th class='jky-td-number'	><span>            NFe DL	</span></th>
+							<th class='jky-td-number'	><span>            NFe TM	</span></th>
+							<th class='jky-td-boxes'	><span>            Boxes	</span></th>
+							<th class='jky-td-weight'	><span>            Weight	</span></th>
+							<th class='jky-td-amount'	><span>            Amount	</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-batchins-body'></tbody>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -113,3 +117,4 @@
 
 <script src='js/threads.js'></script>
 <script src='js/batches_balance.js'></script>
+<script src='js/JKY.BatchIns.js'></script>

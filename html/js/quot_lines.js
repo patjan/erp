@@ -265,13 +265,13 @@ JKY.print_lines = function(the_id) {
 						var my_row = my_rows[i];
 						my_html  += ''
 							+ '<tr class="jky-bold">'
-							+ '<td								><b>' + my_row.product_name	+ '</b></td>'
-							+ '<td class="jky-print-name-s"		><b>' + my_row.remarks		+ '</b></td>'
+							+ '<td class="jky-print-name"	>' + my_row.product_name	+ '</td>'
+							+ '<td class="jky-print-name-s"	>' + my_row.remarks			+ '</td>'
 							+ '<td></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.peso			+ '</b></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_units	+ '</b></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_pieces+ '</b></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.discount		+ '</b></td>'
+							+ '<td class="jky-print-pieces"	>' + my_row.peso			+ '</td>'
+							+ '<td class="jky-print-pieces"	>' + my_row.quoted_units	+ '</td>'
+							+ '<td class="jky-print-pieces"	>' + my_row.quoted_pieces	+ '</td>'
+							+ '<td class="jky-print-pieces"	>' + my_row.discount		+ '</td>'
 							+ '</tr>'
 							;
 						my_html  += JKY.print_colors(my_row.id);

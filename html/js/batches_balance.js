@@ -42,7 +42,7 @@ JKY.generate_batch = function(the_row) {
 				+ '<td class="jky-td-weight"	>' + the_row.balance_weight		+ '</td>'
 				+ '<td class="jky-td-weight"	>' + the_row.checkin_weight		+ '</td>'
 				+ '<td class="jky-td-location"	>' + the_row.checkin_location	+ '</td>'
-				+ '<td class="jky-td-name"		>' + the_row.supplier_name		+ '</td>'
+				+ '<td class="jky-td-name-s"	>' + the_row.supplier_name		+ '</td>'
 				+ '</tr>'
 				;
 	return my_html;

@@ -1001,7 +1001,11 @@ private function set_new_fields($table) {
 	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name		AS  supplier_name';
 	if ($table == 'Batches'			)	$return = ',   Threads.name				AS           name'
 												. ', Incomings.incoming_number	AS  incoming_number'
+												. ', Incomings.nfe_dl			AS       nfe_dl'
+												. ', Incomings.nfe_tm			AS       nfe_tm'
+												. ', Incomings.received_at		AS  received_at'
 												. ', Incomings.invoice_date		AS   invoice_date'
+												. ',  Supplier.nick_name		AS  supplier_name'
 												. ', Purchases.purchase_number	AS  purchase_number';
 	if ($table == 'Boxes'			)	$return = ',   Batches.batch			AS     batch_code'
 												. ',    Parent.barcode			AS           parent'
@@ -1167,6 +1171,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Contacts AS Transport	ON Transport.id	=		 ShipDyers.transport_id';
 	if ($table == 'Incomings'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Incomings.supplier_id';
 	if ($table == 'Batches'			)	$return = '  LEFT JOIN   Incomings  			ON Incomings.id	=		   Batches.incoming_id'
+												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Incomings.supplier_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=		   Batches.thread_id'
 												. '  LEFT JOIN PurchaseLines AS PLines  ON    PLines.id	=		   Batches.purchase_line_id'
 												. '  LEFT JOIN   Purchases				ON Purchases.id	=		    PLines.parent_id';
@@ -2903,6 +2908,7 @@ private function insert($data) {
 		case('Quotations'	)	: $set .= ', quotation_number = ' . $my_id; break;
 		case('Pieces'		)	: $set .=          ', barcode = ' . $my_id; break;
 		case('Requests'		)	: $set .=           ', number = ' . $my_id; break;
+		case('Sales'		)	: $set .=      ', sale_number = ' . $my_id; break;
 		case('ShipDyers'	)	: $set .=  ', shipdyer_number = ' . $my_id; break;
 		case('TDyers'		)	: $set .=     ', tdyer_number = ' . $my_id; break;
 	}
@@ -5013,7 +5019,8 @@ private function refresh($data) {
 		. '  FROM Batches'
 		. '  LEFT JOIN Incomings ON Incomings.id = Batches.incoming_id'
 		. ' WHERE Batches.status = "Active"'
-		. '   AND DATE(Incomings.received_at) <= @cut_off_date'
+//		. '   AND DATE(Incomings.received_at) <= @cut_off_date'
+		. '   AND Incomings.invoice_date <= "@cut_off_date"'
 		. ' GROUP BY thread_id, supplier_id'
 		. ';'
 

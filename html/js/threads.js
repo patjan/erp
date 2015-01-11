@@ -53,7 +53,7 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-td-name-l"	>' +				 the_row.name				+ '</td>'
+		+  '<td class="jky-td-name-s"	>' +				 the_row.name				+ '</td>'
 		+  '<td class="jky-td-code"		>' + JKY.fix_null	(the_row.ncm			)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 the_row.thread_group		+ '</td>'
 //		+  '<td class="jky-td-name-s"	>' +				 the_row.thread_color		+ '</td>'
@@ -72,7 +72,10 @@ JKY.set_form_row = function(the_row) {
 //	JKY.set_value	('jky-thread-color'		,				 the_row.thread_color	);
 	JKY.set_option	('jky-composition'		,				 the_row.composition	);
 
+//	if ($('#jky-tab-balance'	).hasClass('active'))	JKY.display_balance();
+//	if ($('#jky-tab-batchins'	).hasClass('active'))	JKY.BatchIns	.display();
 	JKY.display_balance();
+	JKY.BatchIns.display();
 };
 
 /**

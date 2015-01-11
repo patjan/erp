@@ -26,14 +26,14 @@ function JKY_generate_osa($the_id) {
 		. ',       updated_at="' . get_time() . '"'
 		. ',       osa_number='  . $my_osa_id
 		. ',     quotation_id='  . $the_id
-		. ',      customer_id='  . $my_quotation['customer_id']
-		. ',      salesman_id='  . $my_quotation['updated_by' ]
 		. ',       ordered_at="' . get_time() . '"'
 		. ',        needed_at="' . $my_needed_at . '"'
 		. ',    quoted_pieces='  . $my_quotation['quoted_pieces']
 		. ',   ordered_pieces='  . $my_quotation['quoted_pieces']
 		. ',          remarks="' . $my_quotation['remarks'] . '"'
 		;
+	if ($my_quotation['customer_id'])	$sql .= ',      customer_id='  . $my_quotation['customer_id'];
+	if ($my_quotation['updated_by' ])	$sql .=	',      salesman_id='  . $my_quotation['updated_by' ];
 log_sql('OSAs', 'INSERT', $sql);
 	$db->query($sql);
 	insert_changes($db, 'OSAs', $my_osa_id);
@@ -50,7 +50,6 @@ log_sql('OSAs', 'INSERT', $sql);
 		$sql= 'INSERT OSA_Lines'
 			. '   SET          id='  . $my_osa_line_id
 			. ',        parent_id='  . $my_osa_id
-			. ',       product_id='  . $my_row['product_id'		]
 			. ',             peso='  . $my_row['peso'			]
 			. ',     quoted_units='  . $my_row['quoted_units'	]
 			. ',            units='  . $my_row['units'			]
@@ -60,6 +59,7 @@ log_sql('OSAs', 'INSERT', $sql);
 			. ',   ordered_weight='  . $my_row['quoted_weight'	]
 			. ',		  remarks="' . $my_row['remarks'		] . '"'
 			;
+		if ($my_row['product_id'])	$sql .= ',       product_id='  . $my_row['product_id'];
 log_sql('OSA_Lines', 'INSERT', $sql);
 		$db->query($sql);
 		insert_changes($db, 'OSA_Lines', $my_osa_line_id);
@@ -83,10 +83,6 @@ log_sql('OSA_Lines', 'INSERT', $sql);
 			$sql= 'INSERT Orders'
 				. '   SET          id='  . $my_order_id
 				. ',     order_number='  . $my_order_id
-				. ',      customer_id='  . $my_quotation['customer_id']
-				. ',       machine_id='  . $my_row['machine_id']
-				. ',       product_id='  . $my_row['product_id']
-				. ',         color_id='  . $my_color['color_id']
 				. ',      osa_line_id='  . $my_osa_line_id
 				. ',       osa_number='  . $my_osa_id
 				. ',       ordered_at="' . $my_quotation['quoted_at'] . '"'
@@ -96,6 +92,10 @@ log_sql('OSA_Lines', 'INSERT', $sql);
 				. ',   ordered_pieces='  . $my_quoted_pieces
 				. ',   ordered_weight='  . $my_quoted_weight
 				;
+			if ($my_quotation['customer_id'])	$sql .= ',      customer_id='  . $my_quotation['customer_id'];
+			if ($my_row['machine_id'])			$sql .= ',       machine_id='  . $my_row['machine_id'];
+			if ($my_row['product_id'])			$sql .= ',       product_id='  . $my_row['product_id'];
+			if ($my_color['color_id'])			$sql .= ',         color_id='  . $my_color['color_id'];
 log_sql('Orders', 'INSERT', $sql);
 			$db->query($sql);
 			insert_changes($db, 'Orders', $my_order_id);

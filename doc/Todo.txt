@@ -46,9 +46,10 @@ done	- input Location to store good pieces [jky-checkin-location] and bad pieces
 		
 Marcelo:
 
-		Transferir de DL Teste para DL: Finishing Types
-		Deletar [Galao] do [Product Types]
-		Transferir de DL Teste para DL: Washing Instructions
+OK		Transferir de DL Teste para DL: Finishing Types
+OK		Deletar [Galao] do [Product Types]
+OK		Transferir de DL Teste para DL: Washing Instructions
+		Products: mudar [Product Type] de Gola para Retilinea
 
 
 1.	OK	Instalar servidor de Teste da DL
