@@ -23,7 +23,7 @@ function JKY_generate_order($the_id) {
 	$my_count = 0;
 	foreach($my_rows as $my_row) {
 		$my_osa_line_id	= $my_row['id'];
-
+/*
 		$sql= 'SELECT *'
 			. '  FROM Orders'
 			. ' WHERE osa_line_id = ' . $my_row['id']
@@ -39,7 +39,7 @@ log_sql('Orders', 'UPDATE', $sql);
 			$db->query($sql);
 			insert_changes($db, 'Orders', $my_order['id']);
 		}
-
+*/
 		$sql= 'UPDATE OSA_lines'
 			. '   SET status = "Active"'
 			. ' WHERE id = ' . $my_row['id']

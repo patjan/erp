@@ -60,3 +60,4 @@ ALTER TABLE Pieces			ADD COLUMN		qualities		VARCHAR(255)		DEFAULT NULL	AFTER ret
 ALTER TABLE Pieces			CHANGE	inspected_by	revised_by		BIGINT			DEFAULT NULL;
 ALTER TABLE Pieces			CHANGE	weighted_by		weighed_by 		BIGINT			DEFAULT NULL;
 
+ALTER TABLE Pieces			CHANGE	loadsale_id		load_quot_id	BIGINT			DEFAULT NULL;

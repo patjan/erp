@@ -77,12 +77,6 @@ JKY.set_initial_values = function() {
 	$('#jky-peso'		).ForceNumericOnly();
 	$('#jky-units'		).ForceIntegerOnly();
 	$('#jky-yield'		).ForceNumericOnly();
-	$('#jky-weight-from').ForceIntegerOnly();
-	$('#jky-weight-to'	).ForceIntegerOnly();
-	$('#jky-weight-dyer').ForceIntegerOnly();
-	$('#jky-width-from'	).ForceIntegerOnly();
-	$('#jky-width-to'	).ForceIntegerOnly();
-	$('#jky-width-dyer'	).ForceIntegerOnly();
 };
 
 /**
@@ -116,11 +110,9 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-peso'				,				 the_row.peso				);
 	JKY.set_value	('jky-units'			,				 the_row.units				);
 	JKY.set_value	('jky-yield'			,				 the_row.yield				);
-	JKY.set_value	('jky-weight-from'		,				 the_row.weight_from		);
-	JKY.set_value	('jky-weight-to'		,				 the_row.weight_to			);
+	JKY.set_value	('jky-weight-customer'	,				 the_row.weight_customer	);
 	JKY.set_value	('jky-weight-dyer'		,				 the_row.weight_dyer		);
-	JKY.set_value	('jky-width-from'		,				 the_row.width_from			);
-	JKY.set_value	('jky-width-to'			,				 the_row.width_to			);
+	JKY.set_value	('jky-width-customer'	,				 the_row.width_customer		);
 	JKY.set_value	('jky-width-dyer'		,				 the_row.width_dyer			);
 
 	JKY.Photo.set_row_id(the_row.id);
@@ -148,14 +140,12 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-peso'				, '0');
 	JKY.set_value	('jky-units'			, '1');
 	JKY.set_value	('jky-yield'			, '0');
-	JKY.set_value	('jky-weight-from'		, '0');
-	JKY.set_value	('jky-weight-to'		, '0');
-	JKY.set_value	('jky-weight-dyer'		, '0');
-	JKY.set_value	('jky-width-from'		, '0');
-	JKY.set_value	('jky-width-to'			, '0');
-	JKY.set_value	('jky-width-dyer'		, '0');
-	JKY.set_value	('jky-finishings'		, '' );
-	JKY.set_value	('jky-washings'			, '' );
+	JKY.set_value	('jky-weight-customer'	, '');
+	JKY.set_value	('jky-weight-dyer'		, '');
+	JKY.set_value	('jky-width-customer'	, '');
+	JKY.set_value	('jky-width-dyer'		, '');
+	JKY.set_value	('jky-finishings'		, '');
+	JKY.set_value	('jky-washings'			, '');
 };
 
 
@@ -169,19 +159,17 @@ JKY.get_form_set = function() {
 	if (my_parent_id == '')								my_parent_id = null;
 
 	var my_set = ''
-		+    'product_name=\'' + JKY.get_value	('jky-product-name'	) + '\''
-		+     ', parent_id=  ' + my_parent_id
-		+  ', product_type=\'' + JKY.get_checked('jky-product-type'	) + '\''
-		+      ', start_at=  ' + JKY.inp_time	('jky-start-date'	)
-		+		   ', peso=  ' + JKY.get_value	('jky-peso'			)
-		+		  ', units=  ' + JKY.get_value	('jky-units'		)
-		+         ', yield=  ' + JKY.get_value	('jky-yield'		)
-		+   ', weight_from=  ' + JKY.get_value	('jky-weight-from'	)
-		+     ', weight_to=  ' + JKY.get_value	('jky-weight-to'	)
-		+   ', weight_dyer=  ' + JKY.get_value	('jky-weight-dyer'	)
-		+    ', width_from=  ' + JKY.get_value	('jky-width-from'	)
-		+      ', width_to=  ' + JKY.get_value	('jky-width-to'		)
-		+    ', width_dyer=  ' + JKY.get_value	('jky-width-dyer'	)
+		+      'product_name=\'' + JKY.get_value	('jky-product-name'		) + '\''
+		+       ', parent_id=  ' + my_parent_id
+		+    ', product_type=\'' + JKY.get_checked	('jky-product-type'		) + '\''
+		+        ', start_at=  ' + JKY.inp_time		('jky-start-date'		)
+		+		     ', peso=  ' + JKY.get_value	('jky-peso'				)
+		+		    ', units=  ' + JKY.get_value	('jky-units'			)
+		+           ', yield=  ' + JKY.get_value	('jky-yield'			)
+		+ ', weight_customer=\'' + JKY.get_value	('jky-weight-customer'	) + '\''
+		+     ', weight_dyer=\'' + JKY.get_value	('jky-weight-dyer'		) + '\''
+		+  ', width_customer=\'' + JKY.get_value	('jky-width-customer'	) + '\''
+		+      ', width_dyer=\'' + JKY.get_value	('jky-width-dyer'		) + '\''
 		;
 	return my_set;
 };

@@ -402,7 +402,7 @@ JKY.process_action = function(action) {
  * @param	false_value
  * @return	string_value
  */
-JKY.fix_flag = function(flag_value, true_value, false_value){
+JKY.fix_flag = function(flag_value, true_value, false_value) {
 	if (flag_value) {
 		if (flag_value == 't') {
 			return true_value;

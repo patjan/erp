@@ -1,6 +1,6 @@
 "use strict";
 /*
- * display Quotation Colors ----------------------------------------------------
+ * display Sale Colors ----------------------------------------------------
  */
 
 JKY.generate_color = function(the_row, the_units) {
@@ -63,7 +63,7 @@ JKY.update_color = function(the_this, the_id) {
 	if (my_tr.find('.jky-quoted-units').val() == '')	my_tr.find('.jky-quoted-units').val(0);
 	if (my_tr.find('.jky-quoted-price').val() == '')	my_tr.find('.jky-quoted-price').val(0);
 
-	var my_line_id			= JKY.get_prev_dom(my_tr, 'quot_line_id');
+	var my_line_id			= JKY.get_prev_dom(my_tr, 'sale_line_id');
 	var my_product_id		= my_line_id.find('.jky-product-id'		).val();
 	var my_line_units_id	= my_line_id.find('.jky-quoted-units'	);
 	var my_line_pieces_id	= my_line_id.find('.jky-quoted-pieces'	);
@@ -78,14 +78,14 @@ JKY.update_color = function(the_this, the_id) {
 	if (my_units == 0) {
 		var my_color_peso	= parseFloat(my_tr.find('.jky-quoted-units').val());
 		if (isNaN(my_color_peso))	my_color_peso = 0;
-		var my_prev_peso	= parseFloat(JKY.get_value_by_id('QuotColors', 'quoted_units', the_id));
+		var my_prev_peso	= parseFloat(JKY.get_value_by_id('SaleColors', 'quoted_units', the_id));
 		my_color_units		= Math.ceil(my_color_peso / my_peso);
 		my_prev_units		= Math.ceil(my_prev_peso  / my_peso);
 		my_diff_weight		= my_color_peso - my_prev_peso;
 	}else{
 		my_color_units		= parseInt(my_tr.find('.jky-quoted-units').val());
 		if (isNaN(my_color_units))	my_color_units = 0;
-		my_prev_units		= parseInt(JKY.get_value_by_id('QuotColors', 'quoted_units', the_id));
+		my_prev_units		= parseInt(JKY.get_value_by_id('SaleColors', 'quoted_units', the_id));
 		my_diff_weight		= (my_color_units - my_prev_units) * my_peso;
 	}
 	var	my_diff_units		= my_color_units - my_prev_units ;
@@ -123,9 +123,9 @@ JKY.update_color = function(the_this, the_id) {
 		;
 	var my_data =
 		{ method	: 'update'
-		, table		: 'QuotColors'
+		, table		: 'SaleColors'
 		, set		:  my_set
-		, where		: 'QuotColors.id = ' + the_id
+		, where		: 'SaleColors.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, function(the_response) {
 		JKY.update_quotation_amount();
@@ -136,8 +136,8 @@ JKY.insert_color = function(the_id, the_parent_id) {
 	JKY.line_tr = $(the_id).parent().parent();
 	var my_data =
 		{ method	: 'insert'
-		, table		: 'QuotColors'
-		, set		: 'QuotColors.parent_id = ' + the_parent_id
+		, table		: 'SaleColors'
+		, set		: 'SaleColors.parent_id = ' + the_parent_id
 		};
 	JKY.ajax(true, my_data,function(the_response) {
 		var my_units = parseInt(JKY.line_tr.find('.jky-product-units').val());
@@ -163,9 +163,9 @@ JKY.insert_color = function(the_id, the_parent_id) {
 JKY.copy_colors = function(the_source, the_to) {
 	var my_data =
 		{ method	: 'get_rows'
-		, table		: 'QuotColors'
-		, where		: 'QuotColors.parent_id = ' + the_source
-		, order_by  : 'QuotColors.id'
+		, table		: 'SaleColors'
+		, where		: 'SaleColors.parent_id = ' + the_source
+		, order_by  : 'SaleColors.id'
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);
@@ -191,7 +191,7 @@ JKY.copy_colors = function(the_source, the_to) {
 									;
 						var	my_data =
 							{ method	: 'insert'
-							, table		: 'QuotColors'
+							, table		: 'SaleColors'
 							, set		:  my_set
 							};
 						JKY.ajax(false, my_data, function(the_response) {
@@ -208,7 +208,7 @@ JKY.copy_colors = function(the_source, the_to) {
 JKY.delete_color = function(the_this, the_id) {
 	var my_tr = $(the_this).parent().parent();
 
-	var my_line_id			= JKY.get_prev_dom(my_tr, 'quot_line_id');
+	var my_line_id			= JKY.get_prev_dom(my_tr, 'sale_line_id');
 	var my_line_units_id	=			 my_line_id.find('.jky-quoted-units'	);
 	var my_line_pieces_id	=			 my_line_id.find('.jky-quoted-pieces'	);
 	var my_line_units		= parseInt	(my_line_units_id .val());
@@ -219,11 +219,11 @@ JKY.delete_color = function(the_this, the_id) {
 	var my_prev_units;
 	var my_diff_weight;
 	if (my_units == 0) {
-		var my_prev_peso	= parseFloat(JKY.get_value_by_id('QuotColors', 'quoted_units', the_id));
+		var my_prev_peso	= parseFloat(JKY.get_value_by_id('SaleColors', 'quoted_units', the_id));
 		my_prev_units		= Math.ceil(my_prev_peso  / my_peso);
 		my_diff_weight		= - my_prev_peso;
 	}else{
-		my_prev_units		= parseFloat(JKY.get_value_by_id('QuotColors', 'quoted_units', the_id));
+		my_prev_units		= parseFloat(JKY.get_value_by_id('SaleColors', 'quoted_units', the_id));
 		my_diff_weight		= (- my_prev_units) * my_peso;
 	}
 	var	my_diff_units		= - my_prev_units;
@@ -240,12 +240,12 @@ JKY.delete_color = function(the_this, the_id) {
 	$(the_this).parent().parent().remove();
 	var my_data =
 		{ method	: 'delete'
-		, table		: 'QuotColors'
-		, where		: 'QuotColors.id = ' + the_id
+		, table		: 'SaleColors'
+		, where		: 'SaleColors.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, function(the_response) {
 //		JKY.updated_total_pieces();
-		JKY.update_quotation_amount();
+		JKY.update_sale_amount();
 		JKY.enable_disable_lines();
 	})
 }
@@ -256,12 +256,12 @@ JKY.copy_previous_colors = function(the_id, the_parent_id) {
 	var my_colors	= [];
 	do {
 		my_curr_tr = my_curr_tr.prev();
-		var my_quot_line_id	= my_curr_tr.attr('quot_line_id');
-		if (my_quot_line_id) {
+		var my_sale_line_id	= my_curr_tr.attr('sale_line_id');
+		if (my_sale_line_id) {
 			break;
 		}
-		var my_quot_color_id	= my_curr_tr.attr('color_id');
-		if (my_quot_color_id) {
+		var my_sale_color_id	= my_curr_tr.attr('color_id');
+		if (my_sale_color_id) {
 			var my_color = [];
 			var my_color_id		= my_curr_tr.find('.jky-color-id'	).val();
 			var my_color_name	= my_curr_tr.find('.jky-color-name'	).val();
@@ -273,7 +273,7 @@ JKY.copy_previous_colors = function(the_id, the_parent_id) {
 			my_color.dyer_name	= my_dyer_name	;
 			my_colors.push(my_color);
 		}
-	} while(my_quot_line_id || my_quot_color_id);
+	} while(my_sale_line_id || my_sale_color_id);
 
 	JKY.display_message(my_colors.length + ' colors copied');
 	if (my_colors.length > 0) {
@@ -288,12 +288,12 @@ setTimeout(function(x) { return function() {
 				;
 			var my_data =
 				{ method	: 'insert'
-				, table		: 'QuotColors'
+				, table		: 'SaleColors'
 				, set		:  my_set
 				};
 			JKY.ajax(true, my_data, function(the_response) {
 				var my_units = parseInt(JKY.line_tr.find('.jky-product-units').val());
-				var my_row  = JKY.get_row('QuotColors', the_response.id);
+				var my_row  = JKY.get_row('SaleColors', the_response.id);
 				var my_html = JKY.generate_color(my_row, my_units);
 				JKY.line_tr.after(my_html);
 				var my_tr = JKY.line_tr.next();
@@ -311,8 +311,8 @@ setTimeout(function(x) { return function() {
 JKY.update_quoted_units = function(the_line_id, the_delta_weight, the_delta_units, the_delta_pieces) {
 	var my_data =
 		{ method	: 'update'
-		, table		: 'QuotLines'
-		, where		: 'QuotLines.id = ' + the_line_id.attr('quot_line_id')
+		, table		: 'SaleLines'
+		, where		: 'SaleLines.id = ' + the_line_id.attr('sale_line_id')
 		, set		: 'quoted_weight = quoted_weight + ' + the_delta_weight
 				  + ', quoted_units  = quoted_units  + ' + the_delta_units
 				  + ', quoted_pieces = quoted_pieces + ' + the_delta_pieces
@@ -321,8 +321,8 @@ JKY.update_quoted_units = function(the_line_id, the_delta_weight, the_delta_unit
 
 	my_data =
 		{ method	: 'update'
-		, table		: 'Quotations'
-		, where		: 'Quotations.id = ' + JKY.row.id
+		, table		: 'Sales'
+		, where		: 'sales.id = ' + JKY.row.id
 		, set		: 'quoted_pieces = quoted_pieces + ' + the_delta_pieces
 		};
 	JKY.ajax(true, my_data);
@@ -332,9 +332,9 @@ JKY.color_ids = function(the_id) {
 	var my_rows = [];
 	var my_data =
 		{ method	: 'get_index'
-		, table		: 'QuotColors'
+		, table		: 'SaleColors'
 		, select	:  the_id
-		, order_by  : 'QuotColors.id'
+		, order_by  : 'SaleColors.id'
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);
@@ -372,28 +372,14 @@ JKY.get_name = function(the_id, the_array) {
 	return my_name;
 }
 
-JKY.print_colors = function(the_id, the_product) {
-	var my_line_peso	= the_product.peso;
-	var my_line_units	= the_product.units;
-	var my_line_discount= the_product.discount;
-	if (my_line_units == 0)		my_line_peso = 1;
-
+JKY.print_colors = function(the_id) {
 	JKY.colors = JKY.color_ids(the_id);
-	var my_html  = ''
-		+ '<tr class="jky-print-head">'
-		+ '<td>' + '<span>Color		</span>' + '</td>'
-		+ '<td class="jky-print-amount">' + '<span>Quant		</span>' + '</td>'
-		+ '<td class="jky-print-amount">' + '<span>Est Weight	</span>' + '</td>'
-		+ '<td class="jky-print-amount">' + '<span>Price/Kg		</span>' + '</td>'
-		+ '<td class="jky-print-amount">' + '<span>Discount		</span>' + '</td>'
-		+ '<td class="jky-print-amount">' + '<span>Price/Kg		</span>' + '</td>'
-		+ '</tr>'
-		;
+	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'
-		, table		: 'QuotColors'
+		, table		: 'SaleColors'
 		, select	:  the_id
-		, order_by  : 'QuotColors.id'
+		, order_by  : 'SaleColors.id'
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);
@@ -408,46 +394,15 @@ JKY.print_colors = function(the_id, the_product) {
 					var my_rows = response.rows;
 					for(var i in my_rows) {
 						var my_row = my_rows[i];
-
-						var my_color_units  = Math.ceil(my_row.quoted_units / my_line_units);
-						var my_color_weight = Math.ceil(my_row.quoted_units * my_line_peso );
-
-						var my_discount_price	= '';
-						var my_final_price	= '';
-						var my_color_price		= my_row.quoted_price;
-						var my_color_discount	= my_row.discount;
-
-						if (my_color_discount == '')		my_color_discount = my_line_discount;
-						my_color_discount = my_color_discount.trim();
-						var my_length = my_color_discount.length;
-						if (my_color_discount.substr(my_length-1, 1) == '%') {
-							my_color_discount = parseFloat(my_color_discount);
-							if (!isNaN(my_color_discount)) {
-								my_discount_price = my_color_price * my_color_discount / 100;
-							}
-						}else{
-							my_discount_price = parseFloat(my_color_discount);
-							my_color_discount = parseFloat(my_color_discount);
-							if (!isNaN(my_color_discount)) {
-								my_discount_price = my_color_discount;
-								}
-						}
-						if (isNaN(my_discount_price)) {
-							my_discount_price = '';
-						}else{
-							my_final_price = my_color_price - my_discount_price;
-							my_final_price		=   my_final_price.toFixed(2);
-							my_discount_price	= (-my_discount_price).toFixed(2);
-						}
-
 						my_html  += ''
 							+ '<tr>'
-							+ '<td>' + my_row.color_name	+ '</td>'
-							+ '<td class="jky-print-amount">' + my_color_units		+ '</td>'
-							+ '<td class="jky-print-amount">' + my_color_weight		+ '</td>'
-							+ '<td class="jky-print-amount">' + my_color_price		+ '</td>'
-							+ '<td class="jky-print-amount">' + my_discount_price	+ '</td>'
-							+ '<td class="jky-print-amount">' + my_final_price		+ '</td>'
+							+ '<td></td>'
+							+ '<td></td>'
+							+ '<td class="jky-print-color-name"	>' + my_row.color_name		+ '</td>'
+							+ '<td></td>'
+							+ '<td class="jky-print-pieces"		>' + my_row.quoted_units	+ '</td>'
+							+ '<td class="jky-print-pieces"		>' + my_row.quoted_price	+ '</td>'
+							+ '<td class="jky-print-pieces"		>' + my_row.discount		+ '</td>'
 							+ '</tr>'
 							;
 					}

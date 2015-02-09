@@ -61,7 +61,9 @@ JKY.display_remarks = function(the_row) {
  * display payments ---------------------------------------------------------
  */
 JKY.display_payments = function(the_row) {
+	JKY.set_radio	('jky-is-taxable'		, the_row.is_taxable	);
 	JKY.set_radio	('jky-icms-exemption'	, the_row.icms_exemption);
+	JKY.set_radio	('jky-deduct-cone'		, the_row.deduct_cone	);
 	JKY.set_value	('jky-interest-rate'	, the_row.interest_rate	);
 	JKY.set_value	('jky-payments'			, the_row.payments		);
 	JKY.set_value	('jky-alert'			, the_row.alert			);
@@ -229,10 +231,12 @@ JKY.save_payments = function() {
 	if (my_interest_rate == '') {
 		my_interest_rate = 'null';
 	}
-	var my_set  =  'icms_exemption = \'' + JKY.get_checked('jky-icms-exemption'	) + '\''
-				+ ', interest_rate =   ' +					 my_interest_rate
-				+      ', payments = \'' + JKY.get_value  ('jky-payments'		) + '\''
-				+         ', alert = \'' + JKY.get_value  ('jky-alert'			) + '\''
+	var my_set  =       'is_taxable = \'' + JKY.get_checked('jky-is-taxable'	) + '\''
+				+ ', icms_exemption = \'' + JKY.get_checked('jky-icms-exemption') + '\''
+				+    ', deduct_cone = \'' + JKY.get_checked('jky-deduct-cone'	) + '\''
+				+  ', interest_rate =   ' +					 my_interest_rate
+				+       ', payments = \'' + JKY.get_value  ('jky-payments'		) + '\''
+				+          ', alert = \'' + JKY.get_value  ('jky-alert'			) + '\''
 				;
 	var my_where = 'id = ' + JKY.row.id;
 	var my_data =

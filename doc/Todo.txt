@@ -24,8 +24,8 @@ ok		- supplier display search correto
 ok		- error de sql on search
 
 
-		- add salesman_id into Quotations
-		- drop out salesman_id from OSAs
+done	- add salesman_id into Quotations
+???		- drop out salesman_id from OSAs
 done	- update AjaxController
 
 done	- usar tanto . , como ponto decimal
@@ -46,10 +46,12 @@ done	- input Location to store good pieces [jky-checkin-location] and bad pieces
 		
 Marcelo:
 
+OK		Mudanca de Color Type: Bco - CB ...
+
 OK		Transferir de DL Teste para DL: Finishing Types
 OK		Deletar [Galao] do [Product Types]
 OK		Transferir de DL Teste para DL: Washing Instructions
-		Products: mudar [Product Type] de Gola para Retilinea
+OK		Products: mudar [Product Type] de Gola para Retilinea
 
 
 1.	OK	Instalar servidor de Teste da DL
@@ -80,7 +82,7 @@ OK		Transferir de DL Teste para DL: Washing Instructions
 		com mapeamento
 		na entrada da NFe
 
-15.		Conseque ler o peso do tecido automaticamente ?
+15.	OK	Conseque ler o peso do tecido automaticamente ?
 		novas pesagedores pode,
 
 15.		Qdo e' melhor digitar novos peso do tecido?
@@ -107,7 +109,7 @@ OK		Transferir de DL Teste para DL: Washing Instructions
 19.		Instrucoes para acabamento:
 		e' definido no FTP ou  por Produto ?
 
-20.		Tirar do [Galao] do [Product Types] do [Config].		
+20.	OK	Tirar do [Galao] do [Product Types] do [Config].		
 		
 Bugs
 1.	loading.gif is not displaying on IE and CH

@@ -3,8 +3,8 @@
  */
 
 var my_shipdyer_id			= 0;
-var my_old_requested_pieces	= 0;
-var my_new_requested_pieces	= 0;
+var my_old_quoted_pieces	= 0;
+var my_new_quoted_pieces	= 0;
 
 JKY.display_loadouts = function() {
 /*
@@ -46,7 +46,7 @@ JKY.generate_loadouts = function(response) {
 	}
 //	JKY.set_html('jky-loadout-total', my_total);
 	JKY.set_html('jky-loadouts-body' , my_html);
-//	$('.jky-requested-pieces').ForceIntegerOnly();
+//	$('.jky-quoted-pieces').ForceIntegerOnly();
 	if (my_rows == '') {
 //		JKY.insert_loadout();
 	}
@@ -67,7 +67,7 @@ JKY.generate_loadout = function(the_row) {
 		+ '<td class="jky-td-text-l"	><input	disabled value="' + JKY.fix_null	(the_row.color_name			) + '" /></td>'
 		+ '<td class="jky-td-date"		><input disabled value="' + JKY.short_date	(the_row.requested_at		) + '" /></td>'
 		+ '<td class="jky-td-date"		><input disabled value="' + JKY.short_date	(the_row.checkout_at		) + '" /></td>'
-		+ '<td class="jky-td-pieces"	><input disabled value="' + JKY.fix_null	(the_row.requested_pieces	) + '" /></td>'
+		+ '<td class="jky-td-pieces"	><input disabled value="' + JKY.fix_null	(the_row.quoted_pieces		) + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input disabled value="' +	JKY.fix_null	(the_row.checkout_pieces	) + '" /></td>'
 		+ '</tr>'
 		;
@@ -79,19 +79,19 @@ JKY.update_loadout = function(id_name, the_id) {
 	JKY.select_loadout(the_id);
 	var my_tr = $(id_name).parent().parent();
 	var my_loadout_color_id	=			 my_tr.find('.jky-loadout-color-id'	).val() ;
-	var my_requested_pieces	= parseFloat(my_tr.find('.jky-requested-pieces'	).val());
+	var my_quoted_pieces	= parseFloat(my_tr.find('.jky-quoted-pieces'	).val());
 
 	var my_set = ''
-		+      'loadout_color_id =  ' + my_loadout_color_id
-		+ ', requested_pieces =  ' + my_requested_pieces
+		+   'quot_color_id =  ' + my_loadout_color_id
+		+ ', quoted_pieces =  ' + my_quoted_pieces
 		;
 	var my_data =
 		{ method	: 'update'
-		, table		: 'LoadSales'
+		, table		: 'LoadQuotations'
 		, set		:  my_set
-		, where		: 'LoadSales.id = ' + the_id
+		, where		: 'LoadQuotations.id = ' + the_id
 		};
-	my_new_requested_pieces = my_requested_pieces;
+	my_new_quoted_pieces = my_quoted_pieces;
 	JKY.ajax(true, my_data, JKY.update_loadout_success);
 }
 
@@ -115,7 +115,7 @@ JKY.insert_loadout_success = function(response) {
 	my_row.id				= response.id;
 	my_row.status			= 'Draft';
 	my_row.loadout_color_id	= null;
-	my_row.requested_pieces	= 0;
+	my_row.quoted_pieces	= 0;
 	my_row.checkout_pieces	= 0;
 	my_row.returned_pieces	= 0;
 
@@ -133,7 +133,7 @@ JKY.delete_loadout = function(id_name, the_id) {
 		, where		: 'LoadOuts.id = ' + the_id
 		, set		: 'LoadOuts.shipdyer_id = NULL'
 		};
-	my_new_requested_pieces = 0;
+	my_new_quoted_pieces = 0;
 	JKY.ajax(true, my_data, JKY.delete_loadout_success);
 }
 
@@ -152,13 +152,13 @@ JKY.select_loadout = function(the_id) {
 }
 
 JKY.select_loadout_success = function(response) {
-	my_old_requested_pieces = parseFloat(response.row.requested_pieces);
+	my_old_quoted_pieces = parseFloat(response.row.quoted_pieces);
 }
 
 JKY.update_loadout = function() {
 JKY.display_trace('update_loadout');
-	var my_delta_pieces = (my_new_requested_pieces - my_old_requested_pieces);
-	var my_set = ' requested_pieces = requested_pieces + ' + my_delta_pieces;
+	var my_delta_pieces = (my_new_quoted_pieces - my_old_quoted_pieces);
+	var my_set = ' quoted_pieces = quoted_pieces + ' + my_delta_pieces;
 	var my_data =
 		{ method	: 'update'
 		, table		: 'LoadOuts'
@@ -175,15 +175,15 @@ JKY.display_trace('update_loadout_success');
 		, table		: 'LoadOuts'
 		, where		: 'LoadOuts.id = ' + my_shipdyer_id
 		};
-	JKY.ajax(true, my_data, JKY.display_loadout_requested);
+	JKY.ajax(true, my_data, JKY.display_loadout_quoted);
 }
 
-JKY.display_loadout_requested = function(response) {
-JKY.display_trace('display_loadout_requested');
-	var my_requested_pieces = parseFloat(response.row.requested_pieces);
-//	var my_requested_amount = parseFloat(response.row.requested_amount);
-	JKY.set_value('jky-requested-pieces', my_requested_pieces);
-//	JKY.set_value('jky-requested-amount', my_requested_amount);
+JKY.display_loadout_quoted = function(response) {
+JKY.display_trace('display_loadout_quoted');
+	var my_quoted_pieces = parseFloat(response.row.quoted_pieces);
+//	var my_quoted_amount = parseFloat(response.row.quoted_amount);
+	JKY.set_value('jky-quoted-pieces', my_quoted_pieces);
+//	JKY.set_value('jky-quoted-amount', my_quoted_amount);
 //	JKY.set_calculated_color();
 }
 

@@ -33,7 +33,7 @@ function JKY_generate_osa($the_id) {
 		. ',          remarks="' . $my_quotation['remarks'] . '"'
 		;
 	if ($my_quotation['customer_id'])	$sql .= ',      customer_id='  . $my_quotation['customer_id'];
-	if ($my_quotation['updated_by' ])	$sql .=	',      salesman_id='  . $my_quotation['updated_by' ];
+	if ($my_quotation['salesman_id'])	$sql .=	',      salesman_id='  . $my_quotation['salesman_id'];
 log_sql('OSAs', 'INSERT', $sql);
 	$db->query($sql);
 	insert_changes($db, 'OSAs', $my_osa_id);

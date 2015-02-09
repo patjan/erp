@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS LoadIns
 , product_id		BIGINT				DEFAULT NULL
 , purchase_line_id	BIGINT				DEFAULT NULL
 , code				VARCHAR(32)			DEFAULT NULL
-, load				VARCHAR(32)			DEFAULT NULL
+, load				VARCHAR(32)			DEFAULT NULL	/*	????????????????? */
 , received_fabrics	INT(11)				DEFAULT 0
 , checkin_fabrics	INT(11)				DEFAULT 0
 , returned_fabrics	INT(11)				DEFAULT 0

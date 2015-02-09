@@ -16,11 +16,15 @@ JKY.LoadOut = function() {
 	var my_net_weight	= 0;
 
 	function my_display(the_id, the_dyer_id, the_dyer_name) {
-		my_the_id	= the_id;
-		my_dyer_id	= the_dyer_id;
-		JKY.set_html('jky-search-dyer-name', the_dyer_name);
-		JKY.set_focus(my_filter);
-		my_load_data();
+		if (the_dyer_id) {
+			my_the_id	= the_id;
+			my_dyer_id	= the_dyer_id;
+			JKY.set_html('jky-search-dyer-name', the_dyer_name);
+			JKY.set_focus(my_filter);
+			my_load_data();
+		}else{
+			JKY.d('Select a Dyer first');
+		}
 	}
 
 	function my_load_data() {
@@ -56,7 +60,7 @@ SELECT LoadOuts.*
 					+  '<td class="jky-search-loadout-number"	>' +				 my_row.loadout_number		+ '</td>'
 					+  '<td class="jky-search-color-name"		>' + JKY.fix_null	(my_row.color_name		)	+ '</td>'
 					+  '<td class="jky-search-requested-date"	>' + JKY.short_date	(my_row.requested_at	)	+ '</td>'
-					+  '<td class="jky-search-requested-pieces"	>' +				 my_row.requested_pieces	+ '</td>'
+					+  '<td class="jky-search-quoted-pieces"	>' +				 my_row.quoted_pieces		+ '</td>'
 					+  '<td class="jky-search-checkout-pieces"	>' +				 my_row.checkout_pieces		+ '</td>'
 					+  '</tr>'
 					;
@@ -134,11 +138,11 @@ SELECT LoadOuts.*
 			var my_loadout = my_loadouts[i];
 			my_html += my_print_loadout(my_loadout);
 
-			var my_loadsales = JKY.get_rows_by_where('LoadSales', 'loadout_id=' + my_loadout.id);
-			var my_count_j = my_loadsales.length;
+			var my_loadquots = JKY.get_rows_by_where('LoadQuotations', 'loadout_id=' + my_loadout.id);
+			var my_count_j = my_loadquots.length;
 			for(var j=0; j<my_count_j; j++) {
-				var my_loadsale = my_loadsales[j];
-				my_html += my_print_loadsale(my_loadsale);
+				var my_loadquot = my_loadquots[j];
+				my_html += my_print_loadquot(my_loadquot);
 
 				my_html += '<table cellspacing=0 style="width:700px;">'
 						+ '<tr style="line-height:20px;">'
@@ -149,7 +153,7 @@ SELECT LoadOuts.*
 						+ '<th class="jky-print-weight" >Weight	</th>'
 						+ '</tr>'
 						;
-				var my_pieces = JKY.get_rows_by_where('Pieces', 'Pieces.loadsale_id=' + my_loadsale.id);
+				var my_pieces = JKY.get_rows_by_where('Pieces', 'Pieces.load_quot_id=' + my_loadquot.id);
 				var my_count_k = my_pieces.length;
 				var my_floor_k = Math.floor(my_count_k / 2);
 				var my_ceil_k  = Math.ceil (my_count_k / 2);
@@ -219,27 +223,27 @@ SELECT LoadOuts.*
 			;
 	}
 
-	function my_print_loadsale(the_loadsale) {
-		var my_ftp_id	= JKY.get_id('QuotColorFTPs', 'QuotColors.id=' + the_loadsale.sale_color_id);
+	function my_print_loadquot(the_loadquot) {
+		var my_ftp_id	= JKY.get_id('QuotColorFTPs', 'QuotColors.id=' + the_loadquot.quot_color_id);
 		var my_ftp		= JKY.get_row('FTPs', my_ftp_id);
 
 		return ''
 			+ '<table>'
 			+ '<tr>'
-			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>    Sale Number</span>: </td><td style="width:300px;">' + the_loadsale.sale_number	+ '</td>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>    Sale Number</span>: </td><td style="width:300px;">' + the_loadquot.quotation_number	+ '</td>'
 			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>          Width</span>: </td><td style="width:100px;">' + my_ftp.width				+ ' (m)</td>'
 			+ '</tr>'
 			+ '<tr>'
-			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>       Customer</span>: </td><td style="width:300px;">' + the_loadsale.customer_name	+ '</td>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>       Customer</span>: </td><td style="width:300px;">' + the_loadquot.customer_name	+ '</td>'
 			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>         Weight</span>: </td><td style="width:100px;">' + my_ftp.weight				+ ' (gr)</td>'
 			+ '</tr>'
 			+ '<tr>'
-			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>        Product</span>: </td><td style="width:300px;">' + the_loadsale.product_name	+ '</td>'
-			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>   Total Pieces</span>: </td><td style="width:100px;">' + the_loadsale.checkout_pieces+ ' (pieces)</td>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>        Product</span>: </td><td style="width:300px;">' + the_loadquot.product_name	+ '</td>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>   Total Pieces</span>: </td><td style="width:100px;">' + the_loadquot.checkout_pieces+ ' (pieces)</td>'
 			+ '</tr>'
 			+ '<tr>'
 			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>    Composition</span>: </td><td style="width:300px;">' + my_ftp.composition			+ '</td>'
-			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>   Total Weight</span>: </td><td style="width:100px;">' + the_loadsale.checkout_weight+ ' (Kg)</td>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>   Total Weight</span>: </td><td style="width:100px;">' + the_loadquot.checkout_weight+ ' (Kg)</td>'
 			+ '</tr>'
 			+ '</table>'
 			+ '<br>'

@@ -134,17 +134,6 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-customer-name'	,				 the_row.customer_name 		);
 	JKY.set_value	('jky-salesman-id'		,				 the_row.salesman_id		);
 	JKY.set_value	('jky-salesman-name'	,				 the_row.salesman_name		);
-	JKY.set_value	('jky-machine-id'		,				 the_row.machine_id			);
-	JKY.set_value	('jky-machine-name'		,				 the_row.machine_name		);
-	JKY.set_value	('jky-dyer-id'			,				 the_row.dyer_id			);
-	JKY.set_value	('jky-dyer-name'		,				 the_row.dyer_name			);
-//	JKY.set_value	('jky-diameter'			,				 the_row.diameter			);
-	JKY.set_value	('jky-weight-from'		,				 the_row.weight_from		);
-	JKY.set_value	('jky-weight-to'		,				 the_row.weight_to			);
-	JKY.set_value	('jky-width-from'		,				 the_row.width_from			);
-	JKY.set_value	('jky-width-to'			,				 the_row.width_to			);
-//	JKY.set_value	('jky-peso'				,				 the_row.peso				);
-	JKY.set_value	('jky-product-type'		,				 the_row.product_type		);
 	JKY.set_value	('jky-remarks'			,				 JKY.row.remarks			);
 	JKY.display_lines();
 };
@@ -165,7 +154,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-customer-name'	, '');
 	JKY.set_value	('jky-salesman-id'		,  null);
 	JKY.set_value	('jky-salesman-name'	, '');
-	JKY.set_value	('jky-remarks'			, '' );
+	JKY.set_value	('jky-remarks'			, '');
 };
 
 /**
@@ -175,7 +164,7 @@ JKY.get_form_set = function() {
 	var my_customer_id	= JKY.get_value('jky-customer-id'	);
 	var my_salesman_id	= JKY.get_value('jky-salesman-id'	);
 		my_customer_id	= (my_customer_id	== '') ? 'null' : my_customer_id;
-		my_salesman_id	= (my_salesman_id	== '') ? 'null' : my_salesman_id	;
+		my_salesman_id	= (my_salesman_id	== '') ? 'null' : my_salesman_id;
 
 	var my_set = ''
 		+     '  customer_id=  ' + my_customer_id

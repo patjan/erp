@@ -1,0 +1,1764 @@
+2015-01-25 00:00:21.118169 
+2015-01-25 00:00:21.118739 start of program
+2015-01-25 00:00:21.135522 number: 1, host: 201.81.20.209
+2015-01-25 00:00:21.675133 OK, Server Host 1 connected.
+2015-01-25 00:00:21.856163 Changes has 0 records
+2015-01-25 00:00:21.857007 number: 2, host: 177.140.75.151
+2015-01-25 00:00:51.960402 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 00:00:51.961669 end of program
+2015-01-25 00:05:12.799837 
+2015-01-25 00:05:12.800564 start of program
+2015-01-25 00:05:12.891112 number: 1, host: 201.81.20.209
+2015-01-25 00:05:13.439753 OK, Server Host 1 connected.
+2015-01-25 00:05:13.617657 Changes has 0 records
+2015-01-25 00:05:13.618074 number: 2, host: 177.140.75.151
+2015-01-25 00:05:43.714116 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 00:05:43.715682 end of program
+2015-01-25 00:10:13.351693 
+2015-01-25 00:10:13.363705 start of program
+2015-01-25 00:10:13.403284 number: 1, host: 201.81.20.209
+2015-01-25 00:10:13.948168 OK, Server Host 1 connected.
+2015-01-25 00:10:14.133126 Changes has 0 records
+2015-01-25 00:10:14.133550 number: 2, host: 177.140.75.151
+2015-01-25 00:10:44.229497 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 00:10:44.231271 end of program
+2015-01-25 00:15:17.332446 
+2015-01-25 00:15:17.343640 start of program
+2015-01-25 00:15:17.368172 number: 1, host: 201.81.20.209
+2015-01-25 00:15:17.901275 OK, Server Host 1 connected.
+2015-01-25 00:15:18.083636 Changes has 0 records
+2015-01-25 00:15:18.084484 number: 2, host: 177.140.75.151
+2015-01-25 00:15:48.202293 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 00:15:48.210212 end of program
+2015-01-25 00:20:13.417069 
+2015-01-25 00:20:13.417539 start of program
+2015-01-25 00:20:13.437072 number: 1, host: 201.81.20.209
+2015-01-25 00:20:13.988013 OK, Server Host 1 connected.
+2015-01-25 00:20:14.176177 Changes has 0 records
+2015-01-25 00:20:14.176595 number: 2, host: 177.140.75.151
+2015-01-25 00:20:44.279039 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 00:20:44.280458 end of program
+2015-01-25 00:25:11.821639 
+2015-01-25 00:25:11.837433 start of program
+2015-01-25 00:25:11.856344 number: 1, host: 201.81.20.209
+2015-01-25 00:25:12.377307 OK, Server Host 1 connected.
+2015-01-25 00:25:12.555060 Changes has 0 records
+2015-01-25 00:25:12.569652 number: 2, host: 177.140.75.151
+2015-01-25 00:25:42.670997 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 00:25:42.672358 end of program
+2015-01-25 00:30:17.836872 
+2015-01-25 00:30:17.848668 start of program
+2015-01-25 00:30:17.874493 number: 1, host: 201.81.20.209
+2015-01-25 00:30:18.421441 OK, Server Host 1 connected.
+2015-01-25 00:30:18.610911 Changes has 0 records
+2015-01-25 00:30:18.612003 number: 2, host: 177.140.75.151
+2015-01-25 00:30:48.711345 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 00:30:48.713609 end of program
+2015-01-25 00:35:12.222803 
+2015-01-25 00:35:12.223317 start of program
+2015-01-25 00:35:12.240863 number: 1, host: 201.81.20.209
+2015-01-25 00:35:12.771706 OK, Server Host 1 connected.
+2015-01-25 00:35:12.949632 Changes has 0 records
+2015-01-25 00:35:12.950115 number: 2, host: 177.140.75.151
+2015-01-25 00:35:43.049685 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 00:35:43.052753 end of program
+2015-01-25 00:40:12.946206 
+2015-01-25 00:40:12.962381 start of program
+2015-01-25 00:40:12.986654 number: 1, host: 201.81.20.209
+2015-01-25 00:40:13.562524 OK, Server Host 1 connected.
+2015-01-25 00:40:13.753180 Changes has 0 records
+2015-01-25 00:40:13.753927 number: 2, host: 177.140.75.151
+2015-01-25 00:40:43.851497 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 00:40:43.852666 end of program
+2015-01-25 00:45:16.666939 
+2015-01-25 00:45:16.690555 start of program
+2015-01-25 00:45:16.750538 number: 1, host: 201.81.20.209
+2015-01-25 00:45:17.290273 OK, Server Host 1 connected.
+2015-01-25 00:45:17.468888 Changes has 0 records
+2015-01-25 00:45:17.469561 number: 2, host: 177.140.75.151
+2015-01-25 00:45:47.570994 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 00:45:47.572300 end of program
+2015-01-25 00:50:12.964473 
+2015-01-25 00:50:12.977688 start of program
+2015-01-25 00:50:12.994736 number: 1, host: 201.81.20.209
+2015-01-25 00:50:13.556670 OK, Server Host 1 connected.
+2015-01-25 00:50:13.745193 Changes has 0 records
+2015-01-25 00:50:13.745589 number: 2, host: 177.140.75.151
+2015-01-25 00:50:43.840785 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 00:50:43.842070 end of program
+2015-01-25 00:55:12.379495 
+2015-01-25 00:55:12.424537 start of program
+2015-01-25 00:55:12.438224 number: 1, host: 201.81.20.209
+2015-01-25 00:55:12.987068 OK, Server Host 1 connected.
+2015-01-25 00:55:13.173609 Changes has 0 records
+2015-01-25 00:55:13.174197 number: 2, host: 177.140.75.151
+2015-01-25 00:55:43.270938 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 00:55:43.272470 end of program
+2015-01-25 01:00:20.943713 
+2015-01-25 01:00:20.946291 start of program
+2015-01-25 01:00:20.981592 number: 1, host: 201.81.20.209
+2015-01-25 01:00:21.513555 OK, Server Host 1 connected.
+2015-01-25 01:00:21.708434 Changes has 0 records
+2015-01-25 01:00:21.709352 number: 2, host: 177.140.75.151
+2015-01-25 01:00:51.811030 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 01:00:51.812453 end of program
+2015-01-25 01:05:12.705551 
+2015-01-25 01:05:12.707597 start of program
+2015-01-25 01:05:12.726999 number: 1, host: 201.81.20.209
+2015-01-25 01:05:13.284038 OK, Server Host 1 connected.
+2015-01-25 01:05:13.472118 Changes has 0 records
+2015-01-25 01:05:13.478550 number: 2, host: 177.140.75.151
+2015-01-25 01:05:43.581863 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 01:05:43.583602 end of program
+2015-01-25 01:10:13.373039 
+2015-01-25 01:10:13.374057 start of program
+2015-01-25 01:10:13.393685 number: 1, host: 201.81.20.209
+2015-01-25 01:10:13.926178 OK, Server Host 1 connected.
+2015-01-25 01:10:14.106457 Changes has 0 records
+2015-01-25 01:10:14.107012 number: 2, host: 177.140.75.151
+2015-01-25 01:10:44.225447 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 01:10:44.228325 end of program
+2015-01-25 01:15:17.291010 
+2015-01-25 01:15:17.309363 start of program
+2015-01-25 01:15:17.493467 number: 1, host: 201.81.20.209
+2015-01-25 01:15:18.033450 OK, Server Host 1 connected.
+2015-01-25 01:15:18.217877 Changes has 0 records
+2015-01-25 01:15:18.218385 number: 2, host: 177.140.75.151
+2015-01-25 01:15:48.318258 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 01:15:48.319939 end of program
+2015-01-25 01:20:13.197217 
+2015-01-25 01:20:13.249191 start of program
+2015-01-25 01:20:13.266253 number: 1, host: 201.81.20.209
+2015-01-25 01:20:13.803130 OK, Server Host 1 connected.
+2015-01-25 01:20:13.983511 Changes has 0 records
+2015-01-25 01:20:13.984024 number: 2, host: 177.140.75.151
+2015-01-25 01:20:44.078938 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 01:20:44.080466 end of program
+2015-01-25 01:25:12.074453 
+2015-01-25 01:25:12.083240 start of program
+2015-01-25 01:25:12.097262 number: 1, host: 201.81.20.209
+2015-01-25 01:25:12.643425 OK, Server Host 1 connected.
+2015-01-25 01:25:12.825333 Changes has 0 records
+2015-01-25 01:25:12.825772 number: 2, host: 177.140.75.151
+2015-01-25 01:25:42.920847 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 01:25:42.922155 end of program
+2015-01-25 01:30:18.304886 
+2015-01-25 01:30:18.325898 start of program
+2015-01-25 01:30:18.610266 number: 1, host: 201.81.20.209
+2015-01-25 01:30:19.162571 OK, Server Host 1 connected.
+2015-01-25 01:30:19.348695 Changes has 0 records
+2015-01-25 01:30:19.349322 number: 2, host: 177.140.75.151
+2015-01-25 01:30:49.453057 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 01:30:49.454303 end of program
+2015-01-25 01:35:12.222254 
+2015-01-25 01:35:12.240827 start of program
+2015-01-25 01:35:12.256014 number: 1, host: 201.81.20.209
+2015-01-25 01:35:12.805633 OK, Server Host 1 connected.
+2015-01-25 01:35:12.991684 Changes has 0 records
+2015-01-25 01:35:12.992181 number: 2, host: 177.140.75.151
+2015-01-25 01:35:43.090847 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 01:35:43.092459 end of program
+2015-01-25 01:40:12.841027 
+2015-01-25 01:40:12.849184 start of program
+2015-01-25 01:40:12.864381 number: 1, host: 201.81.20.209
+2015-01-25 01:40:13.410390 OK, Server Host 1 connected.
+2015-01-25 01:40:13.596576 Changes has 0 records
+2015-01-25 01:40:13.597230 number: 2, host: 177.140.75.151
+2015-01-25 01:40:43.690962 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 01:40:43.692465 end of program
+2015-01-25 01:45:16.287646 
+2015-01-25 01:45:16.297914 start of program
+2015-01-25 01:45:16.401041 number: 1, host: 201.81.20.209
+2015-01-25 01:45:16.953951 OK, Server Host 1 connected.
+2015-01-25 01:45:17.142557 Changes has 0 records
+2015-01-25 01:45:17.143372 number: 2, host: 177.140.75.151
+2015-01-25 01:45:47.241299 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 01:45:47.242578 end of program
+2015-01-25 01:50:12.594663 
+2015-01-25 01:50:12.595095 start of program
+2015-01-25 01:50:12.609819 number: 1, host: 201.81.20.209
+2015-01-25 01:50:13.142353 OK, Server Host 1 connected.
+2015-01-25 01:50:13.320751 Changes has 0 records
+2015-01-25 01:50:13.321296 number: 2, host: 177.140.75.151
+2015-01-25 01:50:43.420682 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 01:50:43.421907 end of program
+2015-01-25 01:55:12.161440 
+2015-01-25 01:55:12.162024 start of program
+2015-01-25 01:55:12.178249 number: 1, host: 201.81.20.209
+2015-01-25 01:55:12.738696 OK, Server Host 1 connected.
+2015-01-25 01:55:12.926742 Changes has 0 records
+2015-01-25 01:55:12.927251 number: 2, host: 177.140.75.151
+2015-01-25 01:55:43.029256 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 01:55:43.030690 end of program
+2015-01-25 02:00:20.808271 
+2015-01-25 02:00:20.819956 start of program
+2015-01-25 02:00:20.850967 number: 1, host: 201.81.20.209
+2015-01-25 02:00:21.404631 OK, Server Host 1 connected.
+2015-01-25 02:00:21.589184 Changes has 0 records
+2015-01-25 02:00:21.589874 number: 2, host: 177.140.75.151
+2015-01-25 02:00:51.690483 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 02:00:51.691527 end of program
+2015-01-25 02:05:12.181308 
+2015-01-25 02:05:12.198798 start of program
+2015-01-25 02:05:12.277359 number: 1, host: 201.81.20.209
+2015-01-25 02:05:12.820049 OK, Server Host 1 connected.
+2015-01-25 02:05:12.007117 Changes has 0 records
+2015-01-25 02:05:12.007639 number: 2, host: 177.140.75.151
+2015-01-25 02:05:43.108275 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 02:05:43.109783 end of program
+2015-01-25 02:10:13.426579 
+2015-01-25 02:10:13.446981 start of program
+2015-01-25 02:10:13.472756 number: 1, host: 201.81.20.209
+2015-01-25 02:10:14.022257 OK, Server Host 1 connected.
+2015-01-25 02:10:14.209243 Changes has 0 records
+2015-01-25 02:10:14.209970 number: 2, host: 177.140.75.151
+2015-01-25 02:10:44.311973 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 02:10:44.313360 end of program
+2015-01-25 02:15:17.110026 
+2015-01-25 02:15:17.128402 start of program
+2015-01-25 02:15:17.225862 number: 1, host: 201.81.20.209
+2015-01-25 02:15:17.750401 OK, Server Host 1 connected.
+2015-01-25 02:15:17.926906 Changes has 0 records
+2015-01-25 02:15:17.927287 number: 2, host: 177.140.75.151
+2015-01-25 02:15:48.029294 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 02:15:48.030705 end of program
+2015-01-25 02:20:12.851367 
+2015-01-25 02:20:12.852525 start of program
+2015-01-25 02:20:12.868260 number: 1, host: 201.81.20.209
+2015-01-25 02:20:13.404398 OK, Server Host 1 connected.
+2015-01-25 02:20:13.591871 Changes has 0 records
+2015-01-25 02:20:13.592264 number: 2, host: 177.140.75.151
+2015-01-25 02:20:43.688908 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 02:20:43.690223 end of program
+2015-01-25 02:25:11.789169 
+2015-01-25 02:25:11.798648 start of program
+2015-01-25 02:25:11.817284 number: 1, host: 201.81.20.209
+2015-01-25 02:25:12.343765 OK, Server Host 1 connected.
+2015-01-25 02:25:12.523253 Changes has 0 records
+2015-01-25 02:25:12.523600 number: 2, host: 177.140.75.151
+2015-01-25 02:25:42.622508 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 02:25:42.623748 end of program
+2015-01-25 02:30:18.281957 
+2015-01-25 02:30:18.285702 start of program
+2015-01-25 02:30:18.374070 number: 1, host: 201.81.20.209
+2015-01-25 02:30:18.897416 OK, Server Host 1 connected.
+2015-01-25 02:30:19.073828 Changes has 0 records
+2015-01-25 02:30:19.074641 number: 2, host: 177.140.75.151
+2015-01-25 02:30:49.168139 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 02:30:49.170576 end of program
+2015-01-25 02:35:12.565736 
+2015-01-25 02:35:12.567464 start of program
+2015-01-25 02:35:12.644433 number: 1, host: 201.81.20.209
+2015-01-25 02:35:13.194029 OK, Server Host 1 connected.
+2015-01-25 02:35:13.379794 Changes has 0 records
+2015-01-25 02:35:13.380129 number: 2, host: 177.140.75.151
+2015-01-25 02:35:43.480415 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 02:35:43.482082 end of program
+2015-01-25 02:40:13.232186 
+2015-01-25 02:40:13.271818 start of program
+2015-01-25 02:40:13.358922 number: 1, host: 201.81.20.209
+2015-01-25 02:40:13.884647 OK, Server Host 1 connected.
+2015-01-25 02:40:14.066182 Changes has 0 records
+2015-01-25 02:40:14.066777 number: 2, host: 177.140.75.151
+2015-01-25 02:40:44.169719 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 02:40:44.171198 end of program
+2015-01-25 02:45:16.705028 
+2015-01-25 02:45:16.743353 start of program
+2015-01-25 02:45:16.982680 number: 1, host: 201.81.20.209
+2015-01-25 02:45:17.532981 OK, Server Host 1 connected.
+2015-01-25 02:45:17.721891 Changes has 0 records
+2015-01-25 02:45:17.723055 number: 2, host: 177.140.75.151
+2015-01-25 02:45:47.818955 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 02:45:47.820332 end of program
+2015-01-25 02:50:12.658329 
+2015-01-25 02:50:12.659083 start of program
+2015-01-25 02:50:12.735558 number: 1, host: 201.81.20.209
+2015-01-25 02:50:13.277819 OK, Server Host 1 connected.
+2015-01-25 02:50:13.461479 Changes has 0 records
+2015-01-25 02:50:13.461875 number: 2, host: 177.140.75.151
+2015-01-25 02:50:43.560750 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 02:50:43.562126 end of program
+2015-01-25 02:55:12.329245 
+2015-01-25 02:55:12.338012 start of program
+2015-01-25 02:55:12.356996 number: 1, host: 201.81.20.209
+2015-01-25 02:55:12.891614 OK, Server Host 1 connected.
+2015-01-25 02:55:13.077533 Changes has 0 records
+2015-01-25 02:55:13.078282 number: 2, host: 177.140.75.151
+2015-01-25 02:55:43.191004 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 02:55:43.192532 end of program
+2015-01-25 03:00:21.257353 
+2015-01-25 03:00:21.276637 start of program
+2015-01-25 03:00:21.315647 number: 1, host: 201.81.20.209
+2015-01-25 03:00:21.873641 OK, Server Host 1 connected.
+2015-01-25 03:00:22.059017 Changes has 0 records
+2015-01-25 03:00:22.070206 number: 2, host: 177.140.75.151
+2015-01-25 03:00:52.172336 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 03:00:52.174237 end of program
+2015-01-25 03:05:12.567832 
+2015-01-25 03:05:12.576412 start of program
+2015-01-25 03:05:12.663160 number: 1, host: 201.81.20.209
+2015-01-25 03:05:13.214734 OK, Server Host 1 connected.
+2015-01-25 03:05:13.401654 Changes has 0 records
+2015-01-25 03:05:13.402593 number: 2, host: 177.140.75.151
+2015-01-25 03:05:43.507780 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 03:05:43.509188 end of program
+2015-01-25 03:10:13.161525 
+2015-01-25 03:10:13.162091 start of program
+2015-01-25 03:10:13.178991 number: 1, host: 201.81.20.209
+2015-01-25 03:10:13.733679 OK, Server Host 1 connected.
+2015-01-25 03:10:13.926747 Changes has 0 records
+2015-01-25 03:10:13.927185 number: 2, host: 177.140.75.151
+2015-01-25 03:10:44.029382 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 03:10:44.031022 end of program
+2015-01-25 03:15:16.984199 
+2015-01-25 03:15:16.992173 start of program
+2015-01-25 03:15:17.130637 number: 1, host: 201.81.20.209
+2015-01-25 03:15:17.674753 OK, Server Host 1 connected.
+2015-01-25 03:15:17.861702 Changes has 0 records
+2015-01-25 03:15:17.862620 number: 2, host: 177.140.75.151
+2015-01-25 03:15:47.964464 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 03:15:47.965897 end of program
+2015-01-25 03:20:12.850336 
+2015-01-25 03:20:12.850715 start of program
+2015-01-25 03:20:12.927000 number: 1, host: 201.81.20.209
+2015-01-25 03:20:13.481317 OK, Server Host 1 connected.
+2015-01-25 03:20:13.671294 Changes has 0 records
+2015-01-25 03:20:13.671689 number: 2, host: 177.140.75.151
+2015-01-25 03:20:43.770323 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 03:20:43.771542 end of program
+2015-01-25 03:25:11.981872 
+2015-01-25 03:25:11.991172 start of program
+2015-01-25 03:25:12.015866 number: 1, host: 201.81.20.209
+2015-01-25 03:25:12.544938 OK, Server Host 1 connected.
+2015-01-25 03:25:12.726828 Changes has 0 records
+2015-01-25 03:25:12.727184 number: 2, host: 177.140.75.151
+2015-01-25 03:25:42.824087 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 03:25:42.825786 end of program
+2015-01-25 03:30:18.160863 
+2015-01-25 03:30:18.174605 start of program
+2015-01-25 03:30:18.255928 number: 1, host: 201.81.20.209
+2015-01-25 03:30:18.802452 OK, Server Host 1 connected.
+2015-01-25 03:30:18.982457 Changes has 0 records
+2015-01-25 03:30:18.982944 number: 2, host: 177.140.75.151
+2015-01-25 03:30:49.079313 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 03:30:49.080745 end of program
+2015-01-25 03:35:12.107555 
+2015-01-25 03:35:12.124847 start of program
+2015-01-25 03:35:12.145584 number: 1, host: 201.81.20.209
+2015-01-25 03:35:12.675598 OK, Server Host 1 connected.
+2015-01-25 03:35:12.857331 Changes has 0 records
+2015-01-25 03:35:12.858106 number: 2, host: 177.140.75.151
+2015-01-25 03:35:42.950428 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 03:35:42.951761 end of program
+2015-01-25 03:40:12.770618 
+2015-01-25 03:40:12.783227 start of program
+2015-01-25 03:40:12.801101 number: 1, host: 201.81.20.209
+2015-01-25 03:40:13.351801 OK, Server Host 1 connected.
+2015-01-25 03:40:13.538596 Changes has 0 records
+2015-01-25 03:40:13.539870 number: 2, host: 177.140.75.151
+2015-01-25 03:40:43.640554 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 03:40:43.641676 end of program
+2015-01-25 03:45:16.095660 
+2015-01-25 03:45:16.105614 start of program
+2015-01-25 03:45:16.210321 number: 1, host: 201.81.20.209
+2015-01-25 03:45:16.760567 OK, Server Host 1 connected.
+2015-01-25 03:45:16.945397 Changes has 0 records
+2015-01-25 03:45:16.945988 number: 2, host: 177.140.75.151
+2015-01-25 03:45:47.048959 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 03:45:47.050978 end of program
+2015-01-25 03:50:12.703672 
+2015-01-25 03:50:12.709586 start of program
+2015-01-25 03:50:12.743988 number: 1, host: 201.81.20.209
+2015-01-25 03:50:13.324294 OK, Server Host 1 connected.
+2015-01-25 03:50:13.512489 Changes has 0 records
+2015-01-25 03:50:13.513878 number: 2, host: 177.140.75.151
+2015-01-25 03:50:43.609629 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 03:50:43.611486 end of program
+2015-01-25 03:55:12.146592 
+2015-01-25 03:55:12.147458 start of program
+2015-01-25 03:55:12.165156 number: 1, host: 201.81.20.209
+2015-01-25 03:55:12.716424 OK, Server Host 1 connected.
+2015-01-25 03:55:12.901955 Changes has 0 records
+2015-01-25 03:55:12.903249 number: 2, host: 177.140.75.151
+2015-01-25 03:55:42.998735 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 03:55:42.000015 end of program
+2015-01-25 04:00:20.823172 
+2015-01-25 04:00:20.824467 start of program
+2015-01-25 04:00:20.882892 number: 1, host: 201.81.20.209
+2015-01-25 04:00:21.412507 OK, Server Host 1 connected.
+2015-01-25 04:00:21.592396 Changes has 0 records
+2015-01-25 04:00:21.593069 number: 2, host: 177.140.75.151
+2015-01-25 04:00:51.690655 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 04:00:51.692505 end of program
+2015-01-25 04:05:12.033434 
+2015-01-25 04:05:12.033848 start of program
+2015-01-25 04:05:12.048684 number: 1, host: 201.81.20.209
+2015-01-25 04:05:12.586971 OK, Server Host 1 connected.
+2015-01-25 04:05:12.768995 Changes has 0 records
+2015-01-25 04:05:12.769376 number: 2, host: 177.140.75.151
+2015-01-25 04:05:42.870680 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 04:05:42.872624 end of program
+2015-01-25 04:10:12.808063 
+2015-01-25 04:10:12.813757 start of program
+2015-01-25 04:10:12.920437 number: 1, host: 201.81.20.209
+2015-01-25 04:10:13.467885 OK, Server Host 1 connected.
+2015-01-25 04:10:13.654050 Changes has 0 records
+2015-01-25 04:10:13.654447 number: 2, host: 177.140.75.151
+2015-01-25 04:10:43.751214 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 04:10:43.752693 end of program
+2015-01-25 04:15:16.703176 
+2015-01-25 04:15:16.727270 start of program
+2015-01-25 04:15:16.875709 number: 1, host: 201.81.20.209
+2015-01-25 04:15:17.412459 OK, Server Host 1 connected.
+2015-01-25 04:15:17.594840 Changes has 0 records
+2015-01-25 04:15:17.595268 number: 2, host: 177.140.75.151
+2015-01-25 04:15:47.690684 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 04:15:47.692636 end of program
+2015-01-25 04:20:12.965673 
+2015-01-25 04:20:12.966763 start of program
+2015-01-25 04:20:12.980906 number: 1, host: 201.81.20.209
+2015-01-25 04:20:13.527531 OK, Server Host 1 connected.
+2015-01-25 04:20:13.712045 Changes has 0 records
+2015-01-25 04:20:13.712437 number: 2, host: 177.140.75.151
+2015-01-25 04:20:43.809875 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 04:20:43.811660 end of program
+2015-01-25 04:25:12.353814 
+2015-01-25 04:25:12.354361 start of program
+2015-01-25 04:25:12.369143 number: 1, host: 201.81.20.209
+2015-01-25 04:25:12.887834 OK, Server Host 1 connected.
+2015-01-25 04:25:13.063957 Changes has 0 records
+2015-01-25 04:25:13.064414 number: 2, host: 177.140.75.151
+2015-01-25 04:25:43.158636 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 04:25:43.167694 end of program
+2015-01-25 04:30:18.012344 
+2015-01-25 04:30:18.013648 start of program
+2015-01-25 04:30:18.096439 number: 1, host: 201.81.20.209
+2015-01-25 04:30:18.630902 OK, Server Host 1 connected.
+2015-01-25 04:30:18.815150 Changes has 0 records
+2015-01-25 04:30:18.815639 number: 2, host: 177.140.75.151
+2015-01-25 04:30:48.910451 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 04:30:48.911812 end of program
+2015-01-25 04:35:12.129444 
+2015-01-25 04:35:12.129885 start of program
+2015-01-25 04:35:12.156100 number: 1, host: 201.81.20.209
+2015-01-25 04:35:12.686266 OK, Server Host 1 connected.
+2015-01-25 04:35:12.870760 Changes has 0 records
+2015-01-25 04:35:12.873580 number: 2, host: 177.140.75.151
+2015-01-25 04:35:42.971496 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 04:35:42.973035 end of program
+2015-01-25 04:40:12.902493 
+2015-01-25 04:40:12.908030 start of program
+2015-01-25 04:40:12.936688 number: 1, host: 201.81.20.209
+2015-01-25 04:40:13.485757 OK, Server Host 1 connected.
+2015-01-25 04:40:13.671852 Changes has 0 records
+2015-01-25 04:40:13.672357 number: 2, host: 177.140.75.151
+2015-01-25 04:40:43.770989 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 04:40:43.772357 end of program
+2015-01-25 04:45:16.282810 
+2015-01-25 04:45:16.283770 start of program
+2015-01-25 04:45:16.302385 number: 1, host: 201.81.20.209
+2015-01-25 04:45:16.866225 OK, Server Host 1 connected.
+2015-01-25 04:45:17.058331 Changes has 0 records
+2015-01-25 04:45:17.059392 number: 2, host: 177.140.75.151
+2015-01-25 04:45:47.160459 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 04:45:47.161799 end of program
+2015-01-25 04:50:12.768510 
+2015-01-25 04:50:12.770158 start of program
+2015-01-25 04:50:12.788995 number: 1, host: 201.81.20.209
+2015-01-25 04:50:13.335877 OK, Server Host 1 connected.
+2015-01-25 04:50:13.522705 Changes has 0 records
+2015-01-25 04:50:13.523128 number: 2, host: 177.140.75.151
+2015-01-25 04:50:43.620349 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 04:50:43.622520 end of program
+2015-01-25 04:55:11.941647 
+2015-01-25 04:55:11.942126 start of program
+2015-01-25 04:55:11.958794 number: 1, host: 201.81.20.209
+2015-01-25 04:55:12.504173 OK, Server Host 1 connected.
+2015-01-25 04:55:12.689387 Changes has 0 records
+2015-01-25 04:55:12.690136 number: 2, host: 177.140.75.151
+2015-01-25 04:55:42.791158 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 04:55:42.801334 end of program
+2015-01-25 05:00:20.642437 
+2015-01-25 05:00:20.644018 start of program
+2015-01-25 05:00:20.727382 number: 1, host: 201.81.20.209
+2015-01-25 05:00:21.255848 OK, Server Host 1 connected.
+2015-01-25 05:00:21.435185 Changes has 0 records
+2015-01-25 05:00:21.435841 number: 2, host: 177.140.75.151
+2015-01-25 05:00:51.538998 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 05:00:51.540517 end of program
+2015-01-25 05:05:12.115100 
+2015-01-25 05:05:12.119877 start of program
+2015-01-25 05:05:12.198233 number: 1, host: 201.81.20.209
+2015-01-25 05:05:12.738086 OK, Server Host 1 connected.
+2015-01-25 05:05:12.922369 Changes has 0 records
+2015-01-25 05:05:12.922805 number: 2, host: 177.140.75.151
+2015-01-25 05:05:43.021467 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 05:05:43.023057 end of program
+2015-01-25 05:10:12.857437 
+2015-01-25 05:10:12.857880 start of program
+2015-01-25 05:10:12.895541 number: 1, host: 201.81.20.209
+2015-01-25 05:10:13.426922 OK, Server Host 1 connected.
+2015-01-25 05:10:13.609635 Changes has 0 records
+2015-01-25 05:10:13.611108 number: 2, host: 177.140.75.151
+2015-01-25 05:10:43.712149 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 05:10:43.713640 end of program
+2015-01-25 05:15:16.463595 
+2015-01-25 05:15:16.488985 start of program
+2015-01-25 05:15:16.540203 number: 1, host: 201.81.20.209
+2015-01-25 05:15:17.073146 OK, Server Host 1 connected.
+2015-01-25 05:15:17.251403 Changes has 0 records
+2015-01-25 05:15:17.252038 number: 2, host: 177.140.75.151
+2015-01-25 05:15:47.350119 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 05:15:47.351829 end of program
+2015-01-25 05:20:12.824633 
+2015-01-25 05:20:12.825048 start of program
+2015-01-25 05:20:12.930233 number: 1, host: 201.81.20.209
+2015-01-25 05:20:13.469719 OK, Server Host 1 connected.
+2015-01-25 05:20:13.652151 Changes has 0 records
+2015-01-25 05:20:13.652829 number: 2, host: 177.140.75.151
+2015-01-25 05:20:43.751496 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 05:20:43.753162 end of program
+2015-01-25 05:25:11.776525 
+2015-01-25 05:25:11.777420 start of program
+2015-01-25 05:25:11.796123 number: 1, host: 201.81.20.209
+2015-01-25 05:25:12.325907 OK, Server Host 1 connected.
+2015-01-25 05:25:12.506105 Changes has 0 records
+2015-01-25 05:25:12.506530 number: 2, host: 177.140.75.151
+2015-01-25 05:25:42.599340 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 05:25:42.600763 end of program
+2015-01-25 05:30:18.085601 
+2015-01-25 05:30:18.097198 start of program
+2015-01-25 05:30:18.129004 number: 1, host: 201.81.20.209
+2015-01-25 05:30:18.688680 OK, Server Host 1 connected.
+2015-01-25 05:30:18.873758 Changes has 0 records
+2015-01-25 05:30:18.874162 number: 2, host: 177.140.75.151
+2015-01-25 05:30:48.972054 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 05:30:48.973393 end of program
+2015-01-25 05:35:11.989005 
+2015-01-25 05:35:11.005721 start of program
+2015-01-25 05:35:12.026442 number: 1, host: 201.81.20.209
+2015-01-25 05:35:12.546898 OK, Server Host 1 connected.
+2015-01-25 05:35:12.723167 Changes has 0 records
+2015-01-25 05:35:12.723619 number: 2, host: 177.140.75.151
+2015-01-25 05:35:42.837003 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 05:35:42.839072 end of program
+2015-01-25 05:40:12.557918 
+2015-01-25 05:40:12.558571 start of program
+2015-01-25 05:40:12.576285 number: 1, host: 201.81.20.209
+2015-01-25 05:40:13.124705 OK, Server Host 1 connected.
+2015-01-25 05:40:13.310551 Changes has 0 records
+2015-01-25 05:40:13.311046 number: 2, host: 177.140.75.151
+2015-01-25 05:40:43.415222 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 05:40:43.416663 end of program
+2015-01-25 05:45:16.582682 
+2015-01-25 05:45:16.618260 start of program
+2015-01-25 05:45:16.830864 number: 1, host: 201.81.20.209
+2015-01-25 05:45:17.359163 OK, Server Host 1 connected.
+2015-01-25 05:45:17.537243 Changes has 0 records
+2015-01-25 05:45:17.537649 number: 2, host: 177.140.75.151
+2015-01-25 05:45:47.630818 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 05:45:47.632533 end of program
+2015-01-25 05:50:12.650091 
+2015-01-25 05:50:12.650714 start of program
+2015-01-25 05:50:12.666378 number: 1, host: 201.81.20.209
+2015-01-25 05:50:13.211911 OK, Server Host 1 connected.
+2015-01-25 05:50:13.396121 Changes has 0 records
+2015-01-25 05:50:13.396765 number: 2, host: 177.140.75.151
+2015-01-25 05:50:43.499190 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 05:50:43.500739 end of program
+2015-01-25 05:55:11.786330 
+2015-01-25 05:55:11.796468 start of program
+2015-01-25 05:55:11.828464 number: 1, host: 201.81.20.209
+2015-01-25 05:55:12.392680 OK, Server Host 1 connected.
+2015-01-25 05:55:12.585582 Changes has 0 records
+2015-01-25 05:55:12.585970 number: 2, host: 177.140.75.151
+2015-01-25 05:55:42.679149 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 05:55:42.680724 end of program
+2015-01-25 06:00:27.006491 
+2015-01-25 06:00:28.030554 start of program
+2015-01-25 06:00:28.171772 number: 1, host: 201.81.20.209
+2015-01-25 06:00:28.734879 OK, Server Host 1 connected.
+2015-01-25 06:00:28.916534 Changes has 0 records
+2015-01-25 06:00:28.929561 number: 2, host: 177.140.75.151
+2015-01-25 06:00:59.064449 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 06:00:59.080487 end of program
+2015-01-25 06:05:12.494796 
+2015-01-25 06:05:12.508039 start of program
+2015-01-25 06:05:12.591415 number: 1, host: 201.81.20.209
+2015-01-25 06:05:13.133096 OK, Server Host 1 connected.
+2015-01-25 06:05:13.317399 Changes has 0 records
+2015-01-25 06:05:13.317883 number: 2, host: 177.140.75.151
+2015-01-25 06:05:43.419101 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 06:05:43.420593 end of program
+2015-01-25 06:10:13.935034 
+2015-01-25 06:10:13.936333 start of program
+2015-01-25 06:10:13.952618 number: 1, host: 201.81.20.209
+2015-01-25 06:10:14.493928 OK, Server Host 1 connected.
+2015-01-25 06:10:14.678049 Changes has 0 records
+2015-01-25 06:10:14.678927 number: 2, host: 177.140.75.151
+2015-01-25 06:10:44.780213 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 06:10:44.782462 end of program
+2015-01-25 06:15:17.712884 
+2015-01-25 06:15:17.730946 start of program
+2015-01-25 06:15:18.028445 number: 1, host: 201.81.20.209
+2015-01-25 06:15:18.584340 OK, Server Host 1 connected.
+2015-01-25 06:15:18.891854 Changes has 0 records
+2015-01-25 06:15:18.892536 number: 2, host: 177.140.75.151
+2015-01-25 06:15:48.988076 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 06:15:48.989502 end of program
+2015-01-25 06:20:13.848626 
+2015-01-25 06:20:13.849403 start of program
+2015-01-25 06:20:13.884536 number: 1, host: 201.81.20.209
+2015-01-25 06:20:14.405726 OK, Server Host 1 connected.
+2015-01-25 06:20:14.583203 Changes has 0 records
+2015-01-25 06:20:14.585245 number: 2, host: 177.140.75.151
+2015-01-25 06:20:44.683349 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 06:20:44.685412 end of program
+2015-01-25 06:25:12.209695 
+2015-01-25 06:25:12.210133 start of program
+2015-01-25 06:25:12.309346 number: 1, host: 201.81.20.209
+2015-01-25 06:25:12.844318 OK, Server Host 1 connected.
+2015-01-25 06:25:13.026957 Changes has 0 records
+2015-01-25 06:25:13.027554 number: 2, host: 177.140.75.151
+2015-01-25 06:25:43.149392 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 06:25:43.151888 end of program
+2015-01-25 06:30:18.592059 
+2015-01-25 06:30:18.610225 start of program
+2015-01-25 06:30:18.751893 number: 1, host: 201.81.20.209
+2015-01-25 06:30:19.358019 OK, Server Host 1 connected.
+2015-01-25 06:30:19.558417 Changes has 0 records
+2015-01-25 06:30:19.567161 number: 2, host: 177.140.75.151
+2015-01-25 06:30:49.668919 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 06:30:49.671247 end of program
+2015-01-25 06:35:12.667282 
+2015-01-25 06:35:12.667695 start of program
+2015-01-25 06:35:12.686181 number: 1, host: 201.81.20.209
+2015-01-25 06:35:13.355394 OK, Server Host 1 connected.
+2015-01-25 06:35:13.542291 Changes has 0 records
+2015-01-25 06:35:13.543711 number: 2, host: 177.140.75.151
+2015-01-25 06:35:43.639882 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 06:35:43.641601 end of program
+2015-01-25 06:40:13.394066 
+2015-01-25 06:40:13.394542 start of program
+2015-01-25 06:40:13.424610 number: 1, host: 201.81.20.209
+2015-01-25 06:40:14.170316 OK, Server Host 1 connected.
+2015-01-25 06:40:14.356849 Changes has 0 records
+2015-01-25 06:40:14.357550 number: 2, host: 177.140.75.151
+2015-01-25 06:40:44.458922 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 06:40:44.460233 end of program
+2015-01-25 06:45:16.974480 
+2015-01-25 06:45:16.977307 start of program
+2015-01-25 06:45:16.999542 number: 1, host: 201.81.20.209
+2015-01-25 06:45:17.555612 OK, Server Host 1 connected.
+2015-01-25 06:45:17.744126 Changes has 0 records
+2015-01-25 06:45:17.744751 number: 2, host: 177.140.75.151
+2015-01-25 06:45:47.839865 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 06:45:47.841389 end of program
+2015-01-25 06:50:13.306480 
+2015-01-25 06:50:13.307012 start of program
+2015-01-25 06:50:13.328918 number: 1, host: 201.81.20.209
+2015-01-25 06:50:13.848425 OK, Server Host 1 connected.
+2015-01-25 06:50:14.024606 Changes has 0 records
+2015-01-25 06:50:14.024987 number: 2, host: 177.140.75.151
+2015-01-25 06:50:44.120475 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 06:50:44.121731 end of program
+2015-01-25 06:55:12.291917 
+2015-01-25 06:55:12.292630 start of program
+2015-01-25 06:55:12.307157 number: 1, host: 201.81.20.209
+2015-01-25 06:55:12.863870 OK, Server Host 1 connected.
+2015-01-25 06:55:13.054563 Changes has 0 records
+2015-01-25 06:55:13.054961 number: 2, host: 177.140.75.151
+2015-01-25 06:55:43.150377 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 06:55:43.151629 end of program
+2015-01-25 07:00:22.352007 
+2015-01-25 07:00:22.363476 start of program
+2015-01-25 07:00:22.468254 number: 1, host: 201.81.20.209
+2015-01-25 07:00:23.010329 OK, Server Host 1 connected.
+2015-01-25 07:00:23.194641 Changes has 0 records
+2015-01-25 07:00:23.195204 number: 2, host: 177.140.75.151
+2015-01-25 07:00:53.299883 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 07:00:53.301679 end of program
+2015-01-25 07:05:12.833582 
+2015-01-25 07:05:12.843645 start of program
+2015-01-25 07:05:12.864973 number: 1, host: 201.81.20.209
+2015-01-25 07:05:13.411370 OK, Server Host 1 connected.
+2015-01-25 07:05:13.598586 Changes has 0 records
+2015-01-25 07:05:13.601441 number: 2, host: 177.140.75.151
+2015-01-25 07:05:43.711541 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 07:05:43.712946 end of program
+2015-01-25 07:10:13.153265 
+2015-01-25 07:10:13.161807 start of program
+2015-01-25 07:10:13.263097 number: 1, host: 201.81.20.209
+2015-01-25 07:10:13.806213 OK, Server Host 1 connected.
+2015-01-25 07:10:13.992373 Changes has 0 records
+2015-01-25 07:10:13.992873 number: 2, host: 177.140.75.151
+2015-01-25 07:10:44.089938 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 07:10:44.091709 end of program
+2015-01-25 07:15:16.939900 
+2015-01-25 07:15:16.961900 start of program
+2015-01-25 07:15:17.059746 number: 1, host: 201.81.20.209
+2015-01-25 07:15:17.607638 OK, Server Host 1 connected.
+2015-01-25 07:15:17.793584 Changes has 0 records
+2015-01-25 07:15:17.794148 number: 2, host: 177.140.75.151
+2015-01-25 07:15:47.889453 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 07:15:47.890918 end of program
+2015-01-25 07:20:12.000581 
+2015-01-25 07:20:13.013188 start of program
+2015-01-25 07:20:13.035439 number: 1, host: 201.81.20.209
+2015-01-25 07:20:13.572041 OK, Server Host 1 connected.
+2015-01-25 07:20:13.753777 Changes has 0 records
+2015-01-25 07:20:13.754712 number: 2, host: 177.140.75.151
+2015-01-25 07:20:43.851293 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 07:20:43.852638 end of program
+2015-01-25 07:25:11.737014 
+2015-01-25 07:25:11.737454 start of program
+2015-01-25 07:25:11.755574 number: 1, host: 201.81.20.209
+2015-01-25 07:25:12.272099 OK, Server Host 1 connected.
+2015-01-25 07:25:12.448333 Changes has 0 records
+2015-01-25 07:25:12.449336 number: 2, host: 177.140.75.151
+2015-01-25 07:25:42.548135 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 07:25:42.549549 end of program
+2015-01-25 07:30:17.648498 
+2015-01-25 07:30:17.648939 start of program
+2015-01-25 07:30:17.667316 number: 1, host: 201.81.20.209
+2015-01-25 07:30:18.186621 OK, Server Host 1 connected.
+2015-01-25 07:30:18.363192 Changes has 0 records
+2015-01-25 07:30:18.363957 number: 2, host: 177.140.75.151
+2015-01-25 07:30:48.459232 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 07:30:48.460783 end of program
+2015-01-25 07:35:12.707648 
+2015-01-25 07:35:12.708334 start of program
+2015-01-25 07:35:12.735068 number: 1, host: 201.81.20.209
+2015-01-25 07:35:13.263790 OK, Server Host 1 connected.
+2015-01-25 07:35:13.442414 Changes has 0 records
+2015-01-25 07:35:13.442879 number: 2, host: 177.140.75.151
+2015-01-25 07:35:43.540965 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 07:35:43.542800 end of program
+2015-01-25 07:40:13.120960 
+2015-01-25 07:40:13.121432 start of program
+2015-01-25 07:40:13.138888 number: 1, host: 201.81.20.209
+2015-01-25 07:40:13.667671 OK, Server Host 1 connected.
+2015-01-25 07:40:13.854170 Changes has 0 records
+2015-01-25 07:40:13.854734 number: 2, host: 177.140.75.151
+2015-01-25 07:40:43.949048 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 07:40:43.950367 end of program
+2015-01-25 07:45:16.321120 
+2015-01-25 07:45:16.321601 start of program
+2015-01-25 07:45:17.343640 number: 1, host: 201.81.20.209
+2015-01-25 07:45:17.890651 OK, Server Host 1 connected.
+2015-01-25 07:45:18.077142 Changes has 0 records
+2015-01-25 07:45:18.078199 number: 2, host: 177.140.75.151
+2015-01-25 07:45:48.171412 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 07:45:48.172887 end of program
+2015-01-25 07:50:12.599495 
+2015-01-25 07:50:12.601098 start of program
+2015-01-25 07:50:12.691874 number: 1, host: 201.81.20.209
+2015-01-25 07:50:13.232990 OK, Server Host 1 connected.
+2015-01-25 07:50:13.418384 Changes has 0 records
+2015-01-25 07:50:13.418747 number: 2, host: 177.140.75.151
+2015-01-25 07:50:43.519260 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 07:50:43.520773 end of program
+2015-01-25 07:55:12.086037 
+2015-01-25 07:55:12.086411 start of program
+2015-01-25 07:55:12.106936 number: 1, host: 201.81.20.209
+2015-01-25 07:55:12.634112 OK, Server Host 1 connected.
+2015-01-25 07:55:12.814302 Changes has 0 records
+2015-01-25 07:55:12.814827 number: 2, host: 177.140.75.151
+2015-01-25 07:55:42.909899 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 07:55:42.912105 end of program
+2015-01-25 08:00:22.176573 
+2015-01-25 08:00:22.178650 start of program
+2015-01-25 08:00:22.204139 number: 1, host: 201.81.20.209
+2015-01-25 08:00:22.752577 OK, Server Host 1 connected.
+2015-01-25 08:00:22.940806 Changes has 0 records
+2015-01-25 08:00:22.942192 number: 2, host: 177.140.75.151
+2015-01-25 08:00:53.041570 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 08:00:53.042953 end of program
+2015-01-25 08:05:11.974837 
+2015-01-25 08:05:11.975719 start of program
+2015-01-25 08:05:11.993601 number: 1, host: 201.81.20.209
+2015-01-25 08:05:12.517586 OK, Server Host 1 connected.
+2015-01-25 08:05:12.694128 Changes has 0 records
+2015-01-25 08:05:12.695429 number: 2, host: 177.140.75.151
+2015-01-25 08:05:42.789785 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 08:05:42.791863 end of program
+2015-01-25 08:10:13.529143 
+2015-01-25 08:10:13.530621 start of program
+2015-01-25 08:10:13.737606 number: 1, host: 201.81.20.209
+2015-01-25 08:10:14.262135 OK, Server Host 1 connected.
+2015-01-25 08:10:14.440499 Changes has 0 records
+2015-01-25 08:10:14.441339 number: 2, host: 177.140.75.151
+2015-01-25 08:10:44.544497 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 08:10:44.548646 end of program
+2015-01-25 08:15:16.940633 
+2015-01-25 08:15:16.966101 start of program
+2015-01-25 08:15:17.198559 number: 1, host: 201.81.20.209
+2015-01-25 08:15:17.733410 OK, Server Host 1 connected.
+2015-01-25 08:15:17.913416 Changes has 0 records
+2015-01-25 08:15:17.914065 number: 2, host: 177.140.75.151
+2015-01-25 08:15:48.011576 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 08:15:48.015504 end of program
+2015-01-25 08:20:13.073688 
+2015-01-25 08:20:13.086257 start of program
+2015-01-25 08:20:13.119589 number: 1, host: 201.81.20.209
+2015-01-25 08:20:13.667872 OK, Server Host 1 connected.
+2015-01-25 08:20:13.854202 Changes has 0 records
+2015-01-25 08:20:13.854566 number: 2, host: 177.140.75.151
+2015-01-25 08:20:43.948939 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 08:20:43.950596 end of program
+2015-01-25 08:25:12.316231 
+2015-01-25 08:25:12.316663 start of program
+2015-01-25 08:25:12.338291 number: 1, host: 201.81.20.209
+2015-01-25 08:25:12.891816 OK, Server Host 1 connected.
+2015-01-25 08:25:13.080210 Changes has 0 records
+2015-01-25 08:25:13.080696 number: 2, host: 177.140.75.151
+2015-01-25 08:25:43.178906 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 08:25:43.180129 end of program
+2015-01-25 08:30:18.139362 
+2015-01-25 08:30:18.139908 start of program
+2015-01-25 08:30:18.312778 number: 1, host: 201.81.20.209
+2015-01-25 08:30:18.877917 OK, Server Host 1 connected.
+2015-01-25 08:30:19.065295 Changes has 0 records
+2015-01-25 08:30:19.065776 number: 2, host: 177.140.75.151
+2015-01-25 08:30:49.159594 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 08:30:49.160775 end of program
+2015-01-25 08:35:12.221816 
+2015-01-25 08:35:12.222253 start of program
+2015-01-25 08:35:12.306363 number: 1, host: 201.81.20.209
+2015-01-25 08:35:12.839072 OK, Server Host 1 connected.
+2015-01-25 08:35:12.019125 Changes has 0 records
+2015-01-25 08:35:13.019625 number: 2, host: 177.140.75.151
+2015-01-25 08:35:43.123731 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 08:35:43.125271 end of program
+2015-01-25 08:40:12.923933 
+2015-01-25 08:40:12.924630 start of program
+2015-01-25 08:40:12.940009 number: 1, host: 201.81.20.209
+2015-01-25 08:40:13.496410 OK, Server Host 1 connected.
+2015-01-25 08:40:13.682627 Changes has 0 records
+2015-01-25 08:40:13.683247 number: 2, host: 177.140.75.151
+2015-01-25 08:40:43.798663 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 08:40:43.805277 end of program
+2015-01-25 08:45:16.403225 
+2015-01-25 08:45:16.403601 start of program
+2015-01-25 08:45:16.423411 number: 1, host: 201.81.20.209
+2015-01-25 08:45:16.976750 OK, Server Host 1 connected.
+2015-01-25 08:45:17.167444 Changes has 0 records
+2015-01-25 08:45:17.168049 number: 2, host: 177.140.75.151
+2015-01-25 08:45:47.270808 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 08:45:47.272863 end of program
+2015-01-25 08:50:13.028034 
+2015-01-25 08:50:13.028609 start of program
+2015-01-25 08:50:13.044640 number: 1, host: 201.81.20.209
+2015-01-25 08:50:13.572769 OK, Server Host 1 connected.
+2015-01-25 08:50:13.763662 Changes has 0 records
+2015-01-25 08:50:13.766150 number: 2, host: 177.140.75.151
+2015-01-25 08:50:43.869734 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 08:50:43.871405 end of program
+2015-01-25 08:55:12.107812 
+2015-01-25 08:55:12.108326 start of program
+2015-01-25 08:55:12.123133 number: 1, host: 201.81.20.209
+2015-01-25 08:55:12.654858 OK, Server Host 1 connected.
+2015-01-25 08:55:12.835402 Changes has 0 records
+2015-01-25 08:55:12.835825 number: 2, host: 177.140.75.151
+2015-01-25 08:55:42.929158 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 08:55:42.930764 end of program
+2015-01-25 09:00:22.685047 
+2015-01-25 09:00:22.685884 start of program
+2015-01-25 09:00:22.714324 number: 1, host: 201.81.20.209
+2015-01-25 09:00:23.269265 OK, Server Host 1 connected.
+2015-01-25 09:00:23.456631 Changes has 0 records
+2015-01-25 09:00:23.457557 number: 2, host: 177.140.75.151
+2015-01-25 09:00:53.550643 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 09:00:53.552352 end of program
+2015-01-25 09:05:12.635359 
+2015-01-25 09:05:12.635726 start of program
+2015-01-25 09:05:12.663420 number: 1, host: 201.81.20.209
+2015-01-25 09:05:13.212881 OK, Server Host 1 connected.
+2015-01-25 09:05:13.396937 Changes has 0 records
+2015-01-25 09:05:13.397479 number: 2, host: 177.140.75.151
+2015-01-25 09:05:43.493056 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 09:05:43.496135 end of program
+2015-01-25 09:10:12.740371 
+2015-01-25 09:10:12.740789 start of program
+2015-01-25 09:10:12.762123 number: 1, host: 201.81.20.209
+2015-01-25 09:10:13.320593 OK, Server Host 1 connected.
+2015-01-25 09:10:13.511108 Changes has 0 records
+2015-01-25 09:10:13.511487 number: 2, host: 177.140.75.151
+2015-01-25 09:10:43.611301 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 09:10:43.612745 end of program
+2015-01-25 09:15:16.631333 
+2015-01-25 09:15:16.631752 start of program
+2015-01-25 09:15:16.719968 number: 1, host: 201.81.20.209
+2015-01-25 09:15:17.249464 OK, Server Host 1 connected.
+2015-01-25 09:15:17.429436 Changes has 0 records
+2015-01-25 09:15:17.429907 number: 2, host: 177.140.75.151
+2015-01-25 09:15:47.528310 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 09:15:47.529679 end of program
+2015-01-25 09:20:13.210841 
+2015-01-25 09:20:13.211212 start of program
+2015-01-25 09:20:13.225156 number: 1, host: 201.81.20.209
+2015-01-25 09:20:13.756359 OK, Server Host 1 connected.
+2015-01-25 09:20:13.940818 Changes has 0 records
+2015-01-25 09:20:13.941233 number: 2, host: 177.140.75.151
+2015-01-25 09:20:44.041181 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 09:20:44.042516 end of program
+2015-01-25 09:25:11.908701 
+2015-01-25 09:25:11.909147 start of program
+2015-01-25 09:25:11.934370 number: 1, host: 201.81.20.209
+2015-01-25 09:25:12.461300 OK, Server Host 1 connected.
+2015-01-25 09:25:12.637803 Changes has 0 records
+2015-01-25 09:25:12.638458 number: 2, host: 177.140.75.151
+2015-01-25 09:25:42.732977 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 09:25:42.734582 end of program
+2015-01-25 09:30:18.325359 
+2015-01-25 09:30:18.340274 start of program
+2015-01-25 09:30:18.624653 number: 1, host: 201.81.20.209
+2015-01-25 09:30:19.194929 OK, Server Host 1 connected.
+2015-01-25 09:30:19.383520 Changes has 0 records
+2015-01-25 09:30:19.384038 number: 2, host: 177.140.75.151
+2015-01-25 09:30:49.481217 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 09:30:49.483142 end of program
+2015-01-25 09:35:11.958024 
+2015-01-25 09:35:11.958365 start of program
+2015-01-25 09:35:11.979633 number: 1, host: 201.81.20.209
+2015-01-25 09:35:12.509623 OK, Server Host 1 connected.
+2015-01-25 09:35:12.691788 Changes has 0 records
+2015-01-25 09:35:12.692175 number: 2, host: 177.140.75.151
+2015-01-25 09:35:42.791064 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 09:35:42.792417 end of program
+2015-01-25 09:40:12.975581 
+2015-01-25 09:40:12.976129 start of program
+2015-01-25 09:40:12.999902 number: 1, host: 201.81.20.209
+2015-01-25 09:40:13.562079 OK, Server Host 1 connected.
+2015-01-25 09:40:13.749334 Changes has 0 records
+2015-01-25 09:40:13.752672 number: 2, host: 177.140.75.151
+2015-01-25 09:40:43.850764 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 09:40:43.852038 end of program
+2015-01-25 09:45:16.147859 
+2015-01-25 09:45:16.148270 start of program
+2015-01-25 09:45:16.165225 number: 1, host: 201.81.20.209
+2015-01-25 09:45:16.710876 OK, Server Host 1 connected.
+2015-01-25 09:45:16.893810 Changes has 0 records
+2015-01-25 09:45:16.894354 number: 2, host: 177.140.75.151
+2015-01-25 09:45:46.990758 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 09:45:46.991993 end of program
+2015-01-25 09:50:12.778043 
+2015-01-25 09:50:12.778728 start of program
+2015-01-25 09:50:12.795090 number: 1, host: 201.81.20.209
+2015-01-25 09:50:13.332978 OK, Server Host 1 connected.
+2015-01-25 09:50:13.530674 Changes has 0 records
+2015-01-25 09:50:13.531256 number: 2, host: 177.140.75.151
+2015-01-25 09:50:43.630872 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 09:50:43.634007 end of program
+2015-01-25 09:55:11.895788 
+2015-01-25 09:55:11.896175 start of program
+2015-01-25 09:55:11.915440 number: 1, host: 201.81.20.209
+2015-01-25 09:55:12.452440 OK, Server Host 1 connected.
+2015-01-25 09:55:12.634042 Changes has 0 records
+2015-01-25 09:55:12.634436 number: 2, host: 177.140.75.151
+2015-01-25 09:55:42.730062 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 09:55:42.731338 end of program
+2015-01-25 10:00:21.750239 
+2015-01-25 10:00:21.754735 start of program
+2015-01-25 10:00:21.840963 number: 1, host: 201.81.20.209
+2015-01-25 10:00:22.367955 OK, Server Host 1 connected.
+2015-01-25 10:00:22.545702 Changes has 0 records
+2015-01-25 10:00:22.547095 number: 2, host: 177.140.75.151
+2015-01-25 10:00:52.648820 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 10:00:52.650185 end of program
+2015-01-25 10:05:12.201540 
+2015-01-25 10:05:12.201909 start of program
+2015-01-25 10:05:12.234648 number: 1, host: 201.81.20.209
+2015-01-25 10:05:12.783709 OK, Server Host 1 connected.
+2015-01-25 10:05:12.970016 Changes has 0 records
+2015-01-25 10:05:12.970411 number: 2, host: 177.140.75.151
+2015-01-25 10:05:43.071503 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 10:05:43.073232 end of program
+2015-01-25 10:10:13.078678 
+2015-01-25 10:10:13.079051 start of program
+2015-01-25 10:10:13.093730 number: 1, host: 201.81.20.209
+2015-01-25 10:10:13.617937 OK, Server Host 1 connected.
+2015-01-25 10:10:13.795787 Changes has 0 records
+2015-01-25 10:10:13.796287 number: 2, host: 177.140.75.151
+2015-01-25 10:10:43.889401 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 10:10:43.890793 end of program
+2015-01-25 10:15:16.869344 
+2015-01-25 10:15:16.869842 start of program
+2015-01-25 10:15:16.887238 number: 1, host: 201.81.20.209
+2015-01-25 10:15:17.445736 OK, Server Host 1 connected.
+2015-01-25 10:15:17.640308 Changes has 0 records
+2015-01-25 10:15:17.640907 number: 2, host: 177.140.75.151
+2015-01-25 10:15:47.740510 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 10:15:47.741699 end of program
+2015-01-25 10:20:13.178430 
+2015-01-25 10:20:13.178996 start of program
+2015-01-25 10:20:13.198746 number: 1, host: 201.81.20.209
+2015-01-25 10:20:13.749112 OK, Server Host 1 connected.
+2015-01-25 10:20:13.935701 Changes has 0 records
+2015-01-25 10:20:13.936087 number: 2, host: 177.140.75.151
+2015-01-25 10:20:44.030353 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 10:20:44.031809 end of program
+2015-01-25 10:25:11.963851 
+2015-01-25 10:25:11.979512 start of program
+2015-01-25 10:25:12.017109 number: 1, host: 201.81.20.209
+2015-01-25 10:25:12.541003 OK, Server Host 1 connected.
+2015-01-25 10:25:12.719248 Changes has 0 records
+2015-01-25 10:25:12.719939 number: 2, host: 177.140.75.151
+2015-01-25 10:25:42.821490 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 10:25:42.823024 end of program
+2015-01-25 10:30:17.832015 
+2015-01-25 10:30:17.843964 start of program
+2015-01-25 10:30:17.884317 number: 1, host: 201.81.20.209
+2015-01-25 10:30:18.434216 OK, Server Host 1 connected.
+2015-01-25 10:30:18.620142 Changes has 0 records
+2015-01-25 10:30:18.621194 number: 2, host: 177.140.75.151
+2015-01-25 10:30:48.721029 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 10:30:48.722433 end of program
+2015-01-25 10:35:12.299471 
+2015-01-25 10:35:12.299911 start of program
+2015-01-25 10:35:12.318232 number: 1, host: 201.81.20.209
+2015-01-25 10:35:12.870598 OK, Server Host 1 connected.
+2015-01-25 10:35:13.059450 Changes has 0 records
+2015-01-25 10:35:13.059893 number: 2, host: 177.140.75.151
+2015-01-25 10:35:43.162961 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 10:35:43.164304 end of program
+2015-01-25 10:40:13.205816 
+2015-01-25 10:40:13.206215 start of program
+2015-01-25 10:40:13.242842 number: 1, host: 201.81.20.209
+2015-01-25 10:40:13.784686 OK, Server Host 1 connected.
+2015-01-25 10:40:13.965645 Changes has 0 records
+2015-01-25 10:40:13.966126 number: 2, host: 177.140.75.151
+2015-01-25 10:40:44.065418 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 10:40:44.066881 end of program
+2015-01-25 10:45:16.503323 
+2015-01-25 10:45:16.503919 start of program
+2015-01-25 10:45:16.525291 number: 1, host: 201.81.20.209
+2015-01-25 10:45:17.073289 OK, Server Host 1 connected.
+2015-01-25 10:45:17.259986 Changes has 0 records
+2015-01-25 10:45:17.260380 number: 2, host: 177.140.75.151
+2015-01-25 10:45:47.362420 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 10:45:47.364068 end of program
+2015-01-25 10:50:13.046464 
+2015-01-25 10:50:13.047900 start of program
+2015-01-25 10:50:13.079069 number: 1, host: 201.81.20.209
+2015-01-25 10:50:13.629484 OK, Server Host 1 connected.
+2015-01-25 10:50:13.815600 Changes has 0 records
+2015-01-25 10:50:13.816447 number: 2, host: 177.140.75.151
+2015-01-25 10:50:43.919636 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 10:50:43.921305 end of program
+2015-01-25 10:55:12.117767 
+2015-01-25 10:55:12.118149 start of program
+2015-01-25 10:55:12.197343 number: 1, host: 201.81.20.209
+2015-01-25 10:55:12.749393 OK, Server Host 1 connected.
+2015-01-25 10:55:12.935867 Changes has 0 records
+2015-01-25 10:55:12.936535 number: 2, host: 177.140.75.151
+2015-01-25 10:55:43.039263 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 10:55:43.040896 end of program
+2015-01-25 11:00:20.002160 
+2015-01-25 11:00:20.003199 start of program
+2015-01-25 11:00:21.031751 number: 1, host: 201.81.20.209
+2015-01-25 11:00:21.560942 OK, Server Host 1 connected.
+2015-01-25 11:00:21.746876 Changes has 0 records
+2015-01-25 11:00:21.755022 number: 2, host: 177.140.75.151
+2015-01-25 11:00:51.851184 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 11:00:51.852476 end of program
+2015-01-25 11:05:12.515757 
+2015-01-25 11:05:12.516473 start of program
+2015-01-25 11:05:12.541841 number: 1, host: 201.81.20.209
+2015-01-25 11:05:13.073056 OK, Server Host 1 connected.
+2015-01-25 11:05:13.254021 Changes has 0 records
+2015-01-25 11:05:13.254460 number: 2, host: 177.140.75.151
+2015-01-25 11:05:43.349067 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 11:05:43.351145 end of program
+2015-01-25 11:10:12.561258 
+2015-01-25 11:10:12.561666 start of program
+2015-01-25 11:10:12.581734 number: 1, host: 201.81.20.209
+2015-01-25 11:10:13.100703 OK, Server Host 1 connected.
+2015-01-25 11:10:13.276571 Changes has 0 records
+2015-01-25 11:10:13.276950 number: 2, host: 177.140.75.151
+2015-01-25 11:10:43.378838 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 11:10:43.380014 end of program
+2015-01-25 11:15:16.596734 
+2015-01-25 11:15:16.608675 start of program
+2015-01-25 11:15:16.805231 number: 1, host: 201.81.20.209
+2015-01-25 11:15:17.364607 OK, Server Host 1 connected.
+2015-01-25 11:15:17.556391 Changes has 0 records
+2015-01-25 11:15:17.557068 number: 2, host: 177.140.75.151
+2015-01-25 11:15:47.659330 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 11:15:47.660805 end of program
+2015-01-25 11:20:12.857810 
+2015-01-25 11:20:12.866114 start of program
+2015-01-25 11:20:12.883225 number: 1, host: 201.81.20.209
+2015-01-25 11:20:13.408793 OK, Server Host 1 connected.
+2015-01-25 11:20:13.587118 Changes has 0 records
+2015-01-25 11:20:13.587520 number: 2, host: 177.140.75.151
+2015-01-25 11:20:43.681348 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 11:20:43.682695 end of program
+2015-01-25 11:25:11.923887 
+2015-01-25 11:25:11.924560 start of program
+2015-01-25 11:25:11.940279 number: 1, host: 201.81.20.209
+2015-01-25 11:25:12.467758 OK, Server Host 1 connected.
+2015-01-25 11:25:12.648295 Changes has 0 records
+2015-01-25 11:25:12.648741 number: 2, host: 177.140.75.151
+2015-01-25 11:25:42.749284 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 11:25:42.750760 end of program
+2015-01-25 11:30:18.487904 
+2015-01-25 11:30:18.529654 start of program
+2015-01-25 11:30:18.569594 number: 1, host: 201.81.20.209
+2015-01-25 11:30:19.107262 OK, Server Host 1 connected.
+2015-01-25 11:30:19.289650 Changes has 0 records
+2015-01-25 11:30:19.291197 number: 2, host: 177.140.75.151
+2015-01-25 11:30:49.391975 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 11:30:49.393314 end of program
+2015-01-25 11:35:11.715854 
+2015-01-25 11:35:11.716891 start of program
+2015-01-25 11:35:11.739616 number: 1, host: 201.81.20.209
+2015-01-25 11:35:12.297513 OK, Server Host 1 connected.
+2015-01-25 11:35:12.487743 Changes has 0 records
+2015-01-25 11:35:12.489931 number: 2, host: 177.140.75.151
+2015-01-25 11:35:42.588924 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 11:35:42.591031 end of program
+2015-01-25 11:40:13.167107 
+2015-01-25 11:40:13.167585 start of program
+2015-01-25 11:40:13.190322 number: 1, host: 201.81.20.209
+2015-01-25 11:40:13.719004 OK, Server Host 1 connected.
+2015-01-25 11:40:13.899465 Changes has 0 records
+2015-01-25 11:40:13.899874 number: 2, host: 177.140.75.151
+2015-01-25 11:40:43.998399 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 11:40:43.001222 end of program
+2015-01-25 11:45:16.694680 
+2015-01-25 11:45:16.706922 start of program
+2015-01-25 11:45:16.833157 number: 1, host: 201.81.20.209
+2015-01-25 11:45:17.357622 OK, Server Host 1 connected.
+2015-01-25 11:45:17.533875 Changes has 0 records
+2015-01-25 11:45:17.534282 number: 2, host: 177.140.75.151
+2015-01-25 11:45:47.628285 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 11:45:47.631180 end of program
+2015-01-25 11:50:12.914168 
+2015-01-25 11:50:12.946373 start of program
+2015-01-25 11:50:12.976287 number: 1, host: 201.81.20.209
+2015-01-25 11:50:13.511208 OK, Server Host 1 connected.
+2015-01-25 11:50:13.691381 Changes has 0 records
+2015-01-25 11:50:13.691806 number: 2, host: 177.140.75.151
+2015-01-25 11:50:43.791839 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 11:50:43.793355 end of program
+2015-01-25 11:55:11.988166 
+2015-01-25 11:55:11.988694 start of program
+2015-01-25 11:55:11.002977 number: 1, host: 201.81.20.209
+2015-01-25 11:55:12.534592 OK, Server Host 1 connected.
+2015-01-25 11:55:12.717243 Changes has 0 records
+2015-01-25 11:55:12.717656 number: 2, host: 177.140.75.151
+2015-01-25 11:55:42.819574 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 11:55:42.821073 end of program
+2015-01-25 12:00:21.403103 
+2015-01-25 12:00:21.424768 start of program
+2015-01-25 12:00:21.552252 number: 1, host: 201.81.20.209
+2015-01-25 12:00:22.381254 OK, Server Host 1 connected.
+2015-01-25 12:00:22.576916 Changes has 0 records
+2015-01-25 12:00:22.578798 number: 2, host: 177.140.75.151
+2015-01-25 12:00:52.681957 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 12:00:52.687704 end of program
+2015-01-25 12:05:12.149709 
+2015-01-25 12:05:12.164157 start of program
+2015-01-25 12:05:12.182338 number: 1, host: 201.81.20.209
+2015-01-25 12:05:12.735600 OK, Server Host 1 connected.
+2015-01-25 12:05:12.916284 Changes has 0 records
+2015-01-25 12:05:12.916680 number: 2, host: 177.140.75.151
+2015-01-25 12:05:43.019327 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 12:05:43.020754 end of program
+2015-01-25 12:10:13.445411 
+2015-01-25 12:10:13.445828 start of program
+2015-01-25 12:10:13.576565 number: 1, host: 201.81.20.209
+2015-01-25 12:10:14.121920 OK, Server Host 1 connected.
+2015-01-25 12:10:14.309469 Changes has 0 records
+2015-01-25 12:10:14.309932 number: 2, host: 177.140.75.151
+2015-01-25 12:10:44.411168 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 12:10:44.412484 end of program
+2015-01-25 12:15:16.891695 
+2015-01-25 12:15:16.911960 start of program
+2015-01-25 12:15:16.931575 number: 1, host: 201.81.20.209
+2015-01-25 12:15:17.462763 OK, Server Host 1 connected.
+2015-01-25 12:15:17.644970 Changes has 0 records
+2015-01-25 12:15:17.645445 number: 2, host: 177.140.75.151
+2015-01-25 12:15:47.738126 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 12:15:47.752117 end of program
+2015-01-25 12:20:13.075527 
+2015-01-25 12:20:13.089144 start of program
+2015-01-25 12:20:13.108110 number: 1, host: 201.81.20.209
+2015-01-25 12:20:13.658169 OK, Server Host 1 connected.
+2015-01-25 12:20:13.844599 Changes has 0 records
+2015-01-25 12:20:13.845029 number: 2, host: 177.140.75.151
+2015-01-25 12:20:43.939662 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 12:20:43.941236 end of program
+2015-01-25 12:25:12.169614 
+2015-01-25 12:25:12.180610 start of program
+2015-01-25 12:25:12.263814 number: 1, host: 201.81.20.209
+2015-01-25 12:25:12.797749 OK, Server Host 1 connected.
+2015-01-25 12:25:12.980612 Changes has 0 records
+2015-01-25 12:25:12.981232 number: 2, host: 177.140.75.151
+2015-01-25 12:25:43.079566 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 12:25:43.080697 end of program
+2015-01-25 12:30:18.531065 
+2015-01-25 12:30:18.546561 start of program
+2015-01-25 12:30:18.826378 number: 1, host: 201.81.20.209
+2015-01-25 12:30:19.360385 OK, Server Host 1 connected.
+2015-01-25 12:30:19.537516 Changes has 0 records
+2015-01-25 12:30:19.538127 number: 2, host: 177.140.75.151
+2015-01-25 12:30:49.644199 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 12:30:49.645550 end of program
+2015-01-25 12:35:11.874345 
+2015-01-25 12:35:11.874794 start of program
+2015-01-25 12:35:11.891507 number: 1, host: 201.81.20.209
+2015-01-25 12:35:12.443769 OK, Server Host 1 connected.
+2015-01-25 12:35:12.630381 Changes has 0 records
+2015-01-25 12:35:12.630840 number: 2, host: 177.140.75.151
+2015-01-25 12:35:42.729450 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 12:35:42.730717 end of program
+2015-01-25 12:40:13.320360 
+2015-01-25 12:40:13.320818 start of program
+2015-01-25 12:40:13.343315 number: 1, host: 201.81.20.209
+2015-01-25 12:40:43.442184 error, Server Host 1 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '201.81.20.209' (4)
+2015-01-25 12:40:43.442756 number: 2, host: 177.140.75.151
+2015-01-25 12:41:13.540271 error, Server Host 2 not connected: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '177.140.75.151' (4)
+2015-01-25 12:41:13.551620 error, Local Server not connected: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+2015-01-25 12:41:13.551973 end of program
+2015-01-25 12:45:16.636422 
+2015-01-25 12:45:16.653537 start of program
+2015-01-25 12:45:16.926477 running since started 2015-01-25 12:40:13.341889
+2015-01-25 12:45:16.944195 end of program
+2015-01-25 12:50:12.703006 
+2015-01-25 12:50:12.703688 start of program
+2015-01-25 12:50:12.720621 running since started 2015-01-25 12:40:13.341889
+2015-01-25 12:50:12.721130 end of program
+2015-01-25 12:55:12.082275 
+2015-01-25 12:55:12.082646 start of program
+2015-01-25 12:55:12.164793 running since started 2015-01-25 12:40:13.341889
+2015-01-25 12:55:12.165225 end of program
+2015-01-25 13:00:21.060146 
+2015-01-25 13:00:21.060653 start of program
+2015-01-25 13:00:21.148930 running since started 2015-01-25 12:40:13.341889
+2015-01-25 13:00:21.149352 end of program
+2015-01-25 13:05:12.255783 
+2015-01-25 13:05:12.264880 start of program
+2015-01-25 13:05:12.298342 running since started 2015-01-25 12:40:13.341889
+2015-01-25 13:05:12.298813 end of program
+2015-01-25 13:10:13.116062 
+2015-01-25 13:10:13.129285 start of program
+2015-01-25 13:10:13.142659 running since started 2015-01-25 12:40:13.341889
+2015-01-25 13:10:13.143258 end of program
+2015-01-25 13:15:17.263444 
+2015-01-25 13:15:17.276137 start of program
+2015-01-25 13:15:17.294592 running since started 2015-01-25 12:40:13.341889
+2015-01-25 13:15:17.294941 end of program
+2015-01-25 13:20:12.896970 
+2015-01-25 13:20:12.897636 start of program
+2015-01-25 13:20:12.912174 running since started 2015-01-25 12:40:13.341889
+2015-01-25 13:20:12.912530 end of program
+2015-01-25 13:25:12.120119 
+2015-01-25 13:25:12.121641 start of program
+2015-01-25 13:25:12.155376 running since started 2015-01-25 12:40:13.341889
+2015-01-25 13:25:12.155928 end of program
+2015-01-25 13:30:18.435483 
+2015-01-25 13:30:18.444212 start of program
+2015-01-25 13:30:18.519663 running since started 2015-01-25 12:40:13.341889
+2015-01-25 13:30:18.520076 end of program
+2015-01-25 13:35:12.418334 
+2015-01-25 13:35:12.419198 start of program
+2015-01-25 13:35:12.508943 running since started 2015-01-25 12:40:13.341889
+2015-01-25 13:35:12.509927 end of program
+2015-01-25 13:40:12.929808 
+2015-01-25 13:40:12.951910 start of program
+2015-01-25 13:40:12.976381 running since started 2015-01-25 12:40:13.341889
+2015-01-25 13:40:12.989418 end of program
+2015-01-25 13:45:16.457304 
+2015-01-25 13:45:16.458666 start of program
+2015-01-25 13:45:16.551005 running since started 2015-01-25 12:40:13.341889
+2015-01-25 13:45:16.551954 end of program
+2015-01-25 13:50:12.848011 
+2015-01-25 13:50:12.861696 start of program
+2015-01-25 13:50:12.887453 running since started 2015-01-25 12:40:13.341889
+2015-01-25 13:50:12.887892 end of program
+2015-01-25 13:55:12.623583 
+2015-01-25 13:55:12.625147 start of program
+2015-01-25 13:55:12.666272 running since started 2015-01-25 12:40:13.341889
+2015-01-25 13:55:12.666661 end of program
+2015-01-25 14:00:21.304675 
+2015-01-25 14:00:21.305243 start of program
+2015-01-25 14:00:21.459617 running since started 2015-01-25 12:40:13.341889
+2015-01-25 14:00:21.460270 end of program
+2015-01-25 14:05:11.937520 
+2015-01-25 14:05:11.940421 start of program
+2015-01-25 14:05:11.966153 running since started 2015-01-25 12:40:13.341889
+2015-01-25 14:05:11.966554 end of program
+2015-01-25 14:10:13.405307 
+2015-01-25 14:10:13.418695 start of program
+2015-01-25 14:10:13.435692 running since started 2015-01-25 12:40:13.341889
+2015-01-25 14:10:13.436081 end of program
+2015-01-25 14:15:16.484131 
+2015-01-25 14:15:16.507420 start of program
+2015-01-25 14:15:16.604970 running since started 2015-01-25 12:40:13.341889
+2015-01-25 14:15:16.614173 end of program
+2015-01-25 14:20:13.329453 
+2015-01-25 14:20:13.341110 start of program
+2015-01-25 14:20:13.425211 running since started 2015-01-25 12:40:13.341889
+2015-01-25 14:20:13.426202 end of program
+2015-01-25 14:25:12.097507 
+2015-01-25 14:25:12.098180 start of program
+2015-01-25 14:25:12.124138 running since started 2015-01-25 12:40:13.341889
+2015-01-25 14:25:12.124531 end of program
+2015-01-25 14:30:18.512625 
+2015-01-25 14:30:18.528990 start of program
+2015-01-25 14:30:18.580875 running since started 2015-01-25 12:40:13.341889
+2015-01-25 14:30:18.581599 end of program
+2015-01-25 14:35:12.359002 
+2015-01-25 14:35:12.359475 start of program
+2015-01-25 14:35:12.378113 running since started 2015-01-25 12:40:13.341889
+2015-01-25 14:35:12.379072 end of program
+2015-01-25 14:40:12.522079 
+2015-01-25 14:40:12.523909 start of program
+2015-01-25 14:40:12.549606 running since started 2015-01-25 12:40:13.341889
+2015-01-25 14:40:12.550079 end of program
+2015-01-25 14:45:16.644180 
+2015-01-25 14:45:16.645050 start of program
+2015-01-25 14:45:16.665577 running since started 2015-01-25 12:40:13.341889
+2015-01-25 14:45:16.665954 end of program
+2015-01-25 14:50:13.563882 
+2015-01-25 14:50:13.564312 start of program
+2015-01-25 14:50:13.605480 running since started 2015-01-25 12:40:13.341889
+2015-01-25 14:50:13.605854 end of program
+2015-01-25 14:55:11.834916 
+2015-01-25 14:55:11.849613 start of program
+2015-01-25 14:55:11.927700 running since started 2015-01-25 12:40:13.341889
+2015-01-25 14:55:11.928209 end of program
+2015-01-25 15:00:21.203307 
+2015-01-25 15:00:21.205505 start of program
+2015-01-25 15:00:21.351503 running since started 2015-01-25 12:40:13.341889
+2015-01-25 15:00:21.365483 end of program
+2015-01-25 15:05:12.097211 
+2015-01-25 15:05:12.098634 start of program
+2015-01-25 15:05:12.112490 running since started 2015-01-25 12:40:13.341889
+2015-01-25 15:05:12.112893 end of program
+2015-01-25 15:10:12.716254 
+2015-01-25 15:10:12.730809 start of program
+2015-01-25 15:10:12.810198 running since started 2015-01-25 12:40:13.341889
+2015-01-25 15:10:12.810682 end of program
+2015-01-25 15:15:16.307777 
+2015-01-25 15:15:16.318181 start of program
+2015-01-25 15:15:16.335292 running since started 2015-01-25 12:40:13.341889
+2015-01-25 15:15:16.335695 end of program
+2015-01-25 15:20:13.051305 
+2015-01-25 15:20:13.052680 start of program
+2015-01-25 15:20:13.169650 running since started 2015-01-25 12:40:13.341889
+2015-01-25 15:20:13.172016 end of program
+2015-01-25 15:25:11.820481 
+2015-01-25 15:25:11.827237 start of program
+2015-01-25 15:25:11.853360 running since started 2015-01-25 12:40:13.341889
+2015-01-25 15:25:11.853791 end of program
+2015-01-25 15:30:18.126388 
+2015-01-25 15:30:18.137449 start of program
+2015-01-25 15:30:18.187211 running since started 2015-01-25 12:40:13.341889
+2015-01-25 15:30:18.187645 end of program
+2015-01-25 15:35:12.510092 
+2015-01-25 15:35:12.510795 start of program
+2015-01-25 15:35:12.625442 running since started 2015-01-25 12:40:13.341889
+2015-01-25 15:35:12.626799 end of program
+2015-01-25 15:40:12.629342 
+2015-01-25 15:40:12.640166 start of program
+2015-01-25 15:40:12.718759 running since started 2015-01-25 12:40:13.341889
+2015-01-25 15:40:12.719814 end of program
+2015-01-25 15:45:16.035887 
+2015-01-25 15:45:16.054505 start of program
+2015-01-25 15:45:16.068192 running since started 2015-01-25 12:40:13.341889
+2015-01-25 15:45:16.068573 end of program
+2015-01-25 15:50:12.599492 
+2015-01-25 15:50:12.600615 start of program
+2015-01-25 15:50:12.632573 running since started 2015-01-25 12:40:13.341889
+2015-01-25 15:50:12.633170 end of program
+2015-01-25 15:55:12.038436 
+2015-01-25 15:55:12.039678 start of program
+2015-01-25 15:55:12.053816 running since started 2015-01-25 12:40:13.341889
+2015-01-25 15:55:12.054192 end of program
+2015-01-25 16:00:21.131082 
+2015-01-25 16:00:21.141544 start of program
+2015-01-25 16:00:21.164536 running since started 2015-01-25 12:40:13.341889
+2015-01-25 16:00:21.165998 end of program
+2015-01-25 16:05:12.332923 
+2015-01-25 16:05:12.334319 start of program
+2015-01-25 16:05:12.361785 running since started 2015-01-25 12:40:13.341889
+2015-01-25 16:05:12.362965 end of program
+2015-01-25 16:10:13.129249 
+2015-01-25 16:10:13.130895 start of program
+2015-01-25 16:10:13.145955 running since started 2015-01-25 12:40:13.341889
+2015-01-25 16:10:13.146477 end of program
+2015-01-25 16:15:16.585275 
+2015-01-25 16:15:16.595310 start of program
+2015-01-25 16:15:16.626146 running since started 2015-01-25 12:40:13.341889
+2015-01-25 16:15:16.626558 end of program
+2015-01-25 16:20:13.109786 
+2015-01-25 16:20:13.116148 start of program
+2015-01-25 16:20:13.129496 running since started 2015-01-25 12:40:13.341889
+2015-01-25 16:20:13.129858 end of program
+2015-01-25 16:25:11.830922 
+2015-01-25 16:25:11.831363 start of program
+2015-01-25 16:25:11.857318 running since started 2015-01-25 12:40:13.341889
+2015-01-25 16:25:11.857715 end of program
+2015-01-25 16:30:18.288615 
+2015-01-25 16:30:18.316122 start of program
+2015-01-25 16:30:18.585157 running since started 2015-01-25 12:40:13.341889
+2015-01-25 16:30:18.597920 end of program
+2015-01-25 16:35:12.508765 
+2015-01-25 16:35:12.509334 start of program
+2015-01-25 16:35:12.559465 running since started 2015-01-25 12:40:13.341889
+2015-01-25 16:35:12.559906 end of program
+2015-01-25 16:40:12.837224 
+2015-01-25 16:40:12.845861 start of program
+2015-01-25 16:40:12.861715 running since started 2015-01-25 12:40:13.341889
+2015-01-25 16:40:12.862164 end of program
+2015-01-25 16:45:16.228197 
+2015-01-25 16:45:16.239811 start of program
+2015-01-25 16:45:16.415742 running since started 2015-01-25 12:40:13.341889
+2015-01-25 16:45:16.427680 end of program
+2015-01-25 16:50:12.743692 
+2015-01-25 16:50:12.745158 start of program
+2015-01-25 16:50:12.822860 running since started 2015-01-25 12:40:13.341889
+2015-01-25 16:50:12.823269 end of program
+2015-01-25 16:55:12.263272 
+2015-01-25 16:55:12.277253 start of program
+2015-01-25 16:55:12.312999 running since started 2015-01-25 12:40:13.341889
+2015-01-25 16:55:12.313448 end of program
+2015-01-25 17:00:21.227912 
+2015-01-25 17:00:21.249874 start of program
+2015-01-25 17:00:21.334491 running since started 2015-01-25 12:40:13.341889
+2015-01-25 17:00:21.335044 end of program
+2015-01-25 17:05:12.279910 
+2015-01-25 17:05:12.296722 start of program
+2015-01-25 17:05:12.328895 running since started 2015-01-25 12:40:13.341889
+2015-01-25 17:05:12.330930 end of program
+2015-01-25 17:10:13.113490 
+2015-01-25 17:10:13.127995 start of program
+2015-01-25 17:10:13.156405 running since started 2015-01-25 12:40:13.341889
+2015-01-25 17:10:13.156858 end of program
+2015-01-25 17:15:16.216725 
+2015-01-25 17:15:16.218331 start of program
+2015-01-25 17:15:16.295269 running since started 2015-01-25 12:40:13.341889
+2015-01-25 17:15:16.295725 end of program
+2015-01-25 17:20:13.237710 
+2015-01-25 17:20:13.260748 start of program
+2015-01-25 17:20:13.299173 running since started 2015-01-25 12:40:13.341889
+2015-01-25 17:20:13.299632 end of program
+2015-01-25 17:25:12.326696 
+2015-01-25 17:25:12.328219 start of program
+2015-01-25 17:25:12.378948 running since started 2015-01-25 12:40:13.341889
+2015-01-25 17:25:12.379472 end of program
+2015-01-25 17:30:17.013956 
+2015-01-25 17:30:18.025745 start of program
+2015-01-25 17:30:18.057695 running since started 2015-01-25 12:40:13.341889
+2015-01-25 17:30:18.060307 end of program
+2015-01-25 17:35:11.890610 
+2015-01-25 17:35:11.899489 start of program
+2015-01-25 17:35:11.914951 running since started 2015-01-25 12:40:13.341889
+2015-01-25 17:35:11.915354 end of program
+2015-01-25 17:40:12.936841 
+2015-01-25 17:40:12.949679 start of program
+2015-01-25 17:40:13.056175 running since started 2015-01-25 12:40:13.341889
+2015-01-25 17:40:13.056598 end of program
+2015-01-25 17:45:16.075591 
+2015-01-25 17:45:16.092693 start of program
+2015-01-25 17:45:16.115610 running since started 2015-01-25 12:40:13.341889
+2015-01-25 17:45:16.116004 end of program
+2015-01-25 17:50:12.997766 
+2015-01-25 17:50:13.009237 start of program
+2015-01-25 17:50:13.088398 running since started 2015-01-25 12:40:13.341889
+2015-01-25 17:50:13.088940 end of program
+2015-01-25 17:55:12.147328 
+2015-01-25 17:55:12.165665 start of program
+2015-01-25 17:55:12.188810 running since started 2015-01-25 12:40:13.341889
+2015-01-25 17:55:12.189260 end of program
+2015-01-25 18:00:22.136402 
+2015-01-25 18:00:22.139706 start of program
+2015-01-25 18:00:22.160746 running since started 2015-01-25 12:40:13.341889
+2015-01-25 18:00:22.161362 end of program
+2015-01-25 18:05:12.422645 
+2015-01-25 18:05:12.423143 start of program
+2015-01-25 18:05:12.570291 running since started 2015-01-25 12:40:13.341889
+2015-01-25 18:05:12.571168 end of program
+2015-01-25 18:10:12.834890 
+2015-01-25 18:10:12.848752 start of program
+2015-01-25 18:10:12.864286 running since started 2015-01-25 12:40:13.341889
+2015-01-25 18:10:12.864639 end of program
+2015-01-25 18:15:16.884252 
+2015-01-25 18:15:16.908706 start of program
+2015-01-25 18:15:16.960531 running since started 2015-01-25 12:40:13.341889
+2015-01-25 18:15:16.962616 end of program
+2015-01-25 18:20:13.165563 
+2015-01-25 18:20:13.179870 start of program
+2015-01-25 18:20:13.205082 running since started 2015-01-25 12:40:13.341889
+2015-01-25 18:20:13.205480 end of program
+2015-01-25 18:25:12.118888 
+2015-01-25 18:25:12.135385 start of program
+2015-01-25 18:25:12.211568 running since started 2015-01-25 12:40:13.341889
+2015-01-25 18:25:12.212158 end of program
+2015-01-25 18:30:18.246242 
+2015-01-25 18:30:18.262071 start of program
+2015-01-25 18:30:18.343317 running since started 2015-01-25 12:40:13.341889
+2015-01-25 18:30:18.343810 end of program
+2015-01-25 18:35:12.349920 
+2015-01-25 18:35:12.350357 start of program
+2015-01-25 18:35:12.396531 running since started 2015-01-25 12:40:13.341889
+2015-01-25 18:35:12.398725 end of program
+2015-01-25 18:40:12.997238 
+2015-01-25 18:40:12.997641 start of program
+2015-01-25 18:40:13.020521 running since started 2015-01-25 12:40:13.341889
+2015-01-25 18:40:13.021198 end of program
+2015-01-25 18:45:16.818965 
+2015-01-25 18:45:16.854390 start of program
+2015-01-25 18:45:17.165732 running since started 2015-01-25 12:40:13.341889
+2015-01-25 18:45:17.166263 end of program
+2015-01-25 18:50:12.933838 
+2015-01-25 18:50:12.967593 start of program
+2015-01-25 18:50:12.988710 running since started 2015-01-25 12:40:13.341889
+2015-01-25 18:50:12.989794 end of program
+2015-01-25 18:55:12.325448 
+2015-01-25 18:55:12.331446 start of program
+2015-01-25 18:55:12.356377 running since started 2015-01-25 12:40:13.341889
+2015-01-25 18:55:12.356795 end of program
+2015-01-25 19:00:20.005626 
+2015-01-25 19:00:21.021955 start of program
+2015-01-25 19:00:21.060962 running since started 2015-01-25 12:40:13.341889
+2015-01-25 19:00:21.062918 end of program
+2015-01-25 19:05:12.270528 
+2015-01-25 19:05:12.288605 start of program
+2015-01-25 19:05:12.310637 running since started 2015-01-25 12:40:13.341889
+2015-01-25 19:05:12.311126 end of program
+2015-01-25 19:10:13.095111 
+2015-01-25 19:10:13.096965 start of program
+2015-01-25 19:10:13.118047 running since started 2015-01-25 12:40:13.341889
+2015-01-25 19:10:13.118439 end of program
+2015-01-25 19:15:17.056001 
+2015-01-25 19:15:17.073710 start of program
+2015-01-25 19:15:17.339403 running since started 2015-01-25 12:40:13.341889
+2015-01-25 19:15:17.351559 end of program
+2015-01-25 19:20:13.644468 
+2015-01-25 19:20:13.645943 start of program
+2015-01-25 19:20:13.720767 running since started 2015-01-25 12:40:13.341889
+2015-01-25 19:20:13.721349 end of program
+2015-01-25 19:25:12.141660 
+2015-01-25 19:25:12.143906 start of program
+2015-01-25 19:25:12.160342 running since started 2015-01-25 12:40:13.341889
+2015-01-25 19:25:12.160874 end of program
+2015-01-25 19:30:17.966243 
+2015-01-25 19:30:17.967772 start of program
+2015-01-25 19:30:17.990569 running since started 2015-01-25 12:40:13.341889
+2015-01-25 19:30:17.991105 end of program
+2015-01-25 19:35:11.981226 
+2015-01-25 19:35:11.983058 start of program
+2015-01-25 19:35:12.047913 running since started 2015-01-25 12:40:13.341889
+2015-01-25 19:35:12.048327 end of program
+2015-01-25 19:40:12.751104 
+2015-01-25 19:40:12.762718 start of program
+2015-01-25 19:40:12.795997 running since started 2015-01-25 12:40:13.341889
+2015-01-25 19:40:12.796438 end of program
+2015-01-25 19:45:16.781667 
+2015-01-25 19:45:16.810057 start of program
+2015-01-25 19:45:17.153317 running since started 2015-01-25 12:40:13.341889
+2015-01-25 19:45:17.175578 end of program
+2015-01-25 19:50:12.955990 
+2015-01-25 19:50:12.957786 start of program
+2015-01-25 19:50:13.043594 running since started 2015-01-25 12:40:13.341889
+2015-01-25 19:50:13.044330 end of program
+2015-01-25 19:55:12.286144 
+2015-01-25 19:55:12.286877 start of program
+2015-01-25 19:55:12.324082 running since started 2015-01-25 12:40:13.341889
+2015-01-25 19:55:12.324426 end of program
+2015-01-25 20:00:20.868562 
+2015-01-25 20:00:20.870530 start of program
+2015-01-25 20:00:20.934602 running since started 2015-01-25 12:40:13.341889
+2015-01-25 20:00:20.936109 end of program
+2015-01-25 20:05:12.149027 
+2015-01-25 20:05:12.149530 start of program
+2015-01-25 20:05:12.301491 running since started 2015-01-25 12:40:13.341889
+2015-01-25 20:05:12.301957 end of program
+2015-01-25 20:10:13.183168 
+2015-01-25 20:10:13.194212 start of program
+2015-01-25 20:10:13.208287 running since started 2015-01-25 12:40:13.341889
+2015-01-25 20:10:13.208632 end of program
+2015-01-25 20:15:16.912007 
+2015-01-25 20:15:16.912839 start of program
+2015-01-25 20:15:16.932700 running since started 2015-01-25 12:40:13.341889
+2015-01-25 20:15:16.933296 end of program
+2015-01-25 20:20:13.145674 
+2015-01-25 20:20:13.146209 start of program
+2015-01-25 20:20:13.177621 running since started 2015-01-25 12:40:13.341889
+2015-01-25 20:20:13.178031 end of program
+2015-01-25 20:25:12.400607 
+2015-01-25 20:25:12.412102 start of program
+2015-01-25 20:25:12.488015 running since started 2015-01-25 12:40:13.341889
+2015-01-25 20:25:12.488408 end of program
+2015-01-25 20:30:18.191735 
+2015-01-25 20:30:18.192818 start of program
+2015-01-25 20:30:18.213513 running since started 2015-01-25 12:40:13.341889
+2015-01-25 20:30:18.214424 end of program
+2015-01-25 20:35:12.168253 
+2015-01-25 20:35:12.177644 start of program
+2015-01-25 20:35:12.204696 running since started 2015-01-25 12:40:13.341889
+2015-01-25 20:35:12.205079 end of program
+2015-01-25 20:40:12.963603 
+2015-01-25 20:40:12.979968 start of program
+2015-01-25 20:40:13.010612 running since started 2015-01-25 12:40:13.341889
+2015-01-25 20:40:13.010956 end of program
+2015-01-25 20:45:16.122026 
+2015-01-25 20:45:16.136445 start of program
+2015-01-25 20:45:16.257637 running since started 2015-01-25 12:40:13.341889
+2015-01-25 20:45:16.258012 end of program
+2015-01-25 20:50:12.656417 
+2015-01-25 20:50:12.673894 start of program
+2015-01-25 20:50:12.818603 running since started 2015-01-25 12:40:13.341889
+2015-01-25 20:50:12.818984 end of program
+2015-01-25 20:55:11.776954 
+2015-01-25 20:55:11.788784 start of program
+2015-01-25 20:55:11.882475 running since started 2015-01-25 12:40:13.341889
+2015-01-25 20:55:11.882908 end of program
+2015-01-25 21:00:20.703575 
+2015-01-25 21:00:20.713723 start of program
+2015-01-25 21:00:20.906950 running since started 2015-01-25 12:40:13.341889
+2015-01-25 21:00:20.907349 end of program
+2015-01-25 21:05:12.626484 
+2015-01-25 21:05:12.626879 start of program
+2015-01-25 21:05:12.651467 running since started 2015-01-25 12:40:13.341889
+2015-01-25 21:05:12.652058 end of program
+2015-01-25 21:10:13.100776 
+2015-01-25 21:10:13.101266 start of program
+2015-01-25 21:10:13.116754 running since started 2015-01-25 12:40:13.341889
+2015-01-25 21:10:13.117912 end of program
+2015-01-25 21:15:16.702969 
+2015-01-25 21:15:16.717594 start of program
+2015-01-25 21:15:16.952807 running since started 2015-01-25 12:40:13.341889
+2015-01-25 21:15:16.953244 end of program
+2015-01-25 21:20:13.276506 
+2015-01-25 21:20:13.276950 start of program
+2015-01-25 21:20:13.292584 running since started 2015-01-25 12:40:13.341889
+2015-01-25 21:20:13.293144 end of program
+2015-01-25 21:25:12.629922 
+2015-01-25 21:25:12.634603 start of program
+2015-01-25 21:25:12.648686 running since started 2015-01-25 12:40:13.341889
+2015-01-25 21:25:12.649073 end of program
+2015-01-25 21:30:18.559102 
+2015-01-25 21:30:18.562042 start of program
+2015-01-25 21:30:18.656643 running since started 2015-01-25 12:40:13.341889
+2015-01-25 21:30:18.657902 end of program
+2015-01-25 21:35:12.305410 
+2015-01-25 21:35:12.324552 start of program
+2015-01-25 21:35:12.350239 running since started 2015-01-25 12:40:13.341889
+2015-01-25 21:35:12.350578 end of program
+2015-01-25 21:40:13.362734 
+2015-01-25 21:40:13.371740 start of program
+2015-01-25 21:40:13.387084 running since started 2015-01-25 12:40:13.341889
+2015-01-25 21:40:13.387865 end of program
+2015-01-25 21:45:16.616315 
+2015-01-25 21:45:16.641496 start of program
+2015-01-25 21:45:16.816630 running since started 2015-01-25 12:40:13.341889
+2015-01-25 21:45:16.831434 end of program
+2015-01-25 21:50:12.878392 
+2015-01-25 21:50:12.880348 start of program
+2015-01-25 21:50:12.895406 running since started 2015-01-25 12:40:13.341889
+2015-01-25 21:50:12.896037 end of program
+2015-01-25 21:55:12.095165 
+2015-01-25 21:55:12.129066 start of program
+2015-01-25 21:55:12.147393 running since started 2015-01-25 12:40:13.341889
+2015-01-25 21:55:12.147782 end of program
+2015-01-25 22:00:21.282443 
+2015-01-25 22:00:21.298034 start of program
+2015-01-25 22:00:21.383111 running since started 2015-01-25 12:40:13.341889
+2015-01-25 22:00:21.384153 end of program
+2015-01-25 22:05:11.929370 
+2015-01-25 22:05:11.945637 start of program
+2015-01-25 22:05:11.967223 running since started 2015-01-25 12:40:13.341889
+2015-01-25 22:05:11.968107 end of program
+2015-01-25 22:10:12.701064 
+2015-01-25 22:10:12.703000 start of program
+2015-01-25 22:10:12.719601 running since started 2015-01-25 12:40:13.341889
+2015-01-25 22:10:12.719999 end of program
+2015-01-25 22:15:16.345585 
+2015-01-25 22:15:16.351444 start of program
+2015-01-25 22:15:16.497831 running since started 2015-01-25 12:40:13.341889
+2015-01-25 22:15:16.499257 end of program
+2015-01-25 22:20:12.964434 
+2015-01-25 22:20:12.965835 start of program
+2015-01-25 22:20:13.046954 running since started 2015-01-25 12:40:13.341889
+2015-01-25 22:20:13.047371 end of program
+2015-01-25 22:25:12.361468 
+2015-01-25 22:25:12.364740 start of program
+2015-01-25 22:25:12.388616 running since started 2015-01-25 12:40:13.341889
+2015-01-25 22:25:12.389293 end of program
+2015-01-25 22:30:18.176705 
+2015-01-25 22:30:18.213062 start of program
+2015-01-25 22:30:18.358773 running since started 2015-01-25 12:40:13.341889
+2015-01-25 22:30:18.370899 end of program
+2015-01-25 22:35:11.985422 
+2015-01-25 22:35:12.124465 start of program
+2015-01-25 22:35:12.144634 running since started 2015-01-25 12:40:13.341889
+2015-01-25 22:35:12.145051 end of program
+2015-01-25 22:40:12.957677 
+2015-01-25 22:40:12.959233 start of program
+2015-01-25 22:40:12.972676 running since started 2015-01-25 12:40:13.341889
+2015-01-25 22:40:12.973009 end of program
+2015-01-25 22:45:16.619409 
+2015-01-25 22:45:16.633744 start of program
+2015-01-25 22:45:16.701395 running since started 2015-01-25 12:40:13.341889
+2015-01-25 22:45:16.701772 end of program
+2015-01-25 22:50:12.819744 
+2015-01-25 22:50:12.832166 start of program
+2015-01-25 22:50:12.907762 running since started 2015-01-25 12:40:13.341889
+2015-01-25 22:50:12.908182 end of program
+2015-01-25 22:55:12.031553 
+2015-01-25 22:55:12.041713 start of program
+2015-01-25 22:55:12.083081 running since started 2015-01-25 12:40:13.341889
+2015-01-25 22:55:12.083545 end of program
+2015-01-25 23:00:21.118492 
+2015-01-25 23:00:21.134800 start of program
+2015-01-25 23:00:21.159108 running since started 2015-01-25 12:40:13.341889
+2015-01-25 23:00:21.159953 end of program
+2015-01-25 23:05:12.623911 
+2015-01-25 23:05:12.625161 start of program
+2015-01-25 23:05:12.702276 running since started 2015-01-25 12:40:13.341889
+2015-01-25 23:05:12.702624 end of program
+2015-01-25 23:10:12.575107 
+2015-01-25 23:10:12.576386 start of program
+2015-01-25 23:10:12.589821 running since started 2015-01-25 12:40:13.341889
+2015-01-25 23:10:12.590262 end of program
+2015-01-25 23:15:16.482710 
+2015-01-25 23:15:16.503686 start of program
+2015-01-25 23:15:16.681945 running since started 2015-01-25 12:40:13.341889
+2015-01-25 23:15:16.682272 end of program
+2015-01-25 23:20:13.063207 
+2015-01-25 23:20:13.070749 start of program
+2015-01-25 23:20:13.154762 running since started 2015-01-25 12:40:13.341889
+2015-01-25 23:20:13.155236 end of program
+2015-01-25 23:25:11.668193 
+2015-01-25 23:25:11.668577 start of program
+2015-01-25 23:25:11.755319 running since started 2015-01-25 12:40:13.341889
+2015-01-25 23:25:11.755633 end of program
+2015-01-25 23:30:18.286031 
+2015-01-25 23:30:18.286589 start of program
+2015-01-25 23:30:18.336468 running since started 2015-01-25 12:40:13.341889
+2015-01-25 23:30:18.337051 end of program
+2015-01-25 23:35:12.326302 
+2015-01-25 23:35:12.347516 start of program
+2015-01-25 23:35:12.383298 running since started 2015-01-25 12:40:13.341889
+2015-01-25 23:35:12.384815 end of program
+2015-01-25 23:40:13.327301 
+2015-01-25 23:40:13.327759 start of program
+2015-01-25 23:40:13.412716 running since started 2015-01-25 12:40:13.341889
+2015-01-25 23:40:13.413083 end of program
+2015-01-25 23:45:16.403851 
+2015-01-25 23:45:16.422859 start of program
+2015-01-25 23:45:16.464083 running since started 2015-01-25 12:40:13.341889
+2015-01-25 23:45:16.464520 end of program
+2015-01-25 23:50:12.664348 
+2015-01-25 23:50:12.670773 start of program
+2015-01-25 23:50:12.694223 running since started 2015-01-25 12:40:13.341889
+2015-01-25 23:50:12.694577 end of program
+2015-01-25 23:55:11.909772 
+2015-01-25 23:55:11.910287 start of program
+2015-01-25 23:55:11.929834 running since started 2015-01-25 12:40:13.341889
+2015-01-25 23:55:11.930381 end of program

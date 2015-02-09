@@ -36,7 +36,7 @@ JKY.Color = function() {
 	function my_load_data() {
 		var my_data =
 			{ method	: 'get_index'
-			, table		: 'Colors'
+			, table		: 'ColorUnloadeds'
 			, select	:  my_the_type
 			, filter	:  JKY.get_value(my_filter)
 			, display	: '10'
@@ -53,7 +53,7 @@ JKY.Color = function() {
 			my_html += '<tr onclick="JKY.Color.click_row(this, ' + my_row.id + ')">'
 					+  '<td class="jky-search-color-name"	>' + my_row.color_name	+ '</td>'
 					+  '<td class="jky-search-color-type"	>' + my_row.color_type	+ '</td>'
-					+  '<td class="jky-search-color-start"	>' + JKY.out_date(my_row.start_date) + '</td>'
+					+  '<td class="jky-search-dyer-name"	>' + my_row.dyer_name	+ '</td>'
 					+  '</tr>'
 					;
 		}

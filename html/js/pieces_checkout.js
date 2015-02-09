@@ -91,7 +91,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.checkout_at		)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.dyer_name			)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.color_name			)	+ '</td>'
-		+  '<td class="jky-td-number"	>' +				 the_row.sale_number			+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.quotation_number		+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 the_row.customer_name			+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 the_row.product_name			+ '</td>'
 		+  '<td class="jky-td-location"	>' +				 the_row.checkin_location		+ '</td>'
@@ -110,7 +110,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-loadout-number'		,				 the_row.loadout_number		);
 	JKY.set_value	('jky-dyer-name'			,				 the_row.dyer_name			);
 	JKY.set_value	('jky-color-name'			,				 the_row.color_name			);
-	JKY.set_value	('jky-sale-number'			,				 the_row.sale_number		);
+	JKY.set_value	('jky-quotation-number'		,				 the_row.quotation_number	);
 	JKY.set_value	('jky-customer-name'		,				 the_row.customer_name		);
 	JKY.set_value	('jky-product-name'			,				 the_row.product_name		);
 	JKY.set_value	('jky-checkin-location'		,				 the_row.checkin_location	);
@@ -176,8 +176,9 @@ JKY.process_barcode_success = function(response) {
 				my_status_class = 'jky-error ';
 				my_checkbox = '';
 			}
+
 			var my_location_class = '';
-			if (my_row.checkin_location != JKY.row.checkin_location) {
+			if (my_row.checkin_location.toUpperCase != JKY.row.checkin_location.toUpperCase) {
 				my_location_class = 'jky-error ';
 				my_checkbox = '';
 			}

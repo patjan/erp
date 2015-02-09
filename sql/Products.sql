@@ -16,12 +16,10 @@ CREATE TABLE IF NOT EXISTS Products
 , cone_type			VARCHAR(32)			DEFAULT NULL
 , photo				VARCHAR(255)		DEFAULT NULL
 
-, weight_from		INT					DEFAULT 0		# Gramatura (gr)
-, weight_to			INT					DEFAULT 0		# Gramatura (gr)
-, weight_dyer		INT					DEFAULT 0		# Gramatura (gr)
-, width_from		INT					DEFAULT 0		# Largura (cm)
-, width_to			INT					DEFAULT 0		# Largura (cm)
-, width_dyer		INT					DEFAULT 0		# Largura (cm)
+, weight_customer	VARCHAR(32)			DEFAULT NULL	# Gramatura (gr) de - ate | largula X altura
+, weight_dyer		VARCHAR(32)			DEFAULT NULL	# Gramatura (gr)
+, width_customer	VARCHAR(32)			DEFAULT NULL	# Largura   (cm) de - ate | largula X altura
+, width_dyer		VARCHAR(32)			DEFAULT NULL	# Largura   (cm)
 , yield				DECIMAL(10,2)		DEFAULT 0		# Rendimento (Kg/Mt)
 
 
@@ -51,3 +49,18 @@ ALTER TABLE Products		ADD COLUMN width_from				INTEGER			DEFAULT 0		AFTER photo;
 ALTER TABLE Products		ADD COLUMN weight_dyer				INTEGER			DEFAULT 0		AFTER photo;
 ALTER TABLE Products		ADD COLUMN weight_to				INTEGER			DEFAULT 0		AFTER photo;
 ALTER TABLE Products		ADD COLUMN weight_from				INTEGER			DEFAULT 0		AFTER photo;
+
+ALTER TABLE Products		CHANGE weight_from	weight_customer	VARCHAR(32)		DEFAULT NULL	;
+ALTER TABLE Products		CHANGE weight_to	weight_to		VARCHAR(32)		DEFAULT NULL	;
+ALTER TABLE Products		CHANGE weight_dyer	weight_dyer		VARCHAR(32)		DEFAULT NULL	;
+ALTER TABLE Products		CHANGE width_from	width_customer	VARCHAR(32)		DEFAULT NULL	;
+ALTER TABLE Products		CHANGE width_to		width_to		VARCHAR(32)		DEFAULT NULL	;
+ALTER TABLE Products		CHANGE width_dyer	width_dyer		VARCHAR(32)		DEFAULT NULL	;
+UPDATE Products	SET weight_customer = NULL	WHERE weight_customer	= '0';
+UPDATE Products	SET weight_dyer		= NULL	WHERE weight_dyer		= '0';
+UPDATE Products	SET width_customer	= NULL	WHERE width_customer	= '0';
+UPDATE Products	SET width_dyer		= NULL	WHERE width_dyer		= '0';
+UPDATE Products	SET weight_customer = CONCAT(weight_customer, ' - ', weight_to)	WHERE weight_customer	IS NOT NULL;
+UPDATE Products	SET width_customer  = CONCAT(width_customer , ' - ', width_to )	WHERE width_customer	IS NOT NULL;
+ALTER TABLE Products		DROP weight_to	;
+ALTER TABLE Products		DROP width_to	;

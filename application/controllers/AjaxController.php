@@ -676,6 +676,20 @@ private function get_index($data) {
 			. ' ORDER BY Pieces.checkin_location'
 			;
 	}else
+	if ($table == 'ColorUnloadeds') {
+		$sql= 'SELECT DISTINCT'
+			. '       Color.id					AS			 id'
+			. ',      Color.color_name			AS     color_name'
+			. ',      Color.color_type			AS     color_type'
+			. ',       Dyer.nick_name			AS      dyer_name'
+			. '  FROM QuotColors'
+			. '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	QuotColors.color_id'
+			. '  LEFT JOIN    Contacts AS Dyer		ON		Dyer.id	=	QuotColors.dyer_id'
+			. '  WHERE (QuotColors.status = "Draft" OR QuotColors.status = "Active")'
+			. '  ORDER BY ' . $order_by
+			. $limit
+			;
+	}else
 	if ($table == 'QuotUnloadeds') {
 		$sql= 'SELECT QuotColors.*'
 			. ', QuotColors.id					AS			 id'
@@ -843,6 +857,7 @@ private function set_select($table, $specific, $select) {
 			case 'ReceiveDyers'		: return ' AND  ReceiveDyers	.status IN   ("Draft","Active")';
 			case 'ShipDyers'		: return ' AND  ShipDyers		.status IN   ("Draft","Active")';
 			case 'Quotations'		: return ' AND  Quotations		.status IN   ("Draft","Active")';
+			case 'Sales'			: return ' AND  Sales			.status IN   ("Draft","Active")';
 			case 'TDyers'			: return ' AND  TDyers			.status IN   ("Draft","Active")';
 		}
 	}
@@ -887,6 +902,9 @@ private function set_select($table, $specific, $select) {
 		case 'Quotations'		: return ' AND     Quotations.status		= "' . $select . '"';
 		case 'QuotLines'		: return ' AND      QuotLines.parent_id		=  ' . $select;
 		case 'QuotColors'		: return ' AND     QuotColors.parent_id		=  ' . $select;
+		case 'Sales'			: return ' AND          Sales.status		= "' . $select . '"';
+		case 'SaleLines'		: return ' AND      SaleLines.parent_id		=  ' . $select;
+		case 'SaleColors'		: return ' AND     SaleColors.parent_id		=  ' . $select;
 		case 'ReceiveDyers'		: return ' AND   ReceiveDyers.status		= "' . $select . '"';
 		case 'ReqLines'			: return ' AND       ReqLines.request_id	=  ' . $select;
 		case 'ShipDyers'		: return ' AND      ShipDyers.status		= "' . $select . '"';
@@ -957,8 +975,8 @@ private function set_new_fields($table) {
 	if ($table == 'OrdThreads'		)	$return = ',    Orderx.order_number		AS 	   order_number'
 												. ',    Thread.name				AS    thread_name'
 												. ',   BatchIn.batch			AS     batch_code';
-	if ($table == 'OSAs'			)	$return = ',  Customer.nick_name		AS  customer_name'
-												. ',  Salesman.nick_name		AS   salesman_name'
+	if ($table == 'OSAs'			)	$return = ',  Salesman.nick_name		AS   salesman_name'
+												. ',  Customer.nick_name		AS  customer_name'
 												. ', Quotation.quotation_number	AS quotation_number';
 	if ($table == 'OSA_Lines'		)	$return = ',   Product.product_name		AS   product_name';
 	if ($table == 'Pieces'			)	$return = ',    Orderx.order_number		AS     order_number'
@@ -974,7 +992,8 @@ private function set_new_fields($table) {
 //												. ',   Batches.received_weight	AS  received_weight'
 												. ', Incomings.received_at		AS  received_at'
 												. ',  Supplier.nick_name		AS  supplier_name';
-	if ($table == 'Quotations'		)	$return = ',  Customer.nick_name		AS  customer_name'
+	if ($table == 'Quotations'		)	$return = ',  Salesman.full_name		AS  salesman_name'
+												. ',  Customer.nick_name		AS  customer_name'
 												. ',   Contact.nick_name		AS   contact_name'
 												. ',   Contact.mobile			AS   contact_mobile';
 //												. ',   Machine.name				AS   machine_name'
@@ -994,6 +1013,25 @@ private function set_new_fields($table) {
 												. ',  QuotLine.units			AS			 units'
 												. ', Quotation.quotation_number	AS quotation_number'
 												. ', Quotation.quoted_at		AS    quoted_at'
+												. ',   Product.product_name		AS   product_name'
+												. ',  Customer.nick_name		AS  customer_name';
+	if ($table == 'Sales'			)	$return = ',  Salesman.full_name		AS   salesman_name'
+												. ',  Customer.nick_name		AS  customer_name'
+												. ',   Contact.nick_name		AS   contact_name'
+												. ',   Contact.mobile			AS   contact_mobile'
+												. ', Quotation.quotation_number	AS quotation_number';
+	if ($table == 'SaleLines'		)	$return = ',   Product.product_name		AS   product_name'
+												. ',   Machine.name				AS   machine_name';
+	if ($table == 'SaleColors'		)	$return = ',SaleColors.quoted_units		AS    quoted_units'
+												. ',     Color.color_name		AS     color_name'
+												. ',     Color.color_type		AS     color_type'
+												. ',      Dyer.nick_name		AS      dyer_name'
+												. ',  SaleLine.product_id		AS	 product_id'
+												. ',  SaleLine.machine_id		AS	 machine_id'
+												. ',  SaleLine.peso				AS			 peso'
+												. ',  SaleLine.units			AS			 units'
+												. ',      Sale.sale_number		AS      sale_number'
+												. ',      Sale.sold_date		AS      sold_date'
 												. ',   Product.product_name		AS   product_name'
 												. ',  Customer.nick_name		AS  customer_name';
 	if ($table == 'ShipDyers'		)	$return = ',      Dyer.nick_name		AS      dyer_name'
@@ -1152,13 +1190,9 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN     Batches  			ON   Batches.id	=	 PurchaseLines.batch_id'
 												. '  LEFT JOIN   Incomings				ON Incomings.id	=		   Batches.incoming_id'
 												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Purchases.supplier_id';
-	if ($table == 'Quotations'		)	$return = '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		Quotations.customer_id'
+	if ($table == 'Quotations'		)	$return = '  LEFT JOIN    Contacts AS Salesman	ON  Salesman.id	=		Quotations.salesman_id'
+												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		Quotations.customer_id'
 												. '  LEFT JOIN    Contacts AS Contact	ON   Contact.id	=		Quotations.contact_id';
-//												. '  LEFT JOIN    Machines AS Machine	ON   Machine.id	=		Quotations.machine_id'
-//												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		Quotations.dyer_id'
-//												. '  LEFT JOIN    Products AS Punho		ON     Punho.id	=		Quotations.punho_id'
-//												. '  LEFT JOIN    Products AS Gola 		ON      Gola.id	=		Quotations.gola_id'
-//												. '  LEFT JOIN    Products AS Galao		ON     Galao.id	=		Quotations.galao_id';
 	if ($table == 'QuotLines'		)	$return = '  LEFT JOIN    Products AS Product	ON   Product.id	=	     QuotLines.product_id'
 												. '  LEFT JOIN    Machines AS Machine	ON   Machine.id	=		 QuotLines.machine_id';
 	if ($table == 'QuotColors'		)	$return = '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	    QuotColors.color_id'
@@ -1167,6 +1201,18 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=		  QuotLine.parent_id'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  QuotLine.product_id'
 												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		 Quotation.customer_id';
+	if ($table == 'Sales'			)	$return = '  LEFT JOIN    Contacts AS Salesman  ON  Salesman.id =            Sales.salesman_id'
+												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		     Sales.customer_id'
+												. '  LEFT JOIN    Contacts AS Contact	ON   Contact.id	=		     Sales.contact_id'
+												. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=		     Sales.quotation_id';
+	if ($table == 'SaleLines'		)	$return = '  LEFT JOIN    Products AS Product	ON   Product.id	=	     SaleLines.product_id'
+												. '  LEFT JOIN    Machines AS Machine	ON   Machine.id	=		 SaleLines.machine_id';
+	if ($table == 'SaleColors'		)	$return = '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	    SaleColors.color_id'
+												. '  LEFT JOIN    Contacts AS Dyer		ON		Dyer.id	=		SaleColors.dyer_id'
+												. '  LEFT JOIN   SaleLines AS SaleLine	ON  SaleLine.id	=		SaleColors.parent_id'
+												. '  LEFT JOIN       Sales AS Sale		ON      Sale.id	=		  SaleLine.parent_id'
+												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleLine.product_id'
+												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id';
 	if ($table == 'ShipDyers'		)	$return = '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		 ShipDyers.dyer_id'
 												. '  LEFT JOIN    Contacts AS Transport	ON Transport.id	=		 ShipDyers.transport_id';
 	if ($table == 'Incomings'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Incomings.supplier_id';
@@ -1545,8 +1591,8 @@ private function set_where($table, $filter) {
 		if ($table == 'LoadOuts') {
 			if ($name == 'loadout_number'
 			or	$name == 'requested_at'
-			or	$name == 'requested_pieces'
-			or	$name == 'requested_weight'
+			or	$name == 'quoted_pieces'
+			or	$name == 'quoted_weight'
 			or	$name == 'checkout_at'
 			or	$name == 'checkout_pieces'
 			or	$name == 'checkout_weight'
@@ -1900,18 +1946,9 @@ private function set_where($table, $filter) {
 
 		if ($table == 'Quotations') {
 			if ($name == 'quotation_number'
-			or	$name == 'diameter'
-			or	$name == 'weight_from'
-			or	$name == 'weight_to'
-			or	$name == 'width_from'
-			or	$name == 'width_to'
-			or	$name == 'peso'
-			or	$name == 'product_type'
-			or	$name == 'punho_perc'
-			or	$name == 'gola_perc'
-			or	$name == 'galao_perc'
 			or	$name == 'quoted_at'
 			or	$name == 'produced_date'
+			or	$name == 'expected_date'
 			or	$name == 'delivered_date'
 			or	$name == 'quoted_pieces'
 			or	$name == 'produced_pieces'
@@ -1921,6 +1958,13 @@ private function set_where($table, $filter) {
 					return ' AND Quotations.' . $name . ' IS NULL ';
 				}else{
 					return ' AND Quotations.' . $name . ' LIKE ' . $value;
+				}
+			}else
+			if ($name == 'salesman_name') {
+				if ($value == '"%null%"') {
+					return ' AND Quotations.salesman_id IS NULL';
+				}else{
+					return ' AND Salesman.full_name LIKE ' . $value;
 				}
 			}else
 			if ($name == 'customer_name') {
@@ -1936,40 +1980,51 @@ private function set_where($table, $filter) {
 				}else{
 					return ' AND Contacts.nick_name LIKE ' . $value;
 				}
-			}else
-			if ($name == 'machine_name') {
+			}
+		}
+
+		if ($table == 'Sales') {
+			if ($name == 'sale_number'
+			or	$name == 'quoted_at'
+			or	$name == 'produced_date'
+			or	$name == 'expected_date'
+			or	$name == 'delivered_date'
+			or	$name == 'quoted_pieces'
+			or	$name == 'produced_pieces'
+			or	$name == 'delivered_pieces'
+			or	$name == 'remarks') {
 				if ($value == '"%null%"') {
-					return ' AND Quotations.machine_id IS NULL';
+					return ' AND Sales.' . $name . ' IS NULL ';
 				}else{
-					return ' AND Machines.name LIKE ' . $value;
+					return ' AND Sales.' . $name . ' LIKE ' . $value;
 				}
 			}else
-			if ($name == 'dyer_name') {
+			if ($name == 'sales_name') {
 				if ($value == '"%null%"') {
-					return ' AND Quotations.dyer_id IS NULL';
+					return ' AND Sales.salesman_id IS NULL';
 				}else{
-					return ' AND Contacts.name LIKE ' . $value;
+					return ' AND Salesman.full_name LIKE ' . $value;
 				}
 			}else
-			if ($name == 'punho_name') {
+			if ($name == 'customer_name') {
 				if ($value == '"%null%"') {
-					return ' AND Quotations.punho_id IS NULL';
+					return ' AND Sales.customer_id IS NULL';
 				}else{
-					return ' AND Punho.product_name LIKE ' . $value;
+					return ' AND Customer.nick_name LIKE ' . $value;
 				}
 			}else
-			if ($name == 'gola_name') {
+			if ($name == 'contact_name') {
 				if ($value == '"%null%"') {
-					return ' AND Quotations.gola_id IS NULL';
+					return ' AND Sales.contact_id IS NULL';
 				}else{
-					return ' AND Gola.product_name LIKE ' . $value;
+					return ' AND Contact.nick_name LIKE ' . $value;
 				}
 			}else
-			if ($name == 'galao_name') {
+			if ($name == 'quotation_number') {
 				if ($value == '"%null%"') {
-					return ' AND Quotations.galao_id IS NULL';
+					return ' AND Sales.quotation_id IS NULL';
 				}else{
-					return ' AND Galao.product_name LIKE ' . $value;
+					return ' AND Quotation.quotation_number LIKE ' . $value;
 				}
 			}
 		}
@@ -2451,8 +2506,8 @@ private function set_where($table, $filter) {
 	if ($table ==  'LoadOuts') {
 		$return = ' LoadOuts.loadout_number		LIKE ' . $filter
 			. ' OR  LoadOuts.requested_at		LIKE ' . $filter
-			. ' OR  LoadOuts.requested_pieces	LIKE ' . $filter
-			. ' OR  LoadOuts.requested_weight	LIKE ' . $filter
+			. ' OR  LoadOuts.quoted_pieces		LIKE ' . $filter
+			. ' OR  LoadOuts.quoted_weight		LIKE ' . $filter
 			. ' OR  LoadOuts.checkout_at		LIKE ' . $filter
 			. ' OR  LoadOuts.checkout_pieces	LIKE ' . $filter
 			. ' OR  LoadOuts.checkout_weight	LIKE ' . $filter
@@ -2578,25 +2633,31 @@ private function set_where($table, $filter) {
 
 	if ($table ==  'Quotations') {
 		$return = ' Quotations.quotation_number	LIKE ' . $filter
-			. ' OR  Quotations.diameter			LIKE ' . $filter
-			. ' OR  Quotations.weight_from		LIKE ' . $filter
-			. ' OR  Quotations.weight_to		LIKE ' . $filter
-			. ' OR  Quotations.width_from		LIKE ' . $filter
-			. ' OR  Quotations.width_to			LIKE ' . $filter
-			. ' OR  Quotations.peso				LIKE ' . $filter
-			. ' OR  Quotations.product_type		LIKE ' . $filter
 			. ' OR  Quotations.quoted_at		LIKE ' . $filter
 			. ' OR  Quotations.produced_date	LIKE ' . $filter
+			. ' OR  Quotations.expected_date	LIKE ' . $filter
 			. ' OR  Quotations.delivered_date	LIKE ' . $filter
 			. ' OR  Quotations.quoted_pieces	LIKE ' . $filter
 			. ' OR  Quotations.produced_pieces	LIKE ' . $filter
 			. ' OR  Quotations.delivered_pieces	LIKE ' . $filter
+			. ' OR    Salesman.nick_name		LIKE ' . $filter
 			. ' OR    Customer.nick_name		LIKE ' . $filter
-			. ' OR     Machine.name				LIKE ' . $filter
-			. ' OR        Dyer.nick_name		LIKE ' . $filter
-			. ' OR       Punho.product_name		LIKE ' . $filter
-			. ' OR        Gola.product_name		LIKE ' . $filter
-			. ' OR       Galao.product_name		LIKE ' . $filter
+			. ' OR     Contact.nick_name		LIKE ' . $filter
+			;
+		}
+
+	if ($table ==  'Sales') {
+		$return = ' Sales.sale_number			LIKE ' . $filter
+			. ' OR  Sales.quoted_at				LIKE ' . $filter
+			. ' OR  Sales.produced_date			LIKE ' . $filter
+			. ' OR  Sales.delivered_date		LIKE ' . $filter
+			. ' OR  Sales.quoted_pieces			LIKE ' . $filter
+			. ' OR  Sales.produced_pieces		LIKE ' . $filter
+			. ' OR  Sales.delivered_pieces		LIKE ' . $filter
+			. ' OR    Salesman.nick_name		LIKE ' . $filter
+			. ' OR    Customer.nick_name		LIKE ' . $filter
+			. ' OR     Contact.nick_name		LIKE ' . $filter
+			. ' OR   Quotation.quotation_number	LIKE ' . $filter
 			;
 		}
 

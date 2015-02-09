@@ -15,3 +15,4 @@ UPDATE		Changes			SET		servers = '';
 UPDATE		Changes			SET		servers = ''	WHERE table_name = 'Batches';
 
 ALTER TABLE Changes			CHANGE	servers			servers			VARCHAR(32)		DEFAULT '';
+ALTER TABLE Changes			CHANGE	created_at		updated_at		VARCHAR(32)		DEFAULT NULL;

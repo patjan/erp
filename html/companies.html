@@ -207,13 +207,28 @@
 			<div id='jky-pane-payments' class='tab-pane'>
 				<br>
 				<div class='jky-form-line'>
-					<div class='jky-form-label'><span>ICMS Exemption</span>?</div>
-					<div id='jky-icms-exemption' class='jky-form-icms-exemption'>
-						<input type='radio' name='jky-icms-exemption' value='Yes' /><span>Yes </span>
-						<input type='radio' name='jky-icms-exemption' value='No'  /><span>No  </span>
+					<div class='jky-form-label'><span>Is Taxable</span>?</div>
+					<div id='jky-is-taxable' class='jky-form-yes-no'>
+						<input type='radio' name='jky-is-taxable'		value='Yes' /><span>Yes </span>
+						<input type='radio' name='jky-is-taxable'		value='No'  /><span>No  </span>
 					</div>
 				</div>
-				<div class='jky-form-line'><div class='jky-form-label'><span>Payments</span>: </div><input id='jky-payments'	class='jky-form-normal'	/></div>
+				<div class='jky-form-line'>
+					<div class='jky-form-label'><span>ICMS Exemption</span>?</div>
+					<div id='jky-icms-exemption' class='jky-form-yes-no'>
+						<input type='radio' name='jky-icms-exemption'	value='Yes' /><span>Yes </span>
+						<input type='radio' name='jky-icms-exemption'	value='No'  /><span>No  </span>
+					</div>
+				</div>
+				<div class='jky-form-line'>
+					<div class='jky-form-label'><span>Deduct Cone</span>?</div>
+					<div id='jky-deduct-cone' class='jky-form-yes-no'>
+						<input type='radio' name='jky-deduct-cone'		value='Yes' /><span>Yes </span>
+						<input type='radio' name='jky-deduct-cone'		value='No'  /><span>No  </span>
+					</div>
+				</div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Interest Rate</span>: </div><input id='jky-interest-rate'	class='jky-form-price' /> (%)</div>
+				<div class='jky-form-line'><div class='jky-form-label'><span>Payments</span>: </div><input id='jky-payments'	class='jky-form-normal'	/> (<span>days, separated by space</span>)</div>
 				<div class='jky-form-alert'>
 					<div class='jky-form-label'><span>Alert</span>:</div>
 					<textarea id='jky-alert' class='jky-alert'></textarea>

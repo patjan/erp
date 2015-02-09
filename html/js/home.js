@@ -49,6 +49,7 @@ JKY.set_all_events_home = function() {
 		$('#jky-sales-colors'			).click (function() {JKY.process_action('colors'			);});
 		$('#jky-sales-quotations'		).click (function() {JKY.process_action('quotations'		);});
 		$('#jky-sales-loadouts'			).click (function() {JKY.process_action('loadouts'			);});
+		$('#jky-sales-sales'			).click (function() {JKY.process_action('sales'				);});
 
 		$('#jky-planning-threads'		).click (function() {JKY.process_action('threads'			);});
 		$('#jky-planning-machines'		).click (function() {JKY.process_action('machines'			);});
@@ -272,7 +273,7 @@ JKY.process_menu = function(menu) {
 		case 'jky-menu-production'	: JKY.show('jky-side-production'); JKY.process_action('ftps'			); break;
 		case 'jky-menu-threads'		: JKY.show('jky-side-threads'	); JKY.process_action('purchases'		); break;
 		case 'jky-menu-boxes'		: JKY.show('jky-side-boxes'		); JKY.process_action('boxes_checkin'	); break;
-		case 'jky-menu-dyers'		: JKY.show('jky-side-dyers'		); JKY.process_action('shipdyers'		); break;
+		case 'jky-menu-dyers'		: JKY.show('jky-side-dyers'		); JKY.process_action('loadsales'		); break;
 		case 'jky-menu-pieces'		: JKY.show('jky-side-pieces'	); JKY.process_action('pieces_checkin'	); break;
 		case 'jky-menu-receiving'	: JKY.show('jky-side-receiving'	); JKY.process_action('receive_nfes'	); break;
 		case 'jky-menu-fabrics'		: JKY.show('jky-side-fabrics'	); JKY.process_action('fabrics_checkin'	); break;

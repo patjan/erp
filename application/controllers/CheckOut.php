@@ -187,27 +187,27 @@ function JKY_checkout_piece($the_data) {
 
 	$my_loadset = db_get_row('LoadSets', 'id=' . $my_loadset_id);
 
-	$sql= 'UPDATE LoadSales'
+	$sql= 'UPDATE LoadQuotations'
 		. '   SET reserved_pieces = reserved_pieces - 1'
 		. '     , checkout_pieces = checkout_pieces + 1'
 		. '     , checkout_weight = checkout_weight + ' . $my_piece['checkin_weight']
-		. ' WHERE id = ' . $my_loadset['loadsale_id']
+		. ' WHERE id = ' . $my_loadset['load_quot_id']
 		;
-	log_sql('LoadSales', 'update', $sql);
+	log_sql('LoadQuotations', 'update', $sql);
 	$db->query($sql);
-	insert_changes($db, 'LoadSales', $my_loadset['loadsale_id']);
+	insert_changes($db, 'LoadQuotations', $my_loadset['load_quot_id']);
 
-	$my_loadsale = db_get_row('LoadSales', 'id=' . $my_loadset['loadsale_id']);
+	$my_loadquot = db_get_row('LoadQuotations', 'id=' . $my_loadset['load_quot_id']);
 
 	$sql= 'UPDATE LoadOuts'
 		. '   SET checkout_at="' . get_time() . '"'
 		. '		, checkout_pieces = checkout_pieces + 1'
 		. '     , checkout_weight = checkout_weight + ' . $my_piece['checkin_weight']
-		. ' WHERE id = ' . $my_loadsale['loadout_id']
+		. ' WHERE id = ' . $my_loadquot['loadout_id']
 		;
 	log_sql('LoadOuts', 'update', $sql);
 	$db->query($sql);
-	insert_changes($db, 'LoadOuts', $my_loadsale['loadout_id']);
+	insert_changes($db, 'LoadOuts', $my_loadquot['loadout_id']);
 
 	$sql= 'UPDATE Pieces'
 		. '   SET ' . get_updated()
@@ -215,7 +215,7 @@ function JKY_checkout_piece($the_data) {
 		. ',       checkout_by='  . get_session('user_id')
 		. ',       checkout_at="' . get_time() . '"'
 		. ', checkout_location="' . $my_location . '"'
-		.       ', loadsale_id= ' . $my_loadsale['id']
+		.      ', load_quot_id= ' . $my_loadquot['id']
 		. ' WHERE id =' . $my_piece['id']
 		;
 	log_sql('Pieces', 'update', $sql);

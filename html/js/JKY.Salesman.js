@@ -19,11 +19,8 @@ JKY.Salesman = function() {
 
 	function my_display(the_this) {
 		my_the_id = the_this;
-		my_customer_id = $(my_the_id).parent().prev().find('#jky-customer-id').val();
-		if (my_customer_id) {
-			JKY.set_focus(my_filter);
-			my_load_data();
-		}
+		JKY.set_focus(my_filter);
+		my_load_data();
 	}
 
 	function my_load_data() {
@@ -31,7 +28,7 @@ JKY.Salesman = function() {
 			{ method		: 'get_index'
 			, table			: 'Contacts'
 			, specific		: 'is_salesman'
-			, specific_id	: '100002'
+			, specific_id	: '100002'		//	Company = Tecno
 			, select		: 'All'
 			, filter		:  JKY.get_value(my_filter)
 			, display		: '10'
@@ -46,7 +43,7 @@ JKY.Salesman = function() {
 		for(var i=0; i<my_rows.length; i++) {
 			var my_row = my_rows[i];
 			my_html += '<tr onclick="JKY.Salesman.click_row(this, ' + my_row.id + ')">'
-					+  '<td class="jky-search-salesman-name"	>' +				 my_row.nick_name		+ '</td>'
+					+  '<td class="jky-search-salesman-name"	>' +				 my_row.full_name		+ '</td>'
 					+  '<td class="jky-search-salesman-mobile"	>' + JKY.fix_null	(my_row.mobile		)	+ '</td>'
 					+  '<td class="jky-search-salesman-email"	>' +				 my_row.email			+ '</td>'
 					+  '</tr>'
@@ -71,7 +68,7 @@ JKY.Salesman = function() {
 		if (my_dom_name.length == 0) {
 			my_dom_name = $(my_parent).find('.jky-salesman-name');
 		}
-		my_dom_name.val(my_name + ' : ' + my_mobile);
+		my_dom_name.val(my_name);
 		my_dom_name.change();		//	to activate change event
 
 		JKY.hide_modal(my_layer);

@@ -284,7 +284,6 @@ ALTER TABLE LoadSales		ADD		reserved_pieces			INT				DEFAULT 0		AFTER requested_
 /* -- 2014/06/14	*/
 ALTER TABLE Products		ADD		units					INT(11)			DEFAULT 1		AFTER start_date;
 ALTER TABLE Products		ADD		peso					DECIMAL(5,2)	DEFAULT 0		AFTER start_date;
-
 /* -- 2014/06/16	*/
 ALTER TABLE Products		ADD		cone_type				VARCHAR(32)		DEFAULT NULL	AFTER units;
 /* -- 2014/07/19	*/
@@ -358,3 +357,28 @@ ALTER TABLE Orders			ADD		location				VARCHAR(4)		DEFAULT NULL	AFTER returned_we
 ALTER TABLE LoadOuts		ADD COLUMN remarks				TEXT			DEFAULT NULL	AFTER returned_weight;
 /* -- 2015/01/10	*/
 ALTER TABLE Contacts	ADD COLUMN deduct_cone			CHAR(3)			DEFAULT 'Yes'	AFTER icms_exemption;
+/* -- 2015/01/18	*/
+ALTER TABLE Quotations		ADD COLUMN salesman_id				BIGINT			DEFAULT NULL	AFTER contact_id;
+ALTER TABLE Sales			ADD COLUMN salesman_id				BIGINT			DEFAULT NULL	AFTER contact_id;
+/* -- 2015/01/24	*/
+ALTER TABLE Products		CHANGE weight_from	weight_customer	VARCHAR(32)		DEFAULT NULL	;
+ALTER TABLE Products		CHANGE weight_to	weight_to		VARCHAR(32)		DEFAULT NULL	;
+ALTER TABLE Products		CHANGE weight_dyer	weight_dyer		VARCHAR(32)		DEFAULT NULL	;
+ALTER TABLE Products		CHANGE width_from	width_customer	VARCHAR(32)		DEFAULT NULL	;
+ALTER TABLE Products		CHANGE width_to		width_to		VARCHAR(32)		DEFAULT NULL	;
+ALTER TABLE Products		CHANGE width_dyer	width_dyer		VARCHAR(32)		DEFAULT NULL	;
+UPDATE Products	SET weight_customer = NULL	WHERE weight_customer	= '0';
+UPDATE Products	SET weight_dyer		= NULL	WHERE weight_dyer		= '0';
+UPDATE Products	SET width_customer	= NULL	WHERE width_customer	= '0';
+UPDATE Products	SET width_dyer		= NULL	WHERE width_dyer		= '0';
+UPDATE Products	SET weight_customer = CONCAT(weight_customer, ' - ', weight_to)	WHERE weight_customer	IS NOT NULL;
+UPDATE Products	SET width_customer  = CONCAT(width_customer , ' - ', width_to )	WHERE width_customer	IS NOT NULL;
+ALTER TABLE Products		DROP weight_to	;
+ALTER TABLE Products		DROP width_to	;
+/* -- 2015/01/25	*/
+ALTER TABLE Quotations		ADD COLUMN expected_date			DATE			DEFAULT NULL	AFTER produced_date;
+ALTER TABLE Colors			ADD COLUMN dyeing_type				VARCHAR(32)		DEFAULT NULL	AFTER color_name;
+/* -- 2015/02/07	*/
+ALTER TABLE LoadQuotations		ADD		reserved_weight			DECIMAL(7,1)	DEFAULT 0		AFTER quoted_weight;
+ALTER TABLE LoadQuotations		ADD		reserved_pieces			INT				DEFAULT 0		AFTER quoted_weight;
+ALTER TABLE Pieces			CHANGE	loadsale_id		load_quot_id	BIGINT			DEFAULT NULL;

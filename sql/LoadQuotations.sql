@@ -9,6 +9,8 @@ CREATE TABLE IF NOT EXISTS LoadQuotations
 , quot_color_id		BIGINT				DEFAULT NULL
 , quoted_pieces		INT					DEFAULT 0
 , quoted_weight		DECIMAL(7,1)		DEFAULT 0
+, reserved_pieces	INT					DEFAULT 0
+, reserved_weight	DECIMAL(7,1)		DEFAULT 0
 , checkout_pieces	INT					DEFAULT 0
 , checkout_weight	DECIMAL(7,1)		DEFAULT 0
 , returned_pieces	INT					DEFAULT 0
@@ -22,3 +24,7 @@ CREATE TABLE IF NOT EXISTS LoadQuotations
 INSERT NextIds	SET table_name='LoadQuotations', next_id=1, id_size=9;
 INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, name='LoadQuotations', updated_by=1, updated_at=NOW();
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='LoadQuotations', updated_by=1, updated_at=NOW();
+
+ALTER TABLE LoadQuotations		ADD		reserved_weight			DECIMAL(7,1)	DEFAULT 0		AFTER quoted_weight;
+ALTER TABLE LoadQuotations		ADD		reserved_pieces			INT				DEFAULT 0		AFTER quoted_weight;
+

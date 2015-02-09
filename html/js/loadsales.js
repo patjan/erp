@@ -19,7 +19,7 @@ JKY.start_program = function() {
 		, sort_by		: 'LoadOut.loadout_number'
 		, sort_seq		: 'ASC'
 		, sort_list		: [[1, 0]]
-		, focus			: 'jky-requested-pieces'
+		, focus			: 'jky-quoted-pieces'
 		, add_new		: 'display form'
 		});
 	JKY.App.init();
@@ -46,9 +46,9 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
 
-	$('#jky-requested-pieces').ForceIntegerOnly();
-	$('#jky-reserved-pieces' ).ForceIntegerOnly();
-	$('#jky-checkout-pieces' ).ForceIntegerOnly();
+	$('#jky-quoted-pieces'	).ForceIntegerOnly();
+	$('#jky-reserved-pieces').ForceIntegerOnly();
+	$('#jky-checkout-pieces').ForceIntegerOnly();
 }
 
 /**
@@ -74,7 +74,7 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	var my_requested_pieces	= parseInt(the_row.requested_pieces	);
+	var my_quoted_pieces	= parseInt(the_row.quoted_pieces	);
 	var my_reserved_pieces	= parseInt(the_row.reserved_pieces	);
 	var my_checkout_pieces	= parseInt(the_row.checkout_pieces	);
 
@@ -95,11 +95,11 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-loadout-number'	, the_row.loadout_number	);
 	JKY.set_value	('jky-dyer-name'		, the_row.dyer_name			);
 	JKY.set_value	('jky-color-name'		, the_row.color_name		);
-	JKY.set_value	('jky-sale-number'		, the_row.sale_number		);
+	JKY.set_value	('jky-quotation-number'	, the_row.quotation_number	);
 	JKY.set_value	('jky-customer-name'	, the_row.customer_name		);
 	JKY.set_value	('jky-product-name'		, the_row.product_name		);
 	JKY.set_date	('jky-requested-date'	, JKY.out_time(the_row.requested_at));
-	JKY.set_value	('jky-requested-pieces'	, the_row.requested_pieces	);
+	JKY.set_value	('jky-quoted-pieces'	, the_row.quoted_pieces		);
 	JKY.set_value	('jky-reserved-pieces'	, the_row.reserved_pieces	);
 	JKY.set_value	('jky-checkout-pieces'	, the_row.checkout_pieces	);
 	JKY.set_calculated_color();
@@ -122,8 +122,8 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-batch-number'			, '');
 	JKY.set_value	('jky-machine-name'			, '');
 	JKY.set_value	('jky-supplier-name'		, '');
-	JKY.set_value	('jky-requested-weight'		,  0);
-	JKY.set_value	('jky-requested-pieces'		, '');
+	JKY.set_value	('jky-quoted-weight'		,  0);
+	JKY.set_value	('jky-quoted-pieces'		, '');
 	JKY.set_value	('jky-reserved-pieces'		, '');
 	JKY.set_value	('jky-unit-price'			,  0);
 	JKY.set_value	('jky-average-weight'		,  0);
@@ -142,8 +142,8 @@ JKY.get_form_set = function() {
 //		+             '  code=\'' + JKY.get_value('jky-product-code'	) + '\''
 //		+'            , batch=\'' + JKY.get_value('jky-batch-number'	) + '\''
 //		+'       , unit_price=  ' + JKY.get_value('jky-unit-price'		)
-//		+' , requested_weight=  ' + JKY.get_value('jky-requested-weight')
-		+'   requested_pieces=  ' + JKY.get_value('jky-requested-pieces')
+//		+'    , quoted_weight=  ' + JKY.get_value('jky-quoted-weight'	)
+		+'      quoted_pieces=  ' + JKY.get_value('jky-quoted-pieces'	)
 		+'  , reserved_pieces=  ' + JKY.get_value('jky-reserved-pieces'	)
 //		+'   , average_weight=  ' + JKY.get_value('jky-average-weight'	)
 //		+'  , checkout_weight=  ' + JKY.get_value('jky-checkout-weight'	)
@@ -164,13 +164,13 @@ JKY.display_form = function() {
  *	set calculated color
  */
 JKY.set_calculated_color = function() {
-	var my_requested_weight	= parseFloat(JKY.get_value('jky-requested-weight'	));
+	var my_quoted_weight	= parseFloat(JKY.get_value('jky-quoted-weight'	));
 	var my_checkout_weight	= parseFloat(JKY.get_value('jky-checkout-weight'	));
-	JKY.set_css('jky-checkout-weight', 'color', ((my_requested_weight - my_checkout_weight) > 0.001) ? 'red' : 'black');
+	JKY.set_css('jky-checkout-weight', 'color', ((my_quoted_weight - my_checkout_weight) > 0.001) ? 'red' : 'black');
 
-	var my_requested_pieces	= parseInt(JKY.get_value('jky-requested-pieces'	));
+	var my_quoted_pieces	= parseInt(JKY.get_value('jky-quoted-pieces'	));
 	var my_checkout_pieces	= parseInt(JKY.get_value('jky-checkout-pieces'	));
-	JKY.set_css('jky-checkout-pieces', 'color', (my_requested_pieces > my_checkout_pieces) ? 'red' : 'black');
+	JKY.set_css('jky-checkout-pieces', 'color', (my_quoted_pieces > my_checkout_pieces) ? 'red' : 'black');
 
 	var my_reserved_pieces	= parseInt(JKY.get_value('jky-reserved-pieces'	));
 	JKY.set_css('jky-reserved-pieces', 'color', (my_reserved_pieces < 0) ? 'red' : 'black');
@@ -178,11 +178,11 @@ JKY.set_calculated_color = function() {
 
 /* -------------------------------------------------------------------------- */
 JKY.generate_loadset = function() {
-	var my_requested_pieces = JKY.get_value('jky-requested-pieces');
-	var my_reserved_pieces  = JKY.get_value('jky-reserved-pieces' );
-	if (my_requested_pieces !=  my_reserved_pieces) {
+	var my_quoted_pieces	= JKY.get_value('jky-quoted-pieces'	 );
+	var my_reserved_pieces  = JKY.get_value('jky-reserved-pieces');
+	if (my_quoted_pieces !=  my_reserved_pieces) {
 		JKY.display_message('Load Set cannot be generated');
-		JKY.display_message('because Resersed Pieces is not equal to Requested Pieces');
+		JKY.display_message('because Resersed Pieces is not equal to Quoted Pieces');
 		return;
 	}
 
@@ -212,7 +212,7 @@ JKY.insert_load_sets = function() {
 			var my_checkin_weight	= parseFloat		($(my_tr).find('.jky-checkin-weight'	).val());
 			var my_checkin_pieces	= parseInt			($(my_tr).find('.jky-checkin-pieces'	).val());
 			var my_set = ''
-				+       ' loadsale_id=  ' + JKY.row.id
+				+       'load_quot_id=  ' + JKY.row.id
 				+ ', checkin_location=\'' + my_checkin_location + '\''
 				+     ', checkin_date=  ' + my_checkin_date
 				+   ', checkin_weight=  ' + my_checkin_weight
@@ -228,9 +228,9 @@ JKY.insert_load_sets = function() {
 
 			my_data =
 				{ method	: 'update'
-				, table		: 'LoadSales'
+				, table		: 'LoadQuotations'
 				, set		: 'reserved_pieces = reserved_pieces + ' + my_reserved_pieces
-				, where		: 'LoadSales.id = ' + JKY.row.id
+				, where		: 'id = ' + JKY.row.id
 				};
 			JKY.ajax(false, my_data);
 		}
@@ -238,7 +238,7 @@ JKY.insert_load_sets = function() {
 
 	my_data =
 		{ method	: 'update'
-		, table		: 'LoadSales'
+		, table		: 'LoadQuotations'
 		, set		: 'status = \'Active\''
 		, where		: 'id = ' + JKY.row.id
 		};

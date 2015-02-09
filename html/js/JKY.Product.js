@@ -42,8 +42,8 @@ JKY.Product = function() {
 			+ '<div><label>' + JKY.t('Washings'		) + ': </label><span>' + my_row.washings	+ '</span></div>'
 			+ '<div><label>' + JKY.t('Peso'			) + ': </label><span>' + my_row.peso		+ '</span></div>'
 			+ '<div><label>' + JKY.t('Units'		) + ': </label><span>' + my_row.units		+ '</span></div>'
-			+ '<div><label>' + JKY.t('Weight'		) + ': </label><span>' + my_row.weight_from	+ ' - ' + my_row.weight_to + ' : ' + my_row.weight_dyer + '</span></div>'
-			+ '<div><label>' + JKY.t('Width'		) + ': </label><span>' + my_row.width_from	+ ' - ' + my_row.width_to  + ' : ' + my_row.width_dyer  + '</span></div>'
+			+ '<div><label>' + JKY.t('Weight'		) + ': </label><span>' + my_row.weight_customer + ' : ' + my_row.weight_dyer + '</span></div>'
+			+ '<div><label>' + JKY.t('Width'		) + ': </label><span>' + my_row.width_customer  + ' : ' + my_row.width_dyer  + '</span></div>'
 			+ '<div><label>' + JKY.t('Yield'		) + ': </label><span>' + my_row.yield		+ '</span></div>'
 			;
 		JKY.set_html('jky-product-name', my_row.product_name);

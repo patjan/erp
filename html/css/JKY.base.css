@@ -549,12 +549,10 @@ li .arrow span {
 .jky-form-district		{width: 70px; text-align:center !important;}
 .jky-form-email			{width:300px; text-align:left   !important;}
 
-.jky-form-has-break					{width:135px; float:left;}
-.jky-form-has-break			input	{margin:1px;}
-.jky-form-has-break			span	{padding:1px 10px 0 4px; vertical-align:middle;}
-.jky-form-icms-exemption			{width:135px; float:left;}
-.jky-form-icms-exemption	input	{margin:1px;}
-.jky-form-icms-exemption	span	{padding:1px 10px 0 4px; vertical-align:middle;}
+.jky-form-yes-no		{width:135px; float:left;}
+.jky-form-yes-no input	{margin:1px;}
+.jky-form-yes-no span	{padding:1px 10px 0 4px; vertical-align:middle;}
+
 .jky-form-history		{width:500px; height:500px;}
 
 .jky-form-action		{width: 80px; text-align:left   !important;}

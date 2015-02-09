@@ -1,14 +1,14 @@
 "use strict";
 /*
- * display Quotation Lines -----------------------------------------------------
+ * display Sale Lines -----------------------------------------------------
  */
 
 JKY.display_lines = function() {
 	var my_data =
 		{ method		: 'get_index'
-		, table			: 'QuotLines'
+		, table			: 'SaleLines'
 		, select		:  JKY.row.id
-		, order_by		: 'QuotLines.id'
+		, order_by		: 'SaleLines.id'
 		};
 	JKY.ajax(false, my_data, JKY.generate_lines);
 }
@@ -54,7 +54,7 @@ JKY.generate_line = function(the_index, the_row) {
 	var my_onchange = ' changeable onchange="JKY.update_line(this, ' + my_id + ')"';
 	var my_disabled = ' disabled';
 	var my_html = ''
-		+ '<tr class="jky-line" quot_line_id=' + my_id + '>'
+		+ '<tr class="jky-line" sale_line_id=' + my_id + '>'
 		+ '<td class="jky-td-action"	>' + my_trash + '</td>'
 		+ '<td class="jky-td-key-w3"	>' + my_product + '</td>'
 		+ '<td class="jky-td-key"		>' + my_machine + '</td>'
@@ -68,7 +68,7 @@ JKY.generate_line = function(the_index, the_row) {
 		+ '<td class="jky-td-pieces"	><input class="jky-discount"		value="' + JKY.fix_null(the_row.discount		) + '"' + my_onchange + ' /></td>'
 		+ '</tr>'
 		;
-	var my_rows = JKY.get_rows('QuotColors', my_id);
+	var my_rows = JKY.get_rows('SaleColors', my_id);
 	for(var i=0, max=my_rows.length; i<max; i++) {
 		var my_row = my_rows[i];
 		my_html += JKY.generate_color(my_row, the_row.units);
@@ -111,28 +111,28 @@ JKY.update_line = function(the_this, the_id) {
 		;
 	var my_data =
 		{ method	: 'update'
-		, table		: 'QuotLines'
+		, table		: 'SaleLines'
 		, set		:  my_set
-		, where		: 'QuotLines.id = ' + the_id
+		, where		: 'SaleLines.id = ' + the_id
 		};
 	JKY.ajax(true, my_data);
 
 	my_data =
 		{ method	: 'update'
-		, table		: 'Quotations'
-		, where		: 'Quotations.id = ' + JKY.row.id
-		, set		: 'quoted_pieces = quoted_pieces + ' + my_diff_pieces
+		, table		: 'Sales'
+		, where		: 'Sales.id = ' + JKY.row.id
+		, set		: 'sold_pieces = sold_pieces + ' + my_diff_pieces
 		};
 	JKY.ajax(true, my_data, function(the_response) {
-		JKY.update_quotation_amount();
+		JKY.update_sale_amount();
 	})
 }
 
 JKY.insert_line = function() {
 	var my_data =
 		{ method	: 'insert'
-		, table		: 'QuotLines'
-		, set		: 'QuotLines.parent_id = ' + JKY.row.id
+		, table		: 'SaleLines'
+		, set		: 'SaleLines.parent_id = ' + JKY.row.id
 		};
 	JKY.ajax(true, my_data, function(the_response) {
 		var my_row = [];
@@ -149,7 +149,7 @@ JKY.insert_line = function() {
 		my_row.quoted_pieces	= 0;
 		my_row.discount			= '';
 
-		var my_count = JKY.get_count_by_id('QuotLines', JKY.row.id);
+		var my_count = JKY.get_count_by_id('SaleLines', JKY.row.id);
 		var my_html = JKY.generate_line(my_count-1, my_row);
 		JKY.append_html('jky-lines-body', my_html);
 	})
@@ -158,9 +158,9 @@ JKY.insert_line = function() {
 JKY.copy_lines = function(the_source, the_to) {
 	var my_data =
 		{ method	: 'get_rows'
-		, table		: 'QuotLines'
-		, where		: 'QuotLines.parent_id = ' + the_source
-		, order_by  : 'QuotLines.id'
+		, table		: 'SaleLines'
+		, where		: 'SaleLines.parent_id = ' + the_source
+		, order_by  : 'SaleLines.id'
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);
@@ -176,7 +176,7 @@ JKY.copy_lines = function(the_source, the_to) {
 					for(var i in my_rows) {
 						var my_row	= my_rows[i];
 						var my_set	= '      parent_id =   ' + the_to
-									+ ',   osa_line_id = NULL'
+									+ ',  sale_line_id = NULL'
 									+ ',    product_id =   ' + my_row.product_id
 									+ ',    machine_id =   ' + my_row.machine_id
 									+ ',          peso =   ' + my_row.peso
@@ -189,7 +189,7 @@ JKY.copy_lines = function(the_source, the_to) {
 									;
 						var	my_data =
 							{ method	: 'insert'
-							, table		: 'QuotLines'
+							, table		: 'SaleLines'
 							, set		:  my_set
 							};
 						JKY.ajax(false, my_data, function(the_response) {
@@ -205,7 +205,7 @@ JKY.copy_lines = function(the_source, the_to) {
 }
 
 JKY.delete_line = function(the_this, the_id) {
-	var my_count = JKY.get_count_by_id('QuotColors', the_id);
+	var my_count = JKY.get_count_by_id('SaleColors', the_id);
 	if (my_count > 0) {
 		JKY.display_message(JKY.t('Error, delete first all sub records'));
 		return;
@@ -214,8 +214,8 @@ JKY.delete_line = function(the_this, the_id) {
 	$(the_this).parent().parent().remove();
 	var my_data =
 		{ method	: 'delete'
-		, table		: 'QuotLines'
-		, where		: 'QuotLines.id = ' + the_id
+		, table		: 'SaleLines'
+		, where		: 'SaleLines.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, function(the_response) {
 //		JKY.verify_total_percent();
@@ -246,9 +246,9 @@ JKY.print_lines = function(the_id) {
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'
-		, table		: 'QuotLines'
+		, table		: 'SaleLines'
 		, select	:  the_id
-		, order_by  : 'QuotLines.id'
+		, order_by  : 'SaleLines.id'
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);
@@ -263,23 +263,18 @@ JKY.print_lines = function(the_id) {
 					var my_rows = response.rows;
 					for(var i in my_rows) {
 						var my_row = my_rows[i];
-						var my_product = JKY.get_row('Products', my_row.product_id);
 						my_html  += ''
-							+ '<tr class="jky-print-head">'
-							+ '<td class="jky-print-product" style="width:280px;"><span>Product</span>: ' + my_row.product_name		+ '</td>'
-							+ '<td class="jky-print-pieces"	 style="width: 80px;"><span>Peso   </span>: ' + my_row.peso				+ '</td>'
-							+ '<td class="jky-print-pieces"	 style="width:170px;" colspan=2><span>Weight </span>: ' + my_product.weight_customer + '</td>'
-							+ '<td class="jky-print-pieces"	 style="width:170px;" colspan=2><span>Width  </span>: ' + my_product.width_customer	+ '</td>'
+							+ '<tr class="jky-bold">'
+							+ '<td class="jky-print-name"	>' + my_row.product_name	+ '</td>'
+							+ '<td class="jky-print-name-s"	>' + my_row.remarks			+ '</td>'
+							+ '<td></td>'
+							+ '<td class="jky-print-pieces"	>' + my_row.peso			+ '</td>'
+							+ '<td class="jky-print-pieces"	>' + my_row.quoted_units	+ '</td>'
+							+ '<td class="jky-print-pieces"	>' + my_row.quoted_pieces	+ '</td>'
+							+ '<td class="jky-print-pieces"	>' + my_row.discount		+ '</td>'
 							+ '</tr>'
 							;
-						if (my_row.remarks) {
-							my_html += ''
-								+ '<tr class="jky-print-head">'
-								+ '<td class="jky-print-extra" colspan=8><span>Extra</span>: ' + my_row.remarks + '</td>'
-								+ '</tr>'
-								;
-						}
-						my_html  += JKY.print_colors(my_row.id, my_row);
+						my_html  += JKY.print_colors(my_row.id);
 					}
 				}else{
 					JKY.display_message(response.message);

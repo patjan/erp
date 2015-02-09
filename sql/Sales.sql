@@ -6,9 +6,11 @@ CREATE TABLE IF NOT EXISTS Sales
 , status			VARCHAR(32)			DEFAULT 'Draft'
 
 , sale_number		VARCHAR(32)			DEFAULT NULL
+, po_number			VARCHAR(32)			DEFAULT NULL
 , quotation_id		BIGINT				DEFAULT NULL
 , customer_id		BIGINT				DEFAULT NULL
 , contact_id		BIGINT				DEFAULT NULL
+, salesman_id		BIGINT				DEFAULT NULL
 , needed_date		DATE				DEFAULT NULL
 , sold_date			DATE				DEFAULT NULL
 , hold_date			DATE				DEFAULT NULL
@@ -19,6 +21,7 @@ CREATE TABLE IF NOT EXISTS Sales
 , sold_weight		INT					DEFAULT 0
 , hold_weight		INT					DEFAULT 0
 , sent_weight		INT					DEFAULT 0
+, quoted_amount		DECIMAL(10,2)		DEFAULT 0
 , sold_amount		DECIMAL(10,2)		DEFAULT 0
 , adjust_amount		DECIMAL(10,2)		DEFAULT 0
 , discount_amount	DECIMAL(10,2)		DEFAULT 0
@@ -94,6 +97,8 @@ INSERT NextIds	SET table_name='SaleLines', next_id=1, id_size=9;
 INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, name='SaleLines', updated_by=1, updated_at=NOW();
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='SaleLines', updated_by=1, updated_at=NOW();
 
-INSERT NextIds	SET table_name='SaleLines', next_id=1, id_size=9;
+INSERT NextIds	SET table_name='SaleColors', next_id=1, id_size=9;
 INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, name='SaleColors', updated_by=1, updated_at=NOW();
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='SaleColors', updated_by=1, updated_at=NOW();
+
+ALTER TABLE Sales			ADD COLUMN salesman_id				BIGINT			DEFAULT NULL	AFTER contact_id;

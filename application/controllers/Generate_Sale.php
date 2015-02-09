@@ -34,21 +34,22 @@ function JKY_generate_sale($the_id) {
 		. ',      sale_number='  . $my_sale_id
 		. ',     quotation_id='  . $the_id
 		. ',        sold_date="' . get_time() . '"'
-		. ',      sold_pieces='  . $my_quotation['quoted_pieces']
-		. ',      sold_amount='  . $my_quotation['quoted_amount']
-		. ',  discount_amount='  . $my_quotation['discount_amount']
-		. ',  advanced_amount='  . $my_quotation['advanced_amount']
-		. ',       is_taxable="' . $my_customer ['is_taxable'	] . '"'
-		. ',   icms_exemption="' . $my_customer ['icms_exemption'] . '"'
-		. ',      deduct_cone="' . $my_customer ['deduct_cone'	] . '"'
-		. ',     payment_type="' . $my_customer ['payment_type'	] . '"'
-		. ',         payments="' . $my_customer ['payments'		] . '"'
-		. ',          remarks="' . $my_quotation['remarks'		] . '"'
+		. ',      sold_pieces='  . $my_quotation['quoted_pieces'	]
+		. ',      sold_amount='  . $my_quotation['quoted_amount'	]
+		. ',  discount_amount='  . $my_quotation['discount_amount'	]
+		. ',  advanced_amount='  . $my_quotation['advanced_amount'	]
+		. ',       is_taxable="' . $my_customer ['is_taxable'		] . '"'
+		. ',   icms_exemption="' . $my_customer ['icms_exemption'	] . '"'
+		. ',      deduct_cone="' . $my_customer ['deduct_cone'		] . '"'
+		. ',     payment_type="' . $my_customer ['payment_type'		] . '"'
+		. ',         payments="' . $my_customer ['payments'			] . '"'
+		. ',          remarks="' . $my_quotation['remarks'			] . '"'
 		;
+	if ($my_quotation['salesman_id'		])	$sql .= ',      salesman_id='  . $my_quotation['salesman_id'	];
 	if ($my_quotation['customer_id'		])	$sql .= ',      customer_id='  . $my_quotation['customer_id'	];
 	if ($my_quotation['contact_id'		])	$sql .=	',       contact_id='  . $my_quotation['contact_id'		];
 	if ($my_quotation['needed_at'		])	$sql .=	',      needed_date="' . $my_quotation['needed_at'		] . '"';
-	if ($my_customer ['interest_rate'	])	$sql .=	',    interest_rate='  . $my_customer ['interest_rate'	] . '"';
+	if ($my_customer ['interest_rate'	])	$sql .=	',    interest_rate='  . $my_customer ['interest_rate'	];
 log_sql('Sales', 'INSERT', $sql);
 	$db->query($sql);
 	insert_changes($db, 'Sales', $my_sale_id);
@@ -89,7 +90,7 @@ log_sql('SaleLines', 'INSERT', $sql);
 			$my_sale_color_id = get_next_id('SaleColors');
 			$sql= 'INSERT SaleColors'
 				. '   SET          id='  . $my_sale_color_id
-				. ',        parent_id='  . $my_color['parent_id'	]
+				. ',        parent_id='  . $my_sale_line_id
 				. ',       color_type="' . $my_color['color_type'	] . '"'
 				. ',     quoted_units= ' . $my_color['quoted_units'	]
 				. ',     quoted_price='  . $my_color['quoted_price'	]
