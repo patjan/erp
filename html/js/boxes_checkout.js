@@ -172,7 +172,7 @@ JKY.process_barcode_success = function(response) {
 				my_checkbox = '';
 			}
 			var my_location_class = '';
-			if (my_row.checkin_location.toUpperCase != JKY.row.checkin_location.toUpperCase) {
+			if (my_row.checkin_location.toUpperCase() != JKY.row.checkin_location.toUpperCase()) {
 				my_location_class = 'jky-error ';
 				my_checkbox = '';
 			}

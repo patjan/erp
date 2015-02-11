@@ -36,7 +36,7 @@ JKY.set_all_events = function() {
 	$('#jky-checkout-date'	).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-returned-date'	).datetimepicker({language: JKY.Session.get_locale()});
 
-	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
+	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-tab-quotations'		).click (function() {JKY.display_quotations		();});
 	$('#jky-quotation-add-new'	).click (function() {JKY.insert_quotation		();});
 
@@ -52,7 +52,7 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-quotation', '../JKY.Search.Quotation.html');
 
 	JKY.set_side_active('jky-dyers-loadouts');
-	JKY.set_html('jky-app-select', JKY.set_options(JKY.loadout.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.loadout.select, 'All', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
 //	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_dyer'), true));
@@ -141,7 +141,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_date	('jky-requested-date'	,  JKY.out_time(JKY.get_now()));
 	JKY.set_value	('jky-quoted-pieces'	,  0);
 	JKY.set_value	('jky-quoted-weight'	,  0);
-	JKY.set_date	('jky-checkout-date'		, '');
+	JKY.set_date	('jky-checkout-date'	, '');
 	JKY.set_value	('jky-checkout-pieces'	,  0);
 	JKY.set_value	('jky-checkout-weight'	,  0);
 	JKY.set_date	('jky-returned-date'	, '');

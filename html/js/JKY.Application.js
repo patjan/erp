@@ -29,7 +29,7 @@ JKY.Application = function() {
 
 	JKY.checkout	.select = JKY.checkout	.select	||	'Draft + Active';
 	JKY.incoming	.select = JKY.incoming	.select	||			'Active';
-	JKY.loadout		.select	= JKY.loadout	.select	||	'Draft + Active';
+	JKY.loadout		.select	= JKY.loadout	.select	||			'Active';
 	JKY.osas		.select	= JKY.osas		.select	||	'Draft + Active';
 	JKY.planning	.select = JKY.planning	.select	||	'Draft + Active';
 	JKY.receive		.select	= JKY.receive	.select	||			'Active';

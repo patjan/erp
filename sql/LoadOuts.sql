@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS LoadOuts
 ( id				BIGINT				NOT NULL AUTO_INCREMENT
 , updated_by		BIGINT				DEFAULT NULL
 , updated_at		DATETIME			DEFAULT NULL
-, status			VARCHAR(32)			DEFAULT 'Draft'
+, status			VARCHAR(32)			DEFAULT 'Active'
 
 , loadout_number	VARCHAR(32)			DEFAULT NULL
 , dyer_id			BIGINT				DEFAULT NULL
@@ -35,3 +35,4 @@ ALTER TABLE LoadOuts		ADD COLUMN shipdyer_id			BIGINT			DEFAULT NULL	AFTER color
 
 ALTER TABLE LoadOuts		ADD COLUMN remarks				TEXT			DEFAULT NULL	AFTER returned_weight;
 
+ALTER TABLE LoadOuts		CHANGE	status			status			VARCHAR(32)		DEFAULT 'Active';

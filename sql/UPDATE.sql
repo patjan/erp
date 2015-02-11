@@ -382,3 +382,5 @@ ALTER TABLE Colors			ADD COLUMN dyeing_type				VARCHAR(32)		DEFAULT NULL	AFTER c
 ALTER TABLE LoadQuotations		ADD		reserved_weight			DECIMAL(7,1)	DEFAULT 0		AFTER quoted_weight;
 ALTER TABLE LoadQuotations		ADD		reserved_pieces			INT				DEFAULT 0		AFTER quoted_weight;
 ALTER TABLE Pieces			CHANGE	loadsale_id		load_quot_id	BIGINT			DEFAULT NULL;
+/* -- 2015/02/10	*/
+ALTER TABLE LoadOuts		CHANGE	status			status			VARCHAR(32)		DEFAULT 'Active';

@@ -203,12 +203,12 @@ JKY.process_form_action = function() {
 		JKY.process_save_screen();
 	}
 }
-		
+
 JKY.process_save_screen = function() {
 	var my_barcode			= JKY.get_value('jky-barcode'			);
 	var my_weighed_name		= JKY.get_value('jky-weighed-name'		);
 	var my_checkin_weight	= JKY.get_value('jky-checkin-weight1') + JKY.get_value('jky-checkin-weight2') + '.' + JKY.get_value('jky-checkin-weight3') + JKY.get_value('jky-checkin-weight4');
-	var my_checkin_location	= JKY.get_value('jky-checkin-location1') + JKY.get_value('jky-checkin-location2').toUpperCase + JKY.get_value('jky-checkin-location3') + JKY.get_value('jky-checkin-location4');
+	var my_checkin_location	= JKY.get_value('jky-checkin-location1') + JKY.get_value('jky-checkin-location2').toUpperCase() + JKY.get_value('jky-checkin-location3') + JKY.get_value('jky-checkin-location4');
 
 	var my_weighed_by		= JKY.get_id('Contacts', 'nick_name = \'' + my_weighed_name + '\'');
 

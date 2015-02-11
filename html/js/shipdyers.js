@@ -211,10 +211,20 @@ JKY.display_form = function() {
 
 /* -------------------------------------------------------------------------- */
 JKY.invoice_dyer = function() {
+	var my_error = '';
+
+	var my_dyer_id = JKY.get_value('jky-dyer-id');
+	if(!my_dyer_id)			my_error += '<br>' + JKY.t('because there is not Dyer selected');
+
+	var my_transport_id = JKY.get_value('jky-transport-id');
+	if(!my_transport_id)	my_error += '<br>' + JKY.t('because there is not Transporter selected');
+
 	var my_quantity = JKY.get_value_by_id('ShipDyers', 'quantity', JKY.row.id);
-	if (my_quantity <= 0) {
-		JKY.display_message('Invoice cannot be generated');
-		JKY.display_message('because there is not any Quantity');
+	if (my_quantity <= 0)	my_error += '<br>' + JKY.t('because there is not Quantity defined');
+
+	if (my_error != '') {
+		JKY.display_message(JKY.t('Invoice cannot be generated'));
+		JKY.display_message(my_error);
 		return;
 	}
 

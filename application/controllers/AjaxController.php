@@ -848,16 +848,16 @@ private function set_select($table, $specific, $select) {
 			case 'BatchOuts'		: return ' AND  BatchOuts		.status IN   ("Draft","Active")';
 			case 'CheckOuts'		: return ' AND  CheckOuts		.status IN   ("Draft","Active")';
 			case 'LoadIns'			: return ' AND  LoadIns			.status IN   ("Draft","Active")';
-			case 'LoadOuts'			: return ' AND  LoadOuts		.status IN   ("Draft","Active")';
+//			case 'LoadOuts'			: return ' AND  LoadOuts		.status IN   ("Draft","Active")';
 			case 'LoadQuotations'	: return ' AND  LoadQuotations	.status IN   ("Draft","Active")';
 			case 'Orders'			: return ' AND  Orders			.status IN   ("Draft","Active")';
 			case 'OSAs'				: return ' AND  OSAs			.status IN   ("Draft","Active")';
 			case 'Purchases'		: return ' AND  Purchases		.status IN   ("Draft","Active")';
 			case 'PurchaseLines'	: return ' AND  Purchases		.status IN   ("Draft","Active")';
-			case 'ReceiveDyers'		: return ' AND  ReceiveDyers	.status IN   ("Draft","Active")';
-			case 'ShipDyers'		: return ' AND  ShipDyers		.status IN   ("Draft","Active")';
 			case 'Quotations'		: return ' AND  Quotations		.status IN   ("Draft","Active")';
+			case 'ReceiveDyers'		: return ' AND  ReceiveDyers	.status IN   ("Draft","Active")';
 			case 'Sales'			: return ' AND  Sales			.status IN   ("Draft","Active")';
+			case 'ShipDyers'		: return ' AND  ShipDyers		.status IN   ("Draft","Active")';
 			case 'TDyers'			: return ' AND  TDyers			.status IN   ("Draft","Active")';
 		}
 	}

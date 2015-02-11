@@ -8,31 +8,6 @@
  * start program
  */
 JKY.start_program = function() {
-/*
-SELECT LoadSets.*
-,   LoadOut.loadout_number		AS   loadout_number
-,   LoadOut.requested_at		AS requested_at
-,   LoadOut.checkout_at			AS  checkout_at
-,      Dyer.nick_name			AS      dyer_name
-,     Color.color_name			AS     color_name
-,      Sale.quotation_number	AS      sale_number
-,  Customer.nick_name			AS  customer_name
-,   Product.id					AS   product_id
-,   Product.product_name		AS   product_name
-, CEIL(SaleColor.quoted_units / SaleLine.units)	AS sold_pieces
-  FROM LoadSets
-  LEFT JOIN   LoadSales AS LoadSale		ON  LoadSale.id	=		  LoadSets.loadsale_id
-  LEFT JOIN    LoadOuts AS LoadOut		ON   LoadOut.id	=		  LoadSale.loadout_id
-  LEFT JOIN  QuotColors AS SaleColor	ON SaleColor.id	=		  LoadSale.sale_color_id
-  LEFT JOIN    Contacts AS Dyer			ON      Dyer.id	=		   LoadOut.dyer_id
-  LEFT JOIN      Colors AS Color		ON     Color.id	=		   LoadOut.color_id
-  LEFT JOIN   QuotLines AS SaleLine		ON  SaleLine.id	=		 SaleColor.parent_id
-  LEFT JOIN  Quotations AS Sale			ON      Sale.id	=		  SaleLine.parent_id
-  LEFT JOIN    Products AS Product		ON   Product.id	=		  SaleLine.product_id
-  LEFT JOIN    Contacts AS Customer		ON  Customer.id	=		      Sale.customer_id
- WHERE LoadSets.status = "Active"
- ORDER BY LoadOut.checkout_at ASC
-*/
 	JKY.App = JKY.Application;
 	JKY.App.set(
 		{ object_name	: 'JKY.App'
@@ -163,6 +138,7 @@ JKY.process_input_barcode = function() {
 
 JKY.process_barcode_success = function(response) {
 	var my_row  = response.row;
+
 	if (my_row) {
 		var my_barcode = JKY.get_value('jky-input-barcode');
 		if ($('#jky-pieces-table-body td:contains("' + my_barcode + '")').length > 0) {
@@ -178,8 +154,14 @@ JKY.process_barcode_success = function(response) {
 			}
 
 			var my_location_class = '';
-			if (my_row.checkin_location.toUpperCase != JKY.row.checkin_location.toUpperCase) {
+			if (my_row.checkin_location.toUpperCase() != JKY.row.checkin_location.toUpperCase()) {
 				my_location_class = 'jky-error ';
+				my_checkbox = '';
+			}
+
+			var my_product_class = '';
+			if (my_row.product_name != JKY.row.product_name) {
+				my_product_class = 'jky-error ';
 				my_checkbox = '';
 			}
 
@@ -207,7 +189,7 @@ JKY.process_barcode_success = function(response) {
 					+ '<td class="jky-td-pieces"	>'							+  my_row.number_of_pieces	+ '</td>'
 					+ '<td class="jky-td-weight"	>'							+  my_row.checkin_weight	+ '</td>'
 					+ '<td class="jky-td-location ' + my_location_class + '">'	+  my_row.checkin_location	+ '</td>'
-					+ '<td class="jky-td-name-l"	>'							+  my_row.product_name		+ '</td>'
+					+ '<td class="jky-td-name-l '	+ my_product_class + '"	>'	+  my_row.product_name		+ '</td>'
 					+ '</tr>'
 					;
 			JKY.prepend_html('jky-pieces-table-body', my_html);
