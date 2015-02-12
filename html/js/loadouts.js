@@ -47,9 +47,9 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.append_file('jky-load-dyer'		, '../JKY.Search.Dyer.html'		);
-	JKY.append_file('jky-load-color'	, '../JKY.Search.Color.html'	);
-	JKY.append_file('jky-load-quotation', '../JKY.Search.Quotation.html');
+	JKY.append_file('jky-load-dyer'		, '../JKY.Search.Dyer.html'			);
+	JKY.append_file('jky-load-color'	, '../JKY.Search.ColorUnloaded.html');
+	JKY.append_file('jky-load-quotation', '../JKY.Search.Quotation.html'	);
 
 	JKY.set_side_active('jky-dyers-loadouts');
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.loadout.select, 'All', 'Active', 'Closed'));

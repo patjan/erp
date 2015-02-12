@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * JKY.Color - process all changes during one transaction
+ * JKY.ColorUnloaded - process all changes during one transaction
  *				 control save into private array [my_appraisals]
  *
  * method:	display(the_id)
@@ -14,7 +14,7 @@
  * 		$(my_parent).find('.jky-color-id'  ).val(the_id );
  *		$(my_parent).find('.jky-color-name').val(my_name);
  */
-JKY.Color = function() {
+JKY.ColorUnloaded = function() {
 	var my_the_id		= null;		//	external id that initiated the call
 	var my_the_type		= null;		//	selected color type: Punho, Gola, Galao
 	var my_order_by		= 'color_name';
@@ -36,7 +36,7 @@ JKY.Color = function() {
 	function my_load_data() {
 		var my_data =
 			{ method	: 'get_index'
-			, table		: 'Colors'
+			, table		: 'ColorUnloadeds'
 			, select	:  my_the_type
 			, filter	:  JKY.get_value(my_filter)
 			, display	: '10'
@@ -53,7 +53,7 @@ JKY.Color = function() {
 			my_html += '<tr onclick="JKY.Color.click_row(this, ' + my_row.id + ')">'
 					+  '<td class="jky-search-color-name"	>' + my_row.color_name	+ '</td>'
 					+  '<td class="jky-search-color-type"	>' + my_row.color_type	+ '</td>'
-					+  '<td class="jky-search-color-start"	>' + JKY.out_date(my_row.start_date) + '</td>'
+					+  '<td class="jky-search-dyer-name"	>' + my_row.dyer_name	+ '</td>'
 					+  '</tr>'
 					;
 		}
