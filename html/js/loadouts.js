@@ -60,7 +60,7 @@ JKY.set_initial_values = function() {
 
 	$('#jky-action-save-remarks').click (function()	{JKY.save_remarks		();});
 	$('#jky-dyer-filter'		).KeyUpDelay(JKY.Dyer.load_data		);
-	$('#jky-color-filter'		).KeyUpDelay(JKY.Color.load_data	);
+	$('#jky-color-filter'		).KeyUpDelay(JKY.ColorUnloaded.load_data	);
 	$('#jky-quotation-filter'	).KeyUpDelay(JKY.Quotation.load_data);
 }
 
@@ -90,7 +90,7 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	if (the_row.status == 'Draft') {
+	if (the_row.status == 'Active') {
 //		JKY.enable_button ('jky-action-generate');
 		JKY.enable_delete_button();
 		JKY.enable_button ('jky-lines-add-new'	);

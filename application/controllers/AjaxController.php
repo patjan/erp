@@ -56,7 +56,6 @@ public function init() {
 //		set_session('event_name', get_table_value('Events', 'event_name', get_session('event_id')));
 //	}
 	if (!is_session('permissions'		))		set_permissions(get_session('user_role'));
-
 }
 
 public function indexAction() {
@@ -184,7 +183,7 @@ public function indexAction() {
 			}
 		}
 
-		switch( $method ) {
+		switch ($method) {
 			case 'get_names'	: $this->get_names		($data); break;
 			case 'get_id'		: $this->get_id			($data); break;
 			case 'get_ids'		: $this->get_ids		($data); break;

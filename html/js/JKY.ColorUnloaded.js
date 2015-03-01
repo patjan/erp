@@ -50,7 +50,7 @@ JKY.ColorUnloaded = function() {
 		var my_html = '';
 		for(var i=0; i<my_rows.length; i++) {
 			var my_row = my_rows[i];
-			my_html += '<tr onclick="JKY.Color.click_row(this, ' + my_row.id + ')">'
+			my_html += '<tr onclick="JKY.ColorUnloaded.click_row(this, ' + my_row.id + ')">'
 					+  '<td class="jky-search-color-name"	>' + my_row.color_name	+ '</td>'
 					+  '<td class="jky-search-color-type"	>' + my_row.color_type	+ '</td>'
 					+  '<td class="jky-search-dyer-name"	>' + my_row.dyer_name	+ '</td>'

@@ -42,7 +42,7 @@ JKY.generate_quotations = function(the_response) {
 
 JKY.generate_quotation = function(the_row) {
 	var my_id = the_row.id;
-	var my_trash = JKY.is_status('Draft') ? '<a onclick="JKY.delete_quotation(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_trash = JKY.is_status('Active') ? '<a onclick="JKY.delete_quotation(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_quotation = ''
 		+ "<input class='jky-quot-color-id' type='hidden' value=" + the_row.quot_color_id + " />"
 		+ "<input class='jky-quotation-number' disabled onchange='JKY.update_quotation(this, " + my_id + ")' value='" + JKY.fix_null(the_row.quotation_number) + "' />"
