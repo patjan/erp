@@ -22,8 +22,8 @@ JKY.Color = function() {
 	var my_search_body	= 'jky-color-search-body';
 	var my_layer		= 'jky-color-search';
 
-	function my_display(the_id, the_type) {
-		my_the_id	= the_id;
+	var my_display = function(the_id, the_type) {
+		my_the_id = the_id;
 		if (typeof the_type	== 'undefined') {
 			my_the_type	= 'All';
 		}else{
@@ -33,7 +33,7 @@ JKY.Color = function() {
 		my_load_data();
 	}
 
-	function my_load_data() {
+	var my_load_data = function() {
 		var my_data =
 			{ method	: 'get_index'
 			, table		: 'Colors'
@@ -45,7 +45,7 @@ JKY.Color = function() {
 		JKY.ajax(false, my_data, my_load_data_success);
 	}
 
-	function my_load_data_success(response) {
+	var my_load_data_success = function(response) {
 		var my_rows	= response.rows;
 		var my_html = '';
 		for(var i=0; i<my_rows.length; i++) {
@@ -61,8 +61,7 @@ JKY.Color = function() {
 		JKY.show_modal(my_layer);
 	}
 
-
-	function my_click_row(the_index, the_id) {
+	var my_click_row = function(the_index, the_id) {
 		var my_type = $(the_index).find('.jky-search-color-type').html();
 		var my_name = $(the_index).find('.jky-search-color-name').html();
 		var my_parent = $(my_the_id).parent();
@@ -91,7 +90,7 @@ JKY.Color = function() {
 		JKY.hide_modal(my_layer);
 	}
 
-	function my_add_new() {
+	var my_add_new = function() {
 		JKY.display_message('add_new');
 	}
 

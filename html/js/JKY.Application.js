@@ -40,7 +40,7 @@ JKY.Application = function() {
 /**
  *	set all events (run only once per load)
  */
-	function my_set_all_events() {
+	var my_set_all_events = function() {
 			JKY.display_trace('my_set_all_events - ' + my_args.program_name);
 			if (JKY.is_loaded('jky-body-loaded')) {
 if (my_first == true) {
@@ -76,7 +76,7 @@ if (my_first == true) {
 /**
  *	set initial values (run only once per load)
  */
-	function my_set_initial_values() {
+	var my_set_initial_values = function() {
 		JKY.set_css('jky-app-breadcrumb', 'color', '#4C4C4C');
 		JKY.display_trace('my_set_initial_values - ' + my_args.program_name);
 		if (JKY.is_loaded('jky-body')) {
@@ -124,7 +124,7 @@ if (my_first == true) {
 		}
 	}
 
-	function my_change_select(){
+	var my_change_select = function(){
 			my_args.select = JKY.get_value('jky-app-select');
 			JKY.display_trace('my_change_select: ' + my_args.select);
 			my_display_list();
@@ -145,25 +145,25 @@ if (my_first == true) {
 			}
 		}
 
-	function my_change_filter(){
+	var my_change_filter = function(){
 			my_args.filter = JKY.get_value('jky-app-filter');
 			JKY.display_trace('my_change_filter: ' + my_args.filter);
 			my_display_list();
 		}
 
-	function my_display_prev() {
+	var my_display_prev = function() {
 			JKY.display_trace('my_display_prev: ' + my_index);
 			my_index = (my_index <= 1) ? my_count : (my_index-1);
 			my_display_row(my_index);
 		}
 
-	function my_display_next() {
+	var my_display_next = function() {
 			JKY.display_trace('my_display_next: ' + my_index);
 			my_index = (my_index >= my_count) ? 1 : (my_index+1);
 			my_display_row(my_index);
 		}
 
-	function my_set_all_check(the_index) {
+	var my_set_all_check = function(the_index) {
 			JKY.display_trace('set_all_check');
 			if ($(the_index).is(':checked')) {
 				$('#jky-table-body .jky-td-checkbox input').each(function() {$(this).prop('checked', true);})
@@ -172,14 +172,14 @@ if (my_first == true) {
 			}
 		}
 
-	function my_set_checkbox(the_index) {
+	var my_set_checkbox = function(the_index) {
 			JKY.display_trace('set_checkbox');
 			my_skip_form = true;
 			my_index = the_index.rowIndex - 1;
 			return false;		//	to avoid the trigger of click tr row
 		}
 
-	function my_display_list() {
+	var my_display_list = function() {
 			JKY.display_trace('my_display_list');
 			JKY.show('jky-app-filter'		);
 			JKY.show('jky-app-more'			);
@@ -213,7 +213,7 @@ if (my_first == true) {
 			my_load_table();
 		}
 
-	function my_load_table() {
+	var my_load_table = function() {
 		JKY.display_trace('my_load_table');
 		if (my_args.table_name == '') {
 //			to bind [Check All] function for screens without table loaded
@@ -243,7 +243,7 @@ if (my_first == true) {
 		}
 	}
 
-	function my_process_load_success(response) {
+	var my_process_load_success = function(response) {
 		JKY.display_trace('my_process_load_success');
 		var my_rows	= response.rows;
 		my_count	= my_rows.length;
@@ -265,7 +265,7 @@ if (my_first == true) {
 		JKY.hide('jky-loading');
 	}
 
-	function my_tablesorter(){
+	var my_tablesorter = function(){
 		JKY.display_trace('my_tablesorter');
 		var my_date_format = 'yyyymmdd';
 		var	my_locale = JKY.Session.get_value('locale');
@@ -293,7 +293,7 @@ if (my_first == true) {
 		$('#jky-check-all').click (function() {JKY.App.set_all_check(this);});
 	}
 
-	function my_set_table_row(the_args, the_row) {
+	var my_set_table_row = function(the_args, the_row) {
 		var my_checkbox = '<input type="checkbox" onclick="' + the_args.object_name + '.set_checkbox(this)" row_id=' + the_row.id + ' />';
 		var my_clickrow = JKY.is_loaded('jky-app-form') ? ' onclick="' + the_args.object_name + '.display_form(this)"' : '';
 		return '<tr row_id=' + the_row.id + my_clickrow + '>'
@@ -310,7 +310,7 @@ if (my_first == true) {
  *	$param	number		display new  index
  *	$param	object		display index of the row
  */
-	function my_display_graph(the_index) {
+	var my_display_graph = function(the_index) {
 		JKY.display_trace('my_display_graph: ' + the_index);
 		if (my_args.table_name == '')		return;
 
@@ -328,7 +328,7 @@ if (my_first == true) {
  *	$param	number		display new  index
  *	$param	object		display index of the row
  */
-	function my_display_form(the_index) {
+	var my_display_form = function(the_index) {
 		JKY.display_trace('my_display_form: ' + the_index);
 		if (typeof the_index == 'number') {
 			my_index = the_index;
@@ -369,7 +369,7 @@ if (my_first == true) {
 /**
  * display replace
  */
-	function my_display_replace() {
+	var my_display_replace = function() {
 		JKY.display_trace('my_display_replace');
 		var my_counter = $('#jky-table-body .jky-td-checkbox input:checked').size();
 		if (my_counter == 0) {
@@ -401,7 +401,7 @@ if (my_first == true) {
 		JKY.set_focus(my_args.focus);
 	}
 
-	function my_display_row(the_index) {
+	var my_display_row = function(the_index) {
 		JKY.display_trace('my_display_row');
 		JKY.show('jky-form-tabs');
 		if (the_index) {
@@ -439,7 +439,7 @@ if (my_first == true) {
 		JKY.set_focus(my_args.focus);
 	}
 
-	function my_process_add_new() {
+	var my_process_add_new = function() {
 		JKY.display_trace('my_process_add_new');
 		JKY.hide('jky-form-tabs');
 //		JKY.hide('jky-app-filter'		);
@@ -460,7 +460,7 @@ if (my_first == true) {
 		my_display_new();
 	}
 
-	function my_display_new() {
+	var my_display_new = function() {
 		JKY.display_trace('my_display_new');
 //		my_index = 0;
 		JKY.row = null;
@@ -475,7 +475,7 @@ if (my_first == true) {
 		JKY.set_focus(my_args.focus);
 	}
 
-	function my_process_save() {
+	var my_process_save = function() {
 			JKY.display_trace('my_process_save');
 			if (JKY.Validation.is_invalid(JKY.row, null)) {
 				return;
@@ -488,7 +488,7 @@ if (my_first == true) {
 			}
 		}
 
-	function my_process_insert() {
+	var my_process_insert = function() {
 			JKY.display_trace('my_process_insert');
 
 			var my_set = '';
@@ -505,7 +505,7 @@ if (my_first == true) {
 			JKY.ajax(false, my_data, my_process_insert_success);
 		}
 
-	function my_process_insert_success(response) {
+	var my_process_insert_success = function(response) {
 			JKY.display_trace('my_process_insert_success');
 			JKY.display_message(response.message);
 			JKY.process_insert (response.id);
@@ -527,7 +527,7 @@ if (my_first == true) {
 			}
 		}
 
-	function my_process_update() {
+	var my_process_update = function() {
 			JKY.display_trace('my_process_update');
 			var my_data =
 				{ method: 'update'
@@ -538,7 +538,7 @@ if (my_first == true) {
 			JKY.ajax(false, my_data, my_process_update_success);
 		}
 
-	function my_process_update_success(response) {
+	var my_process_update_success = function(response) {
 			JKY.display_trace('my_process_update_success');
 			JKY.display_message(response.message);
 			JKY.process_update (response.id, JKY.row);
@@ -551,7 +551,7 @@ if (my_first == true) {
 /**
  * process copy
  */
-	function my_process_copy() {
+	var my_process_copy = function() {
 		JKY.display_trace('my_process_copy');
 		var my_data =
 			{ method: 'insert'
@@ -565,12 +565,12 @@ if (my_first == true) {
 		})
 	}
 
-	function my_process_delete() {
+	var my_process_delete = function() {
 		JKY.display_trace('my_process_delete');
 		JKY.display_confirm(my_delete_confirmed, null, 'Delete', 'You requested to <b>delete</b> this record. <br>Are you sure?', 'Yes', 'No');
 	}
 
-	function my_delete_confirmed() {
+	var my_delete_confirmed = function() {
 		JKY.display_trace('my_delete_confirmed');
 		var my_data =
 			{ method: 'delete'
@@ -580,7 +580,7 @@ if (my_first == true) {
 		JKY.ajax(false, my_data, my_process_delete_success);
 	}
 
-	function my_process_delete_success(response) {
+	var my_process_delete_success = function(response) {
 		JKY.display_trace('my_process_delete_success');
 		JKY.display_message(response.message);
 		JKY.process_delete (response.id, JKY.row);
@@ -596,7 +596,7 @@ if (my_first == true) {
 		}
 	}
 
-	function my_process_cancel() {
+	var my_process_cancel = function() {
 			JKY.display_trace('my_process_cancel');
 			my_display_list();
 			JKY.Changes.reset();
@@ -605,7 +605,7 @@ if (my_first == true) {
 /**
  * process print
  */
-	function my_process_print() {
+	var my_process_print = function() {
 		JKY.display_trace('my_process_print');
 		if ($('#jky-app-form').css('display') == 'block') {
 			my_print_row(JKY.row.id);
@@ -619,7 +619,7 @@ if (my_first == true) {
 /**
  * process print
  */
-	function my_print_row(the_id) {
+	var my_print_row = function(the_id) {
 		JKY.display_trace('my_print_row');
 		JKY.print_row(the_id);
 	}
@@ -627,7 +627,7 @@ if (my_first == true) {
 /**
  * process replace
  */
-	function my_process_replace() {
+	var my_process_replace = function() {
 		JKY.display_trace('my_process_replace');
 		var my_set = JKY.get_replace_set();
 		if (my_set != '') {
@@ -650,7 +650,7 @@ if (my_first == true) {
 /**
  *	save remarks
  */
-	function my_save_remarks() {
+	var my_save_remarks = function() {
 		var my_set	= 'remarks = \'' + JKY.get_value('jky-remarks') + '\'';
 		var my_data =
 			{ method: 'update'
@@ -667,7 +667,7 @@ if (my_first == true) {
 /**
  * change status
  */
-	function my_change_status(the_id) {
+	var my_change_status = function(the_id) {
 		var my_status = JKY.is_status('Active') ? 'Inactive' : 'Active';
 		var my_data =
 			{ method	: 'update'
@@ -683,7 +683,7 @@ if (my_first == true) {
 /**
  * process close
  */
-	function my_close_row(the_id) {
+	var my_close_row = function(the_id) {
 		var my_data =
 			{ method	: 'update'
 			, table		:  my_args.table_name
@@ -698,7 +698,7 @@ if (my_first == true) {
 /**
  * process export
  */
-	function my_process_export() {
+	var my_process_export = function() {
 			JKY.display_trace('my_process_export');
 			var my_sort_by = my_args.sort_by + ' ' + my_args.sort_seq;
 			JKY.run_export(my_args.table_name, my_args.select, my_args.filter, my_args.specific, my_sort_by);
@@ -707,7 +707,7 @@ if (my_first == true) {
 /**
  * process publish
  */
-	function my_process_publish() {
+	var my_process_publish = function() {
 		JKY.display_trace('my_process_publish');
 		JKY.process_publish();
 	}
@@ -715,7 +715,7 @@ if (my_first == true) {
 /**
  * process keup input
  */
-	function my_process_keyup_input(the_id, the_event, the_enter) {
+	var my_process_keyup_input = function(the_id, the_event, the_enter) {
 //JKY.set_html('jky-event-which', the_event.keyCode);
 		if (the_enter && the_event.which == 13) {
 //			not able to simulate tab to focus on next field
@@ -738,7 +738,7 @@ if (my_first == true) {
 /**
  * process change input
  */
-	function my_process_change_input(the_id, the_event) {
+	var my_process_change_input = function(the_id, the_event) {
 		var my_id = $(the_id).attr('id');
 		JKY.display_trace('my_process_change_input: ' + my_id);
 		JKY.Changes.increment();
@@ -747,23 +747,23 @@ if (my_first == true) {
 /**
  * process verify input
  */
-	function my_process_verify_input(the_id) {
+	var my_process_verify_input = function(the_id) {
 		var my_id = $(the_id).attr('id');
 		JKY.display_trace('my_process_verify_input: ' + my_id);
 		JKY.Validation.is_invalid(JKY.row, my_id);
 	}
 
-	function my_set(the_args) {
+	var my_set = function(the_args) {
 			JKY.display_trace('my_set');
 			my_args = the_args;
 		}
 
-	function my_get(the_property) {
+	var my_get = function(the_property) {
 			JKY.display_trace('my_get');
 			return my_args[the_property];
 		}
 
-	function my_init() {
+	var my_init = function() {
 		JKY.display_trace('my_init');
 		my_set_all_events();
 		my_set_initial_values();
@@ -778,7 +778,7 @@ if (my_first == true) {
 		, get					:	function(the_property)	{return my_get(the_property)			;}
 		, init					:	function()				{		my_init()						;}
 
-		, set_all_check			:	function(the_index)		{		my_set_all_check(the_index);	;}
+		, set_all_check			:	function(the_index)		{		my_set_all_check(the_index)		;}
 		, display_list			:	function()				{		my_display_list	()				;}
 		, display_form			:	function(the_index)		{		my_display_form	(the_index)		;}
 		, display_row			:	function(the_index)		{		my_display_row	(the_index)		;}

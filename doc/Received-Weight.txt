@@ -1,0 +1,375 @@
+CREATE TABLE IF NOT EXISTS Summary
+( id				BIGINT				NOT NULL
+, counter			INT					DEFAULT 0
+, summary_weight	DECIMAL(10,2)		DEFAULT 0
+, PRIMARY KEY(id)
+);
+
+INSERT INTO Summary
+SELECT purchase_line_id, COUNT(*) AS counter, SUM(received_weight)
+  FROM Batches
+ WHERE purchase_line_id IS NOT NULL
+ GROUP BY purchase_line_id
+; 
+
+CREATE TABLE IF NOT EXISTS Summary
+( id				BIGINT				NOT NULL
+, counter			INT					DEFAULT 0
+, summary_weight	DECIMAL(10,2)		DEFAULT 0
+, PRIMARY KEY(id)
+);
+
+INSERT INTO Summary
+SELECT Summary.id, Summary.counter, Summary.summary_weight, PL.received_weight
+  FROM Summary
+  LEFT JOIN PurchaseLines AS PL ON PL.id = Summary.id   
+ WHERE Summary.summary_weight != PL.received_weight
+; 
+
+Showing rows 0 - 73 ( 74 total, Query took 0.0042 sec)
+
+ id 	counter 	summary_weight 	received_weight
+2000000140 	3 	2686.92 	2579.14
+2000000239 	4 	15606.50 	16107.00
+2000000256 	1 	9979.20 	19958.40
+2000000275 	1 	10680.00 	31972.50
+2000000284 	2 	 473.94 	588.54
+2000000289 	2 	 234.83 	350.79
+2000000312 	1 	 2912.16 	5824.32
+2000000323 	2 	 320.00 	480.00
+2000000377 	3 	2077.31 	1551.92
+2000000400 	1 	1515.94 	3529.64
+2000000449 	1 	3807.00 	0.00
+2000000454 	3 	10044.00 	0.00
+2000000455 	6 	45144.00 	10044.00
+2000000456 	1 	5022.00 	0.00
+2000000467 	1 	2021.40 	0.00
+2000000468 	1 	3001.72 	0.00
+2000000472 	1 	2006.68 	0.00
+2000000474 	1 	2022.34 	0.00
+2000000481 	3 	10044.00 	0.00
+2000000487 	2 	 487.66 	0.00
+2000000493 	1 	5020.42 	0.00
+2000000494 	1 	2514.98 	0.00
+2000000495 	1 	2510.82 	0.00
+2000000499 	2 	 150.10 	0.00
+2000000500 	3 	1943.13 	0.00
+2000000505 	2 	1582.27 	0.00
+2000000506 	1 	1002.53 	0.00
+2000000508 	2 	 433.01 	0.00
+2000000509 	1 	10086.90 	0.00
+2000000511 	2 	10097.65 	0.00
+2000000512 	2 	22109.10 	0.00
+2000000513 	1 	8207.90 	0.00
+2000000515 	1 	5050.25 	0.00
+2000000516 	1 	4779.20 	0.00
+2000000517 	1 	5099.20 	0.00
+2000000518 	1 	5020.67 	0.00
+2000000519 	1 	5000.28 	0.00
+2000000520 	1 	5020.64 	0.00
+2000000521 	1 	5018.50 	0.00
+2000000522 	1 	5177.64 	0.00
+2000000523 	1 	5005.74 	0.00
+2000000525 	3 	2171.76 	0.00
+2000000526 	1 	21580.00 	0.00
+2000000527 	1 	14976.00 	0.00
+2000000528 	1 	6604.00 	0.00
+2000000534 	1 	 221.63 	0.00
+2000000536 	2 	1015.56 	0.00
+2000000537 	1 	 506.16 	0.00
+2000000538 	1 	3018.73 	0.00
+2000000540 	3 	30335.45 	0.00
+2000000543 	4 	17260.71 	0.00
+2000000544 	1 	10056.90 	0.00
+2000000545 	1 	2658.43 	0.00
+2000000546 	3 	10508.25 	0.00
+2000000547 	1 	1010.80 	0.00
+2000000552 	2 	4014.15 	0.00
+2000000553 	3 	9994.51 	0.00
+2000000554 	1 	  53.64 	0.00
+2000000555 	1 	3155.50 	0.00
+2000000556 	1 	5019.91 	0.00
+2000000558 	1 	 439.90 	0.00
+2000000559 	1 	 439.90 	0.00
+2000000560 	1 	2170.94 	0.00
+2000000567 	1 	4037.67 	0.00
+2000000568 	1 	3013.23 	0.00
+2000000581 	1 	5031.07 	0.00
+2000000585 	1 	 544.32 	0.00
+2000000586 	1 	2006.40 	0.00
+2000000587 	1 	2102.75 	0.00
+2000000588 	1 	4724.71 	0.00
+2000000589 	1 	6497.20 	0.00
+2000000591 	1 	 216.00 	0.00
+2000000592 	1 	 396.00 	0.00
+2000000593 	1 	 635.55 	0.00
+
+
+CREATE TABLE IF NOT EXISTS SumParent
+( id				BIGINT				NOT NULL
+, counter			INT					DEFAULT 0
+, received_weight	DECIMAL(10,2)		DEFAULT 0
+, summary_weight	DECIMAL(10,2)		DEFAULT 0
+, PRIMARY KEY(id)
+);
+
+INSERT INTO SumParent
+SELECT PL.parent_id, COUNT(*), SUM(PL.received_weight), SUM(Summary.summary_weight)
+ FROM PurchaseLines PL, Summary
+WHERE PL.id = Summary.id
+  AND PL.received_weight != Summary.summary_weight
+  GROUP BY parent_id;
+  
+
+parent_id 	COUNT(*) 	SUM(PL.received_weight) 	SUM(Summary.summary_weight)
+ 	Edit Edit 	Copy Copy 	Delete Delete 	200058 	1 	2579.14 	2686.92
+	Edit Edit 	Copy Copy 	Delete Delete 	200084 	1 	16107.00 	15606.50
+	Edit Edit 	Copy Copy 	Delete Delete 	200091 	1 	19958.40 	9979.20
+	Edit Edit 	Copy Copy 	Delete Delete 	200101 	1 	31972.50 	10680.00
+	Edit Edit 	Copy Copy 	Delete Delete 	200107 	2 	 939.33 	708.77
+	Edit Edit 	Copy Copy 	Delete Delete 	200113 	1 	5824.32 	2912.16
+	Edit Edit 	Copy Copy 	Delete Delete 	200118 	1 	 480.00 	320.00
+	Edit Edit 	Copy Copy 	Delete Delete 	200141 	1 	1551.92 	2077.31
+	Edit Edit 	Copy Copy 	Delete Delete 	200146 	1 	3529.64 	1515.94
+	Edit Edit 	Copy Copy 	Delete Delete 	200169 	1 	0.00 		3807.00
+	Edit Edit 	Copy Copy 	Delete Delete 	200173 	3 	10044.00 	60210.00
+	Edit Edit 	Copy Copy 	Delete Delete 	200177 	2 	0.00 	5023.12
+	Edit Edit 	Copy Copy 	Delete Delete 	200178 	2 	0.00 	4029.02
+	Edit Edit 	Copy Copy 	Delete Delete 	200183 	1 	0.00 	10044.00
+	Edit Edit 	Copy Copy 	Delete Delete 	200185 	1 	0.00 	487.66
+	Edit Edit 	Copy Copy 	Delete Delete 	200190 	3 	0.00 	10046.22
+	Edit Edit 	Copy Copy 	Delete Delete 	200193 	1 	0.00 	150.10
+	Edit Edit 	Copy Copy 	Delete Delete 	200194 	1 	0.00 	1943.13
+	Edit Edit 	Copy Copy 	Delete Delete 	200197 	2 	0.00 	2584.80
+	Edit Edit 	Copy Copy 	Delete Delete 	200199 	1 	0.00 	433.01
+	Edit Edit 	Copy Copy 	Delete Delete 	200200 	7 	0.00 	65430.20
+	Edit Edit 	Copy Copy 	Delete Delete 	200201 	4 	0.00 	20060.09
+	Edit Edit 	Copy Copy 	Delete Delete 	200202 	1 	0.00 	5177.64
+	Edit Edit 	Copy Copy 	Delete Delete 	200203 	1 	0.00 	5005.74
+	Edit Edit 	Copy Copy 	Delete Delete 	200204 	1 	0.00 	2171.76
+	Edit Edit 	Copy Copy 	Delete Delete 	200205 	3 	0.00 	43160.00
+	Edit Edit 	Copy Copy 	Delete Delete 	200206 	1 	0.00 	221.63
+	Edit Edit 	Copy Copy 	Delete Delete 	200207 	2 	0.00 	1521.72
+	Edit Edit 	Copy Copy 	Delete Delete 	200208 	1 	0.00 	3018.73
+	Edit Edit 	Copy Copy 	Delete Delete 	200210 	1 	0.00 	30335.45
+	Edit Edit 	Copy Copy 	Delete Delete 	200211 	4 	0.00 	40484.29
+	Edit Edit 	Copy Copy 	Delete Delete 	200212 	1 	0.00 	1010.80
+	Edit Edit 	Copy Copy 	Delete Delete 	200214 	1 	0.00 	4014.15
+	Edit Edit 	Copy Copy 	Delete Delete 	200215 	1 	0.00 	9994.51
+	Edit Edit 	Copy Copy 	Delete Delete 	200216 	1 	0.00 	53.64
+	Edit Edit 	Copy Copy 	Delete Delete 	200217 	2 	0.00 	8175.41
+	Edit Edit 	Copy Copy 	Delete Delete 	200219 	2 	0.00 	879.80
+	Edit Edit 	Copy Copy 	Delete Delete 	200220 	1 	0.00 	2170.94
+	Edit Edit 	Copy Copy 	Delete Delete 	200221 	3 	0.00 	12081.97
+	Edit Edit 	Copy Copy 	Delete Delete 	200222 	1 	0.00 	544.32
+	Edit Edit 	Copy Copy 	Delete Delete 	200223 	1 	0.00 	2006.40
+	Edit Edit 	Copy Copy 	Delete Delete 	200224 	2 	0.00 	6827.46
+	Edit Edit 	Copy Copy 	Delete Delete 	200225 	1 	0.00 	6497.20
+	Edit Edit 	Copy Copy 	Delete Delete 	200227 	2 	0.00 	612.00
+	Edit Edit 	Copy Copy 	Delete Delete 	200228 	1 	0.00 	635.55
+
+UPDATE PurchaseLines PL, Summary
+SET PL.received_weight = Summary.summary_weight
+WHERE PL.id = Summary.id
+  AND PL.received_weight != Summary.summary_weight
+;
+  
+UPDATE Purchases PL, SumParent
+SET PL.received_weight = SumParent.summary_weight
+WHERE PL.id = SumParent.id
+;
+  
+CREATE TABLE IF NOT EXISTS SumPL
+( id				BIGINT				NOT NULL
+, counter			INT					DEFAULT 0
+, received_weight	DECIMAL(10,2)		DEFAULT 0
+, summary_weight	DECIMAL(10,2)		DEFAULT 0
+, PRIMARY KEY(id)
+);
+
+INSERT INTO SumPL
+SELECT PS.parent_id, COUNT(*), SUM(PS.received_weight), 0
+ FROM PurchaseLines PS
+  GROUP BY parent_id;
+  
+SELECT PL.id, PL.received_weight, SumPL.received_weight
+ FROM Purchases PL, SumPL
+WHERE PL.id = SumPL.id
+  AND PL.received_weight != SumPL.received_weight
+
+ id 	received_weight 	received_weight
+200002 	20034.00 	30051.00
+200058 	2686.92 	21267.45
+200084 	15606.50 	73742.50
+200091 	9979.20 	59875.20
+200107 	 708.77 	2506.04
+200113 	2912.16 	27244.44
+200118 	 320.00 	2480.00
+200141 	2077.31 	4062.05
+200146 	1515.94 	50172.72
+200177 	5023.12 	7653.66
+200178 	4029.02 	6048.80
+200183 	10044.00 	20088.00
+
+UPDATE Changes CH
+   SET CH.servers = ''
+ WHERE CH.table_name = 'PurchaseLines'
+   AND CH.table_id IN (2000000140,2000000239,2000000256,2000000275,
+   
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000284;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000289;
+
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000312;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000323;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000377;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000400;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000449;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000454;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000455;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000456;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000467;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000468;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000472;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000474;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000481;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000487;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000493;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000494;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000495;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000499;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000500;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000505;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000506;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000508;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000509;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000511;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000512;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000513;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000515;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000516;
+INSERT Changes SET servers = '', table_name = 'PurchaseLines', table_id = 2000000517;
+
+,2000000518,2000000519,2000000520,2000000521,2000000522,
+2000000523,2000000525,2000000526,2000000527,2000000528,2000000534,
+2000000536,2000000537,2000000538,2000000540,2000000543,2000000544,
+2000000545,2000000546,2000000547,2000000552,2000000553,2000000554,
+2000000555,2000000556,2000000558,2000000559,2000000560,2000000567,
+2000000568,2000000581,2000000585,2000000586,2000000587,2000000588,
+2000000589,2000000591,2000000592,2000000593);
+	 
+SELECT *
+  FROM Changes
+ WHERE servers = ''
+	 ;
+
+UPDATE Changes CH, SumParent
+SET PL.received_weight = SumParent.summary_weight
+WHERE PL.id = SumParent.id
+
+
+UPDATE Changes CH
+   SET CH.servers = ''
+ WHERE CH.table_name = 'Purchases'
+
+INSERT Changes SET servers = '', table_name = 'Purchases', table_id = 200058;
+INSERT Changes SET servers = '', table_name = 'Purchases', table_id = 200084;
+INSERT Changes SET servers = '', table_name = 'Purchases', table_id = 200091;
+INSERT Changes SET servers = '', table_name = 'Purchases', table_id = 200101;
+INSERT Changes SET servers = '', table_name = 'Purchases', table_id = 200107;
+INSERT Changes SET servers = '', table_name = 'Purchases', table_id = 200113;
+INSERT Changes SET servers = '', table_name = 'Purchases', table_id = 200118;
+INSERT Changes SET servers = '', table_name = 'Purchases', table_id = 200141;
+INSERT Changes SET servers = '', table_name = 'Purchases', table_id = 200190;
+INSERT Changes SET servers = '', table_name = 'Purchases', table_id = 200193;
+INSERT Changes SET servers = '', table_name = 'Purchases', table_id = 200197;
+INSERT Changes SET servers = '', table_name = 'Purchases', table_id = 200199;
+
+
+
+200146,
+200169,
+200173,
+200177,
+200178,
+200183,
+200185,
+	200190,
+	200193,
+200194,
+	200197,
+	200199,
+200200,
+200201,
+200202,
+200203,
+200204,
+200205,
+200206,
+200207,
+200208,
+200210,
+200211,
+200212,
+200214,
+200215,
+200216,
+200217,
+200219,
+200220,
+200221,
+200222,
+200223,
+200224,
+200225,
+200227,
+200228);
+
+UPDATE Changes CH
+   SET CH.servers = ''
+ WHERE CH.table_name = 'Purchases'
+   AND CH.table_id IN (200058
+200084
+200091
+200101
+200107
+200113
+200118
+200141
+200146
+200169
+200173
+200177
+200178
+200183
+200185
+200190
+200193
+200194
+200197
+200199
+200200
+200201
+200202
+200203
+200204
+200205
+200206
+200207
+200208
+200210
+200211
+200212
+200214
+200215
+200216
+200217
+200219
+200220
+200221
+200222
+200223
+200224
+200225
+200227
+200228
+);

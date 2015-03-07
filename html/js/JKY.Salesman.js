@@ -17,13 +17,13 @@ JKY.Salesman = function() {
 	var my_search_body	= 'jky-salesman-search-body';
 	var my_layer		= 'jky-salesman-search';
 
-	function my_display(the_this) {
+	var my_display = function(the_this) {
 		my_the_id = the_this;
 		JKY.set_focus(my_filter);
 		my_load_data();
 	}
 
-	function my_load_data() {
+	var my_load_data = function() {
 		var my_data =
 			{ method		: 'get_index'
 			, table			: 'Contacts'
@@ -37,7 +37,7 @@ JKY.Salesman = function() {
 		JKY.ajax(false, my_data, my_load_data_success);
 	}
 
-	function my_load_data_success(response) {
+	var my_load_data_success = function(response) {
 		var my_rows	= response.rows;
 		var my_html = '';
 		for(var i=0; i<my_rows.length; i++) {
@@ -53,7 +53,7 @@ JKY.Salesman = function() {
 		JKY.show_modal(my_layer);
 	}
 
-	function my_click_row(the_index, the_id) {
+	var my_click_row = function(the_index, the_id) {
 		var my_name   = $(the_index).find('.jky-search-salesman-name'  ).html();
 		var my_mobile = $(the_index).find('.jky-search-salesman-mobile').html();
 		var my_parent = $(my_the_id).parent();
@@ -74,7 +74,7 @@ JKY.Salesman = function() {
 		JKY.hide_modal(my_layer);
 	}
 
-	function my_add_new() {
+	var my_add_new = function() {
 		JKY.display_message('add_new');
 	}
 

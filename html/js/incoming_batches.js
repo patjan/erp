@@ -197,8 +197,8 @@ JKY.update_parent = function(the_batch_id, the_delta_weight, the_delta_amount) {
 JKY.update_purchase = function(the_batch_id, the_delta_weight) {
 	var my_purchase_line_id = JKY.get_value_by_id('Batches', 'purchase_line_id', the_batch_id);
 	if (my_purchase_line_id) {
-		my_set  = 'received_weight = received_weight + ' + the_delta_weight;
-		my_data =
+		var my_set  = 'received_weight = received_weight + ' + the_delta_weight;
+		var my_data =
 			{ method	: 'update'
 			, table		: 'PurchaseLines'
 			, set		:  my_set

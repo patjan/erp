@@ -197,7 +197,7 @@ JKY.copy_lines = function(the_source, the_to) {
 						})
 					}
 				}else{
-					JKY.display_message(response.message);
+					JKY.display_message(the_response.message);
 				}
 			}
 		}

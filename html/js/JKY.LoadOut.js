@@ -3,6 +3,9 @@
 /**
  * JKY.LoadOut - process all changes during one transaction
  */
+var my_sold		= 0;
+var my_checkout	= 0;
+
 JKY.LoadOut = function() {
 	var my_the_id		= null;		//	external id that initiated the call
 	var my_dyer_id		= null;		//	external id that initiated the call
@@ -15,7 +18,7 @@ JKY.LoadOut = function() {
 	var my_gross_weight	= 0;
 	var my_net_weight	= 0;
 
-	function my_display(the_id, the_dyer_id, the_dyer_name) {
+	var my_display = function(the_id, the_dyer_id, the_dyer_name) {
 		if (the_dyer_id) {
 			my_the_id	= the_id;
 			my_dyer_id	= the_dyer_id;
@@ -27,7 +30,7 @@ JKY.LoadOut = function() {
 		}
 	}
 
-	function my_load_data() {
+	var my_load_data = function() {
 /*
 SELECT LoadOuts.*
 ,      Dyer.nick_name		AS      dyer_name
@@ -51,7 +54,7 @@ SELECT LoadOuts.*
 		JKY.ajax(false, my_data, my_load_data_success);
 	}
 
-	function my_load_data_success(response) {
+	var my_load_data_success = function(response) {
 		var my_rows	= response.rows;
 		var my_html = '';
 		for(var i=0; i<my_rows.length; i++) {
@@ -69,7 +72,7 @@ SELECT LoadOuts.*
 		JKY.show_modal(my_layer);
 	}
 
-	function my_click_row(the_index, the_id) {
+	var my_click_row = function(the_index, the_id) {
 		var my_data =
 			{ method	: 'update'
 			, table		: 'LoadOuts'
@@ -88,25 +91,25 @@ SELECT LoadOuts.*
 		JKY.hide_modal(my_layer);
 	}
 
-	function my_add_new() {
+	var my_add_new = function() {
 		JKY.display_message('add_new');
 	}
 
-	function my_add_sold(the_weight) {
+	var my_add_sold = function(the_weight) {
 		if (the_weight != null) {
 			my_sold += parseFloat(the_weight);
 			my_sold  = Math.round(my_sold * 100) / 100;
 		}
 	}
 
-	function my_add_checkout(the_weight) {
+	var my_add_checkout = function(the_weight) {
 		if (the_weight != null) {
 			my_checkout += parseFloat(the_weight);
 			my_checkout  = Math.round(my_checkout * 100) / 100
 		}
 	}
 
-	function my_update_sold_weight(the_id) {
+	var my_update_sold_weight = function(the_id) {
 		var my_data =
 			{ method	: 'update'
 			, table		: 'LoadOuts'
@@ -116,7 +119,7 @@ SELECT LoadOuts.*
 		JKY.ajax(true, my_data);
 	}
 
-	function my_update_checkout_weight(the_id) {
+	var my_update_checkout_weight= function(the_id) {
 		var my_data =
 			{ method	: 'update'
 			, table		: 'LoadOuts'
@@ -129,7 +132,7 @@ SELECT LoadOuts.*
 	/**
 	 *	 print SD
 	 */
-	function my_print_sd() {
+	var my_print_sd = function() {
 		var my_html = '';
 
 		var my_loadouts = JKY.get_rows_by_where('LoadOuts', 'shipdyer_id=' + JKY.row.id);
@@ -207,7 +210,7 @@ SELECT LoadOuts.*
 		JKY.display_message('SD printed');
 	}
 
-	function my_print_loadout(the_loadout) {
+	var my_print_loadout= function(the_loadout) {
 		return ''
 			+ '<table>'
 			+ '<tr>'
@@ -223,7 +226,7 @@ SELECT LoadOuts.*
 			;
 	}
 
-	function my_print_loadquot(the_loadquot) {
+	var my_print_loadquot = function(the_loadquot) {
 		var my_ftp_id	= JKY.get_id('QuotColorFTPs', 'QuotColors.id=' + the_loadquot.quot_color_id);
 		var my_ftp		= JKY.get_row('FTPs', my_ftp_id);
 
@@ -249,10 +252,6 @@ SELECT LoadOuts.*
 			+ '<br>'
 			;
 	}
-
-
-	$(function() {
-	});
 
 	return {
 		  display		: function(the_id, the_dyer_id, the_dyer_name)	{my_display(the_id, the_dyer_id, the_dyer_name);}
