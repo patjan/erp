@@ -444,6 +444,7 @@ li .arrow span {
 .jky-search-machine-name	{width:270px; text-align:left   !important; text-transform:capitalize;}
 .jky-search-machine-type	{width: 50px; text-align:center !important;}
 .jky-search-machine-brand	{width: 50px; text-align:center !important;}
+.jky-search-nick-name		{width:120px; text-align:left   !important; text-transform:capitalize;}
 .jky-search-ordered-date	{width: 80px; text-align:center !important;}
 .jky-search-ordered-pieces	{width: 55px; text-align:right  !important;}
 .jky-search-product-name	{width:420px; text-align:left   !important; text-transform:capitalize;}

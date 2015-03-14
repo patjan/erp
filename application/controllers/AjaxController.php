@@ -604,21 +604,6 @@ private function get_index($data) {
 	$where = $this->get_security($table, $where);
 
 	if ($table == 'BatchesBalance') {
-/*
-		$sql= 'SELECT Batches.id, Batches.batch, Batches.checkin_weight'
-			. '     , (checkin_boxes  + returned_boxes  - checkout_boxes ) AS balance_boxes'
-			. '     , (checkin_weight + returned_weight - checkout_weight) AS balance_weight'
-			. '     ,  Incomings.invoice_date	AS invoice_date'
-			. '     ,   Supplier.nick_name		AS supplier_name'
-			. '     , (SELECT Boxes.checkin_location FROM Boxes WHERE Boxes.status = "Check In" AND Boxes.batch_id = Batches.id LIMIT 1) AS checkin_location'
-			. '	 FROM Batches'
-			. '	 LEFT JOIN   Incomings  			ON Incomings.id	=   Batches.incoming_id'
-			. '	 LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	= Incomings.supplier_id'
-			. '	WHERE Batches.thread_id = ' . $specific_id . $this->set_where($table, $filter)
-			. '	  AND (checkin_weight + returned_weight - checkout_weight) > 0'
-			. '	ORDER BY ' . $order_by
-			;
- */
 		$sql= 'SELECT Batches.id'
 			. '		, Incomings.invoice_date'
 			. '		, Batches.batch'
@@ -676,6 +661,7 @@ private function get_index($data) {
 			;
 	}else
 	if ($table == 'ColorUnloadeds') {
+		$where = ($filter == '') ? '' : ' AND Color.color_name LIKE "%' . $filter . '%"';
 		$sql= 'SELECT DISTINCT'
 			. '       Color.id					AS			 id'
 			. ',      Color.color_name			AS     color_name'
@@ -685,6 +671,7 @@ private function get_index($data) {
 			. '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	QuotColors.color_id'
 			. '  LEFT JOIN    Contacts AS Dyer		ON		Dyer.id	=	QuotColors.dyer_id'
 			. '  WHERE (QuotColors.status = "Draft" OR QuotColors.status = "Active")'
+			. $where
 			. '  ORDER BY ' . $order_by
 			. $limit
 			;
@@ -1275,9 +1262,7 @@ private function set_left_joins($table) {
 private function set_where($table, $filter) {
 	$filter = strtolower($filter);
 	$filter = trim($filter);
-	if ($filter == '') {
-		return '';
-	}
+	if ($filter == '')		return '';
 
 	$names = explode('=', $filter, 2);
 	if (count($names) == 2) {
@@ -2346,7 +2331,8 @@ private function set_where($table, $filter) {
 //	$filter = '"%' . $filter . '%"';
 	$filter = '"' . $filter . '%"';
 
-	if ($table == 'BatchSets') {
+	switch($table) {
+		case	'BatchSets' :
 		$return = '         BatchSets.checkin_location	LIKE ' . $filter
 				. ' OR      BatchSets.checkin_weight	LIKE ' . $filter
 				. ' OR      BatchSets.checkin_boxes		LIKE ' . $filter
@@ -2361,66 +2347,66 @@ private function set_where($table, $filter) {
 				. ' OR        Threads.name				LIKE ' . $filter
 				. ' OR        Batches.batch				LIKE ' . $filter
 				;
-	}
+		break;
 
-	if ($table == 'BatchesBalance') {
+		case	'BatchesBalance' :
 		$return = '			Batches.batch				LIKE ' . $filter
 				. ' OR		Batches.checkin_weight		LIKE ' . $filter
 				. ' OR		Incomings.invoice_date		LIKE ' . $filter
 				. ' OR		Supplier.nick_name			LIKE ' . $filter
 				;
-	}
+		break;
 
-	if ($table == 'Categories') {
+		case	'Categories' :
 		$return = '       Categories.sequence			LIKE ' . $filter
 				. ' OR    Categories.category			LIKE ' . $filter
 				. ' OR        Parent.category			LIKE ' . $filter
 				;
-	}
+		break;
 
-	if ($table == 'Colors') {
+		case	'Colors' :
 		$return = '		Colors.color_code				LIKE ' . $filter
 				. ' OR	Colors.color_type				LIKE ' . $filter
 				. ' OR	Colors.color_name				LIKE ' . $filter
 				;
-	}
+		break;
 
-	if ($table == 'Controls') {
+		case	'Controls' :
 		$return = '         Controls.sequence			LIKE ' . $filter
 				. ' OR      Controls.name				LIKE ' . $filter
 				. ' OR      Controls.value				LIKE ' . $filter
 				;
-	}
+		break;
 
-	if ($table == 'Configs') {
+		case	'Configs' :
 		$return = '          Configs.sequence			LIKE ' . $filter
 				. ' OR       Configs.name				LIKE ' . $filter
 				. ' OR       Configs.value				LIKE ' . $filter
 				;
-	}
+		break;
 
-	if ($table == 'Permissions') {
+		case	'Permissions' :
 		$return = '      Permissions.user_role			LIKE ' . $filter
 				. ' OR   Permissions.user_resource		LIKE ' . $filter
 				. ' OR   Permissions.user_action		LIKE ' . $filter
 				;
-	}
+		break;
 
-	if ($table == 'Products') {
+		case	'Products' :
 		$return = '    Products.product_name	LIKE ' . $filter
 				. ' OR Products.product_type	LIKE ' . $filter
 				. ' OR Products.start_at		LIKE ' . $filter
 				;
-	}
+		break;
 
-	if ($table == 'Receives') {
+		case	'Receives' :
 		$return = '         Receives.receive_on			LIKE ' . $filter
 				. ' OR      Receives.receive_amount		LIKE ' . $filter
 				. ' OR      Receives.full_name			LIKE ' . $filter
 				;
-	}
+		break;
 
-	if ($table == 'TDyers') {
+		case	'TDyers' :
 		$return = '        TDyers.tdyer_number			LIKE ' . $filter
 				. ' or     TDyers.ordered_at			LIKE ' . $filter
 				. ' or     TDyers.needed_at				LIKE ' . $filter
@@ -2434,9 +2420,9 @@ private function set_where($table, $filter) {
 				. ' or   Customer.nick_name				LIKE ' . $filter
 				. ' or       Dyer.nick_name				LIKE ' . $filter
 				;
-	}
+		break;
 
-	if ($table == 'Templates') {
+		case	'Templates' :
 		$return = '        Templates.updated_at			LIKE ' . $filter
 				. ' or     Templates.template_name		LIKE ' . $filter
 				. ' or     Templates.template_type		LIKE ' . $filter
@@ -2445,9 +2431,9 @@ private function set_where($table, $filter) {
 				. ' or     Templates.template_sql		LIKE ' . $filter
 				. ' or     Templates.description		LIKE ' . $filter
 				;
-	}
+		break;
 
-	if ($table == 'Tickets') {
+		case	'Tickets' :
 		$return = '           Tickets.opened_at			LIKE ' . $filter
 				. ' OR        Tickets.priority			LIKE ' . $filter
 				. ' OR        Tickets.category			LIKE ' . $filter
@@ -2455,15 +2441,15 @@ private function set_where($table, $filter) {
 				. ' OR        Tickets.resolution		LIKE ' . $filter
 				. ' OR         Opened.full_name			LIKE ' . $filter
 				;
-	}
+		break;
 
-	if ($table == 'Translations') {
+		case	'Translations' :
 		$return = '     Translations.updated_at			LIKE ' . $filter
 				. ' OR  Translations.sentence			LIKE ' . $filter
 				;
-}
+		break;
 
-	if ($table ==  'Contacts') {
+		case	'Contacts' :
 		$return = ' Contacts.nick_name		LIKE ' . $filter
 			. ' OR	Contacts.first_name		LIKE ' . $filter
 			. ' OR	Contacts.last_name		LIKE ' . $filter
@@ -2479,9 +2465,9 @@ private function set_where($table, $filter) {
 			. ' OR	Contacts.country		LIKE ' . $filter
 			. ' OR	Companies.full_name		LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'FTPs') {
+		case	'FTPs' :
 		$return = ' FTPs.ftp_number			LIKE ' . $filter
 			. ' OR  FTPs.diameter			LIKE ' . $filter
 			. ' OR  FTPs.density			LIKE ' . $filter
@@ -2500,9 +2486,9 @@ private function set_where($table, $filter) {
 			. ' OR  Products.product_name	LIKE ' . $filter
 			. ' OR  Machines.name			LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'LoadOuts') {
+		case	'LoadOuts' :
 		$return = ' LoadOuts.loadout_number		LIKE ' . $filter
 			. ' OR  LoadOuts.requested_at		LIKE ' . $filter
 			. ' OR  LoadOuts.quoted_pieces		LIKE ' . $filter
@@ -2516,9 +2502,9 @@ private function set_where($table, $filter) {
 			. ' OR      Dyer.nick_name			LIKE ' . $filter
 			. ' OR     Color.color_name			LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'LoadQuotations') {
+		case	'LoadQuotations' :
 		$return = ' LoadQuotations.requested_pieces	LIKE ' . $filter
 			. ' OR  LoadQuotations.reserved_pieces	LIKE ' . $filter
 			. ' OR  LoadQuotations.checkout_pieces	LIKE ' . $filter
@@ -2532,9 +2518,9 @@ private function set_where($table, $filter) {
 			. ' OR           Color.color_name		LIKE ' . $filter
 			. ' OR         Product.product_name		LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'LoadSets') {
+		case	'LoadSets' :
 		$return = ' LoadSets.checkin_location	LIKE ' . $filter
 			. ' OR  LoadSets.checkin_date		LIKE ' . $filter
 			. ' OR  LoadSets.checkin_weight		LIKE ' . $filter
@@ -2548,9 +2534,9 @@ private function set_where($table, $filter) {
 			. ' OR     Color.color_name			LIKE ' . $filter
 			. ' OR   Product.product_name		LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'Machines') {
+		case	'Machines' :
 		$return = ' Machines.name			LIKE ' . $filter
 			. ' OR  Machines.machine_type	LIKE ' . $filter
 			. ' OR  Machines.machine_family	LIKE ' . $filter
@@ -2565,9 +2551,9 @@ private function set_where($table, $filter) {
 			. ' OR  Machines.repair_date	LIKE ' . $filter
 			. ' OR  Machines.return_date	LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'Orders') {
+		case	'Orders' :
 		$return = ' Orders.order_number			LIKE ' . $filter
 			. ' OR  Orders.ordered_at			LIKE ' . $filter
 			. ' OR  Orders.needed_at			LIKE ' . $filter
@@ -2583,9 +2569,9 @@ private function set_where($table, $filter) {
 			. ' OR     Machine.name				LIKE ' . $filter
 			. ' OR     Partner.nick_name		LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'Pieces') {
+		case	'Pieces' :
 		$return = ' Pieces.barcode				LIKE ' . $filter
 			. ' OR  Pieces.product_name			LIKE ' . $filter
 			. ' OR  Pieces.produced_by			LIKE ' . $filter
@@ -2603,9 +2589,9 @@ private function set_where($table, $filter) {
 			. ' OR  Weighed.nick_name			LIKE ' . $filter
 			. ' OR  Orderx.order_number			LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'Purchases') {
+		case	'Purchases' :
 		$return = ' Purchases.purchase_number	LIKE ' . $filter
 			. ' OR  Purchases.source_doc		LIKE ' . $filter
 			. ' OR  Purchases.ordered_at		LIKE ' . $filter
@@ -2615,9 +2601,9 @@ private function set_where($table, $filter) {
 			. ' OR  Purchases.payment_term		LIKE ' . $filter
 			. ' OR   Supplier.nick_name			LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'PurchaseLines') {
+		case	'PurchaseLines' :
 		$return = ' PurchaseLines.expected_date		LIKE ' . $filter
 			. ' OR  PurchaseLines.scheduled_at		LIKE ' . $filter
 			. ' OR  PurchaseLines.expected_weight	LIKE ' . $filter
@@ -2628,9 +2614,9 @@ private function set_where($table, $filter) {
 			. ' OR		Incomings.received_at		LIKE ' . $filter
 			. ' OR		 Supplier.nick_name			LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'Quotations') {
+		case	'Quotations' :
 		$return = ' Quotations.quotation_number	LIKE ' . $filter
 			. ' OR  Quotations.quoted_at		LIKE ' . $filter
 			. ' OR  Quotations.produced_date	LIKE ' . $filter
@@ -2643,9 +2629,9 @@ private function set_where($table, $filter) {
 			. ' OR    Customer.nick_name		LIKE ' . $filter
 			. ' OR     Contact.nick_name		LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'Sales') {
+		case	'Sales' :
 		$return = ' Sales.sale_number			LIKE ' . $filter
 			. ' OR  Sales.quoted_at				LIKE ' . $filter
 			. ' OR  Sales.produced_date			LIKE ' . $filter
@@ -2658,9 +2644,9 @@ private function set_where($table, $filter) {
 			. ' OR     Contact.nick_name		LIKE ' . $filter
 			. ' OR   Quotation.quotation_number	LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'ShipDyers') {
+		case	'ShipDyers' :
 		$return = ' ShipDyers.shipdyer_number	LIKE ' . $filter
 			. ' OR  ShipDyers.invoice_number	LIKE ' . $filter
 			. ' OR  ShipDyers.truck_license		LIKE ' . $filter
@@ -2675,9 +2661,9 @@ private function set_where($table, $filter) {
 			. ' OR      Dyer.nick_name			LIKE ' . $filter
 			. ' OR Transport.nick_name			LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'Incomings') {
+		case	'Incomings' :
 		$return = ' Incomings.incoming_number	LIKE ' . $filter
 			. ' OR  Incomings.received_at		LIKE ' . $filter
 			. ' OR  Incomings.nfe_dl			LIKE ' . $filter
@@ -2689,9 +2675,9 @@ private function set_where($table, $filter) {
 			. ' OR  Incomings.received_amount	LIKE ' . $filter
 			. ' OR   Supplier.nick_name			LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==    'Batches') {
+		case	'Batches' :
 		$return = '   Batches.code				LIKE ' . $filter
 			. ' OR    Batches.batch				LIKE ' . $filter
 			. ' OR    Batches.received_boxes	LIKE ' . $filter
@@ -2707,9 +2693,9 @@ private function set_where($table, $filter) {
 			. ' OR    Threads.name				LIKE ' . $filter
 			. ' OR	Incomings.incoming_number	LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'Boxes') {
+		case	'Boxes' :
 		$return = ' Boxes.barcode			LIKE ' . $filter
 			. ' OR  Boxes.average_weight	LIKE ' . $filter
 			. ' OR  Boxes.real_weight		LIKE ' . $filter
@@ -2721,9 +2707,9 @@ private function set_where($table, $filter) {
 			. ' OR  Batches.batch			LIKE ' . $filter
 			. ' OR  Parent.barcode			LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'Requests') {
+		case	'Requests' :
 		$return = ' Requests.number			LIKE ' . $filter
 			. ' OR  Requests.source_doc		LIKE ' . $filter
 			. ' OR  Requests.ordered_at		LIKE ' . $filter
@@ -2733,9 +2719,9 @@ private function set_where($table, $filter) {
 			. ' OR  Requests.payment_term	LIKE ' . $filter
 			. ' OR  Supplier.nick_name		LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'ReqLines') {
+		case	'ReqLines' :
 		$return = ' ReqLines.requested_date		LIKE ' . $filter
 			. ' OR  ReqLines.scheduled_at		LIKE ' . $filter
 			. ' OR  ReqLines.requested_weight	LIKE ' . $filter
@@ -2746,9 +2732,9 @@ private function set_where($table, $filter) {
 			. ' OR CheckOuts.checkout_at		LIKE ' . $filter
 			. ' OR	Supplier.nick_name			LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'CheckOuts') {
+		case	'CheckOuts' :
 		$return = ' CheckOuts.number			LIKE ' . $filter
 			. ' OR  CheckOuts.checkout_at		LIKE ' . $filter
 			. ' OR  CheckOuts.nfe_dl			LIKE ' . $filter
@@ -2763,9 +2749,9 @@ private function set_where($table, $filter) {
 			. ' OR   Supplier.nick_name			LIKE ' . $filter
 			. ' OR       Dyer.nick_name			LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==    'BatchOuts') {
+		case	'BatchOuts' :
 		$return = '   BatchOuts.code				LIKE ' . $filter
 			. ' OR    BatchOuts.batch				LIKE ' . $filter
 			. ' OR    BatchOuts.unit_price			LIKE ' . $filter
@@ -2777,16 +2763,16 @@ private function set_where($table, $filter) {
 			. ' OR    Threads.name					LIKE ' . $filter
 			. ' OR	CheckOuts.number				LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'Threads') {
+		case	'Threads' :
 		$return = ' Threads.name			LIKE ' . $filter
 			. ' OR	Threads.thread_group	LIKE ' . $filter
 			. ' OR	Threads.composition		LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'History') {
+		case	'History' :
 		$return = ' History.updated_at		LIKE ' . $filter
 			. ' OR	History.updated_by		LIKE ' . $filter
 			. ' OR	History.parent_name		LIKE ' . $filter
@@ -2794,9 +2780,9 @@ private function set_where($table, $filter) {
 			. ' OR	History.method			LIKE ' . $filter
 			. ' OR	History.history			LIKE ' . $filter
 			;
-		}
+		break;
 
-	if ($table ==  'ThreadForecast') {
+		case	'ThreadForecast' :
 		$return =  'ThreadForecast.current_balance	LIKE ' . $filter
 			. ' OR	ThreadForecast.forecast_past	LIKE ' . $filter
 			. ' OR	ThreadForecast.forecast_month_1	LIKE ' . $filter
@@ -2807,7 +2793,10 @@ private function set_where($table, $filter) {
 			. ' OR	       Threads.name				LIKE ' . $filter
 			. ' OR	      Contacts.nick_name		LIKE ' . $filter
 			;
-		}
+		break;
+
+		default :	$return = '';
+	}
 
 	return ' AND (' . $return . ')';
 }

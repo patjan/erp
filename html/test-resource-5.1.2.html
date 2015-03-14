@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html id='ERP' class='' lang='en' style=''>
+	<head>
+		<link	href='resource.php/v5.1.2/test_resource.css' rel='stylesheet'	/>
+	</head>
+<body>
+
+<div id='jky-div1'></div>
+<div id='jky-div2'></div>
+<div id='jky-message'></div>
+
+<script 		src='lib/jquery-2.0.3.min.js'				></script>
+<script			src='resource.php/v5.1.2/test_resource.js'	></script>
+
+<script>
+$(function() {
+	$('#jky-div1').html('Red');
+	$('#jky-div2').html('Green');
+	my_display();
+	$('#jky-div1').addClass('jky-red');
+	$('#jky-div1').addClass('jky-bold');
+	$('#jky-div1').addClass('jky-italic');
+	$('#jky-div2').addClass('jky-green');
+});
+</script>
+</body>
+</html>

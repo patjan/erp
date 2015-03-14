@@ -18,9 +18,9 @@ JKY.ColorUnloaded = function() {
 	var my_the_id		= null;		//	external id that initiated the call
 	var my_the_type		= null;		//	selected color type: Punho, Gola, Galao
 	var my_order_by		= 'color_name';
-	var my_filter		= 'jky-color-filter';
-	var my_search_body	= 'jky-color-search-body';
-	var my_layer		= 'jky-color-search';
+	var my_filter		= 'jky-color-un-filter';
+	var my_search_body	= 'jky-color-un-search-body';
+	var my_layer		= 'jky-color-un-search';
 
 	var my_display = function(the_id, the_type) {
 		my_the_id = the_id;

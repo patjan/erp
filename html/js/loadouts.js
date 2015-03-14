@@ -48,7 +48,7 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-dyer'		, '../JKY.Search.Dyer.html'			);
-	JKY.append_file('jky-load-color'	, '../JKY.Search.ColorUnloaded.html');
+	JKY.append_file('jky-load-color-un'	, '../JKY.Search.ColorUnloaded.html');
 	JKY.append_file('jky-load-quotation', '../JKY.Search.Quotation.html'	);
 
 	JKY.set_side_active('jky-dyers-loadouts');
@@ -57,10 +57,9 @@ JKY.set_initial_values = function() {
 	JKY.show	('jky-app-select-line');
 //	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_dyer'), true));
 //	JKY.set_html('jky-color-name'	, JKY.set_table_options('Colors', 'color_name', '', ''));
-
-	$('#jky-action-save-remarks').click (function()	{JKY.save_remarks		();});
-	$('#jky-dyer-filter'		).KeyUpDelay(JKY.Dyer.load_data		);
-	$('#jky-color-filter'		).KeyUpDelay(JKY.ColorUnloaded.load_data	);
+	$('#jky-action-save-remarks').click (function()	{JKY.save_remarks();});
+	$('#jky-dyer-filter'		).KeyUpDelay(JKY.Dyer.load_data);
+	$('#jky-color-un-filter'	).KeyUpDelay(JKY.ColorUnloaded.load_data);
 	$('#jky-quotation-filter'	).KeyUpDelay(JKY.Quotation.load_data);
 }
 
