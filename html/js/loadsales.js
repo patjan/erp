@@ -14,11 +14,11 @@ JKY.start_program = function() {
 		, program_name	: 'LoadSales'
 		, table_name	: 'LoadQuotations'
 		, specific		: ''
-		, select		: JKY.loadout.select
+		, select		: JKY.loadsale.select
 		, filter		: ''
 		, sort_by		: 'LoadOut.loadout_number'
-		, sort_seq		: 'ASC'
-		, sort_list		: [[1, 0]]
+		, sort_seq		: 'DESC'
+		, sort_list		: [[1, 1]]
 		, focus			: 'jky-quoted-pieces'
 		, add_new		: 'display form'
 		});
@@ -42,7 +42,7 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.set_side_active('jky-dyers-loadsales');
-	JKY.set_html('jky-app-select', JKY.set_options(JKY.loadout.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.loadsale.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
 
@@ -190,15 +190,15 @@ JKY.generate_loadset = function() {
 }
 
 /* -------------------------------------------------------------------------- */
-JKY.close_row = function(the_id) {
-	var my_data =
-		{ method	: 'update'
-		, table		: 'LoadSets'
-		, set		: 'status = \'Closed\''
-		, where		: 'loadout_id = ' + the_id
-		};
-	JKY.ajax(false, my_data);
-}
+//JKY.close_row = function(the_id) {
+//	var my_data =
+//		{ method	: 'update'
+//		, table		: 'LoadSets'
+//		, set		: 'status = \'Closed\''
+//		, where		: 'loadout_id = ' + the_id
+//		};
+//	JKY.ajax(false, my_data);
+//}
 
 JKY.insert_load_sets = function() {
 	var my_data;

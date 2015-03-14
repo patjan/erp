@@ -19,6 +19,7 @@ switch($file_ext) {
 	case 'js'		:	header('Content-Type: text/html');	break;
 	case 'css'		:	header('Content-Type: text/css'	);	break;
 }
+//header('HTTP/1.1 304 Not Modified');
 
 $resource_name = '../resources/' . $version . '/' . $file_name;
 $resource_file = fopen($resource_name, 'r') or die('cannot open resource file: ' . $resource_name);
