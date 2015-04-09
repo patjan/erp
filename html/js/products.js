@@ -49,6 +49,8 @@ JKY.set_all_events = function() {
 	$('#jky-start-date	input'	).attr('data-format', JKY.Session.get_date_time());
 	$('#jky-start-date'			).datetimepicker({language:JKY.Session.get_locale()});
 
+	$('#jky-product-name'		).change(function()	{if (JKY.row == null)	JKY.title_case(this);});
+
 //	$('#jky-ftp-add-new'		).click (function() {JKY.insert_product	();});
 	$('#jky-tab-prices'			).click (function() {JKY.display_prices	();});
 	$('#jky-tab-finishings'		).click (function()	{JKY.Finishings.display(JKY.row.finishings	);});

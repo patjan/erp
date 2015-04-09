@@ -1,5 +1,5 @@
 "use strict";
-
+var JKY = JKY || {};
 /**
  * osas.js
  */
@@ -25,7 +25,6 @@ JKY.start_program = function() {
 	JKY.App.init();
 };
 
-
 JKY.materials	= [];
 JKY.threads		= [];
 JKY.loads		= [];
@@ -36,14 +35,18 @@ JKY.suppliers	= [];
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-ordered-date	input').attr('data-format', JKY.Session.get_date_time());
-	$('#jky-produced-date	input').attr('data-format', JKY.Session.get_date	 ());
-	$('#jky-delivered-date	input').attr('data-format', JKY.Session.get_date	 ());
-	$('#jky-ordered-date'	).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-produced-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
-	$('#jky-delivered-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-ordered-date		input').attr('data-format', JKY.Session.get_date_time());
+	$('#jky-produce-from-date	input').attr('data-format', JKY.Session.get_date	 ());
+	$('#jky-produce-to-date		input').attr('data-format', JKY.Session.get_date	 ());
+	$('#jky-produced-date		input').attr('data-format', JKY.Session.get_date	 ());
+	$('#jky-delivered-date		input').attr('data-format', JKY.Session.get_date	 ());
+	$('#jky-ordered-date'		).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-produce-from-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-produce-to-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-produced-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-delivered-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 
-	$('#jky-action-generate'	).click( function() {JKY.gen_osa_order		();});
+	$('#jky-action-generate'	).click( function() {JKY.gen_order			();});
 	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-lines-add-new'		).click (function()	{JKY.insert_line		();});
 
@@ -109,7 +112,7 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	if (the_row.status == 'Draft') {
+	if (the_row.status === 'Draft') {
 		JKY.enable_button ('jky-action-generate');
 		JKY.enable_delete_button();
 		JKY.enable_button ('jky-lines-add-new'	);
@@ -118,7 +121,7 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_delete_button();
 		JKY.disable_button('jky-lines-add-new'	);
 	}
-	if (the_row.status == 'Active') {
+	if (the_row.status === 'Active') {
 		JKY.enable_button ('jky-action-close');
 	}else{
 		JKY.disable_button('jky-action-close');
@@ -128,6 +131,8 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-osa-number'		,				 the_row.osa_number			);
 	JKY.set_value	('jky-quotation-number'	,				 the_row.quotation_number	);
 	JKY.set_date	('jky-ordered-date'		, JKY.out_time	(the_row.ordered_at			));
+	JKY.set_date	('jky-produce-from-date', JKY.out_time	(the_row.produce_from_date	));
+	JKY.set_date	('jky-produce-to-date'	, JKY.out_date	(the_row.produce_to_date	));
 	JKY.set_date	('jky-produced-date'	, JKY.out_date	(the_row.produced_date		));
 	JKY.set_date	('jky-delivered-date'	, JKY.out_date	(the_row.delivered_date		));
 	JKY.set_value	('jky-customer-id'		,				 the_row.customer_id		);
@@ -148,6 +153,8 @@ JKY.set_add_new_row = function() {
 
 	JKY.set_value	('jky-osa-number'		,  JKY.t('New'));
 	JKY.set_date	('jky-ordered-date'		,  JKY.out_time(JKY.get_now ()));
+	JKY.set_date	('jky-produce-from-date', '');
+	JKY.set_date	('jky-produce-to-date'	, '');
 	JKY.set_date	('jky-produced-date'	, '');
 	JKY.set_date	('jky-delivered-date'	, '');
 	JKY.set_value	('jky-customer-id'		,  null);
@@ -163,16 +170,18 @@ JKY.set_add_new_row = function() {
 JKY.get_form_set = function() {
 	var my_customer_id	= JKY.get_value('jky-customer-id'	);
 	var my_salesman_id	= JKY.get_value('jky-salesman-id'	);
-		my_customer_id	= (my_customer_id	== '') ? 'null' : my_customer_id;
-		my_salesman_id	= (my_salesman_id	== '') ? 'null' : my_salesman_id;
+		my_customer_id	= (my_customer_id	=== '') ? 'null' : my_customer_id;
+		my_salesman_id	= (my_salesman_id	=== '') ? 'null' : my_salesman_id;
 
 	var my_set = ''
-		+     '  customer_id=  ' + my_customer_id
-		+     ', salesman_id=  ' + my_salesman_id
-		+      ', ordered_at=  ' + JKY.inp_time		('jky-ordered-date'		)
-		+   ', produced_date=  ' + JKY.inp_date		('jky-produced-date'	)
-		+  ', delivered_date=  ' + JKY.inp_date		('jky-delivered-date'	)
-		+         ', remarks=\'' + JKY.get_value	('jky-remarks'			) + '\''
+		+       '  customer_id=  ' + my_customer_id
+		+       ', salesman_id=  ' + my_salesman_id
+		+        ', ordered_at=  ' + JKY.inp_time	('jky-ordered-date'		)
+		+ ', produce_from_date=  ' + JKY.inp_date	('jky-produce-from-date')
+		+   ', produce_to_date=  ' + JKY.inp_date	('jky-produce-to-date'	)
+		+     ', produced_date=  ' + JKY.inp_date	('jky-produced-date'	)
+		+    ', delivered_date=  ' + JKY.inp_date	('jky-delivered-date'	)
+		+           ', remarks=\'' + JKY.get_value	('jky-remarks'			) + '\''
 		;
 	return my_set;
 };
@@ -180,7 +189,7 @@ JKY.get_form_set = function() {
 JKY.zero_value = function(the_id, the_name) {
 	JKY.App.process_change_input(the_id);
 	$('#' + the_name).val('0');
-}
+};
 
 JKY.display_list = function() {
 	JKY.hide('jky-action-add-new');
@@ -215,7 +224,7 @@ JKY.process_delete = function(the_id, the_row) {
 };
 
 /* -------------------------------------------------------------------------- */
-JKY.gen_osa_order = function() {
+JKY.gen_order = function() {
 	var my_ordered_pieces = JKY.get_value_by_id('OSAs', 'ordered_pieces', JKY.row.id);
 	if (my_ordered_pieces <= 0) {
 		JKY.display_message('Order cannot be generated');
@@ -227,11 +236,11 @@ JKY.gen_osa_order = function() {
 		{ method	: 'generate'
 		, table		: 'Order'
 		, id		:  JKY.row.id
-		}
+		};
 	JKY.ajax(false, my_data, function(the_response) {
 		JKY.display_message('Order row generated: ' + JKY.row.id);
 		JKY.App.display_row();
-	})
+	});
 };
 
 /* -------------------------------------------------------------------------- */
@@ -246,7 +255,7 @@ JKY.save_remarks = function() {
 	JKY.ajax(true, my_data, function(the_response) {
 		JKY.display_message('Remarks saved, ' + the_response.message);
 		JKY.row = JKY.get_row('OSAs', JKY.row.id);
-	})
+	});
 };
 
 /**
@@ -254,8 +263,6 @@ JKY.save_remarks = function() {
  */
 JKY.print_row = function(the_id) {
 	JKY.display_message('print_row: ' + the_id);
-	var my_names;
-	var my_extension;
 	var my_row = JKY.get_row(JKY.App.get('table_name'), the_id);
 
 //window.print();

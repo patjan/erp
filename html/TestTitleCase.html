@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+
+<div id='jky-div1'><input type='text' value='' onchange='process_convert();' /></div>
+<div id='jky-div2'></div>
+<div id='jky-message'></div>
+
+<script>
+
+$(function() {
+
+var toTitleCase = function(the_string) {
+	if (typeof the_string === 'undefined')		return '';
+
+    var my_array = [];
+    var my_words = the_string.split(' ');
+	for (var i in my_words) {
+		var my_word = my_words[i];
+		if (my_word != '') {
+			my_array.push(my_word.charAt(0).toUpperCase() + my_word.substr(1).toLowerCase());
+		}
+	}
+	return my_array.join(' ');
+};
+
+process_convert = function() {
+	var my_div1 = $('#jky-div1 input').val();
+	var my_div2 = toTitleCase(my_div1);
+	$('#jky-div2').html(my_div2);
+}
+
+});
+
+</script>

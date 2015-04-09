@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS Quotations
 
 , quoted_at			DATETIME			DEFAULT NULL
 , needed_at			DATETIME			DEFAULT NULL
-, produced_date		DATE				DEFAULT NULL
-, expected_date		DATE				DEFAULT NULL
+, produced_from_date	DATE				DEFAULT NULL	# produced date
+, produce_to_date		DATE				DEFAULT NULL	# expected date
 , delivered_date	DATE				DEFAULT NULL
 , quoted_pieces		INT					DEFAULT 0
 , produced_pieces	INT					DEFAULT 0
@@ -101,3 +101,8 @@ ALTER TABLE Quotations		DROP galao_id		;
 ALTER TABLE Quotations		DROP galao_percent	;
 ALTER TABLE Quotations		DROP galao_units	;
 
+ALTER TABLE Quotations		CHANGE	produced_date	produce_from_date	DATE		DEFAULT NULL;
+ALTER TABLE Quotations		CHANGE	expected_date	produce_to_date		DATE		DEFAULT NULL;
+UPDATE		Quotations		SET 	produce_from_date = produce_to_date; 
+UPDATE		Quotations		SET 	produce_to_date = delivered_date;
+UPDATE		Quotations		SET 	delivered_date = NULL;

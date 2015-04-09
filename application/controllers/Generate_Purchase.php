@@ -24,11 +24,13 @@ function JKY_generate_purchase($the_id) {
 	foreach($my_rows as $my_row) {
 		$my_incoming_id = get_next_id('Incomings');
 		$sql= 'INSERT Incomings'
-			. '   SET         id =  ' . $my_incoming_id
-			. ', incoming_number =  ' . $my_incoming_id
-			. ',     supplier_id =  ' . $my_purchase['supplier_id']
-			. ',    invoice_date = "' . $my_row['expected_date'] . '"'
-			. ',  invoice_weight =  ' . $my_row['expected_weight']
+			. '   SET         id = ' . $my_incoming_id
+			. ',      updated_by = ' . get_session('user_id')
+			. ',      updated_at ="' . get_time() . '"'
+			. ', incoming_number = ' . $my_incoming_id
+			. ',     supplier_id = ' . $my_purchase['supplier_id']
+			. ',    invoice_date ="' . $my_row['expected_date'] . '"'
+			. ',  invoice_weight = ' . $my_row['expected_weight']
 			;
 log_sql('Incomings', 'INSERT', $sql);
 		$db->query($sql);
@@ -36,10 +38,12 @@ log_sql('Incomings', 'INSERT', $sql);
 
 		$my_batchin_id = get_next_id('Batches');
 		$sql= 'INSERT Batches'
-			. '   SET          id =  ' . $my_batchin_id
-			. ',      incoming_id =  ' . $my_incoming_id
-			. ',        thread_id =  ' . $my_row['thread_id']
-			. ', purchase_line_id =  ' . $my_row['id']
+			. '   SET          id = ' . $my_batchin_id
+			. ',       updated_by = ' . get_session('user_id')
+			. ',       updated_at ="' . get_time() . '"'
+			. ',      incoming_id = ' . $my_incoming_id
+			. ',        thread_id = ' . $my_row['thread_id']
+			. ', purchase_line_id = ' . $my_row['id']
 			;
 log_sql('Batches', 'INSERT', $sql);
 		$db->query($sql);

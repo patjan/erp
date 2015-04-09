@@ -48,7 +48,13 @@ JKY.set_all_events = function() {
 	$('#jky-action-change'		).click (function() {JKY.App.change_status(JKY.row.id);});
 	$('#jky-action-reset'		).click (function()	{JKY.reset_user					();});
 
-	$('#jky-zip'				).change(function() {JKY.buscar_cep				(this);});
+	$('#jky-nick-name'			).change(function()	{if (JKY.row == null)	JKY.title_case(this);});
+	$('#jky-first-name'			).change(function()	{if (JKY.row == null)	JKY.title_case(this);});
+	$('#jky-last-name'			).change(function()	{if (JKY.row == null)	JKY.title_case(this);});
+	$('#jky-position'			).change(function()	{if (JKY.row == null)	JKY.title_case(this);});
+	$('#jky-email'				).change(function()	{						JKY.lower_case(this);});
+	$('#jky-zip'				).change(function() {						JKY.buscar_cep(this);});
+
 	$('#jky-action-save-address').click (function()	{JKY.save_address				();});
 };
 

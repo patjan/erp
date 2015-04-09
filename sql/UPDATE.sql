@@ -384,3 +384,11 @@ ALTER TABLE LoadQuotations		ADD		reserved_pieces			INT				DEFAULT 0		AFTER quote
 ALTER TABLE Pieces			CHANGE	loadsale_id		load_quot_id	BIGINT			DEFAULT NULL;
 /* -- 2015/02/10	*/
 ALTER TABLE LoadOuts		CHANGE	status			status			VARCHAR(32)		DEFAULT 'Active';
+/* -- 2015/03/27	*/
+ALTER TABLE Quotations		CHANGE	produced_date	produce_from_date	DATE		DEFAULT NULL;
+ALTER TABLE Quotations		CHANGE	expected_date	produce_to_date		DATE		DEFAULT NULL;
+UPDATE		Quotations		SET 	produce_from_date = produce_to_date; 
+UPDATE		Quotations		SET 	produce_to_date = delivered_date;
+UPDATE		Quotations		SET 	delivered_date = NULL;
+/* -- 2015/04/05	*/	
+ALTER TABLE BatchOuts		ADD COLUMN parent_id		BIGINT		DEFAULT NULL	AFTER status;

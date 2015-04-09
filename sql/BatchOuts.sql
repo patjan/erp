@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS BatchOuts
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Draft'
 
+, parent_id			BIGINT				DEFAULT NULL
 , checkout_id		BIGINT				DEFAULT NULL
 , thread_id			BIGINT				DEFAULT NULL
 , batchin_id		BIGINT				DEFAULT NULL
@@ -34,3 +35,5 @@ ALTER TABLE BatchOuts		ADD COLUMN tdyer_thread_id	BIGINT		DEFAULT NULL	AFTER req
 ALTER TABLE BatchOuts		ADD COLUMN order_thread_id	BIGINT		DEFAULT NULL	AFTER tdyer_thread_id;
 
 ALTER TABLE BatchOuts		CHANGE	status			status			VARCHAR(32)		DEFAULT 'Draft';
+
+ALTER TABLE BatchOuts		ADD COLUMN parent_id		BIGINT		DEFAULT NULL	AFTER status;

@@ -1,4 +1,5 @@
 "use strict";
+var JKY = JKY || {};
 /**
  * orders.js
  */
@@ -48,6 +49,7 @@ JKY.set_all_events = function() {
 	$('#jky-ftp-number'			).change(function() {JKY.process_change_ftp			();});
 	$('#jky-machine-name'		).change(function() {JKY.clear_produced_by ("machine");});
 	$('#jky-partner-name'		).change(function() {JKY.clear_produced_by ("partner");});
+	$('#jky-color-name'			).change(function() {JKY.clear_produced_by ("color"  );});
 };
 
 /**
@@ -59,6 +61,7 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-ftp'		, '../JKY.Search.FTP.html'		);
 //	JKY.append_file('jky-load-machine'	, '../JKY.Search.Machine.html'	);
 	JKY.append_file('jky-load-partner'	, '../JKY.Search.Partner.html'	);
+	JKY.append_file('jky-load-color'	, '../JKY.Search.Color.html'	);
 	JKY.append_file('jky-load-thread'	, '../JKY.Search.Thread.html'	);
 	JKY.append_file('jky-load-batchin'	, '../JKY.Search.BatchIn.html'	);
 
@@ -73,6 +76,7 @@ JKY.set_initial_values = function() {
 	$('#jky-ftp-filter'  		).KeyUpDelay(JKY.FTP.load_data		);
 //	$('#jky-machine-filter'		).KeyUpDelay(JKY.Machine.load_data	);
 	$('#jky-partner-filter'		).KeyUpDelay(JKY.Partner.load_data	);
+	$('#jky-color-filter'		).KeyUpDelay(JKY.Color.load_data	);
 	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data	);
 	$('#jky-batchin-filter'		).KeyUpDelay(JKY.BatchIn.load_data	);
 
@@ -145,6 +149,8 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-machine-name'		,				 the_row.machine_name		);
 	JKY.set_value	('jky-partner-id'		,				 the_row.partner_id			);
 	JKY.set_value	('jky-partner-name'		,				 the_row.partner_name		);
+	JKY.set_value	('jky-color-id'			,				 the_row.color_id			);
+	JKY.set_value	('jky-color-name'		,				 the_row.color_name			);
 	JKY.set_value	('jky-osa-number'		,				 the_row.osa_number			);
 	JKY.set_date	('jky-ordered-date'		, JKY.out_time	(the_row.ordered_at			));
 	JKY.set_date	('jky-needed-date'		, JKY.out_time	(the_row.needed_at			));
@@ -193,6 +199,8 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-machine-name'		, '');
 	JKY.set_value	('jky-partner-id'		, '');
 	JKY.set_value	('jky-partner-name'		, '');
+	JKY.set_value	('jky-color-id'			, '');
+	JKY.set_value	('jky-color-name'		, '');
 	JKY.set_date	('jky-ordered-date'		,  JKY.out_time(JKY.get_now()));
 	JKY.set_date	('jky-needed-date'		,  JKY.out_time(JKY.get_now()));
 	JKY.set_date	('jky-produced-date'	, '');
@@ -219,9 +227,11 @@ JKY.get_form_set = function() {
 	var my_ftp_id		= JKY.get_value('jky-ftp-id'		);
 	var my_machine_id	= JKY.get_value('jky-machine-id'	);
 	var my_partner_id	= JKY.get_value('jky-partner-id'	);
+	var my_color_id		= JKY.get_value('jky-color-id'		);
 		my_customer_id	= (my_customer_id	== '') ? 'null' : my_customer_id;
 		my_machine_id	= (my_machine_id	== '') ? 'null' : my_machine_id	;
 		my_partner_id	= (my_partner_id	== '') ? 'null' : my_partner_id	;
+		my_color_id		= (my_color_id		== '') ? 'null' : my_color_id	;
 		my_product_id	= (my_product_id	== '') ? 'null' : my_product_id	;
 		my_ftp_id		= (my_ftp_id		== '') ? 'null' : my_ftp_id		;
 
@@ -231,6 +241,7 @@ JKY.get_form_set = function() {
 		+          ', ftp_id=  ' + my_ftp_id
 		+      ', machine_id=  ' + my_machine_id
 		+      ', partner_id=  ' + my_partner_id
+		+        ', color_id=  ' + my_color_id
 		+      ', ordered_at=  ' + JKY.inp_time	('jky-ordered-date'		)
 		+       ', needed_at=  ' + JKY.inp_time	('jky-needed-date'		)
 		+     ', produced_at=  ' + JKY.inp_time	('jky-produced-date'	)

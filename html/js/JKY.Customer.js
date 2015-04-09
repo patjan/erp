@@ -1,5 +1,5 @@
 "use strict";
-
+var JKY = JKY || {};
 /**
  * JKY.Customer - process al layer functions
  *

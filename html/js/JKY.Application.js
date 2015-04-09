@@ -28,7 +28,7 @@ JKY.Application = function() {
 	JKY.sales		= JKY.sales		|| [];
 	JKY.shipdyer	= JKY.shipdyer	|| [];
 
-	JKY.checkout	.select = JKY.checkout	.select	||	'Draft + Active';
+	JKY.checkout	.select = JKY.checkout	.select	||	'Draft'			;
 	JKY.incoming	.select = JKY.incoming	.select	||			'Active';
 	JKY.loadout		.select	= JKY.loadout	.select	||			'Active';
 	JKY.loadsale	.select	= JKY.loadsale	.select	||	'Draft + Active';
@@ -51,6 +51,7 @@ if (my_first == true) {
 				$('#jky-app-select'			).change(function() {JKY.Changes.can_leave(function() { my_change_select		();})});
 				$('#jky-app-filter'			).change(function() {JKY.Changes.can_leave(function() { my_change_filter		();})});
 				$('#jky-action-add-new'		).click (function() {JKY.Changes.can_leave(function() { my_process_add_new		();})});
+				$('#jky-action-combine'		).click (function() {JKY.Changes.can_leave(function() { my_process_combine		();})});
 				$('#jky-action-print'		).click (function() {JKY.Changes.can_leave(function() { my_process_print		();})});
 				$('#jky-action-export'		).click (function() {JKY.Changes.can_leave(function() { my_process_export		();})});
 				$('#jky-action-publish'		).click (function() {JKY.Changes.can_leave(function() { my_process_publish		();})});
@@ -194,6 +195,7 @@ if (my_first == true) {
 			}else{
 				JKY.hide('jky-action-add-new');
 			}
+			JKY.hide('jky-action-combine'	);
 			JKY.hide('jky-action-print'		);
 			JKY.hide('jky-action-clear'		);
 			JKY.hide('jky-action-confirm'	);
@@ -351,6 +353,7 @@ if (my_first == true) {
 		JKY.hide('jky-app-add-new'		);
 		JKY.show('jky-app-counters'		);
 		JKY.enable_button('jky-action-add-new');
+		JKY.hide('jky-action-combine'	);
 		JKY.hide('jky-action-print'		);
 		JKY.show('jky-action-save'		);
 		JKY.hide('jky-action-copy'		);
@@ -450,6 +453,7 @@ if (my_first == true) {
 		JKY.show('jky-app-add-new'		);
 		JKY.hide('jky-app-counters'		);
 		JKY.disable_button('jky-action-add-new'	);
+		JKY.hide('jky-action-combine'	);
 		JKY.hide('jky-action-print'		);
 		JKY.show('jky-action-save'		);
 		JKY.hide('jky-action-copy'		);
@@ -603,6 +607,18 @@ if (my_first == true) {
 			my_display_list();
 			JKY.Changes.reset();
 		}
+
+/**
+ * process combine
+ */
+	var my_process_combine = function() {
+		JKY.display_trace('my_process_combine');
+		var my_ids = [];
+		$('#jky-table-body .jky-td-checkbox input:checked').each(function() {
+			my_ids.push($(this).attr('row_id'));
+		});
+		JKY.process_combine(my_ids);
+	}
 
 /**
  * process print

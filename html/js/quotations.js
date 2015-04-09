@@ -36,14 +36,14 @@ JKY.suppliers	= [];
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-quoted-date		input').attr('data-format', JKY.Session.get_date_time());
-//	$('#jky-produced-date	input').attr('data-format', JKY.Session.get_date	 ());
-	$('#jky-expected-date	input').attr('data-format', JKY.Session.get_date	 ());
-	$('#jky-delivered-date	input').attr('data-format', JKY.Session.get_date	 ());
-	$('#jky-quoted-date'	).datetimepicker({language: JKY.Session.get_locale()});
-//	$('#jky-produced-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
-	$('#jky-expected-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
-	$('#jky-delivered-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-quoted-date			input').attr('data-format', JKY.Session.get_date_time());
+	$('#jky-produce-from-date	input').attr('data-format', JKY.Session.get_date	 ());
+	$('#jky-produce-to-date		input').attr('data-format', JKY.Session.get_date	 ());
+//	$('#jky-delivered-date		input').attr('data-format', JKY.Session.get_date	 ());
+	$('#jky-quoted-date'		).datetimepicker({language: JKY.Session.get_locale()});
+	$('#jky-produce-from-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-produce-to-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+//	$('#jky-delivered-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 
 	$('#jky-action-gen-sale'	).click( function() {JKY.generate_sale		();});
 	$('#jky-action-generate'	).click( function() {JKY.generate_osa		();});
@@ -98,8 +98,8 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-number"	>' +				 the_row.quotation_number	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.customer_name	)	+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.quoted_at		)	+ '</td>'
-//		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.produced_date	)	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.delivered_date	)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.produce_from_date)	+ '</td>'
+//		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.delivered_date	)	+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.quoted_pieces		+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.produced_pieces	+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.delivered_pieces	+ '</td>'
@@ -130,9 +130,9 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_html	('jky-status'			, JKY.t			(the_row.status				));
 	JKY.set_value	('jky-quotation-number'	,				 the_row.quotation_number	);
 	JKY.set_date	('jky-quoted-date'		, JKY.out_time	(the_row.quoted_at			));
-//	JKY.set_date	('jky-produced-date'	, JKY.out_date	(the_row.produced_date		));
-	JKY.set_date	('jky-expected-date'	, JKY.out_date	(the_row.expected_date		));
-	JKY.set_date	('jky-delivered-date'	, JKY.out_date	(the_row.delivered_date		));
+	JKY.set_date	('jky-produce-from-date', JKY.out_date	(the_row.produce_from_date	));
+	JKY.set_date	('jky-produce-to-date'	, JKY.out_date	(the_row.produce_to_date	));
+//	JKY.set_date	('jky-delivered-date'	, JKY.out_date	(the_row.delivered_date		));
 	JKY.set_value	('jky-salesman-id'		,				 the_row.salesman_id		);
 	JKY.set_value	('jky-salesman-name'	,				 the_row.salesman_name 		);
 	JKY.set_value	('jky-customer-id'		,				 the_row.customer_id		);
@@ -160,9 +160,9 @@ JKY.set_add_new_row = function() {
 
 	JKY.set_value	('jky-quotation-number'	,  JKY.t('New'));
 	JKY.set_date	('jky-quoted-date'		,  JKY.out_time(JKY.get_now()));
-//	JKY.set_date	('jky-produced-date'	, '');
-	JKY.set_date	('jky-expected-date'	,  JKY.out_date(JKY.get_date()));
-	JKY.set_date	('jky-delivered-date'	,  JKY.out_date(JKY.get_date()));
+	JKY.set_date	('jky-produce-date-date',  JKY.out_date(JKY.get_date()));
+	JKY.set_date	('jky-produce-to-date'	,  JKY.out_date(JKY.get_date()));
+//	JKY.set_date	('jky-delivered-date'	,  JKY.out_date(JKY.get_date()));
 	JKY.set_value	('jky-salesman-id'		,  JKY.Session.get_value('contact_id'));
 	JKY.set_value	('jky-salesman-name'	,  JKY.Session.get_value('full_name'));
 	JKY.set_value	('jky-customer-id'		,  null);
@@ -190,19 +190,19 @@ JKY.get_form_set = function() {
 		my_contact_id	= (my_contact_id	== '') ? 'null' : my_contact_id	;
 
 	var my_set = ''
-		+     '  salesman_id=  ' + my_salesman_id
-		+     ', customer_id=  ' + my_customer_id
-		+      ', contact_id=  ' + my_contact_id
-		+       ', quoted_at=  ' + JKY.inp_time	('jky-quoted-date'		)
-//		+   ', produced_date=  ' + JKY.inp_date	('jky-produced-date'	)
-		+   ', expected_date=  ' + JKY.inp_date	('jky-expected-date'	)
-		+  ', delivered_date=  ' + JKY.inp_date	('jky-delivered-date'	)
+		+       '  salesman_id=  ' + my_salesman_id
+		+       ', customer_id=  ' + my_customer_id
+		+        ', contact_id=  ' + my_contact_id
+		+         ', quoted_at=  ' + JKY.inp_time	('jky-quoted-date'		)
+		+ ', produce_from_date=  ' + JKY.inp_date	('jky-produce-from-date')
+		+   ', produce_to_date=  ' + JKY.inp_date	('jky-produce-to-date'	)
+//		+    ', delivered_date=  ' + JKY.inp_date	('jky-delivered-date'	)
 
-		+   ', quoted_amount=  ' + JKY.get_value('jky-quoted-amount'	)
-		+ ', discount_amount=  ' + JKY.get_value('jky-discount-amount'	)
-		+ ', advanced_amount=  ' + JKY.get_value('jky-advanced-amount'	)
-		+        ', payments=\'' + JKY.get_value('jky-payments'			) + '\''
-		+         ', remarks=\'' + JKY.get_value('jky-remarks'			) + '\''
+		+     ', quoted_amount=  ' + JKY.get_value('jky-quoted-amount'	)
+		+   ', discount_amount=  ' + JKY.get_value('jky-discount-amount'	)
+		+   ', advanced_amount=  ' + JKY.get_value('jky-advanced-amount'	)
+		+          ', payments=\'' + JKY.get_value('jky-payments'			) + '\''
+		+           ', remarks=\'' + JKY.get_value('jky-remarks'			) + '\''
 		;
 	return my_set;
 };
@@ -455,8 +455,8 @@ JKY.print_row = function(the_id) {
 	JKY.set_html('jky-print-contact-name'		, my_row.contact_name + ' : ' + my_row.contact_mobile);
 
 	JKY.set_html('jky-print-quoted-date'		, JKY.out_date(my_row.quoted_at));
-	JKY.set_html('jky-print-expected-date'		, JKY.out_date(my_row.expected_date));
-	JKY.set_html('jky-print-delivered-date'		, JKY.out_date(my_row.delivered_date));
+	JKY.set_html('jky-print-produce-from-date'	, JKY.out_date(my_row.produce_from_date));
+	JKY.set_html('jky-print-produce-to-date'	, JKY.out_date(my_row.produce_to_date));
 	JKY.set_html('jky-print-advanced-amount'	, my_row.advanced_amount);
 
 	JKY.set_html('jky-print-lines-body'			, JKY.print_lines(the_id));
@@ -466,4 +466,4 @@ JKY.print_row = function(the_id) {
 
 //	JKY.show('jky-printable');
 	$("#jky-printable").print();
-};
+}

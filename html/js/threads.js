@@ -29,6 +29,7 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
+	$('#jky-thread-name').change(function()	{if (JKY.row == null)	JKY.title_case(this);});
 };
 
 /**

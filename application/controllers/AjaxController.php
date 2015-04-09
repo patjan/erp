@@ -2,6 +2,7 @@
 require_once   'Buscar_CEP.php';
 require_once      'CheckIn.php';
 require_once     'CheckOut.php';
+require_once      'Combine.php';
 require_once     'Generate.php';
 require_once      'Invoice.php';
 require_once 'Print_Labels.php';
@@ -204,7 +205,7 @@ public function indexAction() {
 
 			case 'delete'		: $this->delete			($data); break;
 			case 'delete_many'	: $this->delete_many	($data); break;
-			case 'combine'		: $this->combine		(); break;
+			case 'combine'		: echo json_encode (JKY_combine($data)); return;
 			case 'publish'		: $this->publish		($data); break;
 			case 'export'		: $this->get_index		($data); break;
 			case 'Xrefresh'		: $this->Xrefresh		(); break;
@@ -343,11 +344,12 @@ private function get_id($data) {
 	}
 
 	if ($table == 'QuotColorFTPs') {
-		$sql= 'SELECT Orders.ftp_id'
+		$sql= 'SELECT DISTINCT FTPs.id'
 			. '  FROM QuotColors'
 			. '  LEFT JOIN QuotLines ON QuotLines.id = QuotColors.parent_id'
-			. '  LEFT JOIN Orders    ON Orders.id = QuotLines.order_id'
+			. '  LEFT JOIN FTPs   ON FTPs.product_id = QuotLines.product_id'
 			. ' WHERE ' . $where
+			. ' ORDER BY FTPs.ftp_number DESC'
 			;
 	}else{
 		$where = $this->get_security($table, $where);
@@ -582,14 +584,16 @@ private function get_index($data) {
 	$display	= get_data($data, 'display'		);
 	$order_by	= get_data($data, 'order_by'	);
 	$group_by	= get_data($data, 'group_by'	);
+	$where		= get_data($data, 'where'		);
 
-	$where = '';
-	$where .= $this->set_specific($table, $specific, $specific_id);
-	$where .= $this->set_select  ($table, $specific, $select);
-	if ($filter != '') {
-		$filters = explode(' and ', $filter);
-		foreach($filters as $filter)
-			$where .= $this->set_where($table, $filter);
+	if ($where == '') {
+		$where .= $this->set_specific($table, $specific, $specific_id);
+		$where .= $this->set_select  ($table, $specific, $select);
+		if ($filter != '') {
+			$filters = explode(' and ', $filter);
+			foreach($filters as $filter)
+				$where .= $this->set_where($table, $filter);
+		}
 	}
 
 	if (is_numeric( $display)) {
@@ -670,7 +674,9 @@ private function get_index($data) {
 			. '  FROM QuotColors'
 			. '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	QuotColors.color_id'
 			. '  LEFT JOIN    Contacts AS Dyer		ON		Dyer.id	=	QuotColors.dyer_id'
-			. '  WHERE (QuotColors.status = "Draft" OR QuotColors.status = "Active")'
+			. '  LEFT JOIN   QuotLines AS QuotLine	ON	QuotLine.id	=	QuotColors.parent_id'
+			. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=	  QuotLine.parent_id'
+			. '  WHERE (Quotation.status = "Draft")'
 			. $where
 			. '  ORDER BY ' . $order_by
 			. $limit
@@ -879,6 +885,7 @@ private function set_select($table, $specific, $select) {
 		case 'OrdThreads'		: return ' AND     OrdThreads.parent_id		=  ' . $select;
 		case 'OSAs'				: return ' AND           OSAs.status		= "' . $select . '"';
 		case 'OSA_Lines'		: return ' AND      OSA_Lines.parent_id		=  ' . $select;
+		case 'OSA_Colors'		: return ' AND     OSA_Colors.parent_id		=  ' . $select;
 		case 'Permissions'		: return ' AND    Permissions.user_role		= "' . $select . '"';
 		case 'Pieces'			: return ' AND         Pieces.status		= "' . $select . '"';
 		case 'ProdPrices'		: return ' AND     ProdPrices.status		= "' . $select . '"';
@@ -961,10 +968,17 @@ private function set_new_fields($table) {
 	if ($table == 'OrdThreads'		)	$return = ',    Orderx.order_number		AS 	   order_number'
 												. ',    Thread.name				AS    thread_name'
 												. ',   BatchIn.batch			AS     batch_code';
-	if ($table == 'OSAs'			)	$return = ',  Salesman.nick_name		AS   salesman_name'
+	if ($table == 'OSAs'			)	$return = ',  Salesman.full_name		AS  salesman_name'
 												. ',  Customer.nick_name		AS  customer_name'
-												. ', Quotation.quotation_number	AS quotation_number';
+												. ', Quotation.quotation_number	AS quotation_number'
+												. ', Quotation.produce_from_date	AS produce_from_date'
+												. ', Quotation.produce_to_date		AS produce_to_date';
 	if ($table == 'OSA_Lines'		)	$return = ',   Product.product_name		AS   product_name';
+	if ($table == 'OSA_Colors'		)	$return = ',   Machine.name				AS   machine_name'
+												. ',   Partner.nick_name		AS   partner_name'
+												. ',     Color.color_name		AS     color_name'
+												. ',     Color.color_type		AS     color_type'
+												. ',       FTP.ftp_number		AS       ftp_number';
 	if ($table == 'Pieces'			)	$return = ',    Orderx.order_number		AS     order_number'
 												. ',   Revised.nick_name		AS   revised_name'
 												. ',   Weighed.nick_name		AS   weighed_name';
@@ -1160,11 +1174,14 @@ private function set_left_joins($table) {
 	if ($table == 'OrdThreads'		)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		OrdThreads.parent_id'
 												. '  LEFT JOIN     Threads AS Thread	ON    Thread.id	=		OrdThreads.thread_id'
 												. '  LEFT JOIN     Batches AS BatchIn	ON   BatchIn.id	=		OrdThreads.batchin_id';
-	if ($table == 'OSAs'			)	$return = '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      OSAs.customer_id'
-												. '  LEFT JOIN   JKY_Users AS User	    ON      User.id	=		      OSAs.salesman_id'
-												. '  LEFT JOIN  Quotations AS Quotation ON Quotation.id	=		      OSAs.quotation_id'
-												. '  LEFT JOIN    Contacts AS Salesman  ON  Salesman.id =             User.contact_id';
+	if ($table == 'OSAs'			)	$return = '  LEFT JOIN  Quotations AS Quotation ON Quotation.id	=		      OSAs.quotation_id'
+												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      OSAs.customer_id'
+												. '  LEFT JOIN    Contacts AS Salesman  ON  Salesman.id =             OSAs.salesman_id';
 	if ($table == 'OSA_Lines'		)	$return = '  LEFT JOIN    Products AS Product	ON   Product.id	=	     OSA_Lines.product_id';
+	if ($table == 'OSA_Colors'		)	$return = '  LEFT JOIN    Machines AS Machine	ON   Machine.id	=		OSA_Colors.machine_id'
+												. '  LEFT JOIN    Contacts AS Partner	ON   Partner.id	=		OSA_Colors.partner_id'
+												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		OSA_Colors.color_id'
+												. '  LEFT JOIN        FTPs AS FTP		ON       FTP.id	=		OSA_Colors.ftp_id';
 	if ($table == 'Pieces'			)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		    Pieces.order_id'
 												. '  LEFT JOIN    Contacts AS Revised	ON   Revised.id	=		    Pieces.revised_by'
 												. '  LEFT JOIN    Contacts AS Weighed	ON   Weighed.id	=		    Pieces.weighed_by';
@@ -1688,7 +1705,7 @@ private function set_where($table, $filter) {
 				if ($value == '"%null%"') {
 					return ' AND SaleLine.parent_id IS NULL';
 				}else{
-					return ' AND Sale.quotation_number LIKE ' . $value;
+					return ' AND Sale.sale_number LIKE ' . $value;
 				}
 			}else
 			if ($name == 'customer_name') {
@@ -1931,8 +1948,8 @@ private function set_where($table, $filter) {
 		if ($table == 'Quotations') {
 			if ($name == 'quotation_number'
 			or	$name == 'quoted_at'
-			or	$name == 'produced_date'
-			or	$name == 'expected_date'
+			or	$name == 'produce_from_date'
+			or	$name == 'produce_to_date'
 			or	$name == 'delivered_date'
 			or	$name == 'quoted_pieces'
 			or	$name == 'produced_pieces'
@@ -2528,7 +2545,7 @@ private function set_where($table, $filter) {
 			. ' OR  LoadSets.reserved_pieces	LIKE ' . $filter
 			. ' OR  LoadSets.checkout_pieces	LIKE ' . $filter
 			. ' OR   LoadOut.loadout_number		LIKE ' . $filter
-			. ' OR      Sale.quotation_number	LIKE ' . $filter
+			. ' OR      Sale.sale_number		LIKE ' . $filter
 			. ' OR  Customer.nick_name			LIKE ' . $filter
 			. ' OR      Dyer.nick_name			LIKE ' . $filter
 			. ' OR     Color.color_name			LIKE ' . $filter
@@ -2617,17 +2634,17 @@ private function set_where($table, $filter) {
 		break;
 
 		case	'Quotations' :
-		$return = ' Quotations.quotation_number	LIKE ' . $filter
-			. ' OR  Quotations.quoted_at		LIKE ' . $filter
-			. ' OR  Quotations.produced_date	LIKE ' . $filter
-			. ' OR  Quotations.expected_date	LIKE ' . $filter
-			. ' OR  Quotations.delivered_date	LIKE ' . $filter
-			. ' OR  Quotations.quoted_pieces	LIKE ' . $filter
-			. ' OR  Quotations.produced_pieces	LIKE ' . $filter
-			. ' OR  Quotations.delivered_pieces	LIKE ' . $filter
-			. ' OR    Salesman.nick_name		LIKE ' . $filter
-			. ' OR    Customer.nick_name		LIKE ' . $filter
-			. ' OR     Contact.nick_name		LIKE ' . $filter
+		$return = ' Quotations.quotation_number		LIKE ' . $filter
+			. ' OR  Quotations.quoted_at			LIKE ' . $filter
+			. ' OR  Quotations.produce_from_date	LIKE ' . $filter
+			. ' OR  Quotations.produce_to_date		LIKE ' . $filter
+			. ' OR  Quotations.delivered_date		LIKE ' . $filter
+			. ' OR  Quotations.quoted_pieces		LIKE ' . $filter
+			. ' OR  Quotations.produced_pieces		LIKE ' . $filter
+			. ' OR  Quotations.delivered_pieces		LIKE ' . $filter
+			. ' OR    Salesman.nick_name			LIKE ' . $filter
+			. ' OR    Customer.nick_name			LIKE ' . $filter
+			. ' OR     Contact.nick_name			LIKE ' . $filter
 			;
 		break;
 

@@ -97,6 +97,7 @@
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
 			<li	id='jky-tab-boxes'			class='active'	><a href='#jky-pane-boxes'			data-toggle='tab'><span>Boxes			</span></a></li>
+			<li	id='jky-tab-combine'						><a href='#jky-pane-combine'		data-toggle='tab'><span>Combine			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
@@ -115,6 +116,31 @@
 					<tbody id='jky-boxes-body'></tbody>
 				</table>
 			</div>
+
+			<div id='jky-pane-combine' class='tab-pane'>
+				<table class='table table-striped' >
+					<thead>
+						<tr style='font-weight:bold;'>
+							<th class='jky-td-checkbox'	></th>
+							<th class='jky-td-number'	><span>  Check Out<br>Number	</span></th>
+							<th class='jky-td-date'		><span>  Requested<br>Date		</span></th>
+							<th class='jky-td-weight'	><span>  Requested<br>Weight	</span></th>
+							<th class='jky-td-weight'	><span>  Check Out<br>Weight	</span></th>
+							<th class='jky-td-boxes'	><span>  Requested<br>Boxes		</span></th>
+							<th class='jky-td-boxes'	><span>   Reserved<br>Boxes		</span></th>
+							<th class='jky-td-boxes'	><span>  Check Out<br>Boxes		</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-combine-body'></tbody>
+					<tfoot>
+						<tr>
+							<td colspan='2'>
+								<button id='jky-button-combine' class='btn btn-success' type='button'><span>Combine</span></button>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
 		</div>
 	</div>
 	<div id='jky-form-footer'></div>
@@ -122,5 +148,6 @@
 
 <div id='jky-body-loaded'></div>
 
-<script src='js/batchouts.js'		></script>
+<script src='js/batchouts.js'></script>
 <script src='js/checkin_locations.js'></script>
+<script src='js/batchout_combine.js'></script>

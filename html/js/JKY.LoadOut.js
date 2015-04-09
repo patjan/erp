@@ -221,6 +221,9 @@ SELECT LoadOuts.*
 			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>           Dyer</span>: </td><td style="width:300px;">' + the_loadout.dyer_name		+ '</td>'
 			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>          Color</span>: </td><td style="width:100px;">' + the_loadout.color_name		+ '</td>'
 			+ '</tr>'
+			+ '<tr>'
+			+ '<td style="width:150px; font-weight:bold; text-align:right;"><span>        Remarks</span>: </td><td style="width:550px;" colspan="2">' + the_loadout.remarks + '</td>'
+			+ '</tr>'
 			+ '</table>'
 			+ '<hr>'
 			;
@@ -272,6 +275,6 @@ SELECT LoadOuts.*
 		, update_sold_weight	: function(the_id)		{my_update_sold_weight		(the_id);}
 		, update_checkout_weight: function(the_id)		{my_update_checkout_weight	(the_id);}
 
-		, print_sd		: function()					{		my_print_sd		();}
+		, print_sd		: function()					{my_print_sd();}
 	};
 }();

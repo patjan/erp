@@ -1,4 +1,5 @@
 "use strict";
+var JKY = JKY || {};
 /*
  * display OSA Lines -----------------------------------------------------
  */
@@ -44,7 +45,7 @@ JKY.generate_line = function(the_index, the_row) {
 		+ " <a href='#' onClick='JKY.Product.display(this)'><i class='icon-th'		></i></a>"
 		;
 	var my_disabled = JKY.is_status('Draft') ? '' : ' disabled="disabled"';
-	var my_add_order = '<button class="btn btn-success" type="button" onclick="JKY.insert_order(this, ' + my_id + ', ' + the_row.product_id + ')"' + my_disabled + '>' + JKY.t('Add Order') + '</button>';
+	var my_add_color = '<button class="btn btn-success" type="button" onclick="JKY.insert_color(this, ' + my_id + ', ' + the_row.product_id + ')"' + my_disabled + '>' + JKY.t('Add Color') + '</button>';
 	var my_html = ''
 		+ '<tr class="jky-line" osa_line_id=' + my_id + '>'
 		+ '<td class="jky-td-action"	>' + my_trash			+ '</td>'
@@ -59,10 +60,10 @@ JKY.generate_line = function(the_index, the_row) {
 		+ '<td class="jky-td-pieces"	><input class="jky-ordered-weight"	disabled										value="' + the_row.ordered_weight + '" /></td>'
 		+ '</tr>'
 
-		+ '<tr class="jky-line" quot_line_id=' + my_id + '>'
+		+ '<tr class="jky-line" Xosa_line_id=' + my_id + '>'
 		+ '<td class="jky-td-action"	>' + '&nbsp;'			+ '</td>'
 		+ '<td class="jky-td-action"	>' + '&nbsp;'			+ '</td>'
-		+ '<td class="jky-td-extra"		>' + my_add_order		+ '</td>'
+		+ '<td class="jky-td-extra"		>' + my_add_color		+ '</td>'
 		+ '<td class="nowrap" colspan=2	>' + JKY.t('Color')		+ '</td>'
 		+ '<td class="nowrap"			>' + JKY.t('FTP')		+ '</td>'
 		+ '<td class="jky-td-name-s"	>' + JKY.t('Machine')	+ '</td>'
@@ -71,10 +72,10 @@ JKY.generate_line = function(the_index, the_row) {
 		+ '<td class="jky-td-weight"	>' + JKY.t('Weight'	)	+ '</td>'
 		+ '</tr>'
 		;
-	var my_rows = JKY.get_rows_by_where('Orders', 'osa_line_id = ' + my_id);
+	var my_rows = JKY.get_rows_by_where('OSA_Colors', 'OSA_Colors.parent_id = ' + my_id);
 	for(var i=0, max=my_rows.length; i<max; i++) {
 		var my_row = my_rows[i];
-		my_html += JKY.generate_order(my_row, the_row.peso, the_row.units);
+		my_html += JKY.generate_color(my_row, the_row.peso, the_row.units);
 	}
 	return my_html;
 }
@@ -202,14 +203,14 @@ JKY.print_lines = function(the_id) {
 							+ '<tr class="jky-bold">'
 							+ '<td								><b>' + my_row.product_name	+ '</b></td>'
 							+ '<td class="jky-print-name-s"		><b>' + my_row.remarks		+ '</b></td>'
-							+ '<td								></td>'
 							+ '<td class="jky-print-pieces"		><b>' + my_row.peso			+ '</b></td>'
 							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_units	+ '</b></td>'
 							+ '<td class="jky-print-pieces"		><b>' + my_row.units		+ '</b></td>'
 							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_pieces+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_weight+ '</b></td>'
 							+ '</tr>'
 							;
-						my_html  += JKY.print_orders(my_row.id);
+						my_html  += JKY.print_colors(my_row.id);
 					}
 				}else{
 					JKY.display_message(response.message);

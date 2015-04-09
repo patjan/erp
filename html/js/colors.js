@@ -29,6 +29,8 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
+	$('#jky-color-name'			).change(function()	{if (JKY.row == null)	JKY.title_case(this);});
+
 	$('#jky-action-change'		).click( function() {JKY.App.change_status(JKY.row.id);});
 	$('#jky-recipe-add-new'		).click (function() {JKY.insert_recipe		();});
 	$('#jky-action-save-remarks').click (function()	{JKY.App.save_remarks	();});

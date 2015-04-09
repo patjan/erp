@@ -1,5 +1,11 @@
 <?php
-define('NL', "\r\n");
+/**
+ *		<link   href='resource.php/v4.2.5/test_resource.css' rel='stylesheet' />
+ *		<script  src='resource.php/v4.2.5/test_resource.js'></script>
+ */
+
+define('NL'			, "\r\n"			);
+define('RESOURCES'	, "../resources/"	);		//	resources folder within version folder
 
 $requests	= explode("/", $_SERVER['REQUEST_URI']);
 $version	= $requests[count($requests)-2];
@@ -7,29 +13,36 @@ $file_name	= $requests[count($requests)-1];
 $files		= explode(".", $file_name);
 $file_ext	= $files[count($files)-1];
 
-//	set headers to NOT cache a page
-//header("Cache-Control: no-cache, must-revalidate"); //HTTP 1.1
-//header("Pragma: no-cache"); //HTTP 1.0
-//header("Expires: Sat, 26 Jul 2016 05:00:00 GMT");		// Date in the future
-
-//	or, if you DO want a file to cache, use:
-//header('Cache-Control: max-age=0');		//	30days (60sec * 60min * 24hours * 30days)
-
 switch($file_ext) {
-	case 'js'		:	header('Content-Type: text/html');	break;
-	case 'css'		:	header('Content-Type: text/css'	);	break;
+	case 'js'		:	header('Content-Type: application/javascript'	);	break;
+	case 'css'		:	header('Content-Type: text/css'					);	break;
+	default			:	header('Content-Type: text/html'				);	break;
 }
-//header('HTTP/1.1 304 Not Modified');
+$resource_name = RESOURCES . $version . '/' . $file_name;
 
-$resource_name = '../resources/' . $version . '/' . $file_name;
+$last_modified = filemtime($resource_name);
+$resource_etag = md5_file ($resource_name);
+header("Last-Modified: " . gmdate("D, d M Y H:i:s", $last_modified) . " GMT");
+header("Etag: $resource_etag");
+header('Cache-Control: public');
+//	caching control 304
+if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
+	if (strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $last_modified
+	||	trim($_SERVER['HTTP_IF_NONE_MATCH']) == $resource_etag) {
+		header("HTTP/1.1 304 Not Modified");
+		exit;
+	}
+}
+
 $resource_file = fopen($resource_name, 'r') or die('cannot open resource file: ' . $resource_name);
 $resource_data = fread($resource_file, filesize($resource_name));
 fclose($resource_file);
+$search		= array();
+$replace	= array();
+$search []	= '+';
+$replace[]	= ' ';
 
-$search   = array();
-$replace  = array();
-$search[] = '+'               ; $replace[] = ' ';
-$return		= '';
+$return	= '';
 switch($file_ext) {
 	case 'js'	:
 		$search[] = '{VERSION}'		; $replace[] = $version		;
@@ -43,6 +56,5 @@ switch($file_ext) {
 		$return = str_replace($search, $replace, $resource_data);
 		break;
 }
-
 echo $return;
 ?>

@@ -52,7 +52,12 @@ JKY.set_all_events = function() {
 	$('#jky-tab-contacts'			).click (function() {JKY.display_contacts(JKY.row.id );});
 	$('#jky-tab-remarks'			).click (function() {JKY.display_remarks (JKY.row	 );});
 
-	$('#jky-zip'					).change(function() {JKY.buscar_cep				(this);});
+	$('#jky-nick-name'				).change(function()	{if (JKY.row == null)	JKY.title_case(this);});
+	$('#jky-full-name'				).change(function()	{if (JKY.row == null)	JKY.title_case(this);});
+	$('#jky-website'				).change(function()	{						JKY.lower_case(this);});
+	$('#jky-email'					).change(function()	{						JKY.lower_case(this);});
+	$('#jky-zip'					).change(function() {						JKY.buscar_cep(this);});
+
 	$('#jky-action-save-payments'	).click (function() {JKY.save_payments				();});
 	$('#jky-action-save-address'	).click (function() {JKY.save_address				();});
 	$('#jky-action-save-phones'		).click (function() {JKY.save_phones				();});

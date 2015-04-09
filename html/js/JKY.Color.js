@@ -1,5 +1,5 @@
 "use strict";
-
+var JKY = JKY || {};
 /**
  * JKY.Color - process all changes during one transaction
  *				 control save into private array [my_appraisals]

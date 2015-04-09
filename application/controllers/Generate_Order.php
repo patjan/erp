@@ -23,32 +23,51 @@ function JKY_generate_order($the_id) {
 	$my_count = 0;
 	foreach($my_rows as $my_row) {
 		$my_osa_line_id	= $my_row['id'];
-/*
+
 		$sql= 'SELECT *'
-			. '  FROM Orders'
-			. ' WHERE osa_line_id = ' . $my_row['id']
+			. '  FROM OSA_Colors'
+			. ' WHERE parent_id = ' . $my_osa_line_id
 			;
-		$my_orders = $db->fetchAll($sql);
+		$my_colors = $db->fetchAll($sql);
 
-		foreach($my_orders as $my_order) {
-			$sql= 'UPDATE Orders'
-				. '   SET status = "Active"'
-				. ' WHERE id = ' . $my_order['id']
+		foreach($my_colors as $my_color) {
+			$my_order_id = get_next_id('Orders');
+			$sql= 'INSERT Orders'
+				. '   SET          id ='  . $my_order_id
+				. ',       updated_by ='  . get_session('user_id')
+				. ',       updated_at ="' . get_time() . '"'
+				. ',     order_number ='  . $my_order_id
+				. ',      osa_line_id ='  . $my_osa_line_id
+				. ',       osa_number ='  . $my_osa['osa_number']
+				. ',       ordered_at ="' . $my_osa['ordered_at'] . '"'
+				. ',        needed_at ="' . $my_osa['needed_at' ] . '"'
+				. ',     quoted_units ='  . $my_row['units' ]
+				. ',    quoted_pieces ='  . $my_color['quoted_pieces']
+				. ',    quoted_weight ='  . $my_color['quoted_weight']
+//				. ',       color_type ="' . $my_color['color_type'] . '"'
+				. ',   ordered_pieces ='  . $my_color['ordered_pieces']
+				. ',   ordered_weight ='  . $my_color['ordered_weight']
 				;
-log_sql('Orders', 'UPDATE', $sql);
+			if ($my_osa['customer_id'	])	$sql .= ', customer_id=' . $my_osa['customer_id'];
+			if ($my_row['product_id'	])	$sql .= ',  product_id=' . $my_row['product_id'	];
+			if ($my_color['color_id'	])	$sql .= ',    color_id=' . $my_color['color_id'		];
+			if ($my_color['ftp_id'		])	$sql .= ',      ftp_id=' . $my_color['ftp_id'		];
+			if ($my_color['machine_id'	])	$sql .= ',  machine_id=' . $my_color['machine_id'	];
+			if ($my_color['partner_id'	])	$sql .= ',  partner_id=' . $my_color['partner_id'	];
+	log_sql('Orders', 'INSERT', $sql);
 			$db->query($sql);
-			insert_changes($db, 'Orders', $my_order['id']);
-		}
+			insert_changes($db, 'Orders', $my_order_id);
+/*
+			$sql= 'UPDATE OSA_lines'
+				. '   SET status = "Active"'
+				. ' WHERE id = ' . $my_row['id']
+				;
+	log_sql('OSA_Lines', 'UPDATE', $sql);
+			$db->query($sql);
+			insert_changes($db, 'OSA_Lines', $my_row['id']);
 */
-		$sql= 'UPDATE OSA_lines'
-			. '   SET status = "Active"'
-			. ' WHERE id = ' . $my_row['id']
-			;
-log_sql('OSA_Lines', 'UPDATE', $sql);
-		$db->query($sql);
-		insert_changes($db, 'OSA_Lines', $my_row['id']);
-
-		$my_count++;
+			$my_count++;
+		}
 	}
 
 	$sql= 'UPDATE OSAs'

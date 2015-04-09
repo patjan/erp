@@ -1,0 +1,17 @@
+SELECT Orders.ftp_id
+  FROM QuotColors
+  LEFT JOIN QuotLines ON QuotLines.id = QuotColors.parent_id
+  LEFT JOIN Orders    ON Orders.id = QuotLines.order_id
+  WHERE QuotColors.id=2000000024
+
+
+SELECT FTPs.*
+,  Products.product_name		AS   product_name
+,  Machines.name				AS   machine_name
+  FROM FTPs
+  LEFT JOIN    Products				ON  Products.id	=			 FTPs.product_id
+  LEFT JOIN    Machines				ON  Machines.id	=			 FTPs.machine_id
+  WHERE FTPs.id = null
+  
+
+  UPDATE ShipDyers   SET sds_printed = 7, updated_by=100001, updated_at="2015-03-18 03:07:42" WHERE id = 8000000001

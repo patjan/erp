@@ -2887,3 +2887,21 @@ JKY.in_array = function(the_value, the_array) {
 	}
 	return false;
 }
+
+JKY.lower_case = function(the_id) {
+	var my_string = $(the_id).val().trim();
+	$(the_id).val(my_string.toLowerCase());
+}
+
+JKY.title_case = function(the_id) {
+	var my_string = $(the_id).val();
+	var my_array = [];
+	var my_words = my_string.split(' ');
+	for (var i in my_words) {
+		var my_word = my_words[i];
+		if (my_word != '') {
+			my_array.push(my_word.charAt(0).toUpperCase() + my_word.substr(1).toLowerCase());
+		}
+	}
+	$(the_id).val(my_array.join(' '));
+};

@@ -29,7 +29,10 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-action-change'	).click (function() {JKY.App.change_status(JKY.row.id);});
+	$('#jky-template-name'		).change(function()	{if (JKY.row == null)	JKY.title_case(this);});
+	$('#jky-template-subject'	).change(function()	{if (JKY.row == null)	JKY.title_case(this);});
+
+	$('#jky-action-change'		).click (function() {JKY.App.change_status(JKY.row.id);});
 //	$('#jky-updated-date input').attr('data-format', JKY.Session.get_date_time	());
 };
 

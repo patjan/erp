@@ -39,7 +39,7 @@ JKY.ColorUnloaded = function() {
 			, table		: 'ColorUnloadeds'
 			, select	:  my_the_type
 			, filter	:  JKY.get_value(my_filter)
-			, display	: '10'
+//			, display	: '10'
 			, order_by	:  my_order_by
 			};
 		JKY.ajax(false, my_data, my_load_data_success);

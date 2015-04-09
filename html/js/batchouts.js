@@ -1,5 +1,5 @@
 "use strict";
-
+var JKY = JKY || {};
 /**
  * batchouts.js
  */
@@ -18,7 +18,7 @@ JKY.start_program = function() {
 		, filter		: ''
 		, sort_by		: 'CheckOuts.requested_at'
 		, sort_seq		: 'ASC'
-		, sort_list		: [[3, 0]]
+		, sort_list		: [[3, 0], [4, 0], [5, 0], [6, 0]]
 		, focus			: 'jky-requested-weight'
 		, add_new		: 'display form'
 		});
@@ -33,9 +33,10 @@ JKY.set_all_events = function() {
 //	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
 //	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
 
-	$('#jky-action-generate').click( function() {JKY.generate_checkout();});
+	$('#jky-action-generate').click( function() {JKY.generate_checkout		();});
 	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
-}
+	$('#jky-button-combine'	).click( function() {JKY.process_combine		();});
+};
 
 /**
  *	set initial values (run only once per load)
@@ -53,7 +54,7 @@ JKY.set_initial_values = function() {
 	$('#jky-average-weight'  ).ForceNumericOnly();
 	$('#jky-checkout-weight' ).ForceNumericOnly();
 	$('#jky-checkout-boxes'  ).ForceIntegerOnly();
-}
+};
 
 /**
  *	set table row
@@ -91,14 +92,14 @@ JKY.set_form_row = function(the_row) {
 	var my_reserved_boxes	= parseInt(the_row.reserved_boxes	);
 	var my_checkout_boxes	= parseInt(the_row.checkout_boxes	);
 
-	if (the_row.status == 'Draft') {
+	if (the_row.status === 'Draft') {
 		JKY.enable_button ('jky-action-generate');
 		JKY.enable_button ('jky-action-delete'  );
 	}else{
 		JKY.disable_button('jky-action-generate');
 		JKY.disable_button('jky-action-delete'  );
 	}
-	if (the_row.status == 'Active') {
+	if (the_row.status === 'Active') {
 		JKY.enable_button ('jky-action-close'	);
 	}else{
 		JKY.disable_button('jky-action-close'	);
@@ -124,7 +125,8 @@ JKY.set_form_row = function(the_row) {
 	if (the_row.batchin_id) {
 		JKY.display_boxes();
 	}
-}
+	JKY.display_combine(the_row);
+};
 
 /**
  *	set add new row
@@ -148,7 +150,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-average-weight'		,  0);
 	JKY.set_value	('jky-checkout-weight'		,  0);
 	JKY.set_value	('jky-checkout-boxes'		, '');
-}
+};
 
 /**
  *	get form set
@@ -169,7 +171,7 @@ JKY.get_form_set = function() {
 		+'  , checkout_boxes=  ' + JKY.get_value('jky-checkout-boxes'	)
 		;
 	return my_set;
-}
+};
 
 /**
  *	set calculated color
@@ -185,20 +187,20 @@ JKY.set_calculated_color = function() {
 
 	var my_reserved_boxes	= parseInt(JKY.get_value('jky-reserved-boxes'	));
 	JKY.set_css('jky-reserved-boxes', 'color', (my_reserved_boxes < 0) ? 'red' : 'black');
-}
+};
 
 /* -------------------------------------------------------------------------- */
 JKY.generate_checkout = function() {
 	var my_requested_boxes = JKY.get_value('jky-requested-boxes');
 	var my_reserved_boxes  = JKY.get_value('jky-reserved-boxes' );
-	if (my_requested_boxes !=  my_reserved_boxes) {
+	if (my_requested_boxes !==  my_reserved_boxes) {
 		JKY.display_message('Check Out cannot be generated');
 		JKY.display_message('because Resersed Boxes is not equal to Requested Boxes');
 		return;
 	}
 
 	JKY.insert_batch_sets();
-}
+};
 
 /* -------------------------------------------------------------------------- */
 JKY.close_row = function(the_id) {
@@ -209,7 +211,7 @@ JKY.close_row = function(the_id) {
 		, where		: 'batchout_id = ' + the_id
 		};
 	JKY.ajax(false, my_data);
-}
+};
 
 JKY.insert_batch_sets = function() {
 	var my_data;
@@ -254,9 +256,27 @@ JKY.insert_batch_sets = function() {
 		, where		: 'id = ' + JKY.row.id
 		};
 	JKY.ajax(false, my_data, JKY.refresh_form);
-}
+};
 
 JKY.refresh_form = function(response) {
 	JKY.display_message('Batch row generated: ' + JKY.row.id);
 	JKY.App.display_row();
-}
+};
+
+JKY.process_combine = function(the_ids) {
+	var my_ids = the_ids.join('-');
+	JKY.d('my_ids: ' + my_ids);
+	var my_data =
+		{ method	: 'combine'
+		, table		: 'BatchOuts'
+		, ids		: the_ids.join(',')
+		};
+/*
+	JKY.ajax(false, my_data, function(the_response) {
+		$.each(the_response, function(key, value) {
+			JKY.d('BatchOuts: ' + value.requested_boxes);
+		})
+	})
+*/
+	JKY.ajax(false, my_data, JKY.refresh_form);
+};

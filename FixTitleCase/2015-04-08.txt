@@ -1,0 +1,471 @@
+2015-04-08 00:18:15.380602 start of program
+2015-04-08 00:18:15.410613 SELECT * FROM Contacts
+2015-04-08 00:18:15.422049 UPDATE Contacts   SET nick_name ="Jky",     first_name ="",      last_name ="",      full_name ="Jky Software Corp" WHERE id = 100001
+2015-04-08 00:18:15.427904 UPDATE Contacts   SET nick_name ="Dl",     first_name ="",      last_name ="",      full_name ="Dl Malhas Ltda" WHERE id = 100003
+2015-04-08 00:18:15.433391 UPDATE Contacts   SET nick_name ="Avanti",     first_name ="",      last_name ="",      full_name ="Avanti Industria Comercio Importacao E Exportacao Ltda" WHERE id = 100033
+2015-04-08 00:18:15.438893 UPDATE Contacts   SET nick_name ="Tbm",     first_name ="",      last_name ="",      full_name ="Tbm Textil Bezerra De Menezes S/a" WHERE id = 100039
+2015-04-08 00:18:15.444268 UPDATE Contacts   SET nick_name ="Creora",     first_name ="",      last_name ="",      full_name ="Creora Elastanos" WHERE id = 100040
+2015-04-08 00:18:15.449595 UPDATE Contacts   SET nick_name ="Cocari",     first_name ="",      last_name ="",      full_name ="Cocari Cooperativa Agro E Industrial" WHERE id = 100042
+2015-04-08 00:18:15.454917 UPDATE Contacts   SET nick_name ="Cotan",     first_name ="",      last_name ="",      full_name ="Cotonificio De Andira S/a" WHERE id = 100043
+2015-04-08 00:18:15.460225 UPDATE Contacts   SET nick_name ="Coteminas",     first_name ="",      last_name ="",      full_name ="Coteminas S/a" WHERE id = 100044
+2015-04-08 00:18:15.465560 UPDATE Contacts   SET nick_name ="Sao Bento",     first_name ="",      last_name ="",      full_name ="Fiacao Sao Bento S/a" WHERE id = 100045
+2015-04-08 00:18:15.470900 UPDATE Contacts   SET nick_name ="Fiotex",     first_name ="",      last_name ="",      full_name ="Fiotex Industrial S/a" WHERE id = 100046
+2015-04-08 00:18:15.476271 UPDATE Contacts   SET nick_name ="Keter",     first_name ="",      last_name ="",      full_name ="Keter Importacao E Exportacao Ltda" WHERE id = 100050
+2015-04-08 00:18:15.481570 UPDATE Contacts   SET nick_name ="Kurashiki",     first_name ="",      last_name ="",      full_name ="Kurashiki Do Brasil Textil Ltda" WHERE id = 100051
+2015-04-08 00:18:15.486925 UPDATE Contacts   SET nick_name ="Link",     first_name ="",      last_name ="",      full_name ="Link Comercio Importacao E Exportacao Ltda" WHERE id = 100052
+2015-04-08 00:18:15.492258 UPDATE Contacts   SET nick_name ="Omi",     first_name ="",      last_name ="",      full_name ="Omi Do Brasil Textil S/a" WHERE id = 100053
+2015-04-08 00:18:15.497663 UPDATE Contacts   SET nick_name ="Rapsodia",     first_name ="",      last_name ="",      full_name ="Rapsodia Importacao E Exportacao Ltda" WHERE id = 100055
+2015-04-08 00:18:15.502966 UPDATE Contacts   SET nick_name ="Tebasa",     first_name ="",      last_name ="",      full_name ="Tebasa S/a" WHERE id = 100056
+2015-04-08 00:18:15.508207 UPDATE Contacts   SET nick_name ="Sao Joao",     first_name ="",      last_name ="",      full_name ="Textil Sao Joao S/a" WHERE id = 100057
+2015-04-08 00:18:15.513658 UPDATE Contacts   SET nick_name ="Uniao",     first_name ="",      last_name ="",      full_name ="Textil Uniao S/a" WHERE id = 100058
+2015-04-08 00:18:15.519555 UPDATE Contacts   SET nick_name ="Fitex",     first_name ="",      last_name ="",      full_name ="Fitex Sa" WHERE id = 100074
+2015-04-08 00:18:15.524919 UPDATE Contacts   SET nick_name ="Leao",     first_name ="",      last_name ="",      full_name ="Leao E Jetex" WHERE id = 100075
+2015-04-08 00:18:15.530280 UPDATE Contacts   SET nick_name ="Getulio",     first_name ="Afasgetulio",      last_name ="Tecno Malhas",      full_name ="Afasgetulio Tecno Malhas" WHERE id = 200009
+2015-04-08 00:18:15.535617 UPDATE Contacts   SET nick_name ="Acerto De Estoque",     first_name ="",      last_name ="",      full_name ="Acerto De Estoque" WHERE id = 200017
+2015-04-08 00:18:15.541050 UPDATE Contacts   SET nick_name ="Alex",     first_name ="Alex",      last_name ="Dl",      full_name ="Alex Dl" WHERE id = 100082
+2015-04-08 00:18:15.546393 UPDATE Contacts   SET nick_name ="Huvispan",     first_name ="",      last_name ="",      full_name ="Huvispan Indústria E Comércio De Fios Ltda" WHERE id = 100048
+2015-04-08 00:18:15.551744 UPDATE Contacts   SET nick_name ="Fiasul",     first_name ="",      last_name ="",      full_name ="Fiasul" WHERE id = 200019
+2015-04-08 00:18:15.557088 UPDATE Contacts   SET nick_name ="H Marin",     first_name ="",      last_name ="",      full_name ="Fios Texteis H. Marin Ltda" WHERE id = 200020
+2015-04-08 00:18:15.562389 UPDATE Contacts   SET nick_name ="Ventuno",     first_name ="",      last_name ="",      full_name ="Ventuno Produtos Texteis Ltda" WHERE id = 200022
+2015-04-08 00:18:15.567688 UPDATE Contacts   SET nick_name ="Rosh",     first_name ="",      last_name ="",      full_name ="Rosh Importação E Exportação Ltda" WHERE id = 200023
+2015-04-08 00:18:15.573129 UPDATE Contacts   SET nick_name ="Joice",     first_name ="Joice",      last_name ="Prado",      full_name ="Joice Prado" WHERE id = 100106
+2015-04-08 00:18:15.578526 UPDATE Contacts   SET nick_name ="Vicunha",     first_name ="",      last_name ="",      full_name ="Vicunha" WHERE id = 200024
+2015-04-08 00:18:15.583737 UPDATE Contacts   SET nick_name ="Adt",     first_name ="",      last_name ="",      full_name ="Dital Malharia Ltda" WHERE id = 100100
+2015-04-08 00:18:15.589015 UPDATE Contacts   SET nick_name ="Agb",     first_name ="",      last_name ="",      full_name ="Gigi Brasil Malhas Ltda" WHERE id = 100102
+2015-04-08 00:18:15.594293 UPDATE Contacts   SET nick_name ="Bercamp",     first_name ="",      last_name ="",      full_name ="Bercamp" WHERE id = 100104
+2015-04-08 00:18:15.599546 UPDATE Contacts   SET nick_name ="Boxes",     first_name ="Boxes",      last_name ="User",      full_name ="Boxes User" WHERE id = 200002
+2015-04-08 00:18:15.605028 UPDATE Contacts   SET nick_name ="Selene",     first_name ="",      last_name ="",      full_name ="Selene" WHERE id = 200006
+2015-04-08 00:18:15.610536 UPDATE Contacts   SET nick_name ="Padrao",     first_name ="Caixas",      last_name ="Dl",      full_name ="Caixas Dl" WHERE id = 200015
+2015-04-08 00:18:15.615893 UPDATE Contacts   SET nick_name ="Robson",     first_name ="Roberson",      last_name ="Pereira",      full_name ="Roberson Pereira" WHERE id = 200008
+2015-04-08 00:18:15.621366 UPDATE Contacts   SET nick_name ="Almir",     first_name ="Almir",      last_name ="Costa",      full_name ="Almir Costa" WHERE id = 200014
+2015-04-08 00:18:15.626770 UPDATE Contacts   SET nick_name ="Fides",     first_name ="",      last_name ="",      full_name ="Fiacao Fides Ltda" WHERE id = 200016
+2015-04-08 00:18:15.632040 UPDATE Contacts   SET nick_name ="Hulk",     first_name ="",      last_name ="",      full_name ="Hulk Confeccoes Ltda - Me" WHERE id = 100101
+2015-04-08 00:18:15.637330 UPDATE Contacts   SET nick_name ="Luciana",     first_name ="Luciana",      last_name ="Vieira",      full_name ="Luciana Vieira" WHERE id = 100107
+2015-04-08 00:18:15.642689 UPDATE Contacts   SET nick_name ="Avl",     first_name ="",      last_name ="",      full_name ="Vsm Ind De Malhas Ltda" WHERE id = 200025
+2015-04-08 00:18:15.648158 end of program
+2015-04-08 00:19:06.179474 
+2015-04-08 00:19:06.184808 start of program
+2015-04-08 00:19:06.209316 SELECT * FROM Contacts
+2015-04-08 00:19:06.222564 end of program
+2015-04-08 00:27:45.245964 
+2015-04-08 00:27:45.251371 start of program
+2015-04-08 00:27:45.271303 SELECT * FROM Contacts
+2015-04-08 00:27:45.282368 UPDATE Contacts   SET nick_name ="Marcelo",     first_name ="Marcelo",      last_name ="Lodi",      full_name ="Marcelo Lodi",       position ="Gerente De Ti" WHERE id = 100006
+2015-04-08 00:27:45.289202 UPDATE Contacts   SET nick_name ="Getulio",     first_name ="Afasgetulio",      last_name ="Tecno Malhas",      full_name ="Afasgetulio Tecno Malhas",       position ="Gerente Operacional" WHERE id = 200009
+2015-04-08 00:27:45.294900 UPDATE Contacts   SET nick_name ="Diego",     first_name ="Diego",      last_name ="Souza",      full_name ="Diego Souza",       position ="Pesagem De Fios" WHERE id = 200018
+2015-04-08 00:27:45.300344 UPDATE Contacts   SET nick_name ="Denilson",     first_name ="Denilson",      last_name ="Miranda",      full_name ="Denilson Miranda",       position ="Gerente De Producao" WHERE id = 200021
+2015-04-08 00:27:45.305850 UPDATE Contacts   SET nick_name ="Joice",     first_name ="Joice",      last_name ="Prado",      full_name ="Joice Prado",       position ="Midias Sociais" WHERE id = 100106
+2015-04-08 00:27:45.311606 UPDATE Contacts   SET nick_name ="Marcos Japones",     first_name ="Marcos",      last_name ="Furukawa",      full_name ="Marcos Furukawa",       position ="Supervisor De Estoque" WHERE id = 200005
+2015-04-08 00:27:45.316990 UPDATE Contacts   SET nick_name ="Bruno",     first_name ="Bruno",      last_name ="Cavalcante",      full_name ="Bruno Cavalcante",       position ="Gerente Operacional" WHERE id = 100079
+2015-04-08 00:27:45.322402 UPDATE Contacts   SET nick_name ="Robson",     first_name ="Roberson",      last_name ="Pereira",      full_name ="Roberson Pereira",       position ="Auxiliar Administrativo" WHERE id = 200008
+2015-04-08 00:27:45.327799 UPDATE Contacts   SET nick_name ="Almir",     first_name ="Almir",      last_name ="Costa",      full_name ="Almir Costa",       position ="Supervisor De Estoque" WHERE id = 200014
+2015-04-08 00:27:45.333163 UPDATE Contacts   SET nick_name ="Cris",     first_name ="Cris",      last_name ="Lodi",      full_name ="Cris Lodi",       position ="Gerente De Faturamento" WHERE id = 100085
+2015-04-08 00:27:45.338472 UPDATE Contacts   SET nick_name ="Valdinei",     first_name ="Valdinei",      last_name ="Keller",      full_name ="Valdinei Keller",       position ="Encarregado De Producao" WHERE id = 200013
+2015-04-08 00:27:45.343935 UPDATE Contacts   SET nick_name ="Luciana",     first_name ="Luciana",      last_name ="Vieira",      full_name ="Luciana Vieira",       position ="Gerente De Vendas" WHERE id = 100107
+2015-04-08 00:27:45.349337 end of program
+2015-04-08 00:37:45.568195 
+2015-04-08 00:37:45.573927 start of program
+2015-04-08 00:37:45.594707 SELECT * FROM Contacts
+2015-04-08 00:37:45.608787 SELECT * FROM Colors
+2015-04-08 00:37:45.626678 UPDATE Colors   SET color_name ="Amarelo Br Fio Tinto" WHERE id = 100020
+2015-04-08 00:37:45.632888 UPDATE Colors   SET color_name ="Amarelo Br Liso" WHERE id = 100021
+2015-04-08 00:37:45.638445 UPDATE Colors   SET color_name ="Amarelo Br Mec" WHERE id = 100022
+2015-04-08 00:37:45.644193 UPDATE Colors   SET color_name ="Amarelo Br Mod" WHERE id = 100023
+2015-04-08 00:37:45.649785 UPDATE Colors   SET color_name ="Amarelo Br Nat" WHERE id = 100024
+2015-04-08 00:37:45.655351 UPDATE Colors   SET color_name ="Amarelo Br Polly" WHERE id = 100025
+2015-04-08 00:37:45.660927 UPDATE Colors   SET color_name ="Amarelo Br Tec" WHERE id = 100026
+2015-04-08 00:37:45.666435 UPDATE Colors   SET color_name ="Amarelo Br Visco" WHERE id = 100027
+2015-04-08 00:37:45.671934 UPDATE Colors   SET color_name ="Amarelo Br Viscotec" WHERE id = 100028
+2015-04-08 00:37:45.681031 UPDATE Colors   SET color_name ="Cor" WHERE id = 100299
+2015-04-08 00:37:45.691062 UPDATE Colors   SET color_name ="Cru De Maquina" WHERE id = 100310
+2015-04-08 00:37:45.702496 UPDATE Colors   SET color_name ="Pt" WHERE id = 100789
+2015-04-08 00:37:45.708357 UPDATE Colors   SET color_name ="Rosa Bb Fio Tinto" WHERE id = 100808
+2015-04-08 00:37:45.714302 UPDATE Colors   SET color_name ="Rosa Bb Liso" WHERE id = 100809
+2015-04-08 00:37:45.719986 UPDATE Colors   SET color_name ="Rosa Bb Mec" WHERE id = 100810
+2015-04-08 00:37:45.725564 UPDATE Colors   SET color_name ="Rosa Bb Mod" WHERE id = 100811
+2015-04-08 00:37:45.731232 UPDATE Colors   SET color_name ="Rosa Bb Nat" WHERE id = 100812
+2015-04-08 00:37:45.736839 UPDATE Colors   SET color_name ="Rosa Bb Polly" WHERE id = 100813
+2015-04-08 00:37:45.742157 UPDATE Colors   SET color_name ="Rosa Bb Tec" WHERE id = 100814
+2015-04-08 00:37:45.747874 UPDATE Colors   SET color_name ="Rosa Bb Visco" WHERE id = 100815
+2015-04-08 00:37:45.753684 UPDATE Colors   SET color_name ="Rosa Bb Viscotec" WHERE id = 100816
+2015-04-08 00:37:45.762684 UPDATE Colors   SET color_name ="Verde Bb Fio Tinto" WHERE id = 101051
+2015-04-08 00:37:45.768446 UPDATE Colors   SET color_name ="Verde Bb Liso" WHERE id = 101052
+2015-04-08 00:37:45.774056 UPDATE Colors   SET color_name ="Verde Bb Mec" WHERE id = 101053
+2015-04-08 00:37:45.779707 UPDATE Colors   SET color_name ="Verde Bb Mod" WHERE id = 101054
+2015-04-08 00:37:45.785482 UPDATE Colors   SET color_name ="Verde Bb Nat" WHERE id = 101055
+2015-04-08 00:37:45.791106 UPDATE Colors   SET color_name ="Verde Bb Polly" WHERE id = 101056
+2015-04-08 00:37:45.796814 UPDATE Colors   SET color_name ="Verde Bb Tec" WHERE id = 101057
+2015-04-08 00:37:45.802645 UPDATE Colors   SET color_name ="Verde Bb Visco" WHERE id = 101058
+2015-04-08 00:37:45.808377 UPDATE Colors   SET color_name ="Verde Bb Viscotec" WHERE id = 101059
+2015-04-08 00:37:45.814587 UPDATE Colors   SET color_name ="Verde Br Fio Tinto" WHERE id = 101078
+2015-04-08 00:37:45.820394 UPDATE Colors   SET color_name ="Verde Br Liso" WHERE id = 101079
+2015-04-08 00:37:45.826225 UPDATE Colors   SET color_name ="Verde Br Mec" WHERE id = 101080
+2015-04-08 00:37:45.832078 UPDATE Colors   SET color_name ="Verde Br Mod" WHERE id = 101081
+2015-04-08 00:37:45.837884 UPDATE Colors   SET color_name ="Verde Br Nat" WHERE id = 101082
+2015-04-08 00:37:45.844063 UPDATE Colors   SET color_name ="Verde Br Polly" WHERE id = 101083
+2015-04-08 00:37:45.849965 UPDATE Colors   SET color_name ="Verde Br Tec" WHERE id = 101084
+2015-04-08 00:37:45.855815 UPDATE Colors   SET color_name ="Verde Br Visco" WHERE id = 101085
+2015-04-08 00:37:45.861740 UPDATE Colors   SET color_name ="Verde Br Viscotec" WHERE id = 101086
+2015-04-08 00:37:45.869816 SELECT * FROM Machines
+2015-04-08 00:37:53.683272 SELECT * FROM Products
+2015-04-08 00:37:53.721980 UPDATE Products   SET product_name ="Cotton 10% Pet Organico Ramado" WHERE id = 100024
+2015-04-08 00:37:53.728649 UPDATE Products   SET product_name ="Cotton Fitness Pet Organico Ramado" WHERE id = 100032
+2015-04-08 00:37:53.734708 UPDATE Products   SET product_name ="Crochet Colunado Pa Ramado" WHERE id = 100040
+2015-04-08 00:37:53.740558 UPDATE Products   SET product_name ="Crochet Colunado Ultra Fine Pa Ramado" WHERE id = 100041
+2015-04-08 00:37:53.746459 UPDATE Products   SET product_name ="Devore Renda Pa Ramado" WHERE id = 100050
+2015-04-08 00:37:53.752320 UPDATE Products   SET product_name ="Devore Renda Pa Safari Heavy Ramado" WHERE id = 100051
+2015-04-08 00:37:53.758015 UPDATE Products   SET product_name ="Devore Renda Pa Safari Light Ramado" WHERE id = 100052
+2015-04-08 00:37:53.763751 UPDATE Products   SET product_name ="Devore Renda Pa Safari Ramado" WHERE id = 100053
+2015-04-08 00:37:53.769571 UPDATE Products   SET product_name ="Doble Light Flanelado Tubular" WHERE id = 100057
+2015-04-08 00:37:53.775545 UPDATE Products   SET product_name ="Flametom Pa Comum Ramado" WHERE id = 100068
+2015-04-08 00:37:53.781546 UPDATE Products   SET product_name ="Flameton Pa Comum Ramado" WHERE id = 100073
+2015-04-08 00:37:53.787423 UPDATE Products   SET product_name ="Gola Pet Organico" WHERE id = 100079
+2015-04-08 00:37:53.793281 UPDATE Products   SET product_name ="Gola Polo Co" WHERE id = 100080
+2015-04-08 00:37:53.798966 UPDATE Products   SET product_name ="Gola Polo Dry" WHERE id = 100081
+2015-04-08 00:37:53.804929 UPDATE Products   SET product_name ="Gola Polo Pa" WHERE id = 100086
+2015-04-08 00:37:53.810740 UPDATE Products   SET product_name ="Gola Polo Pa Fio Tinto" WHERE id = 100087
+2015-04-08 00:37:53.816477 UPDATE Products   SET product_name ="Gola Polo Pa Jacquard Fio Tinto" WHERE id = 100088
+2015-04-08 00:37:53.822195 UPDATE Products   SET product_name ="Gola Polo Pa Stone" WHERE id = 100089
+2015-04-08 00:37:53.827858 UPDATE Products   SET product_name ="Gola Polo Pa Washed" WHERE id = 100090
+2015-04-08 00:37:53.833614 UPDATE Products   SET product_name ="Gola Polo Pet" WHERE id = 100091
+2015-04-08 00:37:53.839944 UPDATE Products   SET product_name ="Jacquard Escama De Peixe Light Ramado" WHERE id = 100119
+2015-04-08 00:37:53.847077 UPDATE Products   SET product_name ="Jarquard Escama De Peixe Light Ramado" WHERE id = 100171
+2015-04-08 00:37:53.854635 UPDATE Products   SET product_name ="Malha Botone Cosmos Cv Usa Tubular" WHERE id = 100249
+2015-04-08 00:37:53.860674 UPDATE Products   SET product_name ="Malha Flame Estampado Stone 10x10 Ramado" WHERE id = 100258
+2015-04-08 00:37:53.866486 UPDATE Products   SET product_name ="Malha Flame Fine Pa Peach Skin Ramado" WHERE id = 100259
+2015-04-08 00:37:53.872274 UPDATE Products   SET product_name ="Malha Flame Fine Pa Washed Ramado" WHERE id = 100261
+2015-04-08 00:37:53.878015 UPDATE Products   SET product_name ="Malha Flame Pa Estampado Stone 3x3 Ramado" WHERE id = 100263
+2015-04-08 00:37:53.883826 UPDATE Products   SET product_name ="Malha Flame Pa Mescla Cor Estampado Raport Retro Ramado" WHERE id = 100264
+2015-04-08 00:37:53.889544 UPDATE Products   SET product_name ="Malha Flame Pa Peach Skin Ramado" WHERE id = 100265
+2015-04-08 00:37:53.895513 UPDATE Products   SET product_name ="Malha Flame Point Pa Estampado Stone 10x10 Ramado" WHERE id = 100267
+2015-04-08 00:37:53.901364 UPDATE Products   SET product_name ="Malha Flame Used Pa Ramado" WHERE id = 100271
+2015-04-08 00:37:53.908274 UPDATE Products   SET product_name ="Malha Listrada Flame Viscolink Pv Ramado" WHERE id = 100326
+2015-04-08 00:37:53.914124 UPDATE Products   SET product_name ="Malha Listrada Quartzo Ii Tec Urban Ramado" WHERE id = 100329
+2015-04-08 00:37:53.919986 UPDATE Products   SET product_name ="Malha Listrada Quartzo Ii Urban Ramado" WHERE id = 100330
+2015-04-08 00:37:53.926530 UPDATE Products   SET product_name ="Malha Pa Confort Soft Peach Skin Tubular" WHERE id = 100360
+2015-04-08 00:37:53.932477 UPDATE Products   SET product_name ="Malha Quartzo Ii Peach Skin Tubular" WHERE id = 100363
+2015-04-08 00:37:53.939061 UPDATE Products   SET product_name ="Malhao Soft Pa Peach Skin Tubular" WHERE id = 100409
+2015-04-08 00:37:53.945296 UPDATE Products   SET product_name ="Meia Malha Pa Mouline Tubular" WHERE id = 100442
+2015-04-08 00:37:53.951292 UPDATE Products   SET product_name ="Meia Malha Pa Point Lixada Tubular" WHERE id = 100443
+2015-04-08 00:37:53.957094 UPDATE Products   SET product_name ="Meia Malha Pa Tubular" WHERE id = 100444
+2015-04-08 00:37:53.962892 UPDATE Products   SET product_name ="Meia Malha Pet Organico Tubular" WHERE id = 100451
+2015-04-08 00:37:53.970924 UPDATE Products   SET product_name ="Meia Malha Ultra Fine Pet Organico Tubular" WHERE id = 100525
+2015-04-08 00:37:53.977757 UPDATE Products   SET product_name ="Meia Malha Ultra Fine Prime Devore Reflexos E Estampado Anaconda Ramado" WHERE id = 100555
+2015-04-08 00:37:53.998098 UPDATE Products   SET product_name ="Meia Malha Ultra Fine Prime Peach Skin Tubular" WHERE id = 100573
+2015-04-08 00:37:54.004526 UPDATE Products   SET product_name ="Moletinho Pa Felpado Heavy Devore Bruma Ramado" WHERE id = 100598
+2015-04-08 00:37:54.010239 UPDATE Products   SET product_name ="Moletinho Quartzo Tec Comum Tubular" WHERE id = 100600
+2015-04-08 00:37:54.015975 UPDATE Products   SET product_name ="Moletinho Stretch Flame Onix Ramado" WHERE id = 100602
+2015-04-08 00:37:54.021771 UPDATE Products   SET product_name ="Moleton Dry Felpado Ramado" WHERE id = 100607
+2015-04-08 00:37:54.027425 UPDATE Products   SET product_name ="Moleton Flame Pa Comum Ramado" WHERE id = 100611
+2015-04-08 00:37:54.033153 UPDATE Products   SET product_name ="Moleton Flame Pa Comum Tubular" WHERE id = 100612
+2015-04-08 00:37:54.038787 UPDATE Products   SET product_name ="Moleton Flame Pa Felpado Ramado" WHERE id = 100613
+2015-04-08 00:37:54.045057 UPDATE Products   SET product_name ="Moleton Fleece Mescla Grafite Pv Felpado Ramado" WHERE id = 100650
+2015-04-08 00:37:54.050838 UPDATE Products   SET product_name ="Viscomalha Alta Torçao Mescla 20% Ramado" WHERE id = 200275
+2015-04-08 00:37:54.056832 UPDATE Products   SET product_name ="Moleton Fleece Soft Brinel Comum Peach Skin Ramado" WHERE id = 100670
+2015-04-08 00:37:54.062662 UPDATE Products   SET product_name ="Moleton Fleece Soft Brinel Felpado Peach Skin Ramado" WHERE id = 100671
+2015-04-08 00:37:54.068518 UPDATE Products   SET product_name ="Moleton Fleece Soft Pa Felpado Peach Skin Ramado" WHERE id = 100681
+2015-04-08 00:37:54.074222 UPDATE Products   SET product_name ="Moleton Fleece Soft Pa Felpado Peach Skin Tubular" WHERE id = 100682
+2015-04-08 00:37:54.080070 UPDATE Products   SET product_name ="Moleton Fleece Soft Pa Lurex Explendor Light Mescla Cinza 50/50 Alvejado Ramado" WHERE id = 100683
+2015-04-08 00:37:54.086095 UPDATE Products   SET product_name ="Moleton Fleece Soft Pa Lurex Explendor Light Mescla Cinza 50/50 Lavado Ramado" WHERE id = 100684
+2015-04-08 00:37:54.092488 UPDATE Products   SET product_name ="Moleton Pa Basic Felpado Ramado" WHERE id = 100701
+2015-04-08 00:37:54.098277 UPDATE Products   SET product_name ="Moleton Pa Comum Tubular" WHERE id = 100702
+2015-04-08 00:37:54.104405 UPDATE Products   SET product_name ="Moleton Pa Felpado Devore Nevoa Ramado" WHERE id = 100703
+2015-04-08 00:37:54.110190 UPDATE Products   SET product_name ="Moleton Pa Felpado Estampado Prim Rose Ramado" WHERE id = 100704
+2015-04-08 00:37:54.115969 UPDATE Products   SET product_name ="Moleton Pa Felpado Estampado Table Ramado" WHERE id = 100705
+2015-04-08 00:37:54.121866 UPDATE Products   SET product_name ="Moleton Pa Felpado Estampado Tricolor Ramado" WHERE id = 100706
+2015-04-08 00:37:54.127674 UPDATE Products   SET product_name ="Moleton Pa Felpado Estampado Xadrez Wireless Ramado" WHERE id = 100707
+2015-04-08 00:37:54.133521 UPDATE Products   SET product_name ="Moleton Pa Felpado Mouline Bicolor Ramado" WHERE id = 100708
+2015-04-08 00:37:54.139160 UPDATE Products   SET product_name ="Moleton Pa Felpado Mouline Ramado" WHERE id = 100709
+2015-04-08 00:37:54.145146 UPDATE Products   SET product_name ="Moleton Pa Felpado Peach Skin Tubular" WHERE id = 100710
+2015-04-08 00:37:54.151041 UPDATE Products   SET product_name ="Moleton Pa Felpado Raport Estampado 7x8 Ramado" WHERE id = 100712
+2015-04-08 00:37:54.157452 UPDATE Products   SET product_name ="Piquet 1.2 Dry Light Tubular" WHERE id = 100742
+2015-04-08 00:37:54.163253 UPDATE Products   SET product_name ="Piquet 1.2 Pa Tubular" WHERE id = 100744
+2015-04-08 00:37:54.168922 UPDATE Products   SET product_name ="Piquet Dry Tubular" WHERE id = 100745
+2015-04-08 00:37:54.174749 UPDATE Products   SET product_name ="Piquet Mess Pa Tubular" WHERE id = 100751
+2015-04-08 00:37:54.180412 UPDATE Products   SET product_name ="Piquet Pa Ramado" WHERE id = 100753
+2015-04-08 00:37:54.186057 UPDATE Products   SET product_name ="Piquet Pet Organico Tubular" WHERE id = 100755
+2015-04-08 00:37:54.191757 UPDATE Products   SET product_name ="Piquet Pet Tubular" WHERE id = 100756
+2015-04-08 00:37:54.197761 UPDATE Products   SET product_name ="Plush Kids 75 Mescla Grafite Pv Ramado" WHERE id = 100773
+2015-04-08 00:37:54.204018 UPDATE Products   SET product_name ="Polo Piquet Flame Estampado 5x7 Ramado" WHERE id = 100781
+2015-04-08 00:37:54.210013 UPDATE Products   SET product_name ="Punho 2x1 40 Stretch Flame Mescla Cor Pa Tubular" WHERE id = 100791
+2015-04-08 00:37:54.215780 UPDATE Products   SET product_name ="Punho 2x1 40 Stretch Light Pa Tubular" WHERE id = 100793
+2015-04-08 00:37:54.221765 UPDATE Products   SET product_name ="Punho 2x1 40 Stretch Pa Peach Skin Tubular" WHERE id = 100797
+2015-04-08 00:37:54.227406 UPDATE Products   SET product_name ="Punho 2x1 40 Stretch Pa Tubular" WHERE id = 100798
+2015-04-08 00:37:54.233516 UPDATE Products   SET product_name ="Punho 2x1 70 Stretch Dry Peach Skin Tubular" WHERE id = 100811
+2015-04-08 00:37:54.239633 UPDATE Products   SET product_name ="Punho 2x1 70 Stretch Mescla Grafite Pv Tubular" WHERE id = 100824
+2015-04-08 00:37:54.245481 UPDATE Products   SET product_name ="Punho 2x1 70 Stretch Pa Mouline Tubular" WHERE id = 100827
+2015-04-08 00:37:54.251770 UPDATE Products   SET product_name ="Punho 2x1 70 Stretch Rustico Pa Tubular" WHERE id = 100832
+2015-04-08 00:37:54.257672 UPDATE Products   SET product_name ="Punho 2x1 Stretch Quartzo Ii Peach Skin Tubular" WHERE id = 100837
+2015-04-08 00:37:54.263536 UPDATE Products   SET product_name ="Punho Polo Co" WHERE id = 100841
+2015-04-08 00:37:54.269265 UPDATE Products   SET product_name ="Punho Polo Pa" WHERE id = 100842
+2015-04-08 00:37:54.274959 UPDATE Products   SET product_name ="Punho Polo Pa Fio Tinto" WHERE id = 100843
+2015-04-08 00:37:54.280702 UPDATE Products   SET product_name ="Punho Polo Pa Jacquard Fio Tinto" WHERE id = 100844
+2015-04-08 00:37:54.286330 UPDATE Products   SET product_name ="Punho Polo Pa Washed" WHERE id = 100845
+2015-04-08 00:37:54.292033 UPDATE Products   SET product_name ="Punho Stretch G 40 Co Penteado Stoned Tubular" WHERE id = 100847
+2015-04-08 00:37:54.297677 UPDATE Products   SET product_name ="Punho Stretch G Co Plus Fall Tubular" WHERE id = 100848
+2015-04-08 00:37:54.303453 UPDATE Products   SET product_name ="Punho Stretch G Co Stonado Tubular" WHERE id = 100849
+2015-04-08 00:37:54.309178 UPDATE Products   SET product_name ="Punho Stretch G Mescla Preto 50/50 Pa Tubular" WHERE id = 100851
+2015-04-08 00:37:54.314971 UPDATE Products   SET product_name ="Punho Stretch G Mescla Pv Tubular" WHERE id = 100852
+2015-04-08 00:37:54.320738 UPDATE Products   SET product_name ="Punho Stretch M Co Tubular" WHERE id = 100856
+2015-04-08 00:37:54.326508 UPDATE Products   SET product_name ="Punho Stretch M Flame Pa Used Tubular" WHERE id = 100862
+2015-04-08 00:37:54.332699 UPDATE Products   SET product_name ="Punho Stretch M Pa Pet Soft Tubular" WHERE id = 100876
+2015-04-08 00:37:54.338357 UPDATE Products   SET product_name ="Punho Stretch M Pa Pet Tubular" WHERE id = 100877
+2015-04-08 00:37:54.344086 UPDATE Products   SET product_name ="Punho Stretch M Pa Tubular" WHERE id = 100878
+2015-04-08 00:37:54.349766 UPDATE Products   SET product_name ="Punho Stretch M Pet 100% Tubular" WHERE id = 100880
+2015-04-08 00:37:54.355404 UPDATE Products   SET product_name ="Punho Stretch M Pet Organico Tubular" WHERE id = 100881
+2015-04-08 00:37:54.361422 UPDATE Products   SET product_name ="Punho Stretch M Ultra Fine Pa Prime Tubular" WHERE id = 100890
+2015-04-08 00:37:54.367220 UPDATE Products   SET product_name ="Punho Stretch M Ultra Fine Pet Organico Tubular" WHERE id = 100891
+2015-04-08 00:37:54.373123 UPDATE Products   SET product_name ="Ribana 1x1 Pa Washed Lixado Tubular" WHERE id = 100896
+2015-04-08 00:37:54.378724 UPDATE Products   SET product_name ="Ribana 1x1 Stretch Pa Fluor Tubular" WHERE id = 100897
+2015-04-08 00:37:54.384470 UPDATE Products   SET product_name ="Ribana 2x1 40 Stretch Pa Tubular" WHERE id = 100900
+2015-04-08 00:37:54.390133 UPDATE Products   SET product_name ="Ribana 2x1 Basic Stretch Co Card Boa Tubular" WHERE id = 100901
+2015-04-08 00:37:54.395781 UPDATE Products   SET product_name ="Ribana 2x1 Basic Stretch Co Estampado Bouquet Tubular" WHERE id = 100902
+2015-04-08 00:37:54.401760 UPDATE Products   SET product_name ="Ribana 2x1 Flame Viscolink Usa Mescla Grafite Pv Ramado" WHERE id = 100911
+2015-04-08 00:37:54.407517 UPDATE Products   SET product_name ="Ribana 2x1 Listrado Big Hip Hop Branco X Cor Ramado" WHERE id = 100912
+2015-04-08 00:37:54.413292 UPDATE Products   SET product_name ="Ribana 2x1 Listrado Big Hip Hop Cor X Cor Ramado" WHERE id = 100913
+2015-04-08 00:37:54.419037 UPDATE Products   SET product_name ="Ribana 2x1 Listrado Due Ramado" WHERE id = 100914
+2015-04-08 00:37:54.424847 UPDATE Products   SET product_name ="Ribana 2x1 Listrado Due Viscotec Branco X Cor Ramado" WHERE id = 100915
+2015-04-08 00:37:54.430581 UPDATE Products   SET product_name ="Ribana 2x1 Listrado Hip Hop Branco X Cor Ramado" WHERE id = 100916
+2015-04-08 00:37:54.436081 UPDATE Products   SET product_name ="Ribana 2x1 Listrado Hip Hop Cor X Cor Ramado" WHERE id = 100917
+2015-04-08 00:37:54.441494 UPDATE Products   SET product_name ="Ribana 2x1 Listrado Stretch Lurex Rosita Ramado" WHERE id = 100918
+2015-04-08 00:37:54.446866 UPDATE Products   SET product_name ="Ribana 2x1 Listrado Uno Branco X Cor Ramado" WHERE id = 100919
+2015-04-08 00:37:54.452374 UPDATE Products   SET product_name ="Ribana 2x1 Listrado Uno Mescla X Cor Ramado" WHERE id = 100920
+2015-04-08 00:37:54.457744 UPDATE Products   SET product_name ="Ribana 2x1 Listrado Uno Ramado" WHERE id = 100921
+2015-04-08 00:37:54.463175 UPDATE Products   SET product_name ="Ribana 2x1 Mescla Cor Pa Tubular" WHERE id = 100923
+2015-04-08 00:37:54.468660 UPDATE Products   SET product_name ="Ribana 2x1 Quartzo Peach Skin Tubular" WHERE id = 100925
+2015-04-08 00:37:54.474505 UPDATE Products   SET product_name ="Ribana 2x1 Stretch Mescla Cor Pa Tubular" WHERE id = 100935
+2015-04-08 00:37:54.479995 UPDATE Products   SET product_name ="Ribana 2x1 Stretch Pa Ramado" WHERE id = 100938
+2015-04-08 00:37:54.485463 UPDATE Products   SET product_name ="Ribana 2x1 Stretch Pa Tubular" WHERE id = 100939
+2015-04-08 00:37:54.491294 UPDATE Products   SET product_name ="Ribana 2x1 Tricot Light Mescla Grafite Pv Tubular" WHERE id = 100954
+2015-04-08 00:37:54.496731 UPDATE Products   SET product_name ="Ribana 2x1 Tricot Light Ramado" WHERE id = 100956
+2015-04-08 00:37:54.502294 UPDATE Products   SET product_name ="Ribana 2x1 Ultra Fine Devore Marmorizado Ramado" WHERE id = 100958
+2015-04-08 00:37:54.508215 UPDATE Products   SET product_name ="Sarja Verano Verao Pa Tubular" WHERE id = 100981
+2015-04-08 00:37:54.513979 UPDATE Products   SET product_name ="Sarja Waffer Tec Heavy Pa Tubular" WHERE id = 100990
+2015-04-08 00:37:54.519562 UPDATE Products   SET product_name ="Sarja Waffer Tec Mescla Preto 50/50 Lavado Ramado" WHERE id = 100995
+2015-04-08 00:37:54.525673 UPDATE Products   SET product_name ="Tricot Listrado Flame Lace Sabrina Ramado" WHERE id = 101020
+2015-04-08 00:37:54.531597 UPDATE Products   SET product_name ="Tricot Pa Renda Smile Tubular" WHERE id = 101028
+2015-04-08 00:37:54.537796 UPDATE Products   SET product_name ="Viscorib 2x1 Stretch Tubular" WHERE id = 101063
+2015-04-08 00:37:54.544180 UPDATE Products   SET product_name ="Malha Sanfonada Visco Mescla Grafite Pv Ramado" WHERE id = 101101
+2015-04-08 00:37:54.549640 UPDATE Products   SET product_name ="Viscomalha Vtx Ramada" WHERE id = 101104
+2015-04-08 00:37:54.555154 UPDATE Products   SET product_name ="Jacquard Nativo Black Ramado" WHERE id = 101107
+2015-04-08 00:37:54.560637 UPDATE Products   SET product_name ="Viscomalha Vtx Tubular" WHERE id = 101111
+2015-04-08 00:37:54.566042 UPDATE Products   SET product_name ="Super Suplex Tubular" WHERE id = 101112
+2015-04-08 00:37:54.571436 UPDATE Products   SET product_name ="Jacquard Nativo Black Tubular" WHERE id = 101113
+2015-04-08 00:37:54.576853 UPDATE Products   SET product_name ="Malha Raport Jacquard York Tubular" WHERE id = 101118
+2015-04-08 00:37:54.582602 UPDATE Products   SET product_name ="Malha Raport Jacquard York Ramado" WHERE id = 101119
+2015-04-08 00:37:54.588613 UPDATE Products   SET product_name ="Punho 2x1 40 Stretch Quartzolit Light Peach Skin Tubular" WHERE id = 101142
+2015-04-08 00:37:54.594681 UPDATE Products   SET product_name ="Malha Raport Jacquard Dricks Ramado" WHERE id = 101163
+2015-04-08 00:37:54.600616 UPDATE Products   SET product_name ="Punho Stretch G Pa Tubular" WHERE id = 101183
+2015-04-08 00:37:54.606038 UPDATE Products   SET product_name ="Punho Stretch G Pa Ramado" WHERE id = 101184
+2015-04-08 00:37:54.611701 UPDATE Products   SET product_name ="Malha Tricot Viscofit Heavy Ramado" WHERE id = 101196
+2015-04-08 00:37:54.617404 UPDATE Products   SET product_name ="Malha Tricot Viscofit Heavy Tubular" WHERE id = 101197
+2015-04-08 00:37:54.623141 UPDATE Products   SET product_name ="Punho 2x1 70 Stretch Co Tubular" WHERE id = 101200
+2015-04-08 00:37:54.628798 UPDATE Products   SET product_name ="Punho 2x1 70 Stretch Co Ramado" WHERE id = 101201
+2015-04-08 00:37:54.634471 UPDATE Products   SET product_name ="Matelasse Boot Light Ramado" WHERE id = 101203
+2015-04-08 00:37:54.640225 UPDATE Products   SET product_name ="Jacquard Dotty Ramado" WHERE id = 101204
+2015-04-08 00:37:54.646043 UPDATE Products   SET product_name ="Jacquard Dotty Tubular" WHERE id = 101205
+2015-04-08 00:37:54.651719 UPDATE Products   SET product_name ="Malha Raport Scarpa Peach Skin Ramado" WHERE id = 101206
+2015-04-08 00:37:54.657302 UPDATE Products   SET product_name ="Malha Raport Scarpa Peach Skin Tubular" WHERE id = 101207
+2015-04-08 00:37:54.663025 UPDATE Products   SET product_name ="Malha Raport Soft Young Peach Skin Ramado" WHERE id = 101210
+2015-04-08 00:37:54.668715 UPDATE Products   SET product_name ="Malha Raport Soft Young Peach Skin Tubular" WHERE id = 101211
+2015-04-08 00:37:54.674415 UPDATE Products   SET product_name ="Moleton Soft Escama De Peixe Peach Skin Tubular" WHERE id = 101213
+2015-04-08 00:37:54.680082 UPDATE Products   SET product_name ="Meia Malha Raport Mescla Mix Ramado" WHERE id = 101214
+2015-04-08 00:37:54.685706 UPDATE Products   SET product_name ="Meia Malha Raport Mescla Mix Tubular" WHERE id = 101215
+2015-04-08 00:37:54.691587 UPDATE Products   SET product_name ="Meia Malha Soft Fine Mescla Preto 50/50 Peach Skin Tubular" WHERE id = 101221
+2015-04-08 00:37:54.697319 UPDATE Products   SET product_name ="Meia Malha Soft Fine Mescla Cinza 50/50 Peach Skin Ramado" WHERE id = 101222
+2015-04-08 00:37:54.703303 UPDATE Products   SET product_name ="Meia Malha Soft Fine Mescla Cinza 50/50 Peach Skin Tubular" WHERE id = 101223
+2015-04-08 00:37:54.709067 UPDATE Products   SET product_name ="Malha Flame Soft Algodao Ramado" WHERE id = 101225
+2015-04-08 00:37:54.715022 UPDATE Products   SET product_name ="Moleton Rajado Comum Tubular" WHERE id = 101229
+2015-04-08 00:37:54.720835 UPDATE Products   SET product_name ="Tricot Flame Saturno Ramado" WHERE id = 101231
+2015-04-08 00:37:54.726412 UPDATE Products   SET product_name ="Malha Tricot Flame Tricolor Tubular" WHERE id = 101232
+2015-04-08 00:37:54.732207 UPDATE Products   SET product_name ="Malha Tricot Flame Tricolor Ramado" WHERE id = 101233
+2015-04-08 00:37:54.737891 UPDATE Products   SET product_name ="Moleton Pa Standard Felpado Peach Skin Ramado" WHERE id = 101234
+2015-04-08 00:37:54.743566 UPDATE Products   SET product_name ="Moleton Fleece Standard Felpado Tubular" WHERE id = 101235
+2015-04-08 00:37:54.749336 UPDATE Products   SET product_name ="Malha Bali Soft Ramada" WHERE id = 101237
+2015-04-08 00:37:54.755017 UPDATE Products   SET product_name ="Flameton Taylon Light Liso Ramado" WHERE id = 101238
+2015-04-08 00:37:54.760703 UPDATE Products   SET product_name ="Flameton Taylon Light Liso Tubular" WHERE id = 101239
+2015-04-08 00:37:54.766563 UPDATE Products   SET product_name ="Moletinho Pa Comum Light Tubular" WHERE id = 101248
+2015-04-08 00:37:54.772408 UPDATE Products   SET product_name ="Moletinho Pa Comum Light Ramado" WHERE id = 101249
+2015-04-08 00:37:54.778080 UPDATE Products   SET product_name ="Malha Raport X-man Tubular" WHERE id = 101253
+2015-04-08 00:37:54.784046 UPDATE Products   SET product_name ="Punho Stretch M Botone Ball Black Peach Skin Tubular" WHERE id = 101256
+2015-04-08 00:37:54.789669 UPDATE Products   SET product_name ="Punho Stretch M Botone Ball Black Tubular" WHERE id = 101257
+2015-04-08 00:37:54.795420 UPDATE Products   SET product_name ="Sarja Biface Botone Ball Black Ramado" WHERE id = 101263
+2015-04-08 00:37:54.801241 UPDATE Products   SET product_name ="Malha Raport Prussia Heavy Peach Skin Tubular" WHERE id = 101267
+2015-04-08 00:37:54.806868 UPDATE Products   SET product_name ="Moleton Pa Devore Safari Comum Ramado" WHERE id = 101270
+2015-04-08 00:37:54.812547 UPDATE Products   SET product_name ="Moleton Pa Devore Safari Comum Tubular" WHERE id = 101271
+2015-04-08 00:37:54.818181 UPDATE Products   SET product_name ="Punho 2x1 70 Stretch Botone Ball Black Tubular" WHERE id = 101272
+2015-04-08 00:37:54.823820 UPDATE Products   SET product_name ="Punho 2x1 70 Stretch Botone Ball Collor Ramado" WHERE id = 101273
+2015-04-08 00:37:54.829455 UPDATE Products   SET product_name ="Punho 2x1 70 Stretch Botone Indigo Ramado" WHERE id = 101275
+2015-04-08 00:37:54.835252 UPDATE Products   SET product_name ="Punho 2x1 70 Stretch Botone Flocos Ramado" WHERE id = 101277
+2015-04-08 00:37:54.841099 UPDATE Products   SET product_name ="Rugby Raport Santos Peach Skin Tubular" WHERE id = 101279
+2015-04-08 00:37:54.846804 UPDATE Products   SET product_name ="Punho Stretch M Flame Devore Tubular" WHERE id = 101280
+2015-04-08 00:37:54.852674 UPDATE Products   SET product_name ="Punho Stretch M Flame Devore Ramado" WHERE id = 101281
+2015-04-08 00:37:54.858462 UPDATE Products   SET product_name ="Moleton Fleece Hit Botone Ball Black Felpado Ramado" WHERE id = 101283
+2015-04-08 00:37:54.864233 UPDATE Products   SET product_name ="Moleton Fleece Hit Botone Ball Black Comun Ramado" WHERE id = 101284
+2015-04-08 00:37:54.869940 UPDATE Products   SET product_name ="Moleton Fleece Hit Botone Ball Black Comun Tubular" WHERE id = 101285
+2015-04-08 00:37:54.875544 UPDATE Products   SET product_name ="Meia Malha Granite Tubular" WHERE id = 200001
+2015-04-08 00:37:54.881197 UPDATE Products   SET product_name ="Meia Malha Granite Ramada" WHERE id = 200002
+2015-04-08 00:37:54.886830 UPDATE Products   SET product_name ="Moleton Granite Felpado Tubular" WHERE id = 200003
+2015-04-08 00:37:54.892611 UPDATE Products   SET product_name ="Malha Granite Tubular" WHERE id = 200005
+2015-04-08 00:37:54.898313 UPDATE Products   SET product_name ="Matelasse Losango Tec Tubular" WHERE id = 200007
+2015-04-08 00:37:54.904096 UPDATE Products   SET product_name ="Tricot Granite Ramado" WHERE id = 200009
+2015-04-08 00:37:54.909720 UPDATE Products   SET product_name ="Moleton Plus Frisson Heavy Tubular" WHERE id = 200011
+2015-04-08 00:37:54.915468 UPDATE Products   SET product_name ="Moleton Plus Botone Indigo Heavy Tubular" WHERE id = 200013
+2015-04-08 00:37:54.921727 UPDATE Products   SET product_name ="Moleton Plus Botone Ball Color Heavy Tubular" WHERE id = 200015
+2015-04-08 00:37:54.927925 UPDATE Products   SET product_name ="Moletinho Granite Felpado Tubular" WHERE id = 200017
+2015-04-08 00:37:54.934115 UPDATE Products   SET product_name ="Moleton Granite Felpado Ramado" WHERE id = 200018
+2015-04-08 00:37:54.940302 UPDATE Products   SET product_name ="New Piquet Raport Co Seven Ramado" WHERE id = 200019
+2015-04-08 00:37:54.946386 UPDATE Products   SET product_name ="New Piquet Raport Co Seven Tubular" WHERE id = 200020
+2015-04-08 00:37:54.952620 UPDATE Products   SET product_name ="Punho Polo Dupla Face" WHERE id = 200021
+2015-04-08 00:37:54.958257 UPDATE Products   SET product_name ="Moleton Fleece Over Felpado Tubular" WHERE id = 200022
+2015-04-08 00:37:54.963945 UPDATE Products   SET product_name ="Moleton Fleece Over Felpado Ramado" WHERE id = 200023
+2015-04-08 00:37:54.969764 UPDATE Products   SET product_name ="Viscomalha Rape Full Tubular" WHERE id = 200024
+2015-04-08 00:37:54.975408 UPDATE Products   SET product_name ="Viscomalha Rape Usa" WHERE id = 200025
+2015-04-08 00:37:54.980939 UPDATE Products   SET product_name ="Malha Soft Rape Usa Tubular" WHERE id = 200026
+2015-04-08 00:37:54.986514 UPDATE Products   SET product_name ="Malha Soft Rape Tubular" WHERE id = 200027
+2015-04-08 00:37:54.992079 UPDATE Products   SET product_name ="Malha Coquinho Ralado Tubular" WHERE id = 200029
+2015-04-08 00:37:54.997522 UPDATE Products   SET product_name ="Cotton Malha Rape Full Tubular" WHERE id = 200030
+2015-04-08 00:37:55.003094 UPDATE Products   SET product_name ="Gaze Viscofit Ramada" WHERE id = 200031
+2015-04-08 00:37:55.008457 UPDATE Products   SET product_name ="Sarja Memorial Light Tubular" WHERE id = 200033
+2015-04-08 00:37:55.014236 UPDATE Products   SET product_name ="Sarja Memorial Heavy Tubular" WHERE id = 200035
+2015-04-08 00:37:55.019906 UPDATE Products   SET product_name ="Sarja Big Waffer Viscotec Ramada" WHERE id = 200036
+2015-04-08 00:37:55.025499 UPDATE Products   SET product_name ="Ribana 2x1 Viscotec Soft Stretch Tubular" WHERE id = 200037
+2015-04-08 00:37:55.031228 UPDATE Products   SET product_name ="Ribana 2x1 Viscofit Tubular" WHERE id = 200038
+2015-04-08 00:37:55.037012 UPDATE Products   SET product_name ="Ribana 2x1 Stretch Stile Confort Tubular" WHERE id = 200039
+2015-04-08 00:37:55.042727 UPDATE Products   SET product_name ="Punho 2x1 70 Stretch Granite Tubular" WHERE id = 200040
+2015-04-08 00:37:55.048448 UPDATE Products   SET product_name ="Malha Pa Flame Fine Ramada" WHERE id = 200041
+2015-04-08 00:37:55.054179 UPDATE Products   SET product_name ="Malha Botone Star Algodao Tec Usa Tubular" WHERE id = 200042
+2015-04-08 00:37:55.059860 UPDATE Products   SET product_name ="Gaze Viscotec Ramado" WHERE id = 200044
+2015-04-08 00:37:55.065505 UPDATE Products   SET product_name ="Moletinho Pa Light Comum Ramado" WHERE id = 200045
+2015-04-08 00:37:55.071275 UPDATE Products   SET product_name ="Moleton Pa Padrao Ramado" WHERE id = 200046
+2015-04-08 00:37:55.077025 UPDATE Products   SET product_name ="Moleton Pa Padrao Mescla Preto Felpado Ramado" WHERE id = 200047
+2015-04-08 00:37:55.082951 UPDATE Products   SET product_name ="Moleton Pa Standard Felpado Ramado" WHERE id = 200048
+2015-04-08 00:37:55.088741 UPDATE Products   SET product_name ="Malha Pa Soft Ligth Peach Skin Tubular" WHERE id = 200050
+2015-04-08 00:37:55.094559 UPDATE Products   SET product_name ="Cotton Malha Rape Usa Tubular" WHERE id = 200051
+2015-04-08 00:37:55.100267 UPDATE Products   SET product_name ="Moleton Pa Quartzo Felpado Tubular" WHERE id = 200052
+2015-04-08 00:37:55.106032 UPDATE Products   SET product_name ="Moleton Pa Quartzo Felpado Ramado" WHERE id = 200053
+2015-04-08 00:37:55.111792 UPDATE Products   SET product_name ="Suplex Stretch Jacquard Cannella Light Ramado" WHERE id = 200054
+2015-04-08 00:37:55.117642 UPDATE Products   SET product_name ="Suplex Stretch Jacquard Cannella Ultra Fine Ramado" WHERE id = 200055
+2015-04-08 00:37:55.123458 UPDATE Products   SET product_name ="Suplex Stretch Jacquard Cannella Ultra Fine Tubular" WHERE id = 200058
+2015-04-08 00:37:55.129166 UPDATE Products   SET product_name ="Malha Marshmallow Peach Skin Ramado" WHERE id = 200059
+2015-04-08 00:37:55.134947 UPDATE Products   SET product_name ="Malha Modal Usa Heavy Ramado" WHERE id = 200060
+2015-04-08 00:37:55.140878 UPDATE Products   SET product_name ="Suplex Stretch Jacquard Cannella Light Tubular" WHERE id = 200061
+2015-04-08 00:37:55.147079 UPDATE Products   SET product_name ="Suplex Strech Jacquard Floor Ramado" WHERE id = 200062
+2015-04-08 00:37:55.152940 UPDATE Products   SET product_name ="Suplex Stretch Jacquard Baloon Ramado" WHERE id = 200063
+2015-04-08 00:37:55.158688 UPDATE Products   SET product_name ="Meia Malha Mini Flame Modal Ramado" WHERE id = 200064
+2015-04-08 00:37:55.164439 UPDATE Products   SET product_name ="Meia Malha Flame Modal Ramado" WHERE id = 200066
+2015-04-08 00:37:55.170091 UPDATE Products   SET product_name ="Meia Malha Flame Modal Tubular" WHERE id = 200067
+2015-04-08 00:37:55.175735 UPDATE Products   SET product_name ="Malha Stretch Modal Fine Tubular" WHERE id = 200068
+2015-04-08 00:37:55.181623 UPDATE Products   SET product_name ="Meia Malha Mini Flame Modal Tubular" WHERE id = 200070
+2015-04-08 00:37:55.187598 UPDATE Products   SET product_name ="Malha Stretch Mini Flame Modal Tubular" WHERE id = 200072
+2015-04-08 00:37:55.193403 UPDATE Products   SET product_name ="Meia Malha Ultra Fine Modal Ramado" WHERE id = 200074
+2015-04-08 00:37:55.199181 UPDATE Products   SET product_name ="Malha Stretch Flame Modal Tubular" WHERE id = 200075
+2015-04-08 00:37:55.205183 UPDATE Products   SET product_name ="Meia Malha Modal Usa Tubular" WHERE id = 200076
+2015-04-08 00:37:55.210897 UPDATE Products   SET product_name ="Piquet Flame Modal Tubular" WHERE id = 200077
+2015-04-08 00:37:55.216598 UPDATE Products   SET product_name ="Malha Stretch Modal Fine" WHERE id = 200078
+2015-04-08 00:37:55.222249 UPDATE Products   SET product_name ="Suplex Stretch Jacquard Marola Ultra Fine Ramado" WHERE id = 200079
+2015-04-08 00:37:55.227994 UPDATE Products   SET product_name ="Gola Tommy" WHERE id = 200081
+2015-04-08 00:37:55.233818 UPDATE Products   SET product_name ="Malha Raport Jacquard Palm Tree Ramado" WHERE id = 200082
+2015-04-08 00:37:55.239465 UPDATE Products   SET product_name ="New Laise Tec Max" WHERE id = 200084
+2015-04-08 00:37:55.245167 UPDATE Products   SET product_name ="Tricot Rustique Ramado" WHERE id = 200085
+2015-04-08 00:37:55.250968 UPDATE Products   SET product_name ="Suplex Jacquard Block Ramado" WHERE id = 200086
+2015-04-08 00:37:55.256695 UPDATE Products   SET product_name ="Suplex Stretch Jacquard Block Ramado" WHERE id = 200087
+2015-04-08 00:37:55.262428 UPDATE Products   SET product_name ="Linha Tricot Rustico Light Db-30 Ramado" WHERE id = 200088
+2015-04-08 00:37:55.268176 UPDATE Products   SET product_name ="Malha New Brinel Usa Tubula" WHERE id = 200090
+2015-04-08 00:37:55.273852 UPDATE Products   SET product_name ="Meia Malha Cardada Boa Tde Tubular" WHERE id = 200092
+2015-04-08 00:37:55.279469 UPDATE Products   SET product_name ="Linha Tricot Rustico Light 24/20 Ramado" WHERE id = 200093
+2015-04-08 00:37:55.285661 UPDATE Products   SET product_name ="Malha Botone Cosmo Full Heavy Tubular" WHERE id = 200094
+2015-04-08 00:37:55.291941 UPDATE Products   SET product_name ="Malha Botone Cosmo Usa Tubular" WHERE id = 200095
+2015-04-08 00:37:55.298144 UPDATE Products   SET product_name ="Malha Rustique Usa 30 Tubular" WHERE id = 200096
+2015-04-08 00:37:55.304410 UPDATE Products   SET product_name ="Malha Rustique Usa 24 Tubular" WHERE id = 200097
+2015-04-08 00:37:55.310595 UPDATE Products   SET product_name ="New Piquet Stretch Egipcio Tubular" WHERE id = 200098
+2015-04-08 00:37:55.316528 UPDATE Products   SET product_name ="Moleto Tec Microfit Felpado Ramado" WHERE id = 200100
+2015-04-08 00:37:55.322202 UPDATE Products   SET product_name ="Moleton Tec Microfit Felpado Ramado" WHERE id = 200101
+2015-04-08 00:37:55.327832 UPDATE Products   SET product_name ="Malha Raport Barcelona Peask Skin Ramado" WHERE id = 200103
+2015-04-08 00:37:55.333704 UPDATE Products   SET product_name ="Malha Raport Soft Argentina Peach Skin Ramado" WHERE id = 200104
+2015-04-08 00:37:55.339369 UPDATE Products   SET product_name ="Viscostretch Botone Star Usa Ramado" WHERE id = 200105
+2015-04-08 00:37:55.345167 UPDATE Products   SET product_name ="Malha Listrada Flamê Space Ship Ramada" WHERE id = 200106
+2015-04-08 00:37:55.350887 UPDATE Products   SET product_name ="Malha Raport Soft Scarpa Peach Skin" WHERE id = 200107
+2015-04-08 00:37:55.356591 UPDATE Products   SET product_name ="Meia Malha Pa Heavy Tubular" WHERE id = 101286
+2015-04-08 00:37:55.362348 UPDATE Products   SET product_name ="Meia Malha Pa Heavy Ramado" WHERE id = 101287
+2015-04-08 00:37:55.368201 UPDATE Products   SET product_name ="Meia Malha Pa Devore Tubular" WHERE id = 101288
+2015-04-08 00:37:55.373915 UPDATE Products   SET product_name ="Meia Malha Pa Devore Ramado" WHERE id = 101289
+2015-04-08 00:37:55.379575 UPDATE Products   SET product_name ="Meia Malha Chuvisco Tubular" WHERE id = 101290
+2015-04-08 00:37:55.385284 UPDATE Products   SET product_name ="New Stretch Basic Ramado" WHERE id = 101291
+2015-04-08 00:37:55.391279 UPDATE Products   SET product_name ="Sarja New Waffer Botone Heavy Tubular" WHERE id = 200108
+2015-04-08 00:37:55.396994 UPDATE Products   SET product_name ="Sarja New Waffer Botone Light Tubular" WHERE id = 200109
+2015-04-08 00:37:55.402751 UPDATE Products   SET product_name ="Meia Malha Viscotec Ultra Fine Devore" WHERE id = 200111
+2015-04-08 00:37:55.408394 UPDATE Products   SET product_name ="Mini Tricot Flamê Fine Ramada" WHERE id = 200112
+2015-04-08 00:37:55.414104 UPDATE Products   SET product_name ="Piquet 1,2 Pa Conv. M. Cinza 50/50 Tubular" WHERE id = 200113
+2015-04-08 00:37:55.419881 UPDATE Products   SET product_name ="Moleton Plus Stretch Tecnologico Heavy Ramado" WHERE id = 200114
+2015-04-08 00:37:55.425718 UPDATE Products   SET product_name ="Moleton Plus Stretch Tecnologico Light Ramado" WHERE id = 200115
+2015-04-08 00:37:55.431501 UPDATE Products   SET product_name ="Moleton Plus Stretch Tecnologico Ultra Fine Ramado" WHERE id = 200116
+2015-04-08 00:37:55.437202 UPDATE Products   SET product_name ="Moleton Plus Stretch Tecnologico Fine" WHERE id = 200117
+2015-04-08 00:37:55.442967 UPDATE Products   SET product_name ="New Stretch Basic Mescla Cinza 88/12 Ramado" WHERE id = 200118
+2015-04-08 00:37:55.448858 UPDATE Products   SET product_name ="Moleton Fleece Soft Pa Peach Skik Felpado Ramado" WHERE id = 200119
+2015-04-08 00:37:55.454787 UPDATE Products   SET product_name ="Moletinho New Brinel Comum Light Tubular" WHERE id = 200125
+2015-04-08 00:37:55.460479 UPDATE Products   SET product_name ="Moleton Fleece Soft Batone Ball Black Ramado" WHERE id = 200126
+2015-04-08 00:37:55.466252 UPDATE Products   SET product_name ="Punho Stretch M Flame Pa" WHERE id = 200127
+2015-04-08 00:37:55.472135 UPDATE Products   SET product_name ="Viscorenda Devore At Ramado" WHERE id = 200128
+2015-04-08 00:37:55.477814 UPDATE Products   SET product_name ="Sarja New Waffer Botone Ball Black Light" WHERE id = 200129
+2015-04-08 00:37:55.483568 UPDATE Products   SET product_name ="Moleton Hit Quartzo Light Comum Peach Skin Tubular" WHERE id = 200131
+2015-04-08 00:37:55.489362 UPDATE Products   SET product_name ="Moleton Hit Quartzo Heavy Comum Peach Skin Tubular" WHERE id = 200132
+2015-04-08 00:37:55.495115 UPDATE Products   SET product_name ="Plush Stretch Tec Light Ramado" WHERE id = 200133
+2015-04-08 00:37:55.501048 UPDATE Products   SET product_name ="Punho Stretch M Quartzo Peach Skin Tubular" WHERE id = 200134
+2015-04-08 00:37:55.506721 UPDATE Products   SET product_name ="Punho Stretch M Marshmallow Peach Skin Tubular" WHERE id = 200135
+2015-04-08 00:37:55.512579 UPDATE Products   SET product_name ="Plush Stretch Tec Heavy Ramado" WHERE id = 200136
+2015-04-08 00:37:55.518302 UPDATE Products   SET product_name ="Plush Stretch Tec Fine Ramado" WHERE id = 200137
+2015-04-08 00:37:55.523997 UPDATE Products   SET product_name ="Suedine Confort Egipcio Tubular" WHERE id = 200138
+2015-04-08 00:37:55.529865 UPDATE Products   SET product_name ="Linha Tricot Flame Rustico Light Ramado" WHERE id = 200139
+2015-04-08 00:37:55.535658 UPDATE Products   SET product_name ="Punho Stretch M New Brinel Peach Skin" WHERE id = 200140
+2015-04-08 00:37:55.541404 UPDATE Products   SET product_name ="Ponto Roma Viscotec Stretch Ramado" WHERE id = 200141
+2015-04-08 00:37:55.547124 UPDATE Products   SET product_name ="Moleton Fleece Hit Comum Mescla Cinza 88/12 Peach Skin Ramado" WHERE id = 200145
+2015-04-08 00:37:55.552887 UPDATE Products   SET product_name ="Rugby Quartzolit Peach Skin Tubular" WHERE id = 200147
+2015-04-08 00:37:55.558517 UPDATE Products   SET product_name ="Punho 2x1 40 Stretch M. Grafite Light Tubular" WHERE id = 200151
+2015-04-08 00:37:55.564318 UPDATE Products   SET product_name ="Moletinho Stretch Viscotec Mescla Grafite Comum Ramado" WHERE id = 200153
+2015-04-08 00:37:55.570039 UPDATE Products   SET product_name ="Piquet 1,2 Convecional Mescla Cinza Tubular" WHERE id = 200154
+2015-04-08 00:37:55.575708 UPDATE Products   SET product_name ="Sarja Biface Light Mescla Cinza 50/50 Tubular" WHERE id = 200157
+2015-04-08 00:37:55.581457 UPDATE Products   SET product_name ="Jacquard Pied Poule Small Heavy Ramado" WHERE id = 200158
+2015-04-08 00:37:55.587158 UPDATE Products   SET product_name ="Moletinho Stretch Mescla Jet Fit Comum Ramado" WHERE id = 200159
+2015-04-08 00:37:55.593074 UPDATE Products   SET product_name ="Moleton Fleece Hit Mescla Jet Comum Tubular" WHERE id = 200161
+2015-04-08 00:37:55.598994 UPDATE Products   SET product_name ="Tricot Flame Pac Ramado" WHERE id = 200162
+2015-04-08 00:37:55.604717 UPDATE Products   SET product_name ="Moleton Soft Botone Star Felpado Ramado" WHERE id = 200163
+2015-04-08 00:37:55.610384 UPDATE Products   SET product_name ="Suplex Stretch Mescla Jet Ramado" WHERE id = 200164
+2015-04-08 00:37:55.616167 UPDATE Products   SET product_name ="Moleton Fleece New Over Felpado Mescla Cinza Ramado" WHERE id = 200165
+2015-04-08 00:37:55.621944 UPDATE Products   SET product_name ="Malha Ultra Fine Botone Cosmo Usa Tubular" WHERE id = 200168
+2015-04-08 00:37:55.627609 UPDATE Products   SET product_name ="Malha Chuvisco Light Ramado" WHERE id = 200169
+2015-04-08 00:37:55.633430 UPDATE Products   SET product_name ="New Stretch Basic Pac Ramado" WHERE id = 200170
+2015-04-08 00:37:55.639059 UPDATE Products   SET product_name ="Rugby Co Stonado Tubular" WHERE id = 200171
+2015-04-08 00:37:55.644924 UPDATE Products   SET product_name ="Ribana 2x1 Ultra Fine Pap Devore" WHERE id = 200173
+2015-04-08 00:37:55.650747 UPDATE Products   SET product_name ="Piquet 0,90 Co Flame Tubular" WHERE id = 200175
+2015-04-08 00:37:55.656493 UPDATE Products   SET product_name ="Piquet 0,90 Co Stonado Tubular" WHERE id = 200176
+2015-04-08 00:37:55.662245 UPDATE Products   SET product_name ="Moleton Fleece Hit Flame Stonado Comum Tubular" WHERE id = 200177
+2015-04-08 00:37:55.667998 UPDATE Products   SET product_name ="Moletinho Co Cumum Light Tubular" WHERE id = 200178
+2015-04-08 00:37:55.673760 UPDATE Products   SET product_name ="Piquet Mess Pac Tubular" WHERE id = 200179
+2015-04-08 00:37:55.679649 UPDATE Products   SET product_name ="Malha Soft Confort Peach Skin Tubular" WHERE id = 200183
+2015-04-08 00:37:55.685366 UPDATE Products   SET product_name ="Matelasse Renda Ramado" WHERE id = 200184
+2015-04-08 00:37:55.691146 UPDATE Products   SET product_name ="Meia Malha Mescla Jet Ramado" WHERE id = 200185
+2015-04-08 00:37:55.696893 UPDATE Products   SET product_name ="Malha Retilinea Tubular" WHERE id = 200186
+2015-04-08 00:37:55.702761 UPDATE Products   SET product_name ="New Piquet Raport Icone Ramado" WHERE id = 200187
+2015-04-08 00:37:55.708434 UPDATE Products   SET product_name ="Jacquard Ladrilho Ramado" WHERE id = 200188
+2015-04-08 00:37:55.714488 UPDATE Products   SET product_name ="Suplex Stretch Jacquard Marola Heavy Ramado" WHERE id = 200190
+2015-04-08 00:37:55.720099 UPDATE Products   SET product_name ="Suplex Stretch Jacquard Canella Heavy Ramado" WHERE id = 200191
+2015-04-08 00:37:55.725994 UPDATE Products   SET product_name ="Moleton Fleece Bicolor Felpado Light Ramado" WHERE id = 200192
+2015-04-08 00:37:55.731971 UPDATE Products   SET product_name ="Punho 2x1 Stretch Premium Tubular" WHERE id = 200193
+2015-04-08 00:37:55.737803 UPDATE Products   SET product_name ="Moletinho Pa Comum Ramado" WHERE id = 200195
+2015-04-08 00:37:55.743669 UPDATE Products   SET product_name ="Ribana Ultra Fine Skin Cardada Boa" WHERE id = 200196
+2015-04-08 00:37:55.749502 UPDATE Products   SET product_name ="Meia Malha Penteada Tradicional Tde Tubular" WHERE id = 200197
+2015-04-08 00:37:55.755181 UPDATE Products   SET product_name ="Plush Microtec Ramado" WHERE id = 200198
+2015-04-08 00:37:55.760692 UPDATE Products   SET product_name ="Suplex Stretch Jet Fit Heavy Ramado" WHERE id = 200200
+2015-04-08 00:37:55.766251 UPDATE Products   SET product_name ="Suplex Stretch Fit Heavy Ramado" WHERE id = 200201
+2015-04-08 00:37:55.771800 UPDATE Products   SET product_name ="Plush Stretch Ramado" WHERE id = 200202
+2015-04-08 00:37:55.777347 UPDATE Products   SET product_name ="Malha Botone Ball Color Fine Full Tubular" WHERE id = 200204
+2015-04-08 00:37:55.783194 UPDATE Products   SET product_name ="Tricot Flame Melange White Ramado" WHERE id = 200205
+2015-04-08 00:37:55.788701 UPDATE Products   SET product_name ="Moleton Fleece Hit Comum Melange Black Peach Skin Ramado" WHERE id = 200206
+2015-04-08 00:37:55.794293 UPDATE Products   SET product_name ="Moleton Fleece Hit Comum Melange Collor Ramado" WHERE id = 200207
+2015-04-08 00:37:55.799858 UPDATE Products   SET product_name ="Malha Raport Live Ramado" WHERE id = 200209
+2015-04-08 00:37:55.805345 UPDATE Products   SET product_name ="Moleton Fleece Soft New Brinel Peach Skin Tubular" WHERE id = 200210
+2015-04-08 00:37:55.810983 UPDATE Products   SET product_name ="Moleton Fleece Hit Fume Felpado Peach Skin Ramado" WHERE id = 200213
+2015-04-08 00:37:55.816616 UPDATE Products   SET product_name ="Moleton Fleece Hit Fume Comum Peach Skin Tubular" WHERE id = 200214
+2015-04-08 00:37:55.823326 error, Local Server not connected: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Moleton Fleece Hit Fume Comum Peach Skin Tubular' for key 'name'
+2015-04-08 00:37:55.828469 end of program
