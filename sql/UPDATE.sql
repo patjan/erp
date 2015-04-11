@@ -392,3 +392,19 @@ UPDATE		Quotations		SET 	produce_to_date = delivered_date;
 UPDATE		Quotations		SET 	delivered_date = NULL;
 /* -- 2015/04/05	*/	
 ALTER TABLE BatchOuts		ADD COLUMN parent_id		BIGINT		DEFAULT NULL	AFTER status;
+/* -- 2015/04/09	*/	
+ UPDATE CheckOuts
+    SET status = 'Closed'
+  WHERE status = 'Active'
+    AND DATE(checkout_at) < '2015-04-01'
+		;
+ UPDATE BatchOuts
+   LEFT JOIN CheckOuts ON CheckOuts.id = BatchOuts.checkout_id
+    SET BatchOuts.status = 'Closed'
+  WHERE BatchOuts.status = 'Active'
+    AND DATE(CheckOuts.checkout_at) < '2015-04-01'
+		;
+ UPDATE Boxes
+	SET Boxes.real_weight = Boxes.real_weight / 100
+  WHERE (Boxes.real_weight / Boxes.average_weight) > 3
+		;

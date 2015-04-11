@@ -635,8 +635,8 @@ li .arrow span {
 .jky-td-percent		input	{width: 60px; text-align:right	!important;}
 .jky-td-pieces				{width: 65px; text-align:right	!important;}
 .jky-td-pieces		input	{width: 60px; text-align:right	!important;}
-.jky-td-price				{width: 65px; text-align:right  !important;}
-.jky-td-price		input	{width: 60px; text-align:right  !important;}
+.jky-td-price				{width: 85px; text-align:right  !important;}
+.jky-td-price		input	{width: 80px; text-align:right  !important;}
 .jky-td-ref					{width: 85px; text-align:center !important;}
 .jky-td-ref			input	{width: 80px;}
 .jky-td-remarks				{}
@@ -723,3 +723,7 @@ tbody .jky-config-line		{height:22px;}
 #jky-product-info label		{float:left; clear:both; width:100px; margin-right:10px; text-align:right;}
 #jky-product-info span		{float:left;}
 #jky-remarks				{width:300px;}
+
+.jky-issued			{width: 85px;}
+.jky-amount			{width: 80px;}
+.jky-motive			{width:240px;}

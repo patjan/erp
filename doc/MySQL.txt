@@ -145,3 +145,35 @@ With selected: Check All / Uncheck All With selected:
 SELECT status, count(*)
   FROM Boxes
  GROUP BY status
+ 
+ SELECT status, count(*)
+   FROM CheckOuts
+  WHERE DATE(checkout_at) < '2015-04-01'
+ GROUP BY status
+ 
+  SELECT DATE(checkout_at), count(*)
+   FROM CheckOuts
+  WHERE DATE(checkout_at) < '2015-04-01'
+ GROUP BY DATE(checkout_at)
+
+ UPDATE CheckOuts
+    SET status = 'Closed'
+  WHERE status = 'Active'
+    AND DATE(checkout_at) < '2015-04-01'
+
+ SELECT BatchOuts.status, count(*)
+   FROM BatchOuts
+   LEFT JOIN CheckOuts ON CheckOuts.id = BatchOuts.checkout_id
+  WHERE DATE(CheckOuts.checkout_at) < '2015-04-01'
+  GROUP BY BatchOuts.status
+  
+ SELECT Boxes.*
+   FROM Boxes
+   LEFT JOIN Batches ON Batches.id = Boxes.batch_id
+  WHERE Batches.thread_id = 200003
+    AND Boxes.returned_at IS NOT NULL
+	AND Boxes.real_weight > 70
+ 
+ SELECT Boxes.*
+   FROM Boxes
+  WHERE (Boxes.real_weight / Boxes.average_weight) > 3

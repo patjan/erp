@@ -37,12 +37,12 @@ JKY.generate_restriction = function(the_row) {
 	var my_html = ''
 		+ '<tr restriction_id=' + my_id + '>'
 		+ '<td class="jky-td-action">' + my_trash + '</td>'
-		+ '<td class="jky-td-ref"	><input changeable class="jky-issued"	value="' + the_row.issued_dt+ '" onchange="JKY.change_restriction(this, ' + my_id + ')" /></td>'
+		+ '<td class="jky-td-date"	><input changeable class="jky-issued"	value="' + the_row.issued_dt+ '" onchange="JKY.change_restriction(this, ' + my_id + ')" /></td>'
 		+ '<td class="jky-td-ref"	><input changeable class="jky-document" value="' + the_row.document	+ '" onchange="JKY.change_restriction(this, ' + my_id + ')" /></td>'
 		+ '<td class="jky-td-ref"	><input changeable class="jky-bank"		value="' + the_row.bank_name+ '" onchange="JKY.change_restriction(this, ' + my_id + ')" /></td>'
 		+ '<td class="jky-td-ref"	><input changeable class="jky-number"	value="' + the_row.number	+ '" onchange="JKY.change_restriction(this, ' + my_id + ')" /></td>'
 		+ '<td class="jky-td-price"	><input changeable class="jky-amount"	value="' + the_row.amount	+ '" onchange="JKY.change_restriction(this, ' + my_id + ')" /></td>'
-		+ '<td class="jky-td-normal"><input changeable class="jky-motive"	value="' + the_row.motive	+ '" onchange="JKY.change_restriction(this, ' + my_id + ')" /></td>'
+		+ '<td class="jky-td-text-l"><input changeable class="jky-motive"	value="' + the_row.motive	+ '" onchange="JKY.change_restriction(this, ' + my_id + ')" /></td>'
 		+ '</tr>'
 		;
 	return my_html;

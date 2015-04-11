@@ -143,7 +143,7 @@ JKY.set_form_row = function(the_row) {
 JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-nick-name'		, '');
 	JKY.set_value	('jky-full-name'		, '');
-	JKY.set_yes		('jky-is-company'		, 'No');
+	JKY.set_yes		('jky-is-company'		, 'Yes');
 	JKY.set_option	('jky-contact-company'	, '');
 	JKY.set_option	('jky-parent-company'	, '');
 	JKY.set_option	('jky-contact-tag'		, '');

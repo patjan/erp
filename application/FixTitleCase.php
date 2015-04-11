@@ -14,16 +14,10 @@ define('PROGRAM_NAME'	,	'FixTitleCase');
  *	 Domain:	Fixprocess batch DB updates
  *				and generate Changes to Update remote servers
  *				and keep log of all activities
- * 		Run:	started by Scheduled Tasks and run every 1 daily
+ * 		Run:	on request
  *
- *    Speed:   8000 transacoes por min ( USA )
- *              200 transacoes por min ( Brasil )
- *             Depende do tamanho de memoria do Cliente
- *             e' recomendado 256 MB no minimo.
- *
- *	This program will fetch it's previous IP
- *	send command [Setip] to main server using curl
- *	update all servers host from main server
+ *	This program will fetch all names,
+ *	change to TitleCase and if it is different then update the record
  */
 set_time_limit(0);
 error_reporting(E_ALL);		//	report errors
@@ -137,7 +131,7 @@ try{
 			$my_result = $my_local_db->query($my_sql);
 		}
 	}
-
+/*
 	$my_sql = 'SELECT * FROM Threads';
 	log_message($my_sql);
 	$my_rows	= $my_local_db->fetchAll($my_sql);
@@ -155,7 +149,7 @@ try{
 			$my_result = $my_local_db->query($my_sql);
 		}
 	}
-
+*/
 	$my_sql = 'SELECT * FROM Templates';
 	log_message($my_sql);
 	$my_rows	= $my_local_db->fetchAll($my_sql);
@@ -213,8 +207,8 @@ function get_system_key($the_local_db) {
 }
 
 function log_message($message) {
-	$date = date( 'Y-m-d' );
-	$logFile = fopen( SERVER_BASE . PROGRAM_NAME . '/' . $date . '.txt', 'a' ) or die( 'cannot open log ' . PROGRAM_NAME . ' file' );
+	$logName = SERVER_BASE . '/logbat/' . date('Y-m-d') . '.txt';
+	$logFile = fopen($logName, 'a' ) or die('cannot open log ' . $logName);
 	fwrite( $logFile, get_now() . ' ' . $message . NL );
 	fclose( $logFile );
 	print(get_now() . ' ' . $message . NL);
@@ -234,11 +228,11 @@ function OnlyString( $String ) {
 }
 
 function title_case($the_words) {
-	if( $the_words == '' )		return '';
+	if ($the_words == '')		return '';
 
 	$my_array = array();
 	$my_words = explode(' ', $the_words);
-	for($i=0; $i<count($my_words); $i++ ) {
+	for($i=0; $i<count($my_words); $i++) {
 		$my_word = $my_words[$i];
 		if ($my_word != '') {
 			$my_array[] = strtoupper(substr($my_word, 0, 1 )) . strtolower(substr($my_word, 1));
