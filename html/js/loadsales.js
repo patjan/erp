@@ -35,13 +35,14 @@ JKY.set_all_events = function() {
 
 	$('#jky-action-generate').click( function() {JKY.generate_loadset();});
 	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
+
+	JKY.set_side_active('jky-dyers-loadsales');
 }
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-dyers-loadsales');
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.loadsale.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
@@ -190,15 +191,15 @@ JKY.generate_loadset = function() {
 }
 
 /* -------------------------------------------------------------------------- */
-//JKY.close_row = function(the_id) {
-//	var my_data =
-//		{ method	: 'update'
-//		, table		: 'LoadSets'
-//		, set		: 'status = \'Closed\''
-//		, where		: 'loadout_id = ' + the_id
-//		};
-//	JKY.ajax(false, my_data);
-//}
+JKY.close_row = function(the_id) {
+	var my_data =
+		{ method	: 'update'
+		, table		: 'LoadSets'
+		, set		: 'status = \'Closed\''
+		, where		: 'load_quot_id = ' + the_id
+		};
+	JKY.ajax(false, my_data);
+}
 
 JKY.insert_load_sets = function() {
 	var my_data;

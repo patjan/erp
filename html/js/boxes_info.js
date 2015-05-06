@@ -30,14 +30,14 @@ JKY.start_program = function() {
 JKY.set_all_events = function() {
 	$('#jky-action-clear'			).click	(function() {JKY.process_clear_screen	();});
 	$('#jky-input-barcode'			).change(function() {JKY.process_input_barcode	();});
+
+	JKY.set_side_active('jky-boxes-info');
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-boxes-info');
-
 	JKY.hide('jky-action-export');
 	JKY.hide('jky-action-list'	);
 	JKY.hide('jky-action-form'	);

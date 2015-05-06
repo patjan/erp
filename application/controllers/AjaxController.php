@@ -599,7 +599,7 @@ private function get_index($data) {
 	if (is_numeric( $display)) {
 		$limit = ' LIMIT ' . $display;
 	}else{
-		$limit = '';
+		$limit = ' LIMIT 1000';
 	}
 
 	if ($where != '') {
@@ -617,6 +617,7 @@ private function get_index($data) {
 			. '     , SUM(IF(Boxes.status  = "Active"	, 0,	Boxes.average_weight	   )) AS  checkin_weight'
 //			. '     , SUM(IF(Boxes.status  = "Return"	,		Boxes.real_weight		, 0)) AS   return_weight'
 //			. '     , SUM(IF(Boxes.status  = "Check Out",		Boxes.average_weight	, 0)) AS checkout_weight'
+			. '     ,   Supplier.id				AS supplier_id'
 			. '     ,   Supplier.nick_name		AS supplier_name'
 			. '  FROM Boxes'
 			. '  LEFT JOIN Batches				ON Batches.id = Boxes.batch_id'
@@ -676,7 +677,8 @@ private function get_index($data) {
 			. '  LEFT JOIN    Contacts AS Dyer		ON		Dyer.id	=	QuotColors.dyer_id'
 			. '  LEFT JOIN   QuotLines AS QuotLine	ON	QuotLine.id	=	QuotColors.parent_id'
 			. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=	  QuotLine.parent_id'
-			. '  WHERE (Quotation.status = "Draft")'
+//			. '  WHERE (Quotation.status = "Draft")'
+			. '  WHERE (Quotation.status = "Draft" OR Quotation.status = "Active")'
 			. $where
 			. '  ORDER BY ' . $order_by
 			. $limit
@@ -704,7 +706,8 @@ private function get_index($data) {
 			. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=	  QuotLine.parent_id'
 			. '  LEFT JOIN    Products AS Product	ON   Product.id	=	  QuotLine.product_id'
 			. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=	 Quotation.customer_id'
-			. '  WHERE (QuotColors.status = "Draft" OR QuotColors.status = "Active")'
+//			. '  WHERE (QuotColors.status = "Draft" OR QuotColors.status = "Active")'
+			. '  WHERE (QuotColors.status = "Draft")'
 			. '    AND ' . $where
 			. '  ORDER BY ' . $order_by
 			. $limit
@@ -798,6 +801,8 @@ $this->log_sql($table, 'get_index', $sql);
 private function set_specific($table, $specific, $specific_id) {
 	if ($specific == '')	return '';
 
+	if ($table == 'Addresses'		&& $specific == 'customer'		)	return ' AND      Addresses.parent_name		= "Contact"'
+																			.  ' AND      Addresses.parent_id		= ' . $specific_id;
 	if ($table == 'Contacts'		&& $specific == 'is_customer'	)	return ' AND       Contacts.is_customer		= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_supplier'	)	return ' AND       Contacts.is_supplier		= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_dyer'		)	return ' AND       Contacts.is_dyer			= "Yes"';
@@ -1251,7 +1256,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    ReqLines  			ON  ReqLines.id	=		 BatchOuts.req_line_id'
 												. '  LEFT JOIN    Machines				ON  Machines.id	=		 CheckOuts.machine_id'
 												. '  LEFT JOIN    Contacts AS Partner	ON   Partner.id	=		 CheckOuts.partner_id'
-												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 CheckOuts.supplier_id'
+												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 BatchOuts.supplier_id'
 												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		 CheckOuts.dyer_id';
 	if ($table == 'BatchSets'		)	$return = '  LEFT JOIN   BatchOuts				ON BatchOuts.id	=		 BatchSets.batchout_id'
 												. '  LEFT JOIN   CheckOuts  			ON CheckOuts.id	=		 BatchOuts.checkout_id'
@@ -3263,14 +3268,16 @@ private function delete_jky_user($id) {
 	$where = 'contact_id = ' . $id;
 	$my_id = $this->get_only_id('JKY_Users', $where);
 
-	$sql= 'DELETE'
-		. '  FROM JKY_Users'
-		. ' WHERE id = ' . $my_id
-		;
-	$this->log_sql('JKY_Users', $my_id, $sql);
-	$db = Zend_Registry::get('db');
-	$db->query($sql);
-	insert_changes($db, 'JKY_Users', $my_id);
+	if ($my_id) {
+		$sql= 'DELETE'
+			. '  FROM JKY_Users'
+			. ' WHERE id = ' . $my_id
+			;
+		$this->log_sql('JKY_Users', $my_id, $sql);
+		$db = Zend_Registry::get('db');
+		$db->query($sql);
+		insert_changes($db, 'JKY_Users', $my_id);
+	}
 }
 
 private function unlink_loadouts($id) {

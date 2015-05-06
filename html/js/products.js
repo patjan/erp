@@ -57,15 +57,16 @@ JKY.set_all_events = function() {
 	$('#jky-tab-washings'		).click (function()	{JKY.Washings  .display(JKY.row.washings	);});
 	$('#jky-tab-ftps'			).click (function() {JKY.display_ftps	();});
 	$('#jky-tab-history'		).click (function() {JKY.History.display();});
+
+	JKY.set_side_active('jky-sales-products');
+	JKY.set_side_active('jky-planning-products');
+	JKY.set_side_active('jky-production-products');
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-sales-products');
-	JKY.set_side_active('jky-planning-products');
-	JKY.set_side_active('jky-production-products');
 	JKY.set_html('jky-product-type'		, JKY.set_radios_array('jky-product-type', JKY.get_configs('Product Types')));
 	JKY.set_html('jky-app-select'		, JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Type'));

@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS Sales
 , KEY quotation	(quotation_id)
 , KEY customer 	(customer_id)
 , KEY contact 	(contact_id)
+, KEY salesman 	(salesman_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
@@ -102,3 +103,5 @@ INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, 
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='SaleColors', updated_by=1, updated_at=NOW();
 
 ALTER TABLE Sales			ADD COLUMN salesman_id				BIGINT			DEFAULT NULL	AFTER contact_id;
+
+ALTER TABLE Sales			ADD INDEX salesman		(salesman_id	);

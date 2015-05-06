@@ -4,7 +4,6 @@ var JKY = JKY || {};
  * JKY.Application - process all application functions
  *
  * require:	JKY.Utils.js
- *			JKY.Reset.js
  *			JKY.Changes.js
  *			JKY.Validation.js
  */
@@ -19,8 +18,8 @@ JKY.Application = function() {
 
 	JKY.checkout	= JKY.checkout	|| [];
 	JKY.incoming	= JKY.incoming	|| [];
-	JKY.loadout		= JKY.laodout	|| [];
-	JKY.loadsale	= JKY.laodsale	|| [];
+	JKY.loadout		= JKY.loadout	|| [];
+	JKY.loadsale	= JKY.loadsale	|| [];
 	JKY.osas		= JKY.osas		|| [];
 	JKY.planning	= JKY.planning	|| [];
 	JKY.receive		= JKY.receive	|| [];
@@ -28,7 +27,7 @@ JKY.Application = function() {
 	JKY.sales		= JKY.sales		|| [];
 	JKY.shipdyer	= JKY.shipdyer	|| [];
 
-	JKY.checkout	.select = JKY.checkout	.select	||	'Draft'			;
+	JKY.checkout	.select = JKY.checkout	.select	||	'Draft + Active';
 	JKY.incoming	.select = JKY.incoming	.select	||			'Active';
 	JKY.loadout		.select	= JKY.loadout	.select	||			'Active';
 	JKY.loadsale	.select	= JKY.loadsale	.select	||	'Draft + Active';
@@ -72,7 +71,7 @@ if (my_first == true) {
 
 				JKY.set_all_events();	// from caller
 			}else{
-				setTimeout(function() {my_set_all_events();}, 100);
+				setTimeout(function() {my_set_all_events()}, 100);
 			}
 		}
 
@@ -123,7 +122,7 @@ if (my_first == true) {
 			$('#jky-form-data           .date').each (function() {$(this).change(function()		{my_process_verify_input (this);});});
 			JKY.Changes.reset();
 		}else{
-			setTimeout(function() {my_set_initial_values();}, 100);
+			setTimeout(function() {my_set_initial_values()}, 100);
 		}
 	}
 
@@ -199,8 +198,8 @@ if (my_first == true) {
 			JKY.hide('jky-action-print'		);
 			JKY.hide('jky-action-clear'		);
 			JKY.hide('jky-action-confirm'	);
-			if (JKY.Session.get_value('user_role') == 'support'
-			|| (JKY.Session.get_value('user_role') == 'admin' && my_args.table_name == 'ThreadForecast')) {
+			if (JKY.Session.get_value('user_role') == 'Support'
+			|| (JKY.Session.get_value('user_role') == 'Admin' && my_args.table_name == 'ThreadForecast')) {
 				JKY.show('jky-action-export');
 			}else{
 				JKY.hide('jky-action-export');
@@ -784,7 +783,9 @@ if (my_first == true) {
 	var my_init = function() {
 		JKY.display_trace('my_init');
 		my_set_all_events();
+setTimeout(function() {
 		my_set_initial_values();
+}, 100);
 	}
 
 //	$(function() {
@@ -805,6 +806,7 @@ if (my_first == true) {
 		, set_checkbox			:	function(the_index)		{		my_set_checkbox	(the_index)		;}
 		, Xprocess_is_company	:	function(the_id)		{		Xmy_process_is_company(the_id)	;}
 		, process_change_input	:	function(the_id)		{		my_process_change_input(the_id) ;}
+		, process_add_new		:	function()				{		my_process_add_new()			;}
 		, process_insert		:	function()				{		my_process_insert()				;}
 		, process_update		:	function()				{		my_process_update()				;}
 

@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS BatchOuts
 , parent_id			BIGINT				DEFAULT NULL
 , checkout_id		BIGINT				DEFAULT NULL
 , thread_id			BIGINT				DEFAULT NULL
+, supplier_id		BIGINT				DEFAULT NULL
 , batchin_id		BIGINT				DEFAULT NULL
 , req_line_id		BIGINT				DEFAULT NULL
 , tdyer_thread_id	BIGINT				DEFAULT NULL
@@ -25,6 +26,8 @@ CREATE TABLE IF NOT EXISTS BatchOuts
 , PRIMARY KEY(id)
 , KEY checkout	(checkout_id)
 , KEY thread	(thread_id	)
+, KEY batchin	(batchin_id	)
+, KEY req_line	(req_line_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
@@ -37,3 +40,8 @@ ALTER TABLE BatchOuts		ADD COLUMN order_thread_id	BIGINT		DEFAULT NULL	AFTER tdy
 ALTER TABLE BatchOuts		CHANGE	status			status			VARCHAR(32)		DEFAULT 'Draft';
 
 ALTER TABLE BatchOuts		ADD COLUMN parent_id		BIGINT		DEFAULT NULL	AFTER status;
+
+ALTER TABLE BatchOuts		ADD INDEX batchin		(batchin_id		);
+ALTER TABLE BatchOuts		ADD INDEX req_line		(req_line_id	);
+
+ALTER TABLE BatchOuts		ADD COLUMN supplier_id		BIGINT		DEFAULT NULL	AFTER thread_id;

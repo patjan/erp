@@ -32,13 +32,14 @@ JKY.start_program = function() {
 JKY.set_all_events = function() {
 	$('#jky-action-clear'		).click	(function()	{JKY.process_clear_screen	();});
 	$('#jky-form-data input[id]').each	(function() {$(this).keyup(function(event)	{JKY.process_keyup_input(this, event);});});
+
+	JKY.set_side_active('jky-pieces-weigher');
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-pieces-weigher');
 //	JKY.set_html('jky-app-select', JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));
 //	JKY.set_html('jky-app-select-label', JKY.t('Group'));
 //	JKY.show('jky-app-select-line');

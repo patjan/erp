@@ -32,13 +32,14 @@ JKY.start_program = function() {
 JKY.set_all_events = function() {
 	$('#jky-action-clear'		).click	(function()	{JKY.process_clear_screen	();});
 	$('#jky-form-data input[id]').each	(function() {$(this).keyup(function(event)	{JKY.process_keyup_input(this, event);});});
+
+	JKY.set_side_active('jky-pieces-reviser');
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-pieces-reviser');
 //	JKY.set_html('jky-app-select', JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));
 //	JKY.set_html('jky-app-select-label', JKY.t('Group'));
 //	JKY.show('jky-app-select-line');
@@ -178,7 +179,7 @@ JKY.process_remark = function() {
 	if (my_remark == '') {
 		return;
 	}
-	
+
 	JKY.set_value('jky-remarks', JKY.get_value('jky-remark') + "\n" + JKY.get_value('jky-remarks'));
 	JKY.set_value('jky-remark', '');
 }
@@ -193,7 +194,7 @@ JKY.process_form_action = function() {
 		JKY.process_save_screen();
 	}
 }
-		
+
 JKY.process_save_screen = function() {
 	var my_barcode			= JKY.get_value('jky-barcode'			);
 	var my_revised_name		= JKY.get_value('jky-revised-name'		);

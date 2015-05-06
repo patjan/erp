@@ -44,6 +44,8 @@ JKY.set_all_events = function() {
 	$('#jky-partner-name'	).change(function() {JKY.clear_produced_by("partner"	);});
 	$('#jky-supplier-name'	).change(function() {JKY.clear_produced_by("supplier"	);});
 	$('#jky-dyer-name'		).change(function() {JKY.clear_produced_by("dyer"		);});
+
+	JKY.set_side_active('jky-threads-checkouts');
 }
 
 /**
@@ -57,7 +59,6 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-thread'	, '../JKY.Search.Thread.html'	);
 	JKY.append_file('jky-load-batchin'	, '../JKY.Search.BatchIn.html'	);
 
-	JKY.set_side_active('jky-threads-checkouts');
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.checkout.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');

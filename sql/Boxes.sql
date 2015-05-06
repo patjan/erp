@@ -29,6 +29,10 @@ CREATE TABLE IF NOT EXISTS Boxes
 , PRIMARY KEY(id)
 , KEY barcode	(barcode)
 , KEY batch		(batch_id)
+, KEY parent	(parent_id)
+, KEY checkin	(checkin_by)
+, KEY checkout	(checkout_by)
+, KEY returned	(returned_by)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next Box Number', value='1000000001', created_by=1, created_at=NOW();
@@ -69,3 +73,8 @@ location 	checkin_at 				total_boxes 	total_weight
 3C34 		2013-08-08 10:36:20 	10 				300.50
 
 UPDATE	Boxes	SET	checkin_location = UPPER(checkin_location);
+
+ALTER TABLE Boxes		ADD INDEX parent		(parent_id		);
+ALTER TABLE Boxes		ADD INDEX checkin		(checkin_by		);
+ALTER TABLE Boxes		ADD INDEX checkout		(checkout_by	);
+ALTER TABLE Boxes		ADD INDEX returned		(returned_by	);

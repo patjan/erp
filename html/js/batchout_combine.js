@@ -66,6 +66,7 @@ JKY.process_combine = function() {
 		var my_requested_boxes	= 0;
 		var my_checkout_weight	= 0;
 		var my_checkout_boxes	= 0;
+
 		$('#jky-combine-body .jky-td-checkbox input:checked').each(function() {
 			var my_id = $(this).parent().parent().data('id');
 			my_row = JKY.get_row(my_table_name, my_id);
@@ -113,6 +114,19 @@ JKY.process_combine = function() {
 				JKY.ajax(false, my_data);
 			});
 		});
+
+		$('#jky-combine-body .jky-td-checkbox input:checked').each(function() {
+			var my_id = $(this).parent().parent().data('id');
+			my_row = JKY.get_row(my_table_name, my_id);
+			var my_data =
+				{ method: 'update'
+				, table :  my_table_name
+				, set	:  'status = \'History\''
+				, where :  'id = ' + my_id
+				};
+			JKY.ajax(false, my_data);
+		});
+
 		setTimeout(function() {
 			JKY.App.display_list();
 		}, 1000);

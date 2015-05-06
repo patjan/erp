@@ -40,6 +40,11 @@ JKY.set_all_events = function() {
 
 	$('#jky-cylinder-add-new'	).click (function() {JKY.insert_cylinder	();});
 	$('#jky-action-save-remarks').click (function()	{JKY.save_remarks		();});
+
+	JKY.set_side_active('jky-planning-machines');
+	JKY.set_side_active('jky-threads-machines');
+	JKY.set_side_active('jky-production-machines');
+	JKY.set_side_active('jky-dyers-machines');
 };
 
 /**
@@ -47,10 +52,6 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-cylinder', '../JKY.Search.Cylinder.html');
-	JKY.set_side_active('jky-planning-machines');
-	JKY.set_side_active('jky-threads-machines');
-	JKY.set_side_active('jky-production-machines');
-	JKY.set_side_active('jky-dyers-machines');
 	JKY.set_html('jky-machine-family'	, JKY.set_configs('Machine Families', '', ''));
 	JKY.set_html('jky-machine-brand'	, JKY.set_configs('Machine Brands', JKY.App.get('select'), ''));
 	JKY.set_html('jky-app-select'		, JKY.set_configs('Machine Brands', JKY.App.get('select'), 'All'));

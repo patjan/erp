@@ -42,6 +42,8 @@ JKY.set_all_events = function() {
 
 	$('#jky-boxes-print'		).click (function() {JKY.Batch.print		()});
 	$('#jky-action-save-remarks').click (function()	{JKY.save_remarks		();});
+
+	JKY.set_side_active('jky-receiving-receive-nfes');
 };
 
 /**
@@ -54,7 +56,6 @@ JKY.set_initial_values = function() {
 	JKY.hide('jky-action-add-new');
 	JKY.show('jky-action-graph'  );
 
-	JKY.set_side_active('jky-receiving-receive-nfes');
 	JKY.set_html('jky-app-select', JKY.set_controls('NFE Folders', ''));
 	JKY.set_html('jky-app-select-label', JKY.t('Folder'));
 	JKY.show	('jky-app-select-line');

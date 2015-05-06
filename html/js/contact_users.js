@@ -137,8 +137,8 @@ JKY.delete_user_success = function(response) {
 //	JKY.display_message(response.message);
 }
 
-JKY.reset_user = function() {
-	JKY.display_trace('JKY.reset_user');
+JKY.reset_password = function() {
+	JKY.display_trace('JKY.reset_password');
 	var my_first_name= JKY.get_value('jky-first-name');
 	var my_last_name = JKY.get_value('jky-last-name');
 	var my_user_name = JKY.get_value('jky-user-name');
@@ -169,12 +169,13 @@ JKY.reset_user = function() {
 		, set	: my_set
 		, where : my_where
 		};
-	JKY.ajax(false, my_data, JKY.reset_user_success);
+	JKY.ajax(false, my_data, function(the_response) {
+		JKY.display_message(the_response.message);
+	});
 }
 
 JKY.reset_user_success = function(response) {
 	JKY.display_trace('reset_user_success');
-	JKY.display_message(response.message);
 }
 
 JKY.save_address = function() {

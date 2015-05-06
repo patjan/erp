@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS ShipDyers
 , PRIMARY KEY(id)
 , UNIQUE(shipdyer_number)
 , KEY dyer		(dyer_id)
+, KEY transport	(transport_id)
 , KEY invoice	(invoice_number)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
@@ -33,3 +34,5 @@ INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, 
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='ShipDyers', updated_by=1, updated_at=NOW();
 
 ALTER TABLE ShipDyers		ADD COLUMN sds_printed		INT				DEFAULT 0		AFTER batch_code;
+
+ALTER TABLE ShipDyers	ADD INDEX transport		(transport_id	);

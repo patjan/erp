@@ -30,13 +30,14 @@ JKY.start_program = function() {
  */
 JKY.set_all_events = function() {
 	$('#jky-action-save-remarks').click (function()	{JKY.save_remarks();});
+
+	JKY.set_side_active('jky-support-controls');
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-support-controls');
 	JKY.set_html('jky-app-select', JKY.set_controls('Root', JKY.App.get('select')));
 	JKY.set_html('jky-status', JKY.set_controls('Status Codes', 'Active'));
 	JKY.set_html('jky-app-select-label', JKY.t('Group Set'));

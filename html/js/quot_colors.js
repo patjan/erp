@@ -379,16 +379,7 @@ JKY.print_colors = function(the_id, the_product) {
 	if (my_line_units == 0)		my_line_peso = 1;
 
 	JKY.colors = JKY.color_ids(the_id);
-	var my_html  = ''
-		+ '<tr class="jky-print-head">'
-		+ '<td>' + '<span>Color		</span>' + '</td>'
-		+ '<td class="jky-print-amount">' + '<span>Quant		</span>' + '</td>'
-		+ '<td class="jky-print-amount">' + '<span>Est Weight	</span>' + '</td>'
-		+ '<td class="jky-print-amount">' + '<span>Price/Kg		</span>' + '</td>'
-		+ '<td class="jky-print-amount">' + '<span>Discount		</span>' + '</td>'
-		+ '<td class="jky-print-amount">' + '<span>Price/Kg		</span>' + '</td>'
-		+ '</tr>'
-		;
+	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'
 		, table		: 'QuotColors'
@@ -406,14 +397,45 @@ JKY.print_colors = function(the_id, the_product) {
 		, success	: function(response) {
 				if (response.status == 'ok') {
 					var my_rows = response.rows;
+
+					var my_has_discount = false;
+					var my_col_span = '2';
+					for(var i in my_rows) {
+						var my_row = my_rows[i];
+						if (!JKY.is_empty(my_line_discount)
+						||  !JKY.is_empty(my_row.discount)) {
+							my_has_discount = true;
+							my_col_span = '1';
+							break;
+						}
+					}
+
+					my_html += ''
+						+ '<tr class="jky-print-head">'
+						+ '<td>' + '<span>Color		</span>' + '</td>'
+						+ '<td class="jky-print-amount">' + '<span>Quant		</span>' + '</td>'
+						+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + '<span>Est Weight	</span>' + '</td>'
+						+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + '<span>Price/Kg		</span>' + '</td>'
+						;
+					if (my_has_discount) {
+						my_html += ''
+							+ '<td class="jky-print-amount">' + '<span>Discount		</span>' + '</td>'
+							+ '<td class="jky-print-amount">' + '<span>Price/Kg		</span>' + '</td>'
+							;
+					}
+					my_html += '</tr>';
+
 					for(var i in my_rows) {
 						var my_row = my_rows[i];
 
-						var my_color_units  = Math.ceil(my_row.quoted_units / my_line_units);
+						var my_color_units  = '';
+						if (my_line_units != 0) {
+							my_color_units  = Math.ceil(my_row.quoted_units / my_line_units) + ' pc';
+						}
 						var my_color_weight = Math.ceil(my_row.quoted_units * my_line_peso );
 
 						var my_discount_price	= '';
-						var my_final_price	= '';
+						var my_final_price		= '';
 						var my_color_price		= my_row.quoted_price;
 						var my_color_discount	= my_row.discount;
 
@@ -440,16 +462,23 @@ JKY.print_colors = function(the_id, the_product) {
 							my_discount_price	= (-my_discount_price).toFixed(2);
 						}
 
-						my_html  += ''
+						if (!JKY.is_empty(my_color_price))	my_color_price = 'R$ ' + my_color_price;
+						my_html += ''
 							+ '<tr>'
 							+ '<td>' + my_row.color_name	+ '</td>'
-							+ '<td class="jky-print-amount">' + my_color_units		+ '</td>'
-							+ '<td class="jky-print-amount">' + my_color_weight		+ '</td>'
-							+ '<td class="jky-print-amount">' + my_color_price		+ '</td>'
-							+ '<td class="jky-print-amount">' + my_discount_price	+ '</td>'
-							+ '<td class="jky-print-amount">' + my_final_price		+ '</td>'
-							+ '</tr>'
+							+ '<td class="jky-print-amount">' + my_color_units + '</td>'
+							+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + my_color_weight + ' kg</td>'
+							+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + my_color_price  + '</td>'
 							;
+						if (my_has_discount) {
+							if (!JKY.is_empty(my_discount_price	))	my_discount_price = 'R$ ' + my_discount_price;
+							if (!JKY.is_empty(my_final_price	))	my_final_price	  = 'R$ ' + my_final_price   ;
+							my_html += ''
+								+ '<td class="jky-print-amount">' + my_discount_price	+ '</td>'
+								+ '<td class="jky-print-amount">' + my_final_price		+ '</td>'
+								;
+						}
+						my_html += '</tr>';
 					}
 				}else{
 					JKY.display_message(response.message);

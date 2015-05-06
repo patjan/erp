@@ -1,14 +1,12 @@
 /**
  * delay time for Keyup Delay time
  */
-$.fn.KeyUpDelay = function( cb, delay ){
-	if (delay == null){
-		delay = 500;
-	};
+$.fn.KeyUpDelay = function(cb, delay) {
+	if (delay == null)	delay = 500;
 	var timer = 0;
-	return $(this).on('keyup', function(){
+	return $(this).on('keyup', function() {
 		clearTimeout(timer);
-		timer = setTimeout( cb , delay );
+		timer = setTimeout(cb, delay);
 	});
 };
 
@@ -17,18 +15,18 @@ $.fn.KeyUpDelay = function( cb, delay ){
  *
  * $('#yourTextBoxName').ForceIntegerOnly();
  */
-$.fn.ForceIntegerOnly = function(){
-	return this.each(function(){
-		$(this).keydown(function(e){
-			var key = e.charCode || e.keyCode || 0;
-			// allow backspace, tab, delete, arrows, numbers and keypad numbers ONLY
+$.fn.ForceIntegerOnly = function() {
+	return this.each(function() {
+		$(this).keydown(function(e) {
+			// allow: backspace, tab, delete, arrows, numbers and keypad numbers ONLY
 			// home, end and numpad decimal
-			return (
-				 key == 8 || key == 9 || key == 46 ||
-				(key >= 35 && key <= 40) ||
-				(key >= 48 && key <= 57) ||
-				(key >= 96 && key <= 105)
-			);
+			return (e.keyCode == 8
+				||	e.keyCode == 9
+				||	e.keyCode == 46
+				|| (e.keyCode >= 35 && e.keyCode <=  40)
+				|| (e.keyCode >= 48 && e.keyCode <=  57 && !e.shiftKey)
+				|| (e.keyCode >= 96 && e.keyCode <= 105 && !e.shiftKey)
+				);
 		});
 	});
 };
@@ -39,24 +37,94 @@ $.fn.ForceIntegerOnly = function(){
  *
  * $('#yourTextBoxName').ForceNumericOnly();
  */
-$.fn.ForceNumericOnly = function(){
-	return this.each(function(){
-		$(this).keydown(function(e){
-			var key = e.charCode || e.keyCode || 0;
+$.fn.ForceNumericOnly = function() {
+	return this.each(function() {
+		$(this).keydown(function(e) {
 			// allow: backspace, tab, delete, arrows, numbers and keypad numbers ONLY
 			// home, end, comma, period and numpad decimal
-			return (
-				 key == 8 || key == 9 || key == 46 || key == 110 || key == 188 || key == 190 ||
-				(key >= 35 && key <= 40) ||
-				(key >= 48 && key <= 57) ||
-				(key >= 96 && key <= 105)
-			);
+			return (e.keyCode == 8
+				||	e.keyCode == 9
+				||	e.keyCode == 46
+				||	e.keyCode == 110
+				||	e.keyCode == 188
+				||	e.keyCode == 190
+				|| (e.keyCode >= 35 && e.keyCode <=  40)
+				|| (e.keyCode >= 48 && e.keyCode <=  57 && !e.shiftKey)
+				|| (e.keyCode >= 96 && e.keyCode <= 105 && !e.shiftKey)
+				);
 		});
 		$(this).keyup(function(e) {
 			var key = e.charCode || e.keyCode || 0;
 			if (key == 188) {
 				$(this).val($(this).val().replace(/,/g, "."));
 			}
+		});
+	});
+};
+
+/**
+ * numeric only and Hyphen
+ *
+ * $('#yourTextBoxName').ForceNumericHyphen();
+ */
+$.fn.ForceNumericHyphen = function() {
+	return this.each(function() {
+		$(this).keydown(function(e) {
+			var key = e.charCode || e.keyCode || 0;
+			// allow: backspace, tab, delete, arrows, numbers and keypad numbers ONLY
+			// home, end, numpad decimal and Hyphen
+			return (e.keyCode == 8
+				||	e.keyCode == 9
+				||	e.keyCode == 46
+				||	e.keyCode == 109
+				||	e.keyCode == 173
+				|| (e.keyCode >= 35 && e.keyCode <=  40)
+				|| (e.keyCode >= 48 && e.keyCode <=  57 && !e.shiftKey)
+				|| (e.keyCode >= 96 && e.keyCode <= 105 && !e.shiftKey)
+				);
+		});
+	});
+};
+
+/**
+ * numeric and alpha
+ *
+ * $('#yourTextBoxName').ForceNumericAlpha();
+ */
+$.fn.ForceNumericAlpha = function() {
+	return this.each(function() {
+		$(this).keydown(function(e) {
+			// allow backspace, tab, delete,	 numbers, keypad numbers
+			// alphabetic a-z
+			return (e.keyCode ==  8
+				||	e.keyCode ==  9
+				||	e.keyCode == 46
+				|| (e.keyCode >= 48 && e.keyCode <=  57 && !e.shiftKey)
+				|| (e.keyCode >= 65 && e.keyCode <=  90)
+				|| (e.keyCode >= 96 && e.keyCode <= 105 && !e.shiftKey)
+					);
+		});
+	});
+};
+
+/**
+ * alpha, numeric, space
+ *
+ * $('#yourTextBoxName').ForceName();
+ */
+$.fn.ForceName = function() {
+	return this.each(function() {
+		$(this).keydown(function(e) {
+			// allow backspace, tab, delete, numbers, keypad numbers
+			// alphabetic a-z
+			return (e.keyCode ==  8
+				||	e.keyCode ==  9
+				||	e.keyCode == 32
+				||	e.keyCode == 46
+				|| (e.keyCode >= 48 && e.keyCode <=  57 && !e.shiftKey)
+				|| (e.keyCode >= 65 && e.keyCode <=  90)
+				|| (e.keyCode >= 96 && e.keyCode <= 105 && !e.shiftKey)
+					);
 		});
 	});
 };

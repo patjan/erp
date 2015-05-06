@@ -32,6 +32,10 @@ JKY.set_all_events = function() {
 //	$('#jky-tab-lines'		).click (function() {JKY.display_lines	();});
 //	$('#jky-line-add-new'	).click (function() {JKY.insert_line	();});
 //	$('#jky-thread-filter'	).KeyUpDelay(JKY.Thread.load_data);
+
+	JKY.set_side_active('jky-planning-pieces');
+	JKY.set_side_active('jky-production-pieces');
+	JKY.set_side_active('jky-dyers-pieces');
 };
 
 /**
@@ -41,9 +45,6 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-product'	, '../JKY.Search.Product.html'	);
 	JKY.append_file('jky-load-order'	, '../JKY.Search.Order.html'	);
 
-	JKY.set_side_active('jky-planning-pieces');
-	JKY.set_side_active('jky-production-pieces');
-	JKY.set_side_active('jky-dyers-pieces');
 	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Check In', 'Check Out', 'Return'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
 	JKY.show('jky-app-select-line');

@@ -60,7 +60,8 @@ JKY.generate_batch = function(the_row) {
 		+ ' ' + my_share
 		;
 	var my_batchin = ''
-		+ "<input class='jky-batchin-id' type='hidden' value=" + the_row.batchin_id + " />"
+		+ "<input class='jky-supplier-id' type='hidden' value=" + the_row.supplier_id + " />"
+		+ "<input class='jky-batchin-id'  type='hidden' value=" + the_row.batchin_id  + " />"
 		+ "<input class='jky-batchin-code' disabled onchange='JKY.update_batch(this, " + my_id + ")' value='" + JKY.fix_null(the_row.batch_code) + "' />"
 		+ ' ' + my_th
 		;
@@ -85,6 +86,7 @@ JKY.update_batch = function(id_name, the_id ) {
 	JKY.select_batch(the_id);
 	var my_tr = $(id_name).parent().parent();
 	var my_thread_id		= my_tr.find('.jky-thread-id'	).val();
+	var my_supplier_id		= my_tr.find('.jky-supplier-id'	).val();
 	var my_batchin_id		= my_tr.find('.jky-batchin-id'	).val();
 	var my_product_code		= my_tr.find('.jky-product-code').val();
 //	var my_batch			= my_tr.find('.jky-batch-number').val();
@@ -106,6 +108,7 @@ JKY.update_batch = function(id_name, the_id ) {
 
 	var my_set = ''
 		+          'thread_id =  ' + my_thread_id
+		+      ', supplier_id =  ' + my_supplier_id
 		+       ', batchin_id =  ' + my_batchin_id
 		+             ', code =\'' + my_product_code	+ '\''
 //		+            ', batch =\'' + my_batch_code		+ '\''
@@ -145,6 +148,7 @@ JKY.insert_batch_success = function(response) {
 	my_row.code				= '';
 	my_row.batch			= '';
 	my_row.thread_id		= null;
+	my_row.supplier_id		= null;
 	my_row.batchin_id		= null;
 	my_row.average_weight	= 0;
 	my_row.requested_boxes	= 0;

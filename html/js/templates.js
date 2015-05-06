@@ -34,13 +34,14 @@ JKY.set_all_events = function() {
 
 	$('#jky-action-change'		).click (function() {JKY.App.change_status(JKY.row.id);});
 //	$('#jky-updated-date input').attr('data-format', JKY.Session.get_date_time	());
+
+	JKY.set_side_active('jky-support-templates');
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-support-templates');
 	JKY.set_html('jky-template-type'	, JKY.set_controls('Template Types'));
 	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Inactive'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));

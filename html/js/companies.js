@@ -62,13 +62,14 @@ JKY.set_all_events = function() {
 	$('#jky-action-save-address'	).click (function() {JKY.save_address				();});
 	$('#jky-action-save-phones'		).click (function() {JKY.save_phones				();});
 	$('#jky-action-save-remarks'	).click (function() {JKY.save_remarks				();});
+
+	JKY.set_side_active('jky-admin-companies');
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-admin-companies');
 //	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
 	JKY.set_html('jky-parent-company'	, JKY.set_options_array('', JKY.get_companies('parent_id IS NULL AND is_customer'), true));
 	JKY.set_html('jky-contact-tag'		, JKY.set_configs ('Customer Tags'	, '', ''));

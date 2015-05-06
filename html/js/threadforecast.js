@@ -16,7 +16,7 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: ''
 		, filter		: ''
-		, sort_by		: 'thread_group ASC, thread_name'
+		, sort_by		: 'thread_sequence, thread_group ASC, thread_name'
 		, sort_seq		: 'ASC'
 		, sort_list		: [[1, 0],[2, 0]]
 		, focus			: 'jky-thread-name'
@@ -33,13 +33,14 @@ JKY.set_all_events = function() {
 	$('#jky-reference-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 
 	$('#jky-action-refresh'	).click (function() {JKY.process_refresh();});
+
+	JKY.set_side_active('jky-threads-forecast');
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-threads-forecast');
 //	JKY.set_html('jky-compositions'		, JKY.set_configs('Thread Compositions', '', ''));
 //	JKY.set_html('jky-thread-groups'	, JKY.set_configs('Thread Groups', '', ''));
 	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));

@@ -42,14 +42,16 @@ JKY.FTP = function() {
 	}
 
 	function my_load_data() {
+		var my_parent_id = JKY.get_value_by_id('Products', 'parent_id', my_product_id);
+		var my_where = 'AND FTPs.product_id = ' + my_product_id;
+		if (my_parent_id) {
+			my_where += ' OR FTPs.product_id = ' + my_parent_id;
+		}
 		var my_data =
 			{ method		: 'get_index'
 			, table			: 'FTPs'
-			, specific		: 'product'
-			, specific_id	:  my_product_id
+			, where			:  my_where
 			, select		: 'All'
-			, filter		:  JKY.get_value(my_filter)
-			, display		: '10'
 			, order_by		:  my_order_by
 			};
 		JKY.ajax(false, my_data, my_load_data_success);

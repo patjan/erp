@@ -83,6 +83,8 @@ JKY.set_all_events = function() {
 //	$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});
 //	$('#jky-search-filter'		).KeyUpDelay(JKY.filter_product);
 //	$('#jky-thread-filter'		).KeyUpDelay(JKY.Thread.load_data);
+
+	JKY.set_side_active('jky-production-ftps');
 }
 
 /**
@@ -92,7 +94,6 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-product'	, '../JKY.Search.Product.html'	);
 	JKY.append_file('jky-load-thread'	, '../JKY.Search.Thread	.html'	);
 
-	JKY.set_side_active('jky-production-ftps');
 	JKY.set_html('jky-machine-name', JKY.set_table_options('Machines', 'name', '', ''));
 	JKY.set_html('jky-collection', JKY.set_configs('Collections', '', ''));
 	JKY.set_html('jky-app-select', JKY.set_configs('Collections', JKY.App.get('select'), 'All'));

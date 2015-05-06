@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS Batches
 , PRIMARY KEY(id)
 , KEY incoming	(incoming_id)
 , KEY thread	(thread_id	)
+, KEY purchase	(purchase_line_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
@@ -43,3 +44,4 @@ UPDATE	Batches			SET received_weight = checkin_weight;
 UPDATE	Batches			SET checkin_boxes	= 0;
 UPDATE	Batches			SET checkin_weight	= 0;
 
+ALTER TABLE Batches		ADD INDEX purchase		(purchase_line_id);

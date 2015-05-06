@@ -65,7 +65,7 @@ JKY.set_initial_values = function(jky_program) {
 	if (JKY.is_loaded('jky-body')) {
 		JKY.set_menu_active('jky-menu-admin');
 		JKY.set_side_active('jky-admin-users');
-		JKY.set_html('jky-user-role'		, JKY.set_group_set('Controls', '', 'User Roles'		));
+		JKY.set_html('jky-user-role'		, JKY.set_group_set('Controls', '', 'User Roles'));
 		JKY.set_html('jky-state'			, JKY.set_group_set('Configs' , '', 'States'	));
 		JKY.set_html('jky-country'			, JKY.set_group_set('Configs' , '', 'Countries'	));
 		JKY.set_html('jky-app-breadcrumb', JKY.t(jky_program));

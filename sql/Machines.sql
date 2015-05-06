@@ -23,9 +23,12 @@ CREATE TABLE IF NOT EXISTS Machines
 
 , PRIMARY KEY(id)
 , UNIQUE(name)
+, KEY machine_brand	(machine_brand)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
 ALTER TABLE Machines	ADD		lane_type			VARCHAR(32) 	DEFAULT NULL	AFTER lanes;
 
 ALTER TABLE Machines	ADD		remarks				TEXT		 	DEFAULT NULL	AFTER return_date;
+
+ALTER TABLE Machines	ADD INDEX machine_brand	(machine_brand	);

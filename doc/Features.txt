@@ -89,7 +89,7 @@ Features (2013-12-17)
 		- Return
 		- Check Out
 	- Help
-		- Tckets
+		- Tickets
 	- Admin
 		- Configs
 		- Contacts

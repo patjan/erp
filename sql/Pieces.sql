@@ -37,6 +37,8 @@ CREATE TABLE IF NOT EXISTS Pieces
 , PRIMARY KEY(id)
 , KEY barcode	(barcode)
 , KEY order_id	(order_id)
+, KEY revised	(revised_by)
+, KEY weighed	(weighed_by)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 INSERT Controls SET group_set='User Resources'		, status='Active', sequence=  50, name='Pieces', created_by=1, created_at=NOW();
@@ -61,3 +63,6 @@ ALTER TABLE Pieces			CHANGE	inspected_by	revised_by		BIGINT			DEFAULT NULL;
 ALTER TABLE Pieces			CHANGE	weighted_by		weighed_by 		BIGINT			DEFAULT NULL;
 
 ALTER TABLE Pieces			CHANGE	loadsale_id		load_quot_id	BIGINT			DEFAULT NULL;
+
+ALTER TABLE Pieces		ADD INDEX revised		(revised_by		);
+ALTER TABLE Pieces		ADD INDEX weighed		(weighed_by		);

@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS FTPs
 , PRIMARY KEY(id)
 , UNIQUE(ftp_number)
 , KEY product(product_id)
+, KEY machine(machine_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
@@ -49,3 +50,6 @@ ALTER TABLE FTPs		CHANGE	number		ftp_number	VARCHAR(32)		DEFAULT NULL;
 
 ALTER TABLE FTPs		ADD		units					INT(11)			DEFAULT 1		AFTER width;
 UPDATE		FTPs		SET		units = 1;
+
+ALTER TABLE FTPs		ADD INDEX machine		(machine_id		);
+

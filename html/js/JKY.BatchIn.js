@@ -78,6 +78,7 @@ JKY.BatchIn = function() {
 //						+  '<td class="jky-search-weight"		>' + my_row.returned_weight	+ '</td>'
 //						+  '<td class="jky-search-weight"		>' + my_row.checkout_weight	+ '</td>'
 						+  '<td class="jky-search-location"		>' + my_row.checkin_location+ '</td>'
+						+  '<td class="jky-search-supplier-id"	>' + my_row.supplier_id		+ '</td>'
 						+  '<td class="jky-search-supplier-name">' + my_row.supplier_name	+ '</td>'
 						+  '</tr>'
 						;
@@ -88,7 +89,8 @@ JKY.BatchIn = function() {
 	}
 
 	function my_click_row(the_index, the_id) {
-		var my_batch = $(the_index).find('.jky-search-batch').html();
+		var my_supplier_id	= $(the_index).find('.jky-search-supplier-id'	).html();
+		var my_batch		= $(the_index).find('.jky-search-batch'			).html();
 		var my_parent = $(my_the_id).parent();
 
 		var my_dom_id = $('#jky-batchin-id');
@@ -96,6 +98,15 @@ JKY.BatchIn = function() {
 			my_dom_id = $(my_parent).find('.jky-batchin-id');
 		}
 		my_dom_id.val(the_id );
+
+//		var my_dom_supplier_id = $('#jky-supplier-id');
+//		if (my_dom_supplier_id.length == 0) {
+//			my_dom_supplier_id = $(my_parent).find('.jky-supplier-id');
+//		}
+		var	my_dom_supplier_id = $(my_parent).find('.jky-supplier-id');
+		if (my_dom_supplier_id.length != 0) {
+			my_dom_supplier_id.val(my_supplier_id);
+		}
 
 		var my_dom_number = $('#jky-batchin-code');
 		if (my_dom_number.length == 0) {

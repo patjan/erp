@@ -40,8 +40,8 @@ set_include_path( implode( PATH_SEPARATOR, array( realpath( APPLICATION_PATH . L
 $program_name = $_SERVER['PHP_SELF'];
 require_once 'Zend/Db.php';
 
-log_message('');
-log_message('start of program');
+log_bat('');
+log_bat('start of program');
 
 try{
 	$my_params = array('host'=>DB_HOST, 'username'=>DB_USER, 'password'=>DB_PASS, 'dbname'=>DB_NAME);
@@ -49,7 +49,7 @@ try{
 	$my_local_db->getConnection();
 
 	$my_sql = 'SELECT * FROM Contacts';
-	log_message($my_sql);
+	log_bat($my_sql);
 	$my_rows	= $my_local_db->fetchAll($my_sql);
 	$my_count	= count($my_rows);
 
@@ -73,13 +73,13 @@ try{
 				. ',       position ="' . $my_position   . '"'
 				. ' WHERE id = ' . $my_row['id']
 				;
-			log_message($my_sql);
+			log_bat($my_sql);
 			$my_result = $my_local_db->query($my_sql);
 		}
 	}
 
 	$my_sql = 'SELECT * FROM Colors';
-	log_message($my_sql);
+	log_bat($my_sql);
 	$my_rows	= $my_local_db->fetchAll($my_sql);
 	$my_count	= count($my_rows);
 
@@ -91,13 +91,13 @@ try{
 				. '   SET color_name ="' . $my_color_name . '"'
 				. ' WHERE id = ' . $my_row['id']
 				;
-			log_message($my_sql);
+			log_bat($my_sql);
 			$my_result = $my_local_db->query($my_sql);
 		}
 	}
 
 	$my_sql = 'SELECT * FROM Machines';
-	log_message($my_sql);
+	log_bat($my_sql);
 	$my_rows	= $my_local_db->fetchAll($my_sql);
 	$my_count	= count($my_rows);
 
@@ -109,13 +109,13 @@ try{
 				. '   SET name ="' . $my_machine_name . '"'
 				. ' WHERE id = ' . $my_row['id']
 				;
-			log_message($my_sql);
+			log_bat($my_sql);
 			$my_result = $my_local_db->query($my_sql);
 		}
 	}
 
 	$my_sql = 'SELECT * FROM Products';
-	log_message($my_sql);
+	log_bat($my_sql);
 	$my_rows	= $my_local_db->fetchAll($my_sql);
 	$my_count	= count($my_rows);
 
@@ -127,13 +127,13 @@ try{
 				. '   SET product_name ="' . $my_product_name . '"'
 				. ' WHERE id = ' . $my_row['id']
 				;
-			log_message($my_sql);
+			log_bat($my_sql);
 			$my_result = $my_local_db->query($my_sql);
 		}
 	}
 /*
 	$my_sql = 'SELECT * FROM Threads';
-	log_message($my_sql);
+	log_bat($my_sql);
 	$my_rows	= $my_local_db->fetchAll($my_sql);
 	$my_count	= count($my_rows);
 
@@ -145,13 +145,13 @@ try{
 				. '   SET thread_name ="' . $my_thread_name . '"'
 				. ' WHERE id = ' . $my_row['id']
 				;
-			log_message($my_sql);
+			log_bat($my_sql);
 			$my_result = $my_local_db->query($my_sql);
 		}
 	}
 */
 	$my_sql = 'SELECT * FROM Templates';
-	log_message($my_sql);
+	log_bat($my_sql);
 	$my_rows	= $my_local_db->fetchAll($my_sql);
 	$my_count	= count($my_rows);
 
@@ -166,66 +166,19 @@ try{
 				. '     , template_subject ="' . $my_template_subject . '"'
 				. ' WHERE id = ' . $my_row['id']
 				;
-			log_message($my_sql);
+			log_bat($my_sql);
 			$my_result = $my_local_db->query($my_sql);
 		}
 	}
 
 }catch(Exception $exp){
-	log_message('error, Local Server not connected: ' . $exp->getMessage());
+	log_bat('error, Local Server not connected: ' . $exp->getMessage());
 }
 
-log_message('end of program');
+log_bat('end of program');
 return;
 
 // -----------------------------------------------------------------------------
-
-# ------------------------------------------------------------------------------
-#    set system key
-# ------------------------------------------------------------------------------
-function set_system_key($the_local_db, $the_value) {
-     $sql = 'UPDATE Controls'
-          . '   SET value = "' . $the_value . ' ' . get_now() . '"'
-//        . ' WHERE company_id   =  ' . get_session('control_company', COMPANY_ID)
-          . ' WHERE group_set = "System Keys"'
-          . '   AND name = "' . PROGRAM_NAME . '"'
-          ;
-     $the_local_db->query($sql);
-}
-
-# ------------------------------------------------------------------------------
-#    get system key
-# ------------------------------------------------------------------------------
-function get_system_key($the_local_db) {
-     $sql = 'SELECT value'
-          . '  FROM Controls'
-//        . ' WHERE company_id   =  ' . get_session('control_company', COMPANY_ID)
-          . ' WHERE group_set = "System Keys"'
-          . '   AND name = "' . PROGRAM_NAME . '"'
-          ;
-     return $the_local_db->fetchOne($sql);
-}
-
-function log_message($message) {
-	$logName = SERVER_BASE . '/logbat/' . date('Y-m-d') . '.txt';
-	$logFile = fopen($logName, 'a' ) or die('cannot open log ' . $logName);
-	fwrite( $logFile, get_now() . ' ' . $message . NL );
-	fclose( $logFile );
-	print(get_now() . ' ' . $message . NL);
-}
-
-function OnlyString( $String ) {
-	$myString = '';
-	for($I=0; $I<strlen($String); $I++) {
-		$C = $String[$I];
-		if ($C == ' '
-		|| ($C >= '0' && $C <= '9')
-		|| ($C >= 'a' && $C <= 'z')
-		|| ($C >= 'A' && $C <= 'Z'))
-			$myString .= $C;
-	}
-	return $myString;
-}
 
 function title_case($the_words) {
 	if ($the_words == '')		return '';
@@ -240,5 +193,3 @@ function title_case($the_words) {
 	}
 	return join(' ', $my_array);
 }
-
-?>

@@ -40,11 +40,11 @@ describe("JKY.Utils.js", function() {
 		it("' @'  should be drop out"				, function() {expect(JKY.fix_date('01-12-2014 @12:35'	)).toEqual('01-12-2014 12:35');});
 	});
 
-	describe("test JKY.fix_name", function() {
-		it("no name should return empty"			, function() {expect(JKY.fix_name('tr ', null, null		)).toEqual('&nbsp;'	);});
-		it("no first should return empty"			, function() {expect(JKY.fix_name('tr ', null, 'last'	)).toEqual('&nbsp;'	);});
-		it("no last should return empty"			, function() {expect(JKY.fix_name('tr ', 'first', null	)).toEqual('&nbsp;'	);});
-		it("first last should return with trailer"	, function() {expect(JKY.fix_name('tr ', 'first', 'last')).toEqual('tr last, first');});
+	describe("test JKY.fix_full_name", function() {
+		it("no name should return empty"			, function() {expect(JKY.fix_full_name('tr ', null, null		)).toEqual('&nbsp;'	);});
+		it("no first should return empty"			, function() {expect(JKY.fix_full_name('tr ', null, 'last'	)).toEqual('&nbsp;'	);});
+		it("no last should return empty"			, function() {expect(JKY.fix_full_name('tr ', 'first', null	)).toEqual('&nbsp;'	);});
+		it("first last should return with trailer"	, function() {expect(JKY.fix_full_name('tr ', 'first', 'last')).toEqual('tr last, first');});
 	});
 
 	describe("test JKY.fix_null", function() {

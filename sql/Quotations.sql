@@ -51,6 +51,8 @@ CREATE TABLE IF NOT EXISTS Quotations
 , PRIMARY KEY(id)
 , UNIQUE(quotation_number)
 , KEY customer 	(customer_id)
+, KEY salesman 	(salesman_id)
+, KEY contact 	(contact_id)
 , KEY machine 	(machine_id)
 , KEY dyer		(dyer_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
@@ -106,3 +108,6 @@ ALTER TABLE Quotations		CHANGE	expected_date	produce_to_date		DATE		DEFAULT NULL
 UPDATE		Quotations		SET 	produce_from_date = produce_to_date; 
 UPDATE		Quotations		SET 	produce_to_date = delivered_date;
 UPDATE		Quotations		SET 	delivered_date = NULL;
+
+ALTER TABLE Quotations	ADD INDEX salesman		(salesman_id	);
+ALTER TABLE Quotations	ADD INDEX contact		(contact_id		);

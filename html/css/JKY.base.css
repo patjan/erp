@@ -355,6 +355,7 @@ li .arrow span {
 .jky-sequence			{width: 35px; text-align:center !important;}
 .jky-shipdyer-number	{width: 80px; text-align:center !important;}
 .jky-source-doc			{width: 70px; text-align:center !important;}
+.jky-state				{width: 45px; text-align:center !important;}
 .jky-status				{width: 65px; text-align:center !important;}
 .jky-supplier-name		{width: 80px; text-align:center !important;}
 .jky-tdyer-number		{width: 50px; text-align:center !important;}
@@ -456,6 +457,7 @@ li .arrow span {
 .jky-search-sold-date		{width: 50px; text-align:center !important;}
 .jky-search-sold-pieces		{width: 55px; text-align:right  !important;}
 .jky-search-transport-name	{width:270px; text-align:left   !important;}
+.jky-search-supplier-id		{display:none;}
 .jky-search-supplier-name	{width: 70px; text-align:left   !important;}
 .jky-search-composition-name{width:450px; text-align:left   !important;}
 .jky-search-quoted-date		{width: 80px; text-align:center !important;}
@@ -620,16 +622,18 @@ li .arrow span {
 .jky-td-label				{width:100px; text-align:right  !important; vertical-align:top !important;}
 .jky-td-location			{width: 70px; text-align:center !important; text-transform:uppercase;}
 .jky-td-location	input	{width: 65px; text-align:center !important;}
-.jky-td-name-s				{width: 85px; text-align:center !important;}
-.jky-td-name-s		input	{width: 80px; text-transform:capitalize;}
+.jky-td-name-s				{width: 85px; text-align:left	!important;}
+.jky-td-name-s		input	{width: 80px;}
 .jky-td-name-l				{width:145px; text-align:left   !important;}
-.jky-td-name-l		input	{width:110px; text-transform:capitalize;}
+.jky-td-name-l		input	{width:110px;}
 .jky-td-name-w				{width:335px; text-align:left   !important;}
-.jky-td-name-w		input	{width:300px; text-transform:capitalize;}
+.jky-td-name-w		input	{width:300px;}
 .jky-td-normal				{width:145px; text-align:left   !important;}
 .jky-td-normal		input	{width:140px;}
 .jky-td-number				{width: 80px; text-align:center !important;}
 .jky-td-number		input	{width: 75px;}
+.jky-td-motive				{width:405px; text-align:left   !important;}
+.jky-td-motive		input	{width:400px;}
 .jky-td-phone				{width: 60px; text-align:left	!important;}
 .jky-td-percent				{width: 80px; text-align:right	!important;}
 .jky-td-percent		input	{width: 60px; text-align:right	!important;}
@@ -645,14 +649,16 @@ li .arrow span {
 .jky-td-short				{width:105px; text-align:center !important;}
 .jky-td-short		input	{width:100px; text-align:center !important;}
 .jky-td-status				{width:100px; text-align:center !important;}
+.jky-td-state				{width: 45px; text-align:center !important;}
+.jky-td-state		input	{width: 40px; text-align:center !important;}
 .jky-td-text-s				{width:145px; text-align:left   !important;}
-.jky-td-text-s		input	{width:140px; text-transform:capitalize;}
+.jky-td-text-s		input	{width:140px;}
 .jky-td-text-l				{width:245px; text-align:left   !important;}
-.jky-td-text-l		input	{width:240px; text-transform:capitalize;}
+.jky-td-text-l		input	{width:240px;}
 .jky-td-text-w				{width:305px; text-align:left   !important;}
-.jky-td-text-w		input	{width:300px; text-transform:capitalize;}
+.jky-td-text-w		input	{width:300px;}
 .jky-td-thread				{width:280px; text-align:left   !important;}
-.jky-td-thread		input	{width:245px; text-transform:capitalize; margin-top:2px;}
+.jky-td-thread		input	{width:245px; margin-top:2px;}
 .jky-td-thread		select	{width:270px; margin-top:2px;}
 .jky-td-thumb				{width: 30px; text-align:center !important; padding:0 !important;}
 .jky-td-units				{width: 40px; text-align:right	!important;}
@@ -725,5 +731,7 @@ tbody .jky-config-line		{height:22px;}
 #jky-remarks				{width:300px;}
 
 .jky-issued			{width: 85px;}
-.jky-amount			{width: 80px;}
+.jky-amount			{width: 80px; text-align:right !important;}
 .jky-motive			{width:240px;}
+
+#jky-total-amount	{font-size:130%; font-weight:bold; color:red;}

@@ -3,13 +3,16 @@
  */
 
 JKY.display_ftps = function() {
+	var my_where = 'AND FTPs.product_id = ' + JKY.row.id;
+	if (JKY.row.parent_id) {
+		my_where += ' OR FTPs.product_id = ' + JKY.row.parent_id;
+	}
 	var my_data =
 		{ method		: 'get_index'
 		, table			: 'FTPs'
-		, specific		: 'product'
-		, specific_id	:  JKY.row.id
+		, where			:  my_where
 		, select		: 'All'
-		, order_by		: 'FTPs.id'
+		, order_by		: 'ftp_number'
 		};
 	JKY.ajax(false, my_data, JKY.generate_ftps);
 }

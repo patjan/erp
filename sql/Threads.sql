@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS Threads
 
 , PRIMARY KEY(id)
 , UNIQUE(name)
+, KEY thread_group	(thread_group)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
@@ -364,3 +365,5 @@ composition 	COUNT(*)
 ALTER TABLE Threads		CHANGE	code		ncm		VARCHAR(32);
 ALTER TABLE Threads		DROP	thread_color;
 UPDATE Threads	SET ncm = null;
+
+ALTER TABLE Threads		ADD INDEX thread_group	(thread_group	);

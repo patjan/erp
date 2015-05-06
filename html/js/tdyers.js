@@ -46,6 +46,8 @@ JKY.set_all_events = function() {
 //	$('#jky-search-add-new'		).click (function() {JKY.add_new_product	();});
 	$('#jky-action-save-remarks').click (function() {JKY.save_remarks		();});
 //	$('#jky-search-filter'		).KeyUpDelay(JKY.filter_product);
+
+	JKY.set_side_active('jky-planning-tdyers');
 }
 
 /**
@@ -59,7 +61,6 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-batchin'	, '../JKY.Search.BatchIn.html'	);
 	JKY.append_file('jky-load-color'	, '../JKY.Search.Color.html'	);
 
-	JKY.set_side_active('jky-planning-tdyers');
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.planning.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');

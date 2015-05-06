@@ -30,15 +30,16 @@ JKY.start_program = function() {
  */
 JKY.set_all_events = function() {
 	$('#jky-thread-name').change(function()	{if (JKY.row == null)	JKY.title_case(this);});
+
+	JKY.set_side_active('jky-planning-threads');
+	JKY.set_side_active('jky-threads-threads');
+	JKY.set_side_active('jky-production-threads');
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-planning-threads');
-	JKY.set_side_active('jky-threads-threads');
-	JKY.set_side_active('jky-production-threads');
 	JKY.set_html('jky-composition'		, JKY.set_configs('Thread Compositions', '', ''));
 	JKY.set_html('jky-thread-group'		, JKY.set_configs('Thread Groups', '', ''));
 	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));

@@ -17,6 +17,7 @@
 
  */
 require_once 'jky_constant.php';
+define('NL', "\r\n");
 
 class jky_class {
      var  $table    ;
@@ -251,6 +252,175 @@ $this->log_proxy('count_rows: ' . $count_rows);
      echo( $footer );
 }
 
+/*
+ *	run thread forecast - generate Excel file
+ */
+public function run_thread_forecast($table, $cols, $rows) {
+	function GetMes($mes) {
+		if ($mes > 12)		$mes = $mes - 12;
+		$meses = array('Jan', 'Feb', 'Marco', 'Abril', 'Maio', 'Junho', 'Julho', 'Ago', 'Set', 'Out', 'Nov', 'Dez');
+		return $meses[$mes - 1];
+	}
+
+	function Set_Total( $Total_Peso, $Total_Compra_1, $Total_Compra_2, $Total_Compra_3 ) {
+		$total = NL . '   <Row ss:AutoFitHeight="0" ss:Height="15" ss:StyleID="s29">'
+			   . NL . '    <Cell ss:Index="2" ss:StyleID="s25"/>'
+			   . NL . '    <Cell ss:StyleID="s25"/>'
+			   . NL . '    <Cell ss:StyleID="s42"/>'
+			   . NL . '    <Cell ss:StyleID="s47"><Data ss:Type="Number">' . $Total_Peso     . '</Data></Cell>'
+			   . NL . '    <Cell ss:StyleID="s47"><Data ss:Type="Number">' . $Total_Compra_1 . '</Data></Cell>'
+			   . NL . '    <Cell ss:StyleID="s47"><Data ss:Type="Number">' . $Total_Compra_2 . '</Data></Cell>'
+			   . NL . '    <Cell ss:StyleID="s47"><Data ss:Type="Number">' . $Total_Compra_3 . '</Data></Cell>'
+			   . NL . '   </Row>'
+			   . NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s29">'
+			   . NL . '    <Cell ss:Index="2" ss:StyleID="s25"/>'
+			   . NL . '    <Cell ss:StyleID="s25"/>'
+			   . NL . '    <Cell ss:StyleID="s42"/>'
+			   . NL . '    <Cell ss:Index="6" ss:StyleID="s42"/>'
+			   . NL . '    <Cell ss:StyleID="s42"/>'
+			   . NL . '    <Cell ss:StyleID="s30"/>'
+			   . NL . '   </Row>'
+			   ;
+		 return $total;
+	}
+
+	$Mes = date('n');
+
+	$NumberRows = count( $rows );
+$this->log_proxy('NumberRows: ' . $NumberRows);
+
+	$count			= 2;
+	$body			= '';
+	$prevGrupo		= '';
+	$prevFio		= '';
+	$Soma_Peso		= 0;
+	$Total_Peso		= 0;
+	$Total_Compra_1	= 0;
+	$Total_Compra_2	= 0;
+	$Total_Compra_3	= 0;
+
+	foreach($rows as $row) {
+		$Grupo		= $row['thread_group'		];
+		if ($Grupo == '')		continue;
+
+		$Fio		= $row['thread_name'		];
+		$Fornecedor	= $row['supplier_name'		];
+
+		$Peso		= $row['current_balance'	];
+		$Compra_1	= $row['forecast_month_1'	];
+		$Compra_2	= $row['forecast_month_2'	];
+		$Compra_3	= $row['forecast_month_3'	];
+
+		if ($prevGrupo != $Grupo) {
+			if ($prevGrupo != '') {
+				$count += 2;
+				$body  .= Set_Total($Total_Peso, $Total_Compra_1, $Total_Compra_2, $Total_Compra_3);
+			}
+
+			$Total_Peso		= 0;
+			$Total_Compra_1	= 0;
+			$Total_Compra_2	= 0;
+			$Total_Compra_3	= 0;
+
+			$prevGrupo = $Grupo;
+			$count += 3;
+			$body  .= ''
+				. NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25">'
+				. NL . '    <Cell ss:Index="5" ss:StyleID="s25"/>'
+				. NL . '    <Cell ss:StyleID="s25"/>'
+				. NL . '   </Row>'
+				. NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25">'
+				. NL . '    <Cell ss:Index="5" ss:StyleID="s25"/>'
+				. NL . '    <Cell ss:StyleID="s26"/>'
+				. NL . '    <Cell ss:StyleID="s56"><Data ss:Type="String">Fios a chegar</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s28"/>'
+				. NL . '   </Row>'
+				. NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25">'
+				. NL . '    <Cell ss:StyleID="s31"><Data ss:Type="String">Grupo:</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s22"><Data ss:Type="String">' . $Grupo . '</Data></Cell>'
+				. NL . '    <Cell ss:Index="5" ss:StyleID="s25"/>'
+				. NL . '    <Cell ss:StyleID="s44"><Data ss:Type="String">' . GetMes($Mes  ) . '</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s44"><Data ss:Type="String">' . GetMes($Mes+1) . '</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s44"><Data ss:Type="String">' . GetMes($Mes+2) . '</Data></Cell>'
+				. NL . '   </Row>'
+				;
+		}
+
+		$Total_Peso     += $Peso;
+		$Total_Compra_1 += $Compra_1;
+		$Total_Compra_2 += $Compra_2;
+		$Total_Compra_3 += $Compra_3;
+
+		if ($prevFio != $Fio) {
+			$prevFio  = $Fio;
+			$Soma_Peso = 0;
+		}else{
+//			$Fio_Nome = '';
+		}
+
+		if ($Peso != 0 or $Compra_1 != 0 or $Compra_2 != 0 or $Compra_3 != 0) {
+			$Soma_Peso += $Peso;
+			$count += 1;
+			$body  .= ''
+				. NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s29">'
+				. NL . '    <Cell ss:Index="2" ss:StyleID="s35"><Data ss:Type="String">' . $Fio . '</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s35"><Data ss:Type="String">' . $Fornecedor . '</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Peso       . '</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Soma_Peso  . '</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Compra_1   . '</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Compra_2   . '</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Compra_3   . '</Data></Cell>'
+				. NL . '   </Row>'
+				;
+		}
+	}
+
+	$count += 2;
+	$body  .= Set_Total( $Total_Peso, $Total_Compra_1, $Total_Compra_2, $Total_Compra_3 );
+
+$this->log_proxy('Body: ' . $body);
+
+     $tableX = NL . ' <Worksheet ss:Name="Sheet1">'
+            . NL . '  <Table ss:ExpandedColumnCount="9" ss:ExpandedRowCount="' . $count . '" x:FullColumns="1"'
+            . NL . '   x:FullRows="1">'
+            . NL . '   <Column ss:AutoFitWidth="0" ss:Width="34.5"/>'
+            . NL . '   <Column ss:AutoFitWidth="0" ss:Width="109.5"/>'
+            . NL . '   <Column ss:AutoFitWidth="0" ss:Width="113.25"/>'
+            . NL . '   <Column ss:AutoFitWidth="0" ss:Width="55.5"/>'
+            . NL . '   <Column ss:AutoFitWidth="0" ss:Width="55.5"/>'
+            . NL . '   <Column ss:AutoFitWidth="0" ss:Width="49.5"/>'
+            . NL . '   <Column ss:Index="8" ss:StyleID="s21" ss:AutoFitWidth="0" ss:Width="49.5"/>'
+            . NL . '   <Column ss:AutoFitWidth="0" ss:Width="58.5"/>'
+            . NL . '   <Row>'
+            . NL . '    <Cell ss:StyleID="s22"><Data ss:Type="String">Lista de Promocao (disponivel no mercado)</Data></Cell>'
+            . NL . '    <Cell ss:Index="8" ss:StyleID="s23"><Data ss:Type="String">' . date('d-m-Y') . '</Data></Cell>'
+            . NL . '   </Row>'
+            . NL . '   <Row>'
+            . NL . '    <Cell ss:StyleID="s22"><Data ss:Type="String">Previsao do mercado /ton</Data></Cell>'
+            . NL . '    <Cell ss:Index="8" ss:StyleID="s23"/>'
+            . NL . '    <Cell ss:StyleID="s24"/>'
+            . NL . '   </Row>'
+            ;
+
+     $fileName = 'excel/ThreadForecastHeader.txt';
+     $inpFile  = fopen( $fileName, 'r' );
+     $header   = fread( $inpFile, filesize( $fileName ));
+     fclose( $inpFile );
+
+     $fileName = 'excel/ThreadForecastFooter.txt';
+     $inpFile  = fopen( $fileName, 'r' );
+     $footer   = fread( $inpFile, filesize( $fileName ));
+     fclose( $inpFile );
+
+     header( 'Pragma: ' );
+     header( 'Cache-Control: ' );
+     header( 'Content-Type: application/x-msexcel' );
+     header( 'Content-Disposition: inline; filename="' . $table . '.xls"' );              //   generate *.xls
+     echo( $header );
+     echo( $tableX );
+     echo( $body   );
+     echo( $footer );
+}
 }
 
 session_start();
@@ -290,5 +460,10 @@ $arrays   = json_decode( $program->query( $domain, 'data={"method":"export"'    
 $rows     = $arrays[ 'rows' ];
 //foreach( $rows as $row ) { echo '<br>'; var_dump( $row ); }
 
-$program->run( $table, $cols, $rows );
+if ($table == 'ThreadForecast') {
+	$program->run_thread_forecast($table, $cols, $rows);
+}else{
+	$program->run($table, $cols, $rows);
+}
+
 ?>

@@ -46,13 +46,14 @@ JKY.start_program = function() {
  */
 JKY.set_all_events = function() {
 	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
+
+	JKY.set_side_active('jky-help-tickets');
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-help-tickets');
 	JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
 	JKY.set_html('jky-category'			, JKY.set_controls('Ticket Categories', '', ''));
 	JKY.set_value ('jky-app-filter'		, JKY.App.get('filter'));

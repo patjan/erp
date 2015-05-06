@@ -55,6 +55,8 @@ JKY.set_all_events = function() {
 //	$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});
 	$('#jky-action-save-remarks').click (function()	{JKY.save_remarks		();});
 //	$('#jky-search-filter'		).KeyUpDelay(JKY.filter_product);
+
+	JKY.set_side_active('jky-sales-osas');
 };
 
 /**
@@ -70,7 +72,6 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-ftp'			, '../JKY.Search.FTP.html'		);
 	JKY.append_file('jky-load-product-type'	, '../JKY.Search.ProdType.html'	);
 
-	JKY.set_side_active('jky-sales-osas');
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.sales.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
@@ -177,8 +178,8 @@ JKY.get_form_set = function() {
 		+       '  customer_id=  ' + my_customer_id
 		+       ', salesman_id=  ' + my_salesman_id
 		+        ', ordered_at=  ' + JKY.inp_time	('jky-ordered-date'		)
-		+ ', produce_from_date=  ' + JKY.inp_date	('jky-produce-from-date')
-		+   ', produce_to_date=  ' + JKY.inp_date	('jky-produce-to-date'	)
+//		+ ', produce_from_date=  ' + JKY.inp_date	('jky-produce-from-date')
+//		+   ', produce_to_date=  ' + JKY.inp_date	('jky-produce-to-date'	)
 		+     ', produced_date=  ' + JKY.inp_date	('jky-produced-date'	)
 		+    ', delivered_date=  ' + JKY.inp_date	('jky-delivered-date'	)
 		+           ', remarks=\'' + JKY.get_value	('jky-remarks'			) + '\''

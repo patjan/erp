@@ -41,6 +41,8 @@ CREATE TABLE IF NOT EXISTS Orders
 , KEY machine 	(machine_id)
 , KEY partner	(partner_id)
 , KEY product	(product_id)
+, KEY color		(color_id)
+, KEY ftp		(ftp_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 INSERT Controls SET group_set='User Resources'		, status='Active', sequence=  50, name='Orders', created_by=1, created_at=NOW();
@@ -73,3 +75,6 @@ ALTER TABLE Orders			CHANGE	quotation_number	osa_number		VARCHAR(32)		DEFAULT NU
 ALTER TABLE Orders			ADD		color_id				BIGINT			DEFAULT NULL	AFTER product_id;
 
 ALTER TABLE Orders			ADD		location				VARCHAR(4)		DEFAULT NULL	AFTER returned_weight;
+
+ALTER TABLE Orders		ADD INDEX color			(color_id		);
+ALTER TABLE Orders		ADD INDEX ftp			(ftp_id			);

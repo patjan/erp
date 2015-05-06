@@ -39,6 +39,8 @@ JKY.set_all_events = function() {
 	$('#jky-scheduled-date'	).datetimepicker({language: JKY.Session.get_locale()});
 
 //	$('#jky-action-batch'	).click( function() {JKY.generate_batch();})
+
+	JKY.set_side_active('jky-threads-purc-lines');
 };
 
 /**
@@ -46,7 +48,6 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.show('jky-action-graph');
-	JKY.set_side_active('jky-threads-purc-lines');
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.purchase.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');

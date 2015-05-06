@@ -22,7 +22,8 @@ JKY.generate_restrictions = function(response) {
 			my_html += JKY.generate_restriction(my_row);
 		}
 	}
-	JKY.set_html('jky-restrictions-body' , my_html );
+	JKY.set_html('jky-restrictions-body', my_html);
+	JKY.set_total_restrictions();
 	if (my_rows == '') {
 //		JKY.insert_restriction();
 	}
@@ -42,7 +43,7 @@ JKY.generate_restriction = function(the_row) {
 		+ '<td class="jky-td-ref"	><input changeable class="jky-bank"		value="' + the_row.bank_name+ '" onchange="JKY.change_restriction(this, ' + my_id + ')" /></td>'
 		+ '<td class="jky-td-ref"	><input changeable class="jky-number"	value="' + the_row.number	+ '" onchange="JKY.change_restriction(this, ' + my_id + ')" /></td>'
 		+ '<td class="jky-td-price"	><input changeable class="jky-amount"	value="' + the_row.amount	+ '" onchange="JKY.change_restriction(this, ' + my_id + ')" /></td>'
-		+ '<td class="jky-td-text-l"><input changeable class="jky-motive"	value="' + the_row.motive	+ '" onchange="JKY.change_restriction(this, ' + my_id + ')" /></td>'
+		+ '<td class="jky-td-motive"><input changeable class="jky-motive"	value="' + the_row.motive	+ '" onchange="JKY.change_restriction(this, ' + my_id + ')" /></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -69,6 +70,7 @@ JKY.change_restriction = function(the_this, the_id ) {
 }
 
 JKY.change_restriction_success = function(the_response) {
+	JKY.set_total_restrictions();
 }
 
 JKY.insert_restriction = function() {
@@ -95,7 +97,8 @@ JKY.insert_restriction_success = function(response) {
 }
 
 JKY.delete_restriction = function(id_name, the_id) {
-	$(id_name).parent().parent().remove();
+	var my_tr = $(id_name).parent().parent();
+	my_tr.remove();
 	var my_data =
 		{ method	: 'delete'
 		, table		: 'Restrictions'
@@ -106,4 +109,14 @@ JKY.delete_restriction = function(id_name, the_id) {
 
 JKY.delete_restriction_success = function(response) {
 	JKY.display_message(response.message)
+	JKY.set_total_restrictions();
+}
+
+JKY.set_total_restrictions = function() {
+	var my_total_amount = 0.00;
+	$('#jky-restrictions-body input.jky-amount').each(function() {
+		var my_amount = $(this).val();
+		my_total_amount += parseFloat(my_amount);
+	});
+	JKY.set_html('jky-total-amount', JKY.set_decimal(my_total_amount, 2) + '&nbsp;');
 }

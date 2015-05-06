@@ -23,8 +23,10 @@ CREATE TABLE IF NOT EXISTS Products
 , yield				DECIMAL(10,2)		DEFAULT 0		# Rendimento (Kg/Mt)
 
 
-, PRIMARY KEY(id)
 , UNIQUE(product_name)
+, PRIMARY KEY(id)
+, KEY parent_id		(parent_id)
+, KEY product_type	(product_type)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 ALTER TABLE Products		ADD COLUMN photo			VARCHAR(255)		DEFAULT NULL	AFTER start_date;
@@ -64,3 +66,6 @@ UPDATE Products	SET weight_customer = CONCAT(weight_customer, ' - ', weight_to)	
 UPDATE Products	SET width_customer  = CONCAT(width_customer , ' - ', width_to )	WHERE width_customer	IS NOT NULL;
 ALTER TABLE Products		DROP weight_to	;
 ALTER TABLE Products		DROP width_to	;
+
+ALTER TABLE Products	ADD INDEX parent_id		(parent_id		);
+ALTER TABLE Products	ADD INDEX product_type	(product_type	);

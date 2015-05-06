@@ -22,7 +22,9 @@ CREATE TABLE IF NOT EXISTS CheckOuts
 , PRIMARY KEY(id)
 , UNIQUE(number)
 , KEY machine	(machine_id)
+, KEY partner	(partner_id)
 , KEY supplier	(supplier_id)
+, KEY dyer		(dyer_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
@@ -45,3 +47,6 @@ ALTER TABLE CheckOuts		ADD COLUMN dyer_id			BIGINT		DEFAULT NULL	AFTER supplier_
 ALTER TABLE CheckOuts		CHANGE	requested_date		requested_at		DATETIME	DEFAULT NULL;
 
 ALTER TABLE CheckOuts		ADD COLUMN partner_id		BIGINT		DEFAULT NULL	AFTER machine_id;
+
+ALTER TABLE CheckOuts	ADD INDEX partner		(partner_id		);
+ALTER TABLE CheckOuts	ADD INDEX dyer			(dyer_id		);

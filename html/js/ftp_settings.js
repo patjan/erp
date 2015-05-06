@@ -130,7 +130,7 @@ JKY.print_ftp_settings = function(the_id) {
 		{ method	: 'get_index'
 		, table		: 'FTP_Sets'
 		, select	:  the_id
-		, where		: 'FTP_Sets.value IS NOT NULL'
+//		, where		: 'FTP_Sets.value IS NOT NULL'
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);

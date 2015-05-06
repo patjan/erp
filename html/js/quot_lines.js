@@ -266,10 +266,10 @@ JKY.print_lines = function(the_id) {
 						var my_product = JKY.get_row('Products', my_row.product_id);
 						my_html  += ''
 							+ '<tr class="jky-print-head">'
-							+ '<td class="jky-print-product" style="width:280px;"><span>Product</span>: ' + my_row.product_name		+ '</td>'
-							+ '<td class="jky-print-pieces"	 style="width: 80px;"><span>Peso   </span>: ' + my_row.peso				+ '</td>'
-							+ '<td class="jky-print-pieces"	 style="width:170px;" colspan=2><span>Weight </span>: ' + my_product.weight_customer + '</td>'
-							+ '<td class="jky-print-pieces"	 style="width:170px;" colspan=2><span>Width  </span>: ' + my_product.width_customer	+ '</td>'
+							+ '<td class="jky-print-product" style="width:39%;"			 ><span>Product</span>: ' + my_row.product_name			+     '</td>'
+							+ '<td class="jky-print-pieces"	 style="width:17%;"			 ><span>Peso   </span>: ' + my_row.peso					+  ' kg</td>'
+							+ '<td class="jky-print-pieces"	 style="width:21%;" colspan=2><span>Weight </span>: ' + my_product.weight_customer	+ ' grs</td>'
+							+ '<td class="jky-print-pieces"	 style="width:23%;" colspan=2><span>Width  </span>: ' + my_product.width_customer	+  ' cm</td>'
 							+ '</tr>'
 							;
 						if (my_row.remarks) {

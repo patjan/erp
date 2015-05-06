@@ -2812,12 +2812,12 @@ function log_sql( $table, $id, $action, $data=null ) {
      set_session( 'message', 'record ' . $action );
 }
 
-function log_bat( $program, $message ) {
-     $date = date( 'Y-m-d' );
-
-     $logFile = fopen( SERVER_BASE . 'logbat/' . $date . '.txt', 'a' ) or die( 'cannot open logbat file' );
-     fwrite( $logFile, get_now() . ' Program ' . $program . ' ' . $message . NL );
-     fclose( $logFile );
+function log_bat($message) {
+	$logName = SERVER_BASE . '/logbat/' . date('Y-m-d') . '.txt';
+	$logFile = fopen($logName, 'a' ) or die('cannot open log ' . $logName);
+    fwrite($logFile, get_now() . ' Program ' . PROGRAM_NAME . ' ' . $message . NL);
+    fclose($logFile);
+	print(get_now() . ' ' . $message . NL);
 }
 
 function log_event( $event ) {

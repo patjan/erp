@@ -14,11 +14,14 @@ CREATE TABLE IF NOT EXISTS PurchaseLines
 , received_weight	DECIMAL(10,2)		DEFAULT 0
 
 , PRIMARY KEY(id)
-, KEY parent	(parent_id)
+, KEY parent	(parent_id  )
 , KEY thread	(thread_id	)
+, KEY batch		(batch_id	)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
 ALTER TABLE PurchaseLines	ADD COLUMN batch_id				BIGINT		DEFAULT NULL	AFTER thread_id;
 
 ALTER TABLE PurchaseLines	CHANGE	purchase_id			parent_id			BIGINT		DEFAULT NULL;
+
+ALTER TABLE PurchaseLines	ADD INDEX batch		(batch_id		);

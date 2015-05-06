@@ -29,13 +29,13 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
+	JKY.set_side_active('jky-support-permissions');
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-support-permissions');
 	JKY.set_html('jky-user-resource'	, JKY.set_controls('User Resources'	, '', ''));
 	JKY.set_html('jky-user-action'		, JKY.set_controls('User Actions'	, '', ''));
 	JKY.set_html('jky-user-role'		, JKY.set_controls('User Roles'		, '', ''));

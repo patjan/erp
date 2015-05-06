@@ -62,6 +62,35 @@ $(function() {
 });
 
 /**
+ *	reset all events
+ */
+JKY.reset_all_events = function() {
+	JKY.set_all_events		= function()				{};
+	JKY.set_initial_values	= function()				{};
+	JKY.display_list		= function()				{};
+	JKY.set_table_row		= function(the_row)			{};
+	JKY.display_form		= function()				{};
+	JKY.display_replace		= function()				{};
+	JKY.set_form_row		= function(the_row)			{};
+	JKY.process_add_new		= function()				{};
+	JKY.set_add_new_row		= function()				{};
+	JKY.get_form_set		= function()				{};
+	JKY.combine_row			= function(the_id)			{};
+	JKY.print_row			= function(the_id)			{};
+	JKY.close_row			= function(the_id)			{};
+	JKY.replace_row			= function(the_id)			{};
+
+	JKY.process_start		= function(the_id)			{};
+	JKY.process_insert		= function(the_id)			{};
+	JKY.process_update		= function(the_id, the_row)	{};
+	JKY.process_copy		= function(the_id, the_row)	{};
+	JKY.process_delete		= function(the_id, the_row)	{};
+	JKY.process_combine		= function(the_ids)			{};
+	JKY.process_publish		= function()				{};
+	JKY.process_validation	= function()				{return ''};
+}
+
+/**
  * binding on resize
  * not to bind on IE < 9, it will cause infinite loops
  * wait until home.html is loaded, to binding on scroll
@@ -179,13 +208,15 @@ JKY.load_util = function(id_name, file_name) {
 	JKY.display_trace('load_html: ' + file_name);
 	if ($('#' + id_name).length > 0) {
 		$('#' + id_name).load('../js/JKY.Reset.js');					//	reset abstract functions
-		$('#' + id_name).load('../' + file_name);						//	production mode
-//		$('#' + id_name).load('../' + file_name + '?' + Math.random());	//	testing mode
-		JKY.display_trace('load_html: ' + file_name + ' DONE');
-
-		JKY.t_tag	('jky-app-body', 'span');
-		JKY.t_input	('jky-app-body', 'placeholder');
-		JKY.t_button('jky-app-body', 'title');
+//		JKY.reset_all_events();
+		$('#' + id_name).load('../' + file_name + '?u=' + JKY.Session.get_value('version'));
+//		$.get('../' + file_name, function(the_data) {
+//			JKY.set_html(id_name, the_data);
+			JKY.display_trace('load_html: ' + file_name + ' DONE');
+			JKY.t_tag	('jky-app-body', 'span');
+			JKY.t_input	('jky-app-body', 'placeholder');
+			JKY.t_button('jky-app-body', 'title');
+//		})
 	}else{
 		setTimeout(function() {JKY.load_util(id_name, file_name);}, 100);
 	}
@@ -226,16 +257,17 @@ JKY.load_html = function(id_name, file_name) {
 
 	JKY.display_trace('load_html: ' + file_name);
 	if ($('#' + id_name).length > 0) {
-		$('#' + id_name).load('../js/JKY.Reset.js');					//	reset abstract functions
-		$('#' + id_name).load('../' + file_name);						//	production mode
-//		$('#' + id_name).load('../' + file_name + '?' + Math.random());	//	testing mode
-		JKY.display_trace('load_html: ' + file_name + ' DONE');
-
-		JKY.t_tag	('jky-app-body', 'span');
-		JKY.t_input	('jky-app-body', 'placeholder');
-		JKY.t_button('jky-app-body', 'title');
-
-		JKY.start_program(file_name);
+//		$('#' + id_name).load('../js/JKY.Reset.js');					//	reset abstract functions
+		JKY.reset_all_events();
+		$('#' + id_name).load('../' + file_name + '?h=' + JKY.Session.get_value('version'));
+//		$.get('../' + file_name, function(the_data) {
+//			JKY.set_html(id_name, the_data);
+			JKY.display_trace('load_html: ' + file_name + ' DONE');
+			JKY.t_tag	('jky-app-body', 'span');
+			JKY.t_input	('jky-app-body', 'placeholder');
+			JKY.t_button('jky-app-body', 'title');
+			JKY.start_program(file_name);
+//		})
 	}else{
 		setTimeout(function() {JKY.load_html(id_name, file_name);}, 100);
 	}
@@ -249,7 +281,8 @@ JKY.load_html = function(id_name, file_name) {
 JKY.load_hb = function(template_name, file_name) {
 	JKY.display_trace('load_hb: ' + template_name);
 	if ($('#jky-hb').length > 0) {
-		$('#jky-hb').load('../hb/' + file_name, function(src) {
+//		$('#jky-hb').load('../hb/' + file_name, function(src) {
+		$('#jky-hb').load('../hb/' + file_name + '?hb=' + JKY.Session.get_value('version'), function(src) {
 			Em.TEMPLATES[template_name] = Em.Handlebars.compile(src);
 			$('#jky-hb').html('');
 		});
@@ -295,31 +328,27 @@ JKY.set_translations = function(the_array) {
  * @example JKY.t('Home')
  */
 JKY.t = function(the_text, the_option) {
+	if (typeof JKY.translations == 'undefined')		return '';
 	if (typeof the_text == 'undefined' || the_text == '') {
 		return '';
 	}
 	if (the_text.substr(0,1) == '<') {
 		return the_text;
 	}
-	var my_result = JKY.translations[the_text];
-	if (typeof my_result == 'undefined') {
 
-if (JKY.Session.get_value('user_name') == 'patjan'
-&&  jky_program != 'Profile'
-&&  jky_program != 'Reset') {
-	alert('JKY.t the_text: ' + the_text);
-}
-
-		my_result = '';
-		var my_names = the_text.split('<br>');
-		for (var i=0; i<my_names.length; i++) {
-			var my_name = my_names[i];
-			var my_translation = JKY.translations[my_name];
-			my_result += (i == 0) ? '' : '<br>';
-			if (typeof my_translation == 'undefined') {
-				my_result += my_name;
-			}else{
-				my_result += my_translation;
+	var my_result = '';
+	var my_names = the_text.split('<br>');
+	for (var i=0; i<my_names.length; i++) {
+		my_result += (i == 0) ? '' : '<br>';
+		var my_name = my_names[i];
+		if (my_name in JKY.translations) {
+			my_result += JKY.translations[my_name];
+		}else{
+			my_result += my_name;
+			if (JKY.Session.get_value('user_name') == 'patjan'
+			&&  jky_program != 'Profile'
+			&&  jky_program != 'Reset') {
+				alert('JKY.t: ' + my_name);
 			}
 		}
 	}
@@ -359,7 +388,7 @@ JKY.t_button = function(the_id, the_attr) {
  * process action
  * @param	action
  */
-JKY.process_action = function(action) {
+JKY.process_action = function(action, the_id) {
 //	JKY.display_trace('process_action: ' + action);
 //	JKY.load_html('jky-body-content', action + '.html');
 
@@ -387,7 +416,10 @@ JKY.process_action = function(action) {
 //	JKY.start_program(action);		//	not ready
 
 //	JKY.visible('jky-application');
-//	});
+
+	if (typeof(the_id) != 'undefined') {
+		JKY.process_start(the_id);
+	}
 }
 
 /**
@@ -456,6 +488,18 @@ JKY.fix_date = function(date_time){
 /**
  * fix name
  *
+ * replace it only alpha, numeric and space
+ *
+ * @param	the_this
+ */
+JKY.fix_name = function(the_this) {
+	var my_string = $(the_this).val();
+	$(the_this).val(my_string.replace(/[^A-Za-z0-9 ]/gi, ''));
+}
+
+/**
+ * fix full name
+ *
  * return trailer last_name, first_name
  *
  * @param	trailer
@@ -463,7 +507,7 @@ JKY.fix_date = function(date_time){
  * @param	last_name
  * @return	full_name
  */
-JKY.fix_name = function(trailer, first_name, last_name){
+JKY.fix_full_name = function(trailer, first_name, last_name){
 	if (first_name && last_name) {
 		return trailer + last_name + ', ' + first_name;
 	}else{
@@ -526,7 +570,9 @@ JKY.fix_dmy2ymd = function(the_date){
 JKY.fix_thumb = function(the_photo, the_id, the_folder){
 	if (the_photo) {
 		var my_time = the_photo.split(',')[1];
-		return '<img class="jky-mini" src="/thumbs/' + the_folder + '/' + the_id + '.png?time=' + my_time + '">';
+//		return '<img class="jky-mini" src="/thumbs/' + the_folder + '/' + the_id + '.png?time=' + my_time + '">';
+//		return '<img class="jky-mini" src="/thumbs/' + the_folder + '/' + the_id + '.png?u=' + JKY.Session.get_value('version') + '">';
+		return '';
 	}else{
 		return '';
 	}
@@ -2187,11 +2233,10 @@ JKY.set_controls = function(group_set, selected, initial) {
 			my_value = my_name;
 		}
 		var my_selected = (my_name == selected) ? ' selected="selected"' : '';
-		if (group_set == 'User Roles'
-		||	group_set == 'NFE Folders') {
-			my_html += '<option value="' + my_value + '"' + my_selected + '>' + my_name  + '</option>';
-		}else{
-			my_html += '<option value="' + my_name  + '"' + my_selected + '>' + my_value + '</option>';
+		switch(group_set) {
+			case 'User Roles'	:	my_html += '<option value="' + my_name  + '"' + my_selected + '>' + my_name  + '</option>'; break;
+			case 'NFE Folders'	:	my_html += '<option value="' + my_value + '"' + my_selected + '>' + my_name  + '</option>'; break;
+			default				:	my_html += '<option value="' + my_name  + '"' + my_selected + '>' + my_value + '</option>';
 		}
 	}
 //	my_html += '<option onclick="JKY.process_option_search(this)"	class="jky-option-search"	>Search More...</option>';
@@ -2812,7 +2857,7 @@ JKY.get_control_value = function(the_group_set, the_name) {
 
 JKY.play_beep = function() {
 	var audio = document.createElement("audio");
-	audio.src = "http://erp/img/beep-5.wav";
+	audio.src = "/img/beep-5.wav";
 	audio.play();
 }
 
@@ -2827,7 +2872,7 @@ JKY.get_prev_dom = function(the_id, the_attr) {
 }
 
 JKY.set_decimal = function(the_number, the_decimal) {
-	var my_string  = the_number.toString(10, 2);
+	var my_string  = the_number.toFixed(2);
 	var my_numbers = my_string.split('.');
 	var my_integer = my_numbers[0];
 	var my_decimal = my_numbers[1];

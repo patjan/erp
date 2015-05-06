@@ -34,6 +34,8 @@ JKY.set_all_events = function() {
 //	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-input-barcode'		).change(function() {JKY.process_input_barcode	();});
 	$('#jky-piece-check-all'	).click (function() {JKY.set_all_piece_check(this);});
+
+	JKY.set_side_active('jky-pieces-checkout');
 };
 
 /**
@@ -41,7 +43,6 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.set_css('jky-app-breadcrumb', 'color', '#CC0000');
-	JKY.set_side_active('jky-pieces-checkout');
 /*
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));

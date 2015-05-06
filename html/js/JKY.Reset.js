@@ -26,6 +26,6 @@ JKY.process_copy		= function(the_id, the_row)	{};
 JKY.process_delete		= function(the_id, the_row)	{};
 JKY.process_combine		= function(the_ids)			{};
 JKY.process_publish		= function()				{};
-JKY.process_validation	= function()				{return '';};
+JKY.process_validation	= function()				{return ''};
 
 </script>

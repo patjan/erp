@@ -38,6 +38,8 @@ JKY.set_all_events = function() {
 	$('#jky-batches-add-new').click (function() {JKY.insert_batch			();});
 
 	$('#jky-boxes-print'	).click (function() {JKY.Batch.print()});
+
+	JKY.set_side_active('jky-receiving-receive-dyers');
 };
 
 /**
@@ -49,7 +51,6 @@ JKY.set_initial_values = function() {
 
 	JKY.show('jky-action-graph');
 
-	JKY.set_side_active('jky-receiving-receive-dyers');
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.receive.select, 'All', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');

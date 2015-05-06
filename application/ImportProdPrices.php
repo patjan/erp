@@ -45,8 +45,8 @@ set_include_path( implode( PATH_SEPARATOR, array( realpath( APPLICATION_PATH . L
 $program_name = $_SERVER['PHP_SELF'];
 require_once 'Zend/Db.php';
 
-log_message('');
-log_message('start of program');
+log_bat('');
+log_bat('start of program');
 
 try{
 	$my_params = array('host'=>DB_HOST, 'username'=>DB_USER, 'password'=>DB_PASS, 'dbname'=>DB_NAME);
@@ -62,17 +62,17 @@ try{
 			);
 		$my_remote_db = Zend_Db::factory('Pdo_Mysql', $my_remote_params);
 		$my_remote_db->getConnection();
-		log_message('OK, Remote Host ' . $my_remote_params['host'] . ' connected.');
+		log_bat('OK, Remote Host ' . $my_remote_params['host'] . ' connected.');
 		process_import($my_local_db, $my_remote_db);
 	}catch(Exception $exp){
-		log_message('error, Remote Host ' . $my_remote_params['host'] . ' not connected: ' . $exp->getMessage());
+		log_bat('error, Remote Host ' . $my_remote_params['host'] . ' not connected: ' . $exp->getMessage());
 	}
 
 }catch(Exception $exp){
-	log_message('error, Local Server not connected: ' . $exp->getMessage());
+	log_bat('error, Local Server not connected: ' . $exp->getMessage());
 }
 
-log_message('end of program');
+log_bat('end of program');
 return;
 
 // -----------------------------------------------------------------------------
@@ -84,10 +84,9 @@ function process_import($the_local_db, $the_remote_db) {
 		;
 	$my_imports	= $the_remote_db->fetchAll($my_sql);
 	$my_count	= count($my_imports);
-	log_message('import has ' . $my_count . ' records');
+	log_bat('import has ' . $my_count . ' records');
 	if ($my_count == 0)		return;
 
-	$my_update	= '';
 	foreach($my_imports as $my_import) {
 		$my_product_name	= $my_import['Nome'		];
 		$my_cone_type		= $my_import['TipoCone'	];
@@ -113,10 +112,10 @@ function process_import($the_local_db, $the_remote_db) {
 			case 'FT'	: $my_color_type = 'Forte'		; break;
 		};
 
-//log_message($my_product_name . ', ' . $my_cone_type . ':' . $my_product_type . ', ' . $my_color_code . ':' . $my_color_type . ', ' . $my_product_price);
+//log_bat($my_product_name . ', ' . $my_cone_type . ':' . $my_product_type . ', ' . $my_color_code . ':' . $my_color_type . ', ' . $my_product_price);
 
-		if ($my_product_type == '')		continue;
-		if ($my_color_type   == '')		continue;
+		if ($my_product_type === '')		continue;
+		if ($my_color_type   === '')		continue;
 
 		$my_sql = ''
 			. 'SELECT *'
@@ -125,7 +124,7 @@ function process_import($the_local_db, $the_remote_db) {
 			. '   AND product_type LIKE "' . $my_product_type	. '"'
 			;
 		$my_local_row = $the_local_db->fetchRow($my_sql);
-log_message(json_encode($my_local_row));
+log_bat(json_encode($my_local_row));
 
 		if ($my_local_row) {
 			$my_product_id = $my_local_row['id'];
@@ -148,31 +147,10 @@ log_message(json_encode($my_local_row));
 					. '     , current_price =  ' . $my_product_price
 					;
 				$my_local_row = $the_local_db->query($my_sql);
-log_message($my_sql);
+log_bat($my_sql);
 			}
 		}
 	}
 }
 
 // -----------------------------------------------------------------------------
-function log_message($message) {
-	$date = date( 'Y-m-d' );
-	$logFile = fopen( SERVER_BASE . PROGRAM_NAME . '/' . $date . '.txt', 'a' ) or die( 'cannot open log ' . PROGRAM_NAME . ' file' );
-	fwrite( $logFile, get_now() . ' ' . $message . NL );
-	fclose( $logFile );
-//	print(get_now() . ' ' . $message . NL);
-}
-
-function OnlyString( $String )
-{
-     $myString = '';
-     for( $I = 0; $I < strlen( $String ); $I++ )
-     {
-          $C = $String[ $I ];
-          if( $C == ' ' || ( $C >= '0' && $C <= '9' ) || ( $C >= 'a' && $C <= 'z' ) || ( $C >= 'A' && $C <= 'Z' ) )
-               $myString .= $C;
-     }
-     return $myString;
-}
-
-?>

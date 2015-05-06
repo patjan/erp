@@ -387,12 +387,12 @@ ALTER TABLE LoadOuts		CHANGE	status			status			VARCHAR(32)		DEFAULT 'Active';
 /* -- 2015/03/27	*/
 ALTER TABLE Quotations		CHANGE	produced_date	produce_from_date	DATE		DEFAULT NULL;
 ALTER TABLE Quotations		CHANGE	expected_date	produce_to_date		DATE		DEFAULT NULL;
-UPDATE		Quotations		SET 	produce_from_date = produce_to_date; 
+UPDATE		Quotations		SET 	produce_from_date = produce_to_date;
 UPDATE		Quotations		SET 	produce_to_date = delivered_date;
 UPDATE		Quotations		SET 	delivered_date = NULL;
-/* -- 2015/04/05	*/	
+/* -- 2015/04/05	*/
 ALTER TABLE BatchOuts		ADD COLUMN parent_id		BIGINT		DEFAULT NULL	AFTER status;
-/* -- 2015/04/09	*/	
+/* -- 2015/04/09	*/
  UPDATE CheckOuts
     SET status = 'Closed'
   WHERE status = 'Active'
@@ -408,3 +408,31 @@ ALTER TABLE BatchOuts		ADD COLUMN parent_id		BIGINT		DEFAULT NULL	AFTER status;
 	SET Boxes.real_weight = Boxes.real_weight / 100
   WHERE (Boxes.real_weight / Boxes.average_weight) > 3
 		;
+/* -- 2015-04-23	*/
+ALTER TABLE Products	ADD INDEX parent_id		(parent_id		);
+ALTER TABLE Products	ADD INDEX product_type	(product_type	);
+ALTER TABLE Quotations	ADD INDEX salesman		(salesman_id	);
+ALTER TABLE Quotations	ADD INDEX contact		(contact_id		);
+ALTER TABLE Threads		ADD INDEX thread_group	(thread_group	);
+ALTER TABLE OSAs		ADD INDEX salesman		(salesman_id	);
+ALTER TABLE Orders		ADD INDEX color			(color_id		);
+ALTER TABLE Orders		ADD INDEX ftp			(ftp_id			);
+ALTER TABLE Pieces		ADD INDEX revised		(revised_by		);
+ALTER TABLE Pieces		ADD INDEX weighed		(weighed_by		);
+ALTER TABLE FTPs		ADD INDEX machine		(machine_id		);
+ALTER TABLE PurchaseLines	ADD INDEX batch		(batch_id		);
+ALTER TABLE Batches		ADD INDEX purchase		(purchase_line_id);
+ALTER TABLE CheckOuts	ADD INDEX partner		(partner_id		);
+ALTER TABLE CheckOuts	ADD INDEX dyer			(dyer_id		);
+ALTER TABLE BatchOuts	ADD INDEX batchin		(batchin_id		);
+ALTER TABLE BatchOuts	ADD INDEX req_line		(req_line_id	);
+ALTER TABLE Boxes		ADD INDEX parent		(parent_id		);
+ALTER TABLE Boxes		ADD INDEX checkin		(checkin_by		);
+ALTER TABLE Boxes		ADD INDEX checkout		(checkout_by	);
+ALTER TABLE Boxes		ADD INDEX returned		(returned_by	);
+ALTER TABLE ShipDyers	ADD INDEX transport		(transport_id	);
+
+ALTER TABLE Sales		ADD INDEX salesman		(salesman_id	);
+ALTER TABLE Machines	ADD INDEX machine_brand	(machine_brand	);
+/* -- 2015-05-04	*/
+ALTER TABLE BatchOuts		ADD COLUMN supplier_id		BIGINT		DEFAULT NULL	AFTER thread_id;

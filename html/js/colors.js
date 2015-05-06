@@ -34,6 +34,8 @@ JKY.set_all_events = function() {
 	$('#jky-action-change'		).click( function() {JKY.App.change_status(JKY.row.id);});
 	$('#jky-recipe-add-new'		).click (function() {JKY.insert_recipe		();});
 	$('#jky-action-save-remarks').click (function()	{JKY.App.save_remarks	();});
+
+	JKY.set_side_active('jky-sales-colors');
 };
 
 /**
@@ -41,7 +43,6 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-composition', '../JKY.Search.Composition.html');
-	JKY.set_side_active('jky-sales-colors');
 	JKY.set_html('jky-status'			, JKY.set_controls('Status Codes', 'Active'));
 	JKY.set_html('jky-color-type'		, JKY.set_configs ('Color Types' , JKY.App.get('select'), ''));
 	JKY.set_html('jky-dyeing-type'		, JKY.set_configs ('Dyeing Types', JKY.App.get('select'), ''));

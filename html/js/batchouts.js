@@ -36,13 +36,14 @@ JKY.set_all_events = function() {
 	$('#jky-action-generate').click( function() {JKY.generate_checkout		();});
 	$('#jky-action-close'	).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-button-combine'	).click( function() {JKY.process_combine		();});
+
+	JKY.set_side_active('jky-threads-batchouts');
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_side_active('jky-threads-batchouts');
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.checkout.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
@@ -71,6 +72,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.requested_at		)	+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.checkout_at		)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				  my_checkout_name				+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.supplier_name		)	+ '</td>'
 		+  '<td class="jky-td-name-l"	>' + JKY.fix_null	(the_row.thread_name		)	+ '</td>'
 		+  '<td class="jky-td-code"		>' + JKY.fix_null	(the_row.batch_code			)	+ '</td>'
 //		+  '<td class="jky-td-price"	>' +				 the_row.unit_price				+ '</td>'

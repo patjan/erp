@@ -50,6 +50,8 @@ JKY.set_all_events = function() {
 	$('#jky-loadout-add-new'	).click (function() {JKY.LoadOut.display(null, JKY.get_dyer_id(), JKY.get_dyer_name());});
 
 	$('#jky-print-sd'			).click (function() {JKY.LoadOut.print_sd		();});
+
+	JKY.set_side_active('jky-dyers-shipdyers');
 }
 
 /**
@@ -60,7 +62,6 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-transport', '../JKY.Search.Transport.html');
 	JKY.append_file('jky-load-loadout'	, '../JKY.Search.LoadOut.html'	);
 
-	JKY.set_side_active('jky-dyers-shipdyers');
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.shipdyer.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
