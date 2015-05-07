@@ -12,8 +12,8 @@ JKY.display_combine = function(the_row) {
 //		+ ' AND		 Partner.nick_name		= \''		+ the_row.partner_name	+ '\''
 //		+ ' AND		 Supplier.nick_name		= \''		+ the_row.supplier_name	+ '\''
 //		+ ' AND		 Dyer.nick_name			= \''		+ the_row.dyer_name		+ '\''
-		+ ' AND		 BatchOuts.thread_id	= '			+ the_row.thread_id
-		+ ' AND		 BatchOuts.batchin_id	= '			+ the_row.batchin_id
+		+ ' AND		 Threads.name			= \''		+ the_row.thread_name	+ '\''
+		+ ' AND		 Batches.batch			= \''		+ the_row.batch_code	+ '\''
 		;
 	var my_data =
 		{ method		: 'get_index'

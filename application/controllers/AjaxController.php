@@ -5084,7 +5084,7 @@ private function refresh($data) {
 		. '   AND PurchaseLines.expected_weight > PurchaseLines.received_weight'
 		. ' GROUP BY thread_id, supplier_id, months'
 		. ';'
-
+/*
 		. 'INSERT ThreadJoined(thread_id, supplier_id, current_balance)'
 		. 'SELECT Batches.thread_id'
 		. '	    , Incomings.supplier_id'
@@ -5094,6 +5094,17 @@ private function refresh($data) {
 		. ' WHERE Batches.status = "Active"'
 //		. '   AND DATE(Incomings.received_at) <= @cut_off_date'
 		. '   AND Incomings.invoice_date <= "@cut_off_date"'
+		. ' GROUP BY thread_id, supplier_id'
+		. ';'
+*/
+		. 'INSERT ThreadJoined(thread_id, supplier_id, current_balance)'
+		. 'SELECT Batches.thread_id'
+		. '     , Incomings.supplier_id'
+		. '     , SUM(IF(Boxes.status = "Check In" OR Boxes.status = "Return", IF(Boxes.real_weight = 0, Boxes.average_weight, Boxes.real_weight), 0)) AS current_balance'
+		. '  FROM Boxes'
+		. '  LEFT JOIN Batches				ON Batches.id = Boxes.batch_id'
+		. '  LEFT JOIN Incomings  			ON Incomings.id	= Batches.incoming_id'
+		. ' WHERE Batches.status = "Active"'
 		. ' GROUP BY thread_id, supplier_id'
 		. ';'
 
