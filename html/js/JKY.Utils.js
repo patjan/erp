@@ -77,6 +77,7 @@ JKY.reset_all_events = function() {
 	JKY.get_form_set		= function()				{};
 	JKY.combine_row			= function(the_id)			{};
 	JKY.print_row			= function(the_id)			{};
+	JKY.approve_row			= function(the_id)			{};
 	JKY.close_row			= function(the_id)			{};
 	JKY.replace_row			= function(the_id)			{};
 
@@ -87,8 +88,8 @@ JKY.reset_all_events = function() {
 	JKY.process_delete		= function(the_id, the_row)	{};
 	JKY.process_combine		= function(the_ids)			{};
 	JKY.process_publish		= function()				{};
-	JKY.process_validation	= function()				{return ''};
-}
+	JKY.process_validation	= function()				{return '';};
+};
 
 /**
  * binding on resize
@@ -109,7 +110,7 @@ JKY.Xbinding_on_resize = function() {
 	} else {
 		setTimeout(function() {JKY.binding_on_resize();}, 100);
 	}
-}
+};
 
 JKY.resize_window = function() {
 	var my_width = $(window).width();
@@ -126,7 +127,7 @@ JKY.resize_window = function() {
 //	$('#jky-form-data'			).css('height', my_height-189 + 'px');
 //	$('#adm-sub-selector-body'		).css('height', my_height-235 + 'px');
 //	$('#adm-content-body'			).css('height', my_height-266 + 'px');
-}
+};
 
 /**
  * set table width and height
@@ -164,34 +165,19 @@ JKY.setTableWidthHeight = function(tableId, width, off_width, minHeight, offHeig
 //JKY.display_message('Width: ' + my_width + ', Height: ' + my_height);
 //$('#jky-table-body').css('width' , my_width -202);
 //$('#jky-table-body').css('height', my_height-197);
-}
+};
 
 /**
  * re direct
  * @param	the_program
  */
 JKY.re_direct = function(the_program) {
-	if (typeof the_program == 'undefined') {
+	if (typeof the_program === 'undefined') {
 		window.location = '/home';
 	}else{
 		window.location = '/' + the_program;
 	}
-}
-
-/**
- * run when is template ready
- * wait until the template is ready
- * @param	template_name
- * @param	function_name
- */
-JKY.run_when_is_ready = function(template_name, function_name) {
-	JKY.display_trace('run_when_is_ready: ' + template_name);
-	if (Em.TEMPLATES[template_name]) {
-		function_name();
-	}else{
-		setTimeout(function() {JKY.run_when_is_ready(template_name, function_name);}, 100);
-	}
-}
+};
 
 /**
  * load html into specific id
@@ -220,7 +206,7 @@ JKY.load_util = function(id_name, file_name) {
 	}else{
 		setTimeout(function() {JKY.load_util(id_name, file_name);}, 100);
 	}
-}
+};
 
 /**
  * overlay html into specific id
@@ -233,7 +219,7 @@ JKY.overlay_html = function(the_id, the_url) {
 	if (JKY.is_loaded(the_id)) {
 		JKY.set_html(the_id, '');
 		$.get(the_url, function(the_response) {
-			if (the_response.status == 'ok') {
+			if (the_response.status === 'ok') {
 				JKY.set_html(the_id, the_response.data.overlay);
 				JKY.display_trace('JKY.overlay_html: ' + the_id + ' DONE');
 			}
@@ -241,7 +227,7 @@ JKY.overlay_html = function(the_id, the_url) {
 	}else{
 		setTimeout(function() {JKY.overlay_html(the_id, the_url);}, 100);
 	}
-}
+};
 
 /**
  * load html into specific id
@@ -271,44 +257,7 @@ JKY.load_html = function(id_name, file_name) {
 	}else{
 		setTimeout(function() {JKY.load_html(id_name, file_name);}, 100);
 	}
-}
-
-/**
- * load handlebar into specific template
- * @param	template_name
- * @param	file_name
- */
-JKY.load_hb = function(template_name, file_name) {
-	JKY.display_trace('load_hb: ' + template_name);
-	if ($('#jky-hb').length > 0) {
-//		$('#jky-hb').load('../hb/' + file_name, function(src) {
-		$('#jky-hb').load('../hb/' + file_name + '?hb=' + JKY.Session.get_value('version'), function(src) {
-			Em.TEMPLATES[template_name] = Em.Handlebars.compile(src);
-			$('#jky-hb').html('');
-		});
-		JKY.display_trace('load_hb: ' + template_name + ' DONE');
-	}else{
-		setTimeout(function() {JKY.load_hb(template_name, file_name);}, 100);
-	}
-}
-
-/**
- * replace in template into specific id
- * wait until the template is loaded
- * @param	template_name
- * @param	id_name
- * @param	view_object
- * @return	(new)View
- */
-JKY.replace_in = function(template_name, id_name, view_object) {
-	JKY.display_trace('replace_in: ' + template_name);
-	if (Em.TEMPLATES[template_name] && $('#' + id_name)) {
-		view_object.replaceIn('#' + id_name);
-		JKY.display_trace('replace_in: ' + template_name + ' DONE');
-	}else{
-		setTimeout(function() {JKY.replace_in(template_name, id_name, view_object)}, 100);
-	}
-}
+};
 
 /**
  * set translations
@@ -318,36 +267,37 @@ JKY.replace_in = function(template_name, id_name, view_object) {
  */
 JKY.set_translations = function(the_array) {
     JKY.translations = the_array;
-}
+};
 
 /**
  * translate
  *
  * @param	the_text
+ * @param	the_option
  * @return	translated text
  * @example JKY.t('Home')
  */
 JKY.t = function(the_text, the_option) {
-	if (typeof JKY.translations == 'undefined')		return '';
-	if (typeof the_text == 'undefined' || the_text == '') {
+	if (typeof JKY.translations === 'undefined')		return '';
+	if (typeof the_text === 'undefined' || the_text === '') {
 		return '';
 	}
-	if (the_text.substr(0,1) == '<') {
+	if (the_text.substr(0,1) === '<') {
 		return the_text;
 	}
 
 	var my_result = '';
 	var my_names = the_text.split('<br>');
 	for (var i=0; i<my_names.length; i++) {
-		my_result += (i == 0) ? '' : '<br>';
+		my_result += (i === 0) ? '' : '<br>';
 		var my_name = my_names[i];
 		if (my_name in JKY.translations) {
 			my_result += JKY.translations[my_name];
 		}else{
 			my_result += my_name;
-			if (JKY.Session.get_value('user_name') == 'patjan'
-			&&  jky_program != 'Profile'
-			&&  jky_program != 'Reset') {
+			if (JKY.Session.get_value('user_name') === 'patjan'
+			&&  jky_program !== 'Profile'
+			&&  jky_program !== 'Reset') {
 				alert('JKY.t: ' + my_name);
 			}
 		}
@@ -358,7 +308,7 @@ JKY.t = function(the_text, the_option) {
 		my_result = my_result.replace(/ /g, '&nbsp;');
 	}
 	return my_result;
-}
+};
 
 JKY.t_tag = function(the_id, the_tag) {
 	$('#' + the_id + ' ' + the_tag).each(function() {
@@ -368,25 +318,26 @@ JKY.t_tag = function(the_id, the_tag) {
 			$(this).html(JKY.t(my_text, true));
 		}
 	});
-}
+};
 
 JKY.t_input = function(the_id, the_attr) {
 	$('#' + the_id + ' input').each(function() {
 		var my_text = $(this).attr(the_attr);
 		$(this).attr(the_attr, JKY.t(my_text));
 	});
-}
+};
 
 JKY.t_button = function(the_id, the_attr) {
 	$('#' + the_id + ' button').each(function() {
 		var my_text = $(this).attr(the_attr);
 		$(this).attr(the_attr, JKY.t(my_text));
 	});
-}
+};
 
 /**
  * process action
  * @param	action
+ * @param	the_id
  */
 JKY.process_action = function(action, the_id) {
 //	JKY.display_trace('process_action: ' + action);
@@ -417,10 +368,10 @@ JKY.process_action = function(action, the_id) {
 
 //	JKY.visible('jky-application');
 
-	if (typeof(the_id) != 'undefined') {
+	if (typeof(the_id) !== 'undefined') {
 		JKY.process_start(the_id);
 	}
-}
+};
 
 /**
  * fix flag
@@ -436,7 +387,7 @@ JKY.process_action = function(action, the_id) {
  */
 JKY.fix_flag = function(flag_value, true_value, false_value) {
 	if (flag_value) {
-		if (flag_value == 't') {
+		if (flag_value === 't') {
 			return true_value;
 		}else{
 			return false_value;
@@ -444,7 +395,7 @@ JKY.fix_flag = function(flag_value, true_value, false_value) {
 	}else{
 		return '&nbsp;';
 	}
-}
+};
 
 /**
  * fix break line
@@ -456,7 +407,7 @@ JKY.fix_flag = function(flag_value, true_value, false_value) {
  */
 JKY.fix_br = function(string_value){
 	if (string_value) {
-		if (typeof string_value == 'string') {
+		if (typeof string_value === 'string') {
 			return string_value.replace(' ', '<br />');
 		}else{
 			return string_value;
@@ -464,7 +415,7 @@ JKY.fix_br = function(string_value){
 	}else{
 		return '&nbsp;';
 	}
-}
+};
 
 /**
  * fix date time
@@ -483,7 +434,7 @@ JKY.fix_date = function(date_time){
 	}else{
 		return '&nbsp;';
 	}
-}
+};
 
 /**
  * fix name
@@ -495,7 +446,7 @@ JKY.fix_date = function(date_time){
 JKY.fix_name = function(the_this) {
 	var my_string = $(the_this).val();
 	$(the_this).val(my_string.replace(/[^A-Za-z0-9 ]/gi, ''));
-}
+};
 
 /**
  * fix full name
@@ -513,7 +464,7 @@ JKY.fix_full_name = function(trailer, first_name, last_name){
 	}else{
 		return '&nbsp;';
 	}
-}
+};
 
 /**
  * fix null
@@ -522,42 +473,42 @@ JKY.fix_full_name = function(trailer, first_name, last_name){
  * @return	the_string
  */
 JKY.fix_null = function(the_string){
-	if (the_string == null || the_string == 'null') {
-		return ''
+	if (the_string === null || the_string === 'null') {
+		return '';
 	}else{
 		return the_string;
 	}
-}
+};
 
 /**
  * fix ymd to dmy
  *
- * @param	yyyy-mm-dd
- * @return	dd-mm-yyyy
+ * @param	the_date	yyyy-mm-dd
+ * @return				dd-mm-yyyy
  */
 JKY.fix_ymd2dmy = function(the_date){
-	if (the_date == null)	return '';
+	if (the_date === null)	return '';
 	var my_date = the_date.trim();
-	if (my_date == 'null' || my_date == '')		return '';
+	if (my_date === 'null' || my_date === '')		return '';
 
 	var my_dates = my_date.split('-');
 	return my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];
-}
+};
 
 /**
  * fix dmy to ymd
  *
- * @param	dd-mm-yyyy
- * @return	yyyy-mm-dd
+ * @param	the_date	dd-mm-yyyy
+ * @return				yyyy-mm-dd
  */
 JKY.fix_dmy2ymd = function(the_date){
-	if (the_date == null)	return '';
+	if (the_date === null)	return '';
 	var my_date = the_date.trim();
-	if (my_date == 'null' || my_date == '')		return '';
+	if (my_date === 'null' || my_date === '')		return '';
 
 	var my_dates = my_date.split('-');
 	return my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];
-}
+};
 
 /**
  * fix thumb name
@@ -576,7 +527,7 @@ JKY.fix_thumb = function(the_photo, the_id, the_folder){
 	}else{
 		return '';
 	}
-}
+};
 
 /**
  * out float
@@ -586,10 +537,10 @@ JKY.fix_thumb = function(the_photo, the_id, the_folder){
  * @return	float value
  */
 JKY.out_float = function(the_float){
-	if (the_float == null)	return '';
+	if (the_float === null)		return '';
 
 	return parseFloat(the_float);
-}
+};
 
 /**
  * out count
@@ -602,7 +553,7 @@ JKY.out_count = function(the_string){
 	if (JKY.is_empty(the_string))		return '';
 	var my_array = the_string.split(', ');
 	return my_array.length;
-}
+};
 
 /**
  * out date
@@ -613,7 +564,7 @@ JKY.out_count = function(the_string){
  * @return	dd-mm-yyyy (pt_BR)
  */
 JKY.out_date = function(the_time){
-	if (the_time == null)	return '';
+	if (the_time === null)		return '';
 
 	var my_date		= the_time.substr(0, 10);
 	var my_dates	= my_date.split('-');
@@ -625,7 +576,7 @@ JKY.out_date = function(the_time){
 		default			: my_result = my_date;
 	}
 	return my_result;
-}
+};
 
 /**
  * out time
@@ -636,7 +587,7 @@ JKY.out_date = function(the_time){
  * @return	dd-mm-yyyy hh:mm (pt_BR)
  */
 JKY.out_time = function(the_time){
-	if (the_time == null)	return '';
+	if (the_time === null)		return '';
 
 	var my_date		= the_time.substr(0, 10);
 	var my_time		= the_time.substr(11, 5);
@@ -649,12 +600,12 @@ JKY.out_time = function(the_time){
 		default			: my_result = my_date;
 	}
 	return my_result + ' ' + my_time;
-}
+};
 
 /**
  * short date
  *
- * @param	yyyy-mm-dd hh:mm:ss
+ * @param	the_time	yyyy-mm-dd hh:mm:ss
  *
  * if the date is not the current date, then return only the date
  * @return	mm-dd-yyyy 	(en_US)
@@ -664,17 +615,17 @@ JKY.out_time = function(the_time){
  * @return	dd-mm hh:mm	(pt_BR)
  */
 JKY.short_date = function(the_time){
-	if (the_time == null)	return '';
+	if (the_time === null)		return '';
 
 	var my_time = JKY.out_time(the_time);
 	var my_date = the_time.substr(0, 10);
-	if (my_date == JKY.get_date()) {
+	if (my_date === JKY.get_date()) {
 		my_date = my_time.substr(0, 5) + '&nbsp;' + my_time.substr(11, 5);
 	}else{
 		my_date = my_time.substr(0, 10);
 	}
 	return my_date;
-}
+};
 
 /**
  * set date
@@ -684,31 +635,31 @@ JKY.short_date = function(the_time){
  */
 JKY.set_date = function(the_id, the_date){
 	$('#' + the_id).datetimepicker('setDate', the_date);
-}
+};
 
 /**
  * input date id
  *
- * @param	mm-dd-yyyy (en-US)
- *			dd-mm-yyyy (pt_BR)
+ * @param	the_id	mm-dd-yyyy (en-US)
+ *					dd-mm-yyyy (pt_BR)
  *
- * @return	yyyy-mm-dd
+ * @return			yyyy-mm-dd
  */
 JKY.inp_date = function(the_id){
 	var my_date = $('#' + the_id + ' input').val();
 	return JKY.inp_date_value(my_date);
-}
+};
 
 /**
  * input date value
  *
- * @param	mm-dd-yyyy (en-US)
- *			dd-mm-yyyy (pt_BR)
+ * @param	the_date	mm-dd-yyyy (en-US)
+ *						dd-mm-yyyy (pt_BR)
  *
- * @return	yyyy-mm-dd
+ * @return				yyyy-mm-dd
  */
 JKY.inp_date_value = function(the_date){
-	if (the_date == '')		return 'null';
+	if (the_date === '')		return 'null';
 
 	var my_date		= the_date.substr(0, 10);
 	var my_dates	= my_date.replace(/\//g, '-').split('-');
@@ -720,30 +671,30 @@ JKY.inp_date_value = function(the_date){
 		default			: my_result = my_date;
 	}
 	return "'" + my_result + "'";
-}
+};
 
 /**
  * input time id
  *
- * @param	mm-dd-yyyy hh:mm (en-US)
- *			dd-mm-yyyy hh:mm (pt_BR)
+ * @param	the_id	mm-dd-yyyy hh:mm (en-US)
+ *					dd-mm-yyyy hh:mm (pt_BR)
  *
- * @return	yyyy-mm-dd hh:mm
+ * @return			yyyy-mm-dd hh:mm
  */
 JKY.inp_time = function(the_id){
 	var my_time = $('#' + the_id + ' input').val();
 	return JKY.inp_time_value(my_time);
-}
+};
 
 /**
  * input time value
  * @param	the_time	mm-dd-yyyy hh:mm (en-US)
  *						dd-mm-yyyy hh:mm (pt_BR)
  *
- * @return	yyyy-mm-dd hh:mm
+ * @return				yyyy-mm-dd hh:mm
  */
 JKY.inp_time_value = function(the_time){
-	if (the_time == '')		return 'null';
+	if (the_time === '')		return 'null';
 
 	var my_date		= the_time.substr( 0, 10);
 	var my_time		= the_time.substr(11,  5);
@@ -756,13 +707,13 @@ JKY.inp_time_value = function(the_time){
 		default			: my_result = my_date;
 	}
 	return "'" + my_result + ' ' + my_time + "'";
-}
+};
 
 /**
  * display message on right bottom corner
  * it will stay be displayed long enought to be read
  * if provided id_name, will set focus after timeout
- * @param	message
+ * @param	the_message
  * @param	id_name
  *
  * dependency	#jky-message
@@ -771,18 +722,18 @@ JKY.inp_time_value = function(the_time){
  */
 JKY.d = function(the_message, id_name) {
 	JKY.display_message(the_message, id_name);
-}
+};
 
 JKY.display_message = function(the_message, id_name) {
 	var my_message = the_message.trim();
-	if (my_message == '') {
+	if (my_message === '') {
 		return;
 	}
-	if (my_message.substr(0, 4) == '<br>') {
+	if (my_message.substr(0, 4) === '<br>') {
 		my_message = my_message.substr(4);
 	}
 	var my_body = $('#jky-message-body');
-	if (my_body.html() == '') {
+	if (my_body.html() === '') {
 		my_body.append(my_message);
 	}else{
 		my_body.append('<br />' + my_message);
@@ -800,11 +751,11 @@ JKY.display_message = function(the_message, id_name) {
 	JKY.last_time_out = setTimeout(function(){
 		JKY.hide('jky-message');
 		my_body.html('');
-		if (typeof(id_name) != 'undefined') {
+		if (typeof(id_name) !== 'undefined') {
 			JKY.set_focus(id_name);
 		}
 	}, my_time * 1000);
-}
+};
 
 /**
  * display trace on left bottom corner
@@ -813,7 +764,7 @@ JKY.display_message = function(the_message, id_name) {
  */
 JKY.display_trace = function(message){
 	if (!JKY.TRACE) {		//	this control is set on [setup definition of constants] of [index.js]
-		return
+		return;
 	}
 	var my_date = new Date();
 	var my_msec = (my_date.getMilliseconds() + 1000).toString().substr(1);
@@ -823,7 +774,7 @@ JKY.display_trace = function(message){
 	var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
 	$('#jky-trace-body').html(my_html);
 	JKY.show('jky-trace');
-}
+};
 
 /**
  * get now date and time
@@ -831,7 +782,7 @@ JKY.display_trace = function(message){
  */
 JKY.get_now = function() {
 	return JKY.get_date() + ' ' + JKY.get_time();
-}
+};
 
 /**
  * get date
@@ -843,7 +794,7 @@ JKY.get_date = function() {
 	var  my_month	= my_today.getMonth()+1;	if (my_month < 10)	my_month= '0' + my_month;
 	var  my_day		= my_today.getDate ();		if (my_day   < 10)	my_day	= '0' + my_day	;
 	return my_year + '-' + my_month + '-' + my_day;
-}
+};
 
 /**
  * get time
@@ -855,7 +806,7 @@ JKY.get_time = function() {
 	var  my_minute	= my_today.getMinutes();	if (my_minute < 10)	my_minute = '0' + my_minute;
 	var  my_second	= my_today.getSeconds();	if (my_second < 10)	my_second = '0' + my_second;
 	return my_hour + ':' + my_minute + ':' + my_second;
-}
+};
 
 /**
  * get text content of specific id
@@ -864,7 +815,7 @@ JKY.get_time = function() {
  */
 JKY.get_text = function(idName){
 	return $('#' + idName).text();
-}
+};
 
 /**
  * get html content of specific id
@@ -873,7 +824,7 @@ JKY.get_text = function(idName){
  */
 JKY.get_html = function(idName){
 	return $('#' + idName).html();
-}
+};
 
 /**
  * set specific id with html content
@@ -886,7 +837,7 @@ JKY.set_html = function(id_name, html){
 	}else{
 		setTimeout(function() {JKY.set_html(id_name, html);}, 100);
 	}
-}
+};
 
 /**
  * append specific id with html content
@@ -895,7 +846,7 @@ JKY.set_html = function(id_name, html){
  */
 JKY.append_html = function(id_name, html){
 	$('#' + id_name).append(html);
-}
+};
 
 /**
  * append specific id with file content
@@ -903,7 +854,7 @@ JKY.append_html = function(id_name, html){
  * @param	file_name
  */
 JKY.append_file = function(id_name, file_name){
-	if ($('#' + id_name).length == 0) {
+	if ($('#' + id_name).length === 0) {
 		$('body').append('<div id="' + id_name + '"></div>');
 		$('#' + id_name).load(file_name);
 
@@ -911,7 +862,7 @@ JKY.append_file = function(id_name, file_name){
 		JKY.t_input	(id_name, 'placeholder');
 //		JKY.t_button(id_name, 'title');
 	}
-}
+};
 
 /**
  * prepend specific id with html content
@@ -920,7 +871,7 @@ JKY.append_file = function(id_name, file_name){
  */
 JKY.prepend_html = function(id_name, html){
 	$('#' + id_name).prepend(html);
-}
+};
 
 /**
  * set specific id attr title with title
@@ -929,7 +880,7 @@ JKY.prepend_html = function(id_name, html){
  */
 JKY.set_title = function(the_id , the_title){
 	$('#' + the_id).attr('title', the_title);
-}
+};
 
 /**
  * set specific id attr src with filename
@@ -938,7 +889,7 @@ JKY.set_title = function(the_id , the_title){
  */
 JKY.set_src = function(the_id , the_file_name){
 	$('#' + the_id).attr('src', the_file_name);
-}
+};
 
 /**
  * set specific id attr css with value
@@ -948,24 +899,24 @@ JKY.set_src = function(the_id , the_file_name){
  */
 JKY.set_css = function(the_id , the_css, the_value){
 	$('#' + the_id).css(the_css, the_value);
-}
+};
 
 JKY.has_attr = function(the_id, the_attr){
 	var my_attr = $('#' + the_id).attr(the_attr);
-	if (typeof my_attr == 'undefined' || my_attr == false) {
+	if (typeof my_attr === 'undefined' || my_attr === false) {
 		return false;
 	}else{
 		return true;
 	}
-}
+};
 
 JKY.has_class = function(the_id, the_class){
 	return $('#' + the_id).hasClass(the_class);
-}
+};
 
 JKY.remove_attr = function(the_id, the_attr){
 	var my_attr = $('#' + the_id).removeAttr(the_attr);
-}
+};
 
 /**
  * get value of specific id
@@ -979,7 +930,7 @@ JKY.get_value = function(the_id){
 	}else{
 		return '';
 	}
-}
+};
 
 /**
  * set specific id with value
@@ -987,9 +938,9 @@ JKY.get_value = function(the_id){
  * @param	the_value
  */
 JKY.set_value = function(the_id, the_value){
-	var my_value = (the_value == 'null') ? '' : the_value;
+	var my_value = (the_value === 'null') ? '' : the_value;
 	$('#' + the_id).val(my_value);
-}
+};
 
 /**
  * get yes or no on specific checkbox
@@ -1003,7 +954,7 @@ JKY.get_yes_no = function(id_name){
 	}else{
 		return 'No';
 	}
-}
+};
 
 /**
  * set yes on specific value
@@ -1014,14 +965,14 @@ JKY.set_yes = function(id_name, value){
 	var my_id = $('#' + id_name);
 //	my_id.removeAttr('checked');		//	jquery 1.8.2
 	my_id.prop('checked', false);		//	jquery 2.0.3
-	if (value == 'Yes') {
+	if (value === 'Yes') {
 //		JKY.Changes.track(false);
 //		$('#' + id_name).attr('checked', true);		//	jquery 1.8.1
 //		my_id.click();								//	jquery 1.8.2
 		my_id.prop('checked', true);				//	jquery 2.0.3
 //		JKY.Changes.track(true);
 	}
-}
+};
 
 /**
  * get text of selected id
@@ -1031,7 +982,8 @@ JKY.set_yes = function(id_name, value){
 JKY.get_selected_text = function(the_id){
 	var my_value = $('#' + the_id + ' option:selected').text();
 	return my_value;
-}
+};
+
 /**
  * set check on specific value
  * @param	id_name
@@ -1042,7 +994,7 @@ JKY.Xset_check = function(id_name, value){
 //	var my_command = "$('#" + id_name + " :checkbox[value=" + value + "]').attr('checked', 'checked');";
 	var my_command = "$('#" + id_name + " :checkbox[value=" + value + "]').attr('checked', true);";
 	setTimeout(my_command, 100);
-}
+};
 
 /**
  * set radio on specific value
@@ -1055,7 +1007,7 @@ JKY.set_radio = function(id_name, value){
 //	var my_command = "$('#" + id_name + " :radio[value=" + value + "]').attr('checked', true);";	//	jquery 1.8.2
 	var my_command = "$('#" + id_name + " :radio[value=\"" + value + "\"]').prop('checked', true);";	//	jquery 2.0.3
 	setTimeout(my_command, 100);
-}
+};
 
 /**
  * set selected specific id with value
@@ -1070,7 +1022,7 @@ JKY.set_option = function(id_name, value){
 //		setTimeout(my_command, 100);																				//	jquery 1.8.2
 		$('#' + id_name + ' option[ value="' + value + '" ]').prop('selected', 'selected');							//	jquery 2.0.3
 	}
-}
+};
 
 //	JKY.set_options(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
 //  Only String is able to work
@@ -1080,11 +1032,11 @@ JKY.set_options = function( ) {
 
      for( var i=1, max=arguments.length; i<max; i++ ) {
           var my_value = arguments[i];
-          var my_selected = (my_value == arguments[0]) ? ' selected="selected"' : '';
+          var my_selected = (my_value === arguments[0]) ? ' selected="selected"' : '';
           my_options += '<option value="' + my_value + '"' + my_selected + '>' + JKY.t(my_value) + '</option>';
      }
      return my_options;
-}
+};
 
 //	JKY.set_options_array(20, array, true)
 //	----------------------------------------------------------------------------
@@ -1095,51 +1047,51 @@ JKY.set_options_array = function(the_selected, the_array, the_null) {
 	}
 	for(var i=0; i<the_array.length; i++) {
 		var my_value = '';
-		if (typeof the_array[i].nick_name != 'undefined') {
+		if (typeof the_array[i].nick_name !== 'undefined') {
 			my_value = the_array[i].nick_name;
 		}else{
-		if (typeof the_array[i].name != 'undefined') {
+		if (typeof the_array[i].name !== 'undefined') {
 			my_value = the_array[i].name;
 		}else{
-		if (typeof the_array[i].full_name != 'undefined') {
+		if (typeof the_array[i].full_name !== 'undefined') {
 			my_value = the_array[i].full_name;
 		}}}
 		var my_id    = the_array[i].id;
-		if (typeof my_id == 'undefined') {
+		if (typeof my_id === 'undefined') {
 			my_id = my_value;
 		}
 		var my_selected = '';
 		if (isNaN(the_selected)) {
-			my_selected = (my_value == the_selected) ? ' selected="selected"' : '';
+			my_selected = (my_value === the_selected) ? ' selected="selected"' : '';
 		}else{
-			my_selected = (my_id    == the_selected) ? ' selected="selected"' : '';
+			my_selected = (my_id    === the_selected) ? ' selected="selected"' : '';
 		}
 		my_options += '<option value="' + my_id + '"' + my_selected + '>' + my_value + '</option>';
      }
      return my_options;
-}
+};
 
 //	get name by id from array
 //	----------------------------------------------------------------------------
 JKY.get_name_by_id = function(the_id, the_array) {
 	for(var i=0; i<the_array.length; i++) {
-		if (the_array[i].id == the_id) {
+		if (the_array[i].id === the_id) {
 			return the_array[i].name;
 		}
 	}
 	return null;
-}
+};
 
 //	get index by id from array
 //	----------------------------------------------------------------------------
 JKY.get_index_by_id = function(the_id, the_array) {
 	for(var i=0; i<the_array.length; i++) {
-		if (the_array[i].id == the_id) {
+		if (the_array[i].id === the_id) {
 			return i;
 		}
 	}
 	return null;
-}
+};
 
 //	JKY.set_radios(20, 'All', 10, 20, 50, 100, 200, 500, 1000)
 //	----------------------------------------------------------------------------
@@ -1150,11 +1102,11 @@ JKY.set_radios = function() {
 
 	for(var i=2, max=arguments.length; i<max; i++) {
 		var value = arguments[i];
-		var checked = (value == set_value) ? ' checked="checked"' : '';
+		var checked = (value === set_value) ? ' checked="checked"' : '';
 		radios += '<input type="radio" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + checked + '/>&nbsp;' + value + ' &nbsp; ';
 	}
 	return radios;
-}
+};
 
 //	JKY.set_radios_array('jky-product-type', array)
 //	----------------------------------------------------------------------------
@@ -1162,19 +1114,19 @@ JKY.set_radios_array = function(the_name, the_array) {
 	var my_radios = '';
 	for(var i=0, max=the_array.length; i<max; i++) {
 		var my_value = '';
-		if (typeof the_array[i].name != 'undefined') {
+		if (typeof the_array[i].name !== 'undefined') {
 			my_value = the_array[i].name;
 		}else{
-		if (typeof the_array[i].nick_name != 'undefined') {
+		if (typeof the_array[i].nick_name !== 'undefined') {
 			my_value = the_array[i].nick_name;
 		}else{
-		if (typeof the_array[i].full_name != 'undefined') {
+		if (typeof the_array[i].full_name !== 'undefined') {
 			my_value = the_array[i].full_name;
 		}}}
 		my_radios += '<input type="radio" name="' + the_name + '" value="' + my_value + '" /><span>' + my_value + '</span><br>';
 	}
 	return my_radios;
-}
+};
 
 //	JKY.set_checks('...', ..., '...')
 //	----------------------------------------------------------------------------
@@ -1187,7 +1139,7 @@ JKY.Xset_checks = function() {
 		checks += '<input type="checkbox" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + '/>&nbsp;' + value + ' <br>';
 	}
 	return checks;
-}
+};
 
 /**
  * set 'active' class on specific id of menu
@@ -1209,29 +1161,29 @@ JKY.set_menu_active = function(id_name){
 	JKY.hide('jky-side-support'		);
 	$('#jky-menus li').removeClass('active');
 	$('#' + id_name).addClass('active');
-}
+};
 
 /**
  * set 'active' class on specific id of side bar
  * @param	id_name
  */
 JKY.set_side_active = function(id_name){
-	if ($('#' + id_name).length == 0
-	||  $('#' + id_name).parent().css('display') == 'none') {
+	if ($('#' + id_name).length === 0
+	||  $('#' + id_name).parent().css('display') === 'none') {
 		return;
 	}
 	$('#jky-side-bar div').removeClass('active');
 	$('#' + id_name).addClass('active');
-}
+};
 
 /**
  * get value of checkbox or radio checked
- * @param	the name
+ * @param	id_name
  * @return	value
  */
 JKY.get_checked = function(id_name){
 	return $('input[name=' + id_name + ']:checked').val();
-}
+};
 
 /**
  * set 'active' class on specific id
@@ -1239,7 +1191,7 @@ JKY.get_checked = function(id_name){
  */
 JKY.set_active = function(id_name){
 	$('#' + id_name).addClass('active');
-}
+};
 
 /**
  * reset 'active' class on specific id
@@ -1247,7 +1199,7 @@ JKY.set_active = function(id_name){
  */
 JKY.reset_active = function(id_name){
 	$('#' + id_name).removeClass('active');
-}
+};
 
 /**
  * reset all 'active' class on specific id
@@ -1255,7 +1207,7 @@ JKY.reset_active = function(id_name){
  */
 JKY.reset_all_active = function(id_name){
 	$('#' + id_name + ' .active').each(function() {$(this).removeClass('active');});
-}
+};
 
 /**
  * show specific id name
@@ -1263,21 +1215,21 @@ JKY.reset_all_active = function(id_name){
  */
 JKY.show = function(id_name){
 	$('#' + id_name).show();
-}
+};
 
 /**
  * hide specific id name
  * @param	id_name
  */
 JKY.hide = function(id_name){
-	if (id_name == 'jky-loading') {
+	if (id_name === 'jky-loading') {
 //		the delay of 1 sec is just ilusion for the user to perceive the end of loading
 //		setTimeout(function()	{$('#jky-loading').hide();}, 1000);		//	for Colors 2000
 		setTimeout(function()	{$('#jky-loading').hide();}, 100);
 	}else{
 		$('#' + id_name).hide();
 	}
-}
+};
 
 /**
  * Collapse Side Bar
@@ -1287,7 +1239,7 @@ JKY.hide = function(id_name){
 JKY.collapse = function(id_name){
 	var my_id = $('#' + id_name);
 	var x= my_id.css('margin-left');
-	if (my_id.css('margin-left') == '0px') {
+	if (my_id.css('margin-left') === '0px') {
 		my_id.css('display' , 'block');
 		my_id.css('margin-left' , '-200px');
 		$('#jky-collapsible-icon').removeClass('icon-step-backward').addClass('icon-step-forward');
@@ -1297,7 +1249,7 @@ JKY.collapse = function(id_name){
 		my_id.css('margin-left' , '0px');
 	}
 
-}
+};
 
 /**
  * hide specific id name
@@ -1305,7 +1257,7 @@ JKY.collapse = function(id_name){
  */
 JKY.invisible = function(id_name){
 	$('#' + id_name).css('visibility', 'hidden');
-}
+};
 
 /**
  * show specific id name
@@ -1313,7 +1265,7 @@ JKY.invisible = function(id_name){
  */
 JKY.visible = function(id_name){
 	$('#' + id_name).css('visibility', 'visible');
-}
+};
 
 /**
  * center specific box on windows
@@ -1325,7 +1277,7 @@ JKY.center_box = function(id_name) {
 	var my_top  = ($(window).height() - my_box.height())/2;
 	my_box.css('top' , my_top );
 	my_box.css('left', my_left);
-}
+};
 
 /**
  * show modal specific id name
@@ -1336,7 +1288,7 @@ JKY.show_modal = function(id_name) {
 	my_box.modal('show');
 	my_box.draggable({handle:'.modal-header', containment:'window', delay:100, distance:10});
 //	my_box.resizable();		//	comment out because of side effect on scrollable
-}
+};
 
 /**
  * hide modal specific id name
@@ -1344,24 +1296,26 @@ JKY.show_modal = function(id_name) {
  */
 JKY.hide_modal = function(id_name) {
 	$('#' + id_name).modal('hide');
-}
+};
 
 /**
  * enable button
+ * @param	id_name
  */
 JKY.enable_button = function(id_name) {
 	$('#' + id_name).show();
 	$('#' + id_name).removeAttr ('disabled');
 	$('#' + id_name).css('cursor', 'pointer');
-}
+};
 
 /**
  * disable button
+ * @param	id_name
  */
 JKY.disable_button = function(id_name) {
 	$('#' + id_name).attr('disabled', 'disabled');
 	$('#' + id_name).css('cursor', 'not-allowed');
-}
+};
 
 /**
  * return true if specific browser is running
@@ -1381,7 +1335,7 @@ JKY.is_browser = function(browserName){
 	}else{
 		return false;
 	}
-}
+};
 
 /**
  * scroll to top if the table
@@ -1389,7 +1343,7 @@ JKY.is_browser = function(browserName){
  */
 JKY.scroll_to_top = function(class_name){
 	$('.' + class_name).scrollTop(0);
-}
+};
 
 /**
  * return true if scroll bar is at end of table
@@ -1404,7 +1358,7 @@ JKY.is_scroll_at_end = function(class_name){
 	}else{
 		return false;
 	}
-}
+};
 
 /**
  * show confirm layer with message
@@ -1428,16 +1382,16 @@ JKY.display_confirm = function(function_yes, function_no, header, body, label_ye
 	JKY.click_confirm = function(reply) {
 		$('#jky-confirm').unbind('hidden');
 		$('#jky-confirm').modal('hide');
-		if (reply == 'Yes' && typeof(function_yes) == 'function')	{function_yes();}
-		if (reply == 'No'  && typeof(function_no ) == 'function')	{function_no ();}
-	}
+		if (reply === 'Yes' && typeof(function_yes) === 'function')	{function_yes();}
+		if (reply === 'No'  && typeof(function_no ) === 'function')	{function_no ();}
+	};
 	$('#jky-confirm-header'	).html(JKY.t(header		));
 	$('#jky-confirm-body'	).html(JKY.t(body		));
 	$('#jky-confirm-yes'	).html(JKY.t(label_yes	));
 	$('#jky-confirm-no'		).html(JKY.t(label_no	));
 	$('#jky-confirm').on('hidden', function() {JKY.click_confirm('No');});
 	$('#jky-confirm').modal('show');
-}
+};
 
 //        JKY.show_layer('login', 'user_name', 200)
 //        ----------------------------------------------------------------------
@@ -1457,7 +1411,7 @@ JKY.show_layer = function(layer, field, z_index) {
      $('#' +  layer_name).show().css('z-index', z_index+1);
      JKY.set_focus(field);
      eval('setup_' + layer + '_data();');
-}
+};
 
 //        JKY.hide_layer('login')
 //        ----------------------------------------------------------------------
@@ -1466,7 +1420,7 @@ JKY.hide_layer = function(layer) {
      var  shadow_name = layer + '-shadow';
      $('#' +  layer_name).hide();
      $('#' + shadow_name).hide();
-}
+};
 
 /**
  * set string
@@ -1479,7 +1433,7 @@ JKY.set_string = function(the_string) {
 	}else{
 		return '&nbsp;';
 	}
-}
+};
 
 /**
  * set icon file
@@ -1492,14 +1446,14 @@ JKY.set_icon_file = function(the_file_id) {
 	}else{
 		return '&nbsp;';
 	}
-}
+};
 
 //		JKY.set_focus('user_name', 100)
 //		----------------------------------------------------------------------
 JKY.set_focus = function(the_name, the_delay) {
 	var my_id = $('#' + the_name);
 	if (my_id && my_id.is(':visible')) {
-		var my_delay = (typeof the_delay == 'undefined') ? 0 : the_delay;
+		var my_delay = (typeof the_delay === 'undefined') ? 0 : the_delay;
 		setTimeout( function() {
 			my_id.focus();
 			my_id.select();
@@ -1509,34 +1463,39 @@ JKY.set_focus = function(the_name, the_delay) {
 			JKY.set_focus(the_name, the_delay);
 		}, 100);
 	}
-}
+};
 
 /**
  * convert all [\n] to [<br>]
+ * @param	string
  */
 JKY.nl2br = function(string) {
-	if (string == null) {
+	if (string === null
+	||  string === false) {
 		return '';
 	}else{
 		return string.replace(/\n/g, '<br>');
 	}
-}
+};
 
 
 /**
  * convert all [<br>] to [\n]
+ * @param	string
  */
 JKY.br2nl = function(string) {
-	if (string == null) {
+	if (string === null
+	||  string === false) {
 		return '';
 	}else{
 		return string.replace(/<br>/g, "\n").replace(/<BR>/g, "\n");
 	}
-}
+};
 
 
-/*
- *	json to array
+/**
+ * json to array
+ * @param	json
  */
 JKY.json2Array = function(json) {
 	JKY.display_trace('JKY.json2Array');
@@ -1547,7 +1506,7 @@ JKY.json2Array = function(json) {
 		alert('Error: ' + error);
 	}
 	return array;
-}
+};
 
 /**
  * convert all
@@ -1558,6 +1517,7 @@ JKY.json2Array = function(json) {
  * ['] to [&#039;	]
  * [\] to [&#092;	]
  * [t] to [ ]
+ * @param	string
  */
 JKY.encode = function(string) {
   string = string.replace( /&/g, "&amp;"	);
@@ -1568,7 +1528,7 @@ JKY.encode = function(string) {
   string = string.replace(/\\/g, "&#092;"	);
   string = string.replace(/\t/g, " "		);
   return string;
-}
+};
 
 /**
  * convert all
@@ -1579,6 +1539,7 @@ JKY.encode = function(string) {
  * [&#039;	] to [']
  * [&#092;	] to [\]
  * [&nbsp;	] to [ ]
+ * @param	string
  */
 JKY.decode = function(string)	{
 	string = string.replace(/&amp;/g , '&' );
@@ -1589,17 +1550,17 @@ JKY.decode = function(string)	{
 	string = string.replace(/&#092;/g, "\\");
 	string = string.replace(/&nbsp;/g, ' ' );
 	return string;
-}
+};
 
 /*
  *	capitalise only first character
  */
 JKY.capitalise = function(string) {
 	return string.charAt(0).toUpperCase() + string.slice(1);
-}
+};
 
 JKY.max = function(max_size, string) {
-	if (string == null) {
+	if (string === null) {
 		return '&nbsp;';
 	}else{
 		var my_length = string.length;
@@ -1609,29 +1570,29 @@ JKY.max = function(max_size, string) {
 			return string.substr(0, max_size);
 		}
 	}
-}
+};
 
-JKY.disabled_id	= function(id_name)	{		$('#' + id_name).addClass	('disabled');}
-JKY.enabled_id 	= function(id_name)	{		$('#' + id_name).removeClass('disabled');}
-JKY.is_disabled = function(id_name) {return $('#' + id_name).hasClass	('disabled');}
+JKY.disabled_id	= function(id_name)	{		$('#' + id_name).addClass	('disabled');};
+JKY.enabled_id 	= function(id_name)	{		$('#' + id_name).removeClass('disabled');};
+JKY.is_disabled = function(id_name) {return $('#' + id_name).hasClass	('disabled');};
 
 //        JKY.set_...
 //        ----------------------------------------------------------------------
-JKY.set_is_zero			= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('is zero'		);}
-JKY.set_is_invalid		= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('is invalid'		);}
-JKY.set_is_required		= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('is required'	);}
-JKY.set_already_taken	= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('already taken'	);}
-JKY.set_not_found		= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('not found'		);}
-JKY.set_must_be_numeric	= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('must be numeric');}
-JKY.set_size_is_under	= function(name, size )       {return '<br>' + JKY.t( name ) + ' ' + JKY.t('size is under'	) + ' [' + size  + ']';}
-JKY.set_size_is_above	= function(name, size )       {return '<br>' + JKY.t( name ) + ' ' + JKY.t('size is above'	) + ' [' + size  + ']';}
-JKY.set_value_is_under	= function(name, value)       {return '<br>' + JKY.t( name ) + ' ' + JKY.t('value is under'	) + ' [' + value + ']';}
-JKY.set_value_is_above	= function(name, value)       {return '<br>' + JKY.t( name ) + ' ' + JKY.t('value is above'	) + ' [' + value + ']';}
+JKY.set_is_zero			= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('is zero'		);};
+JKY.set_is_invalid		= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('is invalid'		);};
+JKY.set_is_required		= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('is required'	);};
+JKY.set_already_taken	= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('already taken'	);};
+JKY.set_not_found		= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('not found'		);};
+JKY.set_must_be_numeric	= function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t('must be numeric');};
+JKY.set_size_is_under	= function(name, size )       {return '<br>' + JKY.t( name ) + ' ' + JKY.t('size is under'	) + ' [' + size  + ']';};
+JKY.set_size_is_above	= function(name, size )       {return '<br>' + JKY.t( name ) + ' ' + JKY.t('size is above'	) + ' [' + size  + ']';};
+JKY.set_value_is_under	= function(name, value)       {return '<br>' + JKY.t( name ) + ' ' + JKY.t('value is under'	) + ' [' + value + ']';};
+JKY.set_value_is_above	= function(name, value)       {return '<br>' + JKY.t( name ) + ' ' + JKY.t('value is above'	) + ' [' + value + ']';};
 
 //   Set Languages -------------------------------------------------------------
 JKY.set_languages = function() {
      var  options = $('#en-speaking').html();
-     if(  options == '' ) {
+     if(  options === '' ) {
           setTimeout('JKY.set_languages()', 100);
      } else {
           $('#en-reading' ).html(options);
@@ -1643,7 +1604,7 @@ JKY.set_languages = function() {
           $('#tw-reading' ).html(options);
           $('#tw-writing' ).html(options);
      }
-}
+};
 
 /**
  * check if specific id  is loaded
@@ -1658,19 +1619,19 @@ JKY.is_loaded = function(id_name) {
 	}else{
 		return false;
 	}
-}
+};
 
 //	check if the_string is empty
 JKY.is_empty = function(the_string) {
-	if (typeof the_string == 'undefined'
-	||  the_string == 'null'
-//	||  the_string == false			//	'0'
-	||  $.trim(the_string) == '') {
+	if (typeof the_string === 'undefined'
+	||  the_string === 'null'
+//	||  the_string === false		//	'0'
+	||  $.trim(the_string) === '') {
 		return true;
 	}else{
 		return false;
 	}
-}
+};
 
 /*
  * is checked, if specific id is checked
@@ -1692,7 +1653,7 @@ JKY.is_checked = function(id_name) {
 JKY.is_email = function(the_email) {
 	var  pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
 	return pattern.test(the_email);
-}
+};
 
 /*
  * is required, if empty then display message [x...x is required]
@@ -1704,7 +1665,7 @@ JKY.is_email = function(the_email) {
  * @return	true		(if value is not empty)
  */
 JKY.is_required = function(value, label) {
-	if (value == '') {
+	if (value === '') {
 		JKY.display_message(label + ' is required.');
 		return false;
 	}else{
@@ -1722,7 +1683,7 @@ JKY.is_required = function(value, label) {
  * @return	true		(if value is not empty)
  */
 JKY.is_numeric = function(value, label) {
-	if (value == ''
+	if (value === ''
 	||  isNaN(value)) {
 //		JKY.display_message(label + ' must be numeric.');
 		return false;
@@ -1739,10 +1700,10 @@ JKY.is_date = function(date) {
      var  dd   = parseInt(dates[1], 10);
      var  yyyy = parseInt(dates[2], 10);
      var  new_date = new Date(yyyy, mm-1, dd);
-     if(( new_date.getFullYear() == yyyy ) && ( new_date.getMonth() == mm-1 ) && ( new_date.getDate() == dd ))
+     if(( new_date.getFullYear() === yyyy ) && ( new_date.getMonth() === mm-1 ) && ( new_date.getDate() === dd ))
           return true;
      else return false;
-}
+};
 
 /*
  * if status match to value (english or translated)
@@ -1754,8 +1715,8 @@ JKY.is_date = function(date) {
  */
 JKY.is_status = function(the_status) {
 	var my_status = JKY.get_html('jky-status');
-	if (my_status == the_status
-	||  my_status == JKY.t(the_status)) {
+	if (my_status === the_status
+	||  my_status === JKY.t(the_status)) {
 		return true;
 	}else{
 		return false;
@@ -1786,8 +1747,8 @@ JKY.str_replace = function(search, replace, subject, count) {
        ,  f     = [].concat(search )
        ,  r     = [].concat(replace)
        ,  s     = subject
-       ,  ra    = Object.prototype.toString.call(r) == '[object Array]'
-       ,  sa    = Object.prototype.toString.call(s) == '[object Array]'
+       ,  ra    = Object.prototype.toString.call(r) === '[object Array]'
+       ,  sa    = Object.prototype.toString.call(s) === '[object Array]'
        ;
      s = [].concat(s);
      if(  count ) {
@@ -1795,33 +1756,36 @@ JKY.str_replace = function(search, replace, subject, count) {
      }
 
      for( i=0, sl=s.length; i<sl; i++ ) {
-          if(  s[i] == '' ) {
+          if(  s[i] === '' ) {
                continue;
           }
           for( j=0, fl=f.length; j<fl; j++ ) {
                temp = s[i] + '';
-               repl = ra ? (r[j] != undefined ? r[j] : '') : r[0];
+               repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
                s[i] = (temp).split(f[j]).join(repl);
-               if(  count && s[i] != temp ) {
+               if(  count && s[i] !== temp ) {
                     this.window[count] += (temp.length - s[i].length) / f[j].length;
                }
           }
      }
      return sa ? s : s[0];
-}
+};
 
 /**
  * set company name
+ * @param	company_name
  */
 JKY.set_company_name = function(company_name) {
 	JKY.set_html('jky-company-name', company_name);
-}
+};
 
 /**
  * set user info
+ * @param	full_name
+ * @param	contact_id
  */
 JKY.set_user_info = function(full_name, contact_id) {
-	if (full_name == null) {
+	if (full_name === null) {
 		JKY.set_html('jky-user-full-name', '');
 		JKY.hide('jky-user-logged');
 		JKY.show('jky-user-unkown');
@@ -1837,21 +1801,23 @@ JKY.set_user_info = function(full_name, contact_id) {
 		JKY.hide('jky-user-unkown');
 		JKY.show('jky-user-logged');
 	}
-}
+};
 
 /**
  * set company logo
+ * @param	company_logo
  */
 JKY.set_company_logo = function(company_logo) {
 	JKY.set_html('jky-company-logo', '<img src="/img/' + company_logo + '" />');
-}
+};
 
 /**
  * set event name
+ * @param	event_name
  */
 JKY.set_event_name = function(event_name) {
 	JKY.set_html('jky-event-name', event_name);
-}
+};
 
 JKY.is_permitted = function(the_menu_id) {
 	var my_resource = '';
@@ -1873,19 +1839,20 @@ JKY.is_permitted = function(the_menu_id) {
 	}
 
 	var my_action = JKY.Session.get_action(my_resource);
-	if (my_action == '') {
+	if (my_action === '') {
 		my_action = JKY.Session.get_action('All');
 	}
 
-	if (my_action == 'All') {
+	if (my_action === 'All') {
 		return true;
 	}else{
 		return false;
 	}
-}
+};
 
 /**
  * set buttons menus
+ * @param	menus
  */
 JKY.set_buttons_menus = function(menus) {
 	var my_html = '';
@@ -1901,10 +1868,13 @@ JKY.set_buttons_menus = function(menus) {
 		}
 	}
 	JKY.set_html('jky-menus', my_html);
-}
+};
 
 /**
  * set buttons control
+ * @param	admins
+ * @param	language
+ * @param	languages
  */
 JKY.set_buttons_control = function(admins, language, languages) {
 	var my_html = '';
@@ -1913,7 +1883,7 @@ JKY.set_buttons_control = function(admins, language, languages) {
 		my_html += '<select id="jky-control-language">';
 		for(var i=0; i<languages.length; i++) {
 			var my_language = languages[i];
-			var my_selected = (my_language == language) ? ' selected="selected"' : '';
+			var my_selected = (my_language === language) ? ' selected="selected"' : '';
 			my_html += '<option value="' + my_language + '"' + my_selected + '>' + JKY.t(my_language) + '</option>';
 		}
 		my_html += '</select>';
@@ -1932,10 +1902,12 @@ JKY.set_buttons_control = function(admins, language, languages) {
 	}
 	my_html += '<a id="jky-control-tickets" class="btn btn-large"><i class="icon-share icon-white"></i>Tickets</a>';
 	JKY.set_html('jky-control', my_html);
-}
+};
 
 /**
  * set body header
+ * @param	name
+ * @param	buttons
  */
 JKY.set_body_header = function(name, buttons) {
 	JKY.set_html('jky-body-name', '<i class="icon-th"></i>' + name);
@@ -1945,24 +1917,27 @@ JKY.set_body_header = function(name, buttons) {
 		my_html += '<button onclick="JKY.display_trace(\'' + my_button.on_click + '\')" class="btn"><i class="icon-' + my_button.icon + '"></i> ' + JKY.t(my_button.label) + '</button>';
 	}
 	JKY.set_html('jky-body-buttons', my_html);
-}
+};
 
 /**
  * set copyright
+ * @param	copyright
  */
 JKY.set_copyright = function(copyright) {
 	JKY.set_html('jky-copyright', copyright);
-}
+};
 
 /**
  * set copyright
+ * @param	contact_us
  */
 JKY.set_contact_us = function(contact_us) {
 //	JKY.set_html('jky-contact-us', contact_us);
-}
+};
 
 /**
  * get ids
+ * @param	table
  */
 JKY.get_ids = function(table) {
 	JKY.display_trace('get_ids: ' + table);
@@ -1980,27 +1955,24 @@ JKY.get_ids = function(table) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_rows = response.rows;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
-					function_error(jqXHR, text_status, error_thrown);
-				}else{
-					JKY.hide('jky-loading');
-					JKY.display_message('Error from backend server, please re-try later.');
-				}
+				JKY.hide('jky-loading');
+				JKY.display_message('Error from backend server, please re-try later.');
 			}
 		}
-	)
+	);
 	return my_rows;
-}
+};
 
 /**
  * get controls
+ * @param	group_set
  */
 JKY.get_controls = function(group_set) {
 	JKY.display_trace('get_controls: ' + group_set);
@@ -2018,27 +1990,24 @@ JKY.get_controls = function(group_set) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_rows = response.rows;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
-					function_error(jqXHR, text_status, error_thrown);
-				}else{
-					JKY.hide('jky-loading');
-					JKY.display_message('Error from backend server, please re-try later.');
-				}
+				JKY.hide('jky-loading');
+				JKY.display_message('Error from backend server, please re-try later.');
 			}
 		}
-	)
+	);
 	return my_rows;
-}
+};
 
 /**
  * get configs
+ * @param	group_set
  */
 JKY.get_configs = function(group_set) {
 	JKY.display_trace('get_configs: ' + group_set);
@@ -2056,27 +2025,24 @@ JKY.get_configs = function(group_set) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_rows = response.rows;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
-					function_error(jqXHR, text_status, error_thrown);
-				}else{
-					JKY.hide('jky-loading');
-					JKY.display_message('Error from backend server, please re-try later.');
-				}
+				JKY.hide('jky-loading');
+				JKY.display_message('Error from backend server, please re-try later.');
 			}
 		}
-	)
+	);
 	return my_rows;
-}
+};
 
 /**
  * get companies
+ * @param	group_set
  */
 JKY.get_companies = function(specific) {
 	JKY.display_trace('get_companies: ' + specific);
@@ -2094,27 +2060,27 @@ JKY.get_companies = function(specific) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_rows = response.rows;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
-					function_error(jqXHR, text_status, error_thrown);
-				}else{
-					JKY.hide('jky-loading');
-					JKY.display_message('Error from backend server, please re-try later.');
-				}
+				JKY.hide('jky-loading');
+				JKY.display_message('Error from backend server, please re-try later.');
 			}
 		}
-	)
+	);
 	return my_rows;
-}
+};
 
 /**
  * set group set
+ * @param	table
+ * @param	selected
+ * @param	group_set
+ * @param	initial
  */
 JKY.set_group_set = function(table, selected, group_set, initial) {
 	JKY.display_trace('set_control_set: ' + group_set);
@@ -2134,12 +2100,12 @@ JKY.set_group_set = function(table, selected, group_set, initial) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_html = '';
-					if (initial == null ) {
+					if (initial === null ) {
 //						no initial option
 					}else{
-						if (initial == '' ) {
+						if (initial === '' ) {
 							my_html += '<option value=""   >' + initial + '</option>';
 						}else{
 							my_html += '<option value="All">' + initial + '</option>';
@@ -2148,44 +2114,43 @@ JKY.set_group_set = function(table, selected, group_set, initial) {
 					for(var i=0; i<response.rows.length; i+=1) {
 						var my_name  = response.rows[i]['name' ];
 						var my_value = response.rows[i]['value'];
-//						if (my_value == '' || group_set == 'User Roles') {
-						if (my_value == '' || my_value == 'null' || group_set == 'User Roles') {
+//						if (my_value == '' || group_set === 'User Roles') {
+						if (my_value == '' || my_value === 'null' || group_set === 'User Roles') {
 							my_value = my_name;
 						}
-						var my_selected = (my_name == selected) ? ' selected="selected"' : '';
+						var my_selected = (my_name === selected) ? ' selected="selected"' : '';
 						my_html += '<option value="' + my_name + '"' + my_selected + '>' + my_value + '</option>';
 					}
-//					my_html += '<option onclick="JKY.process_option_search(this)"	class="jky-option-search"	>Search More...</option>';
+//					my_html += '<option onclick="JKY.process_option_search (this)"	class="jky-option-search"	>Search More...</option>';
 //					my_html += '<option onclick="JKY.process_option_add_new(this)"	class="jky-option-add-new"	>Add New...</option>';
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
-					function_error(jqXHR, text_status, error_thrown);
-				}else{
-					JKY.hide('jky-loading');
-					JKY.display_message('Error from backend server, please re-try later.');
-				}
+				JKY.hide('jky-loading');
+				JKY.display_message('Error from backend server, please re-try later.');
 			}
 		}
-	)
+	);
 	return my_html;
-}
+};
 
 /**
  * set configs
+ * @param	selected
+ * @param	group_set
+ * @param	initial
  */
 JKY.set_configs = function(group_set, selected, initial) {
 	JKY.display_trace('set_configs: ' + group_set);
 	var my_html = '';
 	var my_rows = JKY.get_configs(group_set);
 
-	if (typeof initial == 'undefined' ) {
+	if (typeof initial === 'undefined' ) {
 		my_html += '';
 	}else{
-	if (initial == '' ) {
+	if (initial === '' ) {
 		my_html += '<option value=""   >' + initial + '</option>';
 	}else{
 		my_html += '<option value="All">' + initial + '</option>';
@@ -2193,33 +2158,36 @@ JKY.set_configs = function(group_set, selected, initial) {
 	for(var i=0; i<my_rows.length; i+=1) {
 		var my_name  = my_rows[i]['name' ];
 		var my_value = my_rows[i]['value'];
-//		if (my_value == '' || group_set == 'User Roles') {
-		if (my_value == null || my_value == '' || my_value == 'null' || group_set == 'User Roles') {
+//		if (my_value === '' || group_set === 'User Roles') {
+		if (my_value === null || my_value === '' || my_value === 'null' || group_set === 'User Roles') {
 			my_value = my_name;
 		}
-		var my_selected = (my_name == selected) ? ' selected="selected"' : '';
+		var my_selected = (my_name === selected) ? ' selected="selected"' : '';
 		my_html += '<option value="' + my_name + '"' + my_selected + '>' + my_value + '</option>';
 	}
-//	my_html += '<option onclick="JKY.process_option_search(this)"	class="jky-option-search"	>Search More...</option>';
+//	my_html += '<option onclick="JKY.process_option_search (this)"	class="jky-option-search"	>Search More...</option>';
 //	my_html += '<option onclick="JKY.process_option_add_new(this)"	class="jky-option-add-new"	>Add New...</option>';
 	return my_html;
-}
+};
 
 /**
  * set controls
  * if initial is undefined then nothing will show up
  * if initial is equal to '' then add up a '___' option
  * if initial is equal to All then add up one 'All' option
+ * @param	group_set
+ * @param	selected
+ * @param	initial
  */
 JKY.set_controls = function(group_set, selected, initial) {
 	JKY.display_trace('set_controls: ' + group_set);
 	var my_html = '';
 	var my_rows = JKY.get_controls(group_set);
 
-	if (typeof initial == 'undefined' ) {
+	if (typeof initial === 'undefined' ) {
 		my_html += '';
 	}else{
-	if (initial == '' ) {
+	if (initial === '' ) {
 		my_html += '<option value=""   >' + initial + '</option>';
 	}else{
 		my_html += '<option value="All">' + initial + '</option>';
@@ -2227,12 +2195,12 @@ JKY.set_controls = function(group_set, selected, initial) {
 	for(var i=0; i<my_rows.length; i+=1) {
 		var my_name  = my_rows[i]['name' ];
 		var my_value = my_rows[i]['value'];
-		if (my_value == null
-		||	my_value == ''
-		||	my_value == 'null') {
+		if (my_value === null
+		||	my_value === ''
+		||	my_value === 'null') {
 			my_value = my_name;
 		}
-		var my_selected = (my_name == selected) ? ' selected="selected"' : '';
+		var my_selected = (my_name === selected) ? ' selected="selected"' : '';
 		switch(group_set) {
 			case 'User Roles'	:	my_html += '<option value="' + my_name  + '"' + my_selected + '>' + my_name  + '</option>'; break;
 			case 'NFE Folders'	:	my_html += '<option value="' + my_value + '"' + my_selected + '>' + my_name  + '</option>'; break;
@@ -2242,10 +2210,14 @@ JKY.set_controls = function(group_set, selected, initial) {
 //	my_html += '<option onclick="JKY.process_option_search(this)"	class="jky-option-search"	>Search More...</option>';
 //	my_html += '<option onclick="JKY.process_option_add_new(this)"	class="jky-option-add-new"	>Add New...</option>';
 	return my_html;
-}
+};
 
 /**
  * set table options
+ * @param	table
+ * @param	field
+ * @param	selected
+ * @param	initial
  */
 JKY.set_table_options = function(table, field, selected, initial) {
 	JKY.display_trace('set_table_options: ' + table);
@@ -2266,12 +2238,12 @@ JKY.set_table_options = function(table, field, selected, initial) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_html = '';
-					if (initial == null ) {
+					if (initial === null ) {
 //						no initial option
 					}else{
-						if (initial == '' ) {
+						if (initial === '' ) {
 							my_html += '<option value=""   >' + initial + '</option>';
 						}else{
 							my_html += '<option value="All">' + initial + '</option>';
@@ -2280,7 +2252,7 @@ JKY.set_table_options = function(table, field, selected, initial) {
 					for(var i=0; i<response.rows.length; i+=1) {
 						var my_id  	 = response.rows[i]['id' ];
 						var my_value = response.rows[i][field];
-						var my_selected = (my_id == selected) ? ' selected="selected"' : '';
+						var my_selected = (my_id === selected) ? ' selected="selected"' : '';
 						my_html += '<option value="' + my_id + '"' + my_selected + '>' + my_value + '</option>';
 					}
 				}else{
@@ -2288,17 +2260,13 @@ JKY.set_table_options = function(table, field, selected, initial) {
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
-					function_error(jqXHR, text_status, error_thrown);
-				}else{
-					JKY.hide('jky-loading');
-					JKY.display_message('Error from backend server, please re-try later.');
-				}
+				JKY.hide('jky-loading');
+				JKY.display_message('Error from backend server, please re-try later.');
 			}
 		}
-	)
+	);
 	return my_html;
-}
+};
 
 /**
  * process ajax
@@ -2320,22 +2288,22 @@ JKY.ajax = function(async, data, function_success, function_error) {
 		, async		: async
 		, success	: function(response) {
 				JKY.hide('jky-loading');
-				if (response.status == 'ok') {
-					if (typeof function_success != 'undefined') {
+				if (response.status === 'ok') {
+					if (typeof function_success !== 'undefined') {
 						function_success(response);
 					}
 				}else{
 					var my_messages = response.message.split(':');
 					if (my_messages.length > 2) {
 						var my_words = my_messages[2].trim().split(' ');
-						if (my_words[0] == '1062') {
+						if (my_words[0] === '1062') {
 							JKY.display_message('Error, the key of this record is already taken.');
 						}else{
 							JKY.display_message(response.message);
 						}
 					}else{
 						var my_message = response.message;
-						if (my_message.substr(0, 4) == '<br>') {
+						if (my_message.substr(0, 4) === '<br>') {
 							my_message = my_message.substr(4);
 						}
 						JKY.display_message(JKY.t(my_message));
@@ -2344,7 +2312,7 @@ JKY.ajax = function(async, data, function_success, function_error) {
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
 				JKY.hide('jky-loading');
-				if (typeof function_error != 'undefined') {
+				if (typeof function_error !== 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
 					JKY.hide('jky-loading');
@@ -2353,7 +2321,7 @@ JKY.ajax = function(async, data, function_success, function_error) {
 			}
 		}
 	);
-}
+};
 
 JKY.get_row = function(table_name, id) {
 	var my_row = null;
@@ -2373,24 +2341,20 @@ JKY.get_row = function(table_name, id) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_row = response.row;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
-					function_error(jqXHR, text_status, error_thrown);
-				}else{
-					JKY.hide('jky-loading');
-					JKY.display_message('Error from backend server, please re-try later.');
-				}
+				JKY.hide('jky-loading');
+				JKY.display_message('Error from backend server, please re-try later.');
 			}
 		}
 	);
 	return my_row;
-}
+};
 
 JKY.get_rows = function(table_name, id) {
 	var my_rows = null;
@@ -2428,7 +2392,7 @@ JKY.get_rows = function(table_name, id) {
 		}
 	);
 	return my_rows;
-}
+};
 
 JKY.get_rows_by_where = function(the_table, the_where) {
 	var my_rows = null;
@@ -2950,3 +2914,29 @@ JKY.title_case = function(the_id) {
 	}
 	$(the_id).val(my_array.join(' '));
 };
+
+JKY.full_address = function(the_row) {
+	var my_address = '';
+
+	my_address += ''
+	+ '<tr>'
+	+ '<td class=jky-print-label><span>Address</span>:</td>'
+	+ '<td class=jky-print-col3 colspan="3">'
+	+ the_row.street1 + ' '
+	+ the_row.st_number + ' '
+	+ the_row.st_cpl
+	+ '</td>'
+	+ '</tr>'
+	;
+
+	my_address += ''
+	+ '<tr>'
+	+ '<td class=jky-print-label><span>Street2</span>:</td>'
+	+ '<td class=jky-print-col3 colspan="3">'
+	+ the_row.street2 + ', '+ the_row.city + ', ' + the_row.state + ' ' + the_row.zip
+	+ '</td>'
+	+ '</tr>'
+	;
+
+	return my_address;
+}

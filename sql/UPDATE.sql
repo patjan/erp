@@ -436,3 +436,5 @@ ALTER TABLE Sales		ADD INDEX salesman		(salesman_id	);
 ALTER TABLE Machines	ADD INDEX machine_brand	(machine_brand	);
 /* -- 2015-05-04	*/
 ALTER TABLE BatchOuts		ADD COLUMN supplier_id		BIGINT		DEFAULT NULL	AFTER thread_id;
+/* -- 2015-05-10	*/
+ALTER TABLE ShipDyers		ADD COLUMN sis_printed		INT			DEFAULT 0		AFTER sds_printed;

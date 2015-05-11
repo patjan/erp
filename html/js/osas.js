@@ -75,7 +75,8 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.sales.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
-	JKY.show	('jky-action-print');
+	JKY.show	('jky-action-print'   );
+	JKY.show	('jky-action-approve' );
 
 	$('#jky-customer-filter'	).KeyUpDelay(JKY.Customer	.load_data);
 	$('#jky-salesman-filter'	).KeyUpDelay(JKY.Salesman	.load_data);
@@ -194,13 +195,15 @@ JKY.zero_value = function(the_id, the_name) {
 
 JKY.display_list = function() {
 	JKY.hide('jky-action-add-new');
-	JKY.show('jky-action-print');
+	JKY.show('jky-action-print'  );
+	JKY.show('jky-action-approve');
 };
 
 JKY.display_form = function() {
 	JKY.hide('jky-action-add-new');
-	JKY.show('jky-action-print');
-	JKY.show('jky-action-copy');
+	JKY.show('jky-action-print'  );
+	JKY.show('jky-action-approve');
+	JKY.show('jky-action-copy'   );
 };
 
 JKY.process_delete = function(the_id, the_row) {
@@ -293,7 +296,70 @@ JKY.print_row = function(the_id) {
 		+ "<thead><tr class='jky-print-lines'>"
 		+	'<td								><span>Product				</span></td>'
 		+	'<td								><span>  Extra				</span></td>'
-		+	'<td class="jky-print-pieces"		><span>   Peso<br>Kg/peça	</span></td>'
+		+	'<td class="jky-print-pieces"		><span>   Peso<br>Kg/Piece	</span></td>'
+		+	'<td class="jky-print-pieces"		><span> Quoted<br>Units		</span></td>'
+		+	'<td class="jky-print-pieces"		><span>  Units<br>/Piece	</span></td>'
+		+	'<td class="jky-print-pieces"		><span> Quoted<br>Pieces	</span></td>'
+		+	'<td class="jky-print-pieces"		><span> Quoted<br>Weight	</span></td>'
+		+ "<tr><thead>"
+		+ "<tbody id='jky-print-lines-body'></table>"
+		+ "</table>"
+		+ "<br>"
+
+		+ "<div style='width:700px; border:1px solid black;'>"
+		+ "<div class='jky-print-label'><span>Remarks</span>:</div>"
+		+ "<div id='jky-print-remarks'></div>"
+		+ "</div>"
+		;
+	JKY.set_html('jky-printable', my_html);
+	JKY.t_tag	('jky-printable', 'span');
+
+	JKY.set_html('jky-print-osa-number'			, my_row.osa_number			);
+	JKY.set_html('jky-print-customer-name'		, my_row.customer_name		);
+	JKY.set_html('jky-print-salesman-name'		, my_row.salesman_name		);
+	JKY.set_html('jky-print-lines-body'			, JKY.approve_lines(the_id));
+
+	JKY.set_html('jky-print-remarks'			, JKY.nl2br(my_row.remarks));
+
+//	JKY.show('jky-printable');
+	$("#jky-printable").print();
+};
+
+/**
+ * approve row
+ */
+JKY.approve_row = function(the_id) {
+	JKY.display_message('approve_row: ' + the_id);
+	var my_row = JKY.get_row(JKY.App.get('table_name'), the_id);
+
+//window.print();
+	var my_html = ''
+		+ "<table><tr>"
+		+ "<td style='width:250px; font-weight:bold;'>" + JKY.Session.get_value('company_name') + "</td>"
+		+ "<td style='width:330px; font-weight:bold;'>" + "</td>"
+		+ "<td style='width:120px; text-align:right;'><spa	n>Date</span>: " + JKY.out_date(my_row.ordered_at) + "</td>"
+		+ "</tr></table>"
+		+ "<table style='width:700px; border:1px solid black;'>"
+		+ "<tr>"
+
+		+ "<td width=60%><table>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>      OSA Number</span>:</td><td id='jky-print-osa-number'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>        Customer</span>:</td><td id='jky-print-customer-name'	class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>        Salesman</span>:</td><td id='jky-print-salesman-name'		class='jky-form-value'></td></tr>"
+		+ "</table></td>"
+
+		+ "</tr>"
+		+ "</table>"
+		+ "<br>"
+		+ "<div style='width:700px; border:1px solid black;'>"
+		+ "</div>"
+		+ "<br>"
+
+		+ "<table style='width:700px; border:1px solid black;'>"
+		+ "<thead><tr class='jky-print-lines'>"
+		+	'<td								><span>Product				</span></td>'
+		+	'<td								><span>  Extra				</span></td>'
+		+	'<td class="jky-print-pieces"		><span>   Peso<br>Kg/Piece	</span></td>'
 		+	'<td class="jky-print-pieces"		><span> Quoted<br>Units		</span></td>'
 		+	'<td class="jky-print-pieces"		><span>  Units<br>/Piece	</span></td>'
 		+	'<td class="jky-print-pieces"		><span> Quoted<br>Pieces	</span></td>'

@@ -95,19 +95,19 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-td-number"	>' +			  the_row.sale_number		+ '</td>'
-		+  '<td class="jky-td-number"	>' + JKY.fix_null(the_row.po_number		)	+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + JKY.fix_null(the_row.customer_name	)	+ '</td>'
-//		+  '<td class="jky-td-name-s"	>' + JKY.fix_null(the_row.machine_name	)	+ '</td>'
-//		+  '<td class="jky-td-name-s"	>' + JKY.fix_null(the_row.dyer_name		)	+ '</td>'
-		+  '<td class="jky-td-amount"	>' +			 the_row.sold_amount		+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.out_date(the_row.needed_date	)	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.out_date(the_row.sold_date		)	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.out_date(the_row.hold_date		)	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.out_date(the_row.sent_date		)	+ '</td>'
-		+  '<td class="jky-td-pieces"	>' + JKY.fix_null(the_row.sold_pieces	)	+ '</td>'
-		+  '<td class="jky-td-pieces"	>' + JKY.fix_null(the_row.hold_pieces	)	+ '</td>'
-		+  '<td class="jky-td-pieces"	>' + JKY.fix_null(the_row.sent_pieces	)	+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.sale_number		+ '</td>'
+		+  '<td class="jky-td-number"	>' + JKY.fix_null	(the_row.po_number		)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.customer_name	)	+ '</td>'
+//		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.machine_name	)	+ '</td>'
+//		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.dyer_name		)	+ '</td>'
+		+  '<td class="jky-td-amount"	>' +				 the_row.sold_amount		+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.needed_date	)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.sold_date		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.hold_date		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.sent_date		)	+ '</td>'
+		+  '<td class="jky-td-pieces"	>' + JKY.fix_null	(the_row.sold_pieces	)	+ '</td>'
+		+  '<td class="jky-td-pieces"	>' + JKY.fix_null	(the_row.hold_pieces	)	+ '</td>'
+		+  '<td class="jky-td-pieces"	>' + JKY.fix_null	(the_row.sent_pieces	)	+ '</td>'
 		+  '</tr>'
 		;
 	return my_html;
@@ -217,18 +217,18 @@ JKY.get_form_set = function() {
 		my_contact_id	= (my_contact_id	=== '') ? 'null' : my_contact_id	;
 		my_interest_rate= (my_interest_rate	=== '') ? 'null' : my_interest_rate	;
 	var my_set = ''
-		+     '  salesman_id=  ' + my_salesman_id
-		+     ', customer_id=  ' + my_customer_id
-		+      ', contact_id=  ' + my_contact_id
-		+       ', po_number=\'' + JKY.get_value	('jky-po-number'		) + '\''
-		+     ', needed_date=  ' + JKY.inp_date		('jky-needed-date'		)
-		+       ', sold_date=  ' + JKY.inp_date		('jky-sold-date'		)
-		+        ', payments=\'' + JKY.get_value	('jky-payments'			) + '\''
-		+      ', is_taxable=\'' + JKY.get_checked	('jky-is-taxable'		) + '\''
-		+  ', icms_exemption=\'' + JKY.get_checked	('jky-icms-exemption'	) + '\''
-		+     ', deduct_cone=\'' + JKY.get_checked	('jky-deduct-cone'		) + '\''
-		+   ', interest_rate=  ' + my_interest_rate
-		+ ', advanced_amount=  ' + JKY.get_value	('jky-advanced-amount'	)
+		+       '  salesman_id=  ' + my_salesman_id
+		+       ', customer_id=  ' + my_customer_id
+		+        ', contact_id=  ' + my_contact_id
+		+         ', po_number=\'' + JKY.get_value	('jky-po-number'		) + '\''
+		+       ', needed_date=  ' + JKY.inp_date	('jky-needed-date'		)
+		+         ', sold_date=  ' + JKY.inp_date	('jky-sold-date'		)
+		+          ', payments=\'' + JKY.get_value	('jky-payments'			) + '\''
+		+        ', is_taxable=\'' + JKY.get_checked('jky-is-taxable'		) + '\''
+		+    ', icms_exemption=\'' + JKY.get_checked('jky-icms-exemption'	) + '\''
+		+       ', deduct_cone=\'' + JKY.get_checked('jky-deduct-cone'		) + '\''
+		+     ', interest_rate=  ' + my_interest_rate
+		+   ', advanced_amount=  ' + JKY.get_value	('jky-advanced-amount'	)
 		;
 	return my_set;
 };
@@ -470,12 +470,15 @@ JKY.print_row = function(the_id) {
 
 //window.print();
 	var my_html = ''
-		+ "<table><tr>"
+		+ "<table class='jky-print-box'>"
+		+ "<tr>"
 //		+ "<td style='width:250px; font-weight:bold;'>" + JKY.Session.get_value('company_name') + "</td>"
 		+ "<td style='width:250px; font-weight:bold;'>" + "</td>"
 		+ "<td style='width:330px; font-weight:bold;'>" + "</td>"
-		+ "<td style='width:120px; text-align:right;'><spa	n>Date</span>: " + JKY.out_date(my_row.quoted_at) + "</td>"
-		+ "</tr></table>"
+		+ "<td style='width:120px; text-align:right;'><span>Date</span>: " + JKY.out_date(my_row.sold_date) + "</td>"
+		+ "</tr>"
+		+ "</table>"
+
 		+ "<table style='width:700px; border:1px solid black;'>"
 		+ "<tr>"
 
@@ -494,6 +497,7 @@ JKY.print_row = function(the_id) {
 
 		+ "</tr>"
 		+ "</table>"
+
 		+ "<br>"
 
 		+ "<div style='width:700px; border:1px solid black;'>"
@@ -508,7 +512,7 @@ JKY.print_row = function(the_id) {
 		+	'<td								><span> Product				</span></td>'
 		+	'<td								><span>   Extra				</span></td>'
 		+	'<td								><span>   Color				</span></td>'
-		+	'<td class="jky-print-pieces"		><span>    Peso<br>Kg/peça	</span></td>'
+		+	'<td class="jky-print-pieces"		><span>    Peso<br>Kg/Piece	</span></td>'
 		+	'<td class="jky-print-pieces"		><span>  Quoted<br>Units	</span></td>'
 		+	'<td class="jky-print-pieces"		><span>  Quoted<br>Pieces	</span></td>'
 		+	'<td class="jky-print-pieces"		><span>Discount<br>$ or %	</span></td>'
@@ -522,23 +526,25 @@ JKY.print_row = function(the_id) {
 		+ "<div id='jky-print-remarks'></div>"
 		+ "</div>"
 		;
-	JKY.set_html('jky-printable', my_html);
-	JKY.t_tag	('jky-printable', 'span');
+	var my_remarks = JKY.get_config_value('Remarks', 'Sale');
 
-	JKY.set_html('jky-print-sale-number'		, my_row.sale_number		);
-	JKY.set_html('jky-print-customer-name'		, my_row.customer_name		);
-	JKY.set_html('jky-print-contact-name'		, my_row.contact_name	+ ' : ' + my_row.contact_mobile	);
+	JKY.set_html('jky-printable', my_html);
+
+	JKY.set_html('jky-print-sale-number'		, my_row.sale_number);
+	JKY.set_html('jky-print-customer-name'		, my_row.customer_name);
+	JKY.set_html('jky-print-contact-name'		, JKY.fix_null(my_row.contact_name) + ' : ' + JKY.fix_null(my_row.contact_mobile));
 
 	var my_sub_amount = (my_row.sold_amount - my_row.discount_amount - my_row.advanced_amount).toFixed(2);
+
 	JKY.set_html('jky-print-sold-amount'		, my_row.sold_amount		);
 	JKY.set_html('jky-print-discount-amount'	, my_row.discount_amount	);
-	JKY.set_html('jky-print-advanced-amount'	, my_row.advanced_amount	);
-	JKY.set_html('jky-print-sub-amount'			, my_sub_amount				);
+	JKY.set_html('jky-print-advanced-amount'	, my_row.advanced_amount);
+	JKY.set_html('jky-print-sub-amount'			, my_sub_amount);
 
 	JKY.set_html('jky-print-lines-body'			, JKY.print_lines(the_id));
 
-	var my_remarks = JKY.get_config_value('Remarks', 'Sale');
 	JKY.set_html('jky-print-remarks'			, JKY.nl2br(my_remarks));
+	JKY.t_tag	('jky-printable', 'span');
 
 //	JKY.show('jky-printable');
 	$("#jky-printable").print();

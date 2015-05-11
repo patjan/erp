@@ -220,3 +220,46 @@ JKY.print_lines = function(the_id) {
 	)
 	return my_html;
 }
+
+JKY.approve_lines = function(the_id) {
+	var my_html  = '';
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'OSA_Lines'
+		, select	:  the_id
+		, order_by  : 'OSA_Lines.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					var my_rows = response.rows;
+					for(var i in my_rows) {
+						var my_row = my_rows[i];
+						my_html  += ''
+							+ '<tr class="jky-bold">'
+							+ '<td								><b>' + my_row.product_name	+ '</b></td>'
+							+ '<td class="jky-print-name-s"		><b>' + my_row.remarks		+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' + my_row.peso			+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_units	+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' + my_row.units		+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_pieces+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_weight+ '</b></td>'
+							+ '</tr>'
+							;
+						my_html  += JKY.approve_colors(my_row.id);
+					}
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		}
+	)
+	return my_html;
+}

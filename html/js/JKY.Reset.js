@@ -17,6 +17,7 @@ JKY.set_add_new_row		= function()				{};
 JKY.get_form_set		= function()				{};
 JKY.combine_row			= function(the_id)			{};
 JKY.print_row			= function(the_id)			{};
+JKY.approve_row			= function(the_id)			{};
 JKY.close_row			= function(the_id)			{};
 JKY.replace_row			= function(the_id)			{};
 

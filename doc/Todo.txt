@@ -65,8 +65,8 @@ OK		Products: mudar [Product Type] de Gola para Retilinea
 
 
 9.	OK	Qdo e' definido o tipo de cone usado no tecido ?
-		por tinturaria: papelao fino, papelao grosso, plastico, ...
-		por comprimento: 90 (300), 120 (400), 180 (600)
+	OK	por tinturaria: papelao fino, papelao grosso, plastico, ...
+	OK	por comprimento: 90 (300), 120 (400), 180 (600)
 		criar cone padra por tinturaria
 
 10.	OK	Quantos tipos de cones com peso ?
@@ -120,12 +120,12 @@ Bugs
 6.	ok	programar Backup diario do DB
 12.		programar stock de pecas por produto
 11.	ok	modificar Quotations
-12.		generate Sales
+12.	ok	generate Sales
 3.	ok	program ERPController.php
 4.	ok	program ERP_add_new.PHP
 5.	ok	Json interface ERP to NFe
 8.		add prefix to next ids and to numbers.
-9.		fix bug on change menu or sub-menu
+9.	ok	fix bug on change menu or sub-menu
 10.		programar NFe para TDyers
 11.	ok	close tickets
 12.		programar Fabrics
@@ -167,9 +167,14 @@ Bugs
 22.		upgrade FTPs
 		- FTP (single select)
 
+-----------------------------	All
 1. 2013-12-13	add Permissions to: Boxes, Pieces
 2. 2013-12-13	on [Color Types] of Configs, dropout [Branco] and [Preto]
 3. 2013-12-13	allow only digits on integer fields: diameter, density inputs, turns, weight, width, speed, peso, perc
+4.				limit to 100 rows per DB fetch
+5.				add button to DB fetch next 100
+6.				move button [Change Status] to right side
+
 
 -----------------------------	Colors, Products
 1. 2013-12-20	change Status (Active X Inactive)
@@ -189,18 +194,13 @@ Bugs
 1. 2013-12-19	change Status (Active X Inactive)
 
 -----------------------------	Products
-1.				add Product prices (Color Type)
-
------------------------------	Products
-1. 				select	[Color Types]  (new layer)
-
-
+1. done			add Product prices (Color Type)
 
 -----------------------------	Quotations
-1. 2013-12-14	disable [Generate Order] if [Quoted Pieces] = 0
+1. 2013-12-14	disable [Generate OSA] if [Quoted Pieces] = 0
 2. 2013-12-14	if Status != Draft, then on [Lines] tab disable all: [Add New], [Delete] and [Quoted Pieces]
 
-3. not needed	on [Generate Order], transfer [Remarks] into [Orders] (link back to Quotation)
+3. not needed	on [Generate OSA], transfer [Remarks] into [OSA] (link back to Quotation)
 4. 				program [Generate Sales]
 
 -----------------------------	TDyers
@@ -262,7 +262,8 @@ Bugs
 -----------------------------	Translations
 1. 2013-12-19	drop out [Created At]
 
-
+-----------------------------	Permissions
+1.				add new permission table
 
 
 Extras

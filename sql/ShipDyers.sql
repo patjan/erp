@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS ShipDyers
 , brand_name		VARCHAR(32)			DEFAULT NULL
 , batch_code		VARCHAR(32)			DEFAULT NULL
 , sds_printed		INT					DEFAULT 0
+, sis_printed		INT					DEFAULT 0
 , quantity			INT					DEFAULT 0
 , gross_weight		DECIMAL(10,2)		DEFAULT 0
 , net_weight		DECIMAL(10,2)		DEFAULT 0
@@ -33,6 +34,8 @@ INSERT NextIds	SET table_name='ShipDyers', next_id=1, id_size=9;
 INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, name='ShipDyers', updated_by=1, updated_at=NOW();
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='ShipDyers', updated_by=1, updated_at=NOW();
 
-ALTER TABLE ShipDyers		ADD COLUMN sds_printed		INT				DEFAULT 0		AFTER batch_code;
+ALTER TABLE ShipDyers		ADD COLUMN sds_printed		INT			DEFAULT 0		AFTER batch_code;
 
 ALTER TABLE ShipDyers	ADD INDEX transport		(transport_id	);
+
+ALTER TABLE ShipDyers		ADD COLUMN sis_printed		INT			DEFAULT 0		AFTER sds_printed;

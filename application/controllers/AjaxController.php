@@ -949,6 +949,7 @@ private function set_new_fields($table) {
 												. ',   LoadOut.requested_at		AS requested_at'
 												. ', Quotation.quotation_number	AS quotation_number'
 												. ',      Dyer.nick_name		AS      dyer_name'
+												. ',     Color.id				AS     color_id'
 												. ',     Color.color_name		AS     color_name'
 												. ',  Customer.nick_name		AS  customer_name'
 												. ',   Product.id				AS   product_id'

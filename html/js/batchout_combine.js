@@ -5,16 +5,13 @@ var JKY = JKY || {};
  */
 
 JKY.display_combine = function(the_row) {
-	var my_where = ''
-		+ ' AND		 BatchOuts.status		= \'Draft\''
-		+ ' AND DATE(CheckOuts.checkout_at)	= DATE(\''	+ the_row.checkout_at	+ '\')'
-		+ ' AND		 Machines.name			= \''		+ the_row.machine_name	+ '\''
-//		+ ' AND		 Partner.nick_name		= \''		+ the_row.partner_name	+ '\''
-//		+ ' AND		 Supplier.nick_name		= \''		+ the_row.supplier_name	+ '\''
-//		+ ' AND		 Dyer.nick_name			= \''		+ the_row.dyer_name		+ '\''
-		+ ' AND		 Threads.name			= \''		+ the_row.thread_name	+ '\''
-		+ ' AND		 Batches.batch			= \''		+ the_row.batch_code	+ '\''
-		;
+    var my_where = ''
+        + ' AND      BatchOuts.status       = \'Draft\''
+        + ' AND DATE(CheckOuts.checkout_at) = DATE(\''  + the_row.checkout_at   + '\')'
+        + ' AND      Machines.name          = \''       + the_row.machine_name  + '\''
+        + ' AND      Threads.name           = \''       + the_row.thread_name   + '\''
+        + ' AND      Batches.batch          = \''       + the_row.batch_code    + '\''
+        ;
 	var my_data =
 		{ method		: 'get_index'
 		, table			: 'BatchOuts'

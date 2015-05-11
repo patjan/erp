@@ -1,4 +1,5 @@
 "use strict";
+var JKY = JKY || {};
 
 /**
  * JKY.Companies

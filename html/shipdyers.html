@@ -1,7 +1,12 @@
 <style>
+.jky-print-label		{width:150px; vertical-align:top; font-weight:bold; text-align:right;}
+.jky-print-col1			{width:450px; vertical-align:top;}
+.jky-print-col2			{width:150px; vertical-align:top;}
+.jky-print-col3			{width:750px; vertical-align:top;}
 .jky-print-barcode		{width:200px; text-align:center; border:1px solid black;}
 .jky-print-weight		{width:100px; text-align:center; border:1px solid black;}
 .jky-print-filler		{width:100px;}
+.jky-print-address		{vertical-align:top;}
 </style>
 
 <table id='jky-app-table' class='table table-striped'>
@@ -52,6 +57,10 @@
 			<div class='jky-form-line'>
 				<div class='jky-form-label-s'><span>SDs Printed</span>:</div>
 				<input  id='jky-sds-printed' class='jky-form-integer' style='width:56px;' disabled /> <a id='jky-print-sd'><i class='icon-print'></i></a>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label-s'><span>SIs Printed</span>:</div>
+				<input  id='jky-sis-printed' class='jky-form-integer' style='width:56px;' disabled /> <a id='jky-print-si'><i class='icon-print'></i></a>
 			</div>
 		</div>
 		<div class='jky-clear'></div>

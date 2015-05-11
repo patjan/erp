@@ -1,5 +1,5 @@
 "use strict";
-
+var JKY = JKY || {};
 /**
  * quotations.js
  */
@@ -113,7 +113,7 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	if (the_row.status == 'Draft') {
+	if (the_row.status === 'Draft') {
 		JKY.enable_button ('jky-action-generate');
 		JKY.enable_delete_button();
 		JKY.enable_button ('jky-lines-add-new'	);
@@ -122,7 +122,7 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_delete_button();
 		JKY.disable_button('jky-lines-add-new'	);
 	}
-	if (the_row.status == 'Active') {
+	if (the_row.status === 'Active') {
 		JKY.enable_button ('jky-action-close');
 	}else{
 		JKY.disable_button('jky-action-close');
@@ -186,9 +186,9 @@ JKY.get_form_set = function() {
 	var my_salesman_id	= JKY.get_value('jky-salesman-id'	);
 	var my_customer_id	= JKY.get_value('jky-customer-id'	);
 	var my_contact_id	= JKY.get_value('jky-contact-id'	);
-		my_salesman_id	= (my_salesman_id	== '') ? 'null' : my_salesman_id;
-		my_customer_id	= (my_customer_id	== '') ? 'null' : my_customer_id;
-		my_contact_id	= (my_contact_id	== '') ? 'null' : my_contact_id	;
+		my_salesman_id	= (my_salesman_id	=== '') ? 'null' : my_salesman_id	;
+		my_customer_id	= (my_customer_id	=== '') ? 'null' : my_customer_id	;
+		my_contact_id	= (my_contact_id	=== '') ? 'null' : my_contact_id	;
 
 	var my_set = ''
 		+       '  salesman_id=  ' + my_salesman_id
@@ -199,11 +199,11 @@ JKY.get_form_set = function() {
 		+   ', produce_to_date=  ' + JKY.inp_date	('jky-produce-to-date'	)
 //		+    ', delivered_date=  ' + JKY.inp_date	('jky-delivered-date'	)
 
-		+     ', quoted_amount=  ' + JKY.get_value('jky-quoted-amount'	)
-		+   ', discount_amount=  ' + JKY.get_value('jky-discount-amount'	)
-		+   ', advanced_amount=  ' + JKY.get_value('jky-advanced-amount'	)
-		+          ', payments=\'' + JKY.get_value('jky-payments'			) + '\''
-		+           ', remarks=\'' + JKY.get_value('jky-remarks'			) + '\''
+		+     ', quoted_amount=  ' + JKY.get_value	('jky-quoted-amount'	)
+		+   ', discount_amount=  ' + JKY.get_value	('jky-discount-amount'	)
+		+   ', advanced_amount=  ' + JKY.get_value	('jky-advanced-amount'	)
+		+          ', payments=\'' + JKY.get_value	('jky-payments'			) + '\''
+		+           ', remarks=\'' + JKY.get_value	('jky-remarks'			) + '\''
 		;
 	return my_set;
 };
@@ -211,7 +211,7 @@ JKY.get_form_set = function() {
 JKY.zero_value = function(the_id, the_name) {
 	JKY.App.process_change_input(the_id);
 	$('#' + the_name).val('0');
-}
+};
 
 JKY.display_list = function() {
 	JKY.show('jky-action-print');
@@ -234,7 +234,7 @@ JKY.process_copy = function(the_id, the_row) {
 		};
 	JKY.ajax(true, my_data);
 	JKY.copy_lines(the_row.id, the_id);
-}
+};
 
 JKY.process_delete = function(the_id, the_row) {
 	var my_data = '';
@@ -275,11 +275,11 @@ JKY.generate_sale = function() {
 		{ method	: 'generate'
 		, table		: 'Sale'
 		, id		:  JKY.row.id
-		}
+		};
 	JKY.ajax(false, my_data, function(the_response) {
 		JKY.display_message('Sale row generated: ' + JKY.row.id);
 		JKY.App.display_row();
-	})
+	});
 };
 
 /* -------------------------------------------------------------------------- */
@@ -300,11 +300,11 @@ JKY.generate_osa = function() {
 		{ method	: 'generate'
 		, table		: 'OSA'
 		, id		:  JKY.row.id
-		}
+		};
 	JKY.ajax(false, my_data, function(the_response) {
 		JKY.display_message('OSA row generated: ' + JKY.row.id);
 		JKY.App.display_row();
-	})
+	});
 };
 
 /* -------------------------------------------------------------------------- */
@@ -319,7 +319,7 @@ JKY.save_remarks = function() {
 	JKY.ajax(true, my_data, function(the_response) {
 		JKY.display_message('Remarks saved, ' + the_response.message);
 		JKY.row = JKY.get_row('Quotations', JKY.row.id);
-	})
+	});
 };
 
 JKY.update_customer_info = function() {
@@ -336,7 +336,7 @@ JKY.update_sub_amount = function() {
 	var my_advanced_amount	= parseFloat($('#jky-advanced-amount'	).val());
 	var my_sub_amount		= my_quoted_amount - my_discount_amount - my_advanced_amount;
 	JKY.set_value('jky-sub-amount', my_sub_amount.toFixed(2));
-}
+};
 
 /**
  * re-calculate amounts
@@ -357,7 +357,7 @@ JKY.update_quotation_amount = function() {
 			my_line_peso		= parseFloat($(this).find('.jky-product-peso'	).val());
 			my_line_units		= parseInt	($(this).find('.jky-product-units'	).val());
 			my_line_discount	=			 $(this).find('.jky-discount'		).val()	;
-			if (my_line_units == 0)		my_line_peso = 1;
+			if (my_line_units === 0)		my_line_peso = 1;
 		}else{
 			my_color_units		= parseFloat($(this).find('.jky-quoted-units'	).val());
 			my_color_price		= parseFloat($(this).find('.jky-quoted-price'	).val());
@@ -366,10 +366,10 @@ JKY.update_quotation_amount = function() {
 			my_color_amount		=  my_line_peso * my_color_units * my_color_price;
 			my_quoted_amount	+= my_color_amount;
 
-			if (my_color_discount == '')		my_color_discount = my_line_discount;
+			if (my_color_discount === '')		my_color_discount = my_line_discount;
 			my_color_discount = my_color_discount.trim();
 			var my_length = my_color_discount.length;
-			if (my_color_discount.substr(my_length-1, 1) == '%') {
+			if (my_color_discount.substr(my_length-1, 1) === '%') {
 				my_color_discount = parseFloat(my_color_discount);
 				if (!isNaN(my_color_discount)) {
 					my_discount_amount += my_color_amount * my_color_discount / 100;
@@ -398,7 +398,7 @@ JKY.update_quotation_amount = function() {
 		, where : 'Quotations.id = ' + JKY.row.id
 		};
 	JKY.ajax(true, my_data);
-}
+};
 
 /**
  * print row
@@ -467,4 +467,4 @@ JKY.print_row = function(the_id) {
 
 //	JKY.show('jky-printable');
 	$("#jky-printable").print();
-}
+};

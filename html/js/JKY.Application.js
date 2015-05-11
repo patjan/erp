@@ -52,6 +52,7 @@ if (my_first == true) {
 				$('#jky-action-add-new'		).click (function() {JKY.Changes.can_leave(function() { my_process_add_new		();})});
 				$('#jky-action-combine'		).click (function() {JKY.Changes.can_leave(function() { my_process_combine		();})});
 				$('#jky-action-print'		).click (function() {JKY.Changes.can_leave(function() { my_process_print		();})});
+				$('#jky-action-approve'		).click (function() {JKY.Changes.can_leave(function() { my_process_approve		();})});
 				$('#jky-action-export'		).click (function() {JKY.Changes.can_leave(function() { my_process_export		();})});
 				$('#jky-action-publish'		).click (function() {JKY.Changes.can_leave(function() { my_process_publish		();})});
 				$('#jky-action-replace'		).click (function() {JKY.Changes.can_leave(function() { my_display_replace		();})});
@@ -196,6 +197,7 @@ if (my_first == true) {
 			}
 			JKY.hide('jky-action-combine'	);
 			JKY.hide('jky-action-print'		);
+			JKY.hide('jky-action-approve'	);
 			JKY.hide('jky-action-clear'		);
 			JKY.hide('jky-action-confirm'	);
 			if (JKY.Session.get_value('user_role') == 'Support'
@@ -354,6 +356,7 @@ if (my_first == true) {
 		JKY.enable_button('jky-action-add-new');
 		JKY.hide('jky-action-combine'	);
 		JKY.hide('jky-action-print'		);
+		JKY.hide('jky-action-approve'	);
 		JKY.show('jky-action-save'		);
 		JKY.hide('jky-action-copy'		);
 
@@ -454,6 +457,7 @@ if (my_first == true) {
 		JKY.disable_button('jky-action-add-new'	);
 		JKY.hide('jky-action-combine'	);
 		JKY.hide('jky-action-print'		);
+		JKY.hide('jky-action-approve'	);
 		JKY.show('jky-action-save'		);
 		JKY.hide('jky-action-copy'		);
 		JKY.disable_button('jky-action-delete'	);
@@ -639,6 +643,28 @@ if (my_first == true) {
 	var my_print_row = function(the_id) {
 		JKY.display_trace('my_print_row');
 		JKY.print_row(the_id);
+	}
+
+/**
+ * process approve
+ */
+	var my_process_approve = function() {
+		JKY.display_trace('my_process_approve');
+		if ($('#jky-app-form').css('display') == 'block') {
+			my_approve_row(JKY.row.id);
+		}else{
+			$('#jky-table-body .jky-td-checkbox input:checked').each(function() {
+				my_approve_row($(this).attr('row_id'));
+			});
+		}
+	}
+
+/**
+ * process approve
+ */
+	var my_approve_row = function(the_id) {
+		JKY.display_trace('my_approve_row');
+		JKY.approve_row(the_id);
 	}
 
 /**

@@ -320,3 +320,57 @@ JKY.print_colors = function(the_id) {
 	)
 	return my_html;
 }
+
+JKY.approve_colors = function(the_id) {
+	JKY.colors = JKY.color_ids(the_id);
+	var my_html  = '';
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'OSA_Colors'
+		, select	:  the_id
+		, order_by  : 'OSA_Colors.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(the_response) {
+				if (the_response.status == 'ok') {
+					var my_rows = the_response.rows;
+						my_html  += ''
+							+ '<tr>'
+							+ '<td></td>'
+							+ '<td class="jky-print-color-name"		>' + '<span>Color	</span>' + '</td>'
+							+ '<td class="jky-print-ftp-number"		>' + '<span>FTP 	</span>' + '</td>'
+							+ '<td class="jky-print-machine-name"	>' + '<span>Machine </span>' + '</td>'
+							+ '<td class="jky-print-partner-name"	>' + '<span>Partner </span>' + '</td>'
+							+ '<td class="jky-print-pieces"			>' + '<span>Pieces	</span>' + '</td>'
+							+ '<td class="jky-print-pieces"			>' + '<span>Weight	</span>' + '</td>'
+							+ '</tr>'
+							;
+					for(var i in my_rows) {
+						var my_row = my_rows[i];
+						my_html  += ''
+							+ '<tr>'
+							+ '<td></td>'
+							+ '<td class="jky-print-color-name"		>' + my_row.color_name		+ '</td>'
+							+ '<td class="jky-print-ftp-number"		>' + my_row.ftp_number		+ '</td>'
+							+ '<td class="jky-print-machine-name"	>' + my_row.machine_name	+ '</td>'
+							+ '<td class="jky-print-partner-name"	>' + my_row.partner_name	+ '</td>'
+							+ '<td class="jky-print-pieces"			>' + my_row.ordered_pieces	+ '</td>'
+							+ '<td class="jky-print-pieces"			>' + my_row.ordered_weight	+ '</td>'
+							+ '</tr>'
+							;
+					}
+				}else{
+					JKY.display_message(the_response.message);
+				}
+			}
+		}
+	)
+	return my_html;
+}

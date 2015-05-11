@@ -16,9 +16,9 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: ''
 		, filter		: ''
-		, sort_by		: 'thread_sequence, thread_group ASC, thread_name'
+		, sort_by		: 'thread_sequence, thread_group, thread_name'
 		, sort_seq		: 'ASC'
-		, sort_list		: [[1, 0],[2, 0]]
+		, sort_list		: [[1, 0],[2, 0],[3,0]]
 		, focus			: 'jky-thread-name'
 		, add_new		: 'display form'
 		});

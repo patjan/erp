@@ -284,45 +284,66 @@ public function run_thread_forecast($table, $cols, $rows) {
 		 return $total;
 	}
 
-	$Mes = date('n');
+	$new_rows = array();
+	for ($i=0; $i<count($rows); $i++) {
+		$row = $rows[$i];
+		$Grupo		= $row['thread_group'		];
+		$Fio		= $row['thread_name'		];
+		$Fornecedor	= $row['supplier_name'		];
+		$Peso		= $row['current_balance'	];
+		$Compra_1	= $row['forecast_month_1'	];
+		$Compra_2	= $row['forecast_month_2'	];
+		$Compra_3	= $row['forecast_month_3'	];
+		if ($Grupo == '')		continue;
+		if ($Peso == 0 and $Compra_1 == 0 and $Compra_2 == 0 and $Compra_3 == 0)	continue;
+		$new_rows[] = $row;
+	}
 
-	$NumberRows = count( $rows );
+	$Mes = date('n');
+	$NumberRows = count($new_rows);
 $this->log_proxy('NumberRows: ' . $NumberRows);
 
 	$count			= 2;
 	$body			= '';
-	$prevGrupo		= '';
-	$prevFio		= '';
+
+	$next_grupo		= '';
+	$next_fio		= '';
+	$first_grupo	= true;
+	$first_fio		= true;
+	$last_grupo		= true;
+	$last_fio		= true;
+
 	$Soma_Peso		= 0;
 	$Total_Peso		= 0;
 	$Total_Compra_1	= 0;
 	$Total_Compra_2	= 0;
 	$Total_Compra_3	= 0;
 
-	foreach($rows as $row) {
+	for ($i=0; $i<$NumberRows; $i++) {
+		$row = $new_rows[$i];
 		$Grupo		= $row['thread_group'		];
-		if ($Grupo == '')		continue;
-
 		$Fio		= $row['thread_name'		];
 		$Fornecedor	= $row['supplier_name'		];
-
 		$Peso		= $row['current_balance'	];
 		$Compra_1	= $row['forecast_month_1'	];
 		$Compra_2	= $row['forecast_month_2'	];
 		$Compra_3	= $row['forecast_month_3'	];
 
-		if ($prevGrupo != $Grupo) {
-			if ($prevGrupo != '') {
-				$count += 2;
-				$body  .= Set_Total($Total_Peso, $Total_Compra_1, $Total_Compra_2, $Total_Compra_3);
-			}
+		if ($i < $NumberRows) {
+			$next_row = $new_rows[$i+1];
+			$next_grupo = $next_row['thread_group'	];
+			$next_fio	= $next_row['thread_name'	];
+		}else{
+			$next_grupo	= '';
+			$next_fio	= '';
+		}
 
-			$Total_Peso		= 0;
-			$Total_Compra_1	= 0;
-			$Total_Compra_2	= 0;
-			$Total_Compra_3	= 0;
+		$first_grupo	= $last_grupo	;
+		$first_fio		= $last_fio		;
+		$last_grupo	= ($Grupo != $next_grupo) ? true : false;
+		$last_fio	= ($Fio   != $next_fio	) ? true : false;
 
-			$prevGrupo = $Grupo;
+		if ($first_grupo) {
 			$count += 3;
 			$body  .= ''
 				. NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25">'
@@ -344,39 +365,46 @@ $this->log_proxy('NumberRows: ' . $NumberRows);
 				. NL . '    <Cell ss:StyleID="s44"><Data ss:Type="String">' . GetMes($Mes+2) . '</Data></Cell>'
 				. NL . '   </Row>'
 				;
+			$Total_Peso		= 0;
+			$Total_Compra_1	= 0;
+			$Total_Compra_2	= 0;
+			$Total_Compra_3	= 0;
 		}
+
+		if ($first_fio) {
+			$Soma_Peso = 0;
+		}
+
+		$Soma_Peso += $Peso;
+		if ($last_fio) {
+			$Print_Peso = '<Data ss:Type="Number">' . $Soma_Peso . '</Data>';
+		}else{
+			$Print_Peso = '';
+		}
+
+		$count += 1;
+		$body  .= ''
+			. NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s29">'
+			. NL . '    <Cell ss:Index="2" ss:StyleID="s35"><Data ss:Type="String">' . $Fio . '</Data></Cell>'
+			. NL . '    <Cell ss:StyleID="s35"><Data ss:Type="String">' . $Fornecedor .  '</Data></Cell>'
+			. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Peso       .  '</Data></Cell>'
+			. NL . '    <Cell ss:StyleID="s46">'						. $Print_Peso .			'</Cell>'
+			. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Compra_1   .  '</Data></Cell>'
+			. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Compra_2   .  '</Data></Cell>'
+			. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Compra_3   .  '</Data></Cell>'
+			. NL . '   </Row>'
+			;
 
 		$Total_Peso     += $Peso;
 		$Total_Compra_1 += $Compra_1;
 		$Total_Compra_2 += $Compra_2;
 		$Total_Compra_3 += $Compra_3;
 
-		if ($prevFio != $Fio) {
-			$prevFio  = $Fio;
-			$Soma_Peso = 0;
-		}else{
-//			$Fio_Nome = '';
-		}
-
-		if ($Peso != 0 or $Compra_1 != 0 or $Compra_2 != 0 or $Compra_3 != 0) {
-			$Soma_Peso += $Peso;
-			$count += 1;
-			$body  .= ''
-				. NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s29">'
-				. NL . '    <Cell ss:Index="2" ss:StyleID="s35"><Data ss:Type="String">' . $Fio . '</Data></Cell>'
-				. NL . '    <Cell ss:StyleID="s35"><Data ss:Type="String">' . $Fornecedor . '</Data></Cell>'
-				. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Peso       . '</Data></Cell>'
-				. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Soma_Peso  . '</Data></Cell>'
-				. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Compra_1   . '</Data></Cell>'
-				. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Compra_2   . '</Data></Cell>'
-				. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Compra_3   . '</Data></Cell>'
-				. NL . '   </Row>'
-				;
+		if ($last_grupo) {
+			$count += 2;
+			$body  .= Set_Total($Total_Peso, $Total_Compra_1, $Total_Compra_2, $Total_Compra_3);
 		}
 	}
-
-	$count += 2;
-	$body  .= Set_Total( $Total_Peso, $Total_Compra_1, $Total_Compra_2, $Total_Compra_3 );
 
 $this->log_proxy('Body: ' . $body);
 
