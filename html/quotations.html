@@ -93,8 +93,12 @@
 				<a href='#' onClick='JKY.Contact.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
-				<div class="jky-form-label"><span>Payments</span>:</div>
+				<div class='jky-form-label'><span>Payments</span>:</div>
 				<input id='jky-payments'		class='jky-form-normal'				value='' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Purchase Order</span>:</div>
+				<input id='jky-purchase-order'	class='jky-form-normal'				value='' />
 			</div>
 <!--
 			<div class='jky-form-line'>
@@ -145,6 +149,7 @@
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
 			<li id='jky-tab-lines'			class='active'	><a href='#jky-pane-lines'				data-toggle='tab'><span>Lines			</span></a></li>
 			<li id='jky-tab-remarks'						><a href='#jky-pane-remarks'			data-toggle='tab'><span>Remarks			</span></a></li>
+			<li id='jky-tab-customers'						><a href='#jky-pane-customers'			data-toggle='tab'><span>Customers		</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
@@ -187,6 +192,20 @@
 				<div class='jky-form-line'>
 					<div class='jky-form-label'></div>
 					<button id='jky-action-save-remarks' class='btn btn-success' type='button'><span>Save Remarks</span></button>
+				</div>
+			</div>
+
+			<div id='jky-pane-customers' class='tab-pane'>
+				<br>
+				<div class='jky-form-customers'>
+					<div class='jky-form-label'><span>Customers</span>:</div>
+					<textarea id='jky-customers'></textarea>
+				</div>
+				<br>
+
+				<div class='jky-form-line'>
+					<div class='jky-form-label'></div>
+					<button id='jky-action-save-customers' class='btn btn-success' type='button'><span>Save Customers</span></button>
 				</div>
 			</div>
 		</div>

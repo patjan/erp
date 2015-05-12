@@ -40,6 +40,9 @@ JKY.set_all_events = function() {
 	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 //	$('#jky-threads-add-new'	).click (function() {JKY.insert_thread			();});
 
+//	$('#jky-tab-threads'		).click (function() {JKY.display_threads(JKY.row);});
+//	$('#jky-tab-pieces'			).click (function() {JKY.display_pieces	(JKY.row);});
+
 	$('#jky-pieces-display'		).click (function() {JKY.Changes.can_leave(function() {JKY.Pieces.display(this)});});
 	$('#jky-pieces-print'		).click (function() {JKY.Pieces.print_label	(); JKY.display_pieces();});
 	$('#jky-print-ftp'			).click (function() {JKY.Pieces.print_ftp	();});
@@ -173,8 +176,8 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-location'			,				 the_row.location			);
 
 	if (the_row.ftp_id) {
-		JKY.display_threads();
-		JKY.display_pieces();
+		JKY.display_threads	();
+		JKY.display_pieces	(the_row);
 	}else{
 		JKY.set_html('jky-threads-body', '');
 		JKY.set_html('jky-pieces-body' , '');

@@ -1106,6 +1106,7 @@ private function set_new_fields($table) {
 	if ($table == 'ThreadForecast'	)	$return = ',  Contacts.nick_name		AS  supplier_name'
 												. ',   Threads.thread_group		AS    thread_group'
 												. ',   Threads.name				AS    thread_name'
+												. ',   Threads.composition		AS           composition'
 												. ',   Configs.sequence			AS    thread_sequence';
 	if ($table == 'Translations'	)	$return = ', Translated.sentence		AS           translated';
 

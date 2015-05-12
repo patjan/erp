@@ -2,16 +2,21 @@
  * display Order Pieces --------------------------------------------------------
  */
 
-JKY.display_pieces = function() {
-	var my_data =
-		{ method		: 'get_index'
-		, table			: 'Pieces'
-		, specific		: 'order'
-		, specific_id	:  JKY.row.id
-		, select		: 'All'
-		, order_by		: 'Pieces.number_of_pieces DESC'
-		};
-	JKY.ajax(false, my_data, JKY.generate_pieces);
+JKY.display_pieces = function(the_row) {
+//JKY.d('display_pieces: ' + the_row.ftp_id);
+	if (the_row.ftp_id) {
+		var my_data =
+			{ method		: 'get_index'
+			, table			: 'Pieces'
+			, specific		: 'order'
+			, specific_id	:  the_row.id
+			, select		: 'All'
+			, order_by		: 'Pieces.number_of_pieces DESC'
+			};
+		JKY.ajax(false, my_data, JKY.generate_pieces);
+	}else{
+		JKY.set_html('jky-pieces-body', '');
+	}
 }
 
 JKY.generate_pieces = function(response) {
@@ -38,6 +43,7 @@ JKY.generate_piece = function(the_row) {
 	var my_id = the_row.id;
 //	var my_trash = (the_row.batch_id == null) ? '<a onclick="JKY.delete_pieces(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_trash = '';
+/*
 	var my_pieces = ''
 		+ "<input class='jky-pieces-id' type='hidden' value=" + the_row.pieces_id + " />"
 		+ "<input class='jky-pieces-name' disabled onchange='JKY.update_pieces(this, " + my_id + ")' value='" + the_row.pieces_name + "' />"
@@ -47,6 +53,7 @@ JKY.generate_piece = function(the_row) {
 	if (my_needed_at == '') {
 		my_needed_at = JKY.out_date(JKY.row.needed_at);
 	}
+*/
 	var my_html = ''
 		+ '<tr order_pieces_id=' + my_id + '>'
 		+ '<td class="jky-tdaction"		>' + my_trash		+ '</td>'

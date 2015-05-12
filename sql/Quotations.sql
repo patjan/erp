@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS Quotations
 , quoted_amount		DECIMAL(10,2)		DEFAULT 0
 , discount_amount	DECIMAL(10,2)		DEFAULT 0
 , payments			VARCHAR(255)		DEFAULT NULL	# 30 45 60
+, purchase_order	VARCHAR(255)		DEFAULT NULL
 
 , product_type		VARCHAR(32)			DEFAULT NULL
 , punho_id			BIGINT				DEFAULT NULL
@@ -46,6 +47,7 @@ CREATE TABLE IF NOT EXISTS Quotations
 , quoted_pieces		INT					DEFAULT 0
 , produced_pieces	INT					DEFAULT 0
 , delivered_pieces	INT					DEFAULT 0
+, customers			TEXT				DEFAULT	NULL
 , remarks			TEXT				DEFAULT	NULL
 
 , PRIMARY KEY(id)
@@ -111,3 +113,6 @@ UPDATE		Quotations		SET 	delivered_date = NULL;
 
 ALTER TABLE Quotations	ADD INDEX salesman		(salesman_id	);
 ALTER TABLE Quotations	ADD INDEX contact		(contact_id		);
+
+ALTER TABLE Quotations		ADD COLUMN purchase_order	VARCHAR(255)	DEFAULT NULL	AFTER payments;
+ALTER TABLE Quotations		ADD COLUMN customers		TEXT			DEFAULT NULL	AFTER delivered_pieces;

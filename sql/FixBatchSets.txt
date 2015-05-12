@@ -1,0 +1,25 @@
+SELECT BatchSets.id, BatchSets.updated_at
+  FROM BatchOuts
+  LEFT JOIN BatchSets ON BatchSets.batchout_id = BatchOuts.id
+ WHERE BatchOuts.status = 'Closed'
+   AND BatchSets.status != 'Closed'
+ ORDER BY BatchSets.id
+ 
+
+UPDATE BatchOuts, BatchSets
+   SET BatchSets.status = 'Closed'
+ WHERE BatchOuts.status = 'Closed'
+   AND BatchSets.status != 'Closed'
+   AND BatchSets.batchout_id = BatchOuts.id
+
+   
+SELECT BatchSets.id, BatchSets.updated_at, BatchSets.status, BatchSets.batchout_id
+  FROM BatchSets
+  LEFT JOIN BatchOuts ON BatchOuts.id = BatchSets.batchout_id
+ WHERE BatchOuts.id IS NULL
+   AND BatchSets.status != 'Closed'
+
+   
+DELETE FROM BatchSets	WHERE id = 2000000492;
+DELETE FROM BatchSets	WHERE id = 2000000770;
+DELETE FROM BatchSets	WHERE id = 2000000880;

@@ -438,3 +438,6 @@ ALTER TABLE Machines	ADD INDEX machine_brand	(machine_brand	);
 ALTER TABLE BatchOuts		ADD COLUMN supplier_id		BIGINT		DEFAULT NULL	AFTER thread_id;
 /* -- 2015-05-10	*/
 ALTER TABLE ShipDyers		ADD COLUMN sis_printed		INT			DEFAULT 0		AFTER sds_printed;
+/* -- 2015-05-12	*/
+ALTER TABLE Quotations		ADD COLUMN purchase_order	VARCHAR(255)	DEFAULT NULL	AFTER payments;
+ALTER TABLE Quotations		ADD COLUMN customers		TEXT			DEFAULT NULL	AFTER delivered_pieces;

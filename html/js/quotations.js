@@ -50,11 +50,12 @@ JKY.set_all_events = function() {
 	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-lines-add-new'		).click (function()	{JKY.insert_line		();});
 
-//	$('#jky-action-product'		).click (function() {JKY.display_product	();});
-	$('#jky-action-product'		).click (function() {JKY.Product.display(this);});
-//	$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});
-	$('#jky-action-save-remarks').click (function()	{JKY.save_remarks		();});
-//	$('#jky-search-filter'		).KeyUpDelay(JKY.filter_product);
+//	$('#jky-action-product'			).click (function() {JKY.display_product	();});
+	$('#jky-action-product'			).click (function() {JKY.Product.display(this);});
+//	$('#jky-search-add-new'			).click (function()	{JKY.add_new_product	();});
+	$('#jky-action-save-customers'	).click (function()	{JKY.save_customers		();});
+	$('#jky-action-save-remarks'	).click (function()	{JKY.save_remarks		();});
+//	$('#jky-search-filter'			).KeyUpDelay(JKY.filter_product);
 
 	JKY.set_side_active('jky-sales-quotations');
 };
@@ -147,6 +148,8 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-advanced-amount'	,				 the_row.advanced_amount	);
 	JKY.set_value	('jky-sub-amount'		,				 my_sub_amount				);
 	JKY.set_value	('jky-payments'			,				 the_row.payments			);
+	JKY.set_value	('jky-purchase-order'	,				 the_row.purchase_order		);
+	JKY.set_value	('jky-customers'		,				 the_row.customers			);
 	JKY.set_value	('jky-remarks'			,				 JKY.row.remarks			);
 	JKY.display_lines();
 };
@@ -176,6 +179,8 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-advanced-amount'	,  0);
 	JKY.set_value	('jky-total-estimaed'	,  0);
 	JKY.set_value	('jky-payments'			, '');
+	JKY.set_value	('jky-purchase-order'	, '');
+	JKY.set_value	('jky-customers'		, '');
 	JKY.set_value	('jky-remarks'			, '');
 };
 
@@ -203,6 +208,8 @@ JKY.get_form_set = function() {
 		+   ', discount_amount=  ' + JKY.get_value	('jky-discount-amount'	)
 		+   ', advanced_amount=  ' + JKY.get_value	('jky-advanced-amount'	)
 		+          ', payments=\'' + JKY.get_value	('jky-payments'			) + '\''
+		+    ', purchase_order=\'' + JKY.get_value	('jky-purchase-order'	) + '\''
+		+         ', customers=\'' + JKY.get_value	('jky-customers'		) + '\''
 		+           ', remarks=\'' + JKY.get_value	('jky-remarks'			) + '\''
 		;
 	return my_set;
@@ -308,6 +315,20 @@ JKY.generate_osa = function() {
 };
 
 /* -------------------------------------------------------------------------- */
+JKY.save_customers = function() {
+	var my_set	=   'customers = \'' + JKY.get_value('jky-customers') + '\'';
+	var my_data =
+		{ method: 'update'
+		, table : 'Quotations'
+		, set	:  my_set
+		, where : 'Quotations.id = ' + JKY.row.id
+		};
+	JKY.ajax(true, my_data, function(the_response) {
+		JKY.display_message('Customers saved, ' + the_response.message);
+		JKY.row = JKY.get_row('Quotations', JKY.row.id);
+	});
+};
+
 JKY.save_remarks = function() {
 	var my_set	=   'remarks = \'' + JKY.get_value('jky-remarks') + '\'';
 	var my_data =
@@ -419,19 +440,24 @@ JKY.print_row = function(the_id) {
 		+ "</tr>"
 
 		+ "<tr>"
-		+ "<td class='jky-print-label'></td><td></td>"
+		+ "<td class='jky-print-label'><span>        Customer</span>:</td><td id='jky-print-customer-name'		class='jky-print-name' ></td>"
+		+ "<td class='jky-print-label'></td>"
+		+ "</tr>"
+
+		+ "<tr>"
+		+ "<td class='jky-print-label'><span>         Contact</span>:</td><td id='jky-print-contact-name'		class='jky-print-name' ></td>"
 //		+ "<td class='jky-print-label'><span>   Expected Date</span>:</td><td id='jky-print-expected-date'		class='jky-print-value'></td>"
 		+ "<td class='jky-print-label'><span> Production From</span>:</td><td id='jky-print-produce-from-date'	class='jky-print-value'></td>"
 		+ "</tr>"
 
 		+ "<tr>"
-		+ "<td class='jky-print-label'><span>        Customer</span>:</td><td id='jky-print-customer-name'		class='jky-print-name' ></td>"
+		+ "<td class='jky-print-label'><span>        Payments</span>:</td><td id='jky-print-payments'			class='jky-print-name' ></td>"
 //		+ "<td class='jky-print-label'><span>  Delivered Date</span>:</td><td id='jky-print-delivered-date'		class='jky-print-value'></td>"
 		+ "<td class='jky-print-label'><span>   Production To</span>:</td><td id='jky-print-produce-to-date'	class='jky-print-value'></td>"
 		+ "</tr>"
 
 		+ "<tr>"
-		+ "<td class='jky-print-label'><span>         Contact</span>:</td><td id='jky-print-contact-name'		class='jky-print-name' ></td>"
+		+ "<td class='jky-print-label'><span>  Purchase Order</span>:</td><td id='jky-print-purchase-order'		class='jky-print-name' ></td>"
 		+ "<td class='jky-print-label'><span> Advanced Amount</span>:</td><td id='jky-print-advanced-amount'	class='jky-print-value'></td>"
 		+ "</tr>"
 
@@ -444,16 +470,23 @@ JKY.print_row = function(the_id) {
 		+ "<br>"
 
 		+ "<div class='jky-print-box'>"
+		+ "<div id='jky-print-customers'></div>"
+		+ "</div>"
+		+ "<br>"
+
+		+ "<div class='jky-print-box'>"
 		+ "<div id='jky-print-remarks'></div>"
 		+ "</div>"
 		;
-	var my_remarks = JKY.get_config_value('Remarks', 'Quotation');
+	var my_remarks	= JKY.get_config_value('Remarks', 'Quotation');
 
 	JKY.set_html('jky-printable', my_html);
 
 	JKY.set_html('jky-print-quotation-number'	, my_row.quotation_number);
 	JKY.set_html('jky-print-customer-name'		, my_row.customer_name);
 	JKY.set_html('jky-print-contact-name'		, JKY.fix_null(my_row.contact_name) + ' : ' + JKY.fix_null(my_row.contact_mobile));
+	JKY.set_html('jky-print-payments'			, JKY.fix_null(my_row.payments));
+	JKY.set_html('jky-print-purchase-order'		, JKY.fix_null(my_row.purchase_order));
 
 	JKY.set_html('jky-print-quoted-date'		, JKY.out_date(my_row.quoted_at			));
 	JKY.set_html('jky-print-produce-from-date'	, JKY.out_date(my_row.produce_from_date	));
@@ -462,6 +495,7 @@ JKY.print_row = function(the_id) {
 
 	JKY.set_html('jky-print-lines-body'			, JKY.print_lines(the_id));
 
+	JKY.set_html('jky-print-customers'			, JKY.nl2br(my_row.customers));
 	JKY.set_html('jky-print-remarks'			, JKY.nl2br(my_remarks));
 	JKY.t_tag	('jky-printable', 'span');
 
