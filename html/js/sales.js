@@ -41,10 +41,9 @@ JKY.set_all_events = function() {
 	$('#jky-sold-date		input').attr('data-format', JKY.Session.get_date());
 	$('#jky-sold-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 
-	$('#jky-action-gen-sale'	).click( function() {JKY.generate_sale		();});
-	$('#jky-action-generate'	).click( function() {JKY.generate_osa		();});
+	$('#jky-action-invoice'		).click( function() {JKY.invoice_customer		();});
 	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
-	$('#jky-lines-add-new'		).click (function()	{JKY.insert_line		();});
+	$('#jky-lines-add-new'		).click (function()	{JKY.insert_line			();});
 
 //	$('#jky-action-product'		).click (function() {JKY.display_product	();});
 	$('#jky-action-product'		).click (function() {JKY.Product.display(this);});
@@ -289,56 +288,6 @@ JKY.process_delete = function(the_id, the_row) {
 };
 
 /* -------------------------------------------------------------------------- */
-JKY.generate_sale = function() {
-	var my_error = '';
-	var my_customer_id = JKY.get_value('jky-customer-id');
-	if (!my_customer_id)		my_error += '<br>' + JKY.t('Customer') + ' ' + JKY.t('is required');
-	var my_quoted_pieces = JKY.get_value_by_id('Sales', 'quoted_pieces', JKY.row.id);
-	if (my_quoted_pieces <= 0)	my_error += '<br>' + JKY.t('there is not any Quoted Piece');
-
-	if (!JKY.is_empty(my_error)) {
-		JKY.display_message(JKY.t('Sale cannot be generated, because'));
-		JKY.display_message(my_error);
-		return;
-	}
-
-	var my_data =
-		{ method	: 'generate'
-		, table		: 'Sale'
-		, id		:  JKY.row.id
-		};
-	JKY.ajax(false, my_data, function(the_response) {
-		JKY.display_message('Sale row generated: ' + JKY.row.id);
-		JKY.App.display_row();
-	});
-};
-
-/* -------------------------------------------------------------------------- */
-JKY.generate_osa = function() {
-	var my_error = '';
-	var my_customer_id = JKY.get_value('jky-customer-id');
-	if (!my_customer_id)		my_error += '<br>' + JKY.t('Customer') + ' ' + JKY.t('is required');
-	var my_quoted_pieces = JKY.get_value_by_id('Sales', 'quoted_pieces', JKY.row.id);
-	if (my_quoted_pieces <= 0)	my_error += '<br>' + JKY.t('there is not any Quoted Piece');
-
-	if (!JKY.is_empty(my_error)) {
-		JKY.display_message(JKY.t('OSA cannot be generated, because'));
-		JKY.display_message(my_error);
-		return;
-	}
-
-	var my_data =
-		{ method	: 'generate'
-		, table		: 'OSA'
-		, id		:  JKY.row.id
-		};
-	JKY.ajax(false, my_data, function(the_response) {
-		JKY.display_message('OSA row generated: ' + JKY.row.id);
-		JKY.App.display_row();
-	});
-};
-
-/* -------------------------------------------------------------------------- */
 JKY.save_remarks = function() {
 	var my_set	=   'remarks = \'' + JKY.get_value('jky-remarks') + '\'';
 	var my_data =
@@ -458,6 +407,38 @@ JKY.update_sale_amount = function() {
 		};
 	JKY.ajax(true, my_data);
 };
+
+/* -------------------------------------------------------------------------- */
+JKY.invoice_customer = function() {
+	var my_error = '';
+
+	var my_customer_id = JKY.get_value('jky-customer-id');
+	if(!my_customer_id)			my_error += '<br>' + JKY.t('because there is not Customer selected');
+
+//	var my_transport_id = JKY.get_value('jky-transport-id');
+//	if(!my_transport_id)	my_error += '<br>' + JKY.t('because there is not Transporter selected');
+
+	var my_sold_amount = JKY.get_value_by_id('Sales', 'sold_amount', JKY.row.id);
+	if (my_sold_amount == 0)	my_error += '<br>' + JKY.t('because there is not Sold Amount defined');
+
+	if (my_error != '') {
+		JKY.display_message(JKY.t('Invoice cannot be generated'));
+		JKY.display_message(my_error);
+		return;
+	}
+
+	var my_data =
+		{ method	: 'invoice'
+		, table		: 'Customer'
+		, id		:  JKY.row.id
+		}
+	JKY.ajax(false, my_data, JKY.refresh_form);
+}
+
+JKY.refresh_form = function(response) {
+	JKY.display_message('Invoice row generated: ' + JKY.row.id);
+	JKY.App.display_row();
+}
 
 /**
  * print row

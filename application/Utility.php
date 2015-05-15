@@ -3951,7 +3951,10 @@ log_prog('proxy', 'POSTVARS: ' . $postvars);
 //log_prog('proxy', 'response: ' . json_encode($response));
 
 	curl_close($ch);
-	unlink('ses_' . session_id());
+
+	$filename = 'ses_' . session_id();
+	if (file_exists($filename))		unlink($filename);
+
 	return $content;
 }
 

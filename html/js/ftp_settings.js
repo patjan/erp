@@ -95,7 +95,7 @@ JKY.copy_settings = function(the_source, the_to) {
 						var my_row = my_rows[i];
 						if (my_row.value) {
 							var my_set	=   '  parent_id =  ' + the_to
-										+ ',  setting_id =  ' + my_row.setting
+										+ ',  setting_id =  ' + my_row.setting_id
 										+ ',       value =\'' + my_row.value + '\''
 										;
 							var	my_data =

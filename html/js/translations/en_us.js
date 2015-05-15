@@ -147,6 +147,7 @@ JKY.translations =
 , "Click here to generate production order":"Click here to generate production order"
 , "Click here to generate sale order":"Click here to generate sale order"
 , "Click here to insert":"Click here to insert"
+, "Click here to invoice customer":"Click here to invoice customer"
 , "Click here to invoice dyer":"Click here to invoice dyer"
 , "Click here to print selected records":"Click here to print selected records"
 , "Click here to publish the content":"Click here to publish the content"
