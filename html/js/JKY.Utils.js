@@ -2940,3 +2940,10 @@ JKY.full_address = function(the_row) {
 
 	return my_address;
 }
+
+JKY.open_new_tab = function(the_event, the_url) {
+	the_event.stopPropagation()
+	var my_win = window.open('home.html#' + the_url, '_blank');
+	my_win.focus();
+	return false;
+}

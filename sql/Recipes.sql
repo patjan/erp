@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS Recipes
 , color_id			BIGINT				DEFAULT NULL
 , composition		VARCHAR(255)		DEFAULT NULL
 , recipe			VARCHAR(32)			DEFAULT NULL
+, dyeing_type		VARCHAR(32)			DEFAULT NULL
 
 , PRIMARY KEY	(id)
 , KEY color		(color_id)
@@ -19,3 +20,5 @@ CREATE TABLE IF NOT EXISTS Recipes
 INSERT NextIds	SET table_name='Recipes', next_id=1, id_size=9;
 INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, name='Recipes', updated_by=1, updated_at=NOW();
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='Recipes', updated_by=1, updated_at=NOW();
+
+ALTER TABLE Recipes			ADD COLUMN dyeing_type		VARCHAR(32)		DEFAULT NULL	AFTER recipe;

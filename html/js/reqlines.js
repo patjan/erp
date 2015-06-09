@@ -59,9 +59,9 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-supplier-name"	>' + JKY.fix_null	(the_row.supplier_name		)	+ '</td>'
 		+  '<td class="jky-thread-name"		>' +				 the_row.thread_name			+ '</td>'
 		+  '<td class="jky-batch-code"		>' +				 the_row.batch_code				+ '</td>'
-		+  '<td class="jky-ordered-date"	>' + JKY.short_date	(the_row.ordered_at			)	+ '</td>'
+		+  '<td class="jky-ordered-date"	>' + JKY.out_date	(the_row.ordered_at			)	+ '</td>'
 		+  '<td class="jky-requested-date"	>' + JKY.out_date	(the_row.requested_at		)	+ '</td>'
-		+  '<td class="jky-scheduled-date"	>' + JKY.short_date	(the_row.scheduled_at		)	+ '</td>'
+		+  '<td class="jky-scheduled-date"	>' + JKY.out_date	(the_row.scheduled_at		)	+ '</td>'
 		+  '<td class="jky-requested-weight">' +				 the_row.requested_weight		+ '</td>'
 		+  '<td class="jky-checkout-weight"	>' + JKY.fix_null	(the_row.checkout_weight	)	+ '</td>'
 		;

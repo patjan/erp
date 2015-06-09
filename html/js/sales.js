@@ -21,10 +21,10 @@ JKY.start_program = function() {
 		, sort_list		: [[1, 1]]
 		, focus			: 'jky-payments'
 		, add_new		: 'display form'
+		, class			: 'status'
 		});
 	JKY.App.init();
 };
-
 
 JKY.materials	= [];
 JKY.threads		= [];
@@ -36,10 +36,10 @@ JKY.suppliers	= [];
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-needed-date		input').attr('data-format', JKY.Session.get_date());
-	$('#jky-needed-date'	).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
-	$('#jky-sold-date		input').attr('data-format', JKY.Session.get_date());
-	$('#jky-sold-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-needed-date			input').attr('data-format', JKY.Session.get_date	 ());
+	$('#jky-sold-date			input').attr('data-format', JKY.Session.get_date	 ());
+	$('#jky-needed-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
+	$('#jky-sold-date'			).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 
 	$('#jky-action-invoice'		).click( function() {JKY.invoice_customer		();});
 	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
@@ -58,8 +58,8 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.append_file('jky-load-salesman'		, '../JKY.Search.Salesman.html'	);
 	JKY.append_file('jky-load-customer'		, '../JKY.Search.Customer.html'	);
+	JKY.append_file('jky-load-salesman'		, '../JKY.Search.Salesman.html'	);
 	JKY.append_file('jky-load-contact'		, '../JKY.Search.Contact.html'	);
 	JKY.append_file('jky-load-machine'		, '../JKY.Search.Machine.html'	);
 	JKY.append_file('jky-load-dyer'			, '../JKY.Search.Dyer.html'		);
@@ -70,10 +70,10 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.sales.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
-	JKY.show	('jky-action-print');
+	JKY.show	('jky-action-print'   );
 
-	$('#jky-salesman-filter'	).KeyUpDelay(JKY.Salesman	.load_data);
 	$('#jky-customer-filter'	).KeyUpDelay(JKY.Customer	.load_data);
+	$('#jky-salesman-filter'	).KeyUpDelay(JKY.Salesman	.load_data);
 	$('#jky-contact-filter'		).KeyUpDelay(JKY.Contact	.load_data);
 	$('#jky-machine-filter'		).KeyUpDelay(JKY.Machine	.load_data);
 	$('#jky-dyer-filter'		).KeyUpDelay(JKY.Dyer		.load_data);
@@ -107,7 +107,6 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-pieces"	>' + JKY.fix_null	(the_row.sold_pieces	)	+ '</td>'
 		+  '<td class="jky-td-pieces"	>' + JKY.fix_null	(the_row.hold_pieces	)	+ '</td>'
 		+  '<td class="jky-td-pieces"	>' + JKY.fix_null	(the_row.sent_pieces	)	+ '</td>'
-		+  '</tr>'
 		;
 	return my_html;
 };
@@ -180,10 +179,10 @@ JKY.set_add_new_row = function() {
 	JKY.set_date	('jky-sold-date'		,  JKY.out_date(JKY.get_date()));
 	JKY.set_date	('jky-hold-date'		, '');
 	JKY.set_date	('jky-sent-date'		, '');
-	JKY.set_value	('jky-salesman-id'		,  JKY.Session.get_value('contact_id'));
-	JKY.set_value	('jky-salesman-name'	,  JKY.Session.get_value('full_name'));
 	JKY.set_value	('jky-customer-id'		,  null);
 	JKY.set_value	('jky-customer-name'	, '');
+	JKY.set_value	('jky-salesman-id'		,  JKY.Session.get_value('contact_id'));
+	JKY.set_value	('jky-salesman-name'	,  JKY.Session.get_value('full_name'));
 	JKY.set_value	('jky-contact-id'		,  null);
 	JKY.set_value	('jky-contact-name'		, '');
 	JKY.set_value	('jky-payments'			, '');
@@ -207,17 +206,17 @@ JKY.set_add_new_row = function() {
  *	get form set
  */
 JKY.get_form_set = function() {
-	var my_salesman_id	= JKY.get_value('jky-salesman-id'	);
 	var my_customer_id	= JKY.get_value('jky-customer-id'	);
+	var my_salesman_id	= JKY.get_value('jky-salesman-id'	);
 	var my_contact_id	= JKY.get_value('jky-contact-id'	);
 	var my_interest_rate= JKY.get_value('jky-interest-rate'	);
-		my_salesman_id	= (my_salesman_id	=== '') ? 'null' : my_salesman_id	;
 		my_customer_id	= (my_customer_id	=== '') ? 'null' : my_customer_id	;
+		my_salesman_id	= (my_salesman_id	=== '') ? 'null' : my_salesman_id	;
 		my_contact_id	= (my_contact_id	=== '') ? 'null' : my_contact_id	;
 		my_interest_rate= (my_interest_rate	=== '') ? 'null' : my_interest_rate	;
 	var my_set = ''
-		+       '  salesman_id=  ' + my_salesman_id
-		+       ', customer_id=  ' + my_customer_id
+		+       '  customer_id=  ' + my_customer_id
+		+       ', salesman_id=  ' + my_salesman_id
 		+        ', contact_id=  ' + my_contact_id
 		+         ', po_number=\'' + JKY.get_value	('jky-po-number'		) + '\''
 		+       ', needed_date=  ' + JKY.inp_date	('jky-needed-date'		)
@@ -238,12 +237,12 @@ JKY.zero_value = function(the_id, the_name) {
 };
 
 JKY.display_list = function() {
-	JKY.show('jky-action-print');
+	JKY.show('jky-action-print'  );
 };
 
 JKY.display_form = function() {
-	JKY.show('jky-action-print');
-	JKY.show('jky-action-copy');
+	JKY.show('jky-action-print'  );
+	JKY.show('jky-action-copy'   );
 };
 
 JKY.process_start = function(the_id) {
@@ -301,7 +300,6 @@ JKY.save_remarks = function() {
 		JKY.row = JKY.get_row('Sales', JKY.row.id);
 	});
 };
-
 
 JKY.get_main_contact = function(the_id) {
 	var my_data =
@@ -433,7 +431,7 @@ JKY.invoice_customer = function() {
 		, id		:  JKY.row.id
 		}
 	JKY.ajax(false, my_data, JKY.refresh_form);
-}
+};
 
 JKY.refresh_form = function(response) {
 	JKY.display_message('Invoice row generated: ' + JKY.row.id);

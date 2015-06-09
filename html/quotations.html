@@ -14,17 +14,17 @@
 #jky-print-remarks			{height:auto;}
 </style>
 
-<table id='jky-app-table' class='table table-striped'>
+<table id='jky-app-table' class='table'>
 	<thead>
 		<tr>
-			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title='Click here to check all records' /></th>
 			<th class='jky-td-number'	><span>  Quotation<br>Number	</span></th>
 			<th class='jky-td-name-s'	><span>   Customer				</span></th>
 			<th class='jky-td-date'		><span>     Quoted<br>Date		</span></th>
 <!--		<th class='jky-td-date'		><span>   Produced<br>Date		</span></th>	-->
 <!--		<th class='jky-td-date'		><span>  Delivered<br>Date		</span></th>	-->
 			<th class='jky-td-date'		><span> Production<br>To		</span></th>
-			<th class='jky-td-pieces'	><span     >Quoted<br>Pieces	</span></th>
+			<th class='jky-td-pieces'	><span>     Quoted<br>Pieces	</span></th>
 			<th class='jky-td-pieces'	><span>   Produced<br>Pieces	</span></th>
 			<th class='jky-td-pieces'	><span>  Delivered<br>Pieces	</span></th>
 		</tr>
@@ -36,9 +36,9 @@
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'>
-			<button id='jky-action-generate'	class='btn'	type='button' title="Click here to generate OSA"				><span>Generate OSA			</span></button>
-			<button id='jky-action-gen-sale'	class='btn'	type='button' title="Click here to generate sale order"			><span>Generate Sale		</span></button>
-			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this quotation"		><span>Close Quotation		</span></button>
+			<button id='jky-action-generate'	class='btn'	type='button' title='Click here to generate OSA'				><span>Generate OSA			</span></button>
+			<button id='jky-action-gen-sale'	class='btn'	type='button' title='Click here to generate sale order'			><span>Generate Sale		</span></button>
+			<button id='jky-action-close'		class='btn' type='button' title='Click here to close this quotation'		><span>Close Quotation		</span></button>
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
@@ -56,7 +56,7 @@
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Quoted Date</span>:</div>
 				<div id='jky-quoted-date' class='input-append date'>
-					<input class='jky-form-date' type='text' disabled/>
+					<input class='jky-form-date' type='text' disabled />
 <!--				<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>	-->
 				</div>
 			</div>
@@ -114,19 +114,19 @@
 			<div class='jky-form-line'></div>
 			<div class='jky-form-line'></div>
 			<div class='jky-form-line'>
-				<div class="jky-form-label"><span>Quoted Amount</span>:</div>
+				<div class='jky-form-label'><span>Quoted Amount</span>:</div>
 				<input id='jky-quoted-amount'	class='jky-form-amount'	disabled	value='' />
 			</div>
 			<div class='jky-form-line'>
-				<div class="jky-form-label"><span>Discount Amount</span>:</div>
+				<div class='jky-form-label'><span>Discount Amount</span>:</div>
 				<input id='jky-discount-amount'	class='jky-form-amount'	disabled	value='' />
 			</div>
 			<div class='jky-form-line'>
-				<div class="jky-form-label"><span>Advanced Amount</span>:</div>
+				<div class='jky-form-label'><span>Advanced Amount</span>:</div>
 				<input id='jky-advanced-amount'	class='jky-form-amount'				value='' />
 			</div>
 			<div class='jky-form-line'>
-				<div class="jky-form-label"><span>Sub Amount</span>:</div>
+				<div class='jky-form-label'><span>Sub Amount</span>:</div>
 				<input id='jky-sub-amount'		class='jky-form-amount'	disabled	value='' />
 			</div>
 		</div>
@@ -136,10 +136,10 @@
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
-				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
-			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
-			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title='Click here to save all changes'		><span>Save		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title='Click here to duplicate this record'	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title='Click here to delete this record'		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title='Click here to cancel any changes'		><span>Cancel	</span></button>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -214,11 +214,11 @@
 </div>
 
 <div id='jky-body-loaded'></div>
-<div id='jky-printable'></div>
+<div id='jky-printable'  ></div>
 
 <script src='js/quotations.js'		></script>
-<script src='js/JKY.Salesman.js'	></script>
 <script src='js/JKY.Customer.js'	></script>
+<script src='js/JKY.Salesman.js'	></script>
 <script src='js/JKY.Contact.js'		></script>
 <script src='js/JKY.Machine.js'		></script>
 <script src='js/JKY.Dyer.js'		></script>

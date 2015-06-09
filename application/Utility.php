@@ -3234,6 +3234,41 @@ function get_projects( $id, $order='name' ) {
      return $db->fetchAll( $sql );
 }
 
+# -------------------------------------------------------------------------
+#    get product composition
+# -------------------------------------------------------------------------
+function get_product_composition($product_id) {
+	$db = Zend_Registry::get('db');
+	if (!$product_id)		return'';
+
+	$sql = 'SELECT composition'
+		 . '  FROM FTPs'
+		 . ' WHERE product_id = ' . $product_id
+		 . ' ORDER BY FTPs.id'
+		 . ' LIMIT 1'
+		 ;
+	$my_composition = $db->fetchOne($sql);
+	if ($my_composition)	return $my_composition;
+
+	$sql = 'SELECT parent_id'
+		 . '  FROM Products'
+		 . ' WHERE id = ' . $product_id
+		 ;
+	$my_parent_id = $db->fetchOne($sql);
+	if (!$my_parent_id)		return '';
+
+	$sql = 'SELECT composition'
+		 . '  FROM FTPs'
+		 . ' WHERE product_id = ' . $my_parent_id
+		 . ' ORDER BY FTPs.id'
+		 . ' LIMIT 1'
+		 ;
+	$my_composition = $db->fetchOne($sql);
+	if ($my_composition)	return $my_composition;
+
+	return '';
+}
+
 function posted_comments( $counter ) {
      return ( $counter == 0 ? 'Post first comment' : 'Posted ' . pluralize( $counter, 'comment' ));
 }

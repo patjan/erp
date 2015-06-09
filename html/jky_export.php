@@ -268,6 +268,7 @@ public function run_thread_forecast($table, $cols, $rows) {
 			   . NL . '    <Cell ss:StyleID="s25"/>'
 			   . NL . '    <Cell ss:StyleID="s42"/>'
 			   . NL . '    <Cell ss:StyleID="s42"/>'
+			   . NL . '    <Cell ss:StyleID="s42"/>'
 			   . NL . '    <Cell ss:StyleID="s47"><Data ss:Type="Number">' . $Total_Peso     . '</Data></Cell>'
 			   . NL . '    <Cell ss:StyleID="s47"><Data ss:Type="Number">' . $Total_Compra_1 . '</Data></Cell>'
 			   . NL . '    <Cell ss:StyleID="s47"><Data ss:Type="Number">' . $Total_Compra_2 . '</Data></Cell>'
@@ -278,7 +279,8 @@ public function run_thread_forecast($table, $cols, $rows) {
 			   . NL . '    <Cell ss:StyleID="s25"/>'
 			   . NL . '    <Cell ss:StyleID="s42"/>'
 			   . NL . '    <Cell ss:StyleID="s42"/>'
-			   . NL . '    <Cell ss:Index="6" ss:StyleID="s42"/>'
+			   . NL . '    <Cell ss:StyleID="s42"/>'
+			   . NL . '    <Cell ss:Index="7" ss:StyleID="s42"/>'
 			   . NL . '    <Cell ss:StyleID="s42"/>'
 			   . NL . '    <Cell ss:StyleID="s30"/>'
 			   . NL . '   </Row>'
@@ -293,6 +295,7 @@ public function run_thread_forecast($table, $cols, $rows) {
 		$Fio		= $row['thread_name'		];
 		$Composicao	= $row['composition'		];
 		$Fornecedor	= $row['supplier_name'		];
+		$Fatura		= $row['invoice_date'		];
 		$Peso		= $row['current_balance'	];
 		$Compra_1	= $row['forecast_month_1'	];
 		$Compra_2	= $row['forecast_month_2'	];
@@ -328,11 +331,20 @@ $this->log_proxy('NumberRows: ' . $NumberRows);
 		$Fio		= $row['thread_name'		];
 		$Composicao	= $row['composition'		];
 		$Fornecedor	= $row['supplier_name'		];
+		$Fatura		= $row['invoice_date'		];
 		$Peso		= $row['current_balance'	];
 		$Compra_1	= $row['forecast_month_1'	];
 		$Compra_2	= $row['forecast_month_2'	];
 		$Compra_3	= $row['forecast_month_3'	];
 
+		if ($Fatura == null) {
+			$Fatura = 'N/A';
+		}else{
+			$dates = explode('-', $Fatura);
+			$Fatura = $dates[2] . '-' . $dates[1] . '-' . $dates[0];
+		}
+//var_dump($Fatura);		
+		
 		if ($i < $NumberRows) {
 			$next_row = $new_rows[$i+1];
 			$next_grupo = $next_row['thread_group'	];
@@ -351,11 +363,11 @@ $this->log_proxy('NumberRows: ' . $NumberRows);
 			$count += 3;
 			$body  .= ''
 				. NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25">'
-				. NL . '    <Cell ss:Index="6" ss:StyleID="s25"/>'
+				. NL . '    <Cell ss:Index="7" ss:StyleID="s25"/>'
 				. NL . '    <Cell ss:StyleID="s25"/>'
 				. NL . '   </Row>'
 				. NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25">'
-				. NL . '    <Cell ss:Index="6" ss:StyleID="s25"/>'
+				. NL . '    <Cell ss:Index="7" ss:StyleID="s25"/>'
 				. NL . '    <Cell ss:StyleID="s26"/>'
 				. NL . '    <Cell ss:StyleID="s56"><Data ss:Type="String">Fios a chegar</Data></Cell>'
 				. NL . '    <Cell ss:StyleID="s28"/>'
@@ -363,7 +375,7 @@ $this->log_proxy('NumberRows: ' . $NumberRows);
 				. NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25">'
 				. NL . '    <Cell ss:StyleID="s31"><Data ss:Type="String">Grupo:</Data></Cell>'
 				. NL . '    <Cell ss:StyleID="s22"><Data ss:Type="String">' . $Grupo . '</Data></Cell>'
-				. NL . '    <Cell ss:Index="6" ss:StyleID="s25"/>'
+				. NL . '    <Cell ss:Index="7" ss:StyleID="s25"/>'
 				. NL . '    <Cell ss:StyleID="s44"><Data ss:Type="String">' . GetMes($Mes  ) . '</Data></Cell>'
 				. NL . '    <Cell ss:StyleID="s44"><Data ss:Type="String">' . GetMes($Mes+1) . '</Data></Cell>'
 				. NL . '    <Cell ss:StyleID="s44"><Data ss:Type="String">' . GetMes($Mes+2) . '</Data></Cell>'
@@ -391,6 +403,7 @@ $this->log_proxy('NumberRows: ' . $NumberRows);
 			. NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25" ss:StyleID="s29">'
 			. NL . '    <Cell ss:Index="2" ss:StyleID="s35"><Data ss:Type="String">' . $Fio . '</Data></Cell>'
 			. NL . '    <Cell ss:StyleID="s35"><Data ss:Type="String">' . $Composicao .  '</Data></Cell>'
+			. NL . '    <Cell ss:StyleID="s35"><Data ss:Type="String">' . $Fatura	  .  '</Data></Cell>'
 			. NL . '    <Cell ss:StyleID="s35"><Data ss:Type="String">' . $Fornecedor .  '</Data></Cell>'
 			. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Peso       .  '</Data></Cell>'
 			. NL . '    <Cell ss:StyleID="s46">'						. $Print_Peso .			'</Cell>'
@@ -414,24 +427,25 @@ $this->log_proxy('NumberRows: ' . $NumberRows);
 $this->log_proxy('Body: ' . $body);
 
      $tableX = NL . ' <Worksheet ss:Name="Sheet1">'
-            . NL . '  <Table ss:ExpandedColumnCount="10" ss:ExpandedRowCount="' . $count . '" x:FullColumns="1"'
+            . NL . '  <Table ss:ExpandedColumnCount="11" ss:ExpandedRowCount="' . $count . '" x:FullColumns="1"'
             . NL . '   x:FullRows="1">'
             . NL . '   <Column ss:AutoFitWidth="0" ss:Width="34.5"/>'
             . NL . '   <Column ss:AutoFitWidth="0" ss:Width="109.5"/>'
             . NL . '   <Column ss:AutoFitWidth="0" ss:Width="113.25"/>'
             . NL . '   <Column ss:AutoFitWidth="0" ss:Width="113.25"/>'
+            . NL . '   <Column ss:AutoFitWidth="0" ss:Width="113.25"/>'
             . NL . '   <Column ss:AutoFitWidth="0" ss:Width="55.5"/>'
             . NL . '   <Column ss:AutoFitWidth="0" ss:Width="55.5"/>'
             . NL . '   <Column ss:AutoFitWidth="0" ss:Width="49.5"/>'
-            . NL . '   <Column ss:Index="9" ss:StyleID="s21" ss:AutoFitWidth="0" ss:Width="49.5"/>'
+            . NL . '   <Column ss:Index="10" ss:StyleID="s21" ss:AutoFitWidth="0" ss:Width="49.5"/>'
             . NL . '   <Column ss:AutoFitWidth="0" ss:Width="58.5"/>'
             . NL . '   <Row>'
             . NL . '    <Cell ss:StyleID="s22"><Data ss:Type="String">Lista de Promocao (disponivel no mercado)</Data></Cell>'
-            . NL . '    <Cell ss:Index="9" ss:StyleID="s23"><Data ss:Type="String">' . date('d-m-Y') . '</Data></Cell>'
+            . NL . '    <Cell ss:Index="10" ss:StyleID="s23"><Data ss:Type="String">' . date('d-m-Y') . '</Data></Cell>'
             . NL . '   </Row>'
             . NL . '   <Row>'
             . NL . '    <Cell ss:StyleID="s22"><Data ss:Type="String">Previsao do mercado /ton</Data></Cell>'
-            . NL . '    <Cell ss:Index="9" ss:StyleID="s23"/>'
+            . NL . '    <Cell ss:Index="10" ss:StyleID="s23"/>'
             . NL . '    <Cell ss:StyleID="s24"/>'
             . NL . '   </Row>'
             ;

@@ -54,7 +54,7 @@ JKY.generate_loadouts = function(response) {
 
 JKY.generate_loadout = function(the_row) {
 	var my_id = the_row.id;
-	var my_trash = (the_row.status == 'Draft') ? '<a onclick="JKY.delete_loadout(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_trash = (the_row.status == 'Active') ? '<a onclick="JKY.delete_loadout(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_loadout = ''
 		+ "<input class='jky-loadout-color-id' type='hidden' value=" + the_row.loadout_color_id + " />"
 		+ "<input class='jky-loadout-number' disabled onchange='JKY.update_loadout(this, " + my_id + ")' value='" + JKY.fix_null(the_row.loadout_number) + "' />"
@@ -65,8 +65,8 @@ JKY.generate_loadout = function(the_row) {
 		+ '<td class="jky-td-action"	>' + my_trash	+ '</td>'
 		+ '<td class="jky-td-key-m"		>' + my_loadout	+ '</td>'
 		+ '<td class="jky-td-text-l"	><input	disabled value="' + JKY.fix_null	(the_row.color_name			) + '" /></td>'
-		+ '<td class="jky-td-date"		><input disabled value="' + JKY.short_date	(the_row.requested_at		) + '" /></td>'
-		+ '<td class="jky-td-date"		><input disabled value="' + JKY.short_date	(the_row.checkout_at		) + '" /></td>'
+		+ '<td class="jky-td-date"		><input disabled value="' + JKY.out_date	(the_row.requested_at		) + '" /></td>'
+		+ '<td class="jky-td-date"		><input disabled value="' + JKY.out_date	(the_row.checkout_at		) + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input disabled value="' + JKY.fix_null	(the_row.quoted_pieces		) + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input disabled value="' +	JKY.fix_null	(the_row.checkout_pieces	) + '" /></td>'
 		+ '</tr>'

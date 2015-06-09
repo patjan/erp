@@ -94,7 +94,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-name-s"	>' + JKY.out_count	(the_row.finishings		)	+ '</td>'
 		+  '<td class="jky-td-number"	>' +				 the_row.peso				+ '</td>'
 		+  '<td class="jky-td-number"	>' +				 the_row.units				+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.start_at		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.start_at		)	+ '</td>'
 		+  '<td class="jky-td-status"	>' +				 the_row.status				+ '</td>'
 		;
 	return my_html;

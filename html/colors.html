@@ -4,7 +4,7 @@
 			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-td-name-w'	><span>      Color Name			</span></th>
 			<th class='jky-td-name-s'	><span>      Color Type			</span></th>
-			<th class='jky-td-name-s'	><span>     Dyeing Type			</span></th>
+			<th class='jky-td-number'	><span>         Recipes			</span></th>
 			<th class='jky-td-status'	><span>          Status			</span></th>
 		</tr>
 	</thead>
@@ -34,10 +34,6 @@
 				<div class='jky-form-label'><span>Color Type</span>:</div>
 				<select id='jky-color-type'></select>
 			</div>
-			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>Dyeing Type</span>:</div>
-				<select id='jky-dyeing-type'></select>
-			</div>
 		</div>
 		<div class='jky-clear'></div>
 		<br>
@@ -66,7 +62,8 @@
 					<thead>
 						<tr>
 							<th class='jky-td-action'	></th>
-							<th class='jky-td-name'		><span>Composition		</span></th>
+<!--						<th class='jky-td-name'		><span>Composition		</span></th>	-->	
+							<th class='jky-td-name'		><span>Dyeing			</span></th>
 							<th class='jky-td-recipe'	><span>Recipe			</span></th>
 						</tr>
 					</thead>
@@ -101,4 +98,5 @@
 
 <script src='js/colors.js'></script>
 <script src='js/JKY.Composition.js'></script>
+<script src='js/JKY.Dyeing.js'></script>
 <script src='js/recipes.js'></script>

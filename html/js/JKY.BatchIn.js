@@ -70,8 +70,8 @@ JKY.BatchIn = function() {
 //			if (my_balance > 0 ) {
 				my_html += '<tr onclick="JKY.BatchIn.click_row(this, ' + my_row.id + ')">'
 						+  '<td class="jky-search-batch"		>' + my_row.batch			+ '</td>'
-//						+  '<td class="jky-search-date"			>' + JKY.short_date(my_row.updated_at) + '</td>'
-						+  '<td class="jky-search-date"			>' + JKY.short_date(my_row.invoice_date) + '</td>'
+//						+  '<td class="jky-search-date"			>' + JKY.out_date(my_row.updated_at  ) + '</td>'
+						+  '<td class="jky-search-date"			>' + JKY.out_date(my_row.invoice_date) + '</td>'
 						+  '<td class="jky-search-boxes"		>' + my_row.balance_boxes	+ '</td>'
 						+  '<td class="jky-search-weight"		>' + my_row.balance_weight	+ '</td>'
 						+  '<td class="jky-search-weight"		>' + my_row.checkin_weight	+ '</td>'

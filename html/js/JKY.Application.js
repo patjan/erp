@@ -270,7 +270,7 @@ if (my_first == true) {
 		JKY.hide('jky-loading');
 	}
 
-	var my_tablesorter = function(){
+	var my_tablesorter = function() {
 		JKY.display_trace('my_tablesorter');
 		var my_date_format = 'yyyymmdd';
 		var	my_locale = JKY.Session.get_value('locale');
@@ -301,7 +301,11 @@ if (my_first == true) {
 	var my_set_table_row = function(the_args, the_row) {
 		var my_checkbox = '<input type="checkbox" onclick="' + the_args.object_name + '.set_checkbox(this)" row_id=' + the_row.id + ' />';
 		var my_clickrow = JKY.is_loaded('jky-app-form') ? ' onclick="' + the_args.object_name + '.display_form(this)"' : '';
-		return '<tr row_id=' + the_row.id + my_clickrow + '>'
+		var my_class_status = '';
+		if (my_args.class === 'status') {
+			my_class_status = ' class="' + the_row.status + '"';
+		}
+		return '<tr row_id=' + the_row.id + my_clickrow + my_class_status + '>'
 			+  '<td class="jky-td-checkbox">' + my_checkbox + '</td>'
 			+  JKY.set_table_row(the_row)
 			+  '</tr>'
@@ -335,6 +339,7 @@ if (my_first == true) {
  */
 	var my_display_form = function(the_index) {
 		JKY.display_trace('my_display_form: ' + the_index);
+//if (JKY.params === '') {		
 		if (typeof the_index == 'number') {
 			my_index = the_index;
 		}else
@@ -343,6 +348,9 @@ if (my_first == true) {
 				my_index = the_index.rowIndex;
 			}
 		}
+//}else{
+//		my_index = the_index;
+//}
 
 		if (my_skip_form) {
 			my_skip_form = false;
@@ -415,7 +423,11 @@ if (my_first == true) {
 			my_index = the_index;
 		}
 		JKY.display_trace('my_index: ' + my_index);
+//if (JKY.params === '') {
 		JKY.row_id = $('#jky-app-table tbody tr:eq(' + (my_index-1) + ')').attr('row_id');
+//}else{
+//		JKY.row_id = the_index;
+//}
 		JKY.display_trace('JKY.row_id: ' + JKY.row_id);
 		if (my_args.program_name == 'Receive NFEs') {
 			JKY.row = JKY.get_xml(JKY.row_id);

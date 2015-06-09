@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS LoadOuts
 
 , loadout_number	VARCHAR(32)			DEFAULT NULL
 , dyer_id			BIGINT				DEFAULT NULL
+, dyeing_type		VARCHAR(32)			DEFAULT NULL	/* Lavar */
 , color_id			BIGINT				DEFAULT NULL
 , shipdyer_id		BIGINT				DEFAULT NULL
 , requested_at		DATETIME			DEFAULT NULL
@@ -31,8 +32,11 @@ INSERT NextIds	SET table_name='LoadOuts', next_id=1, id_size=9;
 INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, name='LoadOuts', updated_by=1, updated_at=NOW();
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='LoadOuts', updated_by=1, updated_at=NOW();
 
-ALTER TABLE LoadOuts		ADD COLUMN shipdyer_id			BIGINT			DEFAULT NULL	AFTER color_id;
+ALTER TABLE LoadOuts		ADD COLUMN shipdyer_id		BIGINT		DEFAULT NULL	AFTER color_id;
 
-ALTER TABLE LoadOuts		ADD COLUMN remarks				TEXT			DEFAULT NULL	AFTER returned_weight;
+ALTER TABLE LoadOuts		ADD COLUMN remarks			TEXT		DEFAULT NULL	AFTER returned_weight;
 
-ALTER TABLE LoadOuts		CHANGE	status			status			VARCHAR(32)		DEFAULT 'Active';
+ALTER TABLE LoadOuts		CHANGE	status	status		VARCHAR(32)	DEFAULT 'Active';
+
+ALTER TABLE LoadOuts		ADD COLUMN dyeing_type		VARCHAR(32)	DEFAULT NULL	AFTER dyer_id;
+

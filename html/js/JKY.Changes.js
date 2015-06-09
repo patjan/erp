@@ -19,7 +19,8 @@ JKY.Changes = function() {
 	 *
 	 */
 	function my_set_button_save() {
-		if ($('#jky-action-save').css('display') == 'none')		return;
+		if ($('#jky-action-save').css('display') == 'none')
+			return;
 
 		if (my_changes == 0) {
 			JKY.disable_button('jky-action-save'	);

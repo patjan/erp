@@ -39,7 +39,9 @@
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Dyer</span>:</div>
-				<input  id='jky-dyer-name'		class='jky-form-name'	disabled />
+				<input id='jky-dyer-id'			type='hidden'					value='' />
+				<input id='jky-dyer-name'		class='jky-form-name' disabled	value='' />
+				<a href='#' onClick='JKY.Dyer.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Color</span>:</div>
@@ -109,4 +111,5 @@
 <div id='jky-body-loaded'></div>
 
 <script src='js/loadsales.js'		></script>
+<script src='js/JKY.Dyer.js'		></script>
 <script src='js/piece_locations.js'	></script>

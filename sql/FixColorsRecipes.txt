@@ -1,0 +1,10 @@
+SELECT color_id, COUNT(*) AS recipes
+  FROM Recipes
+ GROUP BY color_id
+ 
+
+UPDATE Colors, Recipes
+   SET Colors.recipes = COUNT(Recipes.*)
+ WHERE Colors.id = Recipes.color_id
+
+   

@@ -46,6 +46,11 @@ JKY.set_initial_values = function() {
 	JKY.show('jky-action-clear');
 	JKY.App.display_form();
 	JKY.process_clear_screen();
+
+	$('#jky-checkin-weight1').ForceIntegerOnly();
+	$('#jky-checkin-weight2').ForceIntegerOnly();
+	$('#jky-checkin-weight3').ForceIntegerOnly();
+	$('#jky-checkin-weight4').ForceIntegerOnly();
 };
 
 /**
@@ -57,7 +62,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-name-l"	>' +				 the_row.product_name			+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 the_row.revised_name			+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 the_row.weighed_name			+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.checkin_at			)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.checkin_at			)	+ '</td>'
 		+  '<td class="jky-td-location"	>' + JKY.fix_null	(the_row.checkin_location	)	+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 the_row.checkin_weight			+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.qualities + ' ' + the_row.remarks) + '</td>'
@@ -156,10 +161,10 @@ JKY.process_keyup_input = function(the_id, the_event) {
 			case('jky-barcode'			) : JKY.process_barcode					();	break;
 			case('jky-revised-name'		) : JKY.set_focus('jky-weighed-name'	 );	break;
 			case('jky-weighed-name'		) : JKY.set_focus('jky-checkin-weight1'	 );	break;
-			case('jky-checkin-weight1'	) : JKY.set_focus('jky-checkin-weight2'  );	break;
-			case('jky-checkin-weight2'	) : JKY.set_focus('jky-checkin-weight3'  );	break;
-			case('jky-checkin-weight3'	) : JKY.set_focus('jky-checkin-weight4'  );	break;
-			case('jky-checkin-weight4'	) : JKY.set_focus('jky-qualities'		 );	break;
+			case('jky-checkin-weight1'	) : JKY.process_weight(my_id, 'jky-checkin-weight2'	); break;
+			case('jky-checkin-weight2'	) : JKY.process_weight(my_id, 'jky-checkin-weight3'	); break;
+			case('jky-checkin-weight3'	) : JKY.process_weight(my_id, 'jky-checkin-weight4'	); break;
+			case('jky-checkin-weight4'	) : JKY.process_weight(my_id, 'jky-qualities'		); break;
 			case('jky-checkin-location1') : JKY.set_focus('jky-checkin-location2');	break;
 			case('jky-checkin-location2') : JKY.set_focus('jky-checkin-location3');	break;
 			case('jky-checkin-location3') : JKY.set_focus('jky-checkin-location4');	break;
@@ -211,6 +216,14 @@ JKY.process_barcode = function() {
 			JKY.set_focus('jky-barcode');
 		}
 	})
+}
+
+JKY.process_weight = function(the_id, the_next_field) {
+	var my_value = JKY.get_value(the_id);
+	var my_digit = my_value.substr(my_value.length-1, 1);
+	if (my_digit === '')	my_digit = '0';
+	JKY.set_value(the_id, my_digit);
+	JKY.set_focus(the_next_field);
 }
 
 JKY.process_qualities = function() {
@@ -269,6 +282,9 @@ JKY.process_save_screen = function() {
 	if (my_qualities		== '' )		my_error += JKY.set_is_required('Qualities'	);
 //	if (my_remarks			== '' )		my_error += JKY.set_is_required('Remarks'	);
 
+	var my_max_weight = 25.00;
+	if (parseFloat(my_checkin_weight) > my_max_weight)	my_error += JKY.set_value_is_above('Weight', my_max_weight);
+
 	if (JKY.is_empty(my_error)) {
 		JKY.display_message(JKY.t('Confirmed, barcode') + ': ' + my_barcode);
 		var my_data =
@@ -303,11 +319,43 @@ JKY.checkin_piece_success = function() {
 		+  '<td class="jky-td-name-l"	>' +				 my_row.product_name		+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 my_row.revised_name		+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 my_row.weighed_name		+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.short_date	(my_row.checkin_at)			+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(my_row.checkin_at)			+ '</td>'
 		+  '<td class="jky-td-location"	>' + JKY.fix_null	(my_row.checkin_location)	+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 my_row.checkin_weight		+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(my_row.qualities +' ' + my_row.remarks) + '</td>'
 		+ '</tr>'
 		;
 	JKY.prepend_html('jky-pieces-table-body', my_html);
+
+	if (my_row.qualities.toLowerCase() != 'boa') {
+//		process Rejected piece
+		JKY.display_message(JKY.t('Rejected piece, print extra label'));
+
+		var my_set = ''
+			+          ' order_id =  ' + my_row.order_id
+			+ ', number_of_pieces =  ' + my_row.number_of_pieces
+			+      ', produced_by =\'' + my_row.produced_by  + '\''
+			+     ', product_name =\'' + my_row.product_name + '\''
+			;
+		var my_data =
+			{ method	: 'insert'
+			, table		: 'Pieces'
+			, set		: my_set
+			}
+		JKY.ajax(false, my_data);
+
+		my_data =
+			{ method	: 'update'
+			, table		: 'Orders'
+			, set		: 'labels_printed = labels_printed + 1'
+			, where		: 'Orders.id=' + my_row.order_id
+			};
+		JKY.ajax(false, my_data, function() {
+			var my_data =
+				{ method	: 'print_labels'
+				, table		: 'Pieces'
+				}
+			JKY.ajax(false, my_data);
+		});
+	}
 }

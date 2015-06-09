@@ -45,6 +45,13 @@ JKY.set_all_events = function() {
 	$('#jky-supplier-name'	).change(function() {JKY.clear_produced_by("supplier"	);});
 	$('#jky-dyer-name'		).change(function() {JKY.clear_produced_by("dyer"		);});
 
+	$('#jky-division-divide').click (function() {
+		JKY.Division.divide_thread();
+		setTimeout(function() {
+			JKY.display_batches();
+		}, 1000);		//	give time for all DB inserts and update to finish
+	});
+
 	JKY.set_side_active('jky-threads-checkouts');
 }
 
@@ -84,9 +91,9 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.partner_name		)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.supplier_name		)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.dyer_name			)	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.requested_at		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.requested_at		)	+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 the_row.requested_weight		+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.checkout_at		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.checkout_at		)	+ '</td>'
 		+  '<td class="jky-td-weight"	>' + JKY.fix_null	(the_row.checkout_weight	)	+ '</td>'
 		;
 	return my_html;

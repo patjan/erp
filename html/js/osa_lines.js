@@ -149,7 +149,7 @@ JKY.insert_line = function() {
 		my_row.product_name		= '';
 		my_row.peso				= 0;
 		my_row.quoted_units		= 0;
-		my_row.units			= 1;
+		my_row.units			= 0;
 		my_row.quoted_pieces	= 0;
 		my_row.remarks			= '';
 

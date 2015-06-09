@@ -75,8 +75,8 @@
 				<div class='jky-form-line'>
 					<div class='jky-form-label'><span>Requested Date</span>:</div>
 					<div id='jky-requested-date' class='input-append date'>
-						<input changeable class='jky-form-date' type='text' />
-						<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
+						<input disabled class='jky-form-date' type='text' />
+<!--					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>	-->
 					</div>
 				</div>
 				<div class='jky-form-line'>
@@ -124,13 +124,14 @@
 					<thead>
 						<tr>
 							<th class='jky-td-action'	></th>
-							<th class='jky-td-code'		><span>	 Product<br>Code	</span></th>
 							<th	class='jky-td-thread'	><span>   Thread			</span></th>
 							<th class='jky-td-key'		><span>    Batch			</span></th>
 							<th class='jky-td-weight'	><span>	 Average<br>Weight	</span></th>
 							<th class='jky-td-weight'	><span>Requested<br>Weight	</span></th>
 							<th class='jky-td-weight'	><span>Check Out<br>Weight	</span></th>
+							<th class='jky-td-code'		><span>Scheduled<br>Date	</span></th>
 							<th class='jky-td-boxes'	><span>Requested<br>Boxes	</span></th>
+							<th class='jky-td-icon'		></th>
 							<th class='jky-td-boxes'	><span>Check Out<br>Boxes	</span></th>
 						</tr>
 					</thead>
@@ -148,7 +149,28 @@
 	</div>
 	<div id='jky-form-footer'></div>
 </div>
+
+<div id='jky-division-layer' class='modal hide fade in'>
+	<div class='modal-header'>
+		<a class='close' data-dismiss='modal'>X</a>
+		<h3><span>Divide</span>: <span>Check Out</span></h3>
+	</div>
+	<div class='modal-body'>
+		<div class='jky-division-line'><label><span>  Average Weight</span>:</label><input id='jky-division-average-weight'		type='text' disabled /><div class='jky-unit'>Kg		</div></div>
+		<div class='jky-division-line'><label><span>Requested Weight</span>:</label><input id='jky-division-requested-weight'	type='text' disabled /><div class='jky-unit'>Kg		</div></div>
+		<div class='jky-division-line'><label><span>  Scheduled Date</span>:</label><input id='jky-division-scheduled-date'		type='text' disabled /><div class='jky-unit'>inicial</div></div>
+		<div class='jky-division-line'><label><span> Requested Boxes</span>:</label><input id='jky-division-requested-boxes'	type='text' disabled /><div class='jky-unit'>&nbsp;	</div></div>
+		<div class='jky-division-line'><label><span>       Divide In</span>:</label><input id='jky-division-divide-in'			type='text'			 /><div class='jky-unit'>vezes	</div></div>
+		<div class='jky-division-line'><label><span>        Upto Max</span>:</label><input id='jky-division-divide-max'			type='text' disabled /><div class='jky-unit'>vezes	</div></div>
+	</div>
+	<div class='modal-footer'>
+		<button  id='jky-division-divide' class='btn btn-success'			type='button'><span>Divide	</span></button>
+		&nbsp;<a id='jky-division-cancel' class='btn' data-dismiss='modal'	type='button'><span>Cancel	</span></a>
+	</div>
+</div>
+
 <div id='jky-body-loaded'></div>
+<div id='jky-printable'  ></div>
 
 <script src='js/checkouts.js'		></script>
 <script src='js/JKY.Machine.js'		></script>
@@ -158,4 +180,5 @@
 <script src='js/JKY.Thread.js'		></script>
 <script src='js/JKY.BatchIn.js'		></script>
 <script src='js/JKY.Batch.js'		></script>
+<script src='js/JKY.Division.js'	></script>	<!-- needed for division of checkout -->
 <script src='js/checkout_batchouts.js'></script>

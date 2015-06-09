@@ -38,8 +38,8 @@ JKY.BatchIns = function() {
 	function my_generate_row(the_row) {
 		var my_amount = (the_row.checkin_weight * the_row.unit_price).toFixed(2);
 		var my_html = '<tr>'
-					+ '<td class="jky-td-date"		>' + JKY.short_date(the_row.invoice_date) + '</td>'
-					+ '<td class="jky-td-date"		>' + JKY.short_date(the_row.received_at ) + '</td>'
+					+ '<td class="jky-td-date"		>' + JKY.out_date(the_row.invoice_date) + '</td>'
+					+ '<td class="jky-td-date"		>' + JKY.out_date(the_row.received_at ) + '</td>'
 					+ '<td class="jky-td-name-s"	>' + the_row.supplier_name	+ '</td>'
 					+ '<td class="jky-td-number"	>' + JKY.fix_null(the_row.nfe_dl)		+ '</td>'
 					+ '<td class="jky-td-number"	>' + JKY.fix_null(the_row.nfe_tm)		+ '</td>'

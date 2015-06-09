@@ -58,7 +58,7 @@ JKY.generate_thread = function(the_row) {
 		+ '<td class="jky-td-text-w"	>' + my_thread	+ '</td>'
 		+ '<td class="jky-td-key"		>' + my_batchin	+ '</td>'
 		+ '<td class="jky-td-date"		><input class="jky-needed-date"			onchange="JKY.update_thread(this, ' + my_id + ')" value="' +						 my_needed_at	   + '"				/></td>'
-		+ '<td class="jky-td-date"		><input class="jky-checkout-date"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.short_date	(the_row.checkout_at	 ) + '" disabled	/></td>'
+		+ '<td class="jky-td-date"		><input class="jky-checkout-date"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.out_date	(the_row.checkout_at	 ) + '" disabled	/></td>'
 		+ '<td class="jky-td-weight"	><input class="jky-ordered-weight"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.ordered_weight  ) + '"				/></td>'
 		+ '<td class="jky-td-weight"	><input class="jky-checkout-weight"		onchange="JKY.update_thread(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.checkout_weight ) + '" disabled	/></td>'
 		+ '</tr>'

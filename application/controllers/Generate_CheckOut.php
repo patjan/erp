@@ -19,19 +19,20 @@ function JKY_generate_checkout($the_id) {
 		. ' WHERE parent_id = ' . $the_id
 		;
 	$my_rows = $db->fetchAll($sql);
-
+/*
 	$my_needed_at = $my_order['needed_at'];
 	if ($my_needed_at == null) {
 		$my_needed_at = get_time();
 	}
-
+*/
 	$my_checkout_id = get_next_id('CheckOuts');
 	$sql= 'INSERT CheckOuts'
 		. '   SET          id ='  . $my_checkout_id
 		. ',       updated_by ='  . get_session('user_id')
 		. ',       updated_at ="' . get_time() . '"'
 		. ',           number ='  . $my_checkout_id
-		. ',     requested_at ="' . $my_needed_at . '"'
+//		. ',     requested_at ="' . $my_needed_at . '"'
+		. ',     requested_at ="' . get_time() . '"'
 		. ', requested_weight ='  . $my_order['ordered_weight']
 		;
 	if( $my_order['machine_id']) {

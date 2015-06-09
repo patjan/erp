@@ -66,10 +66,10 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-number"	>' +				 the_row.purchase_number		+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 the_row.supplier_name			+ '</td>'
 		+  '<td class="jky-td-name-l"	>' + JKY.fix_null   (the_row.thread_name		)	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.ordered_at			)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.ordered_at			)	+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.expected_date		)	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.received_at		) 	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.scheduled_at		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.received_at		) 	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.scheduled_at		)	+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 the_row.expected_weight		+ '</td>'
 		+  '<td class="jky-td-weight"	>' + JKY.fix_null	(the_row.received_weight	)	+ '</td>'
 		;

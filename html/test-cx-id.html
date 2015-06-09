@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+
+
+<body>
+
+<div id='cx-parent1'>
+	<label>Parent 1</label>
+	<input type='text' cx-id='cx-text' class='cx-text' value='Text 1111111111' />
+</div>
+
+<br>
+
+<div id='cx-parent2'>
+	<label>Parent 2</label>
+	<input type='text' cx-id='cx-text' class='cx-text' value='Text 2222222222' />
+</div>
+
+<br>
+<br>
+
+<button onclick='process_switch()'>Switch</button>
+
+<div id='jky-message'></div>
+
+<script>
+
+process_switch = function() {
+	var my_parent1 = $('#cx-parent1');
+	var my_parent2 = $('#cx-parent2');
+
+    var my_text_1 = my_parent1.find("[cx-id='cx-text']").val();
+    var my_text_2 = my_parent2.find("[cx-id='cx-text']").val();
+
+	my_parent1.find("[cx-id='cx-text']").val(my_text_2);
+	my_parent2.find("[cx-id='cx-text']").val(my_text_1);
+};
+
+</script>

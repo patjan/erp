@@ -63,14 +63,14 @@ JKY.set_initial_values = function() {
 JKY.set_table_row = function(the_row) {
 	var my_checkout_name = JKY.fix_null(the_row.machine_name	)
 						 + JKY.fix_null(the_row.partner_name	)
-						 + JKY.fix_null(the_row.supplier_name	)
 						 + JKY.fix_null(the_row.dyer_name		)
 						 ;
 	var my_html = ''
 		+  '<td class="jky-td-number"	>' +				 the_row.checkout_number		+ '</td>'
 //		+  '<td class="jky-td-code"		>' +				 the_row.code					+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.requested_at		)	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.checkout_at		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.requested_at		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.scheduled_date		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.checkout_at		)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				  my_checkout_name				+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.supplier_name		)	+ '</td>'
 		+  '<td class="jky-td-name-l"	>' + JKY.fix_null	(the_row.thread_name		)	+ '</td>'

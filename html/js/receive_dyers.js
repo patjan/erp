@@ -79,7 +79,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-number"	>' + JKY.fix_null	(the_row.nfe_dl			)	+ '</td>'
 		+  '<td class="jky-td-number"	>' + JKY.fix_null	(the_row.nfe_tm			)	+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.invoice_date	) 	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.received_at	)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.received_at	)	+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 the_row.invoice_weight		+ '</td>'
 		+  '<td class="jky-td-weight'	+ my_class + '"	>' + the_row.received_weight	+ '</td>'
 		;

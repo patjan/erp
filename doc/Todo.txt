@@ -1,5 +1,11 @@
 Todo
 
+		- converter caracteres especials na Ajuda
+		- Pub/Sub na impressao de Etiquetas
+		- syncronizao de Servidores (por campo)
+		- parada de Sync Servidores
+		- teste
+
 (done)	- tablesorter
 (done)	- d3
 (done)	- thumb
@@ -22,7 +28,6 @@ ok		- display data da emissao NFe
 ok		- display qtde de caixas
 ok		- supplier display search correto
 ok		- error de sql on search
-
 
 done	- add salesman_id into Quotations
 ???		- drop out salesman_id from OSAs

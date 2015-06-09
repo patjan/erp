@@ -21,6 +21,7 @@ JKY.start_program = function() {
 		, sort_list		: [[1, 1]]
 		, focus			: 'jky-weight'
 		, add_new		: 'display form'
+		, class			: 'status'
 		});
 	JKY.App.init();
 };
@@ -46,14 +47,14 @@ JKY.set_all_events = function() {
 	$('#jky-produced-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 	$('#jky-delivered-date'		).datetimepicker({language: JKY.Session.get_locale(), pickTime: false});
 
-	$('#jky-action-generate'	).click( function() {JKY.gen_order			();});
+	$('#jky-action-generate'	).click( function() {JKY.generate_order			();});
 	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
-	$('#jky-lines-add-new'		).click (function()	{JKY.insert_line		();});
+	$('#jky-lines-add-new'		).click (function() {JKY.insert_line			();});
 
 //	$('#jky-action-product'		).click (function() {JKY.display_product	();});
 	$('#jky-action-product'		).click (function() {JKY.Product.display(this);});
-//	$('#jky-search-add-new'		).click (function()	{JKY.add_new_product	();});
-	$('#jky-action-save-remarks').click (function()	{JKY.save_remarks		();});
+//	$('#jky-search-add-new'		).click (function() {JKY.add_new_product	();});
+	$('#jky-action-save-remarks').click (function() {JKY.save_remarks		();});
 //	$('#jky-search-filter'		).KeyUpDelay(JKY.filter_product);
 
 	JKY.set_side_active('jky-sales-osas');
@@ -100,12 +101,11 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-number"	>' +				 the_row.quotation_number	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.customer_name	)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.salesman_name	)	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.short_date	(the_row.ordered_at		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.ordered_at		)	+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.produced_date	)	+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.delivered_date	)	+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.quoted_pieces		+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.ordered_pieces		+ '</td>'
-		+  '</tr>'
 		;
 	return my_html;
 };
@@ -135,13 +135,13 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_date	('jky-ordered-date'		, JKY.out_time	(the_row.ordered_at			));
 	JKY.set_date	('jky-produce-from-date', JKY.out_time	(the_row.produce_from_date	));
 	JKY.set_date	('jky-produce-to-date'	, JKY.out_date	(the_row.produce_to_date	));
-	JKY.set_date	('jky-produced-date'	, JKY.out_date	(the_row.produced_date		));
-	JKY.set_date	('jky-delivered-date'	, JKY.out_date	(the_row.delivered_date		));
+//	JKY.set_date	('jky-produced-date'	, JKY.out_date	(the_row.produced_date		));
+//	JKY.set_date	('jky-delivered-date'	, JKY.out_date	(the_row.delivered_date		));
 	JKY.set_value	('jky-customer-id'		,				 the_row.customer_id		);
-	JKY.set_value	('jky-customer-name'	,				 the_row.customer_name 		);
+	JKY.set_value	('jky-customer-name'	,				 the_row.customer_name		);
 	JKY.set_value	('jky-salesman-id'		,				 the_row.salesman_id		);
 	JKY.set_value	('jky-salesman-name'	,				 the_row.salesman_name		);
-	JKY.set_value	('jky-remarks'			,				 JKY.row.remarks			);
+	JKY.set_value	('jky-remarks'			,				 the_row.remarks			);
 	JKY.display_lines();
 };
 
@@ -153,15 +153,15 @@ JKY.set_add_new_row = function() {
 	JKY.disable_button('jky-action-delete'	);
 	JKY.disable_button('jky-action-close'	);
 
-	JKY.set_value	('jky-osa-number'		,  JKY.t('New'));
-	JKY.set_date	('jky-ordered-date'		,  JKY.out_time(JKY.get_now ()));
+	JKY.set_value	('jky-osa-number'		, JKY.t('New'));
+	JKY.set_date	('jky-ordered-date'		, JKY.out_time(JKY.get_now()));
 	JKY.set_date	('jky-produce-from-date', '');
 	JKY.set_date	('jky-produce-to-date'	, '');
-	JKY.set_date	('jky-produced-date'	, '');
-	JKY.set_date	('jky-delivered-date'	, '');
-	JKY.set_value	('jky-customer-id'		,  null);
+//	JKY.set_date	('jky-produced-date'	, '');
+//	JKY.set_date	('jky-delivered-date'	, '');
+	JKY.set_value	('jky-customer-id'		, null);
 	JKY.set_value	('jky-customer-name'	, '');
-	JKY.set_value	('jky-salesman-id'		,  null);
+	JKY.set_value	('jky-salesman-id'		, null);
 	JKY.set_value	('jky-salesman-name'	, '');
 	JKY.set_value	('jky-remarks'			, '');
 };
@@ -172,18 +172,18 @@ JKY.set_add_new_row = function() {
 JKY.get_form_set = function() {
 	var my_customer_id	= JKY.get_value('jky-customer-id'	);
 	var my_salesman_id	= JKY.get_value('jky-salesman-id'	);
-		my_customer_id	= (my_customer_id	=== '') ? 'null' : my_customer_id;
-		my_salesman_id	= (my_salesman_id	=== '') ? 'null' : my_salesman_id;
+		my_customer_id	= (my_customer_id	=== '') ? 'null' : my_customer_id	;
+		my_salesman_id	= (my_salesman_id	=== '') ? 'null' : my_salesman_id	;
 
 	var my_set = ''
 		+       '  customer_id=  ' + my_customer_id
 		+       ', salesman_id=  ' + my_salesman_id
-		+        ', ordered_at=  ' + JKY.inp_time	('jky-ordered-date'		)
-//		+ ', produce_from_date=  ' + JKY.inp_date	('jky-produce-from-date')
-//		+   ', produce_to_date=  ' + JKY.inp_date	('jky-produce-to-date'	)
-		+     ', produced_date=  ' + JKY.inp_date	('jky-produced-date'	)
-		+    ', delivered_date=  ' + JKY.inp_date	('jky-delivered-date'	)
-		+           ', remarks=\'' + JKY.get_value	('jky-remarks'			) + '\''
+		+        ', ordered_at=  ' + JKY.inp_time ('jky-ordered-date'		)
+//		+ ', produce_from_date=  ' + JKY.inp_date ('jky-produce-from-date'	)
+//		+   ', produce_to_date=  ' + JKY.inp_date ('jky-produce-to-date'	)
+//		+     ', produced_date=  ' + JKY.inp_date ('jky-produced-date'		)
+//		+    ', delivered_date=  ' + JKY.inp_date ('jky-delivered-date'		)
+		+           ', remarks=\'' + JKY.get_value('jky-remarks'			) + '\''
 		;
 	return my_set;
 };
@@ -228,7 +228,7 @@ JKY.process_delete = function(the_id, the_row) {
 };
 
 /* -------------------------------------------------------------------------- */
-JKY.gen_order = function() {
+JKY.generate_order = function() {
 	var my_ordered_pieces = JKY.get_value_by_id('OSAs', 'ordered_pieces', JKY.row.id);
 	if (my_ordered_pieces <= 0) {
 		JKY.display_message('Order cannot be generated');
@@ -249,7 +249,7 @@ JKY.gen_order = function() {
 
 /* -------------------------------------------------------------------------- */
 JKY.save_remarks = function() {
-	var my_set	=   'remarks = \'' + JKY.get_value('jky-remarks') + '\'';
+	var my_set	= 'remarks = \'' + JKY.get_value('jky-remarks') + '\'';
 	var my_data =
 		{ method: 'update'
 		, table : 'OSAs'

@@ -32,16 +32,16 @@ JKY.Validation = function() {
 		my_error += my_is_name		('jky-thread-name'	, 'Thread Name'	, 'Threads'		, 'name'		);
 		my_error += my_is_name		('jky-machine-name'	, 'Machine Name', 'Machines'	, 'name'		);
 		my_error += my_is_name		('jky-product-name'	, 'Product Name', 'Products'	, 'product_name');
+		my_error += my_is_name		('jky-color-name'	, 'Color Name'	, 'Colors'		, 'color_name'	);
 
 //		my_error += my_is_required	('jky-contact-company'	, 'Company'			);
 //		my_error += my_is_required	('jky-customer-name'	, 'Customer Name'	);
 		my_error += my_is_required	('jky-first-name'		, 'First Name'		);
 		my_error += my_is_required	('jky-last-name'		, 'Last Name'		);
-/*
-		my_error += my_is_required	('jky-contact-tag'		, 'Tag'				);
+//		my_error += my_is_required	('jky-contact-tag'		, 'Tag'				);
 		my_error += my_is_numeric	('jky-cnpj'				, 'CNPJ or CPF'		);
-		my_error += my_is_numeric	('jky-ie'				, 'IE or RG'		);
-*/
+//		my_error += my_is_numeric	('jky-ie'				, 'IE or RG'		);
+
 
 		my_error += JKY.process_validation();
 

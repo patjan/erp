@@ -100,8 +100,16 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select-label', JKY.t('Collection'));
 	JKY.show('jky-app-select-line');
 //	select the first option as default
-	$('#jky-app-select option').eq(1).prop('selected', true);
-	$('#jky-app-select').change();
+
+//	if (JKY.params === '') {
+		$('#jky-app-select option').eq(1).prop('selected', true);
+		$('#jky-app-select').change();
+//	}else{
+//		setTimeout(function() {
+//			var my_keys = JKY.params.split('/');
+//			JKY.App.display_form(my_keys[2]);
+//		}, 2000);
+//	}
 
 	JKY.show('jky-action-print');
 	JKY.materials	= JKY.get_configs	('Materials'	);

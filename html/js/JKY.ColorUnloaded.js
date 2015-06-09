@@ -1,5 +1,5 @@
 "use strict";
-
+var JKY = JKY || {};
 /**
  * JKY.ColorUnloaded - process all changes during one transaction
  *				 control save into private array [my_appraisals]
@@ -17,7 +17,7 @@
 JKY.ColorUnloaded = function() {
 	var my_the_id		= null;		//	external id that initiated the call
 	var my_the_type		= null;		//	selected color type: Punho, Gola, Galao
-	var my_order_by		= 'color_name';
+	var my_order_by		= 'Color.color_name';
 	var my_filter		= 'jky-color-un-filter';
 	var my_search_body	= 'jky-color-un-search-body';
 	var my_layer		= 'jky-color-un-search';
@@ -47,15 +47,27 @@ JKY.ColorUnloaded = function() {
 
 	var my_load_data_success = function(response) {
 		var my_rows	= response.rows;
+		var my_color_name = '';
 		var my_html = '';
 		for(var i=0; i<my_rows.length; i++) {
 			var my_row = my_rows[i];
-			my_html += '<tr onclick="JKY.ColorUnloaded.click_row(this, ' + my_row.id + ')">'
-					+  '<td class="jky-search-color-name"	>' + my_row.color_name	+ '</td>'
-					+  '<td class="jky-search-color-type"	>' + my_row.color_type	+ '</td>'
-					+  '<td class="jky-search-dyer-name"	>' + my_row.dyer_name	+ '</td>'
-					+  '</tr>'
-					;
+			var my_quoted_weight;
+			if (my_row.units == 0) {
+				my_quoted_weight = my_row.quoted_units;
+			}else{
+				my_quoted_weight = my_row.quoted_units * my_row.peso;
+			}
+			var my_assigned_weight = my_row.assigned_weight ? parseFloat(my_row.assigned_weight) : 0;
+			if (my_quoted_weight > my_assigned_weight) {
+				if (my_color_name != my_row.color_name) {
+					my_color_name  = my_row.color_name
+					my_html += '<tr onclick="JKY.ColorUnloaded.click_row(this, ' + my_row.color_id + ')">'
+							+  '<td class="jky-search-color-name"	>' + my_row.color_name	+ '</td>'
+							+  '<td class="jky-search-color-type"	>' + my_row.color_type	+ '</td>'
+							+  '</tr>'
+							;
+				}
+			}
 		}
 		JKY.set_html(my_search_body, my_html);
 		JKY.show_modal(my_layer);

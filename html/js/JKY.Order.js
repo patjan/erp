@@ -38,7 +38,7 @@ JKY.Order = function() {
 						+  '<td class="jky-search-order-number"		>' +				 my_row.order_number	+ '</td>'
 						+  '<td class="jky-search-customer-name"	>' +				 my_row.customer_name	+ '</td>'
 						+  '<td class="jky-search-product-name"		>' +				 my_row.product_name	+ '</td>'
-						+  '<td class="jky-search-ordered-date"		>' + JKY.short_date	(my_row.ordered_at	  ) + '</td>'
+						+  '<td class="jky-search-ordered-date"		>' + JKY.out_date	(my_row.ordered_at	  ) + '</td>'
 						+  '<td class="jky-search-ordered-pieces"	>' +				 my_row.ordered_pieces	+ '</td>'
 						+  '</tr>'
 						;

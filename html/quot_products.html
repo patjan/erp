@@ -1,0 +1,189 @@
+<style>
+#jky-printable				{font-size:90%; font-weight:normal;}
+.jky-print-label			{width:160px; text-align:right; font-weight:bold;}
+.jky-print-value			{width:200px;}
+.jky-print-head				{font-weight:bold;}
+#jky-print-quotation-number	{font-size:20px; font-weight:bold;}
+#jky-print-customer-name	{text-transform:capitalize;}
+#jky-print-machine-name		{text-transform:capitalize;}
+#jky-print-dyer-name		{text-transform:capitalize;}
+
+#jky-print-remarks			{width:660px; height:auto; margin:10px;}
+.jky-print-color-name		{font-weight:bold; text-transform:capitalize;}
+.jky-print-pieces			{text-align:right;}
+</style>
+
+<table id='jky-app-table' class='table'>
+	<thead>
+		<tr>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title='Click here to check all records' /></th>
+			<th class='jky-td-key-w3'	><span>  Product			</span></th>
+			<th class='jky-td-key-m'	><span>    Color			</span></th>
+			<th class='jky-td-number'	><span>Quotation<br>Number	</span></th>
+			<th class='jky-td-number'	><span> Load Out<br>Number	</span></th>
+			<th class='jky-td-number'	><span>      OSA<br>Number	</span></th>
+			<th class='jky-td-name-s'	><span> Customer			</span></th>
+			<th class='jky-td-key'		><span>  Machine			</span></th>
+			<th class='jky-td-date'		><span>   Quoted<br>Date	</span></th>
+<!--
+			<th class='jky-td-date'		><span> Produced<br>Date	</span></th>
+			<th class='jky-td-date'		><span>Delivered<br>Date	</span></th>
+			<th class='jky-td-pieces'	><span>   Quoted<br>Units	</span></th>
+			<th class='jky-td-units'	><span>    Units<br>/Piece	</span></th>
+-->
+			<th class='jky-td-pieces'	><span>	  Quoted<br>Pieces	</span></th>
+			<th class='jky-td-pieces'	><span>   Quoted<br>Weight	</span></th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+</table>
+<!--
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'>
+			<button id='jky-action-generate'	class='btn'	type='button' title='Click here to generate order'				><span>Generate Order		</span></button>
+			<button id='jky-action-generate'	class='btn'	type='button' title='Click here to generate production order'	><span>Generate Production	</span></button>
+			<button id='jky-action-close'		class='btn' type='button' title='Click here to close this OSA'				><span>Close OSA			</span></button>
+		</div>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-data'>
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>OSA Number</span>:</div>
+				<input  id='jky-osa-number' class='jky-form-number jky-form-key' disabled />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Ordered Date</span>:</div>
+				<div id='jky-ordered-date' class='input-append date'>
+					<input class='jky-form-date' type='text' disabled />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
+				</div>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Production From</span>:</div>
+				<div id='jky-produce-from-date' class='input-append date'>
+					<input class='jky-form-date' type='text' disabled />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
+				</div>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Production To</span>:</div>
+				<div id='jky-produce-to-date' class='input-append date'>
+					<input class='jky-form-date' type='text' disabled />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
+				</div>
+			</div>
+
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Produced Date</span>:</div>
+				<div id='jky-produced-date' class='input-append date'>
+					<input class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
+				</div>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Delivered Date</span>:</div>
+				<div id='jky-delivered-date' class='input-append date'>
+					<input class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
+				</div>
+			</div>
+
+		</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Quotation Number</span>:</div>
+				<input  id='jky-quotation-number' class='jky-form-number jky-form-key' disabled />
+			</div>
+			<div class='jky-form-line'></div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Customer</span>:</div>
+				<input id='jky-customer-id'								type='hidden'	value='' />
+				<input id='jky-customer-name'	class='jky-form-name'	disabled		value='' />
+				<a href='#' onClick='JKY.Customer.display(this)'><i class='icon-share'></i></a>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Salesman</span>:</div>
+				<input id='jky-salesman-id'								type='hidden'	value='' />
+				<input id='jky-salesman-name'	class='jky-form-name'	disabled		value='' />
+				<a href='#' onClick='JKY.Salesman.display(this)'><i class='icon-share'></i></a>
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+
+		<div>
+			<div class='jky-form-label'></div>
+			<div class='jky-form-buttons'>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title='Click here to save all changes'		><span>Save		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title='Click here to duplicate this record'	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title='Click here to delete this record'		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title='Click here to cancel any changes'		><span>Cancel	</span></button>
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-tabs' class='tabbable'>
+		<ul class='nav nav-tabs' id='cd-ul-tabs'>
+			<li id='jky-tab-lines'			class='active'	><a href='#jky-pane-lines'				data-toggle='tab'><span>Lines			</span></a></li>
+			<li id='jky-tab-remarks'						><a href='#jky-pane-remarks'			data-toggle='tab'><span>Remarks			</span></a></li>
+		</ul>
+
+		<div class='tab-content'>
+			<div id='jky-pane-lines' class='tab-pane active'>
+				<table class='table'>
+					<thead>
+						<tr>
+							<th class='jky-td-action'	></th>
+							<th class='nowrap'			><span>  Product			</span></th>
+							<th class='jky-td-extra'	><span>    Extra			</span></th>
+							<th class='jky-td-pieces'	><span>     Peso<br>Kg/Unit	</span></th>
+							<th class='jky-td-pieces'	><span>   Quoted<br>Units	</span></th>
+							<th class='nowrap right'	><span>    Units<br>/Piece	</span></th>
+							<th class='jky-td-pieces'	><span>   Quoted<br>Pieces	</span></th>
+							<th class='jky-td-pieces'	><span>   Quoted<br>Weight	</span></th>
+							<th class='jky-td-pieces'	><span>  Ordered<br>Pieces	</span></th>
+							<th class='jky-td-pieces'	><span>  Ordered<br>Weight	</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-lines-body'></tbody>
+					<tfoot>
+						<tr class='jky-line'>
+							<td class='jky-action' colspan='11'>
+								<button id='jky-lines-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+			<div id='jky-pane-remarks' class='tab-pane'>
+				<br>
+				<div class='jky-form-remarks'>
+					<div class='jky-form-label'><span>Remarks</span>:</div>
+					<textarea id='jky-remarks'></textarea>
+				</div>
+				<br>
+
+				<div class='jky-form-line'>
+					<div class='jky-form-label'></div>
+					<button id='jky-action-save-remarks' class='btn btn-success' type='button'><span>Save Remarks</span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id='jky-form-footer'></div>
+</div>
+-->
+<div id='jky-body-loaded'></div>
+<div id='jky-printable'  ></div>
+
+<script src='js/quot_products.js'	></script>

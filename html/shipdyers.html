@@ -1,5 +1,6 @@
 <style>
-.jky-print-label		{width:150px; vertical-align:top; font-weight:bold; text-align:right;}
+.jky-print-center		{width:100% ; text-align:center;}
+.jky-print-label		{width:150px; vertical-align:top; text-align:right;}
 .jky-print-col1			{width:450px; vertical-align:top;}
 .jky-print-col2			{width:150px; vertical-align:top;}
 .jky-print-col3			{width:750px; vertical-align:top;}
@@ -9,10 +10,10 @@
 .jky-print-address		{vertical-align:top;}
 </style>
 
-<table id='jky-app-table' class='table table-striped'>
+<table id='jky-app-table' class='table'>
 	<thead>
 		<tr>
-			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title='Click here to check all records' /></th>
 			<th class='jky-td-number'	><span>  Ship Dyer<br>Number	</span></th>
 			<th class='jky-td-number'	><span>    Invoice<br>Number	</span></th>
 			<th class='jky-td-name-s'	><span>       Dyer				</span></th>
@@ -32,8 +33,8 @@
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'>
-			<button id='jky-action-invoice'		class='btn'	type='button' title="Click here to invoice dyer"		><span>Invoice Dyer		</span></button>
-			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this shipment"	><span>Close Shipment	</span></button>
+			<button id='jky-action-invoice'		class='btn'	type='button' title='Click here to invoice dyer'				><span>Invoice Dyer			</span></button>
+			<button id='jky-action-close'		class='btn' type='button' title='Click here to close this shipment'			><span>Close Shipment		</span></button>
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
@@ -118,10 +119,10 @@
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
-				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
-			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
-			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title='Click here to save all changes'		><span>Save		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title='Click here to duplicate this record'	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title='Click here to delete this record'		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title='Click here to cancel any changes'		><span>Cancel	</span></button>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -129,8 +130,8 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-loadouts'	class='active'	><a href='#jky-pane-loadouts'	data-toggle='tab'><span>LoadOuts	</span></a></li>
-			<li id='jky-tab-remarks'					><a href='#jky-pane-remarks'	data-toggle='tab'><span>Remarks		</span></a></li>
+			<li	id='jky-tab-loadouts'		class='active'	><a href='#jky-pane-loadouts'			data-toggle='tab'><span>LoadOuts		</span></a></li>
+			<li id='jky-tab-remarks'						><a href='#jky-pane-remarks'			data-toggle='tab'><span>Remarks			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
@@ -139,8 +140,8 @@
 					<thead>
 						<tr>
 							<th class='jky-td-action'	></th>
-							<th class='jky-td-key-m'	><span>	Load Out<br>Number	</span></th>
-							<th	class='jky-td-text-l'	><span>             Color	</span></th>
+							<th class='jky-td-key-m'	><span> Load Out<br>Number	</span></th>
+							<th	class='jky-td-text-l'	><span>    Color			</span></th>
 							<th class='jky-td-date'		><span>Requested<br>Date	</span></th>
 							<th class='jky-td-date'		><span>Check Out<br>Date	</span></th>
 							<th class='jky-td-pieces'	><span>   Quoted<br>Pieces	</span></th>
@@ -149,8 +150,10 @@
 					</thead>
 					<tbody id='jky-loadouts-body'></tbody>
 					<tfoot>
-						<tr>
-							<td id='jky-loadout-add-new' class='jky-action' colspan='2'><a class='btn btn-success' type='button' href='#'><span>Add New</span></a></td>
+						<tr class='jky-line'>
+							<td class='jky-action' colspan='7'>
+								<button id='jky-lines-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
+							</td>
 						</tr>
 					</tfoot>
 				</table>
@@ -161,7 +164,7 @@
 </div>
 
 <div id='jky-body-loaded'></div>
-<div id='jky-printable'></div>
+<div id='jky-printable'  ></div>
 
 <script src='js/shipdyers.js'		></script>
 <script src='js/JKY.Dyer.js'		></script>

@@ -441,3 +441,16 @@ ALTER TABLE ShipDyers		ADD COLUMN sis_printed		INT			DEFAULT 0		AFTER sds_printe
 /* -- 2015-05-12	*/
 ALTER TABLE Quotations		ADD COLUMN purchase_order	VARCHAR(255)	DEFAULT NULL	AFTER payments;
 ALTER TABLE Quotations		ADD COLUMN customers		TEXT			DEFAULT NULL	AFTER delivered_pieces;
+/* -- 2015-05-18	*/
+ALTER TABLE Recipes			ADD COLUMN dyeing_type		VARCHAR(32)		DEFAULT NULL	AFTER recipe;
+ALTER TABLE Colors			DROP	COLUMN dyeing_type;
+
+ALTER TABLE ThreadJoined	ADD COLUMN invoice_date		DATE		DEFAULT NULL	AFTER supplier_id;
+ALTER TABLE ThreadForecast	ADD COLUMN invoice_date		DATE		DEFAULT NULL	AFTER supplier_id;
+/* -- 2015-05-25	*/
+ALTER TABLE LoadOuts		ADD COLUMN dyeing_type		VARCHAR(32)	DEFAULT NULL	AFTER dyer_id;
+ALTER TABLE Colors			ADD	COLUMN recipes			INT			DEFAULT 0 		AFTER color_name;
+/* -- 2015-05-29	*/
+ALTER TABLE LoadOuts		ADD COLUMN recipe			VARCHAR(32)	DEFAULT NULL	AFTER color_id;
+/* -- 2015-06-06	*/
+ALTER TABLE BatchOuts		ADD COLUMN scheduled_date	DATE		DEFAULT NULL	AFTER order_thread_id;

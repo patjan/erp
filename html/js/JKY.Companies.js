@@ -206,7 +206,6 @@ JKY.display_form = function() {
  * only used on [Customers, Suppliers, Dyers, Partners, Transports]
  */
 JKY.process_is_company = function(the_id) {
-	JKY.display_trace('my_process_is_company');
 	if ($(the_id).is(':checked')) {
 //		JKY.invisible	('jky-company');
 		JKY.hide		('jky-company');

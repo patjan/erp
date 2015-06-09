@@ -30,7 +30,7 @@ JKY.Quotation = function() {
 			, specific_id	:  my_color_id
 			, select		: 'All'
 			, filter		:  JKY.get_value(my_filter)
-			, display		: '99'
+//			, display		: '999'
 			, order_by		:  my_order_by
 			};
 		JKY.ajax(false, my_data, my_load_data_success);
@@ -47,7 +47,7 @@ JKY.Quotation = function() {
 				my_quoted_pieces = Math.ceil(my_row.quoted_units/my_row.peso);
 				my_quoted_weight = my_row.quoted_units;
 			}else{
-				my_quoted_pieces = my_row.quoted_units / my_row.units;
+				my_quoted_pieces = Math.ceil(my_row.quoted_units/my_row.units);
 				my_quoted_weight = my_row.quoted_units * my_row.peso;
 			}
 			var my_assigned_pieces = my_row.assigned_pieces ? parseFloat(my_row.assigned_pieces) : 0;
@@ -60,23 +60,25 @@ JKY.Quotation = function() {
 			var my_color_weight = 'black';
 
 				 if (my_assigned_pieces == 0					 )	my_color_pieces = 'green';
-			else if (my_quoted_pieces	==     my_assigned_pieces)	my_color_pieces = 'red'  ;
+			else if (my_quoted_pieces	<=     my_assigned_pieces)	my_color_pieces = 'red'  ;
 			else	 my_quoted_pieces += '/' + my_assigned_pieces;
 
 				 if (my_assigned_weight == 0					 )	my_color_weight = 'green';
-			else if (my_quoted_weight	==	   my_assigned_weight)	my_color_weight = 'red'  ;
+			else if (my_quoted_weight	<=	   my_assigned_weight)	my_color_weight = 'red'  ;
 			else	 my_quoted_weight += '/' + my_assigned_weight;
 
-			my_html += '<tr onclick="JKY.Quotation.click_row(this, ' + my_row.id + ')">'
-					+  '<td class="jky-search-quotation-number"	>' + my_row.quotation_number+ '</td>'
-					+  '<td class="jky-search-product-name"		>' + my_row.product_name	+ '</td>'
-					+  '<td class="jky-search-customer-name"	>' + my_row.customer_name	+ '</td>'
-					+  '<td class="jky-search-composition"		>' + my_row.composition		+ '</td>'
-					+  '<td class="jky-search-quoted-date"		>' + JKY.short_date(my_row.quoted_at) + '</td>'
-					+  '<td class="jky-search-quoted-pieces"	><span class="jky-search-delta-pieces">' + my_delta_pieces + '</span><span style="color:' + my_color_pieces + '">' + my_quoted_pieces + '</span></td>'
-					+  '<td class="jky-search-quoted-weight"	><span class="jky-search-delta-weight">' + my_delta_weight + '</span><span style="color:' + my_color_weight + '">' + my_quoted_weight + '</span></td>'
-					+  '</tr>'
-					;
+			if (my_color_weight != 'red') {
+				my_html += '<tr onclick="JKY.Quotation.click_row(this, ' + my_row.id + ')">'
+						+  '<td class="jky-search-quotation-number"	>' + my_row.quotation_number+ '</td>'
+						+  '<td class="jky-search-product-name"		>' + my_row.product_name	+ '</td>'
+						+  '<td class="jky-search-customer-name"	>' + my_row.customer_name	+ '</td>'
+						+  '<td class="jky-search-composition"		>' + my_row.composition		+ '</td>'
+						+  '<td class="jky-search-quoted-date"		>' + JKY.out_date(my_row.quoted_at) + '</td>'
+						+  '<td class="jky-search-quoted-pieces"	><span class="jky-search-delta-pieces">' + my_delta_pieces + '</span><span style="color:' + my_color_pieces + '">' + my_quoted_pieces + '</span></td>'
+						+  '<td class="jky-search-quoted-weight"	><span class="jky-search-delta-weight">' + my_delta_weight + '</span><span style="color:' + my_color_weight + '">' + my_quoted_weight + '</span></td>'
+						+  '</tr>'
+						;
+			}
 		}
 		JKY.set_html(my_search_body, my_html);
 		JKY.show_modal(my_layer);

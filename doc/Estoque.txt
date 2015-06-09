@@ -1,0 +1,37 @@
+Tecno Malhas Processo
+
+0. Mapeamento do Estoque
+
+1. Entrega de pecas
+	a. Instalar impressora na entrada do estoque
+
+	a. Receber as pecas e conferir a quantidade
+	b. Libera o caminhao
+	c. Imprimir etiquetas por numero do romaneio (somente nao recebidos)
+	d. Tirar do saco
+	e. Achar a etiqueta imoressa
+	f. Colar a etiqueta do lado da abertura do saco
+	g. Transferir para CL (se necessario)
+	h. Pesar cada peca
+	i. Entrar o peso da cada peca por codigo de barra
+	
+	h. Adicionar na configuracao o peso extra de CL
+	i. Funcao para adicinar ou subtrair CL por Romaneio
+	
+Impressao da etiqueta:
+	1. Nome do produto
+	2. Cor
+	3. Composicao
+	4. Numero interno (romaneio)
+	5. Numero da Peca
+	6. Endereco
+	
+Funcao de alteracao das Pecas:
+	por romaneio
+	por peca
+	
+	alterar Cor
+	alterar Endereco
+	alterar Codigo do Produto
+	alterar Peso
+	

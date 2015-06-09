@@ -3,8 +3,10 @@
 /**
  * JKY.LoadOut - process all changes during one transaction
  */
-var my_sold		= 0;
-var my_checkout	= 0;
+var my_sold			= 0;
+var my_checkout		= 0;
+var my_total_pieces = 0;
+var my_total_weight = 0;
 
 JKY.LoadOut = function() {
 	var my_the_id		= null;		//	external id that initiated the call
@@ -31,16 +33,6 @@ JKY.LoadOut = function() {
 	}
 
 	var my_load_data = function() {
-/*
-SELECT LoadOuts.*
-,      Dyer.nick_name		AS      dyer_name
-,      Color.color_name		AS     color_name
-  FROM LoadOuts
-  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		  LoadOuts.dyer_id
-  LEFT JOIN      Colors AS Color	ON     Color.id	=		  LoadOuts.color_id
- WHERE LoadOuts.shipdyer_id = 8000000001
- ORDER BY LoadOuts.loadout_number
-*/
 		var my_data =
 			{ method		: 'get_index'
 			, table			: 'LoadOuts'
@@ -48,7 +40,7 @@ SELECT LoadOuts.*
 			, specific_id	:  my_dyer_id
 			, select		: 'All'
 			, filter		:  JKY.get_value(my_filter)
-			, display		: '10'
+//			, display		: '999'
 			, order_by		:  my_order_by
 			};
 		JKY.ajax(false, my_data, my_load_data_success);
@@ -62,7 +54,7 @@ SELECT LoadOuts.*
 			my_html += '<tr onclick="JKY.LoadOut.click_row(this, ' + my_row.id + ')">'
 					+  '<td class="jky-search-loadout-number"	>' +				 my_row.loadout_number		+ '</td>'
 					+  '<td class="jky-search-color-name"		>' + JKY.fix_null	(my_row.color_name		)	+ '</td>'
-					+  '<td class="jky-search-requested-date"	>' + JKY.short_date	(my_row.requested_at	)	+ '</td>'
+					+  '<td class="jky-search-requested-date"	>' + JKY.out_date	(my_row.requested_at	)	+ '</td>'
 					+  '<td class="jky-search-quoted-pieces"	>' +				 my_row.quoted_pieces		+ '</td>'
 					+  '<td class="jky-search-checkout-pieces"	>' +				 my_row.checkout_pieces		+ '</td>'
 					+  '</tr>'
@@ -133,13 +125,14 @@ SELECT LoadOuts.*
 	 *	 print SD
 	 */
 	var my_print_sd = function() {
+		JKY.show('jky-loading');
 		var my_html = '';
 
 		var my_loadouts = JKY.get_rows_by_where('LoadOuts', 'shipdyer_id=' + JKY.row.id);
 		var my_count_i = my_loadouts.length;
 		for(var i=0; i<my_count_i; i++) {
 			var my_loadout = my_loadouts[i];
-			my_html += my_print_loadout(my_loadout, true);
+			my_html += my_print_loadout_header(my_loadout, true);
 
 			var my_loadquots = JKY.get_rows_by_where('LoadQuotations', 'loadout_id=' + my_loadout.id);
 			var my_count_j = my_loadquots.length;
@@ -149,11 +142,11 @@ SELECT LoadOuts.*
 
 				my_html += '<table cellspacing=0 style="width:700px;">'
 						+ '<tr style="line-height:20px;">'
-						+ '<th class="jky-print-barcode">Barcode</th>'
-						+ '<th class="jky-print-weight" >Weight	</th>'
+						+ '<th class="jky-print-barcode"><span>Piece</span></th>'
+						+ '<th class="jky-print-weight" ><span>Peso </span></th>'
 						+ '<th class="jky-print-filler" ></th>'
-						+ '<th class="jky-print-barcode">Barcode</th>'
-						+ '<th class="jky-print-weight" >Weight	</th>'
+						+ '<th class="jky-print-barcode"><span>Piece</span></th>'
+						+ '<th class="jky-print-weight" ><span>Peso </span></th>'
 						+ '</tr>'
 						;
 				var my_pieces = JKY.get_rows_by_where('Pieces', 'Pieces.load_quot_id=' + my_loadquot.id);
@@ -182,6 +175,7 @@ SELECT LoadOuts.*
 				my_html += '</table>';
 				my_html += '<br>';
 			}
+			my_html += my_print_loadout_footer(my_loadout, true);
 			my_html += '<div style="page-break-before:always;"></div>';
 			my_html += '<table cellspacing=0 style="width:700px;">';
 			my_html += '</table>';
@@ -208,19 +202,21 @@ SELECT LoadOuts.*
 		$("#jky-printable").print();
 
 		JKY.display_message('SD printed');
+		JKY.hide('jky-loading');
 	}
 
 	/**
 	 *	 print SI
 	 */
 	var my_print_si = function() {
+		JKY.show('jky-loading');
 		var my_html = '';
 
 		var my_loadouts = JKY.get_rows_by_where('LoadOuts', 'shipdyer_id=' + JKY.row.id);
 		var my_count_i = my_loadouts.length;
 		for(var i=0; i<my_count_i; i++) {
 			var my_loadout = my_loadouts[i];
-			my_html += my_print_loadout(my_loadout, false);
+			my_html += my_print_loadout_header(my_loadout, false);
 
 			var my_loadquots = JKY.get_rows_by_where('LoadQuotations', 'loadout_id=' + my_loadout.id);
 			var my_count_j = my_loadquots.length;
@@ -230,11 +226,11 @@ SELECT LoadOuts.*
 
 				my_html += '<table cellspacing=0 style="width:700px;">'
 						+ '<tr style="line-height:20px;">'
-						+ '<th class="jky-print-barcode">Barcode</th>'
-						+ '<th class="jky-print-weight" >Weight	</th>'
+						+ '<th class="jky-print-barcode"><span>Piece</span></th>'
+						+ '<th class="jky-print-weight" ><span>Peso </span></th>'
 						+ '<th class="jky-print-filler" ></th>'
-						+ '<th class="jky-print-barcode">Barcode</th>'
-						+ '<th class="jky-print-weight" >Weight	</th>'
+						+ '<th class="jky-print-barcode"><span>Piece</span></th>'
+						+ '<th class="jky-print-weight" ><span>Peso </span></th>'
 						+ '</tr>'
 						;
 				var my_pieces = JKY.get_rows_by_where('Pieces', 'Pieces.load_quot_id=' + my_loadquot.id);
@@ -263,6 +259,7 @@ SELECT LoadOuts.*
 				my_html += '</table>';
 				my_html += '<br>';
 			}
+			my_html += my_print_loadout_footer(my_loadout, false);
 			my_html += '<div style="page-break-before:always;"></div>';
 			my_html += '<table cellspacing=0 style="width:700px;">';
 			my_html += '</table>';
@@ -289,96 +286,139 @@ SELECT LoadOuts.*
 		$("#jky-printable").print();
 
 		JKY.display_message('SI printed');
+		JKY.hide('jky-loading');
 	}
 
-	var my_print_loadout = function(the_loadout, print_address) {
+	var my_print_loadout_header = function(the_loadout, print_address) {
 		var my_html = '';
 		var my_dyer = JKY.get_row('Contacts', the_loadout.dyer_id);
+		var my_color= JKY.fix_null(the_loadout.color_id) + ' ' + JKY.fix_null(the_loadout.color_name);
+		my_total_pieces = 0;
+		my_total_weight = 0;
 
 		my_html += ''
+//			+ '<h3 class=jky-print-center><span>Ship Dyer</span> # ' + JKY.row.id + '</h3>'
+			+ '<h3 class=jky-print-center><span>Ship Dyer</span> # ' + the_loadout.loadout_number + '</h3>'
 			+ '<table>'
 			+ '<tr>'
-			+ '<td class=jky-print-label><span>Ship Dyer</span>:</td><td class=jky-print-col1>' + JKY.row.id					+ '</td>'
-			+ '<td class=jky-print-label><span>     Date</span>:</td><td class=jky-print-col2>' + JKY.out_date(JKY.get_now())	+ '</td>'
+//			+ '<td class=jky-print-label><span> Load Out</span>:</td><td class=jky-print-col1>' + the_loadout.loadout_number		+ '</td>'
+			+ '<td class=jky-print-label>						</td><td class=jky-print-col1>' + 'Tecno Malhas Ltda'				+ '</td>'
+			+ '<td class=jky-print-label><span>     Date</span>:</td><td class=jky-print-col2>' + JKY.out_date(JKY.get_now())		+ '</td>'
 			+ '</tr>'
 			+ '<tr>'
-			+ '<td class=jky-print-label><span> Load Out</span>:</td><td class=jky-print-col1>' + the_loadout.loadout_number	+ '</td>'
-			+ '<td class=jky-print-label><span>    Color</span>:</td><td class=jky-print-col2>' + the_loadout.color_id			+ '</td>'
+			+ '<td class=jky-print-label>						</td><td class=jky-print-col1>'										+ '</td>'
+			+ '<td class=jky-print-label><span>   Dyeing</span>:</td><td class=jky-print-col2>' + the_loadout.dyeing_type			+ '</td>'
 			+ '</tr>'
 			+ '<tr>'
-			+ '<td class=jky-print-label><span>     Dyer</span>:</td><td class=jky-print-col1>' + my_dyer.full_name				+ '</td>'
-			+ '<td class=jky-print-label><span>			</span> </td><td class=jky-print-col2>' + the_loadout.color_name		+ '</td>'
+			+ '<td class=jky-print-label><span>     Dyer</span>:</td><td class=jky-print-col1>' + my_dyer.full_name					+ '</td>'
+//			+ '<td class=jky-print-label><span>	   Color</span>:</td><td class=jky-print-col2>' + my_color							+ '</td>'
+			+ '<td class=jky-print-label><span>	  Recipe</span>:</td><td class=jky-print-col2>' + JKY.fix_null(the_loadout.recipe)	+ '</td>'
 			+ '</tr>'
 			;
 		if (print_address) {
 			my_html += JKY.full_address(my_dyer)
 		}
 		my_html += ''
+			+ '</table>'
+			;
+		return my_html;
+	}
+
+	var my_print_loadout_footer = function(the_loadout, print_address) {
+		var my_html = '';
+
+		my_html += ''
+			+ '<hr>'
+			+ '<table>'
+			+ '<tr>'
+			+ '<td class=jky-print-label>		 Total do romaneio:</td><td class=jky-print-col1><b>' + my_total_pieces + '<b> (<span>pieces</span>)</td>'
+			+ '<td class=jky-print-label><span>Total Weight</span>:</td><td class=jky-print-col2><b>' + my_total_weight + '<b> (Kg)</td>'
+			+ '</tr>'
 			+ '<tr>'
 			+ '<td class=jky-print-label><span>  Remarks</span>:</td><td class=jky-print-col3 colspan="3">' + the_loadout.remarks + '</td>'
 			+ '</tr>'
 			+ '</table>'
-			+ '<hr>'
 			;
 		return my_html;
 	}
 
 	var my_print_loadquot = function(the_loadquot, print_customer) {
 		var my_html = '';
-		var my_ftp_id	= JKY.get_id('QuotColorFTPs', 'QuotColors.id=' + the_loadquot.quot_color_id);
-		var my_ftp		= JKY.get_row('FTPs', my_ftp_id);
-		var my_threads	= JKY.get_rows('FTP_Threads', my_ftp_id);
+		var my_ftp_id		= JKY.get_id	('QuotColorFTPs', 'QuotColors.id=' + the_loadquot.quot_color_id);
+		var my_quot_color	= JKY.get_row	('QuotColors'	, the_loadquot.quot_color_id);
+		var my_color		= JKY.get_row	('Colors'		, my_quot_color.color_id);
+		var my_quot_line	= JKY.get_row	('QuotLines'	, my_quot_color.parent_id);
+		var my_product		= JKY.get_row	('Products'		, my_quot_line.product_id);
+		var my_ftp			= JKY.get_row	('FTPs'			, my_ftp_id);
+		var my_threads		= JKY.get_rows	('FTP_Threads'	, my_ftp_id);
+
 		var my_wirings	= '';
 		for(var i=0; i<my_threads.length; i++) {
 			var my_name = JKY.get_value_by_id('Threads', 'name', my_threads[i].thread_id);
 			my_wirings += my_name + '<br>';
 		}
+
 		var my_finishings = JKY.get_value_by_id('Products', 'finishings', the_loadquot.product_id);
 		var my_names = [];
 		if (!JKY.is_empty(my_finishings)) {
 			my_names = my_finishings.split(', ');
 		}
+
 		my_finishings = '';
 		for(var i=0; i<my_names.length; i++) {
 			var my_name = my_names[i];
 			var my_value = JKY.get_config_value('Finishing Types', my_name);
-			my_finishings += (JKY.is_empty(my_value) ? my_name : my_value) + '<br>';
+			var my_finishing = (JKY.is_empty(my_value) ? my_name : my_value);
+			my_finishings += my_finishing.toUpperCase() + ' / ';
 		}
 
+		my_total_pieces += parseInt  (the_loadquot.checkout_pieces);
+		my_total_weight += parseFloat(the_loadquot.checkout_weight);
+
 		my_html += ''
+			+ '<hr>'
 			+ '<table>'
 			;
 		if (print_customer) {
 			my_html += ''
 			+ '<tr>'
-			+ '<td class=jky-print-label><span>    Customer</span>:</td><td class=jky-print-col1>' + the_loadquot.customer_name		+ '</td>'
-			+ '<td class=jky-print-label><span>        Sale</span>:</td><td class=jky-print-col2>' + the_loadquot.quotation_number	+ '</td>'
+			+ '<td class=jky-print-label><span>    Customer</span>:</td><td class=jky-print-col1>'    + the_loadquot.customer_name + '</td>'
 			+ '</tr>'
 			;
 		}
 		my_html += ''
 			+ '<tr>'
-			+ '<td class=jky-print-label><span>       Width</span>:</td><td class=jky-print-col1>' + my_ftp.width					+ ' (m)		 </td>'
-			+ '<td class=jky-print-label><span>Total Pieces</span>:</td><td class=jky-print-col2>' + the_loadquot.checkout_pieces	+ ' (pieces) </td>'
+			+ '<td class=jky-print-label><span>      Fabric</span>:</td><td class=jky-print-col1>'    + the_loadquot.product_id + ' - ' + the_loadquot.product_name + '</td>'
+			+ '<td class=jky-print-label><span>   Quotation</span>:</td><td class=jky-print-col2><b>' + the_loadquot.quotation_number + '</b></td>'
 			+ '</tr>'
 			+ '<tr>'
-			+ '<td class=jky-print-label><span>      Weight</span>:</td><td class=jky-print-col1>' + my_ftp.weight					+ ' (gr)	 </td>'
-			+ '<td class=jky-print-label><span>Total Weight</span>:</td><td class=jky-print-col2>' + the_loadquot.checkout_weight	+ ' (Kg)	 </td>'
+			+ '<td class=jky-print-label><span>       Color</span>:</td><td class=jky-print-col1>'    + my_color.id + ' - <b>' + my_color.color_name + '</b></td>'
+			+ '<td class=jky-print-label><span>       Width</span>:</td><td class=jky-print-col2><b>' + my_product.width_dyer + '</b> (cm)</td>'
 			+ '</tr>'
 			+ '<tr>'
-			+ '<td class=jky-print-label><span>      Fabric</span>:</td><td class=jky-print-col3 colspan="3">' + the_loadquot.product_id + ' - ' + the_loadquot.product_name + '</td>'
+			+ '<td class=jky-print-label><span> Composition</span>:</td><td class=jky-print-col1><b>' + my_ftp.composition + '</b></td>'
+			+ '<td class=jky-print-label><span>      Weight</span>:</td><td class=jky-print-col2><b>' + my_product.weight_dyer + '</b> (gr)</td>'
+			+ '</tr>'
+			;
+		if (print_customer) {
+			my_html += ''
+			+ '<tr>'
+			+ '<td class=jky-print-label><span>     Wirings</span>:</td><td class=jky-print-col3 colspan="3"><b>' + my_wirings + '</b></td>'
+			+ '</tr>'
+			;
+		}
+		my_html += ''
+			+ '<tr>'
+			+ '<td class=jky-print-label><span>Instructions</span>:</td><td class=jky-print-col3 colspan="3"><b>' + my_finishings + '</b></td>'
 			+ '</tr>'
 			+ '<tr>'
-			+ '<td class=jky-print-label><span> Composition</span>:</td><td class=jky-print-col3 colspan="3">' + my_ftp.composition	+ '</td>'
+			+ '<td></td>'
 			+ '</tr>'
 			+ '<tr>'
-			+ '<td class=jky-print-label><span>     Wirings</span>:</td><td class=jky-print-col3 colspan="3">' + my_wirings			+ '</td>'
-			+ '</tr>'
-			+ '<tr>'
-			+ '<td class=jky-print-label><span>  Finishings</span>:</td><td class=jky-print-col3 colspan="3">' + my_finishings		+ '</td>'
+			+ '<td class=jky-print-label>	       Total do artigo:</td><td class=jky-print-col1><b>' + the_loadquot.checkout_pieces + '<b> (<span>pieces</span>)</td>'
+			+ '<td class=jky-print-label><span>Total Weight</span>:</td><td class=jky-print-col2><b>' + the_loadquot.checkout_weight + '<b> (Kg)</td>'
 			+ '</tr>'
 			+ '</table>'
-			+ '<br>'
 			;
 		return my_html;
 	}

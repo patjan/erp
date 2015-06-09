@@ -349,7 +349,8 @@ private function get_id($data) {
 			. '  LEFT JOIN QuotLines ON QuotLines.id = QuotColors.parent_id'
 			. '  LEFT JOIN FTPs   ON FTPs.product_id = QuotLines.product_id'
 			. ' WHERE ' . $where
-			. ' ORDER BY FTPs.ftp_number DESC'
+			. ' ORDER BY FTPs.ftp_number'
+			. ' LIMIT 1'
 			;
 	}else{
 		$where = $this->get_security($table, $where);
@@ -599,6 +600,7 @@ private function get_index($data) {
 	if (is_numeric( $display)) {
 		$limit = ' LIMIT ' . $display;
 	}else{
+//		$limit = '';
 		$limit = ' LIMIT 1000';
 	}
 
@@ -667,18 +669,36 @@ private function get_index($data) {
 	}else
 	if ($table == 'ColorUnloadeds') {
 		$where = ($filter == '') ? '' : ' AND Color.color_name LIKE "%' . $filter . '%"';
+/*
 		$sql= 'SELECT DISTINCT'
 			. '       Color.id					AS			 id'
 			. ',      Color.color_name			AS     color_name'
 			. ',      Color.color_type			AS     color_type'
-			. ',       Dyer.nick_name			AS      dyer_name'
 			. '  FROM QuotColors'
 			. '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	QuotColors.color_id'
-			. '  LEFT JOIN    Contacts AS Dyer		ON		Dyer.id	=	QuotColors.dyer_id'
 			. '  LEFT JOIN   QuotLines AS QuotLine	ON	QuotLine.id	=	QuotColors.parent_id'
 			. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=	  QuotLine.parent_id'
-//			. '  WHERE (Quotation.status = "Draft")'
-			. '  WHERE (Quotation.status = "Draft" OR Quotation.status = "Active")'
+			. ' WHERE Quotation.status IN ("Draft", "Active")'
+			. '   AND Color.id IS NOT NULL'
+			. '   AND QuotLine.quoted_weight > (SELECT IF(SUM(LoadQuotations.quoted_weight) IS NULL, 0, SUM(LoadQuotations.quoted_weight)) FROM LoadQuotations WHERE LoadQuotations.quot_color_id = QuotColors.id)'
+			. $where
+			. '  ORDER BY ' . $order_by
+			. $limit
+			;
+ */
+		$sql= 'SELECT QuotColors.id				AS			 id'
+			. ',      QuotColors.quoted_units	AS    quoted_units'
+			. ',           Color.id				AS	   color_id'
+			. ',           Color.color_name		AS     color_name'
+			. ',           Color.color_type		AS     color_type'
+			. ',        QuotLine.peso			AS			 peso'
+			. ',        QuotLine.units			AS			 units'
+			. '  FROM QuotColors'
+			. '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	QuotColors.color_id'
+			. '  LEFT JOIN   QuotLines AS QuotLine	ON  QuotLine.id	=	QuotColors.parent_id'
+			. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=	  QuotLine.parent_id'
+			. ' WHERE Quotation.status IN ("Draft", "Active")'
+			. '   AND Color.id IS NOT NULL'
 			. $where
 			. '  ORDER BY ' . $order_by
 			. $limit
@@ -686,8 +706,6 @@ private function get_index($data) {
 	}else
 	if ($table == 'QuotUnloadeds') {
 		$sql= 'SELECT QuotColors.*'
-			. ', QuotColors.id					AS			 id'
-			. ', QuotColors.quoted_units		AS    quoted_units'
 			. ',      Color.color_name			AS     color_name'
 			. ',      Color.color_type			AS     color_type'
 			. ',       Dyer.nick_name			AS      dyer_name'
@@ -706,9 +724,34 @@ private function get_index($data) {
 			. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=	  QuotLine.parent_id'
 			. '  LEFT JOIN    Products AS Product	ON   Product.id	=	  QuotLine.product_id'
 			. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=	 Quotation.customer_id'
-//			. '  WHERE (QuotColors.status = "Draft" OR QuotColors.status = "Active")'
-			. '  WHERE (QuotColors.status = "Draft")'
+			. ' WHERE Quotation.status IN ("Draft", "Active")'
 			. '    AND ' . $where
+			. '  ORDER BY ' . $order_by
+			. $limit
+			;
+	}else
+	if ($table == 'QuotProducts') {
+		if ($where    != '')	{$where		= ' WHERE '    . $where   ;}
+		$sql= 'SELECT QuotColors.*'
+			. ',    Product.product_name		AS   product_name'
+			. ',      Color.color_name			AS     color_name'
+			. ',  Quotation.quotation_number	AS quotation_number'
+			. ',   Customer.nick_name			AS  customer_name'
+			. ',    Machine.name				AS   machine_name'
+			. ',  Quotation.id					AS quotation_id'
+			. ',  Quotation.status				AS           status'
+			. ',  Quotation.quoted_at			AS    quoted_at'
+			. ',   QuotLine.peso				AS			 peso'
+			. ',   QuotLine.units				AS			 units'
+			. ', QuotColors.quoted_units		AS	  quoted_units'
+			. '  FROM QuotColors'
+			. '  LEFT JOIN         Colors AS Color		ON     Color.id	=	QuotColors.color_id'
+			. '  LEFT JOIN      QuotLines AS QuotLine	ON  QuotLine.id	=	QuotColors.parent_id'
+			. '  LEFT JOIN     Quotations AS Quotation	ON Quotation.id	=	  QuotLine.parent_id'
+			. '  LEFT JOIN       Products AS Product	ON   Product.id	=	  QuotLine.product_id'
+			. '  LEFT JOIN       Machines AS Machine	ON   Machine.id	=	  QuotLine.machine_id'
+			. '  LEFT JOIN       Contacts AS Customer	ON  Customer.id	=	 Quotation.customer_id'
+			. $where
 			. '  ORDER BY ' . $order_by
 			. $limit
 			;
@@ -771,19 +814,64 @@ $this->log_sql($table, 'get_index', $sql);
 	if ($table == 'Categories') {
 		$n = 0;
 		foreach($rows as $row) {
-			$sql = 'SELECT COUNT(*) FROM Categories WHERE parent_id = ' . $row['id'];
+			$sql = 'SELECT COUNT(*)'
+				 . '  FROM Categories'
+				 . ' WHERE parent_id = ' . $row['id']
+				 ;
 			$rows[$n]['children'] = $db->fetchOne($sql);
+			$n++;
+		}
+	}else
+	if ($table == 'ColorUnloadeds') {
+		$n = 0;
+		foreach($rows as $row) {
+			$sql = 'SELECT SUM(quoted_pieces) AS pieces, SUM(quoted_weight) AS weight'
+				 . ' FROM LoadQuotations'
+				 . ' WHERE quot_color_id = ' . $row['id']
+				 ;
+			$my_assigned = $db->fetchRow($sql);
+			$rows[$n]['assigned_pieces'] = $my_assigned['pieces'];
+			$rows[$n]['assigned_weight'] = $my_assigned['weight'];
+
+			$n++;
+		}
+	}else
+	if ($table == 'QuotProducts') {
+		$n = 0;
+		foreach($rows as $row) {
+			$sql = 'SELECT LoadOuts.loadout_number'
+				 . '  FROM LoadOuts, LoadQuotations'
+				 . ' WHERE LoadQuotations.quot_color_id = ' . $row['id']
+				 . '   AND LoadQuotations.loadout_id = LoadOuts.id'
+				 ;
+			$my_loadout_number = $db->fetchOne($sql);
+			if(!$my_loadout_number) {
+				$my_loadout_number = null;
+			}
+			$rows[$n]['loadout_number'] = $my_loadout_number;
+
+			$sql = 'SELECT OSAs.osa_number'
+				 . '  FROM OSAs'
+				 . ' WHERE OSAs.quotation_id = ' . $row['quotation_id']
+				 ;
+			$my_osa_number = $db->fetchOne($sql);
+			if(!$my_osa_number) {
+				$my_osa_number = null;
+			}
+			$rows[$n]['osa_number'] = $my_osa_number;
+
 			$n++;
 		}
 	}else
 	if ($table == 'QuotUnloadeds') {
 		$n = 0;
 		foreach($rows as $row) {
-			$sql = 'SELECT composition FROM FTPs WHERE product_id = ' . $row['product_id'] . ' LIMIT 1';
-			$my_composition = $db->fetchOne($sql);
-			$rows[$n]['composition'] = ($my_composition) ? $my_composition : '';
+			$rows[$n]['composition'] = get_product_composition($row['product_id']);
 
-			$sql = 'SELECT SUM(quoted_pieces) AS pieces, SUM(quoted_weight) AS weight FROM LoadQuotations WHERE quot_color_id = ' . $row['id'];
+			$sql = 'SELECT SUM(quoted_pieces) AS pieces, SUM(quoted_weight) AS weight'
+				 . ' FROM LoadQuotations'
+				 . ' WHERE quot_color_id = ' . $row['id']
+				 ;
 			$my_assigned = $db->fetchRow($sql);
 			$rows[$n]['assigned_pieces'] = $my_assigned['pieces'];
 			$rows[$n]['assigned_weight'] = $my_assigned['weight'];
@@ -830,8 +918,32 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'Recipes'			&& $specific == 'color'			)	return ' AND        Recipes.color_id		= ' . $specific_id;
 	if ($table == 'Restrictions'	&& $specific == 'customer'		)	return ' AND   Restrictions.customer_id		= ' . $specific_id;
 	if ($table == 'QuotColors'		&& $specific == 'color'			)	return ' AND     QuotColors.color_id		= ' . $specific_id;
-	if ($table == 'QuotUnloadeds'	&& $specific == 'color'			)	return ' AND     QuotColors.color_id		= ' . $specific_id;
 	if ($table == 'Translations'	&& $specific == 'locale'		)	return ' AND   Translations.locale			= "en_US"';
+
+	if ($table == 'Quotations'		&& $specific == 'same_server'	) {
+//		for no Support, each server can only access their own quotations
+		if (get_session('user_role') != 'Support') {
+			return ' AND SUBSTR(Quotations.id, 1, 1) = ' . SERVER_NUMBER;
+		}else{
+			return '';
+		}
+	}
+
+	if ($table == 'QuotProducts') {
+		if ($specific == 'color' && $specific_id) {
+			return ' AND QuotColors.color_id = ' . $specific_id;
+		}else{
+			return ' AND Color.recipes = 0';
+		}
+	}
+
+	if ($table == 'QuotUnloadeds') {
+		if ($specific == 'color' && $specific_id) {
+			return ' AND QuotColors.color_id = ' . $specific_id;
+		}else{
+			return ' AND Color.recipes = 0';
+		}
+	}
 
 	return '';
 }
@@ -852,6 +964,7 @@ private function set_select($table, $specific, $select) {
 			case 'Purchases'		: return ' AND  Purchases		.status IN   ("Draft","Active")';
 			case 'PurchaseLines'	: return ' AND  Purchases		.status IN   ("Draft","Active")';
 			case 'Quotations'		: return ' AND  Quotations		.status IN   ("Draft","Active")';
+			case 'QuotProducts'		: return ' AND  Quotation		.status IN   ("Draft","Active")';
 			case 'ReceiveDyers'		: return ' AND  ReceiveDyers	.status IN   ("Draft","Active")';
 			case 'Sales'			: return ' AND  Sales			.status IN   ("Draft","Active")';
 			case 'ShipDyers'		: return ' AND  ShipDyers		.status IN   ("Draft","Active")';
@@ -866,7 +979,7 @@ private function set_select($table, $specific, $select) {
 	switch($table) {
 		case 'Batches'			: return ' AND      Incomings.status		= "' . $select . '"';
 		case 'BatchOuts'		: return ' AND      BatchOuts.status		= "' . $select . '"';
-		case 'BatchSets'		: return ' AND      BatchSets.status		= "' . $select . '"';
+		case 'BatchSets'		: return ' AND      BatchOuts.status		= "' . $select . '"';
 		case 'Boxes'			: return ' AND          Boxes.status		= "' . $select . '"';
 //		case 'Categories'		: return ' AND         Parent.category		= "' . $select . '"';
 		case 'CheckOuts'		: return ' AND      CheckOuts.status		= "' . $select . '"';
@@ -900,6 +1013,7 @@ private function set_select($table, $specific, $select) {
 		case 'Quotations'		: return ' AND     Quotations.status		= "' . $select . '"';
 		case 'QuotLines'		: return ' AND      QuotLines.parent_id		=  ' . $select;
 		case 'QuotColors'		: return ' AND     QuotColors.parent_id		=  ' . $select;
+		case 'QuotProducts'		: return ' AND      Quotation.status		= "' . $select . '"';
 		case 'Sales'			: return ' AND          Sales.status		= "' . $select . '"';
 		case 'SaleLines'		: return ' AND      SaleLines.parent_id		=  ' . $select;
 		case 'SaleColors'		: return ' AND     SaleColors.parent_id		=  ' . $select;
@@ -1157,8 +1271,8 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		  LoadOuts.color_id';
 	if ($table == 'LoadQuotations'	)	$return = '  LEFT JOIN    LoadOuts AS LoadOut	ON   LoadOut.id	=	LoadQuotations.loadout_id'
 												. '  LEFT JOIN  QuotColors AS QuotColor	ON QuotColor.id	=	LoadQuotations.quot_color_id'
+												. '  LEFT JOIN    Contacts AS Dyer      ON      Dyer.id =          LoadOut.dyer_id'
 												. '  LEFT JOIN   QuotLines AS QuotLine	ON  QuotLine.id	=		 QuotColor.parent_id'
-												. '  LEFT JOIN    Contacts AS Dyer      ON      Dyer.id =        QuotColor.dyer_id'
 												. '  LEFT JOIN      Colors AS Color     ON     Color.id =        QuotColor.color_id'
 												. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=		  QuotLine.parent_id'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  QuotLine.product_id'
@@ -1167,7 +1281,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    LoadOuts AS LoadOut	ON   LoadOut.id	=		  LoadQuot.loadout_id'
 												. '  LEFT JOIN  QuotColors AS QuotColor	ON QuotColor.id	=		  LoadQuot.quot_color_id'
 												. '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		   LoadOut.dyer_id'
-												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		   LoadOut.color_id'
+												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		 QuotColor.color_id'
 												. '  LEFT JOIN   QuotLines AS QuotLine	ON  QuotLine.id	=		 QuotColor.parent_id'
 												. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=		  QuotLine.parent_id'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  QuotLine.product_id'
@@ -1598,6 +1712,8 @@ private function set_where($table, $filter) {
 
 		if ($table == 'LoadOuts') {
 			if ($name == 'loadout_number'
+			or	$name == 'dyeing_type'
+			or	$name == 'recipe'
 			or	$name == 'requested_at'
 			or	$name == 'quoted_pieces'
 			or	$name == 'quoted_weight'
@@ -1630,8 +1746,7 @@ private function set_where($table, $filter) {
 		}
 
 		if ($table == 'LoadQuotations') {
-			if ($name == 'requested_pieces'
-			or  $name == 'requested_weight'
+			if ($name == 'requested_weight'
 			or	$name == 'reserved_pieces'
 			or	$name == 'reserved_weight'
 			or	$name == 'checkout_pieces'
@@ -1853,6 +1968,43 @@ private function set_where($table, $filter) {
 			}
 		}
 
+		if ($table == 'OSAs') {
+			if ($name == 'osa_number'
+			or	$name == 'ordered_at'
+			or	$name == 'needed_at'
+			or	$name == 'produced_date'
+			or	$name == 'delivered_date'
+			or	$name == 'quoted_pieces'
+			or	$name == 'ordered_pieces') {
+				if ($value == '"%null%"') {
+					return ' AND OSAs.' . $name . ' IS NULL ';
+				}else{
+					return ' AND OSAs.' . $name . ' LIKE ' . $value;
+				}
+			}else
+			if ($name == 'quotation_number') {
+				if ($value == '"%null%"') {
+					return ' AND OSAs.quotation_id IS NULL';
+				}else{
+					return ' AND Quotation.quotation_number LIKE ' . $value;
+				}
+			}else
+			if ($name == 'customer_name') {
+				if ($value == '"%null%"') {
+					return ' AND Orders.customer_id IS NULL';
+				}else{
+					return ' AND Customer.nick_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'salesman_name') {
+				if ($value == '"%null%"') {
+					return ' AND OSAs.salesman_id IS NULL';
+				}else{
+					return ' AND Salesman.full_name LIKE ' . $value;
+				}
+			}
+		}
+
 		if ($table == 'Pieces') {
 			if ($name == 'barcode'
 			or	$name == 'product_name'
@@ -1987,6 +2139,82 @@ private function set_where($table, $filter) {
 					return ' AND Quotations.contact_id IS NULL';
 				}else{
 					return ' AND Contacts.nick_name LIKE ' . $value;
+				}
+			}
+		}
+
+		if ($table == 'QuotProducts') {
+			if ($name == 'product_name') {
+				if ($value == '"%null%"') {
+					return ' AND QuotLine.product_id IS NULL';
+				}else{
+					return ' AND Product.product_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'color_name') {
+				if ($value == '"%null%"') {
+					return ' AND QuotColors.color_id IS NULL';
+				}else{
+					return ' AND Color.color_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'quotation_number') {
+				if ($value == '"%null%"') {
+					return ' AND QuotLine.parent_id IS NULL';
+				}else{
+					return ' AND Quotation.quotation_number LIKE ' . $value;
+				}
+			}else
+			if ($name == 'customer_name') {
+				if ($value == '"%null%"') {
+					return ' AND Quotation.customer_id IS NULL';
+				}else{
+					return ' AND Customer.nick_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'machine_name') {
+				if ($value == '"%null%"') {
+					return ' AND QuotLine.machine_id IS NULL';
+				}else{
+					return ' AND Machine.name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'quoted_date') {
+				if ($value == '"%null%"') {
+					return ' AND QuotLine.parent_id IS NULL';
+				}else{
+					return ' AND Quotation.quoted_at LIKE ' . $value;
+				}
+			}
+		}
+
+		if ($table == 'QuotUnloadeds') {
+			if ($name == 'quotation_number') {
+				if ($value == '"%null%"') {
+					return ' AND QuotLine.parent_id IS NULL';
+				}else{
+					return ' AND Quotation.quotation_number LIKE ' . $value;
+				}
+			}else
+			if ($name == 'product_name') {
+				if ($value == '"%null%"') {
+					return ' AND QuotLine.product_id IS NULL';
+				}else{
+					return ' AND Product.product_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'contact_name') {
+				if ($value == '"%null%"') {
+					return ' AND Quotation.customer_id IS NULL';
+				}else{
+					return ' AND Customer.nick_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'quoted_date') {
+				if ($value == '"%null%"') {
+					return ' AND QuotLine.parent_id IS NULL';
+				}else{
+					return ' AND Quotation.quoted_at LIKE ' . $value;
 				}
 			}
 		}
@@ -2514,6 +2742,8 @@ private function set_where($table, $filter) {
 
 		case	'LoadOuts' :
 		$return = ' LoadOuts.loadout_number		LIKE ' . $filter
+			. ' OR  LoadOuts.dyeing_type		LIKE ' . $filter
+			. ' OR  LoadOuts.recipe				LIKE ' . $filter
 			. ' OR  LoadOuts.requested_at		LIKE ' . $filter
 			. ' OR  LoadOuts.quoted_pieces		LIKE ' . $filter
 			. ' OR  LoadOuts.quoted_weight		LIKE ' . $filter
@@ -2529,8 +2759,7 @@ private function set_where($table, $filter) {
 		break;
 
 		case	'LoadQuotations' :
-		$return = ' LoadQuotations.requested_pieces	LIKE ' . $filter
-			. ' OR  LoadQuotations.reserved_pieces	LIKE ' . $filter
+		$return = ' LoadQuotations.reserved_pieces	LIKE ' . $filter
 			. ' OR  LoadQuotations.checkout_pieces	LIKE ' . $filter
 			. ' OR  LoadQuotations.checkout_weight	LIKE ' . $filter
 			. ' OR  LoadQuotations.returned_pieces	LIKE ' . $filter
@@ -2595,6 +2824,20 @@ private function set_where($table, $filter) {
 			;
 		break;
 
+		case	'OSAs' :
+		$return = ' OSAs.osa_number				LIKE ' . $filter
+			. ' OR  OSAs.ordered_at				LIKE ' . $filter
+			. ' OR  OSAs.needed_at				LIKE ' . $filter
+			. ' OR  OSAs.produced_date			LIKE ' . $filter
+			. ' OR  OSAs.delivered_date			LIKE ' . $filter
+			. ' OR  OSAs.quoted_pieces			LIKE ' . $filter
+			. ' OR  OSAs.ordered_pieces			LIKE ' . $filter
+			. ' OR  Quotation.quotation_number	LIKE ' . $filter
+			. ' OR    Customer.nick_name		LIKE ' . $filter
+			. ' OR    Salesman.full_name		LIKE ' . $filter
+			;
+		break;
+
 		case	'Pieces' :
 		$return = ' Pieces.barcode				LIKE ' . $filter
 			. ' OR  Pieces.product_name			LIKE ' . $filter
@@ -2652,6 +2895,24 @@ private function set_where($table, $filter) {
 			. ' OR    Salesman.nick_name			LIKE ' . $filter
 			. ' OR    Customer.nick_name			LIKE ' . $filter
 			. ' OR     Contact.nick_name			LIKE ' . $filter
+			;
+		break;
+
+		case	'QuotProducts' :
+		$return = '    Product.product_name			LIKE ' . $filter
+			. ' OR       Color.color_name			LIKE ' . $filter
+			. ' OR   Quotation.quotation_number		LIKE ' . $filter
+			. ' OR    Customer.nick_name			LIKE ' . $filter
+			. ' OR     Machine.name					LIKE ' . $filter
+			. ' OR   Quotation.quoted_at			LIKE ' . $filter
+			;
+		break;
+
+		case	'QuotUnloadeds' :
+		$return = '  Quotation.quotation_number		LIKE ' . $filter
+			. ' OR     Product.product_name			LIKE ' . $filter
+			. ' OR    Customer.nick_name			LIKE ' . $filter
+			. ' OR   Quotation.quoted_at			LIKE ' . $filter
 			;
 		break;
 
@@ -5099,9 +5360,10 @@ private function refresh($data) {
 		. ' GROUP BY thread_id, supplier_id'
 		. ';'
 */
-		. 'INSERT ThreadJoined(thread_id, supplier_id, current_balance)'
+		. 'INSERT ThreadJoined(thread_id, supplier_id, invoice_date, current_balance)'
 		. 'SELECT Batches.thread_id'
 		. '     , Incomings.supplier_id'
+		. '     , MIN(Incomings.invoice_date) AS invoice_date'
 		. '     , SUM(IF(Boxes.status = "Check In" OR Boxes.status = "Return", IF(Boxes.real_weight = 0, Boxes.average_weight, Boxes.real_weight), 0)) AS current_balance'
 		. '  FROM Boxes'
 		. '  LEFT JOIN Batches				ON Batches.id = Boxes.batch_id'
@@ -5115,9 +5377,10 @@ private function refresh($data) {
 		. '  FROM PurchaseMonthly'
 		. ';'
 
-		. 'INSERT ThreadForecast(thread_id, supplier_id, current_balance, forecast_past, forecast_month_1, forecast_month_2, forecast_month_3, forecast_future)'
+		. 'INSERT ThreadForecast(thread_id, supplier_id, invoice_date, current_balance, forecast_past, forecast_month_1, forecast_month_2, forecast_month_3, forecast_future)'
 		. 'SELECT thread_id'
 		. '	    , supplier_id'
+		. '	    , invoice_date'
 		. '	    , SUM(current_balance) AS current_balance'
 		. '	    , SUM(IF (months < 1, forecast_weight, 0)) AS forecast_past'
 		. '	    , SUM(IF (months = 1, forecast_weight, 0)) AS forecast_month_1'

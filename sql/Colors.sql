@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS Colors
 , color_code		VARCHAR(32)			DEFAULT NULL
 , color_type		VARCHAR(32)			DEFAULT NULL
 , color_name		VARCHAR(255)		DEFAULT NULL
-, dyeing_type		VARCHAR(32)			DEFAULT NULL
+, recipes           INT                 DEFAULT 0
 , remarks			TEXT				DEFAULT	NULL
 
 , PRIMARY KEY	(id)
@@ -18,7 +18,10 @@ CREATE TABLE IF NOT EXISTS Colors
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
 
-ALTER TABLE Colors			ADD COLUMN dyeing_type				VARCHAR(32)		DEFAULT NULL	AFTER color_name;
+ALTER TABLE Colors			ADD		COLUMN dyeing_type				VARCHAR(32)		DEFAULT NULL	AFTER color_name;
+ALTER TABLE Colors			DROP	COLUMN dyeing_type;
+
+ALTER TABLE Colors			ADD	COLUMN recipes			INT			DEFAULT 0 		AFTER color_name;
 
 
 CREATE TABLE IF NOT EXISTS Work

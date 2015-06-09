@@ -17,7 +17,7 @@ JKY.generate_color = function(the_row, the_peso, the_units) {
 		+ "<input class='jky-color-id'		type='hidden' value=" + the_row.color_id   + " />"
 		+ "<input class='jky-color-type'	type='hidden' value=" + the_row.color_type + " />"
 		+ "<input class='jky-color-name'	disabled onchange='JKY.update_color(this, " + my_id + ")' value='" + the_row.color_name + "' />"
-		+ "<a href='#' onClick='JKY.Color.display(this)'><i class='icon-share'></i></a>"
+		+ " <a href='#' onClick='JKY.Color.display(this)'><i class='icon-share'></i></a>"
 		;
 	var my_ftp = ''
 		+ "<input class='jky-ftp-id'		type='hidden'	value="  + the_row.ftp_id		+ "  />"

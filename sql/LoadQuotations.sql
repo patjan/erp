@@ -28,3 +28,52 @@ INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50
 ALTER TABLE LoadQuotations		ADD		reserved_weight			DECIMAL(7,1)	DEFAULT 0		AFTER quoted_weight;
 ALTER TABLE LoadQuotations		ADD		reserved_pieces			INT				DEFAULT 0		AFTER quoted_weight;
 
+/* ------------------------------------------------------------------------- */
+
+SELECT LoadQuotations.*
+,   LoadOut.loadout_number		AS   loadout_number
+,   LoadOut.requested_at		AS requested_at
+, Quotation.quotation_number	AS quotation_number
+,      Dyer.nick_name			AS      dyer_name
+,     Color.id					AS     color_id
+,     Color.color_name			AS     color_name
+,  Customer.nick_name			AS  customer_name
+,   Product.id					AS   product_id
+,   Product.product_name		AS   product_name
+
+   FROM LoadQuotations
+   LEFT JOIN    LoadOuts AS LoadOut		ON   LoadOut.id	=	LoadQuotations.loadout_id
+   LEFT JOIN  QuotColors AS QuotColor	ON QuotColor.id	=	LoadQuotations.quot_color_id
+   LEFT JOIN    Contacts AS Dyer    	ON      Dyer.id =          LoadOut.dyer_id
+   LEFT JOIN   QuotLines AS QuotLine	ON  QuotLine.id	=		 QuotColor.parent_id
+   LEFT JOIN      Colors AS Color     	ON     Color.id =        QuotColor.color_id
+   LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=		  QuotLine.parent_id
+   LEFT JOIN    Products AS Product		ON   Product.id	=		  QuotLine.product_id
+   LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		 Quotation.customer_id
+
+  WHERE   LoadQuotations.status IN ("Draft","Active")
+  ORDER BY LoadOut.loadout_number DESC
+
+
+SELECT LoadQuotations.*
+,   LoadOut.loadout_number		AS   loadout_number
+,   LoadOut.requested_at		AS requested_at
+, Quotation.quotation_number	AS quotation_number
+,      Dyer.nick_name			AS      dyer_name
+,     Color.id					AS     color_id
+,     Color.color_name			AS     color_name
+,  Customer.nick_name			AS  customer_name
+,   Product.id					AS   product_id
+,   Product.product_name		AS   product_name
+
+  FROM LoadQuotations
+  LEFT JOIN    LoadOuts AS LoadOut		ON   LoadOut.id	=	LoadQuotations.loadout_id
+  LEFT JOIN  QuotColors AS QuotColor	ON QuotColor.id	=	LoadQuotations.quot_color_id
+  LEFT JOIN    Contacts AS Dyer     	ON      Dyer.id =          LoadOut.dyer_id
+  LEFT JOIN   QuotLines AS QuotLine		ON  QuotLine.id	=		 QuotColor.parent_id
+  LEFT JOIN      Colors AS Color    	ON     Color.id =        QuotColor.color_id
+  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=		  QuotLine.parent_id
+  LEFT JOIN    Products AS Product		ON   Product.id	=		  QuotLine.product_id
+  LEFT JOIN    Contacts AS Customer		ON  Customer.id	=		 Quotation.customer_id
+
+  WHERE LoadQuotations.id = 8000000029

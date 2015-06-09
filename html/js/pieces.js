@@ -94,6 +94,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-returned-weight'		, the_row.returned_weight	);
 	JKY.set_value	('jky-checkin-location'		, the_row.checkin_location	);
 	JKY.set_value	('jky-checkout-location'	, the_row.checkout_location	);
+	JKY.set_value	('jky-qualities'			, the_row.qualities			);
 	JKY.set_value	('jky-remarks'				, the_row.remarks			);
 //	JKY.display_lines();
 };
@@ -113,6 +114,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-returned-weight'		,  0);
 	JKY.set_value	('jky-checkin-location'		, '');
 	JKY.set_value	('jky-checkout-location'	, '');
+	JKY.set_value	('jky-qualities'			, '');
 	JKY.set_value	('jky-remarks'				, '');
 }
 
@@ -134,6 +136,7 @@ JKY.set_replace = function() {
 	JKY.set_value	('jky-returned-weight'		, '');
 	JKY.set_value	('jky-checkin-location'		, '');
 	JKY.set_value	('jky-checkout-location'	, '');
+	JKY.set_value	('jky-qualities'			, '');
 	JKY.set_value	('jky-remarks'				, '');
 }
 
@@ -150,6 +153,7 @@ JKY.get_form_set = function() {
 		+   ', returned_weight=  ' + JKY.get_value('jky-returned-weight'	)
 		+  ', checkin_location=\'' + JKY.get_value('jky-checkin-location'	).toUpperCase() + '\''
 		+ ', checkout_location=\'' + JKY.get_value('jky-checkout-location'	).toUpperCase() + '\''
+		+         ', qualities=\'' + JKY.get_value('jky-qualities'			) + '\''
 		+           ', remarks=\'' + JKY.get_value('jky-remarks'			) + '\''
 	return my_set;
 };
@@ -167,6 +171,7 @@ JKY.get_replace_set = function() {
 	if (!JKY.is_empty(JKY.get_value('jky-returned-weight'	)))	{my_set +=   ', returned_weight=  '	+ JKY.get_value('jky-returned-weight'	);}
 	if (!JKY.is_empty(JKY.get_value('jky-checkin-location'	)))	{my_set +=  ', checkin_location=\''	+ JKY.get_value('jky-checkin-location'	).toUpperCase() + '\'';}
 	if (!JKY.is_empty(JKY.get_value('jky-checkout-location'	)))	{my_set += ', checkout_location=\''	+ JKY.get_value('jky-checkout-location'	).toUpperCase() + '\'';}
+	if (!JKY.is_empty(JKY.get_value('jky-qualities'			)))	{my_set +=         ', qualities=\''	+ JKY.get_value('jky-qualities'			) + '\'';}
 	if (!JKY.is_empty(JKY.get_value('jky-remarks'			)))	{my_set +=           ', remarks=\''	+ JKY.get_value('jky-remarks'			) + '\'';}
 	return my_set;
 };

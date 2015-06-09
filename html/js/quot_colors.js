@@ -432,7 +432,8 @@ JKY.print_colors = function(the_id, the_product) {
 						if (my_line_units != 0) {
 							my_color_units  = Math.ceil(my_row.quoted_units / my_line_units) + ' pc';
 						}
-						var my_color_weight = Math.ceil(my_row.quoted_units * my_line_peso );
+//						var my_color_weight = Math.ceil(my_row.quoted_units * my_line_peso );
+						var my_color_weight = (my_row.quoted_units * my_line_peso).toFixed(2);
 
 						var my_discount_price	= '';
 						var my_final_price		= '';

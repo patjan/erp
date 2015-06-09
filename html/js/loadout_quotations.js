@@ -48,13 +48,18 @@ JKY.generate_quotation = function(the_row) {
 		+ "<input class='jky-quotation-number' disabled onchange='JKY.update_quotation(this, " + my_id + ")' value='" + JKY.fix_null(the_row.quotation_number) + "' />"
 		+ " <a href='#' onClick='JKY.Quotation.display(this, JKY.get_color_id(), JKY.get_color_name())'><i class='icon-share'></i></a>"
 		;
+	var my_product = ''
+		+ "<input class='jky-product-id' type='hidden' value=" + the_row.product_id + " />"
+		+ "<input class='jky-product-name' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.product_name + "' />"
+		+ " <a href='#' onClick='JKY.Product.display_info	(this)'><i class='icon-info-sign'	></i></a>"
+		;
 	var my_onchange = ' changeable onchange="JKY.update_quotation(this, ' + my_id + ')"';
 	var my_disabled = ' disabled';
 	var my_html = ''
 		+ '<tr quotation_id=' + my_id + '>'
 		+ '<td class="jky-td-action"	>' + my_trash + '</td>'
 		+ '<td class="jky-td-key"		>' + my_quotation + '</td>'
-		+ '<td class="jky-td-text-l"	><input class="jky-product-name"	value="' + JKY.fix_null(the_row.product_name	) + '"' + my_disabled + ' /></td>'
+		+ '<td class="jky-td-key-w3"	>' + my_product + '</td>'
 		+ '<td class="jky-td-text-s"	><input class="jky-customer-name"	value="' + JKY.fix_null(the_row.customer_name	) + '"' + my_disabled + ' /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-quoted-pieces"	value="' + JKY.fix_null(the_row.quoted_pieces	) + '"' + my_onchange + ' /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-checkout-pieces"	value="' + JKY.fix_null(the_row.checkout_pieces	) + '"' + my_disabled + ' /></td>'
@@ -119,16 +124,70 @@ JKY.insert_quotation = function() {
 		my_saved_row.quot_color_id		= null;
 		my_saved_row.quotation_number	= '';
 		my_saved_row.quoted_pieces		= 0;
-		my_saved_row.checkout_pieces	= 0;
-		my_saved_row.returned_pieces	= 0;
 		my_saved_row.quoted_weight		= 0;
+		my_saved_row.reserved_pieces	= 0;
+		my_saved_row.reserved_weight	= 0;
+		my_saved_row.checkout_pieces	= 0;
 		my_saved_row.checkout_weight	= 0;
+		my_saved_row.returned_pieces	= 0;
 		my_saved_row.returned_weight	= 0;
+
+		my_saved_row.color_id			= null;
+		my_saved_row.color_name			= null;
+		my_saved_row.customer_name		= null;
+		my_saved_row.product_id			= null;
+		my_saved_row.product_name		= null;
 
 		var my_html = JKY.generate_quotation(my_saved_row);
 		JKY.append_html('jky-quotations-body', my_html);
 		$('#jky-quotations-body tr:last a[onclick*="display"]').click();
 	})
+}
+
+JKY.copy_quotations = function(the_source, the_to) {
+	var my_data =
+		{ method	: 'get_rows'
+		, table		: 'LoadQuotations'
+		, where		: 'LoadQuotations.loadout_id = ' + the_source
+		, order_by  : 'LoadQuotations.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(the_response) {
+				if (the_response.status == 'ok') {
+					var my_rows = the_response.rows;
+					for(var i in my_rows) {
+						var my_row	= my_rows[i];
+						var my_set	= '       loadout_id = ' + the_to
+									+ ',   quot_color_id = ' + my_row.quot_color_id
+									+ ',   quoted_pieces = ' + my_row.quoted_pieces
+									+ ',   quoted_weight = ' + my_row.quoted_weight
+									+ ', reserved_pieces = ' + my_row.reserved_pieces
+									+ ', reserved_weight = ' + my_row.reserved_weight
+									+ ', checkout_pieces = ' + my_row.checkout_pieces
+									+ ', checkout_weight = ' + my_row.checkout_weight
+									+ ', returned_pieces = ' + my_row.returned_pieces
+									+ ', returned_weight = ' + my_row.returned_weight
+									;
+						var	my_data =
+							{ method	: 'insert'
+							, table		: 'LoadQuotations'
+							, set		:  my_set
+							};
+						JKY.ajax(false, my_data)
+					}
+				}else{
+					JKY.display_message(the_response.message);
+				}
+			}
+		}
+	)
 }
 
 JKY.delete_quotation = function(the_this, the_id) {

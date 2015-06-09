@@ -1,17 +1,20 @@
-<table id='jky-app-table' class='table table-striped'>
+<table id='jky-app-table' class='table'>
 	<thead>
 		<tr>
-			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title='Click here to check all records' /></th>
 			<th class='jky-td-number'	><span>   Load Out<br>Number	</span></th>
 			<th class='jky-td-number'	><span>  Ship Dyer<br>Number	</span></th>
 			<th class='jky-td-name-s'	><span>       Dyer				</span></th>
+			<th class='jky-td-name-s'	><span>     Dyeing<br>Type		</span></th>
 			<th class='jky-td-name-s'	><span>      Color				</span></th>
 			<th class='jky-td-date'		><span>     Quoted<br>Date		</span></th>
 			<th class='jky-td-date'		><span>   Load Out<br>Date		</span></th>
 			<th class='jky-td-date'		><span>   Returned<br>Date		</span></th>
+<!--
 			<th class='jky-td-pieces'	><span>     Quoted<br>Pieces	</span></th>
 			<th class='jky-td-pieces'	><span>   Load Out<br>Pieces	</span></th>
 			<th class='jky-td-pieces'	><span>   Returned<br>Pieces	</span></th>
+-->
 			<th class='jky-td-weight'	><span>     Quoted<br>Weight	</span></th>
 			<th class='jky-td-weight'	><span>   Load Out<br>Weight	</span></th>
 			<th class='jky-td-weight'	><span>   Returned<br>Weight	</span></th>
@@ -24,8 +27,8 @@
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'>
-<!--		<button id='jky-action-generate'	class='btn'	type='button' title="Click here to generate incoming"	><span>Generate Incoming	</span></button>	-->
-			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this load"		><span>Close Load			</span></button>
+<!--		<button id='jky-action-generate'	class='btn'	type='button' title='Click here to generate incoming'	><span>Generate Incoming	</span></button>	-->
+			<button id='jky-action-close'		class='btn' type='button' title='Click here to close this load'		><span>Close Load			</span></button>
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
@@ -47,10 +50,20 @@
 				<a href='#' onClick='JKY.Dyer.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Dyeing Type</span>:</div>
+				<input id='jky-dyeing-type'		 class='jky-form-name' disabled	value='' />
+				<a href='#' onClick='JKY.Dyeing.display(this)'><i class='icon-share'></i></a>
+			</div>
+			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Color</span>:</div>
 				<input id='jky-color-id'		type='hidden'					value='' />
-				<input id='jky-color-name'		class='jky-form-name' disabled	value='' />
+				<input id='jky-color-name'		class='jky-form-name optional' disabled	value='' />
 				<a href='#' onClick='JKY.ColorUnloaded.display(this)'><i class='icon-share'></i></a>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Recipe</span>:</div>
+				<input id='jky-recipe'			class='jky-form-name optional' disabled	value='' />
+				<a href='#' onClick='JKY.Recipe.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<br>
 
@@ -97,10 +110,10 @@
 		<div>
 			<div class='jky-form-label'></div>
 			<div class='jky-form-buttons'>
-				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
-			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
-			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
-			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title='Click here to save all changes'		><span>Save		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title='Click here to duplicate this record'	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title='Click here to delete this record'		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title='Click here to cancel any changes'		><span>Cancel	</span></button>
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -108,8 +121,8 @@
 
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
-			<li	id='jky-tab-quotations'	class='active'	><a href='#jky-pane-quotations'	data-toggle='tab'><span>Quotations	</span></a></li>
-			<li id='jky-tab-remarks'					><a href='#jky-pane-remarks'	data-toggle='tab'><span>Remarks		</span></a></li>
+			<li	id='jky-tab-quotations'		class='active'	><a href='#jky-pane-quotations'			data-toggle='tab'><span>Quotations		</span></a></li>
+			<li id='jky-tab-remarks'						><a href='#jky-pane-remarks'			data-toggle='tab'><span>Remarks			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
@@ -160,6 +173,9 @@
 
 <script src='js/loadouts.js'			></script>
 <script src='js/JKY.Dyer.js'			></script>
+<script src='js/JKY.Dyeing.js'			></script>
 <script src='js/JKY.ColorUnloaded.js'	></script>
+<script src='js/JKY.Recipe.js'			></script>
 <script src='js/JKY.Quotation.js'		></script>
+<script src='js/JKY.Product.js'			></script>
 <script src='js/loadout_quotations.js'	></script>

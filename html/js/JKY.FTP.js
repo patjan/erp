@@ -62,8 +62,11 @@ JKY.FTP = function() {
 		var my_html = '';
 		for(var i=0; i<my_rows.length; i++) {
 			var my_row = my_rows[i];
+			var my_ftp_number = my_row.ftp_number
+					+ ' <a href="#" onClick="JKY.open_new_tab(event, \'Production/FTPs/' + my_row.ftp_number + '\')"><i class="icon-pencil"></i></a>'
+					;
 			my_html += '<tr onclick="JKY.FTP.click_row(this, ' + my_row.id + ', ' + my_row.machine_id + ')">'
-					+  '<td class="jky-search-ftp-number"	>' + my_row.ftp_number		+ '</td>'
+					+  '<td class="jky-search-ftp-number"	>' + my_ftp_number			+ '</td>'
 					+  '<td class="jky-search-product-name"	>' + my_row.product_name	+ '</td>'
 					+  '<td class="jky-search-machine-name"	>' + my_row.machine_name	+ '</td>'
 					+  '<td class="jky-search-nick-name"	>' + my_row.nick_name		+ '</td>'

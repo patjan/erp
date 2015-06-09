@@ -1,4 +1,5 @@
 "use strict";
+var JKY = JKY || {};
 
 /**
  * home.html
@@ -16,12 +17,51 @@ $(function() {
 	JKY.set_initial_values_home();
 
 	if (JKY.Session.has('full_name')) {
-//		JKY.set_initial_values_home(jky_program);
-		JKY.process_start_page();
+//		http://erp/home.html#Production/FTPs/All/200460
+		var my_params = window.location.href.split('#');
+		JKY.params = (my_params.length > 1) ? my_params[1] : '';
+		if (JKY.params === '') {
+//			JKY.set_initial_values_home(jky_program);
+			JKY.process_start_page();
+		}else{
+			var my_keys = JKY.params.split('/');
+			JKY.set_menu(my_keys);
+		}
 	}else{
 		JKY.process_action('login');
 	}
 });
+
+JKY.set_menu = function(the_keys, the_counter) {
+	var my_menus = $('#jky-menus');
+	if (my_menus) {
+		var my_menu = $('#jky-menus a:contains("' + the_keys[0] + '")');
+		if (my_menu) {
+			my_menu.click();
+			JKY.set_side_bar(the_keys);
+		}
+	}else{
+		the_counter = the_counter || 10;
+		if (--the_counter) {
+			setTimeout(function() {JKY.set_menu(the_keys, the_counter)}, 100);
+		}
+	}
+}
+
+JKY.set_side_bar = function(the_keys, the_counter) {
+	var my_side_bar = $('#jky-side-bar');
+	if (my_side_bar) {
+		var my_side = $('#jky-side-bar div:contains("' + the_keys[1] + '")');
+		if (my_side) {
+			my_side.click();
+		}
+	}else{
+		the_counter = the_counter || 10;
+		if (--the_counter) {
+			setTimeout(function() {JKY.set_side_bar(the_keys, the_counter)}, 100);
+		}
+	}
+}
 
 /**
  *	set all events (run only once per load)
@@ -48,6 +88,7 @@ JKY.set_all_events_home = function() {
 		$('#jky-sales-products'			).click (function() {JKY.process_action('products'			);});
 		$('#jky-sales-colors'			).click (function() {JKY.process_action('colors'			);});
 		$('#jky-sales-quotations'		).click (function() {JKY.process_action('quotations'		);});
+		$('#jky-sales-quot-products'	).click (function() {JKY.process_action('quot_products'		);});
 		$('#jky-sales-loadouts'			).click (function() {JKY.process_action('loadouts'			);});
 		$('#jky-sales-sales'			).click (function() {JKY.process_action('sales'				);});
 

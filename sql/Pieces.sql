@@ -66,3 +66,48 @@ ALTER TABLE Pieces			CHANGE	loadsale_id		load_quot_id	BIGINT			DEFAULT NULL;
 
 ALTER TABLE Pieces		ADD INDEX revised		(revised_by		);
 ALTER TABLE Pieces		ADD INDEX weighed		(weighed_by		);
+
+
+SELECT order_id, COUNT(*) AS pieces_printed, labels_printed 
+  FROM Pieces
+  LEFT JOIN Orders ON Orders.id = Pieces.order_id
+  GROUP BY order_id
+ HAVING pieces_printed != labels_printed 
+
+order_id	pieces_printed	labels_printed
+200058		101				60			41
+200097		245				185			60
+200196		170				105			65
+200216		8				9
+200228		70				40			30
+200237		177				81			96
+200246		175				105			70
+200251		156				116			40
+									-------
+									   402
+
+
+SELECT order_id, COUNT(*) AS checkin_pieces, produced_pieces, rejected_pieces 
+  FROM Pieces
+  LEFT JOIN Orders ON Orders.id = Pieces.order_id
+ WHERE Pieces.status != 'Active'
+ GROUP BY order_id
+HAVING checkin_pieces != (produced_pieces + rejected_pieces) 
+
+SELECT order_id, SUM(checkin_weight) AS checkin_weight, produced_weight
+  FROM Pieces
+  LEFT JOIN Orders ON Orders.id = Pieces.order_id
+ WHERE Pieces.status != 'Active'
+   AND Pieces.qualities = 'Boa'
+ GROUP BY order_id
+HAVING checkin_weight != produced_weight
+
+
+SELECT order_id, COUNT(*) AS checkin_pieces, produced_pieces 
+  FROM Pieces
+  LEFT JOIN Orders ON Orders.id = Pieces.order_id
+ WHERE Pieces.status = 'Check Out'
+ GROUP BY order_id
+HAVING checkin_pieces != produced_pieces 
+									   
+									   

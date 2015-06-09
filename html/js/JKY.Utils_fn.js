@@ -94,7 +94,7 @@ $.fn.ForceNumericHyphen = function() {
 $.fn.ForceNumericAlpha = function() {
 	return this.each(function() {
 		$(this).keydown(function(e) {
-			// allow backspace, tab, delete,	 numbers, keypad numbers
+			// allow backspace, tab, delete, numbers, keypad numbers
 			// alphabetic a-z
 			return (e.keyCode ==  8
 				||	e.keyCode ==  9
@@ -115,11 +115,13 @@ $.fn.ForceNumericAlpha = function() {
 $.fn.ForceName = function() {
 	return this.each(function() {
 		$(this).keydown(function(e) {
-			// allow backspace, tab, delete, numbers, keypad numbers
+			// allow backspace, tab, left, right, delete, numbers, alpha
 			// alphabetic a-z
 			return (e.keyCode ==  8
 				||	e.keyCode ==  9
 				||	e.keyCode == 32
+				||	e.keyCode == 37
+				||	e.keyCode == 39
 				||	e.keyCode == 46
 				|| (e.keyCode >= 48 && e.keyCode <=  57 && !e.shiftKey)
 				|| (e.keyCode >= 65 && e.keyCode <=  90)
