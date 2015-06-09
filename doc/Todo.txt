@@ -4,7 +4,7 @@ Todo
 		- Pub/Sub na impressao de Etiquetas
 		- syncronizao de Servidores (por campo)
 		- parada de Sync Servidores
-		- teste
+		- teste 2
 
 (done)	- tablesorter
 (done)	- d3
