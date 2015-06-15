@@ -34,7 +34,6 @@ CREATE TABLE IF NOT EXISTS Orders
 , returned_weight	DECIMAL(10,2)		DEFAULT 0
 , location			VARCHAR(4)			DEFAULT NULL
 
-
 , PRIMARY KEY	(id)
 , UNIQUE		(order_number)
 , KEY customer 	(customer_id)
@@ -78,3 +77,30 @@ ALTER TABLE Orders			ADD		location				VARCHAR(4)		DEFAULT NULL	AFTER returned_we
 
 ALTER TABLE Orders		ADD INDEX color			(color_id		);
 ALTER TABLE Orders		ADD INDEX ftp			(ftp_id			);
+
+
+
+SELECT Orders.*
+	 ,  Customer.nick_name		AS  customer_name
+	 ,   Machine.name			AS   machine_name
+	 ,   Partner.nick_name		AS   partner_name
+	 ,     Color.color_name		AS     color_name
+	 ,       FTP.ftp_number		AS       ftp_number
+	 ,   Product.product_name	AS   product_name
+
+  FROM Orders
+  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=	Orders.customer_id
+  LEFT JOIN    Machines AS Machine	ON   Machine.id	=	Orders.machine_id
+  LEFT JOIN    Contacts AS Partner	ON   Partner.id	=	Orders.partner_id
+  LEFT JOIN    Products AS Product	ON   Product.id	=	Orders.product_id
+  LEFT JOIN      Colors AS Color	ON     Color.id	=	Orders.color_id
+  LEFT JOIN        FTPs AS FTP		ON       FTP.id	=	Orders.ftp_id
+
+ WHERE Orders.id = 200384
+
+ 
+SELECT COUNT(*) AS revised_pieces
+  FROM Pieces
+ WHERE order_id = $row['id']
+   AND status != "Active"
+ 

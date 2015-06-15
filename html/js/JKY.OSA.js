@@ -63,17 +63,17 @@ JKY.OSA = function() {
 		var my_sold_pieces	= $(the_index).find('.jky-search-sold-pieces'	).html();
 		var my_parent = $(my_the_id).parent().parent();
 
-		var my_dom_id = $(my_parent).find('#jky-sale-color-id');
-		if (my_dom_id.length == 0) {
-			my_dom_id = $(my_parent).find('.jky-sale-color-id');
+		var my_dom_requested = $(my_parent).find('#jky-requested-pieces');
+		if (my_dom_requested.length == 0) {
+			my_dom_requested = $(my_parent).find('.jky-requested-pieces');
 		}
-		my_dom_id.val(the_id);
+		my_dom_requested.val(my_sold_pieces);
 
-		var my_dom_number = $(my_parent).find('#jky-sale-number');
-		if (my_dom_number.length == 0) {
-			my_dom_number = $(my_parent).find('.jky-sale-number');
+		var my_dom_sold = $(my_parent).find('#jky-sold-pieces');
+		if (my_dom_sold.length == 0) {
+			my_dom_sold = $(my_parent).find('.jky-sold-pieces');
 		}
-		my_dom_number.val(my_sale_number);
+		my_dom_sold.val(my_sold_pieces);
 
 		var my_dom_customer = $(my_parent).find('#jky-customer-name');
 		if (my_dom_customer.length == 0) {
@@ -87,17 +87,17 @@ JKY.OSA = function() {
 		}
 		my_dom_product.val(my_product_name);
 
-		var my_dom_sold = $(my_parent).find('#jky-sold-pieces');
-		if (my_dom_sold.length == 0) {
-			my_dom_sold = $(my_parent).find('.jky-sold-pieces');
+		var my_dom_id = $(my_parent).find('#jky-sale-color-id');
+		if (my_dom_id.length == 0) {
+			my_dom_id = $(my_parent).find('.jky-sale-color-id');
 		}
-		my_dom_sold.val(my_sold_pieces);
+		my_dom_id.val(the_id);
 
-		var my_dom_requested = $(my_parent).find('#jky-requested-pieces');
-		if (my_dom_requested.length == 0) {
-			my_dom_requested = $(my_parent).find('.jky-requested-pieces');
+		var my_dom_number = $(my_parent).find('#jky-sale-number');
+		if (my_dom_number.length == 0) {
+			my_dom_number = $(my_parent).find('.jky-sale-number');
 		}
-		my_dom_requested.val(my_sold_pieces);
+		my_dom_number.val(my_sale_number);
 
 		my_dom_number.change();		//	to activate change event
 		JKY.hide_modal(my_layer);

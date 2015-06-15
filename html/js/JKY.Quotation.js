@@ -93,6 +93,30 @@ JKY.Quotation = function() {
 		var my_delta_weight		= $(the_index).find('.jky-search-delta-weight'		).html();
 		var my_parent = $(my_the_id).parent().parent();
 
+		var my_dom_quoted_weight = $(my_parent).find('#jky-quoted-weight');
+		if (my_dom_quoted_weight.length == 0) {
+			my_dom_quoted_weight = $(my_parent).find('.jky-quoted-weight');
+		}
+		my_dom_quoted_weight.val(my_delta_weight);
+
+		var my_dom_quoted_pieces = $(my_parent).find('#jky-quoted-pieces');
+		if (my_dom_quoted_pieces.length == 0) {
+			my_dom_quoted_pieces = $(my_parent).find('.jky-quoted-pieces');
+		}
+		my_dom_quoted_pieces.val(my_delta_pieces);
+
+		var my_dom_customer = $(my_parent).find('#jky-customer-name');
+		if (my_dom_customer.length == 0) {
+			my_dom_customer = $(my_parent).find('.jky-customer-name');
+		}
+		my_dom_customer.val(my_customer_name);
+
+		var my_dom_product = $(my_parent).find('#jky-product-name');
+		if (my_dom_product.length == 0) {
+			my_dom_product = $(my_parent).find('.jky-product-name');
+		}
+		my_dom_product.val(my_product_name);
+
 		var my_dom_id = $(my_parent).find('#jky-quot-color-id');
 		if (my_dom_id.length == 0) {
 			my_dom_id = $(my_parent).find('.jky-quot-color-id');
@@ -104,30 +128,6 @@ JKY.Quotation = function() {
 			my_dom_number = $(my_parent).find('.jky-quotation-number');
 		}
 		my_dom_number.val(my_quotation_number);
-
-		var my_dom_product = $(my_parent).find('#jky-product-name');
-		if (my_dom_product.length == 0) {
-			my_dom_product = $(my_parent).find('.jky-product-name');
-		}
-		my_dom_product.val(my_product_name);
-
-		var my_dom_customer = $(my_parent).find('#jky-customer-name');
-		if (my_dom_customer.length == 0) {
-			my_dom_customer = $(my_parent).find('.jky-customer-name');
-		}
-		my_dom_customer.val(my_customer_name);
-
-		var my_dom_quoted_pieces = $(my_parent).find('#jky-quoted-pieces');
-		if (my_dom_quoted_pieces.length == 0) {
-			my_dom_quoted_pieces = $(my_parent).find('.jky-quoted-pieces');
-		}
-		my_dom_quoted_pieces.val(my_delta_pieces);
-
-		var my_dom_quoted_weight = $(my_parent).find('#jky-quoted-weight');
-		if (my_dom_quoted_weight.length == 0) {
-			my_dom_quoted_weight = $(my_parent).find('.jky-quoted-weight');
-		}
-		my_dom_quoted_weight.val(my_delta_weight);
 
 		my_dom_number.change();		//	to activate change event
 		JKY.hide_modal(my_layer);

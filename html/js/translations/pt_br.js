@@ -567,7 +567,7 @@ JKY.translations =
 , "Price<br>$/Kg":"Preço<br>$/Kg"
 , "Prices":"Preços"
 , "Print":"Imprimir"
-, "Printed":"Inpresso"
+, "Printed":"Impresso"
 , "Priority":"Priorid"
 , "Produced":"Produzido"
 , "Produced By":"Produzida Por"

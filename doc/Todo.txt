@@ -1,10 +1,10 @@
 Todo
 
-		- converter caracteres especials na Ajuda
-		- Pub/Sub na impressao de Etiquetas
-		- syncronizao de Servidores (por campo)
+		- setup server on HostGator
 		- parada de Sync Servidores
-		- teste 2
+		- syncronizao de Servidores (por campo)
+		- Pub/Sub na impressao de Etiquetas
+		- converter caracteres especials na Ajuda (all text)
 
 (done)	- tablesorter
 (done)	- d3
@@ -65,7 +65,7 @@ OK		Products: mudar [Product Type] de Gola para Retilinea
 4.  OK	Testar fase 1 ERP (Producao, Ajuda, Admin)
 5.	OK	Testar fase 2 ERP (Fios, Caixas)
 6.	OK	Testar fase 3 ERP (Planejamento, Pecas)
-7.		Testar fase 4 ERP (Tinturarias
+7.	OK	Testar fase 4 ERP (Tinturarias
 8.		Definir o sistema NFe para emitir NF para Tinturarias
 
 

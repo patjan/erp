@@ -26,11 +26,11 @@ JKY.generate_color = function(the_row, the_units) {
 		+ '<td class="jky-td-action"	colspan="3" style="text-align:right !important;">' + my_trash + '</td>'
 		+ '<td class="jky-td-key-m"		>' + my_color + '</td>'
 		+ '<td class="jky-td-key"		>' + my_dyer  + '</td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-quoted-units"				value="' + the_row.quoted_units	+ '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-pieces"	><input value="' + the_row.quoted_units	+ '"' + my_onchange + ' /></td>'
 		+ '<td class="jky-td-units"		>' + '(' + JKY.t(my_unit) + ')' + '</td>'
-		+ '<td class="jky-td-price"		><input class="jky-quoted-price	jky-td-price"	value="' + the_row.quoted_price	+ '"' + my_onchange + ' /></td>'
-		+ '<td class="jky-td-units"		>($/Kg)</td>'
-		+ '<td class="jky-td-price"		><input class="jky-discount		jky-td-price"	value="' + the_row.discount		+ '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-price"		><input value="' + the_row.quoted_price	+ '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-info"		>($/Kg)</td>'
+		+ '<td class="jky-td-discount"	><input value="' + the_row.discount		+ '"' + my_onchange + ' /></td>'
 		+ '</tr>'
 		;
 	return my_html;

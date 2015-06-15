@@ -201,7 +201,7 @@ input[type='checkbox']	{margin:0;}
 #Xjky-action-form		{display:inline-table;}
 
 /* -------------------------------------------------------------------------- */
-#jky-form-tabs thead th {border:0; padding:4px 14px;}
+#jky-form-tabs thead th {border:0; padding:4px 8px 2px 0;}
 
 #jky-form-control		{
 /*	background-color: #EDEDED;	*/
@@ -608,12 +608,15 @@ li .arrow span {
 .jky-td-datetime	input	{width:125px;}
 .jky-td-digit				{width: 50px; text-align:right  !important;}
 .jky-td-digit		input	{width: 30px; text-align:right  !important;}
+.jky-td-discount			{width: 65px; text-align:right	!important;}
+.jky-td-discount	input	{width: 60px; text-align:right	!important;}
 .jky-td-email				{width:120px; text-align:left	!important;}
 .jky-td-extra				{width:100px; text-align:center	!important;}
 .jky-td-extra		input	{width:100px; text-align:center	!important;}
 .jky-td-filler				{width: 60px; text-align:left	!important;}
 .jky-td-filter				{width:300px; text-align:left	!important;}
 .jky-td-icon				{width: 30px; font-size:200%;}
+.jky-td-info				{width: 40px; text-align:right	!important;}
 .jky-td-input				{width: 40px; text-align:right  !important;}
 .jky-td-input		input	{width: 35px; text-align:right	!important;}
 .jky-td-integer				{width: 65px; text-align:right  !important;}
@@ -649,12 +652,12 @@ li .arrow span {
 .jky-td-motive				{width:405px; text-align:left   !important;}
 .jky-td-motive		input	{width:400px;}
 .jky-td-phone				{width: 60px; text-align:left	!important;}
-.jky-td-percent				{width: 80px; text-align:right	!important;}
+.jky-td-percent				{width: 65px; text-align:right	!important;}
 .jky-td-percent		input	{width: 60px; text-align:right	!important;}
 .jky-td-pieces				{width: 65px; text-align:right	!important;}
 .jky-td-pieces		input	{width: 60px; text-align:right	!important;}
-.jky-td-price				{width: 85px; text-align:right  !important;}
-.jky-td-price		input	{width: 80px; text-align:right  !important;}
+.jky-td-price				{width: 65px; text-align:right  !important;}
+.jky-td-price		input	{width: 60px; text-align:right  !important;}
 .jky-td-ref					{width: 85px; text-align:center !important;}
 .jky-td-ref			input	{width: 80px;}
 .jky-td-remarks				{}
@@ -675,8 +678,8 @@ li .arrow span {
 .jky-td-thread		input	{width:245px; margin-top:2px;}
 .jky-td-thread		select	{width:270px; margin-top:2px;}
 .jky-td-thumb				{width: 30px; text-align:center !important; padding:0 !important;}
-.jky-td-units				{width: 40px; text-align:right	!important;}
-.jky-td-units		input	{width: 50px; text-align:right	!important;}
+.jky-td-units				{width: 65px; text-align:right	!important;}
+.jky-td-units		input	{width: 60px; text-align:right	!important;}
 .jky-td-yes-no				{width: 40px; text-align:center !important;}
 .jky-td-weight				{width: 85px; text-align:right  !important;}
 .jky-td-weight		input	{width: 80px; text-align:right	!important;}
@@ -734,7 +737,7 @@ tbody .jky-config-line		{height:22px;}
 #jky-form-tabs td {
 	height: 33px;
     margin: 2px;
-    padding: 4px 8px;
+    padding: 4px 8px 2px 0;
     vertical-align: middle;
 }
 

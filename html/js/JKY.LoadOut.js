@@ -77,9 +77,6 @@ JKY.LoadOut = function() {
 		var my_html = JKY.generate_loadout(my_loadout);
 		JKY.append_html('jky-loadouts-body', my_html);
 
-
-
-
 		JKY.hide_modal(my_layer);
 	}
 

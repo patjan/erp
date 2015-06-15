@@ -83,33 +83,32 @@ JKY.FTP = function() {
 		var my_machine		= $(the_index).find('.jky-search-machine-name'	).html();
 		var my_parent		= $(my_this).parent().parent();
 
-		var my_dom_ftp_id = $('#jky-ftp-id');
-		if (my_dom_ftp_id.length == 0) {
-			my_dom_ftp_id = my_parent.find('.jky-ftp-id');
-		}
-		my_dom_ftp_id.val(the_id );
-//		my_dom_ftp_id.change();			//	to activate change event
-
-		var my_dom_ftp_number = $('#jky-ftp-number');
-		if (my_dom_ftp_number.length == 0) {
-			my_dom_ftp_number = my_parent.find('.jky-ftp-number');
-		}
-		my_dom_ftp_number.val(my_number);
-//		my_dom_ftp_number.change();		//	to activate change event
+//		this reverse sequence is needed to avoid out sequence on DB update
+//		keep only the last change event
 
 		var my_dom_machine_id = $('#jky-machine-id');
 		if (my_dom_machine_id.length == 0) {
 			my_dom_machine_id = my_parent.find('.jky-machine-id');
 		}
 		my_dom_machine_id.val(the_machine_id );
-//		my_dom_machine_id.change();			//	to activate change event
 
 		var my_dom_machine_name = $('#jky-machine-name');
 		if (my_dom_machine_name.length == 0) {
 			my_dom_machine_name = my_parent.find('.jky-machine-name');
 		}
 		my_dom_machine_name.val(my_machine);
-//		my_dom_machine_name.change();		//	to activate change event
+
+		var my_dom_ftp_id = $('#jky-ftp-id');
+		if (my_dom_ftp_id.length == 0) {
+			my_dom_ftp_id = my_parent.find('.jky-ftp-id');
+		}
+		my_dom_ftp_id.val(the_id );
+
+		var my_dom_ftp_number = $('#jky-ftp-number');
+		if (my_dom_ftp_number.length == 0) {
+			my_dom_ftp_number = my_parent.find('.jky-ftp-number');
+		}
+		my_dom_ftp_number.val(my_number);
 
 		my_dom_ftp_number.change();			//	to activate change event
 		JKY.hide_modal(my_layer);

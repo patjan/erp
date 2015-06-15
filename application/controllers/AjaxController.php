@@ -826,13 +826,24 @@ $this->log_sql($table, 'get_index', $sql);
 		$n = 0;
 		foreach($rows as $row) {
 			$sql = 'SELECT SUM(quoted_pieces) AS pieces, SUM(quoted_weight) AS weight'
-				 . ' FROM LoadQuotations'
+				 . '  FROM LoadQuotations'
 				 . ' WHERE quot_color_id = ' . $row['id']
 				 ;
 			$my_assigned = $db->fetchRow($sql);
 			$rows[$n]['assigned_pieces'] = $my_assigned['pieces'];
 			$rows[$n]['assigned_weight'] = $my_assigned['weight'];
-
+			$n++;
+		}
+	}else
+	if ($table == 'Orders') {
+		$n = 0;
+		foreach($rows as $row) {
+			$sql = 'SELECT COUNT(*) AS revised_pieces'
+				 . '  FROM Pieces'
+				 . ' WHERE order_id = ' . $row['id']
+				 . '   AND status != "Active"'
+				 ;
+			$rows[$n]['revised_pieces'] = $db->fetchOne($sql);
 			$n++;
 		}
 	}else
@@ -845,21 +856,16 @@ $this->log_sql($table, 'get_index', $sql);
 				 . '   AND LoadQuotations.loadout_id = LoadOuts.id'
 				 ;
 			$my_loadout_number = $db->fetchOne($sql);
-			if(!$my_loadout_number) {
-				$my_loadout_number = null;
-			}
-			$rows[$n]['loadout_number'] = $my_loadout_number;
+			if(!$my_loadout_number)			$my_loadout_number = null;
+			$rows[$n]['loadout_number']	=	$my_loadout_number;
 
 			$sql = 'SELECT OSAs.osa_number'
 				 . '  FROM OSAs'
 				 . ' WHERE OSAs.quotation_id = ' . $row['quotation_id']
 				 ;
 			$my_osa_number = $db->fetchOne($sql);
-			if(!$my_osa_number) {
-				$my_osa_number = null;
-			}
-			$rows[$n]['osa_number'] = $my_osa_number;
-
+			if(!$my_osa_number)				$my_osa_number = null;
+			$rows[$n]['osa_number']		=	$my_osa_number;
 			$n++;
 		}
 	}else
@@ -875,7 +881,6 @@ $this->log_sql($table, 'get_index', $sql);
 			$my_assigned = $db->fetchRow($sql);
 			$rows[$n]['assigned_pieces'] = $my_assigned['pieces'];
 			$rows[$n]['assigned_weight'] = $my_assigned['weight'];
-
 			$n++;
 		}
 	}

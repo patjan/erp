@@ -112,13 +112,15 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-short"	>' +				 my_machine_partner			+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.ordered_at		)	+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.needed_at		)	+ '</td>'
-//		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.produced_at	)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.produced_at	)	+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 the_row.quoted_weight		+ '</td>'
-		+  '<td class="jky-td-weight"	>' +				 the_row.ordered_weight		+ '</td>'
+//		+  '<td class="jky-td-weight"	>' +				 the_row.ordered_weight		+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.quoted_pieces		+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.ordered_pieces		+ '</td>'
 //		+  '<td class="jky-td-pieces"	>' +				 the_row.rejected_pieces	+ '</td>'
 //		+  '<td class="jky-td-pieces"	>' +				 the_row.produced_pieces	+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.revised_pieces		+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.labels_printed		+ '</td>'
 		;
 	return my_html;
 };

@@ -54,8 +54,10 @@ try{
 	$my_local_db = Zend_Db::factory('Pdo_Mysql', $my_params);
 	$my_local_db->getConnection();
 
-	$my_status = get_system_key($my_local_db);
-	if ('started' == substr($my_status, 0, 7)) {
+	$my_status  = get_system_key($my_local_db);
+	$my_elapsed = time() - ymdhms_epoch(substr($my_status, 8));
+	if ('started' == substr($my_status, 0, 7)
+	&&  $my_elapsed < 60*60) {
 		log_message('running since ' . $my_status);
 	}else{
 		set_system_key($my_local_db, 'started');

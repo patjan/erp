@@ -96,6 +96,28 @@ JKY.Product = function() {
 		var my_units	= $(the_index).find('.jky-search-product-units').html();
 		var my_parent	= $(my_the_id).parent().parent();
 
+//		this reverse sequence is needed to avoid out sequence on DB update
+//		keep only the last change event
+
+		var my_dom_units = $('#jky-units');								//	Products
+		if (my_dom_units.length == 0) {
+			my_dom_units = $(my_parent).find('.jky-product-units');
+		}
+		my_dom_units.val(my_units);
+
+		var my_dom_peso = $('#jky-peso');								//	Products
+		if (my_dom_peso.length == 0) {
+			my_dom_peso = $(my_parent).find('.jky-product-peso');
+		}
+		my_dom_peso.val(my_peso);
+
+		var my_dom_type = $('#jky-product-type');						//	Products
+		if (my_dom_type.length == 0) {
+			my_dom_type = $(my_parent).find('.jky-product-type');
+		}
+		my_dom_type.find('input').prop('checked', false);								//	jquery 2.0.3
+		my_dom_type.find('input:radio[value=' + my_type + ']').prop('checked', true);	//	jquery 2.0.3
+
 		var	my_dom_id = $('#jky-parent-id');							//	Products
 		if (my_dom_id.length == 0) {
 			my_dom_id = $(my_parent).find('#jky-product-id');			//	Quotations
@@ -115,30 +137,8 @@ JKY.Product = function() {
 			}
 		}
 		my_dom_name.val(my_name);
+
 		my_dom_name.change();		//	to activate change event
-
-		var my_dom_type = $('#jky-product-type');						//	Products
-		if (my_dom_type.length == 0) {
-			my_dom_type = $(my_parent).find('.jky-product-type');
-		}
-		my_dom_type.find('input').prop('checked', false);								//	jquery 2.0.3
-		my_dom_type.find('input:radio[value=' + my_type + ']').prop('checked', true);	//	jquery 2.0.3
-		my_dom_type.change();		//	to activate change event
-
-		var my_dom_peso = $('#jky-peso');								//	Products
-		if (my_dom_peso.length == 0) {
-			my_dom_peso = $(my_parent).find('.jky-product-peso');
-		}
-		my_dom_peso.val(my_peso);
-		my_dom_peso.change();		//	to activate change event
-
-		var my_dom_units = $('#jky-units');								//	Products
-		if (my_dom_units.length == 0) {
-			my_dom_units = $(my_parent).find('.jky-product-units');
-		}
-		my_dom_units.val(my_units);
-		my_dom_units.change();		//	to activate change event
-
 		JKY.hide_modal(my_layer);
 	}
 

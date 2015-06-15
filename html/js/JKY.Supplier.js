@@ -71,8 +71,8 @@ JKY.Supplier = function() {
 			my_dom_name = $(my_parent).find('.jky-supplier-name');
 		}
 		my_dom_name.val(my_name);
-		my_dom_name.change();		//	to activate change event
 
+		my_dom_name.change();		//	to activate change event
 		JKY.hide_modal(my_layer);
 	}
 

@@ -2619,6 +2619,13 @@ function difference_in_days( $from, $upto )
      return round( $diff / 86400 );
 }
 
+function ymdhms_epoch($ymdhms)
+{    //   date format YYYY-MM-DD HH:MM:SS.MMMMMM
+     $dates = explode( '-', substr($ymdhms,  0, 10));
+     $times = explode( ':', substr($ymdhms, 11,  8));
+     return mktime($times[0], $times[1], $times[2], $dates[1], $dates[2], $dates[0]);
+}
+
 function ymd_epoch( $date )
 {    //   date format YYYY-MM-DD
      $dates = explode( '-', $date );

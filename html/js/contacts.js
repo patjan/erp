@@ -199,16 +199,14 @@ JKY.buscar_cep = function(the_id) {
 		, district	: JKY.get_value('jky-district'	)
 		, country	: JKY.get_value('jky-country'	)
 		};
-	JKY.ajax(false, my_data, JKY.buscar_cep_success);
-}
-
-JKY.buscar_cep_success = function(the_row) {
-	JKY.set_value	('jky-street1'	, the_row.street1	);
-	JKY.set_value	('jky-street2'	, the_row.street2	);
-	JKY.set_value	('jky-city'		, the_row.city		);
-	JKY.set_value	('jky-zip'		, the_row.zip		);
-	JKY.set_option	('jky-state'	, the_row.state		);
-	JKY.set_option	('jky-country'	, the_row.country	);
-	JKY.set_value	('jky-district'	, the_row.district	);
-	JKY.hide('jky-loading');
-}
+	JKY.ajax(false, my_data, function(the_row) {
+		JKY.set_value	('jky-street1'	, the_row.street1	);
+		JKY.set_value	('jky-street2'	, the_row.street2	);
+		JKY.set_value	('jky-city'		, the_row.city		);
+		JKY.set_value	('jky-zip'		, the_row.zip		);
+		JKY.set_option	('jky-state'	, the_row.state		);
+		JKY.set_option	('jky-country'	, the_row.country	);
+		JKY.set_value	('jky-district'	, the_row.district	);
+		JKY.hide('jky-loading');
+	})
+};
