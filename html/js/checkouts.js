@@ -128,7 +128,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_date	('jky-requested-date'	, JKY.out_time	(the_row.requested_at		));
 	JKY.set_value	('jky-requested-weight'	,				 the_row.requested_weight	);
 //	JKY.set_value	('jky-requested-amount'	,				 the_row.requested_amount	);
-	JKY.set_date	('jky-checkout-date'	, JKY.out_time(the_row.checkout_at			));
+	JKY.set_date	('jky-checkout-date'	, JKY.out_time	(the_row.checkout_at		));
 	JKY.set_value	('jky-checkout-weight'	,				 the_row.checkout_weight	);
 //	JKY.set_value	('jky-checkout-amount'	,				 the_row.checkout_amount	);
 

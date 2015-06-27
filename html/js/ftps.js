@@ -138,6 +138,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-number"	>'	+				 the_row.ftp_number			+ '</td>'
 		+  '<td class="jky-td-thumb"	>'	+ JKY.fix_thumb	(the_row.photo, the_row.id, 'ftp_photos') + '</td>'
 		+  '<td class="jky-td-name-w"	>'	+ JKY.fix_null	(the_row.product_name	)	+ '</td>'
+		+  '<td class="jky-td-name-s"	>'	+ JKY.fix_null	(the_row.nick_name		)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>'	+ JKY.fix_null	(the_row.machine_name	)	+ '</td>'
 		+  '<td class="jky-td-name-l"	>'	+				 the_row.composition		+ '</td>'
 		+  '</tr>'

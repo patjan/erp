@@ -141,6 +141,7 @@ JKY.set_all_events_home = function() {
 		$('#jky-pieces-weigher'			).click (function() {JKY.process_action('pieces_weigher'	);});
 //		$('#jky-pieces-return'			).click (function() {JKY.process_action('pieces_return'		);});
 		$('#jky-pieces-checkout'		).click (function() {JKY.process_action('pieces_checkout'	);});
+		$('#jky-pieces-rejected'		).click (function() {JKY.process_action('pieces_rejected'	);});
 //		$('#jky-pieces-info'			).click (function() {JKY.process_action('pieces_info'		);});
 
 		$('#jky-receiving-fabrics'		).click (function() {JKY.process_action('fabrics'			);});

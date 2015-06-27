@@ -39,9 +39,8 @@ JKY.Validation = function() {
 		my_error += my_is_required	('jky-first-name'		, 'First Name'		);
 		my_error += my_is_required	('jky-last-name'		, 'Last Name'		);
 //		my_error += my_is_required	('jky-contact-tag'		, 'Tag'				);
-		my_error += my_is_numeric	('jky-cnpj'				, 'CNPJ or CPF'		);
+//		my_error += my_is_numeric	('jky-cnpj'				, 'CNPJ or CPF'		);
 //		my_error += my_is_numeric	('jky-ie'				, 'IE or RG'		);
-
 
 		my_error += JKY.process_validation();
 

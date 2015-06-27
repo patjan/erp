@@ -20,13 +20,38 @@
 </div>
 
 <br>
+
+<div id='cx-check'>
+	<label> &nbsp; &nbsp; Name</label>
+	<input type='text' cx-id='cx-name' class='cx-text' value='process_switch' />
+	<input type='text' cx-id='cx-flag' class='cx-text' value='' />
+</div>
+
+<br>
+
+<div id='cx-object'>
+	<label> &nbsp; Object</label>
+	<input type='text' cx-id='cx-name' class='cx-text' value='' />
+	<input type='text' cx-id='cx-flag' class='cx-text' value='' />
+</div>
+
+<br>
 <br>
 
 <button onclick='process_switch()'>Switch</button>
+<button onclick='process_if_exist()'>If Exist</button>
+<button onclick='process_object()'>Object</button>
 
 <div id='jky-message'></div>
 
 <script>
+
+process_object = function() {
+	var my_object = $('#cx-object');
+	var my_name = this.name; 
+	
+    my_object.find("[cx-id='cx-text']").val(my_name);
+};
 
 process_switch = function() {
 	var my_parent1 = $('#cx-parent1');
@@ -37,6 +62,14 @@ process_switch = function() {
 
 	my_parent1.find("[cx-id='cx-text']").val(my_text_2);
 	my_parent2.find("[cx-id='cx-text']").val(my_text_1);
+};
+
+process_if_exist = function() {
+	var my_check = $('#cx-check');
+	var my_name  = my_check.find("[cx-id='cx-name']").val(); 
+	var my_result = (eval('typeof ' + my_name) == 'function') ? true : false;
+
+    my_check.find("[cx-id='cx-flag']").val(my_result);
 };
 
 </script>

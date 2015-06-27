@@ -1,5 +1,6 @@
 Todo
 
+		- setup servidor de DL Teste
 		- setup server on HostGator
 		- parada de Sync Servidores
 		- syncronizao de Servidores (por campo)

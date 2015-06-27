@@ -116,6 +116,46 @@ JKY.insert_threads = function() {
 	}
 }
 
+JKY.copy_threads = function(the_source, the_to) {
+	var my_data =
+		{ method	: 'get_rows'
+		, table		: 'OrdThreads'
+		, where		: 'OrdThreads.parent_id = ' + the_source
+		, order_by  : 'OrdThreads.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(the_response) {
+				if (the_response.status == 'ok') {
+					var my_rows = the_response.rows;
+					for(var i in my_rows) {
+						var my_row	= my_rows[i];
+						var my_set	= '       parent_id =   ' + the_to
+									+ ',      thread_id =   ' + my_row.thread_id
+									+ ',     batchin_id =   ' + my_row.batchin_id
+									+ ', ordered_weight =   ' + my_row.ordered_weight
+									;
+						var	my_data =
+							{ method	: 'insert'
+							, table		: 'OrdThreads'
+							, set		:  my_set
+							};
+						JKY.ajax(false, my_data);
+					}
+				}else{
+					JKY.display_message(the_response.message);
+				}
+			}
+		}
+	)
+}
+
 JKY.delete_thread = function(id_name, the_id) {
 	$(id_name).parent().parent().remove();
 	var my_data =

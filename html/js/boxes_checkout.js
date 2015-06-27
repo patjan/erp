@@ -16,7 +16,7 @@ JKY.start_program = function() {
 		, specific		: ''
 		, select		: 'Active'
 		, filter		: ''
-		, sort_by		: 'CheckOuts.checkout_at'
+		, sort_by		: 'BatchOuts.scheduled_date'
 		, sort_seq		: 'ASC'
 		, sort_list		: [[3, 0]]
 		, focus			: 'jky-input-barcode'
@@ -70,7 +70,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-number"	>' +				 the_row.checkout_number		+ '</td>'
 //		+  '<td class="jky-td-code"		>' +				 the_row.code					+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.requested_at		)	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.checkout_at		)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.scheduled_date		)	+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				  my_checkout_name				+ '</td>'
 		+  '<td class="jky-td-name-l"	>' +				 the_row.thread_name			+ '</td>'
 		+  '<td class="jky-td-code"		>' +				 the_row.batch_code				+ '</td>'
@@ -100,7 +100,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-supplier-name'		,				 the_row.supplier_name		);
 	JKY.set_value	('jky-dyer-name'			,				 the_row.dyer_name			);
 	JKY.set_value	('jky-requested-date'		, JKY.out_date	(the_row.requested_at		));
-	JKY.set_value	('jky-checkout-date'		, JKY.out_date	(the_row.checkout_at		));
+	JKY.set_value	('jky-checkout-date'		, JKY.out_date	(the_row.scheduled_date		));
 	JKY.set_value	('jky-reserved-boxes'		,				 the_row.reserved_boxes		);
 	JKY.set_value	('jky-average-weight'		,				 the_row.average_weight		);
 	JKY.set_value	('jky-requested-weight'		,				 the_row.requested_weight	);

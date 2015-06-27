@@ -66,6 +66,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-name-s"	>' + the_row.supplier_name		+ '</td>'
 		+  '<td class="jky-td-weight"	>' + the_row.current_balance	+ '</td>'
 		+  '<td class="jky-td-weight"	>' + the_row.forecast_past		+ '</td>'
+		+  '<td class="jky-td-weight"	>' + the_row.forecast_month_0	+ '</td>'
 		+  '<td class="jky-td-weight"	>' + the_row.forecast_month_1	+ '</td>'
 		+  '<td class="jky-td-weight"	>' + the_row.forecast_month_2	+ '</td>'
 		+  '<td class="jky-td-weight"	>' + the_row.forecast_month_3	+ '</td>'

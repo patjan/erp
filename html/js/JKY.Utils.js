@@ -556,6 +556,69 @@ JKY.out_count = function(the_string){
 };
 
 /**
+ * convert MySQL date-time into timestamp
+ *
+ * @param	the_time	yyyy-mm-dd hh:mm:ss
+ *
+ * @return	timestamp
+ */
+JKY.ymdhms2ts = function(the_time) {
+	if (the_time === null)		return 0;
+	var t = the_time.split(/[- :]/);
+	return new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+}
+
+/**
+ * convert timestamp into MySQL date-time
+ *
+ * @param	timestamp
+ *
+ * @retuen	the_time	yyyy-mm-dd hh:mm:ss
+ */
+JKY.ts2ymdhms = function(the_ts) {
+	var  my_year	= the_ts.getFullYear();
+	var  my_month	= the_ts.getMonth()+1;	if (my_month < 10)	my_month= '0' + my_month;
+	var  my_day		= the_ts.getDate	();	if (my_day   < 10)	my_day	= '0' + my_day	;
+	var  my_hour	= the_ts.getHours	();	if (my_hour  < 10)	my_hour	= '0' + my_hour	;
+	var  my_min		= the_ts.getMinutes	();	if (my_min   < 10)	my_min	= '0' + my_min	;
+	var  my_sec		= the_ts.getSeconds	();	if (my_sec   < 10)	my_sec	= '0' + my_sec	;
+	return my_year + '-' + my_month + '-' + my_day + ' ' + my_hour + ':' + my_min + ':' + my_sec;
+}
+
+/**
+ * out shiftdate
+ *
+ * @param	the_time	yyyy-mm-dd hh:mm:ss
+ *
+ * @return	mm-dd-yyyy (en_US)
+ * @return	dd-mm-yyyy (pt_BR)
+ */
+JKY.out_shift = function(the_time){
+	if (the_time === null)		return '';
+
+	if (typeof(JKY.SHIFT_ADJUST) == 'undefined') {
+		var my_shifts	= JKY.get_config_value('System Controls', 'Shift Hour Control');
+		var my_configs	= my_shifts.split(':');
+		JKY.SHIFT_ADJUST= parseInt(my_configs[0], 10);
+		JKY.SHIFT_HOURS	= parseInt(my_configs[1], 10);
+	}
+	var my_ts		= JKY.ymdhms2ts(the_time);
+	my_ts.setHours(my_ts.getHours() + JKY.SHIFT_ADJUST);
+	var my_time		= JKY.ts2ymdhms(my_ts);
+
+	var my_date		= my_time.substr(0, 10);
+	var my_dates	= my_date.split('-');
+	var my_result	= '';
+	switch(JKY.Session.get_locale()) {
+		case 'en_US'	: my_result = my_dates[1] + '-' + my_dates[2] + '-' + my_dates[0];	break;
+		case 'pt_BR'	: my_result = my_dates[2] + '-' + my_dates[1] + '-' + my_dates[0];	break;
+		default			: my_result = my_date;
+	}
+	var my_shift	= Math.ceil((parseInt(my_time.substr(11, 2), 10) + 1) / JKY.SHIFT_HOURS);
+	return my_result + ' ' + my_shift + 'T';;
+};
+
+/**
  * out date
  *
  * @param	the_time	yyyy-mm-dd hh:mm:ss
@@ -2541,6 +2604,40 @@ JKY.get_user_id = function(the_user_name) {
 	var my_data =
 		{ method: 'get_user_id'
 		, user_name: the_user_name
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_id = response.id;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_id;
+}
+
+JKY.get_ftp_id = function(the_product_id) {
+	var my_id = null;
+	var my_data =
+		{ method	: 'get_ftp_id'
+		, product_id: the_product_id
 		};
 
 	var my_object = {};

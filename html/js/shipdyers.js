@@ -40,6 +40,7 @@ JKY.set_all_events = function() {
 	$('#jky-tab-loadouts'		).click (function() {JKY.display_loadouts		();});
 	$('#jky-loadout-add-new'	).click (function() {JKY.LoadOut.display(null, JKY.get_dyer_id(), JKY.get_dyer_name());});
 
+
 	$('#jky-print-sd'			).click (function() {JKY.LoadOut.print_sd		();});
 	$('#jky-print-si'			).click (function() {JKY.LoadOut.print_si		();});
 

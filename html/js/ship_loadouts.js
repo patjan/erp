@@ -56,7 +56,7 @@ JKY.generate_loadout = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = (the_row.status == 'Active') ? '<a onclick="JKY.delete_loadout(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_loadout = ''
-		+ "<input class='jky-loadout-color-id' type='hidden' value=" + the_row.loadout_color_id + " />"
+		+ "<input class='jky-loadout-color-id' type='hidden' value=" + the_row.color_id + " />"
 		+ "<input class='jky-loadout-number' disabled onchange='JKY.update_loadout(this, " + my_id + ")' value='" + JKY.fix_null(the_row.loadout_number) + "' />"
 		+ " <a href='#' onClick='JKY.LoadOut.display(this, JKY.get_dyer_id(), JKY.get_dyer_name())'><i class='icon-share'></i></a>"
 		;
@@ -98,14 +98,14 @@ JKY.update_loadout = function(id_name, the_id) {
 JKY.update_loadout_success = function(response) {
 JKY.display_trace('update_loadout_success');
 //	JKY.display_message(response.message)
-	JKY.update_loadout();
+//	JKY.update_loadout();
 }
 
 JKY.insert_loadout = function() {
 	var my_data =
 		{ method	: 'insert'
-		, table		: 'LoadSales'
-		, set		: 'LoadSales.shipdyer_id = ' + JKY.row.id
+		, table		: 'LoadOuts'
+		, set		: 'LoadOuts.shipdyer_id = ' + JKY.row.id
 		};
 	JKY.ajax(true, my_data, JKY.insert_loadout_success);
 }
@@ -113,8 +113,11 @@ JKY.insert_loadout = function() {
 JKY.insert_loadout_success = function(response) {
 	var my_row = [];
 	my_row.id				= response.id;
-	my_row.status			= 'Draft';
-	my_row.loadout_color_id	= null;
+	my_row.status			= 'Active';
+	my_row.color_id			= null;
+	my_row.color_name		= '';
+	my_row.requested_at		= null;
+	my_row.checkout_at		= null;
 	my_row.quoted_pieces	= 0;
 	my_row.checkout_pieces	= 0;
 	my_row.returned_pieces	= 0;
@@ -145,8 +148,8 @@ JKY.delete_loadout_success = function(response) {
 JKY.select_loadout = function(the_id) {
 	var my_data =
 		{ method	: 'get_row'
-		, table		: 'LoadSales'
-		, where		: 'LoadSales.id = ' + the_id
+		, table		: 'LoadOuts'
+		, where		: 'LoadOuts.id = ' + the_id
 		};
 	JKY.ajax(false, my_data, JKY.select_loadout_success);
 }
@@ -191,9 +194,9 @@ JKY.print_loadouts = function(the_id) {
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'
-		, table		: 'LoadSales'
+		, table		: 'LoadOuts'
 		, select	:  the_id
-		, order_by  : 'LoadSales.id'
+		, order_by  : 'LoadOuts.id'
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);

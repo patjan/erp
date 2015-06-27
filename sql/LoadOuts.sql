@@ -40,3 +40,17 @@ ALTER TABLE LoadOuts		CHANGE	status	status		VARCHAR(32)	DEFAULT 'Active';
 
 ALTER TABLE LoadOuts		ADD COLUMN dyeing_type		VARCHAR(32)	DEFAULT NULL	AFTER dyer_id;
 
+//	----------------------------------------------------------------------------
+
+SELECT LoadOuts.*
+	 ,      Dyer.nick_name		AS      dyer_name
+	 ,     Color.color_name		AS     color_name
+  FROM LoadOuts
+  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		  LoadOuts.dyer_id
+  LEFT JOIN      Colors AS Color	ON     Color.id	=		  LoadOuts.color_id
+
+ WHERE        LoadOuts.dyer_id		= 200001
+ AND       LoadOuts.shipdyer_id		IS NULL
+
+ ORDER BY LoadOuts.loadout_number
+ LIMIT 1000

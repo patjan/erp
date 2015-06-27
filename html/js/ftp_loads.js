@@ -265,16 +265,17 @@ JKY.print_ftp_loads = function(the_id) {
 							+ '<td></td>'
 							+ '<td>' + my_input_from	+ '</td>'
 							+ '<td>' + my_input_upto	+ '</td>'
-							+ '<td>Fio 1 = ' + JKY.get_name(my_thread_id_1, JKY.loads) + '</td>'
+							+ '<td style="width:70%">Fio 1 = ' + JKY.get_name(my_thread_id_1, JKY.loads) + '</td>'
 							+ '</tr>'
 							;
-						if (my_thread_id_2) {my_html += '<tr><td colspan="3"></td><td>Fio 2 = ' + JKY.get_name(my_thread_id_2, JKY.loads) + '</td></tr>';}
-						if (my_thread_id_3) {my_html += '<tr><td colspan="3"></td><td>Fio 3 = ' + JKY.get_name(my_thread_id_3, JKY.loads) + '</td></tr>';}
-						if (my_thread_id_4) {my_html += '<tr><td colspan="3"></td><td>Fio 4 = ' + JKY.get_name(my_thread_id_4, JKY.loads) + '</td></tr>';}
+						if (my_thread_id_2) {my_html += '<tr><td colspan="3"></td><td style="width:70%">Fio 2 = ' + JKY.get_name(my_thread_id_2, JKY.loads) + '</td></tr>';}
+						if (my_thread_id_3) {my_html += '<tr><td colspan="3"></td><td style="width:70%">Fio 3 = ' + JKY.get_name(my_thread_id_3, JKY.loads) + '</td></tr>';}
+						if (my_thread_id_4) {my_html += '<tr><td colspan="3"></td><td style="width:70%">Fio 4 = ' + JKY.get_name(my_thread_id_4, JKY.loads) + '</td></tr>';}
 						my_html  += ''
 							+ '<tr>'
 							+ '<td colspan=3></td>'
-							+ '<td><b>' + JKY.nl2br(my_remarks) + '</b></td>'
+//							+ '<td style="width:70%"><b>' + JKY.nl2br(my_remarks) + '</b></td>'
+							+ '<td style="width:70%"><b>' + my_remarks + '</b></td>'
 							+ '</tr>'
 							;
 					}

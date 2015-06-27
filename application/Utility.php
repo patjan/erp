@@ -4000,4 +4000,24 @@ log_prog('proxy', 'POSTVARS: ' . $postvars);
 	return $content;
 }
 
+/**
+ * This function will output variable value to a log file
+ * @access public
+ * @param $value - Variable that we want to log
+ * @param $label - label that we want to use to identify the output
+ * @param $file_name - specific file name where we want to store the output
+ */
+function poop($value, $label='', $file_name=NULL, $url_pattern=NULL) {
+	if (!empty($url_pattern) && !strstr($_SERVER['HTTP_REFERER'], $url_pattern)) 	return FALSE;
+	$file_path  = '../logs/';
+	$file_path .= empty($file_name) ? 'poop.log' : $file_name;
+	
+	$file_handler = fopen($file_path,'a+');
+	if ($file_handler) {
+		if (!empty($label))		fwrite($file_handler, "----- Start {$label} -----\n");
+		fwrite($file_handler, var_export($value, TRUE) . "\n");
+		if (!empty($label))		fwrite($file_handler, "----- End -----\n\n");			
+		fclose($file_handler);
+	}	
+}
 ?>

@@ -454,3 +454,5 @@ ALTER TABLE Colors			ADD	COLUMN recipes			INT			DEFAULT 0 		AFTER color_name;
 ALTER TABLE LoadOuts		ADD COLUMN recipe			VARCHAR(32)	DEFAULT NULL	AFTER color_id;
 /* -- 2015-06-06	*/
 ALTER TABLE BatchOuts		ADD COLUMN scheduled_date	DATE		DEFAULT NULL	AFTER order_thread_id;
+/* -- 2015-06-19	*/
+ALTER TABLE ThreadForecast	ADD COLUMN forecast_month_0	DECIMAL(10,2)	DEFAULT 0	AFTER forecast_past;

@@ -173,9 +173,11 @@ JKY.LoadOut = function() {
 				my_html += '<br>';
 			}
 			my_html += my_print_loadout_footer(my_loadout, true);
-			my_html += '<div style="page-break-before:always;"></div>';
-			my_html += '<table cellspacing=0 style="width:700px;">';
-			my_html += '</table>';
+			if (i < (my_count_i-1)) {
+				my_html += '<div style="page-break-before:always;"></div>';
+			}
+//			my_html += '<table cellspacing=0 style="width:700px;">';
+//			my_html += '</table>';
 		}
 
 		var my_sds_printed = parseFloat(JKY.row.sds_printed);
@@ -257,9 +259,11 @@ JKY.LoadOut = function() {
 				my_html += '<br>';
 			}
 			my_html += my_print_loadout_footer(my_loadout, false);
-			my_html += '<div style="page-break-before:always;"></div>';
-			my_html += '<table cellspacing=0 style="width:700px;">';
-			my_html += '</table>';
+			if (i < (my_count_i-1)) {
+				my_html += '<div style="page-break-before:always;"></div>';
+			}
+//			my_html += '<table cellspacing=0 style="width:700px;">';
+//			my_html += '</table>';
 		}
 
 		var my_sis_printed = parseFloat(JKY.row.sis_printed);
@@ -340,6 +344,8 @@ JKY.LoadOut = function() {
 	}
 
 	var my_print_loadquot = function(the_loadquot, print_customer) {
+		if (JKY.is_empty(the_loadquot.quot_color_id))		return '';
+
 		var my_html = '';
 		var my_ftp_id		= JKY.get_id	('QuotColorFTPs', 'QuotColors.id=' + the_loadquot.quot_color_id);
 		var my_quot_color	= JKY.get_row	('QuotColors'	, the_loadquot.quot_color_id);

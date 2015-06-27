@@ -83,9 +83,6 @@ JKY.set_initial_values = function() {
 	$('#jky-customer-name'		).change(function() {JKY.update_customer_info	();});
 	$('#jky-advanced-amount'	).change(function() {JKY.update_sub_amount		();});
 
-//	$('#jky-weight'	).ForceIntegerOnly();
-//	$('#jky-width'	).ForceIntegerOnly();
-//	$('#jky-peso'	).ForceNumericOnly();
 	$('#jky-advanced-amount').ForceNumericOnly();
 };
 
@@ -369,6 +366,7 @@ JKY.update_sale_amount = function() {
 			my_color_units		= parseFloat($(this).find('.jky-quoted-units'	).val());
 			my_color_price		= parseFloat($(this).find('.jky-quoted-price'	).val());
 			my_color_discount	=			 $(this).find('.jky-discount'		).val() ;
+
 			my_color_amount		=  my_line_peso * my_color_units * my_color_price;
 			my_sold_amount	+= my_color_amount;
 

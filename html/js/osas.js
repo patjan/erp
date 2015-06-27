@@ -172,8 +172,8 @@ JKY.set_add_new_row = function() {
 JKY.get_form_set = function() {
 	var my_customer_id	= JKY.get_value('jky-customer-id'	);
 	var my_salesman_id	= JKY.get_value('jky-salesman-id'	);
-		my_customer_id	= (my_customer_id	=== '') ? 'null' : my_customer_id	;
-		my_salesman_id	= (my_salesman_id	=== '') ? 'null' : my_salesman_id	;
+		my_customer_id	= (my_customer_id	=== '') ? 'null' : my_customer_id;
+		my_salesman_id	= (my_salesman_id	=== '') ? 'null' : my_salesman_id;
 
 	var my_set = ''
 		+       '  customer_id=  ' + my_customer_id
@@ -281,8 +281,9 @@ JKY.print_row = function(the_id) {
 
 		+ "<td width=60%><table>"
 		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>      OSA Number</span>:</td><td id='jky-print-osa-number'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>Quotation Number</span>:</td><td id='jky-print-quotation-number'	class='jky-form-value'></td></tr>"
 		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>        Customer</span>:</td><td id='jky-print-customer-name'	class='jky-form-value'></td></tr>"
-		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>        Salesman</span>:</td><td id='jky-print-salesman-name'		class='jky-form-value'></td></tr>"
+		+ "<tr class='jky-form-line'><td class='jky-print-label'><span>        Salesman</span>:</td><td id='jky-print-salesman-name'	class='jky-form-value'></td></tr>"
 		+ "</table></td>"
 
 		+ "</tr>"
@@ -315,6 +316,7 @@ JKY.print_row = function(the_id) {
 	JKY.t_tag	('jky-printable', 'span');
 
 	JKY.set_html('jky-print-osa-number'			, my_row.osa_number			);
+	JKY.set_html('jky-print-quotation-number'	, my_row.quotation_number	);
 	JKY.set_html('jky-print-customer-name'		, my_row.customer_name		);
 	JKY.set_html('jky-print-salesman-name'		, my_row.salesman_name		);
 	JKY.set_html('jky-print-lines-body'			, JKY.approve_lines(the_id));

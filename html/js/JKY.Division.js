@@ -55,6 +55,11 @@ JKY.Division = function() {
 		var my_batch_id = my_tr.attr('batch_id');
 		var my_row = JKY.get_row('BatchOuts', my_batch_id);
 
+		var	my_scheduled_date	= my_row.scheduled_date;
+		if (JKY.is_empty(my_scheduled_date)) {
+			my_scheduled_date	= JKY.row.checkout_at;
+		}
+
 		var my_sql = ''
 			+          'parent_id =  ' + my_row.parent_id
 			+      ', checkout_id =  ' + my_row.checkout_id
@@ -64,7 +69,6 @@ JKY.Division = function() {
 			+      ', req_line_id =  ' + my_row.req_line_id
 			+  ', tdyer_thread_id =  ' + my_row.tdyer_thread_id
 			+  ', order_thread_id =  ' + my_row.order_thread_id
-//			+   ', scheduled_date =  ' + my_row.scheduled_date
 			+             ', code =\'' + my_row.code  + '\''
 			+            ', batch =\'' + my_row.batch + '\''
 			+       ', unit_price =  ' + my_row.unit_price
@@ -76,7 +80,7 @@ JKY.Division = function() {
 			my_requested_weight -= my_each_weight;
 			my_requested_boxes  -= my_each_boxes ;
 			var my_set = my_sql
-				+ ', scheduled_date = DATE_ADD(\'' + my_row.scheduled_date + '\', INTERVAL ' + i + ' DAY)'
+				+ ', scheduled_date = DATE_ADD(\'' + my_scheduled_date + '\', INTERVAL ' + i + ' DAY)'
 				;
 			var my_data =
 				{ method	: 'insert'
@@ -89,7 +93,8 @@ JKY.Division = function() {
 		}
 
 		var my_set = ''
-			+  '  requested_boxes =  ' + my_requested_boxes
+			+   '  scheduled_date =\'' + my_scheduled_date + '\''
+			+  ', requested_boxes =  ' + my_requested_boxes
 			+ ', requested_weight =  ' + my_requested_weight
 			;
 		var my_data =

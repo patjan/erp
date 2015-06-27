@@ -225,6 +225,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-checkout-weight'	,  0);
 	JKY.set_value	('jky-returned-weight'	,  0);
 	JKY.set_value	('jky-produced-weight'	,  0);
+	JKY.set_value	('jky-quoted-units'		,  0);
 	JKY.set_value	('jky-labels-printed'	,  0);
 	JKY.set_value	('jky-ftps-printed'		,  0);
 	JKY.set_value	('jky-ops-printed'		,  0);
@@ -268,6 +269,7 @@ JKY.get_form_set = function() {
 		+   ', checkout_weight=  ' + JKY.get_value('jky-checkout-weight'	)
 		+   ', produced_weight=  ' + JKY.get_value('jky-produced-weight'	)
 		+   ', returned_weight=  ' + JKY.get_value('jky-returned-weight'	)
+		+      ', quoted_units=  ' + JKY.get_value('jky-quoted-units'		)
 		+    ', labels_printed=  ' + JKY.get_value('jky-labels-printed'		)
 		+      ', ftps_printed=  ' + JKY.get_value('jky-ftps-printed'		)
 		+       ', ops_printed=  ' + JKY.get_value('jky-ops-printed'		)
@@ -282,6 +284,7 @@ JKY.display_list = function() {
 
 JKY.display_form = function() {
 	JKY.show('jky-action-print'  );
+	JKY.show('jky-action-copy'   );
 };
 
 JKY.process_validation = function() {
@@ -290,6 +293,28 @@ JKY.process_validation = function() {
 	my_error += JKY.Validation.is_required('jky-product-id'	, 'Product'	);
 //	my_error += JKY.Validation.is_required('jky-ftp-id'		, 'FTP'		);
 	return my_error;
+};
+
+JKY.process_copy = function(the_id, the_row) {
+	var my_set	= ''
+		+   '  checkout_pieces=  0'
+		+   ', produced_pieces=  0'
+		+   ', rejected_pieces=  0'
+		+   ', checkout_weight=  0'
+		+   ', produced_weight=  0'
+		+   ', returned_weight=  0'
+		+    ', labels_printed=  0'
+		+      ', ftps_printed=  0'
+		+       ', ops_printed=  0'
+				;
+	var my_data =
+		{ method	: 'update'
+		, table		: 'Orders'
+		, set		: my_set
+		, where		: 'id = ' + the_id
+		};
+	JKY.ajax(true, my_data);
+	JKY.copy_threads(the_row.id, the_id);
 };
 
 JKY.process_delete = function(the_id, the_row) {

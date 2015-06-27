@@ -242,9 +242,12 @@ JKY.approve_lines = function(the_id) {
 					var my_rows = response.rows;
 					for(var i in my_rows) {
 						var my_row = my_rows[i];
+						var my_dyer = '<br>Gram: ' + my_row.weight_dyer
+									+	', Larg: ' + my_row.width_dyer
+									;
 						my_html  += ''
 							+ '<tr class="jky-bold">'
-							+ '<td								><b>' + my_row.product_name	+ '</b></td>'
+							+ '<td class="jky-print-product"	><b>' + my_row.product_name	+ '</b>' + my_dyer + '</td>'
 							+ '<td class="jky-print-name-s"		><b>' + my_row.remarks		+ '</b></td>'
 							+ '<td class="jky-print-pieces"		><b>' + my_row.peso			+ '</b></td>'
 							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_units	+ '</b></td>'

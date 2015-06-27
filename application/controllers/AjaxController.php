@@ -84,6 +84,7 @@ public function indexAction() {
 			case 'get_contact'		: $this->get_contact	(); return;
 			case 'get_contact_id'	: $this->get_contact_id	(); return;
 			case 'get_user_id'		: $this->get_user_id	($data); return;
+			case 'get_ftp_id'		: $this->get_ftp_id		($data); return;
 			case 'get_product_id'	: $this->get_product_id	($data); return;
 			case 'set_company_id'	: $this->set_company_id	(); return;
 			case 'get_company_id'	: $this->get_company_id	(); return;
@@ -669,23 +670,6 @@ private function get_index($data) {
 	}else
 	if ($table == 'ColorUnloadeds') {
 		$where = ($filter == '') ? '' : ' AND Color.color_name LIKE "%' . $filter . '%"';
-/*
-		$sql= 'SELECT DISTINCT'
-			. '       Color.id					AS			 id'
-			. ',      Color.color_name			AS     color_name'
-			. ',      Color.color_type			AS     color_type'
-			. '  FROM QuotColors'
-			. '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	QuotColors.color_id'
-			. '  LEFT JOIN   QuotLines AS QuotLine	ON	QuotLine.id	=	QuotColors.parent_id'
-			. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=	  QuotLine.parent_id'
-			. ' WHERE Quotation.status IN ("Draft", "Active")'
-			. '   AND Color.id IS NOT NULL'
-			. '   AND QuotLine.quoted_weight > (SELECT IF(SUM(LoadQuotations.quoted_weight) IS NULL, 0, SUM(LoadQuotations.quoted_weight)) FROM LoadQuotations WHERE LoadQuotations.quot_color_id = QuotColors.id)'
-			. $where
-			. '  ORDER BY ' . $order_by
-			. $limit
-			;
- */
 		$sql= 'SELECT QuotColors.id				AS			 id'
 			. ',      QuotColors.quoted_units	AS    quoted_units'
 			. ',           Color.id				AS	   color_id'
@@ -756,6 +740,24 @@ private function get_index($data) {
 			. $limit
 			;
 	}else
+	if ($table == 'FTP_Ord_Threads') {
+		$ftp_id		= get_data($data, 'ftp_id'	);
+		$order_id	= get_data($data, 'order_id');
+		$sql= 'SELECT FTP_Threads.percent'
+			. '     , FTP_Threads.thread_id'
+			. '     , Contacts.nick_name AS supplier_name'
+			. '     , Threads.name AS thread_name'
+			. '     , Batches.batch AS batch'
+			. '     , Threads.name AS thread_name'
+			. '  FROM FTP_Threads'
+			. '  LEFT JOIN OrdThreads	ON  OrdThreads.parent_id = ' . $order_id . ' AND OrdThreads.thread_id = FTP_Threads.thread_id'
+			. '  LEFT JOIN Contacts		ON    Contacts.id = FTP_Threads.supplier_id'
+			. '  LEFT JOIN Threads		ON     Threads.id = FTP_Threads.thread_id'
+			. '  LEFT JOIN Batches		ON     Batches.id = OrdThreads.batchin_id'
+			. ' WHERE FTP_Threads.parent_id = ' . $ftp_id
+			. ' ORDER BY FTP_Threads.percent DESC'
+			;
+	}else
 	if ($table == 'FTP_Sets') {
 		$sql= 'SELECT Configs.id as setting, Configs.name, FTP_Sets.id, FTP_Sets.value'
 			. '  FROM Configs'
@@ -807,9 +809,10 @@ private function get_index($data) {
 			. $limit
 			;
 	}
-$this->log_sql($table, 'get_index', $sql);
-     $db   = Zend_Registry::get('db');
-     $rows = $db->fetchAll($sql);
+
+	$this->log_sql($table, 'get_index', $sql);
+    $db   = Zend_Registry::get('db');
+    $rows = $db->fetchAll($sql);
 
 	if ($table == 'Categories') {
 		$n = 0;
@@ -917,6 +920,7 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'LoadOuts'		&& $specific == 'shipdyer'		)	return ' AND       LoadOuts.shipdyer_id		= ' . $specific_id;
 	if ($table == 'LoadQuotations'	&& $specific == 'loadout'		)	return ' AND LoadQuotations.loadout_id		= ' . $specific_id;
 	if ($table == 'Pieces'			&& $specific == 'order'			)	return ' AND         Pieces.order_id		= ' . $specific_id;
+	if ($table == 'Pieces'			&& $specific == 'rejected'		)	return ' AND         Pieces.qualities	   != "Boa"';
 	if ($table == 'ProdPrices'		&& $specific == 'product'		)	return ' AND     ProdPrices.product_id		= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'parent'		)	return ' AND  PurchaseLines.parent_id		= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'supplier'		)	return ' AND      Purchases.supplier_id		= ' . $specific_id;
@@ -1098,7 +1102,9 @@ private function set_new_fields($table) {
 												. ', Quotation.quotation_number	AS quotation_number'
 												. ', Quotation.produce_from_date	AS produce_from_date'
 												. ', Quotation.produce_to_date		AS produce_to_date';
-	if ($table == 'OSA_Lines'		)	$return = ',   Product.product_name		AS   product_name';
+	if ($table == 'OSA_Lines'		)	$return = ',   Product.product_name		AS   product_name'
+												. ',   Product.weight_dyer		AS    weight_dyer'
+												. ',   Product.width_dyer		AS     width_dyer';
 	if ($table == 'OSA_Colors'		)	$return = ',   Machine.name				AS   machine_name'
 												. ',   Partner.nick_name		AS   partner_name'
 												. ',     Color.color_name		AS     color_name'
@@ -1139,6 +1145,7 @@ private function set_new_fields($table) {
 												. ', Quotation.quotation_number	AS quotation_number'
 												. ', Quotation.quoted_at		AS    quoted_at'
 												. ',   Product.product_name		AS   product_name'
+												. ',   Product.product_type		AS   product_type'
 												. ',  Customer.nick_name		AS  customer_name';
 	if ($table == 'Sales'			)	$return = ',  Salesman.full_name		AS   salesman_name'
 												. ',  Customer.nick_name		AS  customer_name'
@@ -1206,6 +1213,7 @@ private function set_new_fields($table) {
 	if ($table == 'BatchSets'		)	$return = ', BatchOuts.average_weight	AS   average_weight'
 												. ', BatchOuts.requested_weight	AS requested_weight'
 												. ', BatchOuts.checkout_weight	AS  checkout_weight'
+												. ', BatchOuts.scheduled_date	AS scheduled_date'
 												. ',   Threads.name				AS    thread_name'
 												. ',   Batches.batch			AS     batch_code'
 												. ', CheckOuts.number			AS  checkout_number'
@@ -4137,6 +4145,30 @@ private function get_user_id($data) {
 }
 
 /**
+ *	$.ajax({ method: get_ftp_id, product_id: x...x );
+ *	of most current ftp
+ *
+ *	status: ok     | error
+ *		id: 9...9  | null
+ */
+
+private function get_ftp_id($data) {
+	$sql= 'SELECT id'
+		. '  FROM FTPs'
+		. ' WHERE product_id = ' . $data['product_id']
+		. ' ORDER BY id DESC'
+		. ' LIMIT 1'
+		;
+$this->log_sql(null, 'get_ftp_id', $sql);
+	$return = array();
+	$db = Zend_Registry::get('db');
+	$row = $db->fetchRow($sql);
+	$return['status'] = 'ok';
+	$return['id'	] = $row['id'];
+	echo json_encode($return);
+}
+
+/**
  *	$.ajax({ method: get_product_id, product_name: x...x );
  *
  *	status: ok     | error
@@ -4366,7 +4398,8 @@ private function get_configs($data) {
 private function get_companies($data) {
 	$specific = get_data($data, 'specific');
 
-	$sql= 'SELECT * '
+//	$sql= 'SELECT *'
+	$sql= 'SELECT id, nick_name, full_name'
 		. '  FROM Contacts'
 		. ' WHERE ' . $specific . ' = "Yes"'
 		. '   AND is_company = "Yes"'
@@ -5336,11 +5369,9 @@ private function refresh($data) {
 	$reference_date = get_data($data, 'reference_date');
 
 	$sql= 'SET @cut_off_date = ' . $reference_date . ';'
-
 		. 'TRUNCATE PurchaseMonthly;'
 		. 'TRUNCATE ThreadJoined;'
 		. 'TRUNCATE ThreadForecast;'
-
 		. 'INSERT PurchaseMonthly(thread_id, supplier_id, months, forecast_weight)'
 		. 'SELECT PurchaseLines.thread_id'
 		. '	    , Purchases.supplier_id'
@@ -5352,19 +5383,6 @@ private function refresh($data) {
 		. '   AND PurchaseLines.expected_weight > PurchaseLines.received_weight'
 		. ' GROUP BY thread_id, supplier_id, months'
 		. ';'
-/*
-		. 'INSERT ThreadJoined(thread_id, supplier_id, current_balance)'
-		. 'SELECT Batches.thread_id'
-		. '	    , Incomings.supplier_id'
-		. '	    , SUM(Batches.checkin_weight + Batches.returned_weight - Batches.checkout_weight) AS current_balance'
-		. '  FROM Batches'
-		. '  LEFT JOIN Incomings ON Incomings.id = Batches.incoming_id'
-		. ' WHERE Batches.status = "Active"'
-//		. '   AND DATE(Incomings.received_at) <= @cut_off_date'
-		. '   AND Incomings.invoice_date <= "@cut_off_date"'
-		. ' GROUP BY thread_id, supplier_id'
-		. ';'
-*/
 		. 'INSERT ThreadJoined(thread_id, supplier_id, invoice_date, current_balance)'
 		. 'SELECT Batches.thread_id'
 		. '     , Incomings.supplier_id'
@@ -5376,18 +5394,17 @@ private function refresh($data) {
 		. ' WHERE Batches.status = "Active"'
 		. ' GROUP BY thread_id, supplier_id'
 		. ';'
-
 		. 'INSERT ThreadJoined(thread_id, supplier_id, months, forecast_weight)'
 		. 'SELECT *'
 		. '  FROM PurchaseMonthly'
 		. ';'
-
-		. 'INSERT ThreadForecast(thread_id, supplier_id, invoice_date, current_balance, forecast_past, forecast_month_1, forecast_month_2, forecast_month_3, forecast_future)'
+		. 'INSERT ThreadForecast(thread_id, supplier_id, invoice_date, current_balance, forecast_past, forecast_month_0, forecast_month_1, forecast_month_2, forecast_month_3, forecast_future)'
 		. 'SELECT thread_id'
 		. '	    , supplier_id'
 		. '	    , invoice_date'
 		. '	    , SUM(current_balance) AS current_balance'
-		. '	    , SUM(IF (months < 1, forecast_weight, 0)) AS forecast_past'
+		. '	    , SUM(IF (months < 0, forecast_weight, 0)) AS forecast_past'
+		. '	    , SUM(IF (months = 0, forecast_weight, 0)) AS forecast_month_0'
 		. '	    , SUM(IF (months = 1, forecast_weight, 0)) AS forecast_month_1'
 		. '	    , SUM(IF (months = 2, forecast_weight, 0)) AS forecast_month_2'
 		. '	    , SUM(IF (months = 3, forecast_weight, 0)) AS forecast_month_3'
@@ -5395,13 +5412,11 @@ private function refresh($data) {
 		. '  FROM ThreadJoined'
 		. ' GROUP BY thread_id, supplier_id'
 		. ';'
-
 		. 'UPDATE Configs'
 		. '   SET Configs.value = @cut_off_date'
 		. ' WHERE Configs.group_set = "System Controls"'
 		. '   AND Configs.name = "Reference Date"'
 		. ';'
-
 		;
 	$this->log_sql( $table, 'refresh', $sql );
 	$db   = Zend_Registry::get('db');

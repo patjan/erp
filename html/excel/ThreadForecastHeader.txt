@@ -118,11 +118,18 @@
    <Font x:Family="Swiss" ss:Bold="1"/>
   </Style>
   <Style ss:ID="s56">
-   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
    <Borders>
     <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
     <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
    </Borders>
    <Font x:Family="Swiss" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s81">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
   </Style>
  </Styles>

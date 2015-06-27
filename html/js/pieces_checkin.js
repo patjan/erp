@@ -51,6 +51,12 @@ JKY.set_initial_values = function() {
 	$('#jky-checkin-weight2').ForceIntegerOnly();
 	$('#jky-checkin-weight3').ForceIntegerOnly();
 	$('#jky-checkin-weight4').ForceIntegerOnly();
+
+	JKY.App.qualities = [];
+	var my_rows = JKY.get_configs('QC Quality');
+	for(var i=0; i<my_rows.length; i++) {
+		JKY.App.qualities.push(my_rows[i].name);
+	};
 };
 
 /**
@@ -282,8 +288,14 @@ JKY.process_save_screen = function() {
 	if (my_qualities		== '' )		my_error += JKY.set_is_required('Qualities'	);
 //	if (my_remarks			== '' )		my_error += JKY.set_is_required('Remarks'	);
 
+	if ($.inArray(my_qualities, JKY.App.qualities) < 0) {
+		my_error += JKY.set_is_invalid('Qualities');
+	}
+
 	var my_max_weight = 25.00;
-	if (parseFloat(my_checkin_weight) > my_max_weight)	my_error += JKY.set_value_is_above('Weight', my_max_weight);
+	if (parseFloat(my_checkin_weight) > my_max_weight) {
+		my_error += JKY.set_value_is_above('Weight', my_max_weight);
+	}
 
 	if (JKY.is_empty(my_error)) {
 		JKY.display_message(JKY.t('Confirmed, barcode') + ': ' + my_barcode);

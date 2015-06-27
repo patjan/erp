@@ -188,9 +188,9 @@ JKY.print_ftp_threads = function(the_id) {
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'
-		, table		: 'FTP_Threads'
-		, select	:  the_id
-		, order_by  : 'FTP_Threads.id'
+		, table		: 'FTP_Ord_Threads'
+		, ftp_id	:  the_id
+		, order_id	:  JKY.row.id
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);
@@ -204,16 +204,14 @@ JKY.print_ftp_threads = function(the_id) {
 				if (response.status == 'ok') {
 					var my_rows = response.rows;
 					for(var i in my_rows) {
-						var my_row			= my_rows[i];
-						var my_name			= my_row.name;
-						var my_supplier		= my_row.supplier;
-						var my_percent		= parseFloat(my_row.percent);
-						my_html  += ''
+						var my_row = my_rows[i];
+							my_html += ''
 							+ '<tr>'
 							+ '<td></td>'
-							+ '<td>' + my_percent + '</td>'
-							+ '<td>' + my_name    + '</td>'
-							+ '<td>' + my_supplier+ '</td>'
+							+ '<td>' + parseFloat(my_row.percent)	+ '</td>'
+							+ '<td>' + my_row.thread_name			+ '</td>'
+							+ '<td>' + my_row.batch					+ '</td>'
+							+ '<td>' + my_row.supplier_name			+ '</td>'
 							+ '</tr>'
 							;
 					}

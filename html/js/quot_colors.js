@@ -26,11 +26,11 @@ JKY.generate_color = function(the_row, the_units) {
 		+ '<td class="jky-td-action"	colspan="3" style="text-align:right !important;">' + my_trash + '</td>'
 		+ '<td class="jky-td-key-m"		>' + my_color + '</td>'
 		+ '<td class="jky-td-key"		>' + my_dyer  + '</td>'
-		+ '<td class="jky-td-pieces"	><input value="' + the_row.quoted_units	+ '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-quoted-units"				value="' + the_row.quoted_units	+ '"' + my_onchange + ' /></td>'
 		+ '<td class="jky-td-units"		>' + '(' + JKY.t(my_unit) + ')' + '</td>'
-		+ '<td class="jky-td-price"		><input value="' + the_row.quoted_price	+ '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-price"		><input class="jky-quoted-price	jky-td-price"	value="' + the_row.quoted_price	+ '"' + my_onchange + ' /></td>'
 		+ '<td class="jky-td-info"		>($/Kg)</td>'
-		+ '<td class="jky-td-discount"	><input value="' + the_row.discount		+ '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-discount"	><input class="jky-discount		jky-td-price"	value="' + the_row.discount		+ '"' + my_onchange + ' /></td>'
 		+ '</tr>'
 		;
 	return my_html;
@@ -412,8 +412,8 @@ JKY.print_colors = function(the_id, the_product) {
 
 					my_html += ''
 						+ '<tr class="jky-print-head">'
-						+ '<td>' + '<span>Color		</span>' + '</td>'
-						+ '<td class="jky-print-amount">' + '<span>Quant		</span>' + '</td>'
+						+ '<td>' + '<span>Color</span> (<span>Dyer</span> + <span>Dyeing</span>)' + '</td>'
+						+ '<td class="jky-print-amount">' + '<span>Quant</span>' + '</td>'
 						+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + '<span>Est Weight	</span>' + '</td>'
 						+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + '<span>Price/Kg		</span>' + '</td>'
 						;
@@ -429,9 +429,23 @@ JKY.print_colors = function(the_id, the_product) {
 						var my_row = my_rows[i];
 
 						var my_color_units  = '';
+/*
 						if (my_line_units != 0) {
 							my_color_units  = Math.ceil(my_row.quoted_units / my_line_units) + ' pc';
 						}
+						if (my_line_units != 1) {
+							my_color_units  = '(' + parseInt(my_row.quoted_units) + ' uni) ' + my_color_units;
+						}
+*/
+						if (my_row.product_type == 'Retilinea') {
+							my_color_units = parseInt(my_row.quoted_units) + ' uni';
+						}else
+						if (my_line_units == 0) {
+							my_color_units = Math.ceil(my_row.quoted_units / my_row.peso) + ' pc';
+						}else{
+							my_color_units = Math.ceil(my_row.quoted_units / my_line_units) + ' pc';
+						}
+
 //						var my_color_weight = Math.ceil(my_row.quoted_units * my_line_peso );
 						var my_color_weight = (my_row.quoted_units * my_line_peso).toFixed(2);
 
@@ -463,10 +477,14 @@ JKY.print_colors = function(the_id, the_product) {
 							my_discount_price	= (-my_discount_price).toFixed(2);
 						}
 
+						var my_loadquot_id = JKY.get_id('LoadQuotations', 'quot_color_id = ' + my_row.id);
+						var my_loadout_id  = JKY.get_value_by_id('LoadQuotations', 'loadout_id', my_loadquot_id);
+						var my_dyeing_type = JKY.get_value_by_id('LoadOuts', 'dyeing_type', my_loadout_id);
+
 						if (!JKY.is_empty(my_color_price))	my_color_price = 'R$ ' + my_color_price;
 						my_html += ''
 							+ '<tr>'
-							+ '<td>' + my_row.color_name	+ '</td>'
+							+ '<td>' + my_row.color_name + ' (' + my_row.dyer_name + ' + ' + my_dyeing_type + ')</td>'
 							+ '<td class="jky-print-amount">' + my_color_units + '</td>'
 							+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + my_color_weight + ' kg</td>'
 							+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + my_color_price  + '</td>'

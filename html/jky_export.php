@@ -262,7 +262,7 @@ public function run_thread_forecast($table, $cols, $rows) {
 		return $meses[$mes - 1];
 	}
 
-	function Set_Total( $Total_Peso, $Total_Compra_1, $Total_Compra_2, $Total_Compra_3 ) {
+	function Set_Total( $Total_Peso, $Total_Compra_0, $Total_Compra_1, $Total_Compra_2, $Total_Compra_3 ) {
 		$total = NL . '   <Row ss:AutoFitHeight="0" ss:Height="15" ss:StyleID="s29">'
 			   . NL . '    <Cell ss:Index="2" ss:StyleID="s25"/>'
 			   . NL . '    <Cell ss:StyleID="s25"/>'
@@ -270,6 +270,7 @@ public function run_thread_forecast($table, $cols, $rows) {
 			   . NL . '    <Cell ss:StyleID="s42"/>'
 			   . NL . '    <Cell ss:StyleID="s42"/>'
 			   . NL . '    <Cell ss:StyleID="s47"><Data ss:Type="Number">' . $Total_Peso     . '</Data></Cell>'
+			   . NL . '    <Cell ss:StyleID="s47"><Data ss:Type="Number">' . $Total_Compra_0 . '</Data></Cell>'
 			   . NL . '    <Cell ss:StyleID="s47"><Data ss:Type="Number">' . $Total_Compra_1 . '</Data></Cell>'
 			   . NL . '    <Cell ss:StyleID="s47"><Data ss:Type="Number">' . $Total_Compra_2 . '</Data></Cell>'
 			   . NL . '    <Cell ss:StyleID="s47"><Data ss:Type="Number">' . $Total_Compra_3 . '</Data></Cell>'
@@ -281,6 +282,7 @@ public function run_thread_forecast($table, $cols, $rows) {
 			   . NL . '    <Cell ss:StyleID="s42"/>'
 			   . NL . '    <Cell ss:StyleID="s42"/>'
 			   . NL . '    <Cell ss:Index="7" ss:StyleID="s42"/>'
+			   . NL . '    <Cell ss:StyleID="s42"/>'
 			   . NL . '    <Cell ss:StyleID="s42"/>'
 			   . NL . '    <Cell ss:StyleID="s30"/>'
 			   . NL . '   </Row>'
@@ -297,11 +299,12 @@ public function run_thread_forecast($table, $cols, $rows) {
 		$Fornecedor	= $row['supplier_name'		];
 		$Fatura		= $row['invoice_date'		];
 		$Peso		= $row['current_balance'	];
+		$Compra_0	= $row['forecast_month_0'	];
 		$Compra_1	= $row['forecast_month_1'	];
 		$Compra_2	= $row['forecast_month_2'	];
 		$Compra_3	= $row['forecast_month_3'	];
 		if ($Grupo == '')		continue;
-		if ($Peso == 0 and $Compra_1 == 0 and $Compra_2 == 0 and $Compra_3 == 0)	continue;
+		if ($Peso == 0 and $Compra_0 == 0 and $Compra_1 == 0 and $Compra_2 == 0 and $Compra_3 == 0)	continue;
 		$new_rows[] = $row;
 	}
 
@@ -321,6 +324,7 @@ $this->log_proxy('NumberRows: ' . $NumberRows);
 
 	$Soma_Peso		= 0;
 	$Total_Peso		= 0;
+	$Total_Compra_0	= 0;
 	$Total_Compra_1	= 0;
 	$Total_Compra_2	= 0;
 	$Total_Compra_3	= 0;
@@ -333,6 +337,7 @@ $this->log_proxy('NumberRows: ' . $NumberRows);
 		$Fornecedor	= $row['supplier_name'		];
 		$Fatura		= $row['invoice_date'		];
 		$Peso		= $row['current_balance'	];
+		$Compra_0	= $row['forecast_month_0'	];
 		$Compra_1	= $row['forecast_month_1'	];
 		$Compra_2	= $row['forecast_month_2'	];
 		$Compra_3	= $row['forecast_month_3'	];
@@ -343,8 +348,8 @@ $this->log_proxy('NumberRows: ' . $NumberRows);
 			$dates = explode('-', $Fatura);
 			$Fatura = $dates[2] . '-' . $dates[1] . '-' . $dates[0];
 		}
-//var_dump($Fatura);		
-		
+//var_dump($Fatura);
+
 		if ($i < $NumberRows) {
 			$next_row = $new_rows[$i+1];
 			$next_grupo = $next_row['thread_group'	];
@@ -365,23 +370,29 @@ $this->log_proxy('NumberRows: ' . $NumberRows);
 				. NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25">'
 				. NL . '    <Cell ss:Index="7" ss:StyleID="s25"/>'
 				. NL . '    <Cell ss:StyleID="s25"/>'
+				. NL . '    <Cell ss:StyleID="s25"/>'
+				. NL . '    <Cell ss:StyleID="s25"/>'
+				. NL . '    <Cell ss:StyleID="s25"/>'
 				. NL . '   </Row>'
 				. NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25">'
 				. NL . '    <Cell ss:Index="7" ss:StyleID="s25"/>'
 				. NL . '    <Cell ss:StyleID="s26"/>'
-				. NL . '    <Cell ss:StyleID="s56"><Data ss:Type="String">Fios a chegar</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s56"><Data ss:Type="String">Fios   a   chegar</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s81"/>'
 				. NL . '    <Cell ss:StyleID="s28"/>'
 				. NL . '   </Row>'
 				. NL . '   <Row ss:AutoFitHeight="0" ss:Height="14.25">'
 				. NL . '    <Cell ss:StyleID="s31"><Data ss:Type="String">Grupo:</Data></Cell>'
 				. NL . '    <Cell ss:StyleID="s22"><Data ss:Type="String">' . $Grupo . '</Data></Cell>'
 				. NL . '    <Cell ss:Index="7" ss:StyleID="s25"/>'
-				. NL . '    <Cell ss:StyleID="s44"><Data ss:Type="String">' . GetMes($Mes  ) . '</Data></Cell>'
-				. NL . '    <Cell ss:StyleID="s44"><Data ss:Type="String">' . GetMes($Mes+1) . '</Data></Cell>'
-				. NL . '    <Cell ss:StyleID="s44"><Data ss:Type="String">' . GetMes($Mes+2) . '</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s44"><Data ss:Type="String">' . GetMes(0+$Mes) . '</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s44"><Data ss:Type="String">' . GetMes(1+$Mes) . '</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s44"><Data ss:Type="String">' . GetMes(2+$Mes) . '</Data></Cell>'
+				. NL . '    <Cell ss:StyleID="s44"><Data ss:Type="String">' . GetMes(3+$Mes) . '</Data></Cell>'
 				. NL . '   </Row>'
 				;
 			$Total_Peso		= 0;
+			$Total_Compra_0	= 0;
 			$Total_Compra_1	= 0;
 			$Total_Compra_2	= 0;
 			$Total_Compra_3	= 0;
@@ -407,6 +418,7 @@ $this->log_proxy('NumberRows: ' . $NumberRows);
 			. NL . '    <Cell ss:StyleID="s35"><Data ss:Type="String">' . $Fornecedor .  '</Data></Cell>'
 			. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Peso       .  '</Data></Cell>'
 			. NL . '    <Cell ss:StyleID="s46">'						. $Print_Peso .			'</Cell>'
+			. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Compra_0   .  '</Data></Cell>'
 			. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Compra_1   .  '</Data></Cell>'
 			. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Compra_2   .  '</Data></Cell>'
 			. NL . '    <Cell ss:StyleID="s46"><Data ss:Type="Number">' . $Compra_3   .  '</Data></Cell>'
@@ -414,20 +426,21 @@ $this->log_proxy('NumberRows: ' . $NumberRows);
 			;
 
 		$Total_Peso     += $Peso;
+		$Total_Compra_0 += $Compra_0;
 		$Total_Compra_1 += $Compra_1;
 		$Total_Compra_2 += $Compra_2;
 		$Total_Compra_3 += $Compra_3;
 
 		if ($last_grupo) {
 			$count += 2;
-			$body  .= Set_Total($Total_Peso, $Total_Compra_1, $Total_Compra_2, $Total_Compra_3);
+			$body  .= Set_Total($Total_Peso, $Total_Compra_0, $Total_Compra_1, $Total_Compra_2, $Total_Compra_3);
 		}
 	}
 
 $this->log_proxy('Body: ' . $body);
 
      $tableX = NL . ' <Worksheet ss:Name="Sheet1">'
-            . NL . '  <Table ss:ExpandedColumnCount="11" ss:ExpandedRowCount="' . $count . '" x:FullColumns="1"'
+            . NL . '  <Table ss:ExpandedColumnCount="12" ss:ExpandedRowCount="' . $count . '" x:FullColumns="1"'
             . NL . '   x:FullRows="1">'
             . NL . '   <Column ss:AutoFitWidth="0" ss:Width="34.5"/>'
             . NL . '   <Column ss:AutoFitWidth="0" ss:Width="109.5"/>'
@@ -437,15 +450,15 @@ $this->log_proxy('Body: ' . $body);
             . NL . '   <Column ss:AutoFitWidth="0" ss:Width="55.5"/>'
             . NL . '   <Column ss:AutoFitWidth="0" ss:Width="55.5"/>'
             . NL . '   <Column ss:AutoFitWidth="0" ss:Width="49.5"/>'
-            . NL . '   <Column ss:Index="10" ss:StyleID="s21" ss:AutoFitWidth="0" ss:Width="49.5"/>'
-            . NL . '   <Column ss:AutoFitWidth="0" ss:Width="58.5"/>'
+            . NL . '   <Column ss:Index="11" ss:StyleID="s21" ss:AutoFitWidth="0" ss:Width="49.5"/>'
+            . NL . '   <Column ss:AutoFitWidth="0" ss:Width="49.5"/>'
             . NL . '   <Row>'
             . NL . '    <Cell ss:StyleID="s22"><Data ss:Type="String">Lista de Promocao (disponivel no mercado)</Data></Cell>'
-            . NL . '    <Cell ss:Index="10" ss:StyleID="s23"><Data ss:Type="String">' . date('d-m-Y') . '</Data></Cell>'
+            . NL . '    <Cell ss:Index="11" ss:StyleID="s23"><Data ss:Type="String">' . date('d-m-Y') . '</Data></Cell>'
             . NL . '   </Row>'
             . NL . '   <Row>'
             . NL . '    <Cell ss:StyleID="s22"><Data ss:Type="String">Previsao do mercado /ton</Data></Cell>'
-            . NL . '    <Cell ss:Index="10" ss:StyleID="s23"/>'
+            . NL . '    <Cell ss:Index="11" ss:StyleID="s23"/>'
             . NL . '    <Cell ss:StyleID="s24"/>'
             . NL . '   </Row>'
             ;
