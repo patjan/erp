@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+
+
+<body>
+
+<button onclick='funcs[0]()'>Func 0</button>
+<button onclick='funcs[1]()'>Func 1</button>
+<button onclick='funcs[2]()'>Func 2</button>
+
+<div>Messages</div>
+<div id='jky-message'></div>
+
+<script>
+
+
+var funcs = {};
+for (var i = 0; i < 3; i++) {
+    funcs[i] = function(x) {
+        $('#jky-message').append('<br>My value: ' + x);
+    }.bind(this, i);
+}
+for (var j = 0; j < 3; j++) {
+    funcs[j]();
+}
+
+</script>

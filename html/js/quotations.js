@@ -228,6 +228,17 @@ JKY.display_form = function() {
 	JKY.show('jky-action-copy'   );
 };
 
+JKY.process_validation = function() {
+	var my_error = '';
+
+	var my_produce_from_date = JKY.inp_date('jky-produce-from-date');
+	var my_produce_to_date	 = JKY.inp_date('jky-produce-to-date'  );
+	if (my_produce_from_date > my_produce_to_date) {
+		my_error += JKY.set_is_invalid('Production To');
+	}
+	return my_error;
+}
+
 JKY.process_copy = function(the_id, the_row) {
 	var my_set	= '  quoted_at =\'' + JKY.get_now() + '\''
 				+ ', quoted_pieces = ' + the_row.quoted_pieces
@@ -424,6 +435,7 @@ JKY.update_quotation_amount = function() {
  * print row
  */
 JKY.print_row = function(the_id) {
+	JKY.show('jky-loading');
 	JKY.display_message('print_row: ' + the_id);
 	var my_names;
 	var my_extension;
@@ -500,12 +512,14 @@ JKY.print_row = function(the_id) {
 
 //	JKY.show('jky-printable');
 	$("#jky-printable").print();
+	JKY.hide('jky-loading');
 };
 
 /**
  * print row
  */
 JKY.approve_row = function(the_id){
+	JKY.show('jky-loading');
 	JKY.display_message('approve_row: ' + the_id);
 	var my_names;
 	var my_extension;
@@ -584,4 +598,5 @@ JKY.approve_row = function(the_id){
 
 //	JKY.show('jky-printable');
 	$("#jky-printable").print();
+	JKY.hide('jky-loading');
 };

@@ -1,5 +1,19 @@
 Todo
 
+fix my_saved_row (sincronization get_row and update)
+
+Setup Node Pub-Sub server on AWS
+
+Find tablet hand holder	- $26.00 DURAGADGET High Quality Handheld Rotating 
+	$ 421/50 pieces http://www.aliexpress.com/item/Tablet-Back-Case-Holder-Stand-Hand-Strap-Cover-for-ipad-mini-2/1726211308.html
+	$ 10 http://www.ebay.com/itm/360-Rotating-Handheld-Smart-Cover-Case-Hand-Strap-for-iPad-2-3-4-5-Mini-1-2-3/381186111358?_trksid=p2141725.c100338.m3726&_trkparms=aid%3D222007%26algo%3DSIC.MBE%26ao%3D1%26asc%3D20141212152715%26meid%3D17c133dd7b2b4760921f3bb10198e424%26pid%3D100338%26rk%3D2%26rkt%3D29%26sd%3D201369859826
+	$ 15 http://www.ebay.com/itm/Armor-Grade-Silicone-PC-Protection-Case-Stand-Hand-Strap-for-iPad-Mini-1-2-3/251775554927?_trksid=p2141725.c100338.m3726&_trkparms=aid%3D222007%26algo%3DSIC.MBE%26ao%3D1%26asc%3D20141212152715%26meid%3D17c133dd7b2b4760921f3bb10198e424%26pid%3D100338%26rk%3D20%26rkt%3D29%26sd%3D201369859826
+
+Develop ERP to tablet (touch screen)
+Develop ERP to WhatsApp
+Customers to login ERP Store
+
+
 		- setup servidor de DL Teste
 		- setup server on HostGator
 		- parada de Sync Servidores

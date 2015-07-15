@@ -1,0 +1,60 @@
+Found 49 matches of my_saved_row in 5 files.	
+
+batchin_boxes.js	
+		var my_saved_row = [];      [position 6:5]	
+		my_saved_row = the_response.row;      [position 70:3]	
+		var my_delta_weight = (my_received_weight - my_saved_row.received_weight);      [position 106:47]	
+		var my_delta_amount = (my_received_weight * my_unit_price) - (my_saved_row.received_weight * my_saved_row.unit_price);      [position 107:65]	
+		var my_delta_amount = (my_received_weight * my_unit_price) - (my_saved_row.received_weight * my_saved_row.unit_price);      [position 107:96]	
+		var my_delta_weight = - my_saved_row.received_weight;      [position 144:27]	
+		var my_delta_amount = - my_saved_row.received_weight * my_saved_row.unit_price;      [position 145:27]	
+		var my_delta_amount = - my_saved_row.received_weight * my_saved_row.unit_price;      [position 145:58]	
+		
+incoming_batches.js	
+		var my_saved_row = [];      [position 6:5]	
+		my_saved_row = the_response.row;      [position 92:3]	
+		var my_delta_weight = (my_received_weight - my_saved_row.received_weight);      [position 130:47]	
+		var my_delta_amount = (my_received_weight * my_unit_price) - (my_saved_row.received_weight * my_saved_row.unit_price);      [position 131:65]	
+		var my_delta_amount = (my_received_weight * my_unit_price) - (my_saved_row.received_weight * my_saved_row.unit_price);      [position 131:96]	
+		var my_delta_weight = - my_saved_row.received_weight;      [position 169:27]	
+		var my_delta_amount = - my_saved_row.received_weight * my_saved_row.unit_price;      [position 170:27]	
+		var my_delta_amount = - my_saved_row.received_weight * my_saved_row.unit_price;      [position 170:58]	
+		
+loadout_quotations.js	
+		var my_saved_row = [];      [position 6:5]	
+		my_saved_row = the_response.row;      [position 82:3]	
+		var my_delta_pieces = my_quoted_pieces - my_saved_row.quoted_pieces;      [position 108:44]	
+		var my_delta_weight = my_quoted_weight - my_saved_row.quoted_weight;      [position 109:44]	
+		my_saved_row = [];      [position 121:3]	
+		my_saved_row.id					= the_response.id;      [position 122:3]	
+		my_saved_row.status				= 'Draft';      [position 123:3]	
+		my_saved_row.quot_color_id		= null;      [position 124:3]	
+		my_saved_row.quotation_number	= '';      [position 125:3]	
+		my_saved_row.quoted_pieces		= 0;      [position 126:3]	
+		my_saved_row.quoted_weight		= 0;      [position 127:3]	
+		my_saved_row.reserved_pieces	= 0;      [position 128:3]	
+		my_saved_row.reserved_weight	= 0;      [position 129:3]	
+		my_saved_row.checkout_pieces	= 0;      [position 130:3]	
+		my_saved_row.checkout_weight	= 0;      [position 131:3]	
+		my_saved_row.returned_pieces	= 0;      [position 132:3]	
+		my_saved_row.returned_weight	= 0;      [position 133:3]	
+		my_saved_row.color_id			= null;      [position 135:3]	
+		my_saved_row.color_name			= null;      [position 136:3]	
+		my_saved_row.customer_name		= null;      [position 137:3]	
+		my_saved_row.product_id			= null;      [position 138:3]	
+		my_saved_row.product_name		= null;      [position 139:3]	
+		var my_html = JKY.generate_quotation(my_saved_row);      [position 141:40]	
+		var my_delta_pieces = - my_saved_row.quoted_pieces;      [position 202:27]	
+		var my_delta_weight = - my_saved_row.quoted_weight;      [position 203:27]	
+		
+osa_colors.js	*************************************************************************************
+		my_saved_row = the_response.row;      [position 65:3]	
+		var my_saved_row	= JKY.get_row('OSA_Colors', the_id);      [position 109:7]	
+		var my_delta_pieces = my_ordered_pieces - my_saved_row.ordered_pieces;      [position 110:45]	
+		var my_delta_weight = my_ordered_weight - my_saved_row.ordered_weight;      [position 111:45]	
+
+osa_orders.js	
+		var my_saved_row = [];      [position 6:5]	
+		my_saved_row = the_response.row;      [position 61:3]	
+		var my_delta_pieces = my_ordered_pieces - my_saved_row.quoted_pieces;      [position 105:45]	
+		var my_delta_weight = my_ordered_weight - my_saved_row.quoted_weight;      [position 106:45]	

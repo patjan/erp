@@ -412,6 +412,138 @@ JKY.print_colors = function(the_id, the_product) {
 
 					my_html += ''
 						+ '<tr class="jky-print-head">'
+						+ '<td>' + '<span>Color</span>' + '</td>'
+						+ '<td class="jky-print-amount">' + '<span>Quant</span>' + '</td>'
+						+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + '<span>Est Weight	</span>' + '</td>'
+						+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + '<span>Price/Kg		</span>' + '</td>'
+						;
+					if (my_has_discount) {
+						my_html += ''
+							+ '<td class="jky-print-amount">' + '<span>Discount		</span>' + '</td>'
+							+ '<td class="jky-print-amount">' + '<span>Price/Kg		</span>' + '</td>'
+							;
+					}
+					my_html += '</tr>';
+
+					for(var i in my_rows) {
+						var my_row = my_rows[i];
+
+						var my_color_units  = '';
+/*
+						if (my_line_units != 0) {
+							my_color_units  = Math.ceil(my_row.quoted_units / my_line_units) + ' pc';
+						}
+						if (my_line_units != 1) {
+							my_color_units  = '(' + parseInt(my_row.quoted_units) + ' uni) ' + my_color_units;
+						}
+*/
+						if (my_row.product_type == 'Retilinea') {
+							my_color_units = parseInt(my_row.quoted_units) + ' uni';
+						}else
+						if (my_line_units == 0) {
+							my_color_units = Math.ceil(my_row.quoted_units / my_row.peso) + ' pc';
+						}else{
+							my_color_units = Math.ceil(my_row.quoted_units / my_line_units) + ' pc';
+						}
+
+//						var my_color_weight = Math.ceil(my_row.quoted_units * my_line_peso );
+						var my_color_weight = (my_row.quoted_units * my_line_peso).toFixed(2);
+
+						var my_discount_price	= '';
+						var my_final_price		= '';
+						var my_color_price		= my_row.quoted_price;
+						var my_color_discount	= my_row.discount;
+
+						if (my_color_discount == '')		my_color_discount = my_line_discount;
+						my_color_discount = my_color_discount.trim();
+						var my_length = my_color_discount.length;
+						if (my_color_discount.substr(my_length-1, 1) == '%') {
+							my_color_discount = parseFloat(my_color_discount);
+							if (!isNaN(my_color_discount)) {
+								my_discount_price = my_color_price * my_color_discount / 100;
+							}
+						}else{
+							my_discount_price = parseFloat(my_color_discount);
+							my_color_discount = parseFloat(my_color_discount);
+							if (!isNaN(my_color_discount)) {
+								my_discount_price = my_color_discount;
+								}
+						}
+						if (isNaN(my_discount_price)) {
+							my_discount_price = '';
+						}else{
+							my_final_price = my_color_price - my_discount_price;
+							my_final_price		=   my_final_price.toFixed(2);
+							my_discount_price	= (-my_discount_price).toFixed(2);
+						}
+
+						if (!JKY.is_empty(my_color_price))	my_color_price = 'R$ ' + my_color_price;
+						my_html += ''
+							+ '<tr>'
+							+ '<td>' + my_row.color_name + '</td>'
+							+ '<td class="jky-print-amount">' + my_color_units + '</td>'
+							+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + my_color_weight + ' kg</td>'
+							+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + my_color_price  + '</td>'
+							;
+						if (my_has_discount) {
+							if (!JKY.is_empty(my_discount_price	))	my_discount_price = 'R$ ' + my_discount_price;
+							if (!JKY.is_empty(my_final_price	))	my_final_price	  = 'R$ ' + my_final_price   ;
+							my_html += ''
+								+ '<td class="jky-print-amount">' + my_discount_price	+ '</td>'
+								+ '<td class="jky-print-amount">' + my_final_price		+ '</td>'
+								;
+						}
+						my_html += '</tr>';
+					}
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		}
+	)
+	return my_html;
+}
+
+JKY.approve_colors = function(the_id, the_product) {
+	var my_line_peso	= the_product.peso;
+	var my_line_units	= the_product.units;
+	var my_line_discount= the_product.discount;
+	if (my_line_units == 0)		my_line_peso = 1;
+
+	JKY.colors = JKY.color_ids(the_id);
+	var my_html  = '';
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'QuotColors'
+		, select	:  the_id
+		, order_by  : 'QuotColors.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					var my_rows = response.rows;
+
+					var my_has_discount = false;
+					var my_col_span = '2';
+					for(var i in my_rows) {
+						var my_row = my_rows[i];
+						if (!JKY.is_empty(my_line_discount)
+						||  !JKY.is_empty(my_row.discount)) {
+							my_has_discount = true;
+							my_col_span = '1';
+							break;
+						}
+					}
+
+					my_html += ''
+						+ '<tr class="jky-print-head">'
 						+ '<td>' + '<span>Color</span> (<span>Dyer</span> + <span>Dyeing</span>)' + '</td>'
 						+ '<td class="jky-print-amount">' + '<span>Quant</span>' + '</td>'
 						+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + '<span>Est Weight	</span>' + '</td>'
@@ -480,11 +612,15 @@ JKY.print_colors = function(the_id, the_product) {
 						var my_loadquot_id = JKY.get_id('LoadQuotations', 'quot_color_id = ' + my_row.id);
 						var my_loadout_id  = JKY.get_value_by_id('LoadQuotations', 'loadout_id', my_loadquot_id);
 						var my_dyeing_type = JKY.get_value_by_id('LoadOuts', 'dyeing_type', my_loadout_id);
+						var my_br = ' (';
+						if ((my_row.color_name + my_row.dyer_name + my_dyeing_type).length > 40) {
+							my_br = '<br>(';
+						}
 
 						if (!JKY.is_empty(my_color_price))	my_color_price = 'R$ ' + my_color_price;
 						my_html += ''
 							+ '<tr>'
-							+ '<td>' + my_row.color_name + ' (' + my_row.dyer_name + ' + ' + my_dyeing_type + ')</td>'
+							+ '<td>' + my_row.color_name + my_br + my_row.dyer_name + ' + ' + my_dyeing_type + ')</td>'
 							+ '<td class="jky-print-amount">' + my_color_units + '</td>'
 							+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + my_color_weight + ' kg</td>'
 							+ '<td class="jky-print-amount" colspan=' + my_col_span + '>' + my_color_price  + '</td>'

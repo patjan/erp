@@ -248,6 +248,10 @@ JKY.display_form = function() {
 	JKY.show('jky-action-copy');
 };
 
+JKY.process_start = function(the_id) {
+	JKY.App.display_id(the_id);
+};
+
 JKY.process_validation = function() {
 	var my_error = '';
 	my_error += JKY.Validation.is_numeric	('jky-diameter'			, 'Diameter'	);

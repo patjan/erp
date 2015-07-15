@@ -33,6 +33,7 @@ JKY.generate_recipe = function(the_row) {
 	var my_composition	= the_row.composition;
 	var my_dyeing_type	= the_row.dyeing_type;
 	var my_recipe		= the_row.recipe;
+	var my_remarks		= the_row.remarks;
 	var my_trash = (my_id) ? '<a onclick="JKY.delete_recipe(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '&nbsp;';
 	var my_composition = ''
 		+ "<input class='jky-composition-name' readonly onchange='JKY.update_composition(this, " + my_id + ")' value='" + my_composition + "' />"
@@ -48,19 +49,26 @@ JKY.generate_recipe = function(the_row) {
 		+ '<td class="jky-td-action"	>' + my_trash		+ '</td>'
 //		+ '<td class="jky-td-name-w"	>' + my_composition + '</td>'
 		+ '<td class="jky-td-name-w"	>' + my_dyeing		+ '</td>'
-		+ '<td class="jky-td-recipe"	><input changeable class="jky-recipe" value="' + JKY.fix_null(my_recipe) + '" onchange="JKY.change_recipe(this, ' + my_id + ')" /></td>'
+		+ '<td class="jky-td-recipe"	><input changeable class="jky-recipe"  value="' + JKY.fix_null(my_recipe ) + '" onchange="JKY.change_recipe(this, ' + my_id + ')" /></td>'
+		+ '<td class="jky-td-name-w"	><input changeable class="jky-remarks" value="' + JKY.fix_null(my_remarks) + '" onchange="JKY.change_recipe(this, ' + my_id + ')" /></td>'
 		+ '</tr>'
 		;
 	return my_html;
 }
 
 JKY.change_recipe = function(the_this, the_id ) {
-	var my_recipe = $(the_this).val();
+	var my_tr = $(the_this).parent().parent();
+	var my_recipe = my_tr.find('.jky-recipe'	).val();
+	var my_remarks= my_tr.find('.jky-remarks'	).val();
 
+	var my_set = ''
+		+    '   recipe =\'' + my_recipe	+ '\''
+		+    ', remarks =\'' + my_remarks	+ '\''
+		;
 	var my_data =
 		{ method	: 'update'
 		, table		: 'Recipes'
-		, set		: 'recipe = \'' + my_recipe + '\''
+		, set		:  my_set
 		, where		: 'Recipes.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, JKY.change_recipe_success);
@@ -118,6 +126,7 @@ JKY.insert_recipe_success = function(response) {
 	my_row.id = response.id;
 	my_row.name		= '';
 	my_row.recipe	= '';
+	my_row.remarks	= '';
 
 	var	my_html = JKY.generate_recipe(my_row);
 	JKY.append_html('jky-recipes-body', my_html);

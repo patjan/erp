@@ -4,7 +4,7 @@
 
 JKY.display_pieces = function() {
 /*
-SELECT Pieces.checkin_location	AS location
+SELECT Pieces.checkin_location		AS location
 	 , MIN(Pieces.checkin_at)		AS checkin_at
 	 , COUNT(*)						AS total_pieces
 	 , SUM(Pieces.checkin_weight)	AS total_weight
@@ -46,7 +46,12 @@ JKY.generate_pieces = function(response) {
 			my_html  += ''
 				+ '<tr>'
 				+ '<td class="jky-td-action"	></td>'
-				+ '<td class="jky-td-short"		><input class="jky-checkin-location"	value="' +				my_row.location		+ '" disabled	/></td>'
+				+ '<td class="jky-td-location"	><input class="jky-checkin-location"	value="' +				my_row.location		+ '" disabled	/></td>'
+				+ '<td class="jky-td-key"		><input class="jky-td-key"				value="' +				my_row.order_number	+ '" disabled	/></td>'
+				+ '<td class="jky-td-machine"	><input class="jky-td-machine"			value="' +				my_row.machine_name	+ '" disabled	/></td>'
+				+ '<td class="jky-td-thread"	><input class="jky-td-thread"			value="' +				my_row.thread_name	+ '" disabled	/></td>'
+				+ '<td class="jky-td-supplier"	><input class="jky-td-supplier"			value="' +				my_row.supplier_name+ '" disabled	/></td>'
+				+ '<td class="jky-td-batch"		><input class="jky-td-batch"			value="' +				my_row.batch_code	+ '" disabled	/></td>'
 				+ '<td class="jky-td-date"		><input class="jky-checkin-date"		value="' + JKY.out_date(my_row.checkin_at)	+ '" disabled	/></td>'
 				+ '<td class="jky-td-weight"	><input class="jky-checkin-weight"		value="' +				my_row.total_weight	+ '" disabled	/></td>'
 				+ '<td class="jky-td-pieces"	><input class="jky-checkin-pieces"		value="' +				my_pieces_checkin	+ '" disabled	/></td>'

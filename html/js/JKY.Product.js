@@ -25,6 +25,8 @@ JKY.Product = function() {
 
 	function my_display_info(the_this) {
 		var my_id = $(the_this).parent().find('.jky-product-id').val();
+		if (my_id == 'null')	return;
+
 		var my_data =
 			{ method	: 'get_row'
 			, table		: 'Products'

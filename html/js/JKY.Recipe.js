@@ -41,8 +41,9 @@ JKY.Recipe = function() {
 		for(var i=0; i<my_rows.length; i++) {
 			var my_row = my_rows[i];
 			my_html += '<tr onclick="JKY.Recipe.click_row(this)">'
-					+  '<td class="jky-search-dyeing-type"	>' + my_row.dyeing_type	+ '</td>'
-					+  '<td class="jky-search-recipe"		>' + my_row.recipe		+ '</td>'
+					+  '<td class="jky-search-dyeing-type"	>' +				my_row.dyeing_type	+ '</td>'
+					+  '<td class="jky-search-recipe"		>' +				my_row.recipe		+ '</td>'
+					+  '<td class="jky-search-remarks"		>' + JKY.fix_null  (my_row.remarks)		+ '</td>'
 					+  '</tr>'
 					;
 		}

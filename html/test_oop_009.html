@@ -1,0 +1,78 @@
+<html>
+
+<head>
+	<title>Test OOP 009</title>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+</head>
+
+<body>
+<div>Test Array</div>
+
+<script>
+
+Function.prototype.extend = function(parent) {
+	var child = this;
+	child.prototype = parent;
+	child.prototype.$super = parent;
+	child.prototype = new child(Array.prototype.slice.call(1, arguments));
+	child.prototype.constructor = child;
+}
+
+var inheritsFrom = function(child, parent) {
+    child.prototype = Object.create(parent.prototype);
+};
+
+
+var ClassA = function() {
+    var my_name = "class A";
+
+	this.print = function(my_name) {
+		console.log(my_name);
+	}
+}
+
+var a = new ClassA();
+
+a.print();
+
+
+var ClassB = function() {
+    var my_name = "class B";
+    var my_surname = "I'm the child";
+
+	this.print = function() {
+		ClassA.print(this);
+	    console.log(my_surname);
+	}
+}
+
+inheritsFrom(ClassB, ClassA);
+
+
+var b = new ClassB();
+b.print();
+
+
+var ClassC = function () {
+    this.name = "class C";
+    this.surname = "I'm the grandchild";
+}
+
+inheritsFrom(ClassC, ClassB);
+
+ClassC.prototype.foo = function() {
+    // Do some funky stuff here...
+}
+
+ClassC.prototype.print = function () {
+    ClassB.prototype.print.call(this);
+    console.log("Sounds like this is working!");
+}
+
+var c = new ClassC();
+c.print();
+
+</script>
+
+</body>
+</html>

@@ -25,7 +25,10 @@ $(function() {
 			JKY.process_start_page();
 		}else{
 			var my_keys = JKY.params.split('/');
-			JKY.set_menu(my_keys);
+			var my_action	= my_keys[1].toLowerCase();
+			var my_id		= my_keys[2];
+			JKY.load_html('jky-app-body', my_action + '.html');
+			JKY.process_start(my_id);
 		}
 	}else{
 		JKY.process_action('login');

@@ -698,6 +698,7 @@ JKY.short_date = function(the_time){
  */
 JKY.set_date = function(the_id, the_date){
 	$('#' + the_id).datetimepicker('setDate', the_date);
+	$('#' + the_id).datetimepicker().on('changeDate', function() {$(this).datetimepicker('hide');});
 };
 
 /**

@@ -1,0 +1,49 @@
+TABLE = PieceLocations
+
+SELECT Pieces.checkin_location		AS location
+	 , Pieces.order_id				AS order_id
+	 , Orders.ftp_id				AS ftp_id
+	 , Orders.order_number			AS order_number
+	 , MIN(Pieces.checkin_at)		AS checkin_at
+	 , COUNT(*)						AS total_pieces
+	 , SUM(Pieces.checkin_weight)	AS total_weight
+
+  FROM Pieces
+  LEFT JOIN Orders ON Orders.id = Pieces.order_id
+
+ WHERE Pieces.status = "Check In"
+   AND Orders.product_id = 100361
+
+ GROUP BY Pieces.checkin_location, Pieces.order_id
+ ORDER BY Pieces.checkin_location, Pieces.order_id
+ 
+ 
+SELECT thread_id, supplier_id
+  FROM FTP_Threads
+ WHERE FTP_Threads.parent_id = ' $row['ftp_id']
+ ORDER BY FTP_Threads.percent DESC, FTP_Threads.thread_id
+ LIMIT 1
+	 ;
+
+SELECT Threads.name		AS thread_name
+  FROM Threads
+ WHERE Threads.id = . $my_ftp_thread['thread_id']
+	 ;
+
+SELECT Contacts.nick_name	AS supplier_name
+  FROM Contacts
+ WHERE Contacts.id = . $my_ftp_thread['supplier_id']
+	 ;
+
+SELECT OrdThreads.batchin_id
+  FROM OrdThreads
+ WHERE OrdThreads.parent_id = . $row['order_id']
+   AND OrdThreads.thread_id = . $my_ftp_thread['thread_id']
+	 ;
+
+SELECT Batches.batch	AS batch_code
+  FROM Batches
+ WHERE Batches.id = . $my_ord_thread['batchin_id']
+	 ;
+
+ 

@@ -21,6 +21,7 @@ JKY.start_program = function() {
 		, sort_list		: [[3, 0]]
 		, focus			: 'jky-input-barcode'
 		, add_new		: 'display form'
+		, class			: 'scheduled_date'
 		});
 	JKY.App.init();
 };
@@ -178,20 +179,20 @@ JKY.process_barcode_success = function(response) {
 				my_checkbox = '';
 			}
 
+			var my_weight = (my_row.real_weight == 0) ? my_row.average_weight : my_row.real_weight;
 			var my_sequence = '';
 			if (my_checkbox != '') {
 				JKY.sequence++;
 				my_sequence = JKY.sequence;
+				var my_reserved_boxes  = parseInt  (JKY.get_value('jky-reserved-boxes' )) - 1;
+				var my_checkout_boxes  = parseInt  (JKY.get_value('jky-checkout-boxes' )) + 1;
+				var my_checkout_weight = parseFloat(JKY.get_value('jky-checkout-weight')) + parseFloat(my_weight);
+				JKY.set_value('jky-reserved-boxes' , my_reserved_boxes );
+				JKY.set_value('jky-checkout-boxes' , my_checkout_boxes );
+				JKY.set_value('jky-checkout-weight', JKY.set_decimal(my_checkout_weight, 2));
 			}
 
-			var my_weight = (my_row.real_weight == 0) ? my_row.average_weight : my_row.real_weight;
-			var my_reserved_boxes  = parseInt  (JKY.get_value('jky-reserved-boxes' )) - 1;
-			var my_checkout_boxes  = parseInt  (JKY.get_value('jky-checkout-boxes' )) + 1;
-			var my_checkout_weight = parseFloat(JKY.get_value('jky-checkout-weight')) + parseFloat(my_weight);
-			JKY.set_value('jky-reserved-boxes' , my_reserved_boxes );
-			JKY.set_value('jky-checkout-boxes' , my_checkout_boxes );
-			JKY.set_value('jky-checkout-weight', JKY.set_decimal(my_checkout_weight, 2));
-			if ((my_reserved_boxes) < 0) {
+			if (parseInt(JKY.get_value('jky-reserved-boxes')) < 0) {
 				JKY.play_beep();
 				JKY.display_message('Check out boxes is greater than requested boxes');
 			}

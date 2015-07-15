@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+
+
+<body>
+
+<button onclick='funcs[0]()'>Func 0</button>
+<button onclick='funcs[1]()'>Func 1</button>
+<button onclick='funcs[2]()'>Func 2</button>
+
+<div>Messages</div>
+<div id='jky-message'></div>
+
+<script>
+
+function Car() {
+	var my_make		= '';
+	var my_model	= '';
+	var my_color	= '';
+	var my_speed	=  0;
+
+	this.set_make	= function(the_make )	{ my_make	= the_make	;}
+	this.set_model	= function(the_model)	{ my_model	= the_model	;}
+	this.set_color	= function(the_color)	{ my_color	= the_color	;}
+	this.set_speed	= function(the_speed)	{ my_speed	= the_speed > 0 ? the_speed : 0	;}
+	
+	this.get_make	= function()			{ return my_make	;}
+	this.get_model	= function()			{ return my_model	;}
+	this.get_color	= function()			{ return my_color	;}
+	this.get_speed	= function()			{ return my_speed	;}
+}
+Car.prototype.speed_up		= function()	{ this.set_speed(this.get_speed() + 10)	;}
+Car.prototype.speed_down	= function()	{ this.set_speed(this.get_speed() - 10) ;}
+
+function Sedan() {
+	var my_doors = 4;
+	this.get_doors	= function()			{ return my_doors	;}
+}
+Sedan.prototype = new Car();
+
+function Coupe() {
+	var my_doors = 2;
+	this.get_doors	= function()			{ return my_doors	;}
+}
+Coupe.prototype = new Car();
+
+var camry	= new Sedan();
+var viper	= new Coupe();
+
+camry.set_make	('Toyota');
+camry.set_model	('Camry');
+camry.set_color	('Blue');
+camry.speed_up();
+camry.speed_up();
+camry.speed_up();
+camry.speed_up();
+
+viper.set_make	('Dodge');
+viper.set_model	('Viper');
+viper.set_color	('Red');
+viper.speed_up();
+viper.speed_up();
+viper.speed_up();
+viper.speed_up();
+viper.speed_up();
+viper.speed_up();
+
+console.log(camry.get_make	());
+console.log(camry.get_model	());
+console.log(camry.get_color	());
+console.log(camry.get_speed	());
+console.log(camry.get_doors	());
+
+console.log(viper.get_make	());
+console.log(viper.get_model	());
+console.log(viper.get_color	());
+console.log(viper.get_speed	());
+console.log(viper.get_doors	());
+
+</script>

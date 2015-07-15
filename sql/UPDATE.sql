@@ -456,3 +456,27 @@ ALTER TABLE LoadOuts		ADD COLUMN recipe			VARCHAR(32)	DEFAULT NULL	AFTER color_i
 ALTER TABLE BatchOuts		ADD COLUMN scheduled_date	DATE		DEFAULT NULL	AFTER order_thread_id;
 /* -- 2015-06-19	*/
 ALTER TABLE ThreadForecast	ADD COLUMN forecast_month_0	DECIMAL(10,2)	DEFAULT 0	AFTER forecast_past;
+/* -- 2015-06-27	*/
+UPDATE LoadQuotations
+   LEFT JOIN  QuotColors AS QuotColor	ON QuotColor.id	=	LoadQuotations.quot_color_id
+   LEFT JOIN   QuotLines AS QuotLine	ON  QuotLine.id	=		 QuotColor.parent_id
+   LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=		  QuotLine.parent_id
+   LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		 Quotation.customer_id
+   SET LoadQuotations.status = 'History'
+ WHERE LoadQuotations.status = 'Draft'
+   AND Customer.nick_name = 'Tecno'
+	 ;
+UPDATE LoadQuotations
+   LEFT JOIN    LoadOuts AS LoadOut		ON   LoadOut.id	=	LoadQuotations.loadout_id
+   LEFT JOIN    Contacts AS Dyer    	ON      Dyer.id =          LoadOut.dyer_id
+   SET LoadQuotations.status = 'History'
+ WHERE LoadQuotations.status = 'Draft'
+   AND Dyer.nick_name = 'nada'
+	 ;
+/* -- 2015-06-30 server Tecno	*/
+UPDATE LoadOuts	SET quoted_pieces = 20, quoted_weight = 250 WHERE id = 1000000497;
+UPDATE LoadOuts	SET quoted_pieces = 20, quoted_weight = 250 WHERE id = 1000000498;
+UPDATE Changes	SET servers = ''	WHERE table_name = 'LoadOuts' AND table_id = 1000000497;
+UPDATE Changes	SET servers = ''	WHERE table_name = 'LoadOuts' AND table_id = 1000000498;
+/* -- 2015-07-09	*/
+ALTER TABLE Recipes			ADD COLUMN remarks			VARCHAR(255)	DEFAULT NULL	AFTER dyeing_type;

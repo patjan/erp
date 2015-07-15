@@ -1,0 +1,56 @@
+<html>
+
+<head>
+	<title>Test OOP 004</title>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+</head>
+
+<body>
+<div>Test Array</div>
+
+<script>
+"use strict";
+
+var Melee = function(){
+
+    //private property
+    var tool = 'hammer';
+
+    //private method
+    var attack = function(){
+        alert('attack!');
+    };
+
+    //public property
+    this.weapon = 'sword';
+
+    //public methods
+    this.getTool = function(){
+        return tool; //can get private property tool
+    };
+    this.setTool = function(name){
+        tool = name; //can set private property tool
+    };
+};
+
+var handitem = new Melee();
+var decoration = new Melee();
+
+//public
+handitem.weapon;                 //sword
+console.log(handitem.getTool());              //hammer
+handitem.setTool('screwdriver'); //set tool to screwdriver
+console.log(handitem.getTool());              //is now screwdriver
+
+//private. will yield undefined
+//handitem.tool;
+//handitem.attack();
+
+//decoration is totally different from handitem
+console.log(decoration.getTool());            //hammer
+console.log(handitem.getTool());              //is now screwdriver
+
+</script>
+
+</body>
+</html>

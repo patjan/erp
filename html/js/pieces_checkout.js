@@ -170,13 +170,13 @@ JKY.process_barcode_success = function(response) {
 			if (my_checkbox != '') {
 				JKY.sequence++;
 				my_sequence = JKY.sequence;
+				var my_reserved_pieces = parseInt  (JKY.get_value('jky-reserved-pieces')) - 1;
+				var my_checkout_pieces = parseInt  (JKY.get_value('jky-checkout-pieces')) + 1;
+				JKY.set_value('jky-reserved-pieces', my_reserved_pieces);
+				JKY.set_value('jky-checkout-pieces', my_checkout_pieces);
 			}
 
-			var my_reserved_pieces = parseInt  (JKY.get_value('jky-reserved-pieces')) - 1;
-			var my_checkout_pieces = parseInt  (JKY.get_value('jky-checkout-pieces')) + 1;
-			JKY.set_value('jky-reserved-pieces', my_reserved_pieces);
-			JKY.set_value('jky-checkout-pieces', my_checkout_pieces);
-			if ((my_reserved_pieces) < 0) {
+			if (parseInt(JKY.get_value('jky-reserved-pieces')) < 0) {
 				JKY.play_beep();
 				JKY.display_message('Check out pieces is greater than requested pieces');
 			}

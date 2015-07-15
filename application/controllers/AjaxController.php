@@ -656,16 +656,20 @@ private function get_index($data) {
 			;
 	}else
 	if ($table == 'PieceLocations') {
-		$sql= 'SELECT Pieces.checkin_location	AS location'
-			. '	 , MIN(Pieces.checkin_at)		AS checkin_at'
-			. '	 , COUNT(*)						AS total_pieces'
-			. '	 , SUM(Pieces.checkin_weight)	AS total_weight'
+		$sql= 'SELECT Pieces.checkin_location		AS location'
+			. '		, Pieces.order_id				AS order_id'
+			. '		, Orders.machine_id				AS machine_id'
+			. '		, Orders.ftp_id					AS ftp_id'
+			. '		, Orders.order_number			AS order_number'
+			. '		, MIN(Pieces.checkin_at)		AS checkin_at'
+			. '		, COUNT(*)						AS total_pieces'
+			. '		, SUM(Pieces.checkin_weight)	AS total_weight'
 			. '  FROM Pieces'
 			. '  LEFT JOIN Orders ON Orders.id = Pieces.order_id'
 			. ' WHERE Pieces.status = "Check In"'
 			. '   AND Orders.product_id = ' . $select
-			. ' GROUP BY Pieces.checkin_location'
-			. ' ORDER BY Pieces.checkin_location'
+			. ' GROUP BY Pieces.checkin_location, Pieces.order_id'
+			. ' ORDER BY Pieces.checkin_location, Pieces.order_id'
 			;
 	}else
 	if ($table == 'ColorUnloadeds') {
@@ -847,6 +851,61 @@ private function get_index($data) {
 				 . '   AND status != "Active"'
 				 ;
 			$rows[$n]['revised_pieces'] = $db->fetchOne($sql);
+			$n++;
+		}
+	}else
+	if ($table == 'PieceLocations') {
+		$n = 0;
+		foreach($rows as $row) {
+			$sql = 'SELECT thread_id, supplier_id'
+				 . '  FROM FTP_Threads'
+				 . ' WHERE FTP_Threads.parent_id = ' . $row['ftp_id']
+				 . ' ORDER BY FTP_Threads.percent DESC, FTP_Threads.thread_id'
+				 . ' LIMIT 1'
+				 ;
+			$my_ftp_thread = $db->fetchRow($sql);
+
+			$sql = 'SELECT Threads.name AS thread_name'
+				 . '  FROM Threads'
+				 . ' WHERE Threads.id = ' . $my_ftp_thread['thread_id']
+				 ;
+			$my_thread_name = $db->fetchOne($sql);
+
+			$sql = 'SELECT Contacts.nick_name AS supplier_name'
+				 . '  FROM Contacts'
+				 . ' WHERE Contacts.id = ' . $my_ftp_thread['supplier_id']
+				 ;
+			$my_supplier_name = $db->fetchOne($sql);
+
+			$sql = 'SELECT OrdThreads.batchin_id'
+				 . '  FROM OrdThreads'
+				 . ' WHERE OrdThreads.parent_id = ' . $row['order_id']
+				 . '   AND OrdThreads.thread_id = ' . $my_ftp_thread['thread_id']
+				 ;
+			$my_ord_thread = $db->fetchRow($sql);
+
+			$my_batch_code = '';
+			if ($my_ord_thread['batchin_id']) {
+				$sql = 'SELECT Batches.batch AS batch_code'
+					 . '  FROM Batches'
+					 . ' WHERE Batches.id = ' . $my_ord_thread['batchin_id']
+					 ;
+				$my_batch_code = $db->fetchOne($sql);
+			}
+
+			$my_machine_name = '';
+			if ($row['machine_id']) {
+				$sql = 'SELECT Machines.name AS machine_name'
+					 . '  FROM Machines'
+					 . ' WHERE Machines.id = ' . $row['machine_id']
+					 ;
+				$my_machine_name = $db->fetchOne($sql);
+			}
+
+			$rows[$n]['thread_name'		] = $my_thread_name		;
+			$rows[$n]['supplier_name'	] = $my_supplier_name	;
+			$rows[$n]['batch_code'		] = $my_batch_code		;
+			$rows[$n]['machine_name'	] = $my_machine_name	;
 			$n++;
 		}
 	}else
@@ -1836,13 +1895,6 @@ private function set_where($table, $filter) {
 					return ' AND LoadOut.loadout_number LIKE ' . $value;
 				}
 			}else
-			if ($name == 'sale_number') {
-				if ($value == '"%null%"') {
-					return ' AND SaleLine.parent_id IS NULL';
-				}else{
-					return ' AND Sale.sale_number LIKE ' . $value;
-				}
-			}else
 			if ($name == 'customer_name') {
 				if ($value == '"%null%"') {
 					return ' AND Sale.customer_id IS NULL';
@@ -2794,7 +2846,6 @@ private function set_where($table, $filter) {
 			. ' OR  LoadSets.reserved_pieces	LIKE ' . $filter
 			. ' OR  LoadSets.checkout_pieces	LIKE ' . $filter
 			. ' OR   LoadOut.loadout_number		LIKE ' . $filter
-			. ' OR      Sale.sale_number		LIKE ' . $filter
 			. ' OR  Customer.nick_name			LIKE ' . $filter
 			. ' OR      Dyer.nick_name			LIKE ' . $filter
 			. ' OR     Color.color_name			LIKE ' . $filter

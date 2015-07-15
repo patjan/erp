@@ -47,9 +47,14 @@ input[type='checkbox']	{margin:0;}
 
 .tablesorter-default	{margin:0;}
 .tablesorter-default td {background-color:inherit;}
+
 .Draft			{background:green	; color:white;}
 .Active			{background:yellow	; color:black;}
 .Closed			{background:red		; color:black;}
+
+.Future			{background:green	; color:white;}
+.Present		{background:yellow	; color:black;}
+.Past			{background:red		; color:black;}
 
 .left			{text-align:left   !important;}
 .center			{text-align:center !important;}
@@ -453,6 +458,7 @@ li .arrow span {
 .jky-search-nick-name		{width:120px; text-align:left   !important;}
 .jky-search-ordered-date	{width: 80px; text-align:center !important;}
 .jky-search-ordered-pieces	{width: 55px; text-align:right  !important;}
+.jky-search-product-id		{display:none;}
 .jky-search-product-name	{width:420px; text-align:left   !important;}
 .jky-search-product-type	{width: 50px; text-align:center !important;}
 .jky-search-product-peso	{width: 50px; text-align:right  !important;}
@@ -465,7 +471,7 @@ li .arrow span {
 .jky-search-supplier-id		{display:none;}
 .jky-search-supplier-name	{width: 70px; text-align:left   !important;}
 .jky-search-composition-name{width:450px; text-align:left   !important;}
-.jky-search-quoted-date		{width: 80px; text-align:center !important;}
+.jky-search-quoted-date		{width: 85px; text-align:center !important;}
 .jky-search-quoted-pieces	{width: 50px; text-align:right  !important;}
 .jky-search-quoted-weight	{width: 50px; text-align:right  !important;}
 .jky-search-delta-pieces	{visibility:hidden; width:0;}
@@ -596,7 +602,7 @@ li .arrow span {
 .jky-td-amount				{width: 85px; text-align:right  !important;}
 .jky-td-barcode				{width:105px; text-align:center !important;}
 .jky-td-barcode		input	{width:100px; text-align:center !important;}
-.jky-td-batch				{width:100px;}
+.jky-td-batch				{width: 80px;}
 .jky-td-boxes				{width: 85px; text-align:right  !important;}
 .jky-td-boxes		input	{width: 80px; text-align:right  !important;}
 .jky-td-checkbox			{width: 35px; text-align:center !important; padding:0 3px !important;}
@@ -626,7 +632,7 @@ li .arrow span {
 .jky-td-hours		input	{width: 60px; text-align:right	!important;}
 .jky-td-key-s				{width: 85px; text-align:center !important;}
 .jky-td-key-s		input	{width: 45px; text-align:right	!important;}
-.jky-td-key					{width:100px; text-align:center !important;}
+.jky-td-key					{width: 80px; text-align:center !important;}
 .jky-td-key			input	{width: 75px;}
 .jky-td-key-m				{width:150px; text-align:left   !important;}
 .jky-td-key-m		input	{width:125px;}
@@ -638,7 +644,10 @@ li .arrow span {
 .jky-td-key-w3		input	{width:260px; text-transform:capitalize;}
 .jky-td-label				{width:100px; text-align:right  !important; vertical-align:top !important;}
 .jky-td-location			{width: 70px; text-align:center !important; text-transform:uppercase;}
-.jky-td-location	input	{width: 65px; text-align:center !important;}
+.jky-td-location	input	{width: 65px; text-align:center !important; text-transform:uppercase;}
+.jky-td-machine				{width: 80px; text-align:center !important;}
+.jky-td-motive				{width:405px; text-align:left   !important;}
+.jky-td-motive		input	{width:400px;}
 .jky-td-name-s				{width: 85px; text-align:left	!important;}
 .jky-td-name-s		input	{width: 80px;}
 .jky-td-name-l				{width:145px; text-align:left   !important;}
@@ -649,8 +658,6 @@ li .arrow span {
 .jky-td-normal		input	{width:140px;}
 .jky-td-number				{width: 80px; text-align:center !important;}
 .jky-td-number		input	{width: 75px;}
-.jky-td-motive				{width:405px; text-align:left   !important;}
-.jky-td-motive		input	{width:400px;}
 .jky-td-phone				{width: 60px; text-align:left	!important;}
 .jky-td-percent				{width: 65px; text-align:right	!important;}
 .jky-td-percent		input	{width: 60px; text-align:right	!important;}
@@ -658,9 +665,10 @@ li .arrow span {
 .jky-td-pieces		input	{width: 60px; text-align:right	!important;}
 .jky-td-price				{width: 65px; text-align:right  !important;}
 .jky-td-price		input	{width: 60px; text-align:right  !important;}
+.jky-td-recipe				{width:100px;}
 .jky-td-ref					{width: 85px; text-align:center !important;}
 .jky-td-ref			input	{width: 80px;}
-.jky-td-remarks				{}
+.jky-td-remarks				{width:100px;}
 .jky-td-remarks		textarea{width:675px; height:70px;}
 .jky-td-radio				{width: 35px; text-align:center !important; padding:0 3px !important;}
 .jky-td-shift				{width:110px; text-align:center !important;}
@@ -670,13 +678,14 @@ li .arrow span {
 .jky-td-status				{width:100px; text-align:center !important;}
 .jky-td-state				{width: 45px; text-align:center !important;}
 .jky-td-state		input	{width: 40px; text-align:center !important;}
+.jky-td-supplier			{width:100px;}
 .jky-td-text-s				{width:145px; text-align:left   !important;}
 .jky-td-text-s		input	{width:140px;}
 .jky-td-text-l				{width:245px; text-align:left   !important;}
 .jky-td-text-l		input	{width:240px;}
 .jky-td-text-w				{width:305px; text-align:left   !important;}
 .jky-td-text-w		input	{width:300px;}
-.jky-td-thread				{width:280px; text-align:left   !important;}
+.jky-td-thread				{width:250px; text-align:left   !important;}
 .jky-td-thread		input	{width:245px; margin-top:2px;}
 .jky-td-thread		select	{width:270px; margin-top:2px;}
 .jky-td-thumb				{width: 30px; text-align:center !important; padding:0 !important;}
@@ -746,7 +755,7 @@ tbody .jky-config-line		{height:22px;}
 #jky-log-form input		{height:28px;}
 
 #jky-product-info label		{float:left; clear:both; width:100px; margin-right:10px; text-align:right;}
-#jky-product-info span		{float:left;}
+#jky-product-info span		{float:left; width:80%;}
 #jky-remarks				{width:300px;}
 
 .jky-issued			{width: 85px;}

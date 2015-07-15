@@ -1,0 +1,62 @@
+<html>
+
+<head>
+	<title>Test OOP 011</title>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+</head>
+
+<body>
+<div>Test Array</div>
+
+<script>
+
+Function.prototype.extend = function(parent) {
+	var child = this;
+	child.prototype = parent;
+	child.prototype.$super = parent;
+	child.prototype = new child(Array.prototype.slice.call(1, arguments));
+	child.prototype.constructor = child;
+}
+
+/*
+function inherit(proto) {
+	function F() {};
+	F.prototype = proto;
+	return new F;
+}
+var Rabbit = inherit(Animal.prototype);
+*/
+
+var Animal = function(name) {
+	if (name)		this.name = name;
+
+	this.speak = function(food) {
+		return 'I would like to eat ' + food + '!';
+	}
+	this.sayHello = function() {
+		return 'Hi, I\'m ' + this.name + '.';
+	}
+};
+
+var Rabbit = function(name) {
+	if (name)		this.name = name;
+
+	this.speak = function() {
+		return this.$super.sayHello() + ' ' + this.$super.speak.apply(this, arguments);
+	};
+}
+
+Rabbit.extend(Animal);
+var rabbit1 = new Rabbit('Joe');
+var rabbit2 = new Rabbit('Roger');
+rabbit2.speak = function(food) {
+	return this.sayHello() + ' ' + this.$super.speak.call(this, food);
+}
+
+console.log(rabbit1.speak());  //displays "Rabbits don't speak!"
+console.log(rabbit2.speak('a carrot'));  //also displays "Rabbits don't speak!"
+
+</script>
+
+</body>
+</html>

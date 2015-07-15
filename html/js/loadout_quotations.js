@@ -51,7 +51,7 @@ JKY.generate_quotation = function(the_row) {
 	var my_product = ''
 		+ "<input class='jky-product-id' type='hidden' value=" + the_row.product_id + " />"
 		+ "<input class='jky-product-name' disabled onchange='JKY.update_line(this, " + my_id + ")' value='" + the_row.product_name + "' />"
-		+ " <a href='#' onClick='JKY.Product.display_info	(this)'><i class='icon-info-sign'	></i></a>"
+		+ " <a href='#' onClick='JKY.Product.display_info(this)'><i class='icon-info-sign'	></i></a>"
 		;
 	var my_onchange = ' changeable onchange="JKY.update_quotation(this, ' + my_id + ')"';
 	var my_disabled = ' disabled';

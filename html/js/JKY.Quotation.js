@@ -70,6 +70,7 @@ JKY.Quotation = function() {
 			if (my_color_weight != 'red') {
 				my_html += '<tr onclick="JKY.Quotation.click_row(this, ' + my_row.id + ')">'
 						+  '<td class="jky-search-quotation-number"	>' + my_row.quotation_number+ '</td>'
+						+  '<td class="jky-search-product-id"		>' + my_row.product_id		+ '</td>'
 						+  '<td class="jky-search-product-name"		>' + my_row.product_name	+ '</td>'
 						+  '<td class="jky-search-customer-name"	>' + my_row.customer_name	+ '</td>'
 						+  '<td class="jky-search-composition"		>' + my_row.composition		+ '</td>'
@@ -86,8 +87,8 @@ JKY.Quotation = function() {
 
 	function my_click_row(the_index, the_id) {
 		var my_quotation_number	= $(the_index).find('.jky-search-quotation-number'	).html();
+		var my_product_id		= $(the_index).find('.jky-search-product-id'		).html();
 		var my_product_name		= $(the_index).find('.jky-search-product-name'		).html();
-		var my_customer_id		= $(the_index).find('.jky-search-customer-id'		).html();
 		var my_customer_name	= $(the_index).find('.jky-search-customer-name'		).html();
 		var my_delta_pieces		= $(the_index).find('.jky-search-delta-pieces'		).html();
 		var my_delta_weight		= $(the_index).find('.jky-search-delta-weight'		).html();
@@ -110,6 +111,12 @@ JKY.Quotation = function() {
 			my_dom_customer = $(my_parent).find('.jky-customer-name');
 		}
 		my_dom_customer.val(my_customer_name);
+
+		var my_dom_product_id = $(my_parent).find('#jky-product-id');
+		if (my_dom_product_id.length == 0) {
+			my_dom_product_id = $(my_parent).find('.jky-product-id');
+		}
+		my_dom_product_id.val(my_product_id);
 
 		var my_dom_product = $(my_parent).find('#jky-product-name');
 		if (my_dom_product.length == 0) {

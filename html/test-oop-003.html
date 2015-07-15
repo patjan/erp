@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test OOP 003</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+
+<body>
+<div>Messages</div>
+<div id='jky-message'></div>
+
+<script>
+
+function display(the_message) {
+	$('#jky-message').append('<br>' + the_message);
+}
+
+
+$(function() {
+debugger;
+	var felix = new Cat('Felix');
+	var kitten = felix.have_baby();		// mew!
+	display(kitten);					// [Cat "Baby Felix"]
+
+});
+
+</script>
+
+	<script src="test_LivingThing.js"></script>
+	<script src="test_Mammal.js"></script>
+	<script src="test_Cat.js"></script>
+</body>
+</html>

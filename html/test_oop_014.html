@@ -1,0 +1,45 @@
+<html>
+
+<head>
+	<title>Test OOP 014</title>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+</head>
+
+<body>
+<div>Test Array</div>
+
+<script>
+
+function Animal(name) {
+	this.name = name;
+	this.run = function() {
+		console.log('running ' + this.name);
+	}
+}
+
+var animal = new Animal('Foxie');
+animal.run();
+
+
+function Rabbit(name) {
+	Animal.apply(this, arguments);		// inherit
+	var parent_run = this.run;			// keep parent method
+
+	this.run = function() {
+		console.log('bouncing ' + this.name);
+		parent_run.apply(this);			// call parent method
+	}
+
+	this.bounce = function() {
+		console.log('bouncing ' + this.name);
+	}
+}
+
+rabbit = new Rabbit('Rab');
+rabbit.bounce();	// own method
+rabbit.run();		// inherited method
+
+</script>
+
+</body>
+</html>

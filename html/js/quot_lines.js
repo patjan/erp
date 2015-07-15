@@ -352,7 +352,7 @@ JKY.approve_lines = function(the_id) {
 						}
 
 						my_html += '<tr><td></td></tr>';
-						my_html += JKY.print_colors(my_row.id, my_row);
+						my_html += JKY.approve_colors(my_row.id, my_row);
 						my_html += '<tr><td></td></tr>';
 					}
 				}else{

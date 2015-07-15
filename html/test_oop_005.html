@@ -1,0 +1,63 @@
+<html>
+
+<head>
+	<title>Test OOP 005</title>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+</head>
+
+<body>
+<div>Test Array</div>
+
+<script>
+"use strict";
+
+var User = function(the_name, the_email) {
+	var my_name			= the_name;
+	var my_email		= the_email;
+	var my_quizScores	= [];
+	var my_currentScore	= 0;
+
+//	----------------------------------------------------------------------------
+
+	this.save_score = function(the_score) {
+		my_quizScores.push(the_score);
+	};
+
+	this.show_name_and_scores = function() {
+		var my_scores = my_quizScores.length > 0 ? my_quizScores.join(",") : "No Scores Yet";
+		return my_name + " Scores: " + my_scores;
+	};
+
+	this.set_email = function(the_email) {
+		my_email = the_email;
+	};
+
+	this.get_email = function() {
+		return my_email;
+	};
+};
+
+$(document).ready(function() {
+	var user1 = new User('John', 'john@email.com');
+	var user2 = new User('Peter', 'peter@email.com');
+
+	user1.save_score(10);
+	user2.save_score(30);
+	user1.save_score(20);
+
+	console.log('user1.show_name_and_scores(): ' + user1.show_name_and_scores());
+	console.log('user2.show_name_and_scores(): ' + user2.show_name_and_scores());
+	console.log('user1.show_name_and_scores(): ' + user1.show_name_and_scores());
+
+	console.log('user1.get_email(): ' + user1.get_email());
+	console.log('user2.get_email(): ' + user2.get_email());
+	user2.set_email('new_peter@email.com');
+	user1.set_email('new_john@email.com');
+	console.log('user1.get_email(): ' + user1.get_email());
+	console.log('user2.get_email(): ' + user2.get_email());
+});
+
+</script>
+
+</body>
+</html>

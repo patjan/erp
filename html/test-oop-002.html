@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src=""></script>
+</head>
+
+
+<body>
+
+<button onclick='funcs[0]()'>Func 0</button>
+<button onclick='funcs[1]()'>Func 1</button>
+<button onclick='funcs[2]()'>Func 2</button>
+
+<div>Messages</div>
+<div id='jky-message'></div>
+
+<script>
+
+function display(the_message) {
+	$('#jky-message').append('<br>' + the_message);
+}
+
+function Car() {
+	display('Car');
+	//	private
+	var my_make		= '';
+	var my_model	= '';
+	var my_color	= '';
+	var my_doors	=  0;
+	var my_speed	=  0;
+	
+	var my_private_function = function(arg) {
+		
+	}
+
+	//	privileged
+	this.set_make	= function(the_make )	{ my_make	= the_make	;}
+	this.set_model	= function(the_model)	{ my_model	= the_model	;}
+	this.set_color	= function(the_color)	{ my_color	= the_color	;}
+	this.set_doors	= function(the_doors)	{ display('set_doors: ' + the_doors); my_doors	= the_doors	;}
+	this.set_speed	= function(the_speed)	{ display('set_speed: ' + the_speed); my_speed	= the_speed > 0 ? the_speed : 0	;}
+	
+	this.get_make	= function()			{ return my_make	;}
+	this.get_model	= function()			{ return my_model	;}
+	this.get_color	= function()			{ return my_color	;}
+	this.get_doors	= function()			{ return my_doors	;}
+	this.get_speed	= function()			{ return my_speed	;}
+}
+//	public
+Car.prototype.speed_up		= function(the_value)	{ display(  'speed_up: ' + the_value); this.set_speed(this.get_speed() + the_value);}
+Car.prototype.speed_down	= function(the_value)	{ display('speed_down: ' + the_value); this.set_speed(this.get_speed() - the_value);}
+//	static
+Car.class_name = 'Car'; 
+
+
+function Sedan() {
+	display('Sedan');
+}
+Sedan.prototype = new Car();
+Sedan.prototype.set_doors(4);
+Sedan.class_name = 'Sedan'; 
+
+
+function Coupe() {
+	display('Coupe');
+}
+Coupe.prototype = new Car();
+Coupe.prototype.set_doors(2);
+Coupe.class_name = 'Coupe'; 
+
+
+var camry = new Sedan();
+display('camry');
+
+var viper = new Coupe();
+display('viper');
+
+camry.set_make	('Toyota'	);
+camry.set_model	('Camry'	);
+camry.set_color	('Blue'		);
+camry.speed_up	(40);
+
+viper.set_make	('Dodge'	);
+viper.set_model	('Viper'	);
+viper.set_color	('Red'		);
+viper.speed_up	(60);
+
+display('');
+display('class: ' + Coupe.class_name  );
+display( 'make: ' + camry.get_make	());
+display('model: ' + camry.get_model	());
+display('color: ' + camry.get_color	());
+display('doors: ' + camry.get_doors	());
+display('speed: ' + camry.get_speed	());
+
+display('');
+display('class: ' + Sedan.class_name  );
+display( 'make: ' + viper.get_make	());
+display('model: ' + viper.get_model	());
+display('color: ' + viper.get_color	());
+display('doors: ' + viper.get_doors	());
+display('speed: ' + viper.get_speed	());
+
+</script>
