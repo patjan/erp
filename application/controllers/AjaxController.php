@@ -660,6 +660,7 @@ private function get_index($data) {
 			. '		, Pieces.order_id				AS order_id'
 			. '		, Orders.machine_id				AS machine_id'
 			. '		, Orders.ftp_id					AS ftp_id'
+			. '		, Orders.osa_line_id			AS osa_line_id'
 			. '		, Orders.order_number			AS order_number'
 			. '		, MIN(Pieces.checkin_at)		AS checkin_at'
 			. '		, COUNT(*)						AS total_pieces'
@@ -902,10 +903,22 @@ private function get_index($data) {
 				$my_machine_name = $db->fetchOne($sql);
 			}
 
+			$my_quotation_number = '';
+			if ($row['osa_line_id']) {
+				$sql = 'SELECT Quotations.quotation_number'
+					 . '  FROM OSA_Lines, OSAs, Quotations'
+					 . ' WHERE OSA_Lines.id = ' . $row['osa_line_id']
+					 . '   AND OSAs.id = OSA_Lines.parent_id'
+					 . '   AND Quotations.id = OSAs.quotation_id'
+					 ;
+				$my_quotation_number = $db->fetchOne($sql);
+			}
+
 			$rows[$n]['thread_name'		] = $my_thread_name		;
 			$rows[$n]['supplier_name'	] = $my_supplier_name	;
 			$rows[$n]['batch_code'		] = $my_batch_code		;
 			$rows[$n]['machine_name'	] = $my_machine_name	;
+			$rows[$n]['quotation_number'] = $my_quotation_number;
 			$n++;
 		}
 	}else

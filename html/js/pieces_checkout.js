@@ -191,6 +191,7 @@ JKY.process_barcode_success = function(response) {
 					+ '<td class="jky-td-weight"	>'							+  my_row.checkin_weight	+ '</td>'
 					+ '<td class="jky-td-location ' + my_location_class + '">'	+  my_row.checkin_location	+ '</td>'
 					+ '<td class="jky-td-name-l '	+ my_product_class + '"	>'	+  my_row.product_name		+ '</td>'
+					+ '<td class="jky-td-name-l"	>'							+  my_row.remarks			+ '</td>'
 					+ '</tr>'
 					;
 			JKY.prepend_html('jky-pieces-table-body', my_html);

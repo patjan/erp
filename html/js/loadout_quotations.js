@@ -104,11 +104,10 @@ JKY.update_quotation = function(the_this, the_id) {
 		, set		:  my_set
 		, where		: 'LoadQuotations.id = ' + the_id
 		};
-	JKY.ajax(true, my_data, function(the_response) {
-		var my_delta_pieces = my_quoted_pieces - my_saved_row.quoted_pieces;
-		var my_delta_weight = my_quoted_weight - my_saved_row.quoted_weight;
-		JKY.update_parent(my_delta_pieces, my_delta_weight);
-	})
+	JKY.ajax(true, my_data, function(the_response) {})
+	var my_delta_pieces = my_quoted_pieces - my_saved_row.quoted_pieces;
+	var my_delta_weight = my_quoted_weight - my_saved_row.quoted_weight;
+	JKY.update_parent(my_delta_pieces, my_delta_weight);
 }
 
 JKY.insert_quotation = function() {
@@ -198,11 +197,10 @@ JKY.delete_quotation = function(the_this, the_id) {
 		, table		: 'LoadQuotations'
 		, where		: 'LoadQuotations.id = ' + the_id
 		};
-	JKY.ajax(true, my_data, function(the_response) {
-		var my_delta_pieces = - my_saved_row.quoted_pieces;
-		var my_delta_weight = - my_saved_row.quoted_weight;
-		JKY.update_parent(my_delta_pieces, my_delta_weight);
-	})
+	JKY.ajax(true, my_data, function(the_response) {})
+	var my_delta_pieces = - my_saved_row.quoted_pieces;
+	var my_delta_weight = - my_saved_row.quoted_weight;
+	JKY.update_parent(my_delta_pieces, my_delta_weight);
 }
 
 

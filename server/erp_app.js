@@ -1,17 +1,22 @@
-var express = require('express');
-var app = express();
+/*
+ *	erp application
+ */
 
+var express		= require('express');
+var redis		= require('redis');
 //	var bootstrap = require('bootstrap');
-var bodyParser = require('body-parser');
-var urlencode = bodyParser.urlencoded({ extended: false });
 
-var inspect = require('util').inspect;
+var bodyParser	= require('body-parser');
+var inspect		= require('util').inspect;
+
+var app_controls = require('./../server/controls.js');
+var app_tickets  = require('./../server/tickets.js'	);
+
+var app = express();
 app.set('view engine', 'jade');
 app.use(express.static('public'));
 
 //	Redis Connection
-var redis = require('redis');
-
 if (process.env.REDISTOGO_URL) {
     var rtg   = require('url').parse(process.env.REDISTOGO_URL);
     var redis = redis.createClient(rtg.port, rtg.hostname);
@@ -21,6 +26,8 @@ if (process.env.REDISTOGO_URL) {
     client.select((process.env.NODE_ENV || 'development').length);
 }
 //	End Connection
+
+var urlencode = bodyParser.urlencoded({ extended: false });
 
 app.get		('/controlX'			, function(request, response)   { app_controls.filter	(request, response) });
 
@@ -37,9 +44,5 @@ app.get		('/ticket'				, function(request, response)   { app_tickets.get_row	(re
 app.put		('/ticket'	, urlencode , function(request, response)   { app_tickets.insert	(request, response) });
 app.post	('/ticket'	, urlencode , function(request, response)   { app_tickets.update	(request, response) });
 app.delete	('/ticket'				, function(request, response)   { app_tickets.delete	(request, response) });
-
-//var app_table = require('./../public/js/app_table.js');
-var app_controls = require('./../server/node_controls.js');
-var app_tickets  = require('./../server/node_tickets.js');
 
 module.exports = app;
