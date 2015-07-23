@@ -843,6 +843,20 @@ private function get_index($data) {
 			$n++;
 		}
 	}else
+	if ($table == 'LoadSets') {
+		$n = 0;
+		foreach($rows as $row) {
+			$sql = 'SELECT produced_by'
+				 . '  FROM Pieces'
+				 . ' WHERE load_quot_id =  ' . $row['load_quot_id']
+				 . '   AND product_name = "' . $row['product_name'] . '"'
+//				 . '   AND status = "Check In"'
+				 . ' LIMIT 1'
+				 ;
+			$rows[$n]['produced_by'] = $db->fetchOne($sql);
+			$n++;
+		}
+	}else
 	if ($table == 'Orders') {
 		$n = 0;
 		foreach($rows as $row) {

@@ -61,6 +61,7 @@ JKY.set_initial_values = function() {
  *	set table row
  */
 JKY.set_table_row = function(the_row) {
+	var my_produced_by = (the_row.produced_by ? the_row.produced_by : '');
 	var my_html = ''
 		+  '<td class="jky-td-number"	>' +				 the_row.loadout_number			+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.requested_at		)	+ '</td>'
@@ -69,7 +70,8 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.color_name			)	+ '</td>'
 		+  '<td class="jky-td-number"	>' +				 the_row.quotation_number		+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 the_row.customer_name			+ '</td>'
-		+  '<td class="jky-td-name-s"	>' +				 the_row.product_name			+ '</td>'
+		+  '<td class="jky-td-name-l"	>' +				 the_row.product_name			+ '</td>'
+		+  '<td class="jky-td-name-s"	>' +					  my_produced_by			+ '</td>'
 		+  '<td class="jky-td-location"	>' +				 the_row.checkin_location		+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.checkin_pieces			+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.reserved_pieces		+ '</td>'
