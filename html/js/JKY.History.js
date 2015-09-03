@@ -10,7 +10,7 @@ JKY.History = function() {
 			, table			: 'History'
 			, specific		:  'parent_id'
 			, specific_id	:  JKY.row.id
-			, select		:  JKY.App.get('table_name')
+			, select		:  JKY.App.get_prop('table_name')
 			, display		: '100'
 			, order_by		: 'History.updated_at DESC'
 			};

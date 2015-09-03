@@ -38,7 +38,7 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_html('jky-app-select', JKY.set_controls('Root', JKY.App.get('select')));
+	JKY.set_html('jky-app-select', JKY.set_controls('Root', JKY.App.get_prop('select')));
 	JKY.set_html('jky-status', JKY.set_controls('Status Codes', 'Active'));
 	JKY.set_html('jky-app-select-label', JKY.t('Group Set'));
 	JKY.show('jky-app-select-line');
@@ -61,13 +61,13 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_option	('jky-status'			, the_row.status		);
-	JKY.set_value	('jky-sequence'			, the_row.sequence		);
-	JKY.set_value	('jky-name'				, the_row.name			);
-	JKY.set_value	('jky-value'			, the_row.value			);
-	JKY.set_value	('jky-remarks'			, JKY.row.remarks		);
+	JKY.set_option	('jky-status'	,			 the_row.status		);
+	JKY.set_value	('jky-sequence'	,			 the_row.sequence	);
+	JKY.set_value	('jky-name'		,			 the_row.name		);
+	JKY.set_value	('jky-value'	,			 the_row.value		);
+	JKY.set_value	('jky-remarks'	, JKY.decode(the_row.remarks	));
 
-	var my_select = JKY.App.get('select');
+	var my_select = JKY.App.get_prop('select');
 	if (my_select == 'Root' && the_row.name == 'Root') {
 		JKY.hide('jky-action-save'		);
 		JKY.hide('jky-action-copy'		);
@@ -97,11 +97,11 @@ JKY.set_add_new_row = function() {
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-		+       'group_set=\'' + JKY.App.get	('select'				) + '\''
-		+        ', status=\'' + JKY.get_value	('jky-status'			) + '\''
-		+      ', sequence=  ' + JKY.get_value	('jky-sequence'			)
-		+          ', name=\'' + JKY.get_value	('jky-name'				) + '\''
-		+         ', value=\'' + JKY.get_value	('jky-value'			) + '\''
+		+       'group_set=\'' + JKY.App.get_prop	('select'				) + '\''
+		+        ', status=\'' + JKY.get_value		('jky-status'			) + '\''
+		+      ', sequence=  ' + JKY.get_value		('jky-sequence'			)
+		+          ', name=\'' + JKY.get_value		('jky-name'				) + '\''
+		+         ', value=\'' + JKY.get_value		('jky-value'			) + '\''
 		;
 	return my_set;
 };
@@ -123,7 +123,7 @@ JKY.process_delete = function(the_id, the_row) {
 	if (JKY.row.group_set == 'Root') {
 		var my_data =
 			{ method: 'delete_many'
-			, table :  JKY.App.get('table_name')
+			, table :  JKY.App.get_prop('table_name')
 			, where : 'group_set = "' + JKY.row.name + '"'
 			};
 		JKY.ajax(true, my_data);
@@ -131,7 +131,7 @@ JKY.process_delete = function(the_id, the_row) {
 };
 
 JKY.refresh_select = function() {
-	var my_select = JKY.App.get('select');
+	var my_select = JKY.App.get_prop('select');
 	if (my_select == 'Root') {
 		JKY.set_html('jky-app-select', JKY.set_controls('Root', my_select));
 	}

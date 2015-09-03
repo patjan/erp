@@ -32,7 +32,7 @@ JKY.generate_loads = function(response) {
 				+ '</tr>'
 				+ '<tr>'
 				+ '<td colspan=3 class="jky-td-label"><span>' + JKY.t('Remarks') + '</span>:</td>'
-				+ '<td colspan=4 class="jky-td-remarks"><textarea  class="jky-load-remarks"	onchange="JKY.update_load(this, ' + my_id + ')">' + my_row.remarks + '</textarea></td>'
+				+ '<td colspan=4 class="jky-td-remarks"><textarea  class="jky-load-remarks"	onchange="JKY.update_load(this, ' + my_id + ')">' + JKY.decode(my_row.remarks) + '</textarea></td>'
 				+ '</tr>'
 				;
 		}
@@ -134,14 +134,14 @@ JKY.copy_loads = function(the_source, the_to) {
 					var my_rows = response.rows;
 					for(var i in my_rows) {
 						var my_row	= my_rows[i];
-						var my_set	=   '  parent_id =  ' + the_to
-									+ ',  input_from =  ' + my_row.input_from
-									+ ',  input_upto =  ' + my_row.input_upto
-									+ ', thread_id_1 =  ' + my_row.thread_id_1
-									+ ', thread_id_2 =  ' + my_row.thread_id_2
-									+ ', thread_id_3 =  ' + my_row.thread_id_3
-									+ ', thread_id_4 =  ' + my_row.thread_id_4
-									+ ', remarks     =\'' + my_row.remarks + '\''
+						var my_set	=   '  parent_id =  ' +	the_to
+									+ ',  input_from =  ' +	my_row.input_from
+									+ ',  input_upto =  ' +	my_row.input_upto
+									+ ', thread_id_1 =  ' +	my_row.thread_id_1
+									+ ', thread_id_2 =  ' +	my_row.thread_id_2
+									+ ', thread_id_3 =  ' +	my_row.thread_id_3
+									+ ', thread_id_4 =  ' +	my_row.thread_id_4
+									+ ', remarks     =\'' +	my_row.remarks + '\''
 									;
 						var	my_data =
 							{ method	: 'insert'
@@ -258,7 +258,7 @@ JKY.print_ftp_loads = function(the_id) {
 						var my_thread_id_2	= my_row.thread_id_2;
 						var my_thread_id_3	= my_row.thread_id_3;
 						var my_thread_id_4	= my_row.thread_id_4;
-						var my_remarks		= my_row.remarks;
+						var my_remarks		= JKY.decode(my_row.remarks);
 
 						my_html  += ''
 							+ '<tr>'

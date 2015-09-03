@@ -2,17 +2,21 @@
 	<thead>
 		<tr>
 			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-name-l'	><span>     Thread				</span></th>
+			<th class='jky-td-name-s'	><span>   Supplier				</span></th>
 			<th class='jky-td-code'		><span>      Batch<br>Code		</span></th>
 			<th class='jky-td-boxes'	><span>   Received<br>Boxes		</span></th>
-			<th class='jky-td-integer'	><span>     Labels<br>Printed	</span></th>
-			<th class='jky-td-boxes'	><span>   Check In<br>Boxes		</span></th>
-			<th class='jky-td-integer'	><span>     Number<br>Cones		</span></th>
+			<th class='jky-td-number'	><span>     NFe TM				</span></th>
+			<th class='jky-td-number'	><span>   Purchase				</span></th>
+<!--		<th class='jky-td-integer'	><span>     Labels<br>Printed	</span></th>	-->
+<!--		<th class='jky-td-boxes'	><span>   Check In<br>Boxes		</span></th>	-->
+<!--		<th class='jky-td-integer'	><span>     Number<br>Cones		</span></th>	-->
 			<th class='jky-td-price'	><span>       Unit<br>Price		</span></th>
 			<th class='jky-td-weight'	><span>    Average<br>Weight	</span></th>
-			<th class='jky-td-weight'	><span>   Received<br>Weight	</span></th>
+<!--		<th class='jky-td-weight'	><span>   Received<br>Weight	</span></th>	-->
 			<th class='jky-td-weight'	><span>   Check In<br>Weight	</span></th>
-			<th class='jky-td-weight'	><span>   Returned<br>Weight	</span></th>
-			<th class='jky-td-weight'	><span>  Check Out<br>Weight	</span></th>
+<!--		<th class='jky-td-weight'	><span>   Returned<br>Weight	</span></th>	-->
+<!--		<th class='jky-td-weight'	><span>  Check Out<br>Weight	</span></th>	-->
 		</tr>
 	</thead>
 
@@ -22,8 +26,11 @@
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'>
+			<button id='jky-action-change'		class='btn' type='button' title="Click here to change the status"		><span>Change Status	</span></button>
 		</div>
 		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button disabled class='btn jky-status' type='button'><span id='jky-current-status'></span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -56,6 +63,11 @@
 			<div class='jky-form-line'><div class='jky-form-label'><span> Returned Weight</span>:</div><input  id='jky-returned-weight'	class='jky-form-weight' /></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Weight</span>:</div><input  id='jky-checkout-weight'	class='jky-form-weight' /></div>
 		</div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Remarks</span>:</div>
+			<input  id='jky-remarks' class='jky-form-name' />
+		</div>
+
 		<div class='jky-clear'></div>
 		<br>
 

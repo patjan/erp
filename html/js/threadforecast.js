@@ -43,7 +43,7 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 //	JKY.set_html('jky-compositions'		, JKY.set_configs('Thread Compositions', '', ''));
 //	JKY.set_html('jky-thread-groups'	, JKY.set_configs('Thread Groups', '', ''));
-	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups', JKY.App.get_prop('select'), 'All'));
 	JKY.set_html('jky-app-select-label', JKY.t('Group'));
 	JKY.show('jky-app-select-line');
 //	select the first option as default

@@ -16,8 +16,11 @@
 <div id='jky-app-form'>
 	<div id='jky-form-control'>
 		<div id='jky-form-actions'>
+			<button id='jky-action-change'		class='btn' type='button' title="Click here to change the status"		><span>Change Status	</span></button>
 		</div>
 		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button disabled class='btn jky-status' type='button'><span id='jky-current-status'></span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -85,6 +88,7 @@
 							<th class='jky-td-weight'	><span>Check In		</span></th>
 							<th class='jky-td-location'	><span>Location		</span></th>
 							<th class='jky-td-name-s'	><span>Supplier		</span></th>
+							<th class='jky-td-remarks'	><span>Remarks		</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-balance-body'></tbody>

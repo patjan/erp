@@ -138,13 +138,13 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_delete_button();
 //		JKY.disable_button('jky-threads-add-new');
 	}
-	if (the_row.status === 'Active') {
+	if (the_row.status === 'Draft' || the_row.status === 'Active') {
 		JKY.enable_button ('jky-action-close');
 	}else{
 		JKY.disable_button('jky-action-close');
 	}
 
-	JKY.set_html	('jky-status'			, JKY.t			(the_row.status				));
+	JKY.hide_parent ('jky-status');
 	JKY.set_value	('jky-order-number'		,				 the_row.order_number		);
 	JKY.set_value	('jky-customer-id'		,				 the_row.customer_id		);
 	JKY.set_value	('jky-customer-name'	,				 the_row.customer_name		);
@@ -201,7 +201,8 @@ JKY.set_add_new_row = function() {
 	JKY.disable_button('jky-action-delete'	);
 	JKY.disable_button('jky-action-close'	);
 
-	JKY.set_value	('jky-order-number'		,  JKY.t('New'));
+	JKY.hide_parent ('jky-status');
+	JKY.set_value	('jky-order-number'		, JKY.t('New'));
 	JKY.set_value	('jky-customer-id'		, '');
 	JKY.set_value	('jky-customer-name'	, '');
 	JKY.set_value	('jky-product-id'		, '');
@@ -214,24 +215,66 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-partner-name'		, '');
 	JKY.set_value	('jky-color-id'			, '');
 	JKY.set_value	('jky-color-name'		, '');
-	JKY.set_date	('jky-ordered-date'		,  JKY.out_time(JKY.get_now()));
-	JKY.set_date	('jky-needed-date'		,  JKY.out_time(JKY.get_now()));
+	JKY.set_date	('jky-ordered-date'		, JKY.out_time(JKY.get_now()));
+	JKY.set_date	('jky-needed-date'		, JKY.out_time(JKY.get_now()));
 	JKY.set_date	('jky-produced-date'	, '');
-	JKY.set_value	('jky-ordered-pieces'	,  0);
-	JKY.set_value	('jky-checkout-pieces'	,  0);
-	JKY.set_value	('jky-produced-pieces'	,  0);
-	JKY.set_value	('jky-rejected-pieces'	,  0);
-	JKY.set_value	('jky-ordered-weight'	,  0);
-	JKY.set_value	('jky-checkout-weight'	,  0);
-	JKY.set_value	('jky-returned-weight'	,  0);
-	JKY.set_value	('jky-produced-weight'	,  0);
-	JKY.set_value	('jky-quoted-units'		,  0);
-	JKY.set_value	('jky-labels-printed'	,  0);
-	JKY.set_value	('jky-ftps-printed'		,  0);
-	JKY.set_value	('jky-ops-printed'		,  0);
+	JKY.set_value	('jky-ordered-pieces'	, 0 );
+	JKY.set_value	('jky-checkout-pieces'	, 0 );
+	JKY.set_value	('jky-produced-pieces'	, 0 );
+	JKY.set_value	('jky-rejected-pieces'	, 0 );
+	JKY.set_value	('jky-ordered-weight'	, 0 );
+	JKY.set_value	('jky-checkout-weight'	, 0 );
+	JKY.set_value	('jky-returned-weight'	, 0 );
+	JKY.set_value	('jky-produced-weight'	, 0 );
+	JKY.set_value	('jky-quoted-units'		, 0 );
+	JKY.set_value	('jky-labels-printed'	, 0 );
+	JKY.set_value	('jky-ftps-printed'		, 0 );
+	JKY.set_value	('jky-ops-printed'		, 0 );
 	JKY.set_value	('jky-location'			, '');
 
 	$('#jky-color-name').next().show();
+};
+
+/**
+ *	set replace
+ */
+JKY.set_replace = function() {
+	JKY.disable_button('jky-action-delete'	);
+	JKY.disable_button('jky-action-close'	);
+
+	JKY.show_parent ('jky-status');
+	JKY.set_html	('jky-status', JKY.set_options('', '', 'Draft', 'Active', 'Closed'));
+	JKY.set_value	('jky-order-number'		, '');
+	JKY.set_value	('jky-customer-id'		, '');
+	JKY.set_value	('jky-customer-name'	, '');
+	JKY.set_value	('jky-product-id'		, '');
+	JKY.set_value	('jky-product-name'		, '');
+	JKY.set_value	('jky-ftp-id'			, '');
+	JKY.set_value	('jky-ftp-number'		, '');
+	JKY.set_value	('jky-machine-id'		, '');
+	JKY.set_value	('jky-machine-name'		, '');
+	JKY.set_value	('jky-partner-id'		, '');
+	JKY.set_value	('jky-partner-name'		, '');
+	JKY.set_value	('jky-color-id'			, '');
+	JKY.set_value	('jky-color-name'		, '');
+	JKY.set_date	('jky-ordered-date'		, '');
+	JKY.set_date	('jky-needed-date'		, '');
+	JKY.set_date	('jky-produced-date'	, '');
+	JKY.set_value	('jky-ordered-pieces'	, '');
+	JKY.set_value	('jky-checkout-pieces'	, '');
+	JKY.set_value	('jky-produced-pieces'	, '');
+	JKY.set_value	('jky-rejected-pieces'	, '');
+	JKY.set_value	('jky-ordered-weight'	, '');
+	JKY.set_value	('jky-checkout-weight'	, '');
+	JKY.set_value	('jky-returned-weight'	, '');
+	JKY.set_value	('jky-produced-weight'	, '');
+	JKY.set_value	('jky-quoted-units'		, '');
+	JKY.set_value	('jky-labels-printed'	, '');
+	JKY.set_value	('jky-ftps-printed'		, '');
+	JKY.set_value	('jky-ops-printed'		, '');
+	JKY.set_value	('jky-location'			, '');
+
+	JKY.hide('jky-form-tabs');
 };
 
 /**
@@ -278,8 +321,30 @@ JKY.get_form_set = function() {
 	return my_set;
 };
 
+/**
+ *	get replace set
+ */
+JKY.get_replace_set = function() {
+	var my_set = '';
+	if (!JKY.is_empty(JKY.get_value('jky-status'			)))	{my_set +=            ', status=\''	+ JKY.get_value('jky-status'			) + '\'';}
+	if (!JKY.is_empty(JKY.get_value('jky-ordered-pieces'	))) {my_set +=    ', ordered_pieces=  ' + JKY.get_value('jky-ordered-pieces'	);}
+	if (!JKY.is_empty(JKY.get_value('jky-checkout-pieces'	)))	{my_set +=   ', checkout_pieces=  ' + JKY.get_value('jky-checkout-pieces'	);}
+	if (!JKY.is_empty(JKY.get_value('jky-produced-pieces'	)))	{my_set +=   ', produced_pieces=  ' + JKY.get_value('jky-produced-pieces'	);}
+	if (!JKY.is_empty(JKY.get_value('jky-rejected-pieces'	)))	{my_set +=   ', rejected_pieces=  ' + JKY.get_value('jky-rejected-pieces'	);}
+	if (!JKY.is_empty(JKY.get_value('jky-ordered-weight'	))) {my_set +=    ', ordered_weight=  ' + JKY.get_value('jky-ordered-weight'	);}
+	if (!JKY.is_empty(JKY.get_value('jky-checkout-weight'	)))	{my_set +=   ', checkout_weight=  ' + JKY.get_value('jky-checkout-weight'	);}
+	if (!JKY.is_empty(JKY.get_value('jky-produced-weight'	)))	{my_set +=   ', produced_weight=  ' + JKY.get_value('jky-produced-weight'	);}
+	if (!JKY.is_empty(JKY.get_value('jky-returned-weight'	)))	{my_set +=   ', returned_weight=  ' + JKY.get_value('jky-returned-weight'	);}
+	if (!JKY.is_empty(JKY.get_value('jky-location'			)))	{my_set +=          ', location=\'' + JKY.get_value('jky-location'			) + '\'';}
+	return my_set;
+};
+
 JKY.display_list = function() {
 	JKY.show('jky-action-print'  );
+	if (JKY.Session.get_value('user_role') == 'Admin'
+	||  JKY.Session.get_value('user_role') == 'Support') {
+		JKY.show('jky-action-replace');
+	}
 };
 
 JKY.display_form = function() {

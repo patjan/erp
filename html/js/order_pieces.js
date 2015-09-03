@@ -63,8 +63,8 @@ JKY.generate_piece = function(the_row) {
 		+ '<td class="jky-td-name-s"	><input class="jky-pieces-produced-by"			text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' +				 the_row.produced_by		 + '"						/></td>'
 		+ '<td class="jky-td-weight"	><input class="jky-pieces-checkin-weight"		text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.out_float	(the_row.checkin_weight		)+ '"						/></td>'
 		+ '<td class="jky-td-shift"		><input class="jky-pieces-checkin-date"						onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.out_shift	(the_row.checkin_at			)+ '" disabled	/></td>'
-		+ '<td class="jky-td-text-w"	><input class="jky-pieces-qualities"			text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.fix_null	(the_row.qualities			)+ '" disabled	/></td>'
-		+ '<td class="jky-td-text-w"	><input class="jky-pieces-remarks"				text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.fix_null	(the_row.remarks			)+ '" disabled	/></td>'
+		+ '<td class="jky-td-text-w"	><input class="jky-pieces-qualities"			text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.decode		(the_row.qualities			)+ '" disabled	/></td>'
+		+ '<td class="jky-td-text-w"	><input class="jky-pieces-remarks"				text="text"	onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.decode		(the_row.remarks			)+ '" disabled	/></td>'
 		+ '</tr>'
 		;
 	return my_html;

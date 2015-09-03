@@ -1,6 +1,7 @@
 /*
  * display FTPs ----------------------------------------------------------------
  */
+var my_current_ftp;
 
 JKY.display_ftps = function() {
 	var my_where = 'AND FTPs.product_id = ' + JKY.row.id;
@@ -20,10 +21,14 @@ JKY.display_ftps = function() {
 JKY.generate_ftps = function(response) {
 	var my_html  = '';
 	var my_rows  = response.rows;
+	my_current_ftp = null; 
 	if (my_rows != '') {
 		for(var i in my_rows) {
 			var my_row	= my_rows[i];
 			my_html += JKY.generate_ftp(my_row);
+			if (my_row.is_current == 'Yes') {
+				my_current_ftp = my_row.id;
+			}
 		}
 	}
 	JKY.set_html('jky-ftps-body' , my_html);
@@ -31,11 +36,14 @@ JKY.generate_ftps = function(response) {
 
 JKY.generate_ftp = function(the_row) {
 	var my_id = the_row.id;
-	var my_trash = (false) ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_trash	= (false) ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_checked	= the_row.is_current == 'Yes' ? ' checked="checked"' : '';
+	var my_current	= '<input name="jky-ftp-current" type="radio" onchange="JKY.set_current(this, ' + my_id + ')"' + my_checked + ' />';
 
 	var my_html  = ''
 		+ '<tr ftp_id=' + my_id + '>'
-		+ '<td class="jky-td-action"	>' + my_trash + '</td>'
+		+ '<td class="jky-td-action"	>' + my_trash				+ '</td>'
+		+ '<td class="jky-td-radio"		>' + my_current				+ '</td>'
 		+ '<td class="jky-td-number"	>' + the_row.ftp_number		+ '</td>'
 		+ '<td class="jky-td-name-l"	>' + the_row.composition	+ '</td>'
 		+ '<td class="jky-td-name-s"	>' + the_row.machine_name	+ '</td>'
@@ -44,32 +52,32 @@ JKY.generate_ftp = function(the_row) {
 	return my_html;
 }
 
-JKY.set_current = function(id_name, the_id ) {
-	JKY.unset_current();
+JKY.set_current = function(the_this, the_id) {
+	if (my_current_ftp) {
+		JKY.unset_current(my_current_ftp);
+		my_current_ftp = null;
+	}
 
 	var my_data =
 		{ method	: 'update'
-		, table		: 'Cylinders'
+		, table		: 'FTPs'
 		, set		: 'is_current = \'Yes\''
-		, where		: 'Cylinders.id = ' + the_id
+		, where		: 'FTPs.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, JKY.set_current_success);
+	my_current_ftp = the_id;
 }
 
 JKY.set_current_success = function(response) {
 	JKY.display_message(response.message)
 }
 
-JKY.unset_current = function(id_name, the_id ) {
-	var my_where = ''
-		+ 'Cylinders.machine_id = ' + JKY.row.id
-		+ ' AND Cylinders.is_current = \'Yes\''
-		;
+JKY.unset_current = function(the_id) {
 	var my_data =
 		{ method	: 'update'
-		, table		: 'Cylinders'
+		, table		: 'FTPs'
 		, set		: 'is_current = \'No\''
-		, where		:  my_where
+		, where		: 'FTPs.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, JKY.unset_current_success);
 }

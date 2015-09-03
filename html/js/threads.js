@@ -42,7 +42,7 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_html('jky-composition'		, JKY.set_configs('Thread Compositions', '', ''));
 	JKY.set_html('jky-thread-group'		, JKY.set_configs('Thread Groups', '', ''));
-	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-app-select'		, JKY.set_configs('Thread Groups', JKY.App.get_prop('select'), 'All'));
 	JKY.set_html('jky-app-select-label', JKY.t('Group'));
 	JKY.show('jky-app-select-line');
 //	select the first option as default
@@ -68,11 +68,11 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-ncm'				,				 the_row.ncm			);
-	JKY.set_value	('jky-thread-name'		,				 the_row.name			);
-	JKY.set_option	('jky-thread-group'		,				 the_row.thread_group	);
-//	JKY.set_value	('jky-thread-color'		,				 the_row.thread_color	);
-	JKY.set_option	('jky-composition'		,				 the_row.composition	);
+	JKY.set_value	('jky-ncm'				,			 the_row.ncm			);
+	JKY.set_value	('jky-thread-name'		,			 the_row.name			);
+	JKY.set_option	('jky-thread-group'		,			 the_row.thread_group	);
+//	JKY.set_value	('jky-thread-color'		,			 the_row.thread_color	);
+	JKY.set_option	('jky-composition'		,			 the_row.composition	);
 
 //	if ($('#jky-tab-balance'	).hasClass('active'))	JKY.display_balance();
 //	if ($('#jky-tab-batchins'	).hasClass('active'))	JKY.BatchIns	.display();

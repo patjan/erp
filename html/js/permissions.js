@@ -39,7 +39,7 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-user-resource'	, JKY.set_controls('User Resources'	, '', ''));
 	JKY.set_html('jky-user-action'		, JKY.set_controls('User Actions'	, '', ''));
 	JKY.set_html('jky-user-role'		, JKY.set_controls('User Roles'		, '', ''));
-	JKY.set_html('jky-app-select'		, JKY.set_controls('User Roles'		, JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-app-select'		, JKY.set_controls('User Roles'		, JKY.App.get_prop('select'), 'All'));
 	JKY.set_html('jky-app-select-label', JKY.t('User Role'));
 	JKY.show('jky-app-select-line');
 //	select the last option type as default

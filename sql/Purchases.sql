@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS Purchases
 , supplier_id		BIGINT				DEFAULT NULL
 , supplier_ref      VARCHAR(32)			DEFAULT NULL
 , payment_term      VARCHAR(255)		DEFAULT NULL
+, remarks			VARCHAR(255)		DEFAULT NULL
 
 , PRIMARY KEY(id)
 , UNIQUE(purchase_number)
@@ -28,3 +29,4 @@ ALTER TABLE Purchases	ADD COLUMN received_weight		DECIMAL(10,2)		DEFAULT 0	AFTER
 ALTER TABLE Purchases	ADD COLUMN expected_weight		DECIMAL(10,2)		DEFAULT 0	AFTER scheduled_at;
 ALTER TABLE Purchases		CHANGE	number				purchase_number		VARCHAR(32)	DEFAULT NULL;
 
+ALTER TABLE Purchases		ADD COLUMN remarks			VARCHAR(255)	DEFAULT NULL	AFTER payment_term;

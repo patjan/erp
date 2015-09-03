@@ -17,23 +17,41 @@ $(function() {
 	JKY.set_initial_values_home();
 
 	if (JKY.Session.has('full_name')) {
-//		http://erp/home.html#Production/FTPs/All/200460
-		var my_params = window.location.href.split('#');
+//		http://erp/home.html?Production/FTPs/All/200460
+		var my_params = window.location.href.split('?');
 		JKY.params = (my_params.length > 1) ? my_params[1] : '';
 		if (JKY.params === '') {
 //			JKY.set_initial_values_home(jky_program);
 			JKY.process_start_page();
 		}else{
 			var my_keys = JKY.params.split('/');
-			var my_action	= my_keys[1].toLowerCase();
+			var my_action	= my_keys[1];
 			var my_id		= my_keys[2];
-			JKY.load_html('jky-app-body', my_action + '.html');
-			JKY.process_start(my_id);
+
+//			display browser tab with new Title + id 
+			var my_title = JKY.t(my_action.substr(0, my_action.length-1));
+			$('title').html(my_title + ' ' + my_id);
+
+			JKY.load_html('jky-app-body', my_action.toLowerCase() + '.html');
+			JKY.App.set_prop('select', 'All');
+			JKY.App.set_prop('filter', my_id);
+			JKY.display_one();
 		}
 	}else{
 		JKY.process_action('login');
 	}
 });
+
+JKY.display_one = function(the_counter) {
+	if ($('#jky-table-body tr').length > 0) {
+		$('#jky-table-body tr').click();
+	}else{
+		the_counter = the_counter || 10;
+		if (--the_counter) {
+			setTimeout(function() {JKY.display_one(the_counter)}, 100);
+		}
+	}
+}
 
 JKY.set_menu = function(the_keys, the_counter) {
 	var my_menus = $('#jky-menus');
@@ -147,7 +165,7 @@ JKY.set_all_events_home = function() {
 		$('#jky-pieces-rejected'		).click (function() {JKY.process_action('pieces_rejected'	);});
 //		$('#jky-pieces-info'			).click (function() {JKY.process_action('pieces_info'		);});
 
-		$('#jky-receiving-fabrics'		).click (function() {JKY.process_action('fabrics'			);});
+//		$('#jky-receiving-fabrics'		).click (function() {JKY.process_action('fabrics'			);});
 		$('#jky-receiving-products'		).click (function() {JKY.process_action('products'			);});
 		$('#jky-receiving-customers'	).click (function() {JKY.process_action('customers'			);});
 		$('#jky-receiving-dyers'		).click (function() {JKY.process_action('dyers'				);});

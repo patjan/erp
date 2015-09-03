@@ -13,6 +13,27 @@
 
 #jky-print-quotation-number	{font-weight:bold;}
 #jky-print-remarks			{height:auto;}
+
+.jky-approve-title			{font-weight:bold; text-align:center;}
+.jky-approve-box			{font-family:Arial; font-size:80%; border:1px solid black; padding:2px 5px;}
+.jky-approve-label			{font-weight:bold; text-align:right;}
+.jky-approve-head			{font-weight:bold; margin-top:20px;}
+.jky-approve-color-name		{font-weight:bold; text-transform:capitalize;}
+.jky-approve-amount			{text-align:center;}
+.jky-approve-product		{border:1px solid black; padding:2px 5px;}
+.jky-approve-pieces			{border:1px solid black; padding:2px 5px; text-align:right;}
+.jky-approve-customer		{width:450px; text-transform:capitalize;}
+.jky-approve-quotation		{width:250px; text-transform:capitalize;}
+.jky-approve-date			{width:130px; text-align:left;}
+.jky-approve-dyer			{width: 50px; text-align:center; border:1px solid black;}
+.jky-approve-name			{width:150px; text-align:center; border:1px solid black;}
+.jky-approve-value			{width: 50px; text-align:center; border:1px solid black;}
+.jky-approve-number			{width: 80px; text-align:center; border:1px solid black;}
+.jky-approve-extra			{border:1px solid black; padding:2px 5px; text-transform:capitalize;}
+.jky-approve-space			{width: 20px;}
+
+.jky-approve-colors			{width:100%; font-family:Arial; font-size:80%;}
+.jky-approve-line			{width:100%; font-family:Arial; font-size:80%; border:1px solid black;}
 </style>
 
 <table id='jky-app-table' class='table'>
@@ -43,13 +64,17 @@
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
-			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+			<button disabled class='btn jky-status' type='button'><span id='jky-current-status'></span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Status</span>:</div>
+				<select  id='jky-status' class='jky-form-status' /></select>
+			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Quotation Number</span>:</div>
 				<input  id='jky-quotation-number' class='jky-form-number jky-form-key' disabled />
@@ -139,6 +164,7 @@
 			<div class='jky-form-buttons'>
 				  <button id='jky-action-save'		class='btn btn-success' type='button' title='Click here to save all changes'		><span>Save		</span></button>
 			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title='Click here to duplicate this record'	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-update'	class='btn btn-success' type='button' title="Click here to update selected records"	><span>Update	</span></button>
 			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title='Click here to delete this record'		><span>Delete	</span></button>
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title='Click here to cancel any changes'		><span>Cancel	</span></button>
 			</div>

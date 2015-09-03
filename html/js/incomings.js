@@ -100,7 +100,6 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_button('jky-batches-add-new');
 	}
 
-	JKY.set_html	('jky-status'			, JKY.t			(the_row.status			));
 	JKY.set_value	('jky-incoming-number'	,				 the_row.incoming_number);
 	JKY.set_date	('jky-received-date'	, JKY.out_time	(the_row.received_at	));
 	JKY.set_option	('jky-supplier-name'	,				 the_row.supplier_id	);
@@ -179,11 +178,11 @@ JKY.display_graph = function() {
 	JKY.show('jky-loading');
 	var my_data =
 		{ method	: 'get_index'
-		, table		: JKY.App.get('table_name')
-		, specific	: JKY.App.get('specific')
-		, select	: JKY.App.get('select')
-		, filter	: JKY.App.get('filter')
-		, display	: JKY.App.get('display')
+		, table		: JKY.App.get_prop('table_name')
+		, specific	: JKY.App.get_prop('specific')
+		, select	: JKY.App.get_prop('select')
+		, filter	: JKY.App.get_prop('filter')
+		, display	: JKY.App.get_prop('display')
 //		, order_by	: 'invoice_date'
 //		, group_by	: 'invoice_date'
 		};

@@ -113,11 +113,11 @@ JKY.set_table_row = function(the_row) {
  */
 JKY.set_form_row = function(the_row) {
 	if (the_row.status === 'Draft') {
-		JKY.enable_button ('jky-action-generate');
+		JKY.enable_button ('jky-action-invoice' );
 		JKY.enable_delete_button();
 		JKY.enable_button ('jky-lines-add-new'	);
 	}else{
-		JKY.disable_button('jky-action-generate');
+		JKY.disable_button('jky-action-invoice' );
 		JKY.disable_delete_button();
 		JKY.disable_button('jky-lines-add-new'	);
 	}
@@ -127,7 +127,7 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_button('jky-action-close');
 	}
 
-	JKY.set_html	('jky-status'			, JKY.t			(the_row.status				));
+	JKY.hide_parent ('jky-status');
 	JKY.set_value	('jky-sale-number'		,				 the_row.sale_number		);
 	JKY.set_value	('jky-po-number'		,				 the_row.po_number			);
 	JKY.set_value	('jky-quotation-number'	,				 the_row.quotation_number	);
@@ -156,7 +156,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-sub-amount'		,				 my_sub_amount				);
 	JKY.set_value	('jky-paid-amount'		,				 the_row.paid_amount		);
 
-	JKY.set_value	('jky-remarks'			,				 JKY.row.remarks			);
+	JKY.set_value	('jky-remarks'			, JKY.decode	(the_row.remarks			));
 	JKY.display_lines();
 };
 
@@ -168,35 +168,75 @@ JKY.set_add_new_row = function() {
 	JKY.disable_button('jky-action-delete'	);
 	JKY.disable_button('jky-action-close'	);
 
-	JKY.set_value	('jky-sale-number'		,  JKY.t('New'));
+	JKY.hide_parent ('jky-status');
+	JKY.set_value	('jky-sale-number'		, JKY.t('New'));
 	JKY.set_value	('jky-po-number'		, '');
 	JKY.set_value	('jky-quotation-number'	, '');
-	JKY.set_date	('jky-needed-date'		,  JKY.out_date(JKY.get_date()));
-//	JKY.set_date	('jky-sold-date'		,  JKY.out_time(JKY.get_now ()));	//	this will create a bug on bootstrap
-	JKY.set_date	('jky-sold-date'		,  JKY.out_date(JKY.get_date()));
+	JKY.set_date	('jky-needed-date'		, JKY.out_date(JKY.get_date()));
+	JKY.set_date	('jky-sold-date'		, JKY.out_date(JKY.get_date()));
 	JKY.set_date	('jky-hold-date'		, '');
 	JKY.set_date	('jky-sent-date'		, '');
-	JKY.set_value	('jky-customer-id'		,  null);
+	JKY.set_value	('jky-customer-id'		, null);
 	JKY.set_value	('jky-customer-name'	, '');
-	JKY.set_value	('jky-salesman-id'		,  JKY.Session.get_value('contact_id'));
-	JKY.set_value	('jky-salesman-name'	,  JKY.Session.get_value('full_name'));
-	JKY.set_value	('jky-contact-id'		,  null);
+	JKY.set_value	('jky-salesman-id'		, JKY.Session.get_value('contact_id'));
+	JKY.set_value	('jky-salesman-name'	, JKY.Session.get_value('full_name'));
+	JKY.set_value	('jky-contact-id'		, null);
 	JKY.set_value	('jky-contact-name'		, '');
 	JKY.set_value	('jky-payments'			, '');
 
 	JKY.set_radio	('jky-is-taxable'		, 'Yes');
 	JKY.set_radio	('jky-icms-exemption'	, 'No' );
 	JKY.set_radio	('jky-deduct-cone'		, 'Yes');
-	JKY.set_value	('jky-interest-rate'	,  0);
+	JKY.set_value	('jky-interest-rate'	, 0 );
 
-	JKY.set_value	('jky-sold-amount'		,  0);
-	JKY.set_value	('jky-adjust-amount'	,  0);
-	JKY.set_value	('jky-discount-amount'	,  0);
-	JKY.set_value	('jky-advanced-amount'	,  0);
-	JKY.set_value	('jky-sub-amount'		,  0);
-	JKY.set_value	('jky-paid-amount'		,  0);
+	JKY.set_value	('jky-sold-amount'		, 0 );
+	JKY.set_value	('jky-adjust-amount'	, 0 );
+	JKY.set_value	('jky-discount-amount'	, 0 );
+	JKY.set_value	('jky-advanced-amount'	, 0 );
+	JKY.set_value	('jky-sub-amount'		, 0 );
+	JKY.set_value	('jky-paid-amount'		, 0 );
 
 	JKY.set_value	('jky-remarks'			, '');
+};
+
+/**
+ *	set replace
+ */
+JKY.set_replace = function() {
+	JKY.disable_button('jky-action-invoice' );
+	JKY.disable_button('jky-action-delete'	);
+	JKY.disable_button('jky-action-close'	);
+
+	JKY.show_parent ('jky-status');
+	JKY.set_html	('jky-status', JKY.set_options('', '', 'Active', 'Closed'));
+	JKY.set_value	('jky-sale-number'		, '');
+	JKY.set_value	('jky-po-number'		, '');
+	JKY.set_value	('jky-quotation-number'	, '');
+	JKY.set_date	('jky-needed-date'		, '');
+	JKY.set_date	('jky-sold-date'		, '');
+	JKY.set_date	('jky-hold-date'		, '');
+	JKY.set_date	('jky-sent-date'		, '');
+	JKY.set_value	('jky-customer-id'		, null);
+	JKY.set_value	('jky-customer-name'	, '');
+	JKY.set_value	('jky-salesman-id'		, null);
+	JKY.set_value	('jky-salesman-name'	, '');
+	JKY.set_value	('jky-contact-id'		, null);
+	JKY.set_value	('jky-contact-name'		, '');
+	JKY.set_value	('jky-payments'			, '');
+
+	JKY.set_radio	('jky-is-taxable'		, '');
+	JKY.set_radio	('jky-icms-exemption'	, '');
+	JKY.set_radio	('jky-deduct-cone'		, '');
+	JKY.set_value	('jky-interest-rate'	, '');
+
+	JKY.set_value	('jky-sold-amount'		, '');
+	JKY.set_value	('jky-adjust-amount'	, '');
+	JKY.set_value	('jky-discount-amount'	, '');
+	JKY.set_value	('jky-advanced-amount'	, '');
+	JKY.set_value	('jky-sub-amount'		, '');
+	JKY.set_value	('jky-paid-amount'		, '');
+
+	JKY.hide('jky-form-tabs');
 };
 
 /**
@@ -218,6 +258,8 @@ JKY.get_form_set = function() {
 		+         ', po_number=\'' + JKY.get_value	('jky-po-number'		) + '\''
 		+       ', needed_date=  ' + JKY.inp_date	('jky-needed-date'		)
 		+         ', sold_date=  ' + JKY.inp_date	('jky-sold-date'		)
+		+         ', hold_date=  ' + JKY.inp_date	('jky-hold-date'		)
+		+         ', sent_date=  ' + JKY.inp_date	('jky-sent-date'		)
 		+          ', payments=\'' + JKY.get_value	('jky-payments'			) + '\''
 		+        ', is_taxable=\'' + JKY.get_checked('jky-is-taxable'		) + '\''
 		+    ', icms_exemption=\'' + JKY.get_checked('jky-icms-exemption'	) + '\''
@@ -228,18 +270,36 @@ JKY.get_form_set = function() {
 	return my_set;
 };
 
-JKY.zero_value = function(the_id, the_name) {
-	JKY.App.process_change_input(the_id);
-	$('#' + the_name).val('0');
+/**
+ *	get replace set
+ */
+JKY.get_replace_set = function() {
+	var my_set = '';
+	if (!JKY.is_empty(JKY.get_value('jky-status'			)))	{my_set +=            ', status=\''	+ JKY.get_value('jky-status'			) + '\'';}
+	if (!JKY.is_empty(JKY.get_value('jky-po-number'			)))	{my_set +=         ', po_number=\''	+ JKY.get_value('jky-po-number'			) + '\'';}
+	if (!JKY.is_empty(JKY.inp_date ('jky-needed-date'		)))	{my_set +=       ', needed_date=  ' + JKY.inp_date ('jky-needed-date'		);}
+	if (!JKY.is_empty(JKY.get_value('jky-payments'			)))	{my_set +=          ', payments=\''	+ JKY.get_value('jky-payments'			) + '\'';}
+	if (!JKY.is_empty(JKY.get_value('jky-interest-rate'		)))	{my_set +=     ', interest_rate=  '	+ JKY.get_value('jky-interest-rate'		);}
+	if (!JKY.is_empty(JKY.get_value('jky-advanced-amount'	)))	{my_set +=   ', advanced_amount=  '	+ JKY.get_value('jky-advanced-amount'	);}
+	return my_set;
 };
 
 JKY.display_list = function() {
 	JKY.show('jky-action-print'  );
+	if (JKY.Session.get_value('user_role') == 'Admin'
+	||  JKY.Session.get_value('user_role') == 'Support') {
+		JKY.show('jky-action-replace');
+	}
 };
 
 JKY.display_form = function() {
 	JKY.show('jky-action-print'  );
 	JKY.show('jky-action-copy'   );
+};
+
+JKY.zero_value = function(the_id, the_name) {
+	JKY.App.process_change_input(the_id);
+	$('#' + the_name).val('0');
 };
 
 JKY.process_start = function(the_id) {
@@ -443,7 +503,7 @@ JKY.print_row = function(the_id) {
 	JKY.display_message('print_row: ' + the_id);
 	var my_names;
 	var my_extension;
-	var my_row = JKY.get_row(JKY.App.get('table_name'), the_id);
+	var my_row = JKY.get_row(JKY.App.get_prop('table_name'), the_id);
 
 //window.print();
 	var my_html = ''

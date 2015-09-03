@@ -42,7 +42,7 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-batchin', '../JKY.Search.BatchIn.html');
 
-	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Check In', 'Check Out', 'Return'));
+	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get_prop('select'), 'All', 'Active', 'Check In', 'Check Out', 'Return'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
 	JKY.show('jky-app-select-line');
 //	select the first option as default
@@ -81,7 +81,7 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
+	JKY.hide_parent ('jky-status');
 	JKY.set_value	('jky-barcode'				, the_row.barcode			);
 	JKY.set_value	('jky-thread-id'			, the_row.thread_id			);
 	JKY.set_value	('jky-batchin-id'			, the_row.batch_id			);
@@ -100,19 +100,20 @@ JKY.set_form_row = function(the_row) {
  *	set add new row (hidden)
  */
 JKY.set_add_new_row = function() {
+	JKY.hide_parent ('jky-status');
 	JKY.set_html	('jky-status'				, '');
 	JKY.set_value	('jky-barcode'				, '');
-	JKY.set_value	('jky-thread-id'			,  0);
-	JKY.set_value	('jky-batchin-id'			,  0);
+	JKY.set_value	('jky-thread-id'			, 0 );
+	JKY.set_value	('jky-batchin-id'			, 0 );
 	JKY.set_value	('jky-batchin-code'			, '');
-	JKY.set_value	('jky-number-of-boxes'		,  0);
-	JKY.set_value	('jky-number-of-cones'		,  0);
-	JKY.set_value	('jky-average-weight'		,  0);
-	JKY.set_value	('jky-real-weight'			,  0);
+	JKY.set_value	('jky-number-of-boxes'		, 0 );
+	JKY.set_value	('jky-number-of-cones'		, 0 );
+	JKY.set_value	('jky-average-weight'		, 0 );
+	JKY.set_value	('jky-real-weight'			, 0 );
 	JKY.set_value	('jky-checkin-location'		, '');
 	JKY.set_value	('jky-checkout-location'	, '');
 	JKY.set_value	('jky-returned-location'	, '');
-}
+};
 
 /**
  *	set replace
@@ -121,8 +122,12 @@ JKY.set_replace = function() {
 	var my_first = $('#jky-table-body .jky-td-checkbox input:checked').first();
 	var my_thread_name = my_first.parent().parent().find('.jky-td-name-l').html();
 	var my_thread_id = JKY.get_id('Threads', 'Threads.name=\'' + my_thread_name + '\'');
-	JKY.set_value	('jky-thread-id'			, my_thread_id);
+
+	JKY.show_parent ('jky-status');
+	JKY.set_html	('jky-status', JKY.set_options('', '', 'Active', 'Check In', 'Check Out', 'Return'));
 	JKY.set_value	('jky-barcode'				, '');
+	JKY.set_value	('jky-thread-id'			, my_thread_id);
+	JKY.set_value	('jky-batchin-id'			, '');
 	JKY.set_value	('jky-batchin-code'			, '');
 	JKY.set_value	('jky-number-of-boxes'		, '');
 	JKY.set_value	('jky-number-of-cones'		, '');
@@ -131,21 +136,25 @@ JKY.set_replace = function() {
 	JKY.set_value	('jky-checkin-location'		, '');
 	JKY.set_value	('jky-checkout-location'	, '');
 	JKY.set_value	('jky-returned-location'	, '');
-}
+
+	JKY.hide('jky-form-tabs');
+};
 
 /**
  *	get form set
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-		+          '  batch_id=  '	+ JKY.get_value('jky-batchin-id'		)
-		+   ', number_of_boxes=  '	+ JKY.get_value('jky-number-of-boxes'	)
-		+   ', number_of_cones=  '	+ JKY.get_value('jky-number-of-cones'	)
-		+    ', average_weight=  '	+ JKY.get_value('jky-average-weight'	)
-		+       ', real_weight=  '	+ JKY.get_value('jky-real-weight'		)
-		+  ', checkin_location=\''	+ JKY.get_value('jky-checkin-location'	).toUpperCase() + '\''
-		+ ', checkout_location=\''	+ JKY.get_value('jky-checkout-location'	).toUpperCase() + '\''
-		+ ', returned_location=\''	+ JKY.get_value('jky-returned-location'	).toUpperCase() + '\''
+		+            '  status=\'' + JKY.get_value('jky-status'				) + '\''
+		+          ', batch_id=  ' + JKY.get_value('jky-batchin-id'			)
+		+   ', number_of_boxes=  ' + JKY.get_value('jky-number-of-boxes'	)
+		+   ', number_of_cones=  ' + JKY.get_value('jky-number-of-cones'	)
+		+    ', average_weight=  ' + JKY.get_value('jky-average-weight'		)
+		+       ', real_weight=  ' + JKY.get_value('jky-real-weight'		)
+		+  ', checkin_location=\'' + JKY.get_value('jky-checkin-location'	).toUpperCase() + '\''
+		+ ', checkout_location=\'' + JKY.get_value('jky-checkout-location'	).toUpperCase() + '\''
+		+ ', returned_location=\'' + JKY.get_value('jky-returned-location'	).toUpperCase() + '\''
+		;
 	return my_set;
 };
 
@@ -154,6 +163,7 @@ JKY.get_form_set = function() {
  */
 JKY.get_replace_set = function() {
 	var my_set = '';
+	if (!JKY.is_empty(JKY.get_value('jky-status'			)))	{my_set +=            ', status=\''	+ JKY.get_value('jky-status'			) + '\'';}
 	if (!JKY.is_empty(JKY.get_value('jky-batchin-id'		)))	{my_set +=          ', batch_id=  '	+ JKY.get_value('jky-batchin-id'		);}
 	if (!JKY.is_empty(JKY.get_value('jky-number-of-boxes'	)))	{my_set +=   ', number_of_boxes=  '	+ JKY.get_value('jky-number-of-boxes'	);}
 	if (!JKY.is_empty(JKY.get_value('jky-number-of-cones'	)))	{my_set +=   ', number_of_cones=  '	+ JKY.get_value('jky-number-of-cones'	);}
@@ -175,5 +185,4 @@ JKY.display_list = function() {
 
 JKY.display_form = function() {
 	JKY.hide('jky-action-add-new');
-	JKY.hide('jky-action-update');
 };

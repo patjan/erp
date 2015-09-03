@@ -43,7 +43,7 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Inactive'));
+	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get_prop('select'), 'All', 'Active', 'Inactive'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
 	JKY.show('jky-app-select-line');
 //	select the first option as default
@@ -71,8 +71,7 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
-	var my_rows = JKY.get_rows(JKY.App.get('table_name'), the_row.id);
+	var my_rows = JKY.get_rows(JKY.App.get_prop('table_name'), the_row.id);
 	var my_html = '';
 	for(var l=0; l<JKY.languages.length; l++) {
 		var my_locale   = JKY.languages[l].name ;
@@ -135,7 +134,7 @@ JKY.get_form_set = function() {
 JKY.process_insert = function(the_id) {
 	var my_data =
 		{ method: 'update'
-		, table :  JKY.App.get('table_name')
+		, table :  JKY.App.get_prop('table_name')
 		, set	: 'parent_id = ' + the_id
 		, where :        'id = ' + the_id
 		};
@@ -150,17 +149,17 @@ JKY.process_update = function(the_id, the_row) {
 			var my_where = '  parent_id='   + the_id
 						 + ' AND locale=\'' + my_locale + '\''
 						;
-			var my_id = JKY.get_id(JKY.App.get('table_name'), my_where);
+			var my_id = JKY.get_id(JKY.App.get_prop('table_name'), my_where);
 			if (my_id) {
 				var my_set  = '  sentence=\'' + JKY.get_value(my_locale) + '\'';
-				var my_data = {method:'update', table:JKY.App.get('table_name'), set:my_set, where:'id=' + my_id};
+				var my_data = {method:'update', table:JKY.App.get_prop('table_name'), set:my_set, where:'id=' + my_id};
 				JKY.ajax(true, my_data);
 			}else{
 				var my_set  = ' parent_id='   + the_id
 							+ ',   locale=\'' + my_locale + '\''
 							+ ', sentence=\'' + JKY.get_value(my_locale) +'\''
 							;
-				var my_data = {method:'insert', table:JKY.App.get('table_name'), set:my_set};
+				var my_data = {method:'insert', table:JKY.App.get_prop('table_name'), set:my_set};
 				JKY.ajax(true, my_data);
 			}
 		}
@@ -170,7 +169,7 @@ JKY.process_update = function(the_id, the_row) {
 JKY.process_delete = function(the_id, the_row) {
 	var my_data =
 		{ method: 'delete_many'
-		, table :  JKY.App.get('table_name')
+		, table :  JKY.App.get_prop('table_name')
 		, where : 'parent_id = ' + the_id
 		};
 	JKY.ajax(false, my_data, JKY.process_delete_success);
@@ -182,7 +181,7 @@ JKY.process_delete = function(the_id, the_row) {
 JKY.process_publish = function() {
 	var my_data =
 		{ method: 'publish'
-		, table :  JKY.App.get('table_name')
+		, table :  JKY.App.get_prop('table_name')
 	};
 	JKY.ajax(false, my_data, JKY.process_publish_success);
 	};

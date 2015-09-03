@@ -123,25 +123,23 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_delete_button();
 		JKY.disable_button('jky-lines-add-new'	);
 	}
-	if (the_row.status === 'Active') {
+	if (the_row.status === 'Draft' || the_row.status === 'Active') {
 		JKY.enable_button ('jky-action-close');
 	}else{
 		JKY.disable_button('jky-action-close');
 	}
 
-	JKY.set_html	('jky-status'			, JKY.t			(the_row.status				));
+	JKY.hide_parent ('jky-status');
 	JKY.set_value	('jky-osa-number'		,				 the_row.osa_number			);
 	JKY.set_value	('jky-quotation-number'	,				 the_row.quotation_number	);
 	JKY.set_date	('jky-ordered-date'		, JKY.out_time	(the_row.ordered_at			));
 	JKY.set_date	('jky-produce-from-date', JKY.out_time	(the_row.produce_from_date	));
 	JKY.set_date	('jky-produce-to-date'	, JKY.out_date	(the_row.produce_to_date	));
-//	JKY.set_date	('jky-produced-date'	, JKY.out_date	(the_row.produced_date		));
-//	JKY.set_date	('jky-delivered-date'	, JKY.out_date	(the_row.delivered_date		));
 	JKY.set_value	('jky-customer-id'		,				 the_row.customer_id		);
 	JKY.set_value	('jky-customer-name'	,				 the_row.customer_name		);
 	JKY.set_value	('jky-salesman-id'		,				 the_row.salesman_id		);
 	JKY.set_value	('jky-salesman-name'	,				 the_row.salesman_name		);
-	JKY.set_value	('jky-remarks'			,				 the_row.remarks			);
+	JKY.set_value	('jky-remarks'			, JKY.decode	(the_row.remarks			));
 	JKY.display_lines();
 };
 
@@ -153,17 +151,39 @@ JKY.set_add_new_row = function() {
 	JKY.disable_button('jky-action-delete'	);
 	JKY.disable_button('jky-action-close'	);
 
+	JKY.hide_parent ('jky-status');
 	JKY.set_value	('jky-osa-number'		, JKY.t('New'));
 	JKY.set_date	('jky-ordered-date'		, JKY.out_time(JKY.get_now()));
 	JKY.set_date	('jky-produce-from-date', '');
 	JKY.set_date	('jky-produce-to-date'	, '');
-//	JKY.set_date	('jky-produced-date'	, '');
-//	JKY.set_date	('jky-delivered-date'	, '');
 	JKY.set_value	('jky-customer-id'		, null);
 	JKY.set_value	('jky-customer-name'	, '');
 	JKY.set_value	('jky-salesman-id'		, null);
 	JKY.set_value	('jky-salesman-name'	, '');
 	JKY.set_value	('jky-remarks'			, '');
+};
+
+/**
+ *	set replace
+ */
+JKY.set_replace = function() {
+	JKY.disable_button('jky-action-generate');
+	JKY.disable_button('jky-action-delete'	);
+	JKY.disable_button('jky-action-close'	);
+
+	JKY.show_parent ('jky-status');
+	JKY.set_html	('jky-status', JKY.set_options('', '', 'Draft', 'Active', 'Closed'));
+	JKY.set_value	('jky-osa-number'		, '');
+	JKY.set_date	('jky-ordered-date'		, '');
+	JKY.set_date	('jky-produce-from-date', '');
+	JKY.set_date	('jky-produce-to-date'	, '');
+	JKY.set_value	('jky-customer-id'		, null);
+	JKY.set_value	('jky-customer-name'	, '');
+	JKY.set_value	('jky-salesman-id'		, null);
+	JKY.set_value	('jky-salesman-name'	, '');
+	JKY.set_value	('jky-remarks'			, '');
+
+	JKY.hide('jky-form-tabs');
 };
 
 /**
@@ -178,25 +198,29 @@ JKY.get_form_set = function() {
 	var my_set = ''
 		+       '  customer_id=  ' + my_customer_id
 		+       ', salesman_id=  ' + my_salesman_id
-		+        ', ordered_at=  ' + JKY.inp_time ('jky-ordered-date'		)
-//		+ ', produce_from_date=  ' + JKY.inp_date ('jky-produce-from-date'	)
-//		+   ', produce_to_date=  ' + JKY.inp_date ('jky-produce-to-date'	)
-//		+     ', produced_date=  ' + JKY.inp_date ('jky-produced-date'		)
-//		+    ', delivered_date=  ' + JKY.inp_date ('jky-delivered-date'		)
-		+           ', remarks=\'' + JKY.get_value('jky-remarks'			) + '\''
+		+        ', ordered_at=  ' +			JKY.inp_time ('jky-ordered-date'		)
+		+           ', remarks=\'' + JKY.encode(JKY.get_value('jky-remarks'				))	+ '\''
 		;
 	return my_set;
 };
 
-JKY.zero_value = function(the_id, the_name) {
-	JKY.App.process_change_input(the_id);
-	$('#' + the_name).val('0');
+/**
+ *	get replace set
+ */
+JKY.get_replace_set = function() {
+	var my_set = '';
+	if (!JKY.is_empty(JKY.get_value('jky-status'			)))	{my_set +=            ', status=\''	+ JKY.get_value('jky-status'			) + '\'';}
+	return my_set;
 };
 
 JKY.display_list = function() {
 	JKY.hide('jky-action-add-new');
 	JKY.show('jky-action-print'  );
 	JKY.show('jky-action-approve');
+	if (JKY.Session.get_value('user_role') == 'Admin'
+	||  JKY.Session.get_value('user_role') == 'Support') {
+		JKY.show('jky-action-replace');
+	}
 };
 
 JKY.display_form = function() {
@@ -204,6 +228,11 @@ JKY.display_form = function() {
 	JKY.show('jky-action-print'  );
 	JKY.show('jky-action-approve');
 	JKY.show('jky-action-copy'   );
+};
+
+JKY.zero_value = function(the_id, the_name) {
+	JKY.App.process_change_input(the_id);
+	$('#' + the_name).val('0');
 };
 
 JKY.process_delete = function(the_id, the_row) {
@@ -265,9 +294,9 @@ JKY.save_remarks = function() {
 /**
  * print row
  */
-JKY.print_row = function(the_id) {
-	JKY.display_message('print_row: ' + the_id);
-	var my_row = JKY.get_row(JKY.App.get('table_name'), the_id);
+JKY.print_row = function(the_osa_id) {
+	JKY.display_message('print_row: ' + the_osa_id);
+	var my_row = JKY.get_row(JKY.App.get_prop('table_name'), the_osa_id);
 
 //window.print();
 	var my_html = ''
@@ -319,9 +348,9 @@ JKY.print_row = function(the_id) {
 	JKY.set_html('jky-print-quotation-number'	, my_row.quotation_number	);
 	JKY.set_html('jky-print-customer-name'		, my_row.customer_name		);
 	JKY.set_html('jky-print-salesman-name'		, my_row.salesman_name		);
-	JKY.set_html('jky-print-lines-body'			, JKY.approve_lines(the_id));
+	JKY.set_html('jky-print-lines-body'			, JKY.approve_lines(the_osa_id));
 
-	JKY.set_html('jky-print-remarks'			, JKY.nl2br(my_row.remarks));
+	JKY.set_html('jky-print-remarks'			, JKY.nl2br(JKY.decode(my_row.remarks)));
 
 //	JKY.show('jky-printable');
 	$("#jky-printable").print();
@@ -332,7 +361,7 @@ JKY.print_row = function(the_id) {
  */
 JKY.approve_row = function(the_id) {
 	JKY.display_message('approve_row: ' + the_id);
-	var my_row = JKY.get_row(JKY.App.get('table_name'), the_id);
+	var my_row = JKY.get_row(JKY.App.get_prop('table_name'), the_id);
 
 //window.print();
 	var my_html = ''
@@ -384,7 +413,7 @@ JKY.approve_row = function(the_id) {
 	JKY.set_html('jky-print-salesman-name'		, my_row.salesman_name		);
 	JKY.set_html('jky-print-lines-body'			, JKY.print_lines(the_id));
 
-	JKY.set_html('jky-print-remarks'			, JKY.nl2br(my_row.remarks));
+	JKY.set_html('jky-print-remarks'			, JKY.nl2br(JKY.decode(my_row.remarks)));
 
 //	JKY.show('jky-printable');
 	$("#jky-printable").print();

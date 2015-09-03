@@ -27,13 +27,17 @@
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
-			<button disabled class='btn jky-status' type='button' disabled><span id='jky-status'></span></button>
+			<button disabled class='btn jky-status' type='button'><span id='jky-current-status'></span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Status</span>:</div>
+				<select  id='jky-status' class='jky-form-status' /></select>
+			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Load Out Number</span>:</div>
 				<input  id='jky-loadout-number' class='jky-form-number jky-form-key' disabled />
@@ -78,7 +82,7 @@
 				<input id='jky-quoted-weight'	class='jky-form-weight' />
 			</div>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span> Reserved</span>:</div><input id='jky-reserved-pieces'	class='jky-form-pieces' />
+				<div class='jky-form-label'><span> Reserved</span>:</div><input id='jky-reserved-pieces'	class='jky-form-pieces' readonly />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Check Out</span>:</div><input id='jky-checkout-pieces'	class='jky-form-pieces' readonly />
@@ -92,6 +96,7 @@
 			<div class='jky-form-buttons'>
 				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
 			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-update'	class='btn btn-success' type='button' title="Click here to update selected records"	><span>Update	</span></button>
 			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
 			</div>

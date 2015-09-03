@@ -1,0 +1,39 @@
+INSERT Contacts
+   SET nick_name='Compracita'
+   , full_name='Compracita Comercial Ltda Epp'
+   , is_company='Yes'
+   , company_id=  null
+   , parent_id=  null
+   , tags='P10'
+   , cnpj='03.064.142/0001-00'
+   , ie='283.080.124'
+   , im=''
+   , credit_limit=  5000.00
+   , payment_type='Duplicata'
+   , website=''
+   , position=''
+   , email='contato@compracita.com.br'
+   , is_customer  = 'Yes'
+   , id=800033
+   , updated_by=100029
+   , updated_at="2015-08-08 02:57:17"
+   
+ INSERT Contacts
+ SET nick_name='Compracita'
+ , full_name='Compracita Comercial Ltda Epp'
+ , is_company='Yes'
+ , company_id=  null
+ , parent_id=  null
+ , tags='P10'
+ , cnpj='03.064.142/0001-00'
+ , ie='283.080.124'
+ , im=''
+ , credit_limit=  5000,00
+ , payment_type='Duplicata'
+ , website=''
+ , position=''
+ , email='contato@compracita.com.br'
+ , is_customer  = 'Yes'
+ , id=101007
+ , updated_by=100042
+ , updated_at="2015-08-05 14:55:30"

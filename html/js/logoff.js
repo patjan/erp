@@ -1,9 +1,10 @@
 "use strict";
+var JKY = JKY || {};
 
 /**
  * logoff.html
  */
-var jky_program		= 'Logoff';
+var jky_program	= 'Logoff';
 
 /**
  * start program

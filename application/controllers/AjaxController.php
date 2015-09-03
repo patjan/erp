@@ -80,11 +80,13 @@ public function indexAction() {
 			case 'get_configs'		: $this->get_configs	($data); return;
 			case 'get_companies'	: $this->get_companies	($data); return;
 			case 'get_categories'	: $this->get_categories	(); return;
+			case 'get_loadout_by_color_id'	: $this->get_loadout_by_color_id($data); return;
 			case 'get_profile'		: $this->get_profile	(); return;
 			case 'get_contact'		: $this->get_contact	(); return;
 			case 'get_contact_id'	: $this->get_contact_id	(); return;
 			case 'get_user_id'		: $this->get_user_id	($data); return;
 			case 'get_ftp_id'		: $this->get_ftp_id		($data); return;
+			case 'get_order_id'		: $this->get_order_id	($data); return;
 			case 'get_product_id'	: $this->get_product_id	($data); return;
 			case 'set_company_id'	: $this->set_company_id	(); return;
 			case 'get_company_id'	: $this->get_company_id	(); return;
@@ -602,7 +604,7 @@ private function get_index($data) {
 		$limit = ' LIMIT ' . $display;
 	}else{
 //		$limit = '';
-		$limit = ' LIMIT 1000';
+		$limit = ' LIMIT 100';
 	}
 
 	if ($where != '') {
@@ -612,8 +614,9 @@ private function get_index($data) {
 
 	if ($table == 'BatchesBalance') {
 		$sql= 'SELECT Batches.id'
-			. '		, Incomings.invoice_date'
 			. '		, Batches.batch'
+			. '		, Batches.remarks'
+			. '		, Incomings.invoice_date'
 			. '     , Boxes.checkin_location'
 			. '     , SUM(IF(Boxes.status  = "Check In"	OR Boxes.status  = "Return", 1, 0)) AS balance_boxes'
 			. '     , SUM(IF(Boxes.status  = "Check In"	OR Boxes.status  = "Return", IF(Boxes.real_weight = 0, Boxes.average_weight, Boxes.real_weight), 0)) AS balance_weight'
@@ -656,6 +659,16 @@ private function get_index($data) {
 			;
 	}else
 	if ($table == 'PieceLocations') {
+		$sql= 'SELECT parent_id'
+			. '  FROM Products'
+			. ' WHERE Products.id = ' . $select
+			;
+		$db   = Zend_Registry::get('db');
+		$parent_id = $db->fetchOne($sql);
+		if ($parent_id) {
+			$select .= ', ' . $parent_id;
+		}
+
 		$sql= 'SELECT Pieces.checkin_location		AS location'
 			. '		, Pieces.order_id				AS order_id'
 			. '		, Orders.machine_id				AS machine_id'
@@ -668,7 +681,7 @@ private function get_index($data) {
 			. '  FROM Pieces'
 			. '  LEFT JOIN Orders ON Orders.id = Pieces.order_id'
 			. ' WHERE Pieces.status = "Check In"'
-			. '   AND Orders.product_id = ' . $select
+			. '   AND Orders.product_id IN (' . $select . ')'
 			. ' GROUP BY Pieces.checkin_location, Pieces.order_id'
 			. ' ORDER BY Pieces.checkin_location, Pieces.order_id'
 			;
@@ -690,7 +703,6 @@ private function get_index($data) {
 			. '   AND Color.id IS NOT NULL'
 			. $where
 			. '  ORDER BY ' . $order_by
-			. $limit
 			;
 	}else
 	if ($table == 'QuotUnloadeds') {
@@ -716,7 +728,6 @@ private function get_index($data) {
 			. ' WHERE Quotation.status IN ("Draft", "Active")'
 			. '    AND ' . $where
 			. '  ORDER BY ' . $order_by
-			. $limit
 			;
 	}else
 	if ($table == 'QuotProducts') {
@@ -748,20 +759,34 @@ private function get_index($data) {
 	if ($table == 'FTP_Ord_Threads') {
 		$ftp_id		= get_data($data, 'ftp_id'	);
 		$order_id	= get_data($data, 'order_id');
-		$sql= 'SELECT FTP_Threads.percent'
-			. '     , FTP_Threads.thread_id'
-			. '     , Contacts.nick_name AS supplier_name'
-			. '     , Threads.name AS thread_name'
-			. '     , Batches.batch AS batch'
-			. '     , Threads.name AS thread_name'
-			. '  FROM FTP_Threads'
-			. '  LEFT JOIN OrdThreads	ON  OrdThreads.parent_id = ' . $order_id . ' AND OrdThreads.thread_id = FTP_Threads.thread_id'
-			. '  LEFT JOIN Contacts		ON    Contacts.id = FTP_Threads.supplier_id'
-			. '  LEFT JOIN Threads		ON     Threads.id = FTP_Threads.thread_id'
-			. '  LEFT JOIN Batches		ON     Batches.id = OrdThreads.batchin_id'
-			. ' WHERE FTP_Threads.parent_id = ' . $ftp_id
-			. ' ORDER BY FTP_Threads.percent DESC'
-			;
+		if ($order_id) {
+			$sql= 'SELECT FTP_Threads.percent'
+				. '     , FTP_Threads.thread_id'
+				. '     , Threads.name AS thread_name'
+				. '     , Batches.batch AS batch'
+				. '     , Contacts.nick_name AS supplier_name'
+				. '  FROM FTP_Threads'
+				. '  LEFT JOIN Threads		ON     Threads.id = FTP_Threads.thread_id'
+				. '  LEFT JOIN OrdThreads	ON  OrdThreads.parent_id = ' . $order_id . ' AND OrdThreads.thread_id = FTP_Threads.thread_id'
+				. '  LEFT JOIN Batches		ON     Batches.id =  OrdThreads.batchin_id'
+				. '  LEFT JOIN Incomings	ON   Incomings.id =     Batches.incoming_id'
+				. '  LEFT JOIN Contacts		ON    Contacts.id =   Incomings.supplier_id'
+				. ' WHERE FTP_Threads.parent_id = ' . $ftp_id
+				. ' ORDER BY FTP_Threads.id'
+				;
+		}else{		
+			$sql= 'SELECT FTP_Threads.percent'
+				. '     , FTP_Threads.thread_id'
+				. '     , Threads.name AS thread_name'
+				. '     , "" AS batch'
+				. '     , Contacts.nick_name AS supplier_name'
+				. '  FROM FTP_Threads'
+				. '  LEFT JOIN Threads		ON     Threads.id = FTP_Threads.thread_id'
+				. '  LEFT JOIN Contacts		ON    Contacts.id = FTP_Threads.supplier_id'
+				. ' WHERE FTP_Threads.parent_id = ' . $ftp_id
+				. ' ORDER BY FTP_Threads.id'
+				;
+		}
 	}else
 	if ($table == 'FTP_Sets') {
 		$sql= 'SELECT Configs.id as setting, Configs.name, FTP_Sets.id, FTP_Sets.value'
@@ -800,6 +825,17 @@ private function get_index($data) {
 			. $group_by
 			. $order_by
 			. $limit
+			;
+	}else
+	if ($table == 'LoadsByDyer') {
+		$sql= '	SELECT Dyer.nick_name						AS    dyer_name'
+			. '      , SUM(LoadQuotations.quoted_pieces)	AS  quoted_pieces'
+			. '      , MIN(loadout_number)					AS loadout_number'
+			. '   FROM LoadQuotations'
+			. '   LEFT JOIN LoadOuts AS LoadOut	ON LoadOut.id =	LoadQuotations.loadout_id'
+			. '   LEFT JOIN Contacts AS Dyer	ON    Dyer.id =		   LoadOut.dyer_id'
+			. '  WHERE  LoadQuotations.quot_color_id = ' . $specific_id
+			. '  GROUP BY LoadOut.dyer_id'
 			;
 	}else{
 		if ($where    != '')	{$where		= ' WHERE '    . $where   ;}
@@ -843,6 +879,7 @@ private function get_index($data) {
 			$n++;
 		}
 	}else
+/*
 	if ($table == 'LoadSets') {
 		$n = 0;
 		foreach($rows as $row) {
@@ -857,6 +894,7 @@ private function get_index($data) {
 			$n++;
 		}
 	}else
+*/
 	if ($table == 'Orders') {
 		$n = 0;
 		foreach($rows as $row) {
@@ -872,40 +910,40 @@ private function get_index($data) {
 	if ($table == 'PieceLocations') {
 		$n = 0;
 		foreach($rows as $row) {
-			$sql = 'SELECT thread_id, supplier_id'
+			$sql = 'SELECT thread_id'
 				 . '  FROM FTP_Threads'
 				 . ' WHERE FTP_Threads.parent_id = ' . $row['ftp_id']
 				 . ' ORDER BY FTP_Threads.percent DESC, FTP_Threads.thread_id'
 				 . ' LIMIT 1'
 				 ;
-			$my_ftp_thread = $db->fetchRow($sql);
+			$my_thread_id = $db->fetchOne($sql);
 
 			$sql = 'SELECT Threads.name AS thread_name'
 				 . '  FROM Threads'
-				 . ' WHERE Threads.id = ' . $my_ftp_thread['thread_id']
+				 . ' WHERE Threads.id = ' . $my_thread_id
 				 ;
 			$my_thread_name = $db->fetchOne($sql);
-
-			$sql = 'SELECT Contacts.nick_name AS supplier_name'
-				 . '  FROM Contacts'
-				 . ' WHERE Contacts.id = ' . $my_ftp_thread['supplier_id']
-				 ;
-			$my_supplier_name = $db->fetchOne($sql);
 
 			$sql = 'SELECT OrdThreads.batchin_id'
 				 . '  FROM OrdThreads'
 				 . ' WHERE OrdThreads.parent_id = ' . $row['order_id']
-				 . '   AND OrdThreads.thread_id = ' . $my_ftp_thread['thread_id']
+				 . '   AND OrdThreads.thread_id = ' . $my_thread_id
 				 ;
 			$my_ord_thread = $db->fetchRow($sql);
 
-			$my_batch_code = '';
+			$my_supplier_name	= '';
+			$my_batch_code		= '';
 			if ($my_ord_thread['batchin_id']) {
-				$sql = 'SELECT Batches.batch AS batch_code'
+				$sql = 'SELECT Contacts.nick_name	AS supplier_name'
+					 . '     , Batches.batch		AS batch_code' 
 					 . '  FROM Batches'
+					 . '  LEFT JOIN Incomings	ON Incomings.id =   Batches.incoming_id'
+					 . '  LEFT JOIN Contacts	ON  Contacts.id = Incomings.supplier_id'
 					 . ' WHERE Batches.id = ' . $my_ord_thread['batchin_id']
 					 ;
-				$my_batch_code = $db->fetchOne($sql);
+				$my_batchin = $db->fetchRow($sql);
+				$my_supplier_name	= $my_batchin['supplier_name'	];
+				$my_batch_code		= $my_batchin['batch_code'		];
 			}
 
 			$my_machine_name = '';
@@ -1198,8 +1236,8 @@ private function set_new_fields($table) {
 												. ',       FTP.ftp_number		AS       ftp_number';
 	if ($table == 'Pieces'			)	$return = ',    Orderx.order_number		AS     order_number'
 												. ',   Revised.nick_name		AS   revised_name'
-												. ',   Weighed.nick_name		AS   weighed_name';
-//												. ',   Product.product_name		AS   product_name';
+												. ',   Weighed.nick_name		AS   weighed_name'
+												. ',   LoadOut.loadout_number   AS   loadout_number';
 	if ($table == 'Products'		)	$return = ',    Parent.product_name		AS    parent_name';
 	if ($table == 'Purchases'		)	$return = ',  Supplier.nick_name		AS  supplier_name';
 	if ($table == 'PurchaseLines'	)	$return = ', Purchases.purchase_number	AS  purchase_number'
@@ -1404,8 +1442,9 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN        FTPs AS FTP		ON       FTP.id	=		OSA_Colors.ftp_id';
 	if ($table == 'Pieces'			)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		    Pieces.order_id'
 												. '  LEFT JOIN    Contacts AS Revised	ON   Revised.id	=		    Pieces.revised_by'
-												. '  LEFT JOIN    Contacts AS Weighed	ON   Weighed.id	=		    Pieces.weighed_by';
-//												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		    Orderx.product_id';
+												. '  LEFT JOIN    Contacts AS Weighed	ON   Weighed.id	=		    Pieces.weighed_by'
+												. '  LEFT JOIN LoadQuotations AS LoadQuot ON LoadQuot.id =          Pieces.load_quot_id'
+												. '  LEFT JOIN    LoadOuts AS LoadOut   ON   LoadOut.id	=         LoadQuot.loadout_id';
 	if ($table == 'Products'		)	$return = '  LEFT JOIN    Products AS Parent	ON    Parent.id	=		  Products.parent_id';
 	if ($table == 'Purchases'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Purchases.supplier_id';
 	if ($table == 'PurchaseLines'	)	$return = '  LEFT JOIN   Purchases  			ON Purchases.id	=	 PurchaseLines.parent_id'
@@ -4234,15 +4273,37 @@ private function get_ftp_id($data) {
 	$sql= 'SELECT id'
 		. '  FROM FTPs'
 		. ' WHERE product_id = ' . $data['product_id']
-		. ' ORDER BY id DESC'
+		. ' ORDER BY is_current DESC, id DESC'
 		. ' LIMIT 1'
 		;
 $this->log_sql(null, 'get_ftp_id', $sql);
 	$return = array();
 	$db = Zend_Registry::get('db');
-	$row = $db->fetchRow($sql);
 	$return['status'] = 'ok';
-	$return['id'	] = $row['id'];
+	$return['id'	] = $db->fetchOne($sql);
+	echo json_encode($return);
+}
+
+/**
+ *	$.ajax({ method: get_order_id, load_quot_id: x...x );
+ *	of most current piece
+ *
+ *	status: ok     | error
+ *		id: 9...9  | null
+ */
+
+private function get_order_id($data) {
+	$sql= 'SELECT order_id'
+		. '  FROM Pieces'
+		. ' WHERE load_quot_id = ' . $data['load_quot_id']
+		. ' ORDER BY id DESC'
+		. ' LIMIT 1'
+		;
+$this->log_sql(null, 'get_order_id', $sql);
+	$return = array();
+	$db = Zend_Registry::get('db');
+	$return['status'] = 'ok';
+	$return['id'	] = $db->fetchOne($sql);
 	echo json_encode($return);
 }
 
@@ -4565,6 +4626,34 @@ private function get_categories() {
 	echo $return;
 }
 
+/**
+ *   $.ajax({ method: get_loadout_by_color_id, color_id: 9...9 });
+ *
+ *   return: loadout row
+ */
+private function get_loadout_by_color_id($data) {
+	$specific = get_data($data, 'specific');
+
+	$sql= 'SELECT DISTINCT LoadOuts.*'
+		. '  FROM LoadOuts, LoadQuotations, QuotColors, QuotLines, OSAs, OSA_Lines, OSA_Colors'
+		. ' WHERE LoadOuts.color_id = OSA_Colors.color_id'
+		. '   AND LoadOuts.id = LoadQuotations.loadout_id'
+		. '   AND LoadQuotations.quot_color_id = QuotColors.id'
+		. '   AND QuotColors.parent_id = QuotLines.id'
+		. '   AND QuotLines.parent_id = OSAs.quotation_id'
+		. '   AND OSAs.id = OSA_Lines.parent_id'
+		. '   AND OSA_Lines.id = OSA_Colors.parent_id'
+		. '   AND OSA_Colors.id = ' . $specific
+		;
+$this->log_sql(null, 'get_load_by_color_id', $sql);
+	$db  = Zend_Registry::get('db');
+	$row = $db->fetchRow($sql);
+	$return = array();
+	$return['status'] = 'ok';
+	$return['row'	] = $row;
+	echo json_encode($return);
+}
+	
 /**
  *	$.ajax({ method: get_header });
  *

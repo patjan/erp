@@ -46,9 +46,15 @@ $(function() {
 //	reset session timeout for every ajax request
 	if (JKY.Session) {
 		$(document).ajaxSend (function() {JKY.Session.reset_timeout();});
+
+//		in Logoff Page, it cannot set cookie [JKY.session_time]
+		if (typeof(jky_program) === 'string' && jky_program === 'Logoff') {
+		}else{
+			JKY.setCookie('JKY.session_time', new Date());
+		}
 	}
-//	$(document).ajaxStart(function() {						 $('#jky-loading').show();});
-//	$(document).ajaxStop (function() {setTimeout(function() {$('#jky-loading').hide();}, 2000)});
+//	$(document).ajaxStart(function() {						 $('#jky-loading').show()});
+//	$(document).ajaxStop (function() {setTimeout(function() {$('#jky-loading').hide()}, 2000)});
 
 	$(window).resize(function() {
 //		JKY.setTableWidthHeight('jky-app-table', 851, 221, 390, 115);
@@ -57,7 +63,7 @@ $(function() {
 
 	setTimeout(function() {
 		JKY.resize_window();
-	}, 500);	//	minimum delay of 100 ms
+	}, 100);	//	minimum delay of 100 ms
 
 });
 
@@ -120,7 +126,7 @@ JKY.resize_window = function() {
 
 	var my_height = $(window).height();
 //	if (my_height < 400)	my_width = 400;
-//	$('#ihs-controls').css('width', my_width-the_offset + 'px');
+//	$('#jky-controls').css('width', my_width-the_offset + 'px');
 
 //	$('#jky-app-table'			).css('height', my_height-189 + 'px');
 //	$('#jky-table-body'			).css('height', my_height-189 + 'px');
@@ -473,7 +479,7 @@ JKY.fix_full_name = function(trailer, first_name, last_name){
  * @return	the_string
  */
 JKY.fix_null = function(the_string){
-	if (the_string === null || the_string === 'null') {
+	if (the_string === null || the_string === 'null' || typeof(the_string) === 'undefined') {
 		return '';
 	}else{
 		return the_string;
@@ -978,6 +984,10 @@ JKY.has_class = function(the_id, the_class){
 	return $('#' + the_id).hasClass(the_class);
 };
 
+JKY.set_attr = function(the_id, the_attr){
+	$('#' + the_id).attr(the_attr, true);
+};
+
 JKY.remove_attr = function(the_id, the_attr){
 	var my_attr = $('#' + the_id).removeAttr(the_attr);
 };
@@ -1296,6 +1306,22 @@ JKY.hide = function(id_name){
 };
 
 /**
+ * show specific id name parent
+ * @param	id_name
+ */
+JKY.show_parent = function(id_name){
+	$('#' + id_name).parent().show();
+};
+
+/**
+ * hide specific id name parent
+ * @param	id_name
+ */
+JKY.hide_parent = function(id_name){
+	$('#' + id_name).parent().hide();
+};
+
+/**
  * Collapse Side Bar
  * @param	id_name
  */
@@ -1583,15 +1609,15 @@ JKY.json2Array = function(json) {
  * [t] to [ ]
  * @param	string
  */
-JKY.encode = function(string) {
-  string = string.replace( /&/g, "&amp;"	);
-  string = string.replace( />/g, "&gt;"		);
-  string = string.replace( /</g, "&lt;"		);
-  string = string.replace( /"/g, "&quot;"	);
-  string = string.replace( /'/g, "&#039;"	);
-  string = string.replace(/\\/g, "&#092;"	);
-  string = string.replace(/\t/g, " "		);
-  return string;
+JKY.encode = function(the_string) {
+  the_string = the_string.replace( /&/g, "&amp;"	);
+  the_string = the_string.replace( />/g, "&gt;"		);
+  the_string = the_string.replace( /</g, "&lt;"		);
+  the_string = the_string.replace( /"/g, "&quot;"	);
+  the_string = the_string.replace( /'/g, "&#039;"	);
+  the_string = the_string.replace(/\\/g, "&#092;"	);
+  the_string = the_string.replace(/\t/g, " "		);
+  return the_string;
 };
 
 /**
@@ -1605,15 +1631,19 @@ JKY.encode = function(string) {
  * [&nbsp;	] to [ ]
  * @param	string
  */
-JKY.decode = function(string)	{
-	string = string.replace(/&amp;/g , '&' );
-	string = string.replace(/&lt;/g	 , '<' );
-	string = string.replace(/&gt;/g  , '>' );
-	string = string.replace(/&quot;/g, '"' );
-	string = string.replace(/&#039;/g, "'" );
-	string = string.replace(/&#092;/g, "\\");
-	string = string.replace(/&nbsp;/g, ' ' );
-	return string;
+JKY.decode = function(the_string)	{
+	if (the_string === null || the_string === 'null' || typeof(the_string) === 'undefined') {
+		return '';
+	}else{
+		the_string = the_string.replace(/&amp;/g , '&' );
+		the_string = the_string.replace(/&lt;/g	 , '<' );
+		the_string = the_string.replace(/&gt;/g  , '>' );
+		the_string = the_string.replace(/&quot;/g, '"' );
+		the_string = the_string.replace(/&#039;/g, "'" );
+		the_string = the_string.replace(/&#092;/g, "\\");
+		the_string = the_string.replace(/&nbsp;/g, ' ' );
+		return the_string;
+	}
 };
 
 /*
@@ -1778,9 +1808,9 @@ JKY.is_date = function(date) {
  * @return	false		(if value not equal)
  */
 JKY.is_status = function(the_status) {
-	var my_status = JKY.get_html('jky-status');
-	if (my_status === the_status
-	||  my_status === JKY.t(the_status)) {
+	var my_current_status = JKY.get_html('jky-current-status');
+	if (my_current_status === the_status
+	||  my_current_status === JKY.t(the_status)) {
 		return true;
 	}else{
 		return false;
@@ -2137,6 +2167,41 @@ JKY.get_companies = function(specific) {
 		}
 	);
 	return my_rows;
+};
+
+/**
+ * get loadout by color id
+ * @param	OSA.color_id
+ */
+JKY.get_loadout_by_color_id = function(specific) {
+	JKY.display_trace('get_companies: ' + specific);
+	var my_row = [];
+	var my_data =
+		{ method	: 'get_loadout_by_color_id'
+		, specific	:  specific
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status === 'ok') {
+					my_row = response.row;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				JKY.hide('jky-loading');
+				JKY.display_message('Error from backend server, please re-try later.');
+			}
+		}
+	);
+	return my_row;
 };
 
 /**
@@ -2668,6 +2733,75 @@ JKY.get_ftp_id = function(the_product_id) {
 	return my_id;
 }
 
+JKY.get_order_id = function(the_load_quot_id) {
+	var my_id = null;
+	var my_data =
+		{ method		: 'get_order_id'
+		, load_quot_id	: the_load_quot_id
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_id = response.id;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_id;
+}
+
+JKY.get_loads_by_dyer = function(the_quot_color_id) {
+	var my_rows = [];
+	var my_data =
+		{ method		: 'get_index'
+		, table			: 'LoadsByDyer'
+		, specific_id	: the_quot_color_id
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_rows = response.rows;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_rows;
+}
+
 JKY.Xget_product_id = function(the_product_name) {
 	var my_id = null;
 	var my_data =
@@ -3041,7 +3175,32 @@ JKY.full_address = function(the_row) {
 
 JKY.open_new_tab = function(the_event, the_url) {
 	the_event.stopPropagation()
-	var my_win = window.open('home.html#' + the_url, '_blank');
+	var my_win = window.open('home.html?' + the_url, '_blank');
 	my_win.focus();
 	return false;
 }
+
+JKY.setCookie = function(the_key, the_value, the_time) {
+	if (typeof(the_time) == 'undefined')	the_time = JKY.Session.get_elapsed_time();
+	var my_expires = new Date();
+	my_expires.setTime(my_expires.getTime() + (the_time) * 1000);		//	min -8
+	document.cookie = the_key + '=' + the_value + ';expires=' + my_expires.toUTCString();
+}
+
+JKY.getCookie = function(the_key) {
+	var my_key = the_key + '=';
+	var my_cookies = document.cookie.split(';');
+	for(var i=0, max=my_cookies.length; i<max; i++) {
+		var my_cookie = my_cookies[i];
+		while(my_cookie.charAt(0) == ' ')		my_cookie = my_cookie.substring(1);
+		if (my_cookie.indexOf(my_key) == 0) {
+			return my_cookie.substring(my_key.length, my_cookie.length);
+		}
+	}
+	return '';
+}
+
+JKY.deleteCookie = function(the_key) {
+	document.cookie = the_key + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC';
+}
+

@@ -67,17 +67,21 @@ JKY.set_table_row = function(the_row) {
 	var my_checkin_color	= (my_checkin_boxes  < my_received_boxes) ? 'jky-error' : 'jky-ok';
 
 	var my_html = ''
+		+  '<td class="jky-td-name-l"	>' +				 the_row.name					+ '</td>'
+		+  '<td class="jky-td-name-s"	>' +				 the_row.supplier_name			+ '</td>'
 		+  '<td class="jky-td-number"	>' + JKY.fix_null	(the_row.batch				)	+ '</td>'
 		+  '<td class="jky-td-boxes"	>' +				 the_row.received_boxes			+ '</td>'
-		+  '<td class="jky-td-integer ' + my_labels_color  + '"	>' + the_row.labels_printed	+ '</td>'
-		+  '<td class="jky-td-boxes   ' + my_checkin_color + '"	>' + the_row.checkin_boxes	+ '</td>'
-		+  '<td class="jky-td-integer"	>' +				 the_row.number_of_cones		+ '</td>'
+		+  '<td class="jky-td-number"	>' + JKY.fix_null	(the_row.nfe_tm				)	+ '</td>'
+		+  '<td class="jky-td-number"	>' + JKY.fix_null	(the_row.purchase_number	)	+ '</td>'
+//		+  '<td class="jky-td-integer ' + my_labels_color  + '"	>' + the_row.labels_printed	+ '</td>'
+//		+  '<td class="jky-td-boxes   ' + my_checkin_color + '"	>' + the_row.checkin_boxes	+ '</td>'
+//		+  '<td class="jky-td-integer"	>' +				 the_row.number_of_cones		+ '</td>'
 		+  '<td class="jky-td-price"	>' +				 the_row.unit_price				+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 the_row.average_weight			+ '</td>'
-		+  '<td class="jky-td-weight"	>' +				 the_row.received_weight		+ '</td>'
+//		+  '<td class="jky-td-weight"	>' +				 the_row.received_weight		+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 the_row.checkin_weight			+ '</td>'
-		+  '<td class="jky-td-weight"	>' +				 the_row.returned_weight		+ '</td>'
-		+  '<td class="jky-td-weight"	>' +				 the_row.checkout_weight		+ '</td>'
+//		+  '<td class="jky-td-weight"	>' +				 the_row.returned_weight		+ '</td>'
+//		+  '<td class="jky-td-weight"	>' +				 the_row.checkout_weight		+ '</td>'
 		;
 	return my_html;
 };
@@ -86,18 +90,19 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-product-code'		,				 the_row.code				);
-	JKY.set_value	('jky-batch-code'		,				 the_row.batch				);
-	JKY.set_value	('jky-labels-printed'	,				 the_row.labels_printed		);
-	JKY.set_value	('jky-received-boxes'	,				 the_row.received_boxes		);
-	JKY.set_value	('jky-checkin-boxes'	,				 the_row.checkin_boxes		);
-	JKY.set_value	('jky-number-of-cones'	,				 the_row.number_of_cones	);
-	JKY.set_value	('jky-unit-price'		,				 the_row.unit_price			);
-	JKY.set_value	('jky-average-weight'	,				 the_row.average_weight		);
-	JKY.set_value	('jky-received-weight'	,				 the_row.received_weight	);
-	JKY.set_value	('jky-checkin-weight'	,				 the_row.checkin_weight		);
-	JKY.set_value	('jky-returned-weight'	,				 the_row.returned_weight	);
-	JKY.set_value	('jky-checkout-weight'	,				 the_row.checkout_weight	);
+	JKY.set_value	('jky-product-code'		,			 the_row.code			) ;
+	JKY.set_value	('jky-batch-code'		,			 the_row.batch			) ;
+	JKY.set_value	('jky-labels-printed'	,			 the_row.labels_printed	) ;
+	JKY.set_value	('jky-received-boxes'	,			 the_row.received_boxes	) ;
+	JKY.set_value	('jky-checkin-boxes'	,			 the_row.checkin_boxes	) ;
+	JKY.set_value	('jky-number-of-cones'	,			 the_row.number_of_cones) ;
+	JKY.set_value	('jky-unit-price'		,			 the_row.unit_price		) ;
+	JKY.set_value	('jky-average-weight'	,			 the_row.average_weight	) ;
+	JKY.set_value	('jky-received-weight'	,			 the_row.received_weight) ;
+	JKY.set_value	('jky-checkin-weight'	,			 the_row.checkin_weight	) ;
+	JKY.set_value	('jky-returned-weight'	,			 the_row.returned_weight) ;
+	JKY.set_value	('jky-checkout-weight'	,			 the_row.checkout_weight) ;
+	JKY.set_value	('jky-remarks'			, JKY.decode(the_row.remarks		));
 	JKY.display_boxes();
 };
 
@@ -117,6 +122,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-checkin-weight'	,  0);
 	JKY.set_value	('jky-returned-weight'	,  0);
 	JKY.set_value	('jky-checkout-weight'	,  0);
+	JKY.set_value	('jky-remarks'			, '');
 };
 
 /**
@@ -127,18 +133,19 @@ JKY.get_form_set = function() {
 //	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
 
 	var my_set = ''
-		+            '  code=\'' + JKY.get_value('jky-product-code'		) + '\''
-		+           ', batch=\'' + JKY.get_value('jky-batch-code'		) + '\''
-		+  ', labels_printed=  ' + JKY.get_value('jky-labels-printed'	)
-		+  ', received_boxes=  ' + JKY.get_value('jky-received-boxes'	)
-		+   ', checkin_boxes=  ' + JKY.get_value('jky-checkin-boxes'	)
-		+ ', number_of_cones=  ' + JKY.get_value('jky-number-of-cones'	)
-		+      ', unit_price=  ' + JKY.get_value('jky-unit-price'		)
-		+  ', average_weight=  ' + JKY.get_value('jky-average-weight'	)
-		+ ', received_weight=  ' + JKY.get_value('jky-received-weight'	)
-		+  ', checkin_weight=  ' + JKY.get_value('jky-checkin-weight'	)
-		+ ', returned_weight=  ' + JKY.get_value('jky-returned-weight'	)
-		+ ', checkout_weight=  ' + JKY.get_value('jky-checkout-weight'	)
+		+              '  code=\'' +			JKY.get_value('jky-product-code'	)	+ '\''
+		+             ', batch=\'' +			JKY.get_value('jky-batch-code'		)	+ '\''
+		+    ', labels_printed=  ' +			JKY.get_value('jky-labels-printed'	)
+		+    ', received_boxes=  ' +			JKY.get_value('jky-received-boxes'	)
+		+     ', checkin_boxes=  ' +			JKY.get_value('jky-checkin-boxes'	)
+		+   ', number_of_cones=  ' +			JKY.get_value('jky-number-of-cones'	)
+		+        ', unit_price=  ' +			JKY.get_value('jky-unit-price'		)
+		+    ', average_weight=  ' +			JKY.get_value('jky-average-weight'	)
+		+   ', received_weight=  ' +			JKY.get_value('jky-received-weight'	)
+		+    ', checkin_weight=  ' +			JKY.get_value('jky-checkin-weight'	)
+		+   ', returned_weight=  ' +			JKY.get_value('jky-returned-weight'	)
+		+   ', checkout_weight=  ' +			JKY.get_value('jky-checkout-weight'	)
+		+           ', remarks=\'' + JKY.encode(JKY.get_value('jky-remarks'			))	+ '\''
 		;
 	return my_set;
 };

@@ -100,17 +100,16 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_button('jky-batches-add-new');
 	}
 
-	JKY.set_html	('jky-status'			, JKY.t			(the_row.status			));
-	JKY.set_value	('jky-receive-number'	,				 the_row.receive_number	);
-	JKY.set_date	('jky-received-date'	, JKY.out_time	(the_row.received_at	));
-	JKY.set_option	('jky-dyer-name'		,				 the_row.dyer_id		);
-	JKY.set_value	('jky-nfe-dl'			,				 the_row.nfe_dl			);
-	JKY.set_value	('jky-nfe-tm'			,				 the_row.nfe_tm			);
-	JKY.set_date	('jky-invoice-date'		, JKY.out_date	(the_row.invoice_date	));
-	JKY.set_value	('jky-invoice-weight'	,				 the_row.invoice_weight	);
-	JKY.set_value	('jky-invoice-amount'	,				 the_row.invoice_amount	);
-	JKY.set_value	('jky-received-weight'	,				 the_row.received_weight);
-	JKY.set_value	('jky-received-amount'	,				 the_row.received_amount);
+	JKY.set_value	('jky-receive-number'	,				 the_row.receive_number		);
+	JKY.set_date	('jky-received-date'	, JKY.out_time	(the_row.received_at		));
+	JKY.set_option	('jky-dyer-name'		,				 the_row.dyer_id			);
+	JKY.set_value	('jky-nfe-dl'			,				 the_row.nfe_dl				);
+	JKY.set_value	('jky-nfe-tm'			,				 the_row.nfe_tm				);
+	JKY.set_date	('jky-invoice-date'		, JKY.out_date	(the_row.invoice_date		));
+	JKY.set_value	('jky-invoice-weight'	,				 the_row.invoice_weight		);
+	JKY.set_value	('jky-invoice-amount'	,				 the_row.invoice_amount		);
+	JKY.set_value	('jky-received-weight'	,				 the_row.received_weight	);
+	JKY.set_value	('jky-received-amount'	,				 the_row.received_amount	);
 
 	JKY.set_calculated_color();
 	JKY.display_loads();
@@ -179,11 +178,11 @@ JKY.display_graph = function() {
 	JKY.show('jky-loading');
 	var my_data =
 		{ method	: 'get_index'
-		, table		: JKY.App.get('table_name')
-		, specific	: JKY.App.get('specific')
-		, select	: JKY.App.get('select')
-		, filter	: JKY.App.get('filter')
-		, display	: JKY.App.get('display')
+		, table		: JKY.App.get_prop('table_name')
+		, specific	: JKY.App.get_prop('specific')
+		, select	: JKY.App.get_prop('select')
+		, filter	: JKY.App.get_prop('filter')
+		, display	: JKY.App.get_prop('display')
 //		, order_by	: 'invoice_date'
 //		, group_by	: 'invoice_date'
 		};

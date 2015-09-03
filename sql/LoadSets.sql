@@ -8,9 +8,12 @@ CREATE TABLE IF NOT EXISTS LoadSets
 , status			VARCHAR(32)			DEFAULT 'Active'
 
 , load_quot_id		BIGINT				DEFAULT NULL
+, machine_name		VARCHAR(32)			DEFAULT NULL
 , checkin_location	CHAR(4)				DEFAULT NULL
 , checkin_date		DATE				DEFAULT NULL
 , checkin_weight	DECIMAL(10,2)		DEFAULT 0
+, reserved_weight	DECIMAL(10,2)		DEFAULT 0
+, checkout_weight	DECIMAL(10,2)		DEFAULT 0
 , checkin_pieces	INT					DEFAULT 0
 , reserved_pieces	INT					DEFAULT 0
 , checkout_pieces	INT					DEFAULT 0
@@ -22,6 +25,11 @@ CREATE TABLE IF NOT EXISTS LoadSets
 INSERT NextIds	SET table_name='LoadSets', next_id=1, id_size=9;
 INSERT Controls SET group_set='User Resources'		, status='Active', sequence=  50, name='LoadSets', updated_by=1, updated_at=NOW();
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=  50, name='LoadSets', updated_by=1, updated_at=NOW();
+
+ALTER TABLE LoadSets		ADD COLUMN machine_name		VARCHAR(32)		DEFAULT NULL	AFTER load_quot_id;
+
+ALTER TABLE LoadSets		ADD COLUMN checkout_weight	DECIMAL(10,2)	DEFAULT 0		AFTER checkin_weight;
+ALTER TABLE LoadSets		ADD COLUMN reserved_weight	DECIMAL(10,2)	DEFAULT 0		AFTER checkin_weight;
 
 
 SELECT LoadSets.*

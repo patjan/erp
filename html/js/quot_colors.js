@@ -504,6 +504,7 @@ JKY.print_colors = function(the_id, the_product) {
 	return my_html;
 }
 
+/**
 JKY.approve_colors = function(the_id, the_product) {
 	var my_line_peso	= the_product.peso;
 	var my_line_units	= the_product.units;
@@ -561,14 +562,14 @@ JKY.approve_colors = function(the_id, the_product) {
 						var my_row = my_rows[i];
 
 						var my_color_units  = '';
-/*
+
 						if (my_line_units != 0) {
 							my_color_units  = Math.ceil(my_row.quoted_units / my_line_units) + ' pc';
 						}
 						if (my_line_units != 1) {
 							my_color_units  = '(' + parseInt(my_row.quoted_units) + ' uni) ' + my_color_units;
 						}
-*/
+
 						if (my_row.product_type == 'Retilinea') {
 							my_color_units = parseInt(my_row.quoted_units) + ' uni';
 						}else
@@ -635,6 +636,112 @@ JKY.approve_colors = function(the_id, the_product) {
 						}
 						my_html += '</tr>';
 					}
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		}
+	)
+	return my_html;
+}
+ */
+
+JKY.approve_colors = function(the_id, the_product) {
+	var my_line_peso	= the_product.peso;
+	var my_line_units	= the_product.units;
+	var my_line_discount= the_product.discount;
+	if (my_line_units == 0)		my_line_peso = 1;
+
+	JKY.colors = JKY.color_ids(the_id);
+	var my_html  = '';
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'QuotColors'
+		, select	:  the_id
+		, order_by  : 'QuotColors.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					var my_rows = response.rows;
+					var my_total_quant = 0;
+					var my_unit = '';
+
+					my_html += ''
+						+ '<table class="jky-approve-colors"><tbody>'
+						+ '<tr>'
+						+ '<td class="jky-approve-dyer"		>' + 'ACO'						+ '</td><td class="jky-approve-space"></td>'
+						+ '<td class="jky-approve-name"		><span>           Color</span>' + '</td><td class="jky-approve-space"></td>'
+						+ '<td class="jky-approve-number"	><span>          Recipe</span>' + '</td><td class="jky-approve-space"></td>'
+						+ '<td class="jky-approve-name"		><span>          Dyeing</span>' + '</td><td class="jky-approve-space"></td>'
+						+ '<td class="jky-approve-value"	><span>           Quant</span>' + '</td><td class="jky-approve-space"></td>'
+						+ '<td class="jky-approve-number"	><span> Load Out Number</span>' + '</td>'
+						+ '</tr>'
+						+ '<tr><td></td></tr>'
+						;
+					for(var i in my_rows) {
+						var my_row = my_rows[i];
+						var my_loadquot_id	= JKY.get_id		 ('LoadQuotations'	, 'quot_color_id = ' + my_row.id);
+						var my_loadout_id	= JKY.get_value_by_id('LoadQuotations'	, 'loadout_id'	, my_loadquot_id);
+						var my_recipe		= '';
+						var my_dyeing_type	= '';
+						if (my_loadout_id) {
+							my_recipe		= JKY.get_value_by_id('LoadOuts', 'recipe'		, my_loadout_id);
+							my_dyeing_type	= JKY.get_value_by_id('LoadOuts', 'dyeing_type'	, my_loadout_id);
+						}
+						var my_loads = JKY.get_loads_by_dyer(my_row.id);
+						for(var j in my_loads) {
+							var my_load = my_loads[j];
+							var my_quant= parseInt(my_load.quoted_pieces);
+							var my_unit = ' pc';	 
+/*
+							if (my_row.product_type == 'Retilinea') {
+								my_quant= parseInt(my_load.quoted_units);
+								my_unit	= ' uni';
+							}else
+							if (my_line_units == 0) {
+								my_quant= Math.ceil(my_load.quoted_units / my_row.peso);
+								my_unit	= ' pc';
+							}else{
+								my_quant= Math.ceil(my_load.quoted_units / my_line_units);
+								my_unit	= ' pc';
+							}
+*/
+							my_total_quant += my_quant;
+							my_html += ''
+								+ '<tr>'
+								+ '<td class="jky-approve-dyer"		>' + my_load.dyer_name	+ '</td><td class="jky-approve-space"></td>'
+								+ '<td class="jky-approve-name"		>' + my_row.color_name	+ '</td><td class="jky-approve-space"></td>'
+								+ '<td class="jky-approve-number"	>' + my_recipe			+ '</td><td class="jky-approve-space"></td>'
+								+ '<td class="jky-approve-name"		>' + my_dyeing_type		+ '</td><td class="jky-approve-space"></td>'
+								+ '<td class="jky-approve-value"	>' + my_quant + my_unit + '</td><td class="jky-approve-space"></td>'
+								+ '<td class="jky-approve-number"	>' + my_load.loadout_number	+ '</td>'
+								+ '</tr>'
+								;
+						}	
+					}
+
+					my_html += ''
+						+ '<tr><td></td></tr>'
+						+ '<tr>'
+						+ '<td class="jky-approve-space"	></td>'
+						+ '<td class="jky-approve-space"	></td>'
+						+ '<td class="jky-approve-space"	></td>'
+						+ '<td class="jky-approve-space"	></td>'
+						+ '<td class="jky-approve-space"	></td>'
+						+ '<td class="jky-approve-label"	>' + 'Total'	+ '</td>'
+						+ '<td class="jky-approve-value"	>' + my_total_quant + my_unit + '</td>'
+						+ '</tr>'
+						;
+					my_html += '</tbody></table>';
+					my_html += '<br>';
 				}else{
 					JKY.display_message(response.message);
 				}

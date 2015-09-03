@@ -31,7 +31,6 @@ JKY.start_program = function() {
 JKY.set_all_events = function() {
 	$('#jky-color-name'			).change(function()	{if (JKY.row == null)	JKY.title_case(this);});
 
-	$('#jky-action-change'		).click( function() {JKY.App.change_status(JKY.row.id);});
 	$('#jky-recipe-add-new'		).click (function() {JKY.insert_recipe		();});
 	$('#jky-action-save-remarks').click (function()	{JKY.App.save_remarks	();});
 
@@ -44,9 +43,8 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-composition'	, '../JKY.Search.Composition.html'	);
 	JKY.append_file('jky-load-dyeing'		, '../JKY.Search.Dyeing.html'		);
-	JKY.set_html('jky-status'			, JKY.set_controls('Status Codes', 'Active'));
-	JKY.set_html('jky-color-type'		, JKY.set_configs ('Color Types' , JKY.App.get('select'), ''));
-	JKY.set_html('jky-app-select'		, JKY.set_configs ('Color Types' , JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-color-type'		, JKY.set_configs ('Color Types' , JKY.App.get_prop('select'), ''));
+	JKY.set_html('jky-app-select'		, JKY.set_configs ('Color Types' , JKY.App.get_prop('select'), 'All'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Type'));
 	JKY.show('jky-app-select-line');
 //	select the first option as default
@@ -61,10 +59,10 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-td-name-w"	>' +				 the_row.color_name			+ '</td>'
-		+  '<td class="jky-td-name-s"	>' +				 the_row.color_type			+ '</td>'
-		+  '<td class="jky-td-number"	>' +				 the_row.recipes			+ '</td>'
-		+  '<td class="jky-td-status"	>' +				 the_row.status				+ '</td>'
+		+  '<td class="jky-td-name-w">' + the_row.color_name	+ '</td>'
+		+  '<td class="jky-td-name-s">' + the_row.color_type	+ '</td>'
+		+  '<td class="jky-td-number">' + the_row.recipes		+ '</td>'
+		+  '<td class="jky-td-status">' + the_row.status		+ '</td>'
 		;
 	return my_html;
 };
@@ -73,10 +71,9 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_html	('jky-status'			, JKY.t			(the_row.status				));
-	JKY.set_value	('jky-color-name'		,				 the_row.color_name			);
-	JKY.set_option	('jky-color-type'		,				 the_row.color_type			);
-	JKY.set_value	('jky-remarks'			,				 JKY.row.remarks			);
+	JKY.set_value	('jky-color-name'		,			 the_row.color_name	);
+	JKY.set_option	('jky-color-type'		,			 the_row.color_type	);
+	JKY.set_value	('jky-remarks'			, JKY.decode(the_row.remarks	));
 	JKY.display_recipes();
 };
 

@@ -7,6 +7,7 @@ var my_sold			= 0;
 var my_checkout		= 0;
 var my_total_pieces = 0;
 var my_total_weight = 0;
+var my_configs		= JKY.get_configs('Finishing Types');
 
 JKY.LoadOut = function() {
 	var my_the_id		= null;		//	external id that initiated the call
@@ -225,11 +226,13 @@ JKY.LoadOut = function() {
 
 				my_html += '<table cellspacing=0 style="width:700px;">'
 						+ '<tr style="line-height:20px;">'
-						+ '<th class="jky-print-barcode"><span>Piece</span></th>'
-						+ '<th class="jky-print-weight" ><span>Peso </span></th>'
+						+ '<th class="jky-print-machine"><span>Machine	</span></th>'
+						+ '<th class="jky-print-barcode"><span>Piece	</span></th>'
+						+ '<th class="jky-print-weight" ><span>Peso		</span></th>'
 						+ '<th class="jky-print-filler" ></th>'
-						+ '<th class="jky-print-barcode"><span>Piece</span></th>'
-						+ '<th class="jky-print-weight" ><span>Peso </span></th>'
+						+ '<th class="jky-print-machine"><span>Machine	</span></th>'
+						+ '<th class="jky-print-barcode"><span>Piece	</span></th>'
+						+ '<th class="jky-print-weight" ><span>Peso		</span></th>'
 						+ '</tr>'
 						;
 				var my_pieces = JKY.get_rows_by_where('Pieces', 'Pieces.load_quot_id=' + my_loadquot.id);
@@ -241,6 +244,7 @@ JKY.LoadOut = function() {
 					var my_piece = my_pieces[k];
 					if (my_piece) {
 						my_html += ''
+								+ '<td class="jky-print-barcode">' + my_piece.produced_by		+ '</td>'
 								+ '<td class="jky-print-barcode">' + my_piece.barcode			+ '</td>'
 								+ '<td class="jky-print-weight" >' + my_piece.checkin_weight	+ '</td>'
 								;
@@ -249,6 +253,7 @@ JKY.LoadOut = function() {
 					if (my_piece) {
 						my_html += ''
 								+ '<th class="jky-print-filler" ></th>'
+								+ '<td class="jky-print-barcode">' + my_piece.produced_by		+ '</td>'
 								+ '<td class="jky-print-barcode">' + my_piece.barcode			+ '</td>'
 								+ '<td class="jky-print-weight" >' + my_piece.checkin_weight	+ '</td>'
 								;
@@ -308,16 +313,16 @@ JKY.LoadOut = function() {
 			+ '</tr>'
 			+ '<tr>'
 			+ '<td class=jky-print-label>						</td><td class=jky-print-col1>'										+ '</td>'
-			+ '<td class=jky-print-label><span>   Dyeing</span>:</td><td class=jky-print-col2>' + the_loadout.dyeing_type			+ '</td>'
+			+ '<td class=jky-print-label><span>   Dyeing</span>:</td><td class=jky-print-col2><b>' + the_loadout.dyeing_type		+ '</b></td>'
 			+ '</tr>'
 			+ '<tr>'
 			+ '<td class=jky-print-label><span>     Dyer</span>:</td><td class=jky-print-col1>' + my_dyer.full_name					+ '</td>'
 //			+ '<td class=jky-print-label><span>	   Color</span>:</td><td class=jky-print-col2>' + my_color							+ '</td>'
-			+ '<td class=jky-print-label><span>	  Recipe</span>:</td><td class=jky-print-col2>' + JKY.fix_null(the_loadout.recipe)	+ '</td>'
+			+ '<td class=jky-print-label><span>	  Recipe</span>:</td><td class=jky-print-col2><b>' + JKY.fix_null(the_loadout.recipe)	+ '</b></td>'
 			+ '</tr>'
 			;
 		if (print_address) {
-			my_html += JKY.full_address(my_dyer)
+			my_html += JKY.full_address(my_dyer);
 		}
 		my_html += ''
 			+ '</table>'
@@ -333,10 +338,10 @@ JKY.LoadOut = function() {
 			+ '<table>'
 			+ '<tr>'
 			+ '<td class=jky-print-label>		 Total do romaneio:</td><td class=jky-print-col1><b>' + my_total_pieces + '<b> (<span>pieces</span>)</td>'
-			+ '<td class=jky-print-label><span>Total Weight</span>:</td><td class=jky-print-col2><b>' + my_total_weight + '<b> (Kg)</td>'
+			+ '<td class=jky-print-label><span>Total Weight</span>:</td><td class=jky-print-col2><b>' + (my_total_weight).toFixed(2) + '<b> (Kg)</td>'
 			+ '</tr>'
 			+ '<tr>'
-			+ '<td class=jky-print-label><span>  Remarks</span>:</td><td class=jky-print-col3 colspan="3">' + the_loadout.remarks + '</td>'
+			+ '<td class=jky-print-label><span>  Remarks</span>:</td><td class=jky-print-col3 colspan="3">' + JKY.decode(the_loadout.remarks) + '</td>'
 			+ '</tr>'
 			+ '</table>'
 			;
@@ -353,26 +358,58 @@ JKY.LoadOut = function() {
 		var my_quot_line	= JKY.get_row	('QuotLines'	, my_quot_color.parent_id);
 		var my_product		= JKY.get_row	('Products'		, my_quot_line.product_id);
 		var my_ftp			= JKY.get_row	('FTPs'			, my_ftp_id);
+/*
 		var my_threads		= JKY.get_rows	('FTP_Threads'	, my_ftp_id);
-
 		var my_wirings	= '';
 		for(var i=0; i<my_threads.length; i++) {
 			var my_name = JKY.get_value_by_id('Threads', 'name', my_threads[i].thread_id);
-			my_wirings += my_name + '<br>';
+			my_wirings += my_name + ' (' + my_threads[i].supplier + ')<br>';
 		}
+*/
+		var my_wirings	= '';
+if (my_ftp_id != null) {
+		var my_order_id = JKY.get_order_id(the_loadquot.id);
+		if (!my_order_id)	my_order_id = null;
 
-		var my_finishings = JKY.get_value_by_id('Products', 'finishings', the_loadquot.product_id);
-		var my_names = [];
-		if (!JKY.is_empty(my_finishings)) {
-			my_names = my_finishings.split(', ');
-		}
-
-		my_finishings = '';
-		for(var i=0; i<my_names.length; i++) {
-			var my_name = my_names[i];
-			var my_value = JKY.get_config_value('Finishing Types', my_name);
-			var my_finishing = (JKY.is_empty(my_value) ? my_name : my_value);
-			my_finishings += my_finishing.toUpperCase() + ' / ';
+		var my_data =
+			{ method	: 'get_index'
+			, table		: 'FTP_Ord_Threads'
+			, ftp_id	:  my_ftp_id
+			, order_id	:  my_order_id
+			};
+		var my_object = {};
+		my_object.data = JSON.stringify(my_data);
+		$.ajax(
+			{ url		: JKY.AJAX_URL
+			, data		: my_object
+			, type		: 'post'
+			, dataType	: 'json'
+			, async		: false
+			, success	: function(response) {
+					if (response.status == 'ok') {
+						var my_rows = response.rows;
+						for(var i in my_rows) {
+							var my_row = my_rows[i];
+							my_wirings	+= my_row.thread_name + ' ('
+										+  my_row.supplier_name + ') '
+										+  my_row.batch + '<br>'
+								;
+						}
+					}else{
+						JKY.display_message(response.message);
+					}
+				}
+			}
+		)
+}
+		var my_product_finishings = JKY.get_value_by_id('Products', 'finishings', the_loadquot.product_id);
+		var my_finishings = '';
+		for(var i = 0, max = my_configs.length; i < max; i++) {
+			var my_config = my_configs[i];
+			if (my_product_finishings.indexOf(my_config.name) > -1) {
+				var my_finishing = (JKY.is_empty(my_config.value) ? my_config.name : my_config.value);
+				my_finishings += my_finishing.toUpperCase() + ' / ';
+			}
 		}
 
 		my_total_pieces += parseInt  (the_loadquot.checkout_pieces);
@@ -385,7 +422,7 @@ JKY.LoadOut = function() {
 		if (print_customer) {
 			my_html += ''
 			+ '<tr>'
-			+ '<td class=jky-print-label><span>    Customer</span>:</td><td class=jky-print-col1>'    + the_loadquot.customer_name + '</td>'
+			+ '<td class=jky-print-label><span>    Customer</span>:</td><td class=jky-print-col1><b>' + the_loadquot.customer_name + '</b></td>'
 			+ '</tr>'
 			;
 		}
@@ -412,7 +449,7 @@ JKY.LoadOut = function() {
 		}
 		my_html += ''
 			+ '<tr>'
-			+ '<td class=jky-print-label><span>Instructions</span>:</td><td class=jky-print-col3 colspan="3"><b>' + my_finishings + '</b></td>'
+			+ '<td class=jky-print-label><span>Instructions</span>:</td><td class="jky-print-col3 jky-print-finishings" colspan="3"><b>' + my_finishings + '</b></td>'
 			+ '</tr>'
 			+ '<tr>'
 			+ '<td></td>'

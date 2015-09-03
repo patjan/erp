@@ -7,8 +7,9 @@ CREATE TABLE IF NOT EXISTS FTPs
 
 , ftp_number		VARCHAR(32)			DEFAULT NULL
 , start_date		DATE				DEFAULT NULL
-, product_id		BIGINT				DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
+, product_id		BIGINT				DEFAULT NULL
+, is_current		CHAR(3)				DEFAULT 'No'	# Atual FTP do produto ?
 , collection		VARCHAR(32)			DEFAULT NULL
 , nick_name			VARCHAR(255)		DEFAULT NULL
 , diameter			INT(11)				DEFAULT 0		# Diametro (cm)
@@ -52,4 +53,15 @@ ALTER TABLE FTPs		ADD		units					INT(11)			DEFAULT 1		AFTER width;
 UPDATE		FTPs		SET		units = 1;
 
 ALTER TABLE FTPs		ADD INDEX machine		(machine_id		);
+
+ALTER TABLE FTPs			ADD	COLUMN is_current		CHAR(3)			DEFAULT 'No'	AFTER product_id;
+
+//	----------------------------------------------------------------------------
+
+SELECT product_id, COUNT(*) AS counter
+  FROM FTPs
+ WHERE is_current = 'Yes'
+ GROUP BY product_id
+HAVING counter > 1
+; 
 

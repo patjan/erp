@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS Batches
 , leftover_weight	DECIMAL(10,2)		DEFAULT 0
 , checkout_weight	DECIMAL(10,2)		DEFAULT 0
 , used_weight		DECIMAL(10,2)		DEFAULT 0
+, remarks			TEXT				DEFAULT	NULL
 
 , PRIMARY KEY(id)
 , KEY incoming	(incoming_id)
@@ -45,3 +46,5 @@ UPDATE	Batches			SET checkin_boxes	= 0;
 UPDATE	Batches			SET checkin_weight	= 0;
 
 ALTER TABLE Batches		ADD INDEX purchase		(purchase_line_id);
+
+ALTER TABLE Batches			ADD COLUMN remarks			TEXT		 	DEFAULT NULL	AFTER used_weight;

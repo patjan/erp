@@ -4,8 +4,10 @@
 .jky-print-col1			{width:450px; vertical-align:top;}
 .jky-print-col2			{width:150px; vertical-align:top;}
 .jky-print-col3			{width:750px; vertical-align:top;}
+.jky-print-machine		{width:150px; text-align:center; border:1px solid black;}
 .jky-print-barcode		{width:200px; text-align:center; border:1px solid black;}
 .jky-print-weight		{width:100px; text-align:center; border:1px solid black;}
+.jky-print-finishings	{font-size:80%;}
 .jky-print-filler		{width:100px;}
 .jky-print-address		{vertical-align:top;}
 </style>
@@ -38,13 +40,17 @@
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
-			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+			<button disabled class='btn jky-status' type='button'><span id='jky-current-status'></span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Status</span>:</div>
+				<select  id='jky-status' class='jky-form-status' /></select>
+			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Ship Dyer Number</span>:</div>
 				<input  id='jky-shipdyer-number' class='jky-form-number' disabled />
@@ -121,6 +127,7 @@
 			<div class='jky-form-buttons'>
 				  <button id='jky-action-save'		class='btn btn-success' type='button' title='Click here to save all changes'		><span>Save		</span></button>
 			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title='Click here to duplicate this record'	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-update'	class='btn btn-success' type='button' title="Click here to update selected records"	><span>Update	</span></button>
 			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title='Click here to delete this record'		><span>Delete	</span></button>
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title='Click here to cancel any changes'		><span>Cancel	</span></button>
 			</div>

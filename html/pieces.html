@@ -12,7 +12,7 @@
 			<th class='jky-td-weight'	><span>   Returned<br>Weight	</span></th>
 			<th class='jky-td-ref'		><span>   Check In<br>Location	</span></th>
 			<th class='jky-td-ref'		><span>  Check Out<br>Location	</span></th>
-			<th class='jky-td-name-s'	><span>    Remarks				</span></th>
+			<th class='jky-td-remarks'	><span>    Remarks				</span></th>
 			<th class='jky-td-status'	><span>     Status				</span></th>
 		</tr>
 	</thead>
@@ -26,7 +26,7 @@
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
-			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+			<button disabled class='btn jky-status' type='button'><span id='jky-current-status'></span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
@@ -34,8 +34,16 @@
 	<div id='jky-form-data'>
 		<div class='jky-left'>
 			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Status</span>:</div>
+				<select  id='jky-status' class='jky-form-status' /></select>
+			</div>
+			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Barcode</span>:</div>
 				<input  id='jky-barcode' class='jky-form-barcode jky-form-key' readonly />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Load Out Number</span>:</div>
+				<input  id='jky-loadout-number' class='jky-form-number jky-form-key' readonly />
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Product</span>:</div>

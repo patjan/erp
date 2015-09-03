@@ -56,8 +56,8 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_html('jky-priority'			, JKY.set_controls('Priorities', '', ''));
 	JKY.set_html('jky-category'			, JKY.set_controls('Ticket Categories', '', ''));
-	JKY.set_value ('jky-app-filter'		, JKY.App.get('filter'));
-	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Open', 'Closed'));
+	JKY.set_value ('jky-app-filter'		, JKY.App.get_prop('filter'));
+	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get_prop('select'), 'All', 'Open', 'Closed'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
 	JKY.show('jky-app-select-line');
 //	select the first option as default
@@ -96,7 +96,6 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_button('jky-batches-add-new');
 	}
 
-	JKY.set_html	('jky-status'			, JKY.t			(the_row.status			));
 	JKY.set_value	('jky-opened-at'		, JKY.short_date(the_row.opened_at		));
 	JKY.set_value	('jky-opened-by'		,				 the_row.opened_name	);
 	JKY.set_value	('jky-assigned-at'		, JKY.short_date(the_row.assigned_at	));
@@ -106,14 +105,13 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-worked-hour'		,				 the_row.worked_hour	);
 	JKY.set_value	('jky-priority'			,				 the_row.priority		);
 	JKY.set_value	('jky-category'			,				 the_row.category		);
-	JKY.set_value	('jky-description'		,				 the_row.description	);
-	JKY.set_value	('jky-resolution'		,				 the_row.resolution		);
-
+	JKY.set_value	('jky-description'		, JKY.decode	(the_row.description	));
+	JKY.set_value	('jky-resolution'		, JKY.decode	(the_row.resolution		));
 	JKY.Photo.set_row_id(the_row.id);
-	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));
-	JKY.set_html('jky-upload-name'		, '');
-	JKY.set_html('jky-upload-percent'	, '');
-	JKY.set_css ('jky-upload-progress'	, 'width', '0%');
+	JKY.set_html('jky-download-photo'		, JKY.Photo.out_photo(the_row.photo));
+	JKY.set_html('jky-upload-name'			, '');
+	JKY.set_html('jky-upload-percent'		, '');
+	JKY.set_css ('jky-upload-progress'		, 'width', '0%');
 };
 
 /**
@@ -148,11 +146,11 @@ JKY.get_form_set = function() {
 				;
 	}
 	var my_set = ''
-		+     'worked_hour=  ' + JKY.get_value	('jky-worked-hour'		)
-		+      ', priority=\'' + JKY.get_value	('jky-priority'			) + '\''
-		+      ', category=\'' + JKY.get_value	('jky-category'			) + '\''
-		+   ', description=\'' + JKY.get_value	('jky-description'		) + '\''
-		+    ', resolution=\'' + JKY.get_value	('jky-resolution'		) + '\''
+		+     'worked_hour=  ' +			JKY.get_value('jky-worked-hour'	)
+		+      ', priority=\'' +			JKY.get_value('jky-priority'	)	+ '\''
+		+      ', category=\'' +			JKY.get_value('jky-category'	)	+ '\''
+		+   ', description=\'' + JKY.encode(JKY.get_value('jky-description'	))	+ '\''
+		+    ', resolution=\'' + JKY.encode(JKY.get_value('jky-resolution'	))	+ '\''
 		+ my_extra_set
 		;
 	return my_set;

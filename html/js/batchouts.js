@@ -107,7 +107,7 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_button('jky-action-close'	);
 	}
 
-	JKY.set_html	('jky-status'			, JKY.t(the_row.status));
+	JKY.hide_parent ('jky-status');
 	JKY.set_value	('jky-product-code'		, the_row.code				);
 	JKY.set_value	('jky-thread-name'		, the_row.thread_name		);
 	JKY.set_value	('jky-batch-code'		, the_row.batch_code		);
@@ -138,6 +138,7 @@ JKY.set_add_new_row = function() {
 	JKY.disable_button('jky-action-delete'	);
 	JKY.disable_button('jky-action-close'	);
 
+	JKY.hide_parent ('jky-status');
 	JKY.set_value	('jky-product-code'			, '');
 	JKY.set_value	('jky-thread-name'			, '');
 	JKY.set_value	('jky-batch-code'			, '');
@@ -145,13 +146,41 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-partner-name'			, '');
 	JKY.set_value	('jky-supplier-name'		, '');
 	JKY.set_value	('jky-dyer-name'			, '');
-	JKY.set_value	('jky-requested-weight'		,  0);
+	JKY.set_value	('jky-requested-weight'		, 0 );
 	JKY.set_value	('jky-requested-boxes'		, '');
 	JKY.set_value	('jky-reserved-boxes'		, '');
-	JKY.set_value	('jky-unit-price'			,  0);
-	JKY.set_value	('jky-average-weight'		,  0);
-	JKY.set_value	('jky-checkout-weight'		,  0);
+	JKY.set_value	('jky-unit-price'			, 0 );
+	JKY.set_value	('jky-average-weight'		, 0 );
+	JKY.set_value	('jky-checkout-weight'		, 0 );
 	JKY.set_value	('jky-checkout-boxes'		, '');
+};
+
+/**
+ *	set replace
+ */
+JKY.set_replace = function() {
+	JKY.disable_button('jky-action-generate');
+	JKY.disable_button('jky-action-delete'	);
+	JKY.disable_button('jky-action-close'	);
+
+	JKY.show_parent ('jky-status');
+	JKY.set_html	('jky-status', JKY.set_options('', '', 'Active', 'Check In', 'Check Out', 'Return'));
+	JKY.set_value	('jky-product-code'			, '');
+	JKY.set_value	('jky-thread-name'			, '');
+	JKY.set_value	('jky-batch-code'			, '');
+	JKY.set_value	('jky-machine-name'			, '');
+	JKY.set_value	('jky-partner-name'			, '');
+	JKY.set_value	('jky-supplier-name'		, '');
+	JKY.set_value	('jky-dyer-name'			, '');
+	JKY.set_value	('jky-requested-weight'		, '');
+	JKY.set_value	('jky-requested-boxes'		, '');
+	JKY.set_value	('jky-reserved-boxes'		, '');
+	JKY.set_value	('jky-unit-price'			, '');
+	JKY.set_value	('jky-average-weight'		, '');
+	JKY.set_value	('jky-checkout-weight'		, '');
+	JKY.set_value	('jky-checkout-boxes'		, '');
+
+	JKY.hide('jky-form-tabs');
 };
 
 /**
@@ -173,6 +202,29 @@ JKY.get_form_set = function() {
 		+'  , checkout_boxes=  ' + JKY.get_value('jky-checkout-boxes'	)
 		;
 	return my_set;
+};
+
+/**
+ *	get replace set
+ */
+JKY.get_replace_set = function() {
+	var my_set = '';
+	if (!JKY.is_empty(JKY.get_value('jky-status'			)))	{my_set +=            ', status=\''	+ JKY.get_value('jky-status'			) + '\'';}
+	if (!JKY.is_empty(JKY.get_value('jky-product-code'		)))	{my_set +=              ', code=\''	+ JKY.get_value('jky-product-code'		) + '\'';}
+	if (!JKY.is_empty(JKY.get_value('jky-unit-price'		)))	{my_set +=        ', unit_price=  '	+ JKY.get_value('jky-unit-price'		);}
+	if (!JKY.is_empty(JKY.get_value('jky-requested-weight'	)))	{my_set +=  ', requested_weight=  '	+ JKY.get_value('jky-requested-weight'	);}
+	if (!JKY.is_empty(JKY.get_value('jky-requested-boxes'	)))	{my_set +=   ', requested_boxes=  '	+ JKY.get_value('jky-requested-boxes'	);}
+	if (!JKY.is_empty(JKY.get_value('jky-average-weight'	)))	{my_set +=    ', average_weight=  '	+ JKY.get_value('jky-average-weight'	);}
+	if (!JKY.is_empty(JKY.get_value('jky-checkout-weight'	)))	{my_set +=   ', checkout_weight=  '	+ JKY.get_value('jky-checkout-weight'	);}
+	if (!JKY.is_empty(JKY.get_value('jky-checkout-boxes'	)))	{my_set +=    ', checkout_boxes=  '	+ JKY.get_value('jky-checkout-boxes'	);}
+	return my_set;
+};
+
+JKY.display_list = function() {
+	if (JKY.Session.get_value('user_role') == 'Admin'
+	||  JKY.Session.get_value('user_role') == 'Support') {
+		JKY.show('jky-action-replace');
+	}
 };
 
 /**

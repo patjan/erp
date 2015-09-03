@@ -197,7 +197,7 @@ JKY.print_threads = function(the_id) {
 						var my_thread_id_2	= my_row.thread_id_2;
 						var my_thread_id_3	= my_row.thread_id_3;
 						var my_thread_id_4	= my_row.thread_id_4;
-						var my_remarks		= my_row.remarks;
+						var my_remarks		= JKY.decode(my_row.remarks);
 
 						my_html  += ''
 							+ '<tr>'

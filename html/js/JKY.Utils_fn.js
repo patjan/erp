@@ -54,10 +54,10 @@ $.fn.ForceNumericOnly = function() {
 				);
 		});
 		$(this).keyup(function(e) {
-			var key = e.charCode || e.keyCode || 0;
-			if (key == 188) {
+//			var key = e.charCode || e.keyCode || 0;
+//			if (key == 188) {
 				$(this).val($(this).val().replace(/,/g, "."));
-			}
+//			}
 		});
 	});
 };

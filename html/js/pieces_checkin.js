@@ -40,7 +40,7 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-//	JKY.set_html('jky-app-select', JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));
+//	JKY.set_html('jky-app-select', JKY.set_configs('Thread Groups', JKY.App.get_prop('select'), 'All'));
 //	JKY.set_html('jky-app-select-label', JKY.t('Group'));
 //	JKY.show('jky-app-select-line');
 	JKY.show('jky-action-clear');
@@ -71,7 +71,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.checkin_at			)	+ '</td>'
 		+  '<td class="jky-td-location"	>' + JKY.fix_null	(the_row.checkin_location	)	+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 the_row.checkin_weight			+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.qualities + ' ' + the_row.remarks) + '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.decode		(the_row.qualities + ' ' + the_row.remarks) + '</td>'
 		;
 	return my_html;
 };
@@ -80,7 +80,6 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_value	('jky-status'			, the_row.status			);
 	JKY.set_value	('jky-barcode'			, the_row.barcode			);
 	JKY.set_value	('jky-revised-by'		, the_row.revised_by		);
 	JKY.set_value	('jky-revised-name'		, the_row.revised_name		);
@@ -99,9 +98,9 @@ JKY.set_form_row = function(the_row) {
 		JKY.set_value	('jky-checkin-location3', my_location.substr(2, 1));
 		JKY.set_value	('jky-checkin-location4', my_location.substr(3, 1));
 	}
-	JKY.set_value	('jky-qualities'		, the_row.qualities			);
-	JKY.set_value	('jky-remarks'			, the_row.remarks			);
-	JKY.set_value	('jky-checkin-location'	, the_row.checkin_location	);
+	JKY.set_value	('jky-qualities'		,			 the_row.qualities			);
+	JKY.set_value	('jky-remarks'			, JKY.decode(the_row.remarks			));
+	JKY.set_value	('jky-checkin-location'	,			 the_row.checkin_location	);
 };
 
 JKY.display_list = function() {
@@ -134,7 +133,7 @@ JKY.process_clear_screen = function() {
 	JKY.set_value('jky-remarks'			, '');
 	JKY.set_value('jky-checkin-location', '');
 	JKY.set_value('jky-form-action'		, '');
-	JKY.set_focus(JKY.App.get('focus'));
+	JKY.set_focus(JKY.App.get_prop('focus'));
 	JKY.Changes.reset();
 }
 
@@ -197,18 +196,18 @@ JKY.process_barcode = function() {
 		if (my_row) {
 			if (my_row.status == 'Active') {
 				var my_location = JKY.get_value_by_id('Orders', 'location', my_row.order_id);
-				JKY.set_value('jky-checkin-weight'	, my_row.checkin_weight		);
-				JKY.set_value('jky-qualities'		, my_row.qualities			);
-				JKY.set_value('jky-remarks'			, my_row.remarks			);
-	//			JKY.set_value('jky-revised-by'		, my_row.revised_by			);
-	//			JKY.set_value('jky-revised-name'	, my_row.revised_name		);
-	//			JKY.set_value('jky-weighed-by'		, my_row.weighed_by			);
-	//			JKY.set_value('jky-weighed-name'	, my_row.weighed_name		);
-				JKY.set_value('jky-status'			, my_row.status				);
-				JKY.set_value('jky-product-name'	, my_row.product_name		);
-	//			JKY.set_value('jky-checkin-location', my_row.checkin_location	);
-				JKY.set_value('jky-hidden-location' , my_location);
-				JKY.set_value('jky-checkin-location', my_location);
+				JKY.set_value('jky-checkin-weight'	,			 my_row.checkin_weight		);
+				JKY.set_value('jky-qualities'		,			 my_row.qualities			);
+				JKY.set_value('jky-remarks'			, JKY.decode(my_row.remarks				));
+	//			JKY.set_value('jky-revised-by'		,			 my_row.revised_by			);
+	//			JKY.set_value('jky-revised-name'	,			 my_row.revised_name		);
+	//			JKY.set_value('jky-weighed-by'		,			 my_row.weighed_by			);
+	//			JKY.set_value('jky-weighed-name'	,			 my_row.weighed_name		);
+				JKY.set_value('jky-status'			,			 my_row.status				);
+				JKY.set_value('jky-product-name'	,			 my_row.product_name		);
+	//			JKY.set_value('jky-checkin-location',			 my_row.checkin_location	);
+				JKY.set_value('jky-hidden-location' ,			 my_location				);
+				JKY.set_value('jky-checkin-location',			 my_location				);
 				JKY.set_value('jky-form-action'		, '');
 				JKY.set_focus('jky-checkin-weight1');
 			}else{
@@ -334,7 +333,7 @@ JKY.checkin_piece_success = function() {
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(my_row.checkin_at)			+ '</td>'
 		+  '<td class="jky-td-location"	>' + JKY.fix_null	(my_row.checkin_location)	+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 my_row.checkin_weight		+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(my_row.qualities +' ' + my_row.remarks) + '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.decode		(my_row.qualities + ' ' + my_row.remarks) + '</td>'
 		+ '</tr>'
 		;
 	JKY.prepend_html('jky-pieces-table-body', my_html);

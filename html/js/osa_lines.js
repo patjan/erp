@@ -50,7 +50,7 @@ JKY.generate_line = function(the_index, the_row) {
 		+ '<tr class="jky-line" osa_line_id=' + my_id + '>'
 		+ '<td class="jky-td-action"	>' + my_trash			+ '</td>'
 		+ '<td class="nowrap"			>' + my_product			+ '</td>'
-		+ '<td class="jky-td-extra"		><input class="jky-remarks"			onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.fix_null(the_row.remarks) + '" /></td>'
+		+ '<td class="jky-td-extra"		><input class="jky-remarks"			onchange="JKY.update_line(this, ' + my_id + ')"	value="' + JKY.decode(the_row.remarks) + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-product-peso"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.peso			 + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-quoted-units"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.quoted_units	 + '" /></td>'
 		+ '<td class="jky-td-pieces"	><input class="jky-product-units"	onchange="JKY.update_line(this, ' + my_id + ')"	value="' + the_row.units		 + '" /></td>'
@@ -201,13 +201,13 @@ JKY.print_lines = function(the_id) {
 						var my_row = my_rows[i];
 						my_html  += ''
 							+ '<tr class="jky-bold">'
-							+ '<td								><b>' + my_row.product_name	+ '</b></td>'
-							+ '<td class="jky-print-name-s"		><b>' + my_row.remarks		+ '</b></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.peso			+ '</b></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_units	+ '</b></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.units		+ '</b></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_pieces+ '</b></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_weight+ '</b></td>'
+							+ '<td								><b>' +				 my_row.product_name	+ '</b></td>'
+							+ '<td class="jky-print-name-s"		><b>' + JKY.decode	(my_row.remarks)		+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' +				 my_row.peso			+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' +				 my_row.quoted_units	+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' +				 my_row.units			+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' +				 my_row.quoted_pieces	+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' +				 my_row.quoted_weight	+ '</b></td>'
 							+ '</tr>'
 							;
 						my_html  += JKY.print_colors(my_row.id);
@@ -221,12 +221,12 @@ JKY.print_lines = function(the_id) {
 	return my_html;
 }
 
-JKY.approve_lines = function(the_id) {
+JKY.approve_lines = function(the_osa_id) {
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'
 		, table		: 'OSA_Lines'
-		, select	:  the_id
+		, select	:  the_osa_id
 		, order_by  : 'OSA_Lines.id'
 		};
 	var my_object = {};
@@ -247,13 +247,13 @@ JKY.approve_lines = function(the_id) {
 									;
 						my_html  += ''
 							+ '<tr class="jky-bold">'
-							+ '<td class="jky-print-product"	><b>' + my_row.product_name	+ '</b>' + my_dyer + '</td>'
-							+ '<td class="jky-print-name-s"		><b>' + my_row.remarks		+ '</b></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.peso			+ '</b></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_units	+ '</b></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.units		+ '</b></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_pieces+ '</b></td>'
-							+ '<td class="jky-print-pieces"		><b>' + my_row.quoted_weight+ '</b></td>'
+							+ '<td class="jky-print-product"	><b>' +				 my_row.product_name	+ '</b>' + my_dyer + '</td>'
+							+ '<td class="jky-print-name-s"		><b>' + JKY.decode	(my_row.remarks)		+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' +				 my_row.peso			+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' +				 my_row.quoted_units	+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' +				 my_row.units			+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' +				 my_row.quoted_pieces	+ '</b></td>'
+							+ '<td class="jky-print-pieces"		><b>' +				 my_row.quoted_weight	+ '</b></td>'
 							+ '</tr>'
 							;
 						my_html  += JKY.approve_colors(my_row.id);

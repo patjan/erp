@@ -1,7 +1,9 @@
 "use strict";
-
+var JKY = JKY || {};
 /**
  * JKY.Session.js - singleton class to process all Session interface
+ *
+ * require: #jky-menu-logoff
  *
  * method:	JKY.Session.load_values()
  *			JKY.Session.set_value(key, value)
@@ -10,8 +12,6 @@
  * example:	JKY.Session.load_values();
  *			JKY.Session.set_value('language', 'taiwanese');
  *			JKY.Session.get_value('language');		//	taiwanese
- *
- * require:	JKY.Utils.js	(JKY.AJAX_URL)
  */
 JKY.Session = function() {
 	var my_session		= [];
@@ -19,7 +19,10 @@ JKY.Session = function() {
 	var my_date_time	= '';
 
 	var my_session_time = 1800;	//	in seconds 1800 = 30 minutes
-	var my_recover_time =   60;	//	in seconds   60 =  1 minute
+	var my_recover_time =   60;
+	var my_safety_time  =    5;
+
+	var my_elapsed_time = my_session_time - my_recover_time - my_safety_time;
 	var my_count_down;			//  in seconds
 	var my_call_back;			//	call back function name
 	var my_session_event;		//	last session event
@@ -76,56 +79,61 @@ JKY.Session = function() {
 	}
 
 	var my_reset_timeout = function(the_call_back) {
-		if(!JKY.Session.has('user_id')) {
-			return;
-		}
-//JKY.display_trace('my_reset_timeout: ' + (my_session_time - my_recover_time));
-		if (typeof(the_call_back) == 'function') {
-			my_call_back = the_call_back;
-		}
+//		if (!JKY.Session.has('user_id'))			return;
+		if (typeof(the_call_back) == 'function')	my_call_back = the_call_back;
+		if (my_session_event)						clearTimeout(my_session_event);
 
-		if (my_session_event) {
-			clearTimeout(my_session_event);
+//		only activate Time Out, if there is not Log Off screen
+		if (typeof(jky_program) == 'string' && jky_program != 'Logoff') {
+//JKY.d('my_reset_timeout');
+			my_session_event = setTimeout(function() {
+				my_count_down = my_recover_time;
+				my_display_count_down();
+			}, my_elapsed_time * 1000);
 		}
-		my_session_event = setTimeout(function() {
-			my_count_down = my_recover_time;
-			my_display_count_down();
-		}, (my_session_time - my_recover_time) * 1000);
 	};
 
 	var my_display_count_down = function() {
-//JKY.display_trace('my_display_count_down');
-		JKY.display_confirm
-				(  my_process_timeout
-				,  my_keep_in_session
-				, 'Time Out'
-				, '<span>You have been inactive for too long</span>.'
-				+ '<br>'
-				+ '<span>The system will <b>log-out</b> automatically in</span>'
-				+ '<span id="jky-count-down" style="padding-left:10px; font-size:24px; font-weight:bold;"></span> <span>seconds</span>.'
-				+ '<br><br>'
-				+ '<span>Do you want to <b>continue</b> working in this session</span>?'
-				, 'Log Off'
-				, 'Continue'
-				);
-		JKY.t_tag('jky-confirm', 'span');
-		my_process_count_down();
+
+//		check if there is cookie of last request
+//		and if last request is timeout
+		var my_session_time = JKY.getCookie('JKY.session_time');
+		if (JKY.is_empty(my_session_time)) {
+//JKY.d('my_display_count_down');
+			JKY.display_confirm
+					(  my_process_timeout
+					,  my_keep_in_session
+					, 'Time Out'
+					, '<span>You have been inactive for too long</span>.'
+					+ '<br>'
+					+ '<span>The system will <b>log-out</b> automatically in</span>'
+					+ '<span id="jky-count-down" style="padding-left:10px; font-size:24px; font-weight:bold;"></span> <span>seconds</span>.'
+					+ '<br><br>'
+					+ '<span>Do you want to <b>continue</b> working in this session</span>?'
+					, 'Log Off'
+					, 'Continue'
+					);
+			JKY.t_tag('jky-confirm', 'span');
+			my_process_count_down();
+		}else{
+			window.location = 'home.html';			//	???	display Log Off screen
+		}
 	};
 
 	var my_process_count_down = function() {
-//JKY.display_trace('my_process_count_down');
-		if (my_count_down_event) {
-			clearTimeout(my_count_down_event);
-		}
+		if (my_count_down_event)		clearTimeout(my_count_down_event);
+
 //		this line is only QA
 //		JKY.set_html('jky-company-logo', '<span style="font-size:64px;">' + my_count_down + '</span>');
+
 		JKY.set_html('jky-count-down', my_count_down);
 		my_count_down_event = setTimeout(function() {
+			clearTimeout(my_count_down_event);
 			my_count_down -= 1;
 			if (my_count_down <= 0) {
 				JKY.set_html('jky-count-down', my_count_down);
 				my_process_timeout();
-				clearTimeout(my_session_event);
+//				clearTimeout(my_session_event);
 			}else{
 				my_process_count_down();
 			}
@@ -133,26 +141,27 @@ JKY.Session = function() {
 	};
 
 	var my_keep_in_session = function() {
-//JKY.display_trace('my_keep_in_session');
-//		my_reset_timeout();			//	not needed because ajax will reset timeout
+//JKY.d('my_keep_in_session');
+		if (my_count_down_event)		clearTimeout(my_count_down_event);
+		my_reset_timeout();			//	not needed because ajax will reset timeout
 
+//		PJ - 2015-07-30 comment out, because CookieLife should not overide Session Time
 //		extra ajax call to reset session timeout on Apache
 		my_load_values();
-		clearTimeout(my_count_down_event);
 	};
 
 	var my_process_timeout = function() {
-//JKY.display_trace('my_process_timeout');
-		clearTimeout(my_count_down_event);
+//JKY.d('my_process_timeout');
+		if (my_count_down_event)		clearTimeout(my_count_down_event);
 		JKY.hide_modal('jky-confirm');
 		if (typeof(my_call_back) == 'function') {
 			my_call_back();
 		}else{
 			var my_log_out = $('#jky-menu-logoff');
 			if (my_log_out) {
-				my_log_out.click();		//	this will work on [Log Off] anchor
-//				window.location = my_log_out.attr('onclick');
 				clearTimeout(my_session_event);
+//				window.location = my_log_out.attr('onclick');
+				JKY.process_log_off();
 			}
 		}
 	};
@@ -161,8 +170,8 @@ JKY.Session = function() {
 		JKY.Session.load_values();
 	});
 
-	return {
-		  load_values	: function()				{		my_load_values()		;}
+	return { version : '2.0.0'
+		, load_values	: function()				{		my_load_values()		;}
 		, save_values	: function()				{		my_save_values()		;}
 		, set_value		: function(key, value)		{		my_session[key] = value	;}
 		, get_value		: function(key)				{return my_session[key]			;}
@@ -181,6 +190,7 @@ JKY.Session = function() {
 		, get_recover_time	: function()					{return	my_recover_time						;}
 
 		, clear_timeout		: function()					{		my_clear_timeout()					;}
+		, get_elapsed_time	: function()					{return	my_elapsed_time						;}
 		, reset_timeout		: function(the_call_back)		{		my_reset_timeout(the_call_back)		;}
 	};
 }();

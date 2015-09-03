@@ -40,7 +40,7 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-//	JKY.set_html('jky-app-select', JKY.set_configs('Thread Groups', JKY.App.get('select'), 'All'));
+//	JKY.set_html('jky-app-select', JKY.set_configs('Thread Groups', JKY.App.get_prop('select'), 'All'));
 //	JKY.set_html('jky-app-select-label', JKY.t('Group'));
 //	JKY.show('jky-app-select-line');
 	JKY.show('jky-action-clear');
@@ -60,7 +60,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.checkin_at			)	+ '</td>'
 		+  '<td class="jky-td-location"	>' + JKY.fix_null	(the_row.checkin_location	)	+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 the_row.checkin_weight			+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.qualities + ' ' + the_row.remarks) + '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.decode		(the_row.qualities + ' ' + the_row.remarks) + '</td>'
 		;
 	return my_html;
 };
@@ -111,7 +111,7 @@ JKY.process_clear_screen = function() {
 	JKY.set_value('jky-checkin-location3', '0');
 	JKY.set_value('jky-checkin-location4', '0');
 	JKY.set_value('jky-form-action'		, '');
-	JKY.set_focus(JKY.App.get('focus'));
+	JKY.set_focus(JKY.App.get_prop('focus'));
 	JKY.Changes.reset();
 }
 
@@ -253,7 +253,7 @@ JKY.checkin_piece_success = function() {
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(my_row.checkin_at)			+ '</td>'
 		+  '<td class="jky-td-location"	>' + JKY.fix_null	(my_row.checkin_location)	+ '</td>'
 		+  '<td class="jky-td-weight"	>' +				 my_row.checkin_weight		+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(my_row.qualities +' ' + my_row.remarks) + '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.decode		(my_row.qualities + ' ' + my_row.remarks) + '</td>'
 		+ '</tr>'
 		;
 	JKY.prepend_html('jky-pieces-table-body', my_html);

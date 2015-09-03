@@ -321,17 +321,18 @@ JKY.print_colors = function(the_id) {
 	return my_html;
 }
 
-JKY.approve_colors = function(the_id) {
-	JKY.colors = JKY.color_ids(the_id);
+JKY.approve_colors = function(the_osa_line_id) {
+	JKY.colors = JKY.color_ids(the_osa_line_id);
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'
 		, table		: 'OSA_Colors'
-		, select	:  the_id
+		, select	:  the_osa_line_id
 		, order_by  : 'OSA_Colors.id'
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);
+	
 	$.ajax(
 		{ url		: JKY.AJAX_URL
 		, data		: my_object
@@ -343,21 +344,26 @@ JKY.approve_colors = function(the_id) {
 					var my_rows = the_response.rows;
 						my_html  += ''
 							+ '<tr>'
+							+ '<td class="jky-print-color-name"		>' + 'Cor (Tingimento + Receita)' + '</td>'
 							+ '<td></td>'
-							+ '<td class="jky-print-color-name"		>' + '<span>Color	</span>' + '</td>'
-							+ '<td class="jky-print-ftp-number"		>' + '<span>FTP 	</span>' + '</td>'
-							+ '<td class="jky-print-machine-name"	>' + '<span>Machine </span>' + '</td>'
-							+ '<td class="jky-print-partner-name"	>' + '<span>Partner </span>' + '</td>'
-							+ '<td class="jky-print-pieces"			>' + '<span>Pieces	</span>' + '</td>'
-							+ '<td class="jky-print-pieces"			>' + '<span>Weight	</span>' + '</td>'
+							+ '<td class="jky-print-ftp-number"		>' + 'FTP'		+ '</td>'
+							+ '<td class="jky-print-machine-name"	>' + 'Maquina'	+ '</td>'
+							+ '<td class="jky-print-partner-name"	>' + 'Parceiro'	+ '</td>'
+							+ '<td class="jky-print-pieces"			>' + 'Pecas'	+ '</td>'
+							+ '<td class="jky-print-pieces"			>' + 'Peso'		+ '</td>'
 							+ '</tr>'
 							;
 					for(var i in my_rows) {
 						var my_row = my_rows[i];
+
+						var my_loadout = JKY.get_loadout_by_color_id(my_row.id);
+						var my_color = '<b>' + my_row.color_name + '</b> (' + my_loadout.dyeing_type + ' ' + JKY.fix_null(my_loadout.recipe) + ')'; 
+						
+
 						my_html  += ''
 							+ '<tr>'
+							+ '<td class="jky-print-color-name"		>' + my_color				+ '</td>'
 							+ '<td></td>'
-							+ '<td class="jky-print-color-name"		>' + my_row.color_name		+ '</td>'
 							+ '<td class="jky-print-ftp-number"		>' + my_row.ftp_number		+ '</td>'
 							+ '<td class="jky-print-machine-name"	>' + my_row.machine_name	+ '</td>'
 							+ '<td class="jky-print-partner-name"	>' + my_row.partner_name	+ '</td>'

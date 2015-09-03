@@ -33,7 +33,7 @@ JKY.generate_recipe = function(the_row) {
 	var my_composition	= the_row.composition;
 	var my_dyeing_type	= the_row.dyeing_type;
 	var my_recipe		= the_row.recipe;
-	var my_remarks		= the_row.remarks;
+	var my_remarks		= JKY.decode(the_row.remarks);
 	var my_trash = (my_id) ? '<a onclick="JKY.delete_recipe(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '&nbsp;';
 	var my_composition = ''
 		+ "<input class='jky-composition-name' readonly onchange='JKY.update_composition(this, " + my_id + ")' value='" + my_composition + "' />"

@@ -178,7 +178,9 @@ function JKY_checkout_piece($the_data) {
 
 	$sql= 'UPDATE LoadSets'
 		. '   SET reserved_pieces = reserved_pieces - 1'
+		. '     , reserved_weight = reserved_weight - ' . $my_piece['checkin_weight']
 		. '     , checkout_pieces = checkout_pieces + 1'
+		. '     , checkout_weight = checkout_weight + ' . $my_piece['checkin_weight']
 		. ' WHERE id = ' . $my_loadset_id
 		;
 	log_sql('LoadSets', 'update', $sql);
@@ -189,6 +191,7 @@ function JKY_checkout_piece($the_data) {
 
 	$sql= 'UPDATE LoadQuotations'
 		. '   SET reserved_pieces = reserved_pieces - 1'
+		. '     , reserved_weight = reserved_weight - ' . $my_piece['checkin_weight']
 		. '     , checkout_pieces = checkout_pieces + 1'
 		. '     , checkout_weight = checkout_weight + ' . $my_piece['checkin_weight']
 		. ' WHERE id = ' . $my_loadset['load_quot_id']

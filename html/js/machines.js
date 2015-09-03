@@ -53,8 +53,8 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-cylinder', '../JKY.Search.Cylinder.html');
 	JKY.set_html('jky-machine-family'	, JKY.set_configs('Machine Families', '', ''));
-	JKY.set_html('jky-machine-brand'	, JKY.set_configs('Machine Brands', JKY.App.get('select'), ''));
-	JKY.set_html('jky-app-select'		, JKY.set_configs('Machine Brands', JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-machine-brand'	, JKY.set_configs('Machine Brands', JKY.App.get_prop('select'), ''));
+	JKY.set_html('jky-app-select'		, JKY.set_configs('Machine Brands', JKY.App.get_prop('select'), 'All'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Brand'));
 	JKY.show('jky-app-select-line');
 //	select the first option as default
@@ -100,7 +100,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_date	('jky-purchase-date'	, JKY.out_date	(the_row.purchase_date	));
 	JKY.set_date	('jky-repair-date'		, JKY.out_date	(the_row.repair_date	));
 	JKY.set_date	('jky-return-date'		, JKY.out_date	(the_row.return_date	));
-	JKY.set_value	('jky-remarks'			,				 JKY.row.remarks		);
+	JKY.set_value	('jky-remarks'			, JKY.decode	(the_row.remarks		));
 	JKY.display_cylinders();
 };
 

@@ -53,8 +53,8 @@ JKY.display_contacts = function(the_id) {
  * display remarks ---------------------------------------------------------
  */
 JKY.display_remarks = function(the_row) {
-	JKY.set_value	('jky-remarks'	 , the_row.remarks	 );
-	JKY.set_value	('jky-extra-info', the_row.extra_info);
+	JKY.set_value	('jky-remarks'	 , JKY.decode	(the_row.remarks	));
+	JKY.set_value	('jky-extra-info',				 the_row.extra_info	 );
 }
 
 /*

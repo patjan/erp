@@ -36,13 +36,14 @@ JKY.generate_batches = function(response) {
 
 JKY.generate_batch = function(the_row) {
 	var my_html = '<tr>'
-				+ '<td class="jky-td-batch"		>' + the_row.batch				+ '</td>'
-				+ '<td class="jky-td-date"		>' + JKY.out_date(the_row.invoice_date) + '</td>'
-				+ '<td class="jky-td-boxes"		>' + the_row.balance_boxes		+ '</td>'
-				+ '<td class="jky-td-weight"	>' + the_row.balance_weight		+ '</td>'
-				+ '<td class="jky-td-weight"	>' + the_row.checkin_weight		+ '</td>'
-				+ '<td class="jky-td-location"	>' + the_row.checkin_location	+ '</td>'
-				+ '<td class="jky-td-name-s"	>' + the_row.supplier_name		+ '</td>'
+				+ '<td class="jky-td-batch"		>' +				 the_row.batch				+ '</td>'
+				+ '<td class="jky-td-date"		>' + JKY.out_date	(the_row.invoice_date)		+ '</td>'
+				+ '<td class="jky-td-boxes"		>' +				 the_row.balance_boxes		+ '</td>'
+				+ '<td class="jky-td-weight"	>' +				 the_row.balance_weight		+ '</td>'
+				+ '<td class="jky-td-weight"	>' +				 the_row.checkin_weight		+ '</td>'
+				+ '<td class="jky-td-location"	>' +				 the_row.checkin_location	+ '</td>'
+				+ '<td class="jky-td-name-s"	>' +				 the_row.supplier_name		+ '</td>'
+				+ '<td class="jky-td-remarks"	>' + JKY.decode		(the_row.remarks)			+ '</td>'
 				+ '</tr>'
 				;
 	return my_html;

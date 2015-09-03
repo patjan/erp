@@ -43,7 +43,6 @@ JKY.Companies = function(the_program_name, the_specific) {
  */
 JKY.set_all_events = function() {
 	$('#jky-action-gen-sale'		).click( function() {JKY.process_action('sales', JKY.row.id);});
-//	$('#jky-action-change'			).click( function() {JKY.App.change_status(JKY.row.id);});
 
 	$('#jky-tab-address'			).click (function() {JKY.display_address		(JKY.row	);});
 	$('#jky-tab-phones'				).click (function() {JKY.display_phones			(JKY.row	);});
@@ -74,13 +73,13 @@ JKY.set_initial_values = function() {
 	JKY.set_side_bar();
 //	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
 //	JKY.set_html('jky-parent-company'	, JKY.set_options_array('', JKY.get_companies('parent_id IS NULL AND is_customer'), true));
-	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies(JKY.App.get('specific')), true));
-	JKY.set_html('jky-parent-company'	, JKY.set_options_array('', JKY.get_companies('parent_id IS NULL AND ' + JKY.App.get('specific')), true));
+	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies(JKY.App.get_prop('specific')), true));
+	JKY.set_html('jky-parent-company'	, JKY.set_options_array('', JKY.get_companies('parent_id IS NULL AND ' + JKY.App.get_prop('specific')), true));
 	JKY.set_html('jky-contact-tag'		, JKY.set_configs ('Customer Tags'	, '', ''));
 	JKY.set_html('jky-payment-type'		, JKY.set_configs ('Payment Types'	, '', ''));
 	JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
 	JKY.set_html('jky-country'			, JKY.set_configs ('Countries'		, '', ''));
-	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Inactive'));
+	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get_prop('select'), 'All', 'Active', 'Inactive'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
 	JKY.show('jky-app-select-line');
 //	select the first option as default
@@ -115,12 +114,11 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	if (JKY.App.get('specific') == 'is_customer') {
+	if (JKY.App.get_prop('specific') == 'is_customer') {
 		JKY.show('jky-action-gen-sale');
 	}else{
 		JKY.hide('jky-action-gen-sale');
 	}
-	JKY.set_html	('jky-status'			, JKY.t(the_row.status	));
 	JKY.set_value	('jky-nick-name'		, the_row.nick_name		);
 	JKY.set_value	('jky-full-name'		, the_row.full_name		);
 	JKY.set_yes		('jky-is-company'		, the_row.is_company	);

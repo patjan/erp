@@ -30,9 +30,9 @@ JKY.generate_cylinders = function(response) {
 JKY.generate_cylinder = function(the_row) {
 	var my_id		= the_row.id;
 	var my_name		= the_row.name;
-	var my_current	= the_row.is_current;
-	var my_checked	= my_current == 'Yes' ? ' checked="checked"' : '';
-
+	var my_trash	= '<a onclick="JKY.delete_cylinder(this, ' + my_id + ')"><i class="icon-trash"></i></a>';
+	var my_checked	= the_row.is_current == 'Yes' ? ' checked="checked"' : '';
+	var my_current	= '<input name="jky-cylinder-current" type="radio" onchange="JKY.set_current(this, ' + my_id + ')"' + my_checked + ' />';
 	var my_cylinder = ''
 //		+ "<input class='jky-thread-id' type='hidden' value=" + my_thread_id + " />"
 		+ "<input class='jky-cylinder-name' disabled onchange='JKY.update_name(this, " + my_id + ")' value='" + my_name + "' />"
@@ -41,16 +41,15 @@ JKY.generate_cylinder = function(the_row) {
 
 	var my_html = ''
 		+ '<tr cylinder_id=' + my_id + '>'
-		+ '<td class="jky-td-action"	><a onclick="JKY.delete_cylinder(this, ' + my_id + ')"><i class="icon-trash"></i></a></td>'
-		+ '<td class="jky-td-radio"		><input name="jky-cylinder-current" type="radio" onchange="JKY.set_current(this, ' + my_id + ')"'			+ my_checked + '  /></td>'
-//		+ '<td class="jky-td-name-w"	><input class="jky-cylinder-name"   text="text"  onchange="JKY.update_name(this, ' + my_id + ')" value="'	+ my_name	 + '" /></td>'
-		+ '<td class="jky-td-name-w"	>' + my_cylinder + '</td>'
+		+ '<td class="jky-td-action"	>' + my_trash		+ '</td>'
+		+ '<td class="jky-td-radio"		>' + my_current		+ '</td>'
+		+ '<td class="jky-td-name-w"	>' + my_cylinder	+ '</td>'
 		+ '</tr>'
 		;
 	return my_html;
 }
 
-JKY.set_current = function(id_name, the_id ) {
+JKY.set_current = function(the_this, the_id) {
 	JKY.unset_current();
 
 	var my_data =
@@ -66,7 +65,7 @@ JKY.set_current_success = function(response) {
 	JKY.display_message(response.message)
 }
 
-JKY.unset_current = function(id_name, the_id ) {
+JKY.unset_current = function() {
 	var my_where = ''
 		+ 'Cylinders.machine_id = ' + JKY.row.id
 		+ ' AND Cylinders.is_current = \'Yes\''

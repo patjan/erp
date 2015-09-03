@@ -97,7 +97,6 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_button('jky-action-close'	);
 	}
 
-	JKY.set_html	('jky-status'			, JKY.t			(the_row.status			));
 	JKY.set_value	('jky-purchase-number'	,				 the_row.purchase_number);
 	JKY.set_value	('jky-source-doc'		,				 the_row.source_doc		);
 	JKY.set_date	('jky-ordered-date'		, JKY.out_time	(the_row.ordered_at		));
@@ -106,6 +105,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_option	('jky-supplier-name'	,				 the_row.supplier_id	);
 //	JKY.set_value	('jky-supplier-ref'		,				 the_row.supplier_ref	);
 //	JKY.set_option	('jky-payment-term'		,				 the_row.payment_term	);
+	JKY.set_value	('jky-remarks'			, JKY.decode	(the_row.remarks		));
 	JKY.display_lines();
 };
 
@@ -125,6 +125,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_option	('jky-supplier-name'	, '');
 //	JKY.set_value	('jky-supplier-ref'		, '');
 //	JKY.set_option	('jky-payment-term'		, '');
+	JKY.set_value	('jky-remarks'			, '');
 };
 
 /**
@@ -135,13 +136,14 @@ JKY.get_form_set = function() {
 	my_supplier_id = (my_supplier_id == '') ? 'null' : my_supplier_id;
 
 	var my_set = ''
-		+    '  source_doc=\'' + JKY.get_value	('jky-source-doc'		) + '\''
-		+    ', ordered_at=  ' + JKY.inp_time	('jky-ordered-date'		)
-		+ ', expected_date=  ' + JKY.inp_date	('jky-expected-date'	)
-//		+  ', scheduled_at=  ' + JKY.inp_time	('jky-scheduled-date'	)
-		+   ', supplier_id=  ' + my_supplier_id
-//		+  ', supplier_ref=\'' + JKY.get_value('jky-supplier-ref'		) + '\''
-//		+  ', payment_term=\'' + JKY.get_value('jky-payment-term'		) + '\''
+		+        '  source_doc=\'' + JKY.get_value	('jky-source-doc'		) + '\''
+		+        ', ordered_at=  ' + JKY.inp_time	('jky-ordered-date'		)
+		+     ', expected_date=  ' + JKY.inp_date	('jky-expected-date'	)
+//		+      ', scheduled_at=  ' + JKY.inp_time	('jky-scheduled-date'	)
+		+       ', supplier_id=  ' + my_supplier_id
+//		+      ', supplier_ref=\'' + JKY.get_value('jky-supplier-ref'		) + '\''
+//		+      ', payment_term=\'' + JKY.get_value('jky-payment-term'		) + '\''
+		+           ', remarks=\'' + JKY.encode(JKY.get_value('jky-remarks'	))	+ '\''
 		;
 	return my_set;
 };
@@ -198,11 +200,11 @@ JKY.display_graph = function() {
 	JKY.show('jky-loading');
 	var my_data =
 		{ method	: 'get_index'
-		, table		: JKY.App.get('table_name')
-		, specific	: JKY.App.get('specific')
-		, select	: JKY.App.get('select')
-		, filter	: JKY.App.get('filter')
-		, display	: JKY.App.get('display')
+		, table		: JKY.App.get_prop('table_name')
+		, specific	: JKY.App.get_prop('specific')
+		, select	: JKY.App.get_prop('select')
+		, filter	: JKY.App.get_prop('filter')
+		, display	: JKY.App.get_prop('display')
 //		, order_by	: 'expected_date'
 //		, group_by	: 'expected_date'
 		};

@@ -268,11 +268,11 @@ JKY.display_graph = function() {
 	JKY.show('jky-loading');
 	var my_data =
 		{ method	: 'get_index'
-		, table		: JKY.App.get('table_name')
-		, specific	: JKY.App.get('specific')
-		, select	: JKY.App.get('select')
-		, filter	: JKY.App.get('filter')
-		, display	: JKY.App.get('display')
+		, table		: JKY.App.get_prop('table_name')
+		, specific	: JKY.App.get_prop('specific')
+		, select	: JKY.App.get_prop('select')
+		, filter	: JKY.App.get_prop('filter')
+		, display	: JKY.App.get_prop('display')
 //		, order_by	: 'invoice_date'
 //		, group_by	: 'invoice_date'
 		};
@@ -382,7 +382,7 @@ JKY.move_to_processed = function() {
 
 	var my_data =
 		{ method	: 'move'
-		, table		:  JKY.App.get('table_name')
+		, table		:  JKY.App.get_prop('table_name')
 		, filename	:  my_filename
 		, from		:  JKY.get_control_value('NFE Folders', 'Received' )
 		, to		:  JKY.get_control_value('NFE Folders', 'Processed')

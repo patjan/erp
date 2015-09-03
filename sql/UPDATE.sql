@@ -480,3 +480,13 @@ UPDATE Changes	SET servers = ''	WHERE table_name = 'LoadOuts' AND table_id = 100
 UPDATE Changes	SET servers = ''	WHERE table_name = 'LoadOuts' AND table_id = 1000000498;
 /* -- 2015-07-09	*/
 ALTER TABLE Recipes			ADD COLUMN remarks			VARCHAR(255)	DEFAULT NULL	AFTER dyeing_type;
+/* -- 2015-07-28	*/
+ALTER TABLE LoadSets		ADD COLUMN machine_name		VARCHAR(32)		DEFAULT NULL	AFTER load_quot_id;
+/* -- 2015-08-03	*/
+ALTER TABLE LoadSets		ADD COLUMN checkout_weight	DECIMAL(10,2)	DEFAULT 0		AFTER checkin_weight;
+ALTER TABLE LoadSets		ADD COLUMN reserved_weight	DECIMAL(10,2)	DEFAULT 0		AFTER checkin_weight;
+/* -- 2015-08-08	*/
+ALTER TABLE FTPs			ADD	COLUMN is_current		CHAR(3)			DEFAULT 'No'	AFTER product_id;
+ALTER TABLE Batches			ADD COLUMN remarks			TEXT		 	DEFAULT NULL	AFTER used_weight;
+/* -- 2015-08-18	*/
+ALTER TABLE Purchases		ADD COLUMN remarks			VARCHAR(255)	DEFAULT NULL	AFTER payment_term;

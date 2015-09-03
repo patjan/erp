@@ -102,13 +102,13 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_delete_button();
 		JKY.disable_button('jky-lines-add-new'	);
 	}
-	if (the_row.status === 'Active') {
+	if (the_row.status === 'Draft' || the_row.status === 'Active') {
 		JKY.enable_button ('jky-action-close');
 	}else{
 		JKY.disable_button('jky-action-close');
 	}
 
-	JKY.set_html	('jky-status'			, JKY.t			(the_row.status				));
+	JKY.hide_parent ('jky-status');
 	JKY.set_value	('jky-shipdyer-number'	,				 the_row.shipdyer_number	);
 	JKY.set_value	('jky-invoice-number'	,				 the_row.invoice_number	 	);
 	JKY.set_value	('jky-dyer-id'			,				 the_row.dyer_id			);
@@ -139,23 +139,54 @@ JKY.set_add_new_row = function() {
 	JKY.disable_button('jky-action-delete'	);
 	JKY.disable_button('jky-action-close'	);
 
-	JKY.set_value	('jky-shipdyer-number'	,  JKY.t('New'));
+	JKY.hide_parent ('jky-status');
+	JKY.set_value	('jky-shipdyer-number'	, JKY.t('New'));
 	JKY.set_value	('jky-invoice-number'	, '');
 	JKY.set_value	('jky-dyer-id'			, '');
 	JKY.set_value	('jky-dyer-name'		, '');
 	JKY.set_value	('jky-transport-id'		, '');
 	JKY.set_value	('jky-transport-name'	, '');
 	JKY.set_value	('jky-truck-license'	, '');
-	JKY.set_date	('jky-shipped-date'		,  JKY.out_time(JKY.get_now()));
+	JKY.set_date	('jky-shipped-date'		, JKY.out_time(JKY.get_now()));
 	JKY.set_date	('jky-delivered-date'	, '');
 	JKY.set_value	('jky-unit-name'		, 'pecas');
 	JKY.set_value	('jky-brand-name'		, 'tecido');
 	JKY.set_value	('jky-batch-code'		, '');
-	JKY.set_value	('jky-quantity'			,  0);
-	JKY.set_value	('jky-gross-weight'		,  0);
-	JKY.set_value	('jky-net-weight'		,  0);
-	JKY.set_value	('jky-sds-printed'		,  0);
-	JKY.set_value	('jky-sis-printed'		,  0);
+	JKY.set_value	('jky-quantity'			, 0 );
+	JKY.set_value	('jky-gross-weight'		, 0 );
+	JKY.set_value	('jky-net-weight'		, 0 );
+	JKY.set_value	('jky-sds-printed'		, 0 );
+	JKY.set_value	('jky-sis-printed'		, 0 );
+};
+
+/**
+ *	set replace
+ */
+JKY.set_replace = function() {
+	JKY.disable_button('jky-action-delete'	);
+	JKY.disable_button('jky-action-close'	);
+
+	JKY.show_parent ('jky-status');
+	JKY.set_html	('jky-status', JKY.set_options('', '', 'Draft', 'Active', 'Closed'));
+	JKY.set_value	('jky-shipdyer-number'	, '');
+	JKY.set_value	('jky-invoice-number'	, '');
+	JKY.set_value	('jky-dyer-id'			, '');
+	JKY.set_value	('jky-dyer-name'		, '');
+	JKY.set_value	('jky-transport-id'		, '');
+	JKY.set_value	('jky-transport-name'	, '');
+	JKY.set_value	('jky-truck-license'	, '');
+	JKY.set_date	('jky-shipped-date'		, '');
+	JKY.set_date	('jky-delivered-date'	, '');
+	JKY.set_value	('jky-unit-name'		, '');
+	JKY.set_value	('jky-brand-name'		, '');
+	JKY.set_value	('jky-batch-code'		, '');
+	JKY.set_value	('jky-quantity'			, '');
+	JKY.set_value	('jky-gross-weight'		, '');
+	JKY.set_value	('jky-net-weight'		, '');
+	JKY.set_value	('jky-sds-printed'		, '');
+	JKY.set_value	('jky-sis-printed'		, '');
+
+	JKY.hide('jky-form-tabs');
 };
 
 /**
@@ -185,6 +216,36 @@ JKY.get_form_set = function() {
 	return my_set;
 };
 
+/**
+ *	get replace set
+ */
+JKY.get_replace_set = function() {
+	var my_set = '';
+	if (!JKY.is_empty(JKY.get_value('jky-status'			)))	{my_set +=            ', status=\''	+ JKY.get_value('jky-status'			) + '\'';}
+	if (!JKY.is_empty(JKY.get_value('jky-truck-license'		)))	{my_set +=     ', truck_license=\''	+ JKY.get_value('jky-truck-license'		) + '\'';}
+	if (!JKY.is_empty(JKY.inp_date ('jky-shipped-date'		)))	{my_set +=        ', shipped_at=  ' + JKY.inp_date ('jky-shipped-date'		);}
+	if (!JKY.is_empty(JKY.inp_date ('jky-delivered-date'	)))	{my_set +=      ', delivered_at=  ' + JKY.inp_date ('jky-delivered-date'	);}
+	if (!JKY.is_empty(JKY.get_value('jky-unit-name'			)))	{my_set +=         ', unit_name=\''	+ JKY.get_value('jky-unit-name'			) + '\'';}
+	if (!JKY.is_empty(JKY.get_value('jky-brand-name'		)))	{my_set +=        ', brand_name=\''	+ JKY.get_value('jky-brand-name'		) + '\'';}
+	if (!JKY.is_empty(JKY.get_value('jky-batch-code'		)))	{my_set +=        ', batch_code=\''	+ JKY.get_value('jky-batch-code'		) + '\'';}
+	if (!JKY.is_empty(JKY.get_value('jky-quantity'			)))	{my_set +=          ', quantity=  '	+ JKY.get_value('jky-quantity'			);}
+	if (!JKY.is_empty(JKY.get_value('jky-gross-weight'		)))	{my_set +=      ', gross_weight=  '	+ JKY.get_value('jky-gross-weight'		);}
+	if (!JKY.is_empty(JKY.get_value('jky-net-weight'		)))	{my_set +=        ', net_weight=  '	+ JKY.get_value('jky-net-weight'		);}
+	return my_set;
+};
+
+JKY.display_list = function() {
+	JKY.show('jky-action-print'  );
+	if (JKY.Session.get_value('user_role') == 'Admin'
+	||  JKY.Session.get_value('user_role') == 'Support') {
+		JKY.show('jky-action-replace');
+	}
+};
+
+JKY.display_form = function() {
+	JKY.show('jky-action-print');
+};
+
 JKY.get_dyer_id = function() {
 	return JKY.get_value('jky-dyer-id');
 };
@@ -200,10 +261,6 @@ JKY.set_calculated_transport = function() {
 	var my_gross_weight	= parseFloat(JKY.get_value('jky-gross-weight'	));
 	var my_net_weight	= parseFloat(JKY.get_value('jky-net-weight'		));
 	JKY.set_css('jky-net-weight', 'color', (my_gross_weight > my_net_weight) ? 'red' : 'black');
-};
-
-JKY.display_form = function() {
-	JKY.show('jky-action-print');
 };
 
 /* -------------------------------------------------------------------------- */
@@ -246,7 +303,7 @@ JKY.print_row = function(the_id) {
 return;
 	var my_names;
 	var my_extension;
-	var my_row = JKY.get_row(JKY.App.get('table_name'), the_id);
+	var my_row = JKY.get_row(JKY.App.get_prop('table_name'), the_id);
 
 //window.print();
 	var my_html = ''

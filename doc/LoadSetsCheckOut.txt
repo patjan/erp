@@ -1,0 +1,34 @@
+data:{"method":"get_index","table":"LoadSets","specific":"","select":"Active","filter":"","order_by":"LoadOut.checkout_at ASC"}
+
+
+ {"id":"2000000060"
+ ,"updated_by":"100003"
+ ,"updated_at":"2015-06-29 10:57:47"
+ ,"status":"Active"
+ ,"load_quot_id":"1000000841"
+ ,"machine_name":null
+ ,"checkin_location":"1A05"
+ ,"checkin_date":"2015-06-19"
+ ,"checkin_weight":"211.76"
+ ,"checkin_pieces":"15"
+ 
+ ,"dyer_name":"Suvicor"
+ ,"loadout_number":"1000000411"
+ ,"product_name":"Malha Raport Springblade Ramada"
+ ,"color_name":"Azul Cancun X Preto X Branco"
+ ,"checkout_at":"2015-06-18 10:42:00"
+ ,"reserved_pieces":"2"
+ ,"checkout_pieces":"0"
+ 
+ ,"requested_at":"2015-06-17 10:42:00"
+ ,"quotation_number":"100196"
+ ,"customer_name":"Rafael Carlos de Freitas Valle"
+ ,"product_id":"101517"
+ ,"sold_pieces":"2"
+ }
+ 
+,{"id":"2000000059","updated_by":"100003","updated_at":"2015-06-29 10:57:35","status":"Active","load_quot_id":"1000000843","machine_name":null,"checkin_location":"1A05","checkin_date":"2015-06-19","checkin_weight":"211.76","checkin_pieces":"15","reserved_pieces":"2","checkout_pieces":"0","loadout_number":"1000000411","requested_at":"2015-06-17 10:42:00","checkout_at":"2015-06-18 10:42:00","dyer_name":"Suvicor","color_name":"Estanho X Preto X Branco"    ,"quotation_number":"100196","customer_name":"Rafael Carlos de Freitas Valle","product_id":"101517","product_name":"Malha Raport Springblade Ramada","sold_pieces":"2"}
+
+,{"id":"2000000058","updated_by":"100003","updated_at":"2015-06-29 10:57:11","status":"Active","load_quot_id":"1000000842","machine_name":null,"checkin_location":"1A05","checkin_date":"2015-06-19","checkin_weight":"211.76","checkin_pieces":"15","reserved_pieces":"4","checkout_pieces":"0","loadout_number":"1000000411","requested_at":"2015-06-17 10:42:00","checkout_at":"2015-06-18 10:42:00","dyer_name":"Suvicor","color_name":"Marinho X Abacaxi X Branco"  ,"quotation_number":"100196","customer_name":"Rafael Carlos de Freitas Valle","product_id":"101517","product_name":"Malha Raport Springblade Ramada","sold_pieces":"4"}
+
+,

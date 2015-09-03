@@ -45,7 +45,7 @@ JKY.set_initial_values = function() {
 	JKY.append_file('jky-load-product'	, '../JKY.Search.Product.html'	);
 	JKY.append_file('jky-load-order'	, '../JKY.Search.Order.html'	);
 
-	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Check In', 'Check Out', 'Return'));
+	JKY.set_html('jky-app-select'		, JKY.set_options(JKY.App.get_prop('select'), 'All', 'Active', 'Check In', 'Check Out', 'Return'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
 	JKY.show('jky-app-select-line');
 //	select the first option as default
@@ -74,7 +74,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-weight"	>' +				 the_row.returned_weight		+ '</td>'
 		+  '<td class="jky-td-location"	>' + JKY.fix_null	(the_row.checkin_location	)	+ '</td>'
 		+  '<td class="jky-td-location"	>' + JKY.fix_null	(the_row.checkout_location	)	+ '</td>'
-		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.remarks			)	+ '</td>'
+		+  '<td class="jky-td-remarks"	>' + JKY.decode		(the_row.remarks			)	+ '</td>'
 		+  '<td class="jky-td-status"	>' + JKY.t			(the_row.status				)	+ '</td>'
 		;
 	return my_html;
@@ -84,19 +84,20 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_html	('jky-status'				, JKY.t(the_row.status		));
-	JKY.set_value	('jky-barcode'				, the_row.barcode			);
-	JKY.set_value	('jky-order-id'				, the_row.order_id			);
-	JKY.set_value	('jky-order-number'			, the_row.order_number		);
-	JKY.set_value	('jky-product-name'			, the_row.product_name		);
-	JKY.set_value	('jky-produced-by'			, the_row.produced_by		);
-	JKY.set_value	('jky-number-of-pieces'		, the_row.number_of_pieces	);
-	JKY.set_value	('jky-checkin-weight'		, the_row.checkin_weight	);
-	JKY.set_value	('jky-returned-weight'		, the_row.returned_weight	);
-	JKY.set_value	('jky-checkin-location'		, the_row.checkin_location	);
-	JKY.set_value	('jky-checkout-location'	, the_row.checkout_location	);
-	JKY.set_value	('jky-qualities'			, the_row.qualities			);
-	JKY.set_value	('jky-remarks'				, the_row.remarks			);
+	JKY.hide_parent ('jky-status');
+	JKY.set_value	('jky-barcode'				,				 the_row.barcode			);
+	JKY.set_value	('jky-loadout-number'		,				 the_row.loadout_number		);
+	JKY.set_value	('jky-order-id'				,				 the_row.order_id			);
+	JKY.set_value	('jky-order-number'			,				 the_row.order_number		);
+	JKY.set_value	('jky-product-name'			,				 the_row.product_name		);
+	JKY.set_value	('jky-produced-by'			,				 the_row.produced_by		);
+	JKY.set_value	('jky-number-of-pieces'		,				 the_row.number_of_pieces	);
+	JKY.set_value	('jky-checkin-weight'		,				 the_row.checkin_weight		);
+	JKY.set_value	('jky-returned-weight'		,				 the_row.returned_weight	);
+	JKY.set_value	('jky-checkin-location'		,				 the_row.checkin_location	);
+	JKY.set_value	('jky-checkout-location'	,				 the_row.checkout_location	);
+	JKY.set_value	('jky-qualities'			,				 the_row.qualities			);
+	JKY.set_value	('jky-remarks'				, JKY.decode	(the_row.remarks			));
 //	JKY.display_lines();
 };
 
@@ -104,15 +105,16 @@ JKY.set_form_row = function(the_row) {
  *	set add new row (hidden)
  */
 JKY.set_add_new_row = function() {
-	JKY.set_html	('jky-status'				, '');
+	JKY.hide_parent ('jky-status');
 	JKY.set_value	('jky-barcode'				, '');
-	JKY.set_value	('jky-order-id'				,  0);
+	JKY.set_value	('jky-loadout-number'		, '');
+	JKY.set_value	('jky-order-id'				, 0 );
 	JKY.set_value	('jky-order-number'			, '');
 	JKY.set_value	('jky-product-name'			, '');
 	JKY.set_value	('jky-produced-by'			, '');
-	JKY.set_value	('jky-number-of-pieces'		,  0);
-	JKY.set_value	('jky-checkin-weight'		,  0);
-	JKY.set_value	('jky-returned-weight'		,  0);
+	JKY.set_value	('jky-number-of-pieces'		, 0 );
+	JKY.set_value	('jky-checkin-weight'		, 0 );
+	JKY.set_value	('jky-returned-weight'		, 0 );
 	JKY.set_value	('jky-checkin-location'		, '');
 	JKY.set_value	('jky-checkout-location'	, '');
 	JKY.set_value	('jky-qualities'			, '');
@@ -126,10 +128,14 @@ JKY.set_replace = function() {
 	var my_first = $('#jky-table-body .jky-td-checkbox input:checked').first();
 	var my_product_name = my_first.parent().parent().find('.jky-td-name-l').html();
 	var my_product_id = JKY.get_id('Products', 'Products.product_name=\'' + my_product_name + '\'');
+
+	JKY.show_parent ('jky-status');
+	JKY.set_html	('jky-status', JKY.set_options('', '', 'Active', 'Check In', 'Check Out', 'Return'));
 	JKY.set_value	('jky-barcode'				, '');
-	JKY.set_value	('jky-order-id'				, '');
+	JKY.set_value	('jky-loadout-number'		, '');
+	JKY.set_value	('jky-order-id'				, null);
 	JKY.set_value	('jky-order-number'			, '');
-	JKY.set_value	('jky-product-id'			, my_product_id);
+	JKY.set_value	('jky-product-id'			, null);
 	JKY.set_value	('jky-product-name'			, '');
 	JKY.set_value	('jky-produced-by'			, '');
 	JKY.set_value	('jky-number-of-pieces'		, '');
@@ -139,23 +145,26 @@ JKY.set_replace = function() {
 	JKY.set_value	('jky-checkout-location'	, '');
 	JKY.set_value	('jky-qualities'			, '');
 	JKY.set_value	('jky-remarks'				, '');
-}
+
+	JKY.hide('jky-form-tabs');
+};
 
 /**
  *	get form set
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-		+          '  order_id=  ' + JKY.get_value('jky-order-id'			)
-		+      ', product_name=\'' + JKY.get_value('jky-product-name'		) + '\''
-		+       ', produced_by=\'' + JKY.get_value('jky-produced-by'		) + '\''
-		+  ', number_of_pieces=  ' + JKY.get_value('jky-number-of-pieces'	)
-		+    ', checkin_weight=  ' + JKY.get_value('jky-checkin-weight'		)
-		+   ', returned_weight=  ' + JKY.get_value('jky-returned-weight'	)
-		+  ', checkin_location=\'' + JKY.get_value('jky-checkin-location'	).toUpperCase() + '\''
-		+ ', checkout_location=\'' + JKY.get_value('jky-checkout-location'	).toUpperCase() + '\''
-		+         ', qualities=\'' + JKY.get_value('jky-qualities'			) + '\''
-		+           ', remarks=\'' + JKY.get_value('jky-remarks'			) + '\''
+		+          '  order_id=  ' +			JKY.get_value('jky-order-id'			)
+		+      ', product_name=\'' +			JKY.get_value('jky-product-name'		)	+ '\''
+		+       ', produced_by=\'' +			JKY.get_value('jky-produced-by'			)	+ '\''
+		+  ', number_of_pieces=  ' +			JKY.get_value('jky-number-of-pieces'	)
+		+    ', checkin_weight=  ' +			JKY.get_value('jky-checkin-weight'		)
+		+   ', returned_weight=  ' +			JKY.get_value('jky-returned-weight'		)
+		+  ', checkin_location=\'' +			JKY.get_value('jky-checkin-location'	).toUpperCase() + '\''
+		+ ', checkout_location=\'' +			JKY.get_value('jky-checkout-location'	).toUpperCase() + '\''
+		+         ', qualities=\'' +			JKY.get_value('jky-qualities'			)	+ '\''
+		+           ', remarks=\'' + JKY.encode(JKY.get_value('jky-remarks'				))	+ '\''
+		;
 	return my_set;
 };
 
@@ -164,6 +173,7 @@ JKY.get_form_set = function() {
  */
 JKY.get_replace_set = function() {
 	var my_set = '';
+	if (!JKY.is_empty(JKY.get_value('jky-status'			)))	{my_set +=            ', status=\''	+ JKY.get_value('jky-status'			) + '\'';}
 	if (!JKY.is_empty(JKY.get_value('jky-order-id'			)))	{my_set +=          ', order_id=  '	+ JKY.get_value('jky-order-id'			);}
 	if (!JKY.is_empty(JKY.get_value('jky-product-name'		)))	{my_set +=      ', product_name=\''	+ JKY.get_value('jky-product-name'		) + '\'';}
 	if (!JKY.is_empty(JKY.get_value('jky-produced-by'		)))	{my_set +=       ', produced_by=\''	+ JKY.get_value('jky-produced-by'		) + '\'';}
@@ -173,7 +183,7 @@ JKY.get_replace_set = function() {
 	if (!JKY.is_empty(JKY.get_value('jky-checkin-location'	)))	{my_set +=  ', checkin_location=\''	+ JKY.get_value('jky-checkin-location'	).toUpperCase() + '\'';}
 	if (!JKY.is_empty(JKY.get_value('jky-checkout-location'	)))	{my_set += ', checkout_location=\''	+ JKY.get_value('jky-checkout-location'	).toUpperCase() + '\'';}
 	if (!JKY.is_empty(JKY.get_value('jky-qualities'			)))	{my_set +=         ', qualities=\''	+ JKY.get_value('jky-qualities'			) + '\'';}
-	if (!JKY.is_empty(JKY.get_value('jky-remarks'			)))	{my_set +=           ', remarks=\''	+ JKY.get_value('jky-remarks'			) + '\'';}
+	if (!JKY.is_empty(JKY.get_value('jky-remarks'			)))	{my_set +=           ', remarks=\''	+ JKY.encode(JKY.get_value('jky-remarks')) + '\'';}
 	return my_set;
 };
 
@@ -187,5 +197,4 @@ JKY.display_list = function() {
 
 JKY.display_form = function() {
 	JKY.hide('jky-action-add-new');
-	JKY.hide('jky-action-update');
 };

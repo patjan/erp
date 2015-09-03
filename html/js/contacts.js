@@ -45,7 +45,6 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-action-change'		).click (function() {JKY.App.change_status(JKY.row.id);});
 	$('#jky-action-reset'		).click (function()	{JKY.reset_user					();});
 
 	$('#jky-nick-name'			).change(function()	{if (JKY.row == null)	JKY.title_case(this);});
@@ -68,7 +67,7 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-user-role'		, JKY.set_controls('User Roles'		, ''	));
 	JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
 	JKY.set_html('jky-country'			, JKY.set_configs ('Countries'		, '', ''));
-	JKY.set_html('jky-app-select'		, JKY.set_controls('User Roles', JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-app-select'		, JKY.set_controls('User Roles', JKY.App.get_prop('select'), 'All'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('User Role'));
 	JKY.show('jky-app-select-line');
 //	select the last option type as default
@@ -95,7 +94,6 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_html	('jky-status'			, JKY.t(the_row.status	));
 	JKY.set_value	('jky-nick-name'		, the_row.nick_name		);
 	JKY.set_value	('jky-first-name'		, the_row.first_name	);
 	JKY.set_value	('jky-last-name'		, the_row.last_name		);
@@ -166,7 +164,7 @@ JKY.get_form_set = function() {
 		+     ', last_name=\'' + JKY.get_value	('jky-last-name'		) + '\''
 		+    ', company_id=  ' + JKY.get_value	('jky-contact-company'	)
 		+  ', credit_limit=  ' + JKY.get_value	('jky-credit-limit'		)
-		+        ', phone=\'' + JKY.get_value	('jky-phone'			) + '\''
+		+         ', phone=\'' + JKY.get_value	('jky-phone'			) + '\''
 		+        ', mobile=\'' + JKY.get_value	('jky-mobile'			) + '\''
 		+      ', position=\'' + JKY.get_value	('jky-position'			) + '\''
 		+         ', email=\'' + JKY.get_value	('jky-email'			) + '\''

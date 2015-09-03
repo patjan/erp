@@ -261,7 +261,7 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_ordered_
 //		JKY.set_html('jky-print-lanes'			, my_row.lanes						);
 		JKY.set_html('jky-print-has-break'		, JKY.t((my_row.has_break == 'No') ? 'Without' : 'With'));
 
-		JKY.set_html('jky-print-thread-body'	, JKY.print_ftp_threads	(JKY.row.ftp_id));
+		JKY.set_html('jky-print-thread-body'	, JKY.print_ftp_threads	(JKY.row.ftp_id, JKY.row.id));
 		JKY.set_html('jky-print-load-body'		, JKY.print_ftp_loads	(JKY.row.ftp_id));
 		JKY.set_html('jky-print-setting-body'	, JKY.print_ftp_settings(JKY.row.ftp_id));
 
@@ -458,7 +458,7 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_ordered_
 		JKY.set_html('jky-print-width'			, my_row.width			+ ' (cm)'	);
 		JKY.set_html('jky-print-speed'			, my_row.speed			+ ' (rpm)'	);
 		JKY.set_html('jky-print-has-break'		, JKY.t((my_row.has_break == 'No') ? 'Without' : 'With'));
-		JKY.set_html('jky-print-thread-body'	, JKY.print_ftp_threads	(JKY.row.ftp_id));
+		JKY.set_html('jky-print-thread-body'	, JKY.print_ftp_threads	(JKY.row.ftp_id, JKY.row.id));
 
 		var my_counter_threads = $('#jky-print-thread-body').find('tr').length;
 		var my_remarks = '';

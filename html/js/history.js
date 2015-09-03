@@ -37,7 +37,7 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_html('jky-app-select', JKY.set_controls('User Resources', JKY.App.get('select')));
+	JKY.set_html('jky-app-select', JKY.set_controls('User Resources', JKY.App.get_prop('select')));
 	JKY.set_html('jky-app-select-label', JKY.t('Parent'));
 	JKY.show('jky-app-select-line');
 };

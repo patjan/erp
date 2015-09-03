@@ -69,7 +69,7 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_css('jky-app-breadcrumb', 'color', '#CC0000');
 /*
-	JKY.set_html('jky-app-select', JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Closed'));
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.App.get_prop('select'), 'All', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
 	JKY.show('jky-app-select-line');
 //	select the first option as default
@@ -107,7 +107,6 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_html	('jky-status'				, JKY.t			(the_row.status				));
 	JKY.set_value	('jky-loadout-number'		,				 the_row.loadout_number		);
 	JKY.set_value	('jky-dyer-name'			,				 the_row.dyer_name			);
 	JKY.set_value	('jky-color-name'			,				 the_row.color_name			);

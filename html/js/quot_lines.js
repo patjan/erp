@@ -58,14 +58,14 @@ JKY.generate_line = function(the_index, the_row) {
 		+ '<td class="jky-td-action"	>' + my_trash + '</td>'
 		+ '<td class="jky-td-key-w3"	>' + my_product + '</td>'
 		+ '<td class="jky-td-key"		>' + my_machine + '</td>'
-		+ '<td class="jky-td-name-s"	><input class="jky-remarks"			value="' + JKY.fix_null(the_row.remarks			) + '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-name-s"	><input class="jky-remarks"			value="' + JKY.decode	(the_row.remarks		) + '"' + my_onchange + ' /></td>'
 		+ '<td class="jky-td-key-m"		>' + my_add_color + '&nbsp;' + my_copy + '</td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-product-peso"	value="' + JKY.fix_null(the_row.peso			) + '"' + my_onchange + ' /></td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-quoted-units"	value="' + JKY.fix_null(the_row.quoted_units	) + '"' + my_disabled + ' /></td>'
-		+ '<td class="jky-td-units"		><input class="jky-product-units"	value="' + JKY.fix_null(the_row.units			) + '"' + my_onchange + ' /></td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-quoted-pieces"	value="' + JKY.fix_null(the_row.quoted_pieces	) + '"' + my_disabled + ' /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-product-peso"	value="' + JKY.fix_null	(the_row.peso			) + '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-quoted-units"	value="' + JKY.fix_null	(the_row.quoted_units	) + '"' + my_disabled + ' /></td>'
+		+ '<td class="jky-td-units"		><input class="jky-product-units"	value="' + JKY.fix_null	(the_row.units			) + '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-quoted-pieces"	value="' + JKY.fix_null	(the_row.quoted_pieces	) + '"' + my_disabled + ' /></td>'
 		+ '<td class="jky-td-info"		></td>'
-		+ '<td class="jky-td-discount"	><input class="jky-discount"		value="' + JKY.fix_null(the_row.discount		) + '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-discount"	><input class="jky-discount"		value="' + JKY.fix_null	(the_row.discount		) + '"' + my_onchange + ' /></td>'
 		+ '</tr>'
 		;
 	var my_rows = JKY.get_rows('QuotColors', my_id);
@@ -275,7 +275,7 @@ JKY.print_lines = function(the_id) {
 						if (my_row.remarks) {
 							my_html += ''
 								+ '<tr class="jky-print-head">'
-								+ '<td class="jky-print-extra" colspan=8><span>Extra</span>: ' + my_row.remarks + '</td>'
+								+ '<td class="jky-print-extra" colspan=8><span>Extra</span>: ' + JKY.decode(my_row.remarks) + '</td>'
 								+ '</tr>'
 								;
 						}
@@ -290,6 +290,7 @@ JKY.print_lines = function(the_id) {
 	return my_html;
 }
 
+/**
 JKY.approve_lines = function(the_id) {
 	var my_html  = '';
 	var my_data =
@@ -323,7 +324,7 @@ JKY.approve_lines = function(the_id) {
 						if (my_row.remarks) {
 							my_html += ''
 								+ '<tr class="jky-print-head">'
-								+ '<td class="jky-print-extra" colspan=8><span>Extra</span>: ' + my_row.remarks + '</td>'
+								+ '<td class="jky-print-extra" colspan=8><span>Extra</span>: ' + JKY.decode(my_row.remarks) + '</td>'
 								+ '</tr>'
 								;
 						}
@@ -363,4 +364,76 @@ JKY.approve_lines = function(the_id) {
 	)
 	return my_html;
 }
+ */
 
+JKY.approve_lines = function(the_id) {
+	var my_html  = '';
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'QuotLines'
+		, select	:  the_id
+		, order_by  : 'QuotLines.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					var my_rows = response.rows;
+					for(var i in my_rows) {
+						var my_row = my_rows[i];
+						var my_product		= JKY.get_row	('Products', my_row.product_id);
+						var my_ftp_id		= JKY.get_ftp_id(my_row.product_id);
+						var my_ftp			= JKY.get_row	('FTPs', my_ftp_id);
+						var my_ftp_threads	= JKY.get_rows	('FTP_Threads', my_ftp_id);
+
+						my_html  += ''
+							+ '<table class="jky-approve-line"><tr>'
+							+ '<td class="jky-left"><span class="jky-bold">    Product</span>: ' + my_row.product_name	+ '</td>'
+							+ '<td class="jky-left"><span class="jky-bold">Composition</span>: ' + JKY.fix_null(my_ftp.composition)	+ '</td>'
+							+ '</tr></table>'
+							;
+
+						my_html  += ''
+							+ '<table class="jky-approve-line"><tr>'
+							+ '<td class="jky-left"><span class="jky-bold">  Machine</span>: ' + JKY.fix_null(my_ftp.machine_name) + '</td>'
+							+ '<td class="jky-left"><span class="jky-bold">    Width</span>: ' + my_product.width_dyer	+ '</td>'
+							+ '<td class="jky-left"><span class="jky-bold">Gramatura</span>: ' + my_product.weight_dyer	+ '</td>'
+							+ '</tr></table>'
+							;
+
+						my_html += '<table class="jky-approve-line">'
+						for(var j in my_ftp_threads) {
+							var my_ftp_thread = my_ftp_threads[j];
+							var my_thread_name	 = JKY.get_value_by_id('Threads' , 'name'		, my_ftp_thread.thread_id	);
+							my_html += ''
+								+ '<tr>'
+								+ '<td class="jky-left"><span class="jky-bold">     Thread</span>: ' + my_thread_name			+ '</td>'
+								+ '<td class="jky-left"><span class="jky-bold">   Supplier</span>: ' + my_ftp_thread.supplier	+ '</td>'
+								+ '<td class="jky-left"><span class="jky-bold">Consumption</span>: ' + parseFloat(my_ftp_thread.percent) + '</td>'
+								+ '</tr>'
+								;
+						}
+						my_html += ''
+							+ '<tr><td>&nbsp;</td></tr>'
+							+ '<tr><td>&nbsp;</td></tr>'
+							+ '<tr><td>&nbsp;</td></tr>'
+							+ '</table>'
+							;
+						my_html += '<br>';
+
+						my_html += JKY.approve_colors(my_row.id, my_row);
+					}
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		}
+	)
+	return my_html;
+}

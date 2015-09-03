@@ -8,7 +8,7 @@
 			<th class='jky-td-name-s'	><span>     Dyeing<br>Type		</span></th>
 			<th class='jky-td-name-s'	><span>      Color				</span></th>
 			<th class='jky-td-date'		><span>     Quoted<br>Date		</span></th>
-			<th class='jky-td-date'		><span>   Load Out<br>Date		</span></th>
+			<th class='jky-td-date'		><span>  Check Out<br>Date		</span></th>
 			<th class='jky-td-date'		><span>   Returned<br>Date		</span></th>
 <!--
 			<th class='jky-td-pieces'	><span>     Quoted<br>Pieces	</span></th>
@@ -16,7 +16,7 @@
 			<th class='jky-td-pieces'	><span>   Returned<br>Pieces	</span></th>
 -->
 			<th class='jky-td-weight'	><span>     Quoted<br>Weight	</span></th>
-			<th class='jky-td-weight'	><span>   Load Out<br>Weight	</span></th>
+			<th class='jky-td-weight'	><span>  Check Out<br>Weight	</span></th>
 			<th class='jky-td-weight'	><span>   Returned<br>Weight	</span></th>
 		</tr>
 	</thead>
@@ -32,13 +32,17 @@
 		</div>
 		<div id='jky-form-status'>
 			<span>Status</span>:
-			<button class='btn' type='button' disabled><span id='jky-status'></span></button>
+			<button disabled class='btn jky-status' type='button'><span id='jky-current-status'></span></button>
 		</div>
 		<div class='jky-clear'></div>
 	</div>
 
 	<div id='jky-form-data'>
 		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Status</span>:</div>
+				<select  id='jky-status' class='jky-form-status' /></select>
+			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Load Out Number</span>:</div>
 				<input  id='jky-loadout-number' class='jky-form-number jky-form-key' disabled />
@@ -112,6 +116,7 @@
 			<div class='jky-form-buttons'>
 				  <button id='jky-action-save'		class='btn btn-success' type='button' title='Click here to save all changes'		><span>Save		</span></button>
 			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title='Click here to duplicate this record'	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-update'	class='btn btn-success' type='button' title="Click here to update selected records"	><span>Update	</span></button>
 			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title='Click here to delete this record'		><span>Delete	</span></button>
 			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title='Click here to cancel any changes'		><span>Cancel	</span></button>
 			</div>

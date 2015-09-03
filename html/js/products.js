@@ -45,7 +45,6 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-action-change'		).click( function() {JKY.App.change_status(JKY.row.id);});
 	$('#jky-start-date	input'	).attr('data-format', JKY.Session.get_date_time());
 	$('#jky-start-date'			).datetimepicker({language:JKY.Session.get_locale()});
 
@@ -68,7 +67,7 @@ JKY.set_all_events = function() {
  */
 JKY.set_initial_values = function() {
 	JKY.set_html('jky-product-type'		, JKY.set_radios_array('jky-product-type', JKY.get_configs('Product Types')));
-	JKY.set_html('jky-app-select'		, JKY.set_configs('Product Types', JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-app-select'		, JKY.set_configs('Product Types', JKY.App.get_prop('select'), 'All'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Type'));
 	JKY.show('jky-app-select-line');
 //	select the last option type as default
@@ -104,7 +103,6 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_html	('jky-status'			, JKY.t			(the_row.status				));
 	JKY.set_value	('jky-product-name'		,				 the_row.product_name		);
 	JKY.set_value	('jky-parent-id'		,				 the_row.parent_id			);
 	JKY.set_value	('jky-product-base'		,				 the_row.parent_name		);

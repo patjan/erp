@@ -56,7 +56,6 @@ JKY.start_program = function() {
 		});
 };
 
-
 JKY.materials	= [];
 JKY.threads		= [];
 JKY.loads		= [];
@@ -96,20 +95,15 @@ JKY.set_initial_values = function() {
 
 	JKY.set_html('jky-machine-name', JKY.set_table_options('Machines', 'name', '', ''));
 	JKY.set_html('jky-collection', JKY.set_configs('Collections', '', ''));
-	JKY.set_html('jky-app-select', JKY.set_configs('Collections', JKY.App.get('select'), 'All'));
+	JKY.set_html('jky-app-select', JKY.set_configs('Collections', JKY.App.get_prop('select'), 'All'));
 	JKY.set_html('jky-app-select-label', JKY.t('Collection'));
 	JKY.show('jky-app-select-line');
-//	select the first option as default
 
-//	if (JKY.params === '') {
+//	select the first option as default
+	if (JKY.is_empty($('#jky-app-filter').val())) {
 		$('#jky-app-select option').eq(1).prop('selected', true);
 		$('#jky-app-select').change();
-//	}else{
-//		setTimeout(function() {
-//			var my_keys = JKY.params.split('/');
-//			JKY.App.display_form(my_keys[2]);
-//		}, 2000);
-//	}
+	}
 
 	JKY.show('jky-action-print');
 	JKY.materials	= JKY.get_configs	('Materials'	);
@@ -248,10 +242,6 @@ JKY.display_form = function() {
 	JKY.show('jky-action-copy');
 };
 
-JKY.process_start = function(the_id) {
-	JKY.App.display_id(the_id);
-};
-
 JKY.process_validation = function() {
 	var my_error = '';
 	my_error += JKY.Validation.is_numeric	('jky-diameter'			, 'Diameter'	);
@@ -304,7 +294,7 @@ JKY.print_row = function(the_id) {
 	JKY.display_message('print_row: ' + the_id);
 	var my_names;
 	var my_extension;
-	var my_row = JKY.get_row(JKY.App.get('table_name'), the_id);
+	var my_row = JKY.get_row(JKY.App.get_prop('table_name'), the_id);
 
 //window.print();
 	var my_html = ''
@@ -357,7 +347,7 @@ JKY.print_row = function(the_id) {
 		+ "</div>"
 		+ "<br>"
 		+ "<table style='width:700px; border:1px solid black;'>"
-		+ "<thead><tr class='jky-print-head'><td><span>Threads</span></td><td><span>Percent</span></td><td><span>Thread</span></td><td><span>Supplier</span></td><tr><thead>"
+		+ "<thead><tr class='jky-print-head'><td><span>Threads</span></td><td><span>Percent</span></td><td><span>Thread</span></td><td> </td><td><span>Supplier</span></td><tr><thead>"
 		+ "<tbody id='jky-print-thread-body'></table>"
 		+ "</table>"
 		+ "<br>"
@@ -411,7 +401,7 @@ JKY.print_row = function(the_id) {
 //	JKY.set_html('jky-print-lanes'			, my_row.lanes						);
 	JKY.set_html('jky-print-has-break'		, JKY.t((my_row.has_break == 'No') ? 'Without' : 'With'));
 
-	JKY.set_html('jky-print-thread-body'	, JKY.print_ftp_threads	(the_id));
+	JKY.set_html('jky-print-thread-body'	, JKY.print_ftp_threads	(the_id, null));
 	JKY.set_html('jky-print-load-body'		, JKY.print_ftp_loads	(the_id));
 	JKY.set_html('jky-print-setting-body'	, JKY.print_ftp_settings(the_id));
 

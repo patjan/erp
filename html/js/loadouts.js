@@ -105,13 +105,13 @@ JKY.set_form_row = function(the_row) {
 		JKY.disable_delete_button();
 		JKY.disable_button('jky-lines-add-new'	);
 	}
-	if (the_row.status == 'Active') {
+	if (the_row.status === 'Draft' || the_row.status === 'Active') {
 		JKY.enable_button ('jky-action-close');
 	}else{
 		JKY.disable_button('jky-action-close');
 	}
 
-	JKY.set_html	('jky-status'			, JKY.t			(the_row.status				));
+	JKY.hide_parent ('jky-status');
 	JKY.set_value	('jky-loadout-number'	,				 the_row.loadout_number		);
 	JKY.set_value	('jky-dyer-id'			,				 the_row.dyer_id			);
 	JKY.set_value	('jky-dyer-name'		,				 the_row.dyer_name			);
@@ -128,7 +128,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_date	('jky-returned-date'	, JKY.out_time	(the_row.returned_at		));
 	JKY.set_value	('jky-returned-pieces'	,				 the_row.returned_pieces	);
 	JKY.set_value	('jky-returned-weight'	,				 the_row.returned_weight	);
-	JKY.set_value	('jky-remarks'			,				 JKY.row.remarks			);
+	JKY.set_value	('jky-remarks'			, JKY.decode	(the_row.remarks			));
 	setTimeout(function() {JKY.process_dyeing_type($('#jky-dyeing-type'));}, 100);
 
 //	JKY.set_calculated_color();
@@ -142,24 +142,55 @@ JKY.set_add_new_row = function() {
 	JKY.disable_button('jky-action-delete'	);
 	JKY.disable_button('jky-action-close'	);
 
-	JKY.set_value	('jky-loadout-number'	,  JKY.t('New'));
+	JKY.hide_parent ('jky-status');
+	JKY.set_value	('jky-loadout-number'	, JKY.t('New'));
 	JKY.set_value	('jky-dyer-id'			, '');
 	JKY.set_value	('jky-dyer-name'		, '');
 	JKY.set_value	('jky-dyeing-type'		, '');
 	JKY.set_value	('jky-color-id'			, '');
 	JKY.set_value	('jky-color-name'		, '');
 	JKY.set_value	('jky-recipe'			, '');
-	JKY.set_date	('jky-requested-date'	,  JKY.out_time(JKY.get_now()));
-	JKY.set_value	('jky-quoted-pieces'	,  0);
-	JKY.set_value	('jky-quoted-weight'	,  0);
+	JKY.set_date	('jky-requested-date'	, JKY.out_time(JKY.get_now()));
+	JKY.set_value	('jky-quoted-pieces'	, 0 );
+	JKY.set_value	('jky-quoted-weight'	, 0 );
 	JKY.set_date	('jky-checkout-date'	, '');
-	JKY.set_value	('jky-checkout-pieces'	,  0);
-	JKY.set_value	('jky-checkout-weight'	,  0);
+	JKY.set_value	('jky-checkout-pieces'	, 0 );
+	JKY.set_value	('jky-checkout-weight'	, 0 );
 	JKY.set_date	('jky-returned-date'	, '');
-	JKY.set_value	('jky-returned-pieces'	,  0);
-	JKY.set_value	('jky-returned-weight'	,  0);
+	JKY.set_value	('jky-returned-pieces'	, 0 );
+	JKY.set_value	('jky-returned-weight'	, 0 );
+
 	JKY.set_value	('jky-remarks'			, '');
 	setTimeout(function() {JKY.process_dyeing_type($('#jky-dyeing-type'));}, 100);
+};
+
+/**
+ *	set replace
+ */
+JKY.set_replace = function() {
+	JKY.disable_button('jky-action-delete'	);
+	JKY.disable_button('jky-action-close'	);
+
+	JKY.show_parent ('jky-status');
+	JKY.set_html	('jky-status', JKY.set_options('', '', 'Active', 'Closed'));
+	JKY.set_value	('jky-loadout-number'	, '');
+	JKY.set_value	('jky-dyer-id'			, '');
+	JKY.set_value	('jky-dyer-name'		, '');
+	JKY.set_value	('jky-dyeing-type'		, '');
+	JKY.set_value	('jky-color-id'			, '');
+	JKY.set_value	('jky-color-name'		, '');
+	JKY.set_value	('jky-recipe'			, '');
+	JKY.set_date	('jky-requested-date'	, '');
+	JKY.set_value	('jky-quoted-pieces'	, '');
+	JKY.set_value	('jky-quoted-weight'	, '');
+	JKY.set_date	('jky-checkout-date'	, '');
+	JKY.set_value	('jky-checkout-pieces'	, '');
+	JKY.set_value	('jky-checkout-weight'	, '');
+	JKY.set_date	('jky-returned-date'	, '');
+	JKY.set_value	('jky-returned-pieces'	, '');
+	JKY.set_value	('jky-returned-weight'	, '');
+
+	JKY.hide('jky-form-tabs');
 };
 
 /**
@@ -173,21 +204,44 @@ JKY.get_form_set = function() {
 
 	var my_set = ''
 		+           '  dyer_id=  ' + my_dyer_id
-		+       ', dyeing_type=\'' + JKY.get_value('jky-dyeing-type'		) + '\''
+		+       ', dyeing_type=\'' +			JKY.get_value('jky-dyeing-type'		)	+ '\''
 		+          ', color_id=  ' + my_color_id
-		+            ', recipe=\'' + JKY.get_value('jky-recipe'				) + '\''
-		+      ', requested_at=  ' + JKY.inp_time ('jky-requested-date'		)
-		+     ', quoted_pieces=  ' + JKY.get_value('jky-quoted-pieces'		)
-		+     ', quoted_weight=  ' + JKY.get_value('jky-quoted-weight'		)
-		+       ', checkout_at=  ' + JKY.inp_time ('jky-checkout-date'		)
-		+   ', checkout_pieces=  ' + JKY.get_value('jky-checkout-pieces'	)
-		+   ', checkout_weight=  ' + JKY.get_value('jky-checkout-weight'	)
-		+       ', returned_at=  ' + JKY.inp_time ('jky-returned-date'		)
-		+   ', returned_pieces=  ' + JKY.get_value('jky-returned-pieces'	)
-		+   ', returned_weight=  ' + JKY.get_value('jky-returned-weight'	)
-		+           ', remarks=\'' + JKY.get_value('jky-remarks'			) + '\''
+		+            ', recipe=\'' +			JKY.get_value('jky-recipe'			)	+ '\''
+		+      ', requested_at=  ' +			JKY.inp_time ('jky-requested-date'	)
+		+     ', quoted_pieces=  ' +			JKY.get_value('jky-quoted-pieces'	)
+		+     ', quoted_weight=  ' +			JKY.get_value('jky-quoted-weight'	)
+		+       ', checkout_at=  ' +			JKY.inp_time ('jky-checkout-date'	)
+		+   ', checkout_pieces=  ' +			JKY.get_value('jky-checkout-pieces'	)
+		+   ', checkout_weight=  ' +			JKY.get_value('jky-checkout-weight'	)
+		+       ', returned_at=  ' +			JKY.inp_time ('jky-returned-date'	)
+		+   ', returned_pieces=  ' +			JKY.get_value('jky-returned-pieces'	)
+		+   ', returned_weight=  ' +			JKY.get_value('jky-returned-weight'	)
 		;
 	return my_set;
+};
+
+/**
+ *	get replace set
+ */
+JKY.get_replace_set = function() {
+	var my_set = '';
+	if (!JKY.is_empty(JKY.get_value('jky-status'			)))	{my_set +=            ', status=\''	+ JKY.get_value('jky-status'			) + '\'';}
+	if (!JKY.is_empty(JKY.inp_date ('jky-requested-date'	)))	{my_set +=      ', requested_at=  ' + JKY.inp_date ('jky-requested-date'	);}
+	if (!JKY.is_empty(JKY.inp_date ('jky-checkout-date'		)))	{my_set +=       ', checkout_at=  ' + JKY.inp_date ('jky-checkout-date'		);}
+	if (!JKY.is_empty(JKY.inp_date ('jky-returned-date'		)))	{my_set +=       ', returned_at=  ' + JKY.inp_date ('jky-returned-date'		);}
+	return my_set;
+};
+
+JKY.display_list = function() {
+	JKY.show('jky-action-print'  );
+	if (JKY.Session.get_value('user_role') == 'Admin'
+	||  JKY.Session.get_value('user_role') == 'Support') {
+		JKY.show('jky-action-replace');
+	}
+};
+
+JKY.display_form = function() {
+	JKY.show('jky-action-copy'   );
 };
 
 /**
@@ -226,10 +280,6 @@ JKY.process_recipe = function(the_id) {
 	}else{
 		$(the_id).parent().next().find('a').css('display', 'inline-block');
 	}
-};
-
-JKY.display_form = function() {
-	JKY.show('jky-action-copy'   );
 };
 
 JKY.process_copy = function(the_id, the_row) {

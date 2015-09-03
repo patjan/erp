@@ -44,7 +44,7 @@ JKY.set_all_events = function() {
 JKY.set_initial_values = function() {
 	JKY.set_css('jky-app-breadcrumb', 'color', '#CC0000');
 /*
-	JKY.set_html('jky-app-select', JKY.set_options(JKY.App.get('select'), 'All', 'Active', 'Closed'));
+	JKY.set_html('jky-app-select', JKY.set_options(JKY.App.get_prop('select'), 'All', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label'	, JKY.t('Status'));
 	JKY.show('jky-app-select-line');
 //	select the first option as default
@@ -61,7 +61,6 @@ JKY.set_initial_values = function() {
  *	set table row
  */
 JKY.set_table_row = function(the_row) {
-	var my_produced_by = (the_row.produced_by ? the_row.produced_by : '');
 	var my_html = ''
 		+  '<td class="jky-td-number"	>' +				 the_row.loadout_number			+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.requested_at		)	+ '</td>'
@@ -71,7 +70,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-number"	>' +				 the_row.quotation_number		+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 the_row.customer_name			+ '</td>'
 		+  '<td class="jky-td-name-l"	>' +				 the_row.product_name			+ '</td>'
-		+  '<td class="jky-td-name-s"	>' +					  my_produced_by			+ '</td>'
+		+  '<td class="jky-td-name-s"	>' + JKY.fix_null	(the_row.machine_name		)	+ '</td>'
 		+  '<td class="jky-td-location"	>' +				 the_row.checkin_location		+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.checkin_pieces			+ '</td>'
 		+  '<td class="jky-td-pieces"	>' +				 the_row.reserved_pieces		+ '</td>'
@@ -84,20 +83,19 @@ JKY.set_table_row = function(the_row) {
  *	set form row
  */
 JKY.set_form_row = function(the_row) {
-	JKY.set_html	('jky-status'				, JKY.t			(the_row.status				));
 	JKY.set_value	('jky-loadout-number'		,				 the_row.loadout_number		);
 	JKY.set_value	('jky-dyer-name'			,				 the_row.dyer_name			);
 	JKY.set_value	('jky-color-name'			,				 the_row.color_name			);
 	JKY.set_value	('jky-quotation-number'		,				 the_row.quotation_number	);
-	JKY.set_value	('jky-customer-name'		,				 the_row.customer_name		);
-	JKY.set_value	('jky-product-name'			,				 the_row.product_name		);
 	JKY.set_value	('jky-checkin-location'		,				 the_row.checkin_location	);
 	JKY.set_value	('jky-customer-name'		,				 the_row.customer_name		);
-	JKY.set_value	('jky-product_name'			,				 the_row.product_name		);
+	JKY.set_value	('jky-product-name'			,				 the_row.product_name		);
 	JKY.set_value	('jky-requested-date'		, JKY.out_date	(the_row.requested_at		));
+	JKY.set_value	('jky-average-weight'		, (the_row.checkin_weight / the_row.checkin_pieces).toFixed(2));
 	JKY.set_value	('jky-reserved-pieces'		,				 the_row.reserved_pieces	);
-	JKY.set_value	('jky-checkout-weight'		,				 the_row.checkout_weight	);
+	JKY.set_value	('jky-reserved-weight'		, 				 the_row.reserved_weight	);
 	JKY.set_value	('jky-checkout-pieces'		,				 the_row.checkout_pieces	);
+	JKY.set_value	('jky-checkout-weight'		, 				 the_row.checkout_weight	);
 };
 
 JKY.set_all_piece_check = function(the_index) {
@@ -173,9 +171,13 @@ JKY.process_barcode_success = function(response) {
 				JKY.sequence++;
 				my_sequence = JKY.sequence;
 				var my_reserved_pieces = parseInt  (JKY.get_value('jky-reserved-pieces')) - 1;
+				var my_reserved_weight = parseFloat(JKY.get_value('jky-reserved-weight')) - parseFloat(my_row.checkin_weight);
 				var my_checkout_pieces = parseInt  (JKY.get_value('jky-checkout-pieces')) + 1;
+				var my_checkout_weight = parseFloat(JKY.get_value('jky-checkout-weight')) + parseFloat(my_row.checkin_weight);
 				JKY.set_value('jky-reserved-pieces', my_reserved_pieces);
+				JKY.set_value('jky-reserved-weight', my_reserved_weight.toFixed(2));
 				JKY.set_value('jky-checkout-pieces', my_checkout_pieces);
+				JKY.set_value('jky-checkout-weight', my_checkout_weight.toFixed(2));
 			}
 
 			if (parseInt(JKY.get_value('jky-reserved-pieces')) < 0) {
@@ -184,16 +186,16 @@ JKY.process_barcode_success = function(response) {
 			}
 
 			var my_html = '<tr>'
-					+ '<td class="jky-td-checkbox"	>'							+  my_checkbox				+ '</td>'
-					+ '<td class="jky-td-barcode"	>'							+  my_row.barcode			+ '</td>'
-					+ '<td class="jky-td-input"		>'							+  my_sequence				+ '</td>'
-					+ '<td class="jky-td-status '	+ my_status_class	+ '">'	+  JKY.t(my_row.status)		+ '</td>'
-					+ '<td class="jky-td-name-s"	>'							+  my_row.produced_by		+ '</td>'
-					+ '<td class="jky-td-pieces"	>'							+  my_row.number_of_pieces	+ '</td>'
-					+ '<td class="jky-td-weight"	>'							+  my_row.checkin_weight	+ '</td>'
-					+ '<td class="jky-td-location ' + my_location_class + '">'	+  my_row.checkin_location	+ '</td>'
-					+ '<td class="jky-td-name-l '	+ my_product_class + '"	>'	+  my_row.product_name		+ '</td>'
-					+ '<td class="jky-td-name-l"	>'							+  my_row.remarks			+ '</td>'
+					+ '<td class="jky-td-checkbox"	>'							+				 my_checkbox			+ '</td>'
+					+ '<td class="jky-td-barcode"	>'							+				 my_row.barcode			+ '</td>'
+					+ '<td class="jky-td-input"		>'							+				 my_sequence			+ '</td>'
+					+ '<td class="jky-td-status '	+ my_status_class	+ '">'	+ JKY.t			(my_row.status)			+ '</td>'
+					+ '<td class="jky-td-name-s"	>'							+				 my_row.produced_by		+ '</td>'
+					+ '<td class="jky-td-pieces"	>'							+				 my_row.number_of_pieces+ '</td>'
+					+ '<td class="jky-td-weight"	>'							+				 my_row.checkin_weight	+ '</td>'
+					+ '<td class="jky-td-location ' + my_location_class + '">'	+				 my_row.checkin_location+ '</td>'
+					+ '<td class="jky-td-name-l '	+ my_product_class + '"	>'	+				 my_row.product_name	+ '</td>'
+					+ '<td class="jky-td-name-l"	>'							+ JKY.decode	(my_row.remarks		)	+ '</td>'
 					+ '</tr>'
 					;
 			JKY.prepend_html('jky-pieces-table-body', my_html);
@@ -254,7 +256,8 @@ JKY.confirm_row_success = function(response) {
 //	JKY.set_value('jky-checkout-pieces', JKY.get_value_by_id('BatchOuts', 'checkout_pieces', JKY.row.id));
 	JKY.row = JKY.get_row('LoadSets', JKY.row.id);
 	JKY.set_value('jky-reserved-pieces', JKY.row.reserved_pieces);
-	JKY.set_value('jky-checkout-weight', JKY.row.checkout_weight);
+	JKY.set_value('jky-reserved-weight', JKY.row.reserved_weight);
 	JKY.set_value('jky-checkout-pieces', JKY.row.checkout_pieces);
+	JKY.set_value('jky-checkout-weight', JKY.row.checkout_weight);
 }
 

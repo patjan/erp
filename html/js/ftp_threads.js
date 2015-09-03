@@ -184,13 +184,13 @@ JKY.verify_total_percent = function() {
 	}
 }
 
-JKY.print_ftp_threads = function(the_id) {
+JKY.print_ftp_threads = function(the_ftp_id, the_order_id) {
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'
 		, table		: 'FTP_Ord_Threads'
-		, ftp_id	:  the_id
-		, order_id	:  JKY.row.id
+		, ftp_id	:  the_ftp_id
+		, order_id	:  the_order_id
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);
