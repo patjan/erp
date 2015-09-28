@@ -346,6 +346,14 @@ private function get_id($data) {
 		return;
 	}
 
+	if ($table == 'PiecesFTP') {
+		$sql= 'SELECT Orders.ftp_id'
+			. '  FROM Pieces'
+			. '  LEFT JOIN Orders ON Orders.id = Pieces.order_id'
+			. ' WHERE ' . $where
+			. ' LIMIT 1'
+			;
+/*
 	if ($table == 'QuotColorFTPs') {
 		$sql= 'SELECT DISTINCT FTPs.id'
 			. '  FROM QuotColors'
@@ -355,6 +363,7 @@ private function get_id($data) {
 			. ' ORDER BY FTPs.ftp_number'
 			. ' LIMIT 1'
 			;
+*/
 	}else{
 		$where = $this->get_security($table, $where);
 		$names = explode('=', $where);
@@ -600,11 +609,14 @@ private function get_index($data) {
 		}
 	}
 
+//$limit_number = get_config_value('System Controls', 'Limit number of records to select');
+//poop($limit_number, '$limit_number');
+
 	if (is_numeric( $display)) {
 		$limit = ' LIMIT ' . $display;
 	}else{
 //		$limit = '';
-		$limit = ' LIMIT 100';
+		$limit = ' LIMIT 250';
 	}
 
 	if ($where != '') {
@@ -1045,6 +1057,7 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'LoadQuotations'	&& $specific == 'loadout'		)	return ' AND LoadQuotations.loadout_id		= ' . $specific_id;
 	if ($table == 'Pieces'			&& $specific == 'order'			)	return ' AND         Pieces.order_id		= ' . $specific_id;
 	if ($table == 'Pieces'			&& $specific == 'rejected'		)	return ' AND         Pieces.qualities	   != "Boa"';
+	if ($table == 'Pieces'			&& $specific == 'loadout'		)	return ' AND       LoadQuot.loadout_id		= ' . $specific_id;
 	if ($table == 'ProdPrices'		&& $specific == 'product'		)	return ' AND     ProdPrices.product_id		= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'parent'		)	return ' AND  PurchaseLines.parent_id		= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'supplier'		)	return ' AND      Purchases.supplier_id		= ' . $specific_id;
@@ -1217,7 +1230,8 @@ private function set_new_fields($table) {
 												. ',   Partner.nick_name		AS   partner_name'
 												. ',     Color.color_name		AS     color_name'
 												. ',       FTP.ftp_number		AS       ftp_number'
-												. ',   Product.product_name		AS   product_name';
+												. ',   Product.product_name		AS   product_name'
+												. ', Quotation.quotation_number	AS quotation_number';
 	if ($table == 'OrdThreads'		)	$return = ',    Orderx.order_number		AS 	   order_number'
 												. ',    Thread.name				AS    thread_name'
 												. ',   BatchIn.batch			AS     batch_code';
@@ -1428,7 +1442,9 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN    Contacts AS Partner	ON   Partner.id	=		    Orders.partner_id'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		    Orders.product_id'
 												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		    Orders.color_id'
-												. '  LEFT JOIN        FTPs AS FTP		ON       FTP.id	=		    Orders.ftp_id';
+												. '  LEFT JOIN        FTPs AS FTP		ON       FTP.id	=		    Orders.ftp_id'
+												. '  LEFT JOIN        OSAs				ON      OSAs.id	=		    Orders.osa_number'
+												. '  LEFT JOIN  Quotations AS Quotation ON Quotation.id	=		      OSAs.quotation_id';
 	if ($table == 'OrdThreads'		)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		OrdThreads.parent_id'
 												. '  LEFT JOIN     Threads AS Thread	ON    Thread.id	=		OrdThreads.thread_id'
 												. '  LEFT JOIN     Batches AS BatchIn	ON   BatchIn.id	=		OrdThreads.batchin_id';

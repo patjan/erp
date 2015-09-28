@@ -111,6 +111,8 @@ JKY.translations =
 , "Check Out<br>Pieces":"Check Out<br>Pieces"
 , "Check Out<br>Time":"Check Out<br>Time"
 , "Check Out<br>Weight":"Check Out<br>Weight"
+, "Check Outs":"Check Outs"
+, "Check Outs":"Check Outs"
 , "Checkout Batches":"Checkout Batches"
 , "Checkout Orders":"Checkout Orders"
 , "CheckOuts":"CheckOuts"

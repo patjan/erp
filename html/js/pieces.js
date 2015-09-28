@@ -63,10 +63,11 @@ JKY.set_initial_values = function() {
  *	set table row
  */
 JKY.set_table_row = function(the_row) {
+	var my_order_number = the_row.order_number + ' <a href="#" onclick="JKY.open_new_tab(event, \'Planning/Orders/' + the_row.order_number + '\')"><i class="icon-pencil"></i></a>';
 	var my_html = ''
 		+  '<td class="jky-td-barcode"	>' +				 the_row.barcode				+ '</td>'
 		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.updated_at			)	+ '</td>'
-		+  '<td class="jky-td-number"	>' +				 the_row.order_number			+ '</td>'
+		+  '<td class="jky-td-number"	>' +					  my_order_number			+ '</td>'
 		+  '<td class="jky-td-name-l"	>' +				 the_row.product_name			+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 the_row.produced_by			+ '</td>'
 //		+  '<td class="jky-td-pieces"	>' +				 the_row.number_of_pieces		+ '</td>'

@@ -259,7 +259,7 @@ JKY.process_validation = function() {
 }
 
 JKY.process_copy = function(the_id, the_row) {
-	var my_set	= 'composition =\'' + the_row.composition	+ '\'';
+//	var my_set	= 'composition =\'' + the_row.composition	+ '\'';
 	if (the_row.draw != null) {
 		my_set += ', draw =\'' + the_row.draw + '\'';
 	}
@@ -275,8 +275,8 @@ JKY.process_copy = function(the_id, the_row) {
 	my_data = {method:'copy', table:'FTPs', folder:'ftp_photos', from:the_row.id, to:the_id};
 	JKY.ajax(true, my_data);
 
-	JKY.copy_threads	(the_row.id, the_id);
-	JKY.copy_loads		(the_row.id, the_id);
+//	JKY.copy_threads	(the_row.id, the_id);
+//	JKY.copy_loads		(the_row.id, the_id);
 	JKY.copy_settings	(the_row.id, the_id);
 
 }

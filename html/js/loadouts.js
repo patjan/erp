@@ -61,8 +61,9 @@ JKY.set_initial_values = function() {
 	JKY.show	('jky-app-select-line');
 //	JKY.set_html('jky-dyer-name'	, JKY.set_options_array('', JKY.get_companies('is_dyer'), true));
 //	JKY.set_html('jky-color-name'	, JKY.set_table_options('Colors', 'color_name', '', ''));
+	$('#jky-dyer-name'			).change(function() {JKY.process_dyer_name	(this);});
 	$('#jky-dyeing-type'		).change(function() {JKY.process_dyeing_type(this);});
-	$('#jky-color-name'			).change(function() {JKY.process_color_name (this);});
+	$('#jky-color-name'			).change(function() {JKY.process_color_name	(this);});
 	$('#jky-action-save-remarks').click (function()	{JKY.save_remarks();});
 	$('#jky-dyer-filter'		).KeyUpDelay(JKY.Dyer			.load_data);
 	$('#jky-color-un-filter'	).KeyUpDelay(JKY.ColorUnloaded	.load_data);
@@ -242,6 +243,13 @@ JKY.display_list = function() {
 
 JKY.display_form = function() {
 	JKY.show('jky-action-copy'   );
+};
+
+/**
+ *
+ */
+JKY.process_dyer_name = function(the_id) {
+	$('#jky-recipe').val('');
 };
 
 /**

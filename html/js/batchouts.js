@@ -264,7 +264,18 @@ JKY.close_row = function(the_id) {
 		, set		: 'status = \'Closed\''
 		, where		: 'batchout_id = ' + the_id
 		};
-	JKY.ajax(false, my_data);
+	JKY.ajax(false, my_data, function() {
+		var my_count = JKY.get_count_by_where('BatchOuts', 'status!=\'Closed\' AND checkout_id=' + JKY.row.checkout_id);
+		if (my_count == 0) {
+			my_data =
+				{ method	: 'update'
+				, table		: 'CheckOuts'
+				, set		: 'status = \'Closed\''
+				, where		: 'id = ' + JKY.row.checkout_id
+				};
+			JKY.ajax(false, my_data);
+		}
+	});
 };
 
 JKY.insert_batch_sets = function() {

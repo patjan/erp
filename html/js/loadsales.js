@@ -113,6 +113,7 @@ JKY.set_form_row = function(the_row) {
 
 	if (the_row.product_id) {
 		JKY.display_pieces();
+		JKY.display_checkouts();
 	}
 };
 

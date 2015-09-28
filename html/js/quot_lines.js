@@ -390,7 +390,7 @@ JKY.approve_lines = function(the_id) {
 						var my_product		= JKY.get_row	('Products', my_row.product_id);
 						var my_ftp_id		= JKY.get_ftp_id(my_row.product_id);
 						var my_ftp			= JKY.get_row	('FTPs', my_ftp_id);
-						var my_ftp_threads	= JKY.get_rows	('FTP_Threads', my_ftp_id);
+//						var my_ftp_threads	= JKY.get_rows	('FTP_Threads', my_ftp_id);
 
 						my_html  += ''
 							+ '<table class="jky-approve-line"><tr>'
@@ -408,6 +408,7 @@ JKY.approve_lines = function(the_id) {
 							;
 
 						my_html += '<table class="jky-approve-line">'
+/*
 						for(var j in my_ftp_threads) {
 							var my_ftp_thread = my_ftp_threads[j];
 							var my_thread_name	 = JKY.get_value_by_id('Threads' , 'name'		, my_ftp_thread.thread_id	);
@@ -419,7 +420,10 @@ JKY.approve_lines = function(the_id) {
 								+ '</tr>'
 								;
 						}
+*/
 						my_html += ''
+							+ '<tr><td>&nbsp;</td></tr>'
+							+ '<tr><td>&nbsp;</td></tr>'
 							+ '<tr><td>&nbsp;</td></tr>'
 							+ '<tr><td>&nbsp;</td></tr>'
 							+ '<tr><td>&nbsp;</td></tr>'

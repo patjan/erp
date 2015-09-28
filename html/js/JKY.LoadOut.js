@@ -352,11 +352,13 @@ JKY.LoadOut = function() {
 		if (JKY.is_empty(the_loadquot.quot_color_id))		return '';
 
 		var my_html = '';
-		var my_ftp_id		= JKY.get_id	('QuotColorFTPs', 'QuotColors.id=' + the_loadquot.quot_color_id);
 		var my_quot_color	= JKY.get_row	('QuotColors'	, the_loadquot.quot_color_id);
 		var my_color		= JKY.get_row	('Colors'		, my_quot_color.color_id);
 		var my_quot_line	= JKY.get_row	('QuotLines'	, my_quot_color.parent_id);
 		var my_product		= JKY.get_row	('Products'		, my_quot_line.product_id);
+
+//		var my_ftp_id		= JKY.get_id	('QuotColorFTPs', 'QuotColors.id=' + the_loadquot.quot_color_id);
+		var my_ftp_id		= JKY.get_id	('PiecesFTP'	, 'Pieces.load_quot_id=' + the_loadquot.id);
 		var my_ftp			= JKY.get_row	('FTPs'			, my_ftp_id);
 /*
 		var my_threads		= JKY.get_rows	('FTP_Threads'	, my_ftp_id);

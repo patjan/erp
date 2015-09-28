@@ -103,24 +103,31 @@ JKY.set_table_row = function(the_row) {
 	if(!my_machine_partner) {
 		my_machine_partner = '<b>' + JKY.fix_null(the_row.partner_name) + '</b>';
 	}
+	var my_osa_number = '';
+	if (the_row.osa_number) {
+		my_osa_number = the_row.osa_number + ' <a href="#" onclick="JKY.open_new_tab(event, \'Planning/OSAs/' + the_row.osa_number + '\')"><i class="icon-pencil"></i></a>';
+	}
 
 	var my_html = ''
-		+  '<td class="jky-td-number"	>' +				 the_row.order_number		+ '</td>'
-		+  '<td class="jky-td-short"	>' + JKY.fix_null	(the_row.customer_name	)	+ '</td>'
-		+  '<td class="jky-td-text-s"	>' + JKY.fix_null	(the_row.product_name	)	+ '</td>'
-		+  '<td class="jky-td-number"	>' + JKY.fix_null	(the_row.ftp_number		)	+ '</td>'
-		+  '<td class="jky-td-short"	>' +				 my_machine_partner			+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.ordered_at		)	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.needed_at		)	+ '</td>'
-		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.produced_at	)	+ '</td>'
-		+  '<td class="jky-td-weight"	>' +				 the_row.quoted_weight		+ '</td>'
-//		+  '<td class="jky-td-weight"	>' +				 the_row.ordered_weight		+ '</td>'
-		+  '<td class="jky-td-pieces"	>' +				 the_row.quoted_pieces		+ '</td>'
-		+  '<td class="jky-td-pieces"	>' +				 the_row.ordered_pieces		+ '</td>'
-//		+  '<td class="jky-td-pieces"	>' +				 the_row.rejected_pieces	+ '</td>'
-//		+  '<td class="jky-td-pieces"	>' +				 the_row.produced_pieces	+ '</td>'
-		+  '<td class="jky-td-pieces"	>' +				 the_row.revised_pieces		+ '</td>'
-		+  '<td class="jky-td-pieces"	>' +				 the_row.labels_printed		+ '</td>'
+		+  '<td class="jky-td-number"	>' +				 the_row.order_number			+ '</td>'
+		+  '<td class="jky-td-number"	>' + JKY.fix_null	(the_row.quotation_number	)	+ '</td>'
+		+  '<td class="jky-td-short"	>' + JKY.fix_null	(the_row.customer_name		)	+ '</td>'
+		+  '<td class="jky-td-text-s"	>' + JKY.fix_null	(the_row.product_name		)	+ '</td>'
+		+  '<td class="jky-td-number"	>' +				      my_osa_number				+ '</td>'
+		+  '<td class="jky-td-number"	>' + JKY.fix_null	(the_row.ftp_number			)	+ '</td>'
+		+  '<td class="jky-td-short"	>' +				 my_machine_partner				+ '</td>'
+		+  '<td class="jky-td-location"	>' + JKY.fix_null	(the_row.location			)	+ '</td>'
+		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.ordered_at			)	+ '</td>'
+//		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.needed_at			)	+ '</td>'
+//		+  '<td class="jky-td-date"		>' + JKY.out_date	(the_row.produced_at		)	+ '</td>'
+		+  '<td class="jky-td-weight"	>' +				 the_row.quoted_weight			+ '</td>'
+//		+  '<td class="jky-td-weight"	>' +				 the_row.ordered_weight			+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.quoted_pieces			+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.ordered_pieces			+ '</td>'
+//		+  '<td class="jky-td-pieces"	>' +				 the_row.rejected_pieces		+ '</td>'
+//		+  '<td class="jky-td-pieces"	>' +				 the_row.produced_pieces		+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.revised_pieces			+ '</td>'
+		+  '<td class="jky-td-pieces"	>' +				 the_row.labels_printed			+ '</td>'
 		;
 	return my_html;
 };
@@ -340,7 +347,7 @@ JKY.get_replace_set = function() {
 };
 
 JKY.display_list = function() {
-	JKY.show('jky-action-print'  );
+//	JKY.show('jky-action-print'  );
 	if (JKY.Session.get_value('user_role') == 'Admin'
 	||  JKY.Session.get_value('user_role') == 'Support') {
 		JKY.show('jky-action-replace');
@@ -348,7 +355,7 @@ JKY.display_list = function() {
 };
 
 JKY.display_form = function() {
-	JKY.show('jky-action-print'  );
+//	JKY.show('jky-action-print'  );
 	JKY.show('jky-action-copy'   );
 };
 
@@ -422,3 +429,18 @@ JKY.refresh_form = function(response) {
 	JKY.display_message('Check Out row generated: ' + JKY.row.id);
 	JKY.App.display_row();
 };
+
+/* -------------------------------------------------------------------------- */
+JKY.close_row = function(the_id) {
+	var my_count = JKY.get_count_by_where('Orders', 'status!=\'Closed\' AND osa_number=' + JKY.row.osa_number);
+	if (my_count == 0) {
+		var my_data =
+			{ method	: 'update'
+			, table		: 'OSAs'
+			, set		: 'status = \'Closed\''
+			, where		: 'id = ' + JKY.row.osa_number
+			};
+		JKY.ajax(false, my_data);
+	}
+};
+

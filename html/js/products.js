@@ -182,3 +182,10 @@ JKY.reset_product_base = function() {
 	JKY.set_value('jky-product-base', '');
 	$('#jky-product-base').change();	//	to activate change event
 }
+
+JKY.process_validation = function() {
+	var my_error = '';
+	if (JKY.get_value('jky-peso') < 0.01)		my_error += JKY.set_is_invalid('Peso');
+	return my_error;
+}
+

@@ -4009,7 +4009,7 @@ log_prog('proxy', 'POSTVARS: ' . $postvars);
  */
 function poop($value, $label='', $file_name=NULL, $url_pattern=NULL) {
 	if (!empty($url_pattern) && !strstr($_SERVER['HTTP_REFERER'], $url_pattern)) 	return FALSE;
-	$file_path  = '../logs/';
+	$file_path  = '../';
 	$file_path .= empty($file_name) ? 'poop.log' : $file_name;
 	
 	$file_handler = fopen($file_path,'a+');

@@ -1,5 +1,10 @@
 Todo
 
+1 etiqueta  10 X 5
+2 bloco H final do ano
+3 bloco K mensal
+4 ler nfe xml entrada
+
 fix my_saved_row (sincronization get_row and update)
 
 Setup Node Pub-Sub server on AWS
