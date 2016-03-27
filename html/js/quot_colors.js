@@ -328,57 +328,12 @@ JKY.update_quoted_units = function(the_line_id, the_delta_weight, the_delta_unit
 	JKY.ajax(true, my_data);
 }
 
-JKY.color_ids = function(the_id) {
-	var my_rows = [];
-	var my_data =
-		{ method	: 'get_index'
-		, table		: 'QuotColors'
-		, select	:  the_id
-		, order_by  : 'QuotColors.id'
-		};
-	var my_object = {};
-	my_object.data = JSON.stringify(my_data);
-	$.ajax(
-		{ url		: JKY.AJAX_URL
-		, data		: my_object
-		, type		: 'post'
-		, dataType	: 'json'
-		, async		: false
-		, success	: function(response) {
-				if (response.status == 'ok') {
-					for(var i=0; i<response.rows.length; i++) {
-						var my_row = [];
-						my_row.id	= response.rows[i].color_id;
-						my_row.name = response.rows[i].color_name;
-						my_rows.push(my_row);
-					}
-				}else{
-					JKY.display_message(response.message);
-				}
-			}
-		}
-	)
-	return my_rows;
-}
-
-JKY.get_name = function(the_id, the_array) {
-	var my_name = '';
-	for( var i=0; i<the_array.length; i++) {
-		if (the_array[i].id == the_id) {
-			my_name = the_array[i].name;
-			break;
-		}
-	}
-	return my_name;
-}
-
 JKY.print_colors = function(the_id, the_product) {
 	var my_line_peso	= the_product.peso;
 	var my_line_units	= the_product.units;
 	var my_line_discount= the_product.discount;
 	if (my_line_units == 0)		my_line_peso = 1;
 
-	JKY.colors = JKY.color_ids(the_id);
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'
@@ -511,7 +466,6 @@ JKY.approve_colors = function(the_id, the_product) {
 	var my_line_discount= the_product.discount;
 	if (my_line_units == 0)		my_line_peso = 1;
 
-	JKY.colors = JKY.color_ids(the_id);
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'
@@ -652,7 +606,6 @@ JKY.approve_colors = function(the_id, the_product) {
 	var my_line_discount= the_product.discount;
 	if (my_line_units == 0)		my_line_peso = 1;
 
-	JKY.colors = JKY.color_ids(the_id);
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'

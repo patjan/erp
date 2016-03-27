@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS Changes
 
 , PRIMARY KEY(id)
 , KEY created_at(created_at)
+, KEY name_id(table_name, table_id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1000000001
 ;
 
@@ -16,3 +17,5 @@ UPDATE		Changes			SET		servers = ''	WHERE table_name = 'Batches';
 
 ALTER TABLE Changes			CHANGE	servers			servers			VARCHAR(32)		DEFAULT '';
 ALTER TABLE Changes			CHANGE	created_at		updated_at		VARCHAR(32)		DEFAULT NULL;
+
+ALTER TABLE Changes			ADD KEY name_id(table_name, table_id);

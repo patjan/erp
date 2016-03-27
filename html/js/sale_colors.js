@@ -3,40 +3,43 @@
  * display Sale Colors ----------------------------------------------------
  */
 
-JKY.generate_color = function(the_row, the_units) {
+JKY.generate_color = function(the_row) {
 	var my_id = the_row.id;
-	var my_trash = JKY.is_status('Draft') ? '<a onclick="JKY.delete_color(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_trash = JKY.is_enabled ? '<a onclick="JKY.delete_color(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
 	var my_color = ''
 		+ "<input class='jky-color-id'	 type='hidden' value=" + the_row.color_id   + " />"
 		+ "<input class='jky-color-type' type='hidden' value=" + the_row.color_type + " />"
 		+ "<input class='jky-color-name' disabled onchange='JKY.update_color(this, " + my_id + ")' value='" + the_row.color_name + "' />"
 		+ " <a href='#' onClick='JKY.Color.display(this)'><i class='icon-share'></i></a>"
 		;
-	var my_dyer	 = ''
-		+ "<input class='jky-dyer-id'	type='hidden'	value=" + the_row.dyer_id	+ " />"
-		+ "<input class='jky-dyer-name'	disabled onchange='JKY.update_color(this, " + my_id + ")' value='" + the_row.dyer_name + "' />"
-		+ " <a href='#' onClick='JKY.Dyer.display(this)'><i class='icon-share'></i></a>"
-		;
-	var my_unit = (the_units == 0) ? 'weight' : 'piece';
-	var my_onchange = ' changeable onchange="JKY.update_color(this, ' + my_id + ')"';
+	var my_onchange = JKY.is_enabled ? ' changeable onchange="JKY.update_color(this, ' + my_id + ')"'  : ' disabled="disabled"';
 	var my_disabled = ' disabled';
+	var my_sold_pieces		= parseFloat(the_row.sold_pieces	).toFixed(0);
+	var my_checkout_pieces	= parseFloat(the_row.checkout_pieces).toFixed(0);
+	var my_sold_weight		= parseFloat(the_row.sold_weight	).toFixed(2);
+	var my_checkout_weight	= parseFloat(the_row.checkout_weight).toFixed(2);
+	var my_sold_price		= parseFloat(the_row.sold_price		).toFixed(2);
+	var my_sold_amount		= parseFloat(the_row.sold_amount	).toFixed(2);
+	var my_checkout_amount	= parseFloat(the_row.checkout_amount).toFixed(2);
 	var my_html = ''
 		+ '<tr color_id=' + my_id + '>'
 		+ '<td></td>'
-		+ '<td class="jky-td-action"	colspan="3" style="text-align:right !important;">' + my_trash + '</td>'
+		+ '<td class="jky-td-action"	colspan="1" style="text-align:right !important;">' + my_trash + '</td>'
 		+ '<td class="jky-td-key-m"		>' + my_color + '</td>'
-		+ '<td class="jky-td-key"		>' + my_dyer  + '</td>'
-		+ '<td class="jky-td-pieces"	><input class="jky-quoted-units"				value="' + the_row.quoted_units	+ '"' + my_onchange + ' /></td>'
-		+ '<td class="jky-td-units"		>' + '(' + JKY.t(my_unit) + ')' + '</td>'
-		+ '<td class="jky-td-price"		><input class="jky-quoted-price	jky-td-price"	value="' + the_row.quoted_price	+ '"' + my_onchange + ' /></td>'
-		+ '<td class="jky-td-units"		>($/Kg)</td>'
-		+ '<td class="jky-td-price"		><input class="jky-discount		jky-td-price"	value="' + the_row.discount		+ '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-sold-pieces"		value="' + my_sold_pieces		+ '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-pieces"	><input class="jky-checkout-pieces"	value="' + my_checkout_pieces	+ '"' + my_disabled + ' /></td>'
+		+ '<td class="jky-td-weight"	><input class="jky-sold-weight"		value="' + my_sold_weight		+ '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-weight"	><input class="jky-checkout-weight"	value="' + my_checkout_weight	+ '"' + my_disabled + ' /></td>'
+		+ '<td class="jky-td-price"		><input class="jky-sold-price"		value="' + my_sold_price		+ '"' + my_onchange + ' /></td>'
+		+ '<td class="jky-td-price"		><input class="jky-sold-amount"		value="' + my_sold_amount		+ '"' + my_disabled	+ ' /></td>'
+		+ '<td class="jky-td-price"		><input class="jky-checkout-amount"	value="' + my_checkout_amount	+ '"' + my_disabled	+ ' /></td>'
+		+ '<td class="jky-td-price"		><input class="jky-discount"		value="' + the_row.discount		+ '"' + my_onchange + ' /></td>'
 		+ '</tr>'
 		;
 	return my_html;
-}
+};
 
-JKY.get_quoted_price = function(my_product_id, my_color_type) {
+JKY.get_sold_price = function(my_product_id, my_color_type) {
 	var my_where =		'ProdPrices.product_id = ' + my_product_id
 				 + ' AND ProdPrices.color_type = \'' + my_color_type + '\''
 				 + ' AND ProdPrices.current_price > 0'
@@ -44,82 +47,156 @@ JKY.get_quoted_price = function(my_product_id, my_color_type) {
 	var my_rows = JKY.get_rows_by_where('ProdPrices', my_where);
 
 	if (my_rows.length == 0) {
+//		default, get [Quoted Price] from [Color Type] = Unico		
 		my_where =		'ProdPrices.product_id = ' + my_product_id
 				 + ' AND ProdPrices.color_type = \'Unico\''
 				 + ' AND ProdPrices.current_price > 0'
 				 ;
 		my_rows = JKY.get_rows_by_where('ProdPrices', my_where);
-	}
+	};
 
 	if (my_rows.length == 0) {
 		return 0
 	}else{
 		return my_rows[0].current_price;
+	};
+};
+
+JKY.calculate_net_weight = function(the_sale_id, the_product_id, the_sold_pieces, the_sold_weight) {
+	var my_cone_weight = 0;
+	var my_deduct_cone = JKY.get_value_by_id('Sales', 'deduct_cone', the_sale_id);
+	if (my_deduct_cone === 'Yes') {
+		var my_product_type	= JKY.get_value_by_id('Products', 'product_type', the_product_id);
+		var my_config_value = JKY.get_config_value('Cone Types', my_product_type);
+		if (my_config_value) {
+			my_cone_weight = my_config_value / 1000;
+		}
 	}
+	return the_sold_weight - (the_sold_pieces * my_cone_weight);
+}
+
+JKY.calculate_discount = function(the_sold_weight, the_sold_price, the_color_discount, the_line_discount) {
+	var my_color_discount = the_color_discount.trim();
+	if (my_color_discount === '')		{my_color_discount = the_line_discount.trim();}
+	if (my_color_discount === '')		{return 0;}
+
+	var my_discount_price = 0;
+	var my_length = my_color_discount.length;
+	if (my_color_discount.substr(my_length-1, 1) === '%') {
+		my_color_discount = parseFloat(my_color_discount);
+		if (!isNaN(my_color_discount)) {
+			my_discount_price = the_sold_price * my_color_discount / 100;
+		}
+	}else{
+		my_color_discount = parseFloat(my_color_discount);
+		if (!isNaN(my_color_discount)) {
+			my_discount_price = my_color_discount;
+		}
+	};
+
+	return (the_sold_weight * my_discount_price).toFixed(2);
+};
+
+JKY.check_availability = function(the_this, the_product_id, the_color_id, the_sold_pieces) {
+	var my_data =
+		{ method	: 'get_row'
+		, table		: 'FabricCounters'
+		, where		: 'product_id=' + the_product_id + ' AND color_id=' + the_color_id
+		};
+	JKY.ajax(false, my_data, function(the_response) {
+		var my_available = 0;
+		if (the_response.row) {
+			my_available = parseInt(the_response.row.climate) + parseInt(the_response.row.stock);
+		}
+		if (my_available >= the_sold_pieces) {
+			$(the_this).css('background-color', '#eeeeee');
+		}else{
+			$(the_this).css('background-color', 'red');
+			if (my_available === 0) {
+				JKY.display_message(JKY.t('There is not any piece available on stock'));
+			}else{
+				JKY.display_message(JKY.t('Stock has only') + ' ' + my_available + ' ' + JKY.t('pieces available'));
+			}
+		}
+	});
 }
 
 JKY.update_color = function(the_this, the_id) {
 	var my_tr = $(the_this).parent().parent();
-	if (my_tr.find('.jky-quoted-units').val() == '')	my_tr.find('.jky-quoted-units').val(0);
-	if (my_tr.find('.jky-quoted-price').val() == '')	my_tr.find('.jky-quoted-price').val(0);
+	if (my_tr.find('.jky-sold-price'		).val() == '')	my_tr.find('.jky-sold-price'		).val(0);
+	if (my_tr.find('.jky-sold-pieces'		).val() == '')	my_tr.find('.jky-sold-pieces'		).val(0);
+	if (my_tr.find('.jky-sold-weight'		).val() == '')	my_tr.find('.jky-sold-weight'		).val(0);
+	if (my_tr.find('.jky-sold-amount'		).val() == '')	my_tr.find('.jky-sold-amount'		).val(0);
+	if (my_tr.find('.jky-checkout-pieces'	).val() == '')	my_tr.find('.jky-checkout-pieces'	).val(0);
+	if (my_tr.find('.jky-checkout-weight'	).val() == '')	my_tr.find('.jky-checkout-weight'	).val(0);
+	if (my_tr.find('.jky-checkout-amount'	).val() == '')	my_tr.find('.jky-checkout-amount'	).val(0);
 
-	var my_line_id			= JKY.get_prev_dom(my_tr, 'sale_line_id');
-	var my_product_id		= my_line_id.find('.jky-product-id'		).val();
-	var my_line_units_id	= my_line_id.find('.jky-quoted-units'	);
-	var my_line_pieces_id	= my_line_id.find('.jky-quoted-pieces'	);
-	var my_line_units		= parseFloat(my_line_units_id .val());
-	var my_line_pieces		= parseInt	(my_line_pieces_id.val());
-	var my_peso				= parseFloat(my_line_id.find('.jky-product-peso' ).val());
-	var my_units			= parseInt	(my_line_id.find('.jky-product-units').val());
+	var my_line_id		= JKY.get_prev_dom(my_tr, 'sale_line_id');
+	var my_product_id	= my_line_id.find('.jky-product-id'	).val();
+	var my_line_discount= my_line_id.find('.jky-discount'	).val();
 
-	var my_color_units;
-	var my_prev_units;
-	var my_diff_weight;
-	if (my_units == 0) {
-		var my_color_peso	= parseFloat(my_tr.find('.jky-quoted-units').val());
-		if (isNaN(my_color_peso))	my_color_peso = 0;
-		var my_prev_peso	= parseFloat(JKY.get_value_by_id('SaleColors', 'quoted_units', the_id));
-		my_color_units		= Math.ceil(my_color_peso / my_peso);
-		my_prev_units		= Math.ceil(my_prev_peso  / my_peso);
-		my_diff_weight		= my_color_peso - my_prev_peso;
-	}else{
-		my_color_units		= parseInt(my_tr.find('.jky-quoted-units').val());
-		if (isNaN(my_color_units))	my_color_units = 0;
-		my_prev_units		= parseInt(JKY.get_value_by_id('SaleColors', 'quoted_units', the_id));
-		my_diff_weight		= (my_color_units - my_prev_units) * my_peso;
-	}
-	var	my_diff_units		= my_color_units - my_prev_units ;
+	var my_color_id		= my_tr.find('.jky-color-id'  ).val();
+		my_color_id		= (my_color_id == '') ? 'null' : my_color_id;
+	var my_color_type	= my_tr.find('.jky-color-type').val();
 
-	var my_new_units		= my_line_units + my_diff_units;
-	var my_new_pieces		= (my_units == 0 ) ? my_new_units : Math.ceil(my_new_units / my_units);
-	var my_diff_pieces		= my_new_pieces - my_line_pieces;
+	var my_sold_price		= parseFloat(my_tr.find('.jky-sold-price'		).val()).toFixed(2);
+	var	my_sold_pieces		= parseFloat(my_tr.find('.jky-sold-pieces'		).val()).toFixed(0);
+	var	my_sold_weight		= parseFloat(my_tr.find('.jky-sold-weight'		).val()).toFixed(2);
+	var	my_checkout_pieces	= parseFloat(my_tr.find('.jky-checkout-pieces'	).val()).toFixed(0);
+	var	my_checkout_weight	= parseFloat(my_tr.find('.jky-checkout-weight'	).val()).toFixed(2);
+	var my_color_discount	=			 my_tr.find('.jky-discount'			).val();
 
-	my_line_units_id .val(my_new_units );
-	my_line_pieces_id.val(my_new_pieces);
+	var $my_line = $(my_tr).prevAll('.jky-line');
+	var my_product_id = $my_line.find('.jky-product-id').val();
+	JKY.check_availability(the_this, my_product_id, my_color_id, my_sold_pieces);
 
-	JKY.update_quoted_units(my_line_id, my_diff_weight, my_diff_units, my_diff_pieces);
+	if (my_sold_price == 0) {
+		my_sold_price = JKY.get_sold_price(my_product_id, my_color_type);
+	};
 
-	var my_color_id			= my_tr.find('.jky-color-id'  ).val();
-		my_color_id			= (my_color_id == '') ? 'null' : my_color_id;
-	var my_color_type		= my_tr.find('.jky-color-type').val();
-	var my_dyer_id			= my_tr.find('.jky-dyer-id'  ).val();
-		my_dyer_id			= (my_dyer_id == '') ? 'null' : my_dyer_id;
-	var	my_quoted_units		= parseFloat(my_tr.find('.jky-quoted-units'	).val());
-	var my_quoted_price		= parseFloat(my_tr.find('.jky-quoted-price'	).val());
-	var my_discount			=			 my_tr.find('.jky-discount'		).val() ;
+	if (my_sold_weight == 0) {
+		my_sold_weight = (my_sold_pieces * JKY.get_config_value('System Controls', 'Average Weight by Fabric')).toFixed(2);
+	};
 
-	if (my_quoted_price == 0) {
-		my_quoted_price = JKY.get_quoted_price(my_product_id, my_color_type);
-		my_tr.find('.jky-quoted-price').val(my_quoted_price);
-	}
+	var my_net_weight		= JKY.calculate_net_weight(JKY.row.id, my_product_id, my_sold_pieces	, my_sold_weight	);
+	var my_sold_amount		= (my_net_weight * my_sold_price).toFixed(2);
+	var my_sold_discount	= JKY.calculate_discount(my_net_weight, my_sold_price, my_color_discount, my_line_discount	);
+
+	var my_net_weight		= JKY.calculate_net_weight(JKY.row.id, my_product_id, my_checkout_pieces, my_checkout_weight);
+	var my_checkout_amount	= (my_net_weight * my_sold_price).toFixed(2);
+	var my_checkout_discount= JKY.calculate_discount(my_net_weight, my_sold_price, my_color_discount, my_line_discount	);
+
+	var my_color = JKY.get_row('SaleColors', the_id);
+	var	my_diff_sold_pieces			= my_sold_pieces		- my_color.sold_pieces		;
+	var	my_diff_sold_weight			= my_sold_weight		- my_color.sold_weight		;
+	var	my_diff_sold_amount			= my_sold_amount		- my_color.sold_amount		;
+	var	my_diff_sold_discount		= my_sold_discount		- my_color.sold_discount	;
+	var	my_diff_checkout_pieces		= my_checkout_pieces	- my_color.checkout_pieces	;
+	var	my_diff_checkout_weight		= my_checkout_weight	- my_color.checkout_weight	;
+	var	my_diff_checkout_amount		= my_checkout_amount	- my_color.checkout_amount	;
+	var	my_diff_checkout_discount	= my_checkout_discount	- my_color.checkout_discount;
+
+	my_tr.find('.jky-sold-price'		).val(my_sold_price		);
+	my_tr.find('.jky-sold-pieces'		).val(my_sold_pieces	);
+	my_tr.find('.jky-sold-weight'		).val(my_sold_weight	);
+	my_tr.find('.jky-sold-amount'		).val(my_sold_amount	);
+	my_tr.find('.jky-checkout-pieces'	).val(my_checkout_pieces);
+	my_tr.find('.jky-checkout-weight'	).val(my_checkout_weight);
+	my_tr.find('.jky-checkout-amount'	).val(my_checkout_amount);
 
 	var my_set = ''
-		+          'color_id =  ' + my_color_id
-		+      ', color_type =\'' + my_color_type + '\''
-		+         ', dyer_id =  ' + my_dyer_id
-		+    ', quoted_units =  ' + my_quoted_units
-		+    ', quoted_price =  ' + my_quoted_price
-		+        ', discount =\'' + my_discount + '\''
+		+            'color_id =  ' + my_color_id
+		+        ', color_type =\'' + my_color_type + '\''
+		+        ', sold_price =  ' + my_sold_price
+		+       ', sold_pieces =  ' + my_sold_pieces
+		+       ', sold_weight =  ' + my_sold_weight
+		+       ', sold_amount =  ' + my_sold_amount
+		+     ', sold_discount =  ' + my_sold_discount
+		+   ', checkout_pieces =  ' + my_checkout_pieces
+		+   ', checkout_weight =  ' + my_checkout_weight
+		+   ', checkout_amount =  ' + my_checkout_amount
+		+ ', checkout_discount =  ' + my_checkout_discount
+		+        ', discount =\'' + my_color_discount + '\''
 		;
 	var my_data =
 		{ method	: 'update'
@@ -127,10 +204,14 @@ JKY.update_color = function(the_this, the_id) {
 		, set		:  my_set
 		, where		: 'SaleColors.id = ' + the_id
 		};
-	JKY.ajax(true, my_data, function(the_response) {
-		JKY.update_quotation_amount();
-	})
-}
+	JKY.ajax(true, my_data, function() {
+//		JKY.update_sale_amount();
+	});
+	JKY.update_delta(my_line_id
+		, my_diff_sold_pieces    , my_diff_sold_weight    , my_diff_sold_amount    , my_diff_sold_discount
+		, my_diff_checkout_pieces, my_diff_checkout_weight, my_diff_checkout_amount, my_diff_checkout_discount
+		);
+};
 
 JKY.insert_color = function(the_id, the_parent_id) {
 	JKY.line_tr = $(the_id).parent().parent();
@@ -140,25 +221,30 @@ JKY.insert_color = function(the_id, the_parent_id) {
 		, set		: 'SaleColors.parent_id = ' + the_parent_id
 		};
 	JKY.ajax(true, my_data,function(the_response) {
-		var my_units = parseInt(JKY.line_tr.find('.jky-product-units').val());
 		var my_row = [];
 		my_row.id				= the_response.id;
 		my_row.color_id			= null;
 		my_row.color_name		= '';
 		my_row.color_type		= '';
-		my_row.dyer_id			= null;
-		my_row.dyer_name		= '';
-		my_row.quoted_units		= 0;
-		my_row.quoted_price		= 0;
+		my_row.sold_price		= 0;
+		my_row.sold_pieces		= 0;
+		my_row.sold_weight		= 0;
+		my_row.sold_amount		= 0;
+		my_row.sold_discount	= 0;
+		my_row.checkout_pieces	= 0;
+		my_row.checkout_weight	= 0;
+		my_row.checkout_amount	= 0;
+		my_row.checkout_discount= 0;
 		my_row.discount			= '';
-		var my_html = JKY.generate_color(my_row, my_units);
+		var my_html = JKY.generate_color(my_row);
 		JKY.line_tr.after(my_html);
 		var my_tr = JKY.line_tr.next();
-		my_tr.find('.jky-quoted-units'	).ForceNumericOnly();
-		my_tr.find('.jky-quoted-price'	).ForceNumericOnly();
+		my_tr.find('.jky-sold-price'	).ForceNumericOnly();
+		my_tr.find('.jky-sold-pieces'	).ForceIntegerOnly();
+		my_tr.find('.jky-sold-weight'	).ForceNumericOnly();
 		JKY.enable_disable_lines();
-	})
-}
+	});
+};
 
 JKY.copy_colors = function(the_source, the_to) {
 	var my_data =
@@ -180,14 +266,19 @@ JKY.copy_colors = function(the_source, the_to) {
 					var my_rows = the_response.rows;
 					for(var i in my_rows) {
 						var my_row	= my_rows[i];
-						var my_set	= '      parent_id =   ' + the_to
-									+ ',       dyer_id =   ' + my_row.dyer_id
-									+ ',      color_id =   ' + my_row.color_id
-									+ ',    color_type = \'' + my_row.color_type + '\''
-									+ ',  quoted_units =   ' + my_row.quoted_units
-									+ ',  quoted_price =   ' + my_row.quoted_price
-									+ ', product_price =   ' + my_row.product_price
-									+ ',      discount = \'' + my_row.discount	+ '\''
+						var my_set	= '          parent_id =   ' + the_to
+									+ ',          color_id =   ' + my_row.color_id
+									+ ',        color_type = \'' + my_row.color_type + '\''
+									+ ',        sold_price =   ' + my_row.sold_price
+									+ ',       sold_pieces =   ' + my_row.sold_pieces
+									+ ',       sold_weight =   ' + my_row.sold_weight
+									+ ',       sold_amount =   ' + my_row.sold_amount
+									+ ',     sold_discount =   ' + my_row.sold_discount
+									+ ',   checkout_pieces =   ' + my_row.checkout_pieces
+									+ ',   checkout_weight =   ' + my_row.checkout_weight
+									+ ',   checkout_amount =   ' + my_row.checkout_amount
+									+ ', checkout_discount =   ' + my_row.checkout_discount
+									+ ',          discount = \'' + my_row.discount	+ '\''
 									;
 						var	my_data =
 							{ method	: 'insert'
@@ -202,53 +293,39 @@ JKY.copy_colors = function(the_source, the_to) {
 				}
 			}
 		}
-	)
-}
+	);
+};
 
 JKY.delete_color = function(the_this, the_id) {
 	var my_tr = $(the_this).parent().parent();
 
-	var my_line_id			= JKY.get_prev_dom(my_tr, 'sale_line_id');
-	var my_line_units_id	=			 my_line_id.find('.jky-quoted-units'	);
-	var my_line_pieces_id	=			 my_line_id.find('.jky-quoted-pieces'	);
-	var my_line_units		= parseInt	(my_line_units_id .val());
-	var my_line_pieces		= parseInt	(my_line_pieces_id.val());
-	var my_peso				= parseFloat(my_line_id.find('.jky-product-peso' ).val());
-	var my_units			= parseInt	(my_line_id.find('.jky-product-units').val());
+	var my_line_id = JKY.get_prev_dom(my_tr, 'sale_line_id');
 
-	var my_prev_units;
-	var my_diff_weight;
-	if (my_units == 0) {
-		var my_prev_peso	= parseFloat(JKY.get_value_by_id('SaleColors', 'quoted_units', the_id));
-		my_prev_units		= Math.ceil(my_prev_peso  / my_peso);
-		my_diff_weight		= - my_prev_peso;
-	}else{
-		my_prev_units		= parseFloat(JKY.get_value_by_id('SaleColors', 'quoted_units', the_id));
-		my_diff_weight		= (- my_prev_units) * my_peso;
-	}
-	var	my_diff_units		= - my_prev_units;
+	var my_color = JKY.get_row('SaleColors', the_id);
+	var	my_diff_sold_pieces			= - my_color.sold_pieces;
+	var	my_diff_sold_weight			= - my_color.sold_weight;
+	var	my_diff_sold_amount			= - my_color.sold_amount;
+	var	my_diff_sold_discount		= - my_color.sold_discount;
+	var	my_diff_checkout_pieces		= - my_color.checkout_pieces;
+	var	my_diff_checkout_weight		= - my_color.checkout_weight;
+	var	my_diff_checkout_amount		= - my_color.checkout_amount;
+	var	my_diff_checkout_discount	= - my_color.checkout_discount;
+	my_tr.remove();
 
-	var my_new_units		= my_line_units + my_diff_units;
-	var my_new_pieces		= (my_units == 0 ) ? my_new_units : Math.ceil(my_new_units / my_units);
-	var my_diff_pieces		= my_new_pieces - my_line_pieces;
-
-	my_line_units_id .val(my_new_units );
-	my_line_pieces_id.val(my_new_pieces);
-
-	JKY.update_quoted_units(my_line_id, my_diff_weight, my_diff_units, my_diff_pieces);
-
-	$(the_this).parent().parent().remove();
 	var my_data =
 		{ method	: 'delete'
 		, table		: 'SaleColors'
 		, where		: 'SaleColors.id = ' + the_id
 		};
 	JKY.ajax(true, my_data, function(the_response) {
-//		JKY.updated_total_pieces();
-		JKY.update_sale_amount();
+//		JKY.update_sale_amount();
 		JKY.enable_disable_lines();
-	})
-}
+	});
+	JKY.update_delta(my_line_id
+		, my_diff_sold_pieces    , my_diff_sold_weight    , my_diff_sold_amount    , my_diff_sold_discount
+		, my_diff_checkout_pieces, my_diff_checkout_weight, my_diff_checkout_amount, my_diff_checkout_discount
+		);
+};
 
 JKY.copy_previous_colors = function(the_id, the_parent_id) {
 	JKY.line_tr = $(the_id).parent().parent();
@@ -267,24 +344,19 @@ JKY.copy_previous_colors = function(the_id, the_parent_id) {
 			var my_color_name	= my_curr_tr.find('.jky-color-name'	).val();
 			my_color.color_id	= my_color_id	;
 			my_color.color_name = my_color_name	;
-			var my_dyer_id		= my_curr_tr.find('.jky-dyer-id'	).val();
-			var my_dyer_name	= my_curr_tr.find('.jky-dyer-name'	).val();
-			my_color.dyer_id	= my_dyer_id	;
-			my_color.dyer_name	= my_dyer_name	;
 			my_colors.push(my_color);
 		}
 	} while(my_sale_line_id || my_sale_color_id);
 
 	JKY.display_message(my_colors.length + ' colors copied');
 	if (my_colors.length > 0) {
-		for(var i=my_colors.length-1; i>=0; i--) {
+		for(var i = my_colors.length-1; i >= 0; i--) {
 //	to ensure to copy in the same sequence as origin with 100 ms of delay
 setTimeout(function(x) { return function() {
 			var my_color = my_colors[x];
 			var my_set = ''
-				+         'parent_id =  ' + the_parent_id
-				+        ', color_id =  ' + my_color.color_id
-				+         ', dyer_id =  ' + my_color.dyer_id
+				+  'parent_id = ' + the_parent_id
+				+ ', color_id = ' + my_color.color_id
 				;
 			var my_data =
 				{ method	: 'insert'
@@ -292,89 +364,93 @@ setTimeout(function(x) { return function() {
 				, set		:  my_set
 				};
 			JKY.ajax(true, my_data, function(the_response) {
-				var my_units = parseInt(JKY.line_tr.find('.jky-product-units').val());
 				var my_row  = JKY.get_row('SaleColors', the_response.id);
-				var my_html = JKY.generate_color(my_row, my_units);
+				var my_html = JKY.generate_color(my_row);
 				JKY.line_tr.after(my_html);
 				var my_tr = JKY.line_tr.next();
-				my_tr.find('.jky-quoted-units'	).ForceNumericOnly();
-				my_tr.find('.jky-quoted-price'	).ForceNumericOnly();
+				my_tr.find('.jky-sold-pieces'	).ForceIntegerOnly();
+				my_tr.find('.jky-sold-weight'	).ForceNumericOnly();
+				my_tr.find('.jky-sold-price'	).ForceNumericOnly();
 			})
 }; }(i), 100);
 		}
 		setTimeout(function() {
 			JKY.enable_disable_lines();
 		}, 500);
-	}
-}
+	};
+};
 
-JKY.update_quoted_units = function(the_line_id, the_delta_weight, the_delta_units, the_delta_pieces) {
+JKY.update_delta = function(the_line_id
+	, the_diff_sold_pieces    , the_diff_sold_weight    , the_diff_sold_amount    , the_diff_sold_discount
+	, the_diff_checkout_pieces, the_diff_checkout_weight, the_diff_checkout_amount, the_diff_checkout_discount) {
+	var my_sold_pieces		= (parseFloat(the_line_id.find('.jky-sold-pieces'		).val()) + the_diff_sold_pieces		).toFixed(0);
+	var my_sold_weight		= (parseFloat(the_line_id.find('.jky-sold-weight'		).val()) + the_diff_sold_weight		).toFixed(2);
+	var my_sold_amount		= (parseFloat(the_line_id.find('.jky-sold-amount'		).val()) + the_diff_sold_amount		).toFixed(2);
+	var my_checkout_pieces	= (parseFloat(the_line_id.find('.jky-checkout-pieces'	).val()) + the_diff_checkout_pieces	).toFixed(0);
+	var my_checkout_weight	= (parseFloat(the_line_id.find('.jky-checkout-weight'	).val()) + the_diff_checkout_weight	).toFixed(2);
+	var my_checkout_amount	= (parseFloat(the_line_id.find('.jky-checkout-amount'	).val()) + the_diff_checkout_amount	).toFixed(2);
+
+	the_line_id.find('.jky-sold-pieces'		).val(my_sold_pieces	); 
+	the_line_id.find('.jky-sold-weight'		).val(my_sold_weight	);
+	the_line_id.find('.jky-sold-amount'		).val(my_sold_amount	);
+	the_line_id.find('.jky-checkout-pieces'	).val(my_checkout_pieces); 
+	the_line_id.find('.jky-checkout-weight'	).val(my_checkout_weight);
+	the_line_id.find('.jky-checkout-amount'	).val(my_checkout_amount);
+
+	var my_sale_line_id = the_line_id.attr('sale_line_id')
+	var my_set = ''
+		+         'sold_pieces = sold_pieces + '		+ the_diff_sold_pieces
+		+       ', sold_weight = sold_weight + '		+ the_diff_sold_weight
+		+       ', sold_amount = sold_amount + '		+ the_diff_sold_amount
+		+     ', sold_discount = sold_discount + '		+ the_diff_sold_discount
+		+   ', checkout_pieces = checkout_pieces + '	+ the_diff_checkout_pieces
+		+   ', checkout_weight = checkout_weight + '	+ the_diff_checkout_weight
+		+   ', checkout_amount = checkout_amount + '	+ the_diff_checkout_amount
+		+ ', checkout_discount = checkout_discount + '	+ the_diff_checkout_discount
+		;
 	var my_data =
 		{ method	: 'update'
 		, table		: 'SaleLines'
-		, where		: 'SaleLines.id = ' + the_line_id.attr('sale_line_id')
-		, set		: 'quoted_weight = quoted_weight + ' + the_delta_weight
-				  + ', quoted_units  = quoted_units  + ' + the_delta_units
-				  + ', quoted_pieces = quoted_pieces + ' + the_delta_pieces
+		, set		:  my_set
+		, where		: 'SaleLines.id = ' + my_sale_line_id
 		};
-	JKY.ajax(true, my_data);
+	JKY.ajax(true, my_data, function(the_response) {
+		var my_line_amount = JKY.get_value_by_id('SaleLines', 'sold_amount', my_sale_line_id);
+		the_line_id.find('.jky-sold-amount'	).val(my_line_amount);
+	});
 
+	my_set = ''
+		+         'sold_pieces = sold_pieces + '		+ the_diff_sold_pieces
+		+       ', sold_weight = sold_weight + '		+ the_diff_sold_weight
+		+       ', sold_amount = sold_amount + '		+ the_diff_sold_amount
+		+     ', sold_discount = sold_discount + '		+ the_diff_sold_discount
+		+   ', checkout_pieces = checkout_pieces + '	+ the_diff_checkout_pieces
+		+   ', checkout_weight = checkout_weight + '	+ the_diff_checkout_weight
+		+   ', checkout_amount = checkout_amount + '	+ the_diff_checkout_amount
+		+ ', checkout_discount = checkout_discount + '	+ the_diff_checkout_discount
+		;
 	my_data =
 		{ method	: 'update'
 		, table		: 'Sales'
+		, set		:  my_set
 		, where		: 'sales.id = ' + JKY.row.id
-		, set		: 'quoted_pieces = quoted_pieces + ' + the_delta_pieces
 		};
-	JKY.ajax(true, my_data);
-}
-
-JKY.color_ids = function(the_id) {
-	var my_rows = [];
-	var my_data =
-		{ method	: 'get_index'
-		, table		: 'SaleColors'
-		, select	:  the_id
-		, order_by  : 'SaleColors.id'
-		};
-	var my_object = {};
-	my_object.data = JSON.stringify(my_data);
-	$.ajax(
-		{ url		: JKY.AJAX_URL
-		, data		: my_object
-		, type		: 'post'
-		, dataType	: 'json'
-		, async		: false
-		, success	: function(response) {
-				if (response.status == 'ok') {
-					for(var i=0; i<response.rows.length; i++) {
-						var my_row = [];
-						my_row.id	= response.rows[i].color_id;
-						my_row.name = response.rows[i].color_name;
-						my_rows.push(my_row);
-					}
-				}else{
-					JKY.display_message(response.message);
-				}
-			}
-		}
-	)
-	return my_rows;
-}
-
-JKY.get_name = function(the_id, the_array) {
-	var my_name = '';
-	for( var i=0; i<the_array.length; i++) {
-		if (the_array[i].id == the_id) {
-			my_name = the_array[i].name;
-			break;
-		}
-	}
-	return my_name;
-}
+	JKY.ajax(true, my_data, function(the_response) {
+		JKY.row = JKY.get_row('Sales', JKY.row_id)
+		$('#jky-sold-discount'		).val(JKY.row.sold_discount		);
+		$('#jky-sold-amount'		).val(JKY.row.sold_amount		);
+		$('#jky-sold-amount'		).change();		//	to activate change event
+		$('#jky-checkout-discount'	).val(JKY.row.checkout_discount	);
+		$('#jky-checkout-amount'	).val(JKY.row.checkout_amount	);
+		$('#jky-checkout-amount'	).change();		//	to activate change event
+		$('#jky-sold-pieces'		).val(JKY.row.sold_pieces);
+		$('#jky-sold-weight'		).val(JKY.row.sold_weight);
+		JKY.Changes.reset();
+	});
+};
 
 JKY.print_colors = function(the_id) {
-	JKY.colors = JKY.color_ids(the_id);
-	var my_html  = '';
+	var my_html = '';
 	var my_data =
 		{ method	: 'get_index'
 		, table		: 'SaleColors'
@@ -398,11 +474,13 @@ JKY.print_colors = function(the_id) {
 							+ '<tr>'
 							+ '<td></td>'
 							+ '<td></td>'
-							+ '<td class="jky-print-color-name"	>' + my_row.color_name		+ '</td>'
+							+ '<td class="jky-print-color-name"	>' + my_row.color_name	+ '</td>'
 							+ '<td></td>'
-							+ '<td class="jky-print-pieces"		>' + my_row.quoted_units	+ '</td>'
-							+ '<td class="jky-print-pieces"		>' + my_row.quoted_price	+ '</td>'
-							+ '<td class="jky-print-pieces"		>' + my_row.discount		+ '</td>'
+							+ '<td class="jky-print-pieces"		>' + my_row.sold_pieces	+ '</td>'
+							+ '<td class="jky-print-weight"		>' + my_row.sold_weight	+ '</td>'
+							+ '<td class="jky-print-price"		>' + my_row.sold_price	+ '</td>'
+							+ '<td class="jky-print-price"		>' + my_row.sold_amount + '</td>'
+							+ '<td class="jky-print-price"		>' + my_row.discount	+ '</td>'
 							+ '</tr>'
 							;
 					}
@@ -411,6 +489,6 @@ JKY.print_colors = function(the_id) {
 				}
 			}
 		}
-	)
+	);
 	return my_html;
-}
+};

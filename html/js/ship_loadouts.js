@@ -7,18 +7,6 @@ var my_old_quoted_pieces	= 0;
 var my_new_quoted_pieces	= 0;
 
 JKY.display_loadouts = function() {
-/*
-SELECT LoadOuts.*
-,      Dyer.nick_name		AS      dyer_name
-,     Color.color_name		AS     color_name
-  FROM LoadOuts
-  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		  LoadOuts.dyer_id
-  LEFT JOIN      Colors AS Color	ON     Color.id	=		  LoadOuts.color_id
- WHERE LoadOuts.dyer_id = 200001
-   AND LoadOuts.shipdyer_id IS NULL
- ORDER BY LoadOuts.loadout_number
- LIMIT 10
-*/
 	my_shipdyer_id = JKY.row.id;
 	var my_data =
 		{ method		: 'get_index'
@@ -55,6 +43,8 @@ JKY.generate_loadouts = function(response) {
 JKY.generate_loadout = function(the_row) {
 	var my_id = the_row.id;
 	var my_trash = (the_row.status == 'Active') ? '<a onclick="JKY.delete_loadout(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_selected	= the_row.is_selected == 'Yes' ? ' checked="checked"' : '';
+	var my_to_print	= '<input name="jky-td-to-print" type="checkbox" onchange="JKY.set_selected(this, ' + my_id + ')"' + my_selected + ' />';
 	var my_loadout = ''
 		+ "<input class='jky-loadout-color-id' type='hidden' value=" + the_row.color_id + " />"
 		+ "<input class='jky-loadout-number' disabled onchange='JKY.update_loadout(this, " + my_id + ")' value='" + JKY.fix_null(the_row.loadout_number) + "' />"
@@ -64,6 +54,8 @@ JKY.generate_loadout = function(the_row) {
 		+ '<tr loadout_id=' + my_id + '>'
 		+ '<td class="jky-td-action"	>' + my_trash	+ '</td>'
 		+ '<td class="jky-td-key-m"		>' + my_loadout	+ '</td>'
+		+ '<td class="jky-td-checkbox"	>' + my_to_print+ '</td>'
+		+ '<td class="jky-td-date"		><input disabled value="' + JKY.out_date	(the_row.printed_at			) + '" /></td>'
 		+ '<td class="jky-td-text-l"	><input	disabled value="' + JKY.fix_null	(the_row.color_name			) + '" /></td>'
 		+ '<td class="jky-td-date"		><input disabled value="' + JKY.out_date	(the_row.requested_at		) + '" /></td>'
 		+ '<td class="jky-td-date"		><input disabled value="' + JKY.out_date	(the_row.checkout_at		) + '" /></td>'
@@ -72,6 +64,19 @@ JKY.generate_loadout = function(the_row) {
 		+ '</tr>'
 		;
 	return my_html;
+}
+
+JKY.set_selected = function(the_this, the_id) {
+	var my_selected = $(the_this).is(':checked') ? 'Yes' : 'No';
+	var my_data =
+		{ method	: 'update'
+		, table		: 'LoadOuts'
+		, set		: 'is_selected =\'' + my_selected + '\''
+		, where		: 'LoadOuts.id = ' + the_id
+		};
+	JKY.ajax(true, my_data, function(response) {
+		JKY.display_message(response.message)
+	});
 }
 
 JKY.update_loadout = function(id_name, the_id) {

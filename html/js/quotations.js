@@ -340,7 +340,7 @@ JKY.generate_sale = function() {
 
 	var my_data =
 		{ method	: 'generate'
-		, table		: 'Sale'
+		, table		: 'Sales'
 		, id		:  JKY.row.id
 		};
 	JKY.ajax(false, my_data, function(the_response) {
@@ -365,7 +365,7 @@ JKY.generate_osa = function() {
 
 	var my_data =
 		{ method	: 'generate'
-		, table		: 'OSA'
+		, table		: 'OSAs'
 		, id		:  JKY.row.id
 		};
 	JKY.ajax(false, my_data, function(the_response) {
@@ -662,6 +662,7 @@ JKY.approve_row = function(the_id){
 	var my_names;
 	var my_extension;
 	var my_row = JKY.get_row(JKY.App.get_prop('table_name'), the_id);
+	var my_checkout_at = JKY.get_loadout_value('MAX(LoadOuts.checkout_at)', the_id);
 
 //window.print();
 	var my_html = ''
@@ -685,10 +686,10 @@ JKY.approve_row = function(the_id){
 		;
 	JKY.set_html('jky-printable', my_html);
 
-	JKY.set_html('jky-approve-customer-name'	,				 my_row.customer_name	);
-	JKY.set_html('jky-approve-quotation-number'	,				 my_row.quotation_number);
-	JKY.set_html('jky-approve-quoted-date'		, JKY.out_date	(my_row.quoted_at		));
-	JKY.set_html('jky-approve-produce-to-date'	, JKY.out_date	(my_row.produce_to_date	));
+	JKY.set_html('jky-approve-customer-name'	,				my_row.customer_name	);
+	JKY.set_html('jky-approve-quotation-number'	,				my_row.quotation_number	);
+	JKY.set_html('jky-approve-produce-to-date'	, JKY.out_date (my_checkout_at)			);
+	JKY.set_html('jky-approve-quoted-date'		, JKY.out_date (my_row.quoted_at)		);
 
 	JKY.set_html('jky-approve-body', JKY.approve_lines(the_id));
 

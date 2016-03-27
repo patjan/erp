@@ -1,3 +1,12 @@
+<style>
+.jky-sign-box		{font-family:arial; width:500px; height:650px; border:5px solid black; border-radius:10px;}
+.jky-sign-product	{font-size:350%; font-weight:bold; text-align:center;}
+.jky-sign-threads	{font-size:200%; text-align:center;}
+.jky-sign-line		{font-size:200%; text-align:center;}
+.jky-sign-bold		{font-weight:bold;}
+.jky-sign-price		{font-size:350%; font-weight:bold; text-align:center}
+</style>
+
 <table id='jky-app-table' class='table table-striped'>
 	<thead>
 		<tr>
@@ -42,6 +51,12 @@
 				<a href='#' onClick='JKY.reset_product_base(); JKY.Product.display(this, "All")'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Product Family</span>:</div>
+				<input  id='jky-family-id'							type='hidden'	value='' />
+				<input  id='jky-family-name' class='jky-form-name'	readonly	value='' />
+				<a href='#' onClick='JKY.reset_family_name(); JKY.Family.display(this, "All")'><i class='icon-share'></i></a>
+			</div>
+			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Product Type</span>:</div>
 				<div id='jky-product-type' class='jky-left'></div>
 			</div>
@@ -52,9 +67,10 @@
 <!--				<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>	-->
 				</div>
 			</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>    Peso</span>:</div><input id='jky-peso'		class='jky-form-integer' /> (Kg/peça)	</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>   Units</span>:</div><input id='jky-units'	class='jky-form-integer' /> (unidade/peça, 0 = por peso)</div>
-			<div class='jky-form-line'><div class='jky-form-label'><span>   Yield</span>:</div><input id='jky-yield'	class='jky-form-integer' /> (Mts/Kg)	</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Peso</span>:</div><input id='jky-peso'	class='jky-form-integer'	/> (Kg/peça)</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Units</span>:</div><input id='jky-units'	class='jky-form-integer'	/> (unidade/peça, 0 = por peso)</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Yield</span>:</div><input id='jky-yield'	class='jky-form-integer'	/> (Mts/Kg)</div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  NCM</span>:</div><input id='jky-ncm'		class='jky-form-code'		/></div>
 
 			<div class='jky-left'>
 				<div class='jky-form-line'>
@@ -120,7 +136,9 @@
 			<li	id='jky-tab-fabrics'					><a href='#jky-pane-fabrics'			data-toggle='tab'><span>Fabrics			</span></a></li>
 			<li	id='jky-tab-pieces'						><a href='#jky-pane-pieces'				data-toggle='tab'><span>Pieces			</span></a></li>
 			<li	id='jky-tab-ftps'						><a href='#jky-pane-ftps'				data-toggle='tab'><span>FTPs			</span></a></li>
+			<li	id='jky-tab-targets'					><a href='#jky-pane-targets'			data-toggle='tab'><span>Targets			</span></a></li>
 			<li	id='jky-tab-history'					><a href='#jky-pane-history'			data-toggle='tab'><span>History			</span></a></li>
+			<li id='jky-tab-remarks'					><a href='#jky-pane-remarks'			data-toggle='tab'><span>Remarks			</span></a></li>
 		</ul>
 
 		<div class='tab-content'>
@@ -192,10 +210,31 @@
 							<th class='jky-td-radio'	><span>Current		</span></th>
 							<th class='jky-td-number'	><span>FTP Number	</span></th>
 							<th class='jky-td-name-l'	><span>Composition	</span></th>
+							<th class='jky-td-name-l'	><span>Nick Name	</span></th>
 							<th class='jky-td-name-s'	><span>Machine		</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-ftps-body'></tbody>
+				</table>
+			</div>
+
+			<div id='jky-pane-targets' class='tab-pane'>
+				<table class='table table-striped' >
+					<thead>
+						<tr>
+							<th class='jky-td-action'	></th>
+							<th class='jky-td-name-w'	><span>Color		</span></th>
+							<th class='jky-td-pieces'	><span>Target		</span></th>
+						</tr>
+					</thead>
+					<tbody id='jky-targets-body'></tbody>
+					<tfoot>
+						<tr class='jky-line'>
+							<td class='jky-action' colspan='3'>
+								<button id='jky-targets-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
+							</td>
+						</tr>
+					</tfoot>
 				</table>
 			</div>
 
@@ -212,18 +251,37 @@
 					<tbody id='jky-history-body'></tbody>
 				</table>
 			</div>
+
+			<div id='jky-pane-remarks' class='tab-pane'>
+				<br>
+				<div class='jky-form-remarks'>
+					<div class='jky-form-label'><span>Remarks</span>:</div>
+					<textarea id='jky-remarks'></textarea>
+				</div>
+				<br>
+
+				<div class='jky-form-line'>
+					<div class='jky-form-label'></div>
+					<button id='jky-action-save-remarks' class='btn btn-success' type='button'><span>Save Remarks</span></button>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div id='jky-form-footer'></div>
 </div>
 
 <div id='jky-body-loaded'></div>
+<div id='jky-printable'  ></div>
 
 <script src='js/products.js'		></script>
 <script src='js/JKY.Product.js'		></script>
+<script src='js/JKY.Family.js'		></script>
 <script src='js/JKY.Finishings.js'	></script>
 <script src='js/JKY.Washings.js'	></script>
+<script src='js/JKY.Color.js'		></script>
 <script src='js/JKY.History.js'		></script>
+<script src='js/JKY.PrintFTP.js'	></script>
 
 <script src='js/product_prices.js'	></script>
 <script src='js/product_ftps.js'	></script>
+<script src='js/product_targets.js'	></script>

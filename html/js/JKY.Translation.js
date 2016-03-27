@@ -1,4 +1,5 @@
 "use strict";
+var JKY = JKY || {};
 
 /**
  * JKY.Translation - process all Translation interface
@@ -24,20 +25,18 @@ JKY.Translation = function() {
 	 * @example JKY.t('Home')
 	 */
 	function translate(the_text) {
-		if (typeof the_text == 'undefined' || the_text == '') {
-			return '';
-		}
+		if (typeof(the_text) === 'undefined' || the_text === '')		{return '';}
 
 		var my_result = my_translation[the_text];
-		if (typeof my_result == undefined) {
+		if (typeof(my_result) === undefined) {
 alert('JKY.Translation the_text: ' + the_text);
 			my_result = '';
 			var my_names = the_text.split('<br>');
-			for(var i=0; i<my_names.length; i++ ) {
+			for(var i=0, max=my_names.length; i<max; i++) {
 				var my_name = my_names[i];
 				var my_word = my_translation[name];
-				my_result += ( i == 0 ) ? '' : '<br>';
-				if (typeof my_word == undefined) {
+				my_result += ( i === 0 ) ? '' : '<br>';
+				if (typeof(my_word) === undefined) {
 					my_result += my_name;
 				}else{
 					my_result += my_word;
@@ -50,5 +49,5 @@ alert('JKY.Translation the_text: ' + the_text);
 	return {
 			set_translation	: function(the_array)	{		my_translation = the_array	;}
 		,	translate		: function(the_text)	{return my_translate(the_text)		;}
-	};
-}();
+	}
+}()

@@ -31,19 +31,25 @@ JKY.generate_deliveries = function(response) {
 }
 
 JKY.generate_delivery = function(the_row) {
+	var my_disabled = ' disabled';
+	if (JKY.Session.get_value('user_role') == 'Admin'
+	||  JKY.Session.get_value('user_role') == 'Support') {
+		my_disabled = '';
+	}
+
 	var my_id = the_row.id;
-	var my_trash = (my_id) ? '<a onclick="JKY.delete_delivery(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '&nbsp;';
+	var my_trash = (my_id && my_disabled === '') ? '<a onclick="JKY.delete_delivery(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '&nbsp;';
 
 	var my_html = ''
 		+ '<tr delivery_id=' + my_id + '>'
 		+ '<td class="jky-td-action">' + my_trash + '</td>'
-		+ '<td class="jky-td-normal"><input changeable class="jky-cnpj"			value="' + the_row.cnpj		+ '" onchange="JKY.change_delivery(this, ' + my_id + ')" /></td>'
-		+ '<td class="jky-td-text-l"><input changeable class="jky-street1"		value="' + the_row.street1	+ '" onchange="JKY.change_delivery(this, ' + my_id + ')" /></td>'
-		+ '<td class="jky-td-text-s"><input changeable class="jky-street2"		value="' + the_row.street2	+ '" onchange="JKY.change_delivery(this, ' + my_id + ')" /></td>'
-		+ '<td class="jky-td-normal"><input changeable class="jky-city"			value="' + the_row.city		+ '" onchange="JKY.change_delivery(this, ' + my_id + ')" /></td>'
-		+ '<td class="jky-td-state"	><input changeable class="jky-state"		value="' + the_row.state	+ '" onchange="JKY.change_delivery(this, ' + my_id + ')" /></td>'
-		+ '<td class="jky-td-ref"	><input changeable class="jky-zip"			value="' + the_row.zip		+ '" onchange="JKY.change_delivery(this, ' + my_id + ')" /></td>'
-		+ '<td class="jky-td-ref"	><input changeable class="jky-district"		value="' + the_row.district	+ '" onchange="JKY.change_delivery(this, ' + my_id + ')" /></td>'
+		+ '<td class="jky-td-normal"><input changeable class="jky-cnpj"			value="' + the_row.cnpj		+ '" onchange="JKY.change_delivery(this, ' + my_id + ')"' + my_disabled + ' /></td>'
+		+ '<td class="jky-td-text-l"><input changeable class="jky-street1"		value="' + the_row.street1	+ '" onchange="JKY.change_delivery(this, ' + my_id + ')"' + my_disabled + ' /></td>'
+		+ '<td class="jky-td-text-s"><input changeable class="jky-street2"		value="' + the_row.street2	+ '" onchange="JKY.change_delivery(this, ' + my_id + ')"' + my_disabled + ' /></td>'
+		+ '<td class="jky-td-normal"><input changeable class="jky-city"			value="' + the_row.city		+ '" onchange="JKY.change_delivery(this, ' + my_id + ')"' + my_disabled + ' /></td>'
+		+ '<td class="jky-td-state"	><input changeable class="jky-state"		value="' + the_row.state	+ '" onchange="JKY.change_delivery(this, ' + my_id + ')"' + my_disabled + ' /></td>'
+		+ '<td class="jky-td-ref"	><input changeable class="jky-zip"			value="' + the_row.zip		+ '" onchange="JKY.change_delivery(this, ' + my_id + ')"' + my_disabled + ' /></td>'
+		+ '<td class="jky-td-ref"	><input changeable class="jky-district"		value="' + the_row.district	+ '" onchange="JKY.change_delivery(this, ' + my_id + ')"' + my_disabled + ' /></td>'
 		+ '</tr>'
 		;
 	return my_html;

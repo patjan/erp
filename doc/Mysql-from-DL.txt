@@ -240,5 +240,5 @@ INSERT INTO `History` (`id`, `updated_by`, `updated_at`, `parent_name`, `parent_
 (2000013294, 100003, '2013-11-06 04:05:20', 'PurchaseLines', 2000000002, 'insert', 'id:2000000002, created_by:, created_at:, updated_by:100003, updated_at:2013-11-06 04:05:20, status:Draft, parent_id:200001, thread_id:, batch_id:, expected_date:, scheduled_at:, expected_weight:0.00, received_weight:0.00'),
 (2000013289, 100003, '2013-11-06 04:04:15', 'Purchases', 200001, 'insert', 'id:200001, created_by:, created_at:, updated_by:100003, updated_at:2013-11-06 04:04:15, status:Draft, purchase_number:200001, source_doc:System_01, ordered_at:2013-11-01 10:03:00, expected_date:2013-11-05, scheduled_at:, expected_weight:0.00, received_weight:0.00, supplier_id:100051, supplier_ref:, payment_term:'),
 (2000013287, 100003, '2013-11-06 03:57:13', 'Contacts', 100082, 'update', 'first_name:Alex=>Alexandre, last_name:Dl=>Malveira de Aquino, full_name:Alex Dl=>Alexandre Malveira de Aquino, mobile:=>11-77318183'),
-(2000013288, 100003, '2013-11-06 03:57:15', 'JKY_Users', 100039, 'update', 'password:7a228d728fa9b53ab88685ab6bd091de=>fb6b2fc2845b274e9de9896d1636a02d'),
+(2000013288, 100003, '2013-11-06 03:57:15', 'Users', 100039, 'update', 'password:7a228d728fa9b53ab88685ab6bd091de=>fb6b2fc2845b274e9de9896d1636a02d'),
 

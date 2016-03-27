@@ -223,52 +223,7 @@ JKY.update_osa_line = function(the_line_id, the_delta_pieces, the_delta_weight) 
 	JKY.ajax(true, my_data);
 }
 
-JKY.color_ids = function(the_id) {
-	var my_rows = [];
-	var my_data =
-		{ method	: 'get_index'
-		, table		: 'OSA_Colors'
-		, select	:  the_id
-		, order_by  : 'OSA_Colors.id'
-		};
-	var my_object = {};
-	my_object.data = JSON.stringify(my_data);
-	$.ajax(
-		{ url		: JKY.AJAX_URL
-		, data		: my_object
-		, type		: 'post'
-		, dataType	: 'json'
-		, async		: false
-		, success	: function(the_response) {
-				if (the_response.status == 'ok') {
-					for(var i=0, max=the_response.rows.length; i<max; i++) {
-						var my_row = [];
-						my_row.id	= the_response.rows[i].order_id;
-						my_row.name = the_response.rows[i].order_name;
-						my_rows.push(my_row);
-					}
-				}else{
-					JKY.display_message(the_response.message);
-				}
-			}
-		}
-	)
-	return my_rows;
-}
-
-JKY.get_name = function(the_id, the_array) {
-	var my_name = '';
-	for( var i=0; i<the_array.length; i++) {
-		if (the_array[i].id == the_id) {
-			my_name = the_array[i].name;
-			break;
-		}
-	}
-	return my_name;
-}
-
 JKY.print_colors = function(the_id) {
-	JKY.colors = JKY.color_ids(the_id);
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'
@@ -322,7 +277,6 @@ JKY.print_colors = function(the_id) {
 }
 
 JKY.approve_colors = function(the_osa_line_id) {
-	JKY.colors = JKY.color_ids(the_osa_line_id);
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'

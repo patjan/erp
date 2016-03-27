@@ -170,7 +170,7 @@ JKY.delete_thread = function(id_name, the_id) {
 }
 
 JKY.update_thread_weight = function() {
-	var my_ordered = JKY.set_decimal(JKY.Order.get_ordered(), 2);
+	var my_ordered = JKY.set_decimal(JKY.Order.get_ordered());
 	JKY.set_value('jky-ordered-weight'			, my_ordered);
 //	JKY.set_value('jky-threads-total-ordered'	, my_ordered);
 //	JKY.set_value('jky-threads-total-checkout'	, JKY.Order.get_checkout());

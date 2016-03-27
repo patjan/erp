@@ -226,52 +226,7 @@ JKY.update_osa_line = function(the_line_id, the_delta_pieces, the_delta_weight) 
 	JKY.ajax(true, my_data);
 }
 
-JKY.order_ids = function(the_id) {
-	var my_rows = [];
-	var my_data =
-		{ method	: 'get_index'
-		, table		: 'Orders'
-		, select	:  the_id
-		, order_by  : 'Orders.id'
-		};
-	var my_object = {};
-	my_object.data = JSON.stringify(my_data);
-	$.ajax(
-		{ url		: JKY.AJAX_URL
-		, data		: my_object
-		, type		: 'post'
-		, dataType	: 'json'
-		, async		: false
-		, success	: function(response) {
-				if (response.status == 'ok') {
-					for(var i=0; i<response.rows.length; i++) {
-						var my_row = [];
-						my_row.id	= response.rows[i].order_id;
-						my_row.name = response.rows[i].order_name;
-						my_rows.push(my_row);
-					}
-				}else{
-					JKY.display_message(response.message);
-				}
-			}
-		}
-	)
-	return my_rows;
-}
-
-JKY.get_name = function(the_id, the_array) {
-	var my_name = '';
-	for( var i=0; i<the_array.length; i++) {
-		if (the_array[i].id == the_id) {
-			my_name = the_array[i].name;
-			break;
-		}
-	}
-	return my_name;
-}
-
 JKY.print_orders = function(the_id) {
-	JKY.orders = JKY.order_ids(the_id);
 	var my_html  = '';
 	var my_data =
 		{ method	: 'get_index'

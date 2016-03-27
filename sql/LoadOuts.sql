@@ -10,15 +10,18 @@ CREATE TABLE IF NOT EXISTS LoadOuts
 , dyeing_type		VARCHAR(32)			DEFAULT NULL	/* Lavar */
 , color_id			BIGINT				DEFAULT NULL
 , shipdyer_id		BIGINT				DEFAULT NULL
+, selected			CHAR(3)				DEFAULT NULL
+, printed_at		DATETIME			DEFAULT NULL
+, labels_printed	INT					DEFAULT 0
 , requested_at		DATETIME			DEFAULT NULL
 , quoted_pieces		INT					DEFAULT 0
-, quoted_weight		DECIMAL(7,1)		DEFAULT 0
+, quoted_weight		DECIMAL(9,2)		DEFAULT 0
 , checkout_at		DATETIME			DEFAULT NULL
 , checkout_pieces	INT					DEFAULT 0
-, checkout_weight	DECIMAL(7,1)		DEFAULT 0
+, checkout_weight	DECIMAL(9,2)		DEFAULT 0
 , returned_at		DATETIME			DEFAULT NULL
 , returned_pieces	INT					DEFAULT 0
-, returned_weight	DECIMAL(7,1)		DEFAULT 0
+, returned_weight	DECIMAL(9,2)		DEFAULT 0
 , remarks			TEXT				DEFAULT	NULL
 
 , PRIMARY KEY(id)
@@ -40,6 +43,15 @@ ALTER TABLE LoadOuts		CHANGE	status	status		VARCHAR(32)	DEFAULT 'Active';
 
 ALTER TABLE LoadOuts		ADD COLUMN dyeing_type		VARCHAR(32)	DEFAULT NULL	AFTER dyer_id;
 
+ALTER TABLE LoadOuts		ADD COLUMN printed_at		DATETIME	DEFAULT NULL	AFTER shipdyer_id;
+ALTER TABLE LoadOuts		ADD COLUMN is_selected		CHAR(3)		DEFAULT 'No'	AFTER shipdyer_id;
+
+ALTER TABLE LoadOuts		CHANGE	quoted_weight	quoted_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE LoadOuts		CHANGE	checkout_weight	checkout_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE LoadOuts		CHANGE	returned_weight	returned_weight	DECIMAL(9,2)	DEFAULT 0;
+
+ALTER TABLE LoadOuts		ADD COLUMN labels_printed			INT				DEFAULT 0		AFTER printed_at;
+
 //	----------------------------------------------------------------------------
 
 SELECT LoadOuts.*
@@ -54,6 +66,20 @@ SELECT LoadOuts.*
 
  ORDER BY LoadOuts.loadout_number
  LIMIT 1000
+ 
+
+SELECT checkout_pieces, COUNT(*) AS counter
+  FROM LoadOuts
+ GROUP BY checkout_pieces
+ 
+SELECT floor(checkout_weight/10), COUNT(*) AS counter
+  FROM LoadOuts
+ GROUP BY floor(checkout_weight/10)
+ 
+SELECT status, COUNT(*) AS counter
+  FROM LoadOuts
+ GROUP BY status
+ 
  
 //	----------------------------------------------------------------------------
  

@@ -61,15 +61,26 @@ JKY.set_all_events = function() {
 	$('#jky-action-save-address'	).click (function() {JKY.save_address				();});
 	$('#jky-action-save-phones'		).click (function() {JKY.save_phones				();});
 	$('#jky-action-add-restriction'	).click (function() {JKY.insert_restriction			();});
-	$('#jky-action-add-delivery'	).click (function() {JKY.insert_delivery			();});
-	$('#jky-action-save-remarks'	).click (function() {JKY.save_remarks				();});
-	$('#jky-action-save-payments'	).click (function() {JKY.save_payments				();});
+	
+	if (JKY.Session.get_value('user_role') == 'Admin'
+	||  JKY.Session.get_value('user_role') == 'Support') {
+		$('#jky-action-add-delivery'	).click (function() {JKY.insert_delivery			();});
+		$('#jky-action-save-remarks'	).click (function() {JKY.save_remarks				();});
+		$('#jky-action-save-payments'	).click (function() {JKY.save_payments				();});
+	}else{
+		$('#jky-action-add-delivery'	).css('display', 'none')
+		$('#jky-action-save-remarks'	).css('display', 'none')
+		$('#jky-action-save-payments'	).css('display', 'none')
+	}
 };
 
 /**
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
+	JKY.append_file('jky-load-head-office'	, '../JKY.Search.HeadOffice.html'	);
+	JKY.append_file('jky-load-transport'	, '../JKY.Search.Transport.html'	);
+	
 	JKY.set_side_bar();
 //	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
 //	JKY.set_html('jky-parent-company'	, JKY.set_options_array('', JKY.get_companies('parent_id IS NULL AND is_customer'), true));
@@ -86,13 +97,15 @@ JKY.set_initial_values = function() {
 	$('#jky-app-select option').eq(1).prop('selected', true);
 	$('#jky-app-select').change();
 
-	$('#jky-nick-name'		).change(function() {JKY.fix_name(this);});
-	$('#jky-full-name'		).change(function() {JKY.fix_name(this);});
-	$('#jky-is-company'		).click (function() {JKY.process_is_company(this);});
+	$('#jky-head-office-filter'	).KeyUpDelay(JKY.HeadOffice.load_data	);
+	$('#jky-transport-filter'	).KeyUpDelay(JKY.Transport.load_data	);
+	$('#jky-nick-name'			).change(function() {JKY.fix_name(this);});
+	$('#jky-full-name'			).change(function() {JKY.fix_name(this);});
+	$('#jky-is-company'			).click (function() {JKY.process_is_company(this);});
 
-	$('#jky-nick-name'		).ForceName();
-	$('#jky-full-name'		).ForceName();
-	$('#jky-credit-limit'	).ForceNumericOnly();
+	$('#jky-nick-name'			).ForceName();
+	$('#jky-full-name'			).ForceName();
+	$('#jky-credit-limit'		).ForceNumericOnly();
 };
 
 /**
@@ -123,7 +136,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-full-name'		, the_row.full_name		);
 	JKY.set_yes		('jky-is-company'		, the_row.is_company	);
 	JKY.set_option	('jky-contact-company'	, the_row.company_id	);
-	JKY.set_option	('jky-parent-company'	, the_row.parent_id		);
+//	JKY.set_option	('jky-parent-company'	, the_row.parent_id		);
 	JKY.set_option	('jky-contact-tag'		, the_row.tags			);
 	JKY.set_value	('jky-cnpj'				, the_row.cnpj			);
 	JKY.set_value	('jky-ie'				, the_row.ie			);
@@ -133,6 +146,10 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-website'			, the_row.website		);
 	JKY.set_value	('jky-position'			, the_row.position		);
 	JKY.set_value	('jky-email'			, the_row.email			);
+	JKY.set_value	('jky-head-office-id'	, the_row.parent_id		);
+	JKY.set_value	('jky-head-office-name'	, the_row.parent_name	);
+	JKY.set_value	('jky-transport-id'		, the_row.transport_id	);
+	JKY.set_value	('jky-transport-name'	, the_row.transport_name);
 	setTimeout(function() {JKY.process_is_company($('#jky-is-company'));}, 100);
 
 	JKY.Photo.set_row_id(the_row.id);
@@ -160,7 +177,7 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-full-name'		, '');
 	JKY.set_yes		('jky-is-company'		, 'Yes');
 	JKY.set_option	('jky-contact-company'	, '');
-	JKY.set_option	('jky-parent-company'	, '');
+//	JKY.set_option	('jky-parent-company'	, '');
 	JKY.set_option	('jky-contact-tag'		, '');
 	JKY.set_value	('jky-cnpj'				, '');
 	JKY.set_value	('jky-ie'				, '');
@@ -170,6 +187,10 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-website'			, '');
 	JKY.set_value	('jky-position'			, '');
 	JKY.set_value	('jky-email'			, '');
+	JKY.set_value	('jky-head-office-id'	, null);
+	JKY.set_value	('jky-head-office-name'	, '');
+	JKY.set_value	('jky-transport-id'		, null);
+	JKY.set_value	('jky-transport-name'	, '');
 	setTimeout(function() {JKY.process_is_company($('#jky-is-company'));}, 100);
 };
 
@@ -177,12 +198,17 @@ JKY.set_add_new_row = function() {
  *	get form set
  */
 JKY.get_form_set = function() {
+	var my_head_office_id	= JKY.get_value('jky-head-office-id');
+	var my_transport_id		= JKY.get_value('jky-transport-id'	);
+		my_head_office_id	= (my_head_office_id	=== '') ? 'null' : my_head_office_id;
+		my_transport_id		= (my_transport_id		=== '') ? 'null' : my_transport_id	;
+
 	var my_set = ''
 		+       'nick_name=\'' + JKY.get_value	('jky-nick-name'		) + '\''
 		+     ', full_name=\'' + JKY.get_value	('jky-full-name'		) + '\''
 		+    ', is_company=\'' + JKY.get_yes_no	('jky-is-company'		) + '\''
 		+    ', company_id=  ' + JKY.get_value	('jky-contact-company'	)
-		+     ', parent_id=  ' + JKY.get_value	('jky-parent-company'	)
+//		+     ', parent_id=  ' + JKY.get_value	('jky-parent-company'	)
 		+          ', tags=\'' + JKY.get_value	('jky-contact-tag'		) + '\''
 		+          ', cnpj=\'' + JKY.get_value	('jky-cnpj'				) + '\''
 		+            ', ie=\'' + JKY.get_value	('jky-ie'				) + '\''
@@ -192,6 +218,8 @@ JKY.get_form_set = function() {
 		+       ', website=\'' + JKY.get_value	('jky-website'			) + '\''
 		+      ', position=\'' + JKY.get_value	('jky-position'			) + '\''
 		+         ', email=\'' + JKY.get_value	('jky-email'			) + '\''
+		+     ', parent_id=  ' + my_head_office_id
+		+  ', transport_id=  ' + my_transport_id
 		;
 	return my_set;
 };
@@ -229,11 +257,11 @@ JKY.process_is_company = function(the_id) {
 };
 
 JKY.process_insert = function(the_id) {
-	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
-	JKY.set_html('jky-parent-company'	, JKY.set_options_array('', JKY.get_companies('parent_id IS NULL AND is_customer'), true));
+//	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
+//	JKY.set_html('jky-parent-company'	, JKY.set_options_array('', JKY.get_companies('parent_id IS NULL AND is_customer'), true));
 };
 
 JKY.process_delete = function(the_id, the_row) {
-	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
-	JKY.set_html('jky-parent-company'	, JKY.set_options_array('', JKY.get_companies('parent_id IS NULL AND is_customer'), true));
+//	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_customer'), true));
+//	JKY.set_html('jky-parent-company'	, JKY.set_options_array('', JKY.get_companies('parent_id IS NULL AND is_customer'), true));
 }

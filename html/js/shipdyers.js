@@ -284,7 +284,7 @@ JKY.invoice_dyer = function() {
 
 	var my_data =
 		{ method	: 'invoice'
-		, table		: 'Dyer'
+		, table		: 'Dyers'
 		, id		:  JKY.row.id
 		}
 	JKY.ajax(false, my_data, JKY.refresh_form);

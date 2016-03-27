@@ -3,7 +3,7 @@
  */
 
 JKY.display_loads = function() {
-	JKY.loads = JKY.load_ids(JKY.row.id);
+	JKY.loads = JKY.get_load_ids(JKY.row.id);
 	var my_data =
 		{ method	: 'get_index'
 		, table		: 'FTP_Loads'
@@ -185,40 +185,6 @@ JKY.delete_load_success = function(response) {
 	JKY.verify_total_percent();
 }
 
-JKY.load_ids = function(the_id) {
-	var my_rows = [];
-	var my_data =
-		{ method	: 'get_index'
-		, table		: 'FTP_Threads'
-		, select	:  the_id
-		, order_by  : 'FTP_Threads.id'
-		};
-	var my_object = {};
-	my_object.data = JSON.stringify(my_data);
-	$.ajax(
-		{ url		: JKY.AJAX_URL
-		, data		: my_object
-		, type		: 'post'
-		, dataType	: 'json'
-		, async		: false
-		, success	: function(response) {
-				if (response.status == 'ok') {
-//					my_rows = response.rows;
-					for(var i=0; i<response.rows.length; i++) {
-						var my_row = [];
-						my_row.id	= response.rows[i].thread_id;
-						my_row.name = response.rows[i].name;
-						my_rows.push(my_row);
-					}
-				}else{
-					JKY.display_message(response.message);
-				}
-			}
-		}
-	)
-	return my_rows;
-}
-
 JKY.get_name = function(the_id, the_array) {
 	var my_name = '';
 	for( var i=0; i<the_array.length; i++) {
@@ -228,62 +194,4 @@ JKY.get_name = function(the_id, the_array) {
 		}
 	}
 	return my_name;
-}
-
-JKY.print_ftp_loads = function(the_id) {
-	JKY.loads = JKY.load_ids(the_id);
-	var my_html  = '';
-	var my_data =
-		{ method	: 'get_index'
-		, table		: 'FTP_Loads'
-		, select	:  the_id
-		, order_by  : 'FTP_Loads.id'
-		};
-	var my_object = {};
-	my_object.data = JSON.stringify(my_data);
-	$.ajax(
-		{ url		: JKY.AJAX_URL
-		, data		: my_object
-		, type		: 'post'
-		, dataType	: 'json'
-		, async		: false
-		, success	: function(response) {
-				if (response.status == 'ok') {
-					var my_rows = response.rows;
-					for(var i in my_rows) {
-						var my_row			= my_rows[i];
-						var my_input_from	= my_row.input_from;
-						var my_input_upto	= my_row.input_upto;
-						var my_thread_id_1	= my_row.thread_id_1;
-						var my_thread_id_2	= my_row.thread_id_2;
-						var my_thread_id_3	= my_row.thread_id_3;
-						var my_thread_id_4	= my_row.thread_id_4;
-						var my_remarks		= JKY.decode(my_row.remarks);
-
-						my_html  += ''
-							+ '<tr>'
-							+ '<td></td>'
-							+ '<td>' + my_input_from	+ '</td>'
-							+ '<td>' + my_input_upto	+ '</td>'
-							+ '<td style="width:70%">Fio 1 = ' + JKY.get_name(my_thread_id_1, JKY.loads) + '</td>'
-							+ '</tr>'
-							;
-						if (my_thread_id_2) {my_html += '<tr><td colspan="3"></td><td style="width:70%">Fio 2 = ' + JKY.get_name(my_thread_id_2, JKY.loads) + '</td></tr>';}
-						if (my_thread_id_3) {my_html += '<tr><td colspan="3"></td><td style="width:70%">Fio 3 = ' + JKY.get_name(my_thread_id_3, JKY.loads) + '</td></tr>';}
-						if (my_thread_id_4) {my_html += '<tr><td colspan="3"></td><td style="width:70%">Fio 4 = ' + JKY.get_name(my_thread_id_4, JKY.loads) + '</td></tr>';}
-						my_html  += ''
-							+ '<tr>'
-							+ '<td colspan=3></td>'
-//							+ '<td style="width:70%"><b>' + JKY.nl2br(my_remarks) + '</b></td>'
-							+ '<td style="width:70%"><b>' + my_remarks + '</b></td>'
-							+ '</tr>'
-							;
-					}
-				}else{
-					JKY.display_message(response.message);
-				}
-			}
-		}
-	)
-	return my_html;
 }

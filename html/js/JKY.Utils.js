@@ -152,8 +152,8 @@ JKY.setTableWidthHeight = function(tableId, width, off_width, minHeight, offHeig
 	var my_width  = $(window).width ();
 	var my_height = $(window).height();
 	if (!JKY.is_browser('msie')) {
-		my_width  = document.body[ "clientWidth"  ];
-		my_height = document.body[ "clientHeight" ];
+		my_width  = document.body.clientWidth ;
+		my_height = document.body.clientHeight;
 	}
 /*
 	my_width  -= off_width;
@@ -199,7 +199,7 @@ JKY.load_util = function(id_name, file_name) {
 
 	JKY.display_trace('load_html: ' + file_name);
 	if ($('#' + id_name).length > 0) {
-		$('#' + id_name).load('../js/JKY.Reset.js');					//	reset abstract functions
+		$('#' + id_name).load('../js/JKY.Reset.js');		//	reset abstract functions
 //		JKY.reset_all_events();
 		$('#' + id_name).load('../' + file_name + '?u=' + JKY.Session.get_value('version'));
 //		$.get('../' + file_name, function(the_data) {
@@ -247,17 +247,17 @@ JKY.load_html = function(id_name, file_name) {
 //	remove [plupload] from previous program
 	$('.plupload').each(function() {$(this).remove();});
 
-	JKY.display_trace('load_html: ' + file_name);
 	if ($('#' + id_name).length > 0) {
 //		$('#' + id_name).load('../js/JKY.Reset.js');					//	reset abstract functions
 		JKY.reset_all_events();
 		$('#' + id_name).load('../' + file_name + '?h=' + JKY.Session.get_value('version'));
 //		$.get('../' + file_name, function(the_data) {
 //			JKY.set_html(id_name, the_data);
-			JKY.display_trace('load_html: ' + file_name + ' DONE');
 			JKY.t_tag	('jky-app-body', 'span');
 			JKY.t_input	('jky-app-body', 'placeholder');
 			JKY.t_button('jky-app-body', 'title');
+
+//			it is to automatic start loaded program
 			JKY.start_program(file_name);
 //		})
 	}else{
@@ -284,17 +284,13 @@ JKY.set_translations = function(the_array) {
  * @example JKY.t('Home')
  */
 JKY.t = function(the_text, the_option) {
-	if (typeof JKY.translations === 'undefined')		return '';
-	if (typeof the_text === 'undefined' || the_text === '') {
-		return '';
-	}
-	if (the_text.substr(0,1) === '<') {
-		return the_text;
-	}
+	if (typeof(JKY.translations) === 'undefined')				{return '';}
+	if (typeof(the_text) === 'undefined' || the_text === '')	{return '';}
+	if (the_text.substr(0,1) === '<')							{return the_text;}
 
 	var my_result = '';
 	var my_names = the_text.split('<br>');
-	for (var i=0; i<my_names.length; i++) {
+	for(var i=0, max=my_names.length; i<max; i++) {
 		my_result += (i === 0) ? '' : '<br>';
 		var my_name = my_names[i];
 		if (my_name in JKY.translations) {
@@ -367,6 +363,7 @@ JKY.process_action = function(action, the_id) {
 
 //	JKY.invisible('jky-application');
 //	JKY.load_html('jky-application', action + '.html');
+
 	JKY.load_html('jky-app-body', action + '.html');
 //	$.getScript(JKY.AJAX_APP + 'js/' + action + '.js', function() {
 
@@ -452,6 +449,18 @@ JKY.fix_date = function(date_time){
 JKY.fix_name = function(the_this) {
 	var my_string = $(the_this).val();
 	$(the_this).val(my_string.replace(/[^A-Za-z0-9 ]/gi, ''));
+};
+
+/**
+ * fix decimal
+ *
+ * replace it comman[,] to point[.]
+ *
+ * @param	the_this
+ */
+JKY.fix_decimal = function(the_this) {
+	var my_string = $(the_this).val();
+	$(the_this).val(my_string.replace(/,/g, '.'));
 };
 
 /**
@@ -572,7 +581,7 @@ JKY.ymdhms2ts = function(the_time) {
 	if (the_time === null)		return 0;
 	var t = the_time.split(/[- :]/);
 	return new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
-}
+};
 
 /**
  * convert timestamp into MySQL date-time
@@ -589,7 +598,7 @@ JKY.ts2ymdhms = function(the_ts) {
 	var  my_min		= the_ts.getMinutes	();	if (my_min   < 10)	my_min	= '0' + my_min	;
 	var  my_sec		= the_ts.getSeconds	();	if (my_sec   < 10)	my_sec	= '0' + my_sec	;
 	return my_year + '-' + my_month + '-' + my_day + ' ' + my_hour + ':' + my_min + ':' + my_sec;
-}
+};
 
 /**
  * out shiftdate
@@ -602,7 +611,7 @@ JKY.ts2ymdhms = function(the_ts) {
 JKY.out_shift = function(the_time){
 	if (the_time === null)		return '';
 
-	if (typeof(JKY.SHIFT_ADJUST) == 'undefined') {
+	if (typeof(JKY.SHIFT_ADJUST) === 'undefined') {
 		var my_shifts	= JKY.get_config_value('System Controls', 'Shift Hour Control');
 		var my_configs	= my_shifts.split(':');
 		JKY.SHIFT_ADJUST= parseInt(my_configs[0], 10);
@@ -901,6 +910,19 @@ JKY.get_html = function(idName){
  * @param	id_name
  * @param	html
  */
+JKY.set_quote = function(the_string){
+	if (the_string === null) {
+		return 'null';
+	}else{
+		return '\'' + the_string + '\'';
+	}
+};
+
+/**
+ * set specific id with html content
+ * @param	id_name
+ * @param	html
+ */
 JKY.set_html = function(id_name, html){
 	if ($('#' + id_name).length > 0) {
 		$('#' + id_name).html(html);
@@ -967,7 +989,7 @@ JKY.set_src = function(the_id , the_file_name){
  * @param	the_css
  * @param	the_value
  */
-JKY.set_css = function(the_id , the_css, the_value){
+JKY.set_css = function(the_id, the_css, the_value){
 	$('#' + the_id).css(the_css, the_value);
 };
 
@@ -1230,6 +1252,7 @@ JKY.set_menu_active = function(id_name){
 	JKY.hide('jky-side-pieces'		);
 	JKY.hide('jky-side-receiving'	);
 	JKY.hide('jky-side-fabrics'		);
+	JKY.hide('jky-side-accounts'	);
 	JKY.hide('jky-side-help'		);
 	JKY.hide('jky-side-admin'		);
 	JKY.hide('jky-side-support'		);
@@ -1918,7 +1941,6 @@ JKY.is_permitted = function(the_menu_id) {
 	switch(the_menu_id) {
 		case('jky-menu-sales'		)	:	my_resource = 'Menu-Sales'		; break;
 		case('jky-menu-planning'	)	:	my_resource = 'Menu-Planning'	; break;
-//		case('jky-menu-purchases'	)	:	my_resource = 'Menu-Purchases'	; break;
 		case('jky-menu-production'	)	:	my_resource = 'Menu-Production'	; break;
 		case('jky-menu-threads'		)	:	my_resource = 'Menu-Threads'	; break;
 		case('jky-menu-boxes'		)	:	my_resource = 'Menu-Boxes'		; break;
@@ -1926,6 +1948,7 @@ JKY.is_permitted = function(the_menu_id) {
 		case('jky-menu-pieces'		)	:	my_resource = 'Menu-Pieces'		; break;
 		case('jky-menu-receiving'	)	:	my_resource = 'Menu-Receiving'	; break;
 		case('jky-menu-fabrics'		)	:	my_resource = 'Menu-Fabrics'	; break;
+		case('jky-menu-accounts'	)	:	my_resource = 'Menu-Accounts'	; break;
 		case('jky-menu-help'		)	:	my_resource = 'Menu-Help'		; break;
 		case('jky-menu-admin'		)	:	my_resource = 'Menu-Admin'		; break;
 		case('jky-menu-support'		)	:	my_resource = 'Menu-Support'	; break;
@@ -2170,15 +2193,88 @@ JKY.get_companies = function(specific) {
 };
 
 /**
+ * get load ids from FTPs
+ * @param	the_id
+ */
+JKY.get_load_ids = function(the_id) {
+	var my_rows = [];
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'FTP_Threads'
+		, select	:  the_id
+		, order_by  : 'FTP_Threads.id'
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status === 'ok') {
+//					my_rows = response.rows;
+					for(var i=0; i<response.rows.length; i++) {
+						var my_row = [];
+						my_row.id	= response.rows[i].thread_id;
+						my_row.name = response.rows[i].name;
+						my_rows.push(my_row);
+					}
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		}
+	);
+	return my_rows;
+};
+
+/**
  * get loadout by color id
  * @param	OSA.color_id
  */
 JKY.get_loadout_by_color_id = function(specific) {
-	JKY.display_trace('get_companies: ' + specific);
+	JKY.display_trace('get_loadout_by_color_id: ' + specific);
 	var my_row = [];
 	var my_data =
 		{ method	: 'get_loadout_by_color_id'
 		, specific	:  specific
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status === 'ok') {
+					my_row = response.row;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				JKY.hide('jky-loading');
+				JKY.display_message('Error from backend server, please re-try later.');
+			}
+		}
+	);
+	return my_row;
+};
+
+/**
+ * get color by load_quot_id
+ * @param	Piece.load_quot_id
+ */
+JKY.get_color_by_load_quot_id = function(specific_id) {
+	JKY.display_trace('get_color_by_load_quot_id: ' + specific_id);
+	var my_row = [];
+	var my_data =
+		{ method		: 'get_color_by_load_quot_id'
+		, specific_id	:  specific_id
 		};
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);
@@ -2243,8 +2339,8 @@ JKY.set_group_set = function(table, selected, group_set, initial) {
 					for(var i=0; i<response.rows.length; i+=1) {
 						var my_name  = response.rows[i]['name' ];
 						var my_value = response.rows[i]['value'];
-//						if (my_value == '' || group_set === 'User Roles') {
-						if (my_value == '' || my_value === 'null' || group_set === 'User Roles') {
+//						if (my_value === '' || group_set === 'User Roles') {
+						if (my_value === '' || my_value === 'null' || group_set === 'User Roles') {
 							my_value = my_name;
 						}
 						var my_selected = (my_name === selected) ? ' selected="selected"' : '';
@@ -2504,14 +2600,14 @@ JKY.get_rows = function(table_name, id) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_rows = response.rows;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
+				if (typeof function_error !== 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
 					JKY.hide('jky-loading');
@@ -2523,13 +2619,14 @@ JKY.get_rows = function(table_name, id) {
 	return my_rows;
 };
 
-JKY.get_rows_by_where = function(the_table, the_where) {
+JKY.get_rows_by_where = function(the_table, the_where, the_order_by) {
 	var my_rows = null;
 	var my_data =
 		{ method: 'get_rows'
 		, table	:  the_table
 		, where :  the_where
 		};
+		if (the_order_by)	{my_data.order_by = the_order_by;}
 
 	var my_object = {};
 	my_object.data = JSON.stringify(my_data);
@@ -2540,14 +2637,14 @@ JKY.get_rows_by_where = function(the_table, the_where) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_rows = response.rows;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
+				if (typeof function_error !== 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
 					JKY.hide('jky-loading');
@@ -2557,7 +2654,7 @@ JKY.get_rows_by_where = function(the_table, the_where) {
 		}
 	);
 	return my_rows;
-}
+};
 
 JKY.get_xml = function(the_file_name) {
 	var my_row = null;
@@ -2575,14 +2672,14 @@ JKY.get_xml = function(the_file_name) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_row = response.xml_nfe;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
+				if (typeof function_error !== 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
 					JKY.hide('jky-loading');
@@ -2592,7 +2689,7 @@ JKY.get_xml = function(the_file_name) {
 		}
 	);
 	return my_row;
-}
+};
 
 /**
  * process profile
@@ -2606,7 +2703,7 @@ JKY.process_profile = function() {
 		JKY.set_all_events_profile();
 		JKY.display_profile();
 	}
-}
+};
 
 /**
  * process reset
@@ -2620,19 +2717,18 @@ JKY.process_reset = function() {
 		JKY.set_all_events_reset();
 		JKY.display_reset();
 	}
-}
+};
 
 /**
  * process log off
  */
 JKY.process_log_off = function() {
 	JKY.display_trace('process_log_off');
-//	JKY.hide('jky-body');
 	JKY.set_buttons_menus([]);
 	JKY.set_user_info(null);
 	var my_data = { method : 'log_out'};
 	JKY.ajax(false, my_data, JKY.process_log_off_success);
-}
+};
 
 /**
  * process log off success
@@ -2642,13 +2738,13 @@ JKY.process_log_off_success = function() {
 //	JKY.hide('jky-wrapper');
 //	window.location = 'home.html';
 	JKY.process_action('logoff');
-}
+};
 
 /**
  * process export
  */
 JKY.run_export = function(table, select, filter, specific, sort_by) {
-	if ($('#jky-export').length == 0)	{
+	if ($('#jky-export').length === 0)	{
 		$('body').append('<div id="jky-export"></div>');
 	}
 	var my_html = ''
@@ -2681,14 +2777,14 @@ JKY.get_user_id = function(the_user_name) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_id = response.id;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
+				if (typeof function_error !== 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
 					JKY.display_message('Error from backend server, please re-try later.');
@@ -2697,7 +2793,7 @@ JKY.get_user_id = function(the_user_name) {
 		}
 	);
 	return my_id;
-}
+};
 
 JKY.get_ftp_id = function(the_product_id) {
 	var my_id = null;
@@ -2715,14 +2811,14 @@ JKY.get_ftp_id = function(the_product_id) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_id = response.id;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
+				if (typeof function_error !== 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
 					JKY.display_message('Error from backend server, please re-try later.');
@@ -2731,7 +2827,7 @@ JKY.get_ftp_id = function(the_product_id) {
 		}
 	);
 	return my_id;
-}
+};
 
 JKY.get_order_id = function(the_load_quot_id) {
 	var my_id = null;
@@ -2749,14 +2845,14 @@ JKY.get_order_id = function(the_load_quot_id) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_id = response.id;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
+				if (typeof function_error !== 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
 					JKY.display_message('Error from backend server, please re-try later.');
@@ -2765,7 +2861,111 @@ JKY.get_order_id = function(the_load_quot_id) {
 		}
 	);
 	return my_id;
-}
+};
+
+JKY.Xget_product_id = function(the_product_name) {
+	var my_id = null;
+	var my_data =
+		{ method: 'get_product_id'
+		, product_name: the_product_name
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status === 'ok') {
+					my_id = response.id;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error !== 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_id;
+};
+
+JKY.get_vendor_id = function(the_vendor_name, the_vendor_cnpj) {
+	var my_id = null;
+	var my_data =
+		{ method: 'get_vendor_id'
+		, vendor_name : the_vendor_name
+		, vendor_cnpj : the_vendor_cnpj
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status === 'ok') {
+					my_id = response.id;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error !== 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_id;
+};
+
+JKY.get_loadout_value = function(the_select, the_quotation_id) {
+	var my_value = null;
+	var my_data =
+		{ method		: 'get_loadout_value'
+		, select		: the_select
+		, quotation_id	: the_quotation_id
+		};
+
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status === 'ok') {
+					my_value = response.value;
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error !== 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	);
+	return my_value;
+};
 
 JKY.get_loads_by_dyer = function(the_quot_color_id) {
 	var my_rows = [];
@@ -2784,14 +2984,14 @@ JKY.get_loads_by_dyer = function(the_quot_color_id) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_rows = response.rows;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
+				if (typeof function_error !== 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
 					JKY.display_message('Error from backend server, please re-try later.');
@@ -2800,41 +3000,7 @@ JKY.get_loads_by_dyer = function(the_quot_color_id) {
 		}
 	);
 	return my_rows;
-}
-
-JKY.Xget_product_id = function(the_product_name) {
-	var my_id = null;
-	var my_data =
-		{ method: 'get_product_id'
-		, product_name: the_product_name
-		};
-
-	var my_object = {};
-	my_object.data = JSON.stringify(my_data);
-	$.ajax(
-		{ url		: JKY.AJAX_URL
-		, data		: my_object
-		, type		: 'post'
-		, dataType	: 'json'
-		, async		: false
-		, success	: function(response) {
-				if (response.status == 'ok') {
-					my_id = response.id;
-				}else{
-					JKY.display_message(response.message);
-				}
-			}
-		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
-					function_error(jqXHR, text_status, error_thrown);
-				}else{
-					JKY.display_message('Error from backend server, please re-try later.');
-				}
-			}
-		}
-	);
-	return my_id;
-}
+};
 
 JKY.get_id = function(table, where) {
 	var my_id = null;
@@ -2853,14 +3019,14 @@ JKY.get_id = function(table, where) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_id = response.id;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
+				if (typeof function_error !== 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
 					JKY.display_message('Error from backend server, please re-try later.');
@@ -2869,7 +3035,7 @@ JKY.get_id = function(table, where) {
 		}
 	);
 	return my_id;
-}
+};
 
 JKY.get_value_by_id = function(table, field, id) {
 	var my_value = '';
@@ -2889,14 +3055,14 @@ JKY.get_value_by_id = function(table, field, id) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_value = response.value;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
+				if (typeof function_error !== 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
 					JKY.display_message('Error from backend server, please re-try later.');
@@ -2905,7 +3071,7 @@ JKY.get_value_by_id = function(table, field, id) {
 		}
 	);
 	return my_value;
-}
+};
 
 JKY.get_count_by_id = function(table, id) {
 	var my_count = 0;
@@ -2924,14 +3090,14 @@ JKY.get_count_by_id = function(table, id) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_count = response.count;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
+				if (typeof function_error !== 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
 					JKY.display_message('Error from backend server, please re-try later.');
@@ -2940,7 +3106,7 @@ JKY.get_count_by_id = function(table, id) {
 		}
 	);
 	return my_count;
-}
+};
 
 JKY.get_count_by_where = function(the_table, the_where) {
 	var my_count = 0;
@@ -2959,14 +3125,14 @@ JKY.get_count_by_where = function(the_table, the_where) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_count = response.count;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
+				if (typeof function_error !== 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
 					JKY.display_message('Error from backend server, please re-try later.');
@@ -2975,7 +3141,7 @@ JKY.get_count_by_where = function(the_table, the_where) {
 		}
 	);
 	return my_count;
-}
+};
 
 JKY.get_sum_by_id = function(table, field, id) {
 	var my_sum = 0;
@@ -2995,14 +3161,14 @@ JKY.get_sum_by_id = function(table, field, id) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_sum = response.sum;
 				}else{
 					JKY.display_message(response.message);
 				}
 			}
 		, error		: function(jqXHR, text_status, error_thrown) {
-				if (typeof function_error != 'undefined') {
+				if (typeof function_error !== 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
 					JKY.display_message('Error from backend server, please re-try later.');
@@ -3011,7 +3177,7 @@ JKY.get_sum_by_id = function(table, field, id) {
 		}
 	);
 	return my_sum;
-}
+};
 
 JKY.get_file_name = function(the_full_name) {
 	var my_names = the_full_name.split('/');
@@ -3021,7 +3187,7 @@ JKY.get_file_name = function(the_full_name) {
 	}else{
 		return '';
 	}
-}
+};
 
 JKY.get_file_type = function(the_full_name) {
 	var my_names = the_full_name.split('.');
@@ -3031,7 +3197,7 @@ JKY.get_file_type = function(the_full_name) {
 	}else{
 		return '';
 	}
-}
+};
 
 JKY.get_config_value = function(the_group_set, the_name) {
 	var my_where = 'group_set = \'' + the_group_set + '\''
@@ -3040,7 +3206,7 @@ JKY.get_config_value = function(the_group_set, the_name) {
 	var my_id	 = JKY.get_id('Configs', my_where);
 	var my_value = JKY.get_value_by_id('Configs', 'value', my_id);
 	return my_value;
-}
+};
 
 JKY.get_control_value = function(the_group_set, the_name) {
 	var my_where = 'group_set = \'' + the_group_set + '\''
@@ -3049,13 +3215,13 @@ JKY.get_control_value = function(the_group_set, the_name) {
 	var my_id	 = JKY.get_id('Controls', my_where);
 	var my_value = JKY.get_value_by_id('Controls', 'value', my_id);
 	return my_value;
-}
+};
 
 JKY.play_beep = function() {
 	var audio = document.createElement("audio");
 	audio.src = "/img/beep-5.wav";
 	audio.play();
-}
+};
 
 JKY.get_prev_dom = function(the_id, the_attr) {
 	var my_prev_id = the_id;
@@ -3063,18 +3229,18 @@ JKY.get_prev_dom = function(the_id, the_attr) {
 	do {
 		my_prev_id = my_prev_id.prev();
 		my_line_id = my_prev_id.attr(the_attr);
-	} while(my_line_id == null);
+	} while(my_line_id === null);
 	return my_prev_id;
-}
+};
 
-JKY.set_decimal = function(the_number, the_decimal) {
-	var my_string  = the_number.toFixed(2);
+JKY.set_decimal = function(the_number) {
+	var my_string  = parseFloat(the_number).toFixed(2);
 	var my_numbers = my_string.split('.');
 	var my_integer = my_numbers[0];
 	var my_decimal = my_numbers[1];
-	if (typeof my_decimal == 'undefined')	my_decimal = '00';
+	if (typeof my_decimal === 'undefined')	my_decimal = '00';
 	return my_integer + '.' + my_decimal;
-}
+};
 
 JKY.var_dump = function(the_name, the_object) {
 	var dump_object = function(the_obj) {
@@ -3088,7 +3254,7 @@ JKY.var_dump = function(the_name, the_object) {
 			}
 		}
 		return my_string;
-	}
+	};
 
 	var my_output = the_name + '\n';
 	for( var i in the_object) {
@@ -3100,39 +3266,39 @@ JKY.var_dump = function(the_name, the_object) {
 	var my_pre = document.createElement('pre');
 	my_pre.innerHTML = my_output;
 	document.body.appendChild(my_pre);
-}
+};
 
 JKY.enable_delete_button = function() {
-	if (JKY.Session.get_value('user_role') == 'Support'
-	||  JKY.Session.get_value('user_role') == 'Admin') {
+	if (JKY.Session.get_value('user_role') === 'Support'
+	||  JKY.Session.get_value('user_role') === 'Admin') {
 		JKY.enable_button('jky-action-delete');
 	}else{
 		JKY.hide('jky-action-delete');
 	}
-}
+};
 
 JKY.disable_delete_button = function() {
-	if (JKY.Session.get_value('user_role') == 'Support'
-	||  JKY.Session.get_value('user_role') == 'Admin') {
+	if (JKY.Session.get_value('user_role') === 'Support'
+	||  JKY.Session.get_value('user_role') === 'Admin') {
 		JKY.disable_button('jky-action-delete');
 	}else{
 		JKY.hide('jky-action-delete');
 	}
-}
+};
 
 JKY.in_array = function(the_value, the_array) {
 	for(var i=0, max=the_array.length; i<max; i++) {
-		if (the_value == the_array[i]) {
+		if (the_value === the_array[i]) {
 			return true;
 		}
 	}
 	return false;
-}
+};
 
 JKY.lower_case = function(the_id) {
 	var my_string = $(the_id).val().trim();
 	$(the_id).val(my_string.toLowerCase());
-}
+};
 
 JKY.title_case = function(the_id) {
 	var my_string = $(the_id).val();
@@ -3140,7 +3306,7 @@ JKY.title_case = function(the_id) {
 	var my_words = my_string.split(' ');
 	for (var i in my_words) {
 		var my_word = my_words[i];
-		if (my_word != '') {
+		if (my_word !=='') {
 			my_array.push(my_word.charAt(0).toUpperCase() + my_word.substr(1).toLowerCase());
 		}
 	}
@@ -3171,36 +3337,43 @@ JKY.full_address = function(the_row) {
 	;
 
 	return my_address;
-}
+};
 
 JKY.open_new_tab = function(the_event, the_url) {
-	the_event.stopPropagation()
+	the_event.stopPropagation();
 	var my_win = window.open('home.html?' + the_url, '_blank');
 	my_win.focus();
 	return false;
-}
+};
 
 JKY.setCookie = function(the_key, the_value, the_time) {
-	if (typeof(the_time) == 'undefined')	the_time = JKY.Session.get_elapsed_time();
+	if (typeof(the_time) === 'undefined')	the_time = JKY.Session.get_elapsed_time();
 	var my_expires = new Date();
 	my_expires.setTime(my_expires.getTime() + (the_time) * 1000);		//	min -8
 	document.cookie = the_key + '=' + the_value + ';expires=' + my_expires.toUTCString();
-}
+};
 
 JKY.getCookie = function(the_key) {
 	var my_key = the_key + '=';
 	var my_cookies = document.cookie.split(';');
 	for(var i=0, max=my_cookies.length; i<max; i++) {
 		var my_cookie = my_cookies[i];
-		while(my_cookie.charAt(0) == ' ')		my_cookie = my_cookie.substring(1);
-		if (my_cookie.indexOf(my_key) == 0) {
+		while(my_cookie.charAt(0) === ' ')		my_cookie = my_cookie.substring(1);
+		if (my_cookie.indexOf(my_key) === 0) {
 			return my_cookie.substring(my_key.length, my_cookie.length);
 		}
 	}
 	return '';
-}
+};
 
 JKY.deleteCookie = function(the_key) {
 	document.cookie = the_key + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC';
-}
+};
 
+JKY.get_random = function(the_from, the_to) {
+	var n = 0;
+	while(n < the_from) {
+		n = Math.floor((Math.random() * the_to));
+	}
+	return n;
+};

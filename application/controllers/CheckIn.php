@@ -11,6 +11,7 @@ function JKY_checkin($data) {
 	$message = '';
 	switch($table) {
 		case 'Boxes'		: $message = JKY_checkin_box	($data); break;
+		case 'Fabrics'		: $message = JKY_checkin_fabric	($data); break;
 		case 'Pieces'		: $message = JKY_checkin_piece	($data); break;
 	}
 
@@ -38,9 +39,9 @@ function JKY_checkin_box($the_data) {
 
 	$sql= 'UPDATE Boxes'
 		. '   SET ' . get_updated()
-		. ',     status="Check In"'
-		. ', checkin_by='  . get_session('user_id')
-		. ', checkin_at="' . get_time() . '"'
+		.      ', status="Check In"'
+		.  ', checkin_by='  . get_session('user_id')
+		.  ', checkin_at="' . get_time() . '"'
 		. ' WHERE id=' . $my_barcode
 		;
 	log_sql('Boxes', 'update', $sql);
@@ -65,6 +66,59 @@ function JKY_checkin_box($the_data) {
 }
 
 /**
+ *	checkin Fabric from Fabric Check In
+ *
+ *	$.ajax({ method:'checkin', table:'Fabrics', barcode:9...9, ...};
+ *
+ * @return	string	''
+ */
+function JKY_checkin_fabric($the_data) {
+	$db = Zend_Registry::get('db');
+	$my_barcode			= get_data($the_data, 'barcode'			);
+	$my_checkin_weight	= get_data($the_data, 'checkin_weight'	);
+
+	$my_set  = '';
+	$my_set .= ', revised_by = '  . get_session('user_id');
+	$my_set .= ', weighed_by = '  . get_session('user_id');
+	$my_set .= isset($the_data['qualities'			]) ?        ', qualities ="' . trim($the_data['qualities'		]) . '"' : '';
+	$my_set .= isset($the_data['remarks'			]) ?          ', remarks ="' . trim($the_data['remarks'			]) . '"' : '';
+	$my_set .= isset($the_data['checkin_weight'		]) ?   ', checkin_weight = ' . trim($the_data['checkin_weight'	])		 : '';
+	$my_set .= isset($the_data['checkin_location'	]) ? ', checkin_location ="' . trim($the_data['checkin_location']) . '"' : '';
+	
+	$sql= 'UPDATE Fabrics'
+		. '   SET ' . get_updated()
+		.       ', status="Check In"'
+		.   ', checkin_at="' . get_time() . '"'
+		. $my_set
+		. ' WHERE id =' . $my_barcode
+		;
+	log_sql('Fabrics', 'update', $sql);
+	$db->query($sql);
+	insert_changes($db, 'Fabrics', $my_barcode);
+/*
+	$my_fabric = db_get_row('Fabrics', 'barcode =\'' . $my_barcode . '\'');
+	
+	$my_order_id = $my_piece['order_id'];
+	if (strtolower($my_piece['qualities']) == 'boa') {
+		$my_set = ', produced_at=\'' . get_time() . '\''
+				. ', produced_pieces = produced_pieces + 1'
+				. ', produced_weight = produced_weight + ' . $my_checkin_weight
+				;
+	}else{
+		$my_set = ', rejected_pieces = rejected_pieces + 1';
+	}
+	$sql= 'UPDATE Orders'
+		. '   SET ' . get_updated() . $my_set
+		. ' WHERE id = ' . $my_order_id
+		;
+	log_sql('Orders', 'update', $sql);
+	$db->query($sql);
+	insert_changes($db, 'Orders', $my_order_id);
+*/
+	return '';
+}
+
+/**
  *	checkin Piece from Pieces Check In
  *
  *	$.ajax({ method:'checkin', table:'Pieces', barcode:9...9, ...};
@@ -73,39 +127,40 @@ function JKY_checkin_box($the_data) {
  */
 function JKY_checkin_piece($the_data) {
 	$db = Zend_Registry::get('db');
+	$my_weaver_date		= get_data($the_data, 'weaver_date'		);
+	$my_weaver_shift	= get_data($the_data, 'weaver_shift'	);
 	$my_barcode			= get_data($the_data, 'barcode'			);
 	$my_checkin_weight	= get_data($the_data, 'checkin_weight'	);
-/*
-	$my_inspected_by	= get_data($the_data, 'inspected_by'	);
-	$my_weighed_by		= get_data($the_data, 'weighed_by'		);
-	$my_qualities		= get_data($the_data, 'qualities'		);
-	$my_remarks			= get_data($the_data, 'remarks'			);
-	$my_checkin_weight	= get_data($the_data, 'checkin_weight'	);
-	$my_checkin_location= get_data($the_data, 'checkin_location');
-*/
+
+	$sql= 'SELECT produced_by'
+		. '  FROM Pieces'
+		. ' WHERE id = ' . $my_barcode
+		;
+	$my_machine_name = $db->fetchOne($sql); 
+
+	$sql= 'SELECT weaver_by'
+		. '  FROM Weavers'
+		. ' WHERE weaver_date  ="' . $my_weaver_date  . '"'
+		. '   AND weaver_shift ="' . $my_weaver_shift . '"'
+		. '   AND machine_name ="' . $my_machine_name . '"'
+		;
+	$my_weaver_by = $db->fetchOne($sql); 
+
 	$my_set  = '';
-//	$my_set .= isset($the_data['revised_by'			]) ?       ', revised_by = '  . trim($the_data['revised_by'			])			: '';
 	$my_set .= ', revised_by = '  . get_session('user_id');
-//	$my_set .= isset($the_data['weighed_by'			]) ?       ', weighed_by = '  . trim($the_data['weighed_by'			])			: '';
 	$my_set .= ', weighed_by = '  . get_session('user_id');
-	$my_set .= isset($the_data['qualities'			]) ?        ', qualities =\'' . trim($the_data['qualities'			]) . '\''	: '';
-	$my_set .= isset($the_data['remarks'			]) ?          ', remarks =\'' . trim($the_data['remarks'			]) . '\''	: '';
-	$my_set .= isset($the_data['checkin_weight'		]) ?   ', checkin_weight = '  . trim($the_data['checkin_weight'		])			: '';
-	$my_set .= isset($the_data['checkin_location'	]) ? ', checkin_location =\'' . trim($the_data['checkin_location'	]) . '\''	: '';
+	$my_set .= isset($the_data['qualities'			]) ?        ', qualities ="' . trim($the_data['qualities'		]) . '"' : '';
+	$my_set .= isset($the_data['remarks'			]) ?          ', remarks ="' . trim($the_data['remarks'			]) . '"' : '';
+	$my_set .= isset($the_data['checkin_weight'		]) ?   ', checkin_weight = ' . trim($the_data['checkin_weight'	])		 : '';
+	$my_set .= isset($the_data['checkin_location'	]) ? ', checkin_location ="' . trim($the_data['checkin_location']) . '"' : '';
+	$my_set .= ', weaver_date  ="' . $my_weaver_date	. '"';
+	$my_set .= ', weaver_shift ="' . $my_weaver_shift	. '"';
+	$my_set .= ', weaver_by    ="' . $my_weaver_by		. '"';
 	
 	$sql= 'UPDATE Pieces'
 		. '   SET ' . get_updated()
-		. ',       checkin_at=\'' . get_time()			. '\''
-/*		
-//		. ',           status="Check In"'
-//		. ',          barcode=\'' . $my_barcode			. '\''
-//		. ',       revised_by=  ' . $my_revised_by
-//		. ',       weighed_by=  ' . $my_weighed_by
-//		. ',   checkin_weight=  ' . $my_checkin_weight
-//		. ', checkin_location=\'' . $my_checkin_location. '\''
-//		. ',        qualities=\'' . $my_qualities		. '\''
-//		. ',          remarks=\'' . $my_remarks			. '\''
-*/
+		.       ', status="Check In"'
+		.   ', checkin_at="' . get_time() . '"'
 		. $my_set
 		. ' WHERE id =' . $my_barcode
 		;
@@ -114,17 +169,7 @@ function JKY_checkin_piece($the_data) {
 	insert_changes($db, 'Pieces', $my_barcode);
 
 	$my_piece = db_get_row('Pieces', 'barcode =\'' . $my_barcode . '\'');
-	if (!is_empty($my_piece['revised_by'])
-	&&  !is_empty($my_piece['weighed_by'])) {
-		$sql= 'UPDATE Pieces'
-			. '   SET status="Check In"'
-			. ' WHERE id = ' . $my_barcode
-			;
-		log_sql('Pieces', 'update', $sql);
-		$db->query($sql);
-	}
 	
-//	$my_order_id = get_table_value('Pieces', 'order_id', $my_barcode);
 	$my_order_id = $my_piece['order_id'];
 	if (strtolower($my_piece['qualities']) == 'boa') {
 		$my_set = ', produced_at=\'' . get_time() . '\''
@@ -144,4 +189,3 @@ function JKY_checkin_piece($the_data) {
 
 	return '';
 }
-

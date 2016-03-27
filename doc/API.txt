@@ -2,7 +2,7 @@
 
 http://support.jkysoftware.com/index.php/api?data={"method":"get_expire","company_id":9...9}
 
-
+http://erp/index.php/ajax?data={"method":"print_labels","table":"Fabrics","ids":"2000053828,2000053829"}
 
 
 

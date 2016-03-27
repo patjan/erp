@@ -63,6 +63,8 @@ JKY.Pieces = function() {
 		var my_labels_to_print	= parseFloat(JKY.get_value('jky-pieces-labels-to-print' ));
 		var my_produced_by		= JKY.get_value('jky-pieces-produced-by');
 		var my_product_name		= JKY.get_value('jky-product-name');
+		var my_product_id		= JKY.get_value('jky-product-id');
+		var my_ftp_id			= JKY.get_value('jky-ftp-id');
 		if (isNaN(my_labels_to_print)
 		||  my_labels_to_print < 1
 //		||	my_labels_to_print > 100
@@ -83,6 +85,8 @@ JKY.display_message('Printed label: ' + my_labels_printed + ' of ' + my_ordered_
 					+ ', number_of_pieces =  ' + my_labels_printed
 					+      ', produced_by =\'' + my_produced_by  + '\''
 					+     ', product_name =\'' + my_product_name + '\''
+					+       ', product_id =  ' + my_product_id
+					+           ', ftp_id =  ' + my_ftp_id
 //					+       ', checkin_by =  ' + JKY.Session.get_value('user_id')
 //					+       ', checkin_at =\'' + JKY.get_now() + '\''
 					;

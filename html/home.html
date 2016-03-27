@@ -4,14 +4,13 @@
 		<meta charset='utf-8'>
 		<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 		<title>JKY ERP</title>
-		<meta name='description' 	content='JKY Software - ERP'>
-		<meta name='author' 		content='http://www.jkysoftware.com'>
-		<meta name='viewport' 		content='width=device-width'>
+		<meta name='description'	content='JKY Software - ERP'>
+		<meta name='author'			content='http://www.jkysoftware.com'>
+		<meta name='viewport'		content='width=device-width'>
 		<link href='css/bootstrap.2.3.2.css'				rel='stylesheet'>
 		<link href='css/bootstrap-responsive.2.3.2.css'		rel='stylesheet'>
 		<link href='css/bootstrap-datetimepicker.min.css'	rel='stylesheet'>
-<!--	<link href='css/datepicker.css'						rel='stylesheet'>	-->
-		<link href="css/ts/theme.white.css"					rel="stylesheet">
+		<link href='css/ts/theme.white.css'					rel='stylesheet'>
 		<link href='css/JKY.base.css'						rel='stylesheet'>
 	</head>
 
@@ -43,7 +42,7 @@
 			<div									class='jky-side-set'><span>								</span></div>
 			<div id='jky-sales-loadouts'			class='jky-side-item dev'	><span>Aggregate Load Outs	</span></div>
 			<div									class='jky-side-set'><span>								</span></div>
-			<div id='jky-sales-sales'				class='jky-side-item dev'	><span>Sales Orders			</span></div>
+			<div id='jky-sales-sales'				class='jky-side-item dev'	><span>Sales				</span></div>
 		</div>
 
 		<div id='jky-side-planning'>
@@ -57,11 +56,6 @@
 			<div id='jky-planning-orders'			class='jky-side-item dev'	><span>Orders				</span></div>
 			<div id='jky-planning-tdyers'			class='jky-side-item dev'	><span>Thread Dyers			</span></div>
 			<div id='jky-planning-pieces'			class='jky-side-item dev'	><span>Pieces				</span></div>
-<!--
-			<div									class='jky-side-set'>Segunda Fase - teste</div>
-			<div id='jky-planning-requests'			class='jky-side-item'		><span>Requests				</span></div>
-			<div id='jky-planning-reqlines'			class='jky-side-item'		><span>Request Lines		</span></div>
--->
 		</div>
 
 		<div id='jky-side-purchases'>
@@ -87,6 +81,8 @@
 			<div id='jky-production-partners'		class='jky-side-item dev'	><span>Partners				</span></div>
 			<div id='jky-production-ftps'			class='jky-side-item dev'	><span>FTPs					</span></div>
 			<div									class='jky-side-set'><span>Production</span></div>
+			<div id='jky-production-schedules'		class='jky-side-item dev'	><span>Schedules			</span></div>
+			<div									class='jky-side-set'><span>								</span></div>
 			<div id='jky-production-pieces'			class='jky-side-item dev'	><span>Pieces				</span></div>
 		</div>
 
@@ -152,24 +148,43 @@
 
 		<div id='jky-side-receiving'>
 			<div									class='jky-side-set'><span>Files</span></div>
-			<div id='jky-receiving-fabrics'			class='jky-side-item'		><span>Fabrics				</span></div>
+			<div id='jky-receiving-fabrics'			class='jky-side-item dev'	><span>Fabrics				</span></div>
 			<div id='jky-receiving-products'		class='jky-side-item dev'	><span>Products				</span></div>
 			<div id='jky-receiving-customers'		class='jky-side-item dev'	><span>Customers			</span></div>
 			<div id='jky-receiving-dyers'			class='jky-side-item dev'	><span>Dyers				</span></div>
 			<div id='jky-receiving-transports'		class='jky-side-item dev'	><span>Transports			</span></div>
 			<div									class='jky-side-set'><span>Receiving					</span></div>
 			<div id='jky-receiving-receive-nfes'	class='jky-side-item dev'	><span>Receive NFEs			</span></div>
-			<div id='jky-receiving-receive-dyers'	class='jky-side-item dev'	><span>Receive Dyers		</span></div>
-			<div id='jky-receiving-loadins'			class='jky-side-item'		><span>Load Ins				</span></div>
+			<div id='jky-receiving-receive-dyers'	class='jky-side-item'		><span>Receive Dyers		</span></div>
+			<div id='jky-receiving-loadins'			class='jky-side-item dev'	><span>Load Ins				</span></div>
+			<div									class='jky-side-set'><span>								</span></div>
+			<div id='jky-receiving-not-received'	class='jky-side-item dev'	><span>Not Received			</span></div>
+			<div id='jky-receiving-return'			class='jky-side-item dev'	><span>Return				</span></div>
+			<div id='jky-receiving-reprocess'		class='jky-side-item dev'	><span>Reprocess			</span></div>
+			<div id='jky-receiving-scrap'			class='jky-side-item dev'	><span>Scrap				</span></div>
+			<div									class='jky-side-set'><span>Others						</span></div>
+			<div id='jky-receiving-counters'		class='jky-side-item dev'	><span>Counters				</span></div>
+			<div id='jky-receiving-inventory'		class='jky-side-item'		><span>Inventory			</span></div>
 		</div>
 
 		<div id='jky-side-fabrics'>
 			<div									class='jky-side-set'><span>Fabrics</span></div>
-			<div id='jky-fabrics-checkin'			class='jky-side-item'		><span>Check In				</span></div>
-			<div id='jky-fabrics-return'			class='jky-side-item'		><span>Return				</span></div>
-			<div id='jky-fabrics-checkout'			class='jky-side-item'		><span>Check Out			</span></div>
+			<div id='jky-fabrics-checkin'			class='jky-side-item dev'	><span>Check In				</span></div>
+			<div id='jky-fabrics-saleout'			class='jky-side-item dev'	><span>Sale Out				</span></div>
 			<div id='jky-fabrics-info'				class='jky-side-item'		><span>Info					</span></div>
 			<div id='jky-fabrics-count'				class='jky-side-item'		><span>Count				</span></div>
+			<div id='jky-fabrics-label'				class='jky-side-item dev'	><span>Label				</span></div>
+			<div									class='jky-side-set'><span>Gates						</span></div>
+			<div id='jky-fabrics-shipout'			class='jky-side-item dev'	><span>Ship Out				</span></div>
+		</div>
+
+		<div id='jky-side-accounts'>
+			<div									class='jky-side-set'><span>Files</span></div>
+			<div id='jky-accounts-customers'		class='jky-side-item dev'	><span>Customers			</span></div>
+			<div									class='jky-side-set'><span>Accounts</span></div>
+			<div id='jky-accounts-invoices'			class='jky-side-item dev'	><span>Invoices				</span></div>
+			<div id='jky-accounts-receivables'		class='jky-side-item dev'	><span>Receivables			</span></div>
+			<div id='jky-accounts-payables'			class='jky-side-item'		><span>Payables				</span></div>
 		</div>
 
 		<div id='jky-side-help'>
@@ -218,6 +233,9 @@
 					<button id='jky-action-add-new'		class='btn btn-success' type='button' title="Click here to add new record"			><span>Add New	</span></button>
 					<button id='jky-action-combine'		class='btn btn-success' type='button' title="Click here to combine records"			><span>Combine	</span></button>
 					<button id='jky-action-print'		class='btn btn-success' type='button' title="Click here to print selected records"	><span>Print	</span></button>
+					<button id='jky-action-sign'		class='btn btn-success' type='button' title="Click here to print sign records"		><span>Sign		</span></button>
+					<button id='jky-action-assign'		class='btn btn-success' type='button' title="Click here to assign records"			><span>Assign	</span></button>
+					<button id='jky-action-label'		class='btn btn-success' type='button' title="Click here to print label records"		><span>Label	</span></button>
 					<button id='jky-action-approve'		class='btn btn-success' type='button' title="Click here to approve selected records"><span>Approve	</span></button>
 					<button id='jky-action-clear'		class='btn btn-success' type='button' title="Click here to clear all records"		><span>Clear	</span></button>
 					<button id='jky-action-confirm'		class='btn btn-success' type='button' title="Click here to confirm all records"		><span>Confirm	</span></button>
@@ -233,7 +251,7 @@
 					<button id='jky-action-calendar'	class='btn' title='Calendar View'><i class='icon-calendar'		></i></button>
 					<button id='jky-action-form'		class='btn' title=    'Form View'><i class='icon-list-alt'		></i></button>
 				</div>
-				<div id='jky-app-counters'><span id='jky-app-index'></span> of <span id='jky-app-count'></span></div>
+				<div id='jky-app-counters'><span id='jky-app-index'></span> <span>of</span> <span id='jky-app-count'></span></div>
 				<div id='jky-app-add-new' ><span>New</span></div>
 				<div id='jky-app-navs' class='btn-group'>
 					<button id='jky-action-prev'		class='btn' title='Previous'	 ><i class='icon-backward'		></i></button>
@@ -249,27 +267,21 @@
 				</tbody>
 			</table>
 		</div>
-
 		<div id='jky-utils'></div>
 		<div id='jky-loaded'></div>
 
-<!--<script src='lib/jquery-1.8.2.js'							></script>	-->
-<!--<script src='lib/jquery-1.9.1.min.js'						></script>	-->
-<!--<script src='lib/jquery-2.0.2.js'							></script>	-->
 	<script src='lib/jquery-2.0.3.min.js'						></script>
 	<script src='lib/jquery-ui-1.10.4.custom.js'				></script>
 	<script src='lib/jquery.cookie.js'							></script>
 	<script src='lib/jquery.md5.js'								></script>
 	<script src='lib/jquery.print.js'							></script>
 	<script src='lib/plupload.full.js'							></script>
-<!--<script src='lib/bootstrap.min.js'							></script>	-->
 	<script src='lib/bootstrap.min.2.3.2.js'					></script>
-<!--<script src='lib/bootstrap-datepicker.js'					></script>	-->
 	<script src='lib/bootstrap-datetimepicker.min.js'			></script>
 	<script src='lib/bootstrap-datetimepicker.pt_BR.js'			></script>
 	<script src='lib/jquery.tablesorter.js'						></script>
-<!--<script src='lib/jquery.tablesorter.widgets.js'				></script>	-->
 	<script src='lib/d3.min.js'									></script>
+	<script src='lib/moment.js'									></script>
 
 	<script src='js/JKY.Utils_fn.js'							></script>
 	<script src='js/JKY.Utils.js'								></script>

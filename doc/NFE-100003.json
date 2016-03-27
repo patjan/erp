@@ -1,0 +1,71 @@
+{"table_name":"Sales"
+,"table_id":"100003"
+,"customer":{"pessoa":"J","name":"Tecno Malhas","fantasia":"Tecno","email":"suporte@metatex.com.br","phone":"11-2274-3833","fax":"11-2274-3865","cnpj":"04.744.013/0001-26","ie":"116.257.257.110","district":"3550308","number":"51","cpl":"","street1":"Rua Baceunas","street2":"Vila Prudente","zip":"03127-060","city":"Parque da Mooca","state":"SP","country":"BR"}
+,"transport":{"pessoa":"J","name":"O Proprio","fantasia":"O Proprio","email":"","phone":null,"fax":null,"cnpj":"","ie":"","district":null,"number":null,"cpl":null,"street1":null,"street2":null,"zip":null,"city":null,"state":null,"country":null}
+,"items":
+[{"NFe_id":null,"cProd":"1466","xProd":"Meia Malha Ultra Fine Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":200,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"Meia Malha Ultra Fine Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":200,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"Meia Malha Ultra Fine Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":150,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"Meia Malha Ultra Fine Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":150,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"Meia Malha Ultra Fine Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":150,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"Meia Malha Ultra Fine Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":200,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"Meia Malha Ultra Fine Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":100,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"Meia Malha Ultra Fine Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":150,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"Meia Malha Ultra Fine Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":150,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"Meia Malha Ultra Fine Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":150,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"Meia Malha Ultra Fine Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":150,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"Meia Malha Ultra Fine Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":100,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"New Plm Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":75,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"New Plm Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":75,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"New Plm Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":100,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"New Plm Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":100,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"New Plm Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":75,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"New Plm Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":75,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"New Plm Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":75,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"New Plm Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":75,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"New Plm Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":120,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"New Plm Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":40,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"New Plm Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":30,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+,{"NFe_id":null,"cProd":"1466","xProd":"New Plm Mouline Tubular","cor_code":"CB","cor_type":"123456","NCM":"60062100","CFOP":"6901","uCom":"","qCom":20,"vUnCom":"11.9900","orig":"0","CST_ICMS":"50","CST_IPI":"50","pIPI":"20","pPIS":"30","pCOFINS":"10"}
+]
+,"products":
+[{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"Meia Malha Ultra Fine Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"Meia Malha Ultra Fine Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"Meia Malha Ultra Fine Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"Meia Malha Ultra Fine Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"Meia Malha Ultra Fine Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"Meia Malha Ultra Fine Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"Meia Malha Ultra Fine Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"Meia Malha Ultra Fine Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"Meia Malha Ultra Fine Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"Meia Malha Ultra Fine Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"Meia Malha Ultra Fine Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"Meia Malha Ultra Fine Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"New Plm Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"New Plm Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"New Plm Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"New Plm Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"New Plm Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"New Plm Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"New Plm Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"New Plm Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"New Plm Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"New Plm Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"New Plm Mouline Tubular"}
+,{"product_code":"1466","product_cf":"60062100","IPI_code":"50","IPI_aliquota":"20","product_title":"New Plm Mouline Tubular"}
+]
+,"nfe":
+{"dEmi":"2015-11-16"
+,"dSaiEnt":"2015-11-16"
+,"tpNF":"1"
+,"natOp":"REMESSA PARA BENEFICIAMENTO"
+,"dxNome":"Tecno Malhas"
+,"txNome":"O Proprio"
+,"modFrete":"1"
+,"qVol":0
+,"esp":"VOLUMES"
+,"marca":"TECIDOS"
+,"pesoL":"0"
+,"infCpl":"***SUSPENCAO DO ICMS CONFORME ARTIGO 402 DO RICMS DECRETO 45490/2000 DE 30/11/2000***"
+}
+}

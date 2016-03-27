@@ -490,3 +490,115 @@ ALTER TABLE FTPs			ADD	COLUMN is_current		CHAR(3)			DEFAULT 'No'	AFTER product_i
 ALTER TABLE Batches			ADD COLUMN remarks			TEXT		 	DEFAULT NULL	AFTER used_weight;
 /* -- 2015-08-18	*/
 ALTER TABLE Purchases		ADD COLUMN remarks			VARCHAR(255)	DEFAULT NULL	AFTER payment_term;
+/* -- 2015-10-07	*/
+ALTER TABLE LoadOuts		ADD COLUMN printed_at		DATETIME	DEFAULT NULL	AFTER shipdyer_id;
+ALTER TABLE LoadOuts		ADD COLUMN is_selected		CHAR(3)		DEFAULT 'No'	AFTER shipdyer_id;
+/* -- 2015-10-28	*/
+ALTER TABLE LoadOuts		CHANGE	quoted_weight	quoted_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE LoadOuts		CHANGE	checkout_weight	checkout_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE LoadOuts		CHANGE	returned_weight	returned_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE LoadQuotations	CHANGE	quoted_weight	quoted_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE LoadQuotations	CHANGE	reserved_weight	reserved_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE LoadQuotations	CHANGE	checkout_weight	checkout_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE LoadQuotations	CHANGE	returned_weight	returned_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE OSA_Lines		CHANGE	quoted_weight	quoted_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE OSA_Lines		CHANGE	ordered_weight	ordered_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE QuotLines		CHANGE  quoted_weight	quoted_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE SaleLines		CHANGE  quoted_weight	quoted_weight	DECIMAL(9,2)	DEFAULT 0;
+/* -- 2015-10-31	*/
+ALTER TABLE Changes			ADD KEY name_id(table_name, table_id);
+/* -- 2015-11-09	*/
+ALTER TABLE Sales			ADD COLUMN transport_id				BIGINT			DEFAULT NULL	AFTER salesman_id;
+/* -- 2015-11-15	*/
+ALTER TABLE SaleColors		ADD COLUMN sold_weight				DECIMAL(10,2)	DEFAULT 0		AFTER quoted_price;
+/* -- 2015-11-19	*/
+ALTER TABLE Pieces			ADD COLUMN product_id				BIGINT			DEFAULT NULL	AFTER product_name;
+/* -- 2015-11-20	*/
+ALTER TABLE LoadOuts		ADD COLUMN labels_printed			INT				DEFAULT 0		AFTER printed_at;
+/* -- 2015-11-23	*/
+ALTER TABLE Contacts		ADD COLUMN transport_id    			BIGINT   		DEFAULT NULL	AFTER parent_id;
+/* -- 2015-12-11	*/
+ALTER TABLE Fabrics			ADD COLUMN saleout_id				BIGINT			DEFAULT NULL	AFTER load_quot_id;
+ALTER TABLE Fabrics			ADD COLUMN checkout_weight			DECIMAL(10,2)	DEFAULT 0		AFTER checkin_weight;
+ALTER TABLE SaleColors		ADD COLUMN checkout_pieces			INT				DEFAULT 0		AFTER sold_pieces;
+ALTER TABLE SaleColors		ADD COLUMN checkout_weight			DECIMAL(10,2)	DEFAULT 0		AFTER sold_weight;
+ALTER TABLE Sales			ADD COLUMN checkout_pieces			INT				DEFAULT 0		AFTER sold_pieces;
+ALTER TABLE Sales			ADD COLUMN checkout_weight			DECIMAL(10,2)	DEFAULT 0		AFTER sold_weight;
+ALTER TABLE Fabrics			ADD COLUMN shipout_by				BIGINT			DEFAULT NULL	AFTER checkout_by;
+ALTER TABLE Fabrics			ADD COLUMN shipout_at				DATETIME		DEFAULT NULL	AFTER checkout_at;
+/* -- 2015-12-18	*/
+ALTER TABLE Pieces			ADD COLUMN ftp_id					BIGINT			DEFAULT NULL	AFTER product_id;
+ALTER TABLE Fabrics			ADD COLUMN ftp_id					BIGINT			DEFAULT NULL	AFTER product_id;
+/* -- 2015-12-19	*/
+UPDATE Pieces, Orders
+   SET Pieces.ftp_id = Orders.ftp_id
+ WHERE Pieces.order_id = Orders.id
+   AND Pieces.ftp_id IS NULL
+     ;
+UPDATE Pieces 	SET ftp_id = 201058	WHERE order_id = 200026;
+UPDATE Pieces 	SET ftp_id = 201126	WHERE order_id = 200155;
+
+UPDATE Fabrics, Orders
+   SET Fabrics.ftp_id = Orders.ftp_id
+ WHERE Fabrics.order_id = Orders.id
+   AND Fabrics.ftp_id IS NULL
+     ;
+UPDATE Fabrics, FTPs
+   SET Fabrics.ftp_id = FTPs.id
+ WHERE FTPs.product_id = Fabrics.product_id
+   AND FTPs.is_current = 'Yes'
+   AND Fabrics.ftp_id IS NULL
+	 ;
+UPDATE Fabrics	SET ftp_id = 201075	WHERE product_id = 100019;
+UPDATE Fabrics	SET ftp_id = 201763	WHERE product_id = 100576;
+UPDATE Fabrics	SET ftp_id = null	WHERE product_id = 100759;
+UPDATE Fabrics	SET ftp_id = 201609	WHERE product_id = 100973;
+UPDATE Fabrics	SET ftp_id = 201325	WHERE product_id = 101400;
+UPDATE Fabrics	SET ftp_id = 200719	WHERE product_id = 101412;
+UPDATE Fabrics	SET ftp_id = 201797	WHERE product_id = 200275;
+/* -- 2015-12-20	*/
+ALTER TABLE SaleColors		ADD COLUMN checkout_amount			DECIMAL(10,2)	DEFAULT 0		AFTER sold_amount;
+ALTER TABLE SaleLines		ADD COLUMN checkout_amount			DECIMAL(10,2)	DEFAULT 0		AFTER sold_amount;
+ALTER TABLE SaleLines		ADD COLUMN checkout_pieces			INT				DEFAULT 0		AFTER sold_pieces;
+ALTER TABLE SaleLines		ADD COLUMN checkout_weight			DECIMAL(10,2)	DEFAULT 0		AFTER sold_weight;
+ALTER TABLE Sales			ADD COLUMN checkout_amount			DECIMAL(10,2)	DEFAULT 0		AFTER sold_amount;
+
+ALTER TABLE Sales			CHANGE  discount_amount	sold_discount	DECIMAL(10,2)	DEFAULT 0;
+ALTER TABLE SaleLines		CHANGE  discount_amount	sold_discount	DECIMAL(10,2)	DEFAULT 0;
+ALTER TABLE SaleColors		CHANGE  discount_amount	sold_discount	DECIMAL(10,2)	DEFAULT 0;
+ALTER TABLE Sales			ADD COLUMN checkout_discount			DECIMAL(10,2)	DEFAULT 0	AFTER sold_discount;
+ALTER TABLE SaleLines		ADD COLUMN checkout_discount			DECIMAL(10,2)	DEFAULT 0	AFTER sold_discount;
+ALTER TABLE SaleColors		ADD COLUMN checkout_discount			DECIMAL(10,2)	DEFAULT 0	AFTER sold_discount;
+
+/* -- 2015-12-21	*/
+UPDATE Fabrics				SET status = 'Ship Out'				WHERE status = 'Check Out';
+/* -- 2016-01-30	*/
+ALTER TABLE Sales			ADD COLUMN invoice_date				DATETIME		DEFAULT NULL	AFTER sent_date;
+/* -- 2016-02-05	*/
+ALTER TABLE Pieces			ADD COLUMN received_at				DATETIME		DEFAULT NULL	AFTER checkout_at;
+UPDATE Pieces, Fabrics
+   SET Pieces.status = 'Received'
+     , Pieces.received_at = Fabrics.updated_at
+ WHERE Pieces.id = Fabrics.barcode
+	 ;
+/* -- 2016-02-11	*/
+ALTER TABLE Products		ADD COLUMN ncm						VARCHAR(32)		DEFAULT NULL	AFTER units;
+/* -- 2016-02-17	*/
+ALTER TABLE SaleOuts		ADD COLUMN assigned_by				BIGINT			DEFAULT NULL	AFTER color_id;
+/* -- 2016-02-18	*/
+ALTER TABLE JKY_Users		ADD COLUMN pin						VARCHAR(32)		DEFAULT NULL	AFTER password;
+/* -- 2016-03-04	*/
+ALTER TABLE Products		ADD COLUMN family_id				BIGINT			DEFAULT NULL	AFTER parent_id;
+/* -- 2016-03-10	*/
+ALTER TABLE JKY_Users		ADD COLUMN user_email				VARCHAR(255)	DEFAULT NULL	AFTER user_role;
+/* -- 2016-03-11	*/
+RENAME TABLE JKY_Users TO Users;
+UPDATE NextIds				SET table_name = 'Users'		WHERE table_name = 'JKY_Users'; 
+/* -- 2014/03/12	*/
+ALTER TABLE Products		ADD		remarks					TEXT		 	DEFAULT NULL	AFTER yield;
+/* -- 2016-03-19	*/
+ALTER TABLE Pieces			ADD COLUMN weaver_shift				CHAR(2)			DEFAULT NULL	AFTER returned_by;
+ALTER TABLE Pieces			ADD COLUMN weaver_date				DATE			DEFAULT NULL	AFTER returned_by;
+ALTER TABLE Pieces			ADD COLUMN weaver_by				BIGINT			DEFAULT NULL	AFTER returned_by;
+/* -- 2016-03-25	*/
+ALTER TABLE Users			ADD COLUMN user_shift				CHAR(2)			DEFAULT NULL	AFTER user_role;

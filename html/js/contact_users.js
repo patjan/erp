@@ -58,22 +58,24 @@ JKY.verify_input = function() {
 
 JKY.insert_user = function(contact_id) {
 	var my_first_name= JKY.get_value('jky-first-name');
-	var my_last_name = JKY.get_value('jky-last-name');
-	var my_user_name = JKY.get_value('jky-user-name');
-	var my_user_role = JKY.get_value('jky-user-role');
+	var my_last_name = JKY.get_value('jky-last-name' );
+	var my_user_name = JKY.get_value('jky-user-name' );
+	var my_user_role = JKY.get_value('jky-user-role' );
+	var my_user_shift= JKY.get_value('jky-user-shift');
 	if (JKY.is_empty(my_user_name)) {
 		return;
 	}
 	JKY.display_trace('insert_user: ' + contact_id);
 
-	var my_set  =  'contact_id =   ' + contact_id
-				+ ', user_name = \'' + my_user_name + '\''
-				+ ', user_role = \'' + my_user_role + '\''
-				+  ', password = \'' + $.md5(my_first_name + my_last_name) + '\''
+	var my_set  =   'contact_id =   ' + contact_id
+				+  ', user_name = \'' + my_user_name  + '\''
+				+  ', user_role = \'' + my_user_role  + '\''
+				+ ', user_shift = \'' + my_user_shift + '\''
+				+   ', password = \'' + $.md5(my_first_name + my_last_name) + '\''
 				;
 	var my_data =
 		{ method: 'insert'
-		, table : 'JKY_Users'
+		, table : 'Users'
 		, set	: my_set
 		};
 	JKY.ajax(false, my_data, JKY.insert_user_success);
@@ -85,8 +87,9 @@ JKY.insert_user_success = function(response) {
 }
 
 JKY.update_user = function(contact_id, user_id) {
-	var my_user_name = JKY.get_value('jky-user-name');
-	var my_user_role = JKY.get_value('jky-user-role');
+	var my_user_name = JKY.get_value('jky-user-name' );
+	var my_user_role = JKY.get_value('jky-user-role' );
+	var my_user_shift= JKY.get_value('jky-user-shift');
 	if (JKY.is_empty(my_user_name)) {
 		return;
 	}
@@ -96,14 +99,15 @@ JKY.update_user = function(contact_id, user_id) {
 	}
 	JKY.display_trace('update_user: ' + contact_id + ' : ' + user_id);
 
-	var my_set  =  'contact_id =   ' + contact_id
-				+ ', user_name = \'' + my_user_name + '\''
-				+ ', user_role = \'' + my_user_role + '\''
+	var my_set  =   'contact_id =   ' + contact_id
+				+  ', user_name = \'' + my_user_name  + '\''
+				+  ', user_role = \'' + my_user_role  + '\''
+				+ ', user_shift = \'' + my_user_shift + '\''
 				;
 	var my_where = 'id = ' + user_id;
 	var my_data =
 		{ method: 'update'
-		, table : 'JKY_Users'
+		, table : 'Users'
 		, set	: my_set
 		, where : my_where
 		};
@@ -126,7 +130,7 @@ JKY.delete_user = function(contact_id, user_id) {
 	var my_where = 'id = ' + user_id;
 	var my_data =
 		{ method: 'delete'
-		, table : 'JKY_Users'
+		, table : 'Users'
 		, where : my_where
 		};
 	JKY.ajax(false, my_data, JKY.delete_user_success);
@@ -165,7 +169,7 @@ JKY.reset_password = function() {
 	var my_where = 'id = ' + JKY.row.user_id;
 	var my_data =
 		{ method: 'update'
-		, table : 'JKY_Users'
+		, table : 'Users'
 		, set	: my_set
 		, where : my_where
 		};

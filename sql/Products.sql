@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS Products
 , status			VARCHAR(32)			DEFAULT 'Active'
 
 , parent_id			BIGINT				DEFAULT NULL
+, family_id			BIGINT				DEFAULT NULL
 , product_name		VARCHAR(255)		DEFAULT NULL
 , product_type		VARCHAR(32)			DEFAULT 'Tubular'
 , finishings		VARCHAR(255)		DEFAULT NULL
@@ -13,6 +14,7 @@ CREATE TABLE IF NOT EXISTS Products
 , start_date		DATE				DEFAULT NULL
 , peso				DECIMAL(5,2)		DEFAULT 0		# Peso da Peca (12.5) (Kg)
 , units				INT(11)				DEFAULT 1		# Unidades por Peca
+, ncm				VARCHAR(32)			DEFAULT NULL
 , cone_type			VARCHAR(32)			DEFAULT NULL
 , photo				VARCHAR(255)		DEFAULT NULL
 
@@ -21,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Products
 , width_customer	VARCHAR(32)			DEFAULT NULL	# Largura   (cm) de - ate | largula X altura
 , width_dyer		VARCHAR(32)			DEFAULT NULL	# Largura   (cm)
 , yield				DECIMAL(10,2)		DEFAULT 0		# Rendimento (Kg/Mt)
-
+, remarks			TEXT				DEFAULT	NULL
 
 , UNIQUE(product_name)
 , PRIMARY KEY(id)
@@ -29,6 +31,55 @@ CREATE TABLE IF NOT EXISTS Products
 , KEY product_type	(product_type)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
+
+DROP   TABLE IF     EXISTS ProdPrices;
+CREATE TABLE IF NOT EXISTS ProdPrices
+( id				BIGINT				NOT NULL AUTO_INCREMENT
+, updated_by		BIGINT				DEFAULT NULL
+, updated_at		DATETIME			DEFAULT NULL
+, status			VARCHAR(32)			DEFAULT 'Active'		/*	History, Future	*/
+
+, product_id		BIGINT				DEFAULT NULL
+, color_type		VARCHAR(32)			DEFAULT NULL
+, current_price		DECIMAL(10,2)		DEFAULT 0
+, new_price			DECIMAL(10,2)		DEFAULT 0
+, effective_date	DATE				DEFAULT NULL
+
+, PRIMARY KEY	(id)
+, KEY product	(product_id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
+;
+
+DROP   TABLE IF     EXISTS ProdColors;
+CREATE TABLE IF NOT EXISTS ProdColors
+( id				BIGINT				NOT NULL AUTO_INCREMENT
+, updated_by		BIGINT				DEFAULT NULL
+, updated_at		DATETIME			DEFAULT NULL
+, status			VARCHAR(32)			DEFAULT 'Active'		/*	History, Future	*/
+
+, product_id		BIGINT				DEFAULT NULL
+, color_id			BIGINT				DEFAULT NULL
+, target			INT					DEFAULT 0
+
+, PRIMARY KEY	(id)
+, KEY product	(product_id)
+, KEY color		(color_id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
+;
+
+INSERT NextIds	SET table_name='Products', next_id=1, id_size=5;
+INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, name='Products', updated_by=1, updated_at=NOW();
+INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='Products', updated_by=1, updated_at=NOW();
+
+INSERT NextIds	SET table_name='ProdPrices', next_id=1, id_size=9;
+INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, name='ProdPrices', updated_by=1, updated_at=NOW();
+INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='ProdPrices', updated_by=1, updated_at=NOW();
+
+INSERT NextIds	SET table_name='ProdColors', next_id=1, id_size=9;
+INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, name='ProdColors', updated_by=1, updated_at=NOW();
+INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='ProdColors', updated_by=1, updated_at=NOW();
+
+
 ALTER TABLE Products		ADD COLUMN photo			VARCHAR(255)		DEFAULT NULL	AFTER start_date;
 ALTER TABLE Products		CHANGE name product_name	VARCHAR(255)		DEFAULT NULL	;
 ALTER TABLE Products		ADD		units					INT(11)			DEFAULT 1		AFTER start_date;

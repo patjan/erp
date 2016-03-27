@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS QuotLines
 , product_id		BIGINT				DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
 , peso				DECIMAL(5,2)		DEFAULT 0		# Peso da Peca (12.5) (Kg)
-, quoted_weight		DECIMAL(7,1)		DEFAULT 0		# Peso da Line
+, quoted_weight		DECIMAL(9,2)		DEFAULT 0		# Peso da Line
 , quoted_units		INT(11)				DEFAULT 0
 , units				INT(11)				DEFAULT 1		# Unidades por Peca
 , quoted_pieces		INT(11)				DEFAULT 0
@@ -40,3 +40,5 @@ ALTER TABLE QuotLines		ADD COLUMN machine_id			BIGINT			DEFAULT NULL	AFTER produ
 ALTER TABLE QuotLines		CHANGE	discount		discount		VARCHAR(8)		DEFAULT '';
 
 ALTER TABLE QuotLines		ADD		quoted_weight			DECIMAL(7,1)	DEFAULT 0		AFTER peso;
+
+ALTER TABLE QuotLines		CHANGE  quoted_weight	quoted_weight	DECIMAL(9,2)	DEFAULT 0;

@@ -1,0 +1,76 @@
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-barcode'	><span>Barcode			</span></th>
+			<th class='jky-td-name-l'	><span>Product			</span></th>
+			<th class='jky-td-name-s'	><span>Revised			</span></th>
+			<th class='jky-td-name-s'	><span>Weighed			</span></th>
+			<th class='jky-td-date'		><span>Check In Date	</span></th>
+			<th class='jky-td-ref'		><span>Check In Location</span></th>
+			<th class='jky-td-weight'	><span>Check In Weight	</span></th>
+			<th class='jky-td-name-l'	><span>Remarks			</span></th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+</table>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'	></div>
+		<ul  id='jky-form-status'	></ul>
+	</div>
+	<div class='jky-clear'></div>
+
+<div class='jky-left'>
+	<div id='jky-form-data'>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Location</span>:</div>
+			<input  id='jky-checkin-location'	class='jky-form-location' /> (1A01)
+		</div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Load Out</span>:</div>
+			<input  id='jky-loadout-number' class='jky-form-number jky-form-key' />
+		</div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Product</span>:</div>
+			<input  id='jky-product-id'			type='hidden' />
+			<input  id='jky-product-name'		class='jky-form-name' readonly />
+			<a class='jky-purline-icon' href='#' onclick='JKY.Product.display(this)'><i class='icon-th'></i></a>
+		</div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Color</span>:</div>
+			<input  id='jky-color-id'			type='hidden' />
+			<input  id='jky-color-name'			class='jky-form-name' readonly />
+			<a class='jky-purline-icon' href='#' onclick='JKY.Color.display(this)'><i class='icon-th'></i></a>
+		</div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Number Pieces</span>:</div>
+			<input  id='jky-number-of-pieces'	class='jky-form-integer' /> (1 - 100)
+		</div>
+	</div>
+</div>
+
+	<table id='jky-fabrics-table' class='table table-striped'>
+		<thead>
+			<tr>
+				<th class='jky-td-barcode'	><span>  Barcode			</span></th>
+				<th class='jky-td-name-l'	><span>  Product			</span></th>
+				<th class='jky-td-name-l'	><span>    Color			</span></th>
+				<th class='jky-td-number'	><span> Load Out			</span></th>
+				<th class='jky-td-ref'		><span> Check In<br>Location</span></th>
+			</tr>
+		</thead>
+
+		<tbody id='jky-fabrics-table-body'></tbody>
+	</table>
+
+	<div id='jky-form-footer'></div>
+</div>
+
+<div id='jky-body-loaded'></div>
+
+<script src='js/fabrics_label.js'></script>
+<script src='js/JKY.Product.js'></script>
+<script src='js/JKY.Color.js'></script>

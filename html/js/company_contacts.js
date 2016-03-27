@@ -55,6 +55,12 @@ JKY.display_contacts = function(the_id) {
 JKY.display_remarks = function(the_row) {
 	JKY.set_value	('jky-remarks'	 , JKY.decode	(the_row.remarks	));
 	JKY.set_value	('jky-extra-info',				 the_row.extra_info	 );
+
+	if (JKY.Session.get_value('user_role') !== 'Admin'
+	&&  JKY.Session.get_value('user_role') !== 'Support') {
+		$('#jky-remarks'		).attr('disabled', 'disabled');
+		$('#jky-extra-info'		).attr('disabled', 'disabled');
+	}
 }
 
 /*
@@ -69,6 +75,16 @@ JKY.display_payments = function(the_row) {
 	JKY.set_value	('jky-alert'			, the_row.alert			);
 
 	$('#jky-interest-rate').ForceNumericOnly();
+	
+	if (JKY.Session.get_value('user_role') !== 'Admin'
+	&&  JKY.Session.get_value('user_role') !== 'Support') {
+		$('#jky-is-taxable'		).attr('disabled', 'disabled');
+		$('#jky-icms-exemption'	).attr('disabled', 'disabled');
+		$('#jky-deduct-cone'	).attr('disabled', 'disabled');
+		$('#jky-interest-rate'	).attr('disabled', 'disabled');
+		$('#jky-payments'		).attr('disabled', 'disabled');
+		$('#jky-alert'			).attr('disabled', 'disabled');
+	}
 }
 
 JKY.generate_contact = function(the_row) {

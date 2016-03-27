@@ -482,6 +482,7 @@ $this->log_proxy('Body: ' . $body);
      echo( $body   );
      echo( $footer );
 }
+
 }
 
 session_start();
@@ -521,10 +522,10 @@ $arrays   = json_decode( $program->query( $domain, 'data={"method":"export"'    
 $rows     = $arrays[ 'rows' ];
 //foreach( $rows as $row ) { echo '<br>'; var_dump( $row ); }
 
-if ($table == 'ThreadForecast') {
-	$program->run_thread_forecast($table, $cols, $rows);
-}else{
-	$program->run($table, $cols, $rows);
+switch($table) {
+//	case 'FabricCounters'	:	$program->run_fabric_counters	($table, $cols, $rows); break;
+	case 'ThreadForecast'	:	$program->run_thread_forecast	($table, $cols, $rows); break;
+	default					:	$program->run					($table, $cols, $rows);
 }
 
 ?>

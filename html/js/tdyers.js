@@ -258,7 +258,7 @@ JKY.generate_tdyer = function() {
 
 	var my_data =
 		{ method	: 'generate'
-		, table		: 'TDyer'
+		, table		: 'TDyers'
 		, id		:  JKY.row.id
 		}
 	JKY.ajax(false, my_data, JKY.refresh_form);

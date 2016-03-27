@@ -48,16 +48,17 @@ $.fn.ForceNumericOnly = function() {
 				||	e.keyCode == 110
 				||	e.keyCode == 188
 				||	e.keyCode == 190
+				||	e.keyCode == 194
 				|| (e.keyCode >= 35 && e.keyCode <=  40)
 				|| (e.keyCode >= 48 && e.keyCode <=  57 && !e.shiftKey)
 				|| (e.keyCode >= 96 && e.keyCode <= 105 && !e.shiftKey)
 				);
 		});
 		$(this).keyup(function(e) {
-//			var key = e.charCode || e.keyCode || 0;
-//			if (key == 188) {
-				$(this).val($(this).val().replace(/,/g, "."));
-//			}
+			var key = e.charCode || e.keyCode || 0;
+			if (key == 110 || key == 188) {
+				$(this).val($(this).val().replace(",", "."));
+			}
 		});
 	});
 };
@@ -102,7 +103,7 @@ $.fn.ForceNumericAlpha = function() {
 				|| (e.keyCode >= 48 && e.keyCode <=  57 && !e.shiftKey)
 				|| (e.keyCode >= 65 && e.keyCode <=  90)
 				|| (e.keyCode >= 96 && e.keyCode <= 105 && !e.shiftKey)
-					);
+				);
 		});
 	});
 };
@@ -126,7 +127,7 @@ $.fn.ForceName = function() {
 				|| (e.keyCode >= 48 && e.keyCode <=  57 && !e.shiftKey)
 				|| (e.keyCode >= 65 && e.keyCode <=  90)
 				|| (e.keyCode >= 96 && e.keyCode <= 105 && !e.shiftKey)
-					);
+				);
 		});
 	});
 };

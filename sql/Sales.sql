@@ -11,18 +11,22 @@ CREATE TABLE IF NOT EXISTS Sales
 , customer_id		BIGINT				DEFAULT NULL
 , contact_id		BIGINT				DEFAULT NULL
 , salesman_id		BIGINT				DEFAULT NULL
+, transport_id		BIGINT				DEFAULT NULL
 , needed_date		DATE				DEFAULT NULL
 , sold_date			DATE				DEFAULT NULL
 , hold_date			DATE				DEFAULT NULL
 , sent_date			DATE				DEFAULT NULL
+, invoice_date		DATETIME			DEFAULT NULL
 , sold_pieces		INT					DEFAULT 0
+, checkout_pieces	INT					DEFAULT 0
 , hold_pieces		INT					DEFAULT 0
 , sent_pieces		INT					DEFAULT 0
-, sold_weight		INT					DEFAULT 0
-, hold_weight		INT					DEFAULT 0
-, sent_weight		INT					DEFAULT 0
-, quoted_amount		DECIMAL(10,2)		DEFAULT 0
+, sold_weight		DECIMAL(10,2)		DEFAULT 0
+, checkout_weight	DECIMAL(10,2)		DEFAULT 0
+, hold_weight		DECIMAL(10,2)		DEFAULT 0
+, sent_weight		DECIMAL(10,2)		DEFAULT 0
 , sold_amount		DECIMAL(10,2)		DEFAULT 0
+, checkout_amount	DECIMAL(10,2)		DEFAULT 0
 , adjust_amount		DECIMAL(10,2)		DEFAULT 0
 , discount_amount	DECIMAL(10,2)		DEFAULT 0
 , advanced_amount	DECIMAL(10,2)		DEFAULT 0
@@ -55,10 +59,13 @@ CREATE TABLE IF NOT EXISTS SaleLines
 , product_id		BIGINT				DEFAULT NULL
 , machine_id		BIGINT				DEFAULT NULL
 , peso				DECIMAL(5,2)		DEFAULT 0		# Peso da Peca (12.5) (Kg)
-, quoted_weight		DECIMAL(7,1)		DEFAULT 0		# Peso da Line
-, quoted_units		INT(11)				DEFAULT 0
-, units				INT(11)				DEFAULT 1		# Unidades por Peca
-, quoted_pieces		INT(11)				DEFAULT 0
+, sold_pieces		INT					DEFAULT 0
+, checkout_pieces	INT					DEFAULT 0
+, sold_weight		DECIMAL(10,2)		DEFAULT 0
+, checkout_weight	DECIMAL(10,2)		DEFAULT 0
+, sold_amount		DECIMAL(10,2)		DEFAULT 0
+, checkout_amount	DECIMAL(10,2)		DEFAULT 0
+, discount_amount	DECIMAL(10,2)		DEFAULT 0
 , discount			VARCHAR(8)			DEFAULT ''
 , remarks			TEXT				DEFAULT	NULL
 
@@ -79,9 +86,14 @@ CREATE TABLE IF NOT EXISTS SaleColors
 , dyer_id			BIGINT				DEFAULT NULL
 , color_id			BIGINT				DEFAULT NULL
 , color_type		VARCHAR(32)			DEFAULT NULL
-, quoted_units		DECIMAL(7,1)		DEFAULT 0
-, quoted_price		DECIMAL(10,2)		DEFAULT 0
-, product_price		DECIMAL(10,2)		DEFAULT 0
+, sold_price		DECIMAL(10,2)		DEFAULT 0
+, sold_pieces		INT					DEFAULT 0
+, checkout_pieces	INT					DEFAULT 0
+, sold_weight		DECIMAL(10,2)		DEFAULT 0
+, checkout_weight	DECIMAL(10,2)		DEFAULT 0
+, sold_amount		DECIMAL(10,2)		DEFAULT 0
+, checkout_amount	DECIMAL(10,2)		DEFAULT 0
+, discount_amount	DECIMAL(10,2)		DEFAULT 0
 , discount			VARCHAR(8)			DEFAULT ''
 
 , PRIMARY KEY(id)
@@ -102,6 +114,6 @@ INSERT NextIds	SET table_name='SaleColors', next_id=1, id_size=9;
 INSERT Controls SET group_set='User Resources'		, status='Active', sequence=50, name='SaleColors', updated_by=1, updated_at=NOW();
 INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50, name='SaleColors', updated_by=1, updated_at=NOW();
 
-ALTER TABLE Sales			ADD COLUMN salesman_id				BIGINT			DEFAULT NULL	AFTER contact_id;
-
-ALTER TABLE Sales			ADD INDEX salesman		(salesman_id	);
+ALTER TABLE Sales			CHANGE	status			status			VARCHAR(32)		DEFAULT 'Draft';
+ALTER TABLE SaleLines		CHANGE	status			status			VARCHAR(32)		DEFAULT 'Draft';
+ALTER TABLE SaleColors		CHANGE	status			status			VARCHAR(32)		DEFAULT 'Draft';

@@ -2833,12 +2833,12 @@ function log_event( $event ) {
      fclose( $logFile );
 }
 
-function log_prog( $program, $message ) {
-     $date = date( 'Y-m-d' );
+function log_prog($program, $message) {
+	$date = date('Y-m-d');
 
-     $logFile = fopen( SERVER_BASE . $program . '/' . $date . '.txt', 'a' ) or die( 'cannot open log ' . $program . ' file' );
-     fwrite( $logFile, get_now() . ' ' . $message . NL );
-     fclose( $logFile );
+	$logFile = fopen(SERVER_BASE . 'logbat/' . $date . '.txt', 'a') or die('cannot open log logbat folder' );
+	fwrite($logFile, get_now() . ' ' . $program . ' ' . $message . NL);
+	fclose($logFile);
 }
 
 function encrypt_hash( $String ) {
@@ -3336,7 +3336,7 @@ function get_mime( $ext ) {
 }
 
 function email_by_event($user_id, $contact_id, $template_name, $email_from, $additional_message='') {
-	$jky_user	= db_get_row('JKY_Users', 'id = ' . $user_id	);
+	$jky_user	= db_get_row('Users', 'id = ' . $user_id	);
 	$contact	= db_get_row('Contacts'	, 'id = ' . $contact_id	);
 	$to_name	= $contact['full_name'	];
 	$to_email	= $contact['email'		];
@@ -4020,4 +4020,13 @@ function poop($value, $label='', $file_name=NULL, $url_pattern=NULL) {
 		fclose($file_handler);
 	}	
 }
+
+function send_message($the_json) {
+	$context = new ZMQContext();
+	$socket = $context->getSocket(ZMQ::SOCKET_PUB);
+	$socket->bind("tcp://127.0.0.1:5551");
+	sleep(1);
+	$socket->send('NFE SEND  ' . $the_json);
+}
+
 ?>

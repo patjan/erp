@@ -1,0 +1,126 @@
+quotation	100967
+
+load	1000002126
+		1000002135
+		1000002134
+		
+		
+SELECT MAX(LoadOuts.checkout_at)
+  FROM Quotations
+  LEFT JOIN QuotLines		ON QuotLines.parent_id			= Quotations.id
+  LEFT JOIN QuotColors		ON QuotColors.parent_id			= QuotLines.id
+  LEFT JOIN LoadQuotations	ON LoadQuotations.quot_color_id	= QuotColors.id
+  LEFT JOIN LoadOuts		ON LoadOuts.id					= LoadQuotations.loadout_id
+ WHERE Quotations.id = 100967 
+ 
+ 
+ 	
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-10 10:44:28
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-13 08:12:15
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-16 10:19:26
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-16 10:20:34
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-17 10:11:11
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-19 09:13:11
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-23 11:00:45
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-24 10:01:39
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-13 08:01:19
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-11 09:44:55
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-11 09:47:04
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-10 10:44:28
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-13 08:12:15
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-16 10:19:26
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-16 10:20:34
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-17 10:11:11
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-19 09:13:11
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-23 11:00:45
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-24 10:01:39
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-13 08:01:19
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-11 09:44:55
+
+Edit Edit
+ Copy Copy
+ Delete Delete
+2015-11-11 09:47:04

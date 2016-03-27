@@ -8,6 +8,7 @@ JKY.display_restrictions = function() {
 		, table			: 'Restrictions'
 		, specific		: 'customer'
 		, specific_id	:  JKY.row.id
+		, parent_id		:  JKY.row.parent_id
 		, order_by		: 'Restrictions.issued_dt DESC'
 		};
 	JKY.ajax(false, my_data, JKY.generate_restrictions);
@@ -118,5 +119,5 @@ JKY.set_total_restrictions = function() {
 		var my_amount = $(this).val();
 		my_total_amount += parseFloat(my_amount);
 	});
-	JKY.set_html('jky-total-amount', JKY.set_decimal(my_total_amount, 2) + '&nbsp;');
+	JKY.set_html('jky-total-amount', JKY.set_decimal(my_total_amount) + '&nbsp;');
 }

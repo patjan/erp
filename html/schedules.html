@@ -1,0 +1,109 @@
+<style>
+#jky-printable			{font-size:90%; font-weight:normal;}
+.jky-print-label		{width:100px; text-align:right; font-weight:bold;}
+.jky-print-label1		{width: 80px; text-align:right; font-weight:bold;}
+.jky-print-label2		{width: 80px; text-align:right; font-weight:bold;}
+.jky-print-label3		{width:120px; text-align:right; font-weight:bold;}
+.jky-print-value		{width:200px;}
+.jky-print-head			{font-weight:bold;}
+#jky-print-number		{font-size:20px; font-weight:bold;}
+#jky-print-product-name	{text-transform:capitalize;}
+#jky-print-machine-name	{text-transform:capitalize;}
+#jky-print-has-break	{font-weight:bold;}
+</style>
+
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-status'	><span>   Status</span></th>
+			<th class='jky-td-date'		><span>Scheduled</span></th>
+			<th class='jky-td-number'	><span>  Shift 1</span></th>
+			<th class='jky-td-number'	><span>  Shift 2</span></th>
+			<th class='jky-td-number'	><span>  Shift 3</span></th>
+			<th class='jky-td-remarks'	><span>  Remarks</span></th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+</table>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'>
+		</div>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button disabled class='btn jky-status' type='button'><span id='jky-current-status'></span></button>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-data'>
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Status</span>:</div>
+				<select  id='jky-status' class='jky-form-status' /></select>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Scheduled</span>:</div>
+				<div id='jky-schedule-date' class='input-append date'>
+					<input class='jky-form-date' type='text' />
+					<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
+				</div>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Shift 1</span>:</div>
+				<input  id='jky-shift-1-hours'	class='jky-form-hours' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Shift 2</span>:</div>
+				<input  id='jky-shift-2-hours'	class='jky-form-hours' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Shift 3</span>:</div>
+				<input  id='jky-shift-3-hours'	class='jky-form-hours' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Remarks</span>:</div>
+				<input  id='jky-remarks'		class='jky-form-name' />
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+
+		<div>
+			<div class='jky-form-label'></div>
+			<div class='jky-form-buttons'>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<table class='table table-striped' >
+		<thead>
+			<tr>
+				<td class='jky-td-action'	></td>
+				<td class='center'		><span>Machine	</span></td>
+				<td class='center'		><span>Shift 1	</span></td>
+				<td class='center'		><span>Shift 2	</span></td>
+				<td class='center'		><span>Shift 3	</span></td>
+			</tr>
+		</thead>
+		<tbody id='jky-shifts-body'></tbody>
+	</table>
+
+	<div id='jky-form-footer'></div>
+</div>
+
+<div id='jky-body-loaded'></div>
+<div id='jky-printable'></div>
+
+<script src='js/schedules.js'			></script>
+<script src='js/JKY.Weaver.js'			></script>
+<script src='js/schedule_machines.js'	></script>
+<script src='js/schedule_shifts.js'		></script>

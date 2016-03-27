@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS Contacts
 , company_id		BIGINT				DEFAULT NULL
 , support_id		BIGINT				DEFAULT NULL
 , parent_id			BIGINT				DEFAULT NULL
+, transport_id		BIGINT				DEFAULT NULL
 , is_company		CHAR(3)				DEFAULT 'No'
 , is_customer		CHAR(3)				DEFAULT 'No'
 , is_supplier		CHAR(3)				DEFAULT 'No'
@@ -106,3 +107,5 @@ ALTER TABLE Contacts	ADD COLUMN nextel				VARCHAR(255)	DEFAULT NULL 	AFTER fax;
 ALTER TABLE Contacts	ADD COLUMN skype				VARCHAR(255)	DEFAULT NULL 	AFTER fax;
 
 ALTER TABLE Contacts	ADD COLUMN deduct_cone			CHAR(3)			DEFAULT 'Yes'	AFTER icms_exemption;
+
+ALTER TABLE Contacts		ADD COLUMN transport_id    			BIGINT   		DEFAULT NULL	AFTER parent_id;

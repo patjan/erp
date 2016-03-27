@@ -60,13 +60,21 @@
 				<input  disabled id='jky-nfe-id'  type='hidden' />
 			</div>
 			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>NFe Number</span>:</div>
+				<input  changeable id='jky-nfe-number' class='jky-form-ref' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>CNPJ</span>:</div>
+				<input  changeable id='jky-vendor-cnpj' class='jky-form-ref' />
+			</div>
+			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Vendor</span>:</div>
 				<input  changeable id='jky-vendor-name' class='jky-form-text' />
 				<input  changeable id='jky-vendor-id'	type='hidden' />
 			</div>
 			<div class='jky-form-line'>
-				<div class='jky-form-label'><span>NFe number</span>:</div>
-				<input  changeable id='jky-nfe-number' class='jky-form-number' />
+				<div class='jky-form-label'><span>Operation Name</span>:</div>
+				<input  changeable id='jky-operation-name' class='jky-form-text' />
 			</div>
 		</div>
 		<div class='jky-clear'></div>
@@ -92,15 +100,18 @@
 
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span> Invoice Pieces	</span>:</div><input  changeable	id='jky-invoice-pieces'		class='jky-form-integer'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>   Gross Weight	</span>:</div><input  changeable	id='jky-gross-weight'		class='jky-form-weight'		/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span> Invoice Weight	</span>:</div><input  changeable	id='jky-invoice-weight'		class='jky-form-weight'		/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span> Invoice Amount	</span>:</div><input  changeable	id='jky-invoice-amount'		class='jky-form-amount'		/></div>
 		</div>
 		<div class='jky-left'>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Received Pieces	</span>:</div><input  disabled		id='jky-received-pieces'	class='jky-form-integer'	/></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Package Type		</span>:</div><input  changeable	id='jky-package-type'		class='jky-form-string'		/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Received Weight	</span>:</div><input  disabled		id='jky-received-weight'	class='jky-form-weight'		/></div>
 			<div class='jky-form-line'><div class='jky-form-label'><span>Received Amount	</span>:</div><input  disabled		id='jky-received-amount'	class='jky-form-amount'		/></div>
 		</div>
 		<div class='jky-clear'></div>
+		<div id='jky-hide' class='jky-hide'></div>
 		<br>
 
 		<div>
@@ -119,6 +130,7 @@
 	<div id='jky-form-tabs' class='tabbable'>
 		<ul class='nav nav-tabs' id='cd-ul-tabs'>
 			<li	id='jky-tab-items'		class='active'	><a href='#jky-pane-items'		data-toggle='tab'><span>Items			</span></a></li>
+			<li id='jky-tab-bills'						><a href='#jky-pane-bills'		data-toggle='tab'><span>Bills			</span></a></li>
 			<li id='jky-tab-remarks'					><a href='#jky-pane-remarks'	data-toggle='tab'><span>Remarks			</span></a></li>
 		</ul>
 
@@ -128,22 +140,31 @@
 					<thead>
 						<tr>
 							<th class='jky-td-action'	></th>
-							<th class='jky-td-name-s'	><span>  Product<br>Code	</span></th>
+							<th class='jky-td-name-l'	><span>  Product<br>Code	</span></th>
 							<th class='jky-td-name-w'	><span>  Product<br>Name	</span></th>
 							<th class='jky-td-code'		><span>      NCM			</span></th>
+							<th class='jky-td-code'		><span>     CFOP			</span></th>
+							<th class='jky-td-code'		><span>     Unit			</span></th>
 							<th class='jky-td-weight'	><span>   Weight			</span></th>
-							<th class='jky-td-price'	><span>     Unit<br>Price	</span></th>
-							<th class='jky-td-price'	><span>    Total<br>Amount	</span></th>
+							<th class='jky-td-amount'	><span>     Unit<br>Price	</span></th>
+							<th class='jky-td-amount'	><span>    Total<br>Amount	</span></th>
 						</tr>
 					</thead>
 					<tbody id='jky-items-body'></tbody>
-					<tfoot>
+				</table>
+			</div>
+
+			<div id='jky-pane-bills' class='tab-pane'>
+				<table class='table table-striped' >
+					<thead>
 						<tr>
-							<td colspan='2'>
-								<button id='jky-items-add-new' class='btn btn-success' type='button'><span>Add New</span></button>
-							</td>
+							<th class='jky-td-action'	></th>
+							<th class='jky-td-number-l'	><span>     Bill<br>Number	</span></th>
+							<th class='jky-td-date'		><span> Maturity<br>Date	</span></th>
+							<th class='jky-td-amount'	><span>     Bill<br>Amount	</span></th>
 						</tr>
-					</tfoot>
+					</thead>
+					<tbody id='jky-bills-body'></tbody>
 				</table>
 			</div>
 

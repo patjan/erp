@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * pieces_loadout.js
+ * pieces_checkout.js
  */
 
 /**
@@ -13,7 +13,7 @@ JKY.start_program = function() {
 		{ object_name	: 'JKY.App'
 		, program_name	: 'Pieces Check Out'
 		, table_name	: 'LoadSets'
-		, specific		: ''
+		, specific		: 'load_open'		//	LoadOuts.status != 'Closed'
 		, select		: 'Active'
 		, filter		: ''
 		, sort_by		: 'LoadOut.checkout_at'
@@ -51,9 +51,6 @@ JKY.set_initial_values = function() {
 	$('#jky-app-select option').eq(1).prop('selected', true);
 	$('#jky-app-select').change();
 */
-	JKY.hide('jky-action-export');
-	JKY.show('jky-action-list'	);
-	JKY.show('jky-action-form'	);
 	JKY.process_clear_screen();
 };
 
@@ -96,6 +93,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-reserved-weight'		, 				 the_row.reserved_weight	);
 	JKY.set_value	('jky-checkout-pieces'		,				 the_row.checkout_pieces	);
 	JKY.set_value	('jky-checkout-weight'		, 				 the_row.checkout_weight	);
+	JKY.process_clear_screen();
 };
 
 JKY.set_all_piece_check = function(the_index) {
@@ -124,6 +122,7 @@ JKY.process_clear_screen = function() {
 	JKY.set_value('jky-input-barcode'	, '');
 	JKY.set_focus('jky-input-barcode');
 	JKY.sequence = 0;
+	JKY.Changes.reset();
 }
 
 JKY.process_input_barcode = function() {
@@ -161,7 +160,8 @@ JKY.process_barcode_success = function(response) {
 			}
 
 			var my_product_class = '';
-			if (my_row.product_name != JKY.row.product_name) {
+			if (my_row.product_name != JKY.row.product_name
+			&&  my_row.product_name != JKY.row.parent_name) {
 				my_product_class = 'jky-error ';
 				my_checkbox = '';
 			}
@@ -178,6 +178,7 @@ JKY.process_barcode_success = function(response) {
 				JKY.set_value('jky-reserved-weight', my_reserved_weight.toFixed(2));
 				JKY.set_value('jky-checkout-pieces', my_checkout_pieces);
 				JKY.set_value('jky-checkout-weight', my_checkout_weight.toFixed(2));
+				JKY.Changes.increment();
 			}
 
 			if (parseInt(JKY.get_value('jky-reserved-pieces')) < 0) {

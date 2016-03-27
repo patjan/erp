@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS Pieces
 , updated_at		DATETIME			DEFAULT NULL
 , status			VARCHAR(32)			DEFAULT 'Active'	# Active	> Check In
 															# Check In	> Check Out
+															# Check Out	> Received
 															# Check Out	> Return
 															# Return	> Check Out
 , order_id			BIGINT				DEFAULT NULL
@@ -14,11 +15,17 @@ CREATE TABLE IF NOT EXISTS Pieces
 , number_of_pieces	INT(11)				DEFAULT 0
 , produced_by		VARCHAR(32)			DEFAULT NULL		# machine | partner
 , product_name		VARCHAR(255)		DEFAULT NULL
+, product_id		BIGINT				DEFAULT NULL
+, ftp_id			BIGINT				DEFAULT NULL
 
 , revised_by		BIGINT				DEFAULT NULL
 , weighed_by		BIGINT				DEFAULT NULL
 , checkout_by		BIGINT				DEFAULT NULL
 , returned_by		BIGINT				DEFAULT NULL
+
+, weaver_by			BIGINT				DEFAULT NULL		# id do tecido
+, weaver_date		DATE				DEFAULT NULL		# data	yyyy-mm-dd
+, weaver_shift		CHAR(2)				DEFAULT NULL		# turno	1T 2T 3T
 
 , checkin_location	VARCHAR(32)			DEFAULT NULL
 , checkout_location	VARCHAR(32)			DEFAULT NULL		# dyer name
@@ -26,6 +33,7 @@ CREATE TABLE IF NOT EXISTS Pieces
 
 , checkin_at		DATETIME			DEFAULT NULL
 , checkout_at		DATETIME			DEFAULT NULL
+, received_at		DATETIME			DEFAULT NULL
 , returned_at		DATETIME			DEFAULT NULL
 
 , checkin_weight	DECIMAL(10,2)		DEFAULT 0
@@ -41,10 +49,9 @@ CREATE TABLE IF NOT EXISTS Pieces
 , KEY weighed	(weighed_by)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1
 ;
-INSERT Controls SET group_set='User Resources'		, status='Active', sequence=  50, name='Pieces', created_by=1, created_at=NOW();
-INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=  50, name='Pieces', created_by=1, created_at=NOW();
-
-INSERT Controls SET group_set='System Numbers', status='Active', sequence=  50, name='Next Piece Number', value='1000000001', created_by=1, created_at=NOW();
+INSERT NextIds	SET table_name='Pieces', next_id=1, id_size=9;
+INSERT Controls SET group_set='User Resources'		, status='Active', sequence=  50, name='Pieces', updated_by=1, updated_at=NOW();
+INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=  50, name='Pieces', updated_by=1, updated_at=NOW();
 
 ALTER TABLE Pieces			ADD COLUMN		product_name			VARCHAR(255)	DEFAULT NULL  AFTER produced_by;
 
@@ -66,6 +73,8 @@ ALTER TABLE Pieces			CHANGE	loadsale_id		load_quot_id	BIGINT			DEFAULT NULL;
 
 ALTER TABLE Pieces		ADD INDEX revised		(revised_by		);
 ALTER TABLE Pieces		ADD INDEX weighed		(weighed_by		);
+
+ALTER TABLE Pieces			ADD COLUMN product_id				BIGINT			DEFAULT NULL	AFTER product_name;
 
 
 SELECT order_id, COUNT(*) AS pieces_printed, labels_printed 
@@ -202,3 +211,39 @@ UPDATE Pieces
    SET status = 'History'
  WHERE status = 'Active'
 	;				
+
+UPDATE Pieces, Products
+   SET Pieces.product_id = Products.id
+ WHERE Pieces.product_name = Products.product_name
+   
+SELECT product_name, COUNT(*) AS count
+  FROM Pieces
+ WHERE product_id IS NULL
+ GROUP BY product_name
+HAVING count > 10
+   
+product_name											counter
+
+Malha Tricot Viscofit Ramado							152
+Meia Malha Mescla Algodao Tubular						20
+Meia Malha Mescla Banana Tubular						20
+Meia Malha Mescla Preto Tubular							526
+Meia Malha Ultra Fine Viscotec Devore Island Ramado		12
+Moleton Fleece Soft New Brinel Tubular					21
+Moleton Pa Felpado 250 Ramado							16
+Piquet 1.2 Mescla Cinza Tubular							139
+Piquet Mescla Cinza Tubular								51
+Punho 2x1 40 Stretch Pa Tubular							20
+Punho 2x1 70 Stretch Co Heavy Tubular					11
+Punho 2x1 70 Stretch Mescla Cinza New Over 50 Tubular	100
+Ribana Stretch Soft Co Tubular							14
+ 
+ 
+UPDATE Pieces, Orders
+   SET Pieces.ftp_id = Orders.ftp_id
+ WHERE Orders.id = Pieces.order_id
+   AND Pieces.ftp_id IS NULL
+     ;
+	 
+Order 200026	FTP 201058
+Order 200155	FTP 201126

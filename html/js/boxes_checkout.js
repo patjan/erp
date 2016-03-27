@@ -188,7 +188,7 @@ JKY.process_barcode_success = function(response) {
 				var my_checkout_weight = parseFloat(JKY.get_value('jky-checkout-weight')) + parseFloat(my_weight);
 				JKY.set_value('jky-reserved-boxes' , my_reserved_boxes );
 				JKY.set_value('jky-checkout-boxes' , my_checkout_boxes );
-				JKY.set_value('jky-checkout-weight', JKY.set_decimal(my_checkout_weight, 2));
+				JKY.set_value('jky-checkout-weight', JKY.set_decimal(my_checkout_weight));
 			}
 
 			if (parseInt(JKY.get_value('jky-reserved-boxes')) < 0) {

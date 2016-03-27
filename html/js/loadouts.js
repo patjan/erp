@@ -32,10 +32,11 @@ JKY.start_program = function() {
 JKY.set_all_events = function() {
 	$('#jky-requested-date		input').attr('data-format', JKY.Session.get_date_time());
 	$('#jky-checkout-date		input').attr('data-format', JKY.Session.get_date_time());
-	$('#jky-returned-date		input').attr('data-format', JKY.Session.get_date_time());
+//	$('#jky-returned-date		input').attr('data-format', JKY.Session.get_date_time());
 	$('#jky-requested-date'		).datetimepicker({language: JKY.Session.get_locale()});
 	$('#jky-checkout-date'		).datetimepicker({language: JKY.Session.get_locale()});
-	$('#jky-returned-date'		).datetimepicker({language: JKY.Session.get_locale()});
+//	$('#jky-returned-date'		).datetimepicker({language: JKY.Session.get_locale()});
+
 
 	$('#jky-action-close'		).click( function() {JKY.App.close_row(JKY.row.id);});
 	$('#jky-tab-quotations'		).click (function() {JKY.display_quotations		();});
@@ -126,10 +127,12 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_date	('jky-checkout-date'	, JKY.out_time	(the_row.checkout_at		));
 	JKY.set_value	('jky-checkout-pieces'	,				 the_row.checkout_pieces	);
 	JKY.set_value	('jky-checkout-weight'	,				 the_row.checkout_weight	);
-	JKY.set_date	('jky-returned-date'	, JKY.out_time	(the_row.returned_at		));
-	JKY.set_value	('jky-returned-pieces'	,				 the_row.returned_pieces	);
-	JKY.set_value	('jky-returned-weight'	,				 the_row.returned_weight	);
+//	JKY.set_date	('jky-returned-date'	, JKY.out_time	(the_row.returned_at		));
+//	JKY.set_value	('jky-returned-pieces'	,				 the_row.returned_pieces	);
+//	JKY.set_value	('jky-returned-weight'	,				 the_row.returned_weight	);
 	JKY.set_value	('jky-remarks'			, JKY.decode	(the_row.remarks			));
+	$('#jky-requested-date'	).find('span').css('visibility', 'hidden');
+
 	setTimeout(function() {JKY.process_dyeing_type($('#jky-dyeing-type'));}, 100);
 
 //	JKY.set_calculated_color();
@@ -157,9 +160,9 @@ JKY.set_add_new_row = function() {
 	JKY.set_date	('jky-checkout-date'	, '');
 	JKY.set_value	('jky-checkout-pieces'	, 0 );
 	JKY.set_value	('jky-checkout-weight'	, 0 );
-	JKY.set_date	('jky-returned-date'	, '');
-	JKY.set_value	('jky-returned-pieces'	, 0 );
-	JKY.set_value	('jky-returned-weight'	, 0 );
+//	JKY.set_date	('jky-returned-date'	, '');
+//	JKY.set_value	('jky-returned-pieces'	, 0 );
+//	JKY.set_value	('jky-returned-weight'	, 0 );
 
 	JKY.set_value	('jky-remarks'			, '');
 	setTimeout(function() {JKY.process_dyeing_type($('#jky-dyeing-type'));}, 100);
@@ -187,9 +190,9 @@ JKY.set_replace = function() {
 	JKY.set_date	('jky-checkout-date'	, '');
 	JKY.set_value	('jky-checkout-pieces'	, '');
 	JKY.set_value	('jky-checkout-weight'	, '');
-	JKY.set_date	('jky-returned-date'	, '');
-	JKY.set_value	('jky-returned-pieces'	, '');
-	JKY.set_value	('jky-returned-weight'	, '');
+//	JKY.set_date	('jky-returned-date'	, '');
+//	JKY.set_value	('jky-returned-pieces'	, '');
+//	JKY.set_value	('jky-returned-weight'	, '');
 
 	JKY.hide('jky-form-tabs');
 };
@@ -214,9 +217,9 @@ JKY.get_form_set = function() {
 		+       ', checkout_at=  ' +			JKY.inp_time ('jky-checkout-date'	)
 		+   ', checkout_pieces=  ' +			JKY.get_value('jky-checkout-pieces'	)
 		+   ', checkout_weight=  ' +			JKY.get_value('jky-checkout-weight'	)
-		+       ', returned_at=  ' +			JKY.inp_time ('jky-returned-date'	)
-		+   ', returned_pieces=  ' +			JKY.get_value('jky-returned-pieces'	)
-		+   ', returned_weight=  ' +			JKY.get_value('jky-returned-weight'	)
+//		+       ', returned_at=  ' +			JKY.inp_time ('jky-returned-date'	)
+//		+   ', returned_pieces=  ' +			JKY.get_value('jky-returned-pieces'	)
+//		+   ', returned_weight=  ' +			JKY.get_value('jky-returned-weight'	)
 		;
 	return my_set;
 };
@@ -229,7 +232,7 @@ JKY.get_replace_set = function() {
 	if (!JKY.is_empty(JKY.get_value('jky-status'			)))	{my_set +=            ', status=\''	+ JKY.get_value('jky-status'			) + '\'';}
 	if (!JKY.is_empty(JKY.inp_date ('jky-requested-date'	)))	{my_set +=      ', requested_at=  ' + JKY.inp_date ('jky-requested-date'	);}
 	if (!JKY.is_empty(JKY.inp_date ('jky-checkout-date'		)))	{my_set +=       ', checkout_at=  ' + JKY.inp_date ('jky-checkout-date'		);}
-	if (!JKY.is_empty(JKY.inp_date ('jky-returned-date'		)))	{my_set +=       ', returned_at=  ' + JKY.inp_date ('jky-returned-date'		);}
+//	if (!JKY.is_empty(JKY.inp_date ('jky-returned-date'		)))	{my_set +=       ', returned_at=  ' + JKY.inp_date ('jky-returned-date'		);}
 	return my_set;
 };
 

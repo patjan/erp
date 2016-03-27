@@ -8,13 +8,13 @@ CREATE TABLE IF NOT EXISTS LoadQuotations
 , loadout_id		BIGINT				DEFAULT NULL
 , quot_color_id		BIGINT				DEFAULT NULL
 , quoted_pieces		INT					DEFAULT 0
-, quoted_weight		DECIMAL(7,1)		DEFAULT 0
+, quoted_weight		DECIMAL(9,2)		DEFAULT 0
 , reserved_pieces	INT					DEFAULT 0
-, reserved_weight	DECIMAL(7,1)		DEFAULT 0
+, reserved_weight	DECIMAL(9,2)		DEFAULT 0
 , checkout_pieces	INT					DEFAULT 0
-, checkout_weight	DECIMAL(7,1)		DEFAULT 0
+, checkout_weight	DECIMAL(9,2)		DEFAULT 0
 , returned_pieces	INT					DEFAULT 0
-, returned_weight	DECIMAL(7,1)		DEFAULT 0
+, returned_weight	DECIMAL(9,2)		DEFAULT 0
 
 , PRIMARY KEY(id)
 , KEY loadout		(loadout_id)
@@ -28,6 +28,10 @@ INSERT Controls SET group_set='Ticket Categories'	, status='Active', sequence=50
 ALTER TABLE LoadQuotations		ADD		reserved_weight			DECIMAL(7,1)	DEFAULT 0		AFTER quoted_weight;
 ALTER TABLE LoadQuotations		ADD		reserved_pieces			INT				DEFAULT 0		AFTER quoted_weight;
 
+ALTER TABLE LoadQuotations	CHANGE	quoted_weight	quoted_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE LoadQuotations	CHANGE	reserved_weight	reserved_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE LoadQuotations	CHANGE	checkout_weight	checkout_weight	DECIMAL(9,2)	DEFAULT 0;
+ALTER TABLE LoadQuotations	CHANGE	returned_weight	returned_weight	DECIMAL(9,2)	DEFAULT 0;
 /* ------------------------------------------------------------------------- */
 
 SELECT LoadQuotations.*

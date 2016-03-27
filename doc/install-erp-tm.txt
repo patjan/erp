@@ -18,7 +18,6 @@
 	Edit Edit 	Copy Copy 	Delete Delete 	15 	FTP_Threads 	505 	9
 	Edit Edit 	Copy Copy 	Delete Delete 	16 	History 		62393 	9
 	Edit Edit 	Copy Copy 	Delete Delete 	17 	Incomings 		382 	5
-	Edit Edit 	Copy Copy 	Delete Delete 	18 	JKY_Users 		4 		5
 	Edit Edit 	Copy Copy 	Delete Delete 	40 	LoadOuts 		2 		9
 	Edit Edit 	Copy Copy 	Delete Delete 	41 	LoadSales 		3 		9
 	Edit Edit 	Copy Copy 	Delete Delete 	42 	LoadSets 		1 		9
@@ -44,6 +43,7 @@
 	Edit Edit 	Copy Copy 	Delete Delete 	37 	Threads 		360 	5
 	Edit Edit 	Copy Copy 	Delete Delete 	38 	Tickets 		78 		5
 	Edit Edit 	Copy Copy 	Delete Delete 	39 	Translations 	1 		5
+	Edit Edit 	Copy Copy 	Delete Delete 	18 	Users   		4 		5
 With selected: Check All / Uncheck All With selected:
 
 

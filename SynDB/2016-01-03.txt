@@ -1,0 +1,99 @@
+2016-01-03 14:17:45.910028 
+2016-01-03 14:17:45.910194 start of program
+2016-01-03 14:17:45.922113 select reference time: 2016-01-03 14:07:45
+2016-01-03 14:17:45.988808 OK, Server Host 9 connected.
+2016-01-03 14:17:45.989524 number of rows: 2
+2016-01-03 14:17:46.066606 error, Server Host 9 not connected: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'LEFT JOIN SaleLines ON SaleLines.id = SaleColors.parent_id WHERE SaleLines.paren' at line 1
+2016-01-03 14:17:46.067345 end of program
+2016-01-03 14:23:21.973250 
+2016-01-03 14:23:21.973455 start of program
+2016-01-03 14:23:21.985467 select reference time: 2016-01-03 14:13:21
+2016-01-03 14:23:22.050870 OK, Server Host 9 connected.
+2016-01-03 14:23:22.051611 number of rows: 2
+2016-01-03 14:26:01.475373 
+2016-01-03 14:26:01.475583 start of program
+2016-01-03 14:26:01.487503 select reference time: 2016-01-03 14:16:01
+2016-01-03 14:26:01.553026 OK, Server Host 9 connected.
+2016-01-03 14:26:01.553754 number of rows: 2
+2016-01-03 14:26:01.577683 DELETE FROM SaleColors: 1
+2016-01-03 14:26:01.578337 DELETE FROM SaleLines: 1
+2016-01-03 14:26:01.602995 DELETE FROM SaleOuts: 1
+2016-01-03 14:26:01.622951 DELETE FROM Receivables: 1
+2016-01-03 14:26:01.669109 DELETE FROM Sales: 1
+2016-01-03 14:26:01.669320 history recorded for: 800008
+2016-01-03 14:26:01.692661 DELETE FROM SaleColors: 1
+2016-01-03 14:26:01.693313 DELETE FROM SaleLines: 1
+2016-01-03 14:26:01.694005 DELETE FROM SaleOuts: 1
+2016-01-03 14:26:01.694666 DELETE FROM Receivables: 1
+2016-01-03 14:26:01.695217 DELETE FROM Sales: 1
+2016-01-03 14:26:01.695421 history recorded for: 800006
+2016-01-03 14:26:01.696160 end of program
+2016-01-03 14:28:07.614588 
+2016-01-03 14:28:07.614852 start of program
+2016-01-03 14:28:07.626822 select reference time: 2016-01-03 14:18:07
+2016-01-03 14:28:07.692302 OK, Server Host 9 connected.
+2016-01-03 14:28:07.693015 number of rows: 1
+2016-01-03 14:28:07.717771 end of program
+2016-01-03 14:28:56.725396 
+2016-01-03 14:28:56.725605 start of program
+2016-01-03 14:28:56.737564 select reference time: 2016-01-03 14:18:56
+2016-01-03 14:28:56.802458 OK, Server Host 9 connected.
+2016-01-03 14:28:56.802681 my_sql: SELECT id, status, updated_at  FROM Sales WHERE status IN ("Paid", "Closed")   AND updated_at <= "2016-01-03 14:18:56"
+2016-01-03 14:28:56.803365 number of rows: 1
+2016-01-03 14:28:56.827016 end of program
+2016-01-03 14:32:51.067800 
+2016-01-03 14:32:51.067998 start of program
+2016-01-03 14:32:51.080020 select reference time: 2016-01-03 14:22:51
+2016-01-03 14:32:51.144786 OK, Server Host 9 connected.
+2016-01-03 14:32:51.145041 my_sql: SELECT id, status, updated_at  FROM Sales WHERE status IN ("Paid", "Closed")   AND updated_at <= "2016-01-03 14:22:51"
+2016-01-03 14:32:51.145746 number of rows: 0
+2016-01-03 14:32:51.146485 end of program
+2016-01-03 14:33:44.152836 
+2016-01-03 14:33:44.153042 start of program
+2016-01-03 14:33:44.164905 select reference time: 2016-01-03 14:23:44
+2016-01-03 14:33:44.229226 OK, Server Host 9 connected.
+2016-01-03 14:33:44.229450 my_sql: SELECT id, status, updated_at  FROM Sales WHERE status IN ("Paid", "Closed")   AND updated_at <= "2016-01-03 14:23:44"
+2016-01-03 14:33:44.230116 number of rows: 0
+2016-01-03 14:33:44.230847 end of program
+2016-01-03 14:34:07.696183 
+2016-01-03 14:34:07.696388 start of program
+2016-01-03 14:34:07.708274 select reference time: 2016-01-03 14:24:07
+2016-01-03 14:34:07.773667 OK, Server Host 9 connected.
+2016-01-03 14:34:07.773915 my_sql: SELECT id, status, updated_at  FROM Sales WHERE status IN ("Paid", "Closed")   AND updated_at <= "2016-01-03 14:24:07"
+2016-01-03 14:34:07.774626 number of rows: 1
+2016-01-03 14:34:07.798904 end of program
+
+2016-01-03 15:00:08.134435 
+2016-01-03 15:00:08.134667 start of program
+2016-01-03 15:00:08.146853 number: 1, host: 179.228.162.186
+
+
+2016-01-03 15:01:53.141441 
+2016-01-03 15:01:53.141671 start of program
+2016-01-03 15:01:53.153645 select reference time: 2016-01-03 14:51:53
+2016-01-03 15:01:53.155508 error, Server Host 9 not connected: SQLSTATE[28000] [1045] Access denied for user 'db122232'@'localhost' (using password: YES)
+2016-01-03 15:01:53.155955 end of program
+2016-01-03 15:05:51.251061 
+2016-01-03 15:05:51.251274 start of program
+2016-01-03 15:05:51.263310 select reference time: 2016-01-03 14:55:51
+2016-01-03 15:10:54.954431 
+2016-01-03 15:10:54.954674 start of program
+2016-01-03 15:10:54.969141 running since started 2016-01-03 15:05:51.262751
+2016-01-03 15:10:54.969285 end of program
+
+2016-01-03 15:11:52.239707 
+2016-01-03 15:11:52.239888 start of program
+2016-01-03 15:11:52.251357 running since started 2016-01-03 15:05:51.262751
+2016-01-03 15:11:52.251491 end of program
+2016-01-03 15:12:31.768968 
+2016-01-03 15:12:31.769154 start of program
+2016-01-03 15:12:31.781109 select reference time: 2016-01-03 15:02:31
+2016-01-03 15:12:31.846397 OK, Server Host 9 connected.
+2016-01-03 15:12:31.847109 number of rows: 1
+2016-01-03 15:12:31.872095 end of program
+2016-01-03 15:15:52.114428 
+2016-01-03 15:15:52.114609 start of program
+2016-01-03 15:15:52.126686 select reference time: 2016-01-03 15:05:52
+2016-01-03 15:15:52.192334 OK, Server Host 9 connected.
+2016-01-03 15:15:52.193059 number of rows: 1
+2016-01-03 15:15:52.216209 end of program

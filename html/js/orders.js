@@ -419,7 +419,7 @@ JKY.generate_checkout = function() {
 
 	var my_data =
 		{ method	: 'generate'
-		, table		: 'CheckOut'
+		, table		: 'CheckOuts'
 		, id		:  JKY.row.id
 		}
 	JKY.ajax(false, my_data, JKY.refresh_form);

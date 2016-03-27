@@ -1,4 +1,6 @@
 <script src='js/JKY.Companies.js'	></script>
+<script src='js/JKY.HeadOffice.js'	></script>
+<script src='js/JKY.Transport.js'	></script>
 <script src='js/company_contacts.js'></script>
 <script src='js/restrictions.js'	></script>
 <script src='js/deliveries.js'		></script>
@@ -11,7 +13,8 @@ JKY.start_program = function() {
 }
 
 JKY.set_side_bar = function() {
-	JKY.set_side_active('jky-sales-customers');
+	JKY.set_side_active('jky-sales-customers'   );
+	JKY.set_side_active('jky-accounts-customers');
 	JKY.show('jky-tab-payments');
 	$('#jky-tab-payments' ).addClass('active');
 	$('#jky-pane-payments').addClass('active');

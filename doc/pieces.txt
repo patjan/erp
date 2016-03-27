@@ -1,0 +1,12 @@
+-6 hours to adjust date/time -6 * 60 * 60
+ 8 hours/shift
+1T = 00:00:00 - 07:59:59		6:00 - 14:00
+2T = 08:00:00 - 15:59:59		14	- 20
+3T = 16:00:00 - 23:59:59		20	- 6:00
+
+JKY.Utils.js	
+JKY.out_shift = function(the_time){      [position 611:1]	
+load_checkouts.js	
+		+ '<td class="jky-td-shift"		><input class="jky-pieces-checkin-date"						onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.out_shift	(the_row.checkin_at			)+ '" disabled	/></td>'      [position 43:138]	
+order_pieces.js	
+		+ '<td class="jky-td-shift"		><input class="jky-pieces-checkin-date"						onchange="JKY.update_pieces(this, ' + my_id + ')" value="' + JKY.out_shift	(the_row.checkin_at			)+ '" disabled	/></td>'      [position 65:138]	

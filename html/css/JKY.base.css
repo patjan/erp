@@ -18,7 +18,12 @@ select	{height:24px; margin-bottom:2px ; padding:2px; color:black; border-radius
 option	{padding:2px 6px;}
 input.span2			{width:80px; padding:2px 4px;}
 input.search-query	{height:26px; margin-bottom:10px; border-radius:3px;}
-input[type='checkbox']	{margin:0;}
+input[type='checkbox']	{margin:4px; width:20px; height:20px;}
+
+.clearfix		{*zoom:1;}
+.clearfix:before,
+.clearfix:after	{display:table; content:""; line-height:0;}
+.clearfix:after	{clear:both;}
 
 .btn			{padding:2px 10px;}
 .btn-mini		{padding:0px  6px;}
@@ -31,11 +36,13 @@ input[type='checkbox']	{margin:0;}
 .nav-tabs > .active > a:hover	{background-color:#E5E5E5;}
 .Xinput-append .add-on	{margin-left:-6px; padding:2px;}
 .input-append .add-on	{height:24px; padding:2px 1px 0 3px;}
-.modal					{overflow:initial; margin:0; left:none; right:0; width:auto;}
-.modal-header			{height:50px; background:#223870; color:white; border-bottom:1px solid #DDDDDD; border-radius:3px 3px 0 0; font-size:120%; font-weight:bold;}
-.modal-body				{background:white;}
-.modal-backdrop,
-.modal-backdrop.fade.in {opacity:0.5;}
+
+.modal			{overflow:initial; margin:0; left:none; right:0; width:auto;}
+.modal-header	{height:50px; background:#223870; color:white; border-bottom:1px solid #DDDDDD; border-radius:3px 3px 0 0; font-size:120%; font-weight:bold; padding: 15px 15px 4px;}
+.modal-body		{background:white; max-height:432px;}
+.modal-footer	{height:50px; padding:14px 15px; margin-bottom:0; text-align:right; background-color:#B8B8B8; border-top:0px; border-radius:0 0 3px 3px; box-shadow:inset 0 1px 0 #ffffff;}
+.modal-backdrop, .modal-backdrop.fade.in {opacity:0.5;}
+
 .datepicker-dropdown:after	{left:432px;}
 .input-append			{margin-bottom:4px;}
 .Xinput-append input		{height:14px;}
@@ -105,7 +112,6 @@ input[type='checkbox']	{margin:0;}
 #jky-side-bar			{width:200px; border-right:1px solid #AFAFB6; background:none repeat scroll 0 0 #F0EEEE; vertical-align:top; margin-left:0px;}
 
 #jky-side-header		{width:200px; padding:21px 0; text-align:center;}
-#jky-company-logo		{}
 #jky-collapsible-icon	{margin:12px 0;}
 
 #jky-side-sales			{height:auto; display:none;}
@@ -261,8 +267,10 @@ li .arrow span {
 
 #jky-reset			{top:200px; width:350px; margin:0 auto;}
 #jky-profile		{top:200px; width:450px;}
-#jky-profile input	{width:200px;}
-#jky-profile label	{float:left; width:180px; margin:5px 7px; text-align:right; font-weight:bold;}
+#jky-profile input	{width:200px; height:28px;}
+#jky-profile label	{float:left; width:180px; margin:4px 7px 8px; text-align:right; font-weight:bold;}
+
+#jky-customer input	{width:300px; height:24px; padding:5px;}
 
 #jky-form-tabs		{margin:10px 0; padding:10px 0; background-color:#FFFFFF;}
 #jky-form-tabs	th	{background:#FFFFFF; color:#4C4C4C;}
@@ -273,9 +281,12 @@ li .arrow span {
 .jky-mini				{width: 30px; height: 30px;}
 
 #jky-loading			{display:none; position:fixed; top:50%;left:50%; margin:-50px 0 0 -50px; overflow:auto; z-index:9999;}
-#jky-message			{display:none; position:absolute; top:auto; bottom:0; left:auto ; right:0; width:340px; z-index:2000;}
-#jky-trace				{display:none; position:absolute; top:auto; bottom:0; left:280px; right:0; width:340px; z-index:2000;}
-#jky-confirm			{display:none; position:absolute; top:auto; bottom:0; left:auto ; right:0; width:340px; z-index:2000;}
+#jky-message			{display:none; position:fixed; top:auto; bottom:0; left:auto ; right:0; width:340px; z-index:2000; border-radius:4px;}
+#jky-message .modal-body{border-radius:0 0 3px 3px;}
+#jky-trace				{display:none; position:fixed; top:auto; bottom:0; left:0	; right:0; width:340px; z-index:2000; border-radius:4px;}
+#jky-trace   .modal-body{border-radius:0 0 3px 3px;}
+#jky-confirm			{display:none; position:fixed; top:auto; bottom:0; left:auto ; right:0; width:340px; z-index:2000; border-radius:4px;}
+#jky-customer			{display:none; position:fixed; top:200px; left:200px; width:540px; z-index:3000; border-radius:4px;}
 #jky-new-layer			{}
 #jky-export				{display:none;}
 
@@ -448,15 +459,17 @@ li .arrow span {
 .jky-search-color-name		{width:319px; text-align:left   !important;}
 .jky-search-color-type		{width: 50px; text-align:center !important;}
 .jky-search-color-date		{width: 80px; text-align:center !important;}
-.jky-search-customer-name	{width:110px; text-align:left   !important;}
+.jky-search-counter			{width: 65px; text-align:right  !important;}
+.jky-search-customer-name	{width:270px; text-align:left   !important;}
 .jky-search-dyer-name		{width:270px; text-align:left   !important;}
 .jky-search-ftp-number		{width: 85px;}
 .jky-search-loadout-number	{width:100px;}
 .jky-search-machine-name	{width:270px; text-align:left   !important;}
 .jky-search-machine-type	{width: 50px; text-align:center !important;}
 .jky-search-machine-brand	{width: 50px; text-align:center !important;}
-.jky-search-nick-name		{width:120px; text-align:left   !important;}
-.jky-search-ordered-date	{width: 80px; text-align:center !important;}
+.jky-search-nick-name		{width:200px; text-align:left   !important;}
+.jky-search-nick-name-s		{width:120px; text-align:left   !important;}
+.jky-search-ordered-date	{width: 95px; text-align:center !important;}
 .jky-search-ordered-pieces	{width: 55px; text-align:right  !important;}
 .jky-search-product-id		{display:none;}
 .jky-search-product-name	{width:420px; text-align:left   !important;}
@@ -476,6 +489,12 @@ li .arrow span {
 .jky-search-quoted-weight	{width: 50px; text-align:right  !important;}
 .jky-search-delta-pieces	{visibility:hidden; width:0;}
 .jky-search-delta-weight	{visibility:hidden; width:0;}
+
+
+#jky-assigned-search-body td	{padding:0; vertical-align:middle;}
+.jky-search-assigned-pin	{width: 50px;}
+.jky-search-assigned-pin input	{width: 35px; margin:2px; padding:0 5px;}
+
 
 .jky-search-date			{text-align:center	!important;}
 .jky-search-boxes			{text-align:right	!important;}
@@ -521,6 +540,9 @@ li .arrow span {
 .jky-pieces-line input	{width: 60px; text-align:right;}
 #jky-pieces-location	{text-transform:uppercase;}
 
+#jky-payments-layer		{width:350px;}
+#jky-payments-layer td	{padding:10px 10px 6px;}
+
 #jky-division-layer		{width:400px;}
 .jky-division-line		{width:320px; text-align:right; font-weight:bold;}
 .jky-division-line label{width:170px; float:left; font-weight:bold; text-align:right;}
@@ -538,10 +560,11 @@ li .arrow span {
 
 #jky-form-tabs	textarea{width:570px; height:100px;}
 
+.jky-weaver-name		{margin: 0 10px;}
 .jky-color-name			{text-transform:capitalize;}
 .jky-dyer-name			{text-transform:capitalize;}
 .jky-alert				{color:#CC0000; font-weight:bold;}
-.jky-error				{color:#CC0000;}
+.jky-error				{color:#FFFFFF; background:#9E0404 !important;}
 .jky-line				{background-color:#FFFFFF; width:100%;}
 .jky-not-found			{color:  red; text-align:center !important;}
 .jky-ok					{color:#4C4C4C;}
@@ -553,7 +576,8 @@ li .arrow span {
 .jky-form-line			{clear:both; height:26px;}
 .jky-form-free			{clear:both;}
 .jky-form-label			{float:left; width:160px; margin:3px 7px; text-align:right; font-weight:bold;}
-.jky-form-label-s		{float:left; width:140px; margin:3px 7px; text-align:right; font-weight:bold;}
+.jky-form-label-s		{float:left; width:136px; margin:3px 7px; text-align:right; font-weight:bold;}
+.jky-form-label-m		{float:left; width: 40px; margin:3px 7px; text-align:right; font-weight:bold;}
 .jky-form-label-2		{float:left; width:160px; margin:3px 7px; text-align:right; font-weight:bold;}
 .jky-form-label-3		{float:left; width:160px; margin:3px 7px; text-align:right; font-weight:bold;}
 .jky-form-header		{float:left; 			  				  text-align:right; font-weight:bold; padding:2px 6px !important; margin-bottom:2px !important;}
@@ -569,7 +593,7 @@ li .arrow span {
 .jky-form-district		{width: 70px; text-align:center !important;}
 .jky-form-email			{width:300px; text-align:left   !important;}
 
-.jky-form-yes-no		{width:135px; float:left;}
+.jky-form-yes-no		{width:120px; float:left;}
 .jky-form-yes-no input	{margin:1px;}
 .jky-form-yes-no span	{padding:1px 10px 0 4px; vertical-align:middle;}
 
@@ -588,18 +612,22 @@ li .arrow span {
 .jky-form-price			{width: 80px; text-align:right  !important;}
 .jky-form-ref			{width:130px; text-align:left   !important;}
 .jky-form-sentence		{width:500px; text-align:left   !important;}
+.jky-form-shift			{width:300px; text-align:left   !important; display:inline-block;}
+.jky-form-shift input	{margin: 0 5px 2px 0 !important; }
+.jky-form-shift span	{padding-right: 20px; }
 .jky-form-state			{width: 50px; text-align:left   !important;}
 .jky-form-street		{width:140px; text-align:left   !important;}
 .jky-form-string		{width:200px; text-align:left   !important;}
 .jky-form-text			{width:570px; height:140px; margin-bottom:2px;}
 .jky-form-type			{width:132px; text-align:left   !important;}
 .jky-form-weight		{width: 80px; text-align:right  !important; margin-right:20px;}
-.jky-form-digit 		{width: 18px; text-align:right  !important;}
+.jky-form-digit 		{width: 18px; text-align:center !important;}
 .jky-form-width			{width: 80px; text-align:right  !important; margin-right:20px;}
 .jky-form-zip			{width: 80px; text-align:left   !important;}
 
 .jky-td-action				{width: 35px; text-align:center !important; padding:0 3px !important;}
 .jky-td-amount				{width: 85px; text-align:right  !important;}
+.jky-td-amount		input	{width: 80px; text-align:right  !important;}
 .jky-td-barcode				{width:105px; text-align:center !important;}
 .jky-td-barcode		input	{width:100px; text-align:center !important;}
 .jky-td-batch				{width: 80px;}
@@ -608,14 +636,16 @@ li .arrow span {
 .jky-td-checkbox			{width: 35px; text-align:center !important; padding:0 3px !important;}
 .jky-td-code				{width: 80px; text-align:center !important;}
 .jky-td-code		input	{width: 75px; text-align:center !important;}
-.jky-td-date				{width: 95px; text-align:center !important;}
-.jky-td-date		input	{width: 90px;}
+.jky-td-date				{width:115px; text-align:center !important;}
+.jky-td-date		input	{width:110px;}
 .jky-td-datetime			{width:135px; text-align:center !important;}
 .jky-td-datetime	input	{width:125px;}
 .jky-td-digit				{width: 50px; text-align:right  !important;}
 .jky-td-digit		input	{width: 30px; text-align:right  !important;}
 .jky-td-discount			{width: 65px; text-align:right	!important;}
 .jky-td-discount	input	{width: 60px; text-align:right	!important;}
+.jky-td-document			{width:100px; text-align:center	!important; padding:4px 10px !important;}
+.jky-td-document	input	{width: 95px;}
 .jky-td-email				{width:120px; text-align:left	!important;}
 .jky-td-extra				{width:100px; text-align:center	!important;}
 .jky-td-extra		input	{width:100px; text-align:center	!important;}
@@ -627,7 +657,7 @@ li .arrow span {
 .jky-td-input		input	{width: 35px; text-align:right	!important;}
 .jky-td-integer				{width: 65px; text-align:right  !important;}
 .jky-td-integer		input	{width: 60px; text-align:right	!important;}
-.jky-td-invoice				{width:100px; text_align:center	!important;}
+.jky-td-invoice				{width:100px; text-align:center	!important;}
 .jky-td-hours				{width: 65px; text-align:right  !important;}
 .jky-td-hours		input	{width: 60px; text-align:right	!important;}
 .jky-td-key-s				{width: 85px; text-align:center !important;}
@@ -665,19 +695,21 @@ li .arrow span {
 .jky-td-percent		input	{width: 60px; text-align:right	!important;}
 .jky-td-pieces				{width: 65px; text-align:right	!important;}
 .jky-td-pieces		input	{width: 60px; text-align:right	!important;}
-.jky-td-price				{width: 65px; text-align:right  !important;}
-.jky-td-price		input	{width: 60px; text-align:right  !important;}
+.jky-td-price				{width: 75px; text-align:right  !important;}
+.jky-td-price		input	{width: 70px; text-align:right  !important;}
 .jky-td-recipe				{width:100px;}
 .jky-td-ref					{width: 85px; text-align:center !important;}
 .jky-td-ref			input	{width: 80px;}
 .jky-td-remarks				{width:100px; color:red; }
 .jky-td-remarks		textarea{width:675px; height:70px;}
 .jky-td-radio				{width: 35px; text-align:center !important; padding:0 3px !important;}
+.jky-td-reversal			{width: 80px; text-align:center !important; padding:0 !important;}
 .jky-td-shift				{width:110px; text-align:center !important;}
 .jky-td-shift		input	{width:105px; text-align:center !important;}
 .jky-td-short				{width:105px; text-align:center !important;}
 .jky-td-short		input	{width:100px; text-align:center !important;}
-.jky-td-status				{width:100px; text-align:center !important;}
+.jky-td-status				{width: 80px; text-align:center !important;}
+.jky-td-status		input	{width: 85px; text-align:center;}
 .jky-td-state				{width: 45px; text-align:center !important;}
 .jky-td-state		input	{width: 40px; text-align:center !important;}
 .jky-td-supplier			{width:100px;}

@@ -1,0 +1,53 @@
+<style>
+.jky-print-box				{font-family:Arial; font-size:80%; border:1px solid black; padding:10px;}
+.jky-print-label			{font-weight:bold; text-align:right;}
+.jky-print-head				{font-weight:bold; margin-top:20px;}
+.jky-print-date				{width: 80px; text-align:center;}
+.jky-print-type				{width: 80px; text-align:center;}
+.jky-print-name				{width:400px; text-transform:capitalize;}
+.jky-print-number			{width: 80px; text-align:center;}
+.jky-print-amount			{width: 80px; text-align:right; }
+.jky-print-document			{width:120px; text-align:center;}
+</style>
+
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-name-s'	><span>  Transaction<br>Date	</span></th>
+			<th class='jky-td-name-s'	><span>  Transaction<br>Type	</span></th>
+			<th class='jky-td-name-s'	><span>	    Customer			</span></th>
+			<th class='jky-td-name-s'	><span>         Sale<br>Number	</span></th>
+			<th class='jky-td-name-s'	><span>           PO<br>Number	</span></th>
+			<th class='jky-td-phone'	><span>        Debit			</span></th>
+			<th class='jky-td-phone'	><span>       Credit			</span></th>
+			<th class='jky-td-reversal'	><span>     Reversal			</span></th>
+			<th class='jky-td-phone'	><span>     Document			</span></th>
+			<th class='jky-td-email'	><span>      Remarks			</span></th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+</table>
+
+<div id='jky-body-loaded'></div>
+<div id='jky-printable'  >
+	<table class='jky-print-box'>
+		<thead>
+			<tr>
+				<th class='jky-print-date'		><span>  Transaction<br>Date	</span></th>
+				<th class='jky-print-type'		><span>  Transaction<br>Type	</span></th>
+				<th class='jky-print-name'		><span>	    Customer			</span></th>
+				<th class='jky-print-number'	><span>         Sale<br>Number	</span></th>
+				<th class='jky-print-number'	><span>           PO<br>Number	</span></th>
+				<th class='jky-print-amount'	><span>        Debit			</span></th>
+				<th class='jky-print-amount'	><span>       Credit			</span></th>
+				<th class='jky-print-document'	><span>     Document			</span></th>
+			</tr>
+		</thead>
+	
+		<tbody id='jky-print-body'></tbody>
+	</table>
+</div>
+
+<script src='js/receivables.js'		></script>

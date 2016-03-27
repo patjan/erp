@@ -1,0 +1,124 @@
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-barcode'	><span>    Barcode				</span></th>
+			<th class='jky-td-date'		><span>   Updated<br>Date		</span></th>
+			<th class='jky-td-number-l'	><span>  Load Out<br>Number		</span></th>
+			<th class='jky-td-name-l'	><span>    Product				</span></th>
+			<th class='jky-td-name-s'	><span>      Color				</span></th>
+<!--		<th class='jky-td-name-s'	><span>   Produced<br>By		</span></th>	-->
+<!--		<th class='jky-td-fabrics'	><span>     Number<br>Fabrics	</span></th>	-->
+			<th class='jky-td-weight'	><span>   Check In<br>Weight	</span></th>
+			<th class='jky-td-weight'	><span>   Returned<br>Weight	</span></th>
+			<th class='jky-td-ref'		><span>   Check In<br>Location	</span></th>
+			<th class='jky-td-ref'		><span>  Check Out<br>Location	</span></th>
+			<th class='jky-td-remarks'	><span>    Remarks				</span></th>
+			<th class='jky-td-status'	><span>     Status				</span></th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+</table>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'>
+		</div>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button disabled class='btn jky-status' type='button'><span id='jky-current-status'></span></button>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-data'>
+		<div class='jky-left'>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Status</span>:</div>
+				<select  id='jky-status' class='jky-form-status' /></select>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Barcode</span>:</div>
+				<input  id='jky-barcode' class='jky-form-barcode jky-form-key' readonly />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Load Out Number</span>:</div>
+				<input  id='jky-loadout-number'		class='jky-form-number jky-form-key' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Product</span>:</div>
+				<input  id='jky-product-id'			type='hidden' />
+				<input  id='jky-product-name'		class='jky-form-name' readonly />
+				<a class='jky-purline-icon' href='#' onclick='JKY.Product.display(this)'><i class='icon-th'></i></a>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Color</span>:</div>
+				<input  id='jky-color-id'			type='hidden' />
+				<input  id='jky-color-name'			class='jky-form-name' readonly />
+				<a class='jky-purline-icon' href='#' onclick='JKY.Color.display(this)'><i class='icon-th'></i></a>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Order Number</span>:</div>
+				<input  id='jky-order-id'			type='hidden' />
+				<input  id='jky-order-number'		readonly />
+				<a class='jky-purline-icon' href='#' onclick='JKY.Order.display(this)'><i class='icon-th'></i></a>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Produced By</span>:</div>
+				<input  id='jky-produced-by'		class='jky-form-name' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Number Pieces</span>:</div>
+				<input  id='jky-number-of-pieces'	class='jky-form-pieces' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Check In Weight</span>:</div>
+				<input  id='jky-checkin-weight'		class='jky-form-weight' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Returned Weight</span>:</div>
+				<input  id='jky-returned-weight'	class='jky-form-weight' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Check In Location</span>:</div>
+				<input  id='jky-checkin-location'	class='jky-form-location' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Check Out Location</span>:</div>
+				<input  id='jky-checkout-location'	class='jky-form-location' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Qualities</span>:</div>
+				<input  id='jky-qualities'			class='jky-form-name' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Remarks</span>:</div>
+				<input  id='jky-remarks'			class='jky-form-name' />
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+		<br>
+
+		<div>
+			<div class='jky-form-label'></div>
+			<div class='jky-form-buttons'>
+				  <button id='jky-action-save'		class='btn btn-success' type='button' title="Click here to save all changes"		><span>Save		</span></button>
+			&nbsp;<button id='jky-action-copy'		class='btn btn-success' type='button' title="Click here to duplicate this record"	><span>Copy		</span></button>
+			&nbsp;<button id='jky-action-update'	class='btn btn-success' type='button' title="Click here to update selected records"	><span>Update	</span></button>
+			&nbsp;<button id='jky-action-delete'	class='btn'				type='button' title="Click here to delete this record"		><span>Delete	</span></button>
+			&nbsp;<button id='jky-action-cancel'	class='btn'				type='button' title="Click here to cancel any changes"		><span>Cancel	</span></button>
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-footer'></div>
+</div>
+
+<div id='jky-body-loaded'></div>
+
+<script src='js/fabrics.js'></script>
+<script src='js/JKY.Product.js'></script>
+<script src='js/JKY.Color.js'></script>
+<script src='js/JKY.Order.js'></script>

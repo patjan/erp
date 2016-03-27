@@ -36,16 +36,17 @@ JKY.generate_ftps = function(response) {
 
 JKY.generate_ftp = function(the_row) {
 	var my_id = the_row.id;
-	var my_trash	= (false) ? '<a onclick="JKY.delete_line(this, ' + my_id + ')"><i class="icon-trash"></i></a>' : '';
+	var my_print	= '<a onclick="JKY.print_ftp(' + my_id + ')"><i class="icon-print"></i></a>';
 	var my_checked	= the_row.is_current == 'Yes' ? ' checked="checked"' : '';
 	var my_current	= '<input name="jky-ftp-current" type="radio" onchange="JKY.set_current(this, ' + my_id + ')"' + my_checked + ' />';
 
 	var my_html  = ''
 		+ '<tr ftp_id=' + my_id + '>'
-		+ '<td class="jky-td-action"	>' + my_trash				+ '</td>'
+		+ '<td class="jky-td-action"	>' + my_print				+ '</td>'
 		+ '<td class="jky-td-radio"		>' + my_current				+ '</td>'
 		+ '<td class="jky-td-number"	>' + the_row.ftp_number		+ '</td>'
 		+ '<td class="jky-td-name-l"	>' + the_row.composition	+ '</td>'
+		+ '<td class="jky-td-name-l"	>' + the_row.nick_name		+ '</td>'
 		+ '<td class="jky-td-name-s"	>' + the_row.machine_name	+ '</td>'
 		+ '</tr>'
 		;

@@ -1,0 +1,40 @@
+Pat, sobre o caso que conversamos sobre nao sair cor nas etiquetas:
+Receituário numero 101417 (cinco cores)
+quotLines	1000003158 1000003159
+Barcas de exemplo: 1000003435 e % 1000003436
+Etiquetas : 2000078519  2000078445  2000078496 da barca %3436
+Etiquetas: 2000078065  2000079056  2000078512 da barca %3435
+
+
+receituario 101417
+peca 2000078433
+cor unico - lavar
+
+barca entrada - impresao de etiqueta
+
+
+
+loadout_id 1000003436
+load_quot_id	1000007199		quot_color_id	100000	5803	pieces		12
+					  7200								5806				12
+					  7204								5812				 2
+					  7209								5807				 8
+					  7210								5810				 2
+					  7211								5811				 2
+					  
+Moleton Fleece Padrao Felpado Ramado	product_id	100663	21
+				  
+				  
+peca 2000078433
+pedido	203560			  
+
+get_pieces
+
+SELECT Pieces.*, QuotColor.color_id, Color.color_name
+  FROM Pieces
+  LEFT JOIN LoadQuotations AS LoadQuote ON LoadQuote.id = Pieces.load_quot_id
+  LEFT JOIN QuotColors     AS QuotColor ON QuotColor.id = LoadQuote.quot_color_id
+  LEFT JOIN Colors     	   AS Color 	ON Color.id = QuotColor.color_id
+ WHERE Pieces.status = "Check Out"
+   AND LoadQuote.loadout_id = 1000003436
+ ORDER BY Pieces.barcode

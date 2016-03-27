@@ -4,6 +4,7 @@
 			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
 			<th class='jky-td-thumb'	><span>							</span></th>
 			<th class='jky-td-name-l'	><span>  Nick Name				</span></th>
+			<th class='jky-td-digit'	><span>        Pin				</span></th>
 			<th class='jky-td-phone'	><span>     Mobile				</span></th>
 			<th class='jky-td-email'	><span>      Email				</span></th>
 			<th class='jky-td-name-s'	><span>  User Name				</span></th>
@@ -41,9 +42,17 @@
 				<input id='jky-last-name' class='jky-form-name' placeholder='Last Name' />
 			</div>
 			<br>
+<!--
 			<div id='jky-company' class='jky-form-line'>
 				<div class='jky-form-label'><span>Company</span>:</div>
 				<select id='jky-contact-company'></select>
+			</div>
+-->
+			<div id='jky-company' class='jky-form-line'>
+				<div class='jky-form-label'><span>Company</span>:</div>
+				<input id='jky-company-id'								type='hidden'	value='' />
+				<input id='jky-company-name'	class='jky-form-name'	disabled		value='' />
+				<a href='#' onClick='JKY.Company.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Credit Limit</span>:</div>
@@ -73,6 +82,10 @@
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>User Role</span>:</div>
 				<select id='jky-user-role'></select>
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Shift</span>:</div>
+				<select id='jky-user-shift'></select>
 			</div>
 		</div>
 		<div id='jky-app-upload' class='jky-left'>
@@ -175,3 +188,4 @@
 <div id='jky-body-loaded'></div>
 <script src='js/contacts.js'></script>
 <script src='js/contact_users.js'></script>
+<script src='js/JKY.Company.js'></script>

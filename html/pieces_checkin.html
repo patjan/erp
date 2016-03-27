@@ -7,7 +7,7 @@
 			<th class='jky-td-name-s'	><span>Revised			</span></th>
 			<th class='jky-td-name-s'	><span>Weighed			</span></th>
 			<th class='jky-td-date'		><span>Check In Date	</span></th>
-			<th class='jky-td-location'	><span>Check In Location</span></th>
+			<th class='jky-td-ref'		><span>Check In Location</span></th>
 			<th class='jky-td-weight'	><span>Check In Weight	</span></th>
 			<th class='jky-td-name-l'	><span>Remarks			</span></th>
 		</tr>
@@ -25,6 +25,21 @@
 
 <div class='jky-left'>
 	<div id='jky-form-data'>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Weaver Date</span>:</div>
+			<div id='jky-weaver-date' class='input-append date'>
+				<input class='jky-form-date' type='text' />
+				<span class='add-on'><i data-time-icon='icon-time' data-date-icon='icon-calendar'></i></span>
+			</div>
+		</div>
+		<div class='jky-form-line'>
+			<div class='jky-form-label'><span>Weaver Shift</span>:</div>
+			<div id='jky-weaver-shift' class='jky-form-shift'>
+				<input type='radio' name='jky-weaver-shift' value='1T'><span>First</span>
+				<input type='radio' name='jky-weaver-shift' value='2T'><span>Second</span>
+				<input type='radio' name='jky-weaver-shift' value='3T'><span>Third</span>
+			</div>
+		</div>				
 		<div class='jky-form-line'>
 			<div class='jky-form-label'><span>Barcode</span>:</div>
 			<input  id='jky-barcode'			class='jky-form-barcode' placeholder='Barcode'	/>
@@ -79,6 +94,8 @@
 </div>
 <div class='jky-left'>
 	<div class='jky-form-display'>
+		<div class='jky-form-line'></div>
+		<div class='jky-form-line'></div>
 		<div class='jky-form-line'>
 			<div class='jky-form-label'><span>Product</span>:</div>
 			<input  id='jky-status'				type='hidden' />
@@ -100,7 +117,7 @@
 				<th class='jky-td-name-s'	><span>  Revised			</span></th>
 				<th class='jky-td-name-s'	><span>  Weighed			</span></th>
 				<th class='jky-td-date'		><span> Check In<br>Date	</span></th>
-				<th class='jky-td-location'	><span> Check In<br>Location</span></th>
+				<th class='jky-td-ref'		><span> Check In<br>Location</span></th>
 				<th class='jky-td-weight'	><span> Check In<br>Weight	</span></th>
 				<th class='jky-td-name-s'	><span>Qualities<br>Remarks	</span></th>
 			</tr>

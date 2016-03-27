@@ -401,7 +401,8 @@ JKY.approve_lines = function(the_id) {
 
 						my_html  += ''
 							+ '<table class="jky-approve-line"><tr>'
-							+ '<td class="jky-left"><span class="jky-bold">  Machine</span>: ' + JKY.fix_null(my_ftp.machine_name) + '</td>'
+//							+ '<td class="jky-left"><span class="jky-bold">  Machine</span>: ' + JKY.fix_null(my_ftp.machine_name) + '</td>'
+							+ '<td class="jky-left"><span class="jky-bold">  Machine</span>: ' + JKY.fix_null(my_row.machine_name) + '</td>'
 							+ '<td class="jky-left"><span class="jky-bold">    Width</span>: ' + my_product.width_dyer	+ '</td>'
 							+ '<td class="jky-left"><span class="jky-bold">Gramatura</span>: ' + my_product.weight_dyer	+ '</td>'
 							+ '</tr></table>'

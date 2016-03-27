@@ -1,7 +1,8 @@
 "use strict";
+var JKY = JKY || {};
 
 /**
- * controls.html
+ * controls
  */
 
 /**
@@ -29,7 +30,7 @@ JKY.start_program = function() {
  *	set all events (run only once per load)
  */
 JKY.set_all_events = function() {
-	$('#jky-action-save-remarks').click (function()	{JKY.save_remarks();});
+	$('#jky-action-save-remarks').click (function()		{JKY.save_remarks();});
 
 	JKY.set_side_active('jky-support-controls');
 };
@@ -49,10 +50,10 @@ JKY.set_initial_values = function() {
  */
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
-		+  '<td class="jky-td-input"	>' +				 the_row.sequence		+ '</td>'
-		+  '<td class="jky-td-normal"	>' +				 the_row.name			+ '</td>'
-		+  '<td class="jky-td-normal"	>' + JKY.fix_null	(the_row.value		)	+ '</td>'
-		+  '<td class="jky-td-status"	>' +				 the_row.status			+ '</td>'
+		+  '<td class="jky-td-input"	>' +				 the_row.sequence	+ '</td>'
+		+  '<td class="jky-td-normal"	>' +				 the_row.name		+ '</td>'
+		+  '<td class="jky-td-normal"	>' + JKY.fix_null	(the_row.value)		+ '</td>'
+		+  '<td class="jky-td-status"	>' +				 the_row.status		+ '</td>'
 		;
 	return my_html;
 };
@@ -68,7 +69,7 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-remarks'	, JKY.decode(the_row.remarks	));
 
 	var my_select = JKY.App.get_prop('select');
-	if (my_select == 'Root' && the_row.name == 'Root') {
+	if (my_select === 'Root' && the_row.name === 'Root') {
 		JKY.hide('jky-action-save'		);
 		JKY.hide('jky-action-copy'		);
 		JKY.hide('jky-action-delete'	);
@@ -85,11 +86,11 @@ JKY.set_form_row = function(the_row) {
  *	set add new row
  */
 JKY.set_add_new_row = function() {
-	JKY.set_option	('jky-status'			, 'Active');
-	JKY.set_value	('jky-sequence'			, 50);
-	JKY.set_value	('jky-name'				, '');
-	JKY.set_value	('jky-value'			, '');
-	JKY.set_value	('jky-remarks'			, '');
+	JKY.set_option	('jky-status'	, 'Active');
+	JKY.set_value	('jky-sequence'	, 50);
+	JKY.set_value	('jky-name'		, '');
+	JKY.set_value	('jky-value'	, '');
+	JKY.set_value	('jky-remarks'	, '');
 };
 
 /**
@@ -97,30 +98,31 @@ JKY.set_add_new_row = function() {
  */
 JKY.get_form_set = function() {
 	var my_set = ''
-		+       'group_set=\'' + JKY.App.get_prop	('select'				) + '\''
-		+        ', status=\'' + JKY.get_value		('jky-status'			) + '\''
-		+      ', sequence=  ' + JKY.get_value		('jky-sequence'			)
-		+          ', name=\'' + JKY.get_value		('jky-name'				) + '\''
-		+         ', value=\'' + JKY.get_value		('jky-value'			) + '\''
+		+       'group_set=\'' + JKY.App.get_prop	('select'		) + '\''
+		+        ', status=\'' + JKY.get_value		('jky-status'	) + '\''
+		+      ', sequence=  ' + JKY.get_value		('jky-sequence'	)
+		+          ', name=\'' + JKY.get_value		('jky-name'		) + '\''
+		+         ', value=\'' + JKY.get_value		('jky-value'	) + '\''
 		;
 	return my_set;
 };
 
 JKY.display_form = function() {
 	JKY.hide('jky-app-upload');
+	JKY.show('jky-action-copy');
 };
 
-JKY.process_insert = function(the_id) {
+JKY.process_insert = function() {
 	JKY.refresh_select();
 };
 
-JKY.process_update = function(the_id, the_row) {
+JKY.process_update = function() {
 	JKY.refresh_select();
 };
 
-JKY.process_delete = function(the_id, the_row) {
+JKY.process_delete = function() {
 	JKY.refresh_select();
-	if (JKY.row.group_set == 'Root') {
+	if (JKY.row.group_set === 'Root') {
 		var my_data =
 			{ method: 'delete_many'
 			, table :  JKY.App.get_prop('table_name')
@@ -132,7 +134,7 @@ JKY.process_delete = function(the_id, the_row) {
 
 JKY.refresh_select = function() {
 	var my_select = JKY.App.get_prop('select');
-	if (my_select == 'Root') {
+	if (my_select === 'Root') {
 		JKY.set_html('jky-app-select', JKY.set_controls('Root', my_select));
 	}
 };
@@ -146,11 +148,8 @@ JKY.save_remarks = function() {
 		, set	:  my_set
 		, where : 'Controls.id = ' + JKY.row.id
 		};
-	JKY.ajax(true, my_data, JKY.save_remarks_success);
+	JKY.ajax(true, my_data, function(the_response) {
+		JKY.display_message('Remarks saved, ' + the_response.message);
+		JKY.row = JKY.get_row('Controls', JKY.row.id);
+	});
 };
-
-JKY.save_remarks_success = function(response) {
-	JKY.display_message('Remarks saved, ' + response.message);
-	JKY.row = JKY.get_row('Controls', JKY.row.id);
-};
-

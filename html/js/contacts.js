@@ -1,4 +1,5 @@
 "use strict";
+var JKY = JKY || {};
 
 /**
  * contacts.js
@@ -63,8 +64,10 @@ JKY.set_all_events = function() {
  *	set initial values (run only once per load)
  */
 JKY.set_initial_values = function() {
-	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_company'), true));
+	JKY.append_file('jky-load-company'	, '../JKY.Search.Company.html'	);
+//	JKY.set_html('jky-contact-company'	, JKY.set_options_array('', JKY.get_companies('is_company'), true));
 	JKY.set_html('jky-user-role'		, JKY.set_controls('User Roles'		, ''	));
+	JKY.set_html('jky-user-shift'		, JKY.set_options(JKY.App.get_prop('select'), '1T', '2T', '3T'));
 	JKY.set_html('jky-state'			, JKY.set_configs ('States'			, '', ''));
 	JKY.set_html('jky-country'			, JKY.set_configs ('Countries'		, '', ''));
 	JKY.set_html('jky-app-select'		, JKY.set_controls('User Roles', JKY.App.get_prop('select'), 'All'));
@@ -73,6 +76,8 @@ JKY.set_initial_values = function() {
 //	select the last option type as default
 	$('#jky-app-select option:last-child').prop('selected', true);
 	$('#jky-app-select').change();
+
+	$('#jky-company-filter'	).KeyUpDelay(JKY.Company.load_data	);
 };
 
 /**
@@ -82,6 +87,7 @@ JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-td-thumb"	>'	+ JKY.fix_thumb	(the_row.photo, the_row.id, 'contacts') + '</td>'
 		+  '<td class="jky-td-name-l"	>'	+ JKY.fix_null	(the_row.nick_name	)	+ '</td>'
+		+  '<td class="jky-td-digit"	>'	+ JKY.fix_null	(the_row.pin		)	+ '</td>'
 		+  '<td class="jky-td-phone"	>'	+ JKY.fix_null	(the_row.mobile		)	+ '</td>'
 		+  '<td class="jky-td-email"	>'	+				 the_row.email			+ '</td>'
 		+  '<td class="jky-td-name-s"	>'	+ JKY.fix_null	(the_row.user_name	)	+ '</td>'
@@ -97,13 +103,15 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_value	('jky-nick-name'		, the_row.nick_name		);
 	JKY.set_value	('jky-first-name'		, the_row.first_name	);
 	JKY.set_value	('jky-last-name'		, the_row.last_name		);
-	JKY.set_option	('jky-contact-company'	, the_row.company_id	);
+//	JKY.set_option	('jky-contact-company'	, the_row.company_id	);
 	JKY.set_value	('jky-mobile'			, the_row.mobile		);
 	JKY.set_value	('jky-position'			, the_row.position		);
 	JKY.set_value	('jky-email'			, the_row.email			);
+//	JKY.set_option	('jky-company-id'		, the_row.company_id	);
 	JKY.set_option	('jky-company-name'		, the_row.company_name	);
 	JKY.set_value	('jky-user-name'		, the_row.user_name		);
 	JKY.set_value	('jky-user-role'		, the_row.user_role		);
+	JKY.set_value	('jky-user-shift'		, the_row.user_shift	);
 	JKY.set_value	('jky-street1'			, the_row.street1		);
 	JKY.set_value	('jky-st-number'		, the_row.st_number		);
 	JKY.set_value	('jky-st-cpl'			, the_row.st_cpl		);
@@ -114,6 +122,8 @@ JKY.set_form_row = function(the_row) {
 	JKY.set_option	('jky-country'			, the_row.country		);
 	JKY.set_value	('jky-district'			, the_row.district		);
 	JKY.set_value	('jky-credit-limit'		, the_row.credit_limit	);
+	JKY.set_value	('jky-company-id'		, the_row.company_id	);
+	JKY.set_value	('jky-company-name'		, the_row.company_name	);
 
 	JKY.Photo.set_row_id(the_row.id);
 	JKY.set_html('jky-download-photo'	, JKY.Photo.out_photo(the_row.photo));
@@ -139,9 +149,11 @@ JKY.set_add_new_row = function() {
 	JKY.set_value	('jky-mobile'			, '');
 	JKY.set_value	('jky-position'			, '');
 	JKY.set_value	('jky-email'			, '');
+	JKY.set_option	('jky-company-id'		, null);
 	JKY.set_option	('jky-company-name'		, '');
 	JKY.set_value	('jky-user-name'		, '');
 	JKY.set_value	('jky-user-role'		, 'Visitor');
+	JKY.set_value	('jky-user-shift'		, '');
 	JKY.set_value	('jky-street1'			, '');
 	JKY.set_value	('jky-st-number'		, '');
 	JKY.set_value	('jky-st-cpl'			, '');
@@ -158,11 +170,14 @@ JKY.set_add_new_row = function() {
  *	get form set
  */
 JKY.get_form_set = function() {
+	var my_company_id	= JKY.get_value('jky-company-id');
+		my_company_id	= (my_company_id	=== '') ? 'null' : my_company_id;
 	var my_set = ''
 		+       'nick_name=\'' + JKY.get_value	('jky-nick-name'		) + '\''
 		+    ', first_name=\'' + JKY.get_value	('jky-first-name'		) + '\''
 		+     ', last_name=\'' + JKY.get_value	('jky-last-name'		) + '\''
-		+    ', company_id=  ' + JKY.get_value	('jky-contact-company'	)
+//		+    ', company_id=  ' + JKY.get_value	('jky-contact-company'	)
+		+    ', company_id=  ' + my_company_id
 		+  ', credit_limit=  ' + JKY.get_value	('jky-credit-limit'		)
 		+         ', phone=\'' + JKY.get_value	('jky-phone'			) + '\''
 		+        ', mobile=\'' + JKY.get_value	('jky-mobile'			) + '\''

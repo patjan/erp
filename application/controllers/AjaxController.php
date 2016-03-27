@@ -6,7 +6,9 @@ require_once      'Combine.php';
 require_once     'Generate.php';
 require_once      'Invoice.php';
 require_once 'Print_Labels.php';
+require_once      'Refresh.php';
 require_once       'Return.php';
+require_once      'ShipOut.php';
 require_once         'Glob.php';
 require_once	  'XML_NFE.php';
 /**
@@ -67,8 +69,10 @@ public function indexAction() {
 		logger($controller);
 
 		$data = json_decode(get_request('data'), true);
+//poop($data, '$data');
 //		$method = get_request('method');
 		$method = $data['method'];
+//poop($method, 'switch ($method) 1');
 		switch ($method) {
 			case 'set_language'		: $this->set_language	(); return;
 			case 'get_language'		: $this->get_language	(); return;
@@ -79,8 +83,11 @@ public function indexAction() {
 			case 'get_controls' 	: $this->get_controls	($data); return;
 			case 'get_configs'		: $this->get_configs	($data); return;
 			case 'get_companies'	: $this->get_companies	($data); return;
+			case 'get_fabrics'		: $this->get_fabrics	($data); return;
+			case 'get_pieces'		: $this->get_pieces		($data); return;
 			case 'get_categories'	: $this->get_categories	(); return;
-			case 'get_loadout_by_color_id'	: $this->get_loadout_by_color_id($data); return;
+			case 'get_loadout_by_color_id'		: $this->get_loadout_by_color_id	($data); return;
+			case 'get_color_by_load_quot_id'	: $this->get_color_by_load_quot_id	($data); return;
 			case 'get_profile'		: $this->get_profile	(); return;
 			case 'get_contact'		: $this->get_contact	(); return;
 			case 'get_contact_id'	: $this->get_contact_id	(); return;
@@ -88,6 +95,8 @@ public function indexAction() {
 			case 'get_ftp_id'		: $this->get_ftp_id		($data); return;
 			case 'get_order_id'		: $this->get_order_id	($data); return;
 			case 'get_product_id'	: $this->get_product_id	($data); return;
+			case 'get_vendor_id'	: $this->get_vendor_id	($data); return;
+			case 'get_loadout_value': $this->get_loadout_value	($data); return;
 			case 'set_company_id'	: $this->set_company_id	(); return;
 			case 'get_company_id'	: $this->get_company_id	(); return;
 			case 'set_user_id'		: $this->set_user_id	(); return;
@@ -110,7 +119,7 @@ public function indexAction() {
 			case 'send_email'		: $this->send_email		(); return;
 			case 'send_receipt'		: $this->send_receipt	(); return;
 			case 'print_labels'		: echo json_encode(JKY_print_labels	($data)); return;
-			case 'refresh'			: $this->refresh		($data); return;
+			case 'refresh'			: echo json_encode(JKY_refresh		($data)); return;
 			case 'buscar_cep'		: echo json_encode(JKY_buscar_cep	($data)); return;
 			case 'glob'				: echo json_encode(JKY_glob			($data)); return;
 			case 'get_xml'			: echo json_encode(JKY_get_xml		($data)); return;
@@ -132,6 +141,7 @@ public function indexAction() {
 		}
 
 		if ($user_action != 'All') {
+//poop($method, 'switch ($method) 2');
 			switch ($method) {
 /*
 				case 'get_names'	: $required = 'View Insert Update Delete Export'; break;
@@ -149,6 +159,7 @@ public function indexAction() {
 				case 'get_id'		: $required = 'View'	; break;
 				case 'get_ids'		: $required = 'View'	; break;
 				case 'get_count'	: $required = 'View'	; break;
+				case 'get_max'		: $required = 'View'	; break;
 				case 'get_sum'		: $required = 'View'	; break;
 				case 'get_value'	: $required = 'View'	; break;
 				case 'get_row'		: $required = 'View'	; break;
@@ -175,8 +186,9 @@ public function indexAction() {
 				case 'generate'		: $required = 'Update'	; break;
 				case 'invoice'		: $required = 'Update'	; break;
 				case 'return'		: $required = 'Update'	; break;
+				case 'shipout'		: $required = 'Update'	; break;
 
-				default				: $this->echo_error('method name [' . $method . '] is undefined'); return;
+				default				: $this->echo_error('method name [' . $method . '] is undefined 2'); return;
 			}
 
 //			for undefined user_action
@@ -186,12 +198,13 @@ public function indexAction() {
 				return;
 			}
 		}
-
+//poop($method, 'switch ($method) 3');
 		switch ($method) {
 			case 'get_names'	: $this->get_names		($data); break;
 			case 'get_id'		: $this->get_id			($data); break;
 			case 'get_ids'		: $this->get_ids		($data); break;
 			case 'get_count'	: $this->get_count		($data); break;
+			case 'get_max'		: $this->get_max		($data); break;
 			case 'get_sum'		: $this->get_sum		($data); break;
 			case 'get_value'	: $this->get_value		($data); break;
 			case 'get_row'		: $this->get_row		($data); break;
@@ -218,11 +231,12 @@ public function indexAction() {
 			case 'generate'		: echo json_encode (JKY_generate($data)); return;
 			case 'invoice'		:					JKY_invoice	($data) ; return;
 			case 'return'		: echo json_encode (JKY_return	($data)); return;
+			case 'shipout'		: echo json_encode (JKY_shipout ($data)); return;
 
 			case 'set_amount'	: $this->set_amount		(); break;
 			case 'reset_amount'	: $this->reset_amount	(); break;
 
-			default				: $this->echo_error('method name [' . $method . '] is undefined'); return;
+			default				: $this->echo_error('method name [' . $method . '] is undefined 3'); return;
 		}
 
 //		process insert duplicate
@@ -252,7 +266,7 @@ private function get_security($table, $where) {
 
 	if ($table == 'Contacts') {
 		if (get_session('user_role') != 'Support') {
-			$my_where = '(JKY_Users.id IS NULL OR JKY_Users.user_role != "Support")';
+			$my_where = '(Users.id IS NULL OR Users.user_role != "Support")';
 			if ($where != '') {
 				return $my_where . ' AND ' . $where;
 			}else{
@@ -274,7 +288,7 @@ private function get_left_join($table) {
 	$my_left_join = '';
 	if ($table == 'Contacts') {
 		if (get_session('user_role') != 'Support') {
-			$my_left_join = '  LEFT JOIN   JKY_Users AS JKY_Users	ON  Contacts.id =  JKY_Users.contact_id';
+			$my_left_join = '  LEFT JOIN   Users AS Users	ON  Contacts.id =  Users.contact_id';
 		}
 	}
 	return $my_left_join;
@@ -369,7 +383,7 @@ private function get_id($data) {
 		$names = explode('=', $where);
 		if (trim($names[0]) == 'user_name') {
 			$sql= 'SELECT contact_id as id'
-				. '  FROM JKY_Users'
+				. '  FROM Users'
 				. ' WHERE ' . $where
 				;
 		}else{
@@ -381,7 +395,7 @@ private function get_id($data) {
 		}
 	}
 
-$this->log_sql( $table, 'get_id', $sql );
+//$this->log_sql( $table, 'get_id', $sql );
 	$db = Zend_Registry::get('db');
 	$return = array();
 	$return['status'] = 'ok';
@@ -432,6 +446,34 @@ private function get_count($data) {
 	$return = array();
 	$return['status'] = 'ok';
 	$return['count'	] = $db->fetchOne($sql);
+	echo json_encode($return);
+}
+
+/**
+ *	$.ajax({ method: get_max, table: x...x, field: x...x, where: x...x });
+ *
+ *	status: ok
+ *	count: 9...9
+ */
+private function get_max($data) {
+	$table = get_data($data, 'table');
+	$field = get_data($data, 'field');
+	$where = get_data($data, 'where');
+
+	$where = $this->get_security($table, $where);
+	if ($where != '') {
+		$where = ' WHERE ' . $where;
+	}
+
+	$sql= 'SELECT MAX(' . $field . ') AS max'
+		. '  FROM ' . $table
+		. $where
+		;
+$this->log_sql( null, 'get_max', $sql );
+	$db = Zend_Registry::get('db');
+	$return = array();
+	$return['status'] = 'ok';
+	$return['max'	] = $db->fetchOne($sql);
 	echo json_encode($return);
 }
 
@@ -516,7 +558,7 @@ private function get_row($data) {
 		. '  FROM ' . $table		. $this->set_left_joins($table)
 		. ' WHERE ' . $where
 		;
-$this->log_sql( $table, 'get_row', $sql );
+//$this->log_sql( $table, 'get_row', $sql );
 	$db  = Zend_Registry::get('db');
 	$row = $db->fetchRow($sql);
 
@@ -592,6 +634,7 @@ private function get_index($data) {
 	$table		= get_data($data, 'table'		);
 	$specific	= get_data($data, 'specific'	);
 	$specific_id= get_data($data, 'specific_id'	);
+	$parent_id	= get_data($data, 'parent_id'	);
 	$select		= get_data($data, 'select'		);
 	$filter		= get_data($data, 'filter'		);
 	$display	= get_data($data, 'display'		);
@@ -600,7 +643,7 @@ private function get_index($data) {
 	$where		= get_data($data, 'where'		);
 
 	if ($where == '') {
-		$where .= $this->set_specific($table, $specific, $specific_id);
+		$where .= $this->set_specific($table, $specific, $specific_id, $parent_id);
 		$where .= $this->set_select  ($table, $specific, $select);
 		if ($filter != '') {
 			$filters = explode(' and ', $filter);
@@ -617,6 +660,9 @@ private function get_index($data) {
 	}else{
 //		$limit = '';
 		$limit = ' LIMIT 250';
+	}
+	if ($table == 'LoadOuts' and $filter != '') {
+		$limit = '';
 	}
 
 	if ($where != '') {
@@ -729,7 +775,7 @@ private function get_index($data) {
 			. ',  Quotation.quotation_number	AS quotation_number'
 			. ',  Quotation.quoted_at			AS    quoted_at'
 			. ',    Product.product_name		AS   product_name'
-			. ',   Customer.nick_name			AS  customer_name'
+			. ',   Customer.full_name			AS  customer_name'
 			. '  FROM QuotColors'
 			. '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	QuotColors.color_id'
 			. '  LEFT JOIN    Contacts AS Dyer		ON		Dyer.id	=	QuotColors.dyer_id'
@@ -748,7 +794,7 @@ private function get_index($data) {
 			. ',    Product.product_name		AS   product_name'
 			. ',      Color.color_name			AS     color_name'
 			. ',  Quotation.quotation_number	AS quotation_number'
-			. ',   Customer.nick_name			AS  customer_name'
+			. ',   Customer.full_name			AS  customer_name'
 			. ',    Machine.name				AS   machine_name'
 			. ',  Quotation.id					AS quotation_id'
 			. ',  Quotation.status				AS           status'
@@ -863,7 +909,7 @@ private function get_index($data) {
 			;
 	}
 
-	$this->log_sql($table, 'get_index', $sql);
+//$this->log_sql($table, 'get_index', $sql);
     $db   = Zend_Registry::get('db');
     $rows = $db->fetchAll($sql);
 
@@ -889,6 +935,45 @@ private function get_index($data) {
 			$rows[$n]['assigned_pieces'] = $my_assigned['pieces'];
 			$rows[$n]['assigned_weight'] = $my_assigned['weight'];
 			$n++;
+		}
+	}else
+	if ($table == 'Families') {
+		$n = 0;
+		foreach($rows as $row) {
+			$sql = 'SELECT COUNT(*) as products'
+				 . '  FROM Products'
+				 . ' WHERE Products.family_id = ' . $row['id']
+				 ;
+			$my_counter = $db->fetchRow($sql);
+			$rows[$n]['products'] = $my_counter['products'];
+			$n++;
+		}
+	}else
+	if ($table == 'LoadOuts') {
+		if ($filter != '') {
+			$names = explode('=', $filter, 2);
+			if (count($names) == 2) {
+				$name  = strtolower(trim( $names[ 0 ]));
+				$value = '"%' . trim( $names[ 1 ]) . '%"';
+				if ($name == 'quote' or $name == 'romaneio') {
+					$selected = array();
+					for($n=0; $n<sizeof($rows); $n++) {
+						$sql = 'SELECT COUNT(*) AS count'
+							 . '  FROM LoadQuotations'
+							 . '  LEFT JOIN  QuotColors AS QuotColor	ON QuotColor.id	=	LoadQuotations.quot_color_id'
+							 . '  LEFT JOIN   QuotLines AS QuotLine		ON  QuotLine.id	=		 QuotColor.parent_id'
+							 . '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=		  QuotLine.parent_id'
+							 . ' WHERE LoadQuotations.loadout_id = ' . $rows[$n]['id']
+							 . '   AND Quotation.quotation_number LIKE ' . $value
+							 ;
+						$my_count = $db->fetchOne($sql);
+						if ($my_count > 0) {
+							$selected[] = $rows[$n];
+						}
+					}
+					$rows = $selected;
+				}
+			}
 		}
 	}else
 /*
@@ -1030,7 +1115,7 @@ private function get_index($data) {
 	echo json_encode($return);
 }
 
-private function set_specific($table, $specific, $specific_id) {
+private function set_specific($table, $specific, $specific_id, $parent_id) {
 	if ($specific == '')	return '';
 
 	if ($table == 'Addresses'		&& $specific == 'customer'		)	return ' AND      Addresses.parent_name		= "Contact"'
@@ -1042,12 +1127,18 @@ private function set_specific($table, $specific, $specific_id) {
 	if ($table == 'Contacts'		&& $specific == 'is_transport'	)	return ' AND       Contacts.is_transport	= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_company'	)	return ' AND       Contacts.is_company		= "Yes"';
 	if ($table == 'Contacts'		&& $specific == 'is_contact'	)	return ' AND       Contacts.is_company		= "No" ';
-	if ($table == 'Contacts'		&& $specific == 'is_salesman'	)	return ' AND       Contacts.is_company		= "No" ';
+	if ($table == 'Contacts'		&& $specific == 'is_salesman'	)	return ' AND       Contacts.company_id		= ' . $specific_id . ' AND Contacts.is_company = "No"';
+	if ($table == 'Contacts'		&& $specific == 'is_weaver'		)	return ' AND       Contacts.company_id		= ' . $specific_id . ' AND Users.user_role = "Weaver"';
 	if ($table == 'Contacts'		&& $specific == 'company'		)	return ' AND       Contacts.company_id		= ' . $specific_id;
 	if ($table == 'Batches'			&& $specific == 'incoming'		)	return ' AND        Batches.incoming_id		= ' . $specific_id;
 	if ($table == 'Batches'			&& $specific == 'thread'		)	return ' AND        Batches.thread_id		= ' . $specific_id;
 	if ($table == 'BatchOuts'		&& $specific == 'checkout'		)	return ' AND      BatchOuts.checkout_id		= ' . $specific_id;
 	if ($table == 'Boxes'			&& $specific == 'batch'			)	return ' AND          Boxes.batch_id		= ' . $specific_id;
+	if ($table == 'FabricCounters'	&& $specific == 'product'		)	return ' AND FabricCounters.product_id		= ' . $specific_id;
+	if ($table == 'Fabrics'			&& $specific == 'order'			)	return ' AND        Fabrics.order_id		= ' . $specific_id;
+	if ($table == 'Fabrics'			&& $specific == 'rejected'		)	return ' AND        Fabrics.qualities	   != "Boa"';
+	if ($table == 'Fabrics'			&& $specific == 'loadout'		)	return ' AND        Fabrics.loadout_id		= ' . $specific_id;
+	if ($table == 'Fabrics'			&& $specific == 'sale'			)	return ' AND       SaleOuts.sale_id			= ' . $specific_id;
 	if ($table == 'FTPs'			&& $specific == 'product'		)	return ' AND           FTPs.product_id		= ' . $specific_id;
 	if ($table == 'History'			&& $specific == 'parent_id'		)	return ' AND        History.parent_id		= ' . $specific_id;
 	if ($table == 'LoadIns'			&& $specific == 'receive'		)	return ' AND        LoadIns.receivedyer_id	= ' . $specific_id;
@@ -1055,14 +1146,19 @@ private function set_specific($table, $specific, $specific_id) {
 																			.  ' AND       LoadOuts.shipdyer_id		IS NULL';
 	if ($table == 'LoadOuts'		&& $specific == 'shipdyer'		)	return ' AND       LoadOuts.shipdyer_id		= ' . $specific_id;
 	if ($table == 'LoadQuotations'	&& $specific == 'loadout'		)	return ' AND LoadQuotations.loadout_id		= ' . $specific_id;
+	if ($table == 'LoadSets'		&& $specific == 'load_open'		)	return ' AND        LoadOut.status		   != "Closed"';
 	if ($table == 'Pieces'			&& $specific == 'order'			)	return ' AND         Pieces.order_id		= ' . $specific_id;
 	if ($table == 'Pieces'			&& $specific == 'rejected'		)	return ' AND         Pieces.qualities	   != "Boa"';
 	if ($table == 'Pieces'			&& $specific == 'loadout'		)	return ' AND       LoadQuot.loadout_id		= ' . $specific_id;
+	if ($table == 'ProdColors'		&& $specific == 'product'		)	return ' AND     ProdColors.product_id		= ' . $specific_id;
 	if ($table == 'ProdPrices'		&& $specific == 'product'		)	return ' AND     ProdPrices.product_id		= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'parent'		)	return ' AND  PurchaseLines.parent_id		= ' . $specific_id;
 	if ($table == 'PurchaseLines'	&& $specific == 'supplier'		)	return ' AND      Purchases.supplier_id		= ' . $specific_id;
+	if ($table == 'Receivables'		&& $specific == 'credit_amount'	)	return ' AND    Receivables.credit_amount	> 0';
 	if ($table == 'Recipes'			&& $specific == 'color'			)	return ' AND        Recipes.color_id		= ' . $specific_id;
-	if ($table == 'Restrictions'	&& $specific == 'customer'		)	return ' AND   Restrictions.customer_id		= ' . $specific_id;
+	if ($table == 'SaleOuts'		&& $specific == 'sale'			)	return ' AND       SaleOuts.sale_id			= ' . $specific_id;
+	if ($table == 'SaleOuts'		&& $specific == 'sale_open'		)	return ' AND		   Sale.status		   != "Closed"';
+	if ($table == 'Shifts'			&& $specific == 'schedule'		)	return ' AND		 Shifts.schedule_id     = ' . $specific_id;
 	if ($table == 'QuotColors'		&& $specific == 'color'			)	return ' AND     QuotColors.color_id		= ' . $specific_id;
 	if ($table == 'Translations'	&& $specific == 'locale'		)	return ' AND   Translations.locale			= "en_US"';
 
@@ -1091,6 +1187,17 @@ private function set_specific($table, $specific, $specific_id) {
 		}
 	}
 
+	if ($table == 'Restrictions') {
+		if ($specific == 'customer') {
+			if ($parent_id) {
+				return ' AND   Restrictions.customer_id		= ' . $specific_id
+					.  '  OR   Restrictions.customer_id		= ' . $parent_id;
+			}else{
+				return ' AND   Restrictions.customer_id		= ' . $specific_id;
+			}
+		}
+	}
+
 	return '';
 }
 
@@ -1113,13 +1220,14 @@ private function set_select($table, $specific, $select) {
 			case 'QuotProducts'		: return ' AND  Quotation		.status IN   ("Draft","Active")';
 			case 'ReceiveDyers'		: return ' AND  ReceiveDyers	.status IN   ("Draft","Active")';
 			case 'Sales'			: return ' AND  Sales			.status IN   ("Draft","Active")';
+			case 'SaleOuts'			: return ' AND  SaleOuts		.status IN   ("Draft","Active")';
 			case 'ShipDyers'		: return ' AND  ShipDyers		.status IN   ("Draft","Active")';
 			case 'TDyers'			: return ' AND  TDyers			.status IN   ("Draft","Active")';
 		}
 	}
 
 	if ($table == 'Contacts' && $specific == 'is_contact') {
-		return ' AND JKY_Users.user_role = "' . $select . '"';
+		return ' AND Users.user_role = "' . $select . '"';
 	}
 
 	switch($table) {
@@ -1134,6 +1242,8 @@ private function set_select($table, $specific, $select) {
 		case 'Contacts'			: return ' AND       Contacts.status		= "' . $select . '"';
 		case 'Controls'			: return ' AND       Controls.group_set		= "' . $select . '"';
 		case 'Cylinders'		: return ' AND      Cylinders.machine_id	=  ' . $select;
+//		case 'FabricCounters'	: return ' AND        Product.product_type	= "' . $select . '"';
+		case 'Fabrics'			: return ' AND        Fabrics.status		= "' . $select . '"';
 		case 'FTPs'				: return ' AND           FTPs.collection	= "' . $select . '"';
 		case 'FTP_Loads'		: return ' AND      FTP_Loads.parent_id		=  ' . $select;
 		case 'FTP_Threads'		: return ' AND    FTP_Threads.parent_id		=  ' . $select;
@@ -1152,6 +1262,7 @@ private function set_select($table, $specific, $select) {
 		case 'OSA_Colors'		: return ' AND     OSA_Colors.parent_id		=  ' . $select;
 		case 'Permissions'		: return ' AND    Permissions.user_role		= "' . $select . '"';
 		case 'Pieces'			: return ' AND         Pieces.status		= "' . $select . '"';
+		case 'ProdColors'		: return ' AND     ProdColors.status		= "' . $select . '"';
 		case 'ProdPrices'		: return ' AND     ProdPrices.status		= "' . $select . '"';
 		case 'Products'			: return ' AND       Products.product_type	= "' . $select . '"';
 		case 'Purchases'		: return ' AND      Purchases.status		= "' . $select . '"';
@@ -1160,11 +1271,14 @@ private function set_select($table, $specific, $select) {
 		case 'QuotLines'		: return ' AND      QuotLines.parent_id		=  ' . $select;
 		case 'QuotColors'		: return ' AND     QuotColors.parent_id		=  ' . $select;
 		case 'QuotProducts'		: return ' AND      Quotation.status		= "' . $select . '"';
+		case 'Receivables'		: return ' AND    Receivables.status		= "' . $select . '"';
 		case 'Sales'			: return ' AND          Sales.status		= "' . $select . '"';
 		case 'SaleLines'		: return ' AND      SaleLines.parent_id		=  ' . $select;
 		case 'SaleColors'		: return ' AND     SaleColors.parent_id		=  ' . $select;
 		case 'ReceiveDyers'		: return ' AND   ReceiveDyers.status		= "' . $select . '"';
 		case 'ReqLines'			: return ' AND       ReqLines.request_id	=  ' . $select;
+		case 'SaleOuts'			: return ' AND       SaleOuts.status		= "' . $select . '"';
+		case 'Schedules'		: return ' AND      Schedules.status		= "' . $select . '"';
 		case 'ShipDyers'		: return ' AND      ShipDyers.status		= "' . $select . '"';
 		case 'TDyers'			: return ' AND         TDyers.status		= "' . $select . '"';
 		case 'TDyerColors'		: return ' AND    TDyerColors.parent_id		=  ' . $select;
@@ -1187,10 +1301,23 @@ private function set_new_fields($table) {
 												. ',    Closed.full_name		AS    closed_name'
 												. ',  Assigned.full_name		AS  assigned_name';
 
-	if ($table == 'Contacts'		)	$return = ', JKY_Users.id				AS      user_id'
-												. ', JKY_Users.user_name		AS      user_name'
-												. ', JKY_Users.user_role		AS      user_role'
-												. ', Companies.full_name		AS   company_name';
+	if ($table == 'Contacts'		)	$return = ',	 Users.id				AS      user_id'
+												. ',	 Users.user_name		AS      user_name'
+												. ',	 Users.user_role		AS      user_role'
+												. ',	 Users.user_shift		AS      user_shift'
+												. ',	 Users.pin				AS		     pin'
+												. ', Companies.full_name		AS   company_name'
+												. ',    Parent.full_name		AS    parent_name'
+												. ', Transport.nick_name		AS transport_name';
+	if ($table == 'Fabrics'			)	$return = ',    Orderx.order_number		AS     order_number'
+												. ',   Revised.user_name		AS   revised_name'
+												. ',   Weighed.user_name		AS   weighed_name'
+												. ',    Parent.id				AS    parent_id'
+												. ',    Parent.product_name		AS    parent_name'
+												. ',    Family.family_name		AS    family_name';
+//	if ($table == 'FabricCounters'	)	$return = ',   Product.product_name		AS   product_name'
+//												. ',   Product.product_type		AS   product_type'
+//												. ',     Color.color_name		AS     color_name';
 	if ($table == 'FTPs'			)	$return = ',  Products.product_name		AS   product_name'
 												. ',  Machines.name				AS   machine_name';
 	if ($table == 'FTP_Loads'		)	$return = ',   Thread1.name				AS    thread_name_1'
@@ -1211,7 +1338,7 @@ private function set_new_fields($table) {
 												. ',      Dyer.nick_name		AS      dyer_name'
 												. ',     Color.id				AS     color_id'
 												. ',     Color.color_name		AS     color_name'
-												. ',  Customer.nick_name		AS  customer_name'
+												. ',  Customer.full_name		AS  customer_name'
 												. ',   Product.id				AS   product_id'
 												. ',   Product.product_name		AS   product_name';
 	if ($table == 'LoadSets'		)	$return = ',   LoadOut.loadout_number	AS   loadout_number'
@@ -1220,12 +1347,14 @@ private function set_new_fields($table) {
 												. ',      Dyer.nick_name		AS      dyer_name'
 												. ',     Color.color_name		AS     color_name'
 												. ', Quotation.quotation_number	AS quotation_number'
-												. ',  Customer.nick_name		AS  customer_name'
+												. ',  Customer.full_name		AS  customer_name'
 												. ',   Product.id				AS   product_id'
 												. ',   Product.product_name		AS   product_name'
+												. ',    Parent.id				AS    parent_id'
+												. ',    Parent.product_name		AS    parent_name'
 //												. ', QuotColor.quoted_pieces	AS      sold_pieces';
 							. ', CEIL(QuotColor.quoted_units / QuotLine.units)	AS      sold_pieces';
-	if ($table == 'Orders'			)	$return = ',  Customer.nick_name		AS  customer_name'
+	if ($table == 'Orders'			)	$return = ',  Customer.full_name		AS  customer_name'
 												. ',   Machine.name				AS   machine_name'
 												. ',   Partner.nick_name		AS   partner_name'
 												. ',     Color.color_name		AS     color_name'
@@ -1236,7 +1365,7 @@ private function set_new_fields($table) {
 												. ',    Thread.name				AS    thread_name'
 												. ',   BatchIn.batch			AS     batch_code';
 	if ($table == 'OSAs'			)	$return = ',  Salesman.full_name		AS  salesman_name'
-												. ',  Customer.nick_name		AS  customer_name'
+												. ',  Customer.full_name		AS  customer_name'
 												. ', Quotation.quotation_number	AS quotation_number'
 												. ', Quotation.produce_from_date	AS produce_from_date'
 												. ', Quotation.produce_to_date		AS produce_to_date';
@@ -1249,10 +1378,14 @@ private function set_new_fields($table) {
 												. ',     Color.color_type		AS     color_type'
 												. ',       FTP.ftp_number		AS       ftp_number';
 	if ($table == 'Pieces'			)	$return = ',    Orderx.order_number		AS     order_number'
-												. ',   Revised.nick_name		AS   revised_name'
-												. ',   Weighed.nick_name		AS   weighed_name'
+												. ',   Revised.user_name		AS   revised_name'
+												. ',   Weighed.user_name		AS   weighed_name'
+												. ',    Parent.id				AS    parent_id'
+												. ',    Parent.product_name		AS    parent_name'
 												. ',   LoadOut.loadout_number   AS   loadout_number';
-	if ($table == 'Products'		)	$return = ',    Parent.product_name		AS    parent_name';
+	if ($table == 'Products'		)	$return = ',    Parent.product_name		AS    parent_name'
+												. ',    Family.family_name		AS    family_name';
+	if ($table == 'ProdColors'		)	$return = ',     Color.color_name		AS     color_name';
 	if ($table == 'Purchases'		)	$return = ',  Supplier.nick_name		AS  supplier_name';
 	if ($table == 'PurchaseLines'	)	$return = ', Purchases.purchase_number	AS  purchase_number'
 												. ', Purchases.ordered_at		AS   ordered_at'
@@ -1262,8 +1395,8 @@ private function set_new_fields($table) {
 												. ', Incomings.received_at		AS  received_at'
 												. ',  Supplier.nick_name		AS  supplier_name';
 	if ($table == 'Quotations'		)	$return = ',  Salesman.full_name		AS  salesman_name'
-												. ',  Customer.nick_name		AS  customer_name'
-												. ',   Contact.nick_name		AS   contact_name'
+												. ',  Customer.full_name		AS  customer_name'
+												. ',   Contact.full_name		AS   contact_name'
 												. ',   Contact.mobile			AS   contact_mobile';
 //												. ',   Machine.name				AS   machine_name'
 //												. ',      Dyer.nick_name		AS      dyer_name'
@@ -1284,26 +1417,35 @@ private function set_new_fields($table) {
 												. ', Quotation.quoted_at		AS    quoted_at'
 												. ',   Product.product_name		AS   product_name'
 												. ',   Product.product_type		AS   product_type'
-												. ',  Customer.nick_name		AS  customer_name';
+												. ',  Customer.full_name		AS  customer_name';
+	if ($table == 'Receivables'		)	$return = ',  Customer.full_name		AS  customer_name'
+												. ',      Sale.sale_number		AS      sale_number'
+												. ',      Sale.po_number		AS        po_number';
 	if ($table == 'Sales'			)	$return = ',  Salesman.full_name		AS   salesman_name'
-												. ',  Customer.nick_name		AS  customer_name'
-												. ',   Contact.nick_name		AS   contact_name'
+												. ',  Customer.full_name		AS  customer_name'
+												. ',   Contact.full_name		AS   contact_name'
 												. ',   Contact.mobile			AS   contact_mobile'
+												. ', Transport.nick_name		AS transport_name'
 												. ', Quotation.quotation_number	AS quotation_number';
 	if ($table == 'SaleLines'		)	$return = ',   Product.product_name		AS   product_name'
 												. ',   Machine.name				AS   machine_name';
-	if ($table == 'SaleColors'		)	$return = ',SaleColors.quoted_units		AS    quoted_units'
+	if ($table == 'SaleColors'		)	$return = ',SaleColors.sold_pieces		AS      sold_pieces'
 												. ',     Color.color_name		AS     color_name'
 												. ',     Color.color_type		AS     color_type'
-												. ',      Dyer.nick_name		AS      dyer_name'
 												. ',  SaleLine.product_id		AS	 product_id'
 												. ',  SaleLine.machine_id		AS	 machine_id'
 												. ',  SaleLine.peso				AS			 peso'
-												. ',  SaleLine.units			AS			 units'
 												. ',      Sale.sale_number		AS      sale_number'
 												. ',      Sale.sold_date		AS      sold_date'
 												. ',   Product.product_name		AS   product_name'
-												. ',  Customer.nick_name		AS  customer_name';
+												. ',  Customer.full_name		AS  customer_name';
+	if ($table == 'SaleOuts'		)	$return = ',   Product.product_name		AS   product_name'
+												. ',    Family.family_name		AS    family_name'
+												. ',     Color.color_name		AS     color_name'
+												. ',  Assigned.nick_name		AS  assigned_name'
+												. ',  Customer.full_name		AS  customer_name';
+	if ($table == 'Shifts'			)	$return = ',    Weaver.nick_name		AS    weaver_name'
+												. ',   Machine.name				AS   machine_name';
 	if ($table == 'ShipDyers'		)	$return = ',      Dyer.nick_name		AS      dyer_name'
 												. ', Transport.nick_name		AS transport_name';
 	if ($table == 'Incomings'		)	$return = ',  Supplier.nick_name		AS  supplier_name';
@@ -1363,7 +1505,7 @@ private function set_new_fields($table) {
 												. ',      Dyer.nick_name		AS      dyer_name';
 	if ($table == 'ReceiveDyers'	)	$return = ',      Dyer.nick_name		AS      dyer_name';
 	if ($table == 'TDyers'			)	$return = ',    Orderx.order_number		AS	   order_number'
-												. ',  Customer.nick_name		AS  customer_name'
+												. ',  Customer.full_name		AS  customer_name'
 												. ',      Dyer.nick_name		AS      dyer_name';
 	if ($table == 'TDyerThreads'	)	$return = ',    Thread.name				AS    thread_name'
 												. ',   BatchIn.batch			AS   batchin_code';
@@ -1392,30 +1534,41 @@ private function set_new_fields($table) {
 
 private function set_left_joins($table) {
 	$return = '';
-	if ($table == 'Categories'		)	$return = '  LEFT JOIN  Categories AS Parent	ON    Parent.id	=	   Categories.parent_id';
-	if ($table == 'Companies'		)	$return = '  LEFT JOIN    Contacts AS Contact	ON   Contact.id	=		Companies.contact_id';
-	if ($table == 'Templates'		)	$return = '  LEFT JOIN   JKY_Users AS User		ON      User.id =		Templates.updated_by'
-												. '  LEFT JOIN    Contacts AS Updated	ON   Updated.id	=		     User.contact_id';
-	if ($table == 'Tickets'			)	$return = '  LEFT JOIN   JKY_Users AS User_Op	ON   User_Op.id	=		  Tickets.opened_by'
-												. '  LEFT JOIN   JKY_Users AS User_As	ON   User_As.id	=		  Tickets.assigned_to'
-												. '  LEFT JOIN   JKY_Users AS User_Cl	ON   User_Cl.id	=		  Tickets.closed_by'
-												. '  LEFT JOIN    Contacts AS Opened	ON    Opened.id	=		  User_Op.contact_id'
-												. '  LEFT JOIN    Contacts AS Assigned	ON  Assigned.id	=		  User_As.contact_id'
-												. '  LEFT JOIN    Contacts AS Closed 	ON    Closed.id	=		  User_Cl.contact_id';
+	if ($table == 'Categories'		)	$return = '  LEFT JOIN  Categories AS Parent	ON    Parent.id	=	    Categories.parent_id';
+	if ($table == 'Companies'		)	$return = '  LEFT JOIN    Contacts AS Contact	ON   Contact.id	=		 Companies.contact_id';
+	if ($table == 'Templates'		)	$return = '  LEFT JOIN		 Users AS User		ON      User.id =		 Templates.updated_by'
+												. '  LEFT JOIN    Contacts AS Updated	ON   Updated.id	=		      User.contact_id';
+	if ($table == 'Tickets'			)	$return = '  LEFT JOIN		 Users AS User_Op	ON   User_Op.id	=		   Tickets.opened_by'
+												. '  LEFT JOIN		 Users AS User_As	ON   User_As.id	=		   Tickets.assigned_to'
+												. '  LEFT JOIN		 Users AS User_Cl	ON   User_Cl.id	=		   Tickets.closed_by'
+												. '  LEFT JOIN    Contacts AS Opened	ON    Opened.id	=		   User_Op.contact_id'
+												. '  LEFT JOIN    Contacts AS Assigned	ON  Assigned.id	=		   User_As.contact_id'
+												. '  LEFT JOIN    Contacts AS Closed 	ON    Closed.id	=		   User_Cl.contact_id';
 
-	if ($table == 'Contacts'		)	$return = '  LEFT JOIN   JKY_Users AS JKY_Users	ON  Contacts.id	=		JKY_Users.contact_id'
-//												. '  LEFT JOIN    Contacts AS Companies	ON Companies.id	=		 Contacts.company_id AND Companies.is_company = "Yes"';
-												. '  LEFT JOIN    Contacts AS Companies	ON Companies.id	=		 Contacts.company_id';
-	if ($table == 'FTPs'			)	$return = '  LEFT JOIN    Products				ON  Products.id	=			 FTPs.product_id'
-												. '  LEFT JOIN    Machines				ON  Machines.id	=			 FTPs.machine_id';
-	if ($table == 'FTP_Loads'		)	$return = '  LEFT JOIN     Threads AS Thread1	ON   Thread1.id	=	    FTP_Loads.thread_id_1'
-												. '  LEFT JOIN     Threads AS Thread2	ON   Thread2.id	=	    FTP_Loads.thread_id_2'
-												. '  LEFT JOIN     Threads AS Thread3	ON   Thread3.id	=		FTP_Loads.thread_id_3'
-												. '  LEFT JOIN     Threads AS Thread4	ON   Thread4.id	=		FTP_Loads.thread_id_4';
-	if ($table == 'FTP_Threads'		)	$return = '  LEFT JOIN     Threads  			ON   Threads.id	=	  FTP_Threads.thread_id'
-												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=	  FTP_Threads.supplier_id';
+	if ($table == 'Contacts'		)	$return = '  LEFT JOIN		 Users AS Users	ON  Contacts.id	=		 Users.contact_id'
+//												. '  LEFT JOIN    Contacts AS Companies	ON Companies.id	=		  Contacts.company_id AND Companies.is_company = "Yes"';
+												. '  LEFT JOIN    Contacts AS Companies	ON Companies.id	=		  Contacts.company_id'
+												. '  LEFT JOIN    Contacts AS Parent	ON    Parent.id =		  Contacts.parent_id'
+												. '  LEFT JOIN    Contacts AS Transport	ON Transport.id	=		  Contacts.transport_id';
+	if ($table == 'Fabrics'			)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		   Fabrics.order_id'
+												. '  LEFT JOIN    SaleOuts				ON  SaleOuts.id	=		   Fabrics.saleout_id'
+												. '  LEFT JOIN		 Users AS Revised	ON   Revised.id	=		   Fabrics.revised_by'
+												. '  LEFT JOIN		 Users AS Weighed	ON   Weighed.id	=		   Fabrics.weighed_by'
+												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		   Fabrics.product_id'
+												. '  LEFT JOIN    Products AS Parent	ON    Parent.id	=		   Product.parent_id'
+												. '  LEFT JOIN    Families AS Family	ON    Family.id	=		   Product.family_id';
+//	if ($table == 'FabricCounters'	)	$return = '  LEFT JOIN    Products AS Product	ON   Product.id	=	FabricCounters.product_id'
+//												. '  LEFT JOIN      Colors AS Color     ON     Color.id =   FabricCounters.color_id';
+	if ($table == 'FTPs'			)	$return = '  LEFT JOIN    Products				ON  Products.id	=			  FTPs.product_id'
+												. '  LEFT JOIN    Machines				ON  Machines.id	=			  FTPs.machine_id';
+	if ($table == 'FTP_Loads'		)	$return = '  LEFT JOIN     Threads AS Thread1	ON   Thread1.id	=	     FTP_Loads.thread_id_1'
+												. '  LEFT JOIN     Threads AS Thread2	ON   Thread2.id	=	     FTP_Loads.thread_id_2'
+												. '  LEFT JOIN     Threads AS Thread3	ON   Thread3.id	=		 FTP_Loads.thread_id_3'
+												. '  LEFT JOIN     Threads AS Thread4	ON   Thread4.id	=		 FTP_Loads.thread_id_4';
+	if ($table == 'FTP_Threads'		)	$return = '  LEFT JOIN     Threads  			ON   Threads.id	=	   FTP_Threads.thread_id'
+												. '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=	   FTP_Threads.supplier_id';
 	if ($table == 'FTP_Sets'		)	$return = '  LEFT JOIN     Configs  			ON   Configs.id	=		  FTP_Sets.setting_id';
-	if ($table == 'History'			)	$return = '  LEFT JOIN   JKY_Users AS Users		ON     Users.id =		   History.updated_by'
+	if ($table == 'History'			)	$return = '  LEFT JOIN		 Users AS Users		ON     Users.id =		   History.updated_by'
 												. '  LEFT JOIN    Contacts				ON  Contacts.id =			 Users.contact_id';
 	if ($table == 'LoadIns'			)	$return = '  LEFT JOIN    Products AS Product	ON   Product.id	=		   LoadIns.product_id';
 	if ($table == 'LoadOuts'		)	$return = '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		  LoadOuts.dyer_id'
@@ -1436,6 +1589,7 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN   QuotLines AS QuotLine	ON  QuotLine.id	=		 QuotColor.parent_id'
 												. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=		  QuotLine.parent_id'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  QuotLine.product_id'
+												. '  LEFT JOIN    Products AS Parent	ON    Parent.id	=		   Product.parent_id'
 												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		 Quotation.customer_id';
 	if ($table == 'Orders'			)	$return = '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		    Orders.customer_id'
 												. '  LEFT JOIN    Machines AS Machine	ON   Machine.id	=		    Orders.machine_id'
@@ -1457,11 +1611,15 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=		OSA_Colors.color_id'
 												. '  LEFT JOIN        FTPs AS FTP		ON       FTP.id	=		OSA_Colors.ftp_id';
 	if ($table == 'Pieces'			)	$return = '  LEFT JOIN      Orders AS Orderx 	ON    Orderx.id	=		    Pieces.order_id'
-												. '  LEFT JOIN    Contacts AS Revised	ON   Revised.id	=		    Pieces.revised_by'
-												. '  LEFT JOIN    Contacts AS Weighed	ON   Weighed.id	=		    Pieces.weighed_by'
+												. '  LEFT JOIN		 Users AS Revised	ON   Revised.id	=		    Pieces.revised_by'
+												. '  LEFT JOIN		 Users AS Weighed	ON   Weighed.id	=		    Pieces.weighed_by'
+												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		    Pieces.product_id'
+												. '  LEFT JOIN    Products AS Parent	ON    Parent.id	=		   Product.parent_id'
 												. '  LEFT JOIN LoadQuotations AS LoadQuot ON LoadQuot.id =          Pieces.load_quot_id'
 												. '  LEFT JOIN    LoadOuts AS LoadOut   ON   LoadOut.id	=         LoadQuot.loadout_id';
-	if ($table == 'Products'		)	$return = '  LEFT JOIN    Products AS Parent	ON    Parent.id	=		  Products.parent_id';
+	if ($table == 'Products'		)	$return = '  LEFT JOIN    Products AS Parent	ON    Parent.id	=		  Products.parent_id'
+												. '  LEFT JOIN    Families AS Family	ON    Family.id	=		  Products.family_id';
+	if ($table == 'ProdColors'		)	$return = '  LEFT JOIN      Colors AS Color 	ON     Color.id	=		ProdColors.color_id';
 	if ($table == 'Purchases'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Purchases.supplier_id';
 	if ($table == 'PurchaseLines'	)	$return = '  LEFT JOIN   Purchases  			ON Purchases.id	=	 PurchaseLines.parent_id'
 												. '  LEFT JOIN     Threads  			ON   Threads.id	=	 PurchaseLines.thread_id'
@@ -1479,18 +1637,28 @@ private function set_left_joins($table) {
 												. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=		  QuotLine.parent_id'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  QuotLine.product_id'
 												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		 Quotation.customer_id';
+	if ($table == 'Receivables'		)	$return = '  LEFT JOIN    Contacts AS Customer  ON  Customer.id =      Receivables.customer_id'
+												. '  LEFT JOIN       Sales AS Sale		ON      Sale.id	=	   Receivables.sale_id';
 	if ($table == 'Sales'			)	$return = '  LEFT JOIN    Contacts AS Salesman  ON  Salesman.id =            Sales.salesman_id'
 												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		     Sales.customer_id'
 												. '  LEFT JOIN    Contacts AS Contact	ON   Contact.id	=		     Sales.contact_id'
+												. '  LEFT JOIN    Contacts AS Transport	ON Transport.id	=		     Sales.transport_id'
 												. '  LEFT JOIN  Quotations AS Quotation	ON Quotation.id	=		     Sales.quotation_id';
 	if ($table == 'SaleLines'		)	$return = '  LEFT JOIN    Products AS Product	ON   Product.id	=	     SaleLines.product_id'
 												. '  LEFT JOIN    Machines AS Machine	ON   Machine.id	=		 SaleLines.machine_id';
 	if ($table == 'SaleColors'		)	$return = '  LEFT JOIN      Colors AS Color 	ON     Color.id	=	    SaleColors.color_id'
-												. '  LEFT JOIN    Contacts AS Dyer		ON		Dyer.id	=		SaleColors.dyer_id'
 												. '  LEFT JOIN   SaleLines AS SaleLine	ON  SaleLine.id	=		SaleColors.parent_id'
 												. '  LEFT JOIN       Sales AS Sale		ON      Sale.id	=		  SaleLine.parent_id'
 												. '  LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleLine.product_id'
 												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id';
+	if ($table == 'SaleOuts'		)	$return = '  LEFT JOIN    Products AS Product	ON   Product.id	=		  SaleOuts.product_id'
+												. '  LEFT JOIN    Families AS Family	ON    Family.id	=	       Product.family_id'
+												. '  LEFT JOIN      Colors AS Color		ON     Color.id	=	      SaleOuts.color_id'
+												. '  LEFT JOIN       Sales AS Sale		ON      Sale.id	=		  SaleOuts.sale_id'
+												. '  LEFT JOIN    Contacts AS Assigned	ON  Assigned.id	=		  SaleOuts.assigned_by'
+												. '  LEFT JOIN    Contacts AS Customer	ON  Customer.id	=		      Sale.customer_id';
+	if ($table == 'Shifts'			)	$return = '  LEFT JOIN    Contacts AS Weaver	ON    Weaver.id	=		    Shifts.weaver_id'
+												. '  LEFT JOIN    Machines AS Machine	ON   Machine.id	=		    Shifts.machine_id';
 	if ($table == 'ShipDyers'		)	$return = '  LEFT JOIN    Contacts AS Dyer		ON      Dyer.id	=		 ShipDyers.dyer_id'
 												. '  LEFT JOIN    Contacts AS Transport	ON Transport.id	=		 ShipDyers.transport_id';
 	if ($table == 'Incomings'		)	$return = '  LEFT JOIN    Contacts AS Supplier	ON  Supplier.id	=		 Incomings.supplier_id';
@@ -1552,13 +1720,13 @@ private function set_left_joins($table) {
 }
 
 private function set_where($table, $filter) {
-	$filter = strtolower($filter);
+//	$filter = strtolower($filter);
 	$filter = trim($filter);
 	if ($filter == '')		return '';
 
 	$names = explode('=', $filter, 2);
 	if (count($names) == 2) {
-		$name  =        trim( $names[ 0 ]);
+		$name  = strtolower(trim( $names[ 0 ]));
 		$value = '"%' . trim( $names[ 1 ]) . '%"';
 
 		if ($table == 'Categories') {
@@ -1613,7 +1781,7 @@ private function set_where($table, $filter) {
 				if ($value == '"%null%"') {
 					return ' AND Companies.contact_id  IS NULL';
 				}else{
-					return ' AND   Contact.full_name   LIKE ' . $value;
+					return ' AND   Contact.nick_name   LIKE ' . $value;
 				}
 			}
 		}
@@ -1653,6 +1821,16 @@ private function set_where($table, $filter) {
 					return ' AND Configs.' . $name . ' IS NULL ';
 				}else{
 					return ' AND Configs.' . $name . ' LIKE ' . $value;
+				}
+			}
+		}
+
+		if ($table == 'Families') {
+			if ($name == 'family_name') {
+				if ($value == '"%null%"') {
+					return ' AND Families.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Families.' . $name . ' LIKE ' . $value;
 				}
 			}
 		}
@@ -1799,10 +1977,10 @@ private function set_where($table, $filter) {
 		}
 
 		if ($table == 'Contacts') {
-			if ($name == 'nick_name'
+			if ($name == 'full_name'
+			or  $name == 'nick_name'
 			or  $name == 'first_name'
 			or	$name == 'last_name'
-			or	$name == 'full_name'
 			or	$name == 'email'
 			or	$name == 'mobile'
 			or	$name == 'phone'
@@ -1821,7 +1999,80 @@ private function set_where($table, $filter) {
 				if ($value == '"%null%"') {
 					return ' AND Contacts.company_id IS NULL';
 				}else{
-					return ' AND Companies.full_name LIKE ' . $value;
+					return ' AND Companies.nick_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'transport_name') {
+				if ($value == '"%null%"') {
+					return ' AND Contacts.transport_id IS NULL';
+				}else{
+					return ' AND Transport.nick_name LIKE ' . $value;
+				}
+			}
+		}
+
+		if ($table == 'Fabrics') {
+			if ($name == 'barcode'
+			or	$name == 'product_name'
+			or	$name == 'color_name'
+			or	$name == 'produced_by'
+			or	$name == 'checkin_at'
+			or	$name == 'returned_at'
+			or	$name == 'checkout_at'
+			or	$name == 'checkin_location'
+			or	$name == 'returned_location'
+			or	$name == 'checkout_location'
+			or	$name == 'checkin_weight'
+			or	$name == 'returned_weight'
+			or	$name == 'qualities'
+			or	$name == 'remarks') {
+				if ($value == '"%null%"') {
+					return ' AND Fabrics.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Fabrics.' . $name . ' LIKE ' . $value;
+				}
+			}else
+			if ($name == 'revised') {
+				if ($value == '"%null%"') {
+					return ' AND Fabrics.revised_by IS NULL';
+				}else{
+					return ' AND Revised.user_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'weighed') {
+				if ($value == '"%null%"') {
+					return ' AND Fabrics.weighed_by IS NULL';
+				}else{
+					return ' AND Weighed.user_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'order_number') {
+				if ($value == '"%null%"') {
+					return ' AND Fabrics.order_id IS NULL';
+				}else{
+					return ' AND Orderx.order_number LIKE ' . $value;
+				}
+			}
+		}
+
+		if ($table == 'FabricCounters') {
+			if ($name == 'product_id'
+			or  $name == 'color_id'
+			or  $name == 'product_name'
+			or  $name == 'color_id'
+			or  $name == 'scheduled'
+			or	$name == 'produced'
+			or	$name == 'dyers'
+			or	$name == 'climate'
+			or	$name == 'stock'
+			or	$name == 'total'
+			or	$name == 'target'
+			or	$name == 'hold'
+			or	$name == 'sold') {
+				if ($value == '"%null%"') {
+					return ' AND FabricCounters.' . $name . ' IS NULL ';
+				}else{
+					return ' AND FabricCounters.' . $name . ' LIKE ' . $value;
 				}
 			}
 		}
@@ -2058,6 +2309,7 @@ private function set_where($table, $filter) {
 
 		if ($table == 'Orders') {
 			if ($name == 'order_number'
+			or	$name == 'osa_number'
 			or	$name == 'ordered_at'
 			or	$name == 'needed_at'
 			or	$name == 'produced_at'
@@ -2176,14 +2428,14 @@ private function set_where($table, $filter) {
 				if ($value == '"%null%"') {
 					return ' AND Pieces.revised_by IS NULL';
 				}else{
-					return ' AND Revised.nick_name LIKE ' . $value;
+					return ' AND Revised.user_name LIKE ' . $value;
 				}
 			}else
 			if ($name == 'weighed') {
 				if ($value == '"%null%"') {
 					return ' AND Pieces.weighed_by IS NULL';
 				}else{
-					return ' AND Weighed.nick_name LIKE ' . $value;
+					return ' AND Weighed.user_name LIKE ' . $value;
 				}
 			}else
 			if ($name == 'order_number') {
@@ -2366,15 +2618,35 @@ private function set_where($table, $filter) {
 			}
 		}
 
+		if ($table == 'Receivables') {
+			if ($name == 'sale_id'
+			or	$name == 'transaction_date'
+			or	$name == 'transaction_type'
+			or	$name == 'debit_amount'
+			or	$name == 'credit_amount'
+			or	$name == 'document'
+			or	$name == 'remarks') {
+				if ($value == '"%null%"') {
+					return ' AND Receivables.' . $name . ' IS NULL ';
+				}else{
+					return ' AND Receivables.' . $name . ' LIKE ' . $value;
+				}
+			}else
+			if ($name == 'customer_name') {
+				if ($value == '"%null%"') {
+					return ' AND Receivables.customer_id IS NULL';
+				}else{
+					return ' AND Customer.nick_name LIKE ' . $value;
+				}
+			}
+		}
+
 		if ($table == 'Sales') {
 			if ($name == 'sale_number'
-			or	$name == 'quoted_at'
-			or	$name == 'produced_date'
-			or	$name == 'expected_date'
-			or	$name == 'delivered_date'
-			or	$name == 'quoted_pieces'
-			or	$name == 'produced_pieces'
-			or	$name == 'delivered_pieces'
+			or	$name == 'sold_date'
+			or	$name == 'sold_pieces'
+			or	$name == 'hold_pieces'
+			or	$name == 'sent_pieces'
 			or	$name == 'remarks') {
 				if ($value == '"%null%"') {
 					return ' AND Sales.' . $name . ' IS NULL ';
@@ -2403,11 +2675,11 @@ private function set_where($table, $filter) {
 					return ' AND Contact.nick_name LIKE ' . $value;
 				}
 			}else
-			if ($name == 'quotation_number') {
+			if ($name == 'transport_name') {
 				if ($value == '"%null%"') {
-					return ' AND Sales.quotation_id IS NULL';
+					return ' AND Sales.transport_id IS NULL';
 				}else{
-					return ' AND Quotation.quotation_number LIKE ' . $value;
+					return ' AND Transport.nick_name LIKE ' . $value;
 				}
 			}
 		}
@@ -2619,6 +2891,53 @@ private function set_where($table, $filter) {
 			}
 		}
 
+		if ($table == 'SaleOuts') {
+			if ($name == 'sale_id'
+			or	$name == 'product_id'
+			or	$name == 'color_id'
+			or	$name == 'assigned_by'
+			or	$name == 'requested_at'
+			or	$name == 'requested_pieces'
+			or	$name == 'requested_weight'
+			or	$name == 'checkout_at'
+			or	$name == 'checkout_pieces'
+			or	$name == 'checkout_weight') {
+				if ($value == '"%null%"') {
+					return ' AND SaleOuts.' . $name . ' IS NULL ';
+				}else{
+					return ' AND SaleOuts.' . $name . ' LIKE ' . $value;
+				}
+			}else
+			if ($name == 'product') {
+				if ($value == '"%null%"') {
+					return ' AND SaleOuts.product_id IS NULL';
+				}else{
+					return ' AND Product.product_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'family') {
+				if ($value == '"%null%"') {
+					return ' AND Product.family_id IS NULL';
+				}else{
+					return ' AND Family.family_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'color') {
+				if ($value == '"%null%"') {
+					return ' AND SaleOuts.color_id IS NULL';
+				}else{
+					return ' AND Color.color_name LIKE ' . $value;
+				}
+			}else
+			if ($name == 'assigned') {
+				if ($value == '"%null%"') {
+					return ' AND SaleOuts.assigned_id IS NULL';
+				}else{
+					return ' AND Assigned.nick_name LIKE ' . $value;
+				}
+			}
+		}
+
 		if ($table == 'CheckOuts') {
 			if ($name == 'number'
 			or	$name == 'checkout_at'
@@ -2725,6 +3044,7 @@ private function set_where($table, $filter) {
 			}
 		}
 
+		return '';
 	}
 
 //	$filter = '"%' . $filter . '%"';
@@ -2784,6 +3104,11 @@ private function set_where($table, $filter) {
 				;
 		break;
 
+		case	'Families' :
+		$return = '         Families.family_name		LIKE ' . $filter
+				;
+		break;
+
 		case	'Permissions' :
 		$return = '      Permissions.user_role			LIKE ' . $filter
 				. ' OR   Permissions.user_resource		LIKE ' . $filter
@@ -2838,7 +3163,7 @@ private function set_where($table, $filter) {
 				. ' OR        Tickets.category			LIKE ' . $filter
 				. ' OR        Tickets.description		LIKE ' . $filter
 				. ' OR        Tickets.resolution		LIKE ' . $filter
-				. ' OR         Opened.full_name			LIKE ' . $filter
+				. ' OR         Opened.nick_name			LIKE ' . $filter
 				;
 		break;
 
@@ -2849,10 +3174,10 @@ private function set_where($table, $filter) {
 		break;
 
 		case	'Contacts' :
-		$return = ' Contacts.nick_name		LIKE ' . $filter
+		$return = ' Contacts.full_name		LIKE ' . $filter
+			. ' OR	Contacts.nick_name		LIKE ' . $filter
 			. ' OR	Contacts.first_name		LIKE ' . $filter
 			. ' OR	Contacts.last_name		LIKE ' . $filter
-			. ' OR	Contacts.full_name		LIKE ' . $filter
 			. ' OR	Contacts.mobile			LIKE ' . $filter
 			. ' OR	Contacts.email			LIKE ' . $filter
 			. ' OR	Contacts.phone			LIKE ' . $filter
@@ -2862,7 +3187,45 @@ private function set_where($table, $filter) {
 			. ' OR	Contacts.state			LIKE ' . $filter
 			. ' OR	Contacts.zip			LIKE ' . $filter
 			. ' OR	Contacts.country		LIKE ' . $filter
-			. ' OR	Companies.full_name		LIKE ' . $filter
+			. ' OR Companies.nick_name		LIKE ' . $filter
+			;
+		break;
+
+		case	'Fabrics' :
+		$return = ' Fabrics.barcode				LIKE ' . $filter
+			. ' OR  Fabrics.product_name		LIKE ' . $filter
+			. ' OR  Fabrics.color_name			LIKE ' . $filter
+			. ' OR  Fabrics.produced_by			LIKE ' . $filter
+			. ' OR  Fabrics.checkin_at			LIKE ' . $filter
+			. ' OR  Fabrics.returned_at			LIKE ' . $filter
+			. ' OR  Fabrics.checkout_at			LIKE ' . $filter
+			. ' OR  Fabrics.checkin_location	LIKE ' . $filter
+			. ' OR  Fabrics.returned_location	LIKE ' . $filter
+			. ' OR  Fabrics.checkout_location	LIKE ' . $filter
+			. ' OR  Fabrics.checkin_weight		LIKE ' . $filter
+			. ' OR  Fabrics.returned_weight		LIKE ' . $filter
+			. ' OR  Fabrics.qualities			LIKE ' . $filter
+			. ' OR  Fabrics.remarks				LIKE ' . $filter
+			. ' OR  Revised.user_name			LIKE ' . $filter
+			. ' OR  Weighed.user_name			LIKE ' . $filter
+			. ' OR  Orderx.order_number			LIKE ' . $filter
+			;
+		break;
+
+		case	'FabricCounters' :
+		$return =  'FabricCounters.product_id	LIKE ' . $filter
+			. ' OR	FabricCounters.color_id		LIKE ' . $filter
+			. ' OR	FabricCounters.product_name	LIKE ' . $filter
+			. ' OR	FabricCounters.color_name	LIKE ' . $filter
+			. ' OR	FabricCounters.scheduled	LIKE ' . $filter
+			. ' OR	FabricCounters.produced		LIKE ' . $filter
+			. ' OR	FabricCounters.dyers		LIKE ' . $filter
+			. ' OR	FabricCounters.climate		LIKE ' . $filter
+			. ' OR	FabricCounters.stock		LIKE ' . $filter
+			. ' OR	FabricCounters.total		LIKE ' . $filter
+			. ' OR	FabricCounters.target		LIKE ' . $filter
+			. ' OR	FabricCounters.hold			LIKE ' . $filter
+			. ' OR	FabricCounters.sold			LIKE ' . $filter
 			;
 		break;
 
@@ -2954,6 +3317,7 @@ private function set_where($table, $filter) {
 
 		case	'Orders' :
 		$return = ' Orders.order_number			LIKE ' . $filter
+			. ' OR  Orders.osa_number			LIKE ' . $filter
 			. ' OR  Orders.ordered_at			LIKE ' . $filter
 			. ' OR  Orders.needed_at			LIKE ' . $filter
 			. ' OR  Orders.produced_at			LIKE ' . $filter
@@ -2998,8 +3362,8 @@ private function set_where($table, $filter) {
 			. ' OR  Pieces.returned_weight		LIKE ' . $filter
 			. ' OR  Pieces.qualities			LIKE ' . $filter
 			. ' OR  Pieces.remarks				LIKE ' . $filter
-			. ' OR  Revised.nick_name			LIKE ' . $filter
-			. ' OR  Weighed.nick_name			LIKE ' . $filter
+			. ' OR  Revised.user_name			LIKE ' . $filter
+			. ' OR  Weighed.user_name			LIKE ' . $filter
 			. ' OR  Orderx.order_number			LIKE ' . $filter
 			;
 		break;
@@ -3062,18 +3426,28 @@ private function set_where($table, $filter) {
 			;
 		break;
 
+		case	'Receivables' :
+		$return = ' Receivables.sale_id				LIKE ' . $filter
+			. ' OR  Receivables.transaction_date	LIKE ' . $filter
+			. ' OR  Receivables.transaction_type	LIKE ' . $filter
+			. ' OR  Receivables.debit_amount		LIKE ' . $filter
+			. ' OR  Receivables.credit_amount		LIKE ' . $filter
+			. ' OR  Receivables.document			LIKE ' . $filter
+			. ' OR  Receivables.remarks				LIKE ' . $filter
+			. ' OR     Customer.nick_name			LIKE ' . $filter
+			;
+		break;
+
 		case	'Sales' :
 		$return = ' Sales.sale_number			LIKE ' . $filter
-			. ' OR  Sales.quoted_at				LIKE ' . $filter
-			. ' OR  Sales.produced_date			LIKE ' . $filter
-			. ' OR  Sales.delivered_date		LIKE ' . $filter
-			. ' OR  Sales.quoted_pieces			LIKE ' . $filter
-			. ' OR  Sales.produced_pieces		LIKE ' . $filter
-			. ' OR  Sales.delivered_pieces		LIKE ' . $filter
+			. ' OR  Sales.sold_date				LIKE ' . $filter
+			. ' OR  Sales.sold_pieces			LIKE ' . $filter
+			. ' OR  Sales.hold_pieces			LIKE ' . $filter
+			. ' OR  Sales.sent_pieces			LIKE ' . $filter
 			. ' OR    Salesman.nick_name		LIKE ' . $filter
 			. ' OR    Customer.nick_name		LIKE ' . $filter
 			. ' OR     Contact.nick_name		LIKE ' . $filter
-			. ' OR   Quotation.quotation_number	LIKE ' . $filter
+			. ' OR   Transport.nick_name		LIKE ' . $filter
 			;
 		break;
 
@@ -3162,6 +3536,24 @@ private function set_where($table, $filter) {
 			. ' OR BatchOuts.checkout_weight	LIKE ' . $filter
 			. ' OR CheckOuts.checkout_at		LIKE ' . $filter
 			. ' OR	Supplier.nick_name			LIKE ' . $filter
+			;
+		break;
+
+		case	'SaleOuts' :
+		$return = ' SaleOuts.sale_id			LIKE ' . $filter
+			. ' OR  SaleOuts.product_id			LIKE ' . $filter
+			. ' OR  SaleOuts.color_id			LIKE ' . $filter
+			. ' OR  SaleOuts.assigned_by		LIKE ' . $filter
+			. ' OR  SaleOuts.requested_at		LIKE ' . $filter
+			. ' OR  SaleOuts.requested_pieces	LIKE ' . $filter
+			. ' OR  SaleOuts.requested_weight	LIKE ' . $filter
+			. ' OR  SaleOuts.checkout_at		LIKE ' . $filter
+			. ' OR  SaleOuts.checkout_pieces	LIKE ' . $filter
+			. ' OR  SaleOuts.checkout_weight	LIKE ' . $filter
+			. ' OR	 Product.product_name		LIKE ' . $filter
+			. ' OR	  Family.family_name		LIKE ' . $filter
+			. ' OR     Color.color_name			LIKE ' . $filter
+			. ' OR  Assigned.nick_name			LIKE ' . $filter
 			;
 		break;
 
@@ -3370,7 +3762,10 @@ private function insert($data) {
 		return;
 	}
 
-	$my_id = get_next_id($table);
+	$my_id = get_data($data, 'id');
+	if (!$my_id) {
+		$my_id = get_next_id($table);
+	}
 	$set .= ', id=' . $my_id;
 	$set .= ', updated_by='  . get_session('user_id');
 	$set .= ', updated_at="' . get_time() . '"';
@@ -3378,6 +3773,7 @@ private function insert($data) {
 	switch($table) {
 		case('Boxes'		)	: $set .=          ', barcode = ' . $my_id; break;
 		case('CheckOuts'	)	: $set .=           ', number = ' . $my_id; break;
+		case('Fabrics'		)	: $set .=          ', barcode = ' . $my_id; break;
 		case('FTPs'			)	: $set .=       ', ftp_number = ' . $my_id; break;
 		case('Incomings'	)	: $set .=  ', incoming_number = ' . $my_id; break;
 		case('LoadOuts'		)	: $set .=   ', loadout_number = ' . $my_id; break;
@@ -3408,9 +3804,10 @@ private function insert($data) {
 		$set .= ',      opened_at="' . get_time() . '"';
 	}
 
-	if ($table == 'JKY_Users') {
+	if ($table == 'Users') {
 		$set .= ',     start_date="' . get_time() . '"';
 		$set .= ',       user_key="' . MD5(date('Y-m-d H:i:s')) . '"';
+		$set .= ',            pin="' . rand(1000, 9999) . '"';
 	}
 
 	$sql= 'INSERT ' . $table
@@ -3436,15 +3833,15 @@ private function insert($data) {
 }
 
 private function insert_user_jky() {
-	$my_id = get_next_id('JKY_Users');
-	$sql= 'INSERT JKY_Users'
+	$my_id = get_next_id('Users');
+	$sql= 'INSERT Users'
 		. '   SET  id='  . $my_id
 		. ', password="' . MD5(date('Y-m-d H:i:s')) . '"'
 		. ', user_key="' . MD5(date('Y-m-d H:i:s')) . '"'
 		;
 	$db  = Zend_Registry::get('db');
 	$db->query($sql);
-	insert_changes($db, 'JKY_Users', $my_id);
+	insert_changes($db, 'Users', $my_id);
 	return $my_id;
 }
 
@@ -3504,13 +3901,13 @@ private function update($data) {
 
 private function update_user_jky($id, $set) {
 	$my_id = $id;
-	$sql = 'UPDATE JKY_Users'
+	$sql = 'UPDATE Users'
 		. '   SET ' . str_replace("*#", "&", $set)
 		. ' WHERE id = ' . $my_id
 		;
 	$db = Zend_Registry::get('db');
 	$db->query($sql);
-	insert_changes($db, 'JKY_Users', $my_id);
+	insert_changes($db, 'Users', $my_id);
 }
 
 /*
@@ -3675,17 +4072,17 @@ private function delete($data) {
 
 private function delete_jky_user($id) {
 	$where = 'contact_id = ' . $id;
-	$my_id = $this->get_only_id('JKY_Users', $where);
+	$my_id = $this->get_only_id('Users', $where);
 
 	if ($my_id) {
 		$sql= 'DELETE'
-			. '  FROM JKY_Users'
+			. '  FROM Users'
 			. ' WHERE id = ' . $my_id
 			;
-		$this->log_sql('JKY_Users', $my_id, $sql);
+		$this->log_sql('Users', $my_id, $sql);
 		$db = Zend_Registry::get('db');
 		$db->query($sql);
-		insert_changes($db, 'JKY_Users', $my_id);
+		insert_changes($db, 'Users', $my_id);
 	}
 }
 
@@ -3698,7 +4095,7 @@ private function unlink_loadouts($id) {
 	$this->log_sql('LoadOuts', $my_id, $sql);
 	$db = Zend_Registry::get('db');
 	$db->query($sql);
-	insert_changes($db, 'JKY_Users', $my_id);
+	insert_changes($db, 'Users', $my_id);
 }
 
 /*
@@ -3710,7 +4107,7 @@ private function unlink_loadouts($id) {
 private function delete_many($data) {
 	$table = get_data($data, 'table');
 	$where = $this->get_security($table, get_data($data, 'where'));
-$this->log_sql($table, 'delete_many', $where);
+	$this->log_sql($table, 'delete_many', $where);
 
 	if ($where == '') {
 		$this->echo_error('missing [where] statement');
@@ -3723,7 +4120,7 @@ $this->log_sql($table, 'delete_many', $where);
 		. '  FROM ' . $table
 		. ' WHERE ' . $where
 		;
-$this->log_sql($table, 'delete_many', $sql);
+	$this->log_sql($table, 'delete_many', $sql);
 	$rows = $db->fetchAll($sql);
 
 	$return = array();
@@ -3852,7 +4249,7 @@ private function combine() {
 	  $db->query( 'UPDATE User_metas     SET    parent_id = ' . $target . ' WHERE   parent_id = ' . $source );
 
 	  $db->query( 'DELETE FROM Contacts                                     WHERE          id = ' . $source );
-	  $db->query( 'DELETE FROM JKY_Users                                    WHERE  contact_id = ' . $source );
+	  $db->query( 'DELETE FROM Users                                    	WHERE  contact_id = ' . $source );
 
 	  $return = array();
 	  $return[ 'status'   ] = 'ok';
@@ -4175,7 +4572,7 @@ if (is_session('full_name')) {
 }
 
 /**
- *	$.ajax({ method: get_profile );
+ *	$.ajax({ method: get_profile });
  *
  *	status: ok
  *	   row: Contacts
@@ -4198,7 +4595,7 @@ private function get_profile() {
 }
 
 /**
- *   $.ajax({ method: get_contact );
+ *   $.ajax({ method: get_contact });
  *
  *   status: ok
  *      row: Contacts
@@ -4225,7 +4622,7 @@ private function get_contact() {
 }
 
 /**
- *	$.ajax({ method: get_contact_id, contact_name: x...x );
+ *	$.ajax({ method: get_contact_id, contact_name: x...x });
  *
  *	status: ok
  *		id: 9...9
@@ -4260,25 +4657,25 @@ private function get_contact_id() {
 }
 
 /**
- *	$.ajax({ method: get_user_id, user_name: x...x );
+ *	$.ajax({ method: get_user_id, user_name: x...x });
  *
  *	status: ok     | error
  *		id: 9...9  | null
  */
 private function get_user_id($data) {
 	$sql= 'SELECT id'
-		. '  FROM JKY_Users'
+		. '  FROM Users'
 		. ' WHERE user_name = "' . $data['user_name'] . '"'
 		;
-	$return = array();
 	$db = Zend_Registry::get('db');
+	$return = array();
 	$return['status'] = 'ok';
 	$return['id'	] = $db->fetchOne($sql);
 	echo json_encode($return);
 }
 
 /**
- *	$.ajax({ method: get_ftp_id, product_id: x...x );
+ *	$.ajax({ method: get_ftp_id, product_id: x...x });
  *	of most current ftp
  *
  *	status: ok     | error
@@ -4292,9 +4689,9 @@ private function get_ftp_id($data) {
 		. ' ORDER BY is_current DESC, id DESC'
 		. ' LIMIT 1'
 		;
-$this->log_sql(null, 'get_ftp_id', $sql);
-	$return = array();
+//$this->log_sql(null, 'get_ftp_id', $sql);
 	$db = Zend_Registry::get('db');
+	$return = array();
 	$return['status'] = 'ok';
 	$return['id'	] = $db->fetchOne($sql);
 	echo json_encode($return);
@@ -4315,16 +4712,15 @@ private function get_order_id($data) {
 		. ' ORDER BY id DESC'
 		. ' LIMIT 1'
 		;
-$this->log_sql(null, 'get_order_id', $sql);
-	$return = array();
 	$db = Zend_Registry::get('db');
+	$return = array();
 	$return['status'] = 'ok';
 	$return['id'	] = $db->fetchOne($sql);
 	echo json_encode($return);
 }
 
 /**
- *	$.ajax({ method: get_product_id, product_name: x...x );
+ *	$.ajax({ method: get_product_id, product_name: x...x });
  *
  *	status: ok     | error
  *		id: 9...9  | null
@@ -4334,10 +4730,53 @@ private function get_product_id($data) {
 		. '  FROM Products'
 		. ' WHERE product_name = "' . $data['product_name'] . '"'
 		;
-	$return = array();
 	$db = Zend_Registry::get('db');
+	$return = array();
 	$return['status'] = 'ok';
 	$return['id'	] = $db->fetchOne($sql);
+	echo json_encode($return);
+}
+
+/**
+ *	$.ajax({ method: get_vendor_id, vendor_name: x...x, vendor_cnpj });
+ *
+ *	status: ok     | error
+ *		id: 9...9  | null
+ */
+private function get_vendor_id($data) {
+	$sql= 'SELECT id'
+		. '  FROM Contacts'
+		. ' WHERE (is_supplier = "Yes" OR is_dyer = "Yes" OR is_partner = "Yes" OR is_transport = "Yes")'
+		. ' AND (full_name = "' . $data['vendor_name'] . '"'
+		. ' OR REPLACE(REPLACE(REPLACE(cnpj, ".", ""), "-", ""), "/", "") = "' . $data['vendor_cnpj'] . '")'
+		;
+	$db = Zend_Registry::get('db');
+	$return = array();
+	$return['status'] = 'ok';
+	$return['id'	] = $db->fetchOne($sql);
+	echo json_encode($return);
+}
+
+/**
+ *	$.ajax({ method: get_loadout_value, select:x...x, quotation_id: x...x });
+ *
+ *	status: ok     | error
+ *		id: 9...9  | null
+ */
+private function get_loadout_value($data) {
+	$sql= 'SELECT ' . $data['select']
+		. '  FROM Quotations'
+		. '  LEFT JOIN QuotLines		ON QuotLines.parent_id			= Quotations.id'
+		. '  LEFT JOIN QuotColors		ON QuotColors.parent_id			= QuotLines.id'
+		. '  LEFT JOIN LoadQuotations	ON LoadQuotations.quot_color_id	= QuotColors.id'
+		. '  LEFT JOIN LoadOuts			ON LoadOuts.id					= LoadQuotations.loadout_id'
+		. ' WHERE Quotations.id = ' . $data['quotation_id']
+		;
+//$this->log_sql( null, 'get_loadout_value', $sql );
+	$db = Zend_Registry::get('db');
+	$return = array();
+	$return['status'] = 'ok';
+	$return['value'	] = $db->fetchOne($sql);
 	echo json_encode($return);
 }
 
@@ -4350,7 +4789,7 @@ private function get_product_id($data) {
 
 private function set_user_id() {
 	$error = '';
-	$user_id = db_get_id('JKY_Users', 'user_key = "' . get_request('user_key') . '"');
+	$user_id = db_get_id('Users', 'user_key = "' . get_request('user_key') . '"');
 
 	if ($user_id) {
 		$this->set_user_session($user_id);
@@ -4433,7 +4872,7 @@ private function get_options($data) {
 		. ' WHERE status = "Active"'
 		. ' ORDER BY ' . $field
 		;
-	$this->log_sql(null, 'get_options', $sql);
+//$this->log_sql(null, 'get_options', $sql);
 	$db = Zend_Registry::get('db');
 	$rows = $db->fetchAll($sql);
 
@@ -4472,7 +4911,7 @@ private function get_users() {
 	}
 
 	if ($sql != '') {
-$this->log_sql(null, 'get_users', $sql);
+//$this->log_sql(null, 'get_users', $sql);
 		$db = Zend_Registry::get('db');
 		$rows = $db->fetchAll($sql);
 
@@ -4505,7 +4944,7 @@ private function get_controls($data) {
 		. ' WHERE group_set = "' . $group_set . '"' . $security
 		. ' ORDER BY sequence, name'
 		;
-$this->log_sql(null, 'get_users', $sql);
+//$this->log_sql(null, 'get_users', $sql);
 	$db = Zend_Registry::get('db');
 	$rows = $db->fetchAll($sql);
 	$return = array();
@@ -4560,6 +4999,62 @@ private function get_companies($data) {
 		. '   AND is_company = "Yes"'
 		. ' ORDER BY nick_name'
 		;
+	$db = Zend_Registry::get('db');
+	$rows = $db->fetchAll($sql);
+	$return = array();
+	$return['status'] = 'ok';
+	$return['rows'	] = $rows;
+	echo json_encode($return);
+}
+
+/**
+ *   $.ajax({ method: get_fabrics, specific: 'loadout_id', specific_id: 9...9, select: 'Check Out', order_by: 'barcode');
+ *
+ *	status: ok
+ *	  rows: [{ x...x: y...y, ... } (false)
+ *			,{ x...x: y...y, ... }
+ *			,{ x...x: y...y, ... }
+ *			]
+
+ */
+private function get_fabrics($data) {
+	$sql= 'SELECT Fabrics.*'
+		. '  FROM Fabrics'
+		. '  LEFT JOIN LoadQuotations AS LoadQuote'
+		. '    ON LoadQuote.id = Fabrics.load_quot_id'
+		. ' WHERE Fabrics.status = "' . get_data($data, 'select') . '"'
+		. '   AND LoadQuote.' . get_data($data, 'specific') . ' = ' .  get_data($data, 'specific_id')
+		. ' ORDER BY Fabrics.' . get_data($data, 'order_by')
+		;
+	$db = Zend_Registry::get('db');
+	$rows = $db->fetchAll($sql);
+	$return = array();
+	$return['status'] = 'ok';
+	$return['rows'	] = $rows;
+	echo json_encode($return);
+}
+
+/**
+ *   $.ajax({ method: get_pieces, specific: 'loadout_id', specific_id: 9...9, select: 'Check Out', order_by: 'barcode');
+ *
+ *	status: ok
+ *	  rows: [{ x...x: y...y, ... } (false)
+ *			,{ x...x: y...y, ... }
+ *			,{ x...x: y...y, ... }
+ *			]
+
+ */
+private function get_pieces($data) {
+	$sql= 'SELECT Pieces.*, QuotColor.color_id, Color.color_name'
+		. '  FROM Pieces'
+		. '  LEFT JOIN LoadQuotations AS LoadQuote ON LoadQuote.id = Pieces.load_quot_id'
+		. '  LEFT JOIN QuotColors AS QuotColor ON QuotColor.id = LoadQuote.quot_color_id'
+		. '  LEFT JOIN Colors AS Color ON Color.id = QuotColor.color_id'
+		. ' WHERE Pieces.status = "' . get_data($data, 'select') . '"'
+		. '   AND LoadQuote.' . get_data($data, 'specific') . ' = ' .  get_data($data, 'specific_id')
+		. ' ORDER BY Pieces.' . get_data($data, 'order_by')
+		;
+$this->log_sql(null, 'get_pieces', $sql);
 	$db = Zend_Registry::get('db');
 	$rows = $db->fetchAll($sql);
 	$return = array();
@@ -4661,7 +5156,29 @@ private function get_loadout_by_color_id($data) {
 		. '   AND OSA_Lines.id = OSA_Colors.parent_id'
 		. '   AND OSA_Colors.id = ' . $specific
 		;
-$this->log_sql(null, 'get_load_by_color_id', $sql);
+//$this->log_sql(null, 'get_load_by_color_id', $sql);
+	$db  = Zend_Registry::get('db');
+	$row = $db->fetchRow($sql);
+	$return = array();
+	$return['status'] = 'ok';
+	$return['row'	] = $row;
+	echo json_encode($return);
+}
+	
+/**
+ *   $.ajax({ method: get_color_by_load_quot_id, specific_id: 9...9 });
+ *
+ *   return: color row
+ */
+private function get_color_by_load_quot_id($data) {
+	$specific_id = get_data($data, 'specific_id');
+
+	$sql= 'SELECT LoadQuotations.loadout_id, Colors.id, Colors.color_name'
+		. '  FROM LoadQuotations'
+		. '  LEFT JOIN QuotColors	ON QuotColors.id = LoadQuotations.quot_color_id'
+		. '  LEFT JOIN Colors		ON Colors.id = QuotColors.color_id'
+		. ' WHERE LoadQuotations.id = ' . $specific_id
+		;
 	$db  = Zend_Registry::get('db');
 	$row = $db->fetchRow($sql);
 	$return = array();
@@ -4758,7 +5275,7 @@ private function get_tab_class($tab) {
 }
 
 private function set_user_session($user_id) {
-	$user = db_get_row('JKY_Users', 'id = ' . $user_id);
+	$user = db_get_row('Users', 'id = ' . $user_id);
 	set_session('user_id'		, $user['id'			]);
 	set_session('user_name'		, $user['user_name'		]);
 	set_session('user_type'		, $user['user_type'		]);
@@ -4823,7 +5340,7 @@ private function check_session($data) {
 
 private function confirm($data) {
 	$error = '';
-	$user_id = db_get_id('JKY_Users', 'user_key = "' . $data['user_key'] . '"');
+	$user_id = db_get_id('Users', 'user_key = "' . $data['user_key'] . '"');
 
 	if (!$user_id) {
 		$error .= BR . 'User Account already expired';
@@ -4858,14 +5375,14 @@ private function reset($data) {
 	$password	= $data['password'];
 
 	if ($password != '') {
-		$sql= 'UPDATE JKY_Users'
+		$sql= 'UPDATE Users'
 			. '   SET password = "' . $password . '"'
 			. ' WHERE id = ' . $user_id
 			;
 		$db = Zend_Registry::get('db');
 		$db->query($sql);
 		$this->log_sql('reset', $user_id, $sql);
-		insert_changes($db, 'JKY_Users', $user_id);
+		insert_changes($db, 'Users', $user_id);
 	}
 
 	$return = array();
@@ -4892,7 +5409,7 @@ private function log_in($data) {
 	$encrypted	= $data['encrypted'];
 
 	$error = '';
-	$user_id = db_get_id('JKY_Users', 'status = "Active" AND user_name = "' . $user_name . '"');
+	$user_id = db_get_id('Users', 'status = "Active" AND user_name = "' . $user_name . '"');
 	if (!$user_id) {
 		$error .= set_is_invalid('User Name');
 	}
@@ -4919,7 +5436,7 @@ private function log_in($data) {
 
 private function get_password($id) {
 	$sql= 'SELECT password'
-		. '  FROM JKY_Users'
+		. '  FROM Users'
 		. ' WHERE id = ' . $id
 		;
 	$db = Zend_Registry::get('db');
@@ -4964,12 +5481,12 @@ private function log_help($data) {
 
 	$db = Zend_Registry::get('db');
 	$error = '';
-	$sql= 'SELECT JKY_Users.id, JKY_Users.contact_id, Contacts.email'
-		. '  FROM JKY_Users'
-		. '  LEFT JOIN Contacts ON Contacts.id = JKY_Users.contact_id'
-		. ' WHERE JKY_Users.status = "Active"'
-		. '   AND  Contacts.email IS NOT NULL'
-		. '   AND(JKY_Users.user_name = "' . $help_name . '" OR Contacts.email = "' . $help_name . '" )'
+	$sql= 'SELECT Users.id, Users.contact_id, Contacts.email'
+		. '  FROM Users'
+		. '  LEFT JOIN Contacts ON Contacts.id = Users.contact_id'
+		. ' WHERE Users.status = "Active"'
+		. '   AND Contacts.email IS NOT NULL'
+		. '   AND(Users.user_name = "' . $help_name . '" OR Contacts.email = "' . $help_name . '" )'
 		;
 //$this->log_sql( null, 'log_help', $sql );
 	$users = $db->fetchAll($sql);
@@ -5013,7 +5530,7 @@ private function profile($data) {
 	$error = '';
 	if ($password != MD5('')) {
 		$sql= 'SELECT password'
-			. '  FROM JKY_Users'
+			. '  FROM Users'
 			. ' WHERE id = ' . get_session('user_id')
 			;
 		$my_password = $db->fetchOne($sql);
@@ -5042,13 +5559,13 @@ private function profile($data) {
 
 //		set_session('full_name', $full_name);
 
-		$sql= 'UPDATE JKY_Users'
+		$sql= 'UPDATE Users'
 			. '   SET user_name	= "' . $user_name . '"'	. $set_password
 			. ' WHERE id = ' . get_session('user_id')
 			;
 		$this->log_sql('profile', null, $sql);
 		$db->query($sql);
-		insert_changes($db, 'JKY_Users', get_session('user_id'));
+		insert_changes($db, 'Users', get_session('user_id'));
 	}
 
 	$return = array();
@@ -5148,7 +5665,7 @@ private function send_email() {
      $email_from    = 'Email From System';
 
      $user     = db_get_row( 'Contacts' , 'id = ' . $user_id );
-     $user_jky = db_get_row( 'JKY_Users', 'id = ' . $user_id );
+     $user_jky = db_get_row( 'Users', 'id = ' . $user_id );
      $to_name  = $user[ 'full_name'	];
      $to_email = $user[ 'email'		];
      $cc_name  = '';

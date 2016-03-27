@@ -1,0 +1,32 @@
+id 200068				101480
+by 100037 Bruno			100038 Joselio DI
+2016-02-22 17:12:04		2016-02-23
+Draft					Active
+200068					101489
+						101532
+100002					100002
+100997					100997
+2016-02-22 15:49:00		2016-02-22 15:49:49
+
+
+log da Tecno
+
+2016-02-22 15:49:49.093362 table OSAs id INSERT INSERT OSAs   SET          id =101489,       updated_by =100050,       updated_at ="2016-02-22 15:49:49",       osa_number =101489,     quotation_id =101532,       ordered_at ="2016-02-22 15:49:49",        needed_at ="2016-02-22 15:49:49",    quoted_pieces =32,   ordered_pieces =32,          remarks ="",      customer_id=100002,      salesman_id=100997 
+2016-02-22 15:49:49.095393 table OSA_Lines id INSERT INSERT OSA_Lines   SET          id =1000002793,       updated_by =100050,       updated_at ="2016-02-22 15:49:49",        parent_id =101489,             peso =12.50,     quoted_units =12,            units =1,    quoted_pieces =12,   ordered_pieces =12,    quoted_weight =150.00,   ordered_weight =150.00,		  remarks ="",       product_id=101616 
+2016-02-22 15:49:49.097230 table OSA_Colors id INSERT INSERT OSA_Colors   SET          id =1000004753,       updated_by =100050,       updated_at ="2016-02-22 15:49:49",        parent_id =1000002793,    quoted_pieces =4,    quoted_weight =50,   ordered_pieces =4,   ordered_weight =50,         color_id=101314 
+2016-02-22 15:49:49.098742 table OSA_Colors id INSERT INSERT OSA_Colors   SET          id =1000004754,       updated_by =100050,       updated_at ="2016-02-22 15:49:49",        parent_id =1000002793,    quoted_pieces =4,    quoted_weight =50,   ordered_pieces =4,   ordered_weight =50,         color_id=101432 
+2016-02-22 15:49:49.100159 table OSA_Colors id INSERT INSERT OSA_Colors   SET          id =1000004755,       updated_by =100050,       updated_at ="2016-02-22 15:49:49",        parent_id =1000002793,    quoted_pieces =4,    quoted_weight =50,   ordered_pieces =4,   ordered_weight =50,         color_id=101278 
+2016-02-22 15:49:49.101632 table OSA_Lines id INSERT INSERT OSA_Lines   SET          id =1000002794,       updated_by =100050,       updated_at ="2016-02-22 15:49:49",        parent_id =101489,             peso =12.50,     quoted_units =16,            units =1,    quoted_pieces =16,   ordered_pieces =16,    quoted_weight =200.00,   ordered_weight =200.00,		  remarks ="",       product_id=101446 
+2016-02-22 15:49:49.103346 table OSA_Colors id INSERT INSERT OSA_Colors   SET          id =1000004756,       updated_by =100050,       updated_at ="2016-02-22 15:49:49",        parent_id =1000002794,    quoted_pieces =4,    quoted_weight =50,   ordered_pieces =4,   ordered_weight =50,         color_id=101314 
+2016-02-22 15:49:49.104752 table OSA_Colors id INSERT INSERT OSA_Colors   SET          id =1000004757,       updated_by =100050,       updated_at ="2016-02-22 15:49:49",        parent_id =1000002794,    quoted_pieces =4,    quoted_weight =50,   ordered_pieces =4,   ordered_weight =50,         color_id=101432 
+2016-02-22 15:49:49.106159 table OSA_Colors id INSERT INSERT OSA_Colors   SET          id =1000004758,       updated_by =100050,       updated_at ="2016-02-22 15:49:49",        parent_id =1000002794,    quoted_pieces =8,    quoted_weight =100,   ordered_pieces =8,   ordered_weight =100,         color_id=101278 
+2016-02-22 15:49:49.107616 table OSA_Lines id INSERT INSERT OSA_Lines   SET          id =1000002795,       updated_by =100050,       updated_at ="2016-02-22 15:49:49",        parent_id =101489,             peso =12.50,     quoted_units =4,            units =0,    quoted_pieces =4,   ordered_pieces =4,    quoted_weight =39.00,   ordered_weight =39.00,		  remarks ="",       product_id=100827 
+2016-02-22 15:49:49.109318 table OSA_Colors id INSERT INSERT OSA_Colors   SET          id =1000004759,       updated_by =100050,       updated_at ="2016-02-22 15:49:49",        parent_id =1000002795,    quoted_pieces =2,    quoted_weight =15.0,   ordered_pieces =2,   ordered_weight =15.0,         color_id=101278 
+2016-02-22 15:49:49.110732 table OSA_Colors id INSERT INSERT OSA_Colors   SET          id =1000004760,       updated_by =100050,       updated_at ="2016-02-22 15:49:49",        parent_id =1000002795,    quoted_pieces =1,    quoted_weight =12.0,   ordered_pieces =1,   ordered_weight =12.0,         color_id=101432 
+2016-02-22 15:49:49.112137 table OSA_Colors id INSERT INSERT OSA_Colors   SET          id =1000004761,       updated_by =100050,       updated_at ="2016-02-22 15:49:49",        parent_id =1000002795,    quoted_pieces =1,    quoted_weight =12.0,   ordered_pieces =1,   ordered_weight =12.0,         color_id=101314 
+2016-02-22 15:49:49.113100 table Quotations id UPDATE UPDATE Quotations   SET status = "Active" WHERE id = 101532 
+
+
+log da DL
+
+2016-02-22 17:12:04.062523 table OSAs id insert INSERT OSAs   SET customer_id=  100002, salesman_id=  100997, ordered_at=  '2016-02-22 15:49', remarks='', id=200068, updated_by=100037, updated_at="2016-02-22 17:12:04", osa_number = 200068

@@ -212,7 +212,7 @@ JKY.LoadOut = function() {
 		JKY.show('jky-loading');
 		var my_html = '';
 
-		var my_loadouts = JKY.get_rows_by_where('LoadOuts', 'shipdyer_id=' + JKY.row.id);
+		var my_loadouts = JKY.get_rows_by_where('LoadOuts', 'shipdyer_id=' + JKY.row.id + ' AND is_selected = \'Yes\'');
 		var my_count_i = my_loadouts.length;
 		for(var i=0; i<my_count_i; i++) {
 			var my_loadout = my_loadouts[i];
@@ -262,6 +262,14 @@ JKY.LoadOut = function() {
 				}
 				my_html += '</table>';
 				my_html += '<br>';
+				
+				var my_data =
+					{ method	: 'update'
+					, table		: 'LoadOuts'
+					, set		: 'is_selected = \'No\', printed_at = \'' + JKY.get_now() + '\''
+					, where		: 'LoadOuts.id=' + my_loadout.id
+					};
+				JKY.ajax(false, my_data);
 			}
 			my_html += my_print_loadout_footer(my_loadout, false);
 			if (i < (my_count_i-1)) {
@@ -272,7 +280,7 @@ JKY.LoadOut = function() {
 		}
 
 		var my_sis_printed = parseFloat(JKY.row.sis_printed);
-		my_sis_printed ++;
+		my_sis_printed += my_count_i;
 
 		var my_data =
 			{ method	: 'update'
@@ -290,7 +298,8 @@ JKY.LoadOut = function() {
 
 //		JKY.show('jky-printable');
 		$("#jky-printable").print();
-
+		
+		JKY.set_form_row(JKY.row);
 		JKY.display_message('SI printed');
 		JKY.hide('jky-loading');
 	}
@@ -406,16 +415,20 @@ if (my_ftp_id != null) {
 }
 		var my_product_finishings = JKY.get_value_by_id('Products', 'finishings', the_loadquot.product_id);
 		var my_finishings = '';
-		for(var i = 0, max = my_configs.length; i < max; i++) {
-			var my_config = my_configs[i];
-			if (my_product_finishings.indexOf(my_config.name) > -1) {
-				var my_finishing = (JKY.is_empty(my_config.value) ? my_config.name : my_config.value);
-				my_finishings += my_finishing.toUpperCase() + ' / ';
+		if (my_product_finishings) {
+			for(var i = 0, max = my_configs.length; i < max; i++) {
+				var my_config = my_configs[i];
+				if (my_product_finishings.indexOf(my_config.name) > -1) {
+					var my_finishing = (JKY.is_empty(my_config.value) ? my_config.name : my_config.value);
+					my_finishings += my_finishing.toUpperCase() + ' / ';
+				}
 			}
 		}
 
-		my_total_pieces += parseInt  (the_loadquot.checkout_pieces);
-		my_total_weight += parseFloat(the_loadquot.checkout_weight);
+		var my_checkout_pieces = parseInt  (the_loadquot.checkout_pieces);
+		var my_checkout_weight = parseFloat(the_loadquot.checkout_weight);
+		my_total_pieces += my_checkout_pieces;
+		my_total_weight += my_checkout_weight;
 
 		my_html += ''
 			+ '<hr>'
@@ -457,8 +470,8 @@ if (my_ftp_id != null) {
 			+ '<td></td>'
 			+ '</tr>'
 			+ '<tr>'
-			+ '<td class=jky-print-label>	       Total do artigo:</td><td class=jky-print-col1><b>' + the_loadquot.checkout_pieces + '<b> (<span>pieces</span>)</td>'
-			+ '<td class=jky-print-label><span>Total Weight</span>:</td><td class=jky-print-col2><b>' + the_loadquot.checkout_weight + '<b> (Kg)</td>'
+			+ '<td class=jky-print-label>	       Total do artigo:</td><td class=jky-print-col1><b>' +  my_checkout_pieces + '<b> (<span>pieces</span>)</td>'
+			+ '<td class=jky-print-label><span>Total Weight</span>:</td><td class=jky-print-col2><b>' + (my_checkout_weight).toFixed(2) + '<b> (Kg)</td>'
 			+ '</tr>'
 			+ '</table>'
 			;

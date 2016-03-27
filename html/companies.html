@@ -60,9 +60,17 @@
 				<div class='jky-form-label'></div>
 				<input id='jky-is-transport' type='checkbox' value='Yes' /> (<span>Is a Transport</span> ?)
 			</div>
+<!--
 			<div id='jky-parent' class='jky-form-line'>
 				<div class='jky-form-label'><span>Head Office</span>:</div>
 				<select id='jky-parent-company'></select>
+			</div>
+-->
+			<div id='jky-parent' class='jky-form-line'>
+				<div class='jky-form-label'><span>Head Office</span>:</div>
+				<input id='jky-head-office-id'								type='hidden'	value='' />
+				<input id='jky-head-office-name'	class='jky-form-name'	disabled		value='' />
+				<a href='#' onClick='JKY.HeadOffice.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Tag</span>:</div>
@@ -247,3 +255,4 @@
 <div id='jky-body-loaded'></div>
 <script src='js/companies.js'></script>
 <script src='js/company_contacts.js'></script>
+<script src='js/JKY.HeadOffice.js'	></script>

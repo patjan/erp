@@ -44,9 +44,17 @@
 				<div class='jky-form-label'><span>Company</span>:</div>
 				<select id='jky-contact-company'></select>
 			</div>
+<!--			
 			<div id='jky-parent' class='jky-form-line'>
 				<div class='jky-form-label'><span>Head Office</span>:</div>
 				<select id='jky-parent-company'></select>
+			</div>
+-->
+			<div id='jky-parent' class='jky-form-line'>
+				<div class='jky-form-label'><span>Head Office</span>:</div>
+				<input id='jky-head-office-id'								type='hidden'	value='' />
+				<input id='jky-head-office-name'	class='jky-form-name'	disabled		value='' />
+				<a href='#' onClick='JKY.HeadOffice.display(this)'><i class='icon-share'></i></a>
 			</div>
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Tag</span>:</div>
@@ -107,6 +115,12 @@
 			<div class='jky-form-line'>
 				<div class='jky-form-label'><span>Email</span>:</div>
 				<input id='jky-email' class='jky-form-email' placeholder='company@email.com' />
+			</div>
+			<div class='jky-form-line'>
+				<div class='jky-form-label'><span>Transport</span>:</div>
+				<input id='jky-transport-id'							type='hidden'	value='' />
+				<input id='jky-transport-name'	class='jky-form-name'	disabled		value='' />
+				<a href='#' onClick='JKY.Transport.display(this)'><i class='icon-share'></i></a>
 			</div>
 		</div>
 		<div class='jky-clear'></div>

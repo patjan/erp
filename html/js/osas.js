@@ -76,8 +76,6 @@ JKY.set_initial_values = function() {
 	JKY.set_html('jky-app-select', JKY.set_options(JKY.sales.select, 'All', 'Draft + Active', 'Draft', 'Active', 'Closed'));
 	JKY.set_html('jky-app-select-label', JKY.t('Status'));
 	JKY.show	('jky-app-select-line');
-	JKY.show	('jky-action-print'   );
-	JKY.show	('jky-action-approve' );
 
 	$('#jky-customer-filter'	).KeyUpDelay(JKY.Customer	.load_data);
 	$('#jky-salesman-filter'	).KeyUpDelay(JKY.Salesman	.load_data);
@@ -267,7 +265,7 @@ JKY.generate_order = function() {
 
 	var my_data =
 		{ method	: 'generate'
-		, table		: 'Order'
+		, table		: 'Orders'
 		, id		:  JKY.row.id
 		};
 	JKY.ajax(false, my_data, function(the_response) {

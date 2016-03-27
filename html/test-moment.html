@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<script src='lib/moment.js'> </script>
+<body>
+
+<script>
+var my_date1 = moment('2016-05-01');
+console.log('date1: ' + my_date1.format().substr(0, 10));
+
+var my_date2 = moment('2016-05-01').add(1, 'day');
+console.log('date2: ' + my_date2.format().substr(0, 10));
+</script>
+
+</body>
+</html>

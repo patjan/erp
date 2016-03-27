@@ -172,7 +172,7 @@ JKY.process_delete = function(the_id, the_row) {
 		, table :  JKY.App.get_prop('table_name')
 		, where : 'parent_id = ' + the_id
 		};
-	JKY.ajax(false, my_data, JKY.process_delete_success);
+	JKY.ajax(false, my_data);
 }
 
 /**

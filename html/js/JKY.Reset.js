@@ -1,10 +1,9 @@
-<script>
 "use strict";
+var JKY = JKY || {};
 
 /**
  * JKY.Reset.js
  */
-
 JKY.set_all_events		= function()				{};
 JKY.set_initial_values	= function()				{};
 JKY.display_list		= function()				{};
@@ -28,5 +27,3 @@ JKY.process_delete		= function(the_id, the_row)	{};
 JKY.process_combine		= function(the_ids)			{};
 JKY.process_publish		= function()				{};
 JKY.process_validation	= function()				{return ''};
-
-</script>

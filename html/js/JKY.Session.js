@@ -1,5 +1,6 @@
 "use strict";
 var JKY = JKY || {};
+
 /**
  * JKY.Session.js - singleton class to process all Session interface
  *

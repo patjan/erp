@@ -17,6 +17,8 @@ JKY.Customer = function() {
 	var my_layer		= 'jky-customer-search';
 
 	function my_display(the_id, the_specific) {
+		$('#jky-customer-add-new'	).click( function() {my_process_add_new	();});
+		$('#jky-customer-save'		).click( function() {my_save_customer	();});
 		my_the_id	= the_id;
 		if (typeof the_specific	== 'undefined') {
 			my_specific	= 'is_customer';
@@ -25,6 +27,64 @@ JKY.Customer = function() {
 		}
 		JKY.set_focus(my_filter);
 		my_load_data();
+	}
+
+	function my_process_add_new() {
+		var my_value = JKY.get_value(my_filter);
+		JKY.set_value('jky-customer-nick-name', my_value);
+		JKY.set_value('jky-customer-full-name', my_value);
+		JKY.show_modal('jky-customer');
+		JKY.set_focus('jky-customer-nick-name');
+	}
+
+	function my_save_customer() {
+		var my_nick_name = JKY.get_value('jky-customer-nick-name'	);
+		var my_full_name = JKY.get_value('jky-customer-full-name'	);
+		var my_phone	 = JKY.get_value('jky-customer-phone'		);
+		var my_error = '';
+		my_error += JKY.is_empty(my_nick_name) ? JKY.set_is_required('Nick Name') : '';
+		my_error += JKY.is_empty(my_full_name) ? JKY.set_is_required('Full Name') : '';
+
+		if (!JKY.is_empty(my_error)) {
+			JKY.display_message(my_error);
+			return;
+		}
+
+		var my_set = ''
+			+      'nick_name=\'' + my_nick_name + '\''
+			+    ', full_name=\'' + my_full_name + '\''
+			+        ', phone=\'' + my_phone	 + '\''
+			+  ', is_customer=\'Yes\''
+			;
+		var my_data =
+			{ method: 'insert'
+			, table : 'Contacts'
+			, set	: my_set
+			};
+		JKY.ajax(false, my_data, function(the_return) {
+			my_add_new_customer(the_return);
+			JKY.hide_modal('jky-customer');
+		});
+	}
+
+	function my_add_new_customer(the_return) {
+		var my_name   = JKY.get_value('jky-customer-full-name');
+		var my_parent = $(my_the_id).parent();
+
+		var my_dom_id = $(my_parent).find('#jky-customer-id');
+		if (my_dom_id.length == 0) {
+			my_dom_id = $(my_parent).find('.jky-customer-id');
+		}
+		my_dom_id.val(the_return.id);
+
+		var my_dom_name = $(my_parent).find('#jky-customer-name');
+		if (my_dom_name.length == 0) {
+			my_dom_name = $(my_parent).find('.jky-customer-name');
+		}
+		my_dom_name.val(my_name);
+		my_dom_name.change();		//	to activate change event
+
+		JKY.hide_modal(my_layer);
 	}
 
 	function my_load_data() {
@@ -46,9 +106,10 @@ JKY.Customer = function() {
 		for(var i=0; i<my_rows.length; i++) {
 			var my_row = my_rows[i];
 			my_html += '<tr onclick="JKY.Customer.click_row(this, ' + my_row.id + ')">'
-					+  '<td class="jky-search-customer-name"	>' +				 my_row.nick_name		+ '</td>'
+					+  '<td class="jky-search-customer-name"	>' +				 my_row.full_name		+ '</td>'
+					+  '<td class="jky-search-nick-name-s"		>' +				 my_row.nick_name		+ '</td>'
 					+  '<td class="jky-search-customer-phone"	>' + JKY.fix_null	(my_row.phone		)	+ '</td>'
-					+  '<td class="jky-search-customer-email"	>' +				 my_row.email			+ '</td>'
+//					+  '<td class="jky-search-customer-email"	>' +				 my_row.email			+ '</td>'
 					+  '</tr>'
 					;
 		}

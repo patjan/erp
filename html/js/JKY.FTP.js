@@ -67,7 +67,7 @@ JKY.FTP = function() {
 					+  '<td class="jky-search-ftp-number"	>' + my_ftp_number			+ '</td>'
 					+  '<td class="jky-search-product-name"	>' + my_row.product_name	+ '</td>'
 					+  '<td class="jky-search-machine-name"	>' + my_row.machine_name	+ '</td>'
-					+  '<td class="jky-search-nick-name"	>' + my_row.nick_name		+ '</td>'
+					+  '<td class="jky-search-nick-name-s"	>' + my_row.nick_name		+ '</td>'
 					+  '</tr>'
 					;
 		}

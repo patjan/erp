@@ -1,4 +1,52 @@
+Perguntas
+
+X	Climatizacao
+X	Reverter ativo
+X	Checkin por barca
+
+- Todas os Tecidos gerado pela Etiqueta nao tem ftp_id, usa ftp do cadastro de produto ?
+- Produto: Moleton Tecnologico Air Tech Felpado Ramado  id: 100759 nao tem ftp ?
+
+
+X	Na saida de Tecido, se nao tem Barcode, gerar Tecido automaticamente com Barcode sequencial
+X	ERP - NFE, mandar com peso e preco descontado
+
+X	alterar a pesquisa de Matriz (new layer) no Clientes
+
 Todo
+
+	avoid the first ajax [get_index] with select = '' 
+		Pieces
+		FTPs
+		Boxes
+		ThreadForecast
+		Pieces Rejected
+		Receivables	???
+		Companies
+		Templates
+		Translations
+		
+	bug on receive_dyers, JKY.Load.js (Not Found)
+		
+	Develop ERP to tablet (touch screen)
+	Develop ERP to WhatsApp
+	Customers to login ERP Store
+
+
+	- setup servidor de DL Teste
+	- setup server on GoDaddy
+	- parada de Sync Servidores
+	- syncronizao de Servidores (por campo)
+	- Pub/Sub na impressao de Etiquetas
+
+		
+0	testar keyboard brazil on ForceNumericOnly
+
+
+0 increase size key of CheckOuts from 5 to 9
+0 increase size key of Incomings from 5 to 9
+0 increase size key of Orders	 from 5 to 9
+
 
 1 etiqueta  10 X 5
 2 bloco H final do ano
@@ -14,18 +62,7 @@ Find tablet hand holder	- $26.00 DURAGADGET High Quality Handheld Rotating
 	$ 10 http://www.ebay.com/itm/360-Rotating-Handheld-Smart-Cover-Case-Hand-Strap-for-iPad-2-3-4-5-Mini-1-2-3/381186111358?_trksid=p2141725.c100338.m3726&_trkparms=aid%3D222007%26algo%3DSIC.MBE%26ao%3D1%26asc%3D20141212152715%26meid%3D17c133dd7b2b4760921f3bb10198e424%26pid%3D100338%26rk%3D2%26rkt%3D29%26sd%3D201369859826
 	$ 15 http://www.ebay.com/itm/Armor-Grade-Silicone-PC-Protection-Case-Stand-Hand-Strap-for-iPad-Mini-1-2-3/251775554927?_trksid=p2141725.c100338.m3726&_trkparms=aid%3D222007%26algo%3DSIC.MBE%26ao%3D1%26asc%3D20141212152715%26meid%3D17c133dd7b2b4760921f3bb10198e424%26pid%3D100338%26rk%3D20%26rkt%3D29%26sd%3D201369859826
 
-Develop ERP to tablet (touch screen)
-Develop ERP to WhatsApp
-Customers to login ERP Store
-
-
-		- setup servidor de DL Teste
-		- setup server on HostGator
-		- parada de Sync Servidores
-		- syncronizao de Servidores (por campo)
-		- Pub/Sub na impressao de Etiquetas
-		- converter caracteres especials na Ajuda (all text)
-
+(done)	- converter caracteres especials na Ajuda (all text)
 (done)	- tablesorter
 (done)	- d3
 (done)	- thumb

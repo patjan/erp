@@ -1,0 +1,110 @@
+<style>
+.jky-color-name		{width:100px;}
+.jky-product-short	{width:100px;}
+</style>
+
+<table id='jky-app-table' class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='jky-td-checkbox'	><input id='jky-check-all' type='checkbox' title="Click here to check all records" /></th>
+			<th class='jky-td-name-s'	><span>     Assigned				</span></th>
+			<th class='jky-td-number'	><span>	        Sale<br>Number		</span></th>
+			<th class='jky-td-name-l'	><span>      Product				</span></th>
+			<th class='jky-td-name-s'	><span>        Color				</span></th>
+			<th class='jky-td-name-s'	><span>     Customer				</span></th>
+			<th class='jky-td-date'		><span>    Requested<br>Date		</span></th>
+			<th class='jky-td-date'		><span>    Check Out<br>Date		</span></th>
+			<th class='jky-td-pieces'	><span>    Requested<br>Pieces		</span></th>
+			<th class='jky-td-weight'	><span>    Check Out<br>Pieces		</span></th>
+			<th class='jky-td-pieces'	><span>    Requested<br>Weight		</span></th>
+			<th class='jky-td-weight'	><span>    Check Out<br>Weight		</span></th>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'></tbody>
+</table>
+
+<div id='jky-app-form'>
+	<div id='jky-form-control'>
+		<div id='jky-form-actions'>
+<!--
+			<button id='jky-action-close'		class='btn' type='button' title="Click here to close this check out"	><span>Close Check Out			</span></button>
+-->
+		</div>
+		<div id='jky-form-status'>
+			<span>Status</span>:
+			<button disabled class='btn jky-status' type='button'><span id='jky-current-status'></span></button>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<div id='jky-form-data'>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span> Sale Out Number</span>:</div><input  id='jky-saleout-number'		class='jky-form-number'		disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>     Sale Number</span>:</div><input  id='jky-sale-number'			class='jky-form-number'		disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	     Assigned</span>:</div><input  id='jky-assigned-name'		class='jky-form-name'		disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	      Product</span>:</div><input  id='jky-product-name'		class='jky-form-name'		disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	        Color</span>:</div><input  id='jky-color-name'			class='jky-form-name'		disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>	     Customer</span>:</div><input  id='jky-customer-name'		class='jky-form-name'		disabled /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>        Location</span>:</div><input  id='jky-checkin-location'	class='jky-form-location'	disabled /></div>
+		</div>
+		<div class='jky-clear'></div>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Requested Date</span>:</div><input  id='jky-requested-date'		class='jky-form-date'		disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Requested Pieces</span>:</div><input  id='jky-requested-pieces'	class='jky-form-pieces'		disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Requested Weight</span>:</div><input  id='jky-requested-weight'	class='jky-form-weight'		disabled  /></div>
+		</div>
+		<div class='jky-left'>
+			<div class='jky-form-line'><div class='jky-form-label'><span>  Check Out Date</span>:</div><input  id='jky-checkout-date'		class='jky-form-date'		disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Pieces</span>:</div><input  id='jky-checkout-pieces'		class='jky-form-pieces'		disabled  /></div>
+			<div class='jky-form-line'><div class='jky-form-label'><span>Check Out Weight</span>:</div>
+				<input  id='jky-hidden-weight'		type='hidden' />
+				<input  id='jky-checkout-weight'	class='jky-form-weight'	disabled />
+			</div>
+		</div>
+		<div class='jky-clear'></div>
+	</div>
+
+	<table id='jky-fabric-table' class='table table-striped'>
+		<thead>
+			<tr>
+				<th class='jky-td-checkbox'	><input id='jky-fabric-check-all' type='checkbox' title="Click here to check all records" /></th>
+				<th class='jky-td-barcode'	><span>Barcode			</span></th>
+				<th class='jky-td-number'	><span>Check Out Weight	</span></th>
+				<th class='jky-td-weight'	><span>Check In Weight	</span></th>
+				<th class='jky-td-input'	><span>Seq				</span></th>
+				<th class='jky-td-status'	><span>Status			</span></th>
+				<th class='jky-td-text-l'	><span>Product			</span></th>
+				<th class='jky-td-name-l'	><span>Color			</span></th>
+				<th class='jky-td-ref'		><span>Location			</span></th>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td class='jky-td-barcode'><input id='jky-barcode' /></td>
+				<td style='min-width:125px;'>
+					<input  id='jky-checkout-weight0'	class='jky-form-digit' />
+					<input  id='jky-checkout-weight1'	class='jky-form-digit' />
+					<input  id='jky-checkout-weight2'	class='jky-form-digit' />&nbsp;.
+					<input  id='jky-checkout-weight3'	class='jky-form-digit' />
+					<input  id='jky-checkout-weight4'	class='jky-form-digit' />
+				</td>
+				<td class='jky-td-weight'	><input id='jky-th-checkin-weight'		disabled /></td>
+				<td>&nbsp;</td>
+				<td class='jky-td-status'	><input id='jky-th-status'				disabled /></td>
+				<td class='jky-td-text-l'	><input id='jky-th-product-name'		disabled /></td>
+				<td class='jky-td-name-l'	><input id='jky-th-color-name'			disabled /></td>
+				<td class='jky-td-location'	><input id='jky-th-checkin-location'	disabled /></td>
+			</tr>
+		</thead>
+
+		<tbody id='jky-fabrics-table-body'></tbody>
+	</table>
+
+	<div id='jky-form-footer'></div>
+</div>
+
+<div id='jky-body-loaded'></div>
+
+<script src='js/fabrics_saleout.js'></script>
+<script src='js/piece_locations.js'></script>
+<script src='js/JKY.Assigned.js'></script>

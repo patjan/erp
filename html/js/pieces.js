@@ -190,6 +190,7 @@ JKY.get_replace_set = function() {
 
 JKY.display_list = function() {
 	JKY.hide('jky-action-add-new');
+	JKY.show('jky-action-label');
 	if (JKY.Session.get_value('user_role') == 'Admin'
 	||  JKY.Session.get_value('user_role') == 'Support') {
 		JKY.show('jky-action-replace');
@@ -198,4 +199,19 @@ JKY.display_list = function() {
 
 JKY.display_form = function() {
 	JKY.hide('jky-action-add-new');
+	JKY.show('jky-action-label');
 };
+
+/**
+ * label row
+ */
+JKY.label_row = function(the_id) {
+	var my_data =
+		{ method	: 'print_labels'
+		, table		: 'Fabrics'
+		, ids		: the_id
+		};
+	JKY.ajax(false, my_data, function(the_data) {
+		JKY.display_message(JKY.t('Label Printed') + ' ' + the_id);
+	});
+}

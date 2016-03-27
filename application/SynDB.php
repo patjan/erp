@@ -54,13 +54,13 @@ try{
 	$my_local_db = Zend_Db::factory('Pdo_Mysql', $my_params);
 	$my_local_db->getConnection();
 
-	$my_status  = get_system_key($my_local_db);
+	$my_status  = get_system_key($my_local_db, PROGRAM_NAME);
 	$my_elapsed = time() - ymdhms_epoch(substr($my_status, 8));
 	if ('started' == substr($my_status, 0, 7)
 	&&  $my_elapsed < 60*60) {
 		log_message('running since ' . $my_status);
 	}else{
-		set_system_key($my_local_db, 'started');
+		set_system_key($my_local_db, PROGRAM_NAME, 'started');
 		$my_servers_host = get_servers_host(SERVER_NUMBER, $my_local_db);
 		foreach($my_servers_host as $my_host) {
 			$my_server_number	= $my_host['name'	];
@@ -72,7 +72,7 @@ try{
 
 			try{
 				$my_host_params = get_db_params($my_server_number);
-				$my_host_params['host'] = $my_server_host;
+				$my_host_params['host'] = $my_server_host;		//	DB has the most updated
 				$my_host_db = Zend_Db::factory('Pdo_Mysql', $my_host_params);
 				$my_host_db->getConnection();
 				log_message('OK, Server Host ' . $my_server_number . ' connected.');
@@ -81,7 +81,26 @@ try{
 				log_message('error, Server Host ' . $my_server_number . ' not connected: ' . $exp->getMessage());
 			}
 		}
-		set_system_key($my_local_db, 'stopped');
+
+		$my_server_number = '9';
+		if (SERVER_NUMBER < $my_server_number) {
+			$my_active_minutes = get_system_key($my_local_db, 'Active Minutes');
+			$my_reference_time = date('Y-m-d H:i:s', (time() - ($my_active_minutes * 60)));
+			log_message('select reference time: ' . $my_reference_time);
+
+			try{
+				$my_host_params = get_db_params($my_server_number);
+				$my_host_params['host'] = get_server_host($my_local_db, $my_server_number);
+				$my_host_db = Zend_Db::factory('Pdo_Mysql', $my_host_params);
+				$my_host_db->getConnection();
+				log_message('OK, Server Host ' . $my_server_number . ' connected.');
+				process_history($my_reference_time, $my_local_db, $my_host_db);
+			}catch(Exception $exp){
+				log_message('error, Server Host ' . $my_server_number . ' not connected: ' . $exp->getMessage());
+			}
+		}
+
+		set_system_key($my_local_db, PROGRAM_NAME, 'stopped');
 	}
 
 }catch(Exception $exp){
@@ -92,6 +111,17 @@ log_message('end of program');
 return;
 
 // -----------------------------------------------------------------------------
+function get_server_host($the_local_db, $the_server_number) {
+	$my_sql = ''
+		. 'SELECT value'
+		. '  FROM Controls'
+		. ' WHERE status = "Active"'
+		. '   AND group_set = "Servers Host"'
+		. '   AND name = "' . $the_server_number . '"'
+		;
+	return $the_local_db->fetchOne($my_sql);
+}
+
 function get_servers_host($the_server_number, $the_local_db) {
 	$my_sql = ''
 		. 'SELECT name, value'
@@ -100,8 +130,17 @@ function get_servers_host($the_server_number, $the_local_db) {
 		. '   AND group_set = "Servers Host"'
 		. '   AND name != "' . $the_server_number . '"'
 		;
-	$my_servers_host = $the_local_db->fetchAll($my_sql);
-	return $my_servers_host;
+	return $the_local_db->fetchAll($my_sql);
+}
+
+function get_history_rows($the_reference_time, $the_local_db) {
+	$my_sql = ''
+		. 'SELECT id, status, updated_at'
+		. '  FROM Sales'
+		. ' WHERE status IN ("Paid", "Closed")'
+		. '   AND updated_at <= "' . $the_reference_time . '"'
+		;
+	return $the_local_db->fetchAll($my_sql);
 }
 
 function show_tables($the_server_number, $the_local_db, $the_host_db) {
@@ -232,6 +271,47 @@ log_message('my_sql: ' . $my_sql);
 //	$the_host_db->query($my_update);
 }
 
+function process_history($the_reference_time, $the_local_db, $the_host_db) {
+	$my_history_rows = get_history_rows($the_reference_time, $the_local_db);
+	log_message('number of rows: ' . count($my_history_rows));
+
+	foreach($my_history_rows as $my_row) {
+		$my_sql = ''
+			. 'SELECT id, status, updated_at'
+			. '  FROM Sales'
+			. ' WHERE id = '			. $my_row['id']
+			. '   AND status = "'		. $my_row['status'] . '"'	
+			. '   AND updated_at = "'	. $my_row['updated_at'] . '"'	
+			;
+		$my_history = $the_host_db->fetchAll($my_sql);
+		if (count($my_history) == 1) {
+			$my_sql = 'DELETE SaleColors'
+					. '  FROM SaleColors'
+					. '  LEFT JOIN SaleLines ON SaleLines.id = SaleColors.parent_id'
+					. ' WHERE SaleLines.parent_id = ' . $my_row['id']
+					;
+			$my_result = $the_local_db->query($my_sql);
+			$my_sql = 'DELETE FROM SaleLines'
+					. ' WHERE parent_id = '	. $my_row['id']
+					;
+			$my_result = $the_local_db->query($my_sql);
+			$my_sql = 'DELETE FROM SaleOuts'
+					. ' WHERE sale_id = '	. $my_row['id']
+					;
+			$my_result = $the_local_db->query($my_sql);
+			$my_sql = 'DELETE FROM Receivables'
+					. ' WHERE sale_id = '	. $my_row['id']
+					;
+			$my_result = $the_local_db->query($my_sql);
+			$my_sql = 'DELETE FROM Sales'
+					. ' WHERE id = '		. $my_row['id']
+					;
+			$my_result = $the_local_db->query($my_sql);
+log_message('history recorded for: ' . $my_row['id']);
+		}
+	}
+}
+
 // -----------------------------------------------------------------------------
 function get_db_params($the_server_number) {
 	$my_params = array();
@@ -278,7 +358,7 @@ function get_sql_replace($the_table_name, $the_row) {
 		if (is_null($my_value)) {
 			$my_sql .= $my_first . $my_name . ' = null';
 		}else{
-			if (is_numeric($my_value)) {
+			if (is_numeric($my_value) and substr($my_value, 0, 1) != '0') {
 				$my_sql .= $my_first . $my_name . ' = ' . $my_value;
 			}else{
 				$my_sql .= $my_first . $my_name . ' = "' . $my_value . '"';
@@ -289,81 +369,15 @@ function get_sql_replace($the_table_name, $the_row) {
 	return $my_sql . ' ;';
 }
 
-// -----------------------------------------------------------------------------------------
-function DeleteHistory( $LocalLink )
-{
-     $TempoAtivo = XGetParametro( $LocalLink, 'Tempo Ativo' );
-
-//   $TempoDe = date( 'Y-m-d ' ) . ( date( 'H' ) - $TempoAtivo ) . date( ':i:s' ) ;
-     $TempoDe = date( 'Y-m-d H:i:s', ( time() - ( $TempoAtivo * 60 )));
-
-     Display( 'Tempo De: ' . $TempoDe );
-
-     $SQL = 'SELECT Id, Status, Updated'
-          . '  FROM Tecno.Fichas'
-          . ' WHERE Status != "A" AND Updated <= "' . $TempoDe . '"'
-          ;
-     $Select = mysql_query( $SQL, $LocalLink );
-     if( $Select )
-          $NumberRows = mysql_num_rows( $Select );
-     else $NumberRows = 0;
-
-     if( $NumberRows == 0 )
-          return;
-
-     Display( 'NumberRows: ' . $NumberRows );
-
-     for( $I = $NumberRows; $I > 0; $I-- )
-     {
-//        if(( $I % 10 ) == 0 )
-//             echo "\n\r" . GetNow() . ' D Registros: ' . $I . '      ' ;
-
-          $Record = mysql_fetch_array( $Select );
-          $Id       = $Record[ 'Id'          ];
-          $Status   = $Record[ 'Status'      ];
-          $Updated  = $Record[ 'Updated'     ];
-
-// echo "\n\r" . 'Id: ' . $Id . ', Status: ' . $Status . ', Updated: ' . $Updated;
-
-//        Verificar se o registro existe no Remota
-//        Este SQL demora bastante no Brasil ( 0.300 sec ), US ( 0.007 sec )
-          $RSQL = 'SELECT Id, Status, Updated'
-               . '  FROM tecno2012.Fichas'
-//             . '  FROM Remota.Fichas'
-               . ' WHERE Id = ' . $Id
-               . '   AND Status  = "' . $Status  . '"'
-               . '   AND Updated = "' . $Updated . '"'
-               ;
-          $RResult  = SendSQL( $RSQL );
-          $Reply    = substr( $RResult, 7, 2 );
-          $NumRows  = substr( $RResult, 10 );
-// echo "\n\r" . 'RResult: ' . $RResult . ', Reply: ' . $Reply . ', NumRows: ' . $NumRows;
-
-          if( $Reply == 'OK' && $NumRows > 0 )
-          {
-               //   Se o registro existe, gerar SQL Deletes
-               $LSQL = 'DELETE FROM Tecno.Fichas WHERE Id = ' . $Id . ';';
-               $LResult = mysql_query( $LSQL, $LocalLink );
-               $LSQL = 'DELETE FROM Tecno.FicItems WHERE Ficha = ' . $Id . ';';
-               $LResult = mysql_query( $LSQL, $LocalLink );
-               $LSQL = 'DELETE FROM Tecno.Transacoes WHERE Ficha = ' . $Id . ';';
-               $LResult = mysql_query( $LSQL, $LocalLink );
-          }
-     }
-echo "\n\r" . GetNow() . ' D Registros: ' . $NumberRows;
-}
-
-// -----------------------------------------------------------------------------
-
 # ------------------------------------------------------------------------------
 #    set system key
 # ------------------------------------------------------------------------------
-function set_system_key($the_local_db, $the_value) {
+function set_system_key($the_local_db, $the_name, $the_value) {
      $sql = 'UPDATE Controls'
           . '   SET value = "' . $the_value . ' ' . get_now() . '"'
 //        . ' WHERE company_id   =  ' . get_session('control_company', COMPANY_ID)
           . ' WHERE group_set = "System Keys"'
-          . '   AND name = "' . PROGRAM_NAME . '"'
+          . '   AND name = "' . $the_name . '"'
           ;
      $the_local_db->query($sql);
 }
@@ -371,12 +385,12 @@ function set_system_key($the_local_db, $the_value) {
 # ------------------------------------------------------------------------------
 #    get system key
 # ------------------------------------------------------------------------------
-function get_system_key($the_local_db) {
+function get_system_key($the_local_db, $the_name) {
      $sql = 'SELECT value'
           . '  FROM Controls'
 //        . ' WHERE company_id   =  ' . get_session('control_company', COMPANY_ID)
           . ' WHERE group_set = "System Keys"'
-          . '   AND name = "' . PROGRAM_NAME . '"'
+          . '   AND name = "' . $the_name . '"'
           ;
      return $the_local_db->fetchOne($sql);
 }
@@ -387,18 +401,6 @@ function log_message($message) {
 	fwrite( $logFile, get_now() . ' ' . $message . NL );
 	fclose( $logFile );
 //	print(get_now() . ' ' . $message . NL);
-}
-
-function OnlyString( $String )
-{
-     $myString = '';
-     for( $I = 0; $I < strlen( $String ); $I++ )
-     {
-          $C = $String[ $I ];
-          if( $C == ' ' || ( $C >= '0' && $C <= '9' ) || ( $C >= 'a' && $C <= 'z' ) || ( $C >= 'A' && $C <= 'Z' ) )
-               $myString .= $C;
-     }
-     return $myString;
 }
 
 ?>

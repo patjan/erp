@@ -63,7 +63,6 @@ JKY.set_initial_values = function() {
 JKY.set_table_row = function(the_row) {
 	var my_html = ''
 		+  '<td class="jky-td-barcode"	>' +				 the_row.barcode				+ '</td>'
-		+  '<td class="jky-td-status"	>' + JKY.t			(the_row.status				)	+ '</td>'
 		+  '<td class="jky-td-name-l"	>' +				 the_row.thread_name			+ '</td>'
 		+  '<td class="jky-td-name-s"	>' +				 the_row.supplier_name			+ '</td>'
 		+  '<td class="jky-td-code"		>' +				 the_row.batch_code				+ '</td>'
@@ -73,6 +72,7 @@ JKY.set_table_row = function(the_row) {
 		+  '<td class="jky-td-weight"	>' +				 the_row.real_weight			+ '</td>'
 		+  '<td class="jky-td-location"	>' +				 the_row.checkin_location		+ '</td>'
 		+  '<td class="jky-td-location"	>' + JKY.fix_null	(the_row.checkout_location	)	+ '</td>'
+		+  '<td class="jky-td-status"	>' + JKY.t			(the_row.status				)	+ '</td>'
 		;
 	return my_html;
 };

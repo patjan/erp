@@ -66,7 +66,7 @@ public function indexAction() {
 
 private function confirm($user_key) {
 	$error = '';
-	$user_id = db_get_id('JKY_Users', 'user_key = "' . $data['user_key'] . '"');
+	$user_id = db_get_id('Users', 'user_key = "' . $data['user_key'] . '"');
 
 	if (!$user_id) {
 		$error .= BR . 'User Account already expired';
@@ -97,7 +97,7 @@ private function confirm($user_key) {
  */
 private function reset($user_key) {
 	$error = '';
-	$user_id = db_get_id('JKY_Users', 'user_key = "' . $user_key . '"');
+	$user_id = db_get_id('Users', 'user_key = "' . $user_key . '"');
 	logger('start - user_id: ' . $user_id);
 
 	if ($user_id) {
@@ -114,7 +114,7 @@ private function reset($user_key) {
 }
 
 private function set_user_session($user_id) {
-	$user = db_get_row('JKY_Users', 'id = ' . $user_id);
+	$user = db_get_row('Users', 'id = ' . $user_id);
 	set_session('user_id'		, $user['id'			]);
 	set_session('user_name'		, $user['user_name'		]);
 	set_session('user_type'		, $user['user_type'		]);
@@ -131,7 +131,7 @@ private function set_user_session($user_id) {
 }
 
 private function update_user_key($user_id) {
-	$table = 'JKY_Users';
+	$table = 'Users';
 	$sql = 'UPDATE ' . $table
 		. '   SET user_key="' . MD5(date('Y-m-d H:i:s')) . '"'
 		. ' WHERE id = ' . $user_id

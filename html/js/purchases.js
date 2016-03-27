@@ -185,7 +185,7 @@ JKY.generate_purchase = function() {
 
 	var my_data =
 		{ method	: 'generate'
-		, table		: 'Purchase'
+		, table		: 'Purchases'
 		, id		: JKY.row.id
 		}
 	JKY.ajax(false, my_data, JKY.refresh_form);
